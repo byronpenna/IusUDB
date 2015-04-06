@@ -8,7 +8,7 @@ using System.Web.Mvc;
     using IUSLibs.SEC.Entidades;
 namespace IUSBack.Controllers
 {
-    public class GestionPersonasController : Controller
+    public class GestionPersonasController : PadreController
     {
         //
         // GET: /GestionPersonas/
@@ -19,6 +19,9 @@ namespace IUSBack.Controllers
         {
             // mandar a traer personas
             List<Persona> personas = this._model.getPersonas();
+            Usuario usuarioSession = (Usuario)Session["usuario"];
+            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+
             ViewBag.personas = personas;
             return View();
         }

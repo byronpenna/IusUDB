@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+// librerias internas
+    using IUSBack.Models.General;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.SEC.Control;
 namespace IUSBack.Models.Page.GestionPersonas.acciones
 {
-    public class GestionPersonaModel
+    public class GestionPersonaModel:PadreModel
     {
         public List<Persona> getPersonas()
         {

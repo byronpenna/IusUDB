@@ -19,6 +19,13 @@ namespace IUSLibs.SEC.Entidades
                     return this._nombres + " " + this._apellidos;
                 }
             }
+            public String getFechaNac
+            {
+                get
+                {
+                    return String.Format("{0:dd/MM/yyyy}", this._fechaNacimiento);
+                }
+            }
         #endregion
         #region "constructores"
             public Persona(int idPersona, String nombres, String apellidos)

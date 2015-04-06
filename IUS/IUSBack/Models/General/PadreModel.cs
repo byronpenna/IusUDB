@@ -160,6 +160,9 @@ namespace IUSBack.Models.General
                     return toReturn;
                 }   
             #endregion
+            #region "genericas"
+               
+            #endregion
         #endregion
     }
 }

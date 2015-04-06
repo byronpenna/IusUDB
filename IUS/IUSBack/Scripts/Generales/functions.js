@@ -1,4 +1,21 @@
-﻿// updates 
+﻿// tabla
+    function controlesEdit(mostrar,tr) {
+        console.log("Llamaras a controles edit");
+        if (mostrar) {
+            selectorMostrar = ".editMode";
+            selectorOcultar = ".normalMode";
+        } else {
+            selectorMostrar = ".normalMode";
+            selectorOcultar = ".editMode";
+        }
+        if (!tr.find(selectorOcultar).hasClass("hidden")) {
+            tr.find(selectorOcultar).addClass("hidden");
+        }
+        if (tr.find(selectorMostrar).hasClass("hidden")) {
+            tr.find(selectorMostrar).removeClass("hidden");
+        }
+    }
+// updates 
     function actualizarCatalogo(urlAjax,frm,callback) {
         $.ajax({
             url: urlAjax,
