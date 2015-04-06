@@ -1,5 +1,55 @@
-﻿@section scriptsPersonalizados{
+﻿@using IUSLibs.SEC.Entidades
+@section scriptsPersonalizados{
     <script src="~/Scripts/Views/GestionPersonas/script.js"></script>
     <script src="~/Scripts/Views/GestionPersonas/functions.js"></script>
 }
-<h2>Gestion de personas</h2>
+@{
+    List<Persona> personas = (List<Persona>)ViewBag.personas;
+}
+<h2 class="text-center">Gestion de personas</h2>
+
+<table class="table table-hover tablePersonas">
+    <thead>
+        <tr class="ControlGlobal hidden">
+             
+        </tr>
+        <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Fecha de nacimiento</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (personas != null)
+        {
+            foreach (Persona persona in personas)
+            {
+                <tr class="trPersona">
+                    <td class="hidden">
+
+                    </td>
+                    <td>
+                        @persona._nombres
+                    </td>
+                    <td>
+                        @persona._apellidos
+                    </td>
+                    <td>
+                        @persona._fechaNacimiento
+                    </td>
+                    <td>
+                        <button class="btn btn-xs">Editar</button>
+                        <button class="btn btn-xs">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr class="text-center">
+                <td colspan="4">No hay registros para mostrar</td>
+            </tr>
+        }
+    </tbody>
+</table>

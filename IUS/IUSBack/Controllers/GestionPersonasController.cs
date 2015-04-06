@@ -17,6 +17,9 @@ namespace IUSBack.Controllers
         #endregion
         public ActionResult Index()
         {
+            // mandar a traer personas
+            List<Persona> personas = this._model.getPersonas();
+            ViewBag.personas = personas;
             return View();
         }
         #region "ajax action"
