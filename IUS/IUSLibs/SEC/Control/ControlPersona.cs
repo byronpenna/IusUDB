@@ -31,7 +31,7 @@ namespace IUSLibs.SEC.Control
             if (!this.DataSetDontHaveTable(ds))
             {
                 DataTable table = ds.Tables[0];
-                if ((bool)table.Rows[0]["estadoUpdate"])
+                if ((int)table.Rows[0]["estadoUpdate"] == 1)
                 {
                     if(ds.Tables.Count > 1 ){
                         DataRow rowResult = ds.Tables[1].Rows[0];

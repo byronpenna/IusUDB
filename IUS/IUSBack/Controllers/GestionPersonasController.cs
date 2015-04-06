@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
     using IUSLibs.SEC.Entidades;
@@ -15,6 +16,7 @@ namespace IUSBack.Controllers
         #region "propiedades"
             public GestionPersonaModel _model;
             private int _idPagina = 4;
+            private JavaScriptSerializer _jss;
         #endregion
         public ActionResult Index()
         {
@@ -39,10 +41,33 @@ namespace IUSBack.Controllers
             List<Persona> personas = this._model.getPersonas();
             return Json(personas);
         }
-        #endregion
-        public GestionPersonasController()
+        [HttpPost]
+        public ActionResult actualizarPersona()
         {
-            this._model = new GestionPersonaModel();
+            string frmText = Request.Form["form"];
+            Dictionary<Object, Object> frm, toReturn;
+            if (frmText != null && Session["usuario"] != null)
+            {
+                frm = _jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                Usuario usuarioSession = (Usuario)Session["usuario"];
+                Persona personaActualizar = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                toReturn = this._model.actualizarPersona(personaActualizar, usuarioSession._idUsuario, this._idPagina);
+                
+            }
+            else
+            {
+                toReturn = this.errorEnvioFrmJSON();
+            }
+            return Json(toReturn);
         }
+        #endregion
+        #region "constructores"
+            public GestionPersonasController()
+            {
+                this._model = new GestionPersonaModel();
+                this._jss = new JavaScriptSerializer();
+            }
+        #endregion
+        
     }
 }

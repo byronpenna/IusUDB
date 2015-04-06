@@ -89,7 +89,6 @@ namespace IUSBack.Controllers
             if (frmText != null)
             {
                 frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
-
                 toReturn = this._model.actualizarUsuario(frm,usuarioSession._idUsuario);
             }
             else

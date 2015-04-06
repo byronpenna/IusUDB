@@ -1,9 +1,18 @@
 ﻿// actualizar 
     function actualizar(trPersona) {
         frm = serializeToJson(trPersona.find("input").serializeArray());
-        actualizarCatalogo("", frm, function (data) {
+        console.log("formulario es:", frm);
+        actualizarCatalogo("/GestionPersonas/actualizarPersona", frm, function (data) {
+            if (data.estado) {
+                persona = data.persona;
+                console.log("la persona es", persona);
+                trPersona.find(".tdNombre").empty().append(persona._nombres);
+                trPersona.find(".tdApellido").empty().append(persona._apellidos);
+                trPersona.find(".tdFechaNac").empty().append(persona.getFechaNac);
+                controlesEdit(false, trPersona); // deshabilitar la edicion
+            }
         });
-        controlesEdit(false, trPersona); // deshabilitar la edicion
+        
 
     }
 //edit 
