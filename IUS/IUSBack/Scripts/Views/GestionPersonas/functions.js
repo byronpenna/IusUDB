@@ -1,4 +1,12 @@
-﻿//edit 
+﻿// actualizar 
+    function actualizar(trPersona) {
+        frm = serializeToJson(trPersona.find("input").serializeArray());
+        actualizarCatalogo("", frm, function (data) {
+        });
+        controlesEdit(false, trPersona); // deshabilitar la edicion
+
+    }
+//edit 
     function editMode(trPersona) {
         nombres     = trPersona.find(".tdNombre").text();
         apellidos   = trPersona.find(".tdApellido").text();

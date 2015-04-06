@@ -3,6 +3,14 @@
         $(".dtFechaNacimiento").datepicker({
             dateFormat: "dd/mm/yy"
         });
+    // actualizar 
+        $(document).on("click", ".btnActualizar", function () {
+            var x = confirm("¿Esta seguro que desea actualizar esta persona?");
+            trPersona = $(this).parents(".trPersona");
+            if (x) {
+                actualizar(trPersona)
+            }
+        })
     // editar
         $(document).on("click", ".btnEditar", function () {
             var x = confirm("¿Esta seguro que desea editar esta persona?");
@@ -23,4 +31,5 @@
             cancelarGlobal();
             cambiarEstadoControlGlobal();
         });
+        
 });

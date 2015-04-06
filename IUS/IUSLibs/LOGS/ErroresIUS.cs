@@ -57,6 +57,12 @@ namespace IUSLibs.LOGS
             {
 
             }
+            public ErroresIUS(string message,tipoError errorType,int codigoError): base(message)
+            {
+                this._tipoError = errorType;
+                this._codigoError = codigoError;
+
+            }
         #endregion
     }
 }

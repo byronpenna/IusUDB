@@ -85,8 +85,6 @@
     }
 // Actualizar
     function actualizar(trUsuario) {
-        obj = new Object();
-        
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
         actualizarCatalogo("GestionUsuarios/actualizarUsuario", frm, function (data) {
             console.log("la data devuelta es:", data);
