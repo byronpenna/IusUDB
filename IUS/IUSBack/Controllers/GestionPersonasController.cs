@@ -20,10 +20,16 @@ namespace IUSBack.Controllers
             // mandar a traer personas
             List<Persona> personas = this._model.getPersonas();
             Usuario usuarioSession = (Usuario)Session["usuario"];
-            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-
-            ViewBag.personas = personas;
-            return View();
+            if (Session["usuario"] != null)
+            {
+                ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                ViewBag.personas = personas;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("index", "login");
+            }
         }
         #region "ajax action"
         [HttpPost]

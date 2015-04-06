@@ -11,7 +11,6 @@
         $(".normalMode").removeClass("hidden");
     }
     function cambiarEstadoControlGlobal() {
-        console.log("cambiarasEstado");
         estadoControl = estadoControlGlobal();
         console.log("El estado del control es", estadoControl);
         if (!estadoControl) {

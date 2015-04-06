@@ -1,5 +1,28 @@
 ﻿// tabla
-    function controlesEdit(mostrar,tr) {
+    function cancelarGlobal() {
+        var x = confirm("¿Esta seguro que desea cancelar todo?");
+        if (x) {
+            $(".editMode").addClass("hidden");
+            $(".normalMode").removeClass("hidden");
+        }
+    }
+    function estadoControlGlobal() {
+        if ($(".editMode").length == $(".editMode.hidden").length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function cambiarEstadoControlGlobal() {
+        estadoControl = estadoControlGlobal();
+        console.log("El estado del control es", estadoControl);
+        if (!estadoControl) {
+            $(".controlGlobal").removeClass("hidden");
+        } else {
+            $(".controlGlobal").addClass("hidden");
+        }
+    }
+    function controlesEdit(mostrar, tr) {
         console.log("Llamaras a controles edit");
         if (mostrar) {
             selectorMostrar = ".editMode";
