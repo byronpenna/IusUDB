@@ -1,0 +1,230 @@
+﻿/*Clases de prueba*/
+    .pink{
+        background:pink;
+    }
+    .green{
+        background:green;
+    }
+    .purple{
+        background:purple;
+    }
+/*end clases de prueba*/
+.divSlider{
+    display:none;
+}
+/*Header*/
+    .ulMenu{
+        
+    }
+    .header{
+        min-height:500px;
+        height:auto;
+        background: url("../../../images/generales/slide.png") no-repeat center center ;
+        background-size:cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    .menu{
+        width:90%;
+        margin:0 auto;
+        text-align:center;
+        min-height:300px;
+    }
+    .menu ul{
+        list-style:none;
+        padding:0;
+        
+    }
+    .menu > ul > li{
+        list-style:none;
+        display:inline-block;
+        width:18%;
+        vertical-align:top;
+        margin:0;
+        /*background:#FD343C;*/
+        text-align: center;
+        
+        padding-top:2%;
+        padding-bottom:2%;
+        
+    }
+    .menu li li {
+        display:block;
+    }
+    .menu > ul > li> a {
+        display:block;
+        color: white;
+        padding-top:10%;
+        padding-bottom:10%;
+        background:rgba(234,34,44,0.85);
+        border-radius:5px;
+    }
+    nav li ul{
+        display:none;
+        padding:0;        
+    }
+    .footer{
+        text-align:center
+    }
+    .subMenu li {
+        background:#756B6A;
+        border-radius:5px;
+        margin-top: 2%;
+        padding-top:2%;
+        padding-bottom:2%;
+    }
+    
+    .subMenu{
+        margin:0;
+        background:rgba(117,107,108,0.4);   
+        padding-top:4% !important;
+        padding-bottom:4% !important;
+        
+    }
+    .subMenu a{
+        color:white;
+        
+        
+    }
+    .padre:hover{
+        padding-bottom:0;
+    }
+        
+    
+    nav li:hover ul{
+        display:block;
+    }
+    /*
+        Slider
+        */
+    .nav{
+        background:#807778;
+        padding:0%;
+        width:50%;
+        text-align:center;
+        margin:0;
+        font-size:4em;
+        border-radius:5px;
+        cursor:pointer;
+        vertical-align:top;
+    }
+    #navRight{
+        float:right ;
+    }
+    /*
+        end slider
+        */
+    /*
+        Segundo menu
+        */
+    .segundoMenu{
+        margin-top:5%;
+    }
+    .segundoMenu .item{
+       background:rgba(234,34,44,0.8);
+       text-align:center;
+       color:white;
+       font-weight:bold;
+       border-radius: 5px;
+       padding:2%;
+    }
+    .item{
+        cursor:pointer;
+    }
+    /*
+        End segundo menu
+        */
+/*end header*/
+/*
+    Cuerpo
+    */
+.infoSection{
+    margin-top: 3%;
+    padding-right:4%;
+}
+.infoSection h2{
+    color:#FC1F26;
+}
+.infoSection p{
+    text-align:justify;
+}
+.tituloInfoSection{
+    margin-bottom:3%;
+}
+
+.noticiasSection{
+    padding:2%;
+    
+}
+.cuadritoNoticia{
+    background:#aba5a5;
+    border-radius:5px;
+    padding:1%;
+    padding-bottom:10%;
+}
+.cuadritoNoticia p{
+    text-align:justify;
+}
+.tituloNoticia{
+    text-align:center;
+}
+.imgNoticia{
+    margin-top:10%;
+    margin-bottom:10%;
+    width:95%;
+}
+/*
+    end cuerpo
+    */
+/*
+    Footer
+    */
+    .circulosRedes{
+        margin-top:2%;
+    }
+    .footer h3, .footer h4 {
+        margin:0;
+        font-size:1em;
+    }
+    .footer h3{
+        color:white;
+    }
+    .footer h4{
+        color:#fe6b70;
+        margin-top:5%;
+    }
+    .footerPart:nth-child(2){
+        border-right: solid 4px white;
+        border-left:solid 4px white;
+    }
+    .footerPart address{
+        color:white;
+    }
+    .footer{
+        background:#FF1F27;
+        padding-top:2%;
+    }
+    
+    .divContenedorCirculo{
+        display:inline-block;
+    }
+    .circulo {
+         width: 40px;
+         height:40px;
+         -moz-border-radius: 50%;
+         -webkit-border-radius: 50%;
+         border-radius: 50%;
+         background: #766C6D;
+         text-align:center;
+         display:table;
+    }
+    .circulo i{
+        display:table-cell;
+        vertical-align:middle;
+        color:white;
+    }
+/*
+    end footer
+    */

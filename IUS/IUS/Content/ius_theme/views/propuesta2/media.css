@@ -1,0 +1,312 @@
+﻿@media (min-width: 300px) and (max-width:400px) {
+    .segundoMenu{
+        width:90%;
+        margin:0 auto;
+        border-radius:0;
+        margin-top:15%;
+    }
+    .nav{
+        width:100%;
+    }
+    .segundoMenu .item{
+        border-radius:0;
+    }
+    .segundoMenu img{
+        width:20%;
+    }
+    /* Se repite abajo */
+        .infoSection{
+            width:100%;
+        }
+        .noticiasSection{
+            width:100%;
+        }
+        .imgNoticia{
+            width:60%;
+            margin-top:1%;
+            margin-bottom:1%;
+            width:60%;
+        }
+        .divImageNoticia{
+            text-align:center;
+        }
+        
+        .footerPart:nth-child(2){
+            border:none;
+        }
+         .menu > ul > li{
+            display:block;
+            margin:0;
+            padding:0;
+            width:100%;
+        }
+        .menu > ul > li> a{
+            padding:0;
+            border-radius:0;
+            border-bottom:solid 1px black;
+            padding-top:3%;
+            padding-bottom:1%;
+        }
+        .subMenu li{
+            padding-top:2%;
+            padding-bottom:2%;
+            margin-top:1%;
+        }
+        .subMenu{
+            padding-top:1% !important;
+            padding-bottom:1% !important;
+        }
+         .footer{
+            padding-top:5%;
+            padding-bottom:5%;
+        }
+    /* End se repite abajo */
+}
+@media (min-width: 400px) and (max-width:500px) {
+    body{
+        background:pink;
+    } 
+    /* Se repite abajo */
+        .infoSection{
+            width:100%;
+        }
+        .noticiasSection{
+            width:100%;
+        }
+        .imgNoticia{
+            width:60%;
+            margin-top:1%;
+            margin-bottom:1%;
+            width:60%;
+        }
+        .divImageNoticia{
+            text-align:center;
+        }
+        
+        .footerPart:nth-child(2){
+            border:none;
+        }
+         .menu > ul > li{
+            display:block;
+            margin:0;
+            padding:0;
+            width:100%;
+        }
+        .menu > ul > li> a{
+            padding:0;
+            border-radius:0;
+            border-bottom:solid 1px black;
+            padding-top:3%;
+            padding-bottom:1%;
+        }
+        .subMenu li{
+            padding-top:2%;
+            padding-bottom:2%;
+            margin-top:1%;
+        }
+        .subMenu{
+            padding-top:1% !important;
+            padding-bottom:1% !important;
+        }
+         .footer{
+            padding-top:5%;
+            padding-bottom:5%;
+        }
+    /* End se repite abajo */
+}
+@media (min-width: 500px) and (max-width:600px) {
+    
+    .infoSection{
+        width:100%;
+    }
+    .noticiasSection{
+        width:100%;
+    }
+    .imgNoticia{
+        width:60%;
+        margin-top:1%;
+        margin-bottom:1%;
+        width:60%;
+    }
+    .divImageNoticia{
+        text-align:center;
+    }
+    /* Se repite abajo */
+        .footerPart:nth-child(2){
+            border:none;
+        }
+         .menu > ul > li{
+            display:block;
+            margin:0;
+            padding:0;
+            width:100%;
+        }
+        .menu > ul > li> a{
+            padding:0;
+            border-radius:0;
+            border-bottom:solid 1px black;
+            padding-top:3%;
+            padding-bottom:1%;
+        }
+        .subMenu li{
+            padding-top:2%;
+            padding-bottom:2%;
+            margin-top:1%;
+        }
+        .subMenu{
+            padding-top:1% !important;
+            padding-bottom:1% !important;
+        }
+         .footer{
+            padding-top:5%;
+            padding-bottom:5%;
+        }
+    /* End se repite abajo */
+}
+@media (min-width: 600px) and (max-width:700px) {
+    
+    .cuerpo{
+        margin-top:4%;
+        margin-bottom:4%;
+    }
+    /* Se repite abajo */
+        .footerPart:nth-child(2){
+            border:none;
+        }
+        .footer{
+            padding-top:5%;
+            padding-bottom:5%;
+        }
+         .menu > ul > li{
+            display:block;
+            margin:0;
+            padding:0;
+            width:100%;
+        }
+        .menu > ul > li> a{
+            padding:0;
+            border-radius:0;
+            border-bottom:solid 1px black;
+            padding-top:3%;
+            padding-bottom:1%;
+        }
+        .subMenu li{
+            padding-top:2%;
+            padding-bottom:2%;
+            margin-top:1%;
+        }
+        .subMenu{
+            padding-top:1% !important;
+            padding-bottom:1% !important;
+        }
+    /* End repite abajo */
+}
+
+@media (min-width: 700px) and (max-width:800px) {
+    
+    /*
+        Menu
+        */
+    .menu > ul > li{
+        display:block;
+        margin:0;
+        padding:0;
+        width:100%;
+    }
+    .menu > ul > li> a{
+        padding:0;
+        border-radius:0;
+        border-bottom:solid 1px black;
+        padding-top:3%;
+        padding-bottom:1%;
+    }
+    .subMenu li{
+        padding-top:2%;
+        padding-bottom:2%;
+        margin-top:1%;
+    }
+    .subMenu{
+        padding-top:1% !important;
+        padding-bottom:1% !important;
+    }
+    
+    /*
+        End menu
+        */
+    /*
+        Middle
+        */
+    .imgNoticia{
+        margin-top:1%;
+        margin-bottom:1%;
+    }
+    .cuerpo{
+        padding-top:2%;
+    }
+    /*
+        End midle
+        */
+    /*
+        footer
+        */
+    .footer{
+        padding-top:5%;
+    }
+    .footerPart:nth-child(2){
+        border-right:none;
+        border-left:none;
+        margin-top:2%;
+        margin-bottom:2%;
+    }
+    .footer h4{
+        margin-top:2%;
+    }
+    .noticiasSection{
+        /*padding:15%;*/
+        padding-top:1%;
+    }
+    /*
+        End footer
+        */
+}
+@media (min-width: 800px) and (max-width:900px) {
+    
+}
+@media (min-width: 900px) and (max-width:1000px) {
+     
+     .header{
+        
+    }
+}
+@media (min-width: 1000px) and (max-width:1100px) {
+    .segundoMenu .item{
+        margin:0;
+        width:20%;
+        margin-right:4%;
+    }
+    
+    /*Repite abajo*/
+    .nav{
+        width:100%;
+    }
+    /*End repite abajo*/
+}
+@media (min-width: 1100px) and (max-width:1200px) {
+    
+    .nav{
+        width:100%;
+    }
+}
+@media (min-width: 1200px) and (max-width:1300px) {
+    
+}
+@media (min-width: 1300px) and (max-width:1400px) {
+    
+}
+@media (min-width: 1400px) and (max-width:1500px) {
+
+}
+
+@media (min-width: 1500px) and (max-width:1600px)  {
+   
+}

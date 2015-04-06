@@ -1,0 +1,171 @@
+﻿/*
+    Test class
+    */
+.pink{
+    background:pink;
+}
+.green{
+    background:green;
+}
+.purple{
+    background:purple;
+}
+/*
+    End test class
+    */
+
+/*
+    Header
+    */
+
+.menu>div> div{
+    text-align:center
+}
+    
+    .menu div div a {
+        text-decoration:none;
+         color:white;
+        font-size:1.2em;
+    }
+    .menu .filaMenu:nth-child(1){
+        background:#FF1F27;
+        color:white;
+    }
+    .menu .filaMenu:nth-child(2){
+        margin-top:3%;
+        background:#766D6C;
+    }
+.filaMenu{
+   padding-top:3%;
+   padding-bottom:3%;
+   border-radius:5px;
+}
+.menuSection{
+    padding-left:5%;
+    
+}
+.btnLogin{
+    background: #766C6B;
+    color:white;
+    border-radius:10%;
+    padding:2%;
+    text-transform: uppercase;
+    width:50%;
+    margin-top:2%;
+
+}
+.logoSection{
+    text-align:center;
+}
+header{
+    padding:2%;
+}
+/*
+    End header
+    */
+/*
+    Cuerpo
+    */
+.cuerpo{
+    margin-top:2%;
+    margin-bottom:7%;
+}
+.lineaGris{
+    height:10px;
+    background:#766D6C;
+}
+.lineaGris:nth-child(2){
+    background:#766D6B;
+}
+
+.slider{
+    position:relative;
+}
+
+.slider img{
+    width:100%;
+    display:none;
+}
+.active{
+    display:block !important;
+
+}
+.navs{
+    position:absolute;
+    top:50%;
+    width:100%;
+}
+.navSimbol i{
+    font-size:3em;
+    background:#7C7374;
+    padding-top:8%;
+    padding-bottom:8%;
+    padding-left:5%;
+    padding-right:10%;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+}
+.navSimbol{
+    text-align:center;
+    
+}
+.contenedorImgSlider{
+    width:100%; 
+    
+}
+/*
+    End cuerpo
+    */
+/*
+  Footer  
+    */
+.footer{
+    background:#FF1F27;
+    padding-top:2%;
+    padding-bottom:2%;
+}
+.footer h3,.footer h4 {
+    font-size:1em;
+}
+.blockCopyRight{
+    width:60%;
+}
+.blockCopyRight h3{
+    color:white;
+    font-weight:bold;
+}
+.blockCopyRight h4{
+    color:#FD6B6C;
+}
+.copyRightFooter h3{
+    margin-top:0;
+}
+.addressSection address{
+    color:white;  
+}
+
+.divContenedorCirculo{
+    display:inline-block;
+}
+.circulo {
+     width: 40px;
+     height:40px;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     background: #766C6D;
+     text-align:center;
+     display:table;
+}
+.circulo i{
+    display:table-cell;
+    vertical-align:middle;
+    color:white;
+}
+.redesSocialesSection{
+    padding-top:1%;
+}
+/*
+    End footer
+    */

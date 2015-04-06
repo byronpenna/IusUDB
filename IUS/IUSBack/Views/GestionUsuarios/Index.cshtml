@@ -1,0 +1,86 @@
+﻿@using IUSLibs.SEC.Entidades
+@section scriptsPersonalizados{
+    <script src="~/Scripts/Views/GestionUsuarios/script.js"></script>
+    <script src="~/Scripts/Views/GestionUsuarios/functions.js"></script>
+}
+<h2 class="text-center">Gestion de usuarios</h2>
+@{
+    
+    List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
+    Permiso permiso = (Permiso)ViewBag.permiso;
+}
+<table class="table table-hover tableUsuarios">
+    <thead>
+        <tr>
+            <th>Empleado</th>
+            <th>Usuario</th>
+            <th>Fecha creacion</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (usuarios != null)
+        {
+              foreach (Usuario usu in usuarios)
+                {
+                    <tr class="trUsuario">
+                        <td class="hidden">
+                            <input type="hidden" name="txtHdIdUser" class="txtHdIdUser" value="@usu._idUsuario" />
+                        </td>
+                        <td class="tdNombre">
+                            <div class="editMode hidden">
+                                <select name="cbPersona" class="form-control cbPersona">
+                                    <option>Seleccione una persona</option>
+                                </select>
+                            </div>
+                            <div class="normalMode tdTxtNombreCompleto">
+                                @usu._persona.nombreCompleto
+                            </div>
+                        </td>
+                        <td class="tdUsuario">
+                            <div class="editMode hidden">
+                                <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario"/>
+                            </div>
+                            <div class="normalMode tdTxtUsuario">
+                                @usu._usuario
+                            </div>
+                        </td>
+                        <td class="tdFecha">
+                            @usu._fechaCreacion
+                        </td>
+                        <td class="tdEstadoUsuario">
+                            @usu.estadoUsuario
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <button class="btn btn-sm btnActualizar">Actualizar</button>
+                                <button class="btn btn-sm btnCancelarEdit">Cancelar</button>
+                            </div>
+                            <div class="normalMode ">
+                                <button class="btn btn-xs btnEditar" @permiso.stringEditar>
+                                    Editar
+                                </button>
+                                <button class="btn btn-xs btnDeshabilitar" @permiso.stringEditar>
+                                    Deshabilitar
+                                </button>
+                                <button class="btn btn-xs btnVerRoles" @permiso.stringEditar>
+                                    Ver roles
+                                </button>
+                                <button class="btn btn-xs">
+                                    Ver persona
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+        }
+        else
+        {
+            <tr class="text-center">
+                <td colspan="5">No hay registros para mostrar</td>
+            </tr>
+        }
+      
+    </tbody>
+</table>

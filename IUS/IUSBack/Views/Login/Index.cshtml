@@ -1,0 +1,31 @@
+﻿@model IUSBack.Models.Page.Login.Forms.User
+<style>
+    .divLogOut{
+        display:none;
+    }
+</style>
+<h2>Login</h2>
+    @using (Html.BeginForm("index", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <table>
+            <tr>
+                <td>@Html.LabelFor(frm => frm.usuario)</td>
+                <td>@Html.TextBoxFor(frm => frm.usuario)</td>
+                <td>@Html.ValidationMessageFor(frm => frm.usuario)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(frm => frm.pass)</td>
+                <td>@Html.PasswordFor(frm => frm.pass)</td>
+                <td>@Html.ValidationMessageFor(frm => frm.pass)</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type='submit' />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">@ViewBag.errorLogin</td>
+            </tr>
+        </table>
+    }

@@ -1,0 +1,182 @@
+﻿@media (min-width: 300px) and (max-width:400px) {
+    body{
+        background:pink;
+    }
+    /* Repite abajo */
+        .blockCopyRight{
+            width:100%;
+        }
+        .footer{
+            text-align:center;
+            padding-top:5%;
+        }
+        .cuerpo{
+            margin-top:5%;
+        }
+        .navSimbol i{
+            font-size:1em;
+        }
+        .menuSection{
+            margin-top:3%;
+            padding:0;
+        }
+    /* End repite abajo */
+}
+@media (min-width: 400px) and (max-width:500px) {
+    
+    /* Repite abajo */
+        .blockCopyRight{
+            width:100%;
+        }
+        .footer{
+            text-align:center;
+            padding-top:5%;
+        }
+        .navSimbol i{
+            font-size:1em;
+        }
+        .cuerpo{
+            margin-top:5%;
+        }
+        .menuSection{
+            margin-top:3%;
+            padding:0;
+        }
+    /* End repite abajo */
+}
+@media (min-width: 500px) and (max-width:600px) {
+    .footer{
+        text-align:center;
+        padding-top:5%;
+    }
+     
+    .navSimbol i{
+        font-size:2em;
+    }
+    /* Repite abajo */
+    .blockCopyRight{
+        width:100%;
+    }
+    .footer{
+        text-align:center;
+        padding-top:5%;
+    }
+    .cuerpo{
+        margin-top:5%;
+    }
+    .menuSection{
+        margin-top:3%;
+        padding:0;
+    }
+    /* End repite abajo */
+}
+@media (min-width: 600px) and (max-width:700px) {
+   
+    /* Repite abajo */
+    .blockCopyRight{
+        width:100%;
+    }
+    .footer{
+        text-align:center;
+        padding-top:5%;
+    }
+    .cuerpo{
+        margin-top:5%;
+    }
+    .menuSection{
+        margin-top:3%;
+        padding:0;
+    }
+    /* End repite abajo */
+}
+@media (min-width: 700px) and (max-width:800px) {
+    
+    .blockCopyRight{
+        width:100%;
+    }
+    .addressSection,.blockCopyRight,.redesSocialesSection{
+        text-align:center;
+    }
+    /*Repite abajo*/
+    .menuSection{
+        margin-top:3%;
+        padding:0;
+    }
+    .boxOpcionMenu{
+        padding:2%;
+    }
+
+}
+@media (min-width: 800px) and (max-width:900px) {
+    
+    .btnLogin {
+        width:30%;
+    }
+    /*Repite abajo*/
+    .boxOpcionMenu{
+        padding:4%;
+    }
+   
+    .menuSection{
+        margin-top:3%;
+        padding:0;
+    }
+    .redesSocialesSection{
+        text-align:right;
+    }
+}
+@media (min-width: 900px) and (max-width:1000px) {
+    
+    .menuSection{
+        margin-top:3%;
+        padding:0;
+    }
+    .btnLogin {
+        width:20%;
+    }
+    .boxOpcionMenu{
+        padding:4%;
+    }
+    
+    .blockCopyRight{
+        width:90%;
+    }
+}
+@media (min-width: 1000px) and (max-width:1100px) {
+    
+    /*Repite abajo*/
+        .redesSocialesSection{
+            text-align:right;
+        }
+        .blockCopyRight{
+            width:80%;
+        }
+        .btnLogin{
+            width:70%;
+            padding:3%;
+        }
+    /*Fin repite abajo*/
+}
+@media (min-width: 1100px) and (max-width:1200px){
+    
+    .menuSection{
+        padding:0;
+    }
+    .btnLogin{
+        width:70%;
+        padding:3%;
+    }
+    .blockCopyRight{
+        width:80%;
+    }
+    .redesSocialesSection{
+        text-align:right;
+    }
+    .footer{
+        padding-top:4%;
+    }
+}
+@media (min-width:1200px) and (max-width:1300px){
+    
+
+}

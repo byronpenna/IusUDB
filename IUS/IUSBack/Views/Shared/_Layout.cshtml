@@ -1,0 +1,22 @@
+﻿@{
+    String menu = ViewBag.subMenus;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Este es ius back end</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" />
+    @Scripts.Render("~/bundles/scriptsGenerales")
+    @Styles.Render("~/bundles/bootstrap")
+    @RenderSection("estilosPersonalizados", false)
+    @RenderSection("scriptsPersonalizados", false)
+    
+</head>
+<body>
+    <section class="'menu'">
+        @(new HtmlString(menu))
+    </section>
+    <div class="divLogOut">@Html.ActionLink("Cerrar sesion", "LogOut", "Login")</div>
+    @RenderBody()
+</body>
+</html>

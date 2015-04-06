@@ -1,0 +1,17 @@
+﻿@media (min-width: 900px) and (max-width:1000px) {
+    body{
+        background:pink;
+    }
+}
+@media (min-width: 1000px) and (max-width:1100px) {
+    
+}
+@media (min-width: 1100px) and (max-width:1200px) {
+    
+}
+@media (min-width: 1200px) and (max-width:1300px) {
+    
+}
+@media (min-width: 1300px) and (max-width:1400px) {
+    
+}

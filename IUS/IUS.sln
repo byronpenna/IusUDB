@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IUS", "IUS\IUS.csproj", "{DE9ADDE2-7180-45D4-8A33-1C78A8B85300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IUSLibs", "IUSLibs\IUSLibs.csproj", "{30263709-7848-42F1-9FD3-382F6047F01A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IUSBack", "IUSBack\IUSBack.csproj", "{94FF488E-4190-45ED-9B7F-6EA0E4E21AF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE9ADDE2-7180-45D4-8A33-1C78A8B85300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE9ADDE2-7180-45D4-8A33-1C78A8B85300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE9ADDE2-7180-45D4-8A33-1C78A8B85300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE9ADDE2-7180-45D4-8A33-1C78A8B85300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30263709-7848-42F1-9FD3-382F6047F01A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30263709-7848-42F1-9FD3-382F6047F01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30263709-7848-42F1-9FD3-382F6047F01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30263709-7848-42F1-9FD3-382F6047F01A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94FF488E-4190-45ED-9B7F-6EA0E4E21AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94FF488E-4190-45ED-9B7F-6EA0E4E21AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94FF488E-4190-45ED-9B7F-6EA0E4E21AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94FF488E-4190-45ED-9B7F-6EA0E4E21AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
