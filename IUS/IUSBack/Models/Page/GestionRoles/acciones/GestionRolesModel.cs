@@ -15,5 +15,12 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
             List<Rol> roles = control.getRoles(idUsuario);
             return roles;
         }
+        public Boolean desasociarRol(int idRol, int idUsuario)
+        {
+            Boolean toReturn = false;
+            ControlRoles control = new ControlRoles();
+            toReturn = control.desasociarRol(idUsuario, idRol);
+            return toReturn;
+        }
     }
 }

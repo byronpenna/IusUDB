@@ -42,6 +42,25 @@ namespace IUSBack.Controllers
                 //List<Rol> roles = this._model.getRoles()
                 return Json(respuesta);
             }
+            [HttpPost]
+            public ActionResult desasociarRolUsuario()
+            {
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                Dictionary<Object, Object> respuesta, frm;
+                String frmText = Request.Form["form"];
+                if (frmText != null)
+                {
+                    respuesta = new Dictionary<Object, Object>();
+                    frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                    Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
+                    respuesta.Add("estado", estado);
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
         #endregion
     }
 }

@@ -1,10 +1,16 @@
 ﻿$(document).ready(function () {
+   
     // acciones sub tabla 
         // desasociar rol 
             $(document).on("click", ".btnDesasociar", function () {
-                var x = confirm("¿Esta seguro que desea eliminale este rol al usuario?");
+                var x           = confirm("¿Esta seguro que desea eliminale este rol al usuario?");
+                trUsuarioRol    = $(this).parents(".trRol");
+                frm             = new Object();
+                frm.idUsuario   = $(this).parents(".tablaRolesUsuario").find(".idUsuario").val();
+                frm.idRol       = trUsuarioRol.find(".txtIdRol").val();
                 if (x) {
-
+                    console.log("el formulario es:", frm);
+                    desasociarRol(frm, trUsuarioRol);
                 }
             })
     // Acciones tabla 
@@ -15,11 +21,12 @@
                     //$(".tableUsuarios").find(".trTableRol").remove();
                     verRoles(false);
                     verRoles(true, trUsuario);
+                    $(this).val("Ocultar Roles");
                     //tablaRoles(trUsuario);
                 } else {
                     verRoles(false);
+                    $(this).val("Ver Roles");
                     //$(".tableUsuarios").find(".trTableRol").remove();
-
                 }
                 
             })
@@ -56,5 +63,13 @@
                     verRoles(false);
                     formTableEditar(trUsuario);
                 }
+            })
+        // experiencia de usuario 
+            $(document).on("click", ".btnEditMode,.btnEditar", function () {
+                cambiarEstadoControlGlobal();
+            })
+            $(document).on("click", ".btnCancelarGlobal", function () {
+                cancelarGlobal();
+                cambiarEstadoControlGlobal();
             })
 });

@@ -3,14 +3,29 @@
     <script src="~/Scripts/Views/GestionUsuarios/script.js"></script>
     <script src="~/Scripts/Views/GestionUsuarios/functions.js"></script>
 }
-<h2 class="text-center">Gestion de usuarios</h2>
 @{
-    
+
     List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
     Permiso permiso = (Permiso)ViewBag.permiso;
 }
+<h2 class="text-center">Gestion de usuarios</h2>
 <table class="table table-hover tableUsuarios">
     <thead>
+        <tr class="controlGlobal hidden">
+            <td colspan="3"></td>
+            <td>
+                <button class="btn btn-sm" >
+                    Actualizar todo
+                </button>
+                
+            </td>
+            <td>
+                <button class="btn btn-sm btnCancelarGlobal">
+                    Cancelar todo
+                </button>
+                
+            </td>
+        </tr>
         <tr>
             <th>Empleado</th>
             <th>Usuario</th>
@@ -54,8 +69,8 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <button class="btn btn-sm btnActualizar">Actualizar</button>
-                                <button class="btn btn-sm btnCancelarEdit">Cancelar</button>
+                                <button class="btn btn-sm btnEditMode btnActualizar">Actualizar</button>
+                                <button class="btn btn-sm btnEditMode btnCancelarEdit">Cancelar</button>
                             </div>
                             <div class="normalMode ">
                                 <button class="btn btn-xs btnEditar" @permiso.stringEditar>
@@ -64,9 +79,7 @@
                                 <button class="btn btn-xs btnDeshabilitar" @permiso.stringEditar>
                                     Deshabilitar
                                 </button>
-                                <button class="btn btn-xs btnVerRoles" @permiso.stringEditar>
-                                    Ver roles
-                                </button>
+                                <input type="button" class="btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
                                 <button class="btn btn-xs">
                                     Ver persona
                                 </button>
