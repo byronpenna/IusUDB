@@ -305,6 +305,7 @@
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <Content Include="Views\Errors\NotAllowed.cshtml" />
     <Content Include="Views\GestionPersonas\Index.cshtml" />
+    <Content Include="Views\GestionRoles\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

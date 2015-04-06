@@ -20,6 +20,12 @@ namespace IUSBack.Controllers
                 this._model = new GestionRolesModel();
             }
         #endregion
+        #region "URL"
+            public ActionResult Index()
+            {
+                return View();
+            }
+        #endregion
         #region "ajax functions"
             [HttpPost]
             public ActionResult getJSONroles()
