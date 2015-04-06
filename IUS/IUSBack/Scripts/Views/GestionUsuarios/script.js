@@ -9,7 +9,6 @@
                 frm.idUsuario   = $(this).parents(".tablaRolesUsuario").find(".idUsuario").val();
                 frm.idRol       = trUsuarioRol.find(".txtIdRol").val();
                 if (x) {
-                    console.log("el formulario es:", frm);
                     desasociarRol(frm, trUsuarioRol);
                 }
             })
@@ -36,7 +35,7 @@
                 var idUsuario = trUsuario.find(".txtHdIdUser").val();
                 var x = confirm("¿Esta seguro que desea cambiar el estado de este usuario?");
                 if (x) {
-                    console.log("deshabilitara");
+                    
                     deshabilitarUsuario(idUsuario,trUsuario);
                 }
             });

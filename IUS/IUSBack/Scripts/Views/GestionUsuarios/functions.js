@@ -155,8 +155,18 @@
         entrarEditMode(TrUsuario);
     }
 // deshabilitar
+    function changeTxtBtnHabilitar(estado, trUsuario) {
+        console.log("nuevo estado", estado);
+        if (estado) {
+            console.log("pondras Deshabilitar");
+            trUsuario.find(".btnDeshabilitar").text("Deshabilitar");
+        } else {
+            console.log("pondras habilitar");
+            trUsuario.find(".btnDeshabilitar").text("Habilitar");
+        }
+    }
     function deshabilitarUsuario(idUsuario, trUsuario) {
-        console.log("entro a deshabilitar");
+        
         $.ajax({
             data:{
                 usuarioId: idUsuario
@@ -164,13 +174,12 @@
             url: "/GestionUsuarios/cambiarEstadoUsuario",
             type: 'POST',
             beforeSend: function(){
-                console.log("enviando");
             },
             success: function (data) {
-                console.log("hizo success");
                 console.log(data);
-                if (data.estadoEjecucion) {
+                if (data.estadoEjecucion) {                    
                     trUsuario.find(".tdEstadoUsuario").empty().append(data.nuevoEstadoUsuario);
+                    changeTxtBtnHabilitar(data._estado, trUsuario);
                 }
             
             }

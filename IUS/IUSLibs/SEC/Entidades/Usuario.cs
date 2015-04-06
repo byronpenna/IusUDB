@@ -16,6 +16,20 @@ namespace IUSLibs.SEC.Entidades
             private string _pass;
         #endregion
         #region
+            public string txtBtnHabilitar
+            {
+                get
+                {
+                    if (this._estado)
+                    {
+                        return "Deshabilitar";
+                    }
+                    else
+                    {
+                        return "Habilitar";
+                    }
+                }
+            }
             public string estadoUsuario{
                 get
                 {

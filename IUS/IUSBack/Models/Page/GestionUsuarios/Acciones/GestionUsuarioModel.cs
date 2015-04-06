@@ -78,6 +78,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 {
                     toReturn.Add("estadoEjecucion",true);
                     toReturn.Add("nuevoEstadoUsuario", usu.estadoUsuario);
+                    toReturn.Add("_estado", usu._estado);
                 }
                 else
                 {
