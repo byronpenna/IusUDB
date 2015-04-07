@@ -15,7 +15,10 @@ namespace IUSBack.Controllers
         //
         // GET: /Padre/
         #region "propiedades"
-            
+        public enum paginas
+        {
+            usuarios = 3,gestionRoles = 5,gestionPersonas=4
+        }
         #endregion
         #region "funciones"
         public Dictionary<Object,Object> errorEnvioFrmJSON(){

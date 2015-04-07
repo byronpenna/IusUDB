@@ -15,7 +15,7 @@ namespace IUSBack.Controllers
         // GET: /GestionPersonas/
         #region "propiedades"
             public GestionPersonaModel _model;
-            private int _idPagina = 4;
+            private int _idPagina = (int)paginas.gestionPersonas;
             private JavaScriptSerializer _jss;
         #endregion
         public ActionResult Index()

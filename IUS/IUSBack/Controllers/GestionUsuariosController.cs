@@ -18,7 +18,7 @@ namespace IUSBack.Controllers
         // GET: /GestionUsuarios/
         #region "Propiedades"
             private GestionUsuarioModel _model;
-            private int _idPagina = 3;
+            private int _idPagina = (int)paginas.usuarios;
         #endregion
         #region "constructores"
             public GestionUsuariosController()

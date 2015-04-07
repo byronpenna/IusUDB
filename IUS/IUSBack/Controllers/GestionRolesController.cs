@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 // librerias internas
     using IUSBack.Models.Page.GestionRoles.acciones;
+    using IUSBack.Models.Page.GestionUsuarios.Acciones;
 // librerias externas    
     using IUSLibs.SEC.Entidades;
 namespace IUSBack.Controllers
@@ -23,9 +24,13 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
+                
                 if (Session["usuario"] != null)
                 {
+
+                    GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     Usuario usuarioSession = (Usuario)Session["usuario"];
+                    //List<Usuario> usuarios = usuariosModel.getUsuarios()
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
 
                     return View();
