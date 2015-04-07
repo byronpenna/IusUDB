@@ -1,12 +1,21 @@
 ﻿@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
-    <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css"    />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/media.css" />
+    <!-- plugins -->
+        <!-- tabs -->
+        <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css"    />
+        <!-- chosen -->
+        <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/media.css" />
 }
 @section scriptsPersonalizados{
-    <!-- plugin para tabs -->
+    
+    <!-- plugins -->
+        <!-- tabs -->        
         <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
+        <!-- chosen -->
+        <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/GestionRoles/script.js"></script>
         <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
@@ -48,7 +57,7 @@
                     <label for="cbRoles">Roles a agregar</label>
                 </div>
                 <div class="col-lg-3">
-                    <select class="form-control cbRoles ">
+                    <select multiple class="form-control cbRoles ">
                         <option></option>
                         @{
                             foreach (Rol rol in roles)

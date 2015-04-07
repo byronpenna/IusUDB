@@ -216,10 +216,12 @@
     <Content Include="Content\third-party\bootstrap\js\bootstrap.js" />
     <Content Include="Content\third-party\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\third-party\bootstrap\js\npm.js" />
-    <Content Include="Content\third-party\choosen\css\chosen.css" />
-    <Content Include="Content\third-party\choosen\css\chosen.min.css" />
-    <Content Include="Content\third-party\choosen\js\chosen.jquery.js" />
-    <Content Include="Content\third-party\choosen\js\chosen.jquery.min.js" />
+    <Content Include="Content\third-party\chosen\css\chosen-sprite%402x.png" />
+    <Content Include="Content\third-party\chosen\css\chosen-sprite.png" />
+    <Content Include="Content\third-party\chosen\css\chosen.css" />
+    <Content Include="Content\third-party\chosen\css\chosen.min.css" />
+    <Content Include="Content\third-party\chosen\js\chosen.jquery.js" />
+    <Content Include="Content\third-party\chosen\js\chosen.jquery.min.js" />
     <Content Include="Content\third-party\tabs-master\css\responsive-tabs.css" />
     <Content Include="Content\third-party\tabs-master\js\jquery.responsiveTabs.js" />
     <Content Include="Content\third-party\tabs-master\js\jquery.responsiveTabs.min.js" />
