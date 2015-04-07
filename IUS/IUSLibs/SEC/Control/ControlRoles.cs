@@ -77,6 +77,30 @@ namespace IUSLibs.SEC.Control
                 }
                 return roles;
             }
+            public List<Rol> getRolesFaltantes(int idUsuario, int idUsuarioEjecutor, int idPagina)
+            {
+                List<Rol> roles = null;
+                Rol rol;
+                SPIUS sp = new SPIUS("sp_sec_getRolesFaltantesUsuario");
+                sp.agregarParametro("idUsuario", idUsuario);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                DataSet ds = sp.EjecutarProcedimiento();
+                if (!this.DataSetDontHaveTable(ds))
+                {
+                    DataTable tb = ds.Tables[0];
+                    if (tb.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in tb.Rows)
+                        {
+                            rol = new Rol((int)row["idRol"], row["rol"].ToString(), Convert.ToBoolean(row["estado"].ToString()));
+                            roles.Add(rol);
+                        }
+                    }
+                    
+                }
+                return roles;
+            }
         #endregion
     }
 }

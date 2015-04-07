@@ -50,18 +50,21 @@ namespace IUSBack.Controllers
         #endregion
         
         #region "ajax functions"
-            //[HttpPost]
-            /*public ActionResult getJSONallRoles()
+            [HttpPost]
+            public ActionResult getJSONRolesFaltantes()
             {
-                List<Rol> roles = null;
-                Usuario usuario = this.getUsuarioSesion();
-                Dictionary<Object, Object> frm = this.getAjaxFrm("form");
-                if (usuario != null)
+                Dictionary<Object, Object> frm,respuesta;
+                frm = this.getAjaxFrm("form");
+                if (frm != null)
                 {
-                    roles = this._model.getRoles(usuario._idUsuario);
+                    respuesta = null;
                 }
-                return Json(roles);
-            }*/
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
             [HttpPost]
             public ActionResult getJSONroles()
             {

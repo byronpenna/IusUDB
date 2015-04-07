@@ -10,6 +10,6 @@
             $(document).on("change", ".cbUsuarios", function () {
                 // llenar tablita    
                 idUsuario = $(this).val();
-                llenarTablaRoles(idUsuario);
+                llenarTablaRolesUsuario(idUsuario);
             })
 })
