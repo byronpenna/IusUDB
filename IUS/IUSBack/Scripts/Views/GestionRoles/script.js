@@ -7,7 +7,9 @@
             $(".cbRoles").chosen({ no_results_text: "Rol no encontrado",width:'100%' });
     // eventos
         // change
-            $(document).on("change", "cbUsuarios", function () {
+            $(document).on("change", ".cbUsuarios", function () {
                 // llenar tablita    
+                idUsuario = $(this).val();
+                llenarTablaRoles(idUsuario);
             })
 })

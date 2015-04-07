@@ -19,10 +19,10 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                 List<Rol> roles = control.getRoles(idUsuario);
                 return roles;
             }
-            public List<Rol> getRoles(int idUsuario,int idPagina)
+            public List<Rol> getAllRoles(int idUsuarioEjecutor,int idPagina)
             {
                 ControlRoles control = new ControlRoles();
-                List<Rol> roles = control.getAllRoles(idUsuario,idPagina);
+                List<Rol> roles = control.getAllRoles(idUsuarioEjecutor,idPagina);
                 return roles;
             }
             public Boolean desasociarRol(int idRol, int idUsuario)

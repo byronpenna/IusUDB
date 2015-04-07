@@ -16,10 +16,12 @@ namespace IUSBack.Controllers
         #region "propiedades"
         public GestionRolesModel _model;
         public int _idPagina = (int)paginas.gestionRoles;
+        //public JavaScriptSerializer _jss;
         #endregion
         #region "constructores"
             public GestionRolesController(){
                 this._model = new GestionRolesModel();
+                this._jss = new JavaScriptSerializer();
             }
         #endregion
         #region "URL"
@@ -33,7 +35,7 @@ namespace IUSBack.Controllers
                     Usuario usuarioSession = (Usuario)Session["usuario"];
                     // traer data
                         List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
-                        List<Rol> roles = this._model.getRoles(usuarioSession._idUsuario,this._idPagina);
+                        List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario,this._idPagina);
                     // fill viewbag
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.roles       = roles;
@@ -46,16 +48,27 @@ namespace IUSBack.Controllers
                 }
             }
         #endregion
+        
         #region "ajax functions"
+            //[HttpPost]
+            /*public ActionResult getJSONallRoles()
+            {
+                List<Rol> roles = null;
+                Usuario usuario = this.getUsuarioSesion();
+                Dictionary<Object, Object> frm = this.getAjaxFrm("form");
+                if (usuario != null)
+                {
+                    roles = this._model.getRoles(usuario._idUsuario);
+                }
+                return Json(roles);
+            }*/
             [HttpPost]
             public ActionResult getJSONroles()
             {
-                JavaScriptSerializer jss = new JavaScriptSerializer();
                 Dictionary<Object, Object> respuesta,frm;
-                String frmText = Request.Form["form"];
-                if (frmText != null)
+                frm = this.getAjaxFrm("form");
+                if (frm != null)
                 {
-                    frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
                     respuesta = new Dictionary<Object, Object>();
                     List<Rol> roles = this._model.getRoles(Convert.ToInt32((string)frm["idUsuario"]));
                     respuesta.Add("estado", true);
@@ -65,7 +78,6 @@ namespace IUSBack.Controllers
                 {
                     respuesta = this.errorEnvioFrmJSON();
                 }
-                //List<Rol> roles = this._model.getRoles()
                 return Json(respuesta);
             }
             [HttpPost]
