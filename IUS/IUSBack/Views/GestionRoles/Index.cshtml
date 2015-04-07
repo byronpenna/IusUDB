@@ -1,3 +1,28 @@
 ﻿@using IUSLibs.SEC.Entidades
+@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css"    />
+}
+@section scriptsPersonalizados{
+    <!-- plugin para tabs -->
+        <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionRoles/script.js"></script>
+        <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
+}
 <h2 class="text-center">Gestion de roles</h2>
-
+<div id="horizontalTab">
+    <ul>
+        <li>
+            <a href="#tab-1">Responsive tab 1</a>
+        </li>
+        <li>
+            <a href="#tab-2">Responsive tab 2</a>
+        </li>
+    </ul>
+    <div id="tab-1">
+        <p>Esta es la tab1</p>
+    </div>
+    <div id="tab-2">
+        <p>Esta es la tab2</p>
+    </div>
+</div>
