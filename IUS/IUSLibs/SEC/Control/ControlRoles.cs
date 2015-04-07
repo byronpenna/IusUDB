@@ -31,7 +31,6 @@ namespace IUSLibs.SEC.Control
                 }
                 return toReturn;
             }
-            
             public List<Rol> getRoles(int idUsuario)
             {
                 List<Rol> roles = null;
@@ -54,6 +53,29 @@ namespace IUSLibs.SEC.Control
                 }
                 return roles;
                 //return roles;
+            }
+            public List<Rol> getAllRoles(int idUsuario, int idPagina)
+            {
+                List<Rol> roles = null;
+                Rol rol;
+                SPIUS sp = new SPIUS("sp_sec_getAllRoles");
+                sp.agregarParametro("usuarioEjecutor", idUsuario);
+                sp.agregarParametro("idPagina", idPagina);
+                DataSet ds = sp.EjecutarProcedimiento();
+                if (!this.DataSetDontHaveTable(ds))
+                {
+                    DataTable tb = ds.Tables[0];
+                    if (tb.Rows.Count > 0)
+                    {
+                        roles = new List<Rol>();
+                        foreach (DataRow row in tb.Rows)
+                        {
+                            rol = new Rol((int)row["idRol"], row["rol"].ToString(), Convert.ToBoolean(row["estado"].ToString()));
+                            roles.Add(rol);
+                        }
+                    }
+                }
+                return roles;
             }
         #endregion
     }

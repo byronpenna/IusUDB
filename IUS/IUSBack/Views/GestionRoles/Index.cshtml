@@ -11,6 +11,10 @@
         <script src="~/Scripts/Views/GestionRoles/script.js"></script>
         <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
 }
+@{
+    List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
+    List<Rol> roles = (List < Rol >) ViewBag.roles;
+}
 <h2 class="text-center">Gestion de permisos</h2>
 <div id="horizontalTab">
     <ul class="ulTabGeneral">
@@ -30,6 +34,12 @@
                 <div class="col-lg-3">
                     <select class="form-control cbUsuarios">
                         <option></option>
+                        @{
+                            foreach (Usuario usuario in usuarios)
+                            {
+                                <option value="@usuario._idUsuario">@usuario._usuario</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
@@ -40,6 +50,12 @@
                 <div class="col-lg-3">
                     <select class="form-control cbRoles ">
                         <option></option>
+                        @{
+                            foreach (Rol rol in roles)
+                            {
+                                <option value="@rol._idRol">@rol._rol</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="col-lg-3">

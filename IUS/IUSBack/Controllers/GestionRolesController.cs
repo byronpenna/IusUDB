@@ -15,6 +15,7 @@ namespace IUSBack.Controllers
     {
         #region "propiedades"
         public GestionRolesModel _model;
+        public int _idPagina = (int)paginas.gestionRoles;
         #endregion
         #region "constructores"
             public GestionRolesController(){
@@ -30,9 +31,13 @@ namespace IUSBack.Controllers
 
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     Usuario usuarioSession = (Usuario)Session["usuario"];
-                    //List<Usuario> usuarios = usuariosModel.getUsuarios()
-                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-
+                    // traer data
+                        List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
+                        List<Rol> roles = this._model.getRoles(usuarioSession._idUsuario,this._idPagina);
+                    // fill viewbag
+                        ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.roles       = roles;
+                        ViewBag.usuarios    = usuarios;
                     return View();
                 }
                 else
