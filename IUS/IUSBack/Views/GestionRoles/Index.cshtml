@@ -1,6 +1,8 @@
 ﻿@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css"    />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/media.css" />
 }
 @section scriptsPersonalizados{
     <!-- plugin para tabs -->
@@ -9,20 +11,62 @@
         <script src="~/Scripts/Views/GestionRoles/script.js"></script>
         <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
 }
-<h2 class="text-center">Gestion de roles</h2>
+<h2 class="text-center">Gestion de permisos</h2>
 <div id="horizontalTab">
-    <ul>
+    <ul class="ulTabGeneral">
         <li>
-            <a href="#tab-1">Responsive tab 1</a>
+            <a href="#tab-1">Asignar roles</a>
         </li>
         <li>
-            <a href="#tab-2">Responsive tab 2</a>
+            <a href="#tab-2">Administracion de Roles</a>
         </li>
     </ul>
-    <div id="tab-1">
-        <p>Esta es la tab1</p>
+    <div id="tab-1" class="tab">
+        <div class="row divControlRolUsuario">    
+            <div class="col-lg-6">
+                <div class="col-lg-4 text-right">
+                    <label for="cbUsuarios">Seleccione usuario: </label>
+                </div>
+                <div class="col-lg-3">
+                    <select class="form-control cbUsuarios">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-4 text-right">
+                    <label for="cbRoles">Roles a agregar</label>
+                </div>
+                <div class="col-lg-3">
+                    <select class="form-control cbRoles ">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col-lg-3">
+                    <button class="btn btn-primary">Agregar roles</button>
+                </div>
+            </div>
+        </div>
+        <div class="row divRoles">
+            <h2>Roles asignados a: <span class="spanUsuario"></span></h2>
+            <table class="table table-striped tbRoles">
+                <thead>
+                    <tr>
+                        <td>Rol</td>
+                        <td>Estado Rol</td>
+                        <td>Accion</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="text-center">Seleccione usuario para mostrar sus roles</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div id="tab-2">
+    <div id="tab-2" class="tab">
         <p>Esta es la tab2</p>
     </div>
 </div>

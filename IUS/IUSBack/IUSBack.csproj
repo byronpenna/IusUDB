@@ -204,6 +204,8 @@
   <ItemGroup>
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\gestionRoles\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />
     <Content Include="Content\themes\iusback_theme\views\home\style.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap-theme.css" />
