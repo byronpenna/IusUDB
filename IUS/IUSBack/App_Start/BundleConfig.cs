@@ -20,7 +20,12 @@ namespace IUSBack
             // css
                 bundles.Add(new StyleBundle("~/bundles/bootstrap").Include(
                         "~/Content/third-party/bootstrap/css/bootstrap.css"
-                ));
+                    ).Include(
+                        "~/Content/themes/iusback_theme/generals/style.css"
+                    ).Include(
+                        "~/Content/themes/iusback_theme/generals/media.css"
+                    )
+                );
         }
     }
 }
