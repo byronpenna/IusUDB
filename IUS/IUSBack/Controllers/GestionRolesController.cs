@@ -23,7 +23,17 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
-                return View();
+                if (Session["usuario"] != null)
+                {
+                    Usuario usuarioSession = (Usuario)Session["usuario"];
+                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }
             }
         #endregion
         #region "ajax functions"

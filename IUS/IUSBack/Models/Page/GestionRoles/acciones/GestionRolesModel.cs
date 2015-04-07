@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+// librerias internas
+    using IUSBack.Models.General;
 // librerias externas
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
 namespace IUSBack.Models.Page.GestionRoles.acciones
 {
-    public class GestionRolesModel
+    public class GestionRolesModel:PadreModel
     {
         public List<Rol> getRoles(int idUsuario)
         {
