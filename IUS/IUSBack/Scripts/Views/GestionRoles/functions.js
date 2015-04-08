@@ -12,6 +12,13 @@ function doTablaRolesUsuario(roles) {
     });
     return tbody;
 }
+function getOptionsRoles(roles) {
+    options = "";
+    $.each(roles, function (i, value) {
+        options += "<option value='"+value._idRol+"'>"+value._rol+"</option>";
+    });
+    return options;
+}
 function llenarTablaRolesUsuario(idUsuario) {
     frm = new Object();
     frm.idUsuario = idUsuario;
@@ -21,4 +28,14 @@ function llenarTablaRolesUsuario(idUsuario) {
         tbody = doTablaRolesUsuario(roles);
         $(".tbodyRolUsuario").empty().append(tbody);
     })
+    cargarObjetoGeneral("GestionRoles/getJSONRolesFaltantes", frm, function (data) {
+        console.log("Respuesta de roles faltantes", data);
+        if (data.estado) {
+            roles = data.roles;
+            optionCbRoles = getOptionsRoles(roles);
+            $(".cbRoles").empty().append(optionCbRoles);
+            resetChosen($(".cbRoles"));
+        }
+        
+    });
 }

@@ -91,6 +91,7 @@ namespace IUSLibs.SEC.Control
                     DataTable tb = ds.Tables[0];
                     if (tb.Rows.Count > 0)
                     {
+                        roles = new List<Rol>();
                         foreach (DataRow row in tb.Rows)
                         {
                             rol = new Rol((int)row["idRol"], row["rol"].ToString(), Convert.ToBoolean(row["estado"].ToString()));

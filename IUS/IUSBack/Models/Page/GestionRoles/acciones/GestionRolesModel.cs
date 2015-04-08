@@ -12,7 +12,15 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
     public class GestionRolesModel:PadreModel
     {
         
-        #region "funciones publicas"
+        
+        #region "funciones publicas
+            public List<Rol> getRolesFaltantes(int idUsuario,int idUsuarioEjecutor,int idPagina)
+            {
+                ControlRoles control = new ControlRoles();
+                List<Rol> roles = null;
+                roles = control.getRolesFaltantes(idUsuario, idUsuarioEjecutor, idPagina);
+                return roles;
+            }
             public List<Rol> getRoles(int idUsuario)
             {
                 ControlRoles control = new ControlRoles();

@@ -1,4 +1,12 @@
-﻿// tabla
+﻿// plugins 
+    // chosen
+        function resetChosen(chosen) {
+            console.log("resetearas chosen");
+            //chosen.val('').trigger("liszt:updated");
+            chosen.val('').trigger("chosen:updated");
+        }
+        
+// tabla
     function cancelarGlobal() {
         var x = confirm("¿Esta seguro que desea cancelar todo?");
         if (x) {

@@ -54,10 +54,14 @@ namespace IUSBack.Controllers
             public ActionResult getJSONRolesFaltantes()
             {
                 Dictionary<Object, Object> frm,respuesta;
+                Usuario usuario = this.getUsuarioSesion();
                 frm = this.getAjaxFrm("form");
                 if (frm != null)
                 {
-                    respuesta = null;
+                    respuesta = new Dictionary<Object, Object>();
+                    List<Rol> roles = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuario._idUsuario, this._idPagina);
+                    respuesta.Add("roles", roles);
+                    respuesta.Add("estado", true);
                 }
                 else
                 {
