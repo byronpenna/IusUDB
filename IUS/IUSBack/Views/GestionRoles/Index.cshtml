@@ -59,12 +59,7 @@
                 <div class="col-lg-3">
                     <select multiple class="form-control cbRoles ">
                         <option></option>
-                        @{
-                            foreach (Rol rol in roles)
-                            {
-                                <option value="@rol._idRol">@rol._rol</option>
-                            }
-                        }
+                        
                     </select>
                 </div>
                 <div class="col-lg-3">
@@ -91,6 +86,91 @@
         </div>
     </div>
     <div id="tab-2" class="tab">
-        <p>Esta es la tab2</p>
+        <div class="row">
+            <div class="col-lg-3">
+                <select class="cbRolTab2 form-control">
+                    <option></option>
+                    @{
+                        foreach (Rol rol in roles)
+                        {
+                            <option value="@rol._idRol">@rol._rol</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h4>Sub menus</h4>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <h4>Permisos</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="col-lg-4">
+                            <label>Seleccione un submenu</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <select class="form-control"></select>
+                        </div>
+                        <div class="col-lg-4">
+                            <button>Asignar submenu</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="col-lg-6">
+                            <select>
+                                <option>Asignar Permiso</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <button class="btn">Asignar permiso</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <table class="table table-striped tbMenus">
+                            <thead>
+                                <tr>
+                                    <th>Menu</th>
+                                    <th>Sub menu</th>
+                                    <th>Enlace</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        Seleccione un rol para ver sus menus asociados
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-4">
+                        <table class="table table-striped tbPermisos">
+                            <thead>
+                                <tr>
+                                    <th>Permiso</th>
+                                    <th>Accion </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">Seleccione sub menu</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
     </div>
 </div>
