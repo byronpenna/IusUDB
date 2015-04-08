@@ -3,8 +3,14 @@
         // tabs
             $('#horizontalTab').responsiveTabs();
         // chosen 
-            $(".cbUsuarios").chosen();
-            $(".cbRoles").chosen({ no_results_text: "Rol no encontrado",width:'100%' });
+            // tab 1
+                $(".cbUsuarios").chosen();
+                $(".cbRoles").chosen({ no_results_text: "Rol no encontrado", width: '100%' });
+            // tab 2
+                $(".cbRolTab2").chosen({ no_results_text: "Rol no encontrado", width: '100%' });
+                $(".cbAsignarPermisos").chosen({ no_results_text: "Permiso no encontrado", width: '100%' });
+                $(".cbSubMenu").chosen({ no_results_text: "Submenu no encontrado", width: '100%' });
+                
     // eventos
         // click 
             $(document).on("click", "#btnAddRoles", function () {
