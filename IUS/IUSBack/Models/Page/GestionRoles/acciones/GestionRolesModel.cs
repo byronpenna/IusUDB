@@ -14,6 +14,13 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
         
         
         #region "funciones publicas
+            public bool agregarRoles(int[] rolesAgregar,int idUsuario,int idUsuarioEjecutor,int idPagina)
+            {
+                bool toReturn = false;
+                ControlRoles control = new ControlRoles();
+                toReturn = control.agregarRoles(rolesAgregar, idUsuario, idUsuarioEjecutor,idPagina);
+                return toReturn;
+            }
             public List<Rol> getRolesFaltantes(int idUsuario,int idUsuarioEjecutor,int idPagina)
             {
                 ControlRoles control = new ControlRoles();

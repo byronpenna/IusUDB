@@ -31,6 +31,22 @@ namespace IUSLibs.SEC.Control
                 }
                 return toReturn;
             }
+            public bool agregarRoles(int[] roles,int idUsuario,int idUsuarioEjecutor,int idPagina){
+                bool toReturn = false;
+                SPIUS sp = new SPIUS("sp_usu_asociarRol");
+                Dictionary<String, Object> parametro;
+                foreach (int idRol in roles)
+                {
+                    parametro = new Dictionary<String, Object>();
+                    parametro.Add("idRol", idRol);
+                    parametro.Add("idUsuario", idUsuario);
+                    parametro.Add("idUsuarioEjecutor", idUsuarioEjecutor);
+                    parametro.Add("idPagina", idPagina);
+                    sp.agregarParametro(parametro);
+                }
+                toReturn = sp.ejecutarInsertMultiple();
+                return toReturn;
+            }
             public List<Rol> getRoles(int idUsuario)
             {
                 List<Rol> roles = null;
@@ -98,7 +114,6 @@ namespace IUSLibs.SEC.Control
                             roles.Add(rol);
                         }
                     }
-                    
                 }
                 return roles;
             }

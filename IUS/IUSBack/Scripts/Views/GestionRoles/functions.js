@@ -1,4 +1,12 @@
-﻿
+﻿function agregarRoles(frm) {
+    /*cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
+        if (data.estado) {
+
+        } else {
+
+        }
+    });*/
+}
 function doTablaRolesUsuario(roles) {
     tbody = "";
     $.each(roles, function (i, value) {

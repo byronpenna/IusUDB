@@ -51,6 +51,40 @@ namespace IUSBack.Controllers
         
         #region "ajax functions"
             [HttpPost]
+            public ActionResult agregarRoles()
+            {
+                Dictionary<Object, Object> frm, respuesta;
+                Usuario usuario = this.getUsuarioSesion();
+                bool agrego = false;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    respuesta = new Dictionary<Object,Object>();
+                    Object[] rolesobject = (Object[])frm["rolesAgregar"];
+                    int[] roles = new int[rolesobject.Length];
+                    int cn = 0;
+                    foreach (Object obj in rolesobject)
+                    {
+                        roles[cn] = Convert.ToInt32(obj);
+                        cn++;
+                    }
+                    agrego = this._model.agregarRoles(roles,Convert.ToInt32(frm["idUsuario"].ToString()),usuario._idUsuario,this._idPagina);
+                    if (agrego)
+                    {
+                        respuesta.Add("estado", true);
+                    }
+                    else
+                    {
+                        respuesta.Add("estado", false);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+            [HttpPost]
             public ActionResult getJSONRolesFaltantes()
             {
                 Dictionary<Object, Object> frm,respuesta;

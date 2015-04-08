@@ -39,6 +39,10 @@ namespace IUSBack.Controllers
             }
             return usuario;
         }
+        public Dictionary<Object, Object> getAjaxFrm()
+        {
+            return this.getAjaxFrm("form");
+        }
         public Dictionary<Object, Object> getAjaxFrm(String txtObj)
         {
             Dictionary<Object, Object> toReturn = null;

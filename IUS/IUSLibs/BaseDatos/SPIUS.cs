@@ -13,59 +13,119 @@ namespace IUSLibs.BaseDatos
         #region "Propiedades"
             private String nombre;// nombre de procedimiento
             private List<Parametro> parametros; // parametro generico para iterar antes de ejecutar procedimiento
+            private List<List<Parametro>> _arregloDeParametros;
+            private bool _trans;
         #endregion
         #region "Funciones"
             #region "funciones privadas"
-            public void parametrosAcommand(ref SqlCommand command)
-            {
-                foreach (Parametro parametro in this.parametros)
-                {
-                    SqlParameter param = new SqlParameter(parametro.variable, parametro.getTypeProperty);
-                    param.Direction = ParameterDirection.Input;
-                    param.Value = parametro.valor;
-                    command.Parameters.Add(param);
-                }
-            }
+                #region "parametros a command"
+                    public void parametrosAcommand(ref SqlCommand command)
+                    {
+                        this.parametrosAcommand(ref command, this.parametros);
+                    }
+                    public void parametrosAcommand(ref SqlCommand command,List<Parametro> parametros)
+                    {
+                        foreach (Parametro parametro in parametros)
+                        {
+                            SqlParameter param = new SqlParameter(parametro.variable, parametro.getTypeProperty);
+                            param.Direction = ParameterDirection.Input;
+                            param.Value = parametro.valor;
+                            command.Parameters.Add(param);
+                        }
+                    }
+                #endregion
             #endregion
             #region "funciones a utilizar externo"
-            public DataSet EjecutarProcedimiento()
-            {
-                DataSet ds;
-                ConexionIUS cn = new ConexionIUS();
-                try{
-                    SqlCommand command = new SqlCommand(this.nombre, cn.cn);
-                    command.CommandType = CommandType.StoredProcedure;
-                    // se omitio el timeout
-                    this.parametrosAcommand(ref command);
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    ds = new DataSet();
-                    adapter.Fill(ds);
-                    cn.cn.Close();
-                }
-                catch (SqlException x)
+                public DataSet EjecutarProcedimiento()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message);
-                    error.errorType = ErroresIUS.tipoError.sql;
-                    error.errorNumber = x.Number;
-                    throw error;
+                    DataSet ds;
+                    ConexionIUS cn = new ConexionIUS();
+                    
+                    try{
+                        
+                        SqlCommand command = new SqlCommand(this.nombre, cn.cn);
+                        command.CommandType = CommandType.StoredProcedure;
+                        // se omitio el timeout
+                        this.parametrosAcommand(ref command);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        ds = new DataSet();
+                        adapter.Fill(ds);
+                        cn.cn.Close();
+                    }
+                    catch (SqlException x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message);
+                        error.errorType = ErroresIUS.tipoError.sql;
+                        error.errorNumber = x.Number;
+                        throw error;
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message);
+                        error.errorType = ErroresIUS.tipoError.generico;
+                        error.errorNumber = -1;
+                        throw x;
+                    }
+                    return ds;
                 }
-                catch (Exception x)
+                public bool ejecutarInsertMultiple()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message);
-                    error.errorType = ErroresIUS.tipoError.generico;
-                    error.errorNumber = -1;
-                    throw x;
+                    bool toReturn = false;
+                    ConexionIUS cn = new ConexionIUS();
+                    SqlTransaction trans = null;
+                    try
+                    {
+                        cn.cn.Open();
+                        trans = cn.cn.BeginTransaction();
+                        SqlCommand command = new SqlCommand(this.nombre, cn.cn);
+                        command.Transaction = trans;
+                        foreach(List<Parametro> parametro in this._arregloDeParametros){
+                            command.Parameters.Clear();
+                            command.CommandText = this.nombre;
+                            this.parametrosAcommand(ref command, parametro);
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.ExecuteNonQuery();
+                        }
+                        trans.Commit();
+                        cn.cn.Close();
+                        toReturn = true;
+                    }
+                    catch (SqlException x)
+                    {
+                        trans.Rollback();
+                        cn.cn.Close();
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        trans.Rollback();
+                        cn.cn.Close();
+                        throw x;
+                    }
+                    
+                    return toReturn;
                 }
-                return ds;
-            }
-            public void limpiarParametros()
-            {
-                this.parametros.Clear();
-            }
-            public void agregarParametro(string pVariable,Object pValor){
-                Parametro parametroGenerico = new Parametro("@" + pVariable,pValor);
-                this.parametros.Add(parametroGenerico);
-            }
+                public void limpiarParametros()
+                {
+                    this.parametros.Clear();
+                }
+                #region "agregar parametros"
+                    public void agregarParametro(Dictionary<String,Object> parametros)
+                    {
+                        Parametro parametroGenerico;
+                        List<Parametro> listParametro = new List<Parametro>();
+                        foreach (var item in parametros)
+                        {
+                            parametroGenerico = new Parametro("@" + item.Key, item.Value);
+                            listParametro.Add(parametroGenerico);
+                        }
+                        this._arregloDeParametros.Add(listParametro);
+                    }
+                    public void agregarParametro(string pVariable,Object pValor){
+                        Parametro parametroGenerico = new Parametro("@" + pVariable,pValor);
+                        this.parametros.Add(parametroGenerico);
+                    }
+                #endregion
             #endregion
         #endregion
         #region "Constructores"
@@ -73,6 +133,8 @@ namespace IUSLibs.BaseDatos
             {
                 this.nombre = nombre;
                 this.parametros = new List<Parametro>();
+                this._arregloDeParametros = new List<List<Parametro>>();
+                this._trans = false;
             }
         #endregion
     }
