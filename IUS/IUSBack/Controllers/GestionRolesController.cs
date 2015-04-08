@@ -68,10 +68,13 @@ namespace IUSBack.Controllers
                         roles[cn] = Convert.ToInt32(obj);
                         cn++;
                     }
-                    agrego = this._model.agregarRoles(roles,Convert.ToInt32(frm["idUsuario"].ToString()),usuario._idUsuario,this._idPagina);
+                    int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
+                    agrego = this._model.agregarRoles(roles,idUsuario,usuario._idUsuario,this._idPagina);
                     if (agrego)
                     {
+                        List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
                         respuesta.Add("estado", true);
+                        respuesta.Add("roles", rolesUsuario);
                     }
                     else
                     {

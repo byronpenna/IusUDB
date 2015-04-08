@@ -1,20 +1,31 @@
 ﻿function agregarRoles(frm) {
-    /*cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
+    cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
+        console.log("la data del server:", data);
         if (data.estado) {
-
+            tbody = doTablaRolesUsuario(data.roles);
+            $(".tbodyRolUsuario").empty().append(tbody);
         } else {
-
+            alert("Error al ingresar los datos");
         }
-    });*/
+    });
+}
+function desasociarRol(frm, trUsuarioRol) {
+    actualizarCatalogo("/GestionRoles/desasociarRolUsuario", frm, function (data) {
+        console.log("la data devuelta es:", data);
+        if (data) {
+            trUsuarioRol.remove();
+        }
+    });
 }
 function doTablaRolesUsuario(roles) {
     tbody = "";
     $.each(roles, function (i, value) {
         tbody += "\
             <tr class='trEstadoRol'>\
+                <td class='hidden'><input type='hidden' class='txtIdRol' value='" + value._idRol + "' /></td>\
                 <td>" + value._rol + "</td>\
                 <td>" + value.stringEstado + "</td>\
-                <td><i class='fa fa-times'></i></td>\
+                <td><i class='fa fa-times iconQuitarRol'></i></td>\
             </tr>\
         "
     });

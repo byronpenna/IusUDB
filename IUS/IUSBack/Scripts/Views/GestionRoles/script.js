@@ -13,23 +13,25 @@
                     var frm = new Object();
                     frm.rolesAgregar    = $(".cbRoles").val();
                     frm.idUsuario       = $(".cbUsuarios").val();
-                    textoRoles = $(".cbRoles").text();
-                    console.log("texto roles", textoRoles);
                     if (frm.rolesAgregar != null) {
                         console.log("formulario a enviar", frm);
-                        var roles = new Array();
-                        $.each(frm.rolesAgregar, function (i, val) {
-                            roles[i] = new Object();
-                            roles._idRol    = val;
-                            roles._rol = textoRoles[i];
-                        })
-                        console.log("los roles son",roles);
-                        //agregarRoles(frm);
+                        agregarRoles(frm);
                     }else {
                         alert("Seleccione un rol a agregar");
                     }
                 }
             });
+            $(document).on("click", ".iconQuitarRol", function () {
+                var x = confirm("¿Esta seguro que desea quitarle ese rol?");
+                trRol = $(this).parents(".trEstadoRol");
+                if (x) {
+                    frm = new Object();
+                    frm.idUsuario   = $(".cbUsuarios").val();
+                    frm.idRol = trRol.find(".txtIdRol").val();
+                    console.log("formulario a enviar sera", frm);
+                    desasociarRol(frm, trRol);
+                }
+            })
         // change
             $(document).on("change", ".cbUsuarios", function () {
                 // llenar tablita    
