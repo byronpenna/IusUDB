@@ -17,3 +17,7 @@
     .yellow{
         background:yellow;
     }
+/* clases produccion */
+    .pointer {
+        cursor:pointer;
+    }

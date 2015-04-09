@@ -1,8 +1,57 @@
-﻿function changeRolTab2(frm) {
-    console.log("formulario a enviar", frm);
+﻿function llenarTablaSubMenuRol(submenu) {
+    tbody = "";
+    if ( !(submenu === null) ) {
+        $.each(submenu, function (i, val) {
+            tbody += "\
+           <tr>\
+                <td class='hidden'>\
+                    <input type='" + val._idSubMenu + "' class='txtIdSubMenu' value=''>\
+                </td>\
+                <td>" + val._menu._menu + "</td>\
+                <td>" + val._textoSubMenu + "</td>\
+                <td>" + val._enlace + "</td>\
+                <td><i class='fa fa-times pointer icoQuitarSubMenu'></td>\
+           </tr>\
+        ";
+        });
+    } else {
+        tbody = "\
+            <tr>\
+                <td colspan='4' class='text-center'>No posee ningun sub menu asignado</td>\
+            </tr>\
+        ";
+    }
+   
+    return tbody;
+}
+function llenarCbSubmenuRol(submenu) {
+    opcion = "";
+    if (!(submenu === null)) {
+        $.each(submenu, function (i, val) {
+            opcion += "\
+                <option value='" + val._idSubMenu + "'>" + val._textoSubMenu + "</option>\
+            ";
+        });
+    } else {
+        opcion += "\
+            <option value='-1' disabled>No hay submenus para agregar</option>\
+        ";
+    }
+    console.log("opciones", opcion);
+    return opcion;
+}
+function changeRolTab2(frm) {
     cargarObjetoGeneral("GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function (data) {
+        console.log("respuesta de server", data);
         if (data.estado) {
-            console.log("la respuesta del server es:", data);
+            actuales    = data.subMenusActuales;
+            tbody       = llenarTablaSubMenuRol(actuales);
+            faltantes   = data.subMenusFaltantes;
+            opciones    = llenarCbSubmenuRol(faltantes);
+            $(".tbodySubmenuActuales").empty().append(tbody);
+            $(".cbSubMenu").empty().append(opciones);
+            // resetear chosen
+            resetChosen($(".cbSubMenu"));
         } else {
             alert("Error en la transaccion");
         }
@@ -21,7 +70,6 @@ function agregarRoles(frm) {
 }
 function desasociarRol(frm, trUsuarioRol) {
     actualizarCatalogo("/GestionRoles/desasociarRolUsuario", frm, function (data) {
-        console.log("la data devuelta es:", data);
         if (data) {
             trUsuarioRol.remove();
         }

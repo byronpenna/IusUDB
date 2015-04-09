@@ -59,7 +59,6 @@
                 <div class="col-lg-3">
                     <select multiple class="form-control cbRoles ">
                         <option></option>
-                        
                     </select>
                 </div>
                 <div class="col-lg-3">
@@ -120,10 +119,10 @@
                             <label>Seleccione un submenu</label>
                         </div>
                         <div class="col-lg-4">
-                            <select class="cbSubMenu"></select>
+                            <select class="cbSubMenu" multiple></select>
                         </div>
                         <div class="col-lg-4">
-                            <button>Asignar submenu</button>
+                            <button>Asignar submenus</button>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -145,9 +144,10 @@
                                     <th>Menu</th>
                                     <th>Sub menu</th>
                                     <th>Enlace</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="tbodySubmenuActuales">
                                 <tr>
                                     <td colspan="3" class="text-center">
                                         Seleccione un rol para ver sus menus asociados
