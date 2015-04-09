@@ -1,4 +1,14 @@
-﻿function agregarRoles(frm) {
+﻿function changeRolTab2(frm) {
+    console.log("formulario a enviar", frm);
+    cargarObjetoGeneral("GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function (data) {
+        if (data.estado) {
+            console.log("la respuesta del server es:", data);
+        } else {
+            alert("Error en la transaccion");
+        }
+    });
+}
+function agregarRoles(frm) {
     cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
         console.log("la data del server:", data);
         if (data.estado) {

@@ -50,80 +50,68 @@ namespace IUSBack.Controllers
         #endregion
         
         #region "ajax functions"
-            [HttpPost]
-            public ActionResult agregarRoles()
-            {
-                Dictionary<Object, Object> frm, respuesta;
-                Usuario usuario = this.getUsuarioSesion();
-                bool agrego = false;
-                frm = this.getAjaxFrm();
-                if (frm != null)
+            
+            #region "traer"
+                [HttpPost]
+                public ActionResult getJSONSubmenuFaltanteYactuales()
                 {
-                    respuesta = new Dictionary<Object,Object>();
-                    Object[] rolesobject = (Object[])frm["rolesAgregar"];
-                    int[] roles = new int[rolesobject.Length];
-                    int cn = 0;
-                    foreach (Object obj in rolesobject)
+                    Dictionary<Object,Object> frm,respuesta;
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (frm != null && usuarioSession != null ) // el error de manejo de session deberia ser aparte
                     {
-                        roles[cn] = Convert.ToInt32(obj);
-                        cn++;
-                    }
-                    int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
-                    agrego = this._model.agregarRoles(roles,idUsuario,usuario._idUsuario,this._idPagina);
-                    if (agrego)
-                    {
-                        List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
+                        respuesta = new Dictionary<Object, Object>();
+                        int idRol = Convert.ToInt32(frm["idRol"].ToString());
+                        List<Submenu> submenusFaltandes = this._model.getSubMenuFaltantesRol(idRol, usuarioSession._idUsuario, this._idPagina);
+                        List<Submenu> submenuActuales = this._model.getSubmenuRol(idRol,usuarioSession._idUsuario,this._idPagina);
                         respuesta.Add("estado", true);
-                        respuesta.Add("roles", rolesUsuario);
+                        respuesta.Add("subMenusFaltantes", submenusFaltandes);
+                        respuesta.Add("subMenusActuales", submenuActuales);
                     }
                     else
                     {
-                        respuesta.Add("estado", false);
+                        respuesta = this.errorEnvioFrmJSON();
                     }
+                    return Json(respuesta);
                 }
-                else
+                [HttpPost]
+                public ActionResult getJSONRolesFaltantes()
                 {
-                    respuesta = this.errorEnvioFrmJSON();
+                    Dictionary<Object, Object> frm,respuesta;
+                    Usuario usuario = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm("form");
+                    if (frm != null)
+                    {
+                        respuesta = new Dictionary<Object, Object>();
+                        List<Rol> roles = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuario._idUsuario, this._idPagina);
+                        respuesta.Add("roles", roles);
+                        respuesta.Add("estado", true);
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
                 }
-                return Json(respuesta);
-            }
-            [HttpPost]
-            public ActionResult getJSONRolesFaltantes()
-            {
-                Dictionary<Object, Object> frm,respuesta;
-                Usuario usuario = this.getUsuarioSesion();
-                frm = this.getAjaxFrm("form");
-                if (frm != null)
+                [HttpPost]
+                public ActionResult getJSONroles()
                 {
-                    respuesta = new Dictionary<Object, Object>();
-                    List<Rol> roles = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuario._idUsuario, this._idPagina);
-                    respuesta.Add("roles", roles);
-                    respuesta.Add("estado", true);
+                    Dictionary<Object, Object> respuesta,frm;
+                    frm = this.getAjaxFrm("form");
+                    if (frm != null)
+                    {
+                        respuesta = new Dictionary<Object, Object>();
+                        List<Rol> roles = this._model.getRoles(Convert.ToInt32((string)frm["idUsuario"]));
+                        respuesta.Add("estado", true);
+                        respuesta.Add("roles", roles);
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
                 }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
-            [HttpPost]
-            public ActionResult getJSONroles()
-            {
-                Dictionary<Object, Object> respuesta,frm;
-                frm = this.getAjaxFrm("form");
-                if (frm != null)
-                {
-                    respuesta = new Dictionary<Object, Object>();
-                    List<Rol> roles = this._model.getRoles(Convert.ToInt32((string)frm["idUsuario"]));
-                    respuesta.Add("estado", true);
-                    respuesta.Add("roles", roles);
-                }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
+            #endregion
             [HttpPost]
             public ActionResult desasociarRolUsuario()
             {
@@ -136,6 +124,43 @@ namespace IUSBack.Controllers
                     frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
                     Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
                     respuesta.Add("estado", estado);
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+            [HttpPost]
+            public ActionResult agregarRoles()
+            {
+                Dictionary<Object, Object> frm, respuesta;
+                Usuario usuario = this.getUsuarioSesion();
+                bool agrego = false;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    respuesta = new Dictionary<Object, Object>();
+                    Object[] rolesobject = (Object[])frm["rolesAgregar"];
+                    int[] roles = new int[rolesobject.Length];
+                    int cn = 0;
+                    foreach (Object obj in rolesobject)
+                    {
+                        roles[cn] = Convert.ToInt32(obj);
+                        cn++;
+                    }
+                    int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
+                    agrego = this._model.agregarRoles(roles, idUsuario, usuario._idUsuario, this._idPagina);
+                    if (agrego)
+                    {
+                        List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
+                        respuesta.Add("estado", true);
+                        respuesta.Add("roles", rolesUsuario);
+                    }
+                    else
+                    {
+                        respuesta.Add("estado", false);
+                    }
                 }
                 else
                 {

@@ -10,7 +10,6 @@
                 $(".cbRolTab2").chosen({ no_results_text: "Rol no encontrado", width: '100%' });
                 $(".cbAsignarPermisos").chosen({ no_results_text: "Permiso no encontrado", width: '100%' });
                 $(".cbSubMenu").chosen({ no_results_text: "Submenu no encontrado", width: '100%' });
-                
     // eventos
         // click 
             $(document).on("click", "#btnAddRoles", function () {
@@ -39,9 +38,17 @@
                 }
             })
         // change
-            $(document).on("change", ".cbUsuarios", function () {
-                // llenar tablita    
-                idUsuario = $(this).val();
-                llenarTablaRolesUsuario(idUsuario);
-            })
+            // tab1
+                $(document).on("change", ".cbUsuarios", function () {
+                    // llenar tablita    
+                    idUsuario = $(this).val();
+                    llenarTablaRolesUsuario(idUsuario);
+                });
+            // tab2
+                $(document).on("change", ".cbRolTab2", function () {
+                    var frm = new Object();
+                    frm.idRol = $(this).val();
+                    changeRolTab2(frm);
+                });
+        
 })

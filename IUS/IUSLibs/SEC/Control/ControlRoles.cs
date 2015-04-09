@@ -47,76 +47,132 @@ namespace IUSLibs.SEC.Control
                 toReturn = sp.ejecutarInsertMultiple();
                 return toReturn;
             }
-            public List<Rol> getRoles(int idUsuario)
-            {
-                List<Rol> roles = null;
-                Rol rol;
-                SPIUS sp = new SPIUS("sep_sec_getRoles");// mandarle los parametros para el permiso
-                sp.agregarParametro("idUsuario", idUsuario);
-                DataSet ds = sp.EjecutarProcedimiento();
-                if (!this.DataSetDontHaveTable(ds))
+            #region "traer"
+                public List<Submenu> getSubMenuRol(int idRol,int idUsuarioEjecutor,int idPagina)
                 {
-                    DataTable tablaEstado = ds.Tables[0];
-                    if (tablaEstado.Rows.Count > 0)
+                    /*
+                     * la diferencia de este con el de control de usuario es que este trae los 
+                     * submenus independientemente del permiso que posea
+                     */
+                    List<Submenu> submenus = null;
+                    Submenu submenu; Menu menu;
+                    SPIUS sp = new SPIUS("sp_sec_getSubMenuPorRol");
+                    sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina",idPagina);
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
                     {
-                        roles = new List<Rol>();
-                        foreach (DataRow row in tablaEstado.Rows)
+                        if (ds.Tables[0].Rows.Count > 0)
                         {
-                            rol = new Rol((int)row["idRol"], row["rol"].ToString(), (bool)row["estado"]);
-                            roles.Add(rol);
+                            submenus = new List<Submenu>();
+                            foreach (DataRow row in ds.Tables[0].Rows)
+                            {
+                                menu = new Menu((int)row["id_menu_fk"], row["menu"].ToString(), row["menuEnlace"].ToString());
+                                submenu = new Submenu((int)row["id_submenu_fk"], menu, row["submenu"].ToString(), row["subMenuEnlace"].ToString());
+                                submenus.Add(submenu);
+                            }
                         }
                     }
+                    return submenus;
                 }
-                return roles;
-                //return roles;
-            }
-            public List<Rol> getAllRoles(int idUsuario, int idPagina)
-            {
-                List<Rol> roles = null;
-                Rol rol;
-                SPIUS sp = new SPIUS("sp_sec_getAllRoles");
-                sp.agregarParametro("usuarioEjecutor", idUsuario);
-                sp.agregarParametro("idPagina", idPagina);
-                DataSet ds = sp.EjecutarProcedimiento();
-                if (!this.DataSetDontHaveTable(ds))
+                public List<Submenu> getSubMenuFaltantesRol(int idRol,int idUsuarioEjecutor,int idPagina)
                 {
-                    DataTable tb = ds.Tables[0];
-                    if (tb.Rows.Count > 0)
+                    List<Submenu> submenus = null;
+                    Submenu submenu; Menu menu;
+                    SPIUS sp = new SPIUS("sp_sec_getSubMenuFaltante");
+                    sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
                     {
-                        roles = new List<Rol>();
-                        foreach (DataRow row in tb.Rows)
+                        if (ds.Tables[0].Rows.Count > 0)
                         {
-                            rol = new Rol((int)row["idRol"], row["rol"].ToString(), Convert.ToBoolean(row["estado"].ToString()));
-                            roles.Add(rol);
+                            submenus = new List<Submenu>();
+                            foreach (DataRow row in ds.Tables[0].Rows)
+                            {
+                                menu = new Menu((int)row["id_menu_fk"],row["menu"].ToString(),row["menuEnlace"].ToString());
+                                submenu = new Submenu((int)row["id_submenu_fk"], menu, row["submenu"].ToString(), row["subMenuEnlace"].ToString());
+                                submenus.Add(submenu);
+                            }
                         }
                     }
+                    return submenus;
                 }
-                return roles;
-            }
-            public List<Rol> getRolesFaltantes(int idUsuario, int idUsuarioEjecutor, int idPagina)
-            {
-                List<Rol> roles = null;
-                Rol rol;
-                SPIUS sp = new SPIUS("sp_sec_getRolesFaltantesUsuario");
-                sp.agregarParametro("idUsuario", idUsuario);
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-                DataSet ds = sp.EjecutarProcedimiento();
-                if (!this.DataSetDontHaveTable(ds))
+                
+                public List<Rol> getRoles(int idUsuario)
                 {
-                    DataTable tb = ds.Tables[0];
-                    if (tb.Rows.Count > 0)
+                    List<Rol> roles = null;
+                    Rol rol;
+                    SPIUS sp = new SPIUS("sep_sec_getRoles");// mandarle los parametros para el permiso
+                    sp.agregarParametro("idUsuario", idUsuario);
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
                     {
-                        roles = new List<Rol>();
-                        foreach (DataRow row in tb.Rows)
+                        DataTable tablaEstado = ds.Tables[0];
+                        if (tablaEstado.Rows.Count > 0)
                         {
-                            rol = new Rol((int)row["idRol"], row["rol"].ToString(), Convert.ToBoolean(row["estado"].ToString()));
-                            roles.Add(rol);
+                            roles = new List<Rol>();
+                            foreach (DataRow row in tablaEstado.Rows)
+                            {
+                                rol = new Rol((int)row["idRol"], row["rol"].ToString(), (bool)row["estado"]);
+                                roles.Add(rol);
+                            }
                         }
                     }
+                    return roles;
+                    //return roles;
                 }
-                return roles;
-            }
+                public List<Rol> getAllRoles(int idUsuario, int idPagina)
+                {
+                    List<Rol> roles = null;
+                    Rol rol;
+                    SPIUS sp = new SPIUS("sp_sec_getAllRoles");
+                    sp.agregarParametro("usuarioEjecutor", idUsuario);
+                    sp.agregarParametro("idPagina", idPagina);
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        DataTable tb = ds.Tables[0];
+                        if (tb.Rows.Count > 0)
+                        {
+                            roles = new List<Rol>();
+                            foreach (DataRow row in tb.Rows)
+                            {
+                                rol = new Rol((int)row["idRol"], row["rol"].ToString(), Convert.ToBoolean(row["estado"].ToString()));
+                                roles.Add(rol);
+                            }
+                        }
+                    }
+                    return roles;
+                }
+                public List<Rol> getRolesFaltantes(int idUsuario, int idUsuarioEjecutor, int idPagina)
+                {
+                    List<Rol> roles = null;
+                    Rol rol;
+                    SPIUS sp = new SPIUS("sp_sec_getRolesFaltantesUsuario");
+                    sp.agregarParametro("idUsuario", idUsuario);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        DataTable tb = ds.Tables[0];
+                        if (tb.Rows.Count > 0)
+                        {
+                            roles = new List<Rol>();
+                            foreach (DataRow row in tb.Rows)
+                            {
+                                rol = new Rol((int)row["idRol"], row["rol"].ToString(), Convert.ToBoolean(row["estado"].ToString()));
+                                roles.Add(rol);
+                            }
+                        }
+                    }
+                    return roles;
+                }
+            #endregion
+            
         #endregion
     }
 }
