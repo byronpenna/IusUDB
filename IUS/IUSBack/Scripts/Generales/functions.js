@@ -5,8 +5,12 @@
             //chosen.val('').trigger("liszt:updated");
             chosen.val('').trigger("chosen:updated");
         }
-        
 // tabla
+    function cambioBackgroundColorTr(selector,color,activeClass) {
+        $(""+selector+selector).css("background", "none");
+        trSubMenu.css("background",color);
+        trSubMenu.addClass("activeTr"); // importantisimo esto debe ser dinamico de active clas pero quitandole primer caracter
+    }
     function cancelarGlobal() {
         var x = confirm("¿Esta seguro que desea cancelar todo?");
         if (x) {

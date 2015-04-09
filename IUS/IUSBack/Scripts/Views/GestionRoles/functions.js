@@ -1,11 +1,19 @@
-﻿function llenarTablaSubMenuRol(submenu) {
+﻿function clickTrSubMenu(trSubMenu) {
+    frm = new Object();
+    frm.
+    cambioBackgroundColorTr(".trSubMenu", "yellow", ".activeTr");
+    cargarObjetoGeneral("GestionRolesController/eliminarSubmenuRol", frm, function () {
+
+    });
+}
+function llenarTablaSubMenuRol(submenu) {
     tbody = "";
     if ( !(submenu === null) ) {
         $.each(submenu, function (i, val) {
             tbody += "\
-           <tr>\
+           <tr class='trSubMenu'>\
                 <td class='hidden'>\
-                    <input type='" + val._idSubMenu + "' class='txtIdSubMenu' value=''>\
+                    <input type='hidden' class='txtIdSubMenu' value='" + val._idSubMenu + "'>\
                 </td>\
                 <td>" + val._menu._menu + "</td>\
                 <td>" + val._textoSubMenu + "</td>\
@@ -21,8 +29,14 @@
             </tr>\
         ";
     }
-   
     return tbody;
+}
+function quitarSubMenuArol(trSubMenu) {
+    frm = new Object();
+    frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
+    console.log("formulario a enviar", frm);
+    /*cargarObjetoGeneral("GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function () {
+    });*/
 }
 function llenarCbSubmenuRol(submenu) {
     opcion = "";
@@ -37,12 +51,10 @@ function llenarCbSubmenuRol(submenu) {
             <option value='-1' disabled>No hay submenus para agregar</option>\
         ";
     }
-    console.log("opciones", opcion);
     return opcion;
 }
 function changeRolTab2(frm) {
     cargarObjetoGeneral("GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function (data) {
-        console.log("respuesta de server", data);
         if (data.estado) {
             actuales    = data.subMenusActuales;
             tbody       = llenarTablaSubMenuRol(actuales);

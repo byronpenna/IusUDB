@@ -173,6 +173,7 @@ namespace IUSLibs.SEC.Control
                 return toReturn;
             }
             #endregion
+            
             public bool /*Submenu*/ getTodoMenu(int idUsuario)
             {
                 // true significa que posee menus y false que no posee ninguno
@@ -198,6 +199,7 @@ namespace IUSLibs.SEC.Control
                 this._subMenu = s;
                 return toReturn;
             }
+            
             public bool login(string usuario,string pass)
                 {
                     bool toReturn = false;

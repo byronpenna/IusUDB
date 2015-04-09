@@ -112,25 +112,35 @@ namespace IUSBack.Controllers
                     return Json(respuesta);
                 }
             #endregion
-            [HttpPost]
-            public ActionResult desasociarRolUsuario()
-            {
-                JavaScriptSerializer jss = new JavaScriptSerializer();
-                Dictionary<Object, Object> respuesta, frm;
-                String frmText = Request.Form["form"];
-                if (frmText != null)
+            #region "acciones"
+                [HttpPost]
+                public ActionResult eliminarSubmenuRol()
                 {
-                    respuesta = new Dictionary<Object, Object>();
-                    frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
-                    Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
-                    respuesta.Add("estado", estado);
+                    Dictionary<Object,Object> frm,respuesta = null;
+                    frm = this.getAjaxFrm();
+                    Usuario usuariosession = this.getUsuarioSesion();
+                    return Json(respuesta);
                 }
-                else
+                [HttpPost]
+                public ActionResult desasociarRolUsuario()
                 {
-                    respuesta = this.errorEnvioFrmJSON();
+                    JavaScriptSerializer jss = new JavaScriptSerializer();
+                    Dictionary<Object, Object> respuesta, frm;
+                    String frmText = Request.Form["form"];
+                    if (frmText != null)
+                    {
+                        respuesta = new Dictionary<Object, Object>();
+                        frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                        Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
+                        respuesta.Add("estado", estado);
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
                 }
-                return Json(respuesta);
-            }
+            #endregion
             [HttpPost]
             public ActionResult agregarRoles()
             {

@@ -83,6 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SEC\Control\ControlPersona.cs" />
     <Compile Include="SEC\Control\ControlRoles.cs" />
+    <Compile Include="SEC\Control\ControlSubMenu.cs" />
     <Compile Include="SEC\Control\ControlUsuarios.cs" />
     <Compile Include="SEC\Entidades\Menu.cs" />
     <Compile Include="SEC\Entidades\Permiso.cs" />

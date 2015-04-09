@@ -49,7 +49,12 @@ namespace IUSBack.Controllers
             String frmText = Request.Form[txtObj];
             if (frmText != null || frmText != "")
             {
-                toReturn = this._jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                try
+                {
+                    toReturn = this._jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                }catch(Exception x){
+                    throw x;
+                }
             }
             return toReturn;
         }

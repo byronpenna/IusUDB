@@ -12,13 +12,13 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
 {
     public class GestionPersonaModel:PadreModel
     {
+        
         #region "propiedades"
-
+        private ControlPersona _control;
         #endregion 
         public List<Persona> getPersonas()
         {
-            ControlPersona control = new ControlPersona();
-            List<Persona> personas = control.getPersonas();
+            List<Persona> personas = this._control.getPersonas();
             if (personas.Count != 0)
             {
                 return personas;
@@ -27,15 +27,13 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             {
                 return null;
             }
-            
         }
         public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
         {
-            ControlPersona control = new ControlPersona();
             Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
             try
             {
-                Persona personaActual = control.actualizarPersona(persona,idUsuario,idPagina);
+                Persona personaActual = this._control.actualizarPersona(persona,idUsuario,idPagina);
                 if (personaActual != null)
                 {
                     toReturn.Add("estado", true);
@@ -60,5 +58,11 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             }
             return toReturn;
         }
+        #region "contructores"
+            public GestionPersonaModel()
+            {
+                this._control = new ControlPersona();
+            }
+        #endregion
     }
 }

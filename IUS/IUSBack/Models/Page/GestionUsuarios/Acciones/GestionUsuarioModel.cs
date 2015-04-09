@@ -14,6 +14,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
         #region "propiedades"
             public int _idPagina;
             private Permiso _permisosGestion;
+            private ControlUsuarios _control;
             #region "get y set" 
                 public Permiso permisoGestion
                 {
@@ -30,14 +31,14 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
         public GestionUsuarioModel(int idPagina)
         {
             this._idPagina = idPagina;
+            this._control = new ControlUsuarios();
         }
         #endregion
         public List<Usuario> getUsuarios(int idUsuarioEjecutor)
         {
             List<Usuario> usuarios;
-            ControlUsuarios control = new ControlUsuarios();
-            usuarios = control.getUsuarios(idUsuarioEjecutor, this._idPagina);
-            Permiso permisoGestion = control.permisoGestion;
+            usuarios = this._control.getUsuarios(idUsuarioEjecutor, this._idPagina);
+            Permiso permisoGestion = this._control.permisoGestion;
             this._permisosGestion = permisoGestion;
             return usuarios;
         }
@@ -50,8 +51,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 persona._idPersona = Convert.ToInt32((string)frm["cbPersona"]);
                 Usuario UsuarioRetorno;
                 Usuario usu = new Usuario(Convert.ToInt32((String)frm["txtHdIdUser"]), frm["txtEditUsuario"].ToString(), persona);
-                ControlUsuarios control = new ControlUsuarios();
-                UsuarioRetorno = control.actualizarUsuario(usu,idUsuarioEjecutor,this._idPagina);
+                UsuarioRetorno = this._control.actualizarUsuario(usu,idUsuarioEjecutor,this._idPagina);
                 if (UsuarioRetorno != null)
                 {
                     toReturn.Add("estado", true);
@@ -71,9 +71,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                      * Error no controlado
                  */
                 Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
-                ControlUsuarios control = new ControlUsuarios();
-                
-                Usuario usu = control.cambiarEstadoUsuario(idUsuario, this._idPagina, usuarioEjecutor);
+                Usuario usu = this._control.cambiarEstadoUsuario(idUsuario, this._idPagina, usuarioEjecutor);
                 if (usu != null)
                 {
                     toReturn.Add("estadoEjecucion",true);

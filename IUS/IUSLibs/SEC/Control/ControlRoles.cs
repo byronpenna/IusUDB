@@ -6,6 +6,7 @@ using System.Text;
     using System.Data;
     using System.Data.SqlClient;
 // librerias internas 
+    using IUSLibs.LOGS;
     using IUSLibs.GENERALS;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.BaseDatos;
@@ -15,38 +16,68 @@ namespace IUSLibs.SEC.Control
     public class ControlRoles:PadreLib
     {
         #region "Funciones"
-            public bool desasociarRol(int idUsuario,int idRol)
-            {
-                bool toReturn = false;
-                SPIUS sp = new SPIUS("sp_sec_desasociarRoles");
-                sp.agregarParametro("idUsuario", idUsuario);
-                sp.agregarParametro("idRol", idRol);
-                DataSet ds = sp.EjecutarProcedimiento();
-                if (!this.DataSetDontHaveTable(ds))
+            #region "acciones"
+                public bool quitarSubmenu(int idSubMenu,int idRol,int idUsuarioEjecutor,int idPagina)
                 {
-                    if (Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoDelete"]))
+                    bool toReturn = false;
+                    SPIUS sp = new SPIUS("sp_sec_eliminarSubmenuRol");
+                    sp.agregarParametro("idSubmenu", idSubMenu);
+                    sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
                     {
-                        toReturn = true;
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                if (Convert.ToBoolean(ds.Tables[0].Rows[0]["estadoDelete"].ToString()))
+                                {
+                                    toReturn = true;
+                                }
+                            }
+                        }
                     }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    return toReturn;
                 }
-                return toReturn;
-            }
-            public bool agregarRoles(int[] roles,int idUsuario,int idUsuarioEjecutor,int idPagina){
-                bool toReturn = false;
-                SPIUS sp = new SPIUS("sp_usu_asociarRol");
-                Dictionary<String, Object> parametro;
-                foreach (int idRol in roles)
+                public bool desasociarRol(int idUsuario,int idRol)
                 {
-                    parametro = new Dictionary<String, Object>();
-                    parametro.Add("idRol", idRol);
-                    parametro.Add("idUsuario", idUsuario);
-                    parametro.Add("idUsuarioEjecutor", idUsuarioEjecutor);
-                    parametro.Add("idPagina", idPagina);
-                    sp.agregarParametro(parametro);
+                    bool toReturn = false;
+                    SPIUS sp = new SPIUS("sp_sec_desasociarRoles");
+                    sp.agregarParametro("idUsuario", idUsuario);
+                    sp.agregarParametro("idRol", idRol);
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        if (Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoDelete"]))
+                        {
+                            toReturn = true;
+                        }
+                    }
+                    return toReturn;
                 }
-                toReturn = sp.ejecutarInsertMultiple();
-                return toReturn;
-            }
+                public bool agregarRoles(int[] roles,int idUsuario,int idUsuarioEjecutor,int idPagina){
+                    bool toReturn = false;
+                    SPIUS sp = new SPIUS("sp_usu_asociarRol");
+                    Dictionary<String, Object> parametro;
+                    foreach (int idRol in roles)
+                    {
+                        parametro = new Dictionary<String, Object>();
+                        parametro.Add("idRol", idRol);
+                        parametro.Add("idUsuario", idUsuario);
+                        parametro.Add("idUsuarioEjecutor", idUsuarioEjecutor);
+                        parametro.Add("idPagina", idPagina);
+                        sp.agregarParametro(parametro);
+                    }
+                    toReturn = sp.ejecutarInsertMultiple();
+                    return toReturn;
+                }
+            #endregion
             #region "traer"
                 public List<Submenu> getSubMenuRol(int idRol,int idUsuarioEjecutor,int idPagina)
                 {

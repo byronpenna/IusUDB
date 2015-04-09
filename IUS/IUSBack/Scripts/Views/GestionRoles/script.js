@@ -26,17 +26,29 @@
                     }
                 }
             });
-            $(document).on("click", ".iconQuitarRol", function () {
-                var x = confirm("¿Esta seguro que desea quitarle ese rol?");
-                trRol = $(this).parents(".trEstadoRol");
-                if (x) {
-                    frm = new Object();
-                    frm.idUsuario   = $(".cbUsuarios").val();
-                    frm.idRol = trRol.find(".txtIdRol").val();
-                    console.log("formulario a enviar sera", frm);
-                    desasociarRol(frm, trRol);
-                }
-            })
+            // tab2
+                $(document).on("click", ".trSubMenu", function () {
+                    trSubMenu = $(this);
+                    clickTrSubMenu(trSubMenu);
+                })
+                $(document).on("click", ".iconQuitarRol", function () {
+                    var x = confirm("¿Esta seguro que desea quitarle ese rol?");
+                    trRol = $(this).parents(".trEstadoRol");
+                    if (x) {
+                        frm = new Object();
+                        frm.idUsuario   = $(".cbUsuarios").val();
+                        frm.idRol = trRol.find(".txtIdRol").val();
+                        console.log("formulario a enviar sera", frm);
+                        desasociarRol(frm, trRol);
+                    }
+                })
+                $(document).on("click", ".icoQuitarSubMenu", function () {
+                    var x = confirm("¿Esta seguro que desea quitar ese menu a rol?");
+                    trSubmenu = $(this).parents("tr");
+                    if (x) {
+                        quitarSubMenuArol(trSubmenu);
+                    }
+                });
         // change
             // tab1
                 $(document).on("change", ".cbUsuarios", function () {

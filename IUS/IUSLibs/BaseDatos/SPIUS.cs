@@ -14,7 +14,6 @@ namespace IUSLibs.BaseDatos
             private String nombre;// nombre de procedimiento
             private List<Parametro> parametros; // parametro generico para iterar antes de ejecutar procedimiento
             private List<List<Parametro>> _arregloDeParametros;
-            private bool _trans;
         #endregion
         #region "Funciones"
             #region "funciones privadas"
@@ -134,7 +133,6 @@ namespace IUSLibs.BaseDatos
                 this.nombre = nombre;
                 this.parametros = new List<Parametro>();
                 this._arregloDeParametros = new List<List<Parametro>>();
-                this._trans = false;
             }
         #endregion
     }

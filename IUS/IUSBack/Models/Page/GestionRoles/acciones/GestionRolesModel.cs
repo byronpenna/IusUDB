@@ -16,13 +16,7 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
             public ControlRoles _control;
         #endregion
         #region "funciones publicas"
-            public bool agregarRoles(int[] rolesAgregar,int idUsuario,int idUsuarioEjecutor,int idPagina)
-            {
-                bool toReturn = false;
-                ControlRoles control = new ControlRoles();
-                toReturn = control.agregarRoles(rolesAgregar, idUsuario, idUsuarioEjecutor,idPagina);
-                return toReturn;
-            }
+            
             #region "mandar a traer"
                 public List<Submenu> getSubmenuRol(int idRol,int idUsuarioEjecutor,int idPagina)
                 {
@@ -33,38 +27,46 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                 public List<Submenu> getSubMenuFaltantesRol(int idRol,int idUsuarioEjecutor, int idPagina)
                 {
                     List<Submenu> submenus = null;
-                    ControlRoles control = new ControlRoles();
-                    submenus = control.getSubMenuFaltantesRol(idRol, idUsuarioEjecutor, idPagina);
+                    submenus = this._control.getSubMenuFaltantesRol(idRol, idUsuarioEjecutor, idPagina);
                     return submenus;
                 }
                 
             public List<Rol> getRolesFaltantes(int idUsuario,int idUsuarioEjecutor,int idPagina)
                 {
-                    ControlRoles control = new ControlRoles();
                     List<Rol> roles = null;
-                    roles = control.getRolesFaltantes(idUsuario, idUsuarioEjecutor, idPagina);
+                    roles = this._control.getRolesFaltantes(idUsuario, idUsuarioEjecutor, idPagina);
                     return roles;
                 }
-                public List<Rol> getRoles(int idUsuario)
-                {
-                    ControlRoles control = new ControlRoles();
-                    List<Rol> roles = control.getRoles(idUsuario);
-                    return roles;
-                }
-                public List<Rol> getAllRoles(int idUsuarioEjecutor,int idPagina)
-                {
-                    ControlRoles control = new ControlRoles();
-                    List<Rol> roles = control.getAllRoles(idUsuarioEjecutor,idPagina);
-                    return roles;
-                }
+            public List<Rol> getRoles(int idUsuario)
+            {
+                List<Rol> roles = this._control.getRoles(idUsuario);
+                return roles;
+            }
+            public List<Rol> getAllRoles(int idUsuarioEjecutor,int idPagina)
+            {
+                List<Rol> roles = this._control.getAllRoles(idUsuarioEjecutor,idPagina);
+                return roles;
+            }
             #endregion 
+            #region "acciones"
+            public Boolean quitarSubmenuArol(int idSubMenu,int idRol,int idUsuarioEjecutor,int idPagina)
+            {
+                bool toReturn = this._control.quitarSubmenu(idSubMenu, idRol, idUsuarioEjecutor, idPagina);
+                return toReturn;
+            }
+            public Boolean agregarRoles(int[] rolesAgregar, int idUsuario, int idUsuarioEjecutor, int idPagina)
+            {
+                bool toReturn = false;
+                toReturn = this._control.agregarRoles(rolesAgregar, idUsuario, idUsuarioEjecutor, idPagina);
+                return toReturn;
+            }
             public Boolean desasociarRol(int idRol, int idUsuario)
             {
                 Boolean toReturn = false;
-                ControlRoles control = new ControlRoles();
-                toReturn = control.desasociarRol(idUsuario, idRol);
+                toReturn = this._control.desasociarRol(idUsuario, idRol);
                 return toReturn;
             }
+            #endregion
         #endregion
         #region "contructores"
             public GestionRolesModel()
