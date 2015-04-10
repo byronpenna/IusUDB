@@ -15,9 +15,29 @@ namespace IUSLibs.SEC.Control
     public class ControlRolSubMenuPermiso:PadreLib
     {
         #region "funciones publicas"
-            public bool eliminarRolSubMenuPermiso()
+            public bool eliminarRolSubMenuPermiso(int idRolSubmenuPermiso,int idUsuarioEjecutor,int idPagina)
             {
                 bool toReturn = false;
+                SPIUS sp = new SPIUS("sp_sec_quitarSubRol");
+                sp.agregarParametro("idRolSubmenuPermiso", idRolSubmenuPermiso);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        toReturn = Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoDelete"]);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
                 return toReturn;
             }
             public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)

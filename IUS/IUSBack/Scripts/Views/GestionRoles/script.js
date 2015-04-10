@@ -28,9 +28,12 @@
             });
             // tab2
                 $(document).on("click", ".icoQuitarPermiso", function () {
-                    trPermiso = $(this).parents("tr");
-                    trSubMenu = $(".trSubMenu.activeTr");
-                    //clickIcoQuitarPermiso(trPermiso, trSubMenu);
+                    var x = confirm("¿Esta seguro que desea quitar este permiso?");
+                    if (x) {
+                        trPermiso = $(this).parents("tr");
+                        clickIcoQuitarPermiso(trPermiso);
+                    }
+                    
                 })
                 $(document).on("click", ".trSubMenu", function () {
                     trSubMenu = $(this);

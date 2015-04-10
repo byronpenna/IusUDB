@@ -10,6 +10,7 @@ using System.Web.Script.Serialization;
     using IUSBack.Models.Page.GestionPermisos.Acciones;
 // librerias externas    
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.LOGS;
 namespace IUSBack.Controllers
 {
     public class GestionRolesController : PadreController
@@ -135,11 +136,32 @@ namespace IUSBack.Controllers
             #endregion
             #region "acciones"
                 [HttpPost]
-                public ActionResult eliminarSubmenuRol()
+                public ActionResult eliminarPermisoSubmenuRol()
                 {
                     Dictionary<Object,Object> frm,respuesta = null;
                     frm = this.getAjaxFrm();
-                    Usuario usuariosession = this.getUsuarioSesion();
+                    Usuario usuariosesion = this.getUsuarioSesion();
+                    GestionPermisosModel control = new GestionPermisosModel();
+                    if (frm != null && usuariosesion != null) // pensar en algo bueno para usuariosession
+                    {
+                        respuesta = new Dictionary<Object, Object>(); // meter esto en lo comentado
+                        try
+                        {
+                            bool elimino = control.eliminarPermisoSubmenuRol(Convert.ToInt32(frm["idRolSubmenuPermiso"].ToString()), usuariosesion._idUsuario, this._idPagina);
+                            respuesta.Add("estado", elimino);
+                        }
+                        catch (ErroresIUS)
+                        {
+                            respuesta.Add("estado", false);
+                        }
+                        catch (Exception) {
+                            respuesta.Add("estado", false);
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }      
                     return Json(respuesta);
                 }
                 [HttpPost]
@@ -161,44 +183,44 @@ namespace IUSBack.Controllers
                     }
                     return Json(respuesta);
                 }
-            #endregion
-            [HttpPost]
-            public ActionResult agregarRoles()
-            {
-                Dictionary<Object, Object> frm, respuesta;
-                Usuario usuario = this.getUsuarioSesion();
-                bool agrego = false;
-                frm = this.getAjaxFrm();
-                if (frm != null)
+                [HttpPost]
+                public ActionResult agregarRoles()
                 {
-                    respuesta = new Dictionary<Object, Object>();
-                    Object[] rolesobject = (Object[])frm["rolesAgregar"];
-                    int[] roles = new int[rolesobject.Length];
-                    int cn = 0;
-                    foreach (Object obj in rolesobject)
+                    Dictionary<Object, Object> frm, respuesta;
+                    Usuario usuario = this.getUsuarioSesion();
+                    bool agrego = false;
+                    frm = this.getAjaxFrm();
+                    if (frm != null)
                     {
-                        roles[cn] = Convert.ToInt32(obj);
-                        cn++;
-                    }
-                    int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
-                    agrego = this._model.agregarRoles(roles, idUsuario, usuario._idUsuario, this._idPagina);
-                    if (agrego)
-                    {
-                        List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
-                        respuesta.Add("estado", true);
-                        respuesta.Add("roles", rolesUsuario);
+                        respuesta = new Dictionary<Object, Object>();
+                        Object[] rolesobject = (Object[])frm["rolesAgregar"];
+                        int[] roles = new int[rolesobject.Length];
+                        int cn = 0;
+                        foreach (Object obj in rolesobject)
+                        {
+                            roles[cn] = Convert.ToInt32(obj);
+                            cn++;
+                        }
+                        int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
+                        agrego = this._model.agregarRoles(roles, idUsuario, usuario._idUsuario, this._idPagina);
+                        if (agrego)
+                        {
+                            List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
+                            respuesta.Add("estado", true);
+                            respuesta.Add("roles", rolesUsuario);
+                        }
+                        else
+                        {
+                            respuesta.Add("estado", false);
+                        }
                     }
                     else
                     {
-                        respuesta.Add("estado", false);
+                        respuesta = this.errorEnvioFrmJSON();
                     }
+                    return Json(respuesta);
                 }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
+            #endregion
         #endregion
     }
 }

@@ -1,6 +1,15 @@
 ﻿function clickIcoQuitarPermiso(trPermiso) {
     var frm = new Object();
-    //frm.idPermisoRol = trPermiso. 
+    frm.idRolSubmenuPermiso = trPermiso.find(".txtHdIdRolSubMenuPermiso").val();
+    console.log("formulario a enviar para eliminar", frm);
+    cargarObjetoGeneral("GestionRoles/eliminarPermisoSubmenuRol", frm, function (data) {
+        console.log("respuesta del servidor", data);
+        if (data.estado) {
+            trPermiso.remove();
+        } else {
+            alert("ocurrio un error al tratar de eliminar");
+        }
+    });
 }
 function clickTrSubMenu(trSubMenu) {
     frm = new Object();
@@ -20,7 +29,6 @@ function clickTrSubMenu(trSubMenu) {
                     </tr>\
                     ";
             }
-            
         } else {
             tbody = "\
                     <tr class='text-center'>\

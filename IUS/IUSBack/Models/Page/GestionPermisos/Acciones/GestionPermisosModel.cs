@@ -17,6 +17,12 @@ namespace IUSBack.Models.Page.GestionPermisos.Acciones
             
         #endregion
         #region "funciones publicas"
+            public bool eliminarPermisoSubmenuRol(int idRolSubmenuPermiso,int idUsuarioEjecutor,int idPagina)
+            {
+                ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
+                bool toReturn = control.eliminarRolSubMenuPermiso(idRolSubmenuPermiso,idUsuarioEjecutor,idPagina);
+                return toReturn;
+            }
             public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
             {
                 ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
