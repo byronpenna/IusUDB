@@ -1,9 +1,11 @@
 ﻿function clickTrSubMenu(trSubMenu) {
     frm = new Object();
-    frm.
+    frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
+    frm.idRol = $(".cbRolTab2").val();
     cambioBackgroundColorTr(".trSubMenu", "yellow", ".activeTr");
-    cargarObjetoGeneral("GestionRolesController/eliminarSubmenuRol", frm, function () {
-
+    console.log("el formulario a enviar es", frm);
+    cargarObjetoGeneral("GestionRoles/getJSONPermisos", frm, function (data) {
+        console.log(data)
     });
 }
 function llenarTablaSubMenuRol(submenu) {

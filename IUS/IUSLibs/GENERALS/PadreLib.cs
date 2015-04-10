@@ -5,19 +5,28 @@ using System.Text;
 // manejo de datos
     using System.Data;
     using System.Data.SqlClient;
+    
 namespace IUSLibs.GENERALS
 {
     public class PadreLib
     {
-        // contendra todas los metodos y atributos de uso general
-        protected bool DataSetDontHaveTable(DataSet ds)
-        {
-            bool toReturn = false;
-            if(ds.Tables.Count == 0)
+        #region "propiedades"
+            public enum Permisos
             {
-                toReturn = true;
+                Crear=1,Editar=2,Eliminar=3,ver=4
             }
-            return toReturn;
-        }
+        #endregion
+        #region "funciones heredadas"
+        // contendra todas los metodos y atributos de uso general
+            protected bool DataSetDontHaveTable(DataSet ds)
+            {
+                bool toReturn = false;
+                if(ds.Tables.Count == 0)
+                {
+                    toReturn = true;
+                }
+                return toReturn;
+            }
+        #endregion
     }
 }

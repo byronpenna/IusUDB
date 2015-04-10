@@ -7,6 +7,7 @@ using System.Web.Script.Serialization;
 // librerias internas
     using IUSBack.Models.Page.GestionRoles.acciones;
     using IUSBack.Models.Page.GestionUsuarios.Acciones;
+    using IUSBack.Models.Page.GestionPermisos.Acciones;
 // librerias externas    
     using IUSLibs.SEC.Entidades;
 namespace IUSBack.Controllers
@@ -104,6 +105,27 @@ namespace IUSBack.Controllers
                         List<Rol> roles = this._model.getRoles(Convert.ToInt32((string)frm["idUsuario"]));
                         respuesta.Add("estado", true);
                         respuesta.Add("roles", roles);
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
+                [HttpPost]
+                public ActionResult getJSONPermisos()
+                {
+                    Dictionary<Object, Object> frm, respuesta = null;
+                    
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSesion = this.getUsuarioSesion();
+                    if(frm != null && usuarioSesion != null){// manejar alguna vez mas sofisticado para usuario sesion
+                        respuesta = new Dictionary<Object, Object>();
+                        GestionPermisosModel controlLocal = new GestionPermisosModel();
+                        Permiso permisos = controlLocal.getPermisosSubmenuRol(Convert.ToInt32(frm["idSubMenu"].ToString()), Convert.ToInt32(frm["idRol"].ToString()), usuarioSesion._idUsuario, this._idPagina);
+                        //Permiso permisos = new Permiso();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("permisos", permisos);
                     }
                     else
                     {

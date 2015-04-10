@@ -79,6 +79,12 @@ namespace IUSLibs.SEC.Control
                 }
             #endregion
             #region "traer"
+                public Permiso getPermisosSubmenuRol()
+                {
+                    Permiso permiso = null;
+
+                    return permiso;
+                }
                 public List<Submenu> getSubMenuRol(int idRol,int idUsuarioEjecutor,int idPagina)
                 {
                     /*

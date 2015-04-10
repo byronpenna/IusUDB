@@ -191,6 +191,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\GestionPersonaModel.cs" />
     <Compile Include="Models\Page\GestionRoles\acciones\GestionRolesModel.cs" />
     <Compile Include="Models\Page\GestionUsuarios\Acciones\GestionUsuarioModel.cs" />
