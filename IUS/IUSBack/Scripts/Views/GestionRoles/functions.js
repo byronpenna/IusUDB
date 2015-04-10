@@ -1,4 +1,8 @@
-﻿function clickTrSubMenu(trSubMenu) {
+﻿function clickIcoQuitarPermiso(trPermiso) {
+    var frm = new Object();
+    //frm.idPermisoRol = trPermiso. 
+}
+function clickTrSubMenu(trSubMenu) {
     frm = new Object();
     frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
     frm.idRol = $(".cbRolTab2").val();
@@ -29,6 +33,7 @@
 }
 function llenarTablaPermisos(permisos) {
     tbody = "";
+    console.log("los permisos son:",permisos);
     $.each(permisos, function (i, val) {
         tbody += "\
             <tr>\

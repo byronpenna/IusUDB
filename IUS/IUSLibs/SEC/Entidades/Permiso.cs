@@ -5,6 +5,7 @@ using System.Text;
 
 namespace IUSLibs.SEC.Entidades
 {
+    // CLASE ES UN INTENTO FALLIDO PERO SIGUE AQUI PORQUE SE OCUPA EN ALGUNOS LUGARES
     public class Permiso
     {
         #region "propiedades"
