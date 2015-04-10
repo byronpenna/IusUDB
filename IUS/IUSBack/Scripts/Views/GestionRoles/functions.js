@@ -5,8 +5,39 @@
     cambioBackgroundColorTr(".trSubMenu", "yellow", ".activeTr");
     console.log("el formulario a enviar es", frm);
     cargarObjetoGeneral("GestionRoles/getJSONPermisos", frm, function (data) {
-        console.log(data)
+        console.log("La respuesta del servidor es", data);
+        if (data) {
+            if ( !(data.permisos === null) ) {
+                tbody = llenarTablaPermisos(data.permisos.arrPermisos);
+            } else {
+                tbody = "\
+                    <tr>\
+                        <td class='text-center' colspan='2'>No posee ningun permiso</td>\
+                    </tr>\
+                    ";
+            }
+            
+        } else {
+            tbody = "\
+                    <tr class='text-center'>\
+                        <td colspan='2'>Ocurrio un Error al recoger permisos</td>\
+                    </tr>\
+                    "
+        }
+        $(".tbodyTbPermisos").empty().append(tbody);
     });
+}
+function llenarTablaPermisos(permisos) {
+    tbody = "";
+    $.each(permisos, function (i, val) {
+        tbody += "\
+            <tr>\
+                <td>"+val+"</td>\
+                <td><i class='fa fa-times pointer icoQuitarPermiso'></td>\
+            </tr>\
+        ";
+    });
+    return tbody;
 }
 function llenarTablaSubMenuRol(submenu) {
     tbody = "";
