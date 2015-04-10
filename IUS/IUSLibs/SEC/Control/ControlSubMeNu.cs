@@ -7,7 +7,7 @@ using System.Text;
     using IUSLibs.GENERALS;
 namespace IUSLibs.SEC.Control
 {
-    class ControlSubMenu:PadreLib
+    public class ControlSubMenu:PadreLib
     {
         #region "propiedades"
         #endregion

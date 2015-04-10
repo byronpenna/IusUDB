@@ -12,7 +12,7 @@ function clickTrSubMenu(trSubMenu) {
         console.log("La respuesta del servidor es", data);
         if (data) {
             if ( !(data.permisos === null) ) {
-                tbody = llenarTablaPermisos(data.permisos.arrPermisos);
+                tbody = llenarTablaPermisos(data.permisos);
             } else {
                 tbody = "\
                     <tr>\
@@ -37,7 +37,8 @@ function llenarTablaPermisos(permisos) {
     $.each(permisos, function (i, val) {
         tbody += "\
             <tr>\
-                <td>"+val+"</td>\
+                <td class='hidden'><input class='txtHdIdRolSubMenuPermiso' value='" + val._idRolSubMenuPermiso + "'></td>\
+                <td>" + val._permisoRol._permiso + "</td>\
                 <td><i class='fa fa-times pointer icoQuitarPermiso'></td>\
             </tr>\
         ";

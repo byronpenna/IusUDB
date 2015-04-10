@@ -21,10 +21,13 @@ namespace IUSLibs.SEC.Entidades
                 this._textoSubMenu = texto;
                 this._enlace = enlace;
             }
-            public Submenu()
+            public Submenu(int idSubMenu)
             {
-
+                this._idSubMenu = idSubMenu;
             }
+        #endregion
+        #region "funciones publicas"
+
         #endregion
     }
 }

@@ -14,12 +14,19 @@ namespace IUSLibs.SEC.Entidades
             public Rol _rol;
         #endregion
         #region "Contructores"
+
             public RolSubMenu(int idRolSubMenu,Submenu submenu,Rol rol)
             {
                 this._idRolSubMenu = idRolSubMenu;
                 this._submenu = submenu;
                 this._rol = rol;
             }
+
+            public RolSubMenu(int idRolSubmenu)
+            {
+                this._idRolSubMenu = idRolSubmenu;
+            }
+
         #endregion
     }
 }

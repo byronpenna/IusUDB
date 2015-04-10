@@ -116,13 +116,12 @@ namespace IUSBack.Controllers
                 public ActionResult getJSONPermisos()
                 {
                     Dictionary<Object, Object> frm, respuesta = null;
-                    
                     frm = this.getAjaxFrm();
                     Usuario usuarioSesion = this.getUsuarioSesion();
                     if(frm != null && usuarioSesion != null){// manejar alguna vez mas sofisticado para usuario sesion
                         respuesta = new Dictionary<Object, Object>();
                         GestionPermisosModel controlLocal = new GestionPermisosModel();
-                        Permiso permisos = controlLocal.getPermisosSubmenuRol(Convert.ToInt32(frm["idSubMenu"].ToString()), Convert.ToInt32(frm["idRol"].ToString()), usuarioSesion._idUsuario, this._idPagina);
+                        List<RolSubMenuPermiso> permisos = controlLocal.getPermisosSubmenuRol(Convert.ToInt32(frm["idSubMenu"].ToString()), Convert.ToInt32(frm["idRol"].ToString()), usuarioSesion._idUsuario, this._idPagina);
                         //Permiso permisos = new Permiso();
                         respuesta.Add("estado", true);
                         respuesta.Add("permisos", permisos);

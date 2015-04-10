@@ -33,7 +33,10 @@ namespace IUSLibs.SEC.Entidades
                 this._rol = rol;
                 this._estado = estado;
             }
-            
+            public Rol(int idRol)
+            {
+                this._idRol = idRol;
+            }
         #endregion    
     }
 }

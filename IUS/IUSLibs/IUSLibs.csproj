@@ -84,12 +84,16 @@
     <Compile Include="SEC\Control\ControlPermiso.cs" />
     <Compile Include="SEC\Control\ControlPersona.cs" />
     <Compile Include="SEC\Control\ControlRoles.cs" />
+    <Compile Include="SEC\Control\ControlRolSubMenuPermiso.cs" />
     <Compile Include="SEC\Control\ControlSubMenu.cs" />
     <Compile Include="SEC\Control\ControlUsuarios.cs" />
     <Compile Include="SEC\Entidades\Menu.cs" />
     <Compile Include="SEC\Entidades\Permiso.cs" />
+    <Compile Include="SEC\Entidades\PermisoRol.cs" />
     <Compile Include="SEC\Entidades\Persona.cs" />
     <Compile Include="SEC\Entidades\Rol.cs" />
+    <Compile Include="SEC\Entidades\RolSubMenu.cs" />
+    <Compile Include="SEC\Entidades\RolSubMenuPermiso.cs" />
     <Compile Include="SEC\Entidades\Submenu.cs" />
     <Compile Include="SEC\Entidades\Usuario.cs" />
     <Compile Include="TRL\Control\ControlLlaveIdioma.cs" />

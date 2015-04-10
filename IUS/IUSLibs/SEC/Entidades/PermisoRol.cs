@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IUSLibs.SEC.Entidades
 {
-    class PermisoRol
+    public class PermisoRol
     {
         #region "propiedades"
             public int _idPermisoRol;
@@ -16,6 +16,10 @@ namespace IUSLibs.SEC.Entidades
             {
                 this._idPermisoRol = idPermiso;
                 this._permiso = permiso;
+            }
+            public PermisoRol(int idPermiso)
+            {
+                this._idPermisoRol = idPermiso;
             }
         #endregion
     }

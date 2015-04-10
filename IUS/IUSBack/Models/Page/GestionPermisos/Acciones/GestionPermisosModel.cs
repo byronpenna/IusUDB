@@ -17,10 +17,11 @@ namespace IUSBack.Models.Page.GestionPermisos.Acciones
             
         #endregion
         #region "funciones publicas"
-            public Permiso getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
+            public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
             {
-                Permiso permiso = this._control.getPermisosSubmenuRol(idSubMenu, idRol, idUsuarioEjecutor, idPagina);
-                return permiso;
+                ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
+                List<RolSubMenuPermiso> permisos = control.getPermisosSubmenuRol(idSubMenu, idRol, idUsuarioEjecutor, idPagina);
+                return permisos;
             }
         #endregion
         #region "contructores"
