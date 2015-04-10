@@ -93,6 +93,7 @@
                 console.log("actualizacion correcta");
                 trUsuario.find(".tdTxtNombreCompleto").empty().append(usuario._persona.nombreCompleto);
                 trUsuario.find(".tdTxtUsuario").empty().append(usuario._usuario);
+                trUsuario.find(".txtHdIdPersona").val(usuario._persona._idPersona);
                 controlesEdit(false, trUsuario); // salimos del modo de edicion
                 alert("actualizado correctamente");
                 if (!usuario._estado) {
@@ -134,7 +135,7 @@
     }
     function entrarEditMode(trUsuario) {
         txtUsuario = trUsuario.find(".tdTxtUsuario").text();
-        idPersonaActual = trUsuario.find(".txtHdIdUser").val();
+        idPersonaActual = trUsuario.find(".txtHdIdPersona").val();
         controlesEdit(true, trUsuario);
         combo = trUsuario.find(".cbPersona");
         obj = cargarObjetoPersonas(function (Personas) {
