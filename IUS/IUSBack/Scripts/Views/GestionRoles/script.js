@@ -19,7 +19,6 @@
                     frm.rolesAgregar    = $(".cbRoles").val();
                     frm.idUsuario       = $(".cbUsuarios").val();
                     if (frm.rolesAgregar != null) {
-                        console.log("formulario a enviar", frm);
                         agregarRoles(frm);
                     }else {
                         alert("Seleccione un rol a agregar");
@@ -27,13 +26,22 @@
                 }
             });
             // tab2
+                $(document).on("click", ".btnAsignarPermiso", function () {
+                    var frm = new Object();
+                    var x = confirm("¿Esta seguro que desea asignar los siguientes permisos?");
+                    if (x) {
+                        frm.idRol       = $(".cbRolTab2").val();
+                        frm.idPermisos  = $(".cbAsignarPermisos").val();
+                        frm.idSubMenu = $(".trSubMenu.activeTr").find(".txtIdSubMenu").val();
+                        btnAsignarPermiso(frm);
+                    }
+                });
                 $(document).on("click", ".icoQuitarPermiso", function () {
                     var x = confirm("¿Esta seguro que desea quitar este permiso?");
                     if (x) {
                         trPermiso = $(this).parents("tr");
                         clickIcoQuitarPermiso(trPermiso);
                     }
-                    
                 })
                 $(document).on("click", ".trSubMenu", function () {
                     trSubMenu = $(this);

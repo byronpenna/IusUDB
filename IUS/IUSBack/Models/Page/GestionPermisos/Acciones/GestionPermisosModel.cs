@@ -18,19 +18,40 @@ namespace IUSBack.Models.Page.GestionPermisos.Acciones
             
         #endregion
         #region "funciones publicas"
-            public bool eliminarPermisoSubmenuRol(int idRolSubmenuPermiso,int idUsuarioEjecutor,int idPagina)
+            #region "acciones"
+                public bool agregarPermisoSubmenuRol(int idRol,int idSubmenu,int[] idPermisos,int idUsuarioEjecutor,int idPagina)
+                {
+                    bool toReturn = false;
+                    ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
+                    try
+                    {
+                        toReturn = control.agregarPermisoSubmenuRol(idRol, idSubmenu, idPermisos, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS)
+                    {
+                        // controlar el error
+                    }
+                    catch (Exception)
+                    {
+                        // controlar el error
+                    }
+                    return toReturn;
+                }
+                public bool eliminarPermisoSubmenuRol(int idRolSubmenuPermiso,int idUsuarioEjecutor,int idPagina)
             {
                 ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
                 bool toReturn = control.eliminarRolSubMenuPermiso(idRolSubmenuPermiso,idUsuarioEjecutor,idPagina);
                 return toReturn;
             }
-            public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
+            #endregion 
+            #region "Traer"
+                public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
             {
                 ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
                 List<RolSubMenuPermiso> permisos = control.getPermisosSubmenuRol(idSubMenu, idRol, idUsuarioEjecutor, idPagina);
                 return permisos;
             }
-            public List<PermisoRol> getPermisosSubmenuRolFaltantes(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
+                public List<PermisoRol> getPermisosSubmenuRolFaltantes(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
             {
                 ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
                 List<PermisoRol> permisos = null;
@@ -48,6 +69,7 @@ namespace IUSBack.Models.Page.GestionPermisos.Acciones
                 }
                 return permisos;
             }
+            #endregion 
         #endregion
         #region "contructores"
             public GestionPermisosModel()

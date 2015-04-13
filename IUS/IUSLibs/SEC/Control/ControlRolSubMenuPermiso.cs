@@ -15,7 +15,8 @@ namespace IUSLibs.SEC.Control
     public class ControlRolSubMenuPermiso:PadreLib
     {
         #region "funciones publicas"
-            public bool eliminarRolSubMenuPermiso(int idRolSubmenuPermiso,int idUsuarioEjecutor,int idPagina)
+            #region "acciones"
+                public bool eliminarRolSubMenuPermiso(int idRolSubmenuPermiso,int idUsuarioEjecutor,int idPagina)
             {
                 bool toReturn = false;
                 SPIUS sp = new SPIUS("sp_sec_quitarSubRol");
@@ -45,81 +46,101 @@ namespace IUSLibs.SEC.Control
                 }
                 return toReturn;
             }
-            public List<PermisoRol> getPermisosSubmenuRolFaltantes(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
-            {
-                List<PermisoRol> permisosRetorno = null;
-                PermisoRol permiso;
-                SPIUS sp = new SPIUS("sp_sec_getPermisoSubMenuRolFaltantes");
-                sp.agregarParametro("idSubMenu", idSubMenu);
-                sp.agregarParametro("idRol", idRol);
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-                try
+                public bool agregarPermisoSubmenuRol(int idRol, int idSubmenu, int[] idPermisos, int idUsuarioEjecutor, int idPagina)
                 {
-                    DataSet ds = sp.EjecutarProcedimiento();
-                    if (!this.DataSetDontHaveTable(ds))
-                    {
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            permisosRetorno = new List<PermisoRol>();
-                            foreach(DataRow row in ds.Tables[0].Rows){
-                                permiso = new PermisoRol((int)row["idPermisoRol"], row["nivelPermiso"].ToString());
-                                permisosRetorno.Add(permiso);
-                            }
-                        }
+                    bool toReturn = false;
+                    Dictionary<String,Object> parametro = new Dictionary<String,Object>();
+                    SPIUS sp = new SPIUS("sp_sec_agregar_rolsubmenu_permiso");
+                    foreach(int idPermiso in idPermisos){
+                        parametro = new Dictionary<String, Object>();
+                        parametro.Add("idSubMenu",idSubmenu);
+                        parametro.Add("idRol",idRol);
+                        parametro.Add("idPermisoRol",idPermiso);
+                        parametro.Add("idUsuarioEjecutor",idUsuarioEjecutor);
+                        parametro.Add("idPagina",idPagina);
+                        sp.agregarParametro(parametro);
                     }
+                    toReturn = sp.ejecutarInsertMultiple();
+                    return toReturn;
                 }
-                catch (ErroresIUS x)
+            #endregion
+            #region "traer"
+                public List<PermisoRol> getPermisosSubmenuRolFaltantes(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return permisosRetorno;
-            }
-            public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
-            {
-
-                List<RolSubMenuPermiso> toReturn = null;
-                // clases genericas para armar el retorno
-                    RolSubMenu rolSubMenu;
-                    PermisoRol permisoRol;
-                    RolSubMenuPermiso rolSubmenuPermiso;
-                SPIUS sp = new SPIUS("sp_sec_getPermisoSubMenuRol");
-                sp.agregarParametro("idSubMenu", idSubMenu);
-                sp.agregarParametro("idRol", idRol);
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-                try
-                {
-                    DataSet ds = sp.EjecutarProcedimiento();
-                    if (!this.DataSetDontHaveTable(ds))
+                    List<PermisoRol> permisosRetorno = null;
+                    PermisoRol permiso;
+                    SPIUS sp = new SPIUS("sp_sec_getPermisoSubMenuRolFaltantes");
+                    sp.agregarParametro("idSubMenu", idSubMenu);
+                    sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
                     {
-                        if (ds.Tables[0].Rows.Count > 0)
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
                         {
-                            toReturn = new List<RolSubMenuPermiso>();
-                            foreach (DataRow row in ds.Tables[0].Rows)
+                            if (ds.Tables[0].Rows.Count > 0)
                             {
-                                rolSubMenu = new RolSubMenu((int)row["id_rolsubmenu_fk"]);
-                                permisoRol = new PermisoRol((int)row["id_permiso_rol_fk"],row["nivelPermiso"].ToString());
-                                rolSubmenuPermiso = new RolSubMenuPermiso((int)row["idRolSubMenuPermiso"], rolSubMenu, permisoRol);
-                                toReturn.Add(rolSubmenuPermiso);
+                                permisosRetorno = new List<PermisoRol>();
+                                foreach(DataRow row in ds.Tables[0].Rows){
+                                    permiso = new PermisoRol((int)row["idPermisoRol"], row["nivelPermiso"].ToString());
+                                    permisosRetorno.Add(permiso);
+                                }
                             }
                         }
                     }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return permisosRetorno;
                 }
-                catch (ErroresIUS x)
+                public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+
+                    List<RolSubMenuPermiso> toReturn = null;
+                    // clases genericas para armar el retorno
+                        RolSubMenu rolSubMenu;
+                        PermisoRol permisoRol;
+                        RolSubMenuPermiso rolSubmenuPermiso;
+                    SPIUS sp = new SPIUS("sp_sec_getPermisoSubMenuRol");
+                    sp.agregarParametro("idSubMenu", idSubMenu);
+                    sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                toReturn = new List<RolSubMenuPermiso>();
+                                foreach (DataRow row in ds.Tables[0].Rows)
+                                {
+                                    rolSubMenu = new RolSubMenu((int)row["id_rolsubmenu_fk"]);
+                                    permisoRol = new PermisoRol((int)row["id_permiso_rol_fk"],row["nivelPermiso"].ToString());
+                                    rolSubmenuPermiso = new RolSubMenuPermiso((int)row["idRolSubMenuPermiso"], rolSubMenu, permisoRol);
+                                    toReturn.Add(rolSubmenuPermiso);
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return toReturn;
                 }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return toReturn;
-            }
-        #endregion 
+            #endregion
+        #endregion
     }
 }

@@ -7,9 +7,11 @@
         }
 // tabla
     function cambioBackgroundColorTr(selector,color,activeClass) {
-        $(""+selector+selector).css("background", "none");
+        $("" + selector + selector).css("background", "none");
+        var classNombre = activeClass.substr(1, activeClass.length);
+        $(activeClass).removeClass(classNombre);
         trSubMenu.css("background",color);
-        trSubMenu.addClass(activeClass.substr(1,activeClass.length)); // importantisimo esto debe ser dinamico de active clas pero quitandole primer caracter
+        trSubMenu.addClass(classNombre); // importantisimo esto debe ser dinamico de active clas pero quitandole primer caracter
     }
     function cancelarGlobal() {
         var x = confirm("¿Esta seguro que desea cancelar todo?");

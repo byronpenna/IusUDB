@@ -58,6 +58,18 @@ namespace IUSBack.Controllers
             }
             return toReturn;
         }
+
+        public int[] convertArrAjaxToInt(Object[] frm)
+        {
+            int[] toReturn = new int[frm.Length];
+            int cn = 0;
+            foreach (object obj in frm)
+            {
+                toReturn[cn] = Convert.ToInt32(obj);
+                cn++;
+            }
+            return toReturn;
+        }
         #endregion
         #region "contructores"
             public PadreController()

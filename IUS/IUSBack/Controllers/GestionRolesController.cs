@@ -188,43 +188,72 @@ namespace IUSBack.Controllers
                     }
                     return Json(respuesta);
                 }
-                [HttpPost]
-                public ActionResult agregarRoles()
-                {
-                    Dictionary<Object, Object> frm, respuesta;
-                    Usuario usuario = this.getUsuarioSesion();
-                    bool agrego = false;
-                    frm = this.getAjaxFrm();
-                    if (frm != null)
+                #region "agregar"
+                    [HttpPost]
+                    public ActionResult agregarRoles()
                     {
-                        respuesta = new Dictionary<Object, Object>();
-                        Object[] rolesobject = (Object[])frm["rolesAgregar"];
-                        int[] roles = new int[rolesobject.Length];
-                        int cn = 0;
-                        foreach (Object obj in rolesobject)
+                        Dictionary<Object, Object> frm, respuesta;
+                        Usuario usuario = this.getUsuarioSesion();
+                        bool agrego = false;
+                        frm = this.getAjaxFrm();
+                        if (frm != null)
                         {
-                            roles[cn] = Convert.ToInt32(obj);
-                            cn++;
-                        }
-                        int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
-                        agrego = this._model.agregarRoles(roles, idUsuario, usuario._idUsuario, this._idPagina);
-                        if (agrego)
-                        {
-                            List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
-                            respuesta.Add("estado", true);
-                            respuesta.Add("roles", rolesUsuario);
+                            respuesta = new Dictionary<Object, Object>();
+                            int[] roles = this.convertArrAjaxToInt((Object[])frm["rolesAgregar"]);
+                            int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
+                            agrego = this._model.agregarRoles(roles, idUsuario, usuario._idUsuario, this._idPagina);
+                            if (agrego)
+                            {
+                                List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
+                                respuesta.Add("estado", true);
+                                respuesta.Add("roles", rolesUsuario);
+                            }
+                            else
+                            {
+                                respuesta.Add("estado", false);
+                            }
                         }
                         else
                         {
-                            respuesta.Add("estado", false);
+                            respuesta = this.errorEnvioFrmJSON();
                         }
+                        return Json(respuesta);
                     }
-                    else
+                    [HttpPost]
+                    public ActionResult agregarPermisoSubmenuRol()
                     {
-                        respuesta = this.errorEnvioFrmJSON();
+                        Dictionary<Object, Object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null) // usuario se puede manejar de una mejor forma
+                        {
+                            int[] idPermisos = this.convertArrAjaxToInt((Object[])frm["idPermisos"]);
+                            GestionPermisosModel controlLocal = new GestionPermisosModel();
+                            respuesta = new Dictionary<Object, Object>();
+                            // vars 
+                                int idRol = Convert.ToInt32(frm["idRol"].ToString()); int idSubMenu = Convert.ToInt32(frm["idSubMenu"].ToString());
+                            // do it
+                                bool agrego = controlLocal.agregarPermisoSubmenuRol(idRol,idSubMenu,idPermisos, usuarioSession._idUsuario, this._idPagina);
+                                List<RolSubMenuPermiso> rolSubMenuPermiso = controlLocal.getPermisosSubmenuRol(idSubMenu, idRol, usuarioSession._idUsuario, this._idPagina);
+                                List<PermisoRol> permisosFaltantes = controlLocal.getPermisosSubmenuRolFaltantes(idSubMenu, idRol, usuarioSession._idUsuario, this._idPagina);
+                                if (agrego)
+                                {
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("rolSubMenuPermiso", rolSubMenuPermiso);
+                                    respuesta.Add("permisosFaltantes", permisosFaltantes);
+                                }
+                                else
+                                {
+                                    respuesta.Add("estado", false);
+                                }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
                     }
-                    return Json(respuesta);
-                }
+                #endregion
             #endregion
         #endregion
     }

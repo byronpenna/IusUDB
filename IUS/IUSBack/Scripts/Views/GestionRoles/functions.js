@@ -1,4 +1,19 @@
-﻿function clickIcoQuitarPermiso(trPermiso) {
+﻿function btnAsignarPermiso(frm) {
+    console.log("formulario a enviar es:", frm);
+    cargarObjetoGeneral("GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
+        if (data.estado) {
+            console.log("la respuesta del servidor al agregar es:", data);
+            tbody = llenarTablaPermisos(data.rolSubMenuPermiso);
+            options = llenarSelectPermisos(data.permisosFaltantes);
+            $(".tbodyTbPermisos").empty().append(tbody);
+            $(".cbAsignarPermisos").empty().append(options);
+            resetChosen($(".cbAsignarPermisos"));
+        } else {
+            alert("Ocurio un error al tratar de ingresar");
+        }
+    });
+}
+function clickIcoQuitarPermiso(trPermiso) {
     var frm = new Object();
     frm.idRolSubmenuPermiso = trPermiso.find(".txtHdIdRolSubMenuPermiso").val();
     cargarObjetoGeneral("GestionRoles/eliminarPermisoSubmenuRol", frm, function (data) {
@@ -11,9 +26,13 @@
 }
 function llenarSelectPermisos(permisos) {
     options = "";
-    $.each(permisos, function (i, val) {
-        options += "<option value='"+val.idPermisoRol+"'>"+val._permiso+"</option>";
-    });
+    if (!(permisos === null)) {
+        $.each(permisos, function (i, val) {
+            options += "<option value='" + val._idPermisoRol + "'>" + val._permiso + "</option>";
+        });
+    } else {
+        options = "<option value='-1' disabled selected>No hay permisos para agregar</option>";
+    }
     return options;
 }
 function clickTrSubMenu(trSubMenu) {
