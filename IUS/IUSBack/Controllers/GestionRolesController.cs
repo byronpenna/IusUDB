@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
     using IUSBack.Models.Page.GestionRoles.acciones;
     using IUSBack.Models.Page.GestionUsuarios.Acciones;
     using IUSBack.Models.Page.GestionPermisos.Acciones;
+    using IUSBack.Models.Page.GestionRolSubmenu.Acciones;
 // librerias externas    
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -189,6 +190,39 @@ namespace IUSBack.Controllers
                     return Json(respuesta);
                 }
                 #region "agregar"
+                    [HttpPost]
+                    public ActionResult agregarRolSubMenu()
+                    {
+                        Dictionary<Object, Object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null) // pensar usuario de una forma eficiente
+                        {
+                            // vars 
+                                int[] idSubMenus = this.convertArrAjaxToInt((Object[])frm["idSubMenu"]);
+                                int idRol = Convert.ToInt32(frm["idRol"].ToString());
+                            // do it 
+                                GestionRolSubmenuModel control = new GestionRolSubmenuModel(this._idPagina);
+                                bool agrego = control.agregarRolSubMenu(idRol,idSubMenus,usuarioSession._idUsuario);
+                                List<Submenu> submenus;
+                                if (agrego)
+                                {
+                                    respuesta = new Dictionary<Object, Object>();
+                                    submenus = this._model.getSubmenuRol(idRol, usuarioSession._idUsuario, this._idPagina);
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("submenus", submenus);
+                                }
+                                else
+                                {
+                                    respuesta.Add("estado", false);
+                                }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
                     [HttpPost]
                     public ActionResult agregarRoles()
                     {

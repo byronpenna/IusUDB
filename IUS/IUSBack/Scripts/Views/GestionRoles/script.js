@@ -26,6 +26,12 @@
                 }
             });
             // tab2
+                $(document).on("click", ".btnAsignarSubmenu", function () {
+                    var frm = new Object();
+                    frm.idRol       = $(".cbRolTab2").val();
+                    frm.idSubMenu = $(".cbSubMenu").val();
+                    btnAsignarSubmenu(frm);
+                });
                 $(document).on("click", ".btnAsignarPermiso", function () {
                     var frm = new Object();
                     var x = confirm("¿Esta seguro que desea asignar los siguientes permisos?");
@@ -38,6 +44,7 @@
                 });
                 $(document).on("click", ".icoQuitarPermiso", function () {
                     var x = confirm("¿Esta seguro que desea quitar este permiso?");
+
                     if (x) {
                         trPermiso = $(this).parents("tr");
                         clickIcoQuitarPermiso(trPermiso);
@@ -58,7 +65,7 @@
                     }
                 })
                 $(document).on("click", ".icoQuitarSubMenu", function (e) {
-                    e.preventDefault();
+                    e.stopPropagation();
                     var x = confirm("¿Esta seguro que desea quitar ese menu a rol?");
                     trSubmenu = $(this).parents("tr");
                     if (x) {

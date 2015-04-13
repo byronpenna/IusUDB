@@ -1,4 +1,18 @@
-﻿function btnAsignarPermiso(frm) {
+﻿function btnAsignarSubmenu(frm) {
+    console.log("formulario antes de enviar", frm);
+    
+    cargarObjetoGeneral("GestionRoles/agregarRolSubMenu", frm, function (data) {
+        console.log("la respuesta del servidor es:", data);
+        if (data.estado) {
+            tbody = llenarTablaSubMenuRol(data.submenus);
+            $(".tbodySubmenuActuales").empty().append(tbody);
+        } else {
+            alert("ocurio un error al tratar de ingresar");
+        }
+    })
+    
+}
+function btnAsignarPermiso(frm) {
     cargarObjetoGeneral("GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
         if (data.estado) {
             tbody = llenarTablaPermisos(data.rolSubMenuPermiso);

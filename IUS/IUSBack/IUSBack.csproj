@@ -194,6 +194,7 @@
     <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\GestionPersonaModel.cs" />
     <Compile Include="Models\Page\GestionRoles\acciones\GestionRolesModel.cs" />
+    <Compile Include="Models\Page\GestionRolSubmenu\Acciones\GestionRolSubmenuModel.cs" />
     <Compile Include="Models\Page\GestionUsuarios\Acciones\GestionUsuarioModel.cs" />
     <Compile Include="Models\Page\Home\Acciones\HomeModel.cs" />
     <Compile Include="Models\General\PadreModel.cs" />

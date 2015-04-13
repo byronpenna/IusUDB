@@ -14,7 +14,14 @@ namespace IUSLibs.SEC.Control
         #region "funciones privadas"
         #endregion
         #region "funciones publicas"
-            
+            #region "acciones"
+                public bool agregar()
+                {
+                    bool toReturn = false;
+
+                    return toReturn;
+                }
+            #endregion
         #endregion
         #region "contructores"
         #endregion

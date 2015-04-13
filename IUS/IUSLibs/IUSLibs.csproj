@@ -84,6 +84,7 @@
     <Compile Include="SEC\Control\ControlPermiso.cs" />
     <Compile Include="SEC\Control\ControlPersona.cs" />
     <Compile Include="SEC\Control\ControlRoles.cs" />
+    <Compile Include="SEC\Control\ControlRolSubmenu.cs" />
     <Compile Include="SEC\Control\ControlRolSubMenuPermiso.cs" />
     <Compile Include="SEC\Control\ControlSubMenu.cs" />
     <Compile Include="SEC\Control\ControlUsuarios.cs" />
