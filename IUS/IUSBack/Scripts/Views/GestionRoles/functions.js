@@ -127,6 +127,10 @@ function quitarSubMenuArol(trSubMenu) {
         console.log("la data devuelta por el servidor es: ", data);
         if (data.estado) {
             trSubMenu.remove();
+            // limpiar cb 
+            options = llenarCbSubmenuRol(data.submenuFaltante);
+            $(".cbSubMenu").empty().append(options);
+            resetChosen($(".cbSubMenu"));
         } else {
             alert("ocurrio un error al tratar de quitar submenu");
         }

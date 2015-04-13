@@ -157,9 +157,12 @@ namespace IUSBack.Controllers
                             int idSubmenu = Convert.ToInt32(frm["idSubMenu"].ToString());
                             // do it
                             bool elimino = control.eliminarRolSubmenu(idSubmenu, idRol, usuarioSession._idUsuario);
+                            List<Submenu> submenuFaltante;
                             if(elimino)
                             {
+                                submenuFaltante = this._model.getSubMenuFaltantesRol(idRol, usuarioSession._idUsuario, this._idPagina);
                                 respuesta.Add("estado", true);
+                                respuesta.Add("submenuFaltante", submenuFaltante);
                             }
                             else
                             {
