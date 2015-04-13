@@ -2,10 +2,13 @@
     console.log("formulario antes de enviar", frm);
     
     cargarObjetoGeneral("GestionRoles/agregarRolSubMenu", frm, function (data) {
-        console.log("la respuesta del servidor es:", data);
+        console.log("la respuesta del servidor es despues de agregar:", data);
         if (data.estado) {
             tbody = llenarTablaSubMenuRol(data.submenus);
+            options = llenarCbSubmenuRol(data.submenuFaltante);
             $(".tbodySubmenuActuales").empty().append(tbody);
+            $(".cbSubMenu").empty().append(options);
+            resetChosen($(".cbSubMenu"));
         } else {
             alert("ocurio un error al tratar de ingresar");
         }

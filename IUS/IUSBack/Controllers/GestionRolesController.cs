@@ -237,12 +237,15 @@ namespace IUSBack.Controllers
                                 GestionRolSubmenuModel control = new GestionRolSubmenuModel(this._idPagina);
                                 bool agrego = control.agregarRolSubMenu(idRol,idSubMenus,usuarioSession._idUsuario);
                                 List<Submenu> submenus;
+                                List<Submenu> submenuFaltante;
                                 if (agrego)
                                 {
                                     respuesta = new Dictionary<Object, Object>();
                                     submenus = this._model.getSubmenuRol(idRol, usuarioSession._idUsuario, this._idPagina);
+                                    submenuFaltante = this._model.getSubMenuFaltantesRol(idRol, usuarioSession._idUsuario, this._idPagina);
                                     respuesta.Add("estado", true);
                                     respuesta.Add("submenus", submenus);
+                                    respuesta.Add("submenuFaltante", submenuFaltante);
                                 }
                                 else
                                 {
