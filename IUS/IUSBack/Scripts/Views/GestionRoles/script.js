@@ -69,7 +69,7 @@
                     var x = confirm("¿Esta seguro que desea quitar ese menu a rol?");
                     trSubmenu = $(this).parents("tr");
                     if (x) {
-                        quitarSubMenuArol(trSubmenu);
+                         quitarSubMenuArol(trSubmenu);
                     }
                 });
         // change

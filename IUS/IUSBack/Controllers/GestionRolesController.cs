@@ -141,54 +141,86 @@ namespace IUSBack.Controllers
                 }
             #endregion
             #region "acciones"
-                [HttpPost]
-                public ActionResult eliminarPermisoSubmenuRol()
-                {
-                    Dictionary<Object,Object> frm,respuesta = null;
-                    frm = this.getAjaxFrm();
-                    Usuario usuariosesion = this.getUsuarioSesion();
-                    GestionPermisosModel control = new GestionPermisosModel();
-                    if (frm != null && usuariosesion != null) // pensar en algo bueno para usuariosession
+                #region "eliminar" 
+                    [HttpPost]
+                    public ActionResult eliminarRolSubmenu()
                     {
-                        respuesta = new Dictionary<Object, Object>(); // meter esto en lo comentado
-                        try
+                        Dictionary<Object, Object> frm, respuesta = null;
+                        GestionRolSubmenuModel control = new GestionRolSubmenuModel(this._idPagina);
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null) // lo del usuario puede mejorar
                         {
-                            bool elimino = control.eliminarPermisoSubmenuRol(Convert.ToInt32(frm["idRolSubmenuPermiso"].ToString()), usuariosesion._idUsuario, this._idPagina);
-                            respuesta.Add("estado", elimino);
+                            respuesta = new Dictionary<Object,Object>();
+                            // vars
+                            int idRol = Convert.ToInt32(frm["idRol"].ToString());
+                            int idSubmenu = Convert.ToInt32(frm["idSubMenu"].ToString());
+                            // do it
+                            bool elimino = control.eliminarRolSubmenu(idSubmenu, idRol, usuarioSession._idUsuario);
+                            if(elimino)
+                            {
+                                respuesta.Add("estado", true);
+                            }
+                            else
+                            {
+                                respuesta.Add("estado", false);
+                            }
                         }
-                        catch (ErroresIUS)
+                        else
                         {
-                            respuesta.Add("estado", false);
+                            respuesta = this.errorEnvioFrmJSON();
                         }
-                        catch (Exception) {
-                            respuesta.Add("estado", false);
+                        return Json(respuesta);
+                    }
+                    [HttpPost]
+                    public ActionResult eliminarPermisoSubmenuRol()
+                    {
+                        Dictionary<Object,Object> frm,respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuariosesion = this.getUsuarioSesion();
+                        GestionPermisosModel control = new GestionPermisosModel();
+                        if (frm != null && usuariosesion != null) // pensar en algo bueno para usuariosession
+                        {
+                            respuesta = new Dictionary<Object, Object>(); // meter esto en lo comentado
+                            try
+                            {
+                                bool elimino = control.eliminarPermisoSubmenuRol(Convert.ToInt32(frm["idRolSubmenuPermiso"].ToString()), usuariosesion._idUsuario, this._idPagina);
+                                respuesta.Add("estado", elimino);
+                            }
+                            catch (ErroresIUS)
+                            {
+                                respuesta.Add("estado", false);
+                            }
+                            catch (Exception) {
+                                respuesta.Add("estado", false);
+                            }
                         }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }      
+                        return Json(respuesta);
                     }
-                    else
+                    [HttpPost]
+                    public ActionResult desasociarRolUsuario()
                     {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }      
-                    return Json(respuesta);
-                }
-                [HttpPost]
-                public ActionResult desasociarRolUsuario()
-                {
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                    Dictionary<Object, Object> respuesta, frm;
-                    String frmText = Request.Form["form"];
-                    if (frmText != null)
-                    {
-                        respuesta = new Dictionary<Object, Object>();
-                        frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
-                        Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
-                        respuesta.Add("estado", estado);
+                        JavaScriptSerializer jss = new JavaScriptSerializer();
+                        Dictionary<Object, Object> respuesta, frm;
+                        String frmText = Request.Form["form"];
+                        if (frmText != null)
+                        {
+                            respuesta = new Dictionary<Object, Object>();
+                            frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                            Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
+                            respuesta.Add("estado", estado);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
-                    return Json(respuesta);
-                }
+                #endregion
                 #region "agregar"
                     [HttpPost]
                     public ActionResult agregarRolSubMenu()

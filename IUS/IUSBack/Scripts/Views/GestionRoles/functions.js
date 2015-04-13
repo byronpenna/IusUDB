@@ -117,9 +117,17 @@ function llenarTablaSubMenuRol(submenu) {
 }
 function quitarSubMenuArol(trSubMenu) {
     frm = new Object();
-    frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
-    /*cargarObjetoGeneral("GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function () {
-    });*/
+    frm.idSubMenu   = trSubMenu.find(".txtIdSubMenu").val();
+    frm.idRol = $(".cbRolTab2").val();
+    console.log("formulario a enviar",frm);
+    cargarObjetoGeneral("GestionRoles/eliminarRolSubmenu", frm, function (data) {
+        console.log("la data devuelta por el servidor es: ", data);
+        if (data.estado) {
+            trSubMenu.remove();
+        } else {
+            alert("ocurrio un error al tratar de quitar submenu");
+        }
+    });
 }
 function llenarCbSubmenuRol(submenu) {
     opcion = "";
