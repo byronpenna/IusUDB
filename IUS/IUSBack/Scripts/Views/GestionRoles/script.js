@@ -54,11 +54,11 @@
                         frm = new Object();
                         frm.idUsuario   = $(".cbUsuarios").val();
                         frm.idRol = trRol.find(".txtIdRol").val();
-                        console.log("formulario a enviar sera", frm);
                         desasociarRol(frm, trRol);
                     }
                 })
-                $(document).on("click", ".icoQuitarSubMenu", function () {
+                $(document).on("click", ".icoQuitarSubMenu", function (e) {
+                    e.preventDefault();
                     var x = confirm("¿Esta seguro que desea quitar ese menu a rol?");
                     trSubmenu = $(this).parents("tr");
                     if (x) {

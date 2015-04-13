@@ -1,7 +1,6 @@
 ﻿// plugins 
     // chosen
         function resetChosen(chosen) {
-            console.log("resetearas chosen");
             //chosen.val('').trigger("liszt:updated");
             chosen.val('').trigger("chosen:updated");
         }
@@ -29,7 +28,6 @@
     }
     function cambiarEstadoControlGlobal() {
         estadoControl = estadoControlGlobal();
-        console.log("El estado del control es", estadoControl);
         if (!estadoControl) {
             $(".controlGlobal").removeClass("hidden");
         } else {
@@ -37,7 +35,6 @@
         }
     }
     function controlesEdit(mostrar, tr) {
-        console.log("Llamaras a controles edit");
         if (mostrar) {
             selectorMostrar = ".editMode";
             selectorOcultar = ".normalMode";

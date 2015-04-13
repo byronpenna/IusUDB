@@ -1,8 +1,6 @@
 ﻿function btnAsignarPermiso(frm) {
-    console.log("formulario a enviar es:", frm);
     cargarObjetoGeneral("GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
         if (data.estado) {
-            console.log("la respuesta del servidor al agregar es:", data);
             tbody = llenarTablaPermisos(data.rolSubMenuPermiso);
             options = llenarSelectPermisos(data.permisosFaltantes);
             $(".tbodyTbPermisos").empty().append(tbody);
@@ -41,7 +39,6 @@ function clickTrSubMenu(trSubMenu) {
     frm.idRol = $(".cbRolTab2").val();
     cambioBackgroundColorTr(".trSubMenu", "yellow", ".activeTr");
     cargarObjetoGeneral("GestionRoles/getJSONPermisos", frm, function (data) {
-        console.log("La respuesta del servidor es: ", data);
         
         if (data) {
             options = llenarSelectPermisos(data.permisosFaltantes);
@@ -68,7 +65,6 @@ function clickTrSubMenu(trSubMenu) {
 }
 function llenarTablaPermisos(permisos) {
     tbody = "";
-    console.log("los permisos son:",permisos);
     $.each(permisos, function (i, val) {
         tbody += "\
             <tr>\
@@ -108,7 +104,6 @@ function llenarTablaSubMenuRol(submenu) {
 function quitarSubMenuArol(trSubMenu) {
     frm = new Object();
     frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
-    console.log("formulario a enviar", frm);
     /*cargarObjetoGeneral("GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function () {
     });*/
 }
@@ -145,7 +140,6 @@ function changeRolTab2(frm) {
 }
 function agregarRoles(frm) {
     cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
-        console.log("la data del server:", data);
         if (data.estado) {
             tbody = doTablaRolesUsuario(data.roles);
             $(".tbodyRolUsuario").empty().append(tbody);
@@ -192,7 +186,6 @@ function llenarTablaRolesUsuario(idUsuario) {
         $(".tbodyRolUsuario").empty().append(tbody);
     })
     cargarObjetoGeneral("GestionRoles/getJSONRolesFaltantes", frm, function (data) {
-        console.log("Respuesta de roles faltantes", data);
         if (data.estado) {
             roles = data.roles;
             optionCbRoles = getOptionsRoles(roles);
