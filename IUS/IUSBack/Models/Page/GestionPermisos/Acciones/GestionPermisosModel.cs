@@ -5,6 +5,7 @@ using System.Web;
 // librerias 
     using IUSLibs.SEC.Entidades;
     using IUSLibs.SEC.Control;
+    using IUSLibs.LOGS;
 namespace IUSBack.Models.Page.GestionPermisos.Acciones
 {
     
@@ -27,6 +28,24 @@ namespace IUSBack.Models.Page.GestionPermisos.Acciones
             {
                 ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
                 List<RolSubMenuPermiso> permisos = control.getPermisosSubmenuRol(idSubMenu, idRol, idUsuarioEjecutor, idPagina);
+                return permisos;
+            }
+            public List<PermisoRol> getPermisosSubmenuRolFaltantes(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
+            {
+                ControlRolSubMenuPermiso control = new ControlRolSubMenuPermiso();
+                List<PermisoRol> permisos = null;
+                try
+                {
+                    permisos = control.getPermisosSubmenuRolFaltantes(idSubMenu, idRol, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
                 return permisos;
             }
         #endregion

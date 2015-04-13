@@ -122,10 +122,15 @@ namespace IUSBack.Controllers
                     if(frm != null && usuarioSesion != null){// manejar alguna vez mas sofisticado para usuario sesion
                         respuesta = new Dictionary<Object, Object>();
                         GestionPermisosModel controlLocal = new GestionPermisosModel();
-                        List<RolSubMenuPermiso> permisos = controlLocal.getPermisosSubmenuRol(Convert.ToInt32(frm["idSubMenu"].ToString()), Convert.ToInt32(frm["idRol"].ToString()), usuarioSesion._idUsuario, this._idPagina);
+                        // vars 
+                        int idSubMenu = Convert.ToInt32(frm["idSubMenu"].ToString());int idRol = Convert.ToInt32(frm["idRol"].ToString());
+                        // do it 
+                        List<RolSubMenuPermiso> permisos   = controlLocal.getPermisosSubmenuRol(idSubMenu,idRol , usuarioSesion._idUsuario, this._idPagina);
+                        List<PermisoRol> permisosFaltantes = controlLocal.getPermisosSubmenuRolFaltantes(idSubMenu, idRol, usuarioSesion._idUsuario, this._idPagina);
                         //Permiso permisos = new Permiso();
                         respuesta.Add("estado", true);
                         respuesta.Add("permisos", permisos);
+                        respuesta.Add("permisosFaltantes",permisosFaltantes);
                     }
                     else
                     {

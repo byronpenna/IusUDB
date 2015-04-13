@@ -28,6 +28,11 @@ namespace IUSLibs.SEC.Control
                     if (!this.DataSetDontHaveTable(ds))
                     {
                         toReturn = Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoDelete"]);
+                        if (!toReturn && ds.Tables.Count > 1)
+                        {
+                            //ErroresIUS x =  
+                            // manejar error ius
+                        }
                     }
                 }
                 catch (ErroresIUS x)
@@ -39,6 +44,40 @@ namespace IUSLibs.SEC.Control
                     throw x;
                 }
                 return toReturn;
+            }
+            public List<PermisoRol> getPermisosSubmenuRolFaltantes(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
+            {
+                List<PermisoRol> permisosRetorno = null;
+                PermisoRol permiso;
+                SPIUS sp = new SPIUS("sp_sec_getPermisoSubMenuRolFaltantes");
+                sp.agregarParametro("idSubMenu", idSubMenu);
+                sp.agregarParametro("idRol", idRol);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            permisosRetorno = new List<PermisoRol>();
+                            foreach(DataRow row in ds.Tables[0].Rows){
+                                permiso = new PermisoRol((int)row["idPermisoRol"], row["nivelPermiso"].ToString());
+                                permisosRetorno.Add(permiso);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return permisosRetorno;
             }
             public List<RolSubMenuPermiso> getPermisosSubmenuRol(int idSubMenu, int idRol, int idUsuarioEjecutor, int idPagina)
             {

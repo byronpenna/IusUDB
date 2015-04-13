@@ -1,9 +1,7 @@
 ﻿function clickIcoQuitarPermiso(trPermiso) {
     var frm = new Object();
     frm.idRolSubmenuPermiso = trPermiso.find(".txtHdIdRolSubMenuPermiso").val();
-    console.log("formulario a enviar para eliminar", frm);
     cargarObjetoGeneral("GestionRoles/eliminarPermisoSubmenuRol", frm, function (data) {
-        console.log("respuesta del servidor", data);
         if (data.estado) {
             trPermiso.remove();
         } else {
@@ -11,15 +9,25 @@
         }
     });
 }
+function llenarSelectPermisos(permisos) {
+    options = "";
+    $.each(permisos, function (i, val) {
+        options += "<option value='"+val.idPermisoRol+"'>"+val._permiso+"</option>";
+    });
+    return options;
+}
 function clickTrSubMenu(trSubMenu) {
     frm = new Object();
     frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
     frm.idRol = $(".cbRolTab2").val();
     cambioBackgroundColorTr(".trSubMenu", "yellow", ".activeTr");
-    console.log("el formulario a enviar es", frm);
     cargarObjetoGeneral("GestionRoles/getJSONPermisos", frm, function (data) {
-        console.log("La respuesta del servidor es", data);
+        console.log("La respuesta del servidor es: ", data);
+        
         if (data) {
+            options = llenarSelectPermisos(data.permisosFaltantes);
+            $(".cbAsignarPermisos").empty().append(options);
+            resetChosen($(".cbAsignarPermisos"));
             if ( !(data.permisos === null) ) {
                 tbody = llenarTablaPermisos(data.permisos);
             } else {
