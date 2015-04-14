@@ -23,6 +23,15 @@ namespace IUSLibs.TRL.Entidades
                 this._pagina = pagina;
                 this._estado = estado;
             }
+            public Pagina(int idPagina)
+            {
+                this._idPagina = idPagina;
+            }
+            public Pagina(int idPagina, bool estado)
+            {
+                this._idPagina = idPagina;
+                this._estado = estado;
+            }
         #endregion
         
     }

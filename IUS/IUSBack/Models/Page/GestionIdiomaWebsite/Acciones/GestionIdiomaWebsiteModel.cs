@@ -51,6 +51,24 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
                 }
                 return paginas;
             }
+            public List<Llave> sp_trl_getLlaveFromPage(int idPaginaFront, int idUsuarioEjecutor, int idPagina)
+            {
+                List<Llave> llaves =null;
+                ControlLlave control = new ControlLlave();
+                try
+                {
+                    llaves = control.sp_trl_getLlaveFromPage(idPaginaFront, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return llaves;
+            }
         #endregion 
         #region
             public GestionIdiomaWebsiteModel()

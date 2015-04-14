@@ -44,5 +44,33 @@ namespace IUSBack.Controllers
                 return View();
             }
         #endregion
+        #region "ajax"
+            public ActionResult sp_trl_getLlaveFromPage()
+            {
+                Dictionary<Object,Object> frm,respuesta = null;
+                frm = this.getAjaxFrm();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (frm != null && usuarioSession != null) // lo de usuario se puede mejorar
+                {
+                    respuesta = new Dictionary<Object, Object>();
+                    try
+                    {
+
+                        List<Llave> llaves = this._model.sp_trl_getLlaveFromPage(Convert.ToInt32(frm["idPaginaFront"].ToString()), usuarioSession._idUsuario, this._idPagina);
+                        respuesta.Add("estado", true);
+                        respuesta.Add("Llaves", llaves);
+                    }
+                    catch (Exception)
+                    {
+                        respuesta.Add("estado", false);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+        #endregion 
     }
 }

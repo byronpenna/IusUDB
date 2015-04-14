@@ -8,6 +8,11 @@
         // click
             
         // change
-
+            $(document).on("change", ".cbPagina", function () {
+                var frm = new Object();
+                frm.idPaginaFront = $(this).val();
+                cbPagina(frm);
+            });
+            
 
 });

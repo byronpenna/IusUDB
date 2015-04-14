@@ -47,8 +47,8 @@ namespace IUSLibs.TRL.Control
                     llav        = new Llave();
                     pag         = new Pagina();
                     // generando llave
-                    llav.idLlave    = Convert.ToInt32(row["idPagina"].ToString());
-                    llav.llave      = row["llave"].ToString();   
+                    llav._idLlave    = Convert.ToInt32(row["idPagina"].ToString());
+                    llav._llave      = row["llave"].ToString();   
                     // generando idioma 
                     pag._idPagina    = Convert.ToInt32(row["idPagina"].ToString());
                     // objeto final 
