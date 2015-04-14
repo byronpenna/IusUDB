@@ -6,6 +6,7 @@ using System.Web.Mvc;
 // librerias internas
     using IUSBack.Models.Page.GestionIdiomaWebsite.Acciones;    
 // librerias externas 
+    using IUSLibs.TRL.Entidades;
     using IUSLibs.SEC.Entidades;
 namespace IUSBack.Controllers
 {
@@ -29,7 +30,9 @@ namespace IUSBack.Controllers
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
                 {
-                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    List<Idioma> idiomas = this._model.sp_tra_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.idiomas = idiomas;
                 }
                 else
                 {

@@ -8,10 +8,25 @@ namespace IUSLibs.TRL.Entidades
     public class Idioma
     {
         #region "propiedades"
-            public int idIdioma;
-            public string idioma;
-            public string lang;
-            public string charset;
+            public int _idIdioma;
+            public string _idioma;
+            public string _lang;
+            public string _charset;
         #endregion 
+        #region "constructores"
+            // las locales comienzan con _
+            public Idioma(int idIdioma,string idioma,string lang,string charset)
+            {
+                this._idIdioma = idIdioma;
+                this._idioma = idioma;
+                this._lang = lang;
+                this._charset = charset;
+            }
+            public Idioma()
+            {
+
+            }
+        #endregion
+
     }
 }

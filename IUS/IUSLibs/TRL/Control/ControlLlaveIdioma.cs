@@ -27,7 +27,7 @@ namespace IUSLibs.TRL.Control
                 DataSet ds;
                 SPIUS   sp = new SPIUS("sp_trl_getLlavesTraducidasPaginas");
                 sp.agregarParametro("idPagina", this.pagina.idPagina);
-                sp.agregarParametro("idioma", this.idioma.lang);
+                sp.agregarParametro("idioma", this.idioma._lang);
                 try
                 {
                     ds = sp.EjecutarProcedimiento();
@@ -67,7 +67,7 @@ namespace IUSLibs.TRL.Control
                 Pagina pag = new Pagina();
                 pag.idPagina = pPagina;
                 Idioma idi = new Idioma();
-                idi.lang = pIdioma;
+                idi._lang = pIdioma;
                 this.pagina = pag;
                 this.idioma = idi;
             }
