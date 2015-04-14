@@ -19,7 +19,8 @@ namespace IUSBack.Controllers
         #region "propiedades"
         public enum paginas
         {
-            usuarios = 3,gestionRoles = 5,gestionPersonas=4
+            usuarios = 3,gestionRoles = 5,
+            gestionPersonas=4,gestionIdiomaWebsite = 7
         }
         protected JavaScriptSerializer _jss;
         #endregion
