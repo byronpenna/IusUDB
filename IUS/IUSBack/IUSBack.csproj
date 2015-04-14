@@ -208,6 +208,8 @@
   <ItemGroup>
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />
@@ -235,6 +237,8 @@
     <Content Include="Scripts\Generales\jquery-2.1.3.js" />
     <Content Include="Scripts\Generales\jquery-2.1.3.min.js" />
     <Content Include="Scripts\Generales\script.js" />
+    <Content Include="Scripts\Views\GestionIdiomaWebsite\functions.js" />
+    <Content Include="Scripts\Views\GestionIdiomaWebsite\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\functions.js" />
     <Content Include="Scripts\Views\GestionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionRoles\functions.js" />
