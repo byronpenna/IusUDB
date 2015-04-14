@@ -1,11 +1,65 @@
 ﻿@section estilosPersonalizados{
+    <!-- Plugins -->
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/media.css" />
 }
 @section scriptsPersonalizados{
+    <!-- plugins -->
+        <!-- chosen -->
+        <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/GestionIdiomaWebsite/script.js"></script>
         <script src="~/Scripts/Views/GestionIdiomaWebsite/functions.js"></script>
 }
 <h2>Traduccion del sitio web</h2>
+<div class="col-lg-12">
+
+
+    <div class="row">
+        <div class="col-lg-4">
+            <label>Seleccione pagina</label>
+            <select class="cbPagina"></select>
+        </div>
+        <div class="col-lg-4">
+            <label>Seleccione llave</label>
+            <select class="cbLlave">
+                <option disabled selected>Seleccione pagina primero</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label>Seleccione idioma</label>
+            <select class="cbIdioma">
+
+            </select>
+        </div>
+        <div class="col-lg-12 divTraduccion" >
+            <div class="col-lg-offset-4 col-lg-4">
+                <textarea placeholder="Ingrese traduccion de llave" class="form-control"></textarea>
+                <div class="col-lg-12 text-center">
+                    <button class="btn btn-primary btnAgregarLlave">
+                        Agregar llave
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pagina</th>
+                        <th>Llave</th>
+                        <th>Idioma</th>
+                        <th>Traduccion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
