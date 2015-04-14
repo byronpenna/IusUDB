@@ -30,10 +30,8 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
-                
                 if (Session["usuario"] != null)
                 {
-
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     Usuario usuarioSession = (Usuario)Session["usuario"];
                     // traer data

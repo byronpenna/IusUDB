@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-
+// librerias internas
+    using IUSBack.Models.General;
 namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
 {
-    public class GestionIdiomaWebsiteModel : Controller
+    public class GestionIdiomaWebsiteModel:PadreModel
     {
-        //
-        // GET: /GestionIdiomaWebsiteModel
-        public ActionResult Index()
-        {
-            return View();
-        }
+        #region "propiedades"
+            public Object _control;
+        #endregion
+        #region "funciones publicas"
+
+        #endregion 
+        #region
+            public GestionIdiomaWebsiteModel()
+            {
+
+            }
+        #endregion 
 
     }
 }
