@@ -14,7 +14,17 @@ namespace IUSLibs.TRL.Control
 {
     public class ControlIdioma:PadreLib
     {
-        public List<Idioma> sp_tra_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
+        #region "constructores"
+            public ControlIdioma()
+            {
+
+            }
+        #endregion
+        #region "propiedades"
+
+        #endregion
+        #region "funciones publicas"
+            public List<Idioma> sp_tra_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
         {
             List<Idioma> idiomas = null;
             Idioma idioma; // clase generica para la lista
@@ -45,5 +55,6 @@ namespace IUSLibs.TRL.Control
             }
             return idiomas;
         }
+        #endregion 
     }
 }

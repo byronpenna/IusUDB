@@ -99,6 +99,7 @@
     <Compile Include="SEC\Entidades\Usuario.cs" />
     <Compile Include="TRL\Control\ControlIdioma.cs" />
     <Compile Include="TRL\Control\ControlLlaveIdioma.cs" />
+    <Compile Include="TRL\Control\ControlPagina.cs" />
     <Compile Include="TRL\Entidades\Idioma.cs" />
     <Compile Include="TRL\Entidades\Llave.cs" />
     <Compile Include="TRL\Entidades\LlaveIdioma.cs" />

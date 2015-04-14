@@ -33,6 +33,24 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
                 }
                 return idiomas;
             }
+            public List<Pagina> sp_trl_getAllPaginas(int idUsuarioEjecutor,int idPagina)
+            {
+                ControlPagina control = new ControlPagina();
+                List<Pagina> paginas = null ;
+                try
+                {
+                    paginas = control.sp_trl_getAllPaginas(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return paginas;
+            }
         #endregion 
         #region
             public GestionIdiomaWebsiteModel()

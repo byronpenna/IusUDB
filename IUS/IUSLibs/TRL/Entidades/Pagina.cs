@@ -8,9 +8,22 @@ namespace IUSLibs.TRL.Entidades
     public class Pagina
     {
         #region "propiedades"
-            public int idPagina;
-            public string pagina;
-            public bool estado;
+            public int _idPagina;
+            public string _pagina;
+            public bool _estado;
         #endregion 
+        #region "constructores"
+            public Pagina()
+            {
+
+            }
+            public Pagina(int idPagina,string pagina,bool estado)
+            {
+                this._idPagina = idPagina;
+                this._pagina = pagina;
+                this._estado = estado;
+            }
+        #endregion
+        
     }
 }

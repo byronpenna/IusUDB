@@ -17,6 +17,8 @@
 }
 @{
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
+    List<Pagina> paginas = (List<Pagina>)ViewBag.paginas;
+    
 }
 <h2>Traduccion del sitio web</h2>
 <div class="col-lg-12">
@@ -25,7 +27,13 @@
     <div class="row">
         <div class="col-lg-4">
             <label>Seleccione pagina</label>
-            <select class="cbPagina"></select>
+            <select class="cbPagina">
+                <option disabled selected></option>
+                @foreach (Pagina pagina in paginas)
+                {
+                    <option value="@pagina._idPagina">@pagina._pagina</option>
+                }
+            </select>
         </div>
         <div class="col-lg-4">
             <label>Seleccione llave</label>

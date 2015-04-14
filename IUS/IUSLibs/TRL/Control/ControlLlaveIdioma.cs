@@ -26,7 +26,7 @@ namespace IUSLibs.TRL.Control
                 Pagina pag;
                 DataSet ds;
                 SPIUS   sp = new SPIUS("sp_trl_getLlavesTraducidasPaginas");
-                sp.agregarParametro("idPagina", this.pagina.idPagina);
+                sp.agregarParametro("idPagina", this.pagina._idPagina);
                 sp.agregarParametro("idioma", this.idioma._lang);
                 try
                 {
@@ -50,7 +50,7 @@ namespace IUSLibs.TRL.Control
                     llav.idLlave    = Convert.ToInt32(row["idPagina"].ToString());
                     llav.llave      = row["llave"].ToString();   
                     // generando idioma 
-                    pag.idPagina    = Convert.ToInt32(row["idPagina"].ToString());
+                    pag._idPagina    = Convert.ToInt32(row["idPagina"].ToString());
                     // objeto final 
                     llavIdioma.llave        = llav;
                     llavIdioma.idioma       = idioma;
@@ -65,7 +65,7 @@ namespace IUSLibs.TRL.Control
             public ControlLlaveIdioma(int pPagina,string pIdioma) // la p viene de "parametro"
             {
                 Pagina pag = new Pagina();
-                pag.idPagina = pPagina;
+                pag._idPagina = pPagina;
                 Idioma idi = new Idioma();
                 idi._lang = pIdioma;
                 this.pagina = pag;
