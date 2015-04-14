@@ -9,9 +9,10 @@ using System.Text;
     using IUSLibs.TRL.Entidades;
     using IUSLibs.BaseDatos;
     using IUSLibs.LOGS;
+    using IUSLibs.GENERALS;
 namespace IUSLibs.TRL.Control
 {
-    public class ControlLlaveIdioma
+    public class ControlLlaveIdioma:PadreLib
     {
         #region "Propiedades"
             public Pagina pagina;
@@ -52,12 +53,49 @@ namespace IUSLibs.TRL.Control
                     // generando idioma 
                     pag._idPagina    = Convert.ToInt32(row["idPagina"].ToString());
                     // objeto final 
-                    llavIdioma.llave        = llav;
-                    llavIdioma.idioma       = idioma;
-                    llavIdioma.traduccion   = row["traduccion"].ToString();
+                    llavIdioma._llave        = llav;
+                    llavIdioma._idioma       = idioma;
+                    llavIdioma._traduccion   = row["traduccion"].ToString();
                     traduccion.Add(llavIdioma);
                 }
                 return traduccion;
+            }
+            // nombres estandarizados
+            public List<LlaveIdioma> sp_trl_tablitaGestionTraduccion(int idUsuarioEjecutor,int idPagina)
+            {
+                List<LlaveIdioma> llavesIdiomas = null;
+                LlaveIdioma llaveIdioma; Idioma idioma; Pagina pagina; Llave llave; // clases que van dentro de llaves idiomas
+                SPIUS sp = new SPIUS("sp_trl_tablitaGestionTraduccion");
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPermiso", idPagina);
+                try
+                {
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        if (ds.Tables[0].Rows.Count>0)
+                        {
+                            llavesIdiomas = new List<LlaveIdioma>();
+                            foreach (DataRow row in ds.Tables[0].Rows)
+                            {
+                                pagina = new Pagina((int)row["idPagina"], row["pagina"].ToString(), true);
+                                idioma = new Idioma((int)row["idIdioma"],row["idioma"].ToString());
+                                llave = new Llave((int)row["idLlave"], row["llave"].ToString(),pagina);
+                                llaveIdioma = new LlaveIdioma((int)row["idLlaveIdioma"],idioma,llave,row["traduccion"].ToString());
+                                llavesIdiomas.Add(llaveIdioma);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return llavesIdiomas;
             }
         #endregion 
         #region "Constructores"

@@ -69,6 +69,24 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
                 }
                 return llaves;
             }
+            public List<LlaveIdioma> sp_trl_tablitaGestionTraduccion(int idUsuarioEjecutor,int idPagina)
+            {
+                ControlLlaveIdioma control = new ControlLlaveIdioma();
+                List<LlaveIdioma> llavesIdioma = null;
+                try
+                {
+                    llavesIdioma = control.sp_trl_tablitaGestionTraduccion(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return llavesIdioma;
+            }
         #endregion 
         #region
             public GestionIdiomaWebsiteModel()

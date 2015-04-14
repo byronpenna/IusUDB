@@ -32,6 +32,7 @@ namespace IUSBack.Controllers
                 {
                     List<Idioma> idiomas = this._model.sp_tra_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                     List<Pagina> paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
+                    List<LlaveIdioma> tabla = this._model.sp_trl_tablitaGestionTraduccion(usuarioSession._idUsuario, this._idPagina);
                     ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     ViewBag.idiomas = idiomas;
                     ViewBag.paginas = paginas;
