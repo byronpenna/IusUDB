@@ -4,6 +4,9 @@
             //chosen.val('').trigger("liszt:updated");
             chosen.val('').trigger("chosen:updated");
         }
+        function resetChosenWithSelectedVal(chosen,selectedVal) {
+            chosen.val(selectedVal).trigger("chosen:updated");
+        }
 // tabla
     function cambioBackgroundColorTr(selector,color,activeClass) {
         $("" + selector + selector).css("background", "none");

@@ -62,17 +62,28 @@
         //
         // llenar los controles
         actualizarCatalogo("/GestionIdiomaWebsite/getObjetosTablita", frm, function (data) {
-            console.log("respuesta del servidor",data);
+            console.log("respuesta del servidor", data);
+            var cb = new Object(); var selected = new Object();
+            cb.llave =  tr.find(".cbEditLlave");   cb.idioma = tr.find(".cbEditIdioma");
+            cb.pagina = tr.find(".cbEditPagina");
             if (data.estado) {
-                optionsLlaves = fillSelectLlave(data.llaves, tr.find(".txtHdIdLlave").val());
-                optionsIdioma = fillSelectIdioma(data.idiomas, tr.find(".txtHdIdIdioma").val());
-                optionsPagina = fillSelectPagina(data.paginas, tr.find(".txtHdIdPagina").val());
-                console.log("options pagina es:", optionsPagina);
-                tr.find(".cbEditLlave").empty().append(optionsLlaves);
-                tr.find(".cbEditIdioma").empty().append(optionsIdioma);
-                tr.find(".cbEditPagina").empty().append(optionsPagina);
-                $(".cbEdit").chosen({ width: '100%' });
-                //resetChosen($(".cbEditLlave"));
+                // selected data 
+                selected.llave  = tr.find(".txtHdIdLlave").val();    selected.idioma = tr.find(".txtHdIdIdioma").val();
+                selected.pagina = tr.find(".txtHdIdPagina").val();
+                // obteniendo informacion
+                optionsLlaves = fillSelectLlave(data.llaves, selected.llave);
+                optionsIdioma = fillSelectIdioma(data.idiomas, selected.idioma);
+                optionsPagina = fillSelectPagina(data.paginas, selected.pagina);
+                txtTraduccion = $.trim(tr.find(".tdTxtTraduccion").text());
+                // llenando para editar
+                cb.llave.empty().append(optionsLlaves);
+                cb.idioma.empty().append(optionsIdioma);
+                cb.pagina.empty().append(optionsPagina);
+                tr.find(".txtAreaEditTraduccion").empty().append(txtTraduccion);
+                // reseteando chosen 
+                resetChosenWithSelectedVal(cb.llave,selected.llave);
+                resetChosenWithSelectedVal(cb.pagina,selected.pagina);
+                resetChosenWithSelectedVal(cb.idioma,selected.idioma);
             }
         });
         

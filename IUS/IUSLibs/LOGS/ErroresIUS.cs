@@ -7,6 +7,9 @@ namespace IUSLibs.LOGS
 {
     public class ErroresIUS : Exception
     {
+        /*
+         * 
+         */
         #region "enums"
             public enum tipoError
             {
