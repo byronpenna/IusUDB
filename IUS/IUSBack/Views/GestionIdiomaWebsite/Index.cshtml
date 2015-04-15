@@ -3,22 +3,16 @@
     <!-- Plugins -->
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
+        <!-- datatable -->
+            <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
     <!-- Propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/media.css" />
 }
-@section scriptsPersonalizados{
-    <!-- plugins -->
-        <!-- chosen -->
-        <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
-    <!-- propios -->
-        <script src="~/Scripts/Views/GestionIdiomaWebsite/script.js"></script>
-        <script src="~/Scripts/Views/GestionIdiomaWebsite/functions.js"></script>
-}
 @{
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
     List<Pagina> paginas = (List<Pagina>)ViewBag.paginas;
-    
+    List<LlaveIdioma> llavesIdiomas = (List<LlaveIdioma>)ViewBag.tbTraducciones;
 }
 <h2>Traduccion del sitio web</h2>
 <div class="col-lg-12">
@@ -63,7 +57,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <table class="table">
+            <table class="tableLlaveIdioma">
                 <thead>
                     <tr>
                         <th>Pagina</th>
@@ -73,7 +67,31 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach(LlaveIdioma llaveIdioma in llavesIdiomas){
+                        <tr>
+                            <td class="hidden">
+                                <input value="@llaveIdioma._idLlaveIdioma" class="txtHdIdLlaveIdioma" name="txtHdIdLlaveIdioma" />
+                            </td>
+                            <td>@llaveIdioma._llave._pagina._pagina</td>
+                            <td>@llaveIdioma._llave._llave</td>
+                            <td>@llaveIdioma._idioma._idioma</td>
+                            <td>@llaveIdioma._traduccion</td>
+                            <td>Accion</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
 </div>
+@section scriptsPersonalizados{
+    <!-- plugins -->
+    <!-- chosen -->
+    <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
+    <!-- datatable -->
+    <script src="~/Content/third-party/datatable/js/jquery.dataTables.min.js"></script>
+    <!-- propios -->
+    <script src="~/Scripts/Views/GestionIdiomaWebsite/script.js"></script>
+    <script src="~/Scripts/Views/GestionIdiomaWebsite/functions.js"></script>
+}
