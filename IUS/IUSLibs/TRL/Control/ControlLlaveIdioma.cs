@@ -97,6 +97,49 @@ namespace IUSLibs.TRL.Control
                 }
                 return llavesIdiomas;
             }
+            public bool sp_trl_actualizarLlaveIdioma(int idLlaveIdioma,int idLlave,int idIdioma,string traduccion,int idUsuarioEjecutor, int idPagina)
+            {
+                bool toReturn = false;
+                ErroresIUS errorIUS;
+                SPIUS sp = new SPIUS("sp_trl_actualizarLlaveIdioma");
+                sp.agregarParametro("idLlaveIdioma",idLlaveIdioma);
+                sp.agregarParametro("idLlave", idLlave);
+                sp.agregarParametro("idIdioma", idIdioma);
+                sp.agregarParametro("traduccion", traduccion);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            
+                            DataRow row = ds.Tables[0].Rows[0];
+                            if ((int)row["estadoUpdate"] == 1)
+                            {
+                                toReturn = true;
+                            }
+                            else
+                            {
+                                row = ds.Tables[1].Rows[0];
+                                errorIUS = new ErroresIUS("", ErroresIUS.tipoError.sql,(int)row["errorNumber"]);
+                                throw errorIUS;
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return toReturn;
+            }
         #endregion 
         #region "Constructores"
             // mandando unicamente los identificadores

@@ -49,69 +49,89 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "ajax"
-            public ActionResult sp_trl_getLlaveFromPage()
-            {
-                Dictionary<Object,Object> frm,respuesta = null;
-                frm = this.getAjaxFrm();
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (frm != null && usuarioSession != null) // lo de usuario se puede mejorar
+            #region "gets"
+                public ActionResult sp_trl_getLlaveFromPage()
                 {
-                    respuesta = new Dictionary<Object, Object>();
-                    try
+                    Dictionary<Object,Object> frm,respuesta = null;
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null) // lo de usuario se puede mejorar
                     {
+                        respuesta = new Dictionary<Object, Object>();
+                        try
+                        {
 
-                        List<Llave> llaves = this._model.sp_trl_getLlaveFromPage(Convert.ToInt32(frm["idPaginaFront"].ToString()), usuarioSession._idUsuario, this._idPagina);
-                        respuesta.Add("estado", true);
-                        respuesta.Add("Llaves", llaves);
+                            List<Llave> llaves = this._model.sp_trl_getLlaveFromPage(Convert.ToInt32(frm["idPaginaFront"].ToString()), usuarioSession._idUsuario, this._idPagina);
+                            respuesta.Add("estado", true);
+                            respuesta.Add("Llaves", llaves);
+                        }
+                        catch (Exception)
+                        {
+                            respuesta.Add("estado", false);
+                        }
                     }
-                    catch (Exception)
+                    else
                     {
-                        respuesta.Add("estado", false);
+                        respuesta = this.errorEnvioFrmJSON();
                     }
+                    return Json(respuesta);
                 }
-                else
+                public ActionResult getObjetosTablita()
                 {
-                    respuesta = this.errorEnvioFrmJSON();
+                    Dictionary<Object, Object> frm, respuesta = null;
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null)// insistiendo que usuario deberia tener su propio manejo de error
+                    {
+                        respuesta = new Dictionary<Object, Object>();
+                        int idPagina = Convert.ToInt32(frm["idPagina"].ToString());
+                        List<Llave> llaves; List<Idioma> idiomas; List<Pagina> paginas;
+                        try
+                        {
+                            llaves = this._model.sp_trl_getLlaveFromPage(idPagina, usuarioSession._idUsuario, this._idPagina);
+                            idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+                            paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
+                            respuesta.Add("llaves", llaves);
+                            respuesta.Add("idiomas", idiomas);
+                            respuesta.Add("paginas", paginas);
+                            respuesta.Add("estado", true);
+                        }
+                        catch (ErroresIUS)
+                        {
+                            respuesta.Add("estado", false);
+                            respuesta.Add("error", "ocurrio un error al cargar la informacion");
+                        }
+                        catch (Exception)
+                        {
+                            respuesta.Add("estado", false);
+                            respuesta.Add("error", "ocurrio un error al cargar la informacion");
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    } 
+                    return Json(respuesta);
                 }
-                return Json(respuesta);
-            }
-            public ActionResult getObjetosTablita()
-            {
-                Dictionary<Object, Object> frm, respuesta = null;
-                frm = this.getAjaxFrm();
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (frm != null && usuarioSession != null)// insistiendo que usuario deberia tener su propio manejo de error
+            #endregion 
+            #region "acciones"
+                public ActionResult sp_trl_actualizarLlaveIdioma()
                 {
-                    respuesta = new Dictionary<Object, Object>();
-                    int idPagina = Convert.ToInt32(frm["idPagina"].ToString());
-                    List<Llave> llaves; List<Idioma> idiomas; List<Pagina> paginas;
-                    try
+                    Dictionary<Object, Object> frm, respuesta = null;
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null) // manejar diferente lo de los usuarios
                     {
-                        llaves = this._model.sp_trl_getLlaveFromPage(idPagina, usuarioSession._idUsuario, this._idPagina);
-                        idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
-                        paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
-                        respuesta.Add("llaves", llaves);
-                        respuesta.Add("idiomas", idiomas);
-                        respuesta.Add("paginas", paginas);
-                        respuesta.Add("estado", true);
+                        respuesta = new Dictionary<object, object>();
+                        // variables mandar 
+                        int idLlaveIdioma = Convert.ToInt32( frm["txtHdIdLlaveIdioma"].ToString()); int frmIdLlave = Convert.ToInt32(frm["cbEditLlave"].ToString());
+                        int idIdioma = Convert.ToInt32(frm["cbEditIdioma"].ToString()); string traduccion = frm["txtAreaEditTraduccion"].ToString();
+                        bool respuestaModel = this._model.sp_trl_actualizarLlaveIdioma(idLlaveIdioma,frmIdLlave,idIdioma,traduccion,usuarioSession._idUsuario,this._idPagina);
+                        respuesta.Add("estado", respuestaModel);
                     }
-                    catch (ErroresIUS)
-                    {
-                        respuesta.Add("estado", false);
-                        respuesta.Add("error", "ocurrio un error al cargar la informacion");
-                    }
-                    catch (Exception)
-                    {
-                        respuesta.Add("estado", false);
-                        respuesta.Add("error", "ocurrio un error al cargar la informacion");
-                    }
+                    return Json(respuesta);
                 }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                } 
-                return Json(respuesta);
-            }
-        #endregion 
+            #endregion
+        #endregion
     }
 }

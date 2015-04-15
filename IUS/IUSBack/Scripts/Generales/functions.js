@@ -80,6 +80,10 @@
         });
         return o;
     }
+    function serializeSection(section) {
+        var frm = serializeToJson(section.find("input,select,textarea").serializeArray());
+        return frm;
+    }
 // cargaObjetos json 
     function cargarObjetoGeneral(urlAjax,frm,callBack) {
         $.ajax({

@@ -46,11 +46,17 @@
 
     }
 // actions functions
-    /*
-    function btnEditarTraduccion(tr) {
-        frm = serializeToJson(tr.find("input,select").serializeArray());
-        console.log("")
-    }*/
+    function btnActualizar(tr) {
+        frm = serializeSection(tr);
+        console.log("formulario a enviar es:", frm);
+        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_actualizarLlaveIdioma", frm, function (data) {
+            if (data.estado) {
+                // quitar edit mode 
+            } else {
+                alert("ocurrio un error al intentar actualizar");
+            }
+        });
+    }
     function btnCancelarEdit(tr) {
         controlesEdit(false, tr);
     }
@@ -67,7 +73,7 @@
             cb.llave =  tr.find(".cbEditLlave");   cb.idioma = tr.find(".cbEditIdioma");
             cb.pagina = tr.find(".cbEditPagina");
             if (data.estado) {
-                // selected data 
+                // selected data ;
                 selected.llave  = tr.find(".txtHdIdLlave").val();    selected.idioma = tr.find(".txtHdIdIdioma").val();
                 selected.pagina = tr.find(".txtHdIdPagina").val();
                 // obteniendo informacion

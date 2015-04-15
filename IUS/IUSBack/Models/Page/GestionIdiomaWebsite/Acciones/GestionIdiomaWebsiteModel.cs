@@ -87,6 +87,24 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
                 }
                 return llavesIdioma;
             }
+            public bool sp_trl_actualizarLlaveIdioma(int idLlaveIdioma,int idLlave,int idIdioma,string traduccion,int idUsuarioEjecutor,int idPagina)
+            {
+                bool toReturn = false;
+                ControlLlaveIdioma control = new ControlLlaveIdioma();
+                try
+                {
+                    toReturn = control.sp_trl_actualizarLlaveIdioma(idLlaveIdioma,idLlave,idIdioma,traduccion,idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return toReturn;
+            }
         #endregion 
         #region
             public GestionIdiomaWebsiteModel()

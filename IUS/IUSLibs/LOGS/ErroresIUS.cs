@@ -8,7 +8,7 @@ namespace IUSLibs.LOGS
     public class ErroresIUS : Exception
     {
         /*
-         * 
+         * 2627 violacion de constraint unico.
          */
         #region "enums"
             public enum tipoError

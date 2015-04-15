@@ -31,6 +31,10 @@
                     btnEditarTraduccion(trTraduccion);
                 }
             });
+            $(document).on("click", ".btnActualizar", function () {
+                trTraduccion = $(this).parents("tr");
+                btnActualizar(trTraduccion);
+            });
         // change
             $(document).on("change", ".cbPagina", function () {
                 var frm = new Object();
