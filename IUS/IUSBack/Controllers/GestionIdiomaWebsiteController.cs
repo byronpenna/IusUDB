@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas 
     using IUSLibs.TRL.Entidades;
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.LOGS;
 namespace IUSBack.Controllers
 {
     public class GestionIdiomaWebsiteController : PadreController
@@ -84,13 +85,26 @@ namespace IUSBack.Controllers
                     respuesta = new Dictionary<Object, Object>();
                     int idPagina = Convert.ToInt32(frm["idPagina"].ToString());
                     List<Llave> llaves; List<Idioma> idiomas; List<Pagina> paginas;
-                    llaves = this._model.sp_trl_getLlaveFromPage(idPagina, usuarioSession._idUsuario, this._idPagina);
-                    idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
-                    paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
-                    respuesta.Add("llaves", llaves);
-                    respuesta.Add("idiomas", idiomas);
-                    respuesta.Add("paginas", paginas);
-                    respuesta.Add("estado", true);
+                    try
+                    {
+                        llaves = this._model.sp_trl_getLlaveFromPage(idPagina, usuarioSession._idUsuario, this._idPagina);
+                        idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+                        paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
+                        respuesta.Add("llaves", llaves);
+                        respuesta.Add("idiomas", idiomas);
+                        respuesta.Add("paginas", paginas);
+                        respuesta.Add("estado", true);
+                    }
+                    catch (ErroresIUS)
+                    {
+                        respuesta.Add("estado", false);
+                        respuesta.Add("error", "ocurrio un error al cargar la informacion");
+                    }
+                    catch (Exception)
+                    {
+                        respuesta.Add("estado", false);
+                        respuesta.Add("error", "ocurrio un error al cargar la informacion");
+                    }
                 }
                 else
                 {
