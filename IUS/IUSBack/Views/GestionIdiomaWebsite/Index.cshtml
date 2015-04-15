@@ -4,10 +4,20 @@
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
         <!-- datatable -->
-            <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+            <!--<link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.css" />-->
     <!-- Propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- plugins -->
+    <!-- chosen -->
+    <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
+    <!-- datatable -->
+    <!--<script src="~/Content/third-party/datatable/js/jquery.dataTables.min.js"></script>-->
+    <!-- propios -->
+    <script src="~/Scripts/Views/GestionIdiomaWebsite/script.js"></script>
+    <script src="~/Scripts/Views/GestionIdiomaWebsite/functions.js"></script>
 }
 @{
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
@@ -45,7 +55,7 @@
         </div>
         <div class="col-lg-12 divTraduccion" >
             <div class="col-lg-offset-4 col-lg-4">
-                <textarea placeholder="Ingrese traduccion de llave" class="form-control"></textarea>
+                <textarea placeholder="Ingrese traduccion de llave" class="form-control txtAreaTraduccion" name="txtAreaTraduccion"></textarea>
                 <div class="col-lg-12 text-center">
                     <button class="btn btn-primary btnAgregarLlave">
                         Agregar llave
@@ -57,7 +67,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <table class="tableLlaveIdioma">
+            <table class="tableLlaveIdioma table">
                 <thead>
                     <tr>
                         <th>Pagina</th>
@@ -72,12 +82,59 @@
                         <tr>
                             <td class="hidden">
                                 <input value="@llaveIdioma._idLlaveIdioma" class="txtHdIdLlaveIdioma" name="txtHdIdLlaveIdioma" />
+                                <input value="@llaveIdioma._llave._pagina._idPagina" class="txtHdIdPagina" name="txtHdIdPagina" />
+                                <input value="@llaveIdioma._llave._idLlave" class="txtHdIdLlave" name="txtHdIdLlave" />
+                                <input value="@llaveIdioma._idioma._idIdioma" class="txtHdIdIdioma" name="txtHdIdIdioma" />
+
                             </td>
-                            <td>@llaveIdioma._llave._pagina._pagina</td>
-                            <td>@llaveIdioma._llave._llave</td>
-                            <td>@llaveIdioma._idioma._idioma</td>
-                            <td>@llaveIdioma._traduccion</td>
-                            <td>Accion</td>
+                            <td>
+                                <div class="editMode hidden" >
+                                    <select class="cbEdit cbEditPagina form-control" name="cbEditPagina">
+                                        
+                                    </select>
+                                </div>
+                                <div class="normalMode tdTxtPagina">
+                                    @llaveIdioma._llave._pagina._pagina
+                                </div>
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <select class="cbEdit cbEditLlave form-control" name="cbEditLlave">
+                                        
+                                    </select>
+                                </div>
+                                <div class="normalMode tdTxtLlave">
+                                    @llaveIdioma._llave._llave
+                                </div>
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <select class="cbEditIdioma form-control" name="cbEditIdioma">
+                                        
+                                    </select>
+                                </div>
+                                <div class="normalMode tdTxtPagina">
+                                    @llaveIdioma._idioma._idioma
+                                </div>
+                                
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <textarea class="form-control txtAreaEditTraduccion"></textarea>
+                                </div>
+                                <div class="normalMode tdTxtTraduccion">
+                                    @llaveIdioma._traduccion
+                                </div>
+                            </td>
+                            <td>
+                                <div class="editMode hidden" >
+                                    <button class="btn btnEditMode btnActualizar" >Actualizar</button>
+                                    <button class="btn btnEditMode btnCancelarEdit" >Cancelar</button>
+                                </div>
+                                <div class="normalMode">
+                                    <button class="btn btnEditarTraduccion">Editar</button>
+                                </div>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -85,13 +142,3 @@
         </div>
     </div>
 </div>
-@section scriptsPersonalizados{
-    <!-- plugins -->
-    <!-- chosen -->
-    <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
-    <!-- datatable -->
-    <script src="~/Content/third-party/datatable/js/jquery.dataTables.min.js"></script>
-    <!-- propios -->
-    <script src="~/Scripts/Views/GestionIdiomaWebsite/script.js"></script>
-    <script src="~/Scripts/Views/GestionIdiomaWebsite/functions.js"></script>
-}

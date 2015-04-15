@@ -24,7 +24,7 @@ namespace IUSLibs.TRL.Control
 
         #endregion
         #region "funciones publicas"
-            public List<Idioma> sp_tra_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
+            public List<Idioma> sp_trl_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
         {
             List<Idioma> idiomas = null;
             Idioma idioma; // clase generica para la lista

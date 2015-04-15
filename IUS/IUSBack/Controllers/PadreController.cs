@@ -28,7 +28,7 @@ namespace IUSBack.Controllers
         public Dictionary<Object,Object> errorEnvioFrmJSON(){
             Dictionary<Object,Object> toReturn = new Dictionary<Object, Object>();
             toReturn.Add("estado", false);
-            toReturn.Add("error", "Formulario no se envio correctamente");
+            toReturn.Add("message", "Formulario no se envio correctamente");
             return toReturn;
         }
         public Usuario getUsuarioSesion()

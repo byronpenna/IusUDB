@@ -11,8 +11,33 @@
         return options;
     }
 // actions functions
+    /*
+    function btnEditarTraduccion(tr) {
+        frm = serializeToJson(tr.find("input,select").serializeArray());
+        console.log("")
+    }*/
+    function btnCancelarEdit(tr) {
+        controlesEdit(false, tr);
+    }
+    function btnEditarTraduccion(tr) {
+        controlesEdit(true, tr);
+        var frm = new Object();
+        $(".cbEdit").chosen();
+        frm.idPagina = tr.find(".txtHdIdPagina").val();
+        console.log("El formulario a enviar es", frm);
+        // llenar los controles
+
+    }
+    function btnAgregarLlave(frm) {
+        /*actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_getLlaveFromPage", frm, function (data) {
+            if (data.estado) {
+
+            } else {
+                alert(data.mensaje); // a partir de hoy los mensajes vendran del servidor
+            }
+        });*/
+    }
     function cbPagina(frm) {
-        console.log("la data a enviar al servidor es:", frm);
         actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_getLlaveFromPage", frm, function (data) {
             console.log("la data del servidor es:",data);
             if (data.estado) {

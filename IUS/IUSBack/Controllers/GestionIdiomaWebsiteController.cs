@@ -30,7 +30,7 @@ namespace IUSBack.Controllers
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
                 {
-                    List<Idioma> idiomas = this._model.sp_tra_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+                    List<Idioma> idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                     List<Pagina> paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
                     List<LlaveIdioma> tabla = this._model.sp_trl_tablitaGestionTraduccion(usuarioSession._idUsuario, this._idPagina);
                     // generales
@@ -72,6 +72,30 @@ namespace IUSBack.Controllers
                 {
                     respuesta = this.errorEnvioFrmJSON();
                 }
+                return Json(respuesta);
+            }
+            public ActionResult getObjetosTablita()
+            {
+                Dictionary<Object, Object> frm, respuesta = null;
+                frm = this.getAjaxFrm();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (frm != null && usuarioSession != null)// insistiendo que usuario deberia tener su propio manejo de error
+                {
+                    respuesta = new Dictionary<Object, Object>();
+                    int idPagina = Convert.ToInt32(frm["idPagina"].ToString());
+                    List<Llave> llaves; List<Idioma> idiomas; List<Pagina> paginas;
+                    llaves = this._model.sp_trl_getLlaveFromPage(idPagina, usuarioSession._idUsuario, this._idPagina);
+                    idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+                    paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
+                    respuesta.Add("llaves", llaves);
+                    respuesta.Add("idiomas", idiomas);
+                    respuesta.Add("paginas", paginas);
+                    respuesta.Add("estado", true);
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                } 
                 return Json(respuesta);
             }
         #endregion 
