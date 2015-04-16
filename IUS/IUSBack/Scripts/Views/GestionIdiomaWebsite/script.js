@@ -35,6 +35,13 @@
                 trTraduccion = $(this).parents("tr");
                 btnActualizar(trTraduccion);
             });
+            $(document).on("click", ".btEliminarTraduccion", function () {
+                var x = confirm("¿esta seguro que desea eliminar esta traduccion");
+                if (x) {
+                    tr = $(this).parents("tr");
+                    btEliminarTraduccion(tr);
+                }
+            });
         // change
             $(document).on("change", ".cbPagina", function () {
                 var frm = new Object();

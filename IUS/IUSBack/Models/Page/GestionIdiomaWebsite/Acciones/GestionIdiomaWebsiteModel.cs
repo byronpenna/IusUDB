@@ -16,6 +16,7 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
             
         #endregion
         #region "funciones publicas"
+            
             public List<Idioma> sp_trl_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
             {
                 ControlIdioma control = new ControlIdioma();
@@ -102,6 +103,22 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
                 catch (Exception)
                 {
 
+                }
+                return toReturn;
+            }
+            public bool sp_trl_eliminarLlaveIdioma(int idLlaveIdioma, int idUsuario, int idPagina)
+            {
+                bool toReturn = false;
+                try
+                {
+
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }catch(Exception x)
+                {
+                    throw x;
                 }
                 return toReturn;
             }

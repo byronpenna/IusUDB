@@ -46,6 +46,14 @@
 
     }
 // actions functions
+    function btEliminarTraduccion(tr) {
+        var frm = new Object();
+        frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();
+        console.log("el formulario a enviar es",frm);
+        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_eliminarLlaveIdioma", frm, function (data) {
+
+        });
+    }
     function btnActualizar(tr) {
         frm = serializeSection(tr);
         console.log("formulario a enviar es:", frm);

@@ -115,6 +115,45 @@ namespace IUSBack.Controllers
                 }
             #endregion 
             #region "acciones"
+                public ActionResult sp_trl_eliminarLlaveIdioma()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null) 
+                    {
+                        try
+                        {
+                            bool elimino = this._model.sp_trl_eliminarLlaveIdioma(Convert.ToInt32(frm["idLlaveIdioma"]), usuarioSession._idUsuario, this._idPagina);
+                            if (elimino)
+                            {
+                                respuesta.Add("estado", true);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 1);
+                            respuesta.Add("error", x);
+                        }
+                        catch (Exception x)
+                        {
+                            respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 2);
+                            respuesta.Add("error", x);
+                        }
+                        
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_trl_actualizarLlaveIdioma()
                 {
                     Dictionary<Object, Object> frm, respuesta = null;

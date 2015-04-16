@@ -35,6 +35,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
             this._control = new ControlUsuarios();
         }
         #endregion
+        
         public List<Usuario> getUsuarios(int idUsuarioEjecutor)
         {
             List<Usuario> usuarios;
@@ -43,9 +44,10 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
             this._permisosGestion = permisoGestion;
             return usuarios;
         }
+
         #region "respuestas para json"
 
-            public Dictionary<Object,Object> actualizarUsuario(List<Usuario> usuarios,int idUsuarioEjecutor,int idPagina)
+            public Dictionary<Object,Object>    actualizarUsuario(List<Usuario> usuarios,int idUsuarioEjecutor,int idPagina)
             {
                 List<Usuario> usuariosActualizados = new List<Usuario>();
                 Dictionary<object, object> respuesta = new Dictionary<object, object>();
@@ -84,7 +86,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 respuesta.Add("usuarios", usuariosActualizados);
                 return respuesta;
             }
-            public Dictionary<Object, Object> actualizarUsuario(Dictionary<Object,Object> frm,int idUsuarioEjecutor)
+            public Dictionary<Object, Object>   actualizarUsuario(Dictionary<Object,Object> frm,int idUsuarioEjecutor)
             {
                 Dictionary<Object, Object> toReturn = new Dictionary<Object,Object>();
                 Persona persona = new Persona();
@@ -118,7 +120,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 }
                 return toReturn;
             }
-            public Dictionary<Object,Object> cambiarEstadoUsuario(int idUsuario,int usuarioEjecutor){
+            public Dictionary<Object,Object>    cambiarEstadoUsuario(int idUsuario,int usuarioEjecutor){
                 /*
                  * Resultados: 
                      * Cambiado correctamente 
@@ -140,6 +142,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 }
                 return toReturn;
             }
+            
             
         #endregion
     }

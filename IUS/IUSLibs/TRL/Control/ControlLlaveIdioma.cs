@@ -140,6 +140,37 @@ namespace IUSLibs.TRL.Control
                 }
                 return toReturn;
             }
+            public bool sp_trl_eliminarLlaveIdioma(int idLlaveIdioma, int idUsuario, int idPagina)
+            {
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_trl_eliminarLlaveIdioma");
+                sp.agregarParametro("idLlaveIdioma", idLlaveIdioma);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuario);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            if ((int)ds.Tables[0].Rows[0]["estadoDelete"] == 1)
+                            {
+                                estado = true;
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
+            }
         #endregion 
         #region "Constructores"
             // mandando unicamente los identificadores
