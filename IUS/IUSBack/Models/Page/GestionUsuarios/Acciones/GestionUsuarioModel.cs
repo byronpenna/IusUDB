@@ -104,15 +104,18 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                         toReturn.Add("estado", false);
                     }
                 }
-                catch (ErroresIUS)
+                catch (ErroresIUS x)
                 {
-
+                    toReturn.Add("estado", false);
+                    toReturn.Add("tipoError", 1);
+                    toReturn.Add("objError", x);
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-
+                    toReturn.Add("estado", false);
+                    toReturn.Add("tipoError", 2);
+                    toReturn.Add("objError", x);
                 }
-                
                 return toReturn;
             }
             public Dictionary<Object,Object> cambiarEstadoUsuario(int idUsuario,int usuarioEjecutor){

@@ -29,6 +29,11 @@
             return false;
         }
     }
+    function cancelarControlGlobal() {
+        if (!$(".controlGlobal").hasClass("hidden")) {
+            $(".controlGlobal").addClass("hidden");
+        }
+    }
     function cambiarEstadoControlGlobal() {
         estadoControl = estadoControlGlobal();
         if (!estadoControl) {

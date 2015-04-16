@@ -55,7 +55,12 @@
                     if (!data.estadoIndividual) {
                         alert("algunos usuarios no se actualizaron correctamente");
                     }
+                    if (!tabla.find("tr.trEdit").length) {
+                        cancelarControlGlobal();
+                    }
                 });
+                // verificar si no hay ningun edit mode para ocultar los botones universales
+                
             });
             // actualizar individual
             $(document).on("click", ".btnActualizar", function () {
