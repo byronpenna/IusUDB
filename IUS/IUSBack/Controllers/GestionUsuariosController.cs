@@ -44,12 +44,12 @@ namespace IUSBack.Controllers
                             objPermiso = this._model.permisoGestion;
 
                         }
-                        catch (ErroresIUS x)
+                        catch (ErroresIUS)
                         {
                             objPermiso = null;
                             usuarios = null;
                         }
-                        catch (Exception x)
+                        catch (Exception)
                         {
                             usuarios = null;
                             objPermiso = null;

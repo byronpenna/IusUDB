@@ -43,7 +43,7 @@ namespace IUSBack.Controllers
                     var obj = error.redirectToError(x);
                     return RedirectToAction(obj["controlador"], obj["accion"]);
                 }
-                catch (Exception x)
+                catch (Exception)
                 {
                     return RedirectToAction("index", "login");
                 }

@@ -30,7 +30,7 @@ namespace IUSBack.Controllers
                     var obj = error.redirectToError(x);
                     return RedirectToAction(obj["accion"], obj["controlador"]);
                 }
-                catch (Exception x)
+                catch (Exception)
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }

@@ -192,6 +192,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Page\Errors\ErrorsModel.cs" />
     <Compile Include="Models\Page\GestionIdiomaWebsite\Acciones\GestionIdiomaWebsiteModel.cs" />
     <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\GestionPersonaModel.cs" />

@@ -24,9 +24,17 @@ namespace IUSBack.Controllers
             Usuario usuarioSession = (Usuario)Session["usuario"];
             if (Session["usuario"] != null)
             {
-                ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                ViewBag.personas = personas;
-                return View();
+                bool permiso = this._model.tienePermiso(usuarioSession._idUsuario,this._idPagina,Models.General.PadreModel.permisos.Ver);
+                if (permiso)
+                {
+                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.personas = personas;
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("NotAllowed","Errors");
+                }
             }
             else
             {
