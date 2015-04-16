@@ -41,9 +41,12 @@
         if (mostrar) {
             selectorMostrar = ".editMode";
             selectorOcultar = ".normalMode";
+            // poniendole clase para saber que va editar
+            tr.addClass("trEdit");
         } else {
             selectorMostrar = ".normalMode";
             selectorOcultar = ".editMode";
+            tr.removeClass("trEdit");
         }
         if (!tr.find(selectorOcultar).hasClass("hidden")) {
             tr.find(selectorOcultar).addClass("hidden");
@@ -51,6 +54,7 @@
         if (tr.find(selectorMostrar).hasClass("hidden")) {
             tr.find(selectorMostrar).removeClass("hidden");
         }
+
     }
 // updates 
     function actualizarCatalogo(urlAjax,frm,callback) {

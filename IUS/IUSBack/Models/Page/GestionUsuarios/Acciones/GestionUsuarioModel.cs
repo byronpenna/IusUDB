@@ -7,6 +7,7 @@ using System.Web;
 // librerias externas
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.LOGS;
 namespace IUSBack.Models.Page.GestionUsuarios.Acciones
 {
     public class GestionUsuarioModel:PadreModel
@@ -43,7 +44,24 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
             return usuarios;
         }
         #region "respuestas para json"
-            
+
+            public bool actualizarUsuario(List<Usuario> usuarios,int idUsuarioEjecutor,int idPagina)
+            {
+                bool estado = false;
+                try
+                {
+                    this._control.actualizarUsuario(usuarios, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+
+                }
+                catch (Exception x)
+                {
+
+                }
+                return estado;
+            }
             public Dictionary<Object, Object> actualizarUsuario(Dictionary<Object,Object> frm,int idUsuarioEjecutor)
             {
                 Dictionary<Object, Object> toReturn = new Dictionary<Object,Object>();
@@ -85,6 +103,7 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 }
                 return toReturn;
             }
+            
         #endregion
     }
 }

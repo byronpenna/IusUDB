@@ -40,6 +40,15 @@
                 }
             });
         // actualizar
+            // actualizar general 
+            $(document).on("click", ".btnActualizarTodo", function () {
+                tabla = $(this).parents("table");
+                accionActualizarGeneral(tabla, "GestionUsuarios/sp_sec_actualizarUsuariosGeneral", function (data,frm) {
+                    console.log("el formulario enviado es: ", frm);
+                    console.log("la respuesta del servidor es:", data);
+                });
+            });
+            // actualizar individual
             $(document).on("click", ".btnActualizar", function () {
                 var x = confirm("¿Esta seguro que desea salvar los cambios?");
                 trUsuario = $(this).parents(".trUsuario");

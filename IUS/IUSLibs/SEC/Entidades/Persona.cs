@@ -41,6 +41,10 @@ namespace IUSLibs.SEC.Entidades
                 this._apellidos = apellidos;
                 this._fechaNacimiento = fechaNac;
             }
+            public Persona(int idPersona)
+            {
+                this._idPersona = idPersona;
+            }
             public Persona()
             {
 

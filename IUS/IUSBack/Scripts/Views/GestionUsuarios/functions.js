@@ -36,6 +36,7 @@
             $(".tableUsuarios").find(".trTableRol").remove();
         }
     }
+    
     function tablaRoles(trUsuario) {
         frm = new Object();
         frm.idUsuario = trUsuario.find(".txtHdIdUser").val();
@@ -84,6 +85,23 @@
         });
     }
 // Actualizar
+    function accionActualizarGeneral(tabla,ajaxUrl,callback) {
+        var x = confirm("¿Esta seguro que desea actualizar todo?");
+        if (x) {
+            actualizarGeneral(tabla,ajaxUrl,callback);
+        }
+    }
+    function actualizarGeneral(tabla,ajaxUrl,callback) {
+        var frm = new Array(); // formulario a enviar 
+        tabla.find("tr.trEdit").each(function (i, val) {
+            obj = serializeSection($(this));
+            frm[i] = obj;
+        });
+        console.log("formulario a enviar es:", frm);
+        actualizarCatalogo(ajaxUrl, frm, function (data) {
+            callback(data,frm);
+        });
+    }
     function actualizar(trUsuario) {
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
         actualizarCatalogo("GestionUsuarios/actualizarUsuario", frm, function (data) {
@@ -108,22 +126,6 @@
         });
     }
 // editar
-    function controlesEdit(mostrar, trUsuario) {
-        if (mostrar) {
-            selectorMostrar = ".editMode";
-            selectorOcultar = ".normalMode";
-        } else {
-            selectorMostrar = ".normalMode";
-            selectorOcultar = ".editMode";
-        }
-        if (!trUsuario.find(selectorOcultar).hasClass("hidden")) {
-            trUsuario.find(selectorOcultar).addClass("hidden");
-        }
-        if (trUsuario.find(selectorMostrar).hasClass("hidden")) {
-            trUsuario.find(selectorMostrar).removeClass("hidden");
-        }
-    }
-
     function llenarCbPersonas(Personas, combo,selected) {
         combo.empty();
         $.each(Personas, function (i, value) {

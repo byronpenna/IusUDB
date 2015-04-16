@@ -11,7 +11,7 @@ using System.Text;
     using IUSLibs.BaseDatos;
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
-
+    using IUSLibs.LOGS;
 namespace IUSLibs.SEC.Control
 {
     public class ControlUsuarios:PadreLib
@@ -52,6 +52,16 @@ namespace IUSLibs.SEC.Control
                 persona = new Persona((int)row["id_persona_fk"], row["nombres"].ToString(), row["apellidos"].ToString());
                 usu = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"], (bool)row["estado"], persona);
                 return usu;
+            }
+            private Dictionary<string, Object> getParametrosActualizarUsuarios(Usuario usuario,int idUsuarioEjecutor,int idPagina)
+            {
+                Dictionary<string, Object> toReturn = new Dictionary<string, object>();
+                toReturn.Add("idUsuario",usuario._idUsuario);
+                toReturn.Add("usuario",usuario._usuario);
+                toReturn.Add("idPersona",usuario._persona._idPersona);
+                toReturn.Add("idPagina",idUsuarioEjecutor);
+                toReturn.Add("usuarioEjecutor", idPagina);
+                return toReturn;
             }
         #endregion
         #region "Funciones publicas"
@@ -145,6 +155,27 @@ namespace IUSLibs.SEC.Control
                 }
             #endregion
             #region "Mantenimiento de usuarios"
+            public bool actualizarUsuario(List<Usuario> usuarios, int idUsuarioEjecutor, int idPagina)
+            {
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_sec_updateUsuarioParaMultiple");
+                foreach (Usuario usuario in usuarios)
+                {
+                    Dictionary<string, Object> parametros = this.getParametrosActualizarUsuarios(usuario, idUsuarioEjecutor, idPagina);
+                    sp.agregarParametro(parametros);
+                }
+                
+                try
+                {
+                    estado = sp.ejecutarInsertMultiple();
+                }catch(ErroresIUS x){
+                    throw x;
+                }catch(Exception x)
+                {
+                    throw x;
+                }
+                return estado;
+            }
             public Usuario actualizarUsuario(Usuario usu,int idUsuarioEjecutor,int idPagina)
             {
                 Usuario toReturn = null;

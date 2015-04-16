@@ -52,8 +52,29 @@ namespace IUSBack.Controllers
             {
                 try
                 {
-                    toReturn = this._jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                    toReturn = this._jss.Deserialize< Dictionary<Object, Object>>(frmText);
                 }catch(Exception x){
+                    throw x;
+                }
+            }
+            return toReturn;
+        }
+        public List<Dictionary<Object, Object>> getListAjaxFrm()
+        {
+            return this.getListAjaxFrm("form");
+        }
+        public List<Dictionary<Object, Object>> getListAjaxFrm(String txtObj)
+        {
+            List<Dictionary<Object, Object>> toReturn = null;
+            String frmText = Request.Form[txtObj];
+            if (frmText != null || frmText != "")
+            {
+                try
+                {
+                    toReturn = this._jss.Deserialize<List<Dictionary<Object, Object>>>(frmText);
+                }
+                catch (Exception x)
+                {
                     throw x;
                 }
             }
