@@ -126,8 +126,7 @@ namespace IUSBack.Controllers
                         if (usuarioSession != null && frm != null) // manejor error usuario D: 
                         {
                             List<Usuario> usuariosActualizar = this.getUsuarioFromForm(frm);
-                            bool actualizo = this._model.actualizarUsuario(usuariosActualizar, usuarioSession._idUsuario, this._idPagina);
-
+                            respuesta = this._model.actualizarUsuario(usuariosActualizar, usuarioSession._idUsuario,this._idPagina);
                         }
                         else
                         {

@@ -102,6 +102,10 @@
             callback(data,frm);
         });
     }
+    function getEdit(tabla, objFind, val) {
+        retorno = tabla.find(objFind + "[value='" + val + "']");
+        return retorno;
+    }
     function actualizar(trUsuario) {
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
         actualizarCatalogo("GestionUsuarios/actualizarUsuario", frm, function (data) {
@@ -109,9 +113,7 @@
             if (data.estado) {
                 usuario = data.usuario;
                 console.log("actualizacion correcta");
-                trUsuario.find(".tdTxtNombreCompleto").empty().append(usuario._persona.nombreCompleto);
-                trUsuario.find(".tdTxtUsuario").empty().append(usuario._usuario);
-                trUsuario.find(".txtHdIdPersona").val(usuario._persona._idPersona);
+                actualizarInformacionTr(trUsuario,usuario)
                 controlesEdit(false, trUsuario); // salimos del modo de edicion
                 alert("actualizado correctamente");
                 if (!usuario._estado) {
@@ -124,6 +126,11 @@
                 alert("Ocurrio un error durante la actualizacion");
             }
         });
+    }
+    function actualizarInformacionTr(trUsuario,usuario) {
+        trUsuario.find(".tdTxtNombreCompleto").empty().append(usuario._persona.nombreCompleto);
+        trUsuario.find(".tdTxtUsuario").empty().append(usuario._usuario);
+        trUsuario.find(".txtHdIdPersona").val(usuario._persona._idPersona);
     }
 // editar
     function llenarCbPersonas(Personas, combo,selected) {

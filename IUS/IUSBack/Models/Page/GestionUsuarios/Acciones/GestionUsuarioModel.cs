@@ -45,22 +45,44 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
         }
         #region "respuestas para json"
 
-            public bool actualizarUsuario(List<Usuario> usuarios,int idUsuarioEjecutor,int idPagina)
+            public Dictionary<Object,Object> actualizarUsuario(List<Usuario> usuarios,int idUsuarioEjecutor,int idPagina)
             {
-                bool estado = false;
-                try
+                List<Usuario> usuariosActualizados = new List<Usuario>();
+                Dictionary<object, object> respuesta = new Dictionary<object, object>();
+                bool estadoIndividual = true; bool estadoUniversal;
+                Usuario usu;
+                foreach (Usuario usuario in usuarios)
                 {
-                    this._control.actualizarUsuario(usuarios, idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        usu = this._control.actualizarUsuario(usuario, idUsuarioEjecutor, idPagina);
+                        if (usu == null)
+                        {
+                            estadoIndividual = false;
+                        }
+                        usuariosActualizados.Add(usu);
+                    }
+                    catch (ErroresIUS)
+                    {
+                        estadoIndividual = false;
+                    }
+                    catch (Exception)
+                    {
+                        estadoIndividual = false;
+                    }
                 }
-                catch (ErroresIUS x)
+                if (usuariosActualizados.Count == 0)
                 {
-
+                    estadoUniversal = false;
                 }
-                catch (Exception x)
+                else
                 {
-
+                    estadoUniversal = true;
                 }
-                return estado;
+                respuesta.Add("estado", estadoUniversal);
+                respuesta.Add("estadoIndividual", estadoIndividual);
+                respuesta.Add("usuarios", usuariosActualizados);
+                return respuesta;
             }
             public Dictionary<Object, Object> actualizarUsuario(Dictionary<Object,Object> frm,int idUsuarioEjecutor)
             {
@@ -69,16 +91,28 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 persona._idPersona = Convert.ToInt32((string)frm["cbPersona"]);
                 Usuario UsuarioRetorno;
                 Usuario usu = new Usuario(Convert.ToInt32((String)frm["txtHdIdUser"]), frm["txtEditUsuario"].ToString(), persona);
-                UsuarioRetorno = this._control.actualizarUsuario(usu,idUsuarioEjecutor,this._idPagina);
-                if (UsuarioRetorno != null)
+                try
                 {
-                    toReturn.Add("estado", true);
-                    toReturn.Add("usuario", UsuarioRetorno);
+                    UsuarioRetorno = this._control.actualizarUsuario(usu, idUsuarioEjecutor, this._idPagina);
+                    if (UsuarioRetorno != null)
+                    {
+                        toReturn.Add("estado", true);
+                        toReturn.Add("usuario", UsuarioRetorno);
+                    }
+                    else
+                    {
+                        toReturn.Add("estado", false);
+                    }
                 }
-                else
+                catch (ErroresIUS)
                 {
-                    toReturn.Add("estado", false);
+
                 }
+                catch (Exception)
+                {
+
+                }
+                
                 return toReturn;
             }
             public Dictionary<Object,Object> cambiarEstadoUsuario(int idUsuario,int usuarioEjecutor){

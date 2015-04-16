@@ -198,7 +198,8 @@ namespace IUSLibs.SEC.Control
                     }
                     else
                     {
-                        // throw error
+                        ErroresIUS x = new ErroresIUS(tablaEstado.Rows[0]["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)tablaEstado.Rows[0]["errorCode"]);
+                        throw x;
                     }
                 }
                 return toReturn;
