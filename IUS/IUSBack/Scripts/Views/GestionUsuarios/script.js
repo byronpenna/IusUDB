@@ -59,7 +59,6 @@
                         cancelarControlGlobal();
                     }
                 });
-                // verificar si no hay ningun edit mode para ocultar los botones universales
                 
             });
             // actualizar individual

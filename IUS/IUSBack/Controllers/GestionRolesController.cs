@@ -208,12 +208,15 @@ namespace IUSBack.Controllers
                         JavaScriptSerializer jss = new JavaScriptSerializer();
                         Dictionary<Object, Object> respuesta, frm;
                         String frmText = Request.Form["form"];
+                        Usuario usuarioSession = this.getUsuarioSesion();
                         if (frmText != null)
                         {
                             respuesta = new Dictionary<Object, Object>();
                             frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
                             Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
+                            List<Rol> rolesFaltantes = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", estado);
+                            respuesta.Add("rolesFaltantes", rolesFaltantes);
                         }
                         else
                         {
@@ -263,7 +266,7 @@ namespace IUSBack.Controllers
                     public ActionResult agregarRoles()
                     {
                         Dictionary<Object, Object> frm, respuesta;
-                        Usuario usuario = this.getUsuarioSesion();
+                        Usuario usuarioSession = this.getUsuarioSesion();
                         bool agrego = false;
                         frm = this.getAjaxFrm();
                         if (frm != null)
@@ -271,12 +274,15 @@ namespace IUSBack.Controllers
                             respuesta = new Dictionary<Object, Object>();
                             int[] roles = this.convertArrAjaxToInt((Object[])frm["rolesAgregar"]);
                             int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
-                            agrego = this._model.agregarRoles(roles, idUsuario, usuario._idUsuario, this._idPagina);
+                            agrego = this._model.agregarRoles(roles, idUsuario, usuarioSession._idUsuario, this._idPagina);
+                            //List<Rol> roles = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuario._idUsuario, this._idPagina);
+                            List<Rol> rolesFaltantes = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuarioSession._idUsuario, this._idPagina);
                             if (agrego)
                             {
                                 List<Rol> rolesUsuario = this._model.getRoles(idUsuario);
                                 respuesta.Add("estado", true);
                                 respuesta.Add("roles", rolesUsuario);
+                                respuesta.Add("rolesFaltantes", rolesFaltantes);
                             }
                             else
                             {

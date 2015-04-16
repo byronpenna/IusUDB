@@ -170,8 +170,12 @@ function changeRolTab2(frm) {
 function agregarRoles(frm) {
     cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
         if (data.estado) {
+            console.log("respuesta del servidor", frm);
             tbody = doTablaRolesUsuario(data.roles);
             $(".tbodyRolUsuario").empty().append(tbody);
+            options = getOptionsRoles(data.rolesFaltantes);
+            $(".cbRoles").empty().append(options);
+            resetChosen($(".cbRoles"));
         } else {
             alert("Error al ingresar los datos");
         }
@@ -181,6 +185,10 @@ function desasociarRol(frm, trUsuarioRol) {
     actualizarCatalogo("/GestionRoles/desasociarRolUsuario", frm, function (data) {
         if (data) {
             trUsuarioRol.remove();
+            // actualizar cbRoles
+            optionCbRoles = getOptionsRoles(data.rolesFaltantes);
+            $(".cbRoles").empty().append(optionCbRoles);
+            resetChosen($(".cbRoles"));
         }
     });
 }
@@ -192,7 +200,7 @@ function doTablaRolesUsuario(roles) {
                 <td class='hidden'><input type='hidden' class='txtIdRol' value='" + value._idRol + "' /></td>\
                 <td>" + value._rol + "</td>\
                 <td>" + value.stringEstado + "</td>\
-                <td><i class='fa fa-times iconQuitarRol'></i></td>\
+                <td><i class='fa fa-times pointer iconQuitarRol '></i></td>\
             </tr>\
         "
     });
@@ -200,9 +208,13 @@ function doTablaRolesUsuario(roles) {
 }
 function getOptionsRoles(roles) {
     options = "";
-    $.each(roles, function (i, value) {
-        options += "<option value='"+value._idRol+"'>"+value._rol+"</option>";
-    });
+    if (!(roles === null)) {
+        $.each(roles, function (i, value) {
+            options += "<option value='" + value._idRol + "'>" + value._rol + "</option>";
+        });
+    } else {
+        options = "<option value='-1' disabled>No hay roles para asignar</option>";
+    }
     return options;
 }
 function llenarTablaRolesUsuario(idUsuario) {
