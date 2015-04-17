@@ -3,6 +3,12 @@
         $(".dtFechaNacimiento").datepicker({
             dateFormat: "dd/mm/yy"
         });
+    
+    // ingresar
+        $(document).on("click", ".btnAgregarPersona", function () {
+            tr = $(this).parents("tr");
+            btnAgregarPersona(tr);
+        })
     // actualizar 
         $(document).on("click", ".btnActualizar", function () {
             var x = confirm("¿Esta seguro que desea actualizar esta persona?");

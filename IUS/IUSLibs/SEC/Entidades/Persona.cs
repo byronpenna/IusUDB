@@ -45,6 +45,13 @@ namespace IUSLibs.SEC.Entidades
             {
                 this._idPersona = idPersona;
             }
+            // creado para poder agregar
+            public Persona(string nombres, string apellidos, DateTime fechaNac)
+            {
+                this._nombres = nombres;
+                this._apellidos = apellidos;
+                this._fechaNacimiento = fechaNac;
+            }
             public Persona()
             {
 

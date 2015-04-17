@@ -16,7 +16,8 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #region "propiedades"
         private ControlPersona _control;
         #endregion 
-        public List<Persona> getPersonas()
+        #region "gets"
+            public List<Persona> getPersonas()
         {
             List<Persona> personas = this._control.getPersonas();
             if (personas.Count != 0)
@@ -28,36 +29,57 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 return null;
             }
         }
-        public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
-        {
-            Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
-            try
+        #endregion
+        #region "Acciones"
+            public Persona sp_hm_agregarPersona(Persona persona, int idUsuarioEjecutor,int idPagina)
             {
-                Persona personaActual = this._control.actualizarPersona(persona,idUsuario,idPagina);
-                if (personaActual != null)
+                Persona personaAgregada = null;
+                try
                 {
-                    toReturn.Add("estado", true);
-                    toReturn.Add("persona", personaActual);
+                    personaAgregada = this._control.sp_hm_agregarPersona(persona, idUsuarioEjecutor, idPagina);
                 }
-                else
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return persona;
+            }
+            public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
+            {
+                Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
+                try
+                {
+                    Persona personaActual = this._control.actualizarPersona(persona,idUsuario,idPagina);
+                    if (personaActual != null)
+                    {
+                        toReturn.Add("estado", true);
+                        toReturn.Add("persona", personaActual);
+                    }
+                    else
+                    {
+                        toReturn.Add("estado", false);
+                        toReturn.Add("mensaje", "Error no controlado");
+                    }
+                }
+                catch (ErroresIUS x)
                 {
                     toReturn.Add("estado", false);
-                    toReturn.Add("mensaje", "Error no controlado");
+                    toReturn.Add("errorCode", x.errorNumber);
+                    toReturn.Add("errorMessage", x.Message);
                 }
+                catch(Exception x){
+                    toReturn.Add("estado", false);
+                    toReturn.Add("errorCode", -1);
+                    toReturn.Add("errorMessage", x.Message);
+                }
+                return toReturn;
             }
-            catch (ErroresIUS x)
-            {
-                toReturn.Add("estado", false);
-                toReturn.Add("errorCode", x.errorNumber);
-                toReturn.Add("errorMessage", x.Message);
-            }
-            catch(Exception x){
-                toReturn.Add("estado", false);
-                toReturn.Add("errorCode", -1);
-                toReturn.Add("errorMessage", x.Message);
-            }
-            return toReturn;
-        }
+            
+        #endregion
         #region "contructores"
             public GestionPersonaModel()
             {

@@ -5,6 +5,7 @@
 }
 @{
     List<Persona> personas = (List<Persona>)ViewBag.personas;
+    Permiso permisos = (Permiso)ViewBag.permiso;
 }
 <h2 class="text-center">Gestion de personas</h2>
 
@@ -24,6 +25,20 @@
             <th>Apellidos</th>
             <th>Fecha de nacimiento</th>
             <th>Acciones</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control" />
+            </td>
+            <td>
+                <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control" />
+            </td>
+            <td>
+                <input type="text" name="dtFechaNacimiento" class="dtFechaNacimiento form-control" />
+            </td>
+            <td>
+                <button class="btn btn-xs btnAgregarPersona" @permisos.stringCrear>Crear</button>
+            </td>
         </tr>
     </thead>
     <tbody>
@@ -56,16 +71,17 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <button class="btn btn-xs btnEditMode btnActualizar "  >Actualizar</button>
+                            <button class="btn btn-xs btnEditMode btnActualizar " @permisos.stringEditar >Actualizar</button>
                             <button class="btn btn-xs btnEditMode btnCancelarEdit">Cancelar</button>
                         </div>
                         <div class="normalMode">
-                            <button class="btn btn-xs btnEditar">Editar</button>
-                            <button class="btn btn-xs">Eliminar</button>
+                            <button class="btn btn-xs btnEditar" @permisos.stringEditar>Editar</button>
+                            <button class="btn btn-xs" @permisos.stringEliminar>Eliminar</button>
                         </div>
                     </td>
                 </tr>
             }
+            
         }
         else
         {
