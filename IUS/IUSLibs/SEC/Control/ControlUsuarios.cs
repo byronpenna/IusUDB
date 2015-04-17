@@ -127,19 +127,26 @@ namespace IUSLibs.SEC.Control
                     sp.agregarParametro("l2", l2);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
-                    DataSet ds = sp.EjecutarProcedimiento();
-                    if (ds.Tables.Count > 1)
+                    try
                     {
-                        // validar los permisos. 
-                        DataTable tb = ds.Tables[1];
-                        Permiso permisos = this.setPemisos(ds.Tables[0].Rows);
-                        this._permiso = permisos;
-                        if (tb.Rows.Count > 0)
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (ds.Tables.Count > 1)
                         {
-                            foreach (DataRow row in tb.Rows)
+                            // validar los permisos. 
+                            DataTable tb = ds.Tables[1];
+                            Permiso permisos = this.setPemisos(ds.Tables[0].Rows);
+                            this._permiso = permisos;
+                            if (tb.Rows.Count > 0)
                             {
-                                usuario = this.getObjectoUsuarioDeRow(row);
-                                usuarios.Add(usuario);
+                                foreach (DataRow row in tb.Rows)
+                                {
+                                    usuario = this.getObjectoUsuarioDeRow(row);
+                                    usuarios.Add(usuario);
+                                }
+                            }
+                            else
+                            {
+                                usuarios = null;
                             }
                         }
                         else
@@ -147,9 +154,13 @@ namespace IUSLibs.SEC.Control
                             usuarios = null;
                         }
                     }
-                    else
+                    catch (ErroresIUS x)
                     {
-                        usuarios = null;
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
                     }
                     return usuarios;
                 }

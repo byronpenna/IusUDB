@@ -38,10 +38,21 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
         
         public List<Usuario> getUsuarios(int idUsuarioEjecutor)
         {
-            List<Usuario> usuarios;
-            usuarios = this._control.getUsuarios(idUsuarioEjecutor, this._idPagina);
-            Permiso permisoGestion = this._control.permisoGestion;
-            this._permisosGestion = permisoGestion;
+            List<Usuario> usuarios = null;
+            try
+            {
+                usuarios = this._control.getUsuarios(idUsuarioEjecutor, this._idPagina);
+                Permiso permisoGestion = this._control.permisoGestion;
+                this._permisosGestion = permisoGestion;
+            }
+            catch (ErroresIUS)
+            {
+
+            }
+            catch (Exception)
+            {
+
+            }
             return usuarios;
         }
 

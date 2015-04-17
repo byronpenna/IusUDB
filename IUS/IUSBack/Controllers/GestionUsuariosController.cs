@@ -29,32 +29,27 @@ namespace IUSBack.Controllers
         #region "Resultados url"
             public ActionResult Index()
             {
-                if (Session["usuario"] != null)
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (usuarioSession != null)
                 {
                     List<Usuario> usuarios;
-                    Usuario usuarioSession = (Usuario)Session["usuario"];
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                    bool permiso = this._model.tienePermiso(usuarioSession._idUsuario,this._idPagina,Models.General.PadreModel.permisos.Ver);
-                    if (permiso)
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
+                    if (permisos != null && permisos._ver)
                     {
-                        Permiso objPermiso;
                         try
                         {
                             usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
-                            objPermiso = this._model.permisoGestion;
-
                         }
                         catch (ErroresIUS)
                         {
-                            objPermiso = null;
                             usuarios = null;
                         }
                         catch (Exception)
                         {
                             usuarios = null;
-                            objPermiso = null;
                         }
-                        ViewBag.permiso = objPermiso;
+                        ViewBag.permiso = permisos;
                         ViewBag.usuarios = usuarios;
                         return View();
                     }
