@@ -130,12 +130,10 @@ namespace IUSLibs.SEC.Control
                     try
                     {
                         DataSet ds = sp.EjecutarProcedimiento();
-                        if (ds.Tables.Count > 1)
+                        DataTableCollection tablas = this.HaveTables(ds);
+                        if (tablas != null)
                         {
-                            // validar los permisos. 
-                            DataTable tb = ds.Tables[1];
-                            Permiso permisos = this.setPemisos(ds.Tables[0].Rows);
-                            this._permiso = permisos;
+                            DataTable tb = tablas[1];
                             if (tb.Rows.Count > 0)
                             {
                                 foreach (DataRow row in tb.Rows)
@@ -153,6 +151,8 @@ namespace IUSLibs.SEC.Control
                         {
                             usuarios = null;
                         }
+                       
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -205,7 +205,6 @@ namespace IUSLibs.SEC.Control
                         DataRow rowUsuario = ds.Tables[1].Rows[0];
                         Persona persona = new Persona((int)rowUsuario["id_persona_fk"],rowUsuario["nombres"].ToString(),rowUsuario["apellidos"].ToString());
                         toReturn = new Usuario((int)rowUsuario["idUsuario"], rowUsuario["usuario"].ToString(), persona,(bool)rowUsuario["estado"]);
-                        
                     }
                     else
                     {
