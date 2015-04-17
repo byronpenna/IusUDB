@@ -121,11 +121,45 @@ namespace IUSBack.Controllers
                 {
                     Dictionary<object, object> frm, respuesta = null;
                     frm = this.getAjaxFrm();
-                    LlaveIdioma llaveIdioma;
+                    Llave llave; Idioma idioma; // clases para crear la otra
+                    LlaveIdioma llaveIdioma; LlaveIdioma aAgregar;
+                    List<Llave> llaves;
                     Usuario usuarioSession = this.getUsuarioSesion();
                     if (frm != null && usuarioSession != null)
                     {
-
+                        respuesta = new Dictionary<object, object>();
+                        try
+                        {
+                            llave = new Llave( Convert.ToInt32(frm["idLlave"].ToString()) );
+                            idioma = new Idioma( Convert.ToInt32(frm["idIdioma"].ToString()) );
+                            aAgregar = new LlaveIdioma(idioma, llave, frm["traduccion"].ToString());
+                            llaveIdioma = this._model.sp_trl_agregarLlaveIdioma(aAgregar,usuarioSession._idUsuario,this._idPagina);
+                            if (llaveIdioma != null)
+                            {
+                                llaves = this._model.sp_trl_getLlaveFromPageAndIdioma(llaveIdioma._llave._pagina._idPagina,llaveIdioma._idioma._idIdioma, usuarioSession._idUsuario, this._idPagina);
+                                respuesta.Add("estado", true);
+                                respuesta.Add("llaveIdioma", llaveIdioma);
+                                respuesta.Add("llaves", llaves);
+                            }
+                            else
+                            {
+                                respuesta.Add("estado", false);
+                                respuesta.Add("errorType", 3);
+                                respuesta.Add("error", "Ocurrio un error al intentar agregar");
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 1);
+                            respuesta.Add("error", x);
+                        }
+                        catch (Exception x)
+                        {
+                            respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 2);
+                            respuesta.Add("error", x);
+                        }
                     }
                     else
                     {

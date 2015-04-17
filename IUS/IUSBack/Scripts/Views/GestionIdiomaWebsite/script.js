@@ -40,6 +40,9 @@
                 if (x) {
                     tr = $(this).parents("tr");
                     btEliminarTraduccion(tr);
+                    resetChosen($(".cbPagina"));
+                    $(".cbLlave").empty().append("<option value='-1' disabled>Seleccione pagina primero</option>");
+                    resetChosen($(".cbLlave"));
                 }
             });
         // change

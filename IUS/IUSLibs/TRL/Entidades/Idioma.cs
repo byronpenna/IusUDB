@@ -15,6 +15,10 @@ namespace IUSLibs.TRL.Entidades
         #endregion 
         #region "constructores"
             // las locales comienzan con _
+            public Idioma(int idIdioma)
+            {
+                this._idIdioma = idIdioma;
+            }
             public Idioma(int idIdioma, string idioma)
             {
                 this._idIdioma = idIdioma;

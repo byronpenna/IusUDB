@@ -43,7 +43,68 @@
             options = "<option value='-1' disabled>No hay idiomas disponibles</option>";
         }
         return options;
-
+    }
+    function addRowTable(llaveIdioma) {
+        var tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input value="+llaveIdioma._idLlaveIdioma+" class='txtHdIdLlaveIdioma' name='txtHdIdLlaveIdioma'>\
+                    <input value="+llaveIdioma._llave._pagina._idPagina+" class='txtHdIdPagina' name='txtHdIdPagina'>\
+                    <input value="+llaveIdioma._llave._idLlave+" class='txtHdIdLlave' name='txtHdIdLlave'>\
+                    <input value="+llaveIdioma._idioma._idIdioma+" class='txtHdIdIdioma' name='txtHdIdIdioma'>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden' >\
+                        <select class='cbEdit cbEditPagina form-control' name='cbEditPagina'>\
+                        </select>\
+                    </div>\
+                    <div class='normalMode tdTxtPagina'>\
+                         "+llaveIdioma._llave._pagina._pagina+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <select class='cbEdit cbEditLlave form-control' name='cbEditLlave'>\
+                        </select>\
+                    </div>\
+                    <div class='normalMode tdTxtLlave'>\
+                        "+llaveIdioma._llave._llave+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <select class='cbEdit cbEditIdioma' name='cbEditIdioma'></select>\
+                    </div>\
+                    <div class='normalMode tdTxtPagina'>\
+                        "+llaveIdioma._idioma._idioma+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <textarea class='form-control txtAreaEditTraduccion' name='txtAreaEditTraduccion'></textarea>\
+                    </div>\
+                    <div class='normalMode tdTxtTraduccion'>\
+                        "+llaveIdioma._traduccion+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden' >\
+                        <button class='btn btnEditMode btnActualizar' >Actualizar</button>\
+                        <button class='btn btnEditMode btnCancelarEdit' >Cancelar</button>\
+                    </div>\
+                    <div class='normalMode'>\
+                        <button class='btn btnEditarTraduccion'>Editar</button>\
+                        <button class='btn btEliminarTraduccion'>Eliminar</button>\
+                    </div>\
+                </td>\
+            </tr>\
+            ";
+        return tr;
+    }
+    function llenarCbLlaves(llaves,cbLlaves) {
+        options = fillSelectLlave(llaves);
+        cbLlaves.empty().append(options);
+        resetChosen(cbLlaves);
     }
 // actions functions
     function btEliminarTraduccion(tr) {
@@ -109,10 +170,14 @@
     }
     function btnAgregarLlave(frm) {
         actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_agregarLlaveIdioma", frm, function (data) {
+            console.log("Respuesta de servidor: ", data);
             if (data.estado) {
-
+                tr = addRowTable(data.llaveIdioma);
+                $(".tbodyTablaTraducciones").append(tr);
+                $(".txtAreaTraduccion").val("");
+                llenarCbLlaves(data.llaves, $(".cbLlave"));
             } else {
-                alert(data.mensaje); // a partir de hoy los mensajes vendran del servidor
+                alert(data.error); // a partir de hoy los mensajes vendran del servidor
             }
         });
     }

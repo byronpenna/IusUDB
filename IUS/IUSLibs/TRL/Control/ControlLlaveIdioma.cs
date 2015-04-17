@@ -97,81 +97,121 @@ namespace IUSLibs.TRL.Control
                 }
                 return llavesIdiomas;
             }
-            public bool sp_trl_actualizarLlaveIdioma(int idLlaveIdioma,int idLlave,int idIdioma,string traduccion,int idUsuarioEjecutor, int idPagina)
-            {
-                bool toReturn = false;
-                ErroresIUS errorIUS;
-                SPIUS sp = new SPIUS("sp_trl_actualizarLlaveIdioma");
-                sp.agregarParametro("idLlaveIdioma",idLlaveIdioma);
-                sp.agregarParametro("idLlave", idLlave);
-                sp.agregarParametro("idIdioma", idIdioma);
-                sp.agregarParametro("traduccion", traduccion);
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-                try
+            #region "acciones"
+                public LlaveIdioma sp_trl_agregarLlaveIdioma(LlaveIdioma llaveIdioma,int idUsuarioEjecutor,int idPagina)
                 {
-                    DataSet ds = sp.EjecutarProcedimiento();
-                    if (!this.DataSetDontHaveTable(ds))
+                    LlaveIdioma llaveIdiomaActualizada = null;
+                    Idioma idioma; Llave llave; Pagina pagina;
+                    SPIUS sp = new SPIUS("sp_trl_agregarLlaveIdioma");
+                    sp.agregarParametro("idLlave", llaveIdioma._llave._idLlave);
+                    sp.agregarParametro("idIdioma", llaveIdioma._idioma._idIdioma);
+                    sp.agregarParametro("traduccion", llaveIdioma._traduccion);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
                     {
-                        if (ds.Tables[0].Rows.Count > 0)
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
                         {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                if ((int)ds.Tables[0].Rows[0]["estadoInsert"] == 1)
+                                {
+                                    DataRow rowActualizada = ds.Tables[1].Rows[0];
+                                    idioma  = new Idioma((int)rowActualizada["idIdioma"],rowActualizada["idioma"].ToString());
+                                    pagina = new Pagina((int)rowActualizada["idPagina"],rowActualizada["pagina"].ToString(), (bool)rowActualizada["estado"]);
+                                    llave   = new Llave((int)rowActualizada["idLlave"],rowActualizada["llave"].ToString(),pagina);
+                                    llaveIdiomaActualizada = new LlaveIdioma((int)rowActualizada["idLlaveIdioma"],idioma,llave,rowActualizada["traduccion"].ToString());
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return llaveIdiomaActualizada;
+                }
+                public bool sp_trl_actualizarLlaveIdioma(int idLlaveIdioma,int idLlave,int idIdioma,string traduccion,int idUsuarioEjecutor, int idPagina)
+                {
+                    bool toReturn = false;
+                    ErroresIUS errorIUS;
+                    SPIUS sp = new SPIUS("sp_trl_actualizarLlaveIdioma");
+                    sp.agregarParametro("idLlaveIdioma",idLlaveIdioma);
+                    sp.agregarParametro("idLlave", idLlave);
+                    sp.agregarParametro("idIdioma", idIdioma);
+                    sp.agregarParametro("traduccion", traduccion);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
                             
-                            DataRow row = ds.Tables[0].Rows[0];
-                            if ((int)row["estadoUpdate"] == 1)
-                            {
-                                toReturn = true;
-                            }
-                            else
-                            {
-                                row = ds.Tables[1].Rows[0];
-                                errorIUS = new ErroresIUS("", ErroresIUS.tipoError.sql,(int)row["errorNumber"]);
-                                throw errorIUS;
+                                DataRow row = ds.Tables[0].Rows[0];
+                                if ((int)row["estadoUpdate"] == 1)
+                                {
+                                    toReturn = true;
+                                }
+                                else
+                                {
+                                    row = ds.Tables[1].Rows[0];
+                                    errorIUS = new ErroresIUS("", ErroresIUS.tipoError.sql,(int)row["errorNumber"]);
+                                    throw errorIUS;
+                                }
                             }
                         }
                     }
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return toReturn;
-            }
-            public bool sp_trl_eliminarLlaveIdioma(int idLlaveIdioma, int idUsuario, int idPagina)
-            {
-                bool estado = false;
-                SPIUS sp = new SPIUS("sp_trl_eliminarLlaveIdioma");
-                sp.agregarParametro("idLlaveIdioma", idLlaveIdioma);
-                sp.agregarParametro("idUsuarioEjecutor", idUsuario);
-                sp.agregarParametro("idPagina", idPagina);
-                try
-                {
-                    DataSet ds = sp.EjecutarProcedimiento();
-                    if (!this.DataSetDontHaveTable(ds))
+                    catch (ErroresIUS x)
                     {
-                        if (ds.Tables[0].Rows.Count > 0)
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return toReturn;
+                }
+                public bool sp_trl_eliminarLlaveIdioma(int idLlaveIdioma, int idUsuario, int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_trl_eliminarLlaveIdioma");
+                    sp.agregarParametro("idLlaveIdioma", idLlaveIdioma);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuario);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
                         {
-                            if ((int)ds.Tables[0].Rows[0]["estadoDelete"] == 1)
+                            if (ds.Tables[0].Rows.Count > 0)
                             {
-                                estado = true;
+                                if ((int)ds.Tables[0].Rows[0]["estadoDelete"] == 1)
+                                {
+                                    estado = true;
+                                }
                             }
                         }
                     }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
                 }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return estado;
-            }
-        #endregion 
+            #endregion
+        #endregion
         #region "Constructores"
             // mandando unicamente los identificadores
             public ControlLlaveIdioma(int pPagina,string pIdioma) // la p viene de "parametro"

@@ -111,9 +111,10 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
                 public LlaveIdioma sp_trl_agregarLlaveIdioma(LlaveIdioma llaveIdioma,int idUsuarioEjecutor,int idPagina)
                 {
                     LlaveIdioma llaveIdiomaActualizada = null;
+                    ControlLlaveIdioma control = new ControlLlaveIdioma();
                     try
                     {
-
+                        llaveIdiomaActualizada = control.sp_trl_agregarLlaveIdioma(llaveIdioma, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {

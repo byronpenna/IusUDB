@@ -13,6 +13,10 @@ namespace IUSLibs.TRL.Entidades
             public Pagina _pagina;
         #endregion
         #region "constructores"
+            public Llave(int idLlave)
+            {
+                this._idLlave = idLlave;
+            }
             public Llave(int idLlave,string llave,Pagina pagina)
             {
                 this._idLlave = idLlave;

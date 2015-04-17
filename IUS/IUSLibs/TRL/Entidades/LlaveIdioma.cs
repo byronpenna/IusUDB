@@ -21,6 +21,13 @@ namespace IUSLibs.TRL.Entidades
                 this._llave = llave;
                 this._traduccion = traduccion;
             }
+            // utilizado para ingresar
+            public LlaveIdioma(Idioma idioma,Llave llave,string traduccion)
+            {
+                this._idioma        = idioma;
+                this._llave         = llave;
+                this._traduccion    = traduccion;
+            }
             public LlaveIdioma()
             {
 
