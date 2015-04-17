@@ -50,7 +50,7 @@ namespace IUSBack.Controllers
         #endregion
         #region "ajax"
             #region "gets"
-                public ActionResult sp_trl_getLlaveFromPage()
+                public ActionResult sp_trl_getLlaveFromPageAndIdioma()
                 {
                     Dictionary<Object,Object> frm,respuesta = null;
                     frm = this.getAjaxFrm();
@@ -61,13 +61,15 @@ namespace IUSBack.Controllers
                         try
                         {
 
-                            List<Llave> llaves = this._model.sp_trl_getLlaveFromPage(Convert.ToInt32(frm["idPaginaFront"].ToString()), usuarioSession._idUsuario, this._idPagina);
+                            List<Llave> llaves = this._model.sp_trl_getLlaveFromPageAndIdioma(Convert.ToInt32(frm["idPaginaFront"].ToString()), Convert.ToInt32(frm["idIdioma"].ToString()), usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);
                             respuesta.Add("Llaves", llaves);
                         }
-                        catch (Exception)
+                        catch (Exception x)
                         {
                             respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 2);
+                            respuesta.Add("error", x);
                         }
                     }
                     else
@@ -84,11 +86,11 @@ namespace IUSBack.Controllers
                     if (frm != null && usuarioSession != null)// insistiendo que usuario deberia tener su propio manejo de error
                     {
                         respuesta = new Dictionary<Object, Object>();
-                        int idPagina = Convert.ToInt32(frm["idPagina"].ToString());
+                        int idLlaveIdioma = Convert.ToInt32(frm["idLlaveIdioma"].ToString());
                         List<Llave> llaves; List<Idioma> idiomas; List<Pagina> paginas;
                         try
                         {
-                            llaves = this._model.sp_trl_getLlaveFromPage(idPagina, usuarioSession._idUsuario, this._idPagina);
+                            llaves = this._model.sp_trl_getLlaveFromLlaveIdioma(idLlaveIdioma, usuarioSession._idUsuario, this._idPagina);
                             idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                             paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("llaves", llaves);
@@ -115,6 +117,22 @@ namespace IUSBack.Controllers
                 }
             #endregion 
             #region "acciones"
+                public ActionResult sp_trl_agregarLlaveIdioma()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    frm = this.getAjaxFrm();
+                    LlaveIdioma llaveIdioma;
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null)
+                    {
+
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_trl_eliminarLlaveIdioma()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -122,6 +140,7 @@ namespace IUSBack.Controllers
                     Usuario usuarioSession = this.getUsuarioSesion();
                     if (frm != null && usuarioSession != null) 
                     {
+                        respuesta = new Dictionary<object, object>();
                         try
                         {
                             bool elimino = this._model.sp_trl_eliminarLlaveIdioma(Convert.ToInt32(frm["idLlaveIdioma"]), usuarioSession._idUsuario, this._idPagina);
@@ -131,7 +150,9 @@ namespace IUSBack.Controllers
                             }
                             else
                             {
-
+                                respuesta.Add("estado", false);
+                                respuesta.Add("errorType", 3);
+                                respuesta.Add("error", "Error no controlado");
                             }
                         }
                         catch (ErroresIUS x)

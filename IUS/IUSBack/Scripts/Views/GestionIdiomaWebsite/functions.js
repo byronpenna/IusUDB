@@ -51,7 +51,12 @@
         frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();
         console.log("el formulario a enviar es",frm);
         actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_eliminarLlaveIdioma", frm, function (data) {
-
+            console.log("la data devuelta por el servidor es:", data);
+            if (data.estado) {
+                tr.remove();
+            } else {
+                alert("Ocurrio un error al tratar de eliminar registro");
+            }
         });
     }
     function btnActualizar(tr) {
@@ -71,7 +76,7 @@
     function btnEditarTraduccion(tr) {
         controlesEdit(true, tr);
         var frm = new Object();
-        frm.idPagina = tr.find(".txtHdIdPagina").val();
+        frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();
         console.log("El formulario a enviar es", frm);
         //
         // llenar los controles
@@ -103,16 +108,19 @@
         
     }
     function btnAgregarLlave(frm) {
-        /*actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_getLlaveFromPage", frm, function (data) {
+        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_agregarLlaveIdioma", frm, function (data) {
             if (data.estado) {
 
             } else {
                 alert(data.mensaje); // a partir de hoy los mensajes vendran del servidor
             }
-        });*/
+        });
+    }
+    function cbIdioma(frm) {
+        cbPagina(frm);
     }
     function cbPagina(frm) {
-        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_getLlaveFromPage", frm, function (data) {
+        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_getLlaveFromPageAndIdioma", frm, function (data) {
             console.log("la data del servidor es:",data);
             if (data.estado) {
                 options = fillSelectLlave(data.Llaves);

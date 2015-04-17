@@ -13,8 +13,8 @@
                 var frm = new Object();
                 frm.idLlave     = $(".cbLlave").val();
                 frm.idIdioma    = $(".cbIdioma").val();
-                frm.traduccion = $(".txtAreaTraduccion").val();
-                console.log(frm);
+                frm.traduccion  = $(".txtAreaTraduccion").val();
+                console.log("formulario a enviar es",frm);
                 btnAgregarLlave(frm)
             });
             $(document).on("click", ".btnCancelarEdit", function () {
@@ -43,9 +43,16 @@
                 }
             });
         // change
+            $(document).on("change", ".cbIdioma", function () {
+                var frm = new Object();
+                frm.idPaginaFront   = $(".cbPagina").val();
+                frm.idIdioma        = $(this).val();
+                cbIdioma(frm);
+            });
             $(document).on("change", ".cbPagina", function () {
                 var frm = new Object();
-                frm.idPaginaFront = $(this).val();
+                frm.idPaginaFront   = $(this).val();
+                frm.idIdioma        = $(".cbIdioma").val();
                 cbPagina(frm);
             });
             

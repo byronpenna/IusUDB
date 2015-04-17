@@ -16,61 +16,79 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
             
         #endregion
         #region "funciones publicas"
-            
-            public List<Idioma> sp_trl_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
-            {
-                ControlIdioma control = new ControlIdioma();
-                List<Idioma> idiomas = null;
-                try{
-                     idiomas = control.sp_trl_getAllIdiomas(idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS)
+            #region "gets
+                public List<Idioma> sp_trl_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
                 {
+                    ControlIdioma control = new ControlIdioma();
+                    List<Idioma> idiomas = null;
+                    try{
+                         idiomas = control.sp_trl_getAllIdiomas(idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS)
+                    {
 
-                }
-                catch (Exception)
-                {
+                    }
+                    catch (Exception)
+                    {
 
+                    }
+                    return idiomas;
                 }
-                return idiomas;
-            }
-            public List<Pagina> sp_trl_getAllPaginas(int idUsuarioEjecutor,int idPagina)
-            {
-                ControlPagina control = new ControlPagina();
-                List<Pagina> paginas = null ;
-                try
+                public List<Pagina> sp_trl_getAllPaginas(int idUsuarioEjecutor,int idPagina)
                 {
-                    paginas = control.sp_trl_getAllPaginas(idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS)
-                {
+                    ControlPagina control = new ControlPagina();
+                    List<Pagina> paginas = null ;
+                    try
+                    {
+                        paginas = control.sp_trl_getAllPaginas(idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS)
+                    {
 
-                }
-                catch (Exception)
-                {
+                    }
+                    catch (Exception)
+                    {
 
+                    }
+                    return paginas;
                 }
-                return paginas;
-            }
-            public List<Llave> sp_trl_getLlaveFromPage(int idPaginaFront, int idUsuarioEjecutor, int idPagina)
-            {
-                List<Llave> llaves =null;
-                ControlLlave control = new ControlLlave();
-                try
+                public List<Llave> sp_trl_getLlaveFromLlaveIdioma(int idLlaveIdioma, int idUsuarioEjecutor, int idPagina)
                 {
-                    llaves = control.sp_trl_getLlaveFromPage(idPaginaFront, idUsuarioEjecutor, idPagina);
+                    List<Llave> llaves = null;
+                    ControlLlave control = new ControlLlave();
+                    try
+                    {
+                        llaves = control.sp_trl_getLlaveFromLlaveIdioma(idLlaveIdioma, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return llaves;
                 }
-                catch (ErroresIUS x)
+                public List<Llave> sp_trl_getLlaveFromPageAndIdioma(int idPaginaFront, int idIdioma, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+                    List<Llave> llaves =null;
+                    ControlLlave control = new ControlLlave();
+                    try
+                    {
+                        llaves = control.sp_trl_getLlaveFromPageAndIdioma(idPaginaFront,idIdioma, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return llaves;
                 }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return llaves;
-            }
-            public List<LlaveIdioma> sp_trl_tablitaGestionTraduccion(int idUsuarioEjecutor,int idPagina)
+                public List<LlaveIdioma> sp_trl_tablitaGestionTraduccion(int idUsuarioEjecutor,int idPagina)
             {
                 ControlLlaveIdioma control = new ControlLlaveIdioma();
                 List<LlaveIdioma> llavesIdioma = null;
@@ -88,42 +106,63 @@ namespace IUSBack.Models.Page.GestionIdiomaWebsite.Acciones
                 }
                 return llavesIdioma;
             }
-            public bool sp_trl_actualizarLlaveIdioma(int idLlaveIdioma,int idLlave,int idIdioma,string traduccion,int idUsuarioEjecutor,int idPagina)
-            {
-                bool toReturn = false;
-                ControlLlaveIdioma control = new ControlLlaveIdioma();
-                try
+            #endregion
+            #region "acciones"
+                public LlaveIdioma sp_trl_agregarLlaveIdioma(LlaveIdioma llaveIdioma,int idUsuarioEjecutor,int idPagina)
                 {
-                    toReturn = control.sp_trl_actualizarLlaveIdioma(idLlaveIdioma,idLlave,idIdioma,traduccion,idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS)
-                {
+                    LlaveIdioma llaveIdiomaActualizada = null;
+                    try
+                    {
 
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return llaveIdiomaActualizada;
                 }
-                catch (Exception)
+                public bool sp_trl_actualizarLlaveIdioma(int idLlaveIdioma,int idLlave,int idIdioma,string traduccion,int idUsuarioEjecutor,int idPagina)
                 {
+                    bool toReturn = false;
+                    ControlLlaveIdioma control = new ControlLlaveIdioma();
+                    try
+                    {
+                        toReturn = control.sp_trl_actualizarLlaveIdioma(idLlaveIdioma,idLlave,idIdioma,traduccion,idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS)
+                    {
 
-                }
-                return toReturn;
-            }
-            public bool sp_trl_eliminarLlaveIdioma(int idLlaveIdioma, int idUsuario, int idPagina)
-            {
-                bool toReturn = false;
-                try
-                {
+                    }
+                    catch (Exception)
+                    {
 
+                    }
+                    return toReturn;
                 }
-                catch (ErroresIUS x)
+                public bool sp_trl_eliminarLlaveIdioma(int idLlaveIdioma, int idUsuario, int idPagina)
                 {
-                    throw x;
-                }catch(Exception x)
-                {
-                    throw x;
+                    bool toReturn = false;
+                    ControlLlaveIdioma control = new ControlLlaveIdioma();
+                    try
+                    {
+                        toReturn = control.sp_trl_eliminarLlaveIdioma(idLlaveIdioma, idUsuario, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }catch(Exception x)
+                    {
+                        throw x;
+                    }
+                    return toReturn;
                 }
-                return toReturn;
-            }
-        #endregion 
-        #region
+            #endregion
+        #endregion
+        #region "constructores"
             public GestionIdiomaWebsiteModel()
             {
 
