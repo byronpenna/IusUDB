@@ -77,6 +77,59 @@ namespace IUSLibs.SEC.Control
                 }
                 return permiso;
             }
+            public Permiso sp_trl_getAllPermisoPagina(int idUsuarioEjecutor,int idPagina)
+            {
+                Permiso permisos = null;
+                SPIUS sp = new SPIUS("sp_trl_getAllPermisoPagina");
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                bool crear=false, editar=false, eliminar = false, ver = false;
+                try
+                {
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
+                    {
+                        if(ds.Tables[0].Rows.Count>0){
+                            foreach (DataRow row in ds.Tables[0].Rows)
+                            {
+                                switch ((int)row["permiso"])
+                                {
+                                    case 1:
+                                        {
+                                            crear = true;
+                                            break;
+                                        }
+                                    case 2:
+                                        {
+                                            editar = true;
+                                            break;
+                                        }
+                                    case 3:
+                                        {
+                                            eliminar = true;
+                                            break;
+                                        }
+                                    case 4:
+                                        {
+                                            ver = true;
+                                            break;
+                                        }
+                                }
+                            }
+                        }
+                        permisos = new Permiso(crear, editar, eliminar, ver);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return permisos;
+            }
         #endregion
         #region "contructores"
         #endregion

@@ -148,7 +148,25 @@ namespace IUSBack.Models.General
                     }
                     return toReturn;
                 }
-                public bool tienePermiso(int idUsuario, int idPagina, permisos nivelPermiso)
+            public Permiso sp_trl_getAllPermisoPagina(int idUsuarioEjecutor, int idPagina)
+            {
+                Permiso permisos = null;
+                ControlPermiso control = new ControlPermiso();
+                try
+                {
+                    permisos = control.sp_trl_getAllPermisoPagina(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return permisos;
+            }
+            public bool tienePermiso(int idUsuario, int idPagina, permisos nivelPermiso)
                 {
                     bool toReturn = false;
                     int idPermiso = this.getNumPermiso(nivelPermiso);

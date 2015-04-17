@@ -81,7 +81,6 @@ namespace IUSBack.Controllers
                 }
                 return toReturn;
             }
-
             public int[] convertArrAjaxToInt(Object[] frm)
             {
                 int[] toReturn = new int[frm.Length];
@@ -93,7 +92,7 @@ namespace IUSBack.Controllers
                 }
                 return toReturn;
             }
-
+            
         #endregion
         #region "contructores"
             public PadreController()
