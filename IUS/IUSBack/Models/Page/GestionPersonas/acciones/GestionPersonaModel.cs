@@ -78,7 +78,45 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 }
                 return toReturn;
             }
-            
+            public Dictionary<Object, Object> actualizarPersona(List<Persona> personas, int idUsuarioEjecutor, int idPagina)
+            {
+                Dictionary<object, object> respuesta = new Dictionary<object,object>();
+                List<Persona> personasActualizadas = new List<Persona>();
+                bool estadoIndividual = true; bool estadoUniversal;
+                Persona perso;
+                foreach (Persona persona in personas)
+                {
+                    try
+                    {
+                        perso = this._control.actualizarPersona(persona, idUsuarioEjecutor, idPagina);
+                        if (perso == null)
+                        {
+                            estadoIndividual = false;
+                        }
+                        personasActualizadas.Add(perso);
+                    }
+                    catch (ErroresIUS)
+                    {
+                        estadoIndividual = false;
+                    }
+                    catch (Exception)
+                    {
+                        estadoIndividual = false;
+                    }
+                }
+                if (personasActualizadas.Count == 0)
+                {
+                    estadoUniversal = false;
+                }
+                else
+                {
+                    estadoUniversal = true;
+                }
+                respuesta.Add("estado", estadoUniversal);
+                respuesta.Add("estadoIndividual", estadoIndividual);
+                respuesta.Add("personas", personasActualizadas);
+                return respuesta;
+            }
         #endregion
         #region "contructores"
             public GestionPersonaModel()

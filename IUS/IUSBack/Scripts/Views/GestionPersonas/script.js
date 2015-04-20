@@ -10,6 +10,10 @@
             btnAgregarPersona(tr);
         })
     // actualizar 
+        $(document).on("click", ".btnActualizarTodo", function () {
+            tabla = $(this).parents("table");
+            btnActualizarTodo(tabla);
+        });
         $(document).on("click", ".btnActualizar", function () {
             var x = confirm("¿Esta seguro que desea actualizar esta persona?");
             trPersona = $(this).parents(".trPersona");

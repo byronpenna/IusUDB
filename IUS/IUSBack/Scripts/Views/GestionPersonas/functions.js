@@ -53,8 +53,22 @@
                 controlesEdit(false, trPersona); // deshabilitar la edicion
             }
         });
-        
-
+    }
+    function btnActualizarTodo(tabla) {
+        accionActualizarGeneral(tabla, "GestionPersonas/actualizarTodo", function (data, frm) {
+            console.log("formulario enviado", frm);
+            console.log("respuesta", data);
+            if (data.estado) {
+                $.each(data.personas, function (i,val) {
+                    tr = getEdit(tabla, ".txtHdIdPersona", val._idPersona);
+                    tr = tr.parents("tr");
+                    actualizarTrTabla(tr, val);
+                    controlesEdit(false, tr);
+                });
+            } else {
+                alert("Ocurrio un error al intentar actualizar todo");
+            }
+        });
     }
 //edit 
     function editMode(trPersona) {

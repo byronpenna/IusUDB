@@ -10,6 +10,10 @@
             chosen.val(selectedVal).trigger("chosen:updated");
         }
 // tabla
+    function getEdit(tabla, objFind, val) {
+        retorno = tabla.find(objFind + "[value='" + val + "']");
+        return retorno;
+    }
     function clearTr(tr){
         tr.find(INPUTS).each(function (i) {
             $(this).val("");
@@ -35,6 +39,23 @@
         } else {
             return false;
         }
+    }
+    function accionActualizarGeneral(tabla, ajaxUrl, callback) {
+        var x = confirm("¿Esta seguro que desea actualizar todo?");
+        if (x) {
+            actualizarGeneral(tabla, ajaxUrl, callback);
+        }
+    }
+    function actualizarGeneral(tabla, ajaxUrl, callback) {
+        var frm = new Array(); // formulario a enviar 
+        tabla.find("tr.trEdit").each(function (i, val) {
+            obj = serializeSection($(this));
+            frm[i] = obj;
+        });
+        console.log("formulario a enviar es:", frm);
+        actualizarCatalogo(ajaxUrl, frm, function (data) {
+            callback(data, frm);
+        });
     }
     function cancelarControlGlobal() {
         if (!$(".controlGlobal").hasClass("hidden")) {

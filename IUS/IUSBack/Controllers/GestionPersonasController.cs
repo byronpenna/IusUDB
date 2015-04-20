@@ -45,13 +45,48 @@ namespace IUSBack.Controllers
                 }
             }
         #endregion
+        #region "privadas"
+            private Persona getPersonaFromForm(Dictionary<object,object> frm){ 
+                Persona persona = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                return persona;
+            }
+            private List<Persona> getPersonaFromForm(List<Dictionary<object,object>> frms){
+                List<Persona> personas = new List<Persona>();
+                Persona persona;
+                foreach (Dictionary<object, object> frm in frms)
+                {
+                    persona = this.getPersonaFromForm(frm);
+                    personas.Add(persona);
+                }
+                return personas;
+            }
+        #endregion
         #region "ajax action"
             [HttpPost]
+            public ActionResult actualizarTodo()
+            {
+                List<Dictionary<object, object>> frm;
+                Dictionary<object, object> respuesta = null;
+                frm = this.getListAjaxFrm();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (frm != null && usuarioSession != null)
+                {
+                    List<Persona> personasActualizar = this.getPersonaFromForm(frm);
+                    respuesta = this._model.actualizarPersona(personasActualizar,usuarioSession._idUsuario,this._idPagina);
+
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+            [HttpPost]
             public ActionResult getJSONPersonas()
-        {
-            List<Persona> personas = this._model.getPersonas();
-            return Json(personas);
-        }
+            {
+                List<Persona> personas = this._model.getPersonas();
+                return Json(personas);
+            }
             [HttpPost]
             public ActionResult actualizarPersona()
             {

@@ -85,27 +85,6 @@
         });
     }
 // Actualizar
-    function accionActualizarGeneral(tabla,ajaxUrl,callback) {
-        var x = confirm("¿Esta seguro que desea actualizar todo?");
-        if (x) {
-            actualizarGeneral(tabla,ajaxUrl,callback);
-        }
-    }
-    function actualizarGeneral(tabla,ajaxUrl,callback) {
-        var frm = new Array(); // formulario a enviar 
-        tabla.find("tr.trEdit").each(function (i, val) {
-            obj = serializeSection($(this));
-            frm[i] = obj;
-        });
-        console.log("formulario a enviar es:", frm);
-        actualizarCatalogo(ajaxUrl, frm, function (data) {
-            callback(data,frm);
-        });
-    }
-    function getEdit(tabla, objFind, val) {
-        retorno = tabla.find(objFind + "[value='" + val + "']");
-        return retorno;
-    }
     function actualizar(trUsuario) {
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
         actualizarCatalogo("GestionUsuarios/actualizarUsuario", frm, function (data) {
