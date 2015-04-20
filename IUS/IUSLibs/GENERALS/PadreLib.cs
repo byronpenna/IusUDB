@@ -27,7 +27,7 @@ namespace IUSLibs.GENERALS
                 }
                 return toReturn;
             }
-            protected DataTableCollection HaveTables(DataSet ds)
+            protected DataTableCollection getTables(DataSet ds)
             {
                 DataTableCollection tables = null;
                 if (!this.DataSetDontHaveTable(ds))

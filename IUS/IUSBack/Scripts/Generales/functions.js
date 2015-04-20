@@ -1,4 +1,6 @@
-﻿// plugins 
+﻿// Constantes 
+    var INPUTS = "input,select,textarea";
+// plugins 
     // chosen
         function resetChosen(chosen) {
             //chosen.val('').trigger("liszt:updated");
@@ -8,6 +10,11 @@
             chosen.val(selectedVal).trigger("chosen:updated");
         }
 // tabla
+    function clearTr(tr){
+        tr.find(INPUTS).each(function (i) {
+            $(this).val("");
+        });
+    }
     function cambioBackgroundColorTr(selector,color,activeClass) {
         $("" + selector + selector).css("background", "none");
         var classNombre = activeClass.substr(1, activeClass.length);

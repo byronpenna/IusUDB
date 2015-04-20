@@ -130,7 +130,7 @@ namespace IUSLibs.SEC.Control
                     try
                     {
                         DataSet ds = sp.EjecutarProcedimiento();
-                        DataTableCollection tablas = this.HaveTables(ds);
+                        DataTableCollection tablas = this.getTables(ds);
                         if (tablas != null)
                         {
                             DataTable tb = tablas[1];

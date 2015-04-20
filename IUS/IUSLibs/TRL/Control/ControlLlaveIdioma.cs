@@ -39,7 +39,7 @@ namespace IUSLibs.TRL.Control
                 }
                 catch (Exception x)
                 {
-                    throw new Exception("Error no controlado");
+                    throw x;
                 }
                 DataTable tb = ds.Tables[0];
                 foreach (DataRow row in tb.Rows)

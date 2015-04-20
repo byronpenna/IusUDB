@@ -18,6 +18,33 @@ namespace IUSLibs.SEC.Control
             public Persona sp_hm_agregarPersona(Persona persona,int idUsuarioEjecutor,int idPagina)
             {
                 Persona personaAgregada = null;
+                SPIUS sp = new SPIUS("sp_hm_agregarPersona");
+                sp.agregarParametro("nombres",persona._nombres);
+                sp.agregarParametro("apellidos", persona._apellidos);
+                sp.agregarParametro("fechaNacimiento", persona._fechaNacimiento);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    DataTableCollection tables = this.getTables(ds);
+                    if (tables != null)
+                    {
+                        if ((int)tables[0].Rows[0]["estadoInsert"] == 1)
+                        {
+                            DataRow rowPersona = tables[1].Rows[0];
+                            personaAgregada = new Persona((int)rowPersona["idPersona"], rowPersona["nombres"].ToString(), rowPersona["apellidos"].ToString(), (DateTime)rowPersona["fecha_nacimiento"]);
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
                 return personaAgregada;
             }
             public Persona actualizarPersona(Persona persona,int idUsuario,int idPagina)
