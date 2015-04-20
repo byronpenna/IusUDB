@@ -37,6 +37,12 @@ namespace IUSLibs.SEC.Entidades
             {
                 this._idRol = idRol;
             }
+            // para agregar, no se necesita ID 
+            public Rol(String rol, bool estado)
+            {
+                this._rol = rol;
+                this._estado = estado;
+            }
         #endregion    
     }
 }

@@ -36,6 +36,18 @@ namespace IUSLibs.GENERALS
                 }
                 return tables;
             }
+            protected bool objToBool(string val)
+            {
+                int ival = Convert.ToInt32(val);
+                if (ival <= 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         #endregion
     }
 }

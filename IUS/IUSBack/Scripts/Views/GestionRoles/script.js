@@ -72,6 +72,12 @@
                          quitarSubMenuArol(trSubmenu);
                     }
                 });
+            // tab3
+                $(document).on("click", ".btnAgregarRol", function () {
+                    tr = $(this).parents("tr");
+                    
+                    btnAgregarRol(tr);
+                });
         // change
             // tab1
                 $(document).on("change", ".cbUsuarios", function () {

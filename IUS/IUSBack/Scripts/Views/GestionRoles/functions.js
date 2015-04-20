@@ -1,6 +1,4 @@
 ﻿function btnAsignarSubmenu(frm) {
-    console.log("formulario antes de enviar", frm);
-    
     cargarObjetoGeneral("GestionRoles/agregarRolSubMenu", frm, function (data) {
         console.log("la respuesta del servidor es despues de agregar:", data);
         if (data.estado) {
@@ -13,7 +11,6 @@
             alert("ocurio un error al tratar de ingresar");
         }
     })
-    
 }
 function btnAsignarPermiso(frm) {
     cargarObjetoGeneral("GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
@@ -167,6 +164,7 @@ function changeRolTab2(frm) {
         }
     });
 }
+// este le asigna los roles al usuario
 function agregarRoles(frm) {
     cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
         if (data.estado) {
@@ -181,6 +179,7 @@ function agregarRoles(frm) {
         }
     });
 }
+
 function desasociarRol(frm, trUsuarioRol) {
     actualizarCatalogo("/GestionRoles/desasociarRolUsuario", frm, function (data) {
         if (data) {
@@ -236,3 +235,53 @@ function llenarTablaRolesUsuario(idUsuario) {
         
     });
 }
+// genericas
+    function getTrRol(rol){
+        tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input type='hidden' name='txtHdIdRol' class='txtHdIdRol' value='"+ rol._idRol + "' />\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <input type='text' name='txtRol' class='txtRol form-control'  />\
+                    </div>\
+                    <div class='normalMode tdRol' >\
+                        "+ rol._rol + "\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='normalMode'>\
+                        "+ rol.stringEstado + "\
+                    </div>\
+                </td>\
+                <td>\
+                    <button class='btn btn-xs' >\
+                        Editar\
+                    </button>\
+                </td>\
+            </tr>\
+        ";
+        return tr;
+    }
+    // hace un insert directo a la tabla roles
+    function agregarRol(frm,tbody,trInsert) {
+        cargarObjetoGeneral("GestionRoles/sp_sec_addRol", frm, function (data) {
+            console.log("la respuesta del server es", data)
+            if (data.estado) {
+                tr = getTrRol(data.rol);
+                tbody.prepend(tr);
+                clearTr(trInsert);
+                $(".txtEstado").val("Activo");
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
+    }
+// acciones script 
+    function btnAgregarRol(tr) {
+        frm = serializeSection(tr);
+        tbody = tr.parents("table").find("tbody");
+        console.log("el formulario a enviar es", frm);
+        agregarRol(frm,tbody,tr);
+    }

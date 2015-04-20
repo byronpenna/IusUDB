@@ -48,8 +48,7 @@ namespace IUSBack.Controllers
                     return RedirectToAction("index", "login");
                 }
             }
-        #endregion
-        
+        #endregion   
         #region "ajax functions"
             
             #region "traer"
@@ -322,6 +321,51 @@ namespace IUSBack.Controllers
                                 {
                                     respuesta.Add("estado", false);
                                 }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
+                    [HttpPost]
+                    public ActionResult sp_sec_addRol()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        Rol rol,rolAgregar = new Rol(frm["txtRol"].ToString(), true); // Que sentido tendra agregar un rol inactivo D: 
+                        if (frm != null && usuarioSession != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            // poner un try y catch
+                            try
+                            {
+                                rol = this._model.sp_sec_addRol(rolAgregar, usuarioSession._idUsuario, this._idPagina);
+                                if (rol != null)
+                                {
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("rol", rol);
+                                }
+                                else
+                                {
+                                    respuesta.Add("estado", false);
+                                    respuesta.Add("errorType", 3);
+                                    respuesta.Add("error", "Ocurrio un error inesperado");
+                                }
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                respuesta.Add("estado", false);
+                                respuesta.Add("errorType", 1);
+                                respuesta.Add("error", x);
+                            }
+                            catch (Exception x)
+                            {
+                                respuesta.Add("estado", false);
+                                respuesta.Add("errorType", 2);
+                                respuesta.Add("error", x);
+                            }
                         }
                         else
                         {

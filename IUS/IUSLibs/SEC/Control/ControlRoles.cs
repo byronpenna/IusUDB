@@ -61,6 +61,7 @@ namespace IUSLibs.SEC.Control
                     }
                     return toReturn;
                 }
+                // esta funcion solo asigna rol a usuario
                 public bool agregarRoles(int[] roles,int idUsuario,int idUsuarioEjecutor,int idPagina){
                     bool toReturn = false;
                     SPIUS sp = new SPIUS("sp_usu_asociarRol");
@@ -77,14 +78,37 @@ namespace IUSLibs.SEC.Control
                     toReturn = sp.ejecutarInsertMultiple();
                     return toReturn;
                 }
+                // esta funcion si agrega a tabla roles
+                public Rol sp_sec_addRol(Rol rolAgregar,int idUsuarioEjecutor,int idPagina)
+                {
+                    Rol rol = null;
+                    SPIUS sp = new SPIUS("sp_sec_addRol");
+                    sp.agregarParametro("rol", rolAgregar._rol);
+                    sp.agregarParametro("estado", rolAgregar._estado);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        DataTableCollection tables = this.getTables(ds);
+                        if (tables != null && (int)tables[0].Rows[0]["estadoInsert"] == 1)
+                        {
+                            DataRow rowRol = tables[1].Rows[0];
+                            rol = new Rol((int)rowRol["idRol"],rowRol["rol"].ToString(),(bool)rowRol["estado"]);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return rol;
+                }
             #endregion
             #region "traer"
-                public Permiso getPermisosSubmenuRol()
-                {
-                    Permiso permiso = null;
-
-                    return permiso;
-                }
                 public List<Submenu> getSubMenuRol(int idRol,int idUsuarioEjecutor,int idPagina)
                 {
                     /*

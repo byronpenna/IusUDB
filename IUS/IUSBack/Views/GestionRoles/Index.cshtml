@@ -31,7 +31,10 @@
             <a href="#tab-1">Asignar roles</a>
         </li>
         <li>
-            <a href="#tab-2">Administracion de Roles</a>
+            <a href="#tab-2">Permisos roles</a>
+        </li>
+        <li>
+            <a href="#tab-3">Administracion de roles</a>
         </li>
     </ul>
     <div id="tab-1" class="tab">
@@ -174,5 +177,64 @@
             </div>
             
         </div>
+    </div>
+    <div id="tab-3">
+        <h2>Gestion de roles</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>
+                        Rol 
+                    </td>
+                    <td>
+                        Estado
+                    </td>
+                    <td>
+                        Acciones
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input  type="text" name="txtRol" class="form-control"/>
+                    </td>
+                    <td>
+                        <input type="text" name="txtEstado" class="form-control txtEstado" value="Activo" disabled />
+                    </td>
+                    <td>
+                        <button class="btn btn-xs btn-primary btnAgregarRol">
+                            Crear
+                        </button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Rol rol in roles)
+                {
+                    <tr>
+                        <td class="hidden">
+                            <input type="hidden" name="txtHdIdRol" class="txtHdIdRol" value="@rol._idRol" />
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <input type="text" name="txtRol" class="txtRol form-control"  />
+                            </div>
+                            <div class="normalMode tdRol" >
+                                @rol._rol
+                            </div>
+                        </td>
+                        <td>
+                            <div class="normalMode">
+                                @rol.stringEstado
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-xs" >
+                                Editar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>

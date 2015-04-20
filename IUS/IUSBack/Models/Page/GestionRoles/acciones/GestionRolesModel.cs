@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +7,7 @@ using System.Web;
 // librerias externas
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.LOGS;
 namespace IUSBack.Models.Page.GestionRoles.acciones
 {
     public class GestionRolesModel:PadreModel
@@ -54,11 +55,30 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                     bool toReturn = this._control.quitarSubmenu(idSubMenu, idRol, idUsuarioEjecutor, idPagina);
                     return toReturn;
                 }
+                // esta funcion unicamente asigna el rol al usuario 
                 public Boolean agregarRoles(int[] rolesAgregar, int idUsuario, int idUsuarioEjecutor, int idPagina)
                 {
                     bool toReturn = false;
                     toReturn = this._control.agregarRoles(rolesAgregar, idUsuario, idUsuarioEjecutor, idPagina);
                     return toReturn;
+                }
+                // esta funcion si agrega a la tabla "roles"
+                public Rol sp_sec_addRol(Rol rolAgregar,int idUsuarioEjecutor,int idPagina)
+                {
+                    Rol rol = null;
+                    try
+                    {
+                        rol = this._control.sp_sec_addRol(rolAgregar, idUsuarioEjecutor , idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return rol;
                 }
                 public Boolean desasociarRol(int idRol, int idUsuario)
                 {
