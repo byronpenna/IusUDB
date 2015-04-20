@@ -20,7 +20,7 @@ namespace IUSBack.Controllers
         public enum paginas
         {
             usuarios = 3,gestionRoles = 5,
-            gestionPersonas=4,gestionIdiomaWebsite = 7
+            gestionPersonas=4,gestionIdiomaWebsite = 7,configuracionFront = 8
         }
         protected JavaScriptSerializer _jss;
         #endregion

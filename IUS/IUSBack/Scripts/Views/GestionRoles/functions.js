@@ -256,9 +256,10 @@ function llenarTablaRolesUsuario(idUsuario) {
                     </div>\
                 </td>\
                 <td>\
-                    <button class='btn btn-xs' >\
+                    <button class='btn btn-xs btnEditar' >\
                         Editar\
                     </button>\
+                    <button class='btn btn-xs btnEliminar'>Eliminar<button>\
                 </td>\
             </tr>\
         ";
@@ -287,7 +288,18 @@ function llenarTablaRolesUsuario(idUsuario) {
             }
         });
     }
+    
 // acciones script 
+    function btnActualizar(tr) {
+        frm = serializeSection(tr);
+        cargarObjetoGeneral("GestionRoles/", frm, function (data) {
+
+        });
+    }
+    function btnEditar(tr) {
+        txtRol = tr.find(".tdRol").text();
+        tr.find(".txtRol").val(txtRol);
+    }
     function btnEliminar(tr) {
         frm = serializeSection(tr);
         console.log("el formulario a enviar es:", frm);

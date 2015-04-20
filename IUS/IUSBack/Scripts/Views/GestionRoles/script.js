@@ -84,6 +84,23 @@
                         btnEliminar(tr);
                     }
                 })
+                // edicion 
+                    $(document).on("click", ".btnActualizar", function () {
+                        tr = $(this).parents("tr");
+                        btnActualizar(tr);
+                    });
+                    $(document).on("click", ".btnEditar", function () {
+                        var x = confirm("¿Esta seguro que desea editar este rol?");
+                        tr = $(this).parents("tr");
+                        if (x) {
+                            btnEditar(tr);
+                            controlesEdit(true, tr);
+                        }
+                    });
+                    $(document).on("click", ".btnCancelarEdit", function () {
+                        tr = $(this).parents("tr");
+                        cancelarEdicion(tr);
+                    });
         // change
             // tab1
                 $(document).on("change", ".cbUsuarios", function () {

@@ -89,6 +89,13 @@
         }
 
     }
+    function cancelarEdicion(tr) {
+        var x = confirm("¿Esta seguro que desea cancelar la edicion?");
+        if (x) {
+            clearTr(tr);
+            controlesEdit(false, tr);
+        }
+    }
 // updates 
     function actualizarCatalogo(urlAjax,frm,callback) {
         $.ajax({

@@ -409,6 +409,9 @@ namespace IUSBack.Controllers
                         return Json(respuesta);
                     }
                 #endregion
+                #region "editar"
+                    //public ActionResult 
+                #endregion
             #endregion
         #endregion
     }

@@ -181,6 +181,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ConfiguracionWebsiteController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\GestionIdiomaWebsiteController.cs" />
     <Compile Include="Controllers\GestionPersonasController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Page\ConfiguracionWebsite\Acciones\ConfiguracionWebsiteModel.cs" />
     <Compile Include="Models\Page\Errors\ErrorsModel.cs" />
     <Compile Include="Models\Page\GestionIdiomaWebsite\Acciones\GestionIdiomaWebsiteModel.cs" />
     <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
@@ -209,6 +211,8 @@
   <ItemGroup>
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
@@ -250,6 +254,8 @@
     <Content Include="Scripts\Generales\jquery-2.1.3.js" />
     <Content Include="Scripts\Generales\jquery-2.1.3.min.js" />
     <Content Include="Scripts\Generales\script.js" />
+    <Content Include="Scripts\Views\ConfiguracionWebsite\functions.js" />
+    <Content Include="Scripts\Views\ConfiguracionWebsite\script.js" />
     <Content Include="Scripts\Views\GestionIdiomaWebsite\functions.js" />
     <Content Include="Scripts\Views\GestionIdiomaWebsite\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\functions.js" />
@@ -342,6 +348,7 @@
     <Content Include="Views\GestionPersonas\Index.cshtml" />
     <Content Include="Views\GestionRoles\Index.cshtml" />
     <Content Include="Views\GestionIdiomaWebsite\Index.cshtml" />
+    <Content Include="Views\ConfiguracionWebsite\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

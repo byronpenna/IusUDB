@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
+// librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
 namespace IUSBack.Controllers
