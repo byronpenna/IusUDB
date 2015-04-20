@@ -1,12 +1,41 @@
 ﻿@section scriptsPersonalizados{
+    <!-- plugins -->
+        <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css" />
     <!-- propios -->
         <script src="~/Scripts/Views/ConfiguracionWebsite/script.js"></script>
         <script src="~/Scripts/Views/ConfiguracionWebsite/functions.js"></script>
 }
 @section estilosPersonalizados{
+    <!-- plugins -->
+        <!-- Tabs -->
+            <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/media.css" />
 }
 <h2>Configuracion del sitio web</h2>
 
+<div id="horizontalTab">
+    <ul class="ulTabGeneral">
+        <li>
+            <a href="#tab-1">Redes sociales</a>
+        </li>
+        <li>
+            <a href="#tab-2">Otros ajustes</a>
+        </li>
+    </ul>
+    <div id="tab-1" class="tab">
+        
+        <table class="table">
+            <thead>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div id="tab-2" class="tab">
+        Otros ajustes
+    </div>
+</div>
