@@ -75,9 +75,15 @@
             // tab3
                 $(document).on("click", ".btnAgregarRol", function () {
                     tr = $(this).parents("tr");
-                    
                     btnAgregarRol(tr);
                 });
+                $(document).on("click", ".btnEliminar", function () {
+                    tr = $(this).parents("tr");
+                    var x = confirm("¿Esta seguro que desea eliminar este rol?");
+                    if (x) {
+                        btnEliminar(tr);
+                    }
+                })
         // change
             // tab1
                 $(document).on("change", ".cbUsuarios", function () {

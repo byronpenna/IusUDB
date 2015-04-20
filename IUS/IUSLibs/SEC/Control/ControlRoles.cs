@@ -107,6 +107,33 @@ namespace IUSLibs.SEC.Control
                     }
                     return rol;
                 }
+                // esta funcion si quita de la tabla roles
+                public bool sp_sec_eliminarRol(int idRol,int idUsuario,int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_sec_eliminarRol");
+                    sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuario);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        DataTableCollection tables = this.getTables(ds);
+                        if (tables != null && (int)tables[0].Rows[0]["estadoDelete"] == 1)
+                        {
+                            estado = true;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
             #endregion
             #region "traer"
                 public List<Submenu> getSubMenuRol(int idRol,int idUsuarioEjecutor,int idPagina)

@@ -25,13 +25,23 @@ namespace IUSBack.Controllers
         protected JavaScriptSerializer _jss;
         #endregion
         #region "funciones"
-            public Dictionary<Object,Object> errorEnvioFrmJSON(){
-                Dictionary<Object,Object> toReturn = new Dictionary<Object, Object>();
-                toReturn.Add("estado", false);
-                toReturn.Add("errorType",3);
-                toReturn.Add("error", "Formulario no se envio correctamente");
-                return toReturn;
-            }
+            #region "manejo de errores"
+                public Dictionary<Object, Object> errorTryControlador(int errorType,object obj)
+                {
+                    Dictionary<Object, Object> retorno = new Dictionary<object, object>();
+                    retorno.Add("estado", false);
+                    retorno.Add("errorType", errorType);
+                    retorno.Add("error", obj);
+                    return retorno;
+                }
+                public Dictionary<Object,Object> errorEnvioFrmJSON(){
+                    Dictionary<Object,Object> toReturn = new Dictionary<Object, Object>();
+                    toReturn.Add("estado", false);
+                    toReturn.Add("errorType",3);
+                    toReturn.Add("error", "Formulario no se envio correctamente");
+                    return toReturn;
+                }
+            #endregion
             public Usuario getUsuarioSesion()
             {
                 Usuario usuario = null;

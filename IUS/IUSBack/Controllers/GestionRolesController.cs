@@ -140,6 +140,41 @@ namespace IUSBack.Controllers
             #region "acciones"
                 #region "eliminar" 
                     [HttpPost]
+                    public ActionResult sp_sec_eliminarRol()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            try
+                            {
+                                bool elimino = this._model.sp_sec_eliminarRol(Convert.ToInt32(frm["txtHdIdRol"].ToString()), usuarioSession._idUsuario, this._idPagina);
+                                if (elimino)
+                                {
+                                    respuesta.Add("estado", elimino);
+                                }
+                                else
+                                {
+                                    this.errorTryControlador(3, "Ocurrio un error inesperado");
+                                }
+                            }
+                            catch (ErroresIUS x) {
+                                this.errorTryControlador(1, x);
+                            }
+                            catch (Exception x)
+                            {
+                                this.errorTryControlador(2, x);
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
+                    [HttpPost]
                     public ActionResult eliminarRolSubmenu()
                     {
                         Dictionary<Object, Object> frm, respuesta = null;

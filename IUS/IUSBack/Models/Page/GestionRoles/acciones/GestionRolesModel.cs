@@ -86,6 +86,23 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                     toReturn = this._control.desasociarRol(idUsuario, idRol);
                     return toReturn;
                 }
+                public Boolean sp_sec_eliminarRol(int idRol,int idUsuarioEjecutor, int idPagina)
+                {
+                    bool respuesta = false;
+                    try
+                    {
+                        respuesta = this._control.sp_sec_eliminarRol(idRol, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return respuesta;
+                }
             #endregion
         #endregion
         #region "contructores"

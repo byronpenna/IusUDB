@@ -278,7 +278,21 @@ function llenarTablaRolesUsuario(idUsuario) {
             }
         });
     }
+    function eliminarRol(frm,tr) {
+        cargarObjetoGeneral("GestionRoles/sp_sec_eliminarRol", frm, function (data) {
+            if (data.estado) {
+                tr.remove();
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
+    }
 // acciones script 
+    function btnEliminar(tr) {
+        frm = serializeSection(tr);
+        console.log("el formulario a enviar es:", frm);
+        eliminarRol(frm,tr);
+    }
     function btnAgregarRol(tr) {
         frm = serializeSection(tr);
         tbody = tr.parents("table").find("tbody");
