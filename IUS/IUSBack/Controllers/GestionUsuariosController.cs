@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 // librerias internas
     using IUSBack.Models.Page.GestionUsuarios.Acciones;
+    using IUSBack.Models.Page.GestionPersonas.acciones;
 // librerias externas 
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -33,13 +34,16 @@ namespace IUSBack.Controllers
                 if (usuarioSession != null)
                 {
                     List<Usuario> usuarios;
+                    GestionPersonaModel modelPersona = new GestionPersonaModel();
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
+                    List<Persona> personas = null;
                     if (permisos != null && permisos._ver)
                     {
                         try
                         {
                             usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
+                            personas = modelPersona.getPersonas();
                         }
                         catch (ErroresIUS)
                         {
@@ -51,6 +55,7 @@ namespace IUSBack.Controllers
                         }
                         ViewBag.permiso = permisos;
                         ViewBag.usuarios = usuarios;
+                        ViewBag.personas = personas;
                         return View();
                     }
                     else

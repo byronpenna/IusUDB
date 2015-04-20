@@ -6,7 +6,9 @@
 @{
 
     List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
+    List<Persona> personas = (List<Persona>)ViewBag.personas;
     Permiso permiso = (Permiso)ViewBag.permiso;
+    
     
 }
 <h2 class="text-center">Gestion de usuarios</h2>
@@ -33,6 +35,32 @@
             <th>Fecha creacion</th>
             <th>Estado</th>
             <th>Acciones</th>
+        </tr>
+        <tr>
+            <td>
+                <select name="cbPersona" class="form-control cbPersona">
+                    <option>Seleccione una persona</option>
+                    @if (personas != null)
+                    {
+                        foreach (Persona persona in personas)
+                        {
+                            <option value="@persona._idPersona">@persona.nombreCompleto</option>
+                        }
+                    }
+                </select>
+            </td>
+            <td>
+                <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario" />
+            </td>
+            <td>
+                Imprimir fecha de hoy
+            </td>
+            <td>
+                Activo
+            </td>
+            <td>
+                <button class="btn btn-xs btnAgregarUsuario" @permiso.stringCrear>Crear</button>
+            </td>
         </tr>
     </thead>
     <tbody>

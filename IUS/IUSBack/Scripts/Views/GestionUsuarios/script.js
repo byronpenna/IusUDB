@@ -13,6 +13,11 @@
                 }
             })
     // Acciones tabla 
+        // agregar 
+            $(document).on("click", ".btnAgregarUsuario", function () {
+                tr = $(this).parents("tr");
+                btnAgregarUsuario(tr);
+            });
         // ver roles 
             $(document).on("click", ".btnVerRoles", function () {
                 trUsuario = $(this).parents(".trUsuario");

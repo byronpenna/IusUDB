@@ -84,6 +84,10 @@
             trUsuario.after(table);
         });
     }
+// agregar
+    function agregarUsuario() {
+
+    }
 // Actualizar
     function actualizar(trUsuario) {
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
@@ -170,4 +174,9 @@
             
             }
         });
+    }
+// acciones scripts 
+    function btnAgregarUsuario(tr) {
+        frm = serializeSection(tr);
+        console.log("formulario a enviar", frm);
     }

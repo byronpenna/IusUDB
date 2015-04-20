@@ -18,17 +18,17 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #endregion 
         #region "gets"
             public List<Persona> getPersonas()
-        {
-            List<Persona> personas = this._control.getPersonas();
-            if (personas.Count != 0)
             {
-                return personas;
+                List<Persona> personas = this._control.getPersonas();
+                if (personas.Count != 0)
+                {
+                    return personas;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
-            }
-        }
         #endregion
         #region "Acciones"
             public Persona sp_hm_agregarPersona(Persona persona, int idUsuarioEjecutor,int idPagina)
