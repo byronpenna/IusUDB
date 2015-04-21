@@ -277,10 +277,12 @@ function llenarTablaRolesUsuario(idUsuario) {
         cargarObjetoGeneral("GestionRoles/sp_sec_addRol", frm, function (data) {
             console.log("la respuesta del server es", data)
             if (data.estado) {
-                tr = getTrRol(data.rol, data.permisos);
+                rol = data.rol;
+                tr = getTrRol(rol, data.permisos);
                 tbody.prepend(tr);
                 clearTr(trInsert);
                 $(".txtEstado").val("Activo");
+                addOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
             } else {
                 alert("Ocurrio un error");
             }
@@ -289,6 +291,7 @@ function llenarTablaRolesUsuario(idUsuario) {
     function eliminarRol(frm,tr) {
         cargarObjetoGeneral("GestionRoles/sp_sec_eliminarRol", frm, function (data) {
             if (data.estado) {
+                removeOptionSelect($(".cbRolTab2"), frm.txtHdIdRol, true);
                 tr.remove();
             } else {
                 alert("Ocurrio un error");
