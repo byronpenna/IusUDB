@@ -1,11 +1,22 @@
-﻿@{
-    /*
-	id_usuario_creador_fk	int, -- usuario que creo el evento
-	id_tipoaccesso_fk 		int,
-	fecha_creacion 			datetime*/
+﻿@section estilosPersonalizados{
+    <!-- Plugins -->
+        <!-- Full calendar -->
+            <link href="~/Content/third-party/fullcalendar/fullcalendar.min.css" rel='stylesheet' />
+            <link href="~/Content/third-party/fullcalendar/fullcalendar.print.css" media="print" rel="stylesheet" />
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- Plugins -->
+        <script src="~/Content/third-party/fullcalendar/lib/moment.min.js"></script>
+        <script src="~/Content/third-party/fullcalendar/fullcalendar.min.js"></script>
+    <!-- Propios -->
+        <script src="~/Scripts/Views/Administracion/Eventos/script.js"></script>
+        <script src="~/Scripts/Views/Administracion/Eventos/functions.js"></script>
 }
 <h2>Eventos</h2>
-<div class="row">
+<div class="row seccion">
     <div class="col-lg-4">
         <form id="frmAgregarEvento">
             <div class="form-group">
@@ -38,6 +49,6 @@
         </form>
     </div>
     <div class="col-lg-8">
-
+        <div id='calendar'></div>
     </div>
 </div>
