@@ -1,5 +1,7 @@
 ﻿@section estilosPersonalizados{
     <!-- Plugins -->
+        <!--Tabs -->
+            <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css" />
         <!-- Full calendar -->
             <link href="~/Content/third-party/fullcalendar/fullcalendar.min.css" rel='stylesheet' />
             <link href="~/Content/third-party/fullcalendar/fullcalendar.print.css" media="print" rel="stylesheet" />
@@ -9,46 +11,60 @@
 }
 @section scriptsPersonalizados{
     <!-- Plugins -->
-        <script src="~/Content/third-party/fullcalendar/lib/moment.min.js"></script>
-        <script src="~/Content/third-party/fullcalendar/fullcalendar.min.js"></script>
+        <!-- Tabs -->
+            <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
+        <!-- Full calendar -->
+            <script src="~/Content/third-party/fullcalendar/lib/moment.min.js"></script>
+            <script src="~/Content/third-party/fullcalendar/fullcalendar.min.js"></script>
     <!-- Propios -->
         <script src="~/Scripts/Views/Administracion/Eventos/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Eventos/functions.js"></script>
 }
 <h2>Eventos</h2>
-<div class="row seccion">
-    <div class="col-lg-4">
-        <form id="frmAgregarEvento">
-            <div class="form-group">
-                <label for="txtEvento">Nombre evento</label>
-                <input type="text" class="form-control txtEvento" name="txtEvento" id="txtEvento" placeholder="Evento">
-            </div>
-            <div class="form-group">
-                <label for="txtAreaDescripcion">Descripcion:</label>
-                <textarea class="form-control txtAreaDescripcion" id="txtAreaDescripcion" name="txtAreaDescripcion" placeholder="Breve explicacion sobre que consiste eventos"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="txtFechaInicio">Fecha inicio</label>
-                <input type="text" class="form-control txtFechaInicio" name="txtFechaInicio" id="txtFechaInicio" />
-            </div>
-            <div class="form-group">
-                <label for="txtFechaFin">Fecha fin</label>
-                <input type="text" class="form-control txtFechaFin" name="txtFechaFin" id="txtFechaFin" />
-            </div>
-            <div class="form-group">
-                <label for="cbTipoAcceso">Tipo de acceso </label>
-                <select class="form-control cbTipoAcceso" name="cbTipoAcceso" id="cbTipoAcceso" >
-                    
-                </select>
-            </div>
-            <div class="form-group">
-                <button class="btnAgregarEvento btn btn-primary">
-                    Agregar evento
-                </button>
-            </div>
-        </form>
+<div id="horizontalTab">
+    <ul class="ulTabGeneral">
+        <li>
+            <a href="#tab-1">Eventos</a>
+        </li>
+        <li>
+            <a href="#tab-2">Compartir</a>
+        </li>
+    </ul>
+    <div id="tab-1" class="row seccion tab">
+        <div class="col-lg-4">
+            <form id="frmAgregarEvento">
+                <div class="form-group">
+                    <label for="txtEvento">Nombre evento</label>
+                    <input type="text" class="form-control txtEvento" name="txtEvento" id="txtEvento" placeholder="Evento">
+                </div>
+                <div class="form-group">
+                    <label for="txtAreaDescripcion">Descripcion:</label>
+                    <textarea class="form-control txtAreaDescripcion" id="txtAreaDescripcion" name="txtAreaDescripcion" placeholder="Breve explicacion sobre que consiste eventos"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="txtFechaInicio">Fecha inicio</label>
+                    <input type="text" class="form-control txtFechaInicio" name="txtFechaInicio" id="txtFechaInicio" />
+                </div>
+                <div class="form-group">
+                    <label for="txtFechaFin">Fecha fin</label>
+                    <input type="text" class="form-control txtFechaFin" name="txtFechaFin" id="txtFechaFin" />
+                </div>
+                <div class="form-group">
+                    <label for="cbTipoAcceso">Tipo de acceso </label>
+                    <select class="form-control cbTipoAcceso" name="cbTipoAcceso" id="cbTipoAcceso"></select>
+                </div>
+                <div class="form-group">
+                    <button class="btnAgregarEvento btn btn-primary">
+                        Agregar evento
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-8">
+            <div id='calendar'></div>
+        </div>
     </div>
-    <div class="col-lg-8">
-        <div id='calendar'></div>
+    <div id="tab-2" class="tab">
+        Tab para compartir
     </div>
 </div>
