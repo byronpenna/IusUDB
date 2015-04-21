@@ -414,7 +414,77 @@ namespace IUSBack.Controllers
                     }
                 #endregion
                 #region "editar"
-                    //public ActionResult 
+                    public ActionResult sp_sec_editarRol()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Rol rol,rolAgregar;
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null)
+                        {
+                            try{
+                                rolAgregar = new Rol(this.convertObjAjaxToInt(frm["txtHdIdRol"]),frm["txtRol"].ToString());
+                                rol = this._model.sp_sec_editarRol(rolAgregar, usuarioSession._idUsuario, this._idPagina);
+                                if (rol != null)
+                                {
+                                    respuesta = new Dictionary<object,object>();
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("rol", rol);
+                                }
+                                else
+                                {
+                                    respuesta = this.errorTryControlador(3, "Error no controlado");
+                                }
+                            }catch(ErroresIUS x){
+                                respuesta = this.errorTryControlador(1,x);
+                            }
+                            catch(Exception x){
+                                respuesta = this.errorTryControlador(2,x);
+                            }
+                            
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
+                    public ActionResult sp_sec_cambiarEstadoRol()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            try
+                            {
+                                Rol rol = this._model.sp_sec_cambiarEstadoRol(Convert.ToInt32(frm["txtHdIdRol"].ToString()), usuarioSession._idUsuario, this._idPagina);
+                                if (rol != null)
+                                {
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("rol", rol);
+                                }
+                                else
+                                {
+                                    respuesta = this.errorTryControlador(3, "Error no controlado");
+                                }
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                respuesta = this.errorTryControlador(1, x);
+                            }
+                            catch (Exception x)
+                            {
+                                respuesta = this.errorTryControlador(2, x);
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
                 #endregion
             #endregion
         #endregion

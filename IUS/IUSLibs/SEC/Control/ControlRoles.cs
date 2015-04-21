@@ -134,6 +134,67 @@ namespace IUSLibs.SEC.Control
                     }
                     return estado;
                 }
+                public Rol sp_sec_cambiarEstadoRol(int idRol, int idUsuarioEjecutor, int idPagina)
+                {
+                    Rol rolRegreso = null;
+                    SPIUS sp = new SPIUS("sp_sec_cambiarEstadoRol");
+                    sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        DataRow rowResultado = tb[1].Rows[0];
+                        if (tb != null && (int)tb[0].Rows[0]["estadoProc"] == 1)
+                        {
+                            rolRegreso = new Rol((int)rowResultado["idRol"], rowResultado["rol"].ToString(), (bool)rowResultado["estado"]);
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS(rowResultado["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowResultado["errorCode"]);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return rolRegreso;
+                }
+                public Rol sp_sec_editarRol(Rol rol, int idUsuarioEjecutor, int idPagina)
+                {
+                    Rol rolRegresar =null;
+                    SPIUS sp = new SPIUS("sp_sec_editarRol");
+                    sp.agregarParametro("idRol",rol._idRol);
+                    sp.agregarParametro("rol", rol._rol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        DataRow rowResultado = tb[1].Rows[0];
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            rolRegresar = new Rol((int)rowResultado["idRol"], rowResultado["rol"].ToString(), (bool)rowResultado["estado"]);
+                        }else{
+                           ErroresIUS x = new ErroresIUS(rowResultado["errorMessage"].ToString(),ErroresIUS.tipoError.sql,(int)rowResultado["errorCode"]);
+                           throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return rolRegresar;
+                }
             #endregion
             #region "traer"
                 public List<Submenu> getSubMenuRol(int idRol,int idUsuarioEjecutor,int idPagina)
@@ -218,6 +279,7 @@ namespace IUSLibs.SEC.Control
                     Rol rol;
                     SPIUS sp = new SPIUS("sp_sec_getAllRoles");
                     sp.agregarParametro("usuarioEjecutor", idUsuario);
+                    sp.agregarParametro("rolesActivos", 0); // quiero todos los roles y no solo los activos
                     sp.agregarParametro("idPagina", idPagina);
                     DataSet ds = sp.EjecutarProcedimiento();
                     if (!this.DataSetDontHaveTable(ds))

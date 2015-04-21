@@ -268,6 +268,10 @@ function llenarTablaRolesUsuario(idUsuario) {
         ";
         return tr;
     }
+    function setTrRol(tr,rol) {
+        tr.find(".tdRol").empty().append(rol._rol);
+        tr.find(".txtRol").val("");
+    }
     // hace un insert directo a la tabla roles
     function agregarRol(frm,tbody,trInsert) {
         cargarObjetoGeneral("GestionRoles/sp_sec_addRol", frm, function (data) {
@@ -293,10 +297,28 @@ function llenarTablaRolesUsuario(idUsuario) {
     }
     
 // acciones script 
+    function btnDeshabilitar(tr) {
+        frm = serializeSection(tr);
+        cargarObjetoGeneral("GestionRoles/sp_sec_cambiarEstadoRol", frm, function (data) {
+            if (data.estado) {
+                rol = data.rol;
+                tr.find(".tdEstadoRol").empty().append(rol.stringEstado);
+                tr.find(".btnDeshabilitar").empty().append(rol.txtBtnHabilitar);
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
+    }
     function btnActualizar(tr) {
         frm = serializeSection(tr);
-        cargarObjetoGeneral("GestionRoles/", frm, function (data) {
-
+        cargarObjetoGeneral("GestionRoles/sp_sec_editarRol", frm, function (data) {
+            if (data.estado) {
+                rol = data.rol;
+                setTrRol(tr, rol);
+                controlesEdit(false, tr);
+            } else {
+                alert("Ocurrio un error");
+            }
         });
     }
     function btnEditar(tr) {

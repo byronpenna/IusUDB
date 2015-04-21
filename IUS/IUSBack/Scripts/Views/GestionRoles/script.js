@@ -86,8 +86,9 @@
                 })
                 $(document).on("click", ".btnDeshabilitar", function () {
                     var x = confirm("¿Esta seguro que desea cambiarle el estado al rol?");
+                    tr = $(this).parents("tr");
                     if (x) {
-
+                        btnDeshabilitar(tr);
                     }
                 });
                 // edicion 

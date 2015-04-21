@@ -104,7 +104,10 @@ namespace IUSBack.Controllers
                 }
                 return toReturn;
             }
-            
+            public int convertObjAjaxToInt(object obj)
+            {
+                return Convert.ToInt32(obj.ToString());
+            }
         #endregion
         #region "contructores"
             public PadreController()

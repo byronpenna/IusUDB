@@ -48,6 +48,23 @@ namespace IUSLibs.GENERALS
                     return true;
                 }
             }
+            #region "Resultado Correcto"
+                protected bool resultadoCorrecto(DataTableCollection tb)
+                {
+                    return this.resultadoCorrecto(tb, "estadoProc");
+                }
+                protected bool resultadoCorrecto(DataTableCollection tb,string columnaEstado)
+                {
+                    if (tb != null && (int)tb[0].Rows[0][columnaEstado] == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            #endregion
         #endregion
     }
 }

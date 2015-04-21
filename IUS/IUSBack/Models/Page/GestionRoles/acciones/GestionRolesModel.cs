@@ -103,6 +103,38 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                     }
                     return respuesta;
                 }
+                public Rol sp_sec_cambiarEstadoRol(int idRol,int idUsuarioEjecutor,int idPagina)
+                {
+                    Rol rol = null;
+                    try
+                    {
+                        rol = this._control.sp_sec_cambiarEstadoRol(idRol, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return rol;
+                }
+                public Rol sp_sec_editarRol(Rol rol,int idUsuarioEjecutor,int idPagina)
+                {
+                    Rol rolRegresar = null;
+                    try
+                    {
+                        rolRegresar = this._control.sp_sec_editarRol(rol, idUsuarioEjecutor, idPagina);
+                    }catch(ErroresIUS x){
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return rolRegresar;
+                }
             #endregion
         #endregion
         #region "contructores"
