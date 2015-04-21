@@ -25,6 +25,20 @@ namespace IUSLibs.SEC.Entidades
                     }
                 }
             }
+            public string txtBtnHabilitar
+            {
+                get
+                {
+                    if (this._estado)
+                    {
+                        return "Deshabilitar";
+                    }
+                    else
+                    {
+                        return "Habilitar";
+                    }
+                }
+            }
         #endregion
         #region "constructores"
             public Rol(int idRol, String rol, bool estado)

@@ -236,7 +236,7 @@ function llenarTablaRolesUsuario(idUsuario) {
     });
 }
 // genericas
-    function getTrRol(rol){
+    function getTrRol(rol,permisos){
         tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -256,10 +256,13 @@ function llenarTablaRolesUsuario(idUsuario) {
                     </div>\
                 </td>\
                 <td>\
-                    <button class='btn btn-xs btnEditar' >\
+                    <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">\
                         Editar\
                     </button>\
-                    <button class='btn btn-xs btnEliminar'>Eliminar<button>\
+                    <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                    <button class='btn btn-xs btnDeshabilitar' " + permisos.stringEditar + " >\
+                        "+rol.txtBtnHabilitar+"\
+                    </button>\
                 </td>\
             </tr>\
         ";
@@ -270,7 +273,7 @@ function llenarTablaRolesUsuario(idUsuario) {
         cargarObjetoGeneral("GestionRoles/sp_sec_addRol", frm, function (data) {
             console.log("la respuesta del server es", data)
             if (data.estado) {
-                tr = getTrRol(data.rol);
+                tr = getTrRol(data.rol, data.permisos);
                 tbody.prepend(tr);
                 clearTr(trInsert);
                 $(".txtEstado").val("Activo");

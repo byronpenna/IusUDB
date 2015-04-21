@@ -30,17 +30,19 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
-                if (Session["usuario"] != null)
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (usuarioSession != null)
                 {
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
-                    Usuario usuarioSession = (Usuario)Session["usuario"];
                     // traer data
+                        Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                         List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
                         List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario,this._idPagina);
                     // fill viewbag
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.roles       = roles;
                         ViewBag.usuarios    = usuarios;
+                        ViewBag.permisos    = permisos;
                     return View();
                 }
                 else
@@ -377,10 +379,12 @@ namespace IUSBack.Controllers
                             try
                             {
                                 rol = this._model.sp_sec_addRol(rolAgregar, usuarioSession._idUsuario, this._idPagina);
+                                Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
                                 if (rol != null)
                                 {
                                     respuesta.Add("estado", true);
                                     respuesta.Add("rol", rol);
+                                    respuesta.Add("permisos",permisos);
                                 }
                                 else
                                 {
