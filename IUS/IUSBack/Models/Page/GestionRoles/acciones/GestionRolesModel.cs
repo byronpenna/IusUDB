@@ -43,12 +43,19 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                     List<Rol> roles = this._control.getRoles(idUsuario);
                     return roles;
                 }
-                public List<Rol> getAllRoles(int idUsuarioEjecutor,int idPagina)
-                {
-                    List<Rol> roles = this._control.getAllRoles(idUsuarioEjecutor,idPagina);
-                    return roles;
-                }
-            #endregion 
+                #region "getAllRoles"
+                    
+                    public List<Rol> getAllRoles(int idUsuarioEjecutor,int idPagina)
+                    {
+                        return this.getAllRoles(idUsuarioEjecutor, idPagina, 1);
+                    }
+                    public List<Rol> getAllRoles(int idUsuarioEjecutor, int idPagina,int op)
+                    {
+                        List<Rol> roles = this._control.getAllRoles(idUsuarioEjecutor, idPagina,op);
+                        return roles;
+                    }
+                #endregion
+            #endregion
             #region "acciones"
                 public Boolean quitarSubmenuArol(int idSubMenu,int idRol,int idUsuarioEjecutor,int idPagina)
                 {

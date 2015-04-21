@@ -23,6 +23,7 @@
 @{
     List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
     List<Rol> roles = (List < Rol >) ViewBag.roles;
+    List<Rol> rolesTabla = (List < Rol >) ViewBag.rolesTabla;
     Permiso permisos = (Permiso)ViewBag.permisos;
 }
 <h2 class="text-center">Gestion de permisos</h2>
@@ -209,7 +210,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Rol rol in roles)
+                @foreach (Rol rol in rolesTabla)
                 {
                     <tr>
                         <td class="hidden">

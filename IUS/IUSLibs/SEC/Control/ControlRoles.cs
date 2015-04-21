@@ -275,11 +275,16 @@ namespace IUSLibs.SEC.Control
                 }
                 public List<Rol> getAllRoles(int idUsuario, int idPagina)
                 {
+                    // manda a traer solo los activos
+                    return this.getAllRoles(idUsuario, idPagina, 1);
+                }
+                public List<Rol> getAllRoles(int idUsuario, int idPagina,int op)
+                {
                     List<Rol> roles = null;
                     Rol rol;
                     SPIUS sp = new SPIUS("sp_sec_getAllRoles");
                     sp.agregarParametro("usuarioEjecutor", idUsuario);
-                    sp.agregarParametro("rolesActivos", 0); // quiero todos los roles y no solo los activos
+                    sp.agregarParametro("rolesActivos", op); // quiero todos los roles y no solo los activos
                     sp.agregarParametro("idPagina", idPagina);
                     DataSet ds = sp.EjecutarProcedimiento();
                     if (!this.DataSetDontHaveTable(ds))

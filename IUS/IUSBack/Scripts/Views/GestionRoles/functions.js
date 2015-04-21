@@ -304,6 +304,11 @@ function llenarTablaRolesUsuario(idUsuario) {
                 rol = data.rol;
                 tr.find(".tdEstadoRol").empty().append(rol.stringEstado);
                 tr.find(".btnDeshabilitar").empty().append(rol.txtBtnHabilitar);
+                if (rol._estado) {
+                    addOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
+                } else {
+                    removeOptionSelect($(".cbRolTab2"), rol._idRol,true);
+                }
             } else {
                 alert("Ocurrio un error");
             }
@@ -315,6 +320,7 @@ function llenarTablaRolesUsuario(idUsuario) {
             if (data.estado) {
                 rol = data.rol;
                 setTrRol(tr, rol);
+                updateOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
                 controlesEdit(false, tr);
             } else {
                 alert("Ocurrio un error");

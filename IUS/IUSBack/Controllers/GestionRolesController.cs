@@ -38,9 +38,11 @@ namespace IUSBack.Controllers
                         Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                         List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
                         List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario,this._idPagina);
+                        List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina,0);
                     // fill viewbag
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.roles       = roles;
+                        ViewBag.rolesTabla  = rolesTabla;
                         ViewBag.usuarios    = usuarios;
                         ViewBag.permisos    = permisos;
                     return View();

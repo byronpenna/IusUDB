@@ -128,6 +128,33 @@
         var frm = serializeToJson(section.find("input,select,textarea").serializeArray());
         return frm;
     }
+    // para select 
+    function getOptionSelect(select,val) {
+        option = select.find("option[value='" + val + "']");
+        return option;
+    }
+    function updateOptionSelect(select, val, text, chosen) {
+        //select.find("option[value='" + val + "']").empty().append(text);
+        option = getOptionSelect(select, val);
+        option.empty().append(text);
+        if (!(chosen === null)) {
+            resetChosen(select);
+        }
+    }
+    function addOptionSelect(select,val,text,chosen) {
+        option = "<option value='" + val + "'>" + text + "</option>";
+        select.append(option);
+        if (!(chosen === null)) {
+            resetChosen(select);
+        }
+    }
+    function removeOptionSelect(select,val,chosen) {
+        option = getOptionSelect(select, val);
+        option.remove();
+        if (!(chosen === null)) {
+            resetChosen(select);
+        }
+    }
 // cargaObjetos json 
     function cargarObjetoGeneral(urlAjax,frm,callBack) {
         $.ajax({
