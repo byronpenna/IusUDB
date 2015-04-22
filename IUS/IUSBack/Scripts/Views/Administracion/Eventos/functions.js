@@ -40,7 +40,9 @@ function agregarEvento(calendar,evento,sticker) {
 // acciones script
     function btnPublicar(detalle) {
         frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
-        actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {
+        actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
+            console.log("aaaa");
+            console.log("la respuesta del server es: ", data);
         });
     }
     function frmAgregarEvento(frm,frmSection) {

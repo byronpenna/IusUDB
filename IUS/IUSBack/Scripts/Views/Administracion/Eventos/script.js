@@ -35,7 +35,7 @@
             var x = confirm("¿Esta seguro que desea publicar evento en website?");
             detalle = $(this).parents(".detalleEvento");
             if (x) {
-
+                btnPublicar(detalle);
             }
         });
     

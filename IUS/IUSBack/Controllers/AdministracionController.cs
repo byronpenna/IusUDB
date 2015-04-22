@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 // librerias internas
     using IUSBack.Models.Page.Administracion.Acciones;
 // librerias externas
@@ -18,6 +19,7 @@ namespace IUSBack.Controllers
             private int _idPaginaEventos = (int)paginas.Eventos;
             private int _idPaginaNoticias = (int)paginas.Noticias;
             private AdministracionModel _model;
+            private Dictionary<object, object> _errorRespuesta;
         #endregion
         #region "url"
             public ActionResult Eventos()
@@ -73,7 +75,43 @@ namespace IUSBack.Controllers
         #region "acciones"
             #region "Eventos"
                 #region "acciones"
-                    //public ActionResult 
+                    public ActionResult errorPrueba()
+                    {
+                        return Json(this._errorRespuesta);
+                    }
+                    public ActionResult sp_adminfe_publicarEventoWebsite()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usu = this.getUsuarioSesion();
+                        if (frm != null && usu != null)
+                        {
+                            try
+                            {
+                                Exception x = new Exception();
+                                throw x;
+                            }
+                            catch (ErroresIUS x)
+                            {   
+                                respuesta = this.errorTryControlador(1,x);
+                            }
+                            catch (Exception x)
+                            {
+                                Server.ClearError();
+                                
+                                Response.StatusCode = 200;
+                                respuesta = this.errorTryControlador(2,x);
+                                return RedirectToAction("Errors", "exceptionAjax", new { y = x });
+                            }
+                        }
+                        else
+                        {
+                            
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        
+                        return Json(respuesta);
+                    }
                     public ActionResult sp_adminfe_crearEvento()
                     {
                         Dictionary<object, object> frm,respuesta;
@@ -114,6 +152,7 @@ namespace IUSBack.Controllers
                         }
                         return Json(respuesta);
                     }
+                
                 #endregion
                 #region "gets"
                     // de momento se traen los eventos solo de usuario pero se deben de traer todos

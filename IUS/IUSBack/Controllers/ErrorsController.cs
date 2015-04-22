@@ -54,6 +54,15 @@ namespace IUSBack.Controllers
             {
                 return View();
             }
+            [HttpPost]
+            public ActionResult exceptionAjax()
+            {
+                return Json("");
+            }
+            public ActionResult exceptionAjax(object x)
+            {
+                return Json(x);
+            }
         #endregion
         #region " funciones" 
             public Dictionary<String,String> redirectToError(ErroresIUS x){
