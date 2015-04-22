@@ -17,28 +17,50 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #endregion 
         #region "funciones publicas"
             #region "eventos"
-                public Evento sp_adminfe_crearEvento(Evento eventoAgregar,int idUsuarioEjecutor,int idPagina)
-                {
-                    Evento eventoAgregado = null;
-                    ControlEvento control = new ControlEvento();
-                    try
+                #region "gets"
+                    public List<Evento> sp_adminfe_eventosPropios(int idUsuario, int idPagina)
                     {
-                        eventoAgregado = control.sp_adminfe_crearEvento(eventoAgregar, idUsuarioEjecutor, idPagina);
+                        List<Evento> eventos = null;
+                        ControlEvento control = new ControlEvento();
+                        try
+                        {
+                            eventos = control.sp_adminfe_eventosPropios(idUsuario,idPagina);
+                        }
+                        catch (ErroresIUS)
+                        {
+
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                        return eventos;
                     }
-                    catch (ErroresIUS x)
+                #endregion
+                #region "creacion"
+                    public Evento sp_adminfe_crearEvento(Evento eventoAgregar,int idUsuarioEjecutor,int idPagina)
                     {
-                        throw x;
+                        Evento eventoAgregado = null;
+                        ControlEvento control = new ControlEvento();
+                        try
+                        {
+                            eventoAgregado = control.sp_adminfe_crearEvento(eventoAgregar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                        return eventoAgregado;
                     }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                    return eventoAgregado;
-                }
+                #endregion
             #endregion
             #region "Noticias"
-                
-            #endregion 
+
+            #endregion
         #endregion
 
     }

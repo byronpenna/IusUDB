@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.ADMINFE.Entidades
+@section estilosPersonalizados{
     <!-- Plugins -->
         <!--Tabs -->
             <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css" />
@@ -18,10 +19,12 @@
         <!-- Full calendar -->
             <script src="~/Content/third-party/fullcalendar/lib/moment.min.js"></script>
             <script src="~/Content/third-party/fullcalendar/fullcalendar.min.js"></script>
-        
     <!-- Propios -->
         <script src="~/Scripts/Views/Administracion/Eventos/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Eventos/functions.js"></script>
+}
+@{
+    List<Evento> eventos = (List<Evento>)ViewBag.eventos;
 }
 <h2>Eventos</h2>
 <div id="horizontalTab">
@@ -76,6 +79,60 @@
         </div>
     </div>
     <div id="tab-2" class="tab">
-        Tab para compartir
+        <div class="col-lg-4">
+            <h3>Eventos</h3>
+            <div id="accordion">
+                <!-- Hermoso acordeon de eventos -->
+                @if (eventos != null)
+                {
+                    foreach (Evento evento in eventos)
+                    {
+                        <h3>@evento._evento</h3>
+                        <div class="detalleEvento">
+                            <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
+                            <div class="row">
+                                <p class="text-justify">
+                                    @evento._descripcion
+                                </p>
+                                <hr />
+                                <div class="row text-center">
+                                    <div class="col-lg-6">
+                                        <label>Inicio: </label>
+                                        <span>@evento.getFechaInicio</span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Fin: </label>
+                                        <span>@evento.getFechaFin</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center sectionBotonesEvento">
+                                <button class="btn">Editar</button>
+                                <button class="btn">Compartir</button>
+                                <button class="btn btnPublicar">Publicar</button>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-lg-8 pink">
+            <div id="tabCompartir">
+                <ul class="ulTabGeneral">
+                    <li>
+                        <a href="#tabUsuario">Usuarios</a>
+                    </li>
+                    <li>
+                        <a href="#Publico">Publico</a>
+                    </li>
+                </ul>
+                <div id="tabUsuario" class="tab">
+                    Compartir con un usuario
+                </div>
+                <div id="Publico">
+                    Compartir acceso publico
+                </div>
+            </div>
+        </div>
     </div>
 </div>

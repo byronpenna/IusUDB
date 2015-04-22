@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+// datos
+    using System.Data;
 // librerias internas
     using IUSLibs.SEC.Entidades;
 namespace IUSLibs.ADMINFE.Entidades
@@ -35,19 +37,19 @@ namespace IUSLibs.ADMINFE.Entidades
                 {
                     get
                     {
-                        return String.Format("{0:dd/MM/yyyy HH:mm:ss}",this._fechaInicio);
+                        return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}",this._fechaInicio);
                     }
                 }
                 public string getFechaFin
                 {
                     get
                     {
-                        return String.Format("{0:dd/MM/yyyy HH:mm:ss}", this._fechaFin);
+                        return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}", this._fechaFin);
                     }
                 }
             #endregion
         #endregion
-            #region "Constructores"
+        #region "Constructores"
             // para agregar 
             public Evento(string evento, DateTime fechaInicio, DateTime fechaFin, Usuario usuarioCreador, string descripcion)
             {
@@ -68,9 +70,10 @@ namespace IUSLibs.ADMINFE.Entidades
                 this._fechaCreacion     = fechaCreacion;
                 this._descripcion       = descripcion;
             }
+            
         #endregion 
         #region "funciones publicas"
-
+            
         #endregion
     }
 }

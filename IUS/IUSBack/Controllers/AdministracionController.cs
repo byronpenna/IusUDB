@@ -28,6 +28,8 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPaginaEventos);
                     if (permisos != null && permisos._ver)
                     {
+                        List<Evento> eventos = this._model.sp_adminfe_eventosPropios(usuarioSession._idUsuario, this._idPaginaEventos);
+                        ViewBag.eventos     = eventos;
                         ViewBag.permiso     = permisos;
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         return View();
@@ -70,53 +72,68 @@ namespace IUSBack.Controllers
         #endregion 
         #region "acciones"
             #region "Eventos"
-                public ActionResult sp_adminfe_crearEvento()
-                {
-                    Dictionary<object, object> frm,respuesta;
-                    Evento eventoAgregado;
-                    try
+                #region "acciones"
+                    //public ActionResult 
+                    public ActionResult sp_adminfe_crearEvento()
                     {
-                        Usuario usuarioSession = this.getUsuarioSesion();
-                        frm = this.getAjaxFrm();
-                        if (usuarioSession != null && usuarioSession != null)
+                        Dictionary<object, object> frm,respuesta;
+                        Evento eventoAgregado;
+                        try
                         {
-                            respuesta               = new Dictionary<object, object>();
-                            DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
-                            DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
-                            Evento eventoAgregar    = new Evento(frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
-                            eventoAgregado          = this._model.sp_adminfe_crearEvento(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
-                            if (eventoAgregado != null)
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            frm = this.getAjaxFrm();
+                            if (usuarioSession != null && usuarioSession != null)
                             {
-                                respuesta.Add("estado", true);
-                                respuesta.Add("evento", eventoAgregado);
+                                respuesta               = new Dictionary<object, object>();
+                                DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
+                                DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
+                                Evento eventoAgregar    = new Evento(frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
+                                eventoAgregado          = this._model.sp_adminfe_crearEvento(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                if (eventoAgregado != null)
+                                {
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("evento", eventoAgregado);
+                                }
+                                else
+                                {
+                                    respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
+                                }
                             }
                             else
                             {
-                                respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
+                                respuesta = this.errorEnvioFrmJSON();
                             }
                         }
-                        else
+                        catch (ErroresIUS x)
                         {
-                            respuesta = this.errorEnvioFrmJSON();
+                            respuesta = this.errorTryControlador(1, x);
                         }
+                        catch (Exception x)
+                        {
+                            respuesta = this.errorTryControlador(2, x);
+                        }
+                        return Json(respuesta);
                     }
-                    catch (ErroresIUS x)
+                #endregion
+                #region "gets"
+                    // de momento se traen los eventos solo de usuario pero se deben de traer todos
+                    public ActionResult sp_adminfe_getEventosPrincipales()
                     {
-                        respuesta = this.errorTryControlador(1, x);
+                        Dictionary<object, object> respuesta = new Dictionary<object, object>();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        List<Evento> eventos = this._model.sp_adminfe_eventosPropios(usuarioSession._idUsuario, this._idPaginaEventos);
+                        respuesta.Add("estado", true);
+                        respuesta.Add("eventos", eventos);
+                        return Json(respuesta);
                     }
-                    catch (Exception x)
-                    {
-                        respuesta = this.errorTryControlador(2, x);
-                    }
-                    return Json(respuesta);
-                }
+                #endregion
             #endregion
-            #region "Noticias"
-                
-            #endregion
+                #region "Noticias"
+
+                #endregion
         #endregion
-        #region "constructores"
-            public AdministracionController()
+                #region "constructores"
+                public AdministracionController()
             {
                 this._model = new AdministracionModel();
             }
