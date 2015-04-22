@@ -17,3 +17,9 @@
         $('#calendar').fullCalendar('renderEvent', evento, true);
     })    
 }
+// acciones script
+function frmAgregarEvento(frm) {
+    console.log("Formulario a enviar es: ", frm);
+
+
+}

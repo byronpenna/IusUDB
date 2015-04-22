@@ -49,20 +49,37 @@ namespace IUSLibs.GENERALS
                 }
             }
             #region "Resultado Correcto"
+                public bool resultadoCorrecto(DataSet ds)
+                {
+                    string columnaEstado = "estadoProc";
+                    return this.resultadoCorrecto(ds.Tables, columnaEstado);
+                }
+                public bool resultadoCorrecto(DataSet ds,string columnaEstado)
+                {
+                    return this.resultadoCorrecto(ds.Tables,columnaEstado);
+                }
                 protected bool resultadoCorrecto(DataTableCollection tb)
                 {
                     return this.resultadoCorrecto(tb, "estadoProc");
                 }
                 protected bool resultadoCorrecto(DataTableCollection tb,string columnaEstado)
                 {
-                    if (tb != null && (int)tb[0].Rows[0][columnaEstado] == 1)
+                    try
                     {
-                        return true;
+                        if (tb != null && (int)tb[0].Rows[0][columnaEstado] == 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
-                    else
+                    catch (Exception x)
                     {
                         return false;
                     }
+                    
                 }
             #endregion
         #endregion

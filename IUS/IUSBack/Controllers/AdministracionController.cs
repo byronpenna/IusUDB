@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.ADMINFE.Entidades;
 namespace IUSBack.Controllers
 {
     public class AdministracionController : PadreController
@@ -69,7 +70,33 @@ namespace IUSBack.Controllers
         #endregion 
         #region "acciones"
             #region "Eventos"
-                
+                public ActionResult sp_adminfe_crearEvento()
+                {
+                    Dictionary<object, object> frm,respuesta;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && usuarioSession != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        respuesta = this.errorTryControlador(1, x);
+                    }
+                    catch (Exception x)
+                    {
+                        respuesta = this.errorTryControlador(2, x);
+                    }
+                    return Json(respuesta);
+                }
             #endregion
             #region "Noticias"
                 

@@ -128,6 +128,10 @@
         var frm = serializeToJson(section.find("input,select,textarea").serializeArray());
         return frm;
     }
+    function serializeForm(frm) {
+        var frm = serializeToJson(frm.serializeArray());
+        return frm;
+    }
     // para select 
     function getOptionSelect(select,val) {
         option = select.find("option[value='" + val + "']");
