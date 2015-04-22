@@ -75,7 +75,7 @@ namespace IUSLibs.GENERALS
                             return false;
                         }
                     }
-                    catch (Exception x)
+                    catch (Exception)
                     {
                         return false;
                     }

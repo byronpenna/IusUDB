@@ -104,10 +104,26 @@ namespace IUSBack.Controllers
                 }
                 return toReturn;
             }
-            public int convertObjAjaxToInt(object obj)
+            #region "conversiones"
+                public DateTime convertObjAjaxToDateTime(string date, string hora)
+                {
+                    string fechaCompleto = date+" "+hora;
+                    DateTime toReturn;
+                    try
+                    {
+                        toReturn = Convert.ToDateTime(fechaCompleto);
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return toReturn;
+                }
+                public int convertObjAjaxToInt(object obj)
             {
                 return Convert.ToInt32(obj.ToString());
             }
+            #endregion
         #endregion
         #region "contructores"
             public PadreController()

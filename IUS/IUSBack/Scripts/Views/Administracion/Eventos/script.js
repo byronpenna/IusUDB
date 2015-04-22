@@ -7,6 +7,10 @@
         // full calendar
             $("#calendar").fullCalendar({
                 editable: true,
+                header: {
+                    left: 'prev,next today',
+                    right: 'month,agendaWeek,agendaDay'
+                }
             });
         // tabs
             $('#horizontalTab').responsiveTabs();
@@ -18,7 +22,7 @@
             frm = serializeForm($(this));
             var x = confirm("¿Esta seguro que desea agregar este evento?");
             if (x) {
-                frmAgregarEvento(frm);
+                frmAgregarEvento(frm,$(this));
             }
         });
     

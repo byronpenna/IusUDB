@@ -73,14 +73,27 @@ namespace IUSBack.Controllers
                 public ActionResult sp_adminfe_crearEvento()
                 {
                     Dictionary<object, object> frm,respuesta;
+                    Evento eventoAgregado;
                     try
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && usuarioSession != null)
                         {
-                            respuesta = new Dictionary<object, object>();
-                            
+                            respuesta               = new Dictionary<object, object>();
+                            DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
+                            DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
+                            Evento eventoAgregar    = new Evento(frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
+                            eventoAgregado          = this._model.sp_adminfe_crearEvento(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                            if (eventoAgregado != null)
+                            {
+                                respuesta.Add("estado", true);
+                                respuesta.Add("evento", eventoAgregado);
+                            }
+                            else
+                            {
+                                respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
+                            }
                         }
                         else
                         {
