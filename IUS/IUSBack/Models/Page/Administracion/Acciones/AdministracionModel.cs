@@ -38,13 +38,29 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     }
                 #endregion
                 #region "creacion"
-                    public EventoWebsite sp_adminfe_publicarOquitarEventoWebsite(Evento eventoAgregar, int idUsuarioEjecutor, int idPagina)
+                    public EventoWebsite sp_adminfe_quitarEventoWebsite(int idEventoQuitar, string motivo, int idUsuarioEjecutor, int idPagina)
+                    {
+                        ControlEventoWebsite control = new ControlEventoWebsite();
+                        try
+                        {
+                            return control.sp_adminfe_quitarEventoWebsite(idEventoQuitar, motivo, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    public EventoWebsite sp_adminfe_publicarEventoWebsite(Evento eventoAgregar, int idUsuarioEjecutor, int idPagina)
                     {
                         EventoWebsite eventoPublicado = null;
                         ControlEventoWebsite control = new ControlEventoWebsite();
                         try
                         {
-                            eventoPublicado = control.sp_adminfe_publicarOquitarEventoWebsite(eventoAgregar, idUsuarioEjecutor, idPagina);
+                            eventoPublicado = control.sp_adminfe_publicarEventoWebsite(eventoAgregar, idUsuarioEjecutor, idPagina);
                         }
                         catch (ErroresIUS x)
                         {

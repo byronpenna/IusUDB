@@ -44,6 +44,15 @@ function llenarInputsEdicion(evento,div) {
     div.find(".txtFechaFin").val(evento._fechaFin);
     div.find(".txtHoraFin").val(evento._horaInicio);
 }
+function updateDespuesDePublicacion(eventoWebsite,detalle) {
+    detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
+    if (eventoWebsite._estado == true) {
+        intEstado = 1;
+    } else {
+        intEstado = 0;
+    }
+    detalle.find(".txtHdEstadoEstado").val(intEstado);
+}
 // acciones script
     function btnAccionQuitarPublicacion(detalle) {
         var frm = {
@@ -51,7 +60,14 @@ function llenarInputsEdicion(evento,div) {
             txtAreaMotivoQuitar: detalle.find(".txtAreaMotivoQuitar").val()
         }
         console.log("Formulario a enviar para quitar publicacion:", frm);
-        
+        actualizarCatalogo("/Administracion/sp_adminfe_quitarEventoWebsite", frm, function (data) {
+            console.log("la data devuelta por el server es: ", data);
+            if (data.estado) {
+                updateDespuesDePublicacion(data.eventoWebsite, detalle);
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
     }
     function btnEditar(div) {
         fechaIni = div.find(".spanFechaInicio").text();
@@ -70,9 +86,9 @@ function llenarInputsEdicion(evento,div) {
     }
     function btnPublicar(detalle) {
         frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
-        actualizarCatalogo("/Administracion/sp_adminfe_publicarOquitarEventoWebsite", frm, function (data) {
+        actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
             console.log("la respuesta del server es: ", data);
-
+            updateDespuesDePublicacion(data.eventoPublicado, detalle);
         });
     }
     // no es boton propiamente dicho pero aun asi se le pone btn 

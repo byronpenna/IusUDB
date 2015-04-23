@@ -79,7 +79,45 @@ namespace IUSBack.Controllers
                     {
                         return Json(this._errorRespuesta);
                     }
-                    public ActionResult sp_adminfe_publicarOquitarEventoWebsite()
+                    public ActionResult sp_adminfe_quitarEventoWebsite()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        Usuario usuarioSesion = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        EventoWebsite eventoWebsite;
+                        if (usuarioSesion != null && frm != null)
+                        {
+                            try
+                            {
+                                eventoWebsite = this._model.sp_adminfe_quitarEventoWebsite(this.convertObjAjaxToInt(frm["txtHdIdEvento"]), frm["txtAreaMotivoQuitar"].ToString(), usuarioSesion._idUsuario, this._idPaginaEventos);
+                                respuesta = new Dictionary<object, object>();
+                                if (eventoWebsite != null)
+                                {
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("eventoWebsite", eventoWebsite);
+                                }
+                                else
+                                {
+                                    respuesta = this.errorTryControlador(3, "Ocurrio un error inesperado");
+                                }
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                respuesta = this.errorTryControlador(1, x);
+                            }
+                            catch (Exception x)
+                            {
+                                ErroresIUS errorIus = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
+                                respuesta = this.errorTryControlador(2, errorIus);
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
+                    public ActionResult sp_adminfe_publicarEventoWebsite()
                     {
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
@@ -90,7 +128,7 @@ namespace IUSBack.Controllers
                             try
                             {
                                 Evento eventoAgregar = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]));
-                                eventoPublicado = this._model.sp_adminfe_publicarOquitarEventoWebsite(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                eventoPublicado = this._model.sp_adminfe_publicarEventoWebsite(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
                                 if (eventoPublicado != null)
                                 {
                                     respuesta = new Dictionary<object, object>();
