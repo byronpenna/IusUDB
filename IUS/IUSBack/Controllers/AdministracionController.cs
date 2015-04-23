@@ -79,7 +79,7 @@ namespace IUSBack.Controllers
                     {
                         return Json(this._errorRespuesta);
                     }
-                    public ActionResult sp_adminfe_publicarEventoWebsite()
+                    public ActionResult sp_adminfe_publicarOquitarEventoWebsite()
                     {
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
@@ -90,7 +90,7 @@ namespace IUSBack.Controllers
                             try
                             {
                                 Evento eventoAgregar = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]));
-                                eventoPublicado = this._model.sp_adminfe_publicarEventoWebsite(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                eventoPublicado = this._model.sp_adminfe_publicarOquitarEventoWebsite(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
                                 if (eventoPublicado != null)
                                 {
                                     respuesta = new Dictionary<object, object>();

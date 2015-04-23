@@ -20,11 +20,11 @@ namespace IUSLibs.ADMINFE.Control
 
         #endregion
         #region "funciones"
-            public EventoWebsite sp_adminfe_publicarEventoWebsite(Evento eventoAgregar,int idUsuarioEjecutor,int idPagina)
+        public EventoWebsite sp_adminfe_publicarOquitarEventoWebsite(Evento eventoAgregar, int idUsuarioEjecutor, int idPagina)
             {
                 EventoWebsite eventoPublicado = null; Evento evento;
                 Usuario usu = null;
-                SPIUS sp = new SPIUS("sp_adminfe_publicarEventoWebsite");
+                SPIUS sp = new SPIUS("sp_adminfe_publicarOquitarEventoWebsite");
                 sp.agregarParametro("idEvento", eventoAgregar._idEvento);
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina",idPagina);

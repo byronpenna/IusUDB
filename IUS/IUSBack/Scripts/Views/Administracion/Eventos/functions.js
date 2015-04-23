@@ -45,6 +45,14 @@ function llenarInputsEdicion(evento,div) {
     div.find(".txtHoraFin").val(evento._horaInicio);
 }
 // acciones script
+    function btnAccionQuitarPublicacion(detalle) {
+        var frm = {
+            txtHdIdEvento: detalle.find(".txtHdIdEvento").val(),
+            txtAreaMotivoQuitar: detalle.find(".txtAreaMotivoQuitar").val()
+        }
+        console.log("Formulario a enviar para quitar publicacion:", frm);
+        
+    }
     function btnEditar(div) {
         fechaIni = div.find(".spanFechaInicio").text();
         separadorIni = fechaIni.indexOf(" ");
@@ -62,9 +70,20 @@ function llenarInputsEdicion(evento,div) {
     }
     function btnPublicar(detalle) {
         frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
-        actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
+        actualizarCatalogo("/Administracion/sp_adminfe_publicarOquitarEventoWebsite", frm, function (data) {
             console.log("la respuesta del server es: ", data);
+
         });
+    }
+    // no es boton propiamente dicho pero aun asi se le pone btn 
+    function btnQuitarPublicacion(div) {
+        controlesEdit(true, div, ".quitarPublicacionMode")
+    }//-------------------------------
+    function btnCancelaQuitarPublicacion(div) {
+        txtArea = div.find(".txtAreaMotivoQuitar");
+        txtArea.text("");
+        txtArea.val("");
+        controlesEdit(false, div, ".quitarPublicacionMode", ".normalMode");
     }
     function frmAgregarEvento(frm,frmSection) {
         actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {

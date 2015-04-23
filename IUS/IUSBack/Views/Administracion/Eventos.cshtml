@@ -90,33 +90,43 @@
                         <h3>@evento._evento</h3>
                         <div class="detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
+                            <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
                             <div class="row">
                                 <div class="normalMode">
                                     <p class="text-justify pDescripcionEvento">@evento._descripcion</p>
                                 </div>
                                 <div class="editMode hidden" >
-                                    <label>Descripcion evento</label>
+                                    <div class="editMode hidden">
+                                        <label>Descripcion evento</label>
+                                    </div>
                                     <textarea class="txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
                                 </div>
+                                <!-- Motivo para quitar publicacion -->
+                                    <div class="quitarPublicacionMode hidden">
+                                        <label class="text-center">Motivos para quitar del website</label>
+                                        <textarea class="txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
+                                    </div>
+                                <!-- ------------------------------ -->
                                 <hr />
                                 <div class="row text-center">
-                                    
                                     <div class="col-lg-6">
-                                        <label>Inicio: </label>
                                         <div class="normalMode">
+                                            <label>Inicio: </label>
                                             <span class="spanFechaInicio">@evento.getFechaInicio</span>
                                         </div>
                                         <div class="editMode hidden">
+                                            <label>Inicio: </label>
                                             <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
                                             <input type="time" class="txtHoraInicio form-control" name="txtHoraInicio" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label>Fin: </label>
                                         <div class="normalMode">
+                                            <label>Fin: </label>
                                             <span class="spanFechaFin">@evento.getFechaFin</span>
                                         </div>
                                         <div class="editMode hidden">
+                                            <label>Fin: </label>
                                             <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
                                             <input type="time" class="txtHoraFin form-control " name="txtHoraFin" />
                                         </div>
@@ -132,6 +142,10 @@
                                 <div class="editMode hidden">
                                     <button class="btn btnActualizar" >Actualizar</button>
                                     <button class="btn btnCancelar" >Cancelar</button>
+                                </div>
+                                <div class="quitarPublicacionMode hidden">
+                                    <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
+                                    <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
                                 </div>
                             </div>
                         </div>

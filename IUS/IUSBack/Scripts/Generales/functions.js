@@ -70,15 +70,22 @@
             $(".controlGlobal").addClass("hidden");
         }
     }
-    function controlesEdit(mostrar, tr) {
+    function controlesEdit(mostrar, tr, editClass,normalClass) {
+        if (editClass === undefined) {
+            editClass = ".editMode";
+        }
+        if (normalClass === undefined) {
+            normalClass = ".normalMode";
+        }
+        console.log("edit class es",editClass)
         if (mostrar) {
-            selectorMostrar = ".editMode";
-            selectorOcultar = ".normalMode";
+            selectorMostrar = editClass;
+            selectorOcultar = normalClass;
             // poniendole clase para saber que va editar
             tr.addClass("trEdit");
         } else {
-            selectorMostrar = ".normalMode";
-            selectorOcultar = ".editMode";
+            selectorMostrar = normalClass;
+            selectorOcultar = editClass;
             tr.removeClass("trEdit");
         }
         if (!tr.find(selectorOcultar).hasClass("hidden")) {
