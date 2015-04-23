@@ -50,6 +50,10 @@ namespace IUSLibs.ADMINFE.Entidades
             #endregion
         #endregion
         #region "Constructores"
+            public Evento(int idEvento)
+            {
+                this._idEvento = idEvento;
+            }
             // para agregar 
             public Evento(string evento, DateTime fechaInicio, DateTime fechaFin, Usuario usuarioCreador, string descripcion)
             {
@@ -58,7 +62,6 @@ namespace IUSLibs.ADMINFE.Entidades
                 this._fechaFin = fechaFin;
                 this._usuarioCreador = usuarioCreador;
                 this._descripcion = descripcion;
-
             }
             public Evento(int idEvento,string evento,DateTime fechaInicio,DateTime fechaFin,Usuario usuarioCreador,DateTime fechaCreacion,string descripcion)
             {

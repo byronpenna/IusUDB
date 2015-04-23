@@ -83,13 +83,24 @@ namespace IUSBack.Controllers
                     {
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
-                        Usuario usu = this.getUsuarioSesion();
-                        if (frm != null && usu != null)
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        EventoWebsite eventoPublicado;
+                        if (frm != null && usuarioSession != null)
                         {
                             try
                             {
-                                Exception x = new Exception();
-                                throw x;
+                                Evento eventoAgregar = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]));
+                                eventoPublicado = this._model.sp_adminfe_publicarEventoWebsite(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                if (eventoPublicado != null)
+                                {
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("eventoPublicado", eventoPublicado);
+                                }
+                                else
+                                {
+                                    respuesta = this.errorTryControlador(3, "Ocurrio un error inesperado");
+                                }
                             }
                             catch (ErroresIUS x)
                             {   
@@ -97,11 +108,8 @@ namespace IUSBack.Controllers
                             }
                             catch (Exception x)
                             {
-                                Server.ClearError();
-                                
-                                Response.StatusCode = 200;
-                                respuesta = this.errorTryControlador(2,x);
-                                return RedirectToAction("Errors", "exceptionAjax", new { y = x });
+                                ErroresIUS errorIUS = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico,x.HResult);
+                                respuesta = this.errorTryControlador(2,errorIUS);
                             }
                         }
                         else

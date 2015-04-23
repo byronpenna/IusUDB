@@ -75,7 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADMINFE\Control\ControlEvento.cs" />
+    <Compile Include="ADMINFE\Control\ControlEventoWebsite.cs" />
     <Compile Include="ADMINFE\Entidades\Evento.cs" />
+    <Compile Include="ADMINFE\Entidades\EventoWebsite.cs" />
     <Compile Include="BaseDatos\Parametro.cs" />
     <Compile Include="BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />
