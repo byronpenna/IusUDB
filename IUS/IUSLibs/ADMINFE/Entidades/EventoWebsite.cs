@@ -14,7 +14,7 @@ namespace IUSLibs.ADMINFE.Entidades
             public DateTime _fechaPublicacion;
             public Usuario  _usuarioPublicacion;
             public bool     _estado;
-        #endregion 
+        #endregion
         #region "constructores"
             public EventoWebsite(int idEventoWeb, DateTime fechaPublicacion, Usuario usuarioPublicacion, Evento evento, bool estado)
             {

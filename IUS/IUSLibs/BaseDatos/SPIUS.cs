@@ -43,6 +43,7 @@ namespace IUSLibs.BaseDatos
                     try{
                         
                         SqlCommand command = new SqlCommand(this.nombre, cn.cn);
+                        
                         command.CommandType = CommandType.StoredProcedure;
                         // se omitio el timeout
                         this.parametrosAcommand(ref command);

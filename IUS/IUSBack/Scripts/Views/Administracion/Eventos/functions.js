@@ -1,7 +1,6 @@
 ﻿function eventosIniciales() {
     var frm = new Object();
     actualizarCatalogo("/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
-        console.log("Respuesta del server al mandar a traer calendario", data);
         if (data.estado) {
             eventos = data.eventos;
             $.each(eventos, function (i, evento) {
@@ -37,7 +36,30 @@ function agregarEvento(calendar,evento,sticker) {
     console.log("por lo menos intento agregarlo");
     calendar.fullCalendar('renderEvent', eventoAgregar, true);
 }
+function llenarInputsEdicion(evento,div) {
+    console.log("El evento es:", evento);
+    // tanto val como text ya que sino a la hora de llenar el formulario muere todo
+    div.find(".txtAreaDescripcion").text(evento._descripcion);
+    div.find(".txtFechaInicio").val(evento._fechaInicio);
+    div.find(".txtFechaFin").val(evento._fechaFin);
+    div.find(".txtHoraFin").val(evento._horaInicio);
+}
 // acciones script
+    function btnEditar(div) {
+        fechaIni = div.find(".spanFechaInicio").text();
+        separadorIni = fechaIni.indexOf(" ");
+        fechaFin = div.find(".spanFechaFin").text();
+        separadorFin = fechaFin.indexOf(" ");
+        evento = {
+            _descripcion: div.find(".pDescripcionEvento").text(),
+            _fechaInicio: fechaIni.substring(0, separadorIni),
+            _fechaFin: fechaFin.substring(0, separadorFin),
+            _horaInicio: fechaIni.substring( separadorIni,fechaIni.length),
+            _horaFin:  fechaFin.substring(separadorFin,fechaFin.length)
+        }
+        llenarInputsEdicion(evento,div);
+        controlesEdit(true, div);
+    }
     function btnPublicar(detalle) {
         frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
         actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
@@ -45,9 +67,7 @@ function agregarEvento(calendar,evento,sticker) {
         });
     }
     function frmAgregarEvento(frm,frmSection) {
-        console.log("Formulario a enviar es: ", frm);
         actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {
-            console.log("la respuesta del servidor es: ", data);
             if (data.estado) {
                 agregarEvento($("#calendar"), data.evento);
                 clearTr(frmSection);

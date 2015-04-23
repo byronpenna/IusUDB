@@ -91,25 +91,48 @@
                         <div class="detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
                             <div class="row">
-                                <p class="text-justify">
-                                    @evento._descripcion
-                                </p>
+                                <div class="normalMode">
+                                    <p class="text-justify pDescripcionEvento">@evento._descripcion</p>
+                                </div>
+                                <div class="editMode hidden" >
+                                    <label>Descripcion evento</label>
+                                    <textarea class="txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
+                                </div>
                                 <hr />
                                 <div class="row text-center">
+                                    
                                     <div class="col-lg-6">
                                         <label>Inicio: </label>
-                                        <span>@evento.getFechaInicio</span>
+                                        <div class="normalMode">
+                                            <span class="spanFechaInicio">@evento.getFechaInicio</span>
+                                        </div>
+                                        <div class="editMode hidden">
+                                            <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
+                                            <input type="time" class="txtHoraInicio form-control" name="txtHoraInicio" />
+                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Fin: </label>
-                                        <span>@evento.getFechaFin</span>
+                                        <div class="normalMode">
+                                            <span class="spanFechaFin">@evento.getFechaFin</span>
+                                        </div>
+                                        <div class="editMode hidden">
+                                            <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
+                                            <input type="time" class="txtHoraFin form-control " name="txtHoraFin" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row text-center sectionBotonesEvento">
-                                <button class="btn">Editar</button>
-                                <button class="btn">Compartir</button>
-                                <button class="btn btnPublicar">Publicar</button>
+                                <div class="normalMode">
+                                    <button class="btn btnEditar">Editar</button>
+                                    <button class="btn">Compartir</button>
+                                    <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
+                                </div>                                
+                                <div class="editMode hidden">
+                                    <button class="btn btnActualizar" >Actualizar</button>
+                                    <button class="btn btnCancelar" >Cancelar</button>
+                                </div>
                             </div>
                         </div>
                     }

@@ -38,6 +38,7 @@ namespace IUSLibs.ADMINFE.Control
                             {
                                 usu = new Usuario((int)row["id_usuario_creador_fk"]);
                                 evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usu, (DateTime)row["fecha_creacion"], row["descripcion"].ToString());
+                                evento._publicado = (bool)row["publicado"];
                                 eventos.Add(evento);
                             }
                         }

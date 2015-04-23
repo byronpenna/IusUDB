@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 // manejo de datos
-    using System.Data;
     using System.Data.Sql;
-    using System.Data.SqlClient;
+    using System.Data.SqlClient;    
+    using System.Data;
 // librerias internas
     using IUSLibs.ADMINFE.Entidades;
     using IUSLibs.BaseDatos;
@@ -30,6 +30,7 @@ namespace IUSLibs.ADMINFE.Control
                 sp.agregarParametro("idPagina",idPagina);
                 try
                 {
+
                     DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                     DataRow rowResultado = tb[1].Rows[0];
                     if (this.resultadoCorrecto(tb))

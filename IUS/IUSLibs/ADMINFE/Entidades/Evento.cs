@@ -18,6 +18,7 @@ namespace IUSLibs.ADMINFE.Entidades
             public Usuario  _usuarioCreador;
             public DateTime _fechaCreacion;
             public string   _descripcion;
+            public bool     _publicado; // este no va en constructor porque no va con la naturalesa de la tabla
             #region "Con get y set"
                 public string getFechaInicioUSA
                 {
@@ -45,6 +46,21 @@ namespace IUSLibs.ADMINFE.Entidades
                     get
                     {
                         return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}", this._fechaFin);
+                    }
+                }
+
+                public string txtBtnPublicar
+                {
+                    get
+                    {
+                        if (this._publicado)
+                        {
+                            return "Quitar de web";
+                        }
+                        else
+                        {
+                            return "Publicar";
+                        }
                     }
                 }
             #endregion

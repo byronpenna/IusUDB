@@ -134,6 +134,7 @@
         var frm = serializeToJson(section.find("input,select,textarea").serializeArray());
         return frm;
     }
+    
     function serializeForm(frm) {
         var frm = serializeToJson(frm.serializeArray());
         return frm;

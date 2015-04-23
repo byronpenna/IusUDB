@@ -38,6 +38,15 @@
                 btnPublicar(detalle);
             }
         });
-    
+        // edicion 
+            $(document).on("click", ".btnEditar", function () {
+                div = $(this).parents(".detalleEvento");
+                btnEditar(div);
+            });
+            $(document).on("click", ".btnCancelar", function () {
+                div = $(this).parents(".detalleEvento");
+                controlesEdit(false, div);
+            });
+        
 
 });
