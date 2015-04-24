@@ -3,12 +3,23 @@
         // acordion    
             $("#accordion").accordion({
                 collapsible: true,
-                active:false
+                active: false,
+                beforeActivate: function (e, ui) {
+                    if (e.originalEvent.type != "click") {
+                        e.preventDefault();
+                    }
+                    if (!(e.toElement === undefined)) {
+                        if (e.toElement.className == "txtEvento2") {
+                            e.preventDefault();
+                        }
+                    }
+                }
             });
         // datePicker
             $(".dpFecha").datepicker({
                 dateFormat: "dd/mm/yy"
             });
+            
         // full calendar
             $("#calendar").fullCalendar({
                 editable: true,
@@ -61,6 +72,10 @@
                 }
             });
         // edicion 
+            $(document).on("click", ".btnActualizar", function () {
+                div = $(this).parents(".detalleEvento");
+                btnActualizar(div);
+            });
             $(document).on("click", ".btnEditar", function () {
                 div = $(this).parents(".detalleEvento");
                 btnEditar(div);
@@ -69,6 +84,8 @@
                 div = $(this).parents(".detalleEvento");
                 controlesEdit(false, div);
             });
-        
+            $(document).on("keypress", ".txtEvento2", function (e) {
+                console.log("evento keypress")
+            })
 
 });

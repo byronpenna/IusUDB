@@ -37,6 +37,24 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         return eventos;
                     }
                 #endregion
+                #region "edicion"
+                    public Evento sp_adminfe_editarEventos(Evento eventoAgregado,int idUsuarioEjecutor,int idPagina)
+                    {
+                        ControlEvento control = new ControlEvento();
+                        try
+                        {
+                            return control.sp_adminfe_editarEventos(eventoAgregado, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
                 #region "creacion"
                     public EventoWebsite sp_adminfe_quitarEventoWebsite(int idEventoQuitar, string motivo, int idUsuarioEjecutor, int idPagina)
                     {

@@ -10,50 +10,54 @@
             console.log("ocurrio un error inesperado");
         }
     });
-    /*
-    eventos = [{
-        title: 'eventoPrueba',
-        start: '2015-04-01',
-        end: '2015-04-05'
-    },
-    {
-        title: 'Segundo evento',
-        start: '2015-04-10 13:00',
-        end: '2015-04-15'
-    }
-    ];
-    $.each(eventos, function (i, evento) {
-        $('#calendar').fullCalendar('renderEvent', evento, true);
-    })*/
 }
 // genericos
-function agregarEvento(calendar,evento,sticker) {
-    eventoAgregar = {
-        title: evento._evento,
-        start: evento.getFechaInicioUSA,
-        end: evento.getFechaFinUSA 
-    };
-    console.log("por lo menos intento agregarlo");
-    calendar.fullCalendar('renderEvent', eventoAgregar, true);
-}
-function llenarInputsEdicion(evento,div) {
-    console.log("El evento es:", evento);
-    // tanto val como text ya que sino a la hora de llenar el formulario muere todo
-    div.find(".txtAreaDescripcion").text(evento._descripcion);
-    div.find(".txtFechaInicio").val(evento._fechaInicio);
-    div.find(".txtFechaFin").val(evento._fechaFin);
-    div.find(".txtHoraFin").val(evento._horaInicio);
-}
-function updateDespuesDePublicacion(eventoWebsite,detalle) {
-    detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
-    if (eventoWebsite._estado == true) {
-        intEstado = 1;
-    } else {
-        intEstado = 0;
+    function agregarEvento(calendar,evento,sticker) {
+        eventoAgregar = {
+            title: evento._evento,
+            start: evento.getFechaInicioUSA,
+            end: evento.getFechaFinUSA 
+        };
+        console.log("por lo menos intento agregarlo");
+        calendar.fullCalendar('renderEvent', eventoAgregar, true);
     }
-    detalle.find(".txtHdEstadoEstado").val(intEstado);
-}
+    function llenarInputsEdicion(evento,div) {
+        console.log("El evento es:", evento);
+        // tanto val como text ya que sino a la hora de llenar el formulario muere todo
+        div.find(".txtAreaDescripcion").text(evento._descripcion);
+        div.find(".txtFechaInicio").val(evento._fechaInicio);
+        div.find(".txtFechaFin").val(evento._fechaFin);
+        div.find(".txtHoraFin").val(evento._horaInicio);
+    }
+    function updateDespuesDePublicacion(eventoWebsite,detalle) {
+        detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
+        if (eventoWebsite._estado == true) {
+            intEstado = 1;
+        } else {
+            intEstado = 0;
+        }
+        detalle.find(".txtHdEstadoEstado").val(intEstado);
+    }
+    function editModeEncabezadoEvento() {
+        txtEdit = h3.find(".nombreEvento").text();
+        h3.find(".editMode").removeClass("hidden");
+        h3.find(".normalMode").addClass("hidden");
+        h3.find(".txtEvento2").val(txtEdit);
+    }
 // acciones script
+    function btnActualizar(detalle) {
+        frm = serializeSection(detalle);
+        h3 = detalle.prev();
+        frm.txtEvento = h3.find(".txtEvento2").val();
+        console.log("Formulario a enviar es:", frm);
+        if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
+            actualizarCatalogo("/Administracion/sp_adminfe_editarEventos", frm, function (data) {
+
+            });
+        } else {
+            alert("Por favor ponga una hora de inicio y de fin ")
+        }
+    }
     function btnAccionQuitarPublicacion(detalle) {
         var frm = {
             txtHdIdEvento: detalle.find(".txtHdIdEvento").val(),
@@ -81,8 +85,11 @@ function updateDespuesDePublicacion(eventoWebsite,detalle) {
             _horaInicio: fechaIni.substring( separadorIni,fechaIni.length),
             _horaFin:  fechaFin.substring(separadorFin,fechaFin.length)
         }
-        llenarInputsEdicion(evento,div);
+        llenarInputsEdicion(evento, div);
+        h3 = div.prev();
+        editModeEncabezadoEvento(h3);
         controlesEdit(true, div);
+        
     }
     function btnPublicar(detalle) {
         frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }

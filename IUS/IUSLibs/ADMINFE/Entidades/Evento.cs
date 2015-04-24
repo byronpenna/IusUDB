@@ -79,6 +79,16 @@ namespace IUSLibs.ADMINFE.Entidades
                 this._usuarioCreador = usuarioCreador;
                 this._descripcion = descripcion;
             }
+            // para edit 
+            public Evento(int idEvento, string evento, DateTime fechaInicio, DateTime fechaFin, Usuario usuarioCreador,string descripcion)
+            {
+                this._idEvento = idEvento;
+                this._evento = evento;
+                this._fechaInicio = fechaInicio;
+                this._fechaFin = fechaFin;
+                this._usuarioCreador = usuarioCreador;
+                this._descripcion = descripcion;
+            }
             public Evento(int idEvento,string evento,DateTime fechaInicio,DateTime fechaFin,Usuario usuarioCreador,DateTime fechaCreacion,string descripcion)
             {
                 this._idEvento          = idEvento;

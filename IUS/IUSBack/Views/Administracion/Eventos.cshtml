@@ -87,7 +87,12 @@
                 {
                     foreach (Evento evento in eventos)
                     {
-                        <h3>@evento._evento</h3>
+                        <h3>
+                            <!--<div class="normalMode nombreEvento">@evento._evento</div>
+                            <div class="editMode hidden">-->
+                                <input type="text" name="txtEvento2" class="txtEvento2" />
+                            <!--</div> -->
+                        </h3>
                         <div class="detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
                             <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />

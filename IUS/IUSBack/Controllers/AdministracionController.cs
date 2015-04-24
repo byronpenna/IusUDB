@@ -195,7 +195,48 @@ namespace IUSBack.Controllers
                         }
                         return Json(respuesta);
                     }
-                
+                    public ActionResult sp_adminfe_editarEventos()
+                    {
+                        Dictionary<object, object> frm, respuesta;
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm(); Evento eventoEditado;
+                        if (usuarioSession != null && frm != null)
+                        {
+                            try
+                            {
+                                DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
+                                DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
+                                Evento eventoEditar    = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]), frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
+                                eventoEditado           = this._model.sp_adminfe_editarEventos(eventoEditar,usuarioSession._idUsuario,this._idPaginaEventos);
+                                if (eventoEditado != null)
+                                {
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("eventoEditado", eventoEditado);
+                                }
+                                else
+                                {
+                                    ErroresIUS errorIus = new ErroresIUS("Ocurrio un error no controlado",ErroresIUS.tipoError.generico,-1);
+                                    respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
+                                }
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.HResult, x._errorSql);
+                                respuesta = this.errorTryControlador(1, error);
+                            }
+                            catch (Exception x)
+                            {
+                                ErroresIUS errorIus = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult, "");
+                                respuesta = this.errorTryControlador(2, errorIus);
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
                 #endregion
                 #region "gets"
                     // de momento se traen los eventos solo de usuario pero se deben de traer todos
@@ -210,9 +251,9 @@ namespace IUSBack.Controllers
                     }
                 #endregion
             #endregion
-                #region "Noticias"
+            #region "Noticias"
 
-                #endregion
+            #endregion
         #endregion
                 #region "constructores"
                 public AdministracionController()
