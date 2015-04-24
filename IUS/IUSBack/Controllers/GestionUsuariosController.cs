@@ -98,11 +98,12 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
                         Usuario usuarioAgregado,usuarioAgregar;
-                        Persona persona;
+                        Persona persona; Permiso permiso;
                         if (frm != null && usuarioSession != null)
                         {
                             try
                             {
+                                permiso = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
                                 persona = new Persona(this.convertObjAjaxToInt(frm["cbPersona"]));
                                 usuarioAgregar = new Usuario(frm["txtEditUsuario"].ToString(), DateTime.Today, true,persona, frm["txtEditUsuario"].ToString()); // contraseña por defecto su nombre de usuario
                                 usuarioAgregado = this._model.sp_sec_agregarUsuario(usuarioAgregar, usuarioSession._idUsuario, this._idPagina);
@@ -111,6 +112,7 @@ namespace IUSBack.Controllers
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
                                     respuesta.Add("usuarioAgregado", usuarioAgregado);
+                                    respuesta.Add("permiso", permiso);
                                 }
                                 else
                                 {

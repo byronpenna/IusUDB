@@ -14,9 +14,15 @@ namespace IUSLibs.SEC.Entidades
             public bool _estado;
             public Persona _persona;
             public string _pass;
-        #endregion
-        #region
-            public string txtBtnHabilitar
+            #region "gets y sets"
+                public string getFechaCreacion
+                {
+                    get
+                    {
+                        return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}", this._fechaCreacion);
+                    }
+                }
+                public string txtBtnHabilitar
             {
                 get
                 {
@@ -30,7 +36,8 @@ namespace IUSLibs.SEC.Entidades
                     }
                 }
             }
-            public string estadoUsuario{
+                public string estadoUsuario
+            {
                 get
                 {
                     if (this._estado)
@@ -43,7 +50,9 @@ namespace IUSLibs.SEC.Entidades
                     }
                 }
             }
+            #endregion
         #endregion
+       
         #region "Constructores"
             public Usuario(int idUsuario, String usuario, bool estado)
             {

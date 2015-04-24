@@ -194,6 +194,7 @@ namespace IUSLibs.SEC.Control
                         {
                             DataRow rowResultado = tb[1].Rows[0];
                             usuarioAgregado = this.getObjectoUsuarioDeRow(rowResultado);
+                            
                         }
                         else
                         {
