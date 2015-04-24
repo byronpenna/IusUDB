@@ -13,6 +13,7 @@ namespace IUSLibs.BaseDatos
             public Object valor;
             public enum direction { input, output }
             public direction direccion;
+            public DbType _tipo;
         #endregion
 
         #region "Gets and set"
@@ -86,6 +87,13 @@ namespace IUSLibs.BaseDatos
         #endregion 
 
         #region "Constructores"
+            public Parametro(string pvariable,DbType tipo,direction x = direction.input)
+            {
+                this.variable = pvariable;
+                this.direccion = x;
+                this.valor = null;
+                this._tipo = tipo;
+            }
             public Parametro(string pvariable,Object pvalor,direction x = direction.input)
             {
                 // el try catch es inecesario solo es una simple asignacion

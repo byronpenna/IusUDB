@@ -40,6 +40,7 @@ namespace IUSLibs.LOGS
                     this._codigoError = value;
                 }
             }
+            public string _errorSql;
         #endregion
         #region "propiedades"
             private int _codigoError;
@@ -64,7 +65,14 @@ namespace IUSLibs.LOGS
             {
                 this._tipoError = errorType;
                 this._codigoError = codigoError;
-
+                this._errorSql = "";
+            }
+            public ErroresIUS(string message, tipoError errorType, int codigoError,string errorSql)
+                : base(message)
+            {
+                this._tipoError = errorType;
+                this._codigoError = codigoError;
+                this._errorSql = errorSql;
             }
         #endregion
     }

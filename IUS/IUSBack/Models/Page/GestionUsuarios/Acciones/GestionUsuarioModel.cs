@@ -57,7 +57,22 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
         }
 
         #region "respuestas para json"
-
+            public Usuario sp_sec_agregarUsuario(Usuario usuarioAgregar, int idUsuarioEjecutor, int idPagina)
+            {
+                Usuario usuarioAgregado = null;
+                try
+                {
+                    usuarioAgregado = this._control.sp_sec_agregarUsuario(usuarioAgregar, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x) {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return usuarioAgregado;
+            }
             public Dictionary<Object,Object>    actualizarUsuario(List<Usuario> usuarios,int idUsuarioEjecutor,int idPagina)
             {
                 List<Usuario> usuariosActualizados = new List<Usuario>();

@@ -26,9 +26,22 @@ namespace IUSLibs.BaseDatos
                     {
                         foreach (Parametro parametro in parametros)
                         {
-                            SqlParameter param = new SqlParameter(parametro.variable, parametro.getTypeProperty);
+                            SqlParameter param;
+                            if (parametro.valor != null) {
+                                 param = new SqlParameter(parametro.variable, parametro.getTypeProperty);
+                            }
+                            else
+                            {
+                                param = new SqlParameter(parametro.variable, parametro._tipo);
+                            }
                             param.Direction = ParameterDirection.Input;
-                            param.Value = parametro.valor;
+                            if (parametro.valor != null) {
+                                param.Value = parametro.valor;
+                            }
+                            else
+                            {
+                                param.Value = DBNull.Value;
+                            }
                             command.Parameters.Add(param);
                         }
                     }
@@ -120,6 +133,11 @@ namespace IUSLibs.BaseDatos
                             listParametro.Add(parametroGenerico);
                         }
                         this._arregloDeParametros.Add(listParametro);
+                    }
+                    public void agregarParametro(string pVariable,DbType tipo)
+                    {
+                        Parametro parametroGenerico = new Parametro("@" + pVariable,tipo);
+                        this.parametros.Add(parametroGenerico);
                     }
                     public void agregarParametro(string pVariable,Object pValor){
                         Parametro parametroGenerico = new Parametro("@" + pVariable,pValor);

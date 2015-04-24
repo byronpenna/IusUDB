@@ -91,14 +91,61 @@ namespace IUSBack.Controllers
         #endregion
         #region "Resultados ajax"
             #region "acciones"
-                [HttpPost]
-                public ActionResult cambiarEstadoUsuario()
-                {
-                    Usuario usuarioSession = (Usuario)Session["usuario"];
-                    int idUsuario = Convert.ToInt32(Request.Form["usuarioId"]);
-                    var resp = (Dictionary<Object,Object>)this._model.cambiarEstadoUsuario(idUsuario,usuarioSession._idUsuario);
-                    return Json(resp);
-                }
+                #region "actualizar"
+                    public ActionResult sp_sec_agregarUsuario()
+                    {
+                        Dictionary<object, object> frm, respuesta;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        Usuario usuarioAgregado,usuarioAgregar;
+                        Persona persona;
+                        if (frm != null && usuarioSession != null)
+                        {
+                            try
+                            {
+                                persona = new Persona(this.convertObjAjaxToInt(frm["cbPersona"]));
+                                usuarioAgregar = new Usuario(frm["txtEditUsuario"].ToString(), DateTime.Today, true,persona, frm["txtEditUsuario"].ToString()); // contraseña por defecto su nombre de usuario
+                                usuarioAgregado = this._model.sp_sec_agregarUsuario(usuarioAgregar, usuarioSession._idUsuario, this._idPagina);
+                                if (usuarioAgregado != null)
+                                {
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("usuarioAgregado", usuarioAgregado);
+                                }
+                                else
+                                {
+                                    ErroresIUS x = new ErroresIUS("Error inesperado", ErroresIUS.tipoError.generico, -1);
+                                    respuesta = this.errorTryControlador(3, x);
+                                }
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber,x._errorSql);
+                                respuesta = this.errorTryControlador(1, error);
+                            }
+                            catch (Exception x)
+                            {
+                                ErroresIUS errorIus = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                respuesta = this.errorTryControlador(2, x);
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
+                #endregion
+                #region "Deshabilitar"
+            [HttpPost]
+                    public ActionResult cambiarEstadoUsuario()
+                    {
+                        Usuario usuarioSession = (Usuario)Session["usuario"];
+                        int idUsuario = Convert.ToInt32(Request.Form["usuarioId"]);
+                        var resp = (Dictionary<Object,Object>)this._model.cambiarEstadoUsuario(idUsuario,usuarioSession._idUsuario);
+                        return Json(resp);
+                    }
+                #endregion
                 #region "actualizar"
                     [HttpPost]
                     public ActionResult actualizarUsuario()

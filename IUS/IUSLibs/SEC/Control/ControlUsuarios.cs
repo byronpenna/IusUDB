@@ -19,20 +19,23 @@ namespace IUSLibs.SEC.Control
         #region "propiedades"
             private Usuario _usuario;
             private List<Submenu> _subMenu = new List<Submenu>();
-            public List<Submenu> getSubMenu{
-                get{
-                    return this._subMenu;
-                }
-
-            }
-            public Usuario getUsuario {
-                get
-                {
-                    return this._usuario;
-                }
-            }
             private Permiso _permiso;
             #region "Get y set"
+                public List<Submenu> getSubMenu
+                {
+                    get
+                    {
+                        return this._subMenu;
+                    }
+
+                }
+                public Usuario getUsuario
+                {
+                    get
+                    {
+                        return this._usuario;
+                    }
+                }
                 public Permiso permisoGestion
                 {
                     get
@@ -44,7 +47,7 @@ namespace IUSLibs.SEC.Control
                 }
             #endregion
         #endregion
-            #region "funciones privadas"
+        #region "funciones privadas"
             private Usuario getObjectoUsuarioDeRow(DataRow row)
             {
                 Usuario usu;
@@ -165,8 +168,51 @@ namespace IUSLibs.SEC.Control
                     return usuarios;
                 }
             #endregion
-            #region "Mantenimiento de usuarios"
-            public bool actualizarUsuario(List<Usuario> usuarios, int idUsuarioEjecutor, int idPagina)
+            #region "Acciones"
+                public Usuario sp_sec_agregarUsuario(Usuario usuarioAgregar,int idUsuarioEjecutor,int idPagina)
+                {
+                    Usuario usuarioAgregado = null;
+                    SPIUS sp = new SPIUS("sp_sec_agregarUsuario");
+                    int idPersona = usuarioAgregar._persona._idPersona;
+                    sp.agregarParametro("usuario", usuarioAgregar._usuario);
+                    sp.agregarParametro("pass", usuarioAgregar._pass);
+                    sp.agregarParametro("fechaCreacion", usuarioAgregar._fechaCreacion);
+                    sp.agregarParametro("estado", usuarioAgregar._estado);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    if(idPersona != -1){
+                        sp.agregarParametro("idPersona", idPersona);
+                    }
+                    else
+                    {
+                        sp.agregarParametro("idPersona",DbType.Int32);
+                    }
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            DataRow rowResultado = tb[1].Rows[0];
+                            usuarioAgregado = this.getObjectoUsuarioDeRow(rowResultado);
+                        }
+                        else
+                        {
+                            DataRow rowError = tb[0].Rows[0];
+                            ErroresIUS x = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorSql"].ToString());
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return usuarioAgregado;
+                }
+                public bool actualizarUsuario(List<Usuario> usuarios, int idUsuarioEjecutor, int idPagina)
             {
                 bool estado = false;
                 SPIUS sp = new SPIUS("sp_sec_updateUsuarioParaMultiple");
@@ -187,7 +233,7 @@ namespace IUSLibs.SEC.Control
                 }
                 return estado;
             }
-            public Usuario actualizarUsuario(Usuario usu,int idUsuarioEjecutor,int idPagina)
+                public Usuario actualizarUsuario(Usuario usu,int idUsuarioEjecutor,int idPagina)
             {
                 Usuario toReturn = null;
                 SPIUS sp = new SPIUS("sp_sec_updateUsuario");

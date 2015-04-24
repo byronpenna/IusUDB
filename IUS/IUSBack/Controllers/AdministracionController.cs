@@ -19,7 +19,7 @@ namespace IUSBack.Controllers
             private int _idPaginaEventos = (int)paginas.Eventos;
             private int _idPaginaNoticias = (int)paginas.Noticias;
             private AdministracionModel _model;
-            private Dictionary<object, object> _errorRespuesta;
+            
         #endregion
         #region "url"
             public ActionResult Eventos()
@@ -75,10 +75,6 @@ namespace IUSBack.Controllers
         #region "acciones"
             #region "Eventos"
                 #region "acciones"
-                    public ActionResult errorPrueba()
-                    {
-                        return Json(this._errorRespuesta);
-                    }
                     public ActionResult sp_adminfe_quitarEventoWebsite()
                     {
                         Dictionary<object, object> frm, respuesta = null;

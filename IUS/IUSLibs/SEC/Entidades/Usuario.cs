@@ -13,7 +13,7 @@ namespace IUSLibs.SEC.Entidades
             public DateTime _fechaCreacion;
             public bool _estado;
             public Persona _persona;
-            private string _pass;
+            public string _pass;
         #endregion
         #region
             public string txtBtnHabilitar
@@ -86,6 +86,14 @@ namespace IUSLibs.SEC.Entidades
             public Usuario(int idUsuario)
             {
                 this._idUsuario = idUsuario;
+            }
+            public Usuario(string usuario, DateTime fechaCreacion, bool estado, Persona persona, string pass)
+            {
+                this._usuario = usuario;
+                this._fechaCreacion = fechaCreacion;
+                this._estado = estado;
+                this._persona = persona;
+                this._pass = pass;
             }
             public Usuario()
             {

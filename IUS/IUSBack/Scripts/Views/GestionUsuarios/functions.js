@@ -179,4 +179,15 @@
     function btnAgregarUsuario(tr) {
         frm = serializeSection(tr);
         console.log("formulario a enviar", frm);
+        actualizarCatalogo("GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
+            console.log("La respuesta del servidor es: ", data);
+            if (data.estado) {
+                
+            } else {
+                error = data.error;
+                alert(error.Message);
+            }
+        });
+        
+        
     }
