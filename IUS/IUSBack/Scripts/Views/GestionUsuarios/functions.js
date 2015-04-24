@@ -36,18 +36,13 @@
             $(".tableUsuarios").find(".trTableRol").remove();
         }
     }
-    
-    function tablaRoles(trUsuario) {
-        frm = new Object();
-        frm.idUsuario = trUsuario.find(".txtHdIdUser").val();
-        cargarObjetoGeneral("/GestionRoles/getJSONRoles", frm, function (data) {
-            var roles = data.roles;
-            table = "<tr class='trTableRol'>\
+    function getTbRoles(roles) {
+        table = "<tr class='trTableRol'>\
                         <td colspan=5>\
                             <table class='table tablaRolesUsuario'>\
                                 <thead>\
                                     <tr class='hidden'>\
-                                        <input type='hidden' name='idUsuario' class='idUsuario' value='"+frm.idUsuario+"'>\
+                                        <input type='hidden' name='idUsuario' class='idUsuario' value='"+ frm.idUsuario + "'>\
                                     </tr>\
                                     <tr  class='trTableRol'>\
                                         <th colspan='3' class='text-center'>Roles</th>\
@@ -60,27 +55,38 @@
                                 </thead>\
                                 <tbody class='tbodyRoles'>\
                                 ";
-                    
-            /*$.each(roles, function (i, val) {
-                table = "<tr>\
-                            <td>
-            });*/
+        if( !(roles === null) ){
             $.each(roles, function (i, val) {
                 table += "\
-                <tr class='trRol'>\
-                    <td class='hidden'><input type='hidden' class='txtIdRol' value='" + val._idRol + "'/></td>\
-                    <td>"+ val._rol + "</td>\
-                    <td>" + val.stringEstado + "</td>\
-                    <td class='tdAccionDesasociar'>\
-                        <a href='#' title='Desasociar Rol' class='btnDesasociar'><i class='fa fa-times'></i></a>\
-                    </td>\
-                </tr>"
+                    <tr class='trRol'>\
+                        <td class='hidden'><input type='hidden' class='txtIdRol' value='" + val._idRol + "'/></td>\
+                        <td>"+ val._rol + "</td>\
+                        <td>" + val.stringEstado + "</td>\
+                        <td class='tdAccionDesasociar'>\
+                            <a href='#' title='Desasociar Rol' class='btnDesasociar'><i class='fa fa-times'></i></a>\
+                        </td>\
+                    </tr>";
             });
+        } else {
             table += "\
+                    <tr class='trRol'>\
+                        <td colspan='3' class='text-center'>No hay roles disponibles</td>\
+                    </tr>";
+        }
+        table += "\
                                 </tbody>\
                             </table>\
                         </td>\
                   </tr>";
+        return table;
+    }
+    function tablaRoles(trUsuario) {
+        frm = new Object();
+        frm.idUsuario = trUsuario.find(".txtHdIdUser").val();
+        cargarObjetoGeneral("/GestionRoles/getJSONRoles", frm, function (data) {
+            console.log("la respuesta del servidor es: ", data);
+            var roles = data.roles;
+            table = getTbRoles(roles);
             trUsuario.after(table);
         });
     }
