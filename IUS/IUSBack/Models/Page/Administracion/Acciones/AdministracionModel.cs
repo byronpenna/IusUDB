@@ -28,6 +28,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #region "funciones publicas"
             #region "eventos"
                 #region "gets"
+                    public Dictionary<object,object> sp_adminfe_getPermisosUsuarioEvento(Evento evento, Usuario usuario,int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlUsuarioEvento.sp_adminfe_getPermisosUsuarioEvento(evento, usuario,idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public List<Evento> sp_adminfe_eventosPropios(int idUsuario, int idPagina)
                     {
                         List<Evento> eventos = null;

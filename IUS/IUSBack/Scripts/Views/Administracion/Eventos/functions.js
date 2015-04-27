@@ -12,32 +12,65 @@
     });
 }
 // genericos
-    function getCbUsuarios(usuarios) {
-        cb = "";
-        if (!(usuarios === null)) {
-            $.each(usuarios, function (i, usuario) {
-                cb += "<option value='" + usuario._idUsuario + "'>" + usuario._usuario + "</option>";
-            });
-        }else{
-            cb = "<option value='-1' selected disabled>No hay usuarios para compartir</option>"
+    // usuarios
+        function getCbUsuarios(usuarios) {
+            cb = "";
+            if (!(usuarios === null)) {
+                $.each(usuarios, function (i, usuario) {
+                    cb += "<option value='" + usuario._idUsuario + "'>" + usuario._usuario + "</option>";
+                });
+            }else{
+                cb = "<option value='-1' selected disabled>No hay usuarios para compartir</option>"
+            }
+            return cb;
         }
-        return cb;
-    }
-    function getTrUsuarios(usuarios) {
-        tr = "";
-        if (!(usuarios === null)) {
-            $.each(usuarios, function (i, usuario) {
-                tr += "\
-                <tr>\
-                    <td>"+ usuario._usuario + "</td>\
-                    <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
-                </tr>";
-            });
-        } else {
-            tr = "<tr><td colspan='2' class='text-center'>No a compartido con ningun usuario</td></tr>"
+        function getTrUsuarios(usuarios) {
+            tr = "";
+            if (!(usuarios === null)) {
+                $.each(usuarios, function (i, usuario) {
+                    tr += "\
+                    <tr class='trUsuarioCompartido' >\
+                        <td class='hidden'><input class='txtHdIdUsuario' value='" + usuario._idUsuario + "'></td>\
+                        <td>"+ usuario._usuario + "</td>\
+                        <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
+                    </tr>";
+                });
+            } else {
+                tr = "<tr><td colspan='2' class='text-center'>No a compartido con ningun usuario</td></tr>"
+            }
+            return tr;
         }
-        return tr;
-    }
+    // permisos 
+        function getCbPermisos(permisos) {
+            cb = "";
+            if (!(permisos === null)) {
+                $.each(permisos, function (i, permiso) {
+                    cb += "<option value='" + permiso.idPermiso + "'>" + permiso._permiso + "</option>";
+                });
+            } else {
+                cb = "<option value='-1'>No hay permisos para agregar</option>"
+            }
+            return cb;
+        }
+        function getTrPermisos(UsuarioEventos) {
+            tr = "";
+            if (!(UsuarioEventos === null)) {
+                $.each(UsuarioEventos, function (i, usuarioEvento) {
+                    tr += "\
+                        <tr>\
+                            <tr>\
+                                <td class='hidden'><input class='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'></td>\
+                                <td>" + usuarioEvento._permiso._permiso + "</td>\
+                                <td><i class='fa fa-times pointer icoPermisoEvento'></td>\
+                            </tr>\
+                        </tr>\
+                    ";
+                })
+            } else {
+                tr = "<tr><td class='text-center' colspan='2'>El usuario no posee permisos</td></tr>"
+            }
+            return tr;
+        }
     function agregarEvento(calendar,evento,sticker) {
         eventoAgregar = {
             title: evento._evento,
@@ -187,4 +220,26 @@
         }, 500);
         cargarCompartir(detalle,tab);
     }
-    
+    function trUsuarioCompartido(tr) {
+        tbody = tr.parents("tbody");
+        tbody.find(".clickTr").removeClass("clickTr");
+        tr.addClass("clickTr");
+        frm = {
+            idUsuario: tr.find(".txtHdIdUsuario").val(),
+            idEvento: $(".areaCompartir").find(".txtHdIdEvento").val()
+        }
+        // cargar los permisos de el usuario clickeado
+        console.log("el formulario a enviar es: ", frm);
+        actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
+            console.log("la respuesta del servidor es", data);
+            if (data.estado) {
+                cb = getCbPermisos(data.permisosFaltantes);
+                $(".cbPermisosCompartir").empty().append(cb);
+                resetChosen($(".cbPermisosCompartir"));
+                tr = getTrPermisos(data.permisosActuales);
+                $(".tbPermisos").empty().append(tr);
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
+    }

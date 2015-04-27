@@ -101,4 +101,9 @@
                     btnCompartir(detalle);
                     
                 });
+                // tabla compartir
+                $(document).on("click", ".trUsuarioCompartido", function () {
+                    tr = $(this);
+                    trUsuarioCompartido(tr);
+                });
 });

@@ -79,6 +79,8 @@
     <Compile Include="ADMINFE\Control\ControlUsuarioEvento.cs" />
     <Compile Include="ADMINFE\Entidades\Evento.cs" />
     <Compile Include="ADMINFE\Entidades\EventoWebsite.cs" />
+    <Compile Include="ADMINFE\Entidades\PermisoEvento.cs" />
+    <Compile Include="ADMINFE\Entidades\UsuarioEvento.cs" />
     <Compile Include="BaseDatos\Parametro.cs" />
     <Compile Include="BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />
