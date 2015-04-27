@@ -241,14 +241,33 @@ namespace IUSBack.Controllers
                 #endregion
                 #region "gets"
                     // de momento se traen los eventos solo de usuario pero se deben de traer todos
-                    public ActionResult sp_adminfe_loadCompartir()
+                    public ActionResult sp_adminfe_loadCompartirEventos()
                     {
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
                         if (frm != null && usuarioSession != null)
                         {
-
+                            try
+                            {
+                                List<List<Usuario>> usuarios = this._model.sp_adminfe_loadCompartirEventos(this.convertObjAjaxToInt(frm["idEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
+                                List<Usuario> usuariosCompartidos = usuarios[0];
+                                List<Usuario> usuariosNoCompartidos = usuarios[1];
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                                respuesta.Add("usuariosCompartidos", usuariosCompartidos);
+                                respuesta.Add("usuariosNoCompartidos", usuariosNoCompartidos);
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                ErroresIUS errorIus = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                respuesta = this.errorTryControlador(1, x);
+                            }
+                            catch (Exception x)
+                            {
+                                ErroresIUS errorIus = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                respuesta = this.errorTryControlador(2, x);
+                            }                            
                         }
                         else
                         {

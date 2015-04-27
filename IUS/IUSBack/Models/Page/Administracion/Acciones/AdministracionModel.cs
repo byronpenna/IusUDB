@@ -8,12 +8,22 @@ using System.Web;
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades;
     using IUSLibs.ADMINFE.Control;
+    using IUSLibs.SEC.Entidades;
+    
 namespace IUSBack.Models.Page.Administracion.Acciones
 {
     public class AdministracionModel:PadreModel
     {
+        #region "constructores"
+            public AdministracionModel()
+            {
+                this._controlEvento = new ControlEvento();
+                this._controlUsuarioEvento = new ControlUsuarioEvento();
+            }
+        #endregion
         #region "propiedades"
-
+            public ControlEvento _controlEvento;
+            public ControlUsuarioEvento _controlUsuarioEvento;
         #endregion 
         #region "funciones publicas"
             #region "eventos"
@@ -35,6 +45,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
 
                         }
                         return eventos;
+                    }
+                    public List<List<Usuario>> sp_adminfe_loadCompartirEventos(int idEvento, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlUsuarioEvento.sp_adminfe_loadCompartirEventos(idEvento, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
                 #endregion
                 #region "edicion"

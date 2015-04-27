@@ -12,6 +12,32 @@
     });
 }
 // genericos
+    function getCbUsuarios(usuarios) {
+        cb = "";
+        if (!(usuarios === null)) {
+            $.each(usuarios, function (i, usuario) {
+                cb += "<option value='" + usuario._idUsuario + "'>" + usuario._usuario + "</option>";
+            });
+        }else{
+            cb = "<option value='-1' selected disabled>No hay usuarios para compartir</option>"
+        }
+        return cb;
+    }
+    function getTrUsuarios(usuarios) {
+        tr = "";
+        if (!(usuarios === null)) {
+            $.each(usuarios, function (i, usuario) {
+                tr += "\
+                <tr>\
+                    <td>"+ usuario._usuario + "</td>\
+                    <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
+                </tr>";
+            });
+        } else {
+            tr = "<tr><td colspan='2' class='text-center'>No a compartido con ningun usuario</td></tr>"
+        }
+        return tr;
+    }
     function agregarEvento(calendar,evento,sticker) {
         eventoAgregar = {
             title: evento._evento,
@@ -46,9 +72,29 @@
         }
         detalle.find(".txtHdEstadoEstado").val(intEstado);
     }
-    function cargarCompartir(div) {
-        actualizarCatalogo("/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
-
+    function cargarCompartir(div,tab) {
+        tr = "\
+            <tr>\
+                <td colspan='2' class='text-center'>Seleccione usuario</td>\
+            </tr>\
+        ";
+        console.log("tr es:", tr);
+        tab.find(".tbPermisos").empty().append(tr);
+        seccion = tab.parents(".areaCompartir");
+        idEvento = div.find(".txtHdIdEvento").val();
+        console.log("el id el evento es: ", idEvento);
+        seccion.find(".txtHdIdEvento").val(idEvento);
+        frm = { idEvento: idEvento }
+        console.log("Formulario a enviar es: ", frm);
+        actualizarCatalogo("/Administracion/sp_adminfe_loadCompartirEventos", frm, function (data) {
+            console.log("la data devuelta es: ", data);
+            if (data.estado) {
+                cbUsuarios = getCbUsuarios(data.usuariosNoCompartidos);
+                $(".cbUsuarioCompartir").empty().append(cbUsuarios);
+                resetChosen($(".cbUsuarioCompartir"));
+                tr = getTrUsuarios(data.usuariosCompartidos);
+                tab.find(".tbUsuarios").empty().append(tr);
+            }
         });
     }
 // acciones script
@@ -139,6 +185,6 @@
         tab.animate({
             backgroundColor: "white"
         }, 500);
-        cargarCompartir(detalle);
+        cargarCompartir(detalle,tab);
     }
     
