@@ -206,7 +206,7 @@ namespace IUSBack.Controllers
                             {
                                 DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
                                 DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
-                                Evento eventoEditar    = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]), frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
+                                Evento eventoEditar    = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]), frm["txtEvento2"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
                                 eventoEditado           = this._model.sp_adminfe_editarEventos(eventoEditar,usuarioSession._idUsuario,this._idPaginaEventos);
                                 if (eventoEditado != null)
                                 {
@@ -237,9 +237,25 @@ namespace IUSBack.Controllers
                         }
                         return Json(respuesta);
                     }
+                    
                 #endregion
                 #region "gets"
                     // de momento se traen los eventos solo de usuario pero se deben de traer todos
+                    public ActionResult sp_adminfe_loadCompartir()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null)
+                        {
+
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
                     public ActionResult sp_adminfe_getEventosPrincipales()
                     {
                         Dictionary<object, object> respuesta = new Dictionary<object, object>();

@@ -22,12 +22,20 @@
         calendar.fullCalendar('renderEvent', eventoAgregar, true);
     }
     function llenarInputsEdicion(evento,div) {
-        console.log("El evento es:", evento);
         // tanto val como text ya que sino a la hora de llenar el formulario muere todo
         div.find(".txtAreaDescripcion").text(evento._descripcion);
         div.find(".txtFechaInicio").val(evento._fechaInicio);
         div.find(".txtFechaFin").val(evento._fechaFin);
-        div.find(".txtHoraFin").val(evento._horaInicio);
+        //div.find(".txtHoraFin").val(evento._horaFin);
+        //div.find(".txtHoraInicio").val(evento.)
+    }
+    function llenarInputsVista(evento,div){
+        h3 = div.prev();
+        div.find(".pDescripcionEvento").empty().append(evento._descripcion);
+        div.find(".spanFechaInicio").empty().append(evento.getFechaInicio);
+        div.find(".spanFechaFin").empty().append(evento.getFechaFin);
+        h3.find(".spanNombreEvento").empty().append(evento._evento);
+        console.log("todo cambio");
     }
     function updateDespuesDePublicacion(eventoWebsite,detalle) {
         detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
@@ -38,11 +46,10 @@
         }
         detalle.find(".txtHdEstadoEstado").val(intEstado);
     }
-    function editModeEncabezadoEvento() {
-        txtEdit = h3.find(".nombreEvento").text();
-        h3.find(".editMode").removeClass("hidden");
-        h3.find(".normalMode").addClass("hidden");
-        h3.find(".txtEvento2").val(txtEdit);
+    function cargarCompartir(div) {
+        actualizarCatalogo("/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
+
+        });
     }
 // acciones script
     function btnActualizar(detalle) {
@@ -52,7 +59,13 @@
         console.log("Formulario a enviar es:", frm);
         if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
             actualizarCatalogo("/Administracion/sp_adminfe_editarEventos", frm, function (data) {
-
+                console.log("data regresada por el server: ", data);
+                if (data.estado) {
+                    llenarInputsVista(data.eventoEditado, detalle);
+                    controlesEdit(false, div);
+                } else {
+                    alert("Ocurrio un error");
+                }
             });
         } else {
             alert("Por favor ponga una hora de inicio y de fin ")
@@ -85,9 +98,9 @@
             _horaInicio: fechaIni.substring( separadorIni,fechaIni.length),
             _horaFin:  fechaFin.substring(separadorFin,fechaFin.length)
         }
-        llenarInputsEdicion(evento, div);
         h3 = div.prev();
-        editModeEncabezadoEvento(h3);
+        div.find(".txtEvento2").val(h3.find(".spanNombreEvento").text());
+        llenarInputsEdicion(evento, div);
         controlesEdit(true, div);
         
     }
@@ -118,3 +131,14 @@
             }
         });
     }
+    function btnCompartir(detalle) {
+        h3  = detalle.prev();
+        tab = $("#tabUsuario");
+        $(".hEventoUsuario").empty().append(h3.find(".spanNombreEvento").text());
+        tab.css("background", 'rgba(229,229, 229, 0.5)');
+        tab.animate({
+            backgroundColor: "white"
+        }, 500);
+        cargarCompartir(detalle);
+    }
+    

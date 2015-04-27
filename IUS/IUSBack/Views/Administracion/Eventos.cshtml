@@ -6,8 +6,8 @@
         <!-- Full calendar -->
             <link href="~/Content/third-party/fullcalendar/fullcalendar.min.css" rel='stylesheet' />
             <link href="~/Content/third-party/fullcalendar/fullcalendar.print.css" media="print" rel="stylesheet" />
-        <!-- Date picker -->
-            
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/media.css" />
@@ -16,6 +16,8 @@
     <!-- Plugins -->
         <!-- Tabs -->
             <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
         <!-- Full calendar -->
             <script src="~/Content/third-party/fullcalendar/lib/moment.min.js"></script>
             <script src="~/Content/third-party/fullcalendar/fullcalendar.min.js"></script>
@@ -87,11 +89,8 @@
                 {
                     foreach (Evento evento in eventos)
                     {
-                        <h3>
-                            <!--<div class="normalMode nombreEvento">@evento._evento</div>
-                            <div class="editMode hidden">-->
-                                <input type="text" name="txtEvento2" class="txtEvento2" />
-                            <!--</div> -->
+                        <h3 class="nombreEvento">
+                            <span class="spanNombreEvento">@evento._evento</span>
                         </h3>
                         <div class="detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
@@ -99,6 +98,10 @@
                             <div class="row">
                                 <div class="normalMode">
                                     <p class="text-justify pDescripcionEvento">@evento._descripcion</p>
+                                </div>
+                                <div class="editMode hidden" style="margin-bottom:5%;">
+                                    <label>Nombre de evento</label>
+                                    <input type="text" name="txtEvento2" class="txtEvento2" />
                                 </div>
                                 <div class="editMode hidden" >
                                     <div class="editMode hidden">
@@ -141,7 +144,7 @@
                             <div class="row text-center sectionBotonesEvento">
                                 <div class="normalMode">
                                     <button class="btn btnEditar">Editar</button>
-                                    <button class="btn">Compartir</button>
+                                    <button class="btn btnCompartir">Compartir</button>
                                     <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
                                 </div>                                
                                 <div class="editMode hidden">
@@ -158,7 +161,8 @@
                 }
             </div>
         </div>
-        <div class="col-lg-8 pink">
+        <div class="col-lg-8 areaCompartir">
+            <input type="hidden" class="txtHdIdEvento" value="-1" />
             <div id="tabCompartir">
                 <ul class="ulTabGeneral">
                     <li>
@@ -169,7 +173,44 @@
                     </li>
                 </ul>
                 <div id="tabUsuario" class="tab">
-                    Compartir con un usuario
+                    <div class="row">
+                        <h2 class="hEventoUsuario text-center">Seleccione evento a compartir</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <select class="cbUsuarioCompartir">
+                                    <option value="-1" disabled selected>Seleccione usuario</option>
+                                </select>
+                                <button class="btn btn-primary">Agregar</button>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <select class="cbPermisosCompartir">
+                                    <option value="-1" disabled selected>Seleccione permiso</option>
+                                </select>
+                                <button class="btn btn-primary">Agregar</button>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Permisos</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div id="Publico">
                     Compartir acceso publico
