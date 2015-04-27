@@ -20,6 +20,38 @@ namespace IUSLibs.ADMINFE.Control
 
         #endregion
         #region "funciones"
+            #region "acciones"
+                public UsuarioEvento sp_adminfe_compartirEvento(UsuarioEvento agregar,int idUsuarioEjecutor,int idPagina)
+                {
+                    UsuarioEvento agregado = null;
+                    Evento evento; Usuario usuario; PermisoEvento permiso;
+                    SPIUS sp = new SPIUS("sp_adminfe_compartirEvento");
+                    sp.agregarParametro("idEvento", agregar._evento._idEvento);
+                    sp.agregarParametro("idPermiso",agregar._permiso._idPermiso);
+                    sp.agregarParametro("idUsuario", agregar._usuario._idUsuario);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            DataRow rowResultado = tb[1].Rows[0];
+                            
+                            agregado = new UsuarioEvento();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return agregado;
+                }
+            #endregion
             #region "gets"
                 public Dictionary<object,object> sp_adminfe_getPermisosUsuarioEvento(Evento evento,Usuario usuario,int idUsuarioEjecutor,int idPagina){
                     // declare 

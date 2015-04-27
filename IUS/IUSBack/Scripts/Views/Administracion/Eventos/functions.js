@@ -1,4 +1,5 @@
-﻿function eventosIniciales() {
+﻿// load
+    function eventosIniciales() {
     var frm = new Object();
     actualizarCatalogo("/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
         if (data.estado) {
@@ -7,7 +8,6 @@
                 agregarEvento($("#calendar"), evento, true);
             });
         } else {
-            console.log("ocurrio un error inesperado");
         }
     });
 }
@@ -77,7 +77,6 @@
             start: evento.getFechaInicioUSA,
             end: evento.getFechaFinUSA 
         };
-        console.log("por lo menos intento agregarlo");
         calendar.fullCalendar('renderEvent', eventoAgregar, true);
     }
     function llenarInputsEdicion(evento,div) {
@@ -94,7 +93,6 @@
         div.find(".spanFechaInicio").empty().append(evento.getFechaInicio);
         div.find(".spanFechaFin").empty().append(evento.getFechaFin);
         h3.find(".spanNombreEvento").empty().append(evento._evento);
-        console.log("todo cambio");
     }
     function updateDespuesDePublicacion(eventoWebsite,detalle) {
         detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
@@ -111,16 +109,13 @@
                 <td colspan='2' class='text-center'>Seleccione usuario</td>\
             </tr>\
         ";
-        console.log("tr es:", tr);
         tab.find(".tbPermisos").empty().append(tr);
         seccion = tab.parents(".areaCompartir");
         idEvento = div.find(".txtHdIdEvento").val();
-        console.log("el id el evento es: ", idEvento);
+
         seccion.find(".txtHdIdEvento").val(idEvento);
         frm = { idEvento: idEvento }
-        console.log("Formulario a enviar es: ", frm);
         actualizarCatalogo("/Administracion/sp_adminfe_loadCompartirEventos", frm, function (data) {
-            console.log("la data devuelta es: ", data);
             if (data.estado) {
                 cbUsuarios = getCbUsuarios(data.usuariosNoCompartidos);
                 $(".cbUsuarioCompartir").empty().append(cbUsuarios);
@@ -131,14 +126,20 @@
         });
     }
 // acciones script
+    function frmCompartirUsuario(divFrm) {
+        frm = serializeSection(divFrm);
+        frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
+        console.log("formulario a enviar es: ", frm);
+        /*actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
+
+        });*/
+    }
     function btnActualizar(detalle) {
         frm = serializeSection(detalle);
         h3 = detalle.prev();
         frm.txtEvento = h3.find(".txtEvento2").val();
-        console.log("Formulario a enviar es:", frm);
         if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
             actualizarCatalogo("/Administracion/sp_adminfe_editarEventos", frm, function (data) {
-                console.log("data regresada por el server: ", data);
                 if (data.estado) {
                     llenarInputsVista(data.eventoEditado, detalle);
                     controlesEdit(false, div);
@@ -155,9 +156,7 @@
             txtHdIdEvento: detalle.find(".txtHdIdEvento").val(),
             txtAreaMotivoQuitar: detalle.find(".txtAreaMotivoQuitar").val()
         }
-        console.log("Formulario a enviar para quitar publicacion:", frm);
         actualizarCatalogo("/Administracion/sp_adminfe_quitarEventoWebsite", frm, function (data) {
-            console.log("la data devuelta por el server es: ", data);
             if (data.estado) {
                 updateDespuesDePublicacion(data.eventoWebsite, detalle);
             } else {
@@ -186,7 +185,6 @@
     function btnPublicar(detalle) {
         frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
         actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
-            console.log("la respuesta del server es: ", data);
             updateDespuesDePublicacion(data.eventoPublicado, detalle);
         });
     }
@@ -229,9 +227,7 @@
             idEvento: $(".areaCompartir").find(".txtHdIdEvento").val()
         }
         // cargar los permisos de el usuario clickeado
-        console.log("el formulario a enviar es: ", frm);
         actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
-            console.log("la respuesta del servidor es", data);
             if (data.estado) {
                 cb = getCbPermisos(data.permisosFaltantes);
                 $(".cbPermisosCompartir").empty().append(cb);
