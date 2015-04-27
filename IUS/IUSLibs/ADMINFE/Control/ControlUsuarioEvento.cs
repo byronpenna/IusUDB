@@ -37,8 +37,8 @@ namespace IUSLibs.ADMINFE.Control
                         if (this.resultadoCorrecto(tb))
                         {
                             DataRow rowResultado = tb[1].Rows[0];
-                            
-                            agregado = new UsuarioEvento();
+                            //evento = new Evento()
+                            //agregado = new UsuarioEvento();
                         }
                     }
                     catch (ErroresIUS x)
