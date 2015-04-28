@@ -270,14 +270,11 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta=null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        Evento evento; Usuario usuario;
                         if (usuarioSession != null && frm != null)
                         {
-                            evento = new Evento(this.convertObjAjaxToInt(frm["idEvento"]));
-                            usuario = new Usuario( this.convertObjAjaxToInt(frm["idUsuario"]));
-                            Dictionary<object,object> permisos = this._model.sp_adminfe_getPermisosUsuarioEvento(evento,usuario, usuarioSession._idUsuario, this._idPaginaEventos);
+                            Dictionary<object, object> permisos = this._model.sp_adminfe_getPermisosUsuarioEvento(this.convertObjAjaxToInt(frm["idUsuarioEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
                             List<PermisoEvento> permisosFaltantes = (List<PermisoEvento>)permisos["permisosFaltantes"];
-                            List<UsuarioEvento> permisosActuales = (List<UsuarioEvento>)permisos["permisosActuales"];
+                            List<PermisoUsuarioEvento> permisosActuales = (List<PermisoUsuarioEvento>)permisos["permisosActuales"];
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("permisosFaltantes", permisosFaltantes);

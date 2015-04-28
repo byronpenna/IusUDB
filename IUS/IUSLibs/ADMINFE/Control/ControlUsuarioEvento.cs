@@ -52,16 +52,16 @@ namespace IUSLibs.ADMINFE.Control
                 }
             #endregion
             #region "gets"
-                public Dictionary<object,object> sp_adminfe_getPermisosUsuarioEvento(Evento evento,Usuario usuario,int idUsuarioEjecutor,int idPagina){
+                public Dictionary<object,object> sp_adminfe_getPermisosUsuarioEvento(int idUsuarioEvento,int idUsuarioEjecutor,int idPagina){
                     // declare 
                         Dictionary<object,object> toReturn = null;
                         List<PermisoEvento> permisosFaltantes = null;
-                        List<UsuarioEvento> permisosActuales = null;
-                        PermisoEvento permiso; //UsuarioEvento usuarioEvento;
+                        List<PermisoUsuarioEvento> permisosActuales = null;
+                        PermisoEvento permiso; PermisoUsuarioEvento permisoUsuarioEvento;
+                        UsuarioEvento usuarioEvento;
                     // do it 
                     SPIUS sp = new SPIUS("sp_adminfe_getPermisosUsuarioEvento");
-                    sp.agregarParametro("idEvento", evento._idEvento);
-                    sp.agregarParametro("idUsuario", usuario._idUsuario);
+                    sp.agregarParametro("idUsuarioEvento",idUsuarioEvento);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -80,12 +80,13 @@ namespace IUSLibs.ADMINFE.Control
                             }
                             if (tb[2].Rows.Count > 0)
                             {
-                                permisosActuales = new List<UsuarioEvento>();
+                                permisosActuales = new List<PermisoUsuarioEvento>();
                                 foreach (DataRow row in tb[2].Rows)
                                 {
-                                    permiso = new PermisoEvento((int)row["idPermiso"], row["permiso"].ToString());
-                                    //usuarioEvento = new UsuarioEvento((int)row["idUsuarioEvento"], evento, permiso, usuario);
-                                    //permisosActuales.Add(usuarioEvento);
+                                    permiso = new PermisoEvento((int)row["idPermiso"],row["permiso"].ToString());
+                                    usuarioEvento = new UsuarioEvento((int)row["id_usuarioevento_fk"]);
+                                    permisoUsuarioEvento = new PermisoUsuarioEvento((int)row["idPermisoUsuarioEvento"], usuarioEvento, permiso);
+                                    permisosActuales.Add(permisoUsuarioEvento);
                                 }
                             }
                             toReturn = new Dictionary<object, object>();

@@ -30,7 +30,7 @@
                 $.each(usuariosEventos, function (i, usuarioEvento) {
                     tr += "\
                     <tr class='trUsuarioCompartido' >\
-                        <td class='hidden'><input class='txtHdIdUsuario' value='" + usuarioEvento._idEventoUsuario + "'></td>\
+                        <td class='hidden'><input class='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'></td>\
                         <td>"+ usuarioEvento._usuario._usuario + "</td>\
                         <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
                     </tr>";
@@ -52,15 +52,15 @@
             }
             return cb;
         }
-        function getTrPermisos(UsuarioEventos) {
+        function getTrPermisos(PermisosUsuariosEventos) {
             tr = "";
-            if (!(UsuarioEventos === null)) {
-                $.each(UsuarioEventos, function (i, usuarioEvento) {
+            if (!(PermisosUsuariosEventos === null)) {
+                $.each(PermisosUsuariosEventos, function (i, PermisoUsuarioEvento) {
                     tr += "\
                         <tr>\
                             <tr>\
-                                <td class='hidden'><input class='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'></td>\
-                                <td>" + usuarioEvento._permiso._permiso + "</td>\
+                                <td class='hidden'><input class='txtHdIdUsuarioEvento' value='" + PermisoUsuarioEvento._idPermisoUsuarioEvento + "'></td>\
+                                <td>" + PermisoUsuarioEvento._permiso._permiso + "</td>\
                                 <td><i class='fa fa-times pointer icoPermisoEvento'></td>\
                             </tr>\
                         </tr>\
@@ -223,8 +223,7 @@
         tbody.find(".clickTr").removeClass("clickTr");
         tr.addClass("clickTr");
         frm = {
-            idUsuario: tr.find(".txtHdIdUsuario").val(),
-            idEvento: $(".areaCompartir").find(".txtHdIdEvento").val()
+            idUsuarioEvento: tr.find(".txtHdIdUsuarioEvento").val(),
         }
         // cargar los permisos de el usuario clickeado
         actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {

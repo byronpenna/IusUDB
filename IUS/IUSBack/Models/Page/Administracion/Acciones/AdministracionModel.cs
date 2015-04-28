@@ -28,11 +28,11 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #region "funciones publicas"
             #region "eventos"
                 #region "gets"
-                    public Dictionary<object,object> sp_adminfe_getPermisosUsuarioEvento(Evento evento, Usuario usuario,int idUsuarioEjecutor, int idPagina)
+                    public Dictionary<object,object> sp_adminfe_getPermisosUsuarioEvento(int idUsuarioEvento,int idUsuarioEjecutor, int idPagina)
                     {
                         try
                         {
-                            return this._controlUsuarioEvento.sp_adminfe_getPermisosUsuarioEvento(evento, usuario,idUsuarioEjecutor, idPagina);
+                            return this._controlUsuarioEvento.sp_adminfe_getPermisosUsuarioEvento(idUsuarioEvento,idUsuarioEjecutor, idPagina);
                         }
                         catch (ErroresIUS x)
                         {

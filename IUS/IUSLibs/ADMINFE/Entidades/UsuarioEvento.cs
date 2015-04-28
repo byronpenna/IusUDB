@@ -14,6 +14,10 @@ namespace IUSLibs.ADMINFE.Entidades
             public Usuario          _usuario;
         #endregion
         #region "constructores"
+            public UsuarioEvento(int idEventoUsuario)
+            {
+                this._idEventoUsuario = idEventoUsuario;
+            }
             public UsuarioEvento(int idEventoUsuario, Evento evento, Usuario usuario)
             {
                 this._idEventoUsuario = idEventoUsuario;
