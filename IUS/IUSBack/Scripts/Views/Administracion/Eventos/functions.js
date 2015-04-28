@@ -24,19 +24,23 @@
             }
             return cb;
         }
-        function getTrUsuarios(usuariosEventos) {
-            tr = "";
-            if (!(usuariosEventos === null)) {
-                $.each(usuariosEventos, function (i, usuarioEvento) {
-                    tr += "\
+        function getTrOneUsuarios(usuarioEvento) {
+            tr = "\
                     <tr class='trUsuarioCompartido' >\
                         <td class='hidden'><input class='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'></td>\
                         <td>"+ usuarioEvento._usuario._usuario + "</td>\
                         <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
                     </tr>";
+            return tr;
+        }
+        function getTrUsuarios(usuariosEventos) {
+            tr = "";
+            if (!(usuariosEventos === null)) {
+                $.each(usuariosEventos, function (i, usuarioEvento) {
+                    tr += getTrOneUsuarios(usuarioEvento);
                 });
             } else {
-                tr = "<tr><td colspan='2' class='text-center'>No a compartido con ningun usuario</td></tr>"
+                tr = "<tr><td colspan='2' class='text-center noUsuarioCompartido'>No a compartido con ningun usuario</td></tr>"
             }
             return tr;
         }
@@ -126,13 +130,32 @@
         });
     }
 // acciones script
-    function frmCompartirUsuario(divFrm) {
+    function btnAgregarUsuarioCompartir(divFrm) {
         frm = serializeSection(divFrm);
         frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
         console.log("formulario a enviar es: ", frm);
-        /*actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
-
-        });*/
+        actualizarCatalogo("/Administracion/sp_adminfe_compartirEventoUsuario", frm, function (data) {
+            console.log("la data del servidor es: ", data);
+            if (data.estado) {
+                if (!(data.usuarioEventoAgregado === null)) {
+                    cb = getCbUsuarios(data.usuariosFaltantes);
+                    $(".cbUsuarioCompartir").empty().append(cb);
+                    resetChosen($(".cbUsuarioCompartir"));
+                    tr = getTrOneUsuarios(data.usuarioEventoAgregado);
+                    tbody = $(".tbUsuarios");
+                    if (tbody.find(".noUsuarioCompartido").length == 0) {
+                        tbody.prepend(tr);
+                    } else {
+                        tbody.empty().append(tr);
+                    }
+                    
+                } else {
+                    alert("Error");
+                }
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
     }
     function btnActualizar(detalle) {
         frm = serializeSection(detalle);

@@ -103,7 +103,7 @@
                 });
                 $(document).on("click", ".btnAgregarUsuarioCompartir", function () {
                     divFrm = $(this).parents(".frmCompartirUsuario");
-                    frmCompartirUsuario(divFrm);
+                    btnAgregarUsuarioCompartir(divFrm);
                 });
                 // tabla compartir
                 $(document).on("click", ".trUsuarioCompartido", function () {

@@ -239,16 +239,29 @@ namespace IUSBack.Controllers
                     }
                     public ActionResult sp_adminfe_compartirEventoUsuario()
                     {
-                        Dictionary<object, object> frm, respuesta = null;
+                        Dictionary<object, object> frm, respuesta;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
                         if (frm != null && usuarioSession != null)
                         {
                             try{
-                                /*Evento evento = new Evento(this.convertObjAjaxToInt(frm[""]));
-                                PermisoEvento permiso = new PermisoEvento()
-                                UsuarioEvento agregar = new UsuarioEvento(evento,);
-                                UsuarioEvento usuarioAgregado = this._model.sp_adminfe_compartirEventoUsuario(agregar, usuarioSession._idUsuario, this._idPaginaEventos);*/
+                                Evento evento = new Evento(this.convertObjAjaxToInt(frm["idEvento"]));
+                                Usuario usuario = new Usuario(this.convertObjAjaxToInt(frm["cbUsuarioCompartir"]));
+                                UsuarioEvento agregar = new UsuarioEvento(evento,usuario);
+                                UsuarioEvento usuarioAgregado = this._model.sp_adminfe_compartirEventoUsuario(agregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                List<Usuario> usuariosFaltantes = this._model.sp_adminfe_getUsuariosFaltantesEvento(usuarioAgregado._evento._idEvento, usuarioSession._idUsuario, this._idPaginaEventos);
+                                if (usuarioAgregado != null)
+                                {
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("usuarioEventoAgregado", usuarioAgregado);
+                                    respuesta.Add("usuariosFaltantes", usuariosFaltantes);
+                                }
+                                else
+                                {
+                                    ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado",ErroresIUS.tipoError.generico,0);
+                                    respuesta = this.errorTryControlador(3, x);
+                                }
                             }catch(ErroresIUS x){
                                 ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
                                 respuesta = this.errorTryControlador(1, x);

@@ -24,10 +24,9 @@ namespace IUSLibs.ADMINFE.Control
                 public UsuarioEvento sp_adminfe_compartirEventoUsuario(UsuarioEvento agregar, int idUsuarioEjecutor, int idPagina)
                 {
                     UsuarioEvento agregado = null;
-                    //Evento evento; Usuario usuario; PermisoEvento permiso;
-                    SPIUS sp = new SPIUS("sp_adminfe_compartirEvento");
+                    Evento evento; Usuario usuario;
+                    SPIUS sp = new SPIUS("sp_adminfe_compartirEventoUsuario");
                     sp.agregarParametro("idEvento", agregar._evento._idEvento);
-                    //sp.agregarParametro("idPermiso",agregar._permiso._idPermiso);
                     sp.agregarParametro("idUsuario", agregar._usuario._idUsuario);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
@@ -37,7 +36,9 @@ namespace IUSLibs.ADMINFE.Control
                         if (this.resultadoCorrecto(tb))
                         {
                             DataRow rowResultado = tb[1].Rows[0];
-                            //agregado = new UsuarioEvento((int)rowResultado["idUsuarioEvento"],agregar._evento,agregar._permiso,agregar._usuario);
+                            usuario = new Usuario((int)rowResultado["idUsuario"], rowResultado["usuario"].ToString(), (bool)rowResultado["estado"]);
+                            evento = new Evento((int)rowResultado["id_evento_fk"]);
+                            agregado = new UsuarioEvento((int)rowResultado["idUsuarioEvento"],evento,usuario);
                         }
                     }
                     catch (ErroresIUS x)
@@ -156,6 +157,38 @@ namespace IUSLibs.ADMINFE.Control
                         throw x;
                     }
                     return retorno;
+                }
+                public List<Usuario> sp_adminfe_getUsuariosFaltantesEvento(int idEvento, int idUsuarioEjecutor, int idPagina)
+                {
+                    List<Usuario> usuarios = null;
+                    Usuario usuario;
+                    SPIUS sp = new SPIUS("sp_adminfe_getUsuariosFaltantesEvento");
+                    sp.agregarParametro("idEvento", idEvento);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                usuarios = new List<Usuario>();
+                                foreach(DataRow row in tb[1].Rows){
+                                    usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (bool)row["estado"]);
+                                    usuarios.Add(usuario);
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return usuarios;
                 }
             #endregion
         #endregion
