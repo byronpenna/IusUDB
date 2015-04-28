@@ -276,6 +276,44 @@ namespace IUSBack.Controllers
                         }
                         return Json(respuesta);
                     }
+                    public ActionResult sp_adminfe_removeUsuarioEvento()
+                    {
+                        Dictionary<object, object> frm, respuesta;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null)
+                        {
+                            try
+                            {
+                                bool resultadoDelete = this._model.sp_adminfe_removeUsuarioEvento(this.convertObjAjaxToInt(frm["txtHdIdUsuarioEvento"]), usuarioSession._idUsuario);
+                                if (resultadoDelete)
+                                {
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", resultadoDelete);
+                                }
+                                else
+                                {
+                                    ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
+                                    respuesta = this.errorTryControlador(3, x);
+                                }
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                respuesta = this.errorTryControlador(1, x);
+                            }
+                            catch (Exception x)
+                            {
+                                ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.sql, x.HResult);
+                                respuesta = this.errorTryControlador(2, x);
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
                 #endregion
                 #region "gets"
                     public ActionResult sp_adminfe_getPermisosUsuarioEvento()

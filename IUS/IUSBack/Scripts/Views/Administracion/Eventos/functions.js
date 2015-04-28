@@ -27,7 +27,7 @@
         function getTrOneUsuarios(usuarioEvento) {
             tr = "\
                     <tr class='trUsuarioCompartido' >\
-                        <td class='hidden'><input class='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'></td>\
+                        <td class='hidden'><input class='txtHdIdUsuarioEvento' name='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'></td>\
                         <td>"+ usuarioEvento._usuario._usuario + "</td>\
                         <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
                     </tr>";
@@ -130,6 +130,15 @@
         });
     }
 // acciones script
+    function icoQuitarUsuario(tr) {
+        frm = serializeSection(tr);
+        console.log("formulario a enviar es", frm);
+        actualizarCatalogo("/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
+            if (data.estado) {
+                tr.remove();
+            }
+        });
+    }
     function btnAgregarUsuarioCompartir(divFrm) {
         frm = serializeSection(divFrm);
         frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();

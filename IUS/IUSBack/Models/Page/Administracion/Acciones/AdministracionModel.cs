@@ -110,7 +110,22 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         }
                     }
                 #endregion
-                #region "creacion"
+                #region "eliminacion"
+                    public bool sp_adminfe_removeUsuarioEvento(int idUsuarioEvento,int idUsuarioEjecutor)
+                    {
+                        try
+                        {
+                            return this._controlUsuarioEvento.sp_adminfe_removeUsuarioEvento(idUsuarioEvento, idUsuarioEjecutor);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public EventoWebsite sp_adminfe_quitarEventoWebsite(int idEventoQuitar, string motivo, int idUsuarioEjecutor, int idPagina)
                     {
                         ControlEventoWebsite control = new ControlEventoWebsite();
@@ -127,6 +142,8 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                             throw x;
                         }
                     }
+                #endregion
+                #region "creacion"
                     public EventoWebsite sp_adminfe_publicarEventoWebsite(Evento eventoAgregar, int idUsuarioEjecutor, int idPagina)
                     {
                         EventoWebsite eventoPublicado = null;

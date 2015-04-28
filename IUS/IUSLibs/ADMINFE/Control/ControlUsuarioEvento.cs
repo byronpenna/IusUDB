@@ -21,6 +21,30 @@ namespace IUSLibs.ADMINFE.Control
         #endregion
         #region "funciones"
             #region "acciones"
+                public bool sp_adminfe_removeUsuarioEvento(int idUsuarioEvento,int idUsuarioEjecutor)
+                {
+                    bool estado=false;
+                    SPIUS sp = new SPIUS("sp_adminfe_removeUsuarioEvento");
+                    sp.agregarParametro("idUsuarioEvento", idUsuarioEvento);
+                    sp.agregarParametro("idUsuarioEjecutor",idUsuarioEjecutor);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
                 public UsuarioEvento sp_adminfe_compartirEventoUsuario(UsuarioEvento agregar, int idUsuarioEjecutor, int idPagina)
                 {
                     UsuarioEvento agregado = null;

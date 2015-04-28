@@ -105,6 +105,14 @@
                     divFrm = $(this).parents(".frmCompartirUsuario");
                     btnAgregarUsuarioCompartir(divFrm);
                 });
+                $(document).on("click", ".icoQuitarUsuario", function (e) {
+                    e.stopPropagation();
+                    var x = confirm("¿Esta seguro que desea dejar de compartir?");
+                    tr = $(this).parents("tr");
+                    if (x) {
+                        icoQuitarUsuario(tr);
+                    }
+                });
                 // tabla compartir
                 $(document).on("click", ".trUsuarioCompartido", function () {
                     tr = $(this);
