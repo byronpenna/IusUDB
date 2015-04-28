@@ -21,13 +21,13 @@ namespace IUSLibs.ADMINFE.Control
         #endregion
         #region "funciones"
             #region "acciones"
-                public UsuarioEvento sp_adminfe_compartirEvento(UsuarioEvento agregar,int idUsuarioEjecutor,int idPagina)
+                public UsuarioEvento sp_adminfe_compartirEventoUsuario(UsuarioEvento agregar, int idUsuarioEjecutor, int idPagina)
                 {
                     UsuarioEvento agregado = null;
-                    Evento evento; Usuario usuario; PermisoEvento permiso;
+                    //Evento evento; Usuario usuario; PermisoEvento permiso;
                     SPIUS sp = new SPIUS("sp_adminfe_compartirEvento");
                     sp.agregarParametro("idEvento", agregar._evento._idEvento);
-                    sp.agregarParametro("idPermiso",agregar._permiso._idPermiso);
+                    //sp.agregarParametro("idPermiso",agregar._permiso._idPermiso);
                     sp.agregarParametro("idUsuario", agregar._usuario._idUsuario);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
@@ -37,8 +37,7 @@ namespace IUSLibs.ADMINFE.Control
                         if (this.resultadoCorrecto(tb))
                         {
                             DataRow rowResultado = tb[1].Rows[0];
-                            //evento = new Evento()
-                            //agregado = new UsuarioEvento();
+                            //agregado = new UsuarioEvento((int)rowResultado["idUsuarioEvento"],agregar._evento,agregar._permiso,agregar._usuario);
                         }
                     }
                     catch (ErroresIUS x)
@@ -58,7 +57,7 @@ namespace IUSLibs.ADMINFE.Control
                         Dictionary<object,object> toReturn = null;
                         List<PermisoEvento> permisosFaltantes = null;
                         List<UsuarioEvento> permisosActuales = null;
-                        PermisoEvento permiso; UsuarioEvento usuarioEvento;
+                        PermisoEvento permiso; //UsuarioEvento usuarioEvento;
                     // do it 
                     SPIUS sp = new SPIUS("sp_adminfe_getPermisosUsuarioEvento");
                     sp.agregarParametro("idEvento", evento._idEvento);
@@ -85,8 +84,8 @@ namespace IUSLibs.ADMINFE.Control
                                 foreach (DataRow row in tb[2].Rows)
                                 {
                                     permiso = new PermisoEvento((int)row["idPermiso"], row["permiso"].ToString());
-                                    usuarioEvento = new UsuarioEvento((int)row["idUsuarioEvento"], evento, permiso, usuario);
-                                    permisosActuales.Add(usuarioEvento);
+                                    //usuarioEvento = new UsuarioEvento((int)row["idUsuarioEvento"], evento, permiso, usuario);
+                                    //permisosActuales.Add(usuarioEvento);
                                 }
                             }
                             toReturn = new Dictionary<object, object>();
@@ -104,12 +103,12 @@ namespace IUSLibs.ADMINFE.Control
                     return toReturn;
                 }
                 // carga solo los usuarios a los que se les compartio
-                public List<List<Usuario>> sp_adminfe_loadCompartirEventos(int idEvento,int idUsuarioEjecutor,int idPagina)
+                public Dictionary<string,object> sp_adminfe_loadCompartirEventos(int idEvento,int idUsuarioEjecutor,int idPagina)
                 {
-                    List<List<Usuario>> retorno = null;
-                    List<Usuario> usuariosCompartido = null;
+                    Dictionary<string,object> retorno = null;
+                    List<UsuarioEvento> usuariosCompartido = null;
                     List<Usuario> usuariosNoCompartido = null;
-                    Usuario usu; Persona persona;
+                    Usuario usu; Persona persona; UsuarioEvento usuEvento; Evento evento;
                     SPIUS sp = new SPIUS("sp_adminfe_loadCompartirEventos");
                     sp.agregarParametro("idEvento", idEvento);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -132,18 +131,19 @@ namespace IUSLibs.ADMINFE.Control
                                 }
                             }
                             if (tb[2].Rows.Count > 0) {
-                                usuariosCompartido = new List<Usuario>();
-                                // usuarios que estan en el evento
+                                usuariosCompartido = new List<UsuarioEvento>();
                                 foreach (DataRow row in tb[2].Rows)
                                 {
                                     persona = new Persona((int)row["id_persona_fk"]);
                                     usu = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), persona, (bool)row["estado"]);
-                                    usuariosCompartido.Add(usu);
+                                    evento = new Evento((int)row["id_evento_fk"]);
+                                    usuEvento = new UsuarioEvento((int)row["idUsuarioEvento"], evento, usu);
+                                    usuariosCompartido.Add(usuEvento);
                                 }
                             }
-                            retorno = new List<List<Usuario>>();
-                            retorno.Add(usuariosCompartido);
-                            retorno.Add(usuariosNoCompartido);
+                            retorno = new Dictionary<string, object>();
+                            retorno.Add("usuariosCompartido", usuariosCompartido);
+                            retorno.Add("usuariosNoCompartido", usuariosNoCompartido);
                         }
                     }
                     catch (ErroresIUS x)

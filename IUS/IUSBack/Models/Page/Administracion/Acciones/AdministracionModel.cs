@@ -61,7 +61,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         }
                         return eventos;
                     }
-                    public List<List<Usuario>> sp_adminfe_loadCompartirEventos(int idEvento, int idUsuarioEjecutor, int idPagina)
+                    public Dictionary<string,object> sp_adminfe_loadCompartirEventos(int idEvento, int idUsuarioEjecutor, int idPagina)
                     {
                         try
                         {
@@ -147,6 +147,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                             throw x;
                         }
                         return eventoAgregado;
+                    }
+                    public UsuarioEvento sp_adminfe_compartirEventoUsuario(UsuarioEvento agregar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlUsuarioEvento.sp_adminfe_compartirEventoUsuario(agregar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x; 
+                        }
                     }
                 #endregion
             #endregion

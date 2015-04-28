@@ -17,6 +17,10 @@ namespace IUSLibs.ADMINFE.Entidades
                 this._idPermiso = idPermiso;
                 this._permiso = _permiso;
             }
+            public PermisoEvento()
+            {
+
+            }
         #endregion
     }
 }

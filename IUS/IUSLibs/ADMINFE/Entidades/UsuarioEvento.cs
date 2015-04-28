@@ -11,22 +11,19 @@ namespace IUSLibs.ADMINFE.Entidades
         #region "propiedades"
             public int              _idEventoUsuario;
             public Evento           _evento;
-            public PermisoEvento    _permiso;
             public Usuario          _usuario;
         #endregion
         #region "constructores"
-            public UsuarioEvento(int idEventoUsuario, Evento evento, PermisoEvento permiso, Usuario usuario)
+            public UsuarioEvento(int idEventoUsuario, Evento evento, Usuario usuario)
             {
                 this._idEventoUsuario = idEventoUsuario;
                 this._evento = evento;
-                this._permiso = permiso;
                 this._usuario = usuario;
             }
             // para agregar 
-                public UsuarioEvento(Evento evento,PermisoEvento permiso,Usuario usuario)
+                public UsuarioEvento(Evento evento,Usuario usuario)
                 {
                     this._evento = evento;
-                    this._permiso = permiso;
                     this._usuario = usuario;
                 }
         #endregion

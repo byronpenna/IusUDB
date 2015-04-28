@@ -24,14 +24,14 @@
             }
             return cb;
         }
-        function getTrUsuarios(usuarios) {
+        function getTrUsuarios(usuariosEventos) {
             tr = "";
-            if (!(usuarios === null)) {
-                $.each(usuarios, function (i, usuario) {
+            if (!(usuariosEventos === null)) {
+                $.each(usuariosEventos, function (i, usuarioEvento) {
                     tr += "\
                     <tr class='trUsuarioCompartido' >\
-                        <td class='hidden'><input class='txtHdIdUsuario' value='" + usuario._idUsuario + "'></td>\
-                        <td>"+ usuario._usuario + "</td>\
+                        <td class='hidden'><input class='txtHdIdUsuario' value='" + usuarioEvento._idEventoUsuario + "'></td>\
+                        <td>"+ usuarioEvento._usuario._usuario + "</td>\
                         <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
                     </tr>";
                 });

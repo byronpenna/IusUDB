@@ -237,6 +237,32 @@ namespace IUSBack.Controllers
                         }
                         return Json(respuesta);
                     }
+                    public ActionResult sp_adminfe_compartirEventoUsuario()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null)
+                        {
+                            try{
+                                /*Evento evento = new Evento(this.convertObjAjaxToInt(frm[""]));
+                                PermisoEvento permiso = new PermisoEvento()
+                                UsuarioEvento agregar = new UsuarioEvento(evento,);
+                                UsuarioEvento usuarioAgregado = this._model.sp_adminfe_compartirEventoUsuario(agregar, usuarioSession._idUsuario, this._idPaginaEventos);*/
+                            }catch(ErroresIUS x){
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                respuesta = this.errorTryControlador(1, x);
+                            }catch(Exception x){
+                                ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                respuesta = this.errorTryControlador(2, x);
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
                 #endregion
                 #region "gets"
                     public ActionResult sp_adminfe_getPermisosUsuarioEvento()
@@ -272,9 +298,9 @@ namespace IUSBack.Controllers
                         {
                             try
                             {
-                                List<List<Usuario>> usuarios = this._model.sp_adminfe_loadCompartirEventos(this.convertObjAjaxToInt(frm["idEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
-                                List<Usuario> usuariosCompartidos = usuarios[0];
-                                List<Usuario> usuariosNoCompartidos = usuarios[1];
+                                Dictionary<string,object> usuarios = this._model.sp_adminfe_loadCompartirEventos(this.convertObjAjaxToInt(frm["idEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
+                                List<UsuarioEvento> usuariosCompartidos = (List<UsuarioEvento>)usuarios["usuariosCompartido"];
+                                List<Usuario> usuariosNoCompartidos = (List<Usuario>)usuarios["usuariosNoCompartido"];
                                 respuesta = new Dictionary<object, object>();
                                 respuesta.Add("estado", true);
                                 respuesta.Add("usuariosCompartidos", usuariosCompartidos);
