@@ -75,6 +75,231 @@ namespace IUSBack.Controllers
         #region "acciones"
             #region "Eventos"
                 #region "acciones"
+                    #region "agregar"
+                        public ActionResult sp_adminfe_agregarPermisoUsuarioEvento()
+                        {
+                            Dictionary<object, object> frm, respuesta = null;
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            if (frm != null && usuarioSession != null)
+                            {
+                                int[] idPermisos = this.convertArrAjaxToInt((object[])frm["idPermisos"]);
+                                //List<PermisoUsuarioEvento> permisos = this._model.sp_adminfe_agregarPermisoUsuarioEvento(idPermisos,,usuarioSession._idUsuario,this._idPaginaEventos);
+                            }
+                            else
+                            {
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+                            return Json(respuesta);
+                        }
+                        public ActionResult sp_adminfe_publicarEventoWebsite()
+                        {
+                            Dictionary<object, object> frm, respuesta = null;
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            EventoWebsite eventoPublicado;
+                            if (frm != null && usuarioSession != null)
+                            {
+                                try
+                                {
+                                    Evento eventoAgregar = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]));
+                                    eventoPublicado = this._model.sp_adminfe_publicarEventoWebsite(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                    if (eventoPublicado != null)
+                                    {
+                                        respuesta = new Dictionary<object, object>();
+                                        respuesta.Add("estado", true);
+                                        respuesta.Add("eventoPublicado", eventoPublicado);
+                                    }
+                                    else
+                                    {
+                                        respuesta = this.errorTryControlador(3, "Ocurrio un error inesperado");
+                                    }
+                                }
+                                catch (ErroresIUS x)
+                                {
+                                    respuesta = this.errorTryControlador(1, x);
+                                }
+                                catch (Exception x)
+                                {
+                                    ErroresIUS errorIUS = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                    respuesta = this.errorTryControlador(2, errorIUS);
+                                }
+                            }
+                            else
+                            {
+
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+
+                            return Json(respuesta);
+                        }
+                        public ActionResult sp_adminfe_crearEvento()
+                        {
+                            Dictionary<object, object> frm,respuesta;
+                            Evento eventoAgregado;
+                            try
+                            {
+                                Usuario usuarioSession = this.getUsuarioSesion();
+                                frm = this.getAjaxFrm();
+                                if (usuarioSession != null && usuarioSession != null)
+                                {
+                                    respuesta               = new Dictionary<object, object>();
+                                    DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
+                                    DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
+                                    Evento eventoAgregar    = new Evento(frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
+                                    eventoAgregado          = this._model.sp_adminfe_crearEvento(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                    if (eventoAgregado != null)
+                                    {
+                                        respuesta.Add("estado", true);
+                                        respuesta.Add("evento", eventoAgregado);
+                                    }
+                                    else
+                                    {
+                                        respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
+                                    }
+                                }
+                                else
+                                {
+                                    respuesta = this.errorEnvioFrmJSON();
+                                }
+                            }
+                            catch (ErroresIUS x)
+                            {
+                                respuesta = this.errorTryControlador(1, x);
+                            }
+                            catch (Exception x)
+                            {
+                                respuesta = this.errorTryControlador(2, x);
+                            }
+                            return Json(respuesta);
+                        }
+                        public ActionResult sp_adminfe_compartirEventoUsuario()
+                        {
+                            Dictionary<object, object> frm, respuesta;
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            if (frm != null && usuarioSession != null)
+                            {
+                                try
+                                {
+                                    Evento evento = new Evento(this.convertObjAjaxToInt(frm["idEvento"]));
+                                    Usuario usuario = new Usuario(this.convertObjAjaxToInt(frm["cbUsuarioCompartir"]));
+                                    UsuarioEvento agregar = new UsuarioEvento(evento, usuario);
+                                    UsuarioEvento usuarioAgregado = this._model.sp_adminfe_compartirEventoUsuario(agregar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                    List<Usuario> usuariosFaltantes = this._model.sp_adminfe_getUsuariosFaltantesEvento(usuarioAgregado._evento._idEvento, usuarioSession._idUsuario, this._idPaginaEventos);
+                                    if (usuarioAgregado != null)
+                                    {
+                                        respuesta = new Dictionary<object, object>();
+                                        respuesta.Add("estado", true);
+                                        respuesta.Add("usuarioEventoAgregado", usuarioAgregado);
+                                        respuesta.Add("usuariosFaltantes", usuariosFaltantes);
+                                    }
+                                    else
+                                    {
+                                        ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
+                                        respuesta = this.errorTryControlador(3, x);
+                                    }
+                                }
+                                catch (ErroresIUS x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                    respuesta = this.errorTryControlador(1, x);
+                                }
+                                catch (Exception x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                    respuesta = this.errorTryControlador(2, x);
+                                }
+                            }
+                            else
+                            {
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+                            return Json(respuesta);
+                        }
+                    #endregion
+                    #region "eliminar"
+                        public ActionResult sp_adminfe_editarEventos()
+                        {
+                            Dictionary<object, object> frm, respuesta;
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            frm = this.getAjaxFrm(); Evento eventoEditado;
+                            if (usuarioSession != null && frm != null)
+                            {
+                                try
+                                {
+                                    DateTime fechaInicio = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(), frm["txtHoraInicio"].ToString());
+                                    DateTime fechaFin = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
+                                    Evento eventoEditar = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]), frm["txtEvento2"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
+                                    eventoEditado = this._model.sp_adminfe_editarEventos(eventoEditar, usuarioSession._idUsuario, this._idPaginaEventos);
+                                    if (eventoEditado != null)
+                                    {
+                                        respuesta = new Dictionary<object, object>();
+                                        respuesta.Add("estado", true);
+                                        respuesta.Add("eventoEditado", eventoEditado);
+                                    }
+                                    else
+                                    {
+                                        ErroresIUS errorIus = new ErroresIUS("Ocurrio un error no controlado", ErroresIUS.tipoError.generico, -1);
+                                        respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
+                                    }
+                                }
+                                catch (ErroresIUS x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.HResult, x._errorSql);
+                                    respuesta = this.errorTryControlador(1, error);
+                                }
+                                catch (Exception x)
+                                {
+                                    ErroresIUS errorIus = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult, "");
+                                    respuesta = this.errorTryControlador(2, errorIus);
+                                }
+                            }
+                            else
+                            {
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+                            return Json(respuesta);
+                        }
+                        public ActionResult sp_adminfe_removeUsuarioEvento()
+                        {
+                            Dictionary<object, object> frm, respuesta;
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            if (frm != null && usuarioSession != null)
+                            {
+                                try
+                                {
+                                    bool resultadoDelete = this._model.sp_adminfe_removeUsuarioEvento(this.convertObjAjaxToInt(frm["txtHdIdUsuarioEvento"]), usuarioSession._idUsuario);
+                                    if (resultadoDelete)
+                                    {
+                                        respuesta = new Dictionary<object, object>();
+                                        respuesta.Add("estado", resultadoDelete);
+                                    }
+                                    else
+                                    {
+                                        ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
+                                        respuesta = this.errorTryControlador(3, x);
+                                    }
+                                }
+                                catch (ErroresIUS x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                    respuesta = this.errorTryControlador(1, x);
+                                }
+                                catch (Exception x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.sql, x.HResult);
+                                    respuesta = this.errorTryControlador(2, x);
+                                }
+                            }
+                            else
+                            {
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+                            return Json(respuesta);
+                        }
+                    #endregion
                     public ActionResult sp_adminfe_quitarEventoWebsite()
                     {
                         Dictionary<object, object> frm, respuesta = null;
@@ -106,206 +331,6 @@ namespace IUSBack.Controllers
                             {
                                 ErroresIUS errorIus = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
                                 respuesta = this.errorTryControlador(2, errorIus);
-                            }
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
-                        return Json(respuesta);
-                    }
-                    public ActionResult sp_adminfe_publicarEventoWebsite()
-                    {
-                        Dictionary<object, object> frm, respuesta = null;
-                        frm = this.getAjaxFrm();
-                        Usuario usuarioSession = this.getUsuarioSesion();
-                        EventoWebsite eventoPublicado;
-                        if (frm != null && usuarioSession != null)
-                        {
-                            try
-                            {
-                                Evento eventoAgregar = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]));
-                                eventoPublicado = this._model.sp_adminfe_publicarEventoWebsite(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
-                                if (eventoPublicado != null)
-                                {
-                                    respuesta = new Dictionary<object, object>();
-                                    respuesta.Add("estado", true);
-                                    respuesta.Add("eventoPublicado", eventoPublicado);
-                                }
-                                else
-                                {
-                                    respuesta = this.errorTryControlador(3, "Ocurrio un error inesperado");
-                                }
-                            }
-                            catch (ErroresIUS x)
-                            {   
-                                respuesta = this.errorTryControlador(1,x);
-                            }
-                            catch (Exception x)
-                            {
-                                ErroresIUS errorIUS = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico,x.HResult);
-                                respuesta = this.errorTryControlador(2,errorIUS);
-                            }
-                        }
-                        else
-                        {
-                            
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
-                        
-                        return Json(respuesta);
-                    }
-                    public ActionResult sp_adminfe_crearEvento()
-                    {
-                        Dictionary<object, object> frm,respuesta;
-                        Evento eventoAgregado;
-                        try
-                        {
-                            Usuario usuarioSession = this.getUsuarioSesion();
-                            frm = this.getAjaxFrm();
-                            if (usuarioSession != null && usuarioSession != null)
-                            {
-                                respuesta               = new Dictionary<object, object>();
-                                DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
-                                DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
-                                Evento eventoAgregar    = new Evento(frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
-                                eventoAgregado          = this._model.sp_adminfe_crearEvento(eventoAgregar, usuarioSession._idUsuario, this._idPaginaEventos);
-                                if (eventoAgregado != null)
-                                {
-                                    respuesta.Add("estado", true);
-                                    respuesta.Add("evento", eventoAgregado);
-                                }
-                                else
-                                {
-                                    respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
-                                }
-                            }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
-                            }
-                        }
-                        catch (ErroresIUS x)
-                        {
-                            respuesta = this.errorTryControlador(1, x);
-                        }
-                        catch (Exception x)
-                        {
-                            respuesta = this.errorTryControlador(2, x);
-                        }
-                        return Json(respuesta);
-                    }
-                    public ActionResult sp_adminfe_editarEventos()
-                    {
-                        Dictionary<object, object> frm, respuesta;
-                        Usuario usuarioSession = this.getUsuarioSesion();
-                        frm = this.getAjaxFrm(); Evento eventoEditado;
-                        if (usuarioSession != null && frm != null)
-                        {
-                            try
-                            {
-                                DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
-                                DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
-                                Evento eventoEditar    = new Evento(this.convertObjAjaxToInt(frm["txtHdIdEvento"]), frm["txtEvento2"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());
-                                eventoEditado           = this._model.sp_adminfe_editarEventos(eventoEditar,usuarioSession._idUsuario,this._idPaginaEventos);
-                                if (eventoEditado != null)
-                                {
-                                    respuesta = new Dictionary<object, object>();
-                                    respuesta.Add("estado", true);
-                                    respuesta.Add("eventoEditado", eventoEditado);
-                                }
-                                else
-                                {
-                                    ErroresIUS errorIus = new ErroresIUS("Ocurrio un error no controlado",ErroresIUS.tipoError.generico,-1);
-                                    respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
-                                }
-                            }
-                            catch (ErroresIUS x)
-                            {
-                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.HResult, x._errorSql);
-                                respuesta = this.errorTryControlador(1, error);
-                            }
-                            catch (Exception x)
-                            {
-                                ErroresIUS errorIus = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult, "");
-                                respuesta = this.errorTryControlador(2, errorIus);
-                            }
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
-                        return Json(respuesta);
-                    }
-                    public ActionResult sp_adminfe_compartirEventoUsuario()
-                    {
-                        Dictionary<object, object> frm, respuesta;
-                        frm = this.getAjaxFrm();
-                        Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
-                        {
-                            try{
-                                Evento evento = new Evento(this.convertObjAjaxToInt(frm["idEvento"]));
-                                Usuario usuario = new Usuario(this.convertObjAjaxToInt(frm["cbUsuarioCompartir"]));
-                                UsuarioEvento agregar = new UsuarioEvento(evento,usuario);
-                                UsuarioEvento usuarioAgregado = this._model.sp_adminfe_compartirEventoUsuario(agregar, usuarioSession._idUsuario, this._idPaginaEventos);
-                                List<Usuario> usuariosFaltantes = this._model.sp_adminfe_getUsuariosFaltantesEvento(usuarioAgregado._evento._idEvento, usuarioSession._idUsuario, this._idPaginaEventos);
-                                if (usuarioAgregado != null)
-                                {
-                                    respuesta = new Dictionary<object, object>();
-                                    respuesta.Add("estado", true);
-                                    respuesta.Add("usuarioEventoAgregado", usuarioAgregado);
-                                    respuesta.Add("usuariosFaltantes", usuariosFaltantes);
-                                }
-                                else
-                                {
-                                    ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado",ErroresIUS.tipoError.generico,0);
-                                    respuesta = this.errorTryControlador(3, x);
-                                }
-                            }catch(ErroresIUS x){
-                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
-                                respuesta = this.errorTryControlador(1, x);
-                            }catch(Exception x){
-                                ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                                respuesta = this.errorTryControlador(2, x);
-                            }
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
-                        return Json(respuesta);
-                    }
-                    public ActionResult sp_adminfe_removeUsuarioEvento()
-                    {
-                        Dictionary<object, object> frm, respuesta;
-                        frm = this.getAjaxFrm();
-                        Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
-                        {
-                            try
-                            {
-                                bool resultadoDelete = this._model.sp_adminfe_removeUsuarioEvento(this.convertObjAjaxToInt(frm["txtHdIdUsuarioEvento"]), usuarioSession._idUsuario);
-                                if (resultadoDelete)
-                                {
-                                    respuesta = new Dictionary<object, object>();
-                                    respuesta.Add("estado", resultadoDelete);
-                                }
-                                else
-                                {
-                                    ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
-                                    respuesta = this.errorTryControlador(3, x);
-                                }
-                            }
-                            catch (ErroresIUS x)
-                            {
-                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
-                                respuesta = this.errorTryControlador(1, x);
-                            }
-                            catch (Exception x)
-                            {
-                                ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.sql, x.HResult);
-                                respuesta = this.errorTryControlador(2, x);
                             }
                         }
                         else
@@ -386,8 +411,8 @@ namespace IUSBack.Controllers
 
             #endregion
         #endregion
-                #region "constructores"
-                public AdministracionController()
+        #region "constructores"
+            public AdministracionController()
             {
                 this._model = new AdministracionModel();
             }

@@ -17,13 +17,15 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #region "constructores"
             public AdministracionModel()
             {
-                this._controlEvento = new ControlEvento();
-                this._controlUsuarioEvento = new ControlUsuarioEvento();
+                this._controlEvento                 = new ControlEvento();
+                this._controlUsuarioEvento          = new ControlUsuarioEvento();
+                this._controlPermisoUsuarioEvento   = new ControlPermisoUsuarioEvento();
             }
         #endregion
         #region "propiedades"
             public ControlEvento _controlEvento;
             public ControlUsuarioEvento _controlUsuarioEvento;
+            public ControlPermisoUsuarioEvento _controlPermisoUsuarioEvento;
         #endregion 
         #region "funciones publicas"
             #region "eventos"
@@ -47,7 +49,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     {
                         try
                         {
-                            return this._controlUsuarioEvento.sp_adminfe_getPermisosUsuarioEvento(idUsuarioEvento,idUsuarioEjecutor, idPagina);
+                            return this._controlPermisoUsuarioEvento.sp_adminfe_getPermisosUsuarioEvento(idUsuarioEvento,idUsuarioEjecutor, idPagina);
                         }
                         catch (ErroresIUS x)
                         {
@@ -144,6 +146,49 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     }
                 #endregion
                 #region "creacion"
+                    public List<PermisoUsuarioEvento> sp_adminfe_agregarPermisoUsuarioEvento(int[] idPermisos,int idUsuarioEvento,int idUsuarioEjecutor,int idPagina)
+                    {
+                        List<PermisoUsuarioEvento> toReturn = null;
+                        PermisoUsuarioEvento permisoUsuarioEvento; PermisoEvento permiso;
+                        PermisoUsuarioEvento agregado;
+                        UsuarioEvento usuarioEvento = new UsuarioEvento(idUsuarioEvento);
+                        bool estadoGeneral = false;
+                        try{
+                            // try catch general para un error fatal;
+                            foreach (int idPermiso in idPermisos)
+                            {
+                                permiso = new PermisoEvento(idPermiso);
+                                permisoUsuarioEvento = new PermisoUsuarioEvento(usuarioEvento,permiso);
+                                try
+                                {
+                                    agregado = this._controlPermisoUsuarioEvento.sp_adminfe_agregarPermisoUsuarioEvento(permisoUsuarioEvento, idUsuarioEjecutor, idPagina);
+                                    if (agregado != null)
+                                    {
+                                        estadoGeneral = true;
+                                        toReturn.Add(agregado);
+                                    }
+                                }
+                                catch (ErroresIUS)
+                                {
+
+                                }
+                                catch (Exception)
+                                {
+
+                                }
+                            }
+                            if (!estadoGeneral)
+                            {
+                                ErroresIUS x = new ErroresIUS("No agrego ningun permiso", ErroresIUS.tipoError.generico, 0);
+                                throw x;
+                            }
+                        }catch(ErroresIUS x){
+                            throw x;
+                        }catch(Exception x){
+                            throw x;
+                        }
+                        return toReturn;
+                    }
                     public EventoWebsite sp_adminfe_publicarEventoWebsite(Evento eventoAgregar, int idUsuarioEjecutor, int idPagina)
                     {
                         EventoWebsite eventoPublicado = null;

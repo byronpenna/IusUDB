@@ -13,6 +13,11 @@ namespace IUSLibs.ADMINFE.Entidades
             public PermisoEvento    _permiso;
         #endregion
         #region "constructores"
+            public PermisoUsuarioEvento(UsuarioEvento usuarioEvento,PermisoEvento permiso)
+            {
+                this._usuarioEvento = usuarioEvento;
+                this._permiso = permiso;
+            }
             public PermisoUsuarioEvento(int idPermisoUsuarioEvento,UsuarioEvento usuarioEvento,PermisoEvento permiso)
             {
                 this._idPermisoUsuarioEvento = idPermisoUsuarioEvento;

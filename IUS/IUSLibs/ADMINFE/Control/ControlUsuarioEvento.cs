@@ -77,57 +77,6 @@ namespace IUSLibs.ADMINFE.Control
                 }
             #endregion
             #region "gets"
-                public Dictionary<object,object> sp_adminfe_getPermisosUsuarioEvento(int idUsuarioEvento,int idUsuarioEjecutor,int idPagina){
-                    // declare 
-                        Dictionary<object,object> toReturn = null;
-                        List<PermisoEvento> permisosFaltantes = null;
-                        List<PermisoUsuarioEvento> permisosActuales = null;
-                        PermisoEvento permiso; PermisoUsuarioEvento permisoUsuarioEvento;
-                        UsuarioEvento usuarioEvento;
-                    // do it 
-                    SPIUS sp = new SPIUS("sp_adminfe_getPermisosUsuarioEvento");
-                    sp.agregarParametro("idUsuarioEvento",idUsuarioEvento);
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
-                    try
-                    {
-                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrecto(tb))
-                        {
-                            if (tb[1].Rows.Count > 0)
-                            {
-                                permisosFaltantes = new List<PermisoEvento>();
-                                foreach (DataRow row in tb[1].Rows)
-                                {
-                                    permiso = new PermisoEvento((int)row["idPermiso"], row["permiso"].ToString());
-                                    permisosFaltantes.Add(permiso);
-                                }
-                            }
-                            if (tb[2].Rows.Count > 0)
-                            {
-                                permisosActuales = new List<PermisoUsuarioEvento>();
-                                foreach (DataRow row in tb[2].Rows)
-                                {
-                                    permiso = new PermisoEvento((int)row["idPermiso"],row["permiso"].ToString());
-                                    usuarioEvento = new UsuarioEvento((int)row["id_usuarioevento_fk"]);
-                                    permisoUsuarioEvento = new PermisoUsuarioEvento((int)row["idPermisoUsuarioEvento"], usuarioEvento, permiso);
-                                    permisosActuales.Add(permisoUsuarioEvento);
-                                }
-                            }
-                            toReturn = new Dictionary<object, object>();
-                            toReturn.Add("permisosActuales",permisosActuales);
-                            toReturn.Add("permisosFaltantes", permisosFaltantes);
-                        }
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x) {
-                        throw x;
-                    }
-                    return toReturn;
-                }
                 // carga solo los usuarios a los que se les compartio
                 public Dictionary<string,object> sp_adminfe_loadCompartirEventos(int idEvento,int idUsuarioEjecutor,int idPagina)
                 {

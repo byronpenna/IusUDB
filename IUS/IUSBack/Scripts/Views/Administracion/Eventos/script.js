@@ -113,6 +113,9 @@
                         icoQuitarUsuario(tr);
                     }
                 });
+                $(document).on("click", ".btnPermisos", function () {
+                    btnPermisos();
+                });
                 // tabla compartir
                 $(document).on("click", ".trUsuarioCompartido", function () {
                     tr = $(this);

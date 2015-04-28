@@ -49,7 +49,7 @@
             cb = "";
             if (!(permisos === null)) {
                 $.each(permisos, function (i, permiso) {
-                    cb += "<option value='" + permiso.idPermiso + "'>" + permiso._permiso + "</option>";
+                    cb += "<option value='" + permiso._idPermiso + "'>" + permiso._permiso + "</option>";
                 });
             } else {
                 cb = "<option value='-1'>No hay permisos para agregar</option>"
@@ -130,6 +130,14 @@
         });
     }
 // acciones script
+    function btnPermisos() {
+        frm = { idPermisos: $(".cbPermisosCompartir").val(), idUsuarioEvento: $(".trUsuarioCompartido.clickTr").find(".txtHdIdUsuarioEvento").val() }
+        console.log("Formulario a enviar", frm);
+        actualizarCatalogo("/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
+            console.log("la respuesta del servidor es: ", data);
+            //if(data.estado)
+        })
+    }
     function icoQuitarUsuario(tr) {
         frm = serializeSection(tr);
         console.log("formulario a enviar es", frm);
