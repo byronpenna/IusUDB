@@ -20,7 +20,7 @@ namespace IUSLibs.ADMINFE.Entidades
                 public DateTime _fechaCreacion;
                 public string   _descripcion;
             // extras 
-                public bool     _propio; 
+                public int      _propietario; 
                 public bool     _publicado; // este no va en constructor porque no va con la naturalesa de la tabla
             #region "Con get y set"
                 public string getFechaInicioUSA
@@ -51,7 +51,32 @@ namespace IUSLibs.ADMINFE.Entidades
                         return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}", this._fechaFin);
                     }
                 }
-
+                public string txtClaseColor
+                {
+                    get
+                    {
+                        string claseColor = "";
+                        switch (this._propietario)
+                        {
+                            case 1:
+                                {
+                                    claseColor = "colorEventoPropio";
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    claseColor = "colorEventoCompartido";
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    claseColor = "colorEventoPublico";
+                                    break;
+                                }
+                        }
+                        return claseColor;
+                    }
+                }
                 public string txtBtnPublicar
                 {
                     get

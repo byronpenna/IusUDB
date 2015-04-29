@@ -2,11 +2,14 @@
     function eventosIniciales() {
     var frm = new Object();
     actualizarCatalogo("/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
+        console.log("respuesta eventos principales", data);
         if (data.estado) {
             eventos = data.eventos;
-            $.each(eventos, function (i, evento) {
-                agregarEvento($("#calendar"), evento, true);
-            });
+            if (!(eventos === null)) {
+                $.each(eventos, function (i, evento) {
+                    agregarEvento($("#calendar"), evento, true, evento._propietario);
+                });
+            }
         } else {
         }
     });
@@ -89,38 +92,125 @@
             }
             return tr;
         }
-    function agregarEvento(calendar,evento,sticker) {
+    
+    // llenar 
+        function llenarInputsEdicion(evento, div) {
+            // tanto val como text ya que sino a la hora de llenar el formulario muere todo
+            div.find(".txtAreaDescripcion").text(evento._descripcion);
+            div.find(".txtFechaInicio").val(evento._fechaInicio);
+            div.find(".txtFechaFin").val(evento._fechaFin);
+            //div.find(".txtHoraFin").val(evento._horaFin);
+            //div.find(".txtHoraInicio").val(evento.)
+        }
+        function llenarInputsVista(evento,div){
+            h3 = div.prev();
+            div.find(".pDescripcionEvento").empty().append(evento._descripcion);
+            div.find(".spanFechaInicio").empty().append(evento.getFechaInicio);
+            div.find(".spanFechaFin").empty().append(evento.getFechaFin);
+            h3.find(".spanNombreEvento").empty().append(evento._evento);
+        }
+        function getEventosAcordion(evento) {
+            if(evento._publicado){
+                intPublicado = 1
+            }else{
+                intPublicado = 0;
+            }
+            div = "\
+                        <h3 class='nombreEvento " + evento.txtClaseColor + " '>\
+                            <span class='spanNombreEvento'>"+ evento._evento + "</span>\
+                        </h3>\
+                        <div class='detalleEvento'>\
+                            <input type='hidden' name='txtHdIdEvento' class='txtHdIdEvento' value='"+ evento._idEvento + "' />\
+                            <input type='hidden' name='txtHdEstadoEvento' class='txtHdEstadoEstado' value='"+ intPublicado + "' />\
+                            <div class='row'>\
+                                <div class='normalMode'>\
+                                    <p class='text-justify pDescripcionEvento'>"+ evento._descripcion + "</p>\
+                                </div>\
+                                <div class='editMode hidden' style='margin-bottom:5%;'>\
+                                    <label>Nombre de evento</label>\
+                                    <input type='text' name='txtEvento2' class='txtEvento2' />\
+                                </div>\
+                                <div class='editMode hidden' >\
+                                    <div class='editMode hidden'>\
+                                        <label>Descripcion evento</label>\
+                                    </div>\
+                                    <textarea class='txtAreaDescripcion form-control' name='txtAreaDescripcion'></textarea>\
+                                </div>\
+                                    <div class='quitarPublicacionMode hidden'>\
+                                        <label class='text-center'>Motivos para quitar del website</label>\
+                                        <textarea class='txtAreaMotivoQuitar form-control' name='txtAreaMotivoQuitar'></textarea>\
+                                    </div>\
+                                <hr />\
+                                <div class='row text-center'>\
+                                    <div class='col-lg-6'>\
+                                        <div class='normalMode'>\
+                                            <label>Inicio: </label>\
+                                            <span class='spanFechaInicio'>"+ evento.getFechaInicio + "</span>\
+                                        </div>\
+                                        <div class='editMode hidden'>\
+                                            <label>Inicio: </label>\
+                                            <input class='dpFecha txtFechaInicio form-control' name='txtFechaInicio' />\
+                                            <input type='time' class='txtHoraInicio form-control' name='txtHoraInicio' />\
+                                        </div>\
+                                    </div>\
+                                    <div class='col-lg-6'>\
+                                        <div class='normalMode'>\
+                                            <label>Fin: </label>\
+                                            <span class='spanFechaFin'>"+ evento.getFechaFin + "</span>\
+                                        </div>\
+                                        <div class='editMode hidden'>\
+                                            <label>Fin: </label>\
+                                            <input class='dpFecha txtFechaFin form-control' name='txtFechaFin' />\
+                                            <input type='time' class='txtHoraFin form-control ' name='txtHoraFin' />\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class='row text-center sectionBotonesEvento'>\
+                                <div class='normalMode'>\
+                                    <button class='btn btnEditar'>Editar</button>\
+                                        <button class='btn btnCompartir'>Compartir</button>\
+                                    <button class='btn btnPublicar'>"+ evento.txtBtnPublicar + "</button>\
+                                </div>\
+                                <div class='editMode hidden'>\
+                                    <button class='btn btnActualizar' >Actualizar</button>\
+                                    <button class='btn btnCancelar' >Cancelar</button>\
+                                </div>\
+                                <div class='quitarPublicacionMode hidden'>\
+                                    <button class='btn btnAccionQuitarPublicacion'>Quitar publicacion</button>\
+                                    <button class='btn btnCancelaQuitarPublicacion'>Cancelar</button>\
+                                </div>\
+                            </div>\
+                        </div>\
+            ";
+            return div;
+        }
+    function agregarEvento(calendar, evento, sticker, propio) {
+        if (propio === null || propio == 1) {
+            backColor = "#3A87AD";
+        } else if (propio == 2) {
+            backColor = "#f1c40f";
+        } else if (propio == 3) {
+            // eventos publicos
+            backColor = "#2ecc71";
+        }
         eventoAgregar = {
             title: evento._evento,
             start: evento.getFechaInicioUSA,
-            end: evento.getFechaFinUSA 
+            end: evento.getFechaFinUSA,
+            color: backColor
         };
         calendar.fullCalendar('renderEvent', eventoAgregar, true);
     }
-    function llenarInputsEdicion(evento,div) {
-        // tanto val como text ya que sino a la hora de llenar el formulario muere todo
-        div.find(".txtAreaDescripcion").text(evento._descripcion);
-        div.find(".txtFechaInicio").val(evento._fechaInicio);
-        div.find(".txtFechaFin").val(evento._fechaFin);
-        //div.find(".txtHoraFin").val(evento._horaFin);
-        //div.find(".txtHoraInicio").val(evento.)
+    function updateDespuesDePublicacion(eventoWebsite, detalle) {
+    detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
+    if (eventoWebsite._estado == true) {
+        intEstado = 1;
+    } else {
+        intEstado = 0;
     }
-    function llenarInputsVista(evento,div){
-        h3 = div.prev();
-        div.find(".pDescripcionEvento").empty().append(evento._descripcion);
-        div.find(".spanFechaInicio").empty().append(evento.getFechaInicio);
-        div.find(".spanFechaFin").empty().append(evento.getFechaFin);
-        h3.find(".spanNombreEvento").empty().append(evento._evento);
-    }
-    function updateDespuesDePublicacion(eventoWebsite,detalle) {
-        detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
-        if (eventoWebsite._estado == true) {
-            intEstado = 1;
-        } else {
-            intEstado = 0;
-        }
-        detalle.find(".txtHdEstadoEstado").val(intEstado);
-    }
+    detalle.find(".txtHdEstadoEstado").val(intEstado);
+}
     function cargarCompartir(div,tab) {
         tr = "\
             <tr>\
@@ -288,10 +378,15 @@
     }
     function frmAgregarEvento(frm,frmSection) {
         actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {
-            console.log("la data regresada por el servidor es: ", data);
+            console.log("la data regresada por el servidor(evento creado) es: ", data);
             if (data.estado) {
-                agregarEvento($("#calendar"), data.evento);
+                agregarEvento($("#calendar"), data.evento, true, 1);
+                div = getEventosAcordion(data.evento);
+                $("#accordion").prepend(div);
+                $("#accordion").accordion("refresh");
+                $("#accordion").accordion("refresh");
                 clearTr(frmSection);
+                
             } else {
                 if (data.error._mostrar && data.error.Message != "") {
                     alert(data.error.Message);
@@ -301,6 +396,7 @@
                 
             }
         });
+        
     }
     function btnCompartir(detalle) {
         h3  = detalle.prev();

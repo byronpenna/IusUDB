@@ -23,3 +23,17 @@
 #tabUsuario table{
     margin-top:5%;
 }
+/*Eventos*/
+.colorEventoPropio{
+    background:#3A87AD;
+}
+.colorEventoCompartido{
+    background: #f1c40f;
+}
+.colorEventoPublico{
+    background: #2ecc71;
+}
+.nombreEvento{
+    color:white;
+    font-weight:bold;
+}

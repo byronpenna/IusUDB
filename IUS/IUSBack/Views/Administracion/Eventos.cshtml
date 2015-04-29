@@ -89,7 +89,7 @@
                 {
                     foreach (Evento evento in eventos)
                     {
-                        <h3 class="nombreEvento">
+                        <h3 class="nombreEvento @evento.txtClaseColor ">
                             <span class="spanNombreEvento">@evento._evento</span>
                         </h3>
                         <div class="detalleEvento">
@@ -144,7 +144,10 @@
                             <div class="row text-center sectionBotonesEvento">
                                 <div class="normalMode">
                                     <button class="btn btnEditar">Editar</button>
-                                    <button class="btn btnCompartir">Compartir</button>
+                                    @if (evento._propietario == 1)
+                                    {
+                                        <button class="btn btnCompartir">Compartir</button>    
+                                    }
                                     <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
                                 </div>                                
                                 <div class="editMode hidden">

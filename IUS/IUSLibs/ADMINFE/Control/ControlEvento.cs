@@ -39,6 +39,7 @@ namespace IUSLibs.ADMINFE.Control
                                 usu = new Usuario((int)row["id_usuario_creador_fk"]);
                                 evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usu, (DateTime)row["fecha_creacion"], row["descripcion"].ToString());
                                 evento._publicado = (bool)row["publicado"];
+                                evento._propietario = (int)row["propietario"];
                                 eventos.Add(evento);
                             }
                         }
@@ -110,6 +111,8 @@ namespace IUSLibs.ADMINFE.Control
                             DataRow rowResultado = tb[1].Rows[0];
                             usu = new Usuario((int) rowResultado["id_usuario_creador_fk"]);
                             eventoAgregado = new Evento((int)rowResultado["idEvento"], rowResultado["evento"].ToString(), (DateTime)rowResultado["fecha_inicio"], (DateTime)rowResultado["fecha_fin"],usu, (DateTime)rowResultado["fecha_creacion"], rowResultado["descripcion"].ToString());
+                            eventoAgregado._publicado = Convert.ToBoolean((int)rowResultado["publicado"]);
+                            eventoAgregado._propietario = (int)rowResultado["propietario"];
                         }
                         else
                         {
