@@ -348,7 +348,9 @@ namespace IUSBack.Controllers
                                     if (resultadoDelete)
                                     {
                                         respuesta = new Dictionary<object, object>();
+                                        List<Usuario> usuarios = this._model.sp_adminfe_getUsuariosFaltantesEvento(this.convertObjAjaxToInt((object)frm["idEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
                                         respuesta.Add("estado", resultadoDelete);
+                                        respuesta.Add("usuariosFaltantes", usuarios);
                                     }
                                     else
                                     {

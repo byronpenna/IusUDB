@@ -25,9 +25,12 @@
             return cb;
         }
         function getTrOneUsuarios(usuarioEvento) {
+            console.log("UsuarioEvento a agregar es: ", usuarioEvento);
             tr = "\
                     <tr class='trUsuarioCompartido' >\
-                        <td class='hidden'><input class='txtHdIdUsuarioEvento' name='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'></td>\
+                        <td class='hidden'>\
+                            <input class='txtHdIdUsuarioEvento' name='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'>\
+                        </td>\
                         <td>"+ usuarioEvento._usuario._usuario + "</td>\
                         <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
                     </tr>";
@@ -143,8 +146,8 @@
 // acciones script
     function icoEliminarPermisoEvento(tr) {
         frm = serializeSection(tr);
+        
         console.log("Formulario a enviar es: ", frm);
-
         actualizarCatalogo("/Administracion/sp_adminfe_eliminarPermisoUsuarioEvento", frm, function (data) {
             console.log("la respuesta del servidor es: ", data);
             if (data.estado) {
@@ -181,10 +184,14 @@
     }
     function icoQuitarUsuario(tr) {
         frm = serializeSection(tr);
+        frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
         console.log("formulario a enviar es", frm);
         actualizarCatalogo("/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
             if (data.estado) {
                 tr.remove();
+                cb = getCbUsuarios(data.usuariosFaltantes);
+                $(".cbUsuarioCompartir").empty().append(cb);
+                resetChosen($(".cbUsuarioCompartir"));
             }
         });
     }
