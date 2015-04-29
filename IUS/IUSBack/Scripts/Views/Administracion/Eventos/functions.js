@@ -384,7 +384,7 @@
                 div = getEventosAcordion(data.evento);
                 $("#accordion").prepend(div);
                 $("#accordion").accordion("refresh");
-                $("#accordion").accordion("refresh");
+                
                 clearTr(frmSection);
                 
             } else {
