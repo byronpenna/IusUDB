@@ -56,22 +56,33 @@
             }
             return cb;
         }
+        function getTrOnePermisos(PermisoUsuarioEvento) {
+            tr = "";
+            //console.log("permisosUsuarioEvento a poner", PermisoUsuarioEvento);
+            if (!(PermisoUsuarioEvento === null)) {
+                tr += "\
+                    <tr>\
+                        <tr>\
+                            <td class='hidden'>\
+                                <input class='txtHdIdPermisoUsuarioEvento' name='txtHdIdPermisoUsuarioEvento' value='" + PermisoUsuarioEvento._idPermisoUsuarioEvento + "'>\
+                                <input class='txtHdIdUsuarioEvento' name='txtHdIdUsuarioEvento' value='" + PermisoUsuarioEvento._usuarioEvento._idEventoUsuario + "'>\
+                            </td>\
+                            <td>" + PermisoUsuarioEvento._permiso._permiso + "</td>\
+                            <td><i class='fa fa-times pointer icoEliminarPermisoEvento'></td>\
+                        </tr>\
+                    </tr>\
+                ";
+            }
+            return tr;
+        }
         function getTrPermisos(PermisosUsuariosEventos) {
             tr = "";
             if (!(PermisosUsuariosEventos === null)) {
                 $.each(PermisosUsuariosEventos, function (i, PermisoUsuarioEvento) {
-                    tr += "\
-                        <tr>\
-                            <tr>\
-                                <td class='hidden'><input class='txtHdIdUsuarioEvento' value='" + PermisoUsuarioEvento._idPermisoUsuarioEvento + "'></td>\
-                                <td>" + PermisoUsuarioEvento._permiso._permiso + "</td>\
-                                <td><i class='fa fa-times pointer icoPermisoEvento'></td>\
-                            </tr>\
-                        </tr>\
-                    ";
+                    tr += getTrOnePermisos(PermisoUsuarioEvento);
                 })
             } else {
-                tr = "<tr><td class='text-center' colspan='2'>El usuario no posee permisos</td></tr>"
+                tr = "<tr class='noPermisoUsuarioEvento'><td class='text-center' colspan='2'>El usuario no posee permisos</td></tr>"
             }
             return tr;
         }
@@ -130,12 +141,42 @@
         });
     }
 // acciones script
+    function icoEliminarPermisoEvento(tr) {
+        frm = serializeSection(tr);
+        console.log("Formulario a enviar es: ", frm);
+
+        actualizarCatalogo("/Administracion/sp_adminfe_eliminarPermisoUsuarioEvento", frm, function (data) {
+            console.log("la respuesta del servidor es: ", data);
+            if (data.estado) {
+                tr.remove();
+                cb = getCbPermisos(data.permisosFaltantes);
+                $(".cbPermisosCompartir").empty().append(cb);
+                resetChosen($(".cbPermisosCompartir"));
+            } else {
+                alert("Ocurrio un error");
+            }
+        })
+    }
     function btnPermisos() {
         frm = { idPermisos: $(".cbPermisosCompartir").val(), idUsuarioEvento: $(".trUsuarioCompartido.clickTr").find(".txtHdIdUsuarioEvento").val() }
-        console.log("Formulario a enviar", frm);
-        actualizarCatalogo("/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
+        tbody = $(".tbPermisos");
+        actualizarCatalogo("/Administracion/sp_adminfe_agregarPermisoUsuarioEvento", frm, function (data) {
             console.log("la respuesta del servidor es: ", data);
-            //if(data.estado)
+            if (data.estado) {
+                tr = getTrPermisos(data.PermisosUsuariosEventos);
+                console.log("Existe para poner encima permiso", tbody.find(".noUsuarioCompartido").length);
+                if (tbody.find(".noPermisoUsuarioEvento").length == 0) {
+                    tbody.prepend(tr);
+                } else {
+                    tbody.empty().append(tr);
+                }
+                cb = getCbPermisos(data.permisosFaltantes);
+                $(".cbPermisosCompartir").empty().append(cb);
+                resetChosen($(".cbPermisosCompartir"));
+                if (!data.estadoIndividual) {
+                    alert("Algunos registros no fueron guardados correctamente");
+                }
+            }
         })
     }
     function icoQuitarUsuario(tr) {

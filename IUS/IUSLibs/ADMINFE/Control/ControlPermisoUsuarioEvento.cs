@@ -18,6 +18,7 @@ namespace IUSLibs.ADMINFE.Control
     {
         #region "funciones"
             #region "acciones"
+                // agregar 
                 public PermisoUsuarioEvento sp_adminfe_agregarPermisoUsuarioEvento(PermisoUsuarioEvento agregar,int idUsuarioEjecutor,int idPagina)
                 {
                     PermisoUsuarioEvento toReturn = null;
@@ -47,8 +48,66 @@ namespace IUSLibs.ADMINFE.Control
                     }
                     return toReturn;
                 }
+                // eliminar 
+                public bool sp_adminfe_eliminarPermisoUsuarioEvento(int idPermisoUsuarioEvento,int idUsuarioEjecutor,int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_adminfe_eliminarPermisoUsuarioEvento");
+                    sp.agregarParametro("idPermisoUsuarioEvento", idPermisoUsuarioEvento);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
             #endregion
             #region "gets"
+                public List<PermisoEvento> sp_adminfe_getPermisosFaltantesEvento(int idUsuarioEvento,int idUsuarioEjecutor,int idPagina){
+                    List<PermisoEvento> permisosEventos = null; PermisoEvento permisoEvento;
+                    SPIUS sp = new SPIUS("sp_adminfe_getPermisosFaltantesEvento");
+                    sp.agregarParametro("idUsuarioEvento", idUsuarioEvento);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                permisosEventos = new List<PermisoEvento>();
+                                foreach (DataRow row in tb[1].Rows)
+                                {
+                                    permisoEvento = new PermisoEvento((int)row["idPermiso"], row["permiso"].ToString());
+                                    permisosEventos.Add(permisoEvento);
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return permisosEventos;
+                }
                 public Dictionary<object, object> sp_adminfe_getPermisosUsuarioEvento(int idUsuarioEvento, int idUsuarioEjecutor, int idPagina)
                 {
                     // declare 

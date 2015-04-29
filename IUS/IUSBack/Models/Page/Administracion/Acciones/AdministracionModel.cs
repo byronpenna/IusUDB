@@ -30,6 +30,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #region "funciones publicas"
             #region "eventos"
                 #region "gets"
+                    public List<PermisoEvento> sp_adminfe_getPermisosFaltantesEvento(int idUsuarioEvento,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlPermisoUsuarioEvento.sp_adminfe_getPermisosFaltantesEvento(idUsuarioEvento, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public List<Usuario> sp_adminfe_getUsuariosFaltantesEvento(int idEvento,int idUsuarioEjecutor,int idPagina)
                     {
                         try
@@ -113,6 +128,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     }
                 #endregion
                 #region "eliminacion"
+                    public bool sp_adminfe_eliminarPermisoUsuarioEvento(int idPermisoUsuarioEvento, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlPermisoUsuarioEvento.sp_adminfe_eliminarPermisoUsuarioEvento(idPermisoUsuarioEvento, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public bool sp_adminfe_removeUsuarioEvento(int idUsuarioEvento,int idUsuarioEjecutor)
                     {
                         try
@@ -146,13 +176,13 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     }
                 #endregion
                 #region "creacion"
-                    public List<PermisoUsuarioEvento> sp_adminfe_agregarPermisoUsuarioEvento(int[] idPermisos,int idUsuarioEvento,int idUsuarioEjecutor,int idPagina)
+                    public Dictionary<string,object> sp_adminfe_agregarPermisoUsuarioEvento(int[] idPermisos,int idUsuarioEvento,int idUsuarioEjecutor,int idPagina)
                     {
-                        List<PermisoUsuarioEvento> toReturn = null;
+                        List<PermisoUsuarioEvento> permisosUsuariosEventos = new List<PermisoUsuarioEvento>();
                         PermisoUsuarioEvento permisoUsuarioEvento; PermisoEvento permiso;
                         PermisoUsuarioEvento agregado;
                         UsuarioEvento usuarioEvento = new UsuarioEvento(idUsuarioEvento);
-                        bool estadoGeneral = false;
+                        bool estadoGeneral = false; bool estadoIndividual = true;
                         try{
                             // try catch general para un error fatal;
                             foreach (int idPermiso in idPermisos)
@@ -164,17 +194,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                                     agregado = this._controlPermisoUsuarioEvento.sp_adminfe_agregarPermisoUsuarioEvento(permisoUsuarioEvento, idUsuarioEjecutor, idPagina);
                                     if (agregado != null)
                                     {
-                                        estadoGeneral = true;
-                                        toReturn.Add(agregado);
+                                        estadoGeneral = true;                                        
+                                        permisosUsuariosEventos.Add(agregado);
+                                    }
+                                    else
+                                    {
+                                        estadoIndividual = false;
                                     }
                                 }
                                 catch (ErroresIUS)
                                 {
-
+                                    estadoIndividual = false;
                                 }
                                 catch (Exception)
                                 {
-
+                                    estadoIndividual = false;
                                 }
                             }
                             if (!estadoGeneral)
@@ -187,6 +221,14 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         }catch(Exception x){
                             throw x;
                         }
+                        if (permisosUsuariosEventos.Count == 0)
+                        {
+                            permisosUsuariosEventos = null;
+                        }
+                        Dictionary<string, object> toReturn = new Dictionary<string, object>();
+                        toReturn.Add("estadoGeneral", estadoGeneral);
+                        toReturn.Add("estadoIndividual", estadoIndividual);
+                        toReturn.Add("permisosUsuariosEventos", permisosUsuariosEventos);
                         return toReturn;
                     }
                     public EventoWebsite sp_adminfe_publicarEventoWebsite(Evento eventoAgregar, int idUsuarioEjecutor, int idPagina)

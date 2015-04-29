@@ -78,13 +78,47 @@ namespace IUSBack.Controllers
                     #region "agregar"
                         public ActionResult sp_adminfe_agregarPermisoUsuarioEvento()
                         {
-                            Dictionary<object, object> frm, respuesta = null;
+                            Dictionary<object, object> frm, respuesta;
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
                             if (frm != null && usuarioSession != null)
                             {
-                                int[] idPermisos = this.convertArrAjaxToInt((object[])frm["idPermisos"]);
-                                //List<PermisoUsuarioEvento> permisos = this._model.sp_adminfe_agregarPermisoUsuarioEvento(idPermisos,,usuarioSession._idUsuario,this._idPaginaEventos);
+                                try
+                                {
+                                    int[] idPermisos = this.convertArrAjaxToInt((object[])frm["idPermisos"]);
+                                    int idUsuarioEvento = this.convertObjAjaxToInt((object)frm["idUsuarioEvento"]);
+                                    Dictionary<string, object> respuestaModel = this._model.sp_adminfe_agregarPermisoUsuarioEvento(idPermisos, idUsuarioEvento, usuarioSession._idUsuario, this._idPaginaEventos);
+                                    List<PermisoUsuarioEvento> PermisosUsuariosEventos = (List<PermisoUsuarioEvento>)respuestaModel["permisosUsuariosEventos"];
+                                    List<PermisoEvento> permisosFaltantes = this._model.sp_adminfe_getPermisosFaltantesEvento(idUsuarioEvento, usuarioSession._idUsuario, this._idPaginaEventos);
+                                    respuesta = new Dictionary<object, object>();
+                                    bool estado = (bool)respuestaModel["estadoGeneral"];
+                                    if (estado)
+                                    {
+                                        respuesta.Add("estado", true);
+                                        respuesta.Add("estadoIndividual", (bool)respuestaModel["estadoIndividual"]);
+                                        respuesta.Add("PermisosUsuariosEventos", PermisosUsuariosEventos);
+                                        respuesta.Add("permisosFaltantes", permisosFaltantes);
+                                    }
+                                    else
+                                    {
+                                        ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
+                                        respuesta = this.errorTryControlador(3, x);
+                                    }
+                                    
+                                }
+                                catch (ErroresIUS x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                    respuesta = this.errorTryControlador(1, error);
+
+                                }
+                                catch (Exception x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                    respuesta = this.errorTryControlador(2, error);
+                                }
+                                
+
                             }
                             else
                             {
@@ -219,6 +253,46 @@ namespace IUSBack.Controllers
                         }
                     #endregion
                     #region "eliminar"
+                        public ActionResult sp_adminfe_eliminarPermisoUsuarioEvento()
+                        {
+                            Dictionary<object, object> frm, respuesta;
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            if (frm != null && usuarioSession != null)
+                            {
+                                try
+                                {
+                                    bool estado = this._model.sp_adminfe_eliminarPermisoUsuarioEvento(this.convertObjAjaxToInt((object)frm["txtHdIdPermisoUsuarioEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
+                                    if (estado)
+                                    {
+                                        List<PermisoEvento> permisosFaltantes = this._model.sp_adminfe_getPermisosFaltantesEvento(this.convertObjAjaxToInt((object)frm["txtHdIdUsuarioEvento"]),usuarioSession._idUsuario,this._idPaginaEventos);
+                                        respuesta = new Dictionary<object, object>();
+                                        respuesta.Add("estado", estado);
+                                        respuesta.Add("permisosFaltantes", permisosFaltantes);
+                                    }
+                                    else
+                                    {
+                                        ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
+                                        respuesta = this.errorTryControlador(3, x);
+                                    }
+                                }
+                                catch (ErroresIUS x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                    respuesta = errorTryControlador(1, error);
+                                }
+                                catch (Exception x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                                    respuesta = errorTryControlador(2, error);
+                                }
+                            }
+                            else
+                            {
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+                            return Json(respuesta);
+                        }
                         public ActionResult sp_adminfe_editarEventos()
                         {
                             Dictionary<object, object> frm, respuesta;
@@ -341,6 +415,7 @@ namespace IUSBack.Controllers
                     }
                 #endregion
                 #region "gets"
+                    
                     public ActionResult sp_adminfe_getPermisosUsuarioEvento()
                     {
                         Dictionary<object, object> frm, respuesta=null;

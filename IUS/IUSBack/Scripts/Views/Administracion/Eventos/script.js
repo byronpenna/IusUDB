@@ -116,7 +116,14 @@
                 $(document).on("click", ".btnPermisos", function () {
                     btnPermisos();
                 });
-                // tabla compartir
+                // tablas compartir
+                $(document).on("click", ".icoEliminarPermisoEvento", function () {
+                    var x = confirm("¿Esta seguro que desea quitarle este permiso?");
+                    tr = $(this).parents("tr");
+                    if (x) {
+                        icoEliminarPermisoEvento(tr);
+                    }
+                })
                 $(document).on("click", ".trUsuarioCompartido", function () {
                     tr = $(this);
                     trUsuarioCompartido(tr);
