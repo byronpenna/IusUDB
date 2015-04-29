@@ -30,7 +30,7 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPaginaEventos);
                     if (permisos != null && permisos._ver)
                     {
-                        List<Evento> eventos = this._model.sp_adminfe_eventosPropios(usuarioSession._idUsuario, this._idPaginaEventos);
+                        List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
                         ViewBag.eventos     = eventos;
                         ViewBag.permiso     = permisos;
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
@@ -199,11 +199,13 @@ namespace IUSBack.Controllers
                             }
                             catch (ErroresIUS x)
                             {
-                                respuesta = this.errorTryControlador(1, x);
+                                ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql,x._mostrar);
+                                respuesta = this.errorTryControlador(1, error);
                             }
                             catch (Exception x)
                             {
-                                respuesta = this.errorTryControlador(2, x);
+                                ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                respuesta = this.errorTryControlador(2, error);
                             }
                             return Json(respuesta);
                         }
@@ -477,9 +479,21 @@ namespace IUSBack.Controllers
                     {
                         Dictionary<object, object> respuesta = new Dictionary<object, object>();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        List<Evento> eventos = this._model.sp_adminfe_eventosPropios(usuarioSession._idUsuario, this._idPaginaEventos);
-                        respuesta.Add("estado", true);
-                        respuesta.Add("eventos", eventos);
+                        try
+                        {
+                            List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                            respuesta.Add("estado", true);
+                            respuesta.Add("eventos", eventos);
+                        }
+                        catch (ErroresIUS)
+                        {
+                            // nose que podria hacer aqui 
+                        }
+                        catch (Exception)
+                        {
+                            // algo se pudiera hacer aqui
+                        }
+                        
                         return Json(respuesta);
                     }
                 #endregion

@@ -288,11 +288,17 @@
     }
     function frmAgregarEvento(frm,frmSection) {
         actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {
+            console.log("la data regresada por el servidor es: ", data);
             if (data.estado) {
                 agregarEvento($("#calendar"), data.evento);
                 clearTr(frmSection);
             } else {
-                alert("ocurrio un error");
+                if (data.error._mostrar && data.error.Message != "") {
+                    alert(data.error.Message);
+                } else {
+                    alert("ocurrio un error");
+                }
+                
             }
         });
     }

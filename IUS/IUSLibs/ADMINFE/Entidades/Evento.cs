@@ -11,14 +11,17 @@ namespace IUSLibs.ADMINFE.Entidades
     public class Evento
     {
         #region "propiedades"
-            public int      _idEvento;
-            public string   _evento;
-            public DateTime _fechaInicio;
-            public DateTime _fechaFin;
-            public Usuario  _usuarioCreador;
-            public DateTime _fechaCreacion;
-            public string   _descripcion;
-            public bool     _publicado; // este no va en constructor porque no va con la naturalesa de la tabla
+            // propiedades de tabla
+                public int      _idEvento;
+                public string   _evento;
+                public DateTime _fechaInicio;
+                public DateTime _fechaFin;
+                public Usuario  _usuarioCreador;
+                public DateTime _fechaCreacion;
+                public string   _descripcion;
+            // extras 
+                public bool     _propio; 
+                public bool     _publicado; // este no va en constructor porque no va con la naturalesa de la tabla
             #region "Con get y set"
                 public string getFechaInicioUSA
                 {

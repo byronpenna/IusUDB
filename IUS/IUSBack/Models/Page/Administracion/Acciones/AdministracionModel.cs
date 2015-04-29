@@ -75,13 +75,13 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                             throw x;
                         }
                     }
-                    public List<Evento> sp_adminfe_eventosPropios(int idUsuario, int idPagina)
+                    public List<Evento> sp_adminfe_eventosCalendario(int idUsuario, int idPagina)
                     {
                         List<Evento> eventos = null;
                         ControlEvento control = new ControlEvento();
                         try
                         {
-                            eventos = control.sp_adminfe_eventosPropios(idUsuario,idPagina);
+                            eventos = control.sp_adminfe_eventosCalendario(idUsuario, idPagina);
                         }
                         catch (ErroresIUS)
                         {

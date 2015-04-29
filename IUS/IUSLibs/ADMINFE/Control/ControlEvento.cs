@@ -21,11 +21,11 @@ namespace IUSLibs.ADMINFE.Control
         #endregion 
         #region "funciones"
             #region "gets"
-                public List<Evento> sp_adminfe_eventosPropios(int idUsuario, int idPagina)
+                public List<Evento> sp_adminfe_eventosCalendario(int idUsuario, int idPagina)
                 {
                     List<Evento> eventos = null;
                     Evento evento; Usuario usu;
-                    SPIUS sp = new SPIUS("sp_adminfe_eventosPropios");
+                    SPIUS sp = new SPIUS("sp_adminfe_eventosCalendario");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuario);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -106,10 +106,16 @@ namespace IUSLibs.ADMINFE.Control
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        DataRow rowResultado = tb[1].Rows[0];
                         if(this.resultadoCorrecto(tb)){
+                            DataRow rowResultado = tb[1].Rows[0];
                             usu = new Usuario((int) rowResultado["id_usuario_creador_fk"]);
                             eventoAgregado = new Evento((int)rowResultado["idEvento"], rowResultado["evento"].ToString(), (DateTime)rowResultado["fecha_inicio"], (DateTime)rowResultado["fecha_fin"],usu, (DateTime)rowResultado["fecha_creacion"], rowResultado["descripcion"].ToString());
+                        }
+                        else
+                        {
+                            DataRow rowResultado = tb[0].Rows[0];
+                            ErroresIUS x = new ErroresIUS(rowResultado["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowResultado["errorCode"], rowResultado["errorSql"].ToString(),true);
+                            throw x;
                         }
                     }catch(ErroresIUS x){
                         throw x;

@@ -45,6 +45,7 @@ namespace IUSLibs.LOGS
         #region "propiedades"
             private int _codigoError;
             private tipoError _tipoError;
+            public bool _mostrar=false;
         #endregion
         #region "metodos"
             public void setTipoError(tipoError t)
@@ -73,6 +74,14 @@ namespace IUSLibs.LOGS
                 this._tipoError = errorType;
                 this._codigoError = codigoError;
                 this._errorSql = errorSql;
+            }
+            public ErroresIUS(string message, tipoError errorType, int codigoError, string errorSql,bool mostrar)
+                : base(message)
+            {
+                this._tipoError = errorType;
+                this._codigoError = codigoError;
+                this._errorSql = errorSql;
+                this._mostrar = mostrar;
             }
         #endregion
     }
