@@ -383,8 +383,6 @@
                 agregarEvento($("#calendar"), data.evento, true, 1);
                 div = getEventosAcordion(data.evento);
                 $("#accordion").prepend(div);
-                $("#accordion").accordion("refresh");
-                
                 clearTr(frmSection);
                 
             } else {

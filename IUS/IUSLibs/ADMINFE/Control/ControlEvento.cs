@@ -64,7 +64,7 @@ namespace IUSLibs.ADMINFE.Control
                     sp.agregarParametro("evento", eventoEditar._evento);
                     sp.agregarParametro("fechaInicio", eventoEditar._fechaInicio);
                     sp.agregarParametro("fechaFin", eventoEditar._fechaFin);
-                    sp.agregarParametro("decripcion", eventoEditar._descripcion);
+                    sp.agregarParametro("decripcion", eventoEditar._descripcion.Replace("\n","<br>"));
                     sp.agregarParametro("idUsuarioEjecutor", idUsuario);
                     sp.agregarParametro("idPagina", idPagina);
                     try

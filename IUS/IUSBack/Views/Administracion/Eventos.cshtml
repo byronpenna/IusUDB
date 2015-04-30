@@ -34,7 +34,7 @@
         <li>
             <a href="#tab-1">Eventos</a>
         </li>
-        <li>
+        <li class="tbCompartir">
             <a href="#tab-2">Compartir</a>
         </li>
     </ul>
@@ -97,7 +97,7 @@
                             <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
                             <div class="row">
                                 <div class="normalMode">
-                                    <p class="text-justify pDescripcionEvento">@evento._descripcion</p>
+                                    <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
                                 </div>
                                 <div class="editMode hidden" style="margin-bottom:5%;">
                                     <label>Nombre de evento</label>

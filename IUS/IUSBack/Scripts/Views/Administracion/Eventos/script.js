@@ -50,10 +50,13 @@
             var x = confirm("¿Esta seguro que desea agregar este evento?");
             if (x) {
                 frmAgregarEvento(frm, $(this));
-                $("#accordion").accordion("refresh");
+                
             }
             });
         // click
+                $(document).on("click", ".tbCompartir", function () {
+                    $("#accordion").accordion("refresh");
+                });
             // publicar o no website
                 $(document).on("click", ".btnAccionQuitarPublicacion", function () {
                     detalle = $(this).parents(".detalleEvento");
