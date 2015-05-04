@@ -15,7 +15,33 @@
     });
 }
 // genericos
-    // usuarios
+    // ui 
+        function refreshTime(inputSlide) {
+            //console.log("slide es:", $(".horas").slider("value"));
+            //slideHora = inputSlide.parent().find(".horas");
+            div = $(inputSlide.target).parents(".divHora");
+            inputTxt = $(inputSlide.target).parents(".divHora").find(".txtHora");
+            horas = div.find(".horas");
+            minutos = div.find(".minutos");
+            segundos = div.find(".seg");
+            tiempo = div.find(".tiempo");
+            console.log("el valor de input text", inputTxt.val());
+            //console.log("slide hora", slideHora.slider("value"));
+            txt = "@h:@m:@s @t";
+            txt = txt.replace("@h",valMinh(horas.slider("value")));
+            txt = txt.replace("@m",valMinh(minutos.slider("value")));
+            txt = txt.replace("@s",valMinh(segundos.slider("value")));
+            if (tiempo.slider("value") == 0) {
+                tiempo = "a.m.";
+            } else {
+                tiempo = "p.m.";
+            }
+            txt = txt.replace("@t", tiempo);
+            //$(".txtHoraInicio").val(txt);
+            inputTxt.val(txt);
+            horaConvert(txt);
+        }
+        // usuarios
         function getCbUsuarios(usuarios) {
             cb = "";
             if (!(usuarios === null)) {
@@ -50,7 +76,7 @@
             }
             return tr;
         }
-    // permisos 
+        // permisos 
         function getCbPermisos(permisos) {
             cb = "";
             if (!(permisos === null)) {
@@ -93,7 +119,7 @@
             return tr;
         }
     
-    // llenar 
+        // llenar 
         function llenarInputsEdicion(evento, div) {
             // tanto val como text ya que sino a la hora de llenar el formulario muere todo
             div.find(".txtAreaDescripcion").text(evento._descripcion);
@@ -185,247 +211,247 @@
             ";
             return div;
         }
-    function agregarEvento(calendar, evento, sticker, propio) {
-        if (propio === null || propio == 1) {
-            backColor = "#3A87AD";
-        } else if (propio == 2) {
-            backColor = "#f1c40f";
-        } else if (propio == 3) {
-            // eventos publicos
-            backColor = "#2ecc71";
+        function agregarEvento(calendar, evento, sticker, propio) {
+            if (propio === null || propio == 1) {
+                backColor = "#3A87AD";
+            } else if (propio == 2) {
+                backColor = "#f1c40f";
+            } else if (propio == 3) {
+                // eventos publicos
+                backColor = "#2ecc71";
+            }
+            eventoAgregar = {
+                title: evento._evento,
+                start: evento.getFechaInicioUSA,
+                end: evento.getFechaFinUSA,
+                color: backColor
+            };
+            calendar.fullCalendar('renderEvent', eventoAgregar, true);
         }
-        eventoAgregar = {
-            title: evento._evento,
-            start: evento.getFechaInicioUSA,
-            end: evento.getFechaFinUSA,
-            color: backColor
-        };
-        calendar.fullCalendar('renderEvent', eventoAgregar, true);
-    }
-    function updateDespuesDePublicacion(eventoWebsite, detalle) {
-        detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
-        if (eventoWebsite._estado == true) {
-            intEstado = 1;
-        } else {
-            intEstado = 0;
+        function updateDespuesDePublicacion(eventoWebsite, detalle) {
+            detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
+            if (eventoWebsite._estado == true) {
+                intEstado = 1;
+            } else {
+                intEstado = 0;
+            }
+            detalle.find(".txtHdEstadoEstado").val(intEstado);
         }
-        detalle.find(".txtHdEstadoEstado").val(intEstado);
-    }
-    function cargarCompartir(div,tab) {
-        tr = "\
+        function cargarCompartir(div,tab) {
+            tr = "\
             <tr>\
                 <td colspan='2' class='text-center'>Seleccione usuario</td>\
             </tr>\
         ";
-        tab.find(".tbPermisos").empty().append(tr);
-        seccion = tab.parents(".areaCompartir");
-        idEvento = div.find(".txtHdIdEvento").val();
+            tab.find(".tbPermisos").empty().append(tr);
+            seccion = tab.parents(".areaCompartir");
+            idEvento = div.find(".txtHdIdEvento").val();
 
-        seccion.find(".txtHdIdEvento").val(idEvento);
-        frm = { idEvento: idEvento }
-        actualizarCatalogo("/Administracion/sp_adminfe_loadCompartirEventos", frm, function (data) {
-            if (data.estado) {
-                cbUsuarios = getCbUsuarios(data.usuariosNoCompartidos);
-                $(".cbUsuarioCompartir").empty().append(cbUsuarios);
-                resetChosen($(".cbUsuarioCompartir"));
-                tr = getTrUsuarios(data.usuariosCompartidos);
-                tab.find(".tbUsuarios").empty().append(tr);
-            }
-        });
-    }
-// acciones script
-    function icoEliminarPermisoEvento(tr) {
-        frm = serializeSection(tr);
-        
-        console.log("Formulario a enviar es: ", frm);
-        actualizarCatalogo("/Administracion/sp_adminfe_eliminarPermisoUsuarioEvento", frm, function (data) {
-            console.log("la respuesta del servidor es: ", data);
-            if (data.estado) {
-                tr.remove();
-                cb = getCbPermisos(data.permisosFaltantes);
-                $(".cbPermisosCompartir").empty().append(cb);
-                resetChosen($(".cbPermisosCompartir"));
-            } else {
-                alert("Ocurrio un error");
-            }
-        })
-    }
-    function btnPermisos() {
-        frm = { idPermisos: $(".cbPermisosCompartir").val(), idUsuarioEvento: $(".trUsuarioCompartido.clickTr").find(".txtHdIdUsuarioEvento").val() }
-        tbody = $(".tbPermisos");
-        actualizarCatalogo("/Administracion/sp_adminfe_agregarPermisoUsuarioEvento", frm, function (data) {
-            console.log("la respuesta del servidor es: ", data);
-            if (data.estado) {
-                tr = getTrPermisos(data.PermisosUsuariosEventos);
-                console.log("Existe para poner encima permiso", tbody.find(".noUsuarioCompartido").length);
-                if (tbody.find(".noPermisoUsuarioEvento").length == 0) {
-                    tbody.prepend(tr);
-                } else {
-                    tbody.empty().append(tr);
-                }
-                cb = getCbPermisos(data.permisosFaltantes);
-                $(".cbPermisosCompartir").empty().append(cb);
-                resetChosen($(".cbPermisosCompartir"));
-                if (!data.estadoIndividual) {
-                    alert("Algunos registros no fueron guardados correctamente");
-                }
-            }
-        })
-    }
-    function icoQuitarUsuario(tr) {
-        frm = serializeSection(tr);
-        frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
-        console.log("formulario a enviar es", frm);
-        actualizarCatalogo("/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
-            if (data.estado) {
-                tr.remove();
-                cb = getCbUsuarios(data.usuariosFaltantes);
-                $(".cbUsuarioCompartir").empty().append(cb);
-                resetChosen($(".cbUsuarioCompartir"));
-            }
-        });
-    }
-    function btnAgregarUsuarioCompartir(divFrm) {
-        frm = serializeSection(divFrm);
-        frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
-        console.log("formulario a enviar es: ", frm);
-        actualizarCatalogo("/Administracion/sp_adminfe_compartirEventoUsuario", frm, function (data) {
-            console.log("la data del servidor es: ", data);
-            if (data.estado) {
-                if (!(data.usuarioEventoAgregado === null)) {
-                    cb = getCbUsuarios(data.usuariosFaltantes);
-                    $(".cbUsuarioCompartir").empty().append(cb);
+            seccion.find(".txtHdIdEvento").val(idEvento);
+            frm = { idEvento: idEvento }
+            actualizarCatalogo("/Administracion/sp_adminfe_loadCompartirEventos", frm, function (data) {
+                if (data.estado) {
+                    cbUsuarios = getCbUsuarios(data.usuariosNoCompartidos);
+                    $(".cbUsuarioCompartir").empty().append(cbUsuarios);
                     resetChosen($(".cbUsuarioCompartir"));
-                    tr = getTrOneUsuarios(data.usuarioEventoAgregado);
-                    tbody = $(".tbUsuarios");
-                    if (tbody.find(".noUsuarioCompartido").length == 0) {
+                    tr = getTrUsuarios(data.usuariosCompartidos);
+                    tab.find(".tbUsuarios").empty().append(tr);
+                }
+            });
+        }
+        // acciones script
+        function icoEliminarPermisoEvento(tr) {
+            frm = serializeSection(tr);
+        
+            console.log("Formulario a enviar es: ", frm);
+            actualizarCatalogo("/Administracion/sp_adminfe_eliminarPermisoUsuarioEvento", frm, function (data) {
+                console.log("la respuesta del servidor es: ", data);
+                if (data.estado) {
+                    tr.remove();
+                    cb = getCbPermisos(data.permisosFaltantes);
+                    $(".cbPermisosCompartir").empty().append(cb);
+                    resetChosen($(".cbPermisosCompartir"));
+                } else {
+                    alert("Ocurrio un error");
+                }
+            })
+        }
+        function btnPermisos() {
+            frm = { idPermisos: $(".cbPermisosCompartir").val(), idUsuarioEvento: $(".trUsuarioCompartido.clickTr").find(".txtHdIdUsuarioEvento").val() }
+            tbody = $(".tbPermisos");
+            actualizarCatalogo("/Administracion/sp_adminfe_agregarPermisoUsuarioEvento", frm, function (data) {
+                console.log("la respuesta del servidor es: ", data);
+                if (data.estado) {
+                    tr = getTrPermisos(data.PermisosUsuariosEventos);
+                    console.log("Existe para poner encima permiso", tbody.find(".noUsuarioCompartido").length);
+                    if (tbody.find(".noPermisoUsuarioEvento").length == 0) {
                         tbody.prepend(tr);
                     } else {
                         tbody.empty().append(tr);
                     }
-                    
-                } else {
-                    alert("Error");
+                    cb = getCbPermisos(data.permisosFaltantes);
+                    $(".cbPermisosCompartir").empty().append(cb);
+                    resetChosen($(".cbPermisosCompartir"));
+                    if (!data.estadoIndividual) {
+                        alert("Algunos registros no fueron guardados correctamente");
+                    }
                 }
-            } else {
-                alert("Ocurrio un error");
-            }
-        });
-    }
-    function btnActualizar(detalle) {
-        frm = serializeSection(detalle);
-        h3 = detalle.prev();
-        frm.txtEvento = h3.find(".txtEvento2").val();
-        if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
-            actualizarCatalogo("/Administracion/sp_adminfe_editarEventos", frm, function (data) {
+            })
+        }
+        function icoQuitarUsuario(tr) {
+            frm = serializeSection(tr);
+            frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
+            console.log("formulario a enviar es", frm);
+            actualizarCatalogo("/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
                 if (data.estado) {
-                    llenarInputsVista(data.eventoEditado, detalle);
-                    controlesEdit(false, div);
+                    tr.remove();
+                    cb = getCbUsuarios(data.usuariosFaltantes);
+                    $(".cbUsuarioCompartir").empty().append(cb);
+                    resetChosen($(".cbUsuarioCompartir"));
+                }
+            });
+        }
+        function btnAgregarUsuarioCompartir(divFrm) {
+            frm = serializeSection(divFrm);
+            frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
+            console.log("formulario a enviar es: ", frm);
+            actualizarCatalogo("/Administracion/sp_adminfe_compartirEventoUsuario", frm, function (data) {
+                console.log("la data del servidor es: ", data);
+                if (data.estado) {
+                    if (!(data.usuarioEventoAgregado === null)) {
+                        cb = getCbUsuarios(data.usuariosFaltantes);
+                        $(".cbUsuarioCompartir").empty().append(cb);
+                        resetChosen($(".cbUsuarioCompartir"));
+                        tr = getTrOneUsuarios(data.usuarioEventoAgregado);
+                        tbody = $(".tbUsuarios");
+                        if (tbody.find(".noUsuarioCompartido").length == 0) {
+                            tbody.prepend(tr);
+                        } else {
+                            tbody.empty().append(tr);
+                        }
+                    
+                    } else {
+                        alert("Error");
+                    }
                 } else {
                     alert("Ocurrio un error");
                 }
             });
-        } else {
-            alert("Por favor ponga una hora de inicio y de fin ")
         }
-    }
-    function btnAccionQuitarPublicacion(detalle) {
-        var frm = {
-            txtHdIdEvento: detalle.find(".txtHdIdEvento").val(),
-            txtAreaMotivoQuitar: detalle.find(".txtAreaMotivoQuitar").val()
-        }
-        console.log("formulario a enviar es", frm);
-        actualizarCatalogo("/Administracion/sp_adminfe_quitarEventoWebsite", frm, function (data) {
-            console.log("respuesta servidor publicar: ", frm);
-            if (data.estado) {
-                updateDespuesDePublicacion(data.eventoWebsite, detalle);
-                controlesEdit(false, detalle, ".quitarPublicacionMode")
+        function btnActualizar(detalle) {
+            frm = serializeSection(detalle);
+            h3 = detalle.prev();
+            frm.txtEvento = h3.find(".txtEvento2").val();
+            if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
+                actualizarCatalogo("/Administracion/sp_adminfe_editarEventos", frm, function (data) {
+                    if (data.estado) {
+                        llenarInputsVista(data.eventoEditado, detalle);
+                        controlesEdit(false, div);
+                    } else {
+                        alert("Ocurrio un error");
+                    }
+                });
             } else {
-                alert("Ocurrio un error");
+                alert("Por favor ponga una hora de inicio y de fin ")
             }
-        });
-    }
-    function btnEditar(div) {
-        fechaIni = div.find(".spanFechaInicio").text();
-        separadorIni = fechaIni.indexOf(" ");
-        fechaFin = div.find(".spanFechaFin").text();
-        separadorFin = fechaFin.indexOf(" ");
-        evento = {
-            _descripcion: div.find(".pDescripcionEvento").text(),
-            _fechaInicio: fechaIni.substring(0, separadorIni),
-            _fechaFin: fechaFin.substring(0, separadorFin),
-            _horaInicio: fechaIni.substring( separadorIni,fechaIni.length),
-            _horaFin:  fechaFin.substring(separadorFin,fechaFin.length)
         }
-        h3 = div.prev();
-        div.find(".txtEvento2").val(h3.find(".spanNombreEvento").text());
-        llenarInputsEdicion(evento, div);
-        controlesEdit(true, div);
-        
-    }
-    function btnPublicar(detalle) {
-        frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
-        actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
-            updateDespuesDePublicacion(data.eventoPublicado, detalle);
-        });
-    }
-    // no es boton propiamente dicho pero aun asi se le pone btn 
-    function btnQuitarPublicacion(div) {
-        controlesEdit(true, div, ".quitarPublicacionMode")
-    }//-------------------------------
-    function btnCancelaQuitarPublicacion(div) {
-        txtArea = div.find(".txtAreaMotivoQuitar");
-        txtArea.text("");
-        txtArea.val("");
-        controlesEdit(false, div, ".quitarPublicacionMode", ".normalMode");
-    }
-    function frmAgregarEvento(frm,frmSection) {
-        actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {
-            console.log("la data regresada por el servidor(evento creado) es: ", data);
-            if (data.estado) {
-                agregarEvento($("#calendar"), data.evento, true, 1);
-                div = getEventosAcordion(data.evento);
-                $("#accordion").prepend(div);
-                clearTr(frmSection);
-                
-            } else {
-                if (data.error._mostrar && data.error.Message != "") {
-                    alert(data.error.Message);
+        function btnAccionQuitarPublicacion(detalle) {
+            var frm = {
+                txtHdIdEvento: detalle.find(".txtHdIdEvento").val(),
+                txtAreaMotivoQuitar: detalle.find(".txtAreaMotivoQuitar").val()
+            }
+            console.log("formulario a enviar es", frm);
+            actualizarCatalogo("/Administracion/sp_adminfe_quitarEventoWebsite", frm, function (data) {
+                console.log("respuesta servidor publicar: ", frm);
+                if (data.estado) {
+                    updateDespuesDePublicacion(data.eventoWebsite, detalle);
+                    controlesEdit(false, detalle, ".quitarPublicacionMode")
                 } else {
-                    alert("ocurrio un error");
+                    alert("Ocurrio un error");
                 }
-                
-            }
-        });
-        
-    }
-    function btnCompartir(detalle) {
-        h3  = detalle.prev();
-        tab = $("#tabUsuario");
-        $(".hEventoUsuario").empty().append(h3.find(".spanNombreEvento").text());
-        tab.css("background", 'rgba(229,229, 229, 0.5)');
-        tab.animate({
-            backgroundColor: "white"
-        }, 500);
-        cargarCompartir(detalle,tab);
-    }
-    function trUsuarioCompartido(tr) {
-        tbody = tr.parents("tbody");
-        tbody.find(".clickTr").removeClass("clickTr");
-        tr.addClass("clickTr");
-        frm = {
-            idUsuarioEvento: tr.find(".txtHdIdUsuarioEvento").val(),
+            });
         }
-        // cargar los permisos de el usuario clickeado
-        actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
-            if (data.estado) {
-                cb = getCbPermisos(data.permisosFaltantes);
-                $(".cbPermisosCompartir").empty().append(cb);
-                resetChosen($(".cbPermisosCompartir"));
-                tr = getTrPermisos(data.permisosActuales);
-                $(".tbPermisos").empty().append(tr);
-            } else {
-                alert("Ocurrio un error");
+        function btnEditar(div) {
+            fechaIni = div.find(".spanFechaInicio").text();
+            separadorIni = fechaIni.indexOf(" ");
+            fechaFin = div.find(".spanFechaFin").text();
+            separadorFin = fechaFin.indexOf(" ");
+            evento = {
+                _descripcion: div.find(".pDescripcionEvento").text(),
+                _fechaInicio: fechaIni.substring(0, separadorIni),
+                _fechaFin: fechaFin.substring(0, separadorFin),
+                _horaInicio: fechaIni.substring( separadorIni,fechaIni.length),
+                _horaFin:  fechaFin.substring(separadorFin,fechaFin.length)
             }
-        });
-    }
+            h3 = div.prev();
+            div.find(".txtEvento2").val(h3.find(".spanNombreEvento").text());
+            llenarInputsEdicion(evento, div);
+            controlesEdit(true, div);
+        
+        }
+        function btnPublicar(detalle) {
+            frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
+            actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
+                updateDespuesDePublicacion(data.eventoPublicado, detalle);
+            });
+        }
+        // no es boton propiamente dicho pero aun asi se le pone btn 
+        function btnQuitarPublicacion(div) {
+            controlesEdit(true, div, ".quitarPublicacionMode")
+        }//-------------------------------
+        function btnCancelaQuitarPublicacion(div) {
+            txtArea = div.find(".txtAreaMotivoQuitar");
+            txtArea.text("");
+            txtArea.val("");
+            controlesEdit(false, div, ".quitarPublicacionMode", ".normalMode");
+        }
+        function frmAgregarEvento(frm,frmSection) {
+            actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {
+                console.log("la data regresada por el servidor(evento creado) es: ", data);
+                if (data.estado) {
+                    agregarEvento($("#calendar"), data.evento, true, 1);
+                    div = getEventosAcordion(data.evento);
+                    $("#accordion").prepend(div);
+                    clearTr(frmSection);
+                
+                } else {
+                    if (data.error._mostrar && data.error.Message != "") {
+                        alert(data.error.Message);
+                    } else {
+                        alert("ocurrio un error");
+                    }
+                
+                }
+            });
+        
+        }
+        function btnCompartir(detalle) {
+            h3  = detalle.prev();
+            tab = $("#tabUsuario");
+            $(".hEventoUsuario").empty().append(h3.find(".spanNombreEvento").text());
+            tab.css("background", 'rgba(229,229, 229, 0.5)');
+            tab.animate({
+                backgroundColor: "white"
+            }, 500);
+            cargarCompartir(detalle,tab);
+        }
+        function trUsuarioCompartido(tr) {
+            tbody = tr.parents("tbody");
+            tbody.find(".clickTr").removeClass("clickTr");
+            tr.addClass("clickTr");
+            frm = {
+                idUsuarioEvento: tr.find(".txtHdIdUsuarioEvento").val(),
+            }
+            // cargar los permisos de el usuario clickeado
+            actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
+                if (data.estado) {
+                    cb = getCbPermisos(data.permisosFaltantes);
+                    $(".cbPermisosCompartir").empty().append(cb);
+                    resetChosen($(".cbPermisosCompartir"));
+                    tr = getTrPermisos(data.permisosActuales);
+                    $(".tbPermisos").empty().append(tr);
+                } else {
+                    alert("Ocurrio un error");
+                }
+            });
+        }

@@ -10,6 +10,7 @@
             chosen.val(selectedVal).trigger("chosen:updated");
         }
 // tabla
+       
     function getEdit(tabla, objFind, val) {
         retorno = tabla.find(objFind + "[value='" + val + "']");
         return retorno;
@@ -123,6 +124,26 @@
         });
     }
 // generics
+    function horaConvert(hora) {
+        var time = hora;
+        var hours = Number(time.match(/^(\d+)/)[1]);
+        var minutes = Number(time.match(/:(\d+)/)[1]);
+        var AMPM = time.match(/\s(.*)$/)[1];
+        if (AMPM == "p.m." && hours < 12) hours = hours + 12;
+        if (AMPM == "a.m." && hours == 12) hours = hours - 12;
+        var sHours = hours.toString();
+        var sMinutes = minutes.toString();
+        if (hours < 10) sHours = "0" + sHours;
+        if (minutes < 10) sMinutes = "0" + sMinutes;
+        console.log("hora en formato 24: ", sHours + ":" + sMinutes);
+        //alert(sHours + ":" + sMinutes);
+    }
+    function valMinh(val) {
+        if (parseInt(val) < 10) {
+            val = "0" + val;
+        }
+        return val;
+    }
     function serializeToJson(a) {
         var o = {};
         $.each(a, function () {

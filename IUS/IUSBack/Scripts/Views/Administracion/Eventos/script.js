@@ -1,5 +1,43 @@
 ﻿$(document).ready(function () {
     // plugins 
+        // slide horizontal 
+            $(".horas").slider({
+                orientation: "horizontal",
+                range: "min",
+                max: 12,
+                min:1,
+                value: 1,
+                slide: refreshTime,
+                change: refreshTime
+            });
+            $(".minutos").slider({
+                orientation: "horizontal",
+                range: "min",
+                max: 59,
+                min: 0,
+                value: 0,
+                slide: refreshTime,
+                change: refreshTime
+            });
+            $(".seg").slider({
+                orientation: "horizontal",
+                range: "min",
+                max: 59,
+                min: 0,
+                value: 0,
+                slide: refreshTime,
+                change: refreshTime
+            });
+            $(".tiempo").slider({
+                orientation: "horizontal",
+                range: "min",
+                max: 1,
+                min: 0,
+                value: 0,
+                slide: refreshTime,
+                change: refreshTime
+            })
+            $(".horas").slider("value", 1);
         // chosen 
             $(".cbUsuarioCompartir").chosen({
                 no_results_text: "Usuario no encontrado",
@@ -47,6 +85,7 @@
             $(document).on("submit", "#frmAgregarEvento", function (e) {
             e.preventDefault();
             frm = serializeForm($(this));
+            console.log("formulario a enviar: ", frm);
             var x = confirm("¿Esta seguro que desea agregar este evento?");
             if (x) {
                 frmAgregarEvento(frm, $(this));
