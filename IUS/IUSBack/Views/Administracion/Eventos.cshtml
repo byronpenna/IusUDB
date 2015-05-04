@@ -141,24 +141,30 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row text-center sectionBotonesEvento">
-                                <div class="normalMode">
-                                    <button class="btn btnEditar">Editar</button>
-                                    @if (evento._propietario == 1)
-                                    {
-                                        <button class="btn btnCompartir">Compartir</button>    
-                                    }
-                                    <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
-                                </div>                                
-                                <div class="editMode hidden">
-                                    <button class="btn btnActualizar" >Actualizar</button>
-                                    <button class="btn btnCancelar" >Cancelar</button>
+                            @if (evento._propietario != 3)
+                            {
+                                <div class="row text-center sectionBotonesEvento">
+                                    <div class="normalMode">
+                                        @if (evento._propietario == 1 || evento._propietario == 2)
+                                        {
+                                            <button class="btn btnEditar">Editar</button>
+                                            <button class="btn btnPublicar">@evento.txtBtnPublicar</button>    
+                                        }
+                                        @if (evento._propietario == 1)
+                                        {
+                                            <button class="btn btnCompartir">Compartir</button>
+                                        }
+                                    </div>                                
+                                    <div class="editMode hidden">
+                                        <button class="btn btnActualizar" >Actualizar</button>
+                                        <button class="btn btnCancelar" >Cancelar</button>
+                                    </div>
+                                    <div class="quitarPublicacionMode hidden">
+                                        <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
+                                        <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
+                                    </div>
                                 </div>
-                                <div class="quitarPublicacionMode hidden">
-                                    <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
-                                    <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
-                                </div>
-                            </div>
+                            }
                         </div>
                     }
                 }

@@ -203,14 +203,14 @@
         calendar.fullCalendar('renderEvent', eventoAgregar, true);
     }
     function updateDespuesDePublicacion(eventoWebsite, detalle) {
-    detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
-    if (eventoWebsite._estado == true) {
-        intEstado = 1;
-    } else {
-        intEstado = 0;
+        detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
+        if (eventoWebsite._estado == true) {
+            intEstado = 1;
+        } else {
+            intEstado = 0;
+        }
+        detalle.find(".txtHdEstadoEstado").val(intEstado);
     }
-    detalle.find(".txtHdEstadoEstado").val(intEstado);
-}
     function cargarCompartir(div,tab) {
         tr = "\
             <tr>\
@@ -334,9 +334,12 @@
             txtHdIdEvento: detalle.find(".txtHdIdEvento").val(),
             txtAreaMotivoQuitar: detalle.find(".txtAreaMotivoQuitar").val()
         }
+        console.log("formulario a enviar es", frm);
         actualizarCatalogo("/Administracion/sp_adminfe_quitarEventoWebsite", frm, function (data) {
+            console.log("respuesta servidor publicar: ", frm);
             if (data.estado) {
                 updateDespuesDePublicacion(data.eventoWebsite, detalle);
+                controlesEdit(false, detalle, ".quitarPublicacionMode")
             } else {
                 alert("Ocurrio un error");
             }
