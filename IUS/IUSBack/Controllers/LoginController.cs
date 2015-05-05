@@ -29,8 +29,9 @@ namespace IUSBack.Controllers
                     ErrorsController error = new ErrorsController();
                     var obj = error.redirectToError(x);
                     return RedirectToAction(obj["accion"], obj["controlador"]);
+                    //return Json(x.Message);
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }

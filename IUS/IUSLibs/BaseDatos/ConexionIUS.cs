@@ -49,6 +49,12 @@ namespace IUSLibs.BaseDatos
             this.usuario = "sa";
             this.password = "123456";
             this.SSPI = false;
+            /*
+            this.servidor = "168.243.3.62";
+            this.db = "IUS";
+            this.usuario = "IUS";
+            this.password = "123456";
+            this.SSPI = false;*/
             try
             {
                 string strConexion = this.getStrConexion();
