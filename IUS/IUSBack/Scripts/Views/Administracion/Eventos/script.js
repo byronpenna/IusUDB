@@ -89,7 +89,6 @@
             var x = confirm("¿Esta seguro que desea agregar este evento?");
             if (x) {
                 frmAgregarEvento(frm, $(this));
-                
             }
             });
         // click
