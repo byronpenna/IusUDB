@@ -14,7 +14,7 @@
                 frm.idLlave     = $(".cbLlave").val();
                 frm.idIdioma    = $(".cbIdioma").val();
                 frm.traduccion  = $(".txtAreaTraduccion").val();
-                console.log("formulario a enviar es",frm);
+
                 btnAgregarLlave(frm)
             });
             $(document).on("click", ".btnCancelarEdit", function () {

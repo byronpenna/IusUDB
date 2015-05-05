@@ -1,8 +1,9 @@
 ﻿// load
     function eventosIniciales() {
     var frm = new Object();
-    actualizarCatalogo("/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
-        console.log("respuesta eventos principales", data);
+    
+    actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
+        
         if (data.estado) {
             eventos = data.eventos;
             if (!(eventos === null)) {
@@ -17,7 +18,6 @@
 // genericos
     // ui 
         function refreshTime(inputSlide) {
-            //console.log("slide es:", $(".horas").slider("value"));
             //slideHora = inputSlide.parent().find(".horas");
             div = $(inputSlide.target).parents(".divHora");
             inputTxt = $(inputSlide.target).parents(".divHora").find(".txtHora");
@@ -25,8 +25,7 @@
             minutos = div.find(".minutos");
             segundos = div.find(".seg");
             tiempo = div.find(".tiempo");
-            console.log("el valor de input text", inputTxt.val());
-            //console.log("slide hora", slideHora.slider("value"));
+
             txt = "@h:@m:@s @t";
             txt = txt.replace("@h",valMinh(horas.slider("value")));
             txt = txt.replace("@m",valMinh(minutos.slider("value")));
@@ -54,7 +53,6 @@
             return cb;
         }
         function getTrOneUsuarios(usuarioEvento) {
-            console.log("UsuarioEvento a agregar es: ", usuarioEvento);
             tr = "\
                     <tr class='trUsuarioCompartido' >\
                         <td class='hidden'>\
@@ -90,7 +88,6 @@
         }
         function getTrOnePermisos(PermisoUsuarioEvento) {
             tr = "";
-            //console.log("permisosUsuarioEvento a poner", PermisoUsuarioEvento);
             if (!(PermisoUsuarioEvento === null)) {
                 tr += "\
                     <tr>\
@@ -249,7 +246,7 @@
 
             seccion.find(".txtHdIdEvento").val(idEvento);
             frm = { idEvento: idEvento }
-            actualizarCatalogo("/Administracion/sp_adminfe_loadCompartirEventos", frm, function (data) {
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_loadCompartirEventos", frm, function (data) {
                 if (data.estado) {
                     cbUsuarios = getCbUsuarios(data.usuariosNoCompartidos);
                     $(".cbUsuarioCompartir").empty().append(cbUsuarios);
@@ -263,9 +260,9 @@
         function icoEliminarPermisoEvento(tr) {
             frm = serializeSection(tr);
         
-            console.log("Formulario a enviar es: ", frm);
-            actualizarCatalogo("/Administracion/sp_adminfe_eliminarPermisoUsuarioEvento", frm, function (data) {
-                console.log("la respuesta del servidor es: ", data);
+            
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_eliminarPermisoUsuarioEvento", frm, function (data) {
+                
                 if (data.estado) {
                     tr.remove();
                     cb = getCbPermisos(data.permisosFaltantes);
@@ -279,11 +276,11 @@
         function btnPermisos() {
             frm = { idPermisos: $(".cbPermisosCompartir").val(), idUsuarioEvento: $(".trUsuarioCompartido.clickTr").find(".txtHdIdUsuarioEvento").val() }
             tbody = $(".tbPermisos");
-            actualizarCatalogo("/Administracion/sp_adminfe_agregarPermisoUsuarioEvento", frm, function (data) {
-                console.log("la respuesta del servidor es: ", data);
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_agregarPermisoUsuarioEvento", frm, function (data) {
+                
                 if (data.estado) {
                     tr = getTrPermisos(data.PermisosUsuariosEventos);
-                    console.log("Existe para poner encima permiso", tbody.find(".noUsuarioCompartido").length);
+                    
                     if (tbody.find(".noPermisoUsuarioEvento").length == 0) {
                         tbody.prepend(tr);
                     } else {
@@ -301,8 +298,8 @@
         function icoQuitarUsuario(tr) {
             frm = serializeSection(tr);
             frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
-            console.log("formulario a enviar es", frm);
-            actualizarCatalogo("/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
+            
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
                 if (data.estado) {
                     tr.remove();
                     cb = getCbUsuarios(data.usuariosFaltantes);
@@ -314,9 +311,9 @@
         function btnAgregarUsuarioCompartir(divFrm) {
             frm = serializeSection(divFrm);
             frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
-            console.log("formulario a enviar es: ", frm);
-            actualizarCatalogo("/Administracion/sp_adminfe_compartirEventoUsuario", frm, function (data) {
-                console.log("la data del servidor es: ", data);
+
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_compartirEventoUsuario", frm, function (data) {
+
                 if (data.estado) {
                     if (!(data.usuarioEventoAgregado === null)) {
                         cb = getCbUsuarios(data.usuariosFaltantes);
@@ -343,7 +340,7 @@
             h3 = detalle.prev();
             frm.txtEvento = h3.find(".txtEvento2").val();
             if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
-                actualizarCatalogo("/Administracion/sp_adminfe_editarEventos", frm, function (data) {
+                actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_editarEventos", frm, function (data) {
                     if (data.estado) {
                         llenarInputsVista(data.eventoEditado, detalle);
                         controlesEdit(false, div);
@@ -360,9 +357,9 @@
                 txtHdIdEvento: detalle.find(".txtHdIdEvento").val(),
                 txtAreaMotivoQuitar: detalle.find(".txtAreaMotivoQuitar").val()
             }
-            console.log("formulario a enviar es", frm);
-            actualizarCatalogo("/Administracion/sp_adminfe_quitarEventoWebsite", frm, function (data) {
-                console.log("respuesta servidor publicar: ", frm);
+            
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_quitarEventoWebsite", frm, function (data) {
+                
                 if (data.estado) {
                     updateDespuesDePublicacion(data.eventoWebsite, detalle);
                     controlesEdit(false, detalle, ".quitarPublicacionMode")
@@ -391,7 +388,7 @@
         }
         function btnPublicar(detalle) {
             frm = { txtHdIdEvento: detalle.find(".txtHdIdEvento").val() }
-            actualizarCatalogo("/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_publicarEventoWebsite", frm, function (data) {
                 updateDespuesDePublicacion(data.eventoPublicado, detalle);
             });
         }
@@ -406,8 +403,8 @@
             controlesEdit(false, div, ".quitarPublicacionMode", ".normalMode");
         }
         function frmAgregarEvento(frm,frmSection) {
-            actualizarCatalogo("/Administracion/sp_adminfe_crearEvento", frm, function (data) {
-                console.log("la data regresada por el servidor(evento creado) es: ", data);
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_crearEvento", frm, function (data) {
+                
                 if (data.estado) {
                     agregarEvento($("#calendar"), data.evento, true, 1);
                     div = getEventosAcordion(data.evento);
@@ -443,7 +440,7 @@
                 idUsuarioEvento: tr.find(".txtHdIdUsuarioEvento").val(),
             }
             // cargar los permisos de el usuario clickeado
-            actualizarCatalogo("/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
+            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getPermisosUsuarioEvento", frm, function (data) {
                 if (data.estado) {
                     cb = getCbPermisos(data.permisosFaltantes);
                     $(".cbPermisosCompartir").empty().append(cb);

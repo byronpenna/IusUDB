@@ -46,7 +46,7 @@
 // actualizar 
     function actualizar(trPersona) {
         frm = serializeToJson(trPersona.find("input").serializeArray());
-        actualizarCatalogo("/GestionPersonas/actualizarPersona", frm, function (data) {
+        actualizarCatalogo(RAIZ+"/GestionPersonas/actualizarPersona", frm, function (data) {
             if (data.estado) {
                 persona = data.persona;
                 actualizarTrTabla(trPersona, persona);
@@ -56,8 +56,8 @@
     }
     function btnActualizarTodo(tabla) {
         accionActualizarGeneral(tabla, "GestionPersonas/actualizarTodo", function (data, frm) {
-            console.log("formulario enviado", frm);
-            console.log("respuesta", data);
+            
+            
             if (data.estado) {
                 $.each(data.personas, function (i,val) {
                     tr = getEdit(tabla, ".txtHdIdPersona", val._idPersona);
@@ -85,8 +85,8 @@
     function btnAgregarPersona(tr) {
         frm = serializeSection(tr);
         tbody = tr.parents("table").find("tbody");
-        actualizarCatalogo("/GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
-            console.log("respuesta de servidor: ", data);
+        actualizarCatalogo(RAIZ+"/GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
+            
             if (data.estado) {
                 persona = data.persona;
                 newTr = getTrPersona(persona);

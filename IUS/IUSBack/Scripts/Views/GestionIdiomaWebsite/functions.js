@@ -110,9 +110,9 @@
     function btEliminarTraduccion(tr) {
         var frm = new Object();
         frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();
-        console.log("el formulario a enviar es",frm);
-        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_eliminarLlaveIdioma", frm, function (data) {
-            console.log("la data devuelta por el servidor es:", data);
+
+        actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_eliminarLlaveIdioma", frm, function (data) {
+
             if (data.estado) {
                 tr.remove();
             } else {
@@ -122,8 +122,8 @@
     }
     function btnActualizar(tr) {
         frm = serializeSection(tr);
-        console.log("formulario a enviar es:", frm);
-        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_actualizarLlaveIdioma", frm, function (data) {
+        
+        actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_actualizarLlaveIdioma", frm, function (data) {
             if (data.estado) {
                 // quitar edit mode 
             } else {
@@ -138,11 +138,11 @@
         controlesEdit(true, tr);
         var frm = new Object();
         frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();
-        console.log("El formulario a enviar es", frm);
+        
         //
         // llenar los controles
-        actualizarCatalogo("/GestionIdiomaWebsite/getObjetosTablita", frm, function (data) {
-            console.log("respuesta del servidor", data);
+        actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/getObjetosTablita", frm, function (data) {
+
             var cb = new Object(); var selected = new Object();
             cb.llave =  tr.find(".cbEditLlave");   cb.idioma = tr.find(".cbEditIdioma");
             cb.pagina = tr.find(".cbEditPagina");
@@ -169,8 +169,8 @@
         
     }
     function btnAgregarLlave(frm) {
-        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_agregarLlaveIdioma", frm, function (data) {
-            console.log("Respuesta de servidor: ", data);
+        actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_agregarLlaveIdioma", frm, function (data) {
+            
             if (data.estado) {
                 tr = addRowTable(data.llaveIdioma);
                 $(".tbodyTablaTraducciones").append(tr);
@@ -185,8 +185,8 @@
         cbPagina(frm);
     }
     function cbPagina(frm) {
-        actualizarCatalogo("/GestionIdiomaWebsite/sp_trl_getLlaveFromPageAndIdioma", frm, function (data) {
-            console.log("la data del servidor es:",data);
+        actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_getLlaveFromPageAndIdioma", frm, function (data) {
+            
             if (data.estado) {
                 options = fillSelectLlave(data.Llaves);
                 $(".cbLlave").empty().append(options);

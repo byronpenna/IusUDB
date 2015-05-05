@@ -1,5 +1,6 @@
 ﻿// Constantes 
-    var INPUTS = "input,select,textarea";
+    var INPUTS  = "input,select,textarea";
+    var RAIZ    = "";
 // plugins 
     // chosen
         function resetChosen(chosen) {

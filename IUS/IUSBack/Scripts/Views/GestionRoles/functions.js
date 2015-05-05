@@ -1,6 +1,6 @@
 ﻿function btnAsignarSubmenu(frm) {
-    cargarObjetoGeneral("GestionRoles/agregarRolSubMenu", frm, function (data) {
-        console.log("la respuesta del servidor es despues de agregar:", data);
+    cargarObjetoGeneral(RAIZ+"GestionRoles/agregarRolSubMenu", frm, function (data) {
+        
         if (data.estado) {
             tbody = llenarTablaSubMenuRol(data.submenus);
             options = llenarCbSubmenuRol(data.submenuFaltante);
@@ -13,7 +13,7 @@
     })
 }
 function btnAsignarPermiso(frm) {
-    cargarObjetoGeneral("GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
+    cargarObjetoGeneral(RAIZ+"GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
         if (data.estado) {
             tbody = llenarTablaPermisos(data.rolSubMenuPermiso);
             options = llenarSelectPermisos(data.permisosFaltantes);
@@ -28,7 +28,7 @@ function btnAsignarPermiso(frm) {
 function clickIcoQuitarPermiso(trPermiso) {
     var frm = new Object();
     frm.idRolSubmenuPermiso = trPermiso.find(".txtHdIdRolSubMenuPermiso").val();
-    cargarObjetoGeneral("GestionRoles/eliminarPermisoSubmenuRol", frm, function (data) {
+    cargarObjetoGeneral(RAIZ+"GestionRoles/eliminarPermisoSubmenuRol", frm, function (data) {
         if (data.estado) {
             trPermiso.remove();
         } else {
@@ -52,7 +52,7 @@ function clickTrSubMenu(trSubMenu) {
     frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
     frm.idRol = $(".cbRolTab2").val();
     cambioBackgroundColorTr(".trSubMenu", "yellow", ".activeTr");
-    cargarObjetoGeneral("GestionRoles/getJSONPermisos", frm, function (data) {
+    cargarObjetoGeneral(RAIZ+"GestionRoles/getJSONPermisos", frm, function (data) {
         
         if (data) {
             options = llenarSelectPermisos(data.permisosFaltantes);
@@ -119,9 +119,9 @@ function quitarSubMenuArol(trSubMenu) {
     frm = new Object();
     frm.idSubMenu   = trSubMenu.find(".txtIdSubMenu").val();
     frm.idRol = $(".cbRolTab2").val();
-    console.log("formulario a enviar",frm);
-    cargarObjetoGeneral("GestionRoles/eliminarRolSubmenu", frm, function (data) {
-        console.log("la data devuelta por el servidor es: ", data);
+    
+    cargarObjetoGeneral(RAIZ+"GestionRoles/eliminarRolSubmenu", frm, function (data) {
+        
         if (data.estado) {
             trSubMenu.remove();
             // limpiar cb 
@@ -149,7 +149,7 @@ function llenarCbSubmenuRol(submenu) {
     return opcion;
 }
 function changeRolTab2(frm) {
-    cargarObjetoGeneral("GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function (data) {
+    cargarObjetoGeneral(RAIZ+"GestionRoles/getJSONSubmenuFaltanteYactuales", frm, function (data) {
         if (data.estado) {
             actuales    = data.subMenusActuales;
             tbody       = llenarTablaSubMenuRol(actuales);
@@ -166,9 +166,9 @@ function changeRolTab2(frm) {
 }
 // este le asigna los roles al usuario
 function agregarRoles(frm) {
-    cargarObjetoGeneral("GestionRoles/agregarRoles", frm, function (data) {
+    cargarObjetoGeneral(RAIZ+"GestionRoles/agregarRoles", frm, function (data) {
         if (data.estado) {
-            console.log("respuesta del servidor", frm);
+            
             tbody = doTablaRolesUsuario(data.roles);
             $(".tbodyRolUsuario").empty().append(tbody);
             options = getOptionsRoles(data.rolesFaltantes);
@@ -181,7 +181,7 @@ function agregarRoles(frm) {
 }
 
 function desasociarRol(frm, trUsuarioRol) {
-    actualizarCatalogo("/GestionRoles/desasociarRolUsuario", frm, function (data) {
+    actualizarCatalogo(RAIZ+"/GestionRoles/desasociarRolUsuario", frm, function (data) {
         if (data) {
             trUsuarioRol.remove();
             // actualizar cbRoles
@@ -219,13 +219,13 @@ function getOptionsRoles(roles) {
 function llenarTablaRolesUsuario(idUsuario) {
     frm = new Object();
     frm.idUsuario = idUsuario;
-    cargarObjetoGeneral("GestionRoles/getJSONroles", frm, function (data) {
-        //console.log(data);
+    cargarObjetoGeneral(RAIZ+"GestionRoles/getJSONroles", frm, function (data) {
+        
         roles = data.roles
         tbody = doTablaRolesUsuario(roles);
         $(".tbodyRolUsuario").empty().append(tbody);
     })
-    cargarObjetoGeneral("GestionRoles/getJSONRolesFaltantes", frm, function (data) {
+    cargarObjetoGeneral(RAIZ+"GestionRoles/getJSONRolesFaltantes", frm, function (data) {
         if (data.estado) {
             roles = data.roles;
             optionCbRoles = getOptionsRoles(roles);
@@ -274,8 +274,8 @@ function llenarTablaRolesUsuario(idUsuario) {
     }
     // hace un insert directo a la tabla roles
     function agregarRol(frm,tbody,trInsert) {
-        cargarObjetoGeneral("GestionRoles/sp_sec_addRol", frm, function (data) {
-            console.log("la respuesta del server es", data)
+        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_addRol", frm, function (data) {
+            
             if (data.estado) {
                 rol = data.rol;
                 tr = getTrRol(rol, data.permisos);
@@ -289,7 +289,7 @@ function llenarTablaRolesUsuario(idUsuario) {
         });
     }
     function eliminarRol(frm,tr) {
-        cargarObjetoGeneral("GestionRoles/sp_sec_eliminarRol", frm, function (data) {
+        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_eliminarRol", frm, function (data) {
             if (data.estado) {
                 removeOptionSelect($(".cbRolTab2"), frm.txtHdIdRol, true);
                 tr.remove();
@@ -302,7 +302,7 @@ function llenarTablaRolesUsuario(idUsuario) {
 // acciones script 
     function btnDeshabilitar(tr) {
         frm = serializeSection(tr);
-        cargarObjetoGeneral("GestionRoles/sp_sec_cambiarEstadoRol", frm, function (data) {
+        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_cambiarEstadoRol", frm, function (data) {
             if (data.estado) {
                 rol = data.rol;
                 tr.find(".tdEstadoRol").empty().append(rol.stringEstado);
@@ -319,7 +319,7 @@ function llenarTablaRolesUsuario(idUsuario) {
     }
     function btnActualizar(tr) {
         frm = serializeSection(tr);
-        cargarObjetoGeneral("GestionRoles/sp_sec_editarRol", frm, function (data) {
+        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_editarRol", frm, function (data) {
             if (data.estado) {
                 rol = data.rol;
                 setTrRol(tr, rol);
@@ -336,12 +336,12 @@ function llenarTablaRolesUsuario(idUsuario) {
     }
     function btnEliminar(tr) {
         frm = serializeSection(tr);
-        console.log("el formulario a enviar es:", frm);
+        
         eliminarRol(frm,tr);
     }
     function btnAgregarRol(tr) {
         frm = serializeSection(tr);
         tbody = tr.parents("table").find("tbody");
-        console.log("el formulario a enviar es", frm);
+        
         agregarRol(frm,tbody,tr);
     }

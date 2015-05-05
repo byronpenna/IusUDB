@@ -21,7 +21,7 @@
     }
 // subtabla
     function desasociarRol(frm,trUsuarioRol) {
-        actualizarCatalogo("/GestionRoles/desasociarRolUsuario", frm, function (data) {
+        actualizarCatalogo(RAIZ+"/GestionRoles/desasociarRolUsuario", frm, function (data) {
             console.log("la data devuelta es:", data);
             if (data) {
                 trUsuarioRol.remove();
@@ -97,7 +97,7 @@
 // Actualizar
     function actualizar(trUsuario) {
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
-        actualizarCatalogo("GestionUsuarios/actualizarUsuario", frm, function (data) {
+        actualizarCatalogo(RAIZ+"GestionUsuarios/actualizarUsuario", frm, function (data) {
             console.log("la data devuelta es:", data);
             if (data.estado) {
                 usuario = data.usuario;
@@ -240,7 +240,7 @@
         frm = serializeSection(tr);
         console.log("formulario a enviar", frm);
         tbody = tr.parents("table").find("tbody");
-        actualizarCatalogo("GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
+        actualizarCatalogo(RAIZ+"GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
             console.log("La respuesta del servidor es: ", data);
             if (data.estado) {
                 tr = getTrUsuario(data.usuarioAgregado, data.permiso);

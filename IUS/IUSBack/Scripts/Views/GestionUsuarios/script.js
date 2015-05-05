@@ -49,8 +49,8 @@
             $(document).on("click", ".btnActualizarTodo", function () {
                 tabla = $(this).parents("table");
                 accionActualizarGeneral(tabla, "GestionUsuarios/sp_sec_actualizarUsuariosGeneral", function (data,frm) {
-                    console.log("el formulario enviado es: ", frm);
-                    console.log("la respuesta del servidor es:", data);
+                    
+                    
                     $.each(data.usuarios, function (i, val) {
                         tr = getEdit(tabla, ".txtHdIdUser", val._idUsuario);
                         tr = tr.parents("tr");
