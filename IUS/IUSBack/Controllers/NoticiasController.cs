@@ -8,7 +8,8 @@ namespace IUSBack.Controllers
 {
     public class NoticiasController : Controller
     {
-        
+        // clase unicamente para procesos ajax 
+
 
     }
 }
