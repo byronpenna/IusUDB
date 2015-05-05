@@ -1,4 +1,5 @@
-﻿@section scriptsPersonalizados{
+﻿@using IUSLibs.ADMINFE.Entidades
+@section scriptsPersonalizados{
     <!-- plugins -->
         <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css" />
     <!-- propios -->
@@ -13,8 +14,76 @@
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/media.css" />
 }
+@{
+    List<RedSocial> redesSociales = (List<RedSocial>)ViewBag.redesSociales;
+    Configuracion config = (Configuracion)ViewBag.config;
+}
 <h2>Configuracion del sitio web</h2>
-
+<div class="container">
+    <div class="col-lg-6">
+        <h3 class="text-center">Informacion institucional</h3>
+        <form id="frmInstitucional">
+            @if (config != null)
+            {
+                <label>Vision</label>
+                <textarea class="form-control"></textarea>
+                <label>Mision</label>
+                <textarea class="form-control"></textarea>
+                <label>Historia</label>
+                <textarea class="form-control"></textarea>
+                <button class="btn">Actualizar</button>    
+            }
+            else
+            {
+                <span>Ocurrio un error en la carga</span>
+            }
+        </form>
+    </div>
+    <div class="col-lg-6">
+        <div class="row">
+            <h3 class="text-center">Redes sociales</h3>
+            @if (redesSociales != null)
+            {
+                foreach (RedSocial redSocial in redesSociales)
+                {
+                    <div class="col-lg-2">@redSocial._nombre</div>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" value="@redSocial._enlace"/>
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-primary">Actualizar</button>
+                    </div>
+                }
+            }
+            else
+            {
+                <span>Ocurrio un error al cargar las redes sociales</span>
+            }
+        </div>
+        <div class="row">
+            <h3 class="text-center">Valores</h3>
+            <label>Valor</label>
+            <div class="row">
+                <div class="col-lg-10">
+                    <input type="text" name="txtValores" class="form-control" />
+                </div>
+                <div class="col-lg-2">
+                    <button type="button" class="btn">Agregar</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Valor</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--
 <div id="horizontalTab">
     <ul class="ulTabGeneral">
         <li>
@@ -39,3 +108,4 @@
         Otros ajustes
     </div>
 </div>
+-->

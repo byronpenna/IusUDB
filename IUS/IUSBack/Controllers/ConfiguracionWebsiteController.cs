@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.ADMINFE.Entidades;
 namespace IUSBack.Controllers
 {
     public class ConfiguracionWebsiteController : PadreController
@@ -29,6 +30,30 @@ namespace IUSBack.Controllers
                     {
                         ViewBag.permiso = permisos;
                         ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        List<RedSocial> redesSociales = null;
+                        Configuracion config = null;
+                        try
+                        {
+                            Dictionary<object, object> dic = this._model.sp_adminfe_getConfiguraciones(usuarioSession._idUsuario, this._idPagina);
+                            
+                            if (dic != null)
+                            {
+                                config = (Configuracion)dic["configuracion"];
+                                redesSociales = (List<RedSocial>)dic["redesSociales"];
+                            }
+                            
+                        }
+                        catch (ErroresIUS)
+                        {
+
+                            return RedirectToAction("Unhandled", "Errors");
+                        }
+                        catch (Exception)
+                        {
+                            return RedirectToAction("Unhandled", "Errors");
+                        }
+                        ViewBag.redesSociales = redesSociales;
+                        ViewBag.config = config;
                         return View();
                     }
                     else
