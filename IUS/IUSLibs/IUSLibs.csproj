@@ -86,6 +86,7 @@
     <Compile Include="ADMINFE\Entidades\PermisoUsuarioEvento.cs" />
     <Compile Include="ADMINFE\Entidades\RedSocial.cs" />
     <Compile Include="ADMINFE\Entidades\UsuarioEvento.cs" />
+    <Compile Include="ADMINFE\Entidades\Valor.cs" />
     <Compile Include="BaseDatos\Parametro.cs" />
     <Compile Include="BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />

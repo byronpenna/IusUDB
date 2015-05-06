@@ -17,16 +17,17 @@
 @{
     List<RedSocial> redesSociales = (List<RedSocial>)ViewBag.redesSociales;
     Configuracion config = (Configuracion)ViewBag.config;
+    List<Valor> valores = (List<Valor>) ViewBag.valores;
 }
 <h2>Configuracion del sitio web</h2>
-<div class="container">
+<div class="col-lg-12 row">
     <div class="col-lg-6">
         <h3 class="text-center">Informacion institucional</h3>
         <form id="frmInstitucional">
             @if (config != null)
             {
                 <label>Vision</label>
-                <textarea class="form-control"></textarea>
+                <textarea class="form-control">@config._vision</textarea>
                 <label>Mision</label>
                 <textarea class="form-control"></textarea>
                 <label>Historia</label>
@@ -78,7 +79,23 @@
                         <th>Accion</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @if (valores != null)
+                    {
+                        foreach(Valor valor in valores){
+                            <tr>
+                                <td>@valor._valor</td>
+                                <td></td>
+                            </tr>    
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="text-center" colspan="2">No posee ningun valor</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>

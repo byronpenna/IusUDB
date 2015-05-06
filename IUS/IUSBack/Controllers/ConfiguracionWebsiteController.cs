@@ -32,6 +32,7 @@ namespace IUSBack.Controllers
                         ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         List<RedSocial> redesSociales = null;
                         Configuracion config = null;
+                        List<Valor> valores = null;
                         try
                         {
                             Dictionary<object, object> dic = this._model.sp_adminfe_getConfiguraciones(usuarioSession._idUsuario, this._idPagina);
@@ -40,6 +41,7 @@ namespace IUSBack.Controllers
                             {
                                 config = (Configuracion)dic["configuracion"];
                                 redesSociales = (List<RedSocial>)dic["redesSociales"];
+                                valores = (List<Valor>)dic["valores"];
                             }
                             
                         }
@@ -54,6 +56,7 @@ namespace IUSBack.Controllers
                         }
                         ViewBag.redesSociales = redesSociales;
                         ViewBag.config = config;
+                        ViewBag.valores = valores;
                         return View();
                     }
                     else

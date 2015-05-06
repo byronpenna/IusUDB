@@ -17,6 +17,10 @@ namespace IUSLibs.ADMINFE.Entidades
             // raiz y estado no se sintieron necesarias por lo que no se pusieron
         #endregion
         #region "constructores"
+            public Configuracion(int idConfiguracion)
+            {
+                this._idConfiguracion = idConfiguracion;
+            }
             public Configuracion(int idConfiguracion,Idioma idioma,string vision,string mision,string historia)
             {
                 this._idConfiguracion   = idConfiguracion;
