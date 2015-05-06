@@ -3,7 +3,7 @@
     var frm = new Object();
     
     actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
-        
+        console.log("respuesta sp_adminfe_getEventosPrincipales: ", data);
         if (data.estado) {
             eventos = data.eventos;
             if (!(eventos === null)) {
@@ -402,9 +402,11 @@
             txtArea.val("");
             controlesEdit(false, div, ".quitarPublicacionMode", ".normalMode");
         }
-        function frmAgregarEvento(frm,frmSection) {
+        function frmAgregarEvento(frm, frmSection) {
+            frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
+            frm.txtHoraFin = horaConvert(frm.txtHoraFin);
             actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_crearEvento", frm, function (data) {
-                
+                console.log("respuesta sp_adminfe_crearEvento", data);
                 if (data.estado) {
                     agregarEvento($("#calendar"), data.evento, true, 1);
                     div = getEventosAcordion(data.evento);

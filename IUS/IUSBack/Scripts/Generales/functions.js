@@ -1,6 +1,7 @@
 ﻿// Constantes 
     var INPUTS  = "input,select,textarea";
-    var RAIZ    = "";
+    var RAIZ = "http://168.243.3.62/iusback/";
+    //var RAIZ = "";
 // plugins 
     // chosen
         function resetChosen(chosen) {
@@ -136,7 +137,9 @@
         var sMinutes = minutes.toString();
         if (hours < 10) sHours = "0" + sHours;
         if (minutes < 10) sMinutes = "0" + sMinutes;
-        console.log("hora en formato 24: ", sHours + ":" + sMinutes);
+        //console.log("hora en formato 24: ", sHours + ":" + sMinutes);
+        var hora24 = sHours + ":" + sMinutes;
+        return hora24;
         //alert(sHours + ":" + sMinutes);
     }
     function valMinh(val) {

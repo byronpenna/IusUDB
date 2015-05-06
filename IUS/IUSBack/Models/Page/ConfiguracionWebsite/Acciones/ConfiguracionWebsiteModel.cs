@@ -36,6 +36,21 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                     throw x;
                 }
             }
+            public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._controlConfig.sp_adminfe_actualizarInfoConfig(configActualizar, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
         #endregion
     }
 }

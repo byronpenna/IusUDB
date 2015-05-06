@@ -38,6 +38,13 @@ namespace IUSLibs.ADMINFE.Entidades
                 this._mision = mision;
                 this._historia = historia;
             }
+            // para agregar
+            public Configuracion(string vision,string mision,string historia)
+            {
+                this._vision = vision;
+                this._mision = mision;
+                this._historia = historia;
+            }
         #endregion
     }
 }

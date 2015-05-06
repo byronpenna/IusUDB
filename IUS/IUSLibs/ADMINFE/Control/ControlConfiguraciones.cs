@@ -16,6 +16,38 @@ namespace IUSLibs.ADMINFE.Control
 {
     public class ControlConfiguraciones:PadreLib
     {
+        
+        public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
+        {
+            Configuracion toReturn = null;
+            SPIUS sp = new SPIUS("sp_adminfe_actualizarInfoConfig");
+            sp.agregarParametro("vision", configActualizar._vision);
+            sp.agregarParametro("mision", configActualizar._mision);
+            sp.agregarParametro("historia", configActualizar._historia);
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrecto(tb)) {
+                    if (tb[0].Rows.Count > 0)
+                    {
+                        DataRow rowResultado = tb[0].Rows[0];
+                        toReturn = new Configuracion(Convert.ToInt32((bool)rowResultado["idConfiguracion"]), (int)rowResultado["id_idioma_fk"], rowResultado["vision"].ToString(), rowResultado["mision"].ToString(), rowResultado["historia"].ToString());
+                    }
+                    
+                }
+
+            }
+            catch (ErroresIUS x) {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            return toReturn;
+        }
         public Dictionary<object, object> sp_adminfe_getConfiguraciones(int idUsuarioEjecutor,int idPagina)
         {
             Dictionary<object, object> respuesta= null;

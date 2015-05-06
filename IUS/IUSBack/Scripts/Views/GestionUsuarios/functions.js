@@ -83,7 +83,7 @@
     function tablaRoles(trUsuario) {
         frm = new Object();
         frm.idUsuario = trUsuario.find(".txtHdIdUser").val();
-        cargarObjetoGeneral("/GestionRoles/getJSONRoles", frm, function (data) {
+        cargarObjetoGeneral(RAIZ+"/GestionRoles/getJSONRoles", frm, function (data) {
             console.log("la respuesta del servidor es: ", data);
             var roles = data.roles;
             table = getTbRoles(roles);
@@ -167,7 +167,7 @@
             data:{
                 usuarioId: idUsuario
             },
-            url: "/GestionUsuarios/cambiarEstadoUsuario",
+            url: RAIZ+"/GestionUsuarios/cambiarEstadoUsuario",
             type: 'POST',
             beforeSend: function(){
             },
