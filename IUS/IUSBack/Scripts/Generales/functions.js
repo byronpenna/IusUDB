@@ -12,7 +12,16 @@
             chosen.val(selectedVal).trigger("chosen:updated");
         }
 // tabla
-       
+    function updateAllDataTable(tb) {
+        console.log("actualizaras toda la tabla",tb);
+        var table = tb.DataTable();
+        table.rows().every(function () {
+            var d = this.data();
+            d.counter++; // update data source for the row
+            this.invalidate(); // invalidate the data DataTables has cached for this row
+        });
+        table.draw();
+    }
     function getEdit(tabla, objFind, val) {
         retorno = tabla.find(objFind + "[value='" + val + "']");
         return retorno;

@@ -1,5 +1,18 @@
 ﻿$(document).ready(function () {
     // plugins 
+    $(".tablePersonas").DataTable({
+        "bDestroy":true,
+        "bSort": false
+    });
+        /*$(".tablePersonas").DataTable({
+            "aoColumns": [
+            { "bSortable": false },
+            { "bSortable": true },
+            { "bSortable": true },
+            { "bSortable": true }
+            ]
+        });*/
+       
         $(".dtFechaNacimiento").datepicker({
             dateFormat: "dd/mm/yy"
         });
@@ -18,15 +31,26 @@
             trPersona = $(this).parents(".trPersona");
             if (x) {
                 actualizar(trPersona)
+                //
+                
+                /*oTable = $(".tablePersonas").dataTable();
+                oTable.draw();
+                $(".tablePersonas").dataTable();*/
+                
             }
         })
     // editar
+        
         $(document).on("click", ".btnEditar", function () {
             var x = confirm("¿Esta seguro que desea editar esta persona?");
             trPersona = $(this).parents(".trPersona");
-            
+            table = $(".tablePersonas").DataTable();
+            var d = table.row($(this)).data();
             if (x) {
                 editMode(trPersona);
+                //$(".tablePersonas").DataTable().clear();
+                //$(".tablePersonas").DataTable().draw();
+                //todoActualizar();
             }
         });
         $(document).on("click", ".btnCancelarEdit", function () {

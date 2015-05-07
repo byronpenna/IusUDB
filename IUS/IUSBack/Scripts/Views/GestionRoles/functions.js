@@ -193,8 +193,9 @@ function desasociarRol(frm, trUsuarioRol) {
 }
 function doTablaRolesUsuario(roles) {
     tbody = "";
-    $.each(roles, function (i, value) {
-        tbody += "\
+    if (roles !== null) {
+        $.each(roles, function (i, value) {
+            tbody += "\
             <tr class='trEstadoRol'>\
                 <td class='hidden'><input type='hidden' class='txtIdRol' value='" + value._idRol + "' /></td>\
                 <td>" + value._rol + "</td>\
@@ -202,7 +203,14 @@ function doTablaRolesUsuario(roles) {
                 <td><i class='fa fa-times pointer iconQuitarRol '></i></td>\
             </tr>\
         "
-    });
+        });
+    } else {
+        tbody += "\
+            <tr>\
+                <td colspan='3' class='text-center'>Este usuario no posee roles asignados</td>\
+            </tr>\
+        ";
+    }
     return tbody;
 }
 function getOptionsRoles(roles) {
@@ -220,7 +228,6 @@ function llenarTablaRolesUsuario(idUsuario) {
     frm = new Object();
     frm.idUsuario = idUsuario;
     cargarObjetoGeneral(RAIZ+"GestionRoles/getJSONroles", frm, function (data) {
-        
         roles = data.roles
         tbody = doTablaRolesUsuario(roles);
         $(".tbodyRolUsuario").empty().append(tbody);

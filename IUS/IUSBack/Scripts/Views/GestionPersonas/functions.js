@@ -51,6 +51,7 @@
                 persona = data.persona;
                 actualizarTrTabla(trPersona, persona);
                 controlesEdit(false, trPersona); // deshabilitar la edicion
+                updateAllDataTable($('.tablePersonas'));
             }
         });
     }
