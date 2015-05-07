@@ -124,18 +124,24 @@
 // editar
     function llenarCbPersonas(Personas, combo,selected) {
         combo.empty();
-        $.each(Personas, function (i, value) {
-            var opcion = new Object();
-            opcion.value    = value._idPersona;
-            opcion.text = value.nombreCompleto;
-            comboAddOpcion(combo, opcion,selected);
-        });
+        opcion = { value: -1, text: 'Sin asignar' };
+        comboAddOpcion(combo,opcion, selected);
+        if (!(Personas === null)) {
+            $.each(Personas, function (i, value) {
+                var opcion = new Object();
+                opcion.value = value._idPersona;
+                opcion.text = value.nombreCompleto;
+                comboAddOpcion(combo, opcion, selected);
+            });
+        }
+        
     }
     function entrarEditMode(trUsuario) {
         txtUsuario = trUsuario.find(".tdTxtUsuario").text();
         idPersonaActual = trUsuario.find(".txtHdIdPersona").val();
         controlesEdit(true, trUsuario);
         combo = trUsuario.find(".cbPersona");
+        console.log("El id de la persona actual es: ", idPersonaActual);
         obj = cargarObjetoPersonas(function (Personas) {
             llenarCbPersonas(Personas,combo,idPersonaActual);
         });
