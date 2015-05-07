@@ -1003,6 +1003,43 @@
 	 *  @returns {int} >=0 if successful (index of new aoData entry), -1 if failed
 	 *  @memberof DataTable#oApi
 	 */
+	function _fnAddData2(oSettings, aDataIn, nTr, anTds)
+	{
+		/* Create the object for storing information about this new row */
+		var iRow = oSettings.aoData.length;
+		var oData = $.extend( true, {}, DataTable.models.oRow, {
+			src: nTr ? 'dom' : 'data'
+		} );
+	
+		oData._aData = aDataIn;
+		oSettings.aoData.push(oData);
+	
+		/* Create the cells */
+		var nTd, sThisType;
+		var columns = oSettings.aoColumns;
+		for ( var i=0, iLen=columns.length ; i<iLen ; i++ )
+		{
+			// When working with a row, the data source object must be populated. In
+			// all other cases, the data source object is already populated, so we
+			// don't overwrite it, which might break bindings etc
+			if ( nTr ) {
+				_fnSetCellData( oSettings, iRow, i, _fnGetCellData( oSettings, iRow, i ) );
+			}
+			columns[i].sType = null;
+		}
+	
+		/* Add to the display array */
+		oSettings.aiDisplayMaster.unshift(iRow);
+	
+		/* Create the DOM information, or register it if already present */
+		if ( nTr || ! oSettings.oFeatures.bDeferRender )
+		{
+			_fnCreateTr( oSettings, iRow, nTr, anTds );
+		}
+	
+		return iRow;
+	}
+	
 	function _fnAddData ( oSettings, aDataIn, nTr, anTds )
 	{
 		/* Create the object for storing information about this new row */
@@ -14614,6 +14651,7 @@
 		_fnLanguageCompat: _fnLanguageCompat,
 		_fnBrowserDetect: _fnBrowserDetect,
 		_fnAddData: _fnAddData,
+        _fnAddData2: _fnAddData2,
 		_fnAddTr: _fnAddTr,
 		_fnNodeToDataIndex: _fnNodeToDataIndex,
 		_fnNodeToColumnIndex: _fnNodeToColumnIndex,

@@ -222,6 +222,8 @@
     <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />

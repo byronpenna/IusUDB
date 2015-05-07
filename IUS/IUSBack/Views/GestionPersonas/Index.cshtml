@@ -1,9 +1,16 @@
 ﻿@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
-    <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+    <!-- plugins -->
+        <!--Data table-->
+            <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/media.css" />
 }
 @section scriptsPersonalizados{
+    
     <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>
+<!-- <script src="http://cdn.datatables.net/plug-ins/1.10.7/api/fnAddTr.js"></script> -->
     <script src="~/Scripts/Views/GestionPersonas/script.js"></script>
     <script src="~/Scripts/Views/GestionPersonas/functions.js"></script>
 }
@@ -12,9 +19,9 @@
     Permiso permisos = (Permiso)ViewBag.permiso;
 }
 <h2 class="text-center">Gestion de personas</h2>
-<table class="table table-hover tablePersonas" >
+<table class="table table-hover tablePersonas tablaUniversal">
     <thead>
-        
+
         <tr class="controlGlobal hidden">
             <td colspan="3"></td>
             <td>
@@ -32,24 +39,24 @@
             <th>Acciones</th>
         </tr>
         <tr>
-            <td class="hidden"></td>
-            <td>
+            <th class="hidden"></th>
+            <th>
                 <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control" />
-            </td>
-            <td>
+            </th>
+            <th>
                 <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control" />
-            </td>
-            <td>
+            </th>
+            <th>
                 <input type="text" name="dtFechaNacimiento" class="dtFechaNacimiento form-control" />
-            </td>
-            <td>
+            </th>
+            <th>
                 <button class="btn btn-xs btnAgregarPersona" @permisos.stringCrear>Crear</button>
-            </td>
+            </th>
         </tr>
-        
+
     </thead>
     <tbody>
-        
+
         @if (personas != null)
         {
             foreach (Persona persona in personas)
@@ -60,7 +67,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control"  />
+                            <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control" />
                         </div>
                         <div class="normalMode tdNombre">@persona._nombres</div>
                     </td>
@@ -69,7 +76,7 @@
                             <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control" />
                         </div>
                         <div class="normalMode tdApellido">@persona._apellidos</div>
-                        
+
                     </td>
                     <td>
                         <div class="editMode hidden">
@@ -79,7 +86,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <button class="btn btn-xs btnEditMode btnActualizar " @permisos.stringEditar >Actualizar</button>
+                            <button class="btn btn-xs btnEditMode btnActualizar " @permisos.stringEditar>Actualizar</button>
                             <button class="btn btn-xs btnEditMode btnCancelarEdit">Cancelar</button>
                         </div>
                         <div class="normalMode">
@@ -89,7 +96,7 @@
                     </td>
                 </tr>
             }
-            
+
         }
         else
         {
@@ -99,3 +106,4 @@
         }
     </tbody>
 </table>
+
