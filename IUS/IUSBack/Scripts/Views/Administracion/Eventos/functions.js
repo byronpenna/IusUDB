@@ -1,7 +1,6 @@
 ﻿// load
-    function eventosIniciales() {
+function eventosIniciales() {
     var frm = new Object();
-    
     actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
         console.log("respuesta sp_adminfe_getEventosPrincipales: ", data);
         if (data.estado) {

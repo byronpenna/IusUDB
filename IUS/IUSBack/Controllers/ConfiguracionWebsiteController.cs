@@ -75,7 +75,7 @@ namespace IUSBack.Controllers
         #region "ajax"
             public ActionResult sp_adminfe_actualizarInfoConfig()
             {
-                Dictionary<object, object> frm, respuesta = null;
+                Dictionary<object, object> frm, respuesta;
                 frm = this.getAjaxFrm();
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (frm != null && usuarioSession != null)
@@ -84,6 +84,19 @@ namespace IUSBack.Controllers
                     {
                         Configuracion confActualizar = new Configuracion(frm["txtAreaVision"].ToString(), frm["txtAreaMision"].ToString(), frm["txtAreaHistoria"].ToString());
                         Configuracion configActualizada = this._model.sp_adminfe_actualizarInfoConfig(confActualizar, usuarioSession._idUsuario, this._idPagina);
+                        if (configActualizada != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("configuracion", configActualizada);
+
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Error desconocido", ErroresIUS.tipoError.generico, 0);
+                            x._mostrar = true;
+                            respuesta = errorTryControlador(3, x);
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -93,7 +106,7 @@ namespace IUSBack.Controllers
                     catch (Exception x)
                     {
                         ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                        respuesta = this.errorTryControlador(2, x);
+                        respuesta = this.errorTryControlador(2, error);
                     }
                     
 

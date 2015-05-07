@@ -27,11 +27,11 @@
             @if (config != null)
             {
                 <label>Vision</label>
-                <textarea class="form-control" name="txtAreaVision">@config._vision</textarea>
+                <textarea class="form-control" name="txtAreaVision" id="txtAreaVision">@config._vision</textarea>
                 <label>Mision</label>
-                <textarea class="form-control" name="txtAreaMision"></textarea>
+                <textarea class="form-control" name="txtAreaMision" id="txtAreaMision">@config._mision</textarea>
                 <label>Historia</label>
-                <textarea class="form-control" name="txtAreaHistoria"></textarea>
+                <textarea class="form-control" name="txtAreaHistoria" id="txtAreaHistoria">@config._historia</textarea>
                 <button class="btn">Actualizar</button>    
             }
             else
@@ -64,12 +64,12 @@
         <div class="row">
             <h3 class="text-center">Valores</h3>
             <label>Valor</label>
-            <div class="row">
+            <div class="row agregarValorSection">
                 <div class="col-lg-10">
                     <input type="text" name="txtValores" class="form-control" />
                 </div>
                 <div class="col-lg-2">
-                    <button type="button" class="btn">Agregar</button>
+                    <button type="button" class="btn btnAddValor">Agregar</button>
                 </div>
             </div>
             <table class="table">

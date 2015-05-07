@@ -32,7 +32,7 @@ namespace IUSLibs.ADMINFE.Control
                 if (this.resultadoCorrecto(tb)) {
                     if (tb[0].Rows.Count > 0)
                     {
-                        DataRow rowResultado = tb[0].Rows[0];
+                        DataRow rowResultado = tb[1].Rows[0];
                         toReturn = new Configuracion(Convert.ToInt32((bool)rowResultado["idConfiguracion"]), (int)rowResultado["id_idioma_fk"], rowResultado["vision"].ToString(), rowResultado["mision"].ToString(), rowResultado["historia"].ToString());
                     }
                     
