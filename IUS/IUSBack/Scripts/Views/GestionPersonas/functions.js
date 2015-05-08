@@ -94,7 +94,7 @@
                 persona = data.persona;
                 newTr = getTrPersona(persona);
                 clearTr(tr);
-                tbody.prepend(newTr);
+                //tbody.prepend(newTr);
                 $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
                 //updateAllDataTable($(".tablePersona"));
                 

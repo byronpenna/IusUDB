@@ -1,7 +1,16 @@
 ﻿@using IUSLibs.SEC.Entidades
+@section estilosPersonalizados{
+    <!-- plugins -->
+        <!--Data table-->
+        <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+}
 @section scriptsPersonalizados{
-    <script src="~/Scripts/Views/GestionUsuarios/script.js"></script>
-    <script src="~/Scripts/Views/GestionUsuarios/functions.js"></script>
+    <!-- plugins -->
+        <!-- Data table -->
+            <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionUsuarios/script.js"></script>
+        <script src="~/Scripts/Views/GestionUsuarios/functions.js"></script>
 }
 @{
 
@@ -15,6 +24,7 @@
 <table class="table table-hover tableUsuarios">
     <thead>
         <tr class="controlGlobal hidden">
+            <td class="hidden"></td>
             <td colspan="3"></td>
             <td>
                 <button class="btn btn-sm btnActualizarTodo" >
@@ -30,6 +40,7 @@
             </td>
         </tr>
         <tr>
+            <th class="hidden"></th>
             <th>Empleado</th>
             <th>Usuario</th>
             <th>Fecha creacion</th>
@@ -37,6 +48,7 @@
             <th>Acciones</th>
         </tr>
         <tr>
+            <td class="hidden"></td>
             <td>
                 <select name="cbPersona" class="form-control cbPersona">
                     <option value="-1">Sin asignar</option>

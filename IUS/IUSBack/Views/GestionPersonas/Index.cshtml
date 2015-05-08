@@ -9,10 +9,12 @@
 }
 @section scriptsPersonalizados{
     
-    <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>
-<!-- <script src="http://cdn.datatables.net/plug-ins/1.10.7/api/fnAddTr.js"></script> -->
-    <script src="~/Scripts/Views/GestionPersonas/script.js"></script>
-    <script src="~/Scripts/Views/GestionPersonas/functions.js"></script>
+    <!-- plugins -->
+        <!-- Data table -->
+            <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionPersonas/script.js"></script>
+        <script src="~/Scripts/Views/GestionPersonas/functions.js"></script>
 }
 @{
     List<Persona> personas = (List<Persona>)ViewBag.personas;

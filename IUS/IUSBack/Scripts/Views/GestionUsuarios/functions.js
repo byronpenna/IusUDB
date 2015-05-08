@@ -111,6 +111,7 @@
                         deshabilitarUsuario(usuario._idUsuario, trUsuario);
                     }
                 }
+                updateAllDataTable($(".tableUsuarios"));
             } else {
                 alert("Ocurrio un error durante la actualizacion");
             }
@@ -182,6 +183,7 @@
                 if (data.estadoEjecucion) {                    
                     trUsuario.find(".tdEstadoUsuario").empty().append(data.nuevoEstadoUsuario);
                     changeTxtBtnHabilitar(data._estado, trUsuario);
+                    updateAllDataTable($(".tableUsuarios"));
                 }
             
             }
@@ -252,6 +254,7 @@
                 tr = getTrUsuario(data.usuarioAgregado, data.permiso);
                 console.log(tr);
                 tbody.prepend(tr);
+                $(".tableUsuarios").dataTable().fnAddTr($(tr)[0]);
             } else {
                 error = data.error;
                 alert(error.Message);

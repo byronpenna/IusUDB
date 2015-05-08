@@ -1,5 +1,9 @@
 ﻿$(document).ready(function () {
-   
+    // plugins
+        $(".tableUsuarios").DataTable({
+            "bDestroy": true,
+            "bSort": false
+        });
     // acciones sub tabla 
         // desasociar rol 
             $(document).on("click", ".btnDesasociar", function () {
