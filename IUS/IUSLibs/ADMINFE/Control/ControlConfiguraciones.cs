@@ -16,7 +16,35 @@ namespace IUSLibs.ADMINFE.Control
 {
     public class ControlConfiguraciones:PadreLib
     {
-        
+        public Valor sp_adminfe_agregarValoresConfig(Valor valorAgregar,int idUsuarioEjecutor,int idPagina)
+        {
+            Valor valorAgregado = null;
+            SPIUS sp = new SPIUS("sp_adminfe_agregarValoresConfig");
+            sp.agregarParametro("valor", valorAgregar._valor);
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrecto(tb))
+                {
+                    if (tb[0].Rows.Count > 0)
+                    {
+                        DataRow rowResultado = tb[1].Rows[0];
+                        valorAgregado = new Valor((int)rowResultado["idValor"],rowResultado[""].ToString(),Convert.ToInt32((bool)rowResultado["id_config_fk"]));
+                    }
+                }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            return valorAgregado;
+        }
         public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
         {
             Configuracion toReturn = null;
@@ -85,7 +113,7 @@ namespace IUSLibs.ADMINFE.Control
                         valores = new List<Valor>();
                         foreach (DataRow row in tb[3].Rows)
                         {
-                            valor = new Valor((int)row["idValor"], row["valor"].ToString(), (int)row["id_config_fk"]);
+                            valor = new Valor((int)row["idValor"], row["valor"].ToString(),Convert.ToInt32((bool)row["id_config_fk"]));
                             valores.Add(valor);
                         }
                     }

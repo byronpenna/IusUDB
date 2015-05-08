@@ -73,6 +73,48 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "ajax"
+            public ActionResult sp_adminfe_agregarValoresConfig()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (frm != null && usuarioSession != null)
+                {
+                    try
+                    {
+                        Valor valorAgregado, valorAgregar = new Valor(frm["txtValores"].ToString());
+                        valorAgregado = this._model.sp_adminfe_agregarValoresConfig(valorAgregar, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object,object>();
+                        if (valorAgregado != null)
+                        {
+                            respuesta.Add("estado", true);
+                            respuesta.Add("valor", valorAgregado);
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Ocurrio un error", ErroresIUS.tipoError.generico, 0);
+                            respuesta = this.errorTryControlador(3, x);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    
+
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_adminfe_actualizarInfoConfig()
             {
                 Dictionary<object, object> frm, respuesta;

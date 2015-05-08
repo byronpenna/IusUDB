@@ -13,6 +13,10 @@ namespace IUSLibs.ADMINFE.Entidades
             public Configuracion    _configuracion;
         #endregion
         #region "constructores"
+            public Valor(string valor)
+            {
+                this._valor = valor;
+            }
             public Valor(int idValor,string valor,int idConfiguracion)
             {
                 this._idValor = idValor;

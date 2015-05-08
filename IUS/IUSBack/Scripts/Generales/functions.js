@@ -1,4 +1,14 @@
-﻿// Constantes 
+﻿// validaciones 
+    function soloLetras() {
+        exp = "[a-z A-Zñáéíóú]";
+        return exp;
+    }
+    function test(exp, str) {
+        var patt = new RegExp(exp);
+        var res = patt.test(str);
+        return res;
+    }
+// Constantes 
     var INPUTS  = "input,select,textarea";
     //var RAIZ = "http://168.243.3.62/iusback/";
     var RAIZ = "";

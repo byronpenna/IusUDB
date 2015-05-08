@@ -21,7 +21,8 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
             }
         #endregion
         #region "funciones publicas"
-            public Dictionary<object, object> sp_adminfe_getConfiguraciones(int idUsuarioEjecutor,int idPagina)
+            #region "gets"
+                public Dictionary<object, object> sp_adminfe_getConfiguraciones(int idUsuarioEjecutor,int idPagina)
             {
                 try
                 {
@@ -36,7 +37,22 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                     throw x;
                 }
             }
-            public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
+            #endregion 
+            #region "acciones"
+                public Valor sp_adminfe_agregarValoresConfig(Valor valorAgregar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try {
+                        return this._controlConfig.sp_adminfe_agregarValoresConfig(valorAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x) {
+                        throw x;
+                    }
+                }
+                public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
             {
                 try
                 {
@@ -51,6 +67,7 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                     throw x;
                 }
             }
+            #endregion 
         #endregion
     }
 }
