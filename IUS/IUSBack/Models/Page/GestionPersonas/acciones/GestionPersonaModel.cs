@@ -46,7 +46,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 {
                     throw x;
                 }
-                return persona;
+                return personaAgregada;
             }
             public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
             {

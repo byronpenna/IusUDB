@@ -14930,9 +14930,9 @@ jQuery.fn.dataTableExt.oApi.fnAddTr = function (oSettings, nTr, bRedraw) {
     var aInvisible = [];
     var i;
     // mete solo mi tr
-    console.log("a data es:", aData);
+    
     for (i = 0 ; i < nTds.length ; i++) {
-        console.log("data " + i + "es:", nTds[i].innerHTML);
+        
         aData.unshift(nTds[i].innerHTML);
         if (!oSettings.aoColumns[i].bVisible) {
             aInvisible.unshift(i);

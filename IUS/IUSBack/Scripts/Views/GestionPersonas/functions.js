@@ -45,6 +45,7 @@
     }
 // actualizar 
     function actualizar(trPersona) {
+        console.log("actualizaste");
         frm = serializeToJson(trPersona.find("input").serializeArray());
         actualizarCatalogo(RAIZ+"/GestionPersonas/actualizarPersona", frm, function (data) {
             if (data.estado) {
@@ -88,7 +89,7 @@
         frm = serializeSection(tr);
         tbody = tr.parents("table").find("tbody");
         actualizarCatalogo(RAIZ+"/GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
-            console.log("la respuesta de agregar persona")
+            
             if (data.estado) {
                 persona = data.persona;
                 newTr = getTrPersona(persona);

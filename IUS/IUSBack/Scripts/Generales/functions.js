@@ -13,7 +13,6 @@
         }
 // tabla
     function updateAllDataTable(tb) {
-        console.log("actualizaras toda la tabla",tb);
         var table = tb.DataTable();
         table.rows().every(function () {
             var d = this.data();
