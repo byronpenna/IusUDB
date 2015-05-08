@@ -31,6 +31,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             }
         #endregion
         #region "Acciones"
+            public bool sp_hm_eliminarPersona(int idPersona,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._control.sp_hm_eliminarPersona(idPersona,idUsuarioEjecutor,idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Persona sp_hm_agregarPersona(Persona persona, int idUsuarioEjecutor,int idPagina)
             {
                 Persona personaAgregada = null;
@@ -48,75 +63,77 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 }
                 return personaAgregada;
             }
-            public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
-            {
-                Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
-                try
+            #region "actualizarPersona"
+                public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
                 {
-                    Persona personaActual = this._control.actualizarPersona(persona,idUsuario,idPagina);
-                    if (personaActual != null)
-                    {
-                        toReturn.Add("estado", true);
-                        toReturn.Add("persona", personaActual);
-                    }
-                    else
-                    {
-                        toReturn.Add("estado", false);
-                        toReturn.Add("mensaje", "Error no controlado");
-                    }
-                }
-                catch (ErroresIUS x)
-                {
-                    toReturn.Add("estado", false);
-                    toReturn.Add("errorCode", x.errorNumber);
-                    toReturn.Add("errorMessage", x.Message);
-                }
-                catch(Exception x){
-                    toReturn.Add("estado", false);
-                    toReturn.Add("errorCode", -1);
-                    toReturn.Add("errorMessage", x.Message);
-                }
-                return toReturn;
-            }
-            public Dictionary<Object, Object> actualizarPersona(List<Persona> personas, int idUsuarioEjecutor, int idPagina)
-            {
-                Dictionary<object, object> respuesta = new Dictionary<object,object>();
-                List<Persona> personasActualizadas = new List<Persona>();
-                bool estadoIndividual = true; bool estadoUniversal;
-                Persona perso;
-                foreach (Persona persona in personas)
-                {
+                    Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
                     try
                     {
-                        perso = this._control.actualizarPersona(persona, idUsuarioEjecutor, idPagina);
-                        if (perso == null)
+                        Persona personaActual = this._control.actualizarPersona(persona,idUsuario,idPagina);
+                        if (personaActual != null)
+                        {
+                            toReturn.Add("estado", true);
+                            toReturn.Add("persona", personaActual);
+                        }
+                        else
+                        {
+                            toReturn.Add("estado", false);
+                            toReturn.Add("mensaje", "Error no controlado");
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        toReturn.Add("estado", false);
+                        toReturn.Add("errorCode", x.errorNumber);
+                        toReturn.Add("errorMessage", x.Message);
+                    }
+                    catch(Exception x){
+                        toReturn.Add("estado", false);
+                        toReturn.Add("errorCode", -1);
+                        toReturn.Add("errorMessage", x.Message);
+                    }
+                    return toReturn;
+                }
+                public Dictionary<Object, Object> actualizarPersona(List<Persona> personas, int idUsuarioEjecutor, int idPagina)
+                {
+                    Dictionary<object, object> respuesta = new Dictionary<object,object>();
+                    List<Persona> personasActualizadas = new List<Persona>();
+                    bool estadoIndividual = true; bool estadoUniversal;
+                    Persona perso;
+                    foreach (Persona persona in personas)
+                    {
+                        try
+                        {
+                            perso = this._control.actualizarPersona(persona, idUsuarioEjecutor, idPagina);
+                            if (perso == null)
+                            {
+                                estadoIndividual = false;
+                            }
+                            personasActualizadas.Add(perso);
+                        }
+                        catch (ErroresIUS)
                         {
                             estadoIndividual = false;
                         }
-                        personasActualizadas.Add(perso);
+                        catch (Exception)
+                        {
+                            estadoIndividual = false;
+                        }
                     }
-                    catch (ErroresIUS)
+                    if (personasActualizadas.Count == 0)
                     {
-                        estadoIndividual = false;
+                        estadoUniversal = false;
                     }
-                    catch (Exception)
+                    else
                     {
-                        estadoIndividual = false;
+                        estadoUniversal = true;
                     }
+                    respuesta.Add("estado", estadoUniversal);
+                    respuesta.Add("estadoIndividual", estadoIndividual);
+                    respuesta.Add("personas", personasActualizadas);
+                    return respuesta;
                 }
-                if (personasActualizadas.Count == 0)
-                {
-                    estadoUniversal = false;
-                }
-                else
-                {
-                    estadoUniversal = true;
-                }
-                respuesta.Add("estado", estadoUniversal);
-                respuesta.Add("estadoIndividual", estadoIndividual);
-                respuesta.Add("personas", personasActualizadas);
-                return respuesta;
-            }
+            #endregion
         #endregion
         #region "contructores"
             public GestionPersonaModel()

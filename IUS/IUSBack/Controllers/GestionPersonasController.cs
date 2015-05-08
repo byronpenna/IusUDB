@@ -63,95 +63,135 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "ajax action"
-            [HttpPost]
-            public ActionResult actualizarTodo()
-            {
-                List<Dictionary<object, object>> frm;
-                Dictionary<object, object> respuesta = null;
-                frm = this.getListAjaxFrm();
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (frm != null && usuarioSession != null)
-                {
-                    List<Persona> personasActualizar = this.getPersonaFromForm(frm);
-                    respuesta = this._model.actualizarPersona(personasActualizar,usuarioSession._idUsuario,this._idPagina);
-
-                }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
-            [HttpPost]
-            public ActionResult getJSONPersonas()
+            #region "gets"
+                [HttpPost]
+                public ActionResult getJSONPersonas()
             {
                 List<Persona> personas = this._model.getPersonas();
                 return Json(personas);
             }
+            #endregion
+            #region "acciones"
             [HttpPost]
-            public ActionResult actualizarPersona()
-            {
-                string frmText = Request.Form["form"];
-                Dictionary<Object, Object> frm, toReturn;
-                if (frmText != null && Session["usuario"] != null)
+                public ActionResult actualizarTodo()
                 {
-                    frm = _jss.Deserialize<Dictionary<Object, Object>>(frmText);
-                    Usuario usuarioSession = (Usuario)Session["usuario"];
-                    Persona personaActualizar = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
-                    toReturn = this._model.actualizarPersona(personaActualizar, usuarioSession._idUsuario, this._idPagina);
-                
-                }
-                else
-                {
-                    toReturn = this.errorEnvioFrmJSON();
-                }
-                return Json(toReturn);
-            }
-            [HttpPost]
-            public ActionResult sp_hm_agregarPersona()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                Usuario usuarioSession = this.getUsuarioSesion();
-                frm = this.getAjaxFrm();
-                if (usuarioSession != null && frm != null)
-                {
-                    respuesta = new Dictionary<object, object>();
-                    try
+                    List<Dictionary<object, object>> frm;
+                    Dictionary<object, object> respuesta = null;
+                    frm = this.getListAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null)
                     {
-                        Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
-                        Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
-                        if (persona != null)
+                        List<Persona> personasActualizar = this.getPersonaFromForm(frm);
+                        respuesta = this._model.actualizarPersona(personasActualizar, usuarioSession._idUsuario, this._idPagina);
+
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
+                [HttpPost]
+                public ActionResult actualizarPersona()
+                {
+                    string frmText = Request.Form["form"];
+                    Dictionary<Object, Object> frm, toReturn;
+                    if (frmText != null && Session["usuario"] != null)
+                    {
+                        frm = _jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                        Usuario usuarioSession = (Usuario)Session["usuario"];
+                        Persona personaActualizar = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                        toReturn = this._model.actualizarPersona(personaActualizar, usuarioSession._idUsuario, this._idPagina);
+                
+                    }
+                    else
+                    {
+                        toReturn = this.errorEnvioFrmJSON();
+                    }
+                    return Json(toReturn);
+                }
+                [HttpPost]
+                public ActionResult sp_hm_agregarPersona()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        respuesta = new Dictionary<object, object>();
+                        try
                         {
-                            respuesta.Add("estado", true);
-                            respuesta.Add("persona", persona);
+                            Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                            Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
+                            if (persona != null)
+                            {
+                                respuesta.Add("estado", true);
+                                respuesta.Add("persona", persona);
+                            }
+                            else
+                            {
+                                respuesta.Add("estado", false);
+                                respuesta.Add("errorType", 3);
+                                respuesta.Add("error", "Error al intentar ingresar persona");
+                            }
+
                         }
-                        else
+                        catch (ErroresIUS x)
                         {
                             respuesta.Add("estado", false);
-                            respuesta.Add("errorType", 3);
-                            respuesta.Add("error", "Error al intentar ingresar persona");
+                            respuesta.Add("errorType", 1);
+                            respuesta.Add("error", x);
                         }
-                        
+                        catch (Exception x)
+                        {
+                            respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 2);
+                            respuesta.Add("error", x);
+                        }
                     }
-                    catch (ErroresIUS x)
+                    else
                     {
-                        respuesta.Add("estado", false);
-                        respuesta.Add("errorType", 1);
-                        respuesta.Add("error", x);
+                        respuesta = this.errorEnvioFrmJSON();
                     }
-                    catch (Exception x)
-                    {
-                        respuesta.Add("estado", false);
-                        respuesta.Add("errorType", 2);
-                        respuesta.Add("error", x);
-                    }
+                    return Json(respuesta);
                 }
-                else
+                [HttpPost]
+                public ActionResult sp_hm_eliminarPersona()
                 {
-                    respuesta = this.errorEnvioFrmJSON();
+                    Dictionary<object, object> frm, respuesta = null;
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    bool estado;
+                    if (frm != null && usuarioSession != null)
+                    {
+                        int idPersona = this.convertObjAjaxToInt(frm["txtHdIdPersona"]);
+                        try{
+                            estado = this._model.sp_hm_eliminarPersona(idPersona,usuarioSession._idUsuario,this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            if (estado)
+                            {
+                                respuesta.Add("estado",true);
+                            }
+                            else
+                            {
+                                ErroresIUS error = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
+                                respuesta = this.errorTryControlador(3, error);
+                            }
+                        }catch(ErroresIUS x){
+                            ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
+                            respuesta = this.errorTryControlador(1,error);
+                        }catch(Exception x){
+                            ErroresIUS error = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
+                            respuesta = this.errorTryControlador(2,error);
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
                 }
-                return Json(respuesta);
-            }
+            #endregion
         #endregion
         #region "constructores"
             public GestionPersonasController()

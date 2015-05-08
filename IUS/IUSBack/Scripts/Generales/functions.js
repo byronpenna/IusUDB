@@ -22,15 +22,22 @@
             chosen.val(selectedVal).trigger("chosen:updated");
         }
 // tabla
-    function updateAllDataTable(tb) {
-        var table = tb.DataTable();
-        table.rows().every(function () {
-            var d = this.data();
-            d.counter++; // update data source for the row
-            this.invalidate(); // invalidate the data DataTables has cached for this row
-        });
-        table.draw();
-    }
+    // datatable 
+        // sirve para eliminar 
+        function removeDataTable(table, tr) {
+            oTable = table.DataTable();
+            oTable.row(tr).remove().draw(false);
+        }
+        // sirve para editar 
+        function updateAllDataTable(tb) {
+            var table = tb.DataTable();
+            table.rows().every(function () {
+                var d = this.data();
+                d.counter++; // update data source for the row
+                this.invalidate(); // invalidate the data DataTables has cached for this row
+            });
+            table.draw();
+        }
     function getEdit(tabla, objFind, val) {
         retorno = tabla.find(objFind + "[value='" + val + "']");
         return retorno;

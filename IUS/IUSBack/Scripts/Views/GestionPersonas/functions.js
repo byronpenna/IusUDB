@@ -85,6 +85,21 @@
     }
 
 // acciones desde script
+    function btnEliminar(tr) {
+        frm = serializeSection(tr);
+        console.log("formulario a enviar", frm);
+        
+        //oTable.row('.selected').remove().draw(false);
+        actualizarCatalogo(RAIZ + "/GestionPersonas/sp_hm_eliminarPersona", frm, function (data) {
+            console.log("respuesta del servidor", data);
+            if (data.estado) {
+                table = $(".tablePersonas");
+                removeDataTable(table, tr);
+            } else {
+                console.log("error es:", data.error);
+            }
+        });
+    }
     function btnAgregarPersona(tr) {
         frm = serializeSection(tr);
         tbody = tr.parents("table").find("tbody");
