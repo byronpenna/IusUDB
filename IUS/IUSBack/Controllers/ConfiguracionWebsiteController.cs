@@ -9,6 +9,9 @@ using System.Web.Mvc;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades;
+// subir
+using System.IO;
+using System.Text;
 namespace IUSBack.Controllers
 {
     public class ConfiguracionWebsiteController : PadreController
@@ -74,6 +77,20 @@ namespace IUSBack.Controllers
         #endregion
         #region "ajax"
             #region "acciones"
+                [HttpPost]
+                public ActionResult UploadSlider()
+                {
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        var file = Request.Files[i];
+
+                        var fileName = Path.GetFileName(file.FileName);
+
+                        var path = Path.Combine(Server.MapPath("~/Junk/"), fileName);
+                        file.SaveAs(path);
+                    }
+                    return Json(null);
+                }
                 public ActionResult sp_adminfe_eliminarValoresConfig()
                 {
                     Dictionary<object, object> frm, respuesta = null;
