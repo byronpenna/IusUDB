@@ -39,6 +39,21 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
             }
             #endregion 
             #region "acciones"
+                public bool sp_adminfe_eliminarValoresConfig(int idValor,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlConfig.sp_adminfe_eliminarValoresConfig(idValor,idUsuarioEjecutor,idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Valor sp_adminfe_agregarValoresConfig(Valor valorAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try {

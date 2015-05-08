@@ -16,67 +16,95 @@ namespace IUSLibs.ADMINFE.Control
 {
     public class ControlConfiguraciones:PadreLib
     {
-        public Valor sp_adminfe_agregarValoresConfig(Valor valorAgregar,int idUsuarioEjecutor,int idPagina)
-        {
-            Valor valorAgregado = null;
-            SPIUS sp = new SPIUS("sp_adminfe_agregarValoresConfig");
-            sp.agregarParametro("valor", valorAgregar._valor);
-            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-            sp.agregarParametro("idPagina", idPagina);
-            try
+        #region "acciones"
+            public bool sp_adminfe_eliminarValoresConfig(int idValor,int idUsuarioEjecutor,int idPagina)
             {
-                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                if (this.resultadoCorrecto(tb))
+                SPIUS sp = new SPIUS("sp_adminfe_eliminarValoresConfig");
+                sp.agregarParametro("idValor", idValor);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                bool estado = false;
+                try
                 {
-                    if (tb[0].Rows.Count > 0)
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
                     {
-                        DataRow rowResultado = tb[1].Rows[0];
-                        valorAgregado = new Valor((int)rowResultado["idValor"],rowResultado[""].ToString(),Convert.ToInt32((bool)rowResultado["id_config_fk"]));
+                        estado = true;
                     }
                 }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
             }
-            catch (ErroresIUS x)
+            public Valor sp_adminfe_agregarValoresConfig(Valor valorAgregar,int idUsuarioEjecutor,int idPagina)
             {
-                throw x;
-            }
-            catch (Exception x)
-            {
-                throw x;
-            }
-            return valorAgregado;
-        }
-        public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
-        {
-            Configuracion toReturn = null;
-            SPIUS sp = new SPIUS("sp_adminfe_actualizarInfoConfig");
-            sp.agregarParametro("vision", configActualizar._vision);
-            sp.agregarParametro("mision", configActualizar._mision);
-            sp.agregarParametro("historia", configActualizar._historia);
-            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-            sp.agregarParametro("idPagina", idPagina);
-            try
-            {
-                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                if (this.resultadoCorrecto(tb)) {
-                    if (tb[0].Rows.Count > 0)
+                Valor valorAgregado = null;
+                SPIUS sp = new SPIUS("sp_adminfe_agregarValoresConfig");
+                sp.agregarParametro("valor", valorAgregar._valor);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
                     {
-                        DataRow rowResultado = tb[1].Rows[0];
-                        toReturn = new Configuracion(Convert.ToInt32((bool)rowResultado["idConfiguracion"]), (int)rowResultado["id_idioma_fk"], rowResultado["vision"].ToString(), rowResultado["mision"].ToString(), rowResultado["historia"].ToString());
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            DataRow rowResultado = tb[1].Rows[0];
+                            valorAgregado = new Valor((int)rowResultado["idValor"],rowResultado["valor"].ToString(),Convert.ToInt32((bool)rowResultado["id_config_fk"]));
+                        }
                     }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return valorAgregado;
+            }
+            public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
+            {
+                Configuracion toReturn = null;
+                SPIUS sp = new SPIUS("sp_adminfe_actualizarInfoConfig");
+                sp.agregarParametro("vision", configActualizar._vision);
+                sp.agregarParametro("mision", configActualizar._mision);
+                sp.agregarParametro("historia", configActualizar._historia);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb)) {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            DataRow rowResultado = tb[1].Rows[0];
+                            toReturn = new Configuracion(Convert.ToInt32((bool)rowResultado["idConfiguracion"]), (int)rowResultado["id_idioma_fk"], rowResultado["vision"].ToString(), rowResultado["mision"].ToString(), rowResultado["historia"].ToString());
+                        }
                     
-                }
+                    }
 
+                }
+                catch (ErroresIUS x) {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return toReturn;
             }
-            catch (ErroresIUS x) {
-                throw x;
-            }
-            catch (Exception x)
-            {
-                throw x;
-            }
-            return toReturn;
-        }
-        public Dictionary<object, object> sp_adminfe_getConfiguraciones(int idUsuarioEjecutor,int idPagina)
+        #endregion
+        #region "get"
+            public Dictionary<object, object> sp_adminfe_getConfiguraciones(int idUsuarioEjecutor,int idPagina)
         {
             Dictionary<object, object> respuesta= null;
             SPIUS sp = new SPIUS("sp_adminfe_getConfiguraciones");
@@ -133,5 +161,6 @@ namespace IUSLibs.ADMINFE.Control
             }
             return respuesta;
         }
+        #endregion
     }
 }

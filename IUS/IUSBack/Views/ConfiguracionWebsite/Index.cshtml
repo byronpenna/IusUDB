@@ -51,13 +51,12 @@
                 </form>
             </div>
             <div class="col-lg-6">
-                
                 <div class="row">
                     <h3 class="text-center">Valores Institucionales</h3>
                     <label>Valor</label>
                     <div class="row agregarValorSection">
                         <div class="col-lg-10">
-                            <input type="text" name="txtValores" class="form-control" />
+                            <input type="text" name="txtValores" class="form-control txtValores soloLetras" />
                         </div>
                         <div class="col-lg-2">
                             <button type="button" class="btn btnAddValor">Agregar</button>
@@ -75,6 +74,9 @@
                             {
                                 foreach(Valor valor in valores){
                                     <tr>
+                                        <td class="hidden">
+                                            <input type="text" name='txtIdValor' class="txtIdValor" value="@valor._idValor" />
+                                        </td>
                                         <td>@valor._valor</td>
                                         <td>
                                             <i class='fa fa-times pointer iconQuitarValor'></i>

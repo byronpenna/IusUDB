@@ -73,92 +73,130 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "ajax"
-            public ActionResult sp_adminfe_agregarValoresConfig()
-            {
-                Dictionary<object, object> frm, respuesta;
-                frm = this.getAjaxFrm();
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (frm != null && usuarioSession != null)
+            #region "acciones"
+                public ActionResult sp_adminfe_eliminarValoresConfig()
                 {
-                    try
+                    Dictionary<object, object> frm, respuesta = null;
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && usuarioSession != null)
                     {
-                        Valor valorAgregado, valorAgregar = new Valor(frm["txtValores"].ToString());
-                        valorAgregado = this._model.sp_adminfe_agregarValoresConfig(valorAgregar, usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object,object>();
-                        if (valorAgregado != null)
-                        {
-                            respuesta.Add("estado", true);
-                            respuesta.Add("valor", valorAgregado);
+                        try{
+                            int idValor = this.convertObjAjaxToInt(frm["txtIdValor"]);
+                            bool estado = this._model.sp_adminfe_eliminarValoresConfig(idValor, usuarioSession._idUsuario, this._idPagina);
+                            
+                            if (estado)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
+                                respuesta = this.errorTryControlador(3, x);
+                            }
+                        }catch(ErroresIUS x){
+                            ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber);
+                            respuesta = this.errorTryControlador(1,x);
+                        }catch(Exception x){
+                            ErroresIUS error = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
+                            respuesta = this.errorTryControlador(2,error);
                         }
-                        else
+                        
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
+                public ActionResult sp_adminfe_agregarValoresConfig()
+                {
+                    Dictionary<object, object> frm, respuesta;
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null)
+                    {
+                        try
                         {
-                            ErroresIUS x = new ErroresIUS("Ocurrio un error", ErroresIUS.tipoError.generico, 0);
-                            respuesta = this.errorTryControlador(3, x);
+                            Valor valorAgregado, valorAgregar = new Valor(frm["txtValores"].ToString());
+                            valorAgregado = this._model.sp_adminfe_agregarValoresConfig(valorAgregar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object,object>();
+                            if (valorAgregado != null)
+                            {
+                                respuesta.Add("estado", true);
+                                respuesta.Add("valor", valorAgregado);
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Ocurrio un error", ErroresIUS.tipoError.generico, 0);
+                                respuesta = this.errorTryControlador(3, x);
+                            }
                         }
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
-                        respuesta = this.errorTryControlador(1, error);
-                    }
-                    catch (Exception x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                        respuesta = this.errorTryControlador(2, error);
-                    }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
                     
 
-                }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
-            public ActionResult sp_adminfe_actualizarInfoConfig()
-            {
-                Dictionary<object, object> frm, respuesta;
-                frm = this.getAjaxFrm();
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (frm != null && usuarioSession != null)
-                {
-                    try
+                    }
+                    else
                     {
-                        Configuracion confActualizar = new Configuracion(frm["txtAreaVision"].ToString(), frm["txtAreaMision"].ToString(), frm["txtAreaHistoria"].ToString());
-                        Configuracion configActualizada = this._model.sp_adminfe_actualizarInfoConfig(confActualizar, usuarioSession._idUsuario, this._idPagina);
-                        if (configActualizada != null)
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
+                public ActionResult sp_adminfe_actualizarInfoConfig()
+                {
+                    Dictionary<object, object> frm, respuesta;
+                    frm = this.getAjaxFrm();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null)
+                    {
+                        try
                         {
-                            respuesta = new Dictionary<object, object>();
-                            respuesta.Add("estado", true);
-                            respuesta.Add("configuracion", configActualizada);
+                            Configuracion confActualizar = new Configuracion(frm["txtAreaVision"].ToString(), frm["txtAreaMision"].ToString(), frm["txtAreaHistoria"].ToString());
+                            Configuracion configActualizada = this._model.sp_adminfe_actualizarInfoConfig(confActualizar, usuarioSession._idUsuario, this._idPagina);
+                            if (configActualizada != null)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                                respuesta.Add("configuracion", configActualizada);
 
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Error desconocido", ErroresIUS.tipoError.generico, 0);
+                                x._mostrar = true;
+                                respuesta = errorTryControlador(3, x);
+                            }
                         }
-                        else
+                        catch (ErroresIUS x)
                         {
-                            ErroresIUS x = new ErroresIUS("Error desconocido", ErroresIUS.tipoError.generico, 0);
-                            x._mostrar = true;
-                            respuesta = errorTryControlador(3, x);
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                            respuesta = this.errorTryControlador(1, error);
                         }
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
-                        respuesta = this.errorTryControlador(1, error);
-                    }
-                    catch (Exception x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                        respuesta = this.errorTryControlador(2, error);
-                    }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
                     
 
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
                 }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
+            #endregion
         #endregion
         #region "constructores"
             public ConfiguracionWebsiteController()

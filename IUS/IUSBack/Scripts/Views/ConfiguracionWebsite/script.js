@@ -13,8 +13,9 @@
         // click
             $(document).on("click", ".iconQuitarValor", function () {
                 var x = confirm("¿Esta seguro de quitar valor?");
+                tr = $(this).parents("tr");
                 if (x) {
-                    alert("Esta accion no esta disponible por el momento");
+                    iconQuitarValor(tr);
                 }
                 
             });
