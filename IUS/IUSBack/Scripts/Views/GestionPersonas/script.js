@@ -4,18 +4,9 @@
         "bDestroy":true,
         "bSort": false
     });
-        /*$(".tablePersonas").DataTable({
-            "aoColumns": [
-            { "bSortable": false },
-            { "bSortable": true },
-            { "bSortable": true },
-            { "bSortable": true }
-            ]
-        });*/
-       
-        $(".dtFechaNacimiento").datepicker({
-            dateFormat: "dd/mm/yy"
-        });
+    $(".dtFechaNacimiento").datepicker({
+        dateFormat: "dd/mm/yy"
+    });
     // ingresar
         $(document).on("click", ".btnAgregarPersona", function () {
             tr = $(this).parents("tr");
@@ -40,7 +31,6 @@
             }
         })
     // editar
-        
         $(document).on("click", ".btnEditar", function () {
             var x = confirm("¿Esta seguro que desea editar esta persona?");
             trPersona = $(this).parents(".trPersona");
@@ -65,5 +55,6 @@
             cancelarGlobal();
             cambiarEstadoControlGlobal();
         });
+    // validaciones 
         
 });
