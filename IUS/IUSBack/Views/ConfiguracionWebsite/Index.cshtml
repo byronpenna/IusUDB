@@ -104,10 +104,14 @@
         </form>
         @if (slider != null)
         {
-            foreach (SliderImage image in slider)
-            {
-                <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" />
-            }
+            <div class="divImgSlider">
+                @foreach (SliderImage image in slider)
+                {
+                    <div class="col-lg-6">
+                        <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
+                    </div>
+                }
+            </div>
         }
     </div>
 </div>

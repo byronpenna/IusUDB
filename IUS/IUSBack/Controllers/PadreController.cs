@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+// manejo de archivos
+    using System.IO;
 // sistema 
     using System.Web.Script.Serialization;
 // librerias internas
@@ -27,8 +29,32 @@ namespace IUSBack.Controllers
         protected JavaScriptSerializer _jss;
         #endregion
         #region "funciones"
+            #region "manejo de archivos"
+                public Byte[] getBytesFromFile(HttpPostedFileBase archivo)
+                {
+                    Stream fileStream = archivo.InputStream;
+                    var mStreamer = new MemoryStream();
+                    mStreamer.SetLength(fileStream.Length);
+                    fileStream.Read(mStreamer.GetBuffer(), 0, (int)fileStream.Length);
+                    mStreamer.Seek(0, SeekOrigin.Begin);
+                    byte[] fileBytes = mStreamer.GetBuffer();
+                    return fileBytes;
+                }
+                public List<HttpPostedFileBase> getBaseFileFromRequest(HttpRequestBase request)
+                {
+                    List<HttpPostedFileBase> archivos = new List<HttpPostedFileBase>();
+                    HttpPostedFileBase archivo;
+                    foreach (string file in request.Files)
+                    {
+                        var fileContent = Request.Files[file];
+                        archivo = fileContent;
+                        archivos.Add(archivo);
+                    }
+                    return archivos;
+                }
+            #endregion 
             #region "manejo de errores"
-                public Dictionary<Object, Object> errorTryControlador(int errorType,object obj)
+        public Dictionary<Object, Object> errorTryControlador(int errorType,object obj)
                 {
                     Dictionary<Object, Object> retorno = new Dictionary<object, object>();
                     retorno.Add("estado", false);

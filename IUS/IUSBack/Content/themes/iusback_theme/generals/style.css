@@ -17,6 +17,10 @@
     .yellow{
         background:yellow;
     }
+/* Generics */
+    .fullSize{
+        width: 100%;
+    }
 /* clases produccion */
     .pointer {
         cursor:pointer;

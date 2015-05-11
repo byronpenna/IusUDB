@@ -78,44 +78,84 @@ namespace IUSBack.Controllers
 
             }
         #endregion
+        #region "generic"
+            
+        #endregion
         #region "ajax"
             #region "acciones"
                 [HttpPost]
                 public ActionResult UploadHomeReport(string id)
                 {
                     List<byte[]> images = new List<byte[]>();
-                    //List<SliderImage> slider = null;
+                    Dictionary<object, object> respuesta;
                     SliderImage imageAgregar,imageAgregada;
+                    List<SliderImage> sliderAgregar = null,sliderAgregado=null;
                     try
                     {
-                        
-                        foreach (string file in Request.Files)
+                        //HttpPostedFileBase archivo;
+                        if (Request.Files.Count > 0)
                         {
-                            var fileContent = Request.Files[file];
-                            HttpPostedFileBase archivo = fileContent;
-                            Stream fileStream = archivo.InputStream;
-                            var mStreamer = new MemoryStream();
-                            mStreamer.SetLength(fileStream.Length);
-                            fileStream.Read(mStreamer.GetBuffer(), 0, (int)fileStream.Length);
-                            mStreamer.Seek(0, SeekOrigin.Begin);
-                            byte[] fileBytes = mStreamer.GetBuffer();
-                            images.Add(fileBytes);
+                            List<HttpPostedFileBase> archivos = this.getBaseFileFromRequest(Request);
+                            sliderAgregar = new List<SliderImage>();
+                            foreach (HttpPostedFileBase archivo in archivos)
+                            {
+                                byte[] fileBytes = this.getBytesFromFile(archivo);
+                                Pagina pagina = new Pagina(1);
+                                imageAgregar = new SliderImage(archivo.FileName, fileBytes, true, pagina);
+                                sliderAgregar.Add(imageAgregar);
+                            }
+                            Usuario usuarioSesion = this.getUsuarioSesion();
+                            imageAgregada = this._model.sp_adminfe_saveImageSlider(sliderAgregar[0], usuarioSesion._idUsuario, this._idPagina);
+                            if (imageAgregada != null)
+                            {
+
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                                respuesta.Add("archivos", sliderAgregado);
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
+                                respuesta = errorTryControlador(3, x);
+                            }
+                            /*sliderAgregar   = new List<SliderImage>();
+                            sliderAgregado  = new List<SliderImage>(); 
+                            foreach (string file in Request.Files)
+                            {
+                                var fileContent = Request.Files[file];
+                                archivo = fileContent;
+                                Stream fileStream = archivo.InputStream;
+                                var mStreamer = new MemoryStream();
+                                mStreamer.SetLength(fileStream.Length);
+                                fileStream.Read(mStreamer.GetBuffer(), 0, (int)fileStream.Length);
+                                mStreamer.Seek(0, SeekOrigin.Begin);
+                                byte[] fileBytes = mStreamer.GetBuffer();
+                                Pagina pagina = new Pagina(1);
+                                imageAgregar = new SliderImage(archivo.FileName, fileBytes, true, pagina);
+                                sliderAgregar.Add(imageAgregar);
+                            }
+                            Usuario usuarioSesion = this.getUsuarioSesion();
+                            foreach(sliderAgregar)
+                            imageAgregada = this._model.sp_adminfe_saveImageSlider(imageAgregar, usuarioSesion._idUsuario, this._idPagina);*/
+
                         }
-                        Pagina pagina = new Pagina(1);
-                        imageAgregar = new SliderImage("prueba",images[0],true,pagina);
-                        Usuario usuarioSesion = this.getUsuarioSesion();
-                        imageAgregada = this._model.sp_adminfe_saveImageSlider(imageAgregar, usuarioSesion._idUsuario, this._idPagina);
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
-                        return Json("error ius");
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
                     }
                     catch (Exception x)
                     {
-                        //Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        return Json("Upload failed");
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
                     }
-                    return Json(images);
+                    return Json(respuesta);
                 }
                 [HttpPost]
                 public ActionResult UploadSlider()
