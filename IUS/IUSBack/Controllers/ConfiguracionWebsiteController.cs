@@ -12,6 +12,7 @@ using System.Web.Mvc;
 // subir
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 namespace IUSBack.Controllers
 {
     public class ConfiguracionWebsiteController : PadreController
@@ -78,18 +79,40 @@ namespace IUSBack.Controllers
         #region "ajax"
             #region "acciones"
                 [HttpPost]
+                public ActionResult UploadHomeReport(string id)
+                {
+                    List<byte[]> images = new List<byte[]>();
+                    try
+                    {
+                        
+                        foreach (string file in Request.Files)
+                        {
+                            var fileContent = Request.Files[file];
+                            HttpPostedFileBase archivo = fileContent;
+                            Stream fileStream = archivo.InputStream;
+                            var mStreamer = new MemoryStream();
+                            mStreamer.SetLength(fileStream.Length);
+                            fileStream.Read(mStreamer.GetBuffer(), 0, (int)fileStream.Length);
+                            mStreamer.Seek(0, SeekOrigin.Begin);
+                            byte[] fileBytes = mStreamer.GetBuffer();
+                            images.Add(fileBytes);
+                            
+                        }
+                    }
+                    catch (Exception x)
+                    {
+                        //Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        return Json("Upload failed");
+                    }
+                    return Json(images);
+                }
+                [HttpPost]
                 public ActionResult UploadSlider()
                 {
-                    for (int i = 0; i < Request.Files.Count; i++)
-                    {
-                        var file = Request.Files[i];
+                    return Json("");
+                    
+                        
 
-                        var fileName = Path.GetFileName(file.FileName);
-
-                        var path = Path.Combine(Server.MapPath("~/Junk/"), fileName);
-                        file.SaveAs(path);
-                    }
-                    return Json(null);
                 }
                 public ActionResult sp_adminfe_eliminarValoresConfig()
                 {

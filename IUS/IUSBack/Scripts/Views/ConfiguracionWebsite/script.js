@@ -3,6 +3,38 @@
         // tabs 
             $('#horizontalTab').responsiveTabs();
     // eventos 
+        // change 
+            $(document).on("change", "#file1", function (e) {
+                var files = e.target.files;
+                console.log("data es: ", files);
+                if (files.length > 0) {
+                    if (window.FormData !== undefined) {
+                        var data = new FormData();
+                        for (var x = 0; x < files.length; x++) {
+                            data.append("file" + x, files[x]);
+                        }
+                        console.log("data a enviar es: ", data);
+                        $.ajax({
+                            type: "POST",
+                            url: $("#frm").attr("action"),
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (result) {
+                                console.log(result);
+                            },
+                            error: function (xhr, status, p3, p4) {
+                                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                                if (xhr.responseText && xhr.responseText[0] == "{")
+                                    err = JSON.parse(xhr.responseText).Message;
+                                console.log(err);
+                            }
+                        });
+                    } else {
+                        alert("This browser doesn't support HTML5 file uploads!");
+                    }
+                }
+            });
         // submit
             $(document).on("submit", "#frmInstitucional", function (e) {
                 e.preventDefault();
@@ -11,39 +43,44 @@
                 frmInstitucional(frm);
             });
             $(document).on("submit","#frm",function(e){
-                e.preventDefault();
-                var file = $("#file1").get();
-                console.log("file es:", file);
-                /*
-                $.ajax({
+                var file = $("#file1")[0].files;
+                /*$.ajax({
                     type: 'POST',
                     url: $("#frm").attr("action"),
-                    form: file,
-                    dataType: "application/json",
-                    contentType: "application/octet-stream"
-                });*/
-                var formData = new FormData();
-                var totalFiles = document.getElementById("file1").files.length;
-                console.log("total files s:", totalFiles);
-                for (var i = 0; i < totalFiles; i++) {
-                    var file = document.getElementById("file1").files[i];
-                    formData.append("FileUpload", file);
-                }
-                console.log("form data es",formData)
-                $.ajax({
-                    type: "POST",
-                    url: $(this).attr("action"),
-                    form: formData,
-                    dataType: 'json',
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        alert('succes!!');
+                    data: {
+                        form: file
                     },
-                    error: function (error) {
-                        alert("errror");
+                    dataType: "application/json",
+                    contentType: "application/octet-stream",
+                    success:function(data){
+                        e.preventDefault();
                     }
                 });
+                */
+                /*
+                var files = $("#file1").get(0).files;
+                var data = new FormData();
+                for (i = 0; i < files.length; i++) {
+                    data.append("file" + i, files[i]);
+                }*/
+                console.log("file es:", file);
+                /*$.ajax({
+                    type: "POST",
+                    url: $("#frm").attr("action"),
+                    //dataType: "application/json",
+                    contentType: "application/octet-stream",
+                    processData: true,
+                    data: file,
+                    success: function (data) {
+                        if (data) {
+                            alert('Archivos subidos correctamente');
+                            console.log("Data arriba es: ", data);
+                            $("#file1").val('');
+                        }
+                    }
+                });*/
+                e.preventDefault();
+                
                 
             });
         // click

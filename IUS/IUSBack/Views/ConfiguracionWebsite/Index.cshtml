@@ -97,8 +97,8 @@
         </div>
     </div>
     <div id="tab-2" class="row seccion tab">
-        <form id="frm" action="@Url.Action("UploadSlider")" method="post">
-            <input type="file" id="file1" />
+        <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data" >
+            <input type="file" id="file1" name="file1" multiple="multiple" />
             <input type="submit" value="enviar" />
         </form>
     </div>
