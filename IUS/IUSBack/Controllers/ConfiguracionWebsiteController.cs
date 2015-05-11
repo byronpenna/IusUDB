@@ -92,7 +92,6 @@ namespace IUSBack.Controllers
                     List<SliderImage> sliderAgregar = null,sliderAgregado=null;
                     try
                     {
-                        //HttpPostedFileBase archivo;
                         if (Request.Files.Count > 0)
                         {
                             List<HttpPostedFileBase> archivos = this.getBaseFileFromRequest(Request);
@@ -105,7 +104,8 @@ namespace IUSBack.Controllers
                                 sliderAgregar.Add(imageAgregar);
                             }
                             Usuario usuarioSesion = this.getUsuarioSesion();
-                            imageAgregada = this._model.sp_adminfe_saveImageSlider(sliderAgregar[0], usuarioSesion._idUsuario, this._idPagina);
+                            //imageAgregada = this._model.sp_adminfe_saveImageSlider(sliderAgregar[0], usuarioSesion._idUsuario, this._idPagina);
+                            imageAgregada = null;
                             if (imageAgregada != null)
                             {
 
@@ -118,26 +118,6 @@ namespace IUSBack.Controllers
                                 ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
                                 respuesta = errorTryControlador(3, x);
                             }
-                            /*sliderAgregar   = new List<SliderImage>();
-                            sliderAgregado  = new List<SliderImage>(); 
-                            foreach (string file in Request.Files)
-                            {
-                                var fileContent = Request.Files[file];
-                                archivo = fileContent;
-                                Stream fileStream = archivo.InputStream;
-                                var mStreamer = new MemoryStream();
-                                mStreamer.SetLength(fileStream.Length);
-                                fileStream.Read(mStreamer.GetBuffer(), 0, (int)fileStream.Length);
-                                mStreamer.Seek(0, SeekOrigin.Begin);
-                                byte[] fileBytes = mStreamer.GetBuffer();
-                                Pagina pagina = new Pagina(1);
-                                imageAgregar = new SliderImage(archivo.FileName, fileBytes, true, pagina);
-                                sliderAgregar.Add(imageAgregar);
-                            }
-                            Usuario usuarioSesion = this.getUsuarioSesion();
-                            foreach(sliderAgregar)
-                            imageAgregada = this._model.sp_adminfe_saveImageSlider(imageAgregar, usuarioSesion._idUsuario, this._idPagina);*/
-
                         }
                         else
                         {
@@ -156,14 +136,6 @@ namespace IUSBack.Controllers
                         respuesta = this.errorTryControlador(2, error);
                     }
                     return Json(respuesta);
-                }
-                [HttpPost]
-                public ActionResult UploadSlider()
-                {
-                    return Json("");
-                    
-                        
-
                 }
                 public ActionResult sp_adminfe_eliminarValoresConfig()
                 {

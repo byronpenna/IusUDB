@@ -43,42 +43,17 @@
                 frmInstitucional(frm);
             });
             $(document).on("submit","#frm",function(e){
-                var file = $("#file1")[0].files;
-                /*$.ajax({
-                    type: 'POST',
-                    url: $("#frm").attr("action"),
-                    data: {
-                        form: file
-                    },
-                    dataType: "application/json",
-                    contentType: "application/octet-stream",
-                    success:function(data){
-                        e.preventDefault();
+                var files = $("#file1")[0].files;
+                console.log("las files del submit son ", file);
+                if (files.length > 0) {
+                    if (window.FormData !== undefined) {
+
+                    } else {
+
                     }
-                });
-                */
-                /*
-                var files = $("#file1").get(0).files;
-                var data = new FormData();
-                for (i = 0; i < files.length; i++) {
-                    data.append("file" + i, files[i]);
-                }*/
-                console.log("file es:", file);
-                /*$.ajax({
-                    type: "POST",
-                    url: $("#frm").attr("action"),
-                    //dataType: "application/json",
-                    contentType: "application/octet-stream",
-                    processData: true,
-                    data: file,
-                    success: function (data) {
-                        if (data) {
-                            alert('Archivos subidos correctamente');
-                            console.log("Data arriba es: ", data);
-                            $("#file1").val('');
-                        }
-                    }
-                });*/
+                } else {
+                    alert("Seleccione ficheros para poder subir");
+                }
                 e.preventDefault();
                 
                 
