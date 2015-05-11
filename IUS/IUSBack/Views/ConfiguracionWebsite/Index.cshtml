@@ -15,9 +15,10 @@
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/media.css" />
 }
 @{
-    List<RedSocial> redesSociales = (List<RedSocial>)ViewBag.redesSociales;
-    Configuracion config = (Configuracion)ViewBag.config;
-    List<Valor> valores = (List<Valor>) ViewBag.valores;
+    List<RedSocial> redesSociales   = (List<RedSocial>)ViewBag.redesSociales;
+    Configuracion config            = (Configuracion)ViewBag.config;
+    List<Valor> valores             = (List<Valor>) ViewBag.valores;
+    List<SliderImage> slider        = (List<SliderImage>)ViewBag.slider;
 }
 <h2>Configuracion del sitio web</h2>
 <div id="horizontalTab">
@@ -101,5 +102,12 @@
             <input type="file" id="file1" name="file1" multiple="multiple" />
             <input type="submit" value="enviar" />
         </form>
+        @if (slider != null)
+        {
+            foreach (SliderImage image in slider)
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" />
+            }
+        }
     </div>
 </div>

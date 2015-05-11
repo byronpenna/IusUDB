@@ -12,12 +12,14 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
     public class ConfiguracionWebsiteModel:PadreModel
     {
         #region "propiedades"
-            public ControlConfiguraciones _controlConfig;
+            public ControlConfiguraciones   _controlConfig;
+            public ControlSliderImage       _controlSlider;
         #endregion
         #region "Constructores"
             public ConfiguracionWebsiteModel()
             {
                 this._controlConfig = new ControlConfiguraciones();
+                this._controlSlider = new ControlSliderImage();
             }
         #endregion
         #region "funciones publicas"
@@ -37,6 +39,21 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                     throw x;
                 }
             }
+                public List<SliderImage> sp_adminfe_getSliderImage(int idPaginaFe,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlSlider.sp_adminfe_getSliderImage(idPaginaFe,idUsuarioEjecutor,idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion 
             #region "acciones"
                 public bool sp_adminfe_eliminarValoresConfig(int idValor,int idUsuarioEjecutor,int idPagina)
@@ -82,6 +99,21 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                     throw x;
                 }
             }
+                public SliderImage sp_adminfe_saveImageSlider(SliderImage imageAgregar,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlSlider.sp_adminfe_saveImageSlider(imageAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion 
         #endregion
     }

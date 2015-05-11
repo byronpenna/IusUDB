@@ -37,10 +37,11 @@ namespace IUSBack.Controllers
                         List<RedSocial> redesSociales = null;
                         Configuracion config = null;
                         List<Valor> valores = null;
+                        List<SliderImage> slider = null;
                         try
                         {
                             Dictionary<object, object> dic = this._model.sp_adminfe_getConfiguraciones(usuarioSession._idUsuario, this._idPagina);
-                            
+                            slider = this._model.sp_adminfe_getSliderImage(1, usuarioSession._idUsuario, this._idPagina);
                             if (dic != null)
                             {
                                 config = (Configuracion)dic["configuracion"];
@@ -59,8 +60,9 @@ namespace IUSBack.Controllers
                             return RedirectToAction("Unhandled", "Errors");
                         }
                         ViewBag.redesSociales = redesSociales;
-                        ViewBag.config = config;
+                        ViewBag.config  = config;
                         ViewBag.valores = valores;
+                        ViewBag.slider = slider; 
                         return View();
                     }
                     else
@@ -82,6 +84,8 @@ namespace IUSBack.Controllers
                 public ActionResult UploadHomeReport(string id)
                 {
                     List<byte[]> images = new List<byte[]>();
+                    //List<SliderImage> slider = null;
+                    SliderImage imageAgregar,imageAgregada;
                     try
                     {
                         
@@ -96,8 +100,15 @@ namespace IUSBack.Controllers
                             mStreamer.Seek(0, SeekOrigin.Begin);
                             byte[] fileBytes = mStreamer.GetBuffer();
                             images.Add(fileBytes);
-                            
                         }
+                        Pagina pagina = new Pagina(1);
+                        imageAgregar = new SliderImage("prueba",images[0],true,pagina);
+                        Usuario usuarioSesion = this.getUsuarioSesion();
+                        imageAgregada = this._model.sp_adminfe_saveImageSlider(imageAgregar, usuarioSesion._idUsuario, this._idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        return Json("error ius");
                     }
                     catch (Exception x)
                     {

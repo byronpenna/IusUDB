@@ -69,6 +69,7 @@ namespace IUSLibs.BaseDatos
                             }
                         case "System.Byte":
                         case "System.Data.SqlTypes.SqlBytes":
+                        case "System.Byte[]":
                             {
                                 tipoDato = SqlDbType.Image;
                                 break;
