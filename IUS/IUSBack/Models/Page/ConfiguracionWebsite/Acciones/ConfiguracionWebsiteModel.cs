@@ -131,6 +131,21 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                             throw x;
                         }
                     }
+                    public bool sp_adminfe_eliminarImagenSlider(int idImagen,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlSlider.sp_adminfe_eliminarImagenSlider(idImagen, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                 #endregion
             #endregion
         #endregion

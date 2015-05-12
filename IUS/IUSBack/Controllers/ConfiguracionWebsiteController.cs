@@ -112,10 +112,9 @@ namespace IUSBack.Controllers
                                 //imageAgregada = null;
                                 if (imageAgregada != null)
                                 {
-
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
-                                    respuesta.Add("archivos", sliderAgregado);
+                                    respuesta.Add("archivos", imageAgregada);
                                 }
                                 else
                                 {
@@ -169,6 +168,32 @@ namespace IUSBack.Controllers
                                 respuesta           = this.errorTryControlador(2, error);
                             }
                             
+                            
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
+                    public ActionResult sp_adminfe_eliminarImagenSlider()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        frm = this.getAjaxFrm();
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        if (frm != null && usuarioSession != null)
+                        {
+                            try{
+                                bool estado = this._model.sp_adminfe_eliminarImagenSlider(this.convertObjAjaxToInt(frm["txtHdIdSliderImage"]), usuarioSession._idUsuario, this._idPagina);
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", estado);
+                            }catch(ErroresIUS x){
+                                ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
+                                respuesta = this.errorTryControlador(1,error);
+                            }catch(Exception x){
+                                ErroresIUS error = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
+                                respuesta = this.errorTryControlador(2,error);
+                            }
                             
                         }
                         else

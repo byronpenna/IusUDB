@@ -3,38 +3,7 @@
         // tabs 
             $('#horizontalTab').responsiveTabs();
     // eventos 
-        // change 
-            $(document).on("change", "#file1", function (e) {
-                /*var files = e.target.files;
-                console.log("data es: ", files);
-                if (files.length > 0) {
-                    if (window.FormData !== undefined) {
-                        var data = new FormData();
-                        for (var x = 0; x < files.length; x++) {
-                            data.append("file" + x, files[x]);
-                        }
-                        console.log("data a enviar es: ", data);
-                        $.ajax({
-                            type: "POST",
-                            url: $("#frm").attr("action"),
-                            contentType: false,
-                            processData: false,
-                            data: data,
-                            success: function (result) {
-                                console.log(result);
-                            },
-                            error: function (xhr, status, p3, p4) {
-                                var err = "Error " + " " + status + " " + p3 + " " + p4;
-                                if (xhr.responseText && xhr.responseText[0] == "{")
-                                    err = JSON.parse(xhr.responseText).Message;
-                                console.log(err);
-                            }
-                        });
-                    } else {
-                        alert("This browser doesn't support HTML5 file uploads!");
-                    }
-                }*/
-            });// eliminar cuando todo este seguro
+        
         // submit
             $(document).on("submit", "#frmInstitucional", function (e) {
                 e.preventDefault();
@@ -44,17 +13,24 @@
             });
             $(document).on("submit", "#frm", function (e) {
                 var files = $("#file1")[0].files
-                try{
+                //try{
                     data = getObjFormData(files);
+                    e.preventDefault();
                     console.log("form data es: ", data);
-                    frm(data, $(this).attr("action"));
-                } catch (error) {
-                    console.log("error get data", error);
-                    alert(error.message);
-                }
-                e.preventDefault();
+                    formularioSubir(data, $(this).attr("action"), $(this));
+                //} catch (error) {
+                    /*console.log("error get data", error);
+                    alert(error.message);*/
+                //}
+                
             });
         // click
+            $(document).on("click", ".btnEliminarImage", function () {
+                var x = confirm("¿Esta seguro que desea eliminar esta imagen?")
+                if (x) {
+                    btnEliminarImage($(this).parents(".divImgIndividual"))
+                }
+            });
             $(document).on("click", ".btnDeshabilitarSliderImage", function () {
                 var x = confirm("Esta seguro que desea cambiar estado de imagen");
                 if (x) {

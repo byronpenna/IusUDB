@@ -74,7 +74,9 @@ namespace IUSLibs.ADMINFE.Control
                         {
                             DataRow row     = tb[1].Rows[0];
                             pagina          = new Pagina((int)row["id_pagina_fk"]);
-                            imageAgregada   = new SliderImage((int)row["idSliderImage"], row["nombre"].ToString(), (byte[])row["imagen"], (bool)row["estado"], pagina, (DateTime)row["fecha_creacion"]);
+                            byte[] byteImage = (byte[])row["imagen"];
+                            string strImage = Convert.ToBase64String(byteImage, 0, byteImage.Length);
+                            imageAgregada = new SliderImage((int)row["idSliderImage"], row["nombre"].ToString(), strImage, (bool)row["estado"], pagina, (DateTime)row["fecha_creacion"]);
                         }
                     }
                 }catch(ErroresIUS x)
@@ -119,6 +121,31 @@ namespace IUSLibs.ADMINFE.Control
                     throw x;
                 }
                 return image;
+            }
+            public bool sp_adminfe_eliminarImagenSlider(int idImagen,int idUsuarioEjecutor,int idPagina)
+            {
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_adminfe_eliminarImagenSlider");
+                try
+                {
+                    sp.agregarParametro("idImagen", idImagen);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
             }
         #endregion
     }

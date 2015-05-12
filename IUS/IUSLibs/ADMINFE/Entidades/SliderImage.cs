@@ -12,7 +12,6 @@ namespace IUSLibs.ADMINFE.Entidades
             // lo mismo pero la segunda funciona pra mandarlo en serialize
                 public byte[]   _imagen;
                 public string   _strImagen;
-            
             public bool     _estado;
             public Pagina   _pagina;
             public DateTime _fechaCreacion;
