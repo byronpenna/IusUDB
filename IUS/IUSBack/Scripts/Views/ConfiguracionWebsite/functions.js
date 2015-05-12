@@ -13,7 +13,13 @@
         ";
         return tr;
     }
-// acciones scripts 
+// acciones scripts
+    function frm(formData, url) {
+        
+        accionAjaxWithImage(url,data, function (data) {
+            console.log(data);
+        })
+    }
     function iconQuitarValor(tr) {
         frm = serializeSection(tr);
         console.log("formulario a enviar", frm);

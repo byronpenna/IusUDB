@@ -90,6 +90,9 @@ namespace IUSBack.Controllers
                     Dictionary<object, object> respuesta;
                     SliderImage imageAgregar,imageAgregada;
                     List<SliderImage> sliderAgregar = null,sliderAgregado=null;
+                    var form = Request.Files["form"];
+                    var frm = Request.Form["form"];
+                    var vari = Request.Form["frm"];
                     try
                     {
                         if (Request.Files.Count > 0)
