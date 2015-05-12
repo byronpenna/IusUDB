@@ -5,7 +5,7 @@
     // eventos 
         // change 
             $(document).on("change", "#file1", function (e) {
-                var files = e.target.files;
+                /*var files = e.target.files;
                 console.log("data es: ", files);
                 if (files.length > 0) {
                     if (window.FormData !== undefined) {
@@ -33,7 +33,7 @@
                     } else {
                         alert("This browser doesn't support HTML5 file uploads!");
                     }
-                }
+                }*/
             });
         // submit
             $(document).on("submit", "#frmInstitucional", function (e) {
@@ -42,21 +42,17 @@
                 console.log("Formulario a enviar es: ", frm);
                 frmInstitucional(frm);
             });
-            $(document).on("submit","#frm",function(e){
-                var files = $("#file1")[0].files;
-                console.log("las files del submit son ", file);
-                if (files.length > 0) {
-                    if (window.FormData !== undefined) {
-
-                    } else {
-
-                    }
-                } else {
-                    alert("Seleccione ficheros para poder subir");
+            $(document).on("submit", "#frm", function (e) {
+                var files = $("#file1")[0].files
+                try{
+                    data = getObjFormData(files);
+                    console.log("form data es: ", data);
+                    frm(data, $(this).attr("action"));
+                } catch (error) {
+                    console.log("error get data", error);
+                    alert(error.message);
                 }
                 e.preventDefault();
-                
-                
             });
         // click
             $(document).on("click", ".iconQuitarValor", function () {

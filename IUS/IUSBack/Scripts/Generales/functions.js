@@ -131,26 +131,32 @@
             controlesEdit(false, tr);
         }
     }
-// updates 
-    function actualizarCatalogo(urlAjax,frm,callback) {
-        $.ajax({
-            url: urlAjax,
-            type: 'POST',
-            error: function(xhr,status,error){
-                console.log("entro a los errores");
-                console.log(xhr);
-                console.log(status);
-                console.log(error);
-            },
-            data: {
-                form: JSON.stringify(frm)
-            },
-            success:function(data){
-                callback(data);
-            }
-        });
-    }
 // generics
+    function getObjFormData(files,frm) {
+        error = new Object();
+        var data = null;
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append("file" + x, files[x]);
+                }
+                data.append("frm", "soy el formulario");
+                if (frm !== undefined) {
+                    data.append("form", frm);
+                }
+            } else {
+                error.message = "Esta caracteristica no esta disponible para su navegador\
+                por favor actualicelo o utilice otro(google chrome)\
+                ";
+                throw error;
+            }
+        } else {
+            error.message = "Seleccione archivos a cargar";
+            throw error;
+        }
+        return data;
+    }
     function horaConvert(hora) {
         var time = hora;
         var hours = Number(time.match(/^(\d+)/)[1]);
@@ -191,12 +197,11 @@
         var frm = serializeToJson(section.find("input,select,textarea").serializeArray());
         return frm;
     }
-    
     function serializeForm(frm) {
         var frm = serializeToJson(frm.serializeArray());
         return frm;
     }
-    // para select 
+// para select 
     function getOptionSelect(select,val) {
         option = select.find("option[value='" + val + "']");
         return option;
@@ -224,6 +229,42 @@
         }
     }
 // cargaObjetos json 
+    function actualizarCatalogo(urlAjax,frm,callback) {
+        $.ajax({
+            url: urlAjax,
+            type: 'POST',
+            error: function(xhr,status,error){
+                console.log("entro a los errores");
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+            },
+            data: {
+                form: JSON.stringify(frm)
+            },
+            success:function(data){
+                callback(data);
+            }
+        });
+    }
+    function accionAjaxWithImage(urlAjax,formData,callBack) {
+        $.ajax({
+            type:           "POST",
+            url:            urlAjax,
+            contentType:    false,
+            processData:    false,
+            data: formData,
+            success: function (data) {
+                callBack(data);
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+        });
+    }
     function cargarObjetoGeneral(urlAjax,frm,callBack) {
         $.ajax({
             url: urlAjax,
@@ -233,6 +274,12 @@
             },
             success: function (data) {
                 callBack(data);
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
             }
         });
     }
