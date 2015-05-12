@@ -34,7 +34,7 @@
                         alert("This browser doesn't support HTML5 file uploads!");
                     }
                 }*/
-            });
+            });// eliminar cuando todo este seguro
         // submit
             $(document).on("submit", "#frmInstitucional", function (e) {
                 e.preventDefault();
@@ -55,6 +55,12 @@
                 e.preventDefault();
             });
         // click
+            $(document).on("click", ".btnDeshabilitarSliderImage", function () {
+                var x = confirm("Esta seguro que desea cambiar estado de imagen");
+                if (x) {
+                    btnDeshabilitarSliderImage($(this).parents(".divImgIndividual"), $(this));
+                }
+            })
             $(document).on("click", ".iconQuitarValor", function () {
                 var x = confirm("¿Esta seguro de quitar valor?");
                 tr = $(this).parents("tr");

@@ -56,11 +56,40 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                 }
             #endregion 
             #region "acciones"
-                public bool sp_adminfe_eliminarValoresConfig(int idValor,int idUsuarioEjecutor,int idPagina)
+                #region "basicas"
+                    public bool sp_adminfe_eliminarValoresConfig(int idValor,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlConfig.sp_adminfe_eliminarValoresConfig(idValor,idUsuarioEjecutor,idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    public Valor sp_adminfe_agregarValoresConfig(Valor valorAgregar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try {
+                            return this._controlConfig.sp_adminfe_agregarValoresConfig(valorAgregar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x) {
+                            throw x;
+                        }
+                    }
+                    public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
                 {
                     try
                     {
-                        return this._controlConfig.sp_adminfe_eliminarValoresConfig(idValor,idUsuarioEjecutor,idPagina);
+                        return this._controlConfig.sp_adminfe_actualizarInfoConfig(configActualizar, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {
@@ -71,35 +100,9 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                         throw x;
                     }
                 }
-                public Valor sp_adminfe_agregarValoresConfig(Valor valorAgregar, int idUsuarioEjecutor, int idPagina)
-                {
-                    try {
-                        return this._controlConfig.sp_adminfe_agregarValoresConfig(valorAgregar, idUsuarioEjecutor, idPagina);
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x) {
-                        throw x;
-                    }
-                }
-                public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
-            {
-                try
-                {
-                    return this._controlConfig.sp_adminfe_actualizarInfoConfig(configActualizar, idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
-                public SliderImage sp_adminfe_saveImageSlider(SliderImage imageAgregar,int idUsuarioEjecutor,int idPagina)
+                #endregion
+                #region "slider"
+                    public SliderImage sp_adminfe_saveImageSlider(SliderImage imageAgregar,int idUsuarioEjecutor,int idPagina)
                 {
                     try
                     {
@@ -114,7 +117,22 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                         throw x;
                     }
                 }
-            #endregion 
+                    public SliderImage sp_adminfe_cambiarEstado(int idImagen, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlSlider.sp_adminfe_cambiarEstado(idImagen, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x) {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
+            #endregion
         #endregion
     }
 }

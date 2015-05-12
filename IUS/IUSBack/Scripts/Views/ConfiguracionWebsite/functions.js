@@ -14,10 +14,26 @@
         return tr;
     }
 // acciones scripts
+    function btnDeshabilitarSliderImage(section,btn) {
+        frm = serializeSection(section);
+        actualizarCatalogo(RAIZ + "/ConfiguracionWebsite/sp_adminfe_cambiarEstado", frm, function (data) {
+            console.log("respuesta de servidor es: ", data);
+            if (data.estado) {
+                // cosa para cambiar
+                btn.empty().text(data.image.textoEstado);
+                btn.attr("estado", data.image._estado);
+                $("#imgCambiar").attr("src", "data:image/png;base64," + data.image._strImagen)
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
+    }
     function frm(formData, url) {
-        
         accionAjaxWithImage(url,data, function (data) {
-            console.log(data);
+            console.log("La respuesta del servidor para frm es:",data);
+            if (data.estado) {
+                alert("Imagen ingresada correctamente");
+            }
         })
     }
     function iconQuitarValor(tr) {

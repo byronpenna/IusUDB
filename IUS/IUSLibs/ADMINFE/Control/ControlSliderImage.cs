@@ -61,7 +61,6 @@ namespace IUSLibs.ADMINFE.Control
                 SPIUS sp = new SPIUS("sp_adminfe_saveImageSlider");
                 sp.agregarParametro("nombre", imageAgregar._nombre);
                 sp.agregarParametro("imagen", imageAgregar._imagen);
-                sp.agregarParametro("estado", imageAgregar._estado);
                 sp.agregarParametro("idPaginaSlider", imageAgregar._pagina._idPagina);
                 // seguridad 
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -87,6 +86,39 @@ namespace IUSLibs.ADMINFE.Control
                     throw x;
                 }
                 return imageAgregada;
+            }
+            public SliderImage sp_adminfe_cambiarEstado(int idImagen, int idUsuarioEjecutor,int idPagina)
+            {
+                SliderImage image = null;
+                Pagina pagina;
+                SPIUS sp = new SPIUS("sp_adminfe_cambiarEstado");
+                sp.agregarParametro("idImagen", idImagen);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            DataRow row         = tb[1].Rows[0];
+                            pagina              = new Pagina((int)row["id_pagina_fk"]);
+                            byte[] byteImage    = (byte[])row["imagen"];
+                            string strImage     = Convert.ToBase64String(byteImage,0,byteImage.Length);
+                            image = new SliderImage(idImagen, row["nombre"].ToString(),strImage, (bool)row["estado"], pagina, (DateTime)row["fecha_creacion"]);
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return image;
             }
         #endregion
     }
