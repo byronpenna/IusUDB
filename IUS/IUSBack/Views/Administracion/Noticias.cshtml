@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@section estilosPersonalizados{
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/media.css" />
@@ -8,6 +9,50 @@
         <script src="~/Scripts/Views/Administracion/Noticias/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/functions.js"></script>
 }
+@{
+    List<PostCategoria> categorias = (List<PostCategoria>)ViewBag.categorias;
+}
 <h2>Noticias</h2>
+<div class="row col-lg-12">
+    <form>
+        <div class="row col-lg-offset-1 col-lg-10 seccionForm">
+            <label>Titulo</label>
+            <input type="text" class="form-control"/>
+        </div>
+        <div class="row col-lg-offset-1 col-lg-10 seccionForm" style="padding:0">
+            <div class="col-lg-9">
+                <label>Contenido</label>
+                <textarea class="form-control"></textarea>
+            </div>
+            <div class="col-lg-3">
+
+            </div>
+        </div>
+        <div class="row col-lg-offset-1 col-lg-10 seccionForm">
+            <div class="col-lg-6">
+                <label>Categoria</label>
+                <select class="form-control" name="cbCategorias">
+                    @if (categorias != null)
+                    {
+                        foreach(PostCategoria categoria in categorias){
+                            <option value="@categoria._idPostCategoria">@categoria._categoria</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="-1">No hay categorias en el sistema</option>
+                    }
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label>Etiquetas</label>
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="row col-lg-offset-1 col-lg-10 seccionForm">
+            <button class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>
 
 

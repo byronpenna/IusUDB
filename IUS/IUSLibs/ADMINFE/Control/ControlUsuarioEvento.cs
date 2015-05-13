@@ -100,7 +100,14 @@ namespace IUSLibs.ADMINFE.Control
                                 // usuarios que no estan en el evento 
                                 foreach (DataRow row in tb[1].Rows)
                                 {
-                                    persona = new Persona((int)row["id_persona_fk"]);
+                                    if (!(row["id_persona_fk"] is DBNull))
+                                    {
+                                        persona = new Persona((int)row["id_persona_fk"]);
+                                    }
+                                    else
+                                    {
+                                        persona = null;
+                                    }
                                     usu = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), persona,(bool) row["estado"]);
                                     usuariosNoCompartido.Add(usu);
                                 }
@@ -109,7 +116,14 @@ namespace IUSLibs.ADMINFE.Control
                                 usuariosCompartido = new List<UsuarioEvento>();
                                 foreach (DataRow row in tb[2].Rows)
                                 {
-                                    persona = new Persona((int)row["id_persona_fk"]);
+                                    if (!(row["id_persona_fk"] is DBNull))
+                                    {
+                                        persona = new Persona((int)row["id_persona_fk"]);
+                                    }
+                                    else
+                                    {
+                                        persona = null;
+                                    }
                                     usu = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), persona, (bool)row["estado"]);
                                     evento = new Evento((int)row["id_evento_fk"]);
                                     usuEvento = new UsuarioEvento((int)row["idUsuarioEvento"], evento, usu);
