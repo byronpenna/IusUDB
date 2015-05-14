@@ -25,6 +25,10 @@
     .pointer {
         cursor:pointer;
     }
+    .noEspacio{
+        margin:0;
+        padding:0;
+    }
 /* Tablas */
     .clickTr{
         background:yellow;

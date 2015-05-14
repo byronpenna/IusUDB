@@ -136,6 +136,19 @@
         }
     }
 // generics
+    function putOnDivEditable(text) {
+        var sel, range, html;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                range.deleteContents();
+                range.insertNode(document.createTextNode(text));
+            }
+        } else if (document.selection && document.selection.createRange) {
+            document.selection.createRange().text = text;
+        }
+    }
     function getWidthPercent(element) {
         ancho = element.css("width");
         var width = (100 * parseFloat(ancho) / parseFloat(element.parent().css('width')));

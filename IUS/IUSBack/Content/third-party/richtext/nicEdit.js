@@ -226,7 +226,7 @@ var nicImageButton = nicEditorAdvancedButton.extend({
             var A = "javascript:nicImTemp();";
             this.ne.nicCommand("insertImage", A);
             this.im = this.findElm("IMG", "src", A);
-            
+            console.log(this.im);
             //this.im = this.findElm("IMG", "class", "imgPost");
             
         } if (this.im) {

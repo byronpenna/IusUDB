@@ -6,6 +6,7 @@
     txt.val(valor);
     txt.prop("disabled", false);
 }
+
 function mostrarTamanioPersonalizado() {
     div = $(".divTamanioPersonalizado");
     txt = div.find(".txtTamañoImagen");

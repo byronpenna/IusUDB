@@ -9,11 +9,29 @@
                 nicEditors.findEditor('editor').setContent(html);
             })
     // eventos
-        // keypress
+        // change
+            $(document).on("change", ".flSubirImagenes", function (e) {
+                var files = e.target.files;
+                console.log("files", files);
+                e.preventDefault();
+                $("#list").empty();
+                $.each(files, function (i, file) {
+                    var reader = new FileReader();
+                    reader.onload = (function (theFile) {
+                        return function (e) {
+                            strImage = "<img style='margin-top:5%;' class='thumbPost fullSize pointer' id='" + i + "' src='" + e.target.result + "'/>";
+                            $(".divImagesPost").append(strImage);
+                        };
+                    })(file)
+                    reader.readAsDataURL(file);
+                })
+            })
+        // blur
             $(document).on("blur", ".txtTamañoImagen", function (e) {
                 // cambiar el tamaño de la imagn
                 $(".activeRichImage").css("width", $(this).val() + "%");
             })
+            
         // click
             $(document).on("click", ".ckTamanio", function () {
                 if ($(this).is(':checked')) {
