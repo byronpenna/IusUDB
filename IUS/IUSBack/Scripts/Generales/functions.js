@@ -1,4 +1,8 @@
 ﻿// validaciones 
+    function soloNumeros() {
+        exp = "[0-9.]";
+        return exp;
+    }
     function soloLetras() {
         exp = "[a-z A-Zñáéíóú]";
         return exp;
@@ -132,7 +136,12 @@
         }
     }
 // generics
-    function getObjFormData(files,frm) {
+    function getWidthPercent(element) {
+        ancho = element.css("width");
+        var width = (100 * parseFloat(ancho) / parseFloat(element.parent().css('width')));
+        return width;
+    }
+    function getObjFormData(files, frm) {
         error = new Object();
         var data = null;
         if (files.length > 0) {
