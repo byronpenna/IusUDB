@@ -18,15 +18,23 @@
 
 
 <h2>Noticias</h2>
-<div class="div_carga">
-    <!-- <img id="cargador" src="./images/ajax-loader.gif" />-->
-    bla bla 
+<div id="div_carga">
+    <div id="contenerdorCargadorAjax">
+        <div id="cargadorAjaxUniversal">
+            <div class="row">
+                <img src="~/Content/themes/iusback_theme/img/general/ajax-loader.gif" />
+            </div>
+            <div class="row" id="textoEsperaAjax">
+                Por favor espere mientras procesamos su entrada
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row col-lg-12 wysihtml5-supported">
     <form class="frmNoticia">
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">
             <label>Titulo</label>
-            <input type="text" class="form-control" />
+            <input type="text" name="txtTitulo" class="form-control" />
         </div>
         <div class="row col-lg-offset-1 col-lg-10 seccionForm" style="padding:0">
             <div class="col-lg-9">

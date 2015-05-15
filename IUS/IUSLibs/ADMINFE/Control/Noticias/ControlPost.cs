@@ -36,6 +36,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                         if (tb[1].Rows.Count > 0)
                         {
                             DataRow row = tb[1].Rows[0];
+                            postAgregar = new Post(1);
                             postRegresar = new Post((int)row["idPost"]);
 
                         }

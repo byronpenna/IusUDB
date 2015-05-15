@@ -215,6 +215,7 @@
   <ItemGroup>
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
+    <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />

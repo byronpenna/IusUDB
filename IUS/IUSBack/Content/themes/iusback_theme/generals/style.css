@@ -29,7 +29,24 @@
         margin:0;
         padding:0;
     }
-    .div_carga{
+/* Ajax universal */
+    #contenerdorCargadorAjax{
+        position: absolute;
+        left:50%;
+        top:50%;
+    }
+    #textoEsperaAjax{
+        font-size:1.5em;
+        font-weight:bold;
+        margin-top:3%;
+    }
+    #cargadorAjaxUniversal{
+        position: relative;
+        top:50%;
+        left:-50%;
+        text-align:center;
+    }
+    #div_carga{
         position:fixed;
         top:0;
         left:0;

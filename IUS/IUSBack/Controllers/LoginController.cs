@@ -31,7 +31,7 @@ namespace IUSBack.Controllers
                     return RedirectToAction(obj["accion"], obj["controlador"]);
                     //return Json(x.Message);
                 }
-                catch (Exception x)
+                catch (Exception)
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }

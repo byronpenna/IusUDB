@@ -94,11 +94,11 @@ namespace IUSBack.Controllers
                 {
                     frmText = Request.Unvalidated.Form["form"];
                 }
-                catch (HttpException x)
+                catch (HttpException)
                 {
 
                 }
-                catch (Exception x)
+                catch (Exception)
                 {
 
                 }

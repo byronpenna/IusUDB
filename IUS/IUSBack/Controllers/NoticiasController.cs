@@ -60,8 +60,36 @@ namespace IUSBack.Controllers
                 Usuario usuarioSession  = this.getUsuarioSesion();
                 if (usuarioSession != null && frm != null)
                 {
-                    //Post postAgregar = new Post(frm);
-                    respuesta = new Dictionary<object, object>();
+                    try
+                    {
+                        Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession);
+                        Post postAgregado = this._model.sp_adminfe_noticias_publicarPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
+                        if (postAgregado != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("post", postAgregado);
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
+                            respuesta = errorTryControlador(3, x);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
+                        respuesta = errorTryControlador(1, error);
+
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    
+
+                    
                 }
                 else
                 {

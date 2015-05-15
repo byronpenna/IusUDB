@@ -17,11 +17,12 @@
     }
 // acciones scripts 
     function frmNoticia(formulario) {
-        frm = serializeToJson(formulario);
+        frm = serializeToJson(formulario.serializeArray());
+        console.log("formulario a enviar es: ", frm);
         frm.contenido = nicEditors.findEditor('editor').getContent();
         console.log("formulario a enviar es: ", frm);
         actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_publicarPost", frm, function (data) {
-            $(".div_carga").hide();
+            $("#div_carga").hide();
             console.log("respuesta del servidor", data);
             if (data.estado) {
                 alert("Noticia agregada correctamente");
