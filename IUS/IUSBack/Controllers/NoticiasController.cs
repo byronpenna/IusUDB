@@ -52,22 +52,23 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones ajax"
-        /*
+            [ValidateInput(false)]
             public ActionResult sp_adminfe_noticias_publicarPost()
             {
                 Dictionary<object, object> frm, respuesta = null;
-                frm                     = this.getAjaxFrm();
+                frm = this.getAjaxFrmWithOutValidate();
                 Usuario usuarioSession  = this.getUsuarioSesion();
                 if (usuarioSession != null && frm != null)
                 {
-                    //Post postAgregar = new Post();
+                    //Post postAgregar = new Post(frm);
+                    respuesta = new Dictionary<object, object>();
                 }
                 else
                 {
                     respuesta = this.errorEnvioFrmJSON();
                 }
                 return Json(respuesta);
-            }*/
+            }
         #endregion
     }
 }

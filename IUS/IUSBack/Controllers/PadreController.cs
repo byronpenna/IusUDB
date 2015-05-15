@@ -19,14 +19,15 @@ namespace IUSBack.Controllers
         //
         // GET: /Padre/
         #region "propiedades"
-        public enum paginas
+            public enum paginas
         {
             usuarios = 3,gestionRoles = 5,
             gestionPersonas=4,gestionIdiomaWebsite = 7,configuracionFront = 8,
             Eventos = 9,Noticias = 10
 
-        }
-        protected JavaScriptSerializer _jss;
+            }
+            protected JavaScriptSerializer _jss;
+            protected JavaScriptSerializer _jssmax;
         #endregion
         #region "funciones"
             #region "manejo de archivos"
@@ -79,9 +80,40 @@ namespace IUSBack.Controllers
                 }
                 return usuario;
             }
+            
             public Dictionary<Object, Object> getAjaxFrm()
             {
                 return this.getAjaxFrm("form");
+            }
+            [ValidateInput(false)]
+            public Dictionary<Object, Object> getAjaxFrmWithOutValidate()
+            {
+                Dictionary<Object, Object> toReturn = null;
+                String frmText = "";
+                try
+                {
+                    frmText = Request.Unvalidated.Form["form"];
+                }
+                catch (HttpException x)
+                {
+
+                }
+                catch (Exception x)
+                {
+
+                }
+                if (frmText != null || frmText != "")
+                {
+                    try
+                    {
+                        toReturn = this._jssmax.Deserialize<Dictionary<Object, Object>>(frmText);
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                return toReturn;
             }
             public Dictionary<Object, Object> getAjaxFrm(String txtObj)
             {
@@ -98,6 +130,7 @@ namespace IUSBack.Controllers
                 }
                 return toReturn;
             }
+            
             public List<Dictionary<Object, Object>> getListAjaxFrm()
             {
                 return this.getListAjaxFrm("form");
@@ -155,6 +188,8 @@ namespace IUSBack.Controllers
             public PadreController()
             {
                 this._jss = new JavaScriptSerializer();
+                this._jssmax = new JavaScriptSerializer();
+                this._jssmax.MaxJsonLength = Int32.MaxValue;
             }
         #endregion
         

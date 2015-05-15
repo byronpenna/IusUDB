@@ -5,8 +5,8 @@
         // rich text 
             bkLib.onDomLoaded(function() {
                 txtAreaEditor = new nicEditor().panelInstance('editor');
-                html = "<img src='http://www.matrallune.com/images/imagen_corporativa.jpg' alt=' align='none' class='activeRichImage'>"
-                nicEditors.findEditor('editor').setContent(html);
+                //html = "<img src='http://www.matrallune.com/images/imagen_corporativa.jpg' alt=' align='none' class='activeRichImage'>"
+                //nicEditors.findEditor('editor').setContent(html);
             })
     // eventos
         // change
@@ -31,7 +31,15 @@
                 // cambiar el tamaño de la imagn
                 $(".activeRichImage").css("width", $(this).val() + "%");
             })
-            
+        // submit 
+            $(document).on("submit", ".frmNoticia", function (e) {
+                formulario = $(this);
+                e.preventDefault();
+                $(".div_carga").fadeIn(400,function () {
+                    frmNoticia(formulario);
+                });
+                
+            })
         // click
             $(document).on("click", ".ckTamanio", function () {
                 if ($(this).is(':checked')) {
@@ -60,7 +68,6 @@
                     console.log(width);
                     editarTamanioPersonalizado(width);
                 }
-                
                 e.stopPropagation();
             })
 })
