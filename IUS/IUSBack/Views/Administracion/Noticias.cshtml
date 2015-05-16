@@ -1,12 +1,18 @@
 ﻿@using IUSLibs.ADMINFE.Entidades.Noticias
 @section estilosPersonalizados{
+    <!-- Tags -->
+        <link rel="stylesheet" href="~/Content/third-party/tags/bootstrap-tagsinput.css" />
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/media.css" />
+
 }
 @section scriptsPersonalizados{
-    <script src="~/Content/third-party/richtext/nicEdit.js"></script>
-    
+    <!-- plugins -->
+        <!-- rich text -->    
+            <script src="~/Content/third-party/richtext/nicEdit.js"></script>
+        <!-- Tags -->
+            <script src="~/Content/third-party/tags/bootstrap-tagsinput.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/Administracion/Noticias/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/functions.js"></script>
@@ -46,14 +52,14 @@
                 </div>
                 <textarea class="form-control" id="editor"></textarea>
             </div>
-            <div class="col-lg-3 pink ">
+            <div class="col-lg-3 sectionTodoImagesPost ">
                 <div class="row col-lg-12">
                     <div class="text-center">
                         <label>Imagenes post</label>
                     </div>
                     <input type="file" name="flSubirImagenes[]" multiple class="flSubirImagenes form-control" />
                 </div>
-                <div class="row col-lg-12 noEspacio divImagesPost pink ">
+                <div class="row col-lg-12 noEspacio divImagesPost">
 
                 </div>
             </div>
@@ -76,8 +82,10 @@
                 </select>
             </div>
             <div class="col-lg-6">
-                <label>Etiquetas</label>
-                <input type="text" name="txtEtiquetas" class="form-control" />
+                <div class="row">
+                    <label>Etiquetas</label>
+                </div>
+                <input type="text" name="txtEtiquetas" data-role="tagsinput"  class="txtEtiquetas" />
             </div>
         </div>
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">

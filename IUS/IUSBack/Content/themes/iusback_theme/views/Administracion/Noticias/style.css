@@ -1,4 +1,14 @@
-﻿/*
+﻿.bootstrap-tagsinput{
+    width:80%;
+}
+/*
+    Seccion de imagenes 
+    */
+.sectionTodoImagesPost{
+    height:400px;
+    overflow-y:scroll;
+}
+/*
     rich text
     */
 #editor {
