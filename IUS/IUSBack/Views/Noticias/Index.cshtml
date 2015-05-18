@@ -13,6 +13,9 @@
     List<Post> posts = (List<Post>)ViewBag.posts;
 }
 <h2>Noticias</h2>
+<a href="@Url.Action("IngresarNoticia","Noticias")">
+    Agregar entrada
+</a>
 <table class="table">
     <thead>
         <tr>
@@ -37,12 +40,15 @@
                     <td>@post._titulo</td>
                     <td>@post.getFechaCreacion</td>
                     <td>@post.getFechaModificacion</td>
-                    <td>@post._contenido</td>
+                    <td class="tdContenido">@post._contenido</td>
                     <td>@post._usuario._usuario</td>
                     <td>
                         <button class="btn btnPublicacion">
                             @post.getTxtEstado
                         </button>
+                        <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") ">
+                            Editar
+                        </a>
                     </td>
                 </tr>
             }

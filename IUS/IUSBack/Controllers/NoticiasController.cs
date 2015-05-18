@@ -47,6 +47,31 @@ namespace IUSBack.Controllers
                     return RedirectToAction("index", "login");
                 }
             }
+            public ActionResult ModificarNoticia(int id)
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (usuarioSession != null)
+                {
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    if (permisos != null && permisos._ver)
+                    {
+                        List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
+                        ViewBag.permiso = permisos;
+                        ViewBag.categorias = categorias;
+                        ViewBag.titlePage = "Ingresar noticias";
+                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        return View("~/Views/Administracion/Noticias.cshtml");
+                    }
+                    else
+                    {
+                        return RedirectToAction("NotAllowed", "Errors");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }
+            }
             public ActionResult IngresarNoticia()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
@@ -71,7 +96,6 @@ namespace IUSBack.Controllers
                 {
                     return RedirectToAction("index", "login");
                 }
-
             }
         #endregion
         #region "generics"
