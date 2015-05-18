@@ -44,6 +44,7 @@ namespace IUSLibs.BaseDatos
         #region "Constructores"
         public ConexionIUS()
         {
+            
             this.servidor = "PROGRAMADOR";
             this.db = "IUS";
             this.usuario = "sa";

@@ -47,7 +47,7 @@
     function actualizar(trPersona) {
         console.log("actualizaste");
         frm = serializeToJson(trPersona.find("input").serializeArray());
-        actualizarCatalogo(RAIZ+"/GestionPersonas/actualizarPersona", frm, function (data) {
+        actualizarCatalogo(RAIZ+"GestionPersonas/actualizarPersona", frm, function (data) {
             if (data.estado) {
                 persona = data.persona;
                 actualizarTrTabla(trPersona, persona);
@@ -90,7 +90,7 @@
         console.log("formulario a enviar", frm);
         
         //oTable.row('.selected').remove().draw(false);
-        actualizarCatalogo(RAIZ + "/GestionPersonas/sp_hm_eliminarPersona", frm, function (data) {
+        actualizarCatalogo(RAIZ + "GestionPersonas/sp_hm_eliminarPersona", frm, function (data) {
             console.log("respuesta del servidor", data);
             if (data.estado) {
                 table = $(".tablePersonas");
@@ -103,7 +103,7 @@
     function btnAgregarPersona(tr) {
         frm = serializeSection(tr);
         tbody = tr.parents("table").find("tbody");
-        actualizarCatalogo(RAIZ+"/GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
+        actualizarCatalogo(RAIZ+"GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
             
             if (data.estado) {
                 persona = data.persona;
