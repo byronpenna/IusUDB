@@ -51,50 +51,67 @@ namespace IUSBack.Controllers
 
             }
         #endregion
+        #region "generics"
+            
+        #endregion
         #region "acciones ajax"
             [ValidateInput(false)]
             public ActionResult sp_adminfe_noticias_publicarPost()
             {
-                Dictionary<object, object> frm, respuesta = null;
+                // vars 
+                Dictionary<object, object> frm,respuestaTag, respuesta = null;
                 frm = this.getAjaxFrmWithOutValidate();
                 Usuario usuarioSession  = this.getUsuarioSesion();
-                if (usuarioSession != null && frm != null)
-                {
-                    try
+                // do it
+                    if (usuarioSession != null && frm != null)
                     {
-                        Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession);
-                        Post postAgregado = this._model.sp_adminfe_noticias_publicarPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
-                        if (postAgregado != null)
+                        try
                         {
-                            respuesta = new Dictionary<object, object>();
-                            respuesta.Add("estado", true);
-                            respuesta.Add("post", postAgregado);
+                            Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession);
+                            Post postAgregado = this._model.sp_adminfe_noticias_publicarPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
+                            //Post postAgregado = null;
+                            if (postAgregado != null)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                                respuesta.Add("post", postAgregado);
+                                string[] tags = this.converArrAajaxToString((object[])frm["tags"]);
+                                if (tags != null)
+                                {
+                                    respuestaTag = this._model.sp_adminfe_noticias_agregarTag(postAgregado._idPost, tags, usuarioSession._idUsuario, this._idPagina);
+                                    respuesta.Add("respuestaTag", respuestaTag);
+                                }
+                                else
+                                {
+                                    respuesta.Add("respuestaTag", null);
+                                }
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
+                                respuesta = errorTryControlador(3, x);
+                            }
                         }
-                        else
+                        catch (ErroresIUS x)
                         {
-                            ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
-                            respuesta = errorTryControlador(3, x);
-                        }
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
-                        respuesta = errorTryControlador(1, error);
+                            ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
+                            respuesta = errorTryControlador(1, error);
 
-                    }
-                    catch (Exception x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                        respuesta = this.errorTryControlador(2, error);
-                    }
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
                     
 
                     
-                }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                // return 
                 return Json(respuesta);
             }
         #endregion

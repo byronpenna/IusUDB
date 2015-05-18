@@ -19,7 +19,8 @@
     function frmNoticia(formulario) {
         frm = serializeToJson(formulario.serializeArray());
         console.log("formulario a enviar es: ", frm);
-        frm.contenido = nicEditors.findEditor('editor').getContent();
+        frm.contenido   = nicEditors.findEditor('editor').getContent();
+        frm.tags        = $(".txtEtiquetas").tagsinput('items');
         console.log("formulario a enviar es: ", frm);
         actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_publicarPost", frm, function (data) {
             $("#div_carga").hide();

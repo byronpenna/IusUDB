@@ -152,36 +152,59 @@ namespace IUSBack.Controllers
                 }
                 return toReturn;
             }
-            public int[] convertArrAjaxToInt(Object[] frm)
-            {
-                int[] toReturn = new int[frm.Length];
-                int cn = 0;
-                foreach (object obj in frm)
-                {
-                    toReturn[cn] = Convert.ToInt32(obj);
-                    cn++;
-                }
-                return toReturn;
-            }
             #region "conversiones"
+                #region "arrays"
+                    public int[] convertArrAjaxToInt(Object[] frm)
+                    {
+                        int[] toReturn = new int[frm.Length];
+                        int cn = 0;
+                        foreach (object obj in frm)
+                        {
+                            toReturn[cn] = Convert.ToInt32(obj);
+                            cn++;
+                        }
+                        return toReturn;
+                    }
+                    public string[] converArrAajaxToString(Object[] frm)
+                    {
+                        string[] toReturn;
+                        if (frm.Length > 0)
+                        {
+                            toReturn = new string[frm.Length];
+                            int cn = 0;
+                            foreach (object obj in frm)
+                            {
+                                toReturn[cn] = Convert.ToString(obj);
+                                cn++;
+                            }
+                        }
+                        else
+                        {
+                            toReturn = null;
+                        }
+                        return toReturn;
+                    }
+                #endregion
+                #region "simples"
                 public DateTime convertObjAjaxToDateTime(string date, string hora)
-                {
-                    string fechaCompleto = date+" "+hora;
-                    DateTime toReturn;
-                    try
-                    {
-                        toReturn = Convert.ToDateTime( Convert.ToDateTime(fechaCompleto).ToString("dd/MM/yyyy HH:mm:ss"));
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                    return toReturn;
-                }
-                public int convertObjAjaxToInt(object obj)
-            {
-                return Convert.ToInt32(obj.ToString());
-            }
+                            {
+                                string fechaCompleto = date+" "+hora;
+                                DateTime toReturn;
+                                try
+                                {
+                                    toReturn = Convert.ToDateTime( Convert.ToDateTime(fechaCompleto).ToString("dd/MM/yyyy HH:mm:ss"));
+                                }
+                                catch (Exception x)
+                                {
+                                    throw x;
+                                }
+                                return toReturn;
+                            }
+                        public int convertObjAjaxToInt(object obj)
+                        {
+                            return Convert.ToInt32(obj.ToString());
+                        }
+                    #endregion
             #endregion
         #endregion
         #region "contructores"

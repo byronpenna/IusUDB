@@ -20,12 +20,14 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #region "propiedades"
             public ControlPostCategoria _controlPostCategoria;
             public ControlPost _controlPost;
+            public ControlPostTag _controlPostTag;
         #endregion 
         #region "constructores"
             public NoticiasModel()
             {
                 this._controlPostCategoria  = new ControlPostCategoria();
                 this._controlPost           = new ControlPost();
+                this._controlPostTag = new ControlPostTag();
             }
         #endregion
         #region "acciones"
@@ -58,6 +60,42 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                 {
                     throw x;
                 }
+            }
+            public Dictionary<object,object> sp_adminfe_noticias_agregarTag(int idPost, string[] tags, int idUsuarioEjecutor, int idPagina)
+            {
+                /*
+                 individual false = no todos se agregaron; global true = por lo menos uno se agrego
+                 */
+                Dictionary<object, object> toReturn = new Dictionary<object,object>();
+                List<PostTag> postsTags = new List<PostTag>();
+                PostTag postTag;
+                bool estadoGlobal = false, estadoIndividual = true;
+                foreach (string tag in tags)
+                {
+                    try
+                    {
+                        postTag = this._controlPostTag.sp_adminfe_noticias_agregarTag(idPost, tag, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (Exception)
+                    {
+                        postTag = null;
+                    }
+                    if (postTag != null)
+                    {
+                        postsTags.Add(postTag);
+                    }
+                    else
+                    {
+                        estadoIndividual = false;
+                    }
+                }
+                if(postsTags.Count > 0){
+                    estadoGlobal = true;
+                }
+                toReturn.Add("estadoGlobal", estadoGlobal);
+                toReturn.Add("estadoIndividual", estadoIndividual);
+                toReturn.Add("postTags", postsTags);
+                return toReturn;
             }
         #endregion
     }
