@@ -16,9 +16,33 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             public string   _contenido;
             public bool     _estado;
             public Usuario  _usuario;
-
+            #region "operacionales"
+                public string getFechaCreacion
+                {
+                    get{
+                        return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}", this._fechaCreacion);
+                    }                    
+                }
+                public string getFechaModificacion
+                {
+                    get
+                    {
+                        return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}", this._fechaModificacion);
+                    }
+                }
+            #endregion
         #endregion
-        #region "constructores"
+            #region "constructores"
+            public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, Usuario usuarioCreador)
+            {
+                this._idPost            = idPost;
+                this._fechaCreacion     = fechaCreacion;
+                this._fechaModificacion = fechaModificacion;
+                this._titulo            = titulo;
+                this._contenido         = contenido;
+                this._estado            = estado;
+                this._usuario           = usuarioCreador;
+            }
             public Post(int idPost)
             {
                 this._idPost = idPost;

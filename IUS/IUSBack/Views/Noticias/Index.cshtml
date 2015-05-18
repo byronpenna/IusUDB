@@ -1,0 +1,53 @@
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@section estilosPersonalizados{
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+        <script src="~/Scripts/Views/Administracion/Noticias/principal/script.js"></script>
+        <script src="~/Scripts/Views/Administracion/Noticias/principal/functions.js"></script>
+}
+@{
+    List<Post> posts = (List<Post>)ViewBag.posts;
+}
+<h2>Noticias</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="hidden"></th>
+            <th>Titulo</th>
+            <th>Creacion</th>
+            <th>Ultima modificacion</th>
+            <th>Contenido</th>
+            <th>Usuario creador</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (posts != null && posts.Count > 0)
+        {
+            foreach (Post post in posts)
+            {
+                <tr>
+                    <td>@post._titulo</td>
+                    <td>@post.getFechaCreacion</td>
+                    <td>@post.getFechaModificacion</td>
+                    <td>@post._contenido</td>
+                    <td>@post._usuario._usuario</td>
+                    <td>
+                        Modificar
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>No hay posts para mostrar</td>
+                <td class="text-center" colspan="6"></td>
+            </tr>
+        }
+    </tbody>
+</table>

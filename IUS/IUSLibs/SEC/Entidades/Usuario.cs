@@ -92,6 +92,11 @@ namespace IUSLibs.SEC.Entidades
                 this._persona = persona;
                 this._pass = pass;
             }
+            public Usuario(int idUsuario, string usuario)
+            {
+                this._idUsuario = idUsuario;
+                this._usuario = usuario;
+            }
             public Usuario(int idUsuario)
             {
                 this._idUsuario = idUsuario;

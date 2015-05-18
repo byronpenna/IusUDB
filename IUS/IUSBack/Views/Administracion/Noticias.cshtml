@@ -5,7 +5,6 @@
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/media.css" />
-
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -21,9 +20,7 @@
     List<PostCategoria> categorias = (List<PostCategoria>)ViewBag.categorias;
     
 }
-
-
-<h2>Noticias</h2>
+<h2>@ViewBag.titlePage</h2>
 <div id="div_carga">
     <div id="contenerdorCargadorAjax">
         <div id="cargadorAjaxUniversal">

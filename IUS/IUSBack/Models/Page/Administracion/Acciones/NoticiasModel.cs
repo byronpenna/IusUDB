@@ -30,6 +30,40 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                 this._controlPostTag = new ControlPostTag();
             }
         #endregion
+        #region "get"
+            public List<Post> sp_adminfe_noticias_getPosts(int idUsuarioEjecutor,int idPagina)
+            {
+                List<Post> posts = null;
+                try
+                {
+                    posts = this._controlPost.sp_adminfe_noticias_getPosts(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return posts;
+            }
+            public List<PostCategoria> sp_adminfe_noticias_getCategorias(int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return this._controlPostCategoria.sp_adminfe_noticias_getCategorias(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+        #endregion
         #region "acciones"
             public Post sp_adminfe_noticias_publicarPost(Post postAgregar,int idUsuarioEjecutor,int idPagina)
             {
@@ -46,21 +80,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     throw x;
                 }
             }
-            public List<PostCategoria> sp_adminfe_noticias_getCategorias(int idUsuarioEjecutor,int idPagina)
-            {
-                try
-                {
-                    return this._controlPostCategoria.sp_adminfe_noticias_getCategorias(idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
+            
             public Dictionary<object,object> sp_adminfe_noticias_agregarTag(int idPost, string[] tags, int idUsuarioEjecutor, int idPagina)
             {
                 /*

@@ -219,6 +219,8 @@
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\style.css" />
     <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\media.css" />
     <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\style.css" />
@@ -351,6 +353,8 @@
     <Content Include="Scripts\Views\Administracion\Eventos\functions.js" />
     <Content Include="Scripts\Views\Administracion\Eventos\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\principal\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\principal\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\script.js" />
     <Content Include="Scripts\Views\ConfiguracionWebsite\functions.js" />
     <Content Include="Scripts\Views\ConfiguracionWebsite\script.js" />
@@ -449,6 +453,7 @@
     <Content Include="Views\ConfiguracionWebsite\Index.cshtml" />
     <Content Include="Views\Administracion\Eventos.cshtml" />
     <Content Include="Views\Administracion\Noticias.cshtml" />
+    <Content Include="Views\Noticias\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

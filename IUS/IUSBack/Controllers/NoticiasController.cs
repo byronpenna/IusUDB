@@ -28,6 +28,28 @@ namespace IUSBack.Controllers
             public ActionResult Index()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
+                if (usuarioSession != null) { 
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    if (permisos != null && permisos._ver)
+                    {
+                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        List<Post> posts = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
+                        ViewBag.posts = posts;
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("NotAllowed", "Errors");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }
+            }
+            public ActionResult IngresarNoticia()
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
                 {
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
@@ -36,6 +58,7 @@ namespace IUSBack.Controllers
                         List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
                         ViewBag.permiso     = permisos;
                         ViewBag.categorias  = categorias;
+                        ViewBag.titlePage   = "Ingresar noticias";
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         return View("~/Views/Administracion/Noticias.cshtml");
                     }
