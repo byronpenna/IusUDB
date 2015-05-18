@@ -17,6 +17,20 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             public bool     _estado;
             public Usuario  _usuario;
             #region "operacionales"
+                public string getTxtEstado
+                {
+                    get
+                    {
+                        if (this._estado)
+                        {
+                            return "Quitar web";
+                        }
+                        else
+                        {
+                            return "Publicar web";
+                        }
+                    }
+                }
                 public string getFechaCreacion
                 {
                     get{

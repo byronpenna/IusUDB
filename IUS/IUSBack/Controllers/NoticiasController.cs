@@ -78,6 +78,46 @@ namespace IUSBack.Controllers
             
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_adminfe_noticias_cambiarEstadoPost()
+            {
+                Dictionary<object, object> frm, respuesta ;
+                frm = this.getAjaxFrm();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (frm != null && usuarioSession != null)
+                {
+                    try
+                    {
+                        Post post = this._model.sp_adminfe_noticias_cambiarEstadoPost(this.convertObjAjaxToInt(frm["idPost"]), usuarioSession._idUsuario, this._idPagina);
+                        if (post != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("post", post);
+
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
+                            respuesta = this.errorTryControlador(3, x);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
             [ValidateInput(false)]
             public ActionResult sp_adminfe_noticias_publicarPost()
             {

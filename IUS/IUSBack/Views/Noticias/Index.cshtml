@@ -31,13 +31,18 @@
             foreach (Post post in posts)
             {
                 <tr>
+                    <td class="hidden">
+                        <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
+                    </td>
                     <td>@post._titulo</td>
                     <td>@post.getFechaCreacion</td>
                     <td>@post.getFechaModificacion</td>
                     <td>@post._contenido</td>
                     <td>@post._usuario._usuario</td>
                     <td>
-                        Modificar
+                        <button class="btn btnPublicacion">
+                            @post.getTxtEstado
+                        </button>
                     </td>
                 </tr>
             }

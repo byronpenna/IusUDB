@@ -86,6 +86,36 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                 }
                 return postRegresar;
             }
+            public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost,int idUsuarioEjecutor,int idPagina)
+            {
+                SPIUS sp = new SPIUS("sp_adminfe_noticias_cambiarEstadoPost");
+                Post post = null;
+                sp.agregarParametro("idPost", idPost);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            DataRow row = tb[1].Rows[0];
+                            post = new Post((int)row["idPost"]);
+                            post._estado = (bool)row["estado"];
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return post;
+            }
         #endregion
     }
 }

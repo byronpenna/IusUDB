@@ -80,7 +80,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     throw x;
                 }
             }
-            
+            public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return this._controlPost.sp_adminfe_noticias_cambiarEstadoPost(idPost, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Dictionary<object,object> sp_adminfe_noticias_agregarTag(int idPost, string[] tags, int idUsuarioEjecutor, int idPagina)
             {
                 /*
