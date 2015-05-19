@@ -192,7 +192,7 @@ namespace IUSBack.Controllers
                                 DateTime toReturn;
                                 try
                                 {
-                                    toReturn = Convert.ToDateTime( Convert.ToDateTime(fechaCompleto).ToString("dd/MM/yyyy HH:mm:ss"));
+                                    toReturn = Convert.ToDateTime(Convert.ToDateTime(fechaCompleto).ToString("yyyy-MM-dd HH:mm:ss"));
                                 }
                                 catch (Exception x)
                                 {

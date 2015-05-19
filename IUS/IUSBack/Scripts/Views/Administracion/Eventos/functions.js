@@ -336,6 +336,9 @@ function eventosIniciales() {
         }
         function btnActualizar(detalle) {
             frm = serializeSection(detalle);
+            console.log("formulario a actualizar es: ", frm);
+            frm.txtFechaFin    = fechaStandar(frm.txtFechaFin);
+            frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
             h3 = detalle.prev();
             frm.txtEvento = h3.find(".txtEvento2").val();
             if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
@@ -404,6 +407,10 @@ function eventosIniciales() {
         function frmAgregarEvento(frm, frmSection) {
             frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
             frm.txtHoraFin = horaConvert(frm.txtHoraFin);
+            //console.log("formulario a enviar",frm);
+            frm.txtFechaFin     = fechaStandar(frm.txtFechaFin);
+            frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
+            console.log("formulario a enviar es:", frm);
             actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_crearEvento", frm, function (data) {
                 console.log("respuesta sp_adminfe_crearEvento", data);
                 if (data.estado) {

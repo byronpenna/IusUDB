@@ -180,28 +180,40 @@
         }
         return data;
     }
-    function horaConvert(hora) {
-        var time = hora;
-        var hours = Number(time.match(/^(\d+)/)[1]);
-        var minutes = Number(time.match(/:(\d+)/)[1]);
-        var AMPM = time.match(/\s(.*)$/)[1];
-        if (AMPM == "p.m." && hours < 12) hours = hours + 12;
-        if (AMPM == "a.m." && hours == 12) hours = hours - 12;
-        var sHours = hours.toString();
-        var sMinutes = minutes.toString();
-        if (hours < 10) sHours = "0" + sHours;
-        if (minutes < 10) sMinutes = "0" + sMinutes;
-        //console.log("hora en formato 24: ", sHours + ":" + sMinutes);
-        var hora24 = sHours + ":" + sMinutes;
-        return hora24;
-        //alert(sHours + ":" + sMinutes);
-    }
-    function valMinh(val) {
-        if (parseInt(val) < 10) {
-            val = "0" + val;
+    // conversiones 
+        function fechaStandar(fecha) {
+            /*
+            arrDate = frm.dtFechaNacimiento.split("/");
+            frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
+            */
+            // solo funciona para formato dd/mm/yy
+            arrDate = fecha.split("/");
+            fecha = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1] -1 , arrDate[0]));
+            return fecha;
         }
-        return val;
-    }
+        function horaConvert(hora) {
+            var time = hora;
+            var hours = Number(time.match(/^(\d+)/)[1]);
+            var minutes = Number(time.match(/:(\d+)/)[1]);
+            var AMPM = time.match(/\s(.*)$/)[1];
+            if (AMPM == "p.m." && hours < 12) hours = hours + 12;
+            if (AMPM == "a.m." && hours == 12) hours = hours - 12;
+            var sHours = hours.toString();
+            var sMinutes = minutes.toString();
+            if (hours < 10) sHours = "0" + sHours;
+            if (minutes < 10) sMinutes = "0" + sMinutes;
+            //console.log("hora en formato 24: ", sHours + ":" + sMinutes);
+            var hora24 = sHours + ":" + sMinutes;
+            return hora24;
+            //alert(sHours + ":" + sMinutes);
+        }
+        function valMinh(val) {
+            if (parseInt(val) < 10) {
+                val = "0" + val;
+            }
+            return val;
+        }
+
     function serializeToJson(a) {
         var o = {};
         $.each(a, function () {
