@@ -14,8 +14,8 @@
     }
 // Constantes 
     var INPUTS  = "input,select,textarea";
-    var RAIZ = "http://168.243.3.62/iusback/";
-    //var RAIZ = "http://localhost:55869/";
+    //var RAIZ = "http://168.243.3.62/iusback/";
+    var RAIZ = "http://localhost:55869/";
     //console.log("raiz es: ", RAIZ);
 // plugins 
     // chosen

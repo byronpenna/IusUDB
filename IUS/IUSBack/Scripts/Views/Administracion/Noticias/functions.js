@@ -27,6 +27,7 @@
             console.log("respuesta del servidor", data);
             if (data.estado) {
                 alert("Noticia agregada correctamente");
+                window.location = RAIZ + "Noticias";
             } else {
                 alert("Ocurrio un error");
             }

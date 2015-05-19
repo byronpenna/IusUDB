@@ -30,6 +30,29 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                 this._controlPostTag = new ControlPostTag();
             }
         #endregion
+        #region "generics"
+            public string getComaTags(List<Tag> tags)
+            {
+                string toReturn = "";
+                if (tags.Count > 0)
+                {
+                    int cn = 0;
+                    foreach (Tag tag in tags)
+                    {
+                        if (cn == 0)
+                        {
+                            toReturn += tag._strTag;
+                        }
+                        else
+                        {
+                            toReturn += ","+tag._strTag;
+                        }
+                        cn++;
+                    }
+                }
+                return toReturn;
+            }
+        #endregion
         #region "get"
             public List<Post> sp_adminfe_noticias_getPosts(int idUsuarioEjecutor,int idPagina)
             {
@@ -53,6 +76,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                 try
                 {
                     return this._controlPostCategoria.sp_adminfe_noticias_getCategorias(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+            public Dictionary<object, object> sp_adminfe_noticias_getPostsFromId(int idPost,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._controlPost.sp_adminfe_noticias_getPostsFromId(idPost, idUsuarioEjecutor, idPagina);
                 }
                 catch (ErroresIUS x)
                 {

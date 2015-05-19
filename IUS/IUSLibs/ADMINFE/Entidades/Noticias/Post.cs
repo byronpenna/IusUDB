@@ -47,6 +47,10 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             #endregion
         #endregion
             #region "constructores"
+            public Post()
+            {
+
+            }
             public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, Usuario usuarioCreador)
             {
                 this._idPost            = idPost;

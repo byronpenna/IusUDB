@@ -51,6 +51,59 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                 }
                 return posts;
             }
+            public Dictionary<object, object> sp_adminfe_noticias_getPostsFromId(int idPost,int idUsuarioEjecutor,int idPagina) {
+                //vars
+                Dictionary<object, object> retorno = null;
+                Post post = new Post(); List<Tag> tags = null; List<PostCategoria> categorias = null;
+                Usuario usu; DataRow rowResult; Tag tag; PostCategoria categoria;
+                // do it 
+                SPIUS sp = new SPIUS("sp_adminfe_noticias_getPostsFromId");
+                sp.agregarParametro("idPost", idPost);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if(tb[1].Rows.Count > 0){
+                            rowResult = tb[1].Rows[0];
+                            usu = new Usuario((int)rowResult["id_usuario_fk"]);
+                            post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
+                        }
+                        if (tb[2].Rows.Count > 0)
+                        {
+                            tags = new List<Tag>();
+                            foreach (DataRow row in tb[2].Rows)
+                            {
+                                tag = new Tag((int)row["id_tags_fk"], row["tag"].ToString());
+                                tags.Add(tag);
+                            }
+                        }
+                        if (tb[3].Rows.Count > 0) {
+                            categorias = new List<PostCategoria>();
+                            foreach (DataRow row in tb[3].Rows)
+                            {
+                                categoria = new PostCategoria((int)row["id_categoria_fk"], row["categoria"].ToString());
+                                categorias.Add(categoria);
+                            }
+                        }
+                        retorno = new Dictionary<object, object>();
+                        retorno.Add("post", post);
+                        retorno.Add("tags", tags);
+                        retorno.Add("categorias", categorias);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return retorno;
+            }
         #endregion
         #region "Acciones"
             public Post sp_adminfe_noticias_publicarPost(Post postAgregar,int idUsuarioEjecutor,int idPagina)

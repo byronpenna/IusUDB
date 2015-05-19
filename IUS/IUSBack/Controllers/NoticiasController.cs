@@ -55,12 +55,30 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver)
                     {
-                        List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
-                        ViewBag.permiso = permisos;
-                        ViewBag.categorias = categorias;
-                        ViewBag.titlePage = "Ingresar noticias";
-                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                        return View("~/Views/Administracion/Noticias.cshtml");
+                        try
+                        {
+                            List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
+                            Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
+                            ViewBag.permiso = permisos;
+                            ViewBag.categorias = categorias;
+                            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                            ViewBag.editMode = true;
+                            #region "Labels"
+                                ViewBag.titlePage = "Modificar noticia";
+                                ViewBag.botonAccion = "Modificar";
+                            #endregion
+                            #region "Valores"
+                                ViewBag.post        = datosPost["post"];
+                                ViewBag.tags        = this._model.getComaTags((List<Tag>)datosPost["tags"]);
+                                ViewBag.categorias  = datosPost["categorias"];
+                            #endregion
+                            return View("~/Views/Administracion/Noticias.cshtml");
+                        }catch(ErroresIUS){
+                            return RedirectToAction("Unhandled", "Errors");
+                        }
+                        catch (Exception) {
+                            return RedirectToAction("Unhandled", "Errors");
+                        }
                     }
                     else
                     {
@@ -83,8 +101,13 @@ namespace IUSBack.Controllers
                         List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
                         ViewBag.permiso     = permisos;
                         ViewBag.categorias  = categorias;
-                        ViewBag.titlePage   = "Ingresar noticias";
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.editMode    = false;
+                        #region "Labels"
+                            ViewBag.titlePage = "Ingresar noticia";
+                            ViewBag.botonAccion = "Guardar";
+                        #endregion
+                        ViewBag.post = new Post();
                         return View("~/Views/Administracion/Noticias.cshtml");
                     }
                     else
