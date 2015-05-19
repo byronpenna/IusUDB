@@ -121,7 +121,7 @@ namespace IUSBack.Controllers
                         respuesta = new Dictionary<object, object>();
                         try
                         {
-                            Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                            Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), /*Convert.ToDateTime(frm["dtFechaNacimiento"].ToString())*/ DateTime.Parse(frm["dtFechaNacimiento"].ToString()));
                             Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
                             if (persona != null)
                             {
@@ -130,24 +130,32 @@ namespace IUSBack.Controllers
                             }
                             else
                             {
+                                /*
                                 respuesta.Add("estado", false);
                                 respuesta.Add("errorType", 3);
-                                respuesta.Add("error", "Error al intentar ingresar persona");
+                                respuesta.Add("error", "Error al intentar ingresar persona");*/
+                                ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
+                                respuesta = this.errorTryControlador(3, x);
                             }
 
                         }
                         catch (ErroresIUS x)
                         {
-                            respuesta.Add("estado", false);
+                            /*respuesta.Add("estado", false);
                             respuesta.Add("errorType", 1);
-                            respuesta.Add("error", x);
+                            respuesta.Add("error", x);*/
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                            respuesta = this.errorTryControlador(1, error);
                         }
                         catch (Exception x)
                         {
-                            respuesta.Add("estado", false);
+                            /*respuesta.Add("estado", false);
                             respuesta.Add("errorType", 2);
-                            respuesta.Add("error", x);
+                            respuesta.Add("error", x);*/
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
                         }
+
                     }
                     else
                     {

@@ -46,7 +46,10 @@
 // actualizar 
     function actualizar(trPersona) {
         console.log("actualizaste");
-        frm = serializeToJson(trPersona.find("input").serializeArray());
+        //frm = serializeToJson(trPersona.find("input").serializeArray());
+        frm = serializeSection(trPersona);
+        arrDate = frm.dtFechaNacimiento.split("/");
+        frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
         actualizarCatalogo(RAIZ+"GestionPersonas/actualizarPersona", frm, function (data) {
             if (data.estado) {
                 persona = data.persona;
@@ -58,8 +61,6 @@
     }
     function btnActualizarTodo(tabla) {
         accionActualizarGeneral(tabla, "GestionPersonas/actualizarTodo", function (data, frm) {
-            
-            
             if (data.estado) {
                 $.each(data.personas, function (i,val) {
                     tr = getEdit(tabla, ".txtHdIdPersona", val._idPersona);
@@ -102,9 +103,11 @@
     }
     function btnAgregarPersona(tr) {
         frm = serializeSection(tr);
+        arrDate = frm.dtFechaNacimiento.split("/");
+        frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2],arrDate[1],arrDate[0]));
         tbody = tr.parents("table").find("tbody");
         actualizarCatalogo(RAIZ+"GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
-            
+            console.log("La respuesta del servidor fue:", data);
             if (data.estado) {
                 persona = data.persona;
                 newTr = getTrPersona(persona);
