@@ -35,8 +35,15 @@
             $(document).on("submit", ".frmNoticia", function (e) {
                 formulario = $(this);
                 e.preventDefault();
-                $("#div_carga").fadeIn(400,function () {
-                    frmNoticia(formulario);
+                $("#div_carga").fadeIn(400, function () {
+                    if ($("#btnSubmitNoticia").attr("action") == 1) {
+                        frmNoticia(formulario);
+                        //console.log("Ingresaras");
+                    } else {
+                        updatePost(formulario);
+                        //console.log("Vas a editar");
+                    }
+                    
                 });
                 
             })

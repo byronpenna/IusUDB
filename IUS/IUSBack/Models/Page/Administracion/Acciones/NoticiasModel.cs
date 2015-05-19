@@ -133,6 +133,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     throw x;
                 }
             }
+            public bool sp_adminfe_noticias_modificarPost(Post postActualizar,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._controlPost.sp_adminfe_noticias_modificarPost(postActualizar, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Dictionary<object,object> sp_adminfe_noticias_agregarTag(int idPost, string[] tags, int idUsuarioEjecutor, int idPagina)
             {
                 /*

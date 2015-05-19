@@ -16,12 +16,25 @@
         txt.prop("disabled", true);
     }
 // acciones scripts 
+    function updatePost(formulario) {
+        frm = serializeToJson(formulario.serializeArray());
+        frm.contenido = nicEditors.findEditor('editor').getContent();
+        frm.tags = $(".txtEtiquetas").tagsinput('items');
+        console.log("Formulario a enviar:", frm);
+        actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_modificarPost", frm, function (data) {
+            console.log("la data devuelta por el servidor es:", data);
+            $("#div_carga").hide();
+            if (data.estado) {
+                alert("Actualizado correctamente");
+            } else {
+                alert("Ocurrio un error");
+            }
+        });
+    }
     function frmNoticia(formulario) {
         frm = serializeToJson(formulario.serializeArray());
-        console.log("formulario a enviar es: ", frm);
         frm.contenido   = nicEditors.findEditor('editor').getContent();
         frm.tags        = $(".txtEtiquetas").tagsinput('items');
-        console.log("formulario a enviar es: ", frm);
         actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_publicarPost", frm, function (data) {
             $("#div_carga").hide();
             console.log("respuesta del servidor", data);

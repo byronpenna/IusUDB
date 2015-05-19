@@ -106,6 +106,33 @@ namespace IUSLibs.ADMINFE.Control.Noticias
             }
         #endregion
         #region "Acciones"
+            public bool sp_adminfe_noticias_modificarPost(Post postActualizar, int idUsuarioEjecutor,int idPagina)
+            {
+                SPIUS sp = new SPIUS("sp_adminfe_noticias_modificarPost");
+                sp.agregarParametro("titulo", postActualizar._titulo);
+                sp.agregarParametro("contenido", postActualizar._contenido);
+                sp.agregarParametro("idPost", postActualizar._idPost);
+                sp.agregarParametro("idUsuarioEjecutor",idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                bool retorno = false;
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        retorno = true;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return retorno;
+            }
             public Post sp_adminfe_noticias_publicarPost(Post postAgregar,int idUsuarioEjecutor,int idPagina)
             {
                 SPIUS sp = new SPIUS("sp_adminfe_noticias_publicarPost");

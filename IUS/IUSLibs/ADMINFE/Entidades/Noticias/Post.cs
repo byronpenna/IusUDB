@@ -65,13 +65,20 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             {
                 this._idPost = idPost;
             }
+            // para actualizar 
+                public Post(int idPost, string titulo, string contenido)
+                {
+                    this._titulo    = titulo;
+                    this._contenido = contenido;
+                    this._idPost    = idPost;
+                }
             // para agregar 
-            public Post(string titulo, string contenido, Usuario usu)
-            {
-                this._titulo    = titulo;
-                this._contenido = contenido;
-                this._usuario = usu;
-            }
+                public Post(string titulo, string contenido, Usuario usu)
+                {
+                    this._titulo    = titulo;
+                    this._contenido = contenido;
+                    this._usuario = usu;
+                }
         #endregion
     }
 }

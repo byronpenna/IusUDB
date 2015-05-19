@@ -64,8 +64,9 @@ namespace IUSBack.Controllers
                             ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                             ViewBag.editMode = true;
                             #region "Labels"
-                                ViewBag.titlePage = "Modificar noticia";
+                                ViewBag.titlePage   = "Modificar noticia";
                                 ViewBag.botonAccion = "Modificar";
+                                ViewBag.accion      = 0;
                             #endregion
                             #region "Valores"
                                 ViewBag.post        = datosPost["post"];
@@ -104,8 +105,9 @@ namespace IUSBack.Controllers
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.editMode    = false;
                         #region "Labels"
-                            ViewBag.titlePage = "Ingresar noticia";
-                            ViewBag.botonAccion = "Guardar";
+                            ViewBag.titlePage       = "Ingresar noticia";
+                            ViewBag.botonAccion     = "Guardar";
+                            ViewBag.accion          = 1;
                         #endregion
                         ViewBag.post = new Post();
                         return View("~/Views/Administracion/Noticias.cshtml");
@@ -222,6 +224,37 @@ namespace IUSBack.Controllers
                         respuesta = this.errorEnvioFrmJSON();
                     }
                 // return 
+                return Json(respuesta);
+            }
+            public ActionResult sp_adminfe_noticias_modificarPost()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                frm = this.getAjaxFrmWithOutValidate();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (frm != null && usuarioSession != null)
+                {
+                    try
+                    {
+                        Post postActualizar = new Post(this.convertObjAjaxToInt(frm["txtHdIdPost"]), frm["txtTitulo"].ToString(), frm["contenido"].ToString());
+                        bool actualizo = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", actualizo);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
                 return Json(respuesta);
             }
         #endregion
