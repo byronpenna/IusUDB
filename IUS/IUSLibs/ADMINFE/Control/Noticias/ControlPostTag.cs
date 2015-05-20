@@ -17,6 +17,39 @@ namespace IUSLibs.ADMINFE.Control.Noticias
     public class ControlPostTag:PadreLib
     {
         #region "acciones"
+            public List<Tag> sp_adminfe_noticias_updateTag(string tags,int idPost,int idUsuarioEjecutor,int idPagina) {
+                List<Tag> tagsList = null; Tag objTag;
+                SPIUS sp = new SPIUS("sp_adminfe_noticias_updateTag");
+                sp.agregarParametro("tags", tags);
+                sp.agregarParametro("idPost", idPost);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            tagsList = new List<Tag>();
+                            foreach (DataRow row in tb[1].Rows)
+                            {
+                                objTag = new Tag((int)row["idTag"], row["tag"].ToString());
+                                tagsList.Add(objTag);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return tagsList;
+            }
             public PostTag sp_adminfe_noticias_agregarTag(int idPost,string tag, int idUsuarioEjecutor,int idPagina)
             {
                 SPIUS sp = new SPIUS("sp_adminfe_noticias_agregarTag");
