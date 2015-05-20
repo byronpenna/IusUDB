@@ -37,7 +37,11 @@
                 $(".txtEtiquetas").val(txtTag);
                 alert("Actualizado correctamente");
             } else {
-                alert("Ocurrio un error");
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         });
     }

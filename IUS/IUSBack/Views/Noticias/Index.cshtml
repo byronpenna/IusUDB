@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- plugins -->
         <!--Data table-->
@@ -17,10 +18,13 @@
 }
 @{
     List<Post> posts = (List<Post>)ViewBag.posts;
+    Permiso permiso = (Permiso)ViewBag.permiso;
 }
 <h2>Noticias</h2>
-<a href="@Url.Action("IngresarNoticia","Noticias")">
-    Agregar entrada
+<a href="@Url.Action("IngresarNoticia","Noticias")" >
+    <button class="btn" type="button" @permiso.stringEditar>
+        Agregar entrada
+    </button>
 </a>
 <table class="table tbPosts">
     <thead>
@@ -49,10 +53,10 @@
                     <td class="tdContenido">@post._contenido</td>
                     <td>@post._usuario._usuario</td>
                     <td>
-                        <button class="btn btnPublicacion">
+                        <button class="btn btnPublicacion" @permiso.stringEditar>
                             @post.getTxtEstado
                         </button>
-                        <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") ">
+                        <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
                             Editar
                         </a>
                     </td>

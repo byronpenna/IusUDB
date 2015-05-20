@@ -33,6 +33,7 @@ namespace IUSBack.Controllers
                     if (permisos != null && permisos._ver)
                     {
                         ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.permiso = permisos;
                         List<Post> posts = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
                         ViewBag.posts = posts;
                         return View();
@@ -53,7 +54,7 @@ namespace IUSBack.Controllers
                 if (usuarioSession != null)
                 {
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver)
+                    if (permisos != null && permisos._ver && permisos._editar)
                     {
                         try
                         {
@@ -97,7 +98,7 @@ namespace IUSBack.Controllers
                 if (usuarioSession != null)
                 {
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver)
+                    if (permisos != null && permisos._ver && permisos._crear)
                     {
                         List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
                         ViewBag.permiso     = permisos;
