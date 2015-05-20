@@ -19,12 +19,22 @@
     function updatePost(formulario) {
         frm = serializeToJson(formulario.serializeArray());
         frm.contenido = nicEditors.findEditor('editor').getContent();
-        frm.tags = $(".txtEtiquetas").tagsinput('items');
+        frm.tags = $(".txtEtiquetas").val();
         console.log("Formulario a enviar:", frm);
         actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_modificarPost", frm, function (data) {
             console.log("la data devuelta por el servidor es:", data);
             $("#div_carga").hide();
             if (data.estado) {
+                tags = data.tags;
+                txtTag = "";
+                $.each(tags, function (i, val) {
+                    if (i == 0) {
+                        txtTag += val._strTag;
+                    } else {
+                        txtTag += "," + val._strTag;
+                    }
+                });
+                $(".txtEtiquetas").val(txtTag);
                 alert("Actualizado correctamente");
             } else {
                 alert("Ocurrio un error");
@@ -42,7 +52,11 @@
                 alert("Noticia agregada correctamente");
                 window.location = RAIZ + "Noticias";
             } else {
-                alert("Ocurrio un error");
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         });
     };

@@ -226,7 +226,8 @@ namespace IUSBack.Controllers
                 // return 
                 return Json(respuesta);
             }
-            public ActionResult sp_adminfe_noticias_modificarPost()
+            #region "Modificar"
+                public ActionResult sp_adminfe_noticias_modificarPost()
             {
                 Dictionary<object, object> frm, respuesta = null;
                 frm = this.getAjaxFrmWithOutValidate();
@@ -235,10 +236,14 @@ namespace IUSBack.Controllers
                 {
                     try
                     {
-                        Post postActualizar = new Post(this.convertObjAjaxToInt(frm["txtHdIdPost"]), frm["txtTitulo"].ToString(), frm["contenido"].ToString());
-                        bool actualizo = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
+                        int idPost          = this.convertObjAjaxToInt(frm["txtHdIdPost"]);
+                        Post postActualizar = new Post(idPost, frm["txtTitulo"].ToString(), frm["contenido"].ToString());
+                        string tags         = frm["tags"].ToString();
+                        bool actualizo      = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
+                        List<Tag> tagList   = this._model.sp_adminfe_noticias_updateTag(tags, idPost, usuarioSession._idUsuario, this._idPagina);
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", actualizo);
+                        respuesta.Add("tags", tagList);
                     }
                     catch (ErroresIUS x)
                     {
@@ -257,6 +262,8 @@ namespace IUSBack.Controllers
                 }
                 return Json(respuesta);
             }
+                
+            #endregion
         #endregion
     }
 }

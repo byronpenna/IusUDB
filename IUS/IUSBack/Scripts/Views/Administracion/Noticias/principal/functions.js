@@ -5,6 +5,7 @@
         if (data.estado) {
             tr.find(".btnPublicacion").empty().append(data.post.getTxtEstado);
         } else {
+            //alert(data.error.Message);
             alert("Ocurrio un error");
         }
     })

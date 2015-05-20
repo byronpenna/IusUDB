@@ -1,10 +1,16 @@
 ﻿@using IUSLibs.ADMINFE.Entidades.Noticias
 @section estilosPersonalizados{
+    <!-- plugins -->
+        <!--Data table-->
+            <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/media.css" />
 }
 @section scriptsPersonalizados{
+    <!-- plugins -->
+        <!-- Data table -->
+            <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/Administracion/Noticias/principal/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/principal/functions.js"></script>
@@ -16,7 +22,7 @@
 <a href="@Url.Action("IngresarNoticia","Noticias")">
     Agregar entrada
 </a>
-<table class="table">
+<table class="table tbPosts">
     <thead>
         <tr>
             <th class="hidden"></th>
@@ -56,7 +62,7 @@
         else
         {
             <tr>
-                <td>No hay posts para mostrar</td>
+                <td class="text-center">No hay posts para mostrar</td>
                 <td class="text-center" colspan="6"></td>
             </tr>
         }

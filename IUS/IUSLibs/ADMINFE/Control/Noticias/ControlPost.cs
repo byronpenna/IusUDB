@@ -36,6 +36,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             {
                                 usuarioCreador = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
                                 post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(), (bool)row["estado"], usuarioCreador);
+                                post._contenido = post._contenido.Replace("&nbsp;", " ");
                                 posts.Add(post);
                             }
                         }
@@ -153,7 +154,6 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             postRegresar = new Post((int)row["idPost"]);
 
                         }
-                        
                     }
                 }
                 catch (ErroresIUS x)

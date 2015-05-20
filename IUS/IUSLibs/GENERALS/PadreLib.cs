@@ -5,7 +5,7 @@ using System.Text;
 // manejo de datos
     using System.Data;
     using System.Data.SqlClient;
-    
+    using IUSLibs.LOGS;
 namespace IUSLibs.GENERALS
 {
     public class PadreLib
@@ -72,8 +72,19 @@ namespace IUSLibs.GENERALS
                         }
                         else
                         {
+                            //ErroresIUS x = new ErroresIUS()
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow rowError = tb[0].Rows[0];
+                                ErroresIUS errores = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorMessage"].ToString());
+                                throw errores;
+                            }
                             return false;
                         }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
                     }
                     catch (Exception)
                     {

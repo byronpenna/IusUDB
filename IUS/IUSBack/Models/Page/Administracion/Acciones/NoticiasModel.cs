@@ -184,6 +184,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                 toReturn.Add("postTags", postsTags);
                 return toReturn;
             }
+            public List<Tag> sp_adminfe_noticias_updateTag(string tags, int idPost, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return this._controlPostTag.sp_adminfe_noticias_updateTag(tags, idPost,idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
         #endregion
     }
 }
