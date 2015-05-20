@@ -52,16 +52,23 @@ namespace IUSLibs.SEC.Control
                     sp.agregarParametro("idPagina", idPagina);
                     try
                     {
-                        DataSet ds = sp.EjecutarProcedimiento();
-                        DataTableCollection tables = this.getTables(ds);
-                        if (tables != null)
+                        //DataSet ds = sp.EjecutarProcedimiento();
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb)) {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow rowPersona = tb[1].Rows[0];
+                                personaAgregada = new Persona((int)rowPersona["idPersona"], rowPersona["nombres"].ToString(), rowPersona["apellidos"].ToString(), (DateTime)rowPersona["fecha_nacimiento"]);
+                            }
+                        }
+                        /*if (tables != null)
                         {
                             if ((int)tables[0].Rows[0]["estadoInsert"] == 1)
                             {
                                 DataRow rowPersona = tables[1].Rows[0];
                                 personaAgregada = new Persona((int)rowPersona["idPersona"], rowPersona["nombres"].ToString(), rowPersona["apellidos"].ToString(), (DateTime)rowPersona["fecha_nacimiento"]);
                             }
-                        }
+                        }*/
                     }
                     catch (ErroresIUS x)
                     {

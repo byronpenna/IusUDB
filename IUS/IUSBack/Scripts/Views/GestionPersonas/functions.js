@@ -114,8 +114,13 @@
                 clearTr(tr);
                 //tbody.prepend(newTr);
                 $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
-                //updateAllDataTable($(".tablePersona"));
-                
+                //updateAllDataTable($(".tablePersona"));   
+            } else {
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert(data.error.Message);
+                }
             }
         });
     }

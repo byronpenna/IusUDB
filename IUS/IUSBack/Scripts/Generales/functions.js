@@ -137,6 +137,44 @@
         }
     }
 // generics
+    function clockHora(txtHora) {
+        arrHora = txtHora.split(":");
+        console.log(arrHora);
+        arrHoraFinal = arrHora[2].split(" ");
+        segundos = arrHoraFinal[0];
+        ind = arrHoraFinal[1];
+        tiempo = { hora: parseInt(arrHora[0]), minuto: parseInt(arrHora[1]), segundo: parseInt(segundos),indicador:ind }
+        tiempo.segundo++;
+        if (tiempo.segundo > 60) {
+            tiempo.minuto++;
+            tiempo.segundo = 0;
+            if (tiempo.minuto > 60) {
+                tiempo.minuto = 0;
+                tiempo.hora++;
+                if (tiempo.hora > 12) {
+                    tiempo.hora = 1;
+                    if (indicador == "p.m.") {
+                        tiempo.indicador = "a.m.";
+                    } else {
+                        tiempo.indicador = "p.m.";
+                    }
+                }
+            }
+        }
+        minutos = tiempo.minuto; horas = tiempo.hora; segundos = tiempo.segundo;
+        console.log(tiempo);
+        if (minutos < 9) {
+            minutos = "0" + minutos;
+        }
+        if (horas < 9) {
+            horas = "0" + horas;
+        }
+        if (segundos < 9) {
+            segundos = "0" + segundos;
+        }
+        txtTiempo = horas + ":" + minutos + ":" + segundos + " " + tiempo.indicador;
+        return txtTiempo;
+    }
     function putOnDivEditable(text) {
         var sel, range, html;
         if (window.getSelection) {

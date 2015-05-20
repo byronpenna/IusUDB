@@ -4,6 +4,11 @@
             "bDestroy": true,
             "bSort": false
         });
+        setInterval(function () {
+            //console.log("entro");
+            txtTiempo = $(".txtHoraActual").text();
+            $(".txtHoraActual").empty().append(clockHora(txtTiempo));
+        }, 1000);
     // acciones sub tabla 
         // desasociar rol 
             $(document).on("click", ".btnDesasociar", function () {

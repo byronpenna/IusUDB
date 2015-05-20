@@ -86,7 +86,7 @@ namespace IUSLibs.GENERALS
                     {
                         throw x;
                     }
-                    catch (Exception)
+                    catch (Exception x)
                     {
                         return false;
                     }

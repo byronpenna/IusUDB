@@ -105,7 +105,7 @@ namespace IUSBack.Controllers
                             {
                                 permiso = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
                                 persona = new Persona(this.convertObjAjaxToInt(frm["cbPersona"]));
-                                usuarioAgregar = new Usuario(frm["txtEditUsuario"].ToString(), DateTime.Today, true,persona, frm["txtEditUsuario"].ToString()); // contraseña por defecto su nombre de usuario
+                                usuarioAgregar = new Usuario(frm["txtEditUsuario"].ToString(), DateTime.Now, true,persona, frm["txtEditUsuario"].ToString()); // contraseña por defecto su nombre de usuario
                                 usuarioAgregado = this._model.sp_sec_agregarUsuario(usuarioAgregar, usuarioSession._idUsuario, this._idPagina);
                                 if (usuarioAgregado != null)
                                 {

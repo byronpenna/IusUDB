@@ -17,8 +17,7 @@
     List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
     List<Persona> personas = (List<Persona>)ViewBag.personas;
     Permiso permiso = (Permiso)ViewBag.permiso;
-    DateTime hoy = DateTime.Today;
-    
+    DateTime hoy = DateTime.Now;
 }
 <h2 class="text-center">Gestion de usuarios</h2>
 <table class="table table-hover tableUsuarios">
@@ -64,7 +63,10 @@
             <td>
                 <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario" />
             </td>
-            <td>@hoy.ToString()</td>
+            <td>
+                <span class="txtDateActual">@String.Format("{0:dd/MM/yyyy}",hoy)</span>
+                <span class="txtHoraActual">@String.Format("{0:hh:mm:ss tt}",hoy)</span>
+            </td>
             <td>
                 Activo
             </td>
