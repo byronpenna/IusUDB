@@ -225,6 +225,8 @@
     <Content Include="Content\images\propuesta4\icons\twitterRombo.png" />
     <Content Include="Content\images\propuesta4\lock.png" />
     <Content Include="Content\images\propuesta4\logopng.png" />
+    <Content Include="Content\ius_theme\generals\media.css" />
+    <Content Include="Content\ius_theme\generals\style.css" />
     <Content Include="Content\ius_theme\views\propuesta1menu\media.css" />
     <Content Include="Content\ius_theme\views\propuesta1menu\style.css" />
     <Content Include="Content\ius_theme\views\propuesta1\media.css" />
@@ -396,7 +398,6 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\propuestas\propuesta1.cshtml" />
@@ -406,11 +407,11 @@
     <Content Include="Views\Errors\DBNotAccess.cshtml" />
     <Content Include="Views\propuestas\propuesta3.cshtml" />
     <Content Include="Views\propuestas\propuesta4.cshtml" />
+    <Content Include="Views\Shared\menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\propuesta1\" />
-    <Folder Include="Content\ius_theme\generals\" />
     <Folder Include="Content\ius_theme\views\home\" />
     <Folder Include="Models\page\home\forms\" />
   </ItemGroup>

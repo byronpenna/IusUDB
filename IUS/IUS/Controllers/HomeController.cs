@@ -55,7 +55,7 @@ namespace IUS.Controllers
             {
                 foreach (LlaveIdioma traduccion in traducciones)
                 {
-                    ViewData[traduccion.llave.llave] = traduccion.traduccion;
+                    //ViewData[traduccion.llave.llave] = traduccion.traduccion;
                 }
             }
             return View();

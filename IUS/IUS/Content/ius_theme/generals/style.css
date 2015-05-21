@@ -1,0 +1,53 @@
+﻿/*
+    pruebas
+    */
+.pink{
+    background:pink;
+}
+.green{
+    background:green;
+}
+.yellow{
+    background:yellow;
+}
+/*
+    Generales
+    */
+.paddingNull{
+    padding:0;
+}
+/*
+    Header
+    */
+header{
+    margin-top:2%;
+}
+nav ul{
+    padding:0;
+    margin:0;
+}
+nav ul li{
+    display:inline-block;
+    width:15%;
+    margin:0;
+    padding-left:2%;
+    padding-right:2%;
+    vertical-align:middle;
+    text-align:center;
+}
+nav ul li a{
+    color:white;
+    font-weight:bold;
+}
+nav ul li {
+    font-size:1em;
+}
+.menu{
+    background:red;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+    padding:0;
+    padding-top:20px;
+    padding-bottom:20px;
+    
+}
