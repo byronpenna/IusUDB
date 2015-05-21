@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.ADMINFE.Entidades
+@using IUSLibs.SEC.Entidades
 @section scriptsPersonalizados{
     <!-- plugins -->
         <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css" />
@@ -19,6 +20,7 @@
     Configuracion config            = (Configuracion)ViewBag.config;
     List<Valor> valores             = (List<Valor>) ViewBag.valores;
     List<SliderImage> slider        = (List<SliderImage>)ViewBag.slider;
+    Permiso permiso                 = (Permiso)ViewBag.permiso;
 }
 <h2>Configuracion del sitio web</h2>
 <div id="horizontalTab">
@@ -43,7 +45,7 @@
                         <textarea class="form-control" name="txtAreaMision" id="txtAreaMision">@config._mision</textarea>
                         <label>Historia</label>
                         <textarea class="form-control" name="txtAreaHistoria" id="txtAreaHistoria">@config._historia</textarea>
-                        <button class="btn">Actualizar</button>
+                        <button class="btn" @permiso.stringEditar>Actualizar</button>
                     }
                     else
                     {
@@ -60,7 +62,7 @@
                             <input type="text" name="txtValores" class="form-control txtValores soloLetras" />
                         </div>
                         <div class="col-lg-2">
-                            <button type="button" class="btn btnAddValor">Agregar</button>
+                            <button type="button" class="btn btnAddValor" @permiso.stringCrear>Agregar</button>
                         </div>
                     </div>
                     <table class="table tableValores">
@@ -80,7 +82,15 @@
                                         </td>
                                         <td>@valor._valor</td>
                                         <td>
-                                            <i class='fa fa-times pointer iconQuitarValor'></i>
+                                            @if (permiso._eliminar)
+                                            {
+                                                <i class='fa fa-times pointer iconQuitarValor'></i>    
+                                            }
+                                            else
+                                            {
+                                                <span>No posee permiso para remover</span>
+                                            }
+                                            
                                         </td>
                                     </tr>
                                 }
@@ -98,29 +108,31 @@
         </div>
     </div>
     <div id="tab-2" class="row seccion tab">
-        <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data" >
-            <input type="file" id="file1" name="file1" multiple="multiple" />
-            <input type="submit" value="enviar" />
-        </form>
-        
-            <div class="divImgSlider">
-                @if (slider != null)
+        @if (@permiso._crear)
+        {
+            <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data" >
+                <input type="file" id="file1" name="file1" multiple="multiple" />
+                <input type="submit" value="enviar" />
+            </form>    
+        }
+        <div class="divImgSlider">
+            @if (slider != null)
+            {
+                foreach (SliderImage image in slider)
                 {
-                    foreach (SliderImage image in slider)
-                    {
-                        <div class="col-lg-6 divImgIndividual">
-                            <input type="hidden" name="txtHdIdSliderImage" class="txtHdIdSliderImage" value="@image._idSliderImage" />
-                            <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
-                            <button class="btn btn-danger btnEliminarImage">
-                                Eliminar
-                            </button>
-                            <button class="btn btn-warning btnDeshabilitarSliderImage" estado="@Convert.ToInt32(image._estado)">
-                                @image.textoEstado
-                            </button>
-                        </div>
-                    }
+                    <div class="col-lg-6 divImgIndividual">
+                        <input type="hidden" name="txtHdIdSliderImage" class="txtHdIdSliderImage" value="@image._idSliderImage" />
+                        <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
+                        <button class="btn btn-danger btnEliminarImage" @permiso.stringEliminar>
+                            Eliminar
+                        </button>
+                        <button class="btn btn-warning btnDeshabilitarSliderImage" estado="@Convert.ToInt32(image._estado)" @permiso.stringEditar>
+                            @image.textoEstado
+                        </button>
+                    </div>
                 }
-            </div>
+            }
+        </div>
         
     </div>
 </div>
