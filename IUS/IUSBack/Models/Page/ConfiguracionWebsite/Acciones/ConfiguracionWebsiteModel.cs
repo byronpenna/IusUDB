@@ -86,20 +86,20 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                         }
                     }
                     public Configuracion sp_adminfe_actualizarInfoConfig(Configuracion configActualizar,int idUsuarioEjecutor,int idPagina)
-                {
-                    try
                     {
-                        return this._controlConfig.sp_adminfe_actualizarInfoConfig(configActualizar, idUsuarioEjecutor, idPagina);
+                        try
+                        {
+                            return this._controlConfig.sp_adminfe_actualizarInfoConfig(configActualizar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
                 #endregion
                 #region "slider"
                     public SliderImage sp_adminfe_saveImageSlider(SliderImage imageAgregar,int idUsuarioEjecutor,int idPagina)

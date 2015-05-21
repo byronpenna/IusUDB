@@ -35,7 +35,11 @@
             if (data.estado) {
                 section.remove();
             } else {
-                alert("Ocurrio un error");
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         });
     }
@@ -48,7 +52,12 @@
                 btn.empty().text(data.image.textoEstado);
                 btn.attr("estado", data.image._estado);
             } else {
-                alert("Ocurrio un error");
+                //alert("Ocurrio un error");
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         });
     }
@@ -61,6 +70,12 @@
                 console.log("div a agregar es:", div);
                 $(".divImgSlider").prepend(div);
                 section[0].reset();
+            } else {
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         })
     }
@@ -70,10 +85,14 @@
         actualizarCatalogo(RAIZ + "/ConfiguracionWebsite/sp_adminfe_eliminarValoresConfig", frm, function (data) {
             if (data.estado) {
                 tr.remove(); // por el momento que no es dataTable
-
             } else {
-                console.log("el error es: ", data.error);
-                alert("ocurrio un error");
+                //console.log("el error es: ", data.error);
+                //alert("ocurrio un error");
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         });
     }
@@ -91,8 +110,13 @@
                     tbody.empty().append(newTr);
                 }
             } else {
-                console.log("obj error es: ", data.error);
-                alert("ocurrio un error");
+                //console.log("obj error es: ", data.error);
+                //alert("ocurrio un error");
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         });
     }
@@ -106,8 +130,13 @@
                 $("#txtAreaMision").val(configuracion._mision);
                 $("#txtAreaHistoria").val(configuracion._historia);
             } else {
-                console.log("error", data.error);
-                alert("Ocurrio un error");
+                //console.log("error", data.error);
+                //alert("Ocurrio un error");
+                if (data.error !== undefined) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
             }
         })
     }

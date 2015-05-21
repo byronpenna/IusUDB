@@ -115,6 +115,7 @@ namespace IUSBack.Controllers
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
                                     respuesta.Add("archivos", imageAgregada);
+                                    //respuesta.Add("archivos", "bla bla bla");
                                 }
                                 else
                                 {
@@ -138,7 +139,7 @@ namespace IUSBack.Controllers
                             ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                             respuesta = this.errorTryControlador(2, error);
                         }
-                        return Json(respuesta);
+                        return Json(respuesta);                        
                     }
                     public ActionResult sp_adminfe_cambiarEstado()
                     {
@@ -227,7 +228,7 @@ namespace IUSBack.Controllers
                                 }
                             }catch(ErroresIUS x){
                                 ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber);
-                                respuesta = this.errorTryControlador(1,x);
+                                respuesta = this.errorTryControlador(1,error);
                             }catch(Exception x){
                                 ErroresIUS error = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
                                 respuesta = this.errorTryControlador(2,error);

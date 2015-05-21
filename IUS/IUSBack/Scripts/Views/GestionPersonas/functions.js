@@ -35,7 +35,7 @@
                     </div>\
                     <div class='normalMode'>\
                         <button class='btn btn-xs btnEditar' >Editar</button>\
-                        <button class='btn btn-xs'>Eliminar</button>\
+                        <button class='btn btn-xs btnEliminar'>Eliminar</button>\
                     </div>\
                 </td>\
             </tr>\
