@@ -22,6 +22,7 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try{
                     traducciones = modeloHome.getTraduccion();
+                    ViewBag.idiomas = modeloHome.getIdiomas();
                 }catch(ErroresIUS x){
                     ErrorsController error = new ErrorsController();
                     var obj = error.redirectToError(x);

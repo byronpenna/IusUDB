@@ -25,36 +25,36 @@ namespace IUSLibs.TRL.Control
         #endregion
         #region "funciones publicas"
             public List<Idioma> sp_trl_getAllIdiomas(int idUsuarioEjecutor,int idPagina)
-        {
-            List<Idioma> idiomas = null;
-            Idioma idioma; // clase generica para la lista
-            SPIUS sp = new SPIUS("sp_trl_getAllIdiomas");
-            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-            sp.agregarParametro("idPagina", idPagina);
-            try
             {
-                DataSet ds = sp.EjecutarProcedimiento();
-                if(!this.DataSetDontHaveTable(ds))
-                if (ds.Tables[0].Rows.Count > 0)
+                List<Idioma> idiomas = null;
+                Idioma idioma; // clase generica para la lista
+                SPIUS sp = new SPIUS("sp_trl_getAllIdiomas");
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
                 {
-                    idiomas = new List<Idioma>();
-                    foreach (DataRow row in ds.Tables[0].Rows)
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if(!this.DataSetDontHaveTable(ds))
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        idioma = new Idioma((int)row["idIdioma"],row["idioma"].ToString(),row["lang"].ToString(),row["charset"].ToString());
-                        idiomas.Add(idioma);
+                        idiomas = new List<Idioma>();
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            idioma = new Idioma((int)row["idIdioma"],row["idioma"].ToString(),row["lang"].ToString(),row["charset"].ToString());
+                            idiomas.Add(idioma);
+                        }
                     }
                 }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return idiomas;
             }
-            catch (ErroresIUS x)
-            {
-                throw x;
-            }
-            catch (Exception x)
-            {
-                throw x;
-            }
-            return idiomas;
-        }
         #endregion 
     }
 }

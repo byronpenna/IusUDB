@@ -1,4 +1,8 @@
-﻿<header>
+﻿@using IUSLibs.TRL.Entidades
+@{
+    List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
+}
+<header>
     <div class="row marginNull">
         <div class="col-lg-2">
             <img src="~/Content/images/generales/logo_IUS.jpg" />
@@ -59,6 +63,13 @@
                 <li>
                     <select class="form-control">
                         <option value="-1">Seleccione idioma</option>
+                        @if (idiomas != null)
+                        {
+                            foreach (Idioma idioma in idiomas)
+                            {
+                                <option value="@idioma._idioma">@idioma._idioma</option>
+                            }
+                        }
                     </select>
                 </li>
             </ul>
