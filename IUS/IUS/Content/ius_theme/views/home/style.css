@@ -1,0 +1,16 @@
+﻿/*
+    slider
+    */
+.slider img{
+    width:100%;
+}
+.navs{
+    position:absolute;
+    top:50%;
+}
+.slider{
+    position:relative;
+}
+.navBtn{
+    font-size:3em;
+}

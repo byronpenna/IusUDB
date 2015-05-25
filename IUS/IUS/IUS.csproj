@@ -201,6 +201,7 @@
     <Content Include="Content\fonts\font-awesome\css\font-awesome.css" />
     <Content Include="Content\fonts\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\lato\OFL.txt" />
     <Content Include="Content\images\generales\baner.jpg" />
     <Content Include="Content\images\generales\bannerDonBosc.jpg" />
     <Content Include="Content\images\generales\logo_IUS.jpg" />
@@ -225,8 +226,11 @@
     <Content Include="Content\images\propuesta4\icons\twitterRombo.png" />
     <Content Include="Content\images\propuesta4\lock.png" />
     <Content Include="Content\images\propuesta4\logopng.png" />
+    <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
     <Content Include="Content\ius_theme\generals\style.css" />
+    <Content Include="Content\ius_theme\views\home\media.css" />
+    <Content Include="Content\ius_theme\views\home\style.css" />
     <Content Include="Content\ius_theme\views\propuesta1menu\media.css" />
     <Content Include="Content\ius_theme\views\propuesta1menu\style.css" />
     <Content Include="Content\ius_theme\views\propuesta1\media.css" />
@@ -340,6 +344,18 @@
     <Content Include="Content\fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\fonts\font-awesome\scss\_variables.scss" />
     <Content Include="Content\fonts\circula\circula-medium.otf" />
+    <Content Include="Content\fonts\track\Track Italic.otf" />
+    <Content Include="Content\fonts\track\Track.otf" />
+    <Content Include="Content\fonts\lato\Lato-Black.ttf" />
+    <Content Include="Content\fonts\lato\Lato-BlackItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Bold.ttf" />
+    <Content Include="Content\fonts\lato\Lato-BoldItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Hairline.ttf" />
+    <Content Include="Content\fonts\lato\Lato-HairlineItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Italic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Light.ttf" />
+    <Content Include="Content\fonts\lato\Lato-LightItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Regular.ttf" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <None Include="Scripts\Asp_default\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Asp_default\jquery-1.8.2.js" />
@@ -412,7 +428,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\propuesta1\" />
-    <Folder Include="Content\ius_theme\views\home\" />
     <Folder Include="Models\page\home\forms\" />
   </ItemGroup>
   <ItemGroup>

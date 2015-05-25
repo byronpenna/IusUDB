@@ -1,3 +1,19 @@
-﻿<h1>@ViewData["tituloPrincipal"]</h1>
+﻿@section estilosPersonalizados{
+    <link  rel="stylesheet" href="~/Content/ius_theme/views/home/style.css"/>    
+    <link rel="stylesheet" href="~/Content/ius_theme/views/home/media.css" />   
+}
+<!--
+<h1>@ViewData["tituloPrincipal"]</h1>
 <p>@ViewData["parrafo"]</p>
-este es la ius
+    -->
+<div class="slider">
+    <div class="navs col-lg-12">
+        <div class="col-lg-1 pointer">
+            <i class="fa fa-chevron-left navBtn"></i>
+        </div>
+        <div class="col-lg-offset-10 col-lg-1 pointer">
+            <i class="fa fa-chevron-right navBtn"></i>
+        </div>
+    </div>
+    <img src="~/Content/images/generales/slide.png"/>
+</div>

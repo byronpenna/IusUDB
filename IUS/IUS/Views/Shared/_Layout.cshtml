@@ -6,6 +6,7 @@
     <meta charset="@ViewData["charset"]" />
     @Scripts.Render("~/bundles/scriptsGenerales")
     @Styles.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" href="~/Content/ius_theme/generals/fonts.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/generals/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/generals/media.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" />
@@ -14,8 +15,7 @@
     
 </head>
 <body>
-    @Html.Partial("menu");
-
+    @Html.Partial("menu")
     @RenderBody()
 </body>
     
