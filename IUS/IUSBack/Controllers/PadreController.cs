@@ -54,7 +54,7 @@ namespace IUSBack.Controllers
                 }
             #endregion 
             #region "manejo de errores"
-        public Dictionary<Object, Object> errorTryControlador(int errorType,object obj)
+                public Dictionary<Object, Object> errorTryControlador(int errorType,object obj)
                 {
                     Dictionary<Object, Object> retorno = new Dictionary<object, object>();
                     retorno.Add("estado", false);
@@ -65,7 +65,7 @@ namespace IUSBack.Controllers
                 public Dictionary<Object,Object> errorEnvioFrmJSON(){
                     Dictionary<Object,Object> toReturn = new Dictionary<Object, Object>();
                     toReturn.Add("estado", false);
-                    toReturn.Add("errorType",3);
+                    toReturn.Add("errorType",4);
                     toReturn.Add("error", "Formulario no se envio correctamente");
                     return toReturn;
                 }
@@ -79,11 +79,29 @@ namespace IUSBack.Controllers
                 }
                 return usuario;
             }
-            
-            public Dictionary<Object, Object> getAjaxFrm()
-            {
-                return this.getAjaxFrm("form");
-            }
+            #region "getAjaxfrm"
+                public Dictionary<Object, Object> getAjaxFrm()
+                {
+                    return this.getAjaxFrm("form");
+                }
+                public Dictionary<Object, Object> getAjaxFrm(String txtObj)
+                {
+                    Dictionary<Object, Object> toReturn = null;
+                    String frmText = Request.Form[txtObj];
+                    if (frmText != null || frmText != "")
+                    {
+                        try
+                        {
+                            toReturn = this._jss.Deserialize<Dictionary<Object, Object>>(frmText);
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    return toReturn;
+                }
+            #endregion
             [ValidateInput(false)]
             public Dictionary<Object, Object> getAjaxFrmWithOutValidate()
             {
@@ -109,21 +127,6 @@ namespace IUSBack.Controllers
                     }
                     catch (Exception x)
                     {
-                        throw x;
-                    }
-                }
-                return toReturn;
-            }
-            public Dictionary<Object, Object> getAjaxFrm(String txtObj)
-            {
-                Dictionary<Object, Object> toReturn = null;
-                String frmText = Request.Form[txtObj];
-                if (frmText != null || frmText != "")
-                {
-                    try
-                    {
-                        toReturn = this._jss.Deserialize< Dictionary<Object, Object>>(frmText);
-                    }catch(Exception x){
                         throw x;
                     }
                 }
@@ -185,25 +188,25 @@ namespace IUSBack.Controllers
                     }
                 #endregion
                 #region "simples"
-                public DateTime convertObjAjaxToDateTime(string date, string hora)
-                            {
-                                string fechaCompleto = date+" "+hora;
-                                DateTime toReturn;
-                                try
-                                {
-                                    toReturn = Convert.ToDateTime(Convert.ToDateTime(fechaCompleto).ToString("yyyy-MM-dd HH:mm:ss"));
-                                }
-                                catch (Exception x)
-                                {
-                                    throw x;
-                                }
-                                return toReturn;
-                            }
-                        public int convertObjAjaxToInt(object obj)
+                    public DateTime convertObjAjaxToDateTime(string date, string hora)
+                    {
+                        string fechaCompleto = date+" "+hora;
+                        DateTime toReturn;
+                        try
                         {
-                            return Convert.ToInt32(obj.ToString());
+                            toReturn = Convert.ToDateTime(Convert.ToDateTime(fechaCompleto).ToString("yyyy-MM-dd HH:mm:ss"));
                         }
-                    #endregion
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                        return toReturn;
+                    }
+                    public int convertObjAjaxToInt(object obj)
+                    {
+                        return Convert.ToInt32(obj.ToString());
+                    }
+                #endregion
             #endregion
         #endregion
         #region "contructores"

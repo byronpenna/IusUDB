@@ -186,7 +186,6 @@
     }
     function cbPagina(frm) {
         actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_getLlaveFromPageAndIdioma", frm, function (data) {
-            
             if (data.estado) {
                 options = fillSelectLlave(data.Llaves);
                 $(".cbLlave").empty().append(options);

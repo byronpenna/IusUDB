@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li class="liSeach">
-                        <input class="form-control" placeholder="Buscar en pagina" />
+                        <input class="form-control " placeholder="Buscar en pagina" />
                     </li>
                 </ul>
             </nav>
@@ -61,13 +61,13 @@
                     </a>
                 </li>
                 <li>
-                    <select class="form-control">
+                    <select class="form-control cbIdioma">
                         <option value="-1">Seleccione idioma</option>
                         @if (idiomas != null)
                         {
                             foreach (Idioma idioma in idiomas)
                             {
-                                <option value="@idioma._idioma">@idioma._idioma</option>
+                                <option value="@idioma._idIdioma">@idioma._idioma</option>
                             }
                         }
                     </select>

@@ -34,9 +34,10 @@ namespace IUS.Models.page.home.acciones
                 }
                 return idiomas;
             }
-            public List<LlaveIdioma> getTraduccion()
+            public List<LlaveIdioma> getTraduccion(string lang)
             {
-                ControlLlaveIdioma control = new ControlLlaveIdioma(this.idPagina,this.lang);
+                lang = this.getStandarLang(lang);
+                ControlLlaveIdioma control = new ControlLlaveIdioma(this.idPagina,lang);
                 List<LlaveIdioma> traduccion;
                 try
                 {
@@ -52,19 +53,54 @@ namespace IUS.Models.page.home.acciones
                 }
                 return traduccion;
             }
-        #endregion
-        #region "Contructores"
-        public HomeModel(string pidIdioma)
-        {
-            //this.lang = pidIdioma;
-            this._controlIdioma = new ControlIdioma();
-          int index = pidIdioma.IndexOf('-');
-            if(index > 0){
-                this.lang = pidIdioma.Substring(0,index);
-            }else{
-                this.lang = pidIdioma;
+            public Idioma sp_trl_getIdiomaFromIds(int idIdioma)
+            {
+                try
+                {
+                    return this._controlIdioma.sp_trl_getIdiomaFromIds(idIdioma);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
             }
-        }
+            #region "genericas"
+                public string getStandarLang(string lang)
+                {
+                    this._controlIdioma = new ControlIdioma();
+                    int index = lang.IndexOf('-');
+                    if (index > 0)
+                    {
+                        this.lang = lang.Substring(0, index);
+                    }
+                    else
+                    {
+                        this.lang = lang;
+                    }
+                    return this.lang;
+                }
+            #endregion
+        #endregion
+            #region "Contructores"
+            public HomeModel()
+            {
+                this._controlIdioma = new ControlIdioma();
+            }
+            public HomeModel(string pidIdioma)
+            {
+                //this.lang = pidIdioma;
+                this._controlIdioma = new ControlIdioma();
+                int index = pidIdioma.IndexOf('-');
+                if(index > 0){
+                    this.lang = pidIdioma.Substring(0,index);
+                }else{
+                    this.lang = pidIdioma;
+                }
+            }
         #endregion
         
     }
