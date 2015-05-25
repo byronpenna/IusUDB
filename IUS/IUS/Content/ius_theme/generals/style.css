@@ -94,3 +94,43 @@ header{
         font-size:1em;
         font-weight:bold;
     }
+/*
+    Footer
+    */
+    /*
+        Feed noticias 
+        */
+        .feedSection{
+            background:#ecf0f1;
+        }
+        .cuerpoFeedNoticia, .imgFeedNoticia{
+            margin-top:3%;
+        }
+        .feedSection h3{
+            font-family:'circulap';
+            margin-top:0;
+        }
+        .cuerpoFeedNoticia{
+            text-align:center;
+        }
+        .imgFeedNoticia img{
+            width:100%;
+        }
+        .leerMas{
+            display:block;
+            color:#479fdd;
+            cursor:pointer;
+        }
+    /*
+        CopyRight
+        */
+        .copyRight{
+            background:#95a5a6;
+            text-align:center;
+            padding-top:1%;
+            padding-bottom:1%;
+        }
+        .copyRight span{
+            display:block;
+            color:white;
+        }

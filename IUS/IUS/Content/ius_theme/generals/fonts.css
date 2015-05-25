@@ -6,3 +6,7 @@
     font-family:'latop';
     src: url("../../fonts/lato/Lato-Regular.ttf");
 }
+@font-face{
+    font-family:'circulap';
+    src:url("../../fonts/circula/circula-medium.otf");
+}

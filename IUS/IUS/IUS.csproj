@@ -226,6 +226,8 @@
     <Content Include="Content\images\propuesta4\icons\twitterRombo.png" />
     <Content Include="Content\images\propuesta4\lock.png" />
     <Content Include="Content\images\propuesta4\logopng.png" />
+    <Content Include="Content\images\test\africa.jpg" />
+    <Content Include="Content\images\test\cruz.png" />
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
     <Content Include="Content\ius_theme\generals\style.css" />
@@ -424,6 +426,7 @@
     <Content Include="Views\propuestas\propuesta3.cshtml" />
     <Content Include="Views\propuestas\propuesta4.cshtml" />
     <Content Include="Views\Shared\menu.cshtml" />
+    <Content Include="Views\Shared\footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
