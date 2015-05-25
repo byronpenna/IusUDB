@@ -20,11 +20,10 @@ namespace IUSBack.Controllers
         // GET: /Padre/
         #region "propiedades"
             public enum paginas
-        {
-            usuarios = 3,gestionRoles = 5,
-            gestionPersonas=4,gestionIdiomaWebsite = 7,configuracionFront = 8,
-            Eventos = 9,Noticias = 10
-
+            {
+                usuarios = 3,gestionRoles = 5,
+                gestionPersonas=4,gestionIdiomaWebsite = 7,configuracionFront = 8,
+                Eventos = 9,Noticias = 10
             }
             protected JavaScriptSerializer _jss;
             protected JavaScriptSerializer _jssmax;

@@ -9,57 +9,35 @@ using IUSLibs.TRL.Entidades;
 using IUSLibs.LOGS;
 namespace IUS.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : PadreController
     {
-        #region "Acciones temporales"
-            #region "propuesta1"
-                public ActionResult propuesta1()
-                {
-                    return View("~/Views/propuestas/propuesta1.cshtml");
-                }
-                public ActionResult propuesta1menu()
-                {
-                    return View("~/Views/propuestas/propuesta1menu.cshtml");
-                }
-            #endregion
-            #region "propuesta2"
-                public ActionResult propuesta2()
-                {
-                    return View("~/Views/propuestas/propuesta2.cshtml");
-                }
-            #endregion
-                public ActionResult propuesta3()
-                {
-                    return View("~/Views/propuestas/propuesta3.cshtml");
-                }
-                public ActionResult propuesta4()
-                {
-                    return View("~/Views/propuestas/propuesta4.cshtml");
-                }
+        #region "propiedades"
+            public int idPagina = (int)paginas.home;
         #endregion
-        public ActionResult Index()
-        {
-
-            String[] lng = Request.UserLanguages;
-            HomeModel modeloHome = new HomeModel(lng[0]);
-            List<LlaveIdioma> traducciones;
-            try{
-                traducciones = modeloHome.getTraduccion();
-            }catch(ErroresIUS x){
-                ErrorsController error = new ErrorsController();
-                var obj = error.redirectToError(x);
-                //Response.Redirect(vista);
-                return RedirectToAction(obj["accion"], obj["controlador"]);
-            }
-            if (traducciones != null)
+        #region "acciones url"
+            public ActionResult Index()
             {
-                foreach (LlaveIdioma traduccion in traducciones)
-                {
-                    //ViewData[traduccion.llave.llave] = traduccion.traduccion;
+                String[] lng = Request.UserLanguages;
+                HomeModel modeloHome = new HomeModel(lng[0]);
+                List<LlaveIdioma> traducciones;
+                try{
+                    traducciones = modeloHome.getTraduccion();
+                }catch(ErroresIUS x){
+                    ErrorsController error = new ErrorsController();
+                    var obj = error.redirectToError(x);
+                    //Response.Redirect(vista);
+                    return RedirectToAction(obj["accion"], obj["controlador"]);
                 }
+                if (traducciones != null)
+                {
+                    foreach (LlaveIdioma traduccion in traducciones)
+                    {
+                        ViewData[traduccion._llave._llave] = traduccion._traduccion;
+                    }
+                }
+                return View();
+
             }
-            return View();
-            
-        }
+        #endregion
     }
 }
