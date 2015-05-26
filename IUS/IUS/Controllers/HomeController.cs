@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 // modelos
-using IUS.Models.page.home.acciones;
-using IUSLibs.TRL.Entidades;
-using IUSLibs.LOGS;
+    using IUS.Models.page.home.acciones;
+// librerias externas
+    using IUSLibs.TRL.Entidades;
+    using IUSLibs.LOGS;
+    //using IUSLibs.ADMINFE.Entidades;
 namespace IUS.Controllers
 {
     public class HomeController : PadreController
@@ -23,12 +25,11 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try{
                     string lang = lng[0];
-                    /*HttpCookie co = new HttpCookie("bla","mundo");
-                    Request.Cookies.Add(co);*/
-                    HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["bla"];
+                    ViewBag.slider = this._model.sp_front_getSliderFromPage(this.idPagina);
+                    HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["IUSidioma"];
                     if (cookie != null)
                     {
-                        //lang = cookie["idioma"];
+                        lang = cookie.Value;
                     }
                     traducciones = modeloHome.getTraduccion(lang);
                     ViewBag.idiomas = modeloHome.getIdiomas();
@@ -59,17 +60,15 @@ namespace IUS.Controllers
                     try
                     {
                         Idioma idioma = this._model.sp_trl_getIdiomaFromIds(this.convertObjAjaxToInt(frm["idIdioma"]));
-                        //Response.Cookies.Clear();
                         HttpCookie cookie = Request.Cookies["idioma"];
                         if (cookie == null)
                         {
                             cookie = new HttpCookie("idioma",idioma._lang);
                         }
-                        //cookie["idioma"] = idioma._lang;
-                        cookie.Expires = DateTime.Now.AddYears(1);
-                        this.ControllerContext.HttpContext.Request.Cookies.Set(cookie);
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
+                        respuesta.Add("lang", idioma._lang);
+                        respuesta.Add("idIdioma", idioma._idIdioma);
                     }
                     catch (ErroresIUS x)
                     {

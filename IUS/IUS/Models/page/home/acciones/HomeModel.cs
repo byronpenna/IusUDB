@@ -7,6 +7,8 @@ using IUS.Models.general;
     using IUSLibs.TRL.Control;
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.ADMINFE.Entidades;
+    using IUSLibs.ADMINFE.Control;
 namespace IUS.Models.page.home.acciones
 {
     public class HomeModel:ModeloPadre
@@ -14,8 +16,11 @@ namespace IUS.Models.page.home.acciones
         #region "propiedades"
             private int idPagina = 1;
             private string lang;
-            private ControlIdioma _controlIdioma;
-        #endregion 
+            #region "Control"
+                private ControlIdioma _controlIdioma;
+                private ControlSliderImage _controlSlider;
+            #endregion
+        #endregion
         #region "funciones"
             public List<Idioma> getIdiomas()
             {
@@ -68,6 +73,21 @@ namespace IUS.Models.page.home.acciones
                     throw x;
                 }
             }
+            public List<SliderImage> sp_front_getSliderFromPage(int idPagina)
+            {
+                try
+                {
+                    return this._controlSlider.sp_front_getSliderFromPage(idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             #region "genericas"
                 public string getStandarLang(string lang)
                 {
@@ -89,6 +109,7 @@ namespace IUS.Models.page.home.acciones
             public HomeModel()
             {
                 this._controlIdioma = new ControlIdioma();
+                this._controlSlider = new ControlSliderImage();
             }
             public HomeModel(string pidIdioma)
             {

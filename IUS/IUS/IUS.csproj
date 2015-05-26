@@ -307,6 +307,7 @@
     <Content Include="Content\third-party\bootstrap\js\bootstrap.js" />
     <Content Include="Content\third-party\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\third-party\bootstrap\js\npm.js" />
+    <Content Include="Content\third-party\cookiesjs\jquery.cookie.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap-theme.css.map" />
