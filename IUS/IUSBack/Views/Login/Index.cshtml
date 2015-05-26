@@ -1,31 +1,33 @@
 ﻿@model IUSBack.Models.Page.Login.Forms.User
-<style>
-    .divLogOut{
-        display:none;
-    }
-</style>
-<h2>Login</h2>
-    @using (Html.BeginForm("index", "Login", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <table>
-            <tr>
-                <td>@Html.LabelFor(frm => frm.usuario)</td>
-                <td>@Html.TextBoxFor(frm => frm.usuario)</td>
-                <td>@Html.ValidationMessageFor(frm => frm.usuario)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(frm => frm.pass)</td>
-                <td>@Html.PasswordFor(frm => frm.pass)</td>
-                <td>@Html.ValidationMessageFor(frm => frm.pass)</td>
-            </tr>
-            <tr>
-                <td>
-                    <input type='submit' />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">@ViewBag.errorLogin</td>
-            </tr>
-        </table>
-    }
+@section scriptsPersonalizados{
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Login/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Login/media.css" />
+}
+<div class="container">
+    <div class="card card-container">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img id="profile-img" class="profile-img-card" src="~/Content/themes/iusback_theme/img/general/logo_ius.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        @using (Html.BeginForm("index", "Login", FormMethod.Post, new { @class = "form-signin" }))
+        {
+            @Html.AntiForgeryToken()
+            <span id="reauth-email" class="reauth-email"></span>
+            <!--<input type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>-->
+            @Html.TextBoxFor(frm => frm.usuario, new { @class = "form-control", id = "inputEmail",placeholder="Email address",required="true",autofocus=true })
+            <span>@Html.ValidationMessageFor(frm => frm.usuario)</span>
+            <!--<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>-->
+            @Html.PasswordFor(frm => frm.pass, new { id = "inputPassword", @class = "form-control",placeholder="Password",required=true })
+            <span>@Html.ValidationMessageFor(frm => frm.pass)</span>
+            <div id="remember" class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            <span>@ViewBag.errorLogin</span>
+        }
+        <a href="#" class="forgot-password">
+            Forgot the password?
+        </a>
+    </div>
+</div>

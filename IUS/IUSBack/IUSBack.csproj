@@ -216,6 +216,8 @@
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
+    <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.jpg" />
+    <Content Include="Content\themes\iusback_theme\img\general\logo_ius.png" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />
@@ -232,6 +234,8 @@
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />
     <Content Include="Content\themes\iusback_theme\views\home\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Login\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Login\style.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap.css" />
