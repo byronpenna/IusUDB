@@ -8,7 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
-    //using IUSLibs.ADMINFE.Entidades;
+    using IUSLibs.ADMINFE.Entidades.Noticias;
 namespace IUS.Controllers
 {
     public class HomeController : PadreController
@@ -26,6 +26,7 @@ namespace IUS.Controllers
                 try{
                     string lang = lng[0];
                     ViewBag.slider = this._model.sp_front_getSliderFromPage(this.idPagina);
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(2);
                     HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["IUSidioma"];
                     if (cookie != null)
                     {

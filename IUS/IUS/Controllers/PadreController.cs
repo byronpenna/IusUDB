@@ -125,6 +125,7 @@ namespace IUS.Controllers
             public PadreController()
             {
                 this._jss = new JavaScriptSerializer();
+                ViewBag.prueba = "yeahhh";
             }
         #endregion
     }

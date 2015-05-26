@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.ADMINFE.Entidades
+@using IUSLibs.ADMINFE.Entidades.Noticias
 @section estilosPersonalizados{
     <link  rel="stylesheet" href="~/Content/ius_theme/views/home/style.css"/>    
     <link rel="stylesheet" href="~/Content/ius_theme/views/home/media.css" />   
@@ -10,7 +11,9 @@
 }
 @{
     List<SliderImage> slider = (List<SliderImage>)ViewBag.slider;
+    List<Post> post = (List<Post>)ViewBag.noticias;
 }
+
 <div class="slider">
     <div class="navs col-lg-12">
         <div class="col-lg-1 pointer">

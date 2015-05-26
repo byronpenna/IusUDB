@@ -9,6 +9,7 @@ using IUS.Models.general;
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades;
     using IUSLibs.ADMINFE.Control;
+    //
 namespace IUS.Models.page.home.acciones
 {
     public class HomeModel:ModeloPadre
@@ -19,6 +20,7 @@ namespace IUS.Models.page.home.acciones
             #region "Control"
                 private ControlIdioma _controlIdioma;
                 private ControlSliderImage _controlSlider;
+                
             #endregion
         #endregion
         #region "funciones"
@@ -105,7 +107,7 @@ namespace IUS.Models.page.home.acciones
                 }
             #endregion
         #endregion
-            #region "Contructores"
+        #region "Contructores"
             public HomeModel()
             {
                 this._controlIdioma = new ControlIdioma();
