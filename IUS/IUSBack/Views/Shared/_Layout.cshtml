@@ -15,10 +15,19 @@
     
 </head>
 <body>
-    <section class="'menu'">
-        @(new HtmlString(menu))
-    </section>
-    <div class="divLogOut">@Html.ActionLink("Cerrar sesion", "LogOut", "Login")</div>
+    <header>
+        <div class="row marginNull">
+            <div class="col-lg-2 sectionLogoMenu">
+                <img src="~/Content/themes/iusback_theme/img/general/logo_ius.png"/>
+            </div>
+            <div class="col-lg-10 paddingNull">
+                <nav class="menu">
+                    @(new HtmlString(menu))
+                </nav>
+            </div>
+            <!--<div class="divLogOut">@Html.ActionLink("Cerrar sesion", "LogOut", "Login")</div>-->
+        </div>
+    </header>
     @RenderBody()
     @RenderSection("scriptsPersonalizados", false)
 </body>
