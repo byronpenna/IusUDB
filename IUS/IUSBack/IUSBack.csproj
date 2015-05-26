@@ -213,6 +213,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\iusback_theme\generals\fonts.css" />
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
@@ -449,6 +450,18 @@
     <Content Include="Views\Shared\notAllowed.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fonts\track\Track Italic.otf" />
+    <Content Include="Content\fonts\track\Track.otf" />
+    <Content Include="Content\fonts\lato\Lato-Black.ttf" />
+    <Content Include="Content\fonts\lato\Lato-BlackItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Bold.ttf" />
+    <Content Include="Content\fonts\lato\Lato-BoldItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Hairline.ttf" />
+    <Content Include="Content\fonts\lato\Lato-HairlineItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Italic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Light.ttf" />
+    <Content Include="Content\fonts\lato\Lato-LightItalic.ttf" />
+    <Content Include="Content\fonts\lato\Lato-Regular.ttf" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <Content Include="Views\Errors\NotAllowed.cshtml" />
     <Content Include="Views\GestionPersonas\Index.cshtml" />

@@ -25,9 +25,17 @@
                     @(new HtmlString(menu))
                 </nav>
             </div>
-            <!--<div class="divLogOut">@Html.ActionLink("Cerrar sesion", "LogOut", "Login")</div>-->
+        </div>
+        <div class="row marginNull otherMenuGray">
+            <div class="col-lg-11">
+
+            </div>
+            <div class="col-lg-1">
+                <div class="divLogOut">@Html.ActionLink("Cerrar sesion", "LogOut", "Login")</div>
+            </div>
         </div>
     </header>
+
     @RenderBody()
     @RenderSection("scriptsPersonalizados", false)
 </body>
