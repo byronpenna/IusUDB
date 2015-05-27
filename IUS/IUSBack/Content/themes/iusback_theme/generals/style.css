@@ -80,7 +80,14 @@
     .menu ul li ul{
         position:absolute;
         width:100%;
-        background:#de4f40;
+        background:#F5F5F5;
+        border:solid 1px;
+        border-top:none;
+    }
+    .menu ul li ul li a {
+        color:black;
+        font-weight:normal;
+        font-family:Arial;
     }
     .menu ul li ul li{
         display:block;
@@ -109,6 +116,30 @@
     .btnLogOut{
         border-radius:0;
         margin-top:3%;
+    }
+    .accesibilidadDiv h2{
+        margin:0;
+        text-align:center;
+        font-family:'latop';
+    }
+    /*
+        Tabs
+        */
+    .tabsHeader{
+        text-align:center;
+        margin-top:2%;
+    }
+    .tabsHeader ul li{
+        display:inline-block;
+        width:25%;
+        background:rgb(104, 145, 162);
+        padding-top:2%;
+        padding-bottom:2%;
+        cursor:pointer;
+    }
+    .tabsHeader ul li {
+        color:white;
+        font-family:'latop';
     }
 /* Generics */
     .fullSize{
