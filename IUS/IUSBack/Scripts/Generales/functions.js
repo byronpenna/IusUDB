@@ -52,11 +52,17 @@
             $(this).val("");
         });
     }
-    function cambioBackgroundColorTr(selector,color,activeClass) {
-        $("" + selector + selector).css("background", "none");
+    function cambioBackgroundColorTr(selector,color,activeClass,colorFont) {
+        $("" + selector).css("background", "none");
+        if (colorFont !== undefined) {
+            $("" + selector).css("color", colorFont.antes);
+        }
         var classNombre = activeClass.substr(1, activeClass.length);
         $(activeClass).removeClass(classNombre);
-        trSubMenu.css("background",color);
+        trSubMenu.css("background", color);
+        if (colorFont !== undefined) {
+            trSubMenu.css("color", colorFont.despues);
+        }
         trSubMenu.addClass(classNombre); // importantisimo esto debe ser dinamico de active clas pero quitandole primer caracter
     }
     function cancelarGlobal() {

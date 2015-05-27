@@ -245,6 +245,11 @@
     <Content Include="Content\third-party\bootstrap\js\bootstrap.js" />
     <Content Include="Content\third-party\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\third-party\bootstrap\js\npm.js" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\bootstrap-chosen.css" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\chosen-sprite%402x.png" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\chosen-sprite.png" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\example.html" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\example.png" />
     <Content Include="Content\third-party\chosen\css\chosen-sprite%402x.png" />
     <Content Include="Content\third-party\chosen\css\chosen-sprite.png" />
     <Content Include="Content\third-party\chosen\css\chosen.css" />
@@ -462,6 +467,13 @@
     <Content Include="Content\fonts\lato\Lato-Light.ttf" />
     <Content Include="Content\fonts\lato\Lato-LightItalic.ttf" />
     <Content Include="Content\fonts\lato\Lato-Regular.ttf" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\bootstrap-chosen-variables.less" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\bootstrap-chosen-variables.scss" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\bootstrap-chosen.less" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\bootstrap-chosen.scss" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\bower.json" />
+    <Content Include="Content\third-party\chosen-bootstrapstyle\README.md" />
+    <Content Include="Content\fonts\circula\circula-medium.otf" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <Content Include="Views\Errors\NotAllowed.cshtml" />
     <Content Include="Views\GestionPersonas\Index.cshtml" />
@@ -471,7 +483,7 @@
     <Content Include="Views\Administracion\Eventos.cshtml" />
     <Content Include="Views\Administracion\Noticias.cshtml" />
     <Content Include="Views\Noticias\Index.cshtml" />
-    <Content Include="Views\Shared\accesibilidad.cshtml" />
+    <Content Include="Views\Shared\footer.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -51,7 +51,7 @@ function clickTrSubMenu(trSubMenu) {
     frm = new Object();
     frm.idSubMenu = trSubMenu.find(".txtIdSubMenu").val();
     frm.idRol = $(".cbRolTab2").val();
-    cambioBackgroundColorTr(".trSubMenu", "yellow", ".activeTr");
+    cambioBackgroundColorTr(".trSubMenu", "#bdc3c7", ".activeTr", {antes:"black",despues:"white"});
     cargarObjetoGeneral(RAIZ+"GestionRoles/getJSONPermisos", frm, function (data) {
         
         if (data) {

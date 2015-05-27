@@ -1,4 +1,4 @@
-﻿.ulTabGeneral{
+﻿/*.ulTabGeneral{
     background:#95a5a6;
 }
 .ulTabGeneral li{
@@ -7,4 +7,51 @@
 }
 .tbRoles thead{
     text-align:center;
+}*/
+.divRoles{
+    margin:0;
+    margin-top:3%;
+}
+/*
+    Tab 1
+    */
+    /*
+        table
+        */
+    .tableRolesTab1 tr td {
+        width:33%;
+    }
+    #tab-1{
+        margin-top:5%;
+    }
+/*
+    Tab 2
+    */
+.divSeleccioneRolTab2{
+    margin-bottom:2%;
+}
+.divSeleccioneRolTab2 div {
+    display:block;
+    width:30%;
+    margin:0 auto;
+}
+.divSeleccioneRolTab2 div.divLbSelectRolTab2,#tab-2 h4{
+    text-align:center;
+    font-size:1.5em;
+    font-weight:bold;
+}
+#tab-2{
+    margin-top:2%;
+}
+#tab-2 h4{
+    margin-bottom:4%;
+}
+.divBusquedaOpcionesTab2{
+    margin-bottom:2%;
+}
+.tbMenus tbody tr{
+    cursor:pointer;
+}
+#tab-3 {
+    margin-top:3%;
 }

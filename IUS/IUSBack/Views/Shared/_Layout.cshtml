@@ -1,5 +1,16 @@
-﻿@{
+﻿@using IUSLibs.SEC.Entidades
+@{
     String menu = ViewBag.subMenus;
+    Usuario usuarioSession = null;
+    try
+    {
+        usuarioSession = (Usuario)ViewBag.usuario;
+    }
+    catch (Exception)
+    {
+        
+    }
+    
 }
 <!DOCTYPE html>
 <html>
@@ -22,16 +33,36 @@
             <div class="col-lg-10 paddingNull">
                 <nav class="menu">
                     @(new HtmlString(menu))
-                    
                 </nav>
             </div>
         </div>
         <div class="row otherMenuGray">
-            @Html.Partial("accesibilidad");
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-8 accesibilidadDiv">
+                <h2>@ViewBag.titleModulo</h2>
+                <div class="row tabsHeader col-lg-12">
+                    @RenderSection("tabs", false);
+                </div>
+            </div>
+            <div class="col-lg-2 informacionHeaderDiv">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <b>Bienvenido</b>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        @if (usuarioSession != null)
+                        {
+                            @usuarioSession._usuario    
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
-
     @RenderBody()
+    @Html.Partial("footer")
     @RenderSection("scriptsPersonalizados", false)
 </body>
 </html>

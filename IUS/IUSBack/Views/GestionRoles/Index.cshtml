@@ -1,23 +1,29 @@
 ﻿@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- plugins -->
-        <!-- tabs -->
-        <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css"    />
+        
         <!-- chosen -->
         <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
+        <!-- chosen bootstrap -->
+        <!-- <link rel="stylesheet" href="~/Content/third-party/chosen-bootstrapstyle/bootstrap-chosen.css" />-->
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionRoles/media.css" />
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
-        <!-- tabs -->        
-        <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
         <!-- chosen -->
         <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/GestionRoles/script.js"></script>
         <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
+}
+@section tabs{
+    <ul>
+        <li class="btnTab tabActive" target="#tab-1">Asignar roles</li>
+        <li class="btnTab" target="#tab-2">Permisos roles</li>
+        <li class="btnTab" target="#tab-3">Administrar roles</li>
+    </ul>
 }
 @{
     List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
@@ -25,225 +31,210 @@
     List<Rol> rolesTabla = (List < Rol >) ViewBag.rolesTabla;
     Permiso permisos = (Permiso)ViewBag.permisos;
 }
-<!--<h2 class="text-center">Gestion de permisos</h2>-->
-<!--<div id="horizontalTab">
-    <ul class="ulTabGeneral">
-        <li>
-            <a href="#tab-1">Asignar roles</a>
-        </li>
-        <li>
-            <a href="#tab-2">Permisos roles</a>
-        </li>
-        <li>
-            <a href="#tab-3">Administracion de roles</a>
-        </li>
-    </ul>-->
-    <div id="tab-1" class="tab">
-        <div class="row divControlRolUsuario">    
-            <div class="col-lg-6">
-                <div class="col-lg-4 text-right">
-                    <label for="cbUsuarios">Seleccione usuario: </label>
-                </div>
-                <div class="col-lg-3">
-                    <select class="form-control cbUsuarios">
-                        <option></option>
-                        @{
-                            foreach (Usuario usuario in usuarios)
-                            {
-                                <option value="@usuario._idUsuario">@usuario._usuario</option>
-                            }
-                        }
-                    </select>
-                </div>
+<div id="tab-1" class="tab marginNull">
+    <div class="row divControlRolUsuario marginNull">    
+        <div class="col-lg-6 seleccioneUsuarioDiv">
+            <div class="col-lg-4 text-right divLbCbUsuairo">
+                <label for="cbUsuarios" class="lbCbUsuario">Seleccione usuario: </label>
             </div>
-            <div class="col-lg-6">
-                <div class="col-lg-4 text-right">
-                    <label for="cbRoles">Roles a agregar</label>
-                </div>
-                <div class="col-lg-3">
-                    <select multiple class="form-control cbRoles ">
-                        <option></option>
-                    </select>
-                </div>
-                <div class="col-lg-3">
-                    <button class="btn btn-primary" type="button" id="btnAddRoles">Agregar roles</button>
-                </div>
-            </div>
-        </div>
-        <div class="row divRoles">
-            <table class="table table-striped tbRoles">
-                <thead>
-                    <tr>
-                        <td>Rol</td>
-                        <td>Estado Rol</td>
-                        <td>Accion</td>
-                    </tr>
-                </thead>
-                <tbody class="tbodyRolUsuario">
-                    <tr>
-                        <td colspan="3" class="text-center">Seleccione usuario para mostrar sus roles</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div id="tab-2" class="tab hidden">
-        <div class="row">
-            <div class="col-lg-2">
-                <label>Seleccione rol</label>
-            </div>
-            <div class="col-lg-3">
-                <select class="cbRolTab2 form-control">
+            <div class="col-lg-4 ">
+                <select class="form-control cbUsuarios">
                     <option></option>
                     @{
-                        foreach (Rol rol in roles)
+                        foreach (Usuario usuario in usuarios)
                         {
-                            <option value="@rol._idRol">@rol._rol</option>
+                            <option value="@usuario._idUsuario">@usuario._usuario</option>
                         }
                     }
                 </select>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <h4>Sub menus</h4>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row">
-                            <h4>Permisos</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="col-lg-4">
-                            <label>Seleccione un submenu</label>
-                        </div>
-                        <div class="col-lg-4">
-                            <select class="cbSubMenu" multiple></select>
-                        </div>
-                        <div class="col-lg-4">
-                            <button class="btnAsignarSubmenu">Asignar submenus</button>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="col-lg-6">
-                            <select multiple class="cbAsignarPermisos">
-                                <option disabled>Asignar Permiso</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6">
-                            <button class="btn btnAsignarPermiso">Asignar permiso</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <table class="table table-striped tbMenus">
-                            <thead>
-                                <tr>
-                                    <th>Menu</th>
-                                    <th>Sub menu</th>
-                                    <th>Enlace</th>
-                                    <th>Accion</th>
-                                </tr>
-                            </thead>
-                            <tbody class="tbodySubmenuActuales">
-                                <tr>
-                                    <td colspan="3" class="text-center">
-                                        Seleccione un rol para ver sus menus asociados
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-lg-4">
-                        <table class="table table-striped tbPermisos">
-                            <thead>
-                                <tr>
-                                    <th>Permiso</th>
-                                    <th>Accion </th>
-                                </tr>
-                            </thead>
-                            <tbody class="tbodyTbPermisos">
-                                <tr>
-                                    <td colspan="2">Seleccione sub menu</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="col-lg-6">
+            <div class="col-lg-4 text-right">
+                <label for="cbRoles">Roles a agregar</label>
             </div>
-            
+            <div class="col-lg-4">
+                <select multiple class="form-control cbRoles ">
+                    <option></option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <button class="btn btn-primary" type="button" id="btnAddRoles">Agregar roles</button>
+            </div>
         </div>
     </div>
-    <div id="tab-3" class="hidden">
-        <h2>Gestion de roles</h2>
-        <table class="table">
+    <div class="row divRoles">
+        <table class="table table-striped tbRoles table-hover tableRolesTab1">
             <thead>
                 <tr>
-                    <td>
-                        Rol 
-                    </td>
-                    <td>
-                        Estado
-                    </td>
-                    <td>
-                        Acciones
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input  type="text" name="txtRol" class="form-control"/>
-                    </td>
-                    <td>
-                        <input type="text" name="txtEstado" class="form-control txtEstado" value="Activo" disabled />
-                    </td>
-                    <td>
-                        <button class="btn btn-xs btn-primary btnAgregarRol">
-                            Crear
-                        </button>
-                    </td>
+                    <th>Rol</th>
+                    <th>Estado Rol</th>
+                    <th>Accion</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (Rol rol in rolesTabla)
-                {
-                    <tr>
-                        <td class="hidden">
-                            <input type="hidden" name="txtHdIdRol" class="txtHdIdRol" value="@rol._idRol" />
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <input type="text" name="txtRol" class="txtRol form-control"  />
-                            </div>
-                            <div class="normalMode tdRol" >@rol._rol</div>
-                        </td>
-                        <td class="tdEstadoRol">
-                           @rol.stringEstado
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <button class="btn btn-xs btnActualizar">Actualizar</button>
-                                <button class="btn btn-xs btnCancelarEdit">Cancelar</button>
-                            </div>
-                            <div class="normalMode">
-                                <button class="btn btn-xs btnEditar" @permisos.stringEditar>
-                                    Editar
-                                </button>
-                                <button class="btn btn-xs btnEliminar" @permisos.stringEliminar>
-                                    Eliminar
-                                </button>
-                                <button class="btn btn-xs btnDeshabilitar" @permisos.stringEditar >
-                                    @rol.txtBtnHabilitar
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                }
+            <tbody class="tbodyRolUsuario">
+                <tr>
+                    <td colspan="3" class="text-center">Seleccione usuario para mostrar sus roles</td>
+                </tr>
             </tbody>
         </table>
     </div>
-<!--</div>-->
+</div>
+<div id="tab-2" class="tab hidden marginNull">
+    <div class="row divSeleccioneRolTab2">
+        <div class="divLbSelectRolTab2">
+            <label>Seleccione Rol</label>
+        </div>
+        <div>
+            <select class="cbRolTab2 form-control">
+                <option></option>
+                @{
+                    foreach (Rol rol in roles)
+                    {
+                        <option value="@rol._idRol">@rol._rol</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h4>Sub Menus</h4>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <h4>Permisos</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row divBusquedaOpcionesTab2">
+                <div class="col-lg-8">
+                    <div class="col-lg-4">
+                        <label>Seleccione un submenu</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <select class="cbSubMenu" multiple></select>
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btnAsignarSubmenu">Asignar submenus</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="col-lg-6">
+                        <select multiple class="cbAsignarPermisos">
+                            <option disabled>Asignar Permiso</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6">
+                        <button class="btn btnAsignarPermiso">Asignar permiso</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <table class="table table-striped table-hover tbMenus ">
+                        <thead>
+                            <tr>
+                                <th>Menu</th>
+                                <th>Sub Menu</th>
+                                <th>Enlace</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbodySubmenuActuales">
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    Seleccione un rol para ver sus menus asociados
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-4">
+                    <table class="table table-striped tbPermisos">
+                        <thead>
+                            <tr>
+                                <th>Permiso</th>
+                                <th>Accion </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbodyTbPermisos">
+                            <tr>
+                                <td colspan="2">Seleccione sub menu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+</div>
+<div id="tab-3" class="tab hidden marginNull">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Rol 
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <input  type="text" name="txtRol" class="form-control"/>
+                </td>
+                <td>
+                    <input type="text" name="txtEstado" class="form-control txtEstado" value="Activo" disabled />
+                </td>
+                <td>
+                    <button class="btn btn-xs btn-primary btnAgregarRol">
+                        Crear
+                    </button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Rol rol in rolesTabla)
+            {
+                <tr>
+                    <td class="hidden">
+                        <input type="hidden" name="txtHdIdRol" class="txtHdIdRol" value="@rol._idRol" />
+                    </td>
+                    <td>
+                        <div class="editMode hidden">
+                            <input type="text" name="txtRol" class="txtRol form-control"  />
+                        </div>
+                        <div class="normalMode tdRol" >@rol._rol</div>
+                    </td>
+                    <td class="tdEstadoRol">
+                        @rol.stringEstado
+                    </td>
+                    <td>
+                        <div class="editMode hidden">
+                            <button class="btn btn-xs btnActualizar">Actualizar</button>
+                            <button class="btn btn-xs btnCancelarEdit">Cancelar</button>
+                        </div>
+                        <div class="normalMode">
+                            <button class="btn btn-xs btnEditar" @permisos.stringEditar>
+                                Editar
+                            </button>
+                            <button class="btn btn-xs btnEliminar" @permisos.stringEliminar>
+                                Eliminar
+                            </button>
+                            <button class="btn btn-xs btnDeshabilitar" @permisos.stringEditar >
+                                @rol.txtBtnHabilitar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

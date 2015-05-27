@@ -32,6 +32,7 @@ namespace IUSBack.Controllers
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
                 ViewBag.titleModulo = "Gestión de permisos";
+                ViewBag.usuario = usuarioSession;
                 if (usuarioSession != null)
                 {
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);

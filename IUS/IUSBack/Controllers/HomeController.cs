@@ -32,8 +32,9 @@ namespace IUSBack.Controllers
             {
                 try
                 {
+                    ViewBag.titleModulo = "Sistema administrativo IUS";
                     Usuario usu = (Usuario)Session["usuario"];
-                    //List<Submenu> subMenu = this.homeModel.getMenuUsuario(usu._idUsuario);
+                    ViewBag.usuario = usu;
                     ViewBag.subMenus = this.homeModel.getMenuUsuario(usu._idUsuario);
                     return View();
                 }

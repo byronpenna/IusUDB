@@ -62,7 +62,6 @@
     header{
         margin:0;
         margin-top:3%;
-        margin-bottom:5%;
     }
     .menu{
         padding:0;
@@ -123,6 +122,7 @@
         text-align:center;
         font-family:'latop';
     }
+    
     /*
         Tabs
         */
@@ -140,8 +140,11 @@
         color:white;
         font-family:'latop';
     }
-    .tabsHeader ul li:hover {
-        background: #287a9c;
+    .tabsHeader ul li:hover,.tabActive{
+        background: #287a9c !important;
+    }
+    .tabActive{
+        font-weight:bold;
     }
     /**/
 /* Generics */
@@ -150,7 +153,11 @@
     }
     body{
          font-family:'latop';
-    }
+    }  
+    /*
+        Chosen fix
+        */
+    
 /* clases produccion */
     .pointer {
         cursor:pointer;
@@ -166,8 +173,25 @@
         padding:0;
     }
     
-    /*
+/*
+    footer 
+    */
+        /*
+        CopyRight
         */
+        .copyRight{
+            background:#95a5a6;
+            text-align:center;
+            padding-top:1%;
+            padding-bottom:1%;
+        }
+        .copyRight span{
+            display:block;
+            color:white;
+        }
+        footer{
+            margin-top:5%;
+        }
 /* Ajax universal */
     #contenerdorCargadorAjax{
         position: absolute;
