@@ -2,7 +2,10 @@
 @section estilosPersonalizados{
     <!-- plugins -->
         <!--Data table-->
-        <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+            <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionUsuarios/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/gestionUsuarios/media.css" />
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -19,124 +22,125 @@
     Permiso permiso = (Permiso)ViewBag.permiso;
     DateTime hoy = DateTime.Now;
 }
-<h2 class="text-center">Gestion de usuarios</h2>
-<table class="table table-hover tableUsuarios">
-    <thead>
-        <tr class="controlGlobal hidden">
-            <td class="hidden"></td>
-            <td colspan="3"></td>
-            <td>
-                <button class="btn btn-sm btnActualizarTodo" >
-                    Actualizar todo
-                </button>
-                
-            </td>
-            <td>
-                <button class="btn btn-sm btnCancelarGlobal">
-                    Cancelar todo
-                </button>
-                
-            </td>
-        </tr>
-        <tr>
-            <th class="hidden"></th>
-            <th>Empleado</th>
-            <th>Usuario</th>
-            <th>Fecha creacion</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-        <tr>
-            <td class="hidden"></td>
-            <td>
-                <select name="cbPersona" class="form-control cbPersona">
-                    <option value="-1">Sin asignar</option>
-                    @if (personas != null)
+<div class="row marginNull cuerpoModulo">
+    <table class="table table-hover tableUsuarios">
+        <thead>
+            <tr class="controlGlobal hidden">
+                <td class="hidden"></td>
+                <td colspan="3"></td>
+                <td>
+                    <button class="btn btn-sm btnActualizarTodo">
+                        Actualizar todo
+                    </button>
+
+                </td>
+                <td>
+                    <button class="btn btn-sm btnCancelarGlobal">
+                        Cancelar todo
+                    </button>
+
+                </td>
+            </tr>
+            <tr>
+                <th class="hidden"></th>
+                <th>Empleado</th>
+                <th>Usuario</th>
+                <th>Fecha creacion</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td class="hidden"></td>
+                <td>
+                    <select name="cbPersona" class="form-control cbPersona">
+                        <option value="-1">Sin asignar</option>
+                        @if (personas != null)
                     {
                         foreach (Persona persona in personas)
                         {
                             <option value="@persona._idPersona">@persona.nombreCompleto</option>
                         }
                     }
-                </select>
-            </td>
-            <td>
-                <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario" />
-            </td>
-            <td>
-                <span class="txtDateActual">@String.Format("{0:dd/MM/yyyy}",hoy)</span>
-                <span class="txtHoraActual">@String.Format("{0:hh:mm:ss tt}",hoy)</span>
-            </td>
-            <td>
-                Activo
-            </td>
-            <td>
-                <button class="btn btn-xs btnAgregarUsuario" @permiso.stringCrear>Crear</button>
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        @if (usuarios != null)
+                    </select>
+                </td>
+                <td>
+                    <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario" />
+                </td>
+                <td>
+                    <span class="txtDateActual">@String.Format("{0:dd/MM/yyyy}",hoy)</span>
+                    <span class="txtHoraActual">@String.Format("{0:hh:mm:ss tt}",hoy)</span>
+                </td>
+                <td>
+                    Activo
+                </td>
+                <td>
+                    <button class="btn btn-xs btnAgregarUsuario" @permiso.stringCrear>Crear</button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (usuarios != null)
         {
               foreach (Usuario usu in usuarios)
                 {
-                    
-                    <tr class="trUsuario">
-                        <td class="hidden">
-                            <input type="hidden" name="txtHdIdUser"  class="txtHdIdUser" value="@usu._idUsuario" />
-                            <input type="hidden" name="txtHdIdPersona" class="txtHdIdPersona" value="@usu._persona._idPersona" />
-                        </td>
-                        <td class="tdNombre">
-                            <div class="editMode hidden">
-                                <select name="cbPersona" class="form-control cbPersona">
-                                    <option>Seleccione una persona</option>
-                                </select>
-                            </div>
-                            <div class="normalMode tdTxtNombreCompleto">
-                                @usu._persona.nombreCompleto
-                            </div>
-                        </td>
-                        <td class="tdUsuario">
-                            <div class="editMode hidden">
-                                <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario"/>
-                            </div>
-                            <div class="normalMode tdTxtUsuario">
-                                @usu._usuario
-                            </div>
-                        </td>
-                        <td class="tdFecha">
-                            @usu._fechaCreacion
-                        </td>
-                        <td class="tdEstadoUsuario">
-                            @usu.estadoUsuario
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <button class="btn btn-sm btnEditMode btnActualizar">Actualizar</button>
-                                <button class="btn btn-sm btnEditMode btnCancelarEdit">Cancelar</button>
-                            </div>
-                            <div class="normalMode ">
-                                <button class="btn btn-xs btnEditar" @permiso.stringEditar>
-                                    Editar
-                                </button>
-                                <button class="btn btn-xs btnDeshabilitar" @permiso.stringEditar>
-                                    @usu.txtBtnHabilitar
-                                </button>
-                                <input type="button" class="btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
-                                <button class="btn btn-xs">
-                                    Ver persona
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+
+                <tr class="trUsuario">
+                    <td class="hidden">
+                        <input type="hidden" name="txtHdIdUser" class="txtHdIdUser" value="@usu._idUsuario" />
+                        <input type="hidden" name="txtHdIdPersona" class="txtHdIdPersona" value="@usu._persona._idPersona" />
+                    </td>
+                    <td class="tdNombre">
+                        <div class="editMode hidden">
+                            <select name="cbPersona" class="form-control cbPersona">
+                                <option>Seleccione una persona</option>
+                            </select>
+                        </div>
+                        <div class="normalMode tdTxtNombreCompleto">
+                            @usu._persona.nombreCompleto
+                        </div>
+                    </td>
+                    <td class="tdUsuario">
+                        <div class="editMode hidden">
+                            <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario" />
+                        </div>
+                        <div class="normalMode tdTxtUsuario">
+                            @usu._usuario
+                        </div>
+                    </td>
+                    <td class="tdFecha">
+                        @usu._fechaCreacion
+                    </td>
+                    <td class="tdEstadoUsuario">
+                        @usu.estadoUsuario
+                    </td>
+                    <td>
+                        <div class="editMode hidden">
+                            <button class="btn btn-sm btnEditMode btnActualizar">Actualizar</button>
+                            <button class="btn btn-sm btnEditMode btnCancelarEdit">Cancelar</button>
+                        </div>
+                        <div class="normalMode ">
+                            <button class="btn btn-xs btnEditar" @permiso.stringEditar>
+                                Editar
+                            </button>
+                            <button class="btn btn-xs btnDeshabilitar" @permiso.stringEditar>
+                                @usu.txtBtnHabilitar
+                            </button>
+                            <input type="button" class="btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
+                            <button class="btn btn-xs">
+                                Ver persona
+                            </button>
+                        </div>
+                    </td>
+                </tr>
                 }
         }
         else
         {
-            <tr class="text-center">
-                <td colspan="5">No hay registros para mostrar</td>
-            </tr>
+                <tr class="text-center">
+                    <td colspan="5">No hay registros para mostrar</td>
+                </tr>
         }
-      
-    </tbody>
-</table>
+
+        </tbody>
+    </table>
+</div>

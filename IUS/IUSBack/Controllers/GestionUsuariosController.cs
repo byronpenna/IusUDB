@@ -42,6 +42,8 @@ namespace IUSBack.Controllers
                     {
                         try
                         {
+                            ViewBag.titleModulo = "Gestion de usuarios";
+                            ViewBag.usuario = usuarioSession;
                             usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
                             personas = modelPersona.getPersonas();
                         }

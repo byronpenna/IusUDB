@@ -33,6 +33,8 @@ namespace IUSBack.Controllers
                         ViewBag.permiso = permisos;
                         ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.personas = personas;
+                        ViewBag.titleModulo = "Gestion de personas";
+                        ViewBag.usuario = usuarioSession;
                         return View();
                     }
                     else

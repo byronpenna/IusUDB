@@ -233,6 +233,8 @@
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />
     <Content Include="Content\themes\iusback_theme\views\home\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Login\media.css" />
@@ -413,7 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\themes\iusback_theme\views\gestionUsuarios\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\Page\Home\Forms\" />
   </ItemGroup>

@@ -107,7 +107,7 @@
         margin:0;
         margin-top:3%;
         padding-top:2%;
-        padding-bottom:2%;
+        
     }
     .informacionHeaderDiv{
         text-align:center;
@@ -154,9 +154,7 @@
     body{
          font-family:'latop';
     }  
-    /*
-        Chosen fix
-        */
+    
     
 /* clases produccion */
     .pointer {
@@ -172,7 +170,9 @@
     .paddingNull{
         padding:0;
     }
-    
+    .cuerpoModulo{
+        margin-top:3%;
+    }
 /*
     footer 
     */

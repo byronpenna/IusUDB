@@ -20,46 +20,45 @@
     List<Persona> personas = (List<Persona>)ViewBag.personas;
     Permiso permisos = (Permiso)ViewBag.permiso;
 }
-<h2 class="text-center">Gestion de personas</h2>
-<table class="table table-hover tablePersonas tablaUniversal">
-    <thead>
+<div class="marginNull cuerpoModulo">
+    <table class="table table-hover tablePersonas tablaUniversal">
+        <thead>
+            <tr class="controlGlobal hidden">
+                <td colspan="3"></td>
+                <td>
+                    <button class="btn btn-xs btnActualizarTodo">Actualizar todo</button>
+                    <button class="btn btn-xs btnCancelarGlobal">
+                        Cancelar todo
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th class="hidden"></th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Fecha de nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <th class="hidden"></th>
+                <th>
+                    <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control soloLetras" />
+                </th>
+                <th>
+                    <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control soloLetras" />
+                </th>
+                <th>
+                    <input type="text" name="dtFechaNacimiento" class="dtFechaNacimiento form-control" />
+                </th>
+                <th>
+                    <button class="btn btn-xs btnAgregarPersona" @permisos.stringCrear>Crear</button>
+                </th>
+            </tr>
 
-        <tr class="controlGlobal hidden">
-            <td colspan="3"></td>
-            <td>
-                <button class="btn btn-xs btnActualizarTodo">Actualizar todo</button>
-                <button class="btn btn-xs btnCancelarGlobal">
-                    Cancelar todo
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <th class="hidden"></th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Fecha de nacimiento</th>
-            <th>Acciones</th>
-        </tr>
-        <tr>
-            <th class="hidden"></th>
-            <th>
-                <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control soloLetras" />
-            </th>
-            <th>
-                <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control soloLetras" />
-            </th>
-            <th>
-                <input type="text" name="dtFechaNacimiento" class="dtFechaNacimiento form-control" />
-            </th>
-            <th>
-                <button class="btn btn-xs btnAgregarPersona" @permisos.stringCrear>Crear</button>
-            </th>
-        </tr>
+        </thead>
+        <tbody>
 
-    </thead>
-    <tbody>
-
-        @if (personas != null)
+            @if (personas != null)
         {
             foreach (Persona persona in personas)
             {
@@ -102,10 +101,11 @@
         }
         else
         {
-            <tr class="text-center">
-                <td colspan="4">No hay registros para mostrar</td>
-            </tr>
+                <tr class="text-center">
+                    <td colspan="4">No hay registros para mostrar</td>
+                </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 

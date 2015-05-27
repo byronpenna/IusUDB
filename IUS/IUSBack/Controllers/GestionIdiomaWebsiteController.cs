@@ -40,6 +40,8 @@ namespace IUSBack.Controllers
                     ViewBag.idiomas         = idiomas;
                     ViewBag.paginas         = paginas;
                     ViewBag.tbTraducciones = tabla;
+                    ViewBag.titleModulo = "Traduccion del sitio web";
+                    ViewBag.usuario = usuarioSession;
                 }
                 else
                 {
@@ -60,7 +62,7 @@ namespace IUSBack.Controllers
                         respuesta = new Dictionary<Object, Object>();
                         try
                         {
-
+                            
                             List<Llave> llaves = this._model.sp_trl_getLlaveFromPageAndIdioma(Convert.ToInt32(frm["idPaginaFront"].ToString()), Convert.ToInt32(frm["idIdioma"].ToString()), usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);
                             respuesta.Add("Llaves", llaves);
