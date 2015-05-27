@@ -471,6 +471,7 @@
     <Content Include="Views\Administracion\Eventos.cshtml" />
     <Content Include="Views\Administracion\Noticias.cshtml" />
     <Content Include="Views\Noticias\Index.cshtml" />
+    <Content Include="Views\Shared\accesibilidad.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

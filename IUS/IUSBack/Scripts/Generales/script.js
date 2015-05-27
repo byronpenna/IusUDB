@@ -25,5 +25,7 @@
             e.preventDefault();
         }
     })
+    $("#menuLogOut").attr("href", RAIZ + "Login/LogOut");
+    console.log("se ejecuto");
     // solo numeros
 });

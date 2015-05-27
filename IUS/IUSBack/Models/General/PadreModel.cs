@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 // librerias externas
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
@@ -110,73 +111,73 @@ namespace IUSBack.Models.General
                             abierto = true;
                         }
                     }
-                    toReturn += "</ul>";
+                    toReturn += "</ul>"+"<li><a id='menuLogOut' href='#'>Cerrar sesion</a></li>"+"</ul>";
                     return toReturn;
                 }
             #endregion
             #region "Permisos"
-            private int getNumPermiso(permisos varPermiso)
-                {
-                    int toReturn;
-                    switch (varPermiso)
+                private int getNumPermiso(permisos varPermiso)
                     {
-                        case permisos.Crear:
-                            {
-                                toReturn = 1;
-                                break;
-                            }
-                        case permisos.Editar:
-                            {
-                                toReturn = 2;
-                                break;
-                            }
-                        case permisos.Eliminar:
-                            {
-                                toReturn = 3;
-                                break;
-                            }
-                        case permisos.Ver:
-                            {
-                                toReturn = 4;
-                                break;
-                            }
-                        default:
-                            {
-                                toReturn = -1;
-                                break;
-                            }
+                        int toReturn;
+                        switch (varPermiso)
+                        {
+                            case permisos.Crear:
+                                {
+                                    toReturn = 1;
+                                    break;
+                                }
+                            case permisos.Editar:
+                                {
+                                    toReturn = 2;
+                                    break;
+                                }
+                            case permisos.Eliminar:
+                                {
+                                    toReturn = 3;
+                                    break;
+                                }
+                            case permisos.Ver:
+                                {
+                                    toReturn = 4;
+                                    break;
+                                }
+                            default:
+                                {
+                                    toReturn = -1;
+                                    break;
+                                }
+                        }
+                        return toReturn;
                     }
-                    return toReturn;
-                }
-            public Permiso sp_trl_getAllPermisoPagina(int idUsuarioEjecutor, int idPagina)
-            {
-                Permiso permisos = null;
-                ControlPermiso control = new ControlPermiso();
-                try
+                public Permiso sp_trl_getAllPermisoPagina(int idUsuarioEjecutor, int idPagina)
                 {
-                    permisos = control.sp_trl_getAllPermisoPagina(idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return permisos;
-            }
-            public bool tienePermiso(int idUsuario, int idPagina, permisos nivelPermiso)
-                {
-                    bool toReturn = false;
-                    int idPermiso = this.getNumPermiso(nivelPermiso);
-                    ControlUsuarios control = new ControlUsuarios();
-                    if (idPermiso != -1)
+                    Permiso permisos = null;
+                    ControlPermiso control = new ControlPermiso();
+                    try
                     {
-                        toReturn = control.permisoPagina(idUsuario, idPagina, idPermiso);
+                        permisos = control.sp_trl_getAllPermisoPagina(idUsuarioEjecutor, idPagina);
                     }
-                    return toReturn;
-                }   
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return permisos;
+                }
+                public bool tienePermiso(int idUsuario, int idPagina, permisos nivelPermiso)
+                    {
+                        bool toReturn = false;
+                        int idPermiso = this.getNumPermiso(nivelPermiso);
+                        ControlUsuarios control = new ControlUsuarios();
+                        if (idPermiso != -1)
+                        {
+                            toReturn = control.permisoPagina(idUsuario, idPagina, idPermiso);
+                        }
+                        return toReturn;
+                    }   
             #endregion
             #region "genericas"
                
