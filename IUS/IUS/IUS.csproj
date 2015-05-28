@@ -209,25 +209,6 @@
     <Content Include="Content\images\generales\logo_IUS.jpg" />
     <Content Include="Content\images\generales\slide.png" />
     <Content Include="Content\images\generales\slide2.png" />
-    <Content Include="Content\images\propuesta2\camara.png" />
-    <Content Include="Content\images\propuesta2\eventos.png" />
-    <Content Include="Content\images\propuesta2\noticias.png" />
-    <Content Include="Content\images\propuesta2\red.png" />
-    <Content Include="Content\images\propuesta2\repositorio.png" />
-    <Content Include="Content\images\propuesta4\icons\32-facebook.png" />
-    <Content Include="Content\images\propuesta4\icons\32-twitter.png" />
-    <Content Include="Content\images\propuesta4\icons\32-youtube.png" />
-    <Content Include="Content\images\propuesta4\icons\64-facebook.png" />
-    <Content Include="Content\images\propuesta4\icons\64-twitter.png" />
-    <Content Include="Content\images\propuesta4\icons\64-youtube.png" />
-    <Content Include="Content\images\propuesta4\bannerDonBosc.jpg" />
-    <Content Include="Content\images\propuesta4\bannerReducido.jpg" />
-    <Content Include="Content\images\propuesta4\icons\calendar.png" />
-    <Content Include="Content\images\propuesta4\icons\check.png" />
-    <Content Include="Content\images\propuesta4\icons\image.png" />
-    <Content Include="Content\images\propuesta4\icons\twitterRombo.png" />
-    <Content Include="Content\images\propuesta4\lock.png" />
-    <Content Include="Content\images\propuesta4\logopng.png" />
     <Content Include="Content\images\test\africa.jpg" />
     <Content Include="Content\images\test\cruz.png" />
     <Content Include="Content\ius_theme\generals\fonts.css" />
@@ -385,10 +366,6 @@
     <Content Include="Scripts\Generales\script.js" />
     <Content Include="Scripts\views\Home\functions.js" />
     <Content Include="Scripts\views\Home\script.js" />
-    <Content Include="Scripts\views\propuesta1menu\functions.js" />
-    <Content Include="Scripts\views\propuesta1menu\script.js" />
-    <Content Include="Scripts\views\propuesta2\functions.js" />
-    <Content Include="Scripts\views\propuesta2\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
