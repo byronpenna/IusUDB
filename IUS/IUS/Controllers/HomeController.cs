@@ -18,6 +18,10 @@ namespace IUS.Controllers
             private HomeModel _model;
         #endregion
         #region "acciones url"
+            /*public string Index()
+            {
+                return "Hola mundo :D ";
+            }*/
             public ActionResult Index()
             {
                 String[] lng = Request.UserLanguages;
@@ -39,6 +43,7 @@ namespace IUS.Controllers
                     var obj = error.redirectToError(x);
                     //Response.Redirect(vista);
                     return RedirectToAction(obj["accion"], obj["controlador"]);
+                    //return "El error es" + x.Message;
                 }
                 if (traducciones != null)
                 {
@@ -47,8 +52,8 @@ namespace IUS.Controllers
                         ViewData[traduccion._llave._llave] = traduccion._traduccion;
                     }
                 }
-                return View();
-
+                return View("~/Views/Home/Index.cshtml");
+                //return "todo bien";
             }
         #endregion
         #region "ajax actions"
