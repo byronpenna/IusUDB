@@ -41,11 +41,13 @@ header{
             font-size:1.5em;
             margin-left:5%;
             margin-top: 3%;
+            margin-bottom:3%;
             cursor:pointer;
         }
         .mobileButton {
             display:none;
             text-align:left;
+            
         }
     /*********/
     nav ul li,.menu2 ul li {

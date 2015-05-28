@@ -7,6 +7,21 @@
             .mobileButton{
                 display:block;
             }
+            .ulMenu{
+                 padding-top:0;
+                 padding-bottom:0;
+                 display:none;
+            }
+            nav ul li, .menu2 ul li {
+                width:100%;
+                margin:0;
+            }
+            .menu,.menu2{
+                padding:0;
+            }
+            .menu2 ul li:last-child{
+                width:50%;
+            }
         }
         @media (max-width:1200px) {
             .logoHeaderDiv{
@@ -26,9 +41,23 @@
                 }
         }
 /* Standares */
+@media (min-width: 200px) and (max-width:300px) {
+    nav ul li, .menu2 ul li {
+        padding-bottom: 4%;
+        padding-top: 4%;
+    }
+    .menu2 ul li:last-child{
+        width:70%;
+    }
+}
 @media (min-width: 300px) and (max-width:400px) {
     body{
         background:pink;
+    }
+    /* Header */
+    nav ul li, .menu2 ul li {
+        padding-bottom: 4%;
+        padding-top: 4%;
     }
 }
 @media (min-width: 400px) and (max-width:500px) {
@@ -45,14 +74,12 @@
              padding-bottom:0;
              display:none;
         }
-        .menu2 ul li:last-child{
-            width:50%;
-        }
         nav ul li:first-child, .menu2 ul li:first-child {
             margin-top:2%;
         }
         nav ul li:last-child, .menu2 ul li:last-child {
             margin-bottom:0;
+            /*border-bottom:none;*/
         }
         nav ul li, .menu2 ul li{
             width:100%;
@@ -61,7 +88,7 @@
             padding-top: 5%;
             
             /*margin-bottom:5%;*/
-            border-bottom: solid 1px #2c3e50;
+            /*border-bottom: solid 1px #2c3e50;*/
         }
 }
 @media (min-width: 500px) and (max-width:600px) {
