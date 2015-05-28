@@ -22,6 +22,7 @@
 .pointer{
     cursor:pointer;
 }
+
 /*
     Header
     */
@@ -32,6 +33,21 @@ header{
     /*
         Generales menu
         */
+    /* mobilebutton */
+        .menu .mobileButton .fa-bars {
+            color:white;
+        }
+        .mobileButton .fa-bars{
+            font-size:1.5em;
+            margin-left:5%;
+            margin-top: 3%;
+            cursor:pointer;
+        }
+        .mobileButton {
+            display:none;
+            text-align:left;
+        }
+    /*********/
     nav ul li,.menu2 ul li {
         display:inline-block;
         width:15%;
