@@ -3,9 +3,6 @@
     .navs{
         width:90%;
     }
-    body{
-        background:pink;
-    }
     .navs div:last-child{
         margin-left:70%;
     }
