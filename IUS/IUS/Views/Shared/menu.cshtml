@@ -4,18 +4,18 @@
 }
 <header>
     <div class="row marginNull">
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-12 logoHeaderDiv">
             <img src="~/Content/images/generales/logo_IUS.jpg" />
         </div>
-        <div class="col-lg-10 paddingNull">
+        <div class="col-lg-10 col-md-12 paddingNull">
             <nav class="menu">
-                <ul>
+                <ul class="ulMenu">
                     <li>
                         <a href="#">
                             @ViewData["menu1.1"]
                         </a>
                     </li>
-                    <li >
+                    <li>
                         <a href="#">
                             @ViewData["menu1.2"]
                         </a>
@@ -26,12 +26,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="http://localhost:55869/" target="_blank">
                             Login
                         </a>
                     </li>
                     <li class="liSeach">
-                        <input class="form-control " placeholder="Buscar en pagina" />
+                        <input class="form-control txtSearchGlobal " placeholder="Buscar en pagina" />
                     </li>
                 </ul>
             </nav>
@@ -39,7 +39,7 @@
     </div>
     <div class="row marginNull">
         <div class="menu2 col-lg-12">
-            <ul>
+            <ul class="ulMenu">
                 <li>
                     <a href="#">
                         Galeria
@@ -62,7 +62,7 @@
                 </li>
                 <li>
                     <select class="form-control cbIdioma">
-                        <option value="-1">Seleccione idioma</option>
+                        <option value="-1">Idioma</option>
                         @if (idiomas != null)
                         {
                             foreach (Idioma idioma in idiomas)

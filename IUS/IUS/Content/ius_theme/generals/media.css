@@ -1,1 +1,54 @@
-﻿
+﻿/* Maxs */
+        
+        @media (max-width:1200px) {
+            .logoHeaderDiv{
+                text-align:center;
+            }
+            /*Menu 1*/
+                nav ul{
+                    text-align:center;
+                }
+                .menu{
+                    margin-left:0%;
+                    border-radius:0;
+                }
+            /* Menu 2*/
+                .menu2 {
+                    margin-top: 0;
+                }
+        }
+/* Standares */
+@media (min-width: 700px) and (max-width:800px) {
+    body{
+        background:pink;
+    }
+    /* Header */
+        nav ul li, .menu2 ul li{
+            width:20%;
+        }
+        .ulMenu li:last-child{
+            margin-top:2%;
+            width:30%;
+            padding:0;
+        }
+        .txtSearchGlobal{
+            width:100%;
+        }
+}
+@media (min-width: 1100px) and (max-width:1200px){
+    
+    /*Header */
+        
+            
+        /* Menu 2*/
+            .menu2 ul li:last-child{
+                
+            }
+    
+}
+@media (min-width: 1200px) and (max-width:1300px) {
+}
+@media (min-width: 1300px) and (max-width:1400px)
+{
+    
+}
