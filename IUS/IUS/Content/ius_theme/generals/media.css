@@ -1,5 +1,13 @@
 ﻿/* Maxs */
-        
+        @media (max-width:500px) {
+            /* Header */
+            .liSeach{
+                display:none;
+            }
+            .mobileButton{
+                display:block;
+            }
+        }
         @media (max-width:1200px) {
             .logoHeaderDiv{
                 text-align:center;
@@ -18,10 +26,13 @@
                 }
         }
 /* Standares */
-@media (min-width: 400px) and (max-width:500px) {
+@media (min-width: 300px) and (max-width:400px) {
     body{
         background:pink;
     }
+}
+@media (min-width: 400px) and (max-width:500px) {
+    
     /* Header */
         .liSeach{
             display:none;
