@@ -216,17 +216,6 @@
     <Content Include="Content\ius_theme\generals\style.css" />
     <Content Include="Content\ius_theme\views\home\media.css" />
     <Content Include="Content\ius_theme\views\home\style.css" />
-    <Content Include="Content\ius_theme\views\propuesta1menu\media.css" />
-    <Content Include="Content\ius_theme\views\propuesta1menu\style.css" />
-    <Content Include="Content\ius_theme\views\propuesta1\media.css" />
-    <Content Include="Content\ius_theme\views\propuesta1\style.css" />
-    <Content Include="Content\ius_theme\views\propuesta2\media.css" />
-    <Content Include="Content\ius_theme\views\propuesta2\style.css" />
-    <Content Include="Content\ius_theme\views\propuesta3\media.css" />
-    <Content Include="Content\ius_theme\views\propuesta3\style.css" />
-    <Content Include="Content\ius_theme\views\propuesta4\fonts.css" />
-    <Content Include="Content\ius_theme\views\propuesta4\media.css" />
-    <Content Include="Content\ius_theme\views\propuesta4\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

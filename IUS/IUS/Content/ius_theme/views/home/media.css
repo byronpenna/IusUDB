@@ -1,1 +1,18 @@
 ﻿/* Standares */
+@media (min-width: 200px) and (max-width:300px) {
+    .navs{
+        width:90%;
+    }
+    body{
+        background:pink;
+    }
+    .navs div:last-child{
+        margin-left:70%;
+    }
+}
+@media (min-width: 300px) and (max-width:400px) {
+     
+    .navs div:last-child{
+        margin-left:70%;
+    }
+}
