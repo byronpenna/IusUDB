@@ -16,11 +16,36 @@ function eventosIniciales() {
 }
 // genericos
     // ui 
+        function getTiempo(div,inputTxt,valTiempo) {
+            horas = div.find(".horas");
+            minutos = div.find(".minutos");
+            segundos = div.find(".seg");
+            tiempo = div.find(".tiempo");
+            txt = "@h:@m:@s @t";
+            txt = txt.replace("@h", valMinh(horas.slider("value")));
+            txt = txt.replace("@m", valMinh(minutos.slider("value")));
+            txt = txt.replace("@s", "00");
+            if (valTiempo == 0) {
+                tiempo = "a.m.";
+            } else {
+                tiempo = "p.m.";
+            }
+            txt = txt.replace("@t", tiempo);
+            return txt;
+        }
+        function rbTiempo(valTiempo,divRbTiempo) {
+            div = divRbTiempo.parents(".divHora");
+            inputTxt = divRbTiempo.parents(".divHora").find(".txtHora");
+            txt = getTiempo(div, inputTxt, valTiempo);
+            //$(".txtHoraInicio").val(txt);
+            inputTxt.val(txt);
+            horaConvert(txt);
+        }
         function refreshTime(inputSlide) {
             //slideHora = inputSlide.parent().find(".horas");
             div = $(inputSlide.target).parents(".divHora");
             inputTxt = $(inputSlide.target).parents(".divHora").find(".txtHora");
-            horas = div.find(".horas");
+            /*horas = div.find(".horas");
             minutos = div.find(".minutos");
             segundos = div.find(".seg");
             tiempo = div.find(".tiempo");
@@ -28,13 +53,15 @@ function eventosIniciales() {
             txt = "@h:@m:@s @t";
             txt = txt.replace("@h",valMinh(horas.slider("value")));
             txt = txt.replace("@m",valMinh(minutos.slider("value")));
-            txt = txt.replace("@s",valMinh(segundos.slider("value")));
+            txt = txt.replace("@s","00");
             if (tiempo.slider("value") == 0) {
                 tiempo = "a.m.";
             } else {
                 tiempo = "p.m.";
             }
-            txt = txt.replace("@t", tiempo);
+            txt = txt.replace("@t", tiempo);*/
+            valTiempo = div.find("input[class='rbTiempo']:checked").val();
+            txt = getTiempo(div, inputTxt, valTiempo);
             //$(".txtHoraInicio").val(txt);
             inputTxt.val(txt);
             horaConvert(txt);

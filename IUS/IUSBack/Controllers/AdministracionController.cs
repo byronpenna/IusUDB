@@ -31,6 +31,8 @@ namespace IUSBack.Controllers
                     if (permisos != null && permisos._ver)
                     {
                         List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                        ViewBag.titleModulo = "Eventos";
+                        ViewBag.usuario     = usuarioSession;
                         ViewBag.eventos     = eventos;
                         ViewBag.permiso     = permisos;
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);

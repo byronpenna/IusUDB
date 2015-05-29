@@ -19,6 +19,7 @@
                 slide: refreshTime,
                 change: refreshTime
             });
+            /*
             $(".seg").slider({
                 orientation: "horizontal",
                 range: "min",
@@ -36,8 +37,8 @@
                 value: 0,
                 slide: refreshTime,
                 change: refreshTime
-            })
-            $(".horas").slider("value", 1);
+            })*/
+            //$(".horas").slider("value", 1);
         // chosen 
             $(".cbUsuarioCompartir").chosen({
                 no_results_text: "Usuario no encontrado",
@@ -75,9 +76,6 @@
                     right: 'month,agendaWeek,agendaDay'
                 }
             });
-        // tabs
-            $('#horizontalTab').responsiveTabs();
-            $("#tabCompartir").responsiveTabs();
     // funciones iniciales 
         eventosIniciales();
     // eventos 
@@ -91,8 +89,13 @@
                 frmAgregarEvento(frm, $(this));
             }
             });
+        // change
+            $(document).on("change", ".rbTiempo", function () {
+                valTiempo = $(this).val();
+                rbTiempo(valTiempo,$(this));
+            })
         // click
-                $(document).on("click", ".tbCompartir", function () {
+            $(document).on("click", ".tbCompartir", function () {
                     $("#accordion").accordion("refresh");
                 });
             // publicar o no website

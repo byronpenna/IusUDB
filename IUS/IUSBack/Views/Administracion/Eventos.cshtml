@@ -14,8 +14,6 @@
 }
 @section scriptsPersonalizados{
     <!-- Plugins -->
-        <!-- Tabs -->
-            <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
         <!-- chosen -->
             <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
         <!-- Full calendar -->
@@ -28,220 +26,215 @@
 @{
     List<Evento> eventos = (List<Evento>)ViewBag.eventos;
 }
-<h2>Eventos</h2>
-<div id="horizontalTab">
-    <ul class="ulTabGeneral">
-        <li>
-            <a href="#tab-1">Eventos</a>
+@section tabs{
+    <!--class="ulTabGeneral"-->
+    <ul>
+        <li class="btnTab" target="#tab-1">
+            Eventos
         </li>
-        <li class="tbCompartir">
-            <a href="#tab-2">Compartir</a>
+        <li class="tbCompartir btnTab" target="#tab-2">
+            Compartir
         </li>
     </ul>
-    <div id="tab-1" class="row seccion tab">
-        <div class="col-lg-4">
-            <form id="frmAgregarEvento">
-                <div class="form-group">
-                    <label for="txtEvento">Nombre evento</label>
-                    <input type="text" class="form-control txtEvento" name="txtEvento" id="txtEvento" placeholder="Evento">
-                </div>
-                <div class="form-group">
-                    <label for="txtAreaDescripcion">Descripcion:</label>
-                    <textarea class="form-control txtAreaDescripcion" id="txtAreaDescripcion" name="txtAreaDescripcion" placeholder="Breve explicacion sobre que consiste eventos"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="txtFechaInicio">Fecha inicio</label>
-                    <input type="text" class="form-control dpFecha txtFechaInicio" name="txtFechaInicio" id="txtFechaInicio" />
-                </div>
-                <div class="form-group divHora">
-                    <label for="txtHoraInicio">Hora inicio</label>
-                    <input type="text" class="form-control  txtHoraInicio txtHora" name="txtHoraInicio" id="txtHoraInicio" />
-                    <div class="row col-lg-12">
-                        <label>Horas</label>
-                        <div class="horas"></div>
-                        <label>Minutos</label>
-                        <div class="minutos"></div>
-                        <label>Segundos</label>
-                        <div class="seg"></div>
-                        <label>AM/PM</label>
-                        <div class="tiempo"></div>
+}
+<div id="tab-1" class="row seccion tab">
+    <div class="col-lg-4">
+        <form id="frmAgregarEvento">
+            <div class="form-group">
+                <label for="txtEvento">Nombre evento</label>
+                <input type="text" class="form-control txtEvento" name="txtEvento" id="txtEvento" placeholder="Evento">
+            </div>
+            <div class="form-group">
+                <label for="txtAreaDescripcion">Descripcion:</label>
+                <textarea class="form-control txtAreaDescripcion" id="txtAreaDescripcion" name="txtAreaDescripcion" placeholder="Breve explicacion sobre que consiste eventos"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="txtFechaInicio">Fecha inicio</label>
+                <input type="text" class="form-control dpFecha txtFechaInicio" name="txtFechaInicio" id="txtFechaInicio" />
+            </div>
+            <div class="form-group divHora">
+                <label for="txtHoraInicio">Hora inicio</label>
+                <input type="text" class="form-control  txtHoraInicio txtHora" name="txtHoraInicio" id="txtHoraInicio" value="01:00:00 p.m." readonly />
+                <div class="row col-lg-12">
+                    <label>Horas</label>
+                    <div class="horas"></div>
+                    <label>Minutos</label>
+                    <div class="minutos"></div>
+                    <!--<label>Segundos</label>-->
+                    <!-- <div class="seg"></div>-->
+                    <!--<label>AM/PM</label>-->
+                    <!-- <div class="tiempo"></div>-->
+                    <div class="divTiempo">
+                        a.m. <input type="radio" name="tiempoInicio" class="rbTiempo" value="0" />
+                        p.m. <input type="radio" name="tiempoInicio" class="rbTiempo" value="1" checked />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="txtFechaFin">Fecha fin</label>
-                    <input type="text" class="form-control dpFecha txtFechaFin" name="txtFechaFin" id="txtFechaFin" />
+            </div>
+            <div class="form-group">
+                <label for="txtFechaFin">Fecha fin</label>
+                <input type="text" class="form-control dpFecha txtFechaFin" name="txtFechaFin" id="txtFechaFin" />
+                    
+            </div>
+            <div class="form-group divHora">
+                <label for="txtHoraFin">Hora fin</label>
+                <input type="text" class="form-control txtHoraFin txtHora" name="txtHoraFin" id="txtHoraFin" value="02:00:00 p.m." readonly />
+                <div class="row col-lg-12">
+                    <label>Horas</label>
+                    <div class="horas"></div>
+                    <label>Minutos</label>
+                    <div class="minutos"></div>
+                    <!--<label>Segundos</label>-->
+                    <!-- <div class="seg"></div>-->
+                    <!--<label>AM/PM</label>-->
+                    <!--<div class="tiempo"></div>-->
+                    <div class="divTiempo">
+                        a.m. <input type="radio" name="tiempoFin" class="rbTiempo" value="0" />
+                        p.m. <input type="radio" name="tiempoFin" class="rbTiempo" value="1" checked />
+                    </div>
                     
                 </div>
-                <div class="form-group divHora">
-                    <label for="txtHoraFin">Hora fin</label>
-                    <input type="text" class="form-control txtHoraFin txtHora" name="txtHoraFin" id="txtHoraFin" />
-                    <div class="row col-lg-12">
-                        <label>Horas</label>
-                        <div class="horas"></div>
-                        <label>Minutos</label>
-                        <div class="minutos"></div>
-                        <label>Segundos</label>
-                        <div class="seg"></div>
-                        <label>AM/PM</label>
-                        <div class="tiempo"></div>
+            </div>
+            <div class="form-group">
+                <button class="btnAgregarEvento btn btn-primary" type="submit">
+                    Agregar evento
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-8">
+        <div id='calendar'></div>
+    </div>
+</div>
+<div id="tab-2" class="tab hidden row marginNull">
+    <div class="col-lg-4">
+        <h3>Eventos</h3>
+        <div id="accordion">
+            <!-- Hermoso acordeon de eventos -->
+            @if (eventos != null)
+            {
+                foreach (Evento evento in eventos)
+                {
+                    <h3 class="nombreEvento @evento.txtClaseColor ">
+                        <span class="spanNombreEvento">@evento._evento</span>
+                    </h3>
+                    <div class="detalleEvento">
+                        <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
+                        <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
+                        <div class="row">
+                            <div class="normalMode">
+                                <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
+                            </div>
+                            <div class="editMode hidden" style="margin-bottom:5%;">
+                                <label>Nombre de evento</label>
+                                <input type="text" name="txtEvento2" class="txtEvento2" />
+                            </div>
+                            <div class="editMode hidden">
+                                <div class="editMode hidden">
+                                    <label>Descripcion evento</label>
+                                </div>
+                                <textarea class="txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
+                            </div>
+                            <!-- Motivo para quitar publicacion -->
+                            <div class="quitarPublicacionMode hidden">
+                                <label class="text-center">Motivos para quitar del website</label>
+                                <textarea class="txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
+                            </div>
+                            <!-- ------------------------------ -->
+                            <hr />
+                            <div class="row text-center">
+                                <div class="col-lg-6">
+                                    <div class="normalMode">
+                                        <label>Inicio: </label>
+                                        <span class="spanFechaInicio">@evento.getFechaInicio</span>
+                                    </div>
+                                    <div class="editMode hidden">
+                                        <label>Inicio: </label>
+                                        <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
+                                        <input type="time" class="txtHoraInicio form-control" name="txtHoraInicio" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="normalMode">
+                                        <label>Fin: </label>
+                                        <span class="spanFechaFin">@evento.getFechaFin</span>
+                                    </div>
+                                    <div class="editMode hidden">
+                                        <label>Fin: </label>
+                                        <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
+                                        <input type="time" class="txtHoraFin form-control " name="txtHoraFin" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if (evento._propietario != 3)
+                        {
+                            <div class="row text-center sectionBotonesEvento">
+                                <div class="normalMode">
+                                    @if (evento._propietario == 1 || evento._propietario == 2)
+                                    {
+                                        <button class="btn btnEditar">Editar</button>
+                                        <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
+                                    }
+                                    @if (evento._propietario == 1)
+                                    {
+                                        <button class="btn btnCompartir">Compartir</button>
+                                    }
+                                </div>
+                                <div class="editMode hidden">
+                                    <button class="btn btnActualizar">Actualizar</button>
+                                    <button class="btn btnCancelar">Cancelar</button>
+                                </div>
+                                <div class="quitarPublicacionMode hidden">
+                                    <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
+                                    <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
+                                </div>
+                            </div>
+                        }
                     </div>
-                </div>
-                <div class="form-group">
-                    <button class="btnAgregarEvento btn btn-primary" type="submit">
-                        Agregar evento
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="col-lg-8">
-            <div id='calendar'></div>
+                }
+            }
         </div>
     </div>
-    <div id="tab-2" class="tab">
-        <div class="col-lg-4">
-            <h3>Eventos</h3>
-            <div id="accordion">
-                <!-- Hermoso acordeon de eventos -->
-                @if (eventos != null)
-                {
-                    foreach (Evento evento in eventos)
-                    {
-                        <h3 class="nombreEvento @evento.txtClaseColor ">
-                            <span class="spanNombreEvento">@evento._evento</span>
-                        </h3>
-                        <div class="detalleEvento">
-                            <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
-                            <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
-                            <div class="row">
-                                <div class="normalMode">
-                                    <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
-                                </div>
-                                <div class="editMode hidden" style="margin-bottom:5%;">
-                                    <label>Nombre de evento</label>
-                                    <input type="text" name="txtEvento2" class="txtEvento2" />
-                                </div>
-                                <div class="editMode hidden" >
-                                    <div class="editMode hidden">
-                                        <label>Descripcion evento</label>
-                                    </div>
-                                    <textarea class="txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
-                                </div>
-                                <!-- Motivo para quitar publicacion -->
-                                    <div class="quitarPublicacionMode hidden">
-                                        <label class="text-center">Motivos para quitar del website</label>
-                                        <textarea class="txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
-                                    </div>
-                                <!-- ------------------------------ -->
-                                <hr />
-                                <div class="row text-center">
-                                    <div class="col-lg-6">
-                                        <div class="normalMode">
-                                            <label>Inicio: </label>
-                                            <span class="spanFechaInicio">@evento.getFechaInicio</span>
-                                        </div>
-                                        <div class="editMode hidden">
-                                            <label>Inicio: </label>
-                                            <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
-                                            <input type="time" class="txtHoraInicio form-control" name="txtHoraInicio" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="normalMode">
-                                            <label>Fin: </label>
-                                            <span class="spanFechaFin">@evento.getFechaFin</span>
-                                        </div>
-                                        <div class="editMode hidden">
-                                            <label>Fin: </label>
-                                            <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
-                                            <input type="time" class="txtHoraFin form-control " name="txtHoraFin" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @if (evento._propietario != 3)
-                            {
-                                <div class="row text-center sectionBotonesEvento">
-                                    <div class="normalMode">
-                                        @if (evento._propietario == 1 || evento._propietario == 2)
-                                        {
-                                            <button class="btn btnEditar">Editar</button>
-                                            <button class="btn btnPublicar">@evento.txtBtnPublicar</button>    
-                                        }
-                                        @if (evento._propietario == 1)
-                                        {
-                                            <button class="btn btnCompartir">Compartir</button>
-                                        }
-                                    </div>                                
-                                    <div class="editMode hidden">
-                                        <button class="btn btnActualizar" >Actualizar</button>
-                                        <button class="btn btnCancelar" >Cancelar</button>
-                                    </div>
-                                    <div class="quitarPublicacionMode hidden">
-                                        <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
-                                        <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-        <div class="col-lg-8 areaCompartir">
-            <input type="hidden" class="txtHdIdEvento" value="-1" />
-            <div id="tabCompartir">
-                <ul class="ulTabGeneral">
-                    <li>
-                        <a href="#tabUsuario">Usuarios</a>
-                    </li>
-                    <li>
-                        <a href="#Publico">Publico</a>
-                    </li>
-                </ul>
-                <div id="tabUsuario" class="tab">
-                    <div class="row">
-                        <h2 class="hEventoUsuario text-center">Seleccione evento a compartir</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="row frmCompartirUsuario">
-                                <select class="cbUsuarioCompartir" name="cbUsuarioCompartir">
-                                    <option value="-1" disabled selected>Seleccione usuario</option>
-                                </select>
-                                <button class="btn btn-primary btnAgregarUsuarioCompartir">Agregar</button>
-                            </div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="tbUsuarios">
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="row">
-                                <select class="cbPermisosCompartir" multiple>
-                                </select>
-                                <button class="btn btn-primary btnPermisos">Agregar</button>
-                            </div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Permisos</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="tbPermisos"></tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="col-lg-8 areaCompartir">
+        <input type="hidden" class="txtHdIdEvento" value="-1" />
+        <div id="tabCompartir">
+            <div id="tabUsuario">
+                <div class="row">
+                    <h2 class="hEventoUsuario text-center">Seleccione evento a compartir</h2>
                 </div>
-                <div id="Publico">
-                    Compartir acceso publico
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row marginNull frmCompartirUsuario">
+                            <select class="cbUsuarioCompartir" name="cbUsuarioCompartir">
+                                <option value="-1" disabled selected>Seleccione usuario</option>
+                            </select>
+                            <button class="btn btn-primary btnAgregarUsuarioCompartir">Agregar</button>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbUsuarios"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <select class="cbPermisosCompartir" multiple></select>
+                            <button class="btn btn-primary btnPermisos">Agregar</button>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Permisos</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbPermisos"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

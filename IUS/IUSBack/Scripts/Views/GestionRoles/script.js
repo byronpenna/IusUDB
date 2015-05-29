@@ -12,14 +12,6 @@
                 $(".cbSubMenu").chosen({ no_results_text: "Submenu no encontrado", width: '100%' });
     // eventos
         // click 
-            $(document).on("click", ".btnTab", function () {
-                $(".btnTab").removeClass("tabActive");
-                $(this).addClass("tabActive");
-                target = $(this).attr("target");
-                $(".tab").addClass("hidden");
-                $(target).removeClass("hidden");
-            })
-            // 
             $(document).on("click", "#btnAddRoles", function () {
                 var x = confirm("¿Esta seguro que desea agregar los siguientes roles?");
                 if (x) {

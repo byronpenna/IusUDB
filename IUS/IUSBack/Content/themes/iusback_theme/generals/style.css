@@ -120,7 +120,8 @@
     .accesibilidadDiv h2{
         margin:0;
         text-align:center;
-        font-family:'latop';
+        font-family:'circulap';
+        font-size:3em;
     }
     
     /*
@@ -221,5 +222,6 @@
     }
 /* Tablas */
     .clickTr{
-        background:yellow;
+        background:rgb(189, 195, 199);
+        color:white;
     }

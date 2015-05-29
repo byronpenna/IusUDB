@@ -3,37 +3,52 @@
     margin:0;
 }
 /*Tabs */
-.ulTabGeneral{
-    background:#95a5a6;
-}
-.ulTabGeneral li{
-    background:#bdc3c7;
-    padding:1%;
-}
-.tbRoles thead{
-    text-align:center;
-}
+    /*Tab eventos*/
+    .divTiempo{
+        margin-top:2%;
+        margin-bottom:2%;
+    }
+    /*Fin tab eventos*/
+    .ulTabGeneral{
+        background:#95a5a6;
+    }
+    .ulTabGeneral li{
+        background:#bdc3c7;
+        padding:1%;
+    }
+    .tbRoles thead{
+        text-align:center;
+    }
+    #tab-1{
+        margin-top:3%;
+    }
+    #tab-2{
+        margin-top:3%;
+    }
 /*Fin arreglos tabs*/
-.sectionBotonesEvento{
-    margin-top:5%;
-}
-.hEventoUsuario{
-    margin-bottom:5%;
-}
-#tabUsuario table{
-    margin-top:5%;
-}
+    .sectionBotonesEvento{
+        margin-top:5%;
+    }
+    .hEventoUsuario{
+        margin-bottom:5%;
+    }
+    #tabUsuario table{
+        margin-top:5%;
+    }
+    #tabUsuario{
+        display:block;
+    }
 /*Eventos*/
-.colorEventoPropio{
-    background:#3A87AD;
-}
-.colorEventoCompartido{
-    background: #f1c40f;
-}
-.colorEventoPublico{
-    background: #2ecc71;
-}
-.nombreEvento{
-    color:white;
-    font-weight:bold;
-}
+    .colorEventoPropio{
+        background:#3A87AD;
+    }
+    .colorEventoCompartido{
+        background: #f1c40f;
+    }
+    .colorEventoPublico{
+        background: #2ecc71;
+    }
+    .nombreEvento{
+        color:white;
+        font-weight:bold;
+    }
