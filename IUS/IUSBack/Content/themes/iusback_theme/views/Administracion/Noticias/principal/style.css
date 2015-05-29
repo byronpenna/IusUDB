@@ -4,3 +4,8 @@
 .tdContenido{
     width:30%;
 }
+.cuerpoModulo a{
+    background:#DDDDDD;
+    margin-bottom:2%;
+    color:black;
+}

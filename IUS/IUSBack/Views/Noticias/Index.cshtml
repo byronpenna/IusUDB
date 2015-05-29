@@ -20,55 +20,61 @@
     List<Post> posts = (List<Post>)ViewBag.posts;
     Permiso permiso = (Permiso)ViewBag.permiso;
 }
-<h2>Noticias</h2>
-<a href="@Url.Action("IngresarNoticia","Noticias")" >
-    <button class="btn" type="button" @permiso.stringEditar>
+<div class="cuerpoModulo">
+    @if (permiso._crear)
+    {
+        <a class="btn" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
+            Agregar entrada
+        </a>    
+    }
+    
+    <!--<button class="btn" type="button" @permiso.stringEditar>
         Agregar entrada
-    </button>
-</a>
-<table class="table tbPosts">
-    <thead>
-        <tr>
-            <th class="hidden"></th>
-            <th>Titulo</th>
-            <th>Creacion</th>
-            <th>Ultima modificacion</th>
-            <th>Contenido</th>
-            <th>Usuario creador</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (posts != null && posts.Count > 0)
-        {
-            foreach (Post post in posts)
+    </button>-->
+    <table class="table tbPosts">
+        <thead>
+            <tr>
+                <th class="hidden"></th>
+                <th>Titulo</th>
+                <th>Creacion</th>
+                <th>Ultima modificacion</th>
+                <th>Contenido</th>
+                <th>Usuario creador</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (posts != null && posts.Count > 0)
+            {
+                foreach (Post post in posts)
+                {
+                    <tr>
+                        <td class="hidden">
+                            <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
+                        </td>
+                        <td>@post._titulo</td>
+                        <td>@post.getFechaCreacion</td>
+                        <td>@post.getFechaModificacion</td>
+                        <td class="tdContenido">@post._contenido</td>
+                        <td>@post._usuario._usuario</td>
+                        <td>
+                            <a class="btn btnPublicacion" @permiso.stringEditar>
+                                @post.getTxtEstado
+                            </a>
+                            <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td class="hidden">
-                        <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
-                    </td>
-                    <td>@post._titulo</td>
-                    <td>@post.getFechaCreacion</td>
-                    <td>@post.getFechaModificacion</td>
-                    <td class="tdContenido">@post._contenido</td>
-                    <td>@post._usuario._usuario</td>
-                    <td>
-                        <button class="btn btnPublicacion" @permiso.stringEditar>
-                            @post.getTxtEstado
-                        </button>
-                        <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
-                            Editar
-                        </a>
-                    </td>
+                    <td class="text-center">No hay posts para mostrar</td>
+                    <td class="text-center" colspan="6"></td>
                 </tr>
             }
-        }
-        else
-        {
-            <tr>
-                <td class="text-center">No hay posts para mostrar</td>
-                <td class="text-center" colspan="6"></td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

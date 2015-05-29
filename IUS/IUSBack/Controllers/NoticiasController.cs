@@ -32,9 +32,11 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver)
                     {
-                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                        ViewBag.permiso = permisos;
-                        List<Post> posts = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
+                        ViewBag.titleModulo = "Noticias";
+                        ViewBag.usuario     = usuarioSession;
+                        ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.permiso     = permisos;
+                        List<Post> posts    = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
                         ViewBag.posts = posts;
                         return View();
                     }
@@ -65,8 +67,9 @@ namespace IUSBack.Controllers
                             ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                             ViewBag.editMode = true;
                             #region "Labels"
-                                ViewBag.titlePage   = "Modificar noticia";
+                                ViewBag.titleModulo = "Modificar noticia";
                                 ViewBag.botonAccion = "Modificar";
+                                ViewBag.usuario = usuarioSession;
                                 ViewBag.accion      = 0;
                             #endregion
                             #region "Valores"
@@ -106,7 +109,8 @@ namespace IUSBack.Controllers
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.editMode    = false;
                         #region "Labels"
-                            ViewBag.titlePage       = "Ingresar noticia";
+                            ViewBag.titleModulo     = "Ingresar noticia";
+                            ViewBag.usuario         = usuarioSession;
                             ViewBag.botonAccion     = "Guardar";
                             ViewBag.accion          = 1;
                         #endregion

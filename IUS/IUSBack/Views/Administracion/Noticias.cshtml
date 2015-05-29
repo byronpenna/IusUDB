@@ -20,8 +20,6 @@
     List<PostCategoria> categorias = (List<PostCategoria>)ViewBag.categorias;
     Post post = (Post)ViewBag.post;
 }
-
-<h2>@ViewBag.titlePage</h2>
 <div id="div_carga">
     <div id="contenerdorCargadorAjax">
         <div id="cargadorAjaxUniversal">
@@ -34,7 +32,8 @@
         </div>
     </div>
 </div>
-<div class="row col-lg-12 wysihtml5-supported">
+
+<div class="row marginNull">
     <form class="frmNoticia">
         <input type="hidden" name="txtHdIdPost" class="txtHdIdPost" value="@post._idPost" />
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">
@@ -46,8 +45,8 @@
                 <label>Contenido</label>
                 <div class="divTamanioPersonalizado hidden">
                     Tamaño personalizado(%)
-                    <input class="txtTamañoImagen soloNumerosDecimal" value="100" disabled/>
-                    <input type="checkbox" name="ckTamanio" class="ckTamanio" /> 
+                    <input class="txtTamañoImagen soloNumerosDecimal" value="100" disabled />
+                    <input type="checkbox" name="ckTamanio" class="ckTamanio" />
                 </div>
                 <textarea class="form-control" id="editor">@post._contenido</textarea>
             </div>
@@ -84,7 +83,7 @@
                 <div class="row">
                     <label>Etiquetas</label>
                 </div>
-                <input type="text" name="txtEtiquetas" data-role="tagsinput"  class="txtEtiquetas"  value="@ViewBag.tags"/>
+                <input type="text" name="txtEtiquetas" data-role="tagsinput" class="txtEtiquetas" value="@ViewBag.tags" />
             </div>
         </div>
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">
