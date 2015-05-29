@@ -431,6 +431,12 @@ function eventosIniciales() {
             txtArea.val("");
             controlesEdit(false, div, ".quitarPublicacionMode", ".normalMode");
         }
+        function resetRbTiempo(){
+            $(".rbAm").val("0");
+            $(".rbPm").val("1");
+            $(".rbTiempo").prop("checked", false);
+            $(".rbPm").prop("checked", true);
+        }
         function frmAgregarEvento(frm, frmSection) {
             frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
             frm.txtHoraFin = horaConvert(frm.txtHoraFin);
@@ -445,7 +451,7 @@ function eventosIniciales() {
                     div = getEventosAcordion(data.evento);
                     $("#accordion").prepend(div);
                     clearTr(frmSection);
-                
+                    resetRbTiempo();
                 } else {
                     if (data.error._mostrar && data.error.Message != "") {
                         alert(data.error.Message);

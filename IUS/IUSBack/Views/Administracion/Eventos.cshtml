@@ -65,8 +65,8 @@
                     <!--<label>AM/PM</label>-->
                     <!-- <div class="tiempo"></div>-->
                     <div class="divTiempo">
-                        a.m. <input type="radio" name="tiempoInicio" class="rbTiempo" value="0" />
-                        p.m. <input type="radio" name="tiempoInicio" class="rbTiempo" value="1" checked />
+                        a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                        p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
                     </div>
                 </div>
             </div>
@@ -88,8 +88,8 @@
                     <!--<label>AM/PM</label>-->
                     <!--<div class="tiempo"></div>-->
                     <div class="divTiempo">
-                        a.m. <input type="radio" name="tiempoFin" class="rbTiempo" value="0" />
-                        p.m. <input type="radio" name="tiempoFin" class="rbTiempo" value="1" checked />
+                        a.m. <input type="radio" name="tiempoFin" class="rbTiempo rbAm" value="0" />
+                        p.m. <input type="radio" name="tiempoFin" class="rbTiempo rbPm" value="1" checked />
                     </div>
                     
                 </div>
@@ -106,101 +106,110 @@
     </div>
 </div>
 <div id="tab-2" class="tab hidden row marginNull">
-    <div class="col-lg-4">
+    <div class="col-lg-4 eventosCompartirSection">
         <h3>Eventos</h3>
-        <div id="accordion">
             <!-- Hermoso acordeon de eventos -->
-            @if (eventos != null)
+            @if (eventos != null && eventos.Count > 0)
             {
-                foreach (Evento evento in eventos)
-                {
-                    <h3 class="nombreEvento @evento.txtClaseColor ">
-                        <span class="spanNombreEvento">@evento._evento</span>
-                    </h3>
-                    <div class="detalleEvento">
-                        <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
-                        <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
-                        <div class="row">
-                            <div class="normalMode">
-                                <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
-                            </div>
-                            <div class="editMode hidden" style="margin-bottom:5%;">
-                                <label>Nombre de evento</label>
-                                <input type="text" name="txtEvento2" class="txtEvento2" />
-                            </div>
-                            <div class="editMode hidden">
-                                <div class="editMode hidden">
-                                    <label>Descripcion evento</label>
-                                </div>
-                                <textarea class="txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
-                            </div>
-                            <!-- Motivo para quitar publicacion -->
-                            <div class="quitarPublicacionMode hidden">
-                                <label class="text-center">Motivos para quitar del website</label>
-                                <textarea class="txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
-                            </div>
-                            <!-- ------------------------------ -->
-                            <hr />
-                            <div class="row text-center">
-                                <div class="col-lg-6">
-                                    <div class="normalMode">
-                                        <label>Inicio: </label>
-                                        <span class="spanFechaInicio">@evento.getFechaInicio</span>
-                                    </div>
-                                    <div class="editMode hidden">
-                                        <label>Inicio: </label>
-                                        <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
-                                        <input type="time" class="txtHoraInicio form-control" name="txtHoraInicio" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="normalMode">
-                                        <label>Fin: </label>
-                                        <span class="spanFechaFin">@evento.getFechaFin</span>
-                                    </div>
-                                    <div class="editMode hidden">
-                                        <label>Fin: </label>
-                                        <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
-                                        <input type="time" class="txtHoraFin form-control " name="txtHoraFin" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @if (evento._propietario != 3)
-                        {
-                            <div class="row text-center sectionBotonesEvento">
+                <div id="accordion">
+                    @foreach (Evento evento in eventos)
+                    {
+                        <h3 class="nombreEvento @evento.txtClaseColor ">
+                            <span class="spanNombreEvento">@evento._evento</span>
+                        </h3>
+                        <div class="detalleEvento">
+                            <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
+                            <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
+                            <div class="row">
                                 <div class="normalMode">
-                                    @if (evento._propietario == 1 || evento._propietario == 2)
-                                    {
-                                        <button class="btn btnEditar">Editar</button>
-                                        <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
-                                    }
-                                    @if (evento._propietario == 1)
-                                    {
-                                        <button class="btn btnCompartir">Compartir</button>
-                                    }
+                                    <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
+                                </div>
+                                <div class="editMode hidden" style="margin-bottom:5%;">
+                                    <label>Nombre de evento</label>
+                                    <input type="text" name="txtEvento2" class="txtEvento2" />
                                 </div>
                                 <div class="editMode hidden">
-                                    <button class="btn btnActualizar">Actualizar</button>
-                                    <button class="btn btnCancelar">Cancelar</button>
+                                    <div class="editMode hidden">
+                                        <label>Descripcion evento</label>
+                                    </div>
+                                    <textarea class="txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
                                 </div>
+                                <!-- Motivo para quitar publicacion -->
                                 <div class="quitarPublicacionMode hidden">
-                                    <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
-                                    <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
+                                    <label class="text-center">Motivos para quitar del website</label>
+                                    <textarea class="txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
+                                </div>
+                                <!-- ------------------------------ -->
+                                <hr />
+                                <div class="row text-center">
+                                    <div class="col-lg-6">
+                                        <div class="normalMode">
+                                            <label>Inicio: </label>
+                                            <span class="spanFechaInicio">@evento.getFechaInicio</span>
+                                        </div>
+                                        <div class="editMode hidden">
+                                            <label>Inicio: </label>
+                                            <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
+                                            <input type="time" class="txtHoraInicio form-control" name="txtHoraInicio" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="normalMode">
+                                            <label>Fin: </label>
+                                            <span class="spanFechaFin">@evento.getFechaFin</span>
+                                        </div>
+                                        <div class="editMode hidden">
+                                            <label>Fin: </label>
+                                            <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
+                                            <input type="time" class="txtHoraFin form-control " name="txtHoraFin" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        }
-                    </div>
-                }
+                            @if (evento._propietario != 3)
+                            {
+                                <div class="row text-center sectionBotonesEvento">
+                                    <div class="normalMode">
+                                        @if (evento._propietario == 1 || evento._propietario == 2)
+                                        {
+                                            <button class="btn btnEditar">Editar</button>
+                                            <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
+                                        }
+                                        @if (evento._propietario == 1)
+                                        {
+                                            <button class="btn btnCompartir">Compartir</button>
+                                        }
+                                    </div>
+                                    <div class="editMode hidden">
+                                        <button class="btn btnActualizar">Actualizar</button>
+                                        <button class="btn btnCancelar">Cancelar</button>
+                                    </div>
+                                    <div class="quitarPublicacionMode hidden">
+                                        <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
+                                        <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
             }
-        </div>
+            else
+            {
+                <div class="row marginNull noEventoDiv">
+                    <img src="~/Content/themes/iusback_theme/img/views/eventos/noevento.png"/>
+                    <h4>Usted no posee ningun evento</h4>    
+                </div>
+                
+            }
+            
     </div>
     <div class="col-lg-8 areaCompartir">
         <input type="hidden" class="txtHdIdEvento" value="-1" />
         <div id="tabCompartir">
             <div id="tabUsuario">
                 <div class="row">
-                    <h2 class="hEventoUsuario text-center">Seleccione evento a compartir</h2>
+                    <h3 class="hEventoUsuario text-center">Seleccione evento a compartir</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">

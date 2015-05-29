@@ -9,6 +9,23 @@
         margin-bottom:2%;
     }
     /*Fin tab eventos*/
+    /* Tab compartir */
+    .eventosCompartirSection > h3{
+        text-align:center;
+    }
+    .noEventoDiv{
+        margin-top:10%;
+        text-align:center;
+    }
+    .noEventoDiv img{
+        width:16%;
+    }
+    .noEventoDiv h4{
+        font-family:'latop';
+        font-weight:bold;
+        color:#95A5A6;
+    }
+    /*Fin tab compartir */
     .ulTabGeneral{
         background:#95a5a6;
     }
