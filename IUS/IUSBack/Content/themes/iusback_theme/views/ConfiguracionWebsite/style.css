@@ -5,3 +5,35 @@
     background:#bdc3c7;
     padding:1%;
 }
+/* Tab basicas */
+#frmInstitucional .seccionForm{
+    margin-bottom:3%;
+}
+.tableValores{
+    margin-top:3%;
+}
+/* Tab slider */
+#frm h2{
+    margin-bottom:2%;
+}
+#frm button{
+    margin-top:1%;
+}
+.subirDiv{
+    margin-bottom:3%;
+}
+.divImgSlider h2{
+    text-align:center;
+    margin-bottom:3%;
+}
+.botonesControlImage{
+    margin-top:2%;
+}
+.noImageSection{
+    text-align:center;
+}
+.noImageSection h4{
+    font-family:'latop';
+    color:#95A5A6;
+    font-weight:bold;
+}
