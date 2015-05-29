@@ -102,12 +102,17 @@
 /*
     Other menu
     */
+    .dataImportanteHeader .titulito{
+        font-weight:bold;
+    }
+    .dataImportanteHeader div{
+        margin-bottom:2%;
+    }
     .otherMenuGray{
         background:#F5F5F5;
         margin:0;
         margin-top:3%;
         padding-top:2%;
-        
     }
     .informacionHeaderDiv{
         text-align:center;

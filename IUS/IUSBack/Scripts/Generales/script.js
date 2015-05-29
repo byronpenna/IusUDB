@@ -1,4 +1,9 @@
 ﻿$(document).ready(function () {
+    // iniciales
+        setInterval(function () {
+            txtTiempo = $(".txtHeaderHoraActual").text();
+            $(".txtHeaderHoraActual").empty().append(clockHora(txtTiempo));
+        }, 1000);
     // eventos
         // click
             $(document).on("click", ".btnTab", function () {

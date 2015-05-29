@@ -37,7 +37,9 @@ namespace IUSBack.Controllers
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
                 {
-                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.titleModulo = "Acceso prohibido";
+                    ViewBag.usuario     = usuarioSession;
+                    ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     return View();
                 }
                 else

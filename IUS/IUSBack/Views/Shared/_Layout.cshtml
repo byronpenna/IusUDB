@@ -1,6 +1,7 @@
 ﻿@using IUSLibs.SEC.Entidades
 @{
     String menu = ViewBag.subMenus;
+    DateTime hoy = DateTime.Now;
     Usuario usuarioSession = null;
     try
     {
@@ -37,8 +38,15 @@
             </div>
         </div>
         <div class="row otherMenuGray">
-            <div class="col-lg-2">
-
+            <div class="col-lg-2 dataImportanteHeader">
+                <div class="titulito">Hoy en IUS</div>
+                <div class="divHeaderFecha">
+                    <span class="txtHeaderDateActual">@String.Format("{0:dd/MM/yyyy}", hoy)</span>
+                    <span class="txtHeaderHoraActual">@String.Format("{0:hh:mm:ss tt}", hoy)</span>
+                </div>
+                <div>
+                    <i class="fa fa-calendar"></i> 0 eventos 
+                </div>
             </div>
             <div class="col-lg-8 accesibilidadDiv">
                 <h2>@ViewBag.titleModulo</h2>
