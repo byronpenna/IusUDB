@@ -12,7 +12,6 @@
     }
     function cambiarEstadoControlGlobal() {
         estadoControl = estadoControlGlobal();
-        console.log("El estado del control es", estadoControl);
         if (!estadoControl) {
             $(".controlGlobal").removeClass("hidden");
         } else {
@@ -22,7 +21,6 @@
 // subtabla
     function desasociarRol(frm,trUsuarioRol) {
         actualizarCatalogo(RAIZ+"/GestionRoles/desasociarRolUsuario", frm, function (data) {
-            console.log("la data devuelta es:", data);
             if (data) {
                 trUsuarioRol.remove();
             }
@@ -84,7 +82,6 @@
         frm = new Object();
         frm.idUsuario = trUsuario.find(".txtHdIdUser").val();
         cargarObjetoGeneral(RAIZ+"/GestionRoles/getJSONRoles", frm, function (data) {
-            console.log("la respuesta del servidor es: ", data);
             var roles = data.roles;
             table = getTbRoles(roles);
             trUsuario.after(table);
@@ -98,10 +95,8 @@
     function actualizar(trUsuario) {
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
         actualizarCatalogo(RAIZ+"GestionUsuarios/actualizarUsuario", frm, function (data) {
-            console.log("la data devuelta es:", data);
             if (data.estado) {
                 usuario = data.usuario;
-                console.log("actualizacion correcta");
                 actualizarInformacionTr(trUsuario,usuario)
                 controlesEdit(false, trUsuario); // salimos del modo de edicion
                 alert("actualizado correctamente");
@@ -142,7 +137,6 @@
         idPersonaActual = trUsuario.find(".txtHdIdPersona").val();
         controlesEdit(true, trUsuario);
         combo = trUsuario.find(".cbPersona");
-        console.log("El id de la persona actual es: ", idPersonaActual);
         obj = cargarObjetoPersonas(function (Personas) {
             llenarCbPersonas(Personas,combo,idPersonaActual);
         });
@@ -159,12 +153,9 @@
     }
 // deshabilitar
     function changeTxtBtnHabilitar(estado, trUsuario) {
-        console.log("nuevo estado", estado);
         if (estado) {
-            console.log("pondras Deshabilitar");
             trUsuario.find(".btnDeshabilitar").text("Deshabilitar");
         } else {
-            console.log("pondras habilitar");
             trUsuario.find(".btnDeshabilitar").text("Habilitar");
         }
     }
@@ -179,7 +170,6 @@
             beforeSend: function(){
             },
             success: function (data) {
-                console.log(data);
                 if (data.estadoEjecucion) {                    
                     trUsuario.find(".tdEstadoUsuario").empty().append(data.nuevoEstadoUsuario);
                     changeTxtBtnHabilitar(data._estado, trUsuario);
@@ -240,19 +230,15 @@
                 </td>\
             </tr>";
         //";
-        console.log("tr es:", j);
         return j;
     }
 // acciones scripts 
     function btnAgregarUsuario(tr) {
         frm = serializeSection(tr);
-        console.log("formulario a enviar", frm);
         tbody = tr.parents("table").find("tbody");
         actualizarCatalogo(RAIZ+"GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
-            console.log("La respuesta del servidor es: ", data);
             if (data.estado) {
                 tr = getTrUsuario(data.usuarioAgregado, data.permiso);
-                console.log(tr);
                 tbody.prepend(tr);
                 $(".tableUsuarios").dataTable().fnAddTr($(tr)[0]);
             } else {

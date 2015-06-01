@@ -93,10 +93,35 @@ namespace IUSLibs.SEC.Control
                     // para permisos
                         sp.agregarParametro("idUsuarioAccion", idUsuario);
                         sp.agregarParametro("idPagina", idPagina);
-                    DataSet ds = sp.EjecutarProcedimiento();
-                    if (!this.DataSetDontHaveTable(ds))
+                        try
+                        {
+                            DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                            if (this.resultadoCorrecto(tb) && tb[1].Rows.Count > 0)
+                            {
+                                DataRow rowResult = tb[1].Rows[0];
+                                personaReturn = new Persona((int)rowResult["idPersona"], rowResult["nombres"].ToString(), rowResult["apellidos"].ToString(), (DateTime)rowResult["fecha_nacimiento"]);
+                            }
+                            else
+                            {
+                                DataRow rowResult = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(rowResult);
+                                throw x;
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                        
+                    //DataSet ds = sp.EjecutarProcedimiento();
+                    /*if (!this.DataSetDontHaveTable(ds))
                     {
                         DataTable table = ds.Tables[0];
+
                         if ((int)table.Rows[0]["estadoUpdate"] == 1)
                         {
                             if(ds.Tables.Count > 1 ){
@@ -122,7 +147,7 @@ namespace IUSLibs.SEC.Control
                             }
                     
                         }
-                    }
+                    }*/
                     return personaReturn;
                 }
             #endregion

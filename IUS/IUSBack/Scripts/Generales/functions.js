@@ -91,7 +91,6 @@
             obj = serializeSection($(this));
             frm[i] = obj;
         });
-        console.log("formulario a enviar es:", frm);
         actualizarCatalogo(ajaxUrl, frm, function (data) {
             callback(data, frm);
         });
@@ -116,7 +115,6 @@
         if (normalClass === undefined) {
             normalClass = ".normalMode";
         }
-        console.log("edit class es",editClass)
         if (mostrar) {
             selectorMostrar = editClass;
             selectorOcultar = normalClass;
@@ -145,7 +143,6 @@
 // generics
     function clockHora(txtHora) {
         arrHora = txtHora.split(":");
-        console.log(arrHora);
         arrHoraFinal = arrHora[2].split(" ");
         segundos = arrHoraFinal[0];
         ind = arrHoraFinal[1];
@@ -168,7 +165,6 @@
             }
         }
         minutos = tiempo.minuto; horas = tiempo.hora; segundos = tiempo.segundo;
-        console.log(tiempo);
         if (minutos < 9) {
             minutos = "0" + minutos;
         }

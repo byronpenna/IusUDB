@@ -48,6 +48,15 @@ namespace IUSLibs.GENERALS
                     return true;
                 }
             }
+            protected ErroresIUS getErrorFromExecProcedure(DataRow row)
+            {
+                string message = row["errorMessage"].ToString();
+                if(message == ""){
+                    message = "Error no controlado";
+                }
+                ErroresIUS x = new ErroresIUS(message,ErroresIUS.tipoError.sql, (int)row["errorCode"], row["errorSql"].ToString());
+                return x;
+            }
             #region "Resultado Correcto"
                 public bool resultadoCorrecto(DataSet ds)
                 {
