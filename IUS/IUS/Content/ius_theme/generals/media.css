@@ -67,9 +67,7 @@
     }
 }
 @media (min-width: 300px) and (max-width:400px) {
-    body{
-        background:pink;
-    }
+
     /* Header */
     nav ul li, .menu2 ul li {
         padding-bottom: 4%;
@@ -108,10 +106,6 @@
         }
 }
 @media (min-width: 500px) and (max-width:600px) {
-    body{
-        background:pink;
-    }
-    
     /* Header */
         nav ul li, .menu2 ul li{
             width:49%;
@@ -134,7 +128,9 @@
         }
 }
 @media (min-width: 700px) and (max-width:800px) {
-    
+    body{
+        background:pink;
+    }
     /* Header */
         nav ul li, .menu2 ul li{
             width:20%;
