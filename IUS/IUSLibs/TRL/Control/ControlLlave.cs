@@ -21,48 +21,12 @@ namespace IUSLibs.TRL.Control
 
         #endregion
         #region "funciones"
-        public List<Llave> sp_trl_getLlaveFromLlaveIdioma(int idLlaveIdioma,int idUsuarioEjecutor,int idPagina)
-        {
-            List<Llave> llaves = null;
-            Llave llave; Pagina pagina; // clases genericas
-            SPIUS sp = new SPIUS("sp_trl_getLlaveFromLlaveIdioma");
-            sp.agregarParametro("idLlaveIdioma", idLlaveIdioma);
-            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-            sp.agregarParametro("idPagina", idPagina);
-            try
-            {
-                DataSet ds = sp.EjecutarProcedimiento();
-                if (!this.DataSetDontHaveTable(ds))
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        llaves = new List<Llave>();
-                        foreach (DataRow row in ds.Tables[0].Rows)
-                        {
-                            pagina = new Pagina((int)row["id_pagina_fk"], true);
-                            llave = new Llave((int)row["idLlave"], row["llave"].ToString(), pagina);
-                            llaves.Add(llave);
-                        }
-                    }
-                }
-            }
-            catch (ErroresIUS x)
-            {
-                throw x;
-            }
-            catch (Exception x)
-            {
-                throw x;
-            }
-            return llaves;
-        }
-        public List<Llave> sp_trl_getLlaveFromPageAndIdioma(int idPaginaFront, int idIdioma, int idUsuarioEjecutor, int idPagina)
+            public List<Llave> sp_trl_getLlaveFromLlaveIdioma(int idLlaveIdioma,int idUsuarioEjecutor,int idPagina)
             {
                 List<Llave> llaves = null;
-                Llave llave; Pagina pagina;// clases genericas
-                SPIUS sp = new SPIUS("sp_trl_getLlaveFromPageAndIdioma");
-                sp.agregarParametro("idPaginaFront",idPaginaFront);
-                sp.agregarParametro("idIdioma", idIdioma);
+                Llave llave; Pagina pagina; // clases genericas
+                SPIUS sp = new SPIUS("sp_trl_getLlaveFromLlaveIdioma");
+                sp.agregarParametro("idLlaveIdioma", idLlaveIdioma);
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);
                 try
@@ -75,24 +39,60 @@ namespace IUSLibs.TRL.Control
                             llaves = new List<Llave>();
                             foreach (DataRow row in ds.Tables[0].Rows)
                             {
-                                pagina = new Pagina((int)row["id_pagina_fk"],true);
-                                llave = new Llave((int)row["idLlave"],row["llave"].ToString(), pagina);
+                                pagina = new Pagina((int)row["id_pagina_fk"], true);
+                                llave = new Llave((int)row["idLlave"], row["llave"].ToString(), pagina);
                                 llaves.Add(llave);
                             }
-                            
                         }
-                        
                     }
                 }
-                catch (ErroresIUS x) 
+                catch (ErroresIUS x)
                 {
                     throw x;
                 }
-                catch (Exception x) {
+                catch (Exception x)
+                {
                     throw x;
                 }
                 return llaves;
             }
+            public List<Llave> sp_trl_getLlaveFromPageAndIdioma(int idPaginaFront, int idIdioma, int idUsuarioEjecutor, int idPagina)
+                {
+                    List<Llave> llaves = null;
+                    Llave llave; Pagina pagina;// clases genericas
+                    SPIUS sp = new SPIUS("sp_trl_getLlaveFromPageAndIdioma");
+                    sp.agregarParametro("idPaginaFront",idPaginaFront);
+                    sp.agregarParametro("idIdioma", idIdioma);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                llaves = new List<Llave>();
+                                foreach (DataRow row in ds.Tables[0].Rows)
+                                {
+                                    pagina = new Pagina((int)row["id_pagina_fk"],true);
+                                    llave = new Llave((int)row["idLlave"],row["llave"].ToString(), pagina);
+                                    llaves.Add(llave);
+                                }
+                            
+                            }
+                        
+                        }
+                    }
+                    catch (ErroresIUS x) 
+                    {
+                        throw x;
+                    }
+                    catch (Exception x) {
+                        throw x;
+                    }
+                    return llaves;
+                }
         #endregion
     }
 }

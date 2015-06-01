@@ -153,22 +153,22 @@ namespace IUSLibs.SEC.Control
             #endregion
             #region "get"
                 public List<Persona> getPersonas()
-            {
-                List<Persona> personas = new List<Persona>();
-                Persona persona;
-                SPIUS sp = new SPIUS("sp_sec_getPersonas");
-                DataSet ds = sp.EjecutarProcedimiento();
-                if (!this.DataSetDontHaveTable(ds))
                 {
-                    DataTable table = ds.Tables[0];
-                    foreach (DataRow row in table.Rows)
+                    List<Persona> personas = new List<Persona>();
+                    Persona persona;
+                    SPIUS sp = new SPIUS("sp_sec_getPersonas");
+                    DataSet ds = sp.EjecutarProcedimiento();
+                    if (!this.DataSetDontHaveTable(ds))
                     {
-                        persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
-                        personas.Add(persona);
+                        DataTable table = ds.Tables[0];
+                        foreach (DataRow row in table.Rows)
+                        {
+                            persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                            personas.Add(persona);
+                        }
                     }
+                    return personas;
                 }
-                return personas;
-            }
             #endregion
         #endregion
     }

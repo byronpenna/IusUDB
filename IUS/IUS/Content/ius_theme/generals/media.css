@@ -128,9 +128,7 @@
         }
 }
 @media (min-width: 700px) and (max-width:800px) {
-    body{
-        background:pink;
-    }
+    
     /* Header */
         nav ul li, .menu2 ul li{
             width:20%;

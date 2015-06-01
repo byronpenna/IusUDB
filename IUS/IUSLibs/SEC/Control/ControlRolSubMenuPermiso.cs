@@ -17,35 +17,35 @@ namespace IUSLibs.SEC.Control
         #region "funciones publicas"
             #region "acciones"
                 public bool eliminarRolSubMenuPermiso(int idRolSubmenuPermiso,int idUsuarioEjecutor,int idPagina)
-            {
-                bool toReturn = false;
-                SPIUS sp = new SPIUS("sp_sec_quitarSubRol");
-                sp.agregarParametro("idRolSubmenuPermiso", idRolSubmenuPermiso);
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-                try
                 {
-                    DataSet ds = sp.EjecutarProcedimiento();
-                    if (!this.DataSetDontHaveTable(ds))
+                    bool toReturn = false;
+                    SPIUS sp = new SPIUS("sp_sec_quitarSubRol");
+                    sp.agregarParametro("idRolSubmenuPermiso", idRolSubmenuPermiso);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
                     {
-                        toReturn = Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoDelete"]);
-                        if (!toReturn && ds.Tables.Count > 1)
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        if (!this.DataSetDontHaveTable(ds))
                         {
-                            //ErroresIUS x =  
-                            // manejar error ius
+                            toReturn = Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoDelete"]);
+                            if (!toReturn && ds.Tables.Count > 1)
+                            {
+                                //ErroresIUS x =  
+                                // manejar error ius
+                            }
                         }
                     }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return toReturn;
                 }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return toReturn;
-            }
                 public bool agregarPermisoSubmenuRol(int idRol, int idSubmenu, int[] idPermisos, int idUsuarioEjecutor, int idPagina)
                 {
                     bool toReturn = false;
