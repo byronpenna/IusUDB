@@ -24,33 +24,19 @@ namespace IUS.Controllers
             }*/
             public ActionResult Index()
             {
-                String[] lng = Request.UserLanguages;
-                HomeModel modeloHome = new HomeModel();
                 List<LlaveIdioma> traducciones;
                 try{
-                    string lang = lng[0];
                     ViewBag.slider = this._model.sp_front_getSliderFromPage(this.idPagina);
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(2);
-                    HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["IUSidioma"];
-                    if (cookie != null)
-                    {
-                        lang = cookie.Value;
-                    }
-                    traducciones = modeloHome.getTraduccion(lang);
-                    ViewBag.idiomas = modeloHome.getIdiomas();
+                    string lang = this.getUserLang();
+                    traducciones = this._model.getTraduccion(lang,this.idPagina);
+                    this.setTraduccion(traducciones);       
                 }catch(ErroresIUS x){
                     ErrorsController error = new ErrorsController();
                     var obj = error.redirectToError(x);
                     //Response.Redirect(vista);
                     return RedirectToAction(obj["accion"], obj["controlador"]);
                     //return "El error es" + x.Message;
-                }
-                if (traducciones != null)
-                {
-                    foreach (LlaveIdioma traduccion in traducciones)
-                    {
-                        ViewData[traduccion._llave._llave] = traduccion._traduccion;
-                    }
                 }
                 return View("~/Views/Home/Index.cshtml");
                 //return "todo bien";

@@ -1,50 +1,64 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+// librerias internas
+    using IUS.Models.general;
 // librerias externas
     using IUSLibs.LOGS;
 namespace IUS.Controllers
 {
-    public class ErrorsController : Controller
+    public class ErrorsController : PadreController
     {
         //
         // GET: /Erros/
+        #region "propiedades"
+            private ModeloPadre _PadreModel;
+        #endregion
+        #region "funciones"
+            public ActionResult NotFound()
+            {
+                // describe el error http 404 
+                int idPagina = 5;
+                string lang = this.getUserLang();
+                this.setTraduccion(this._PadreModel.getTraduccion(lang, idPagina));
 
-        public ActionResult NotFound()
-        {
-            // describe el error http 404 
-            return View();
-        }
-        public ActionResult DBNotAccess()
-        {
-            return View();
-        }
-        #region "redirigir errores a sus respectivas vistas"
-        public Dictionary<String, String> redirectToError(ErroresIUS x)
-        {
-            var accion = new Dictionary<String, String>();
-            if (x.errorType == ErroresIUS.tipoError.sql)
+                return View();
+            }
+            public ActionResult DBNotAccess()
             {
-                switch (x.errorNumber)
+                return View();
+            }
+            public Dictionary<String, String> redirectToError(ErroresIUS x)
+            {
+                var accion = new Dictionary<String, String>();
+                if (x.errorType == ErroresIUS.tipoError.sql)
                 {
-                    case 4060:
-                        {
-                            // los parametros de conexion no son validos
-                            accion.Add("controlador", "Errors");
-                            accion.Add("accion", "DBNotAccess");
-                            break;
-                        }
+                    switch (x.errorNumber)
+                    {
+                        case 4060:
+                            {
+                                // los parametros de conexion no son validos
+                                accion.Add("controlador", "Errors");
+                                accion.Add("accion", "DBNotAccess");
+                                break;
+                            }
+                    }
                 }
+                if (accion.Count == 0)
+                {
+                    accion.Add("controlador", "Errors");
+                    accion.Add("accion", "Unhandled");
+                }
+                return accion;
             }
-            if (accion.Count == 0)
+        #endregion
+        #region "constructores"
+            public ErrorsController()
             {
-                accion.Add("controlador", "Errors");
-                accion.Add("accion", "Unhandled");
+                this._PadreModel = new ModeloPadre();
             }
-            return accion;
-        }
         #endregion
     }
 }

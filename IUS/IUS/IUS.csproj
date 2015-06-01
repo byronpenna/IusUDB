@@ -207,6 +207,7 @@
     <Content Include="Content\images\generales\bannerDonBosc.jpg" />
     <Content Include="Content\images\generales\hamburguerButton.png" />
     <Content Include="Content\images\generales\logo_IUS.jpg" />
+    <Content Include="Content\images\generales\sadcloud.png" />
     <Content Include="Content\images\generales\slide.png" />
     <Content Include="Content\images\generales\slide2.png" />
     <Content Include="Content\images\test\africa.jpg" />
@@ -216,6 +217,8 @@
     <Content Include="Content\ius_theme\generals\style.css" />
     <Content Include="Content\ius_theme\views\home\media.css" />
     <Content Include="Content\ius_theme\views\home\style.css" />
+    <Content Include="Content\ius_theme\views\NotFound\media.css" />
+    <Content Include="Content\ius_theme\views\NotFound\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

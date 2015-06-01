@@ -1,4 +1,28 @@
-﻿    var RAIZ = "http://localhost:7196/";    
+﻿// constantes
+    var RAIZ = "http://localhost:7196/";
+// idiomas 
+    function setIdiomaPreferido() {
+        var idIdioma = $.cookie('IUSidIdioma');
+        if (idIdioma !== undefined) {
+            $(".cbIdioma option[value='" + idIdioma + "']").attr("selected", true);
+        }
+    }
+// eventos por master page
+    function cbIdioma(idIdioma) {
+        frm = { idIdioma: idIdioma };
+        console.log("formulario a enviar es: ", frm);
+        actualizarCatalogo(RAIZ + "Home/sp_trl_getIdiomaFromIds", frm, function (data) {
+            console.log("La respuesta del servidor es: ", data);
+            if (data.estado) {
+                $.removeCookie('IUSidioma')
+                $.cookie("IUSidioma", data.lang);
+                $.cookie("IUSidIdioma", data.idIdioma);
+                location.reload();
+            } else {
+                alert("ocurrio un error");
+            }
+        });
+    }
 // ajax 
     function actualizarCatalogo(urlAjax, frm, callback) {
         $.ajax({

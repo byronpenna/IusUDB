@@ -20,46 +20,10 @@ namespace IUS.Models.page.home.acciones
             #region "Control"
                 private ControlIdioma _controlIdioma;
                 private ControlSliderImage _controlSlider;
-                
             #endregion
         #endregion
         #region "funciones"
-            public List<Idioma> getIdiomas()
-            {
-                List<Idioma> idiomas = null;
-                try
-                {
-                    return this._controlIdioma.sp_trl_getAllIdiomas(1, 1);
-                }
-                catch (ErroresIUS)
-                {
-
-                }
-                catch (Exception)
-                {
-
-                }
-                return idiomas;
-            }
-            public List<LlaveIdioma> getTraduccion(string lang)
-            {
-                lang = this.getStandarLang(lang);
-                ControlLlaveIdioma control = new ControlLlaveIdioma(this.idPagina,lang);
-                List<LlaveIdioma> traduccion;
-                try
-                {
-                    traduccion = control.getLlavesSitio();
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return traduccion;
-            }
+            
             public Idioma sp_trl_getIdiomaFromIds(int idIdioma)
             {
                 try
@@ -91,20 +55,7 @@ namespace IUS.Models.page.home.acciones
                 }
             }
             #region "genericas"
-                public string getStandarLang(string lang)
-                {
-                    this._controlIdioma = new ControlIdioma();
-                    int index = lang.IndexOf('-');
-                    if (index > 0)
-                    {
-                        this.lang = lang.Substring(0, index);
-                    }
-                    else
-                    {
-                        this.lang = lang;
-                    }
-                    return this.lang;
-                }
+                
             #endregion
         #endregion
         #region "Contructores"

@@ -5,8 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 // sistema
     using System.Web.Script.Serialization;
+// librerias internas
+    using IUS.Models.general;
 // librerias externas
     using IUSLibs.LOGS;
+    using IUSLibs.TRL.Entidades;
+    using IUSLibs.TRL.Control;
 namespace IUS.Controllers
 {
     public class PadreController : Controller
@@ -19,6 +23,7 @@ namespace IUS.Controllers
                 Principal=0,idioma = 0
             }
             protected JavaScriptSerializer _jss;
+            private ModeloPadre _model;
         #endregion
         #region "funciones"
             #region "manejo de errores"
@@ -65,6 +70,28 @@ namespace IUS.Controllers
                     }
             
                 #endregion
+
+                public string getUserLang()
+                {
+                    String[] lng = Request.UserLanguages;
+                    string lang = lng[0];
+                    HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["IUSidioma"];
+                    if (cookie != null)
+                    {
+                        lang = cookie.Value;
+                    }
+                    return lang;
+                }
+                public void setTraduccion(List<LlaveIdioma> traducciones)
+                {
+                    if (traducciones != null)
+                    {
+                        foreach (LlaveIdioma traduccion in traducciones)
+                        {
+                            ViewData[traduccion._llave._llave] = traduccion._traduccion;
+                        }
+                    }
+                }
             #endregion
             #region "conversiones"
                 #region "arrays"
@@ -120,12 +147,14 @@ namespace IUS.Controllers
                     }
                 #endregion
             #endregion
+            
         #endregion
         #region "constructores"
             public PadreController()
             {
                 this._jss = new JavaScriptSerializer();
-                ViewBag.prueba = "yeahhh";
+                this._model = new ModeloPadre();
+                ViewBag.idiomas = this._model.getIdiomas();
             }
         #endregion
     }

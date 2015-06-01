@@ -19,8 +19,11 @@ namespace IUS
                                 ).Include(
                                 "~/Content/third-party/bootstrap/js/bootstrap.js"
                                 ).Include(
-                                "~/Scripts/Generales/script.js",
+                                "~/Content/third-party/cookiesjs/jquery.cookie.js"
+                                ).Include(
                                 "~/Scripts/Generales/functions.js"
+                                ).Include(
+                                "~/Scripts/Generales/script.js"
                                 ));
                 // css 
                     bundles.Add(new StyleBundle("~/bundles/bootstrap").Include(
