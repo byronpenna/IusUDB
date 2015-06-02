@@ -110,22 +110,28 @@
     function btEliminarTraduccion(tr) {
         var frm = new Object();
         frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();
-
         actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_eliminarLlaveIdioma", frm, function (data) {
-
             if (data.estado) {
-                tr.remove();
+                table = tr.parents("table");
+                //tr.remove();
+                removeDataTable(table, tr);
             } else {
                 alert("Ocurrio un error al tratar de eliminar registro");
             }
         });
     }
+    function actualizarTrTabla(tr,llaveIdioma) {
+
+    }
     function btnActualizar(tr) {
         frm = serializeSection(tr);
         
-        actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_actualizarLlaveIdioma", frm, function (data) {
+        actualizarCatalogo(RAIZ + "/GestionIdiomaWebsite/sp_trl_actualizarLlaveIdioma", frm, function (data) {
+            console.log("La respuesta del servidor es: ", data);
             if (data.estado) {
                 // quitar edit mode 
+                controlesEdit(false, tr);
+                updateAllDataTable($(".tableLlaveIdioma"));
             } else {
                 alert("ocurrio un error al intentar actualizar");
             }
@@ -136,6 +142,8 @@
     }
     function btnEditarTraduccion(tr) {
         controlesEdit(true, tr);
+        cb = tr.find(".cbEdit");
+        cb.chosen({ width: '100%' });
         var frm = new Object();
         frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();
         
@@ -170,10 +178,10 @@
     }
     function btnAgregarLlave(frm) {
         actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_agregarLlaveIdioma", frm, function (data) {
-            
             if (data.estado) {
                 tr = addRowTable(data.llaveIdioma);
-                $(".tbodyTablaTraducciones").append(tr);
+                //$(".tbodyTablaTraducciones").append(tr);
+                $(".tableLlaveIdioma").dataTable().fnAddTr($(tr)[0]);
                 $(".txtAreaTraduccion").val("");
                 llenarCbLlaves(data.llaves, $(".cbLlave"));
             } else {

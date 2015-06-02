@@ -4,9 +4,9 @@
             $(".cbLlave").chosen({ no_results_text: "Esa llave no existe", width: '100%' });
             $(".cbPagina").chosen({ no_results_text: "La pagina no existe", width: '100%' });
             $(".cbIdioma").chosen({ no_results_text: "El idioma no existe", width: '100%' });
-            $(".cbEdit").chosen({ width: '100%' });
+            //$(".cbEdit").chosen({ width: '100%' });
         // datatable
-            //$(".tableLlaveIdioma").DataTable();
+            $(".tableLlaveIdioma").DataTable();
     // eventos  
         // click
             $(document).on("click", ".btnAgregarLlave", function () {
@@ -14,7 +14,6 @@
                 frm.idLlave     = $(".cbLlave").val();
                 frm.idIdioma    = $(".cbIdioma").val();
                 frm.traduccion  = $(".txtAreaTraduccion").val();
-
                 btnAgregarLlave(frm)
             });
             $(document).on("click", ".btnCancelarEdit", function () {
