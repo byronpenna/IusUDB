@@ -45,16 +45,20 @@ namespace IUSLibs.SEC.Control
                     }
                     return toReturn;
                 }
-                public bool desasociarRol(int idUsuario,int idRol)
+                public bool desasociarRol(int idUsuario,int idRol,int idUsuarioEjecutor,int idPagina)
                 {
                     bool toReturn = false;
                     SPIUS sp = new SPIUS("sp_sec_desasociarRoles");
+
                     sp.agregarParametro("idUsuario", idUsuario);
                     sp.agregarParametro("idRol", idRol);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+
                     DataSet ds = sp.EjecutarProcedimiento();
                     if (!this.DataSetDontHaveTable(ds))
                     {
-                        if (Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoDelete"]))
+                        if (Convert.ToBoolean((int)ds.Tables[0].Rows[0]["estadoProc"]))
                         {
                             toReturn = true;
                         }

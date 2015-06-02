@@ -87,10 +87,10 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                     }
                     return rol;
                 }
-                public Boolean desasociarRol(int idRol, int idUsuario)
+                public Boolean desasociarRol(int idRol, int idUsuario,int idUsuarioEjecutor,int idPagina)
                 {
                     Boolean toReturn = false;
-                    toReturn = this._control.desasociarRol(idUsuario, idRol);
+                    toReturn = this._control.desasociarRol(idUsuario, idRol,idUsuarioEjecutor,idPagina);
                     return toReturn;
                 }
                 public Boolean sp_sec_eliminarRol(int idRol,int idUsuarioEjecutor, int idPagina)

@@ -35,6 +35,7 @@ namespace IUSBack.Controllers
                 ViewBag.usuario = usuarioSession;
                 if (usuarioSession != null)
                 {
+
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     // traer data
                         Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
@@ -42,12 +43,19 @@ namespace IUSBack.Controllers
                         List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario,this._idPagina);
                         List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina,0);
                     // fill viewbag
-                        ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                        ViewBag.roles       = roles;
-                        ViewBag.rolesTabla  = rolesTabla;
-                        ViewBag.usuarios    = usuarios;
-                        ViewBag.permisos    = permisos;
-                    return View();
+                        if (permisos != null && permisos._ver)
+                        {
+                            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                            ViewBag.roles = roles;
+                            ViewBag.rolesTabla = rolesTabla;
+                            ViewBag.usuarios = usuarios;
+                            ViewBag.permisos = permisos;
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("NotAllowed", "Errors");
+                        }
                 }
                 else
                 {
@@ -253,7 +261,7 @@ namespace IUSBack.Controllers
                         {
                             respuesta = new Dictionary<Object, Object>();
                             frm = jss.Deserialize<Dictionary<Object, Object>>(frmText);
-                            Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()));
+                            Boolean estado = this._model.desasociarRol(Convert.ToInt32(frm["idRol"].ToString()), Convert.ToInt32(frm["idUsuario"].ToString()), usuarioSession._idUsuario,this._idPagina);
                             List<Rol> rolesFaltantes = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", estado);
                             respuesta.Add("rolesFaltantes", rolesFaltantes);

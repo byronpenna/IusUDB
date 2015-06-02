@@ -181,13 +181,16 @@ function agregarRoles(frm) {
 }
 
 function desasociarRol(frm, trUsuarioRol) {
-    actualizarCatalogo(RAIZ+"/GestionRoles/desasociarRolUsuario", frm, function (data) {
-        if (data) {
+    actualizarCatalogo(RAIZ + "/GestionRoles/desasociarRolUsuario", frm, function (data) {
+        console.log("Respuesta del servidor: ", data);
+        if (data.estado) {
             trUsuarioRol.remove();
             // actualizar cbRoles
             optionCbRoles = getOptionsRoles(data.rolesFaltantes);
             $(".cbRoles").empty().append(optionCbRoles);
             resetChosen($(".cbRoles"));
+        } else {
+            alert("Accion no se pudo completar");
         }
     });
 }
