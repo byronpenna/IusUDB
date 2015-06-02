@@ -230,6 +230,49 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return posts;
                 }
+                public Dictionary<object,object> sp_adminfe_front_getNoticiaFromId(int idPost)
+                {
+                    Post post = null; /*PostCategoria cat = null;*/ List<Tag> tags = null; Tag tag;
+                    Dictionary<object,object> retorno = null;
+
+                    SPIUS sp = new SPIUS("sp_adminfe_front_getNoticiaFromId");
+                    sp.agregarParametro("idPost", idPost);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb) && tb[1].Rows.Count > 0)
+                        {
+                            DataRow row = tb[1].Rows[0];
+                            post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(),(bool)row["estado"],(int)row["id_usuario_fk"]);
+                            // para las tags
+                            if (tb[2].Rows.Count > 0)
+                            {
+                                tags = new List<Tag>();
+                                foreach(DataRow rowTag in tb[2].Rows){
+                                    tag = new Tag((int)rowTag["id_tags_fk"], rowTag["tag"].ToString());
+                                    tags.Add(tag);
+                                }
+                            }
+                            retorno = new Dictionary<object, object>();
+                            retorno.Add("post", post);
+                            retorno.Add("tags", tags);
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.sql, 0);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return retorno;
+                }
             #endregion
         #endregion
     }

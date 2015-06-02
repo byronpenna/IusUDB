@@ -1,0 +1,67 @@
+﻿/* Noticia */
+    .tituloNoticia, .tituloComentarios {
+        font-family:'latop';
+    }
+    .tituloNoticia {
+        text-align:center;
+        font-size:2.5em;
+        width:100%;
+    }
+    .tituloComentarios{
+        text-align:center;
+        font-size:2em;
+    }
+    .todoCuerpoNoticia{
+        margin-top:2%;
+        width:95%;
+    }
+    .todoCuerpoNoticia h1 {
+        font-size: 2em;
+    }
+    .todoCuerpoNoticia div span,.todoCuerpoNoticia div strong{
+        font-size:1em !important;
+        font-family:'latop' !important;
+    }
+/* Comentarios */
+    /* Formulario */
+        .agregarComentarioSection{
+            margin-top:5%;
+        }
+        .btnComentar{
+            margin-top:4%;
+        }
+        .rowForm{
+            margin-top:2%;
+        }
+    /* Comentarios */
+        .btnDesplegableAddComent{
+            background:#d64d56;
+            width:100%;
+            padding-top:2%;
+            padding-bottom:2%;
+            color:white;
+            font-weight:bold;
+            text-align:center;
+            cursor:pointer;
+        }
+        .btnDesplegableAddComent .spanIco{
+            font-size:2em;
+            margin-left:3%;
+        }
+        .divComentario{
+            background:#F5F5F5;
+            margin-top:10%;
+            padding-top:2%;
+            padding-left:5%;
+            padding-right:5%;
+            padding-bottom:2%;
+        }
+        .divComentario h3 {
+            font-size:1.2em;
+            font-weight:bold;
+        }
+        .divComentario p {
+            margin-left:5%;
+            font-size:1em;
+            text-align:justify;
+        }

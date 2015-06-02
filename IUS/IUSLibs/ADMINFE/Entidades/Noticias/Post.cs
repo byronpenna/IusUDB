@@ -51,6 +51,16 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             {
 
             }
+            public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, int usuarioCreador) {
+                Usuario usu = new Usuario(usuarioCreador);
+                this._idPost = idPost;
+                this._fechaCreacion = fechaCreacion;
+                this._fechaModificacion = fechaModificacion;
+                this._titulo = titulo;
+                this._contenido = contenido;
+                this._estado = estado;
+                this._usuario = usu;
+            }
             public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, Usuario usuarioCreador)
             {
                 this._idPost            = idPost;

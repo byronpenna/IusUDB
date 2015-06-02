@@ -17,7 +17,7 @@ namespace IUS.Controllers
     {
         #region "propiedades"
             public enum paginas { 
-                home=1
+                home=1,Noticias=4
             }
             public enum cookiesSistema {
                 Principal=0,idioma = 0

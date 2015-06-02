@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -196,6 +197,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\general\ModeloPadre.cs" />
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
+    <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +221,8 @@
     <Content Include="Content\ius_theme\views\home\style.css" />
     <Content Include="Content\ius_theme\views\NotFound\media.css" />
     <Content Include="Content\ius_theme\views\NotFound\style.css" />
+    <Content Include="Content\ius_theme\views\Noticias\media.css" />
+    <Content Include="Content\ius_theme\views\Noticias\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -403,6 +407,7 @@
     <Content Include="Views\propuestas\propuesta4.cshtml" />
     <Content Include="Views\Shared\menu.cshtml" />
     <Content Include="Views\Shared\footer.cshtml" />
+    <Content Include="Views\Noticias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

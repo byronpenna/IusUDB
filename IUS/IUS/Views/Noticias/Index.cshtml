@@ -1,0 +1,63 @@
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@{
+    Post post = (Post)ViewBag.post;
+}
+@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/media.css" />
+}
+<div class="row marginNull">
+    <div class="col-lg-9">
+        <div class="todoCuerpoNoticia">
+            <h2 class="tituloNoticia">@post._titulo</h2>
+            <div class="contenidoNoticia">
+                @(new HtmlString(post._contenido))
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <h2 class="tituloComentarios">Comentarios</h2>
+        <div class="btnDesplegableAddComent">
+            <span>Agregar comentario</span>
+            <span class="spanIco">
+                <i class="fa fa-angle-down"></i>
+                <!--<i class="fa fa-angle-up icoAccion"></i>-->
+            </span>
+        </div>
+        <div class="agregarComentarioSection hidden ">
+            <form>
+                <div class="row marginNull rowForm">
+                    <label>Nombre:</label>
+                    <input class="form-control" name="txtNombre" />
+                </div>
+                <div class="row marginNull rowForm">
+                    <label>Comentario: </label>
+                    <textarea class="form-control" name="txtAreaComentario"></textarea>
+                </div>
+                
+                <button class="btn btnComentar">
+                    Comentar
+                </button>
+            </form>
+        </div>
+        <div class="comentariosSection">
+            <div class="divComentario">
+                <h3>Byron Peña</h3>
+                <p>
+                    Lorem Ipsum es simplemente el texto de relleno de las 
+                    imprentas y archivos de texto. Lorem Ipsum ha sido el 
+                    texto de relleno estándar de las industrias desde el año 1500.
+                </p>
+            </div>
+            <div class="divComentario">
+                <h3>Irving Peña</h3>
+                <p>
+                    Lorem Ipsum es simplemente el texto de relleno de las
+                    imprentas y archivos de texto. Lorem Ipsum ha sido el
+                    texto de relleno estándar de las industrias desde el año 1500.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
