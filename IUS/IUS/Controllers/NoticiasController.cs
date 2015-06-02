@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas 
     using IUSLibs.LOGS;
     using IUSLibs.TRL.Entidades;
+    using IUSLibs.ADMINFE.Entidades.Noticias;
 namespace IUS.Controllers
 {
     public class NoticiasController : PadreController
@@ -27,9 +28,17 @@ namespace IUS.Controllers
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
                     cuerpoPagina = this._model.sp_adminfe_front_getNoticiaFromId(id);
-                    ViewBag.post = cuerpoPagina["post"];
-                    ViewBag.tags = cuerpoPagina["tags"];
-                    return View();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                    Post post = (Post)cuerpoPagina["post"];
+                    if (post._estado) {
+                        ViewBag.post = post;
+                        ViewBag.tags = cuerpoPagina["tags"];
+                        return View();   
+                    }
+                    else
+                    {
+                        return RedirectToAction("DisabledPost", "Errors");
+                    }
                 }
                 catch (ErroresIUS x)
                 {

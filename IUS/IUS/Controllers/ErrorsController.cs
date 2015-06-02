@@ -17,13 +17,21 @@ namespace IUS.Controllers
             private ModeloPadre _PadreModel;
         #endregion
         #region "funciones"
+            public ActionResult DisabledPost()
+            {
+                int idPagina = 5; // cambiar el id de la paginas
+                string lang = this.getUserLang();
+                this.setTraduccion(this._PadreModel.getTraduccion(lang, idPagina));
+                ViewBag.noticias = this._PadreModel.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                return View();
+            }
             public ActionResult NotFound()
             {
                 // describe el error http 404 
                 int idPagina = 5;
                 string lang = this.getUserLang();
                 this.setTraduccion(this._PadreModel.getTraduccion(lang, idPagina));
-
+                ViewBag.noticias = this._PadreModel.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                 return View();
             }
             public ActionResult DBNotAccess()

@@ -19,6 +19,7 @@ namespace IUS.Controllers
             public enum paginas { 
                 home=1,Noticias=4
             }
+            public int _numeroNoticias = 2;
             public enum cookiesSistema {
                 Principal=0,idioma = 0
             }

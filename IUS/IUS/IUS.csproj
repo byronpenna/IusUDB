@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\general\ModeloPadre.cs" />
+    <Compile Include="Models\page\Errors\Acciones\ErrorModel.cs" />
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,6 +210,7 @@
     <Content Include="Content\images\generales\bannerDonBosc.jpg" />
     <Content Include="Content\images\generales\hamburguerButton.png" />
     <Content Include="Content\images\generales\logo_IUS.jpg" />
+    <Content Include="Content\images\generales\noPost.png" />
     <Content Include="Content\images\generales\sadcloud.png" />
     <Content Include="Content\images\generales\slide.png" />
     <Content Include="Content\images\generales\slide2.png" />
@@ -408,6 +410,7 @@
     <Content Include="Views\Shared\menu.cshtml" />
     <Content Include="Views\Shared\footer.cshtml" />
     <Content Include="Views\Noticias\Index.cshtml" />
+    <Content Include="Views\Errors\disabledPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

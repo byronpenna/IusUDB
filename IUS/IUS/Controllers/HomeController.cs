@@ -27,7 +27,7 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try{
                     ViewBag.slider = this._model.sp_front_getSliderFromPage(this.idPagina);
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(2);
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang,this.idPagina);
                     this.setTraduccion(traducciones);       
