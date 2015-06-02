@@ -18,7 +18,7 @@ namespace IUSLibs.ADMINFE.Control
     {
         #region "backend"
             #region "gets"
-            public List<SliderImage> sp_adminfe_getSliderImage(int idPaginaFe,int idUsuarioEjecutor, int idPagina)
+                public List<SliderImage> sp_adminfe_getSliderImage(int idPaginaFe,int idUsuarioEjecutor, int idPagina)
                 {
                     List<SliderImage> imagenes = null;
                     SliderImage slider;Pagina pagina;
