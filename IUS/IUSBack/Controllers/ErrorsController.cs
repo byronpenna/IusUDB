@@ -29,7 +29,18 @@ namespace IUSBack.Controllers
             public ActionResult NotFound()
             {
                 // describe el error http 404 
-                return View();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (usuarioSession != null)
+                {
+                    ViewBag.titleModulo = "Pagina solicitada no existe";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }
             }
             public ActionResult NotAllowed()
             {
