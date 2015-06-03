@@ -1,6 +1,8 @@
 ﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@using IUSLibs.FrontUI.Noticias.Entidades
 @{
     Post post = (Post)ViewBag.post;
+    List<Comentario> comentarios = (List<Comentario>)ViewBag.comentarios;
 }
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/style.css" />
@@ -29,26 +31,48 @@
             </span>
         </div>
         <div class="agregarComentarioSection" style="display:none" >
-            <form>
+            <form id="frmComentario">
+                <input type="hidden" name="txtHdIdPost" value="@ViewBag.idPost" />
                 <div class="row marginNull rowForm">
                     <label>Nombre:</label>
                     <input class="form-control" name="txtNombre" placeholder="Nombre Apellido" />
                 </div>
                 <div class="row marginNull rowForm">
                     <label>Email:</label>
-                    <input class="form-control" name="txtNombre" placeholder="direccion@("@")dominio" />
+                    <input type="email" class="form-control" name="txtEmail" placeholder="direccion@("@")dominio" />
                 </div>
                 <div class="row marginNull rowForm">
                     <label>Comentario: </label>
                     <textarea class="form-control" name="txtAreaComentario"></textarea>
                 </div>
-                
                 <button class="btn btnComentar">
                     Comentar
                 </button>
             </form>
         </div>
         <div class="comentariosSection">
+            @if (comentarios != null)
+            {
+                foreach (Comentario comentario in comentarios)
+                {
+                    <div class="divComentario">
+                        <h3>@comentario._nombre</h3>
+                        <p>
+                            @comentario._comentario
+                            <div class="spanDate">@comentario.getTxtFecha</div>
+                        </p>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="noComentFound">
+                    <img src="~/Content/images/generales/chat.png"/>
+                    <h4>¡Se el primero en comentar esta Noticia!</h4>
+                </div>
+                
+            }
+            <!--
             <div class="divComentario">
                 <h3>Byron Peña</h3>
                 <p>
@@ -58,42 +82,7 @@
                     <div class="spanDate">03/06/2015 7:49 a.m.</div>
                 </p>
             </div>
-            <div class="divComentario">
-                <h3>Irving Peña</h3>
-                <p>
-                    Lorem Ipsum es simplemente el texto de relleno de las
-                    imprentas y archivos de texto. Lorem Ipsum ha sido el
-                    texto de relleno estándar de las industrias desde el año 1500.
-                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
-                </p>
-            </div>
-            <div class="divComentario">
-                <h3>Irving Peña</h3>
-                <p>
-                    Lorem Ipsum es simplemente el texto de relleno de las
-                    imprentas y archivos de texto. Lorem Ipsum ha sido el
-                    texto de relleno estándar de las industrias desde el año 1500.
-                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
-                </p>
-            </div>
-            <div class="divComentario">
-                <h3>Irving Peña</h3>
-                <p>
-                    Lorem Ipsum es simplemente el texto de relleno de las
-                    imprentas y archivos de texto. Lorem Ipsum ha sido el
-                    texto de relleno estándar de las industrias desde el año 1500.
-                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
-                </p>
-            </div>
-            <div class="divComentario">
-                <h3>Irving Peña</h3>
-                <p>
-                    Lorem Ipsum es simplemente el texto de relleno de las
-                    imprentas y archivos de texto. Lorem Ipsum ha sido el
-                    texto de relleno estándar de las industrias desde el año 1500.
-                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
-                </p>
-            </div>
+            -->
         </div>
     </div>
 </div>

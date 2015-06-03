@@ -101,6 +101,8 @@
     <Compile Include="BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="BaseDatos\ConexionIUS.cs" />
+    <Compile Include="FrontUI\Noticias\Control\ControlComentario.cs" />
+    <Compile Include="FrontUI\Noticias\Entidades\Comentario.cs" />
     <Compile Include="GENERALS\PadreLib.cs" />
     <Compile Include="LOGS\ErroresIUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

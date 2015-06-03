@@ -15,7 +15,7 @@ namespace IUS.Models.page.home.acciones
     public class HomeModel:ModeloPadre
     {
         #region "propiedades"
-            private int idPagina = 1;
+            //private int idPagina = 1;
             private string lang;
             #region "Control"
                 private ControlIdioma _controlIdioma;

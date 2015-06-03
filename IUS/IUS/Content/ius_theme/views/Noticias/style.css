@@ -30,6 +30,11 @@
         font-family:'latop' !important;
     }
 /* Comentarios */
+        .noComentFound{
+            margin-top:25%;
+            text-align:center;
+            font-family:'Comic Sans MS';
+        }
     /* Formulario */
         .agregarComentarioSection{
             margin-top:5%;

@@ -7,16 +7,20 @@ using System.Web;
 // externas 
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Control.Noticias;
+    using IUSLibs.FrontUI.Noticias.Entidades;
+    using IUSLibs.FrontUI.Noticias.Control;
 namespace IUS.Models.page.Noticias.Acciones
 {
     
         public class NoticiaModel:ModeloPadre
         {
             #region "propiedades"
-                private ControlPost _controlPost;
+                private ControlPost         _controlPost;
+                private ControlComentario   _controlComentario;
             #endregion
             #region "acciones"
-                public Dictionary<object, object> sp_adminfe_front_getNoticiaFromId(int idPost)
+                #region "get"
+                    public Dictionary<object, object> sp_adminfe_front_getNoticiaFromId(int idPost)
                 {
                     try
                     {
@@ -31,11 +35,45 @@ namespace IUS.Models.page.Noticias.Acciones
                         throw x;
                     }
                 }
+                    public List<Comentario> sp_frontUi_noticias_getComentariosPost(int idPost, string ip, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlComentario.sp_frontUi_noticias_getComentariosPost(idPost, ip, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
+                #region "do it"
+                    public Comentario sp_frontUi_noticias_ponerComentario(Comentario comentarioAgregar,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlComentario.sp_frontUi_noticias_ponerComentario(comentarioAgregar, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
             #endregion
             #region "constructores"
                 public NoticiaModel()
                 {
                     this._controlPost = new ControlPost();
+                    this._controlComentario = new ControlComentario();
                 }
             #endregion
         }

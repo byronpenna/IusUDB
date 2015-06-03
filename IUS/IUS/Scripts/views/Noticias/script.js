@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
     // eventos 
+        // submit
+            $(document).on("submit", "#frmComentario", function (e) {
+                e.preventDefault();
+                frm = serializeToJson($(this).serializeArray());
+                frmComentario(frm);
+            })
         // click 
             $(document).on("click", ".btnDesplegableAddComent", function () {
                 div = $(".agregarComentarioSection");
