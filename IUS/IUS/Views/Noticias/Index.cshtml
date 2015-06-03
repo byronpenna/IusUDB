@@ -13,7 +13,7 @@
     <script src="~/Scripts/views/Noticias/functions.js"></script>
 }
 <div class="row marginNull divTodoNoticias ">
-    <div class="col-lg-9">
+    <div class="col-lg-9 col-md-9 col-sm-12">
         <div class="todoCuerpoNoticia">
             <h2 class="tituloNoticia">@post._titulo</h2>
             <div class="contenidoNoticia">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 divSeccionComentarios">
+    <div class="col-lg-3 col-md-3 col-sm-12 divSeccionComentarios">
         <h2 class="tituloComentarios">Comentarios</h2>
         <div class="btnDesplegableAddComent">
             <span>Agregar comentario</span>
@@ -30,7 +30,7 @@
                 <!--<i class="fa fa-angle-up icoAccion"></i>-->
             </span>
         </div>
-        <div class="agregarComentarioSection" style="display:none" >
+        <div class="agregarComentarioSection " style="display:none" >
             <form id="frmComentario">
                 <input type="hidden" name="txtHdIdPost" value="@ViewBag.idPost" />
                 <div class="row marginNull rowForm">
@@ -55,7 +55,7 @@
             {
                 foreach (Comentario comentario in comentarios)
                 {
-                    <div class="divComentario">
+                    <div class="divComentario col-lg-12 col-md-12 col-sm-12">
                         <h3>@comentario._nombre</h3>
                         <p>
                             @comentario._comentario

@@ -1,1 +1,59 @@
-﻿
+﻿/* Maxs */
+    @media (max-width:1000px){
+        .divSeccionComentarios{
+            margin-bottom:5%;
+        }
+        .btnDesplegableAddComent, #frmComentario {
+            margin: 0 auto;
+        }
+    }
+    
+/* Standares */
+    @media (min-width: 500px) and (max-width:600px) {
+        .btnDesplegableAddComent, #frmComentario {
+            width:70%;
+        }
+    }
+    @media (min-width: 600px) and (max-width:700px) {
+        .btnDesplegableAddComent, #frmComentario {
+            width:70%;
+        }
+    }
+    @media (min-width: 600px) and (max-width:700px) {
+        .btnDesplegableAddComent, #frmComentario {
+            width:70%;
+        }
+    }
+    @media (min-width: 700px) and (max-width:800px) {
+        
+        .btnDesplegableAddComent, #frmComentario {
+            width:60%;
+        }
+    }
+    @media (min-width: 800px) and (max-width:900px) {
+        /* Comentarios */
+        .btnDesplegableAddComent,#frmComentario{
+            width:50%;
+        }
+        .btnDesplegableAddComent{
+            padding-top:1%;
+            padding-bottom:1%;
+        }
+    }
+    @media (min-width: 900px) and (max-width:1000px) {
+        /* Comentarios */
+        .btnDesplegableAddComent{
+            width:50%;
+            padding-top:1%;
+            padding-bottom:1%;
+        }
+        .divComentario{
+            margin-top:5%;
+        }
+        #frmComentario{
+            width:50%;
+        }
+    }
+    @media (min-width: 1100px) and (max-width:1200px) {
+    
+    }
