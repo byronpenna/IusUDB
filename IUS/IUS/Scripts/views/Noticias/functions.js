@@ -15,6 +15,7 @@
         actualizarCatalogo(RAIZ + "Noticias/sp_frontUi_noticias_ponerComentario", frm, function (data) {
             console.log("La respuesta del servidor es:", data);
             if (data.estado) {
+                $("#frmComentario")[0].reset();
                 div = getDivComentario(data.comentario);
                 divSeccionComentarios = $(".comentariosSection");
                 if (divSeccionComentarios.find(".noComentFound").length > 0) {
