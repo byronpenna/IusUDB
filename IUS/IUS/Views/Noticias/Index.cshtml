@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/media.css" />
 }
-<div class="row marginNull">
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Noticias/script.js"></script>
+    <script src="~/Scripts/views/Noticias/functions.js"></script>
+}
+<div class="row marginNull divTodoNoticias ">
     <div class="col-lg-9">
         <div class="todoCuerpoNoticia">
             <h2 class="tituloNoticia">@post._titulo</h2>
@@ -15,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 divSeccionComentarios">
         <h2 class="tituloComentarios">Comentarios</h2>
         <div class="btnDesplegableAddComent">
             <span>Agregar comentario</span>
@@ -24,11 +28,15 @@
                 <!--<i class="fa fa-angle-up icoAccion"></i>-->
             </span>
         </div>
-        <div class="agregarComentarioSection hidden ">
+        <div class="agregarComentarioSection" style="display:none" >
             <form>
                 <div class="row marginNull rowForm">
                     <label>Nombre:</label>
-                    <input class="form-control" name="txtNombre" />
+                    <input class="form-control" name="txtNombre" placeholder="Nombre Apellido" />
+                </div>
+                <div class="row marginNull rowForm">
+                    <label>Email:</label>
+                    <input class="form-control" name="txtNombre" placeholder="direccion@("@")dominio" />
                 </div>
                 <div class="row marginNull rowForm">
                     <label>Comentario: </label>
@@ -47,6 +55,7 @@
                     Lorem Ipsum es simplemente el texto de relleno de las 
                     imprentas y archivos de texto. Lorem Ipsum ha sido el 
                     texto de relleno estándar de las industrias desde el año 1500.
+                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
                 </p>
             </div>
             <div class="divComentario">
@@ -55,6 +64,34 @@
                     Lorem Ipsum es simplemente el texto de relleno de las
                     imprentas y archivos de texto. Lorem Ipsum ha sido el
                     texto de relleno estándar de las industrias desde el año 1500.
+                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
+                </p>
+            </div>
+            <div class="divComentario">
+                <h3>Irving Peña</h3>
+                <p>
+                    Lorem Ipsum es simplemente el texto de relleno de las
+                    imprentas y archivos de texto. Lorem Ipsum ha sido el
+                    texto de relleno estándar de las industrias desde el año 1500.
+                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
+                </p>
+            </div>
+            <div class="divComentario">
+                <h3>Irving Peña</h3>
+                <p>
+                    Lorem Ipsum es simplemente el texto de relleno de las
+                    imprentas y archivos de texto. Lorem Ipsum ha sido el
+                    texto de relleno estándar de las industrias desde el año 1500.
+                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
+                </p>
+            </div>
+            <div class="divComentario">
+                <h3>Irving Peña</h3>
+                <p>
+                    Lorem Ipsum es simplemente el texto de relleno de las
+                    imprentas y archivos de texto. Lorem Ipsum ha sido el
+                    texto de relleno estándar de las industrias desde el año 1500.
+                    <div class="spanDate">03/06/2015 7:49 a.m.</div>
                 </p>
             </div>
         </div>

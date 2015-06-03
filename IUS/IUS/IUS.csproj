@@ -364,6 +364,8 @@
     <Content Include="Scripts\Generales\script.js" />
     <Content Include="Scripts\views\Home\functions.js" />
     <Content Include="Scripts\views\Home\script.js" />
+    <Content Include="Scripts\views\Noticias\functions.js" />
+    <Content Include="Scripts\views\Noticias\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
