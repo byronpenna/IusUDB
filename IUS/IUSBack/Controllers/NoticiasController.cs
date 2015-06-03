@@ -25,6 +25,10 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "url"
+            public ActionResult setMiniatura(int id)
+            {
+                return View();
+            }
             public ActionResult Index()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();

@@ -16,65 +16,97 @@
         <script src="~/Scripts/Views/Administracion/Noticias/principal/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/principal/functions.js"></script>
 }
+@section tabs{
+    <ul>
+        <li class="btnTab" target="#tab-1">
+            Noticias
+        </li>
+        <li class="tbCompartir btnTab" target="#tab-2">
+            Miniaturas
+        </li>
+    </ul>
+}
 @{
     List<Post> posts = (List<Post>)ViewBag.posts;
     Permiso permiso = (Permiso)ViewBag.permiso;
 }
-<div class="cuerpoModulo">
-    @if (permiso._crear)
-    {
-        <a class="btn" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
+<div id="tab-1" class="row marginNull seccion tab">
+    <div class="cuerpoModulo">
+        @if (permiso._crear)
+        {
+            <a class="btn" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
+                Agregar entrada
+            </a>
+        }
+
+        <!--<button class="btn" type="button" @permiso.stringEditar>
             Agregar entrada
-        </a>    
-    }
-    
-    <!--<button class="btn" type="button" @permiso.stringEditar>
-        Agregar entrada
-    </button>-->
-    <table class="table tbPosts">
-        <thead>
-            <tr>
-                <th class="hidden"></th>
-                <th>Titulo</th>
-                <th>Creacion</th>
-                <th>Ultima modificacion</th>
-                <th>Contenido</th>
-                <th>Usuario creador</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (posts != null && posts.Count > 0)
-            {
-                foreach (Post post in posts)
+        </button>-->
+        <table class="table tbPosts">
+            <thead>
+                <tr>
+                    <th class="hidden"></th>
+                    <th>Titulo</th>
+                    <th>Creacion</th>
+                    <th>Ultima modificacion</th>
+                    <th>Contenido</th>
+                    <th>Usuario creador</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (posts != null && posts.Count > 0)
+                {
+                    foreach (Post post in posts)
+                    {
+                        <tr>
+                            <td class="hidden">
+                                <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
+                            </td>
+                            <td>@post._titulo</td>
+                            <td>@post.getFechaCreacion</td>
+                            <td>@post.getFechaModificacion</td>
+                            <td class="tdContenido">@post._contenido</td>
+                            <td>@post._usuario._usuario</td>
+                            <td>
+                                <a class="btn btnPublicacion" @permiso.stringEditar>
+                                    @post.getTxtEstado
+                                </a>
+                                <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
+                                    Editar
+                                </a>
+                                <a class="btn" href="@Url.Action("setMiniatura","Noticias")">
+                                    Imagen
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
                 {
                     <tr>
-                        <td class="hidden">
-                            <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
-                        </td>
-                        <td>@post._titulo</td>
-                        <td>@post.getFechaCreacion</td>
-                        <td>@post.getFechaModificacion</td>
-                        <td class="tdContenido">@post._contenido</td>
-                        <td>@post._usuario._usuario</td>
-                        <td>
-                            <a class="btn btnPublicacion" @permiso.stringEditar>
-                                @post.getTxtEstado
-                            </a>
-                            <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
-                                Editar
-                            </a>
-                        </td>
+                        <td class="text-center">No hay posts para mostrar</td>
+                        <td class="text-center" colspan="6"></td>
                     </tr>
                 }
-            }
-            else
-            {
-                <tr>
-                    <td class="text-center">No hay posts para mostrar</td>
-                    <td class="text-center" colspan="6"></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="tab-2" class="row seccion tab hidden">
+    <div class="thumbnailDiv row marginNull">
+        <div class="col-lg-4 divPostThumbnail">
+            <h4>Nombre post</h4>
+            <img src="~/Content/themes/iusback_theme/img/general/image.png" />
+            <div class="frmAgregarThumb custom-input-file">
+                <div class="fileUpload btn btn-primary">
+                    <span>Subir</span>
+                    <input type="file" class="upload" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divPaginacion">
+
+    </div>
 </div>
