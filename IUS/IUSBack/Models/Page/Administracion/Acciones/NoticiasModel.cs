@@ -103,6 +103,20 @@ namespace IUSBack.Models.Page.Administracion.Acciones
             }
         #endregion
         #region "acciones"
+            public bool sp_adminfe_noticias_setThumbnailPost(Post thumbnailPost, int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._controlPost.sp_adminfe_noticias_setThumbnailPost(thumbnailPost, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x) {
+                    throw x;
+                }
+            }
             public Post sp_adminfe_noticias_publicarPost(Post postAgregar,int idUsuarioEjecutor,int idPagina)
             {
                 try

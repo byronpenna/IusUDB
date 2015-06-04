@@ -27,7 +27,30 @@ namespace IUSBack.Controllers
         #region "url"
             public ActionResult setMiniatura(int id)
             {
-                return View();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                
+                if (usuarioSession != null)
+                {
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    if (permisos != null && permisos._ver)
+                    {
+                        ViewBag.titleModulo = "Escoger miniatura foto";
+                        ViewBag.usuario = usuarioSession;
+                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.permiso = permisos;
+                        ViewBag.idPost = id;
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("NotAllowed", "Errors");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }
+                
             }
             public ActionResult Index()
             {
@@ -136,6 +159,27 @@ namespace IUSBack.Controllers
             
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_adminfe_noticias_setThumbnailPost()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    var form = this._jss.Deserialize<Dictionary<object,object>>(Request.Form["form"]);
+                    if (Request.Files.Count > 0)
+                    {
+                        List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
+                    }
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception x)
+                {
+
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_adminfe_noticias_cambiarEstadoPost()
             {
                 Dictionary<object, object> frm, respuesta ;
@@ -271,7 +315,6 @@ namespace IUSBack.Controllers
                 }
                 return Json(respuesta);
             }
-                
             #endregion
         #endregion
     }

@@ -1,0 +1,17 @@
+﻿@section estilosPersonalizados{
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+        <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/script.js"></script>
+        <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/functions.js"></script>
+}
+<div class="contenidoModulo">
+    <form method="post" id="frmMiniatura" action="@Url.Action("sp_adminfe_noticias_setThumbnailPost")">
+        <input name="txtHdIdPost" class="txtHdIdPost" value="@ViewBag.idPost" />
+        <input type="file" id="flMiniatura"/>
+        <input id="btnSubmit" class="btn" type="submit" value="Subir" />
+    </form>
+</div>

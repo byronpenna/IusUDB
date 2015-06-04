@@ -197,6 +197,38 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return post;
                 }
+                public bool sp_adminfe_noticias_setThumbnailPost(Post thumbnailPost,int idUsuarioEjecutor,int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_adminfe_noticias_setThumbnailPost");
+                    sp.agregarParametro("imagen", thumbnailPost._miniatura);
+                    sp.agregarParametro("idPost", thumbnailPost._idPost);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
             #endregion
         #endregion
         #region "front end"

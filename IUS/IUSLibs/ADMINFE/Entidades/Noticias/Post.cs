@@ -16,6 +16,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             public string   _contenido;
             public bool     _estado;
             public Usuario  _usuario;
+            public byte[]   _miniatura;
             #region "operacionales"
                 public string getTxtEstado
                 {

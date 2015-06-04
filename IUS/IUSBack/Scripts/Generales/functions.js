@@ -204,7 +204,12 @@
                 for (var x = 0; x < files.length; x++) {
                     data.append("file" + x, files[x]);
                 }
-                data.append("frm", "soy el formulario");
+                if (frm !== undefined) {
+                    data.append("frm", frm);
+                } else {
+                    data.append("frm", "soy el formulario");
+                }
+                
                 if (frm !== undefined) {
                     data.append("form", frm);
                 }
