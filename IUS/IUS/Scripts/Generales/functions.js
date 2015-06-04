@@ -1,5 +1,6 @@
 ﻿// constantes
     var RAIZ = "http://localhost:7196/";
+    //var RAIZ = "http://168.243.3.62/ius/"
 // idiomas 
     function setIdiomaPreferido() {
         var idIdioma = $.cookie('IUSidIdioma');

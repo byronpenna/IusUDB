@@ -1,6 +1,6 @@
 ﻿@font-face{
     font-family:'trackp';
-    src: url("../../fonts/track/Track.otf");
+    src: url("../../fonts/track/Track.ttf");
 }
 @font-face{
     font-family:'latop';
@@ -8,5 +8,19 @@
 }
 @font-face{
     font-family:'circulap';
-    src:url("../../fonts/circula/circula-medium.otf");
+    src:url("../../fonts/circula/circula-medium.ttf");
 }
+   
+/*
+@font-face{
+    font-family:'trackp';
+    src: url("../../../fonts/track/Track.otf");
+}
+@font-face{
+    font-family:'latop';
+    src: url("../../../fonts/lato/Lato-Regular.ttf");
+}
+@font-face{
+    font-family:'circulap';
+    src:url("../../../fonts/circula/circula-medium.otf");
+}*/

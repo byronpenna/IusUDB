@@ -343,6 +343,9 @@
     <Content Include="Content\fonts\lato\Lato-Light.ttf" />
     <Content Include="Content\fonts\lato\Lato-LightItalic.ttf" />
     <Content Include="Content\fonts\lato\Lato-Regular.ttf" />
+    <Content Include="Content\fonts\track\Track Italic.ttf" />
+    <Content Include="Content\fonts\track\Track.ttf" />
+    <Content Include="Content\fonts\circula\circula-medium.ttf" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <None Include="Scripts\Asp_default\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Asp_default\jquery-1.8.2.js" />
