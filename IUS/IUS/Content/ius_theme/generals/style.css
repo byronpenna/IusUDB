@@ -120,6 +120,8 @@ header{
         */
         .feedSection{
             background:#ecf0f1;
+            padding-top:1%;
+            padding-bottom:1%;
         }
         .cuerpoFeedNoticia, .imgFeedNoticia{
             margin-top:3%;

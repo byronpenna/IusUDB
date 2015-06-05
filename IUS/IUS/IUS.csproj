@@ -187,6 +187,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
+    <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\general\ModeloPadre.cs" />
     <Compile Include="Models\page\Errors\Acciones\ErrorModel.cs" />
+    <Compile Include="Models\page\Evento\Acciones\EventoModel.cs" />
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,6 +212,7 @@
     <Content Include="Content\images\generales\bannerDonBosc.jpg" />
     <Content Include="Content\images\generales\chat.png" />
     <Content Include="Content\images\generales\hamburguerButton.png" />
+    <Content Include="Content\images\generales\image.png" />
     <Content Include="Content\images\generales\logo_IUS.jpg" />
     <Content Include="Content\images\generales\noPost.png" />
     <Content Include="Content\images\generales\sadcloud.png" />
@@ -418,6 +421,7 @@
     <Content Include="Views\Noticias\Index.cshtml" />
     <Content Include="Views\Errors\disabledPost.cshtml" />
     <Content Include="Views\Errors\Unhandled.cshtml" />
+    <Content Include="Views\Evento\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
