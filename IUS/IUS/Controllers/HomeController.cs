@@ -38,6 +38,10 @@ namespace IUS.Controllers
                     return RedirectToAction(obj["accion"], obj["controlador"]);
                     //return "El error es" + x.Message;
                 }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
                 return View("~/Views/Home/Index.cshtml");
                 //return "todo bien";
             }

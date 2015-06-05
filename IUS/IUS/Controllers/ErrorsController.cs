@@ -34,6 +34,15 @@ namespace IUS.Controllers
                 ViewBag.noticias = this._PadreModel.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                 return View();
             }
+            public ActionResult Unhandled()
+            {
+                // describe el error http 404 
+                int idPagina = 5;
+                string lang = this.getUserLang();
+                this.setTraduccion(this._PadreModel.getTraduccion(lang, idPagina));
+                ViewBag.noticias = this._PadreModel.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                return View();
+            }
             public ActionResult DBNotAccess()
             {
                 return View();

@@ -253,6 +253,10 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             {
                                 post = new Post((int)row["idPost"], row["titulo"].ToString(), row["contenido"].ToString());
                                 post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                if (row["miniatura"] != System.DBNull.Value)
+                                {
+                                    post._miniatura = (byte[])row["miniatura"];
+                                }
                                 posts.Add(post);
                             }
                         }

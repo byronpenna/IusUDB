@@ -417,6 +417,7 @@
     <Content Include="Views\Shared\footer.cshtml" />
     <Content Include="Views\Noticias\Index.cshtml" />
     <Content Include="Views\Errors\disabledPost.cshtml" />
+    <Content Include="Views\Errors\Unhandled.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
