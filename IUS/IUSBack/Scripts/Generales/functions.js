@@ -195,7 +195,18 @@
         var width = (100 * parseFloat(ancho) / parseFloat(element.parent().css('width')));
         return width;
     }
+    function getImageFromInputFile(inputFile,callback) {
+        var reader = new FileReader();
+        var img;
+        reader.readAsDataURL(inputFile);
+        reader.onload = function (evt) {
+            var imagen = new Image();
+            imagen.src = $(this)[0].result;
+            callback(imagen);
+        }
+    }
     function getObjFormData(files, frm) {
+
         error = new Object();
         var data = null;
         if (files.length > 0) {
@@ -204,14 +215,16 @@
                 for (var x = 0; x < files.length; x++) {
                     data.append("file" + x, files[x]);
                 }
-                if (frm !== undefined) {
+                // pequeño error absurdo y torpe que disminuye la eficiencia
+                /*if (frm !== undefined) {
                     data.append("frm", frm);
                 } else {
                     data.append("frm", "soy el formulario");
-                }
+                }*/
                 
                 if (frm !== undefined) {
-                    data.append("form", frm);
+                    data.append("form",JSON.stringify(frm));
+                    console.log("formulario agregado", frm);
                 }
             } else {
                 error.message = "Esta caracteristica no esta disponible para su navegador\

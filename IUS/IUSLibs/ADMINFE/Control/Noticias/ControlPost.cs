@@ -72,6 +72,11 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 rowResult = tb[1].Rows[0];
                                 usu = new Usuario((int)rowResult["id_usuario_fk"]);
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
+                                if (rowResult["miniatura"] != DBNull.Value)
+                                {
+                                    post._miniatura = (byte[])rowResult["miniatura"];
+                                }
+                                
                             }
                             if (tb[2].Rows.Count > 0)
                             {

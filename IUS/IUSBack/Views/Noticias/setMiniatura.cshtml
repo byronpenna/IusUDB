@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@section estilosPersonalizados{
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/media.css" />
@@ -8,10 +9,22 @@
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/functions.js"></script>
 }
+@{
+    Post post = (Post)ViewBag.post;
+    string src = "";
+}
 <div class="contenidoModulo">
     <form method="post" id="frmMiniatura" action="@Url.Action("sp_adminfe_noticias_setThumbnailPost")">
-        <input name="txtHdIdPost" class="txtHdIdPost" value="@ViewBag.idPost" />
-        <input type="file" id="flMiniatura"/>
+        <input type="hidden" name="txtHdIdPost" class="txtHdIdPost" value="@post._idPost" />
+        <div class="divImgThumbnail" >
+            @if(post._miniatura != null){
+                src = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
+            }else{
+                src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+            }
+            <img class="imgThumbnail" src="@src" />    
+        </div>
+        <input type="file" id="flMiniatura" />
         <input id="btnSubmit" class="btn" type="submit" value="Subir" />
     </form>
 </div>

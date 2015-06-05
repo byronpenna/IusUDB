@@ -1,3 +1,10 @@
 ﻿.contenidoModulo{
     text-align:center;
 }
+.divImgThumbnail{
+    margin-top:4%;
+}
+.divImgThumbnail .imgThumbnail{
+    width:200px;
+    height:200px;
+}

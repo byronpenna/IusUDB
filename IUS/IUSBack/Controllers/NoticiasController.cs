@@ -34,12 +34,25 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver)
                     {
-                        ViewBag.titleModulo = "Escoger miniatura foto";
-                        ViewBag.usuario = usuarioSession;
-                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                        ViewBag.permiso = permisos;
-                        ViewBag.idPost = id;
-                        return View();
+                        try
+                        {
+                            ViewBag.titleModulo = "Escoger miniatura foto";
+                            ViewBag.usuario = usuarioSession;
+                            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                            ViewBag.permiso = permisos;
+                            ViewBag.post = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina)["post"];
+                            return View();
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            return RedirectToAction("Unhandled", "Erros");
+                        }
+                        catch (Exception x)
+                        {
+                            return RedirectToAction("Unhandled", "Erros");
+                        }
+                        
+                        
                     }
                     else
                     {
@@ -165,18 +178,38 @@ namespace IUSBack.Controllers
                 try
                 {
                     var form = this._jss.Deserialize<Dictionary<object,object>>(Request.Form["form"]);
+                    Usuario usuarioSession = this.getUsuarioSesion();
                     if (Request.Files.Count > 0)
                     {
                         List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
+                        if(files != null){
+                            foreach(HttpPostedFileBase file in files ){
+                                byte[] fileBytes = this.getBytesFromFile(file);
+                                Post postAgregar = new Post( this.convertObjAjaxToInt(form["txtHdIdPost"]) );
+                                postAgregar._miniatura = fileBytes;
+                                bool estado = this._model.sp_adminfe_noticias_setThumbnailPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", estado);
+                            }
+                        }else{
+                            ErroresIUS x = new ErroresIUS("No hay imagenes",ErroresIUS.tipoError.generico,0);
+                            throw x;
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
                     }
                 }
-                catch (ErroresIUS)
+                catch (ErroresIUS x)
                 {
-
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                    respuesta = this.errorTryControlador(1, error);
                 }
                 catch (Exception x)
                 {
-
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
                 }
                 return Json(respuesta);
             }
