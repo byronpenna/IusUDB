@@ -85,7 +85,7 @@ namespace IUSLibs.GENERALS
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow rowError = tb[0].Rows[0];
-                                ErroresIUS errores = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorMessage"].ToString());
+                                ErroresIUS errores = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"] , rowError["errorSql"].ToString());
                                 throw errores;
                             }
                             return false;

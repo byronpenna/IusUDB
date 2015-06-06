@@ -1,2 +1,46 @@
-﻿
-<h2>Eventos</h2>
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Eventos/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Eventos/media.css" />
+}
+<div class="row marginNull">
+    <h2>Eventos</h2>
+    <div class="col-lg-3">
+        <h4>Busqueda</h4>
+        <div class="divAtomBusqueda">
+            <div class="col-lg-12 ckSeccion">
+                <input type="checkbox" name="ckFechas" />
+                <span>Por rango de fechas</span>
+            </div>
+            <div class="col-lg-12 inputsBusquedaSeccion">
+                <div class="col-lg-6">
+                    <label>Inicio</label>
+                    <input class="form-control" />
+                </div>
+                <div class="col-lg-6">
+                    <label>Fin</label>
+                    <input class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="divAtomBusqueda">
+            <div class="col-lg-12 ckSeccion">
+                <input type="checkbox" name="ckNombre" />
+                <span>Por nombre</span>
+            </div>
+            <div class="col-lg-12 inputsBusquedaSeccion">
+                <input type="text" class="form-control" placeholder="Ingrese el nombre el evento" />
+            </div>
+        </div>
+        <div class="divAtomBusqueda">
+            <button class="btn">Buscar</button>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <h4>Eventos</h4>
+        <div class="divEventos">
+            <div>
+
+            </div>
+        </div>
+    </div>
+</div>

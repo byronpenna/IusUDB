@@ -223,6 +223,8 @@
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
     <Content Include="Content\ius_theme\generals\style.css" />
+    <Content Include="Content\ius_theme\views\Eventos\media.css" />
+    <Content Include="Content\ius_theme\views\Eventos\style.css" />
     <Content Include="Content\ius_theme\views\home\media.css" />
     <Content Include="Content\ius_theme\views\home\style.css" />
     <Content Include="Content\ius_theme\views\NotFound\media.css" />

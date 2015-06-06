@@ -97,6 +97,7 @@ namespace IUSLibs.ADMINFE.Control
                 {
                     Evento eventoAgregado = null;
                     Usuario usu;
+                    
                     SPIUS sp = new SPIUS("sp_adminfe_crearEvento");
                     sp.agregarParametro("evento", eventoAgregar._evento);
                     sp.agregarParametro("fecha_inicio", eventoAgregar._fechaInicio);
