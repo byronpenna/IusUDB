@@ -215,6 +215,8 @@
     <Content Include="Content\images\generales\hamburguerButton.png" />
     <Content Include="Content\images\generales\image.png" />
     <Content Include="Content\images\generales\logo_IUS.jpg" />
+    <Content Include="Content\images\generales\navs\navL.png" />
+    <Content Include="Content\images\generales\navs\navR.png" />
     <Content Include="Content\images\generales\noPost.png" />
     <Content Include="Content\images\generales\sadcloud.png" />
     <Content Include="Content\images\generales\slide.png" />
