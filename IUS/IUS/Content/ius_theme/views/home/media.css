@@ -8,7 +8,6 @@
     }
 }
 @media (min-width: 300px) and (max-width:400px) {
-     
     .navs div:last-child{
         margin-left:70%;
     }

@@ -1,1 +1,49 @@
-﻿
+﻿/* Excepciones */
+    @media (min-width: 769px) and (max-width:1000px) {
+        .divAtomBusqueda:last-child{
+            margin:0;
+        }
+        .btnBuscar {
+            margin-top:2% !important;
+        }
+        .rowControlesBusqueda{
+            margin-top:3%;
+        }
+    }
+    @media (min-width: 994px) and (max-width:1200px) {
+        /* Eventos */
+            /*header */
+            
+                .imagenEvento{
+                    text-align:center;
+                }
+                .imagenEvento img{
+                    width:25%;
+                }
+                .cuadritoEvento {
+                    height:320px;
+                }
+                .tituloEvento h4 {
+                    margin-top:3%;
+                    text-align:center;
+                }
+    }
+/* Standares */
+    @media (min-width: 500px) and (max-width:600px) {
+        .rowControlesBusqueda {
+            text-align:center;
+        }
+        .divAtomBusqueda{
+            width:80%;
+
+        }
+        body{
+            background:pink;
+        }
+    }
+    @media (min-width: 600px) and (max-width:700px) {
+        .rowControlesBusqueda {
+            margin-top:3%;
+        }
+
+    }

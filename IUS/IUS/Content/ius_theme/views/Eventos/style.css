@@ -13,13 +13,18 @@
     }
     .inputsBusquedaSeccion{
         margin-bottom:3%;
+        padding:0;
     }
     footer{
         margin-top:5%;
     }
+    
     .divAtomBusqueda:last-child{
-        text-align:center;
         margin-top:5%;
+    }
+    .btnBuscar{
+        text-align:center;
+        margin-top:2%;
     }
 /* Evento */
     .hrSeperaFechas{
@@ -42,7 +47,7 @@
     }
     .cuadritoEvento{
         background: #ecf0f1;
-        height:220px;
+        height:250px;
         padding:3%;
         padding-top:5%;
     }

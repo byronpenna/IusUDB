@@ -13,35 +13,37 @@
 }
 <div class="row marginNull rowCuerpo">
     <!--<h2 class="titlePage">Eventos</h2>-->
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="row marginNull">
             <h3>Busqueda</h3>
-            <div class="divAtomBusqueda">
-                <div class="col-lg-12 ckSeccion">
-                    <input type="checkbox" name="ckFechas" />
-                    <span>Por rango de fechas</span>
-                </div>
-                <div class="col-lg-12 inputsBusquedaSeccion">
-                    <div class="col-lg-6">
-                        <label>Inicio</label>
-                        <input class="form-control" />
+            <div class="rowControlesBusqueda row marginNull">
+                <div class="divAtomBusqueda col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                    <div class="col-lg-12 ckSeccion">
+                        <input type="checkbox" name="ckFechas" />
+                        <span>Por rango de fechas</span>
                     </div>
-                    <div class="col-lg-6">
-                        <label>Fin</label>
-                        <input class="form-control" />
+                    <div class="col-lg-12 inputsBusquedaSeccion">
+                        <div class="col-lg-6 col-md-12">
+                            <label>Inicio</label>
+                            <input class="form-control" />
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <label>Fin</label>
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="divAtomBusqueda col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                    <div class="col-lg-12 ckSeccion">
+                        <input type="checkbox" name="ckNombre" />
+                        <span>Por nombre</span>
+                    </div>
+                    <div class="col-lg-12 inputsBusquedaSeccion">
+                        <input type="text" class="form-control" placeholder="Ingrese el nombre el evento" />
                     </div>
                 </div>
             </div>
-            <div class="divAtomBusqueda">
-                <div class="col-lg-12 ckSeccion">
-                    <input type="checkbox" name="ckNombre" />
-                    <span>Por nombre</span>
-                </div>
-                <div class="col-lg-12 inputsBusquedaSeccion">
-                    <input type="text" class="form-control" placeholder="Ingrese el nombre el evento" />
-                </div>
-            </div>
-            <div class="divAtomBusqueda">
+            <div class="row marginNull divAtomBusqueda btnBuscar">
                 <button class="btn">Buscar</button>
             </div>
         </div>
@@ -49,7 +51,7 @@
             <h3>Comentarios</h3>
         </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9 col-md-9">
         <div class="row marginNull divResultadoBusqueda" style="display:none">
             <div class="row marginNull divSeparadorFecha">
                 <div class="col-lg-1">
@@ -68,15 +70,14 @@
                 </div>
             </div>
         </div>
-        
         <div class="row marginNull divSeparadorFecha">
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-md-1">
                 <hr class="hrSeperaFechas" />
             </div>
-            <div class="col-lg-1 pointer btnDesplegarEventos">
+            <div class="col-lg-1 col-md-1 pointer btnDesplegarEventos">
                 <h4>Hoy</h4>
             </div>
-            <div class="col-lg-10">
+            <div class="col-lg-10 col-md-10">
                 <hr class="hrSeperaFechas" />
             </div>
         </div>
@@ -94,13 +95,13 @@
                         abierto = true;
                         @(new HtmlString(separador));
                     }
-                    <div class="evento col-lg-6">
+                    <div class="evento col-lg-6 col-md-6">
                         <div class="cuadritoEvento">
                             <div class="row marginNull divTitle">
-                                <div class="col-lg-3 imagenEvento">
+                                <div class="col-lg-3 col-md-12 imagenEvento">
                                     <img src="~/Content/images/generales/calendar.png" />
                                 </div>
-                                <div class="col-lg-9 tituloEvento">
+                                <div class="col-lg-9 col-md-12 tituloEvento">
                                     <h4>@evento._evento</h4>
                                     <div class="fechaEvento">
                                         Dio inicio: @evento._fechaInicio
@@ -132,24 +133,24 @@
                 }
             }
             <div class="row marginNull">
-                <div class="col-lg-3">
-                    <div class="col-lg-6">
+                <div class="col-lg-3 col-md-4">
+                    <div class="col-lg-6 col-md-6">
                         <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer " />
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-md-6">
                         <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
                     </div>
                 </div>
             </div>
         </div>
         <div class="row marginNull divSeparadorFecha">
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-md-1">
                 <hr class="hrSeperaFechas" />
             </div>
-            <div class="col-lg-1 pointer btnDesplegarEventos">
+            <div class="col-lg-1 col-md-1 pointer btnDesplegarEventos ">
                 <h4>Mes</h4>
             </div>
-            <div class="col-lg-10">
+            <div class="col-lg-10 col-md-10">
                 <hr class="hrSeperaFechas" />
             </div>
         </div>
@@ -167,13 +168,13 @@
                         abierto = true;
                         @(new HtmlString(separador));
                     }
-                    <div class="evento col-lg-6">
+                    <div class="evento col-lg-6 col-md-6">
                         <div class="cuadritoEvento">
                             <div class="row marginNull divTitle">
-                                <div class="col-lg-3 imagenEvento">
+                                <div class="col-lg-3 col-md-3 imagenEvento">
                                     <img src="~/Content/images/generales/calendar.png" />
                                 </div>
-                                <div class="col-lg-9 tituloEvento">
+                                <div class="col-lg-9 col-md-9 tituloEvento">
                                     <h4>@evento._evento</h4>
                                     <div class="fechaEvento">
                                         @evento.getFechaInicio - @evento.getFechaFin
@@ -206,11 +207,11 @@
                 
             }
             <div class="row marginNull">
-                <div class="col-lg-3">
-                    <div class="col-lg-6">
+                <div class="col-lg-3 col-md-4">
+                    <div class="col-lg-6 col-md-6">
                         <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer " />
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-md-6">
                         <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
                     </div>
                 </div>
