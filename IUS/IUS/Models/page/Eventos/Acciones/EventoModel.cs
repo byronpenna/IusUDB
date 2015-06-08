@@ -16,7 +16,23 @@ namespace IUS.Models.page.Eventos.Acciones
             public ControlEventos _controlEvento;
         #endregion
         #region "acciones"
-            public List<Evento> sp_adminfe_front_getTodayEvents(string ip,int idPagina)
+            #region "get"  
+                public List<Evento> sp_adminfe_front_getMonthEvents(string ip, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlEvento.sp_adminfe_front_getMonthEvents(ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public List<Evento> sp_adminfe_front_getTodayEvents(string ip,int idPagina)
             {
                 try
                 {
@@ -31,6 +47,7 @@ namespace IUS.Models.page.Eventos.Acciones
                     throw x;
                 }
             }
+            #endregion
         #endregion
         #region "constructores"
             public EventoModel()

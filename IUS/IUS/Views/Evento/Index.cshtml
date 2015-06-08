@@ -9,6 +9,7 @@
 }
 @{
     List<Evento> eventosHoy = (List<Evento>)ViewBag.eventosHoy;
+    List<Evento> eventosMes = (List<Evento>)ViewBag.eventosMes;
 }
 <div class="row marginNull rowCuerpo">
     <!--<h2 class="titlePage">Eventos</h2>-->
@@ -80,7 +81,7 @@
             </div>
         </div>
         <div class="divEventos row">
-            @if (eventosHoy.Count > 0)
+            @if (eventosHoy != null && eventosHoy.Count > 0)
             {
                 int cn = 0;string separador = "";string cerrar = "</div>";string display = "block";
                 bool abierto = false;
@@ -153,24 +154,64 @@
             </div>
         </div>
         <div class="divEventos">
-            <div class="evento col-lg-6">
-                <div class="cuadritoEvento">
-                    <div class="row marginNull divTitle">
-                        <div class="col-lg-3 imagenEvento">
-                            <img src="~/Content/images/generales/calendar.png" />
-                        </div>
-                        <div class="col-lg-9 tituloEvento">
-                            <h4>Reunion de colegios salesianos en ciudadela Don Bosco</h4>
-                            <div class="fechaEvento">
-                                12/05/2014 1:45pm
+            @if (eventosMes.Count > 0 && eventosMes != null)
+            {
+                int cn = 0;string separador = "";string cerrar = "</div>";string display = "block";
+                bool abierto = false;
+                
+                foreach (Evento evento in eventosMes)
+                {
+                    if (cn == 0 && !abierto)
+                    {
+                        separador = "<div class='pageEvent row marginNull' style=\"display:"+display+"\">";
+                        abierto = true;
+                        @(new HtmlString(separador));
+                    }
+                    <div class="evento col-lg-6">
+                        <div class="cuadritoEvento">
+                            <div class="row marginNull divTitle">
+                                <div class="col-lg-3 imagenEvento">
+                                    <img src="~/Content/images/generales/calendar.png" />
+                                </div>
+                                <div class="col-lg-9 tituloEvento">
+                                    <h4>@evento._evento</h4>
+                                    <div class="fechaEvento">
+                                        @evento.getFechaInicio - @evento.getFechaFin
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row marginNull divCuerpo">
+                                <p>
+                                    @evento._descripcion 
+                                    <span class="spanLeerMas">
+                                        <a href="#">Leer mas</a>
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="row marginNull divCuerpo">
-                        <p>
-                            Reunion en el colegio don bosco por motivos de que todos se van a graduar y bla bla bla
-                            pasaran muchas cosas y quien sabe D: , Reunion en el colegio don bosco por motivos de que todos se van a graduar.
-                        </p>
+                    if (cn == 3 && abierto)
+                    {
+                        cn = -1;
+                        display = "none";
+                        abierto = false;
+                        @(new HtmlString(cerrar));
+                    }
+                    cn++;
+                }
+                if (abierto)
+                {
+                    @(new HtmlString(cerrar));
+                }
+                
+            }
+            <div class="row marginNull">
+                <div class="col-lg-3">
+                    <div class="col-lg-6">
+                        <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer " />
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
                     </div>
                 </div>
             </div>

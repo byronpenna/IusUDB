@@ -30,6 +30,7 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     string ip = Request.UserHostAddress;
                     ViewBag.eventosHoy = this._model.sp_adminfe_front_getTodayEvents(ip, this.idPagina);
+                    ViewBag.eventosMes = this._model.sp_adminfe_front_getMonthEvents(ip, this.idPagina);
                     return View();
                 }
                 catch (ErroresIUS x)

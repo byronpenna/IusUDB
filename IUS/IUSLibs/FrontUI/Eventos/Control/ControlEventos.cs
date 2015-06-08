@@ -16,45 +16,92 @@ namespace IUSLibs.FrontUI.Eventos.Control
 {
     public class ControlEventos:PadreLib
     {
-        public List<Evento> sp_adminfe_front_getTodayEvents(string ip,int idPagina)
-        {
-            List<Evento> eventos = null;
-            SPIUS sp = new SPIUS("sp_adminfe_front_getTodayEvents");
-            Evento evento;
-            sp.agregarParametro("ip", ip);
-            sp.agregarParametro("idPagina", idPagina);
-            try
+        #region "get"
+            public List<Evento> sp_adminfe_front_getMonthEvents(string ip,int idPagina)
             {
-                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                if (this.resultadoCorrecto(tb))
+                List<Evento> eventos = null;
+                Evento evento;
+                SPIUS sp = new SPIUS("sp_adminfe_front_getMonthEvents");
+                /*
+                    @			varchar(50),
+		            @	int
+                 */
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idPagina", idPagina);
+                try
                 {
-                    if (tb[1].Rows.Count > 0)
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
                     {
-                        eventos = new List<Evento>();
-                        foreach (DataRow row in tb[1].Rows)
+                        if (tb[1].Rows.Count > 0)
                         {
-                            Usuario usuario = new Usuario((int)row["id_usuario_creador_fk"]);
-                            evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usuario,(DateTime)row["fecha_creacion"] ,row["descripcion"].ToString());
-                            eventos.Add(evento);
+                            eventos = new List<Evento>();
+                            foreach (DataRow row in tb[1].Rows)
+                            {
+                                Usuario usuario = new Usuario((int)row["id_usuario_creador_fk"]);
+                                evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usuario, (DateTime)row["fecha_creacion"], row["descripcion"].ToString());
+                                eventos.Add(evento);
+                            }
                         }
                     }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                    }
                 }
-                else
+                catch (ErroresIUS x)
                 {
-                    DataRow row = tb[0].Rows[0];
-                    ErroresIUS x = this.getErrorFromExecProcedure(row);
+                    throw x;
                 }
-            }
-            catch (ErroresIUS x)
-            {
-                throw x;
-            }
-            catch (Exception x)
-            {
-                throw x;
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return eventos;
             }
             
-            return eventos;
-        }
+            public List<Evento> sp_adminfe_front_getTodayEvents(string ip,int idPagina)
+            {
+                List<Evento> eventos = null;
+                SPIUS sp = new SPIUS("sp_adminfe_front_getTodayEvents");
+                Evento evento;
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            eventos = new List<Evento>();
+                            foreach (DataRow row in tb[1].Rows)
+                            {
+                                Usuario usuario = new Usuario((int)row["id_usuario_creador_fk"]);
+                                evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usuario,(DateTime)row["fecha_creacion"] ,row["descripcion"].ToString());
+                                eventos.Add(evento);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            
+                return eventos;
+            }
+            
+        #endregion
     }
 }
