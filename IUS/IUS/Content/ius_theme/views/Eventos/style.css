@@ -1,14 +1,67 @@
-﻿/* Busqueda */
-.ckSeccion{
-    margin-bottom:4%;
-}
-.inputsBusquedaSeccion{
-    margin-bottom:3%;
-}
-footer{
-    margin-top:5%;
-}
-.divAtomBusqueda:last-child{
-    text-align:center;
-    margin-top:5%;
-}
+﻿/* Generales */
+    .titlePage{
+        text-align:center;
+        margin-top:5%;
+        margin-bottom:5%;
+    }
+    .rowCuerpo{
+        padding-top:5%;
+    }
+/* Busqueda */
+    .ckSeccion{
+        margin-bottom:4%;
+    }
+    .inputsBusquedaSeccion{
+        margin-bottom:3%;
+    }
+    footer{
+        margin-top:5%;
+    }
+    .divAtomBusqueda:last-child{
+        text-align:center;
+        margin-top:5%;
+    }
+/* Evento */
+    .hrSeperaFechas{
+        border: solid 1px black;
+        margin-bottom: 2%;
+    }
+    .divSeparadorFecha h4{
+        text-align:center;
+    }
+    .divEventos{
+        margin-bottom:5%;
+        margin-top:5%;
+        padding-left:3%;
+        padding-right:3%;
+        text-align:center;
+    }
+    .evento{
+    
+    
+    }
+    .cuadritoEvento{
+        background: #ecf0f1;
+        height:220px;
+        padding:3%;
+        padding-top:5%;
+    }
+        /* Header */
+            .imagenEvento{
+                text-align:right;
+            }
+            .imagenEvento img{
+                width: 95%;
+            }
+            .tituloEvento h4{
+                margin:0;
+                margin-bottom:3%;
+                line-height:25px;
+            }
+        /* Cuerpo */
+            .divCuerpo p{
+                margin-top:4%;
+                margin-right:5%;
+                margin-left:5%;
+                text-align:justify;
+            }

@@ -210,6 +210,7 @@
     <Content Include="Content\fonts\lato\OFL.txt" />
     <Content Include="Content\images\generales\baner.jpg" />
     <Content Include="Content\images\generales\bannerDonBosc.jpg" />
+    <Content Include="Content\images\generales\calendar.png" />
     <Content Include="Content\images\generales\chat.png" />
     <Content Include="Content\images\generales\hamburguerButton.png" />
     <Content Include="Content\images\generales\image.png" />
