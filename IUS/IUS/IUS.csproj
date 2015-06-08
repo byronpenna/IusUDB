@@ -198,7 +198,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\general\ModeloPadre.cs" />
     <Compile Include="Models\page\Errors\Acciones\ErrorModel.cs" />
-    <Compile Include="Models\page\Evento\Acciones\EventoModel.cs" />
+    <Compile Include="Models\page\Eventos\Acciones\EventoModel.cs" />
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -372,6 +372,8 @@
     <Content Include="Scripts\Generales\jquery-2.1.3.js" />
     <Content Include="Scripts\Generales\jquery-2.1.3.min.js" />
     <Content Include="Scripts\Generales\script.js" />
+    <Content Include="Scripts\views\Eventos\functions.js" />
+    <Content Include="Scripts\views\Eventos\script.js" />
     <Content Include="Scripts\views\Home\functions.js" />
     <Content Include="Scripts\views\Home\script.js" />
     <Content Include="Scripts\views\Noticias\functions.js" />

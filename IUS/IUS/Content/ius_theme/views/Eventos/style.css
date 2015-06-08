@@ -37,7 +37,7 @@
         text-align:center;
     }
     .evento{
-    
+        margin-bottom:3%;
     
     }
     .cuadritoEvento{
@@ -64,4 +64,7 @@
                 margin-right:5%;
                 margin-left:5%;
                 text-align:justify;
+            }
+            .spanLeerMas{
+                display:block;
             }

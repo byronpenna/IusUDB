@@ -101,6 +101,7 @@
     <Compile Include="BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="BaseDatos\ConexionIUS.cs" />
+    <Compile Include="FrontUI\Eventos\Control\ControlEventos.cs" />
     <Compile Include="FrontUI\Noticias\Control\ControlComentario.cs" />
     <Compile Include="FrontUI\Noticias\Entidades\Comentario.cs" />
     <Compile Include="GENERALS\PadreLib.cs" />
@@ -131,7 +132,9 @@
     <Compile Include="TRL\Entidades\LlaveIdioma.cs" />
     <Compile Include="TRL\Entidades\Pagina.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FrontUI\Eventos\Entidades\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

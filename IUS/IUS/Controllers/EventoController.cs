@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 // internas 
-    using IUS.Models.page.Evento.Acciones;
+    using IUS.Models.page.Eventos.Acciones;
 // librerias externas
     using IUSLibs.LOGS;
     using IUSLibs.TRL.Entidades;
+    using IUSLibs.ADMINFE.Entidades;
 namespace IUS.Controllers
 {
     public class EventoController : PadreController
@@ -25,7 +26,10 @@ namespace IUS.Controllers
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
+
                     this.setTraduccion(traducciones);
+                    string ip = Request.UserHostAddress;
+                    ViewBag.eventosHoy = this._model.sp_adminfe_front_getTodayEvents(ip, this.idPagina);
                     return View();
                 }
                 catch (ErroresIUS x)
