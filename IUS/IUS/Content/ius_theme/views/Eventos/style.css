@@ -7,9 +7,19 @@
     .rowCuerpo{
         padding-top:5%;
     }
+    h3.tituloSeccion{
+        font-family:'circulap';
+    }
+    .divSeparadorFecha h4{
+        font-family:'trackp';
+
+    }
 /* Busqueda */
     .ckSeccion{
         margin-bottom:4%;
+    }
+    .ckSeccion:first-child{
+        margin-top:2%;
     }
     .inputsBusquedaSeccion{
         margin-bottom:3%;
@@ -62,6 +72,8 @@
                 margin:0;
                 margin-bottom:3%;
                 line-height:25px;
+                text-transform:capitalize;
+                font-family:'junctionpBold';
             }
         /* Cuerpo */
             .divCuerpo p{

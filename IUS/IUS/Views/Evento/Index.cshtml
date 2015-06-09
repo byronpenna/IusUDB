@@ -15,7 +15,7 @@
     <!--<h2 class="titlePage">Eventos</h2>-->
     <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="row marginNull">
-            <h3>Busqueda</h3>
+            <h3 class="tituloSeccion">Busqueda</h3>
             <div class="rowControlesBusqueda row marginNull">
                 <div class="divAtomBusqueda col-lg-12 col-md-12 col-sm-6 col-xs-6">
                     <div class="col-lg-12 ckSeccion">
@@ -23,11 +23,11 @@
                         <span>Por rango de fechas</span>
                     </div>
                     <div class="col-lg-12 inputsBusquedaSeccion">
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-6 col-md-12 inputBusqueda">
                             <label>Inicio</label>
                             <input class="form-control" />
                         </div>
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-6 col-md-12 inputBusqueda">
                             <label>Fin</label>
                             <input class="form-control" />
                         </div>
@@ -39,16 +39,18 @@
                         <span>Por nombre</span>
                     </div>
                     <div class="col-lg-12 inputsBusquedaSeccion">
-                        <input type="text" class="form-control" placeholder="Ingrese el nombre el evento" />
+                        <div class="col-lg-12 col-md-12 inputBusqueda">
+                            <input type="text" class="form-control" placeholder="Ingrese el nombre el evento" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row marginNull divAtomBusqueda btnBuscar">
+            <div class="row marginNull btnBuscar"><!--divAtomBusqueda-->
                 <button class="btn">Buscar</button>
             </div>
         </div>
         <div class="row marginNull">
-            <h3>Comentarios</h3>
+            <h3 class="tituloSeccion">Comentarios</h3>
         </div>
     </div>
     <div class="col-lg-9 col-md-9">
@@ -71,13 +73,13 @@
             </div>
         </div>
         <div class="row marginNull divSeparadorFecha">
-            <div class="col-lg-1 col-md-1">
+            <div class="col-lg-1 col-md-1 col-sm-5 col-xs-5">
                 <hr class="hrSeperaFechas" />
             </div>
-            <div class="col-lg-1 col-md-1 pointer btnDesplegarEventos">
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 pointer btnDesplegarEventos">
                 <h4>Hoy</h4>
             </div>
-            <div class="col-lg-10 col-md-10">
+            <div class="col-lg-10 col-md-10 col-sm-5 col-xs-5">
                 <hr class="hrSeperaFechas" />
             </div>
         </div>
@@ -95,10 +97,10 @@
                         abierto = true;
                         @(new HtmlString(separador));
                     }
-                    <div class="evento col-lg-6 col-md-6">
+                    <div class="evento col-lg-6 col-md-6 col-sm-4 col-xs-6">
                         <div class="cuadritoEvento">
                             <div class="row marginNull divTitle">
-                                <div class="col-lg-3 col-md-12 imagenEvento">
+                                <div class="col-lg-3 col-md-12 col-sm-12 imagenEvento">
                                     <img src="~/Content/images/generales/calendar.png" />
                                 </div>
                                 <div class="col-lg-9 col-md-12 tituloEvento">
@@ -132,29 +134,29 @@
                     @(new HtmlString(cerrar));
                 }
             }
-            <div class="row marginNull">
-                <div class="col-lg-3 col-md-4">
-                    <div class="col-lg-6 col-md-6">
+            <div class="row marginNull navSection">
+                <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavIz">
                         <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer " />
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavDer">
                         <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
                     </div>
                 </div>
             </div>
         </div>
         <div class="row marginNull divSeparadorFecha">
-            <div class="col-lg-1 col-md-1">
+            <div class="col-lg-1 col-md-1 col-sm-5 col-xs-5">
                 <hr class="hrSeperaFechas" />
             </div>
-            <div class="col-lg-1 col-md-1 pointer btnDesplegarEventos ">
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 pointer btnDesplegarEventos ">
                 <h4>Mes</h4>
             </div>
-            <div class="col-lg-10 col-md-10">
+            <div class="col-lg-10 col-md-10 col-sm-5 col-xs-5">
                 <hr class="hrSeperaFechas" />
             </div>
         </div>
-        <div class="divEventos">
+        <div class="divEventos row">
             @if (eventosMes.Count > 0 && eventosMes != null)
             {
                 int cn = 0;string separador = "";string cerrar = "</div>";string display = "block";
@@ -168,13 +170,13 @@
                         abierto = true;
                         @(new HtmlString(separador));
                     }
-                    <div class="evento col-lg-6 col-md-6">
+                    <div class="evento col-lg-6 col-md-6 col-sm-4 col-xs-6">
                         <div class="cuadritoEvento">
                             <div class="row marginNull divTitle">
-                                <div class="col-lg-3 col-md-3 imagenEvento">
+                                <div class="col-lg-3 col-md-12 col-sm-12  imagenEvento">
                                     <img src="~/Content/images/generales/calendar.png" />
                                 </div>
-                                <div class="col-lg-9 col-md-9 tituloEvento">
+                                <div class="col-lg-9 col-md-12 tituloEvento">
                                     <h4>@evento._evento</h4>
                                     <div class="fechaEvento">
                                         @evento.getFechaInicio - @evento.getFechaFin
@@ -206,12 +208,12 @@
                 }
                 
             }
-            <div class="row marginNull">
-                <div class="col-lg-3 col-md-4">
-                    <div class="col-lg-6 col-md-6">
-                        <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer " />
+            <div class="row marginNull navSection">
+                <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavIz">
+                        <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer" />
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavDer">
                         <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
                     </div>
                 </div>

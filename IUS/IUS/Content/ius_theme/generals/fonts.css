@@ -10,7 +10,11 @@
     font-family:'circulap';
     src:url("../../fonts/circula/circula-medium.ttf");
 }
-   
+
+@font-face{
+    font-family:'junctionpBold';
+    src:url("../../fonts/junction/junction-bold.ttf");
+}   
 /*
 @font-face{
     font-family:'trackp';
