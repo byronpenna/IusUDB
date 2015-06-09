@@ -130,9 +130,7 @@
     }
 /* Standares */
     @media (min-width: 200px) and (max-width:300px) {
-        body{
-            background:pink;
-        }
+        
         /*Eventos */
             .imagenEvento img{
                 width:50%;
