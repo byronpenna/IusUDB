@@ -496,6 +496,9 @@
     <Content Include="Content\third-party\chosen-bootstrapstyle\bower.json" />
     <Content Include="Content\third-party\chosen-bootstrapstyle\README.md" />
     <Content Include="Content\fonts\circula\circula-medium.otf" />
+    <Content Include="Content\fonts\track\Track Italic.ttf" />
+    <Content Include="Content\fonts\track\Track.ttf" />
+    <Content Include="Content\fonts\circula\circula-medium.ttf" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <Content Include="Views\Errors\NotAllowed.cshtml" />
     <Content Include="Views\GestionPersonas\Index.cshtml" />

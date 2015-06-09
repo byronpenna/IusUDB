@@ -1,6 +1,6 @@
 ﻿@font-face{
     font-family:'trackp';
-    src: url("../../../fonts/track/track.otf");
+    src: url("../../../fonts/track/track.ttf");
 }
 @font-face{
     font-family:'latop';
@@ -8,5 +8,5 @@
 }
 @font-face{
     font-family:'circulap';
-    src:url("../../../fonts/circula/circula-medium.otf");
+    src:url("../../../fonts/circula/circula-medium.ttf");
 }
