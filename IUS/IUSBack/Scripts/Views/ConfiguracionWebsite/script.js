@@ -11,13 +11,16 @@
                 console.log("Formulario a enviar es: ", frm);
                 frmInstitucional(frm);
             });
-            $(document).on("submit", "#frm", function (e) {
+            $(document).on("submit", "#frm", function (e) { // imagen
                 var files = $("#file1")[0].files
                 //try{
                     data = getObjFormData(files);
                     e.preventDefault();
-                    console.log("form data es: ", data);
-                    formularioSubir(data, $(this).attr("action"), $(this));
+                    section = $(this);
+                    getImageFromInputFile($("#file1")[0].files[0], function (imagen) {
+                        formularioSubir(data, section.attr("action"), section, imagen);
+                    });
+                    
                 //} catch (error) {
                     /*console.log("error get data", error);
                     alert(error.message);*/

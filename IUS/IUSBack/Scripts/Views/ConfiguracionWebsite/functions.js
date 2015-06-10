@@ -17,11 +17,11 @@
         div = "\
         <div class='col-lg-6 divImgIndividual'>\
             <input type='hidden' name='txtHdIdSliderImage' class='txtHdIdSliderImage' value='"+image._idSliderImage+"' />\
-            <img src='data:image/png;base64,"+image._strImagen+"' class='fullSize' />\
-            <button class='btn btn-danger btnEliminarImage'>\
+            <img src='"+image._strImagen+"' class='fullSize' />\
+            <button class='btn btnEliminarImage'>\
                 Eliminar\
             </button>\
-            <button class='btn btn-warning btnDeshabilitarSliderImage' estado='"+image._estado+"'>\
+            <button class='btn btnDeshabilitarSliderImage' estado='"+image._estado+"'>\
                 "+image.textoEstado+"\
             </button>\
         </div>";
@@ -61,14 +61,20 @@
             }
         });
     }
-    function formularioSubir(formData, url,section) {
+    function formularioSubir(formData, url,section,imagen) {
         accionAjaxWithImage(url,data, function (data) {
             console.log("La respuesta del servidor para frm es:",data);
             if (data.estado) {
                 alert("Imagen ingresada correctamente");
-                div = getDivImageSlider(data.archivos);
+                imageFromServer = data.archivos;
+                imageFromServer._strImagen = imagen.src;
+                div = getDivImageSlider(imageFromServer);
                 console.log("div a agregar es:", div);
-                $(".divImgSlider").prepend(div);
+                if ($(".divImgSlider").find(".noImageSection").length > 0) {
+                    $(".divImgSlider").empty().prepend(div);
+                } else {
+                    $(".divImgSlider").prepend(div);
+                }
                 section[0].reset();
             } else {
                 if (data.error !== undefined) {

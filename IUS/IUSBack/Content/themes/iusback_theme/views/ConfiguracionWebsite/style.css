@@ -5,6 +5,10 @@
     background:#bdc3c7;
     padding:1%;
 }
+.leyendaImagen{
+    text-align:center;
+    margin-bottom:4%;
+}
 /* Tab basicas */
 #frmInstitucional .seccionForm{
     margin-bottom:3%;

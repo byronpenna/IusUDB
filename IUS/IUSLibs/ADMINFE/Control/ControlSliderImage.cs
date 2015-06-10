@@ -77,6 +77,7 @@ namespace IUSLibs.ADMINFE.Control
                                 pagina          = new Pagina((int)row["id_pagina_fk"]);
                                 byte[] byteImage = (byte[])row["imagen"];
                                 string strImage = Convert.ToBase64String(byteImage, 0, byteImage.Length);
+                                strImage = "";
                                 imageAgregada = new SliderImage((int)row["idSliderImage"], row["nombre"].ToString(), strImage, (bool)row["estado"], pagina, (DateTime)row["fecha_creacion"]);
                             }
                         }
