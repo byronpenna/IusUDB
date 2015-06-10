@@ -63,13 +63,13 @@
     }
     function formularioSubir(formData, url,section,imagen) {
         accionAjaxWithImage(url,data, function (data) {
-            console.log("La respuesta del servidor para frm es:",data);
+            //console.log("La respuesta del servidor para frm es:",data);
+            
             if (data.estado) {
                 alert("Imagen ingresada correctamente");
                 imageFromServer = data.archivos;
                 imageFromServer._strImagen = imagen.src;
                 div = getDivImageSlider(imageFromServer);
-                console.log("div a agregar es:", div);
                 if ($(".divImgSlider").find(".noImageSection").length > 0) {
                     $(".divImgSlider").empty().prepend(div);
                 } else {
@@ -83,6 +83,7 @@
                     alert("Ocurrio un error");
                 }
             }
+            $("#div_carga").hide();
         })
     }
     function iconQuitarValor(tr) {

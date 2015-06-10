@@ -16,6 +16,7 @@
                 //try{
                     data = getObjFormData(files);
                     e.preventDefault();
+                    $("#div_carga").show();
                     section = $(this);
                     getImageFromInputFile($("#file1")[0].files[0], function (imagen) {
                         formularioSubir(data, section.attr("action"), section, imagen);
