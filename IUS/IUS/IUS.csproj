@@ -223,6 +223,7 @@
     <Content Include="Content\images\generales\slide2.png" />
     <Content Include="Content\images\test\africa.jpg" />
     <Content Include="Content\images\test\cruz.png" />
+    <Content Include="Content\images\views\eventos\noevento.png" />
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
     <Content Include="Content\ius_theme\generals\style.css" />

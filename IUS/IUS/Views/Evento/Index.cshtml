@@ -133,17 +133,25 @@
                 {
                     @(new HtmlString(cerrar));
                 }
-            }
-            <div class="row marginNull navSection">
-                <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavIz">
-                        <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer " />
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavDer">
-                        <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
+                <div class="row marginNull navSection">
+                    <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavIz">
+                            <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer " />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavDer">
+                            <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="noEvento">
+                    <img  src="~/Content/images/views/eventos/noevento.png"/>
+                    <h3>No hay eventos para hoy</h3>
+                </div>
+            }
+            
         </div>
         <div class="row marginNull divSeparadorFecha">
             <div class="col-lg-1 col-md-1 col-sm-5 col-xs-5">
@@ -157,7 +165,8 @@
             </div>
         </div>
         <div class="divEventos row">
-            @if (eventosMes.Count > 0 && eventosMes != null)
+
+            @if (eventosMes != null && eventosMes.Count > 0)
             {
                 int cn = 0;string separador = "";string cerrar = "</div>";string display = "block";
                 bool abierto = false;
@@ -206,18 +215,25 @@
                 {
                     @(new HtmlString(cerrar));
                 }
-                
-            }
-            <div class="row marginNull navSection">
-                <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavIz">
-                        <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer" />
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavDer">
-                        <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
+                <div class="row marginNull navSection">
+                    <div class="col-lg-3 col-md-4 col-sm-7 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavIz">
+                            <img src="~/Content/images/generales/navs/navL.png" direccion="0" class="navEvento pointer" />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="divNavDer">
+                            <img src="~/Content/images/generales/navs/navR.png" direccion="1" class="navEvento pointer" />
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="noEvento">
+                    <img  src="~/Content/images/views/eventos/noevento.png"/>
+                    <h3>No hay eventos para este mes</h3>
+                </div>
+            }
+            
         </div>
     </div>
 </div>

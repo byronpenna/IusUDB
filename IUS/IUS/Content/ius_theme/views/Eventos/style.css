@@ -12,7 +12,10 @@
     }
     .divSeparadorFecha h4{
         font-family:'trackp';
-
+    }
+    .noEvento img{
+        width:10%;
+        font-family:'latop';
     }
 /* Busqueda */
     .ckSeccion{
