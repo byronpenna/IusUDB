@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@using IUSLibs.TRL.Entidades
 @section estilosPersonalizados{
     <!-- Tags -->
         <link rel="stylesheet" href="~/Content/third-party/tags/bootstrap-tagsinput.css" />
@@ -19,6 +20,7 @@
 @{
     List<PostCategoria> categorias = (List<PostCategoria>)ViewBag.categorias;
     Post post = (Post)ViewBag.post;
+    List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
 }
 <div id="div_carga">
     <div id="contenerdorCargadorAjax">
@@ -63,6 +65,20 @@
             </div>
         </div>
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">
+            <div class="col-lg-offset-5 col-lg-2">
+                <label>
+                    Idioma de noticia
+                </label>
+                <select class="form-control" name="cbIdioma">
+                    @if (idiomas != null && idiomas.Count > 0)
+                    {
+                        foreach (Idioma idioma in idiomas)
+                        {
+                            <option value="@idioma._idIdioma">@idioma._idioma</option>
+                        }
+                    }
+                </select>
+            </div>
             <div class="col-lg-6">
                 <label>Categoria</label>
                 <select class="form-control" name="cbCategorias">

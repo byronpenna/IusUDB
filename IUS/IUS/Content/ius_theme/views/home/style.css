@@ -11,6 +11,12 @@
 .slider{
     position:relative;
 }
+.noSliderDiv{
+    min-height:50px;
+    text-align:center;
+    padding-top:5%; 
+    padding-bottom:5%;
+}
 .navBtn{
     font-size:3em;
 }

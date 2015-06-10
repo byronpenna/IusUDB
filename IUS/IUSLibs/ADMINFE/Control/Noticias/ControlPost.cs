@@ -146,6 +146,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     Post postRegresar = null;
                     sp.agregarParametro("titulo", postAgregar._titulo);
                     sp.agregarParametro("contenido", postAgregar._contenido);
+                    sp.agregarParametro("idIdioma", postAgregar._idioma._idIdioma);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try

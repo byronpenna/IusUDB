@@ -25,6 +25,10 @@
     @if(slider != null){
         int cn = 0;
         string clases = "";
+        if (slider.Count > 1)
+        {
+            
+        }
         foreach(SliderImage image in slider){
             if (cn == 0)
             {
@@ -38,6 +42,8 @@
             cn++;
         }
     }else{
-        <span>No hay slider</span>
+        <div class="noSliderDiv">
+            <h3>No hay slider</h3>
+        </div>
     }
 </div>

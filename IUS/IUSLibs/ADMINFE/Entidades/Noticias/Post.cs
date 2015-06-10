@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 // librerias internas
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.TRL.Entidades;
 namespace IUSLibs.ADMINFE.Entidades.Noticias
 {
     public class Post
@@ -17,6 +18,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             public bool     _estado;
             public Usuario  _usuario;
             public byte[]   _miniatura;
+            public Idioma   _idioma;
             #region "operacionales"
                 public string getTxtEstado
                 {
@@ -89,6 +91,13 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                     this._titulo    = titulo;
                     this._contenido = contenido;
                     this._usuario = usu;
+                }
+                public Post(string titulo, string contenido, Usuario usu,Idioma idioma)
+                {
+                    this._titulo = titulo;
+                    this._contenido = contenido;
+                    this._usuario = usu;
+                    this._idioma = idioma;
                 }
         #endregion
     }

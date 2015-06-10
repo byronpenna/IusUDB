@@ -101,6 +101,22 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     throw x;
                 }
             }
+            public List<IUSLibs.TRL.Entidades.Idioma> sp_trl_getAllIdiomas(int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    IUSLibs.TRL.Control.ControlIdioma control = new IUSLibs.TRL.Control.ControlIdioma();
+                    return control.sp_trl_getAllIdiomas(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
         #endregion
         #region "acciones"
             public bool sp_adminfe_noticias_setThumbnailPost(Post thumbnailPost, int idUsuarioEjecutor,int idPagina)

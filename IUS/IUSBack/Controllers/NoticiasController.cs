@@ -10,6 +10,7 @@ using System.Web.Mvc;
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades;
     using IUSLibs.ADMINFE.Entidades.Noticias;
+    using IUSLibs.TRL.Entidades;
 namespace IUSBack.Controllers
 {
     public class NoticiasController : PadreController
@@ -148,6 +149,7 @@ namespace IUSBack.Controllers
                         ViewBag.categorias  = categorias;
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.editMode    = false;
+                        ViewBag.idiomas     = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                         #region "Labels"
                             ViewBag.titleModulo     = "Ingresar noticia";
                             ViewBag.usuario         = usuarioSession;
@@ -265,7 +267,8 @@ namespace IUSBack.Controllers
                     {
                         try
                         {
-                            Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession);
+                            Idioma idioma = new Idioma(this.convertObjAjaxToInt(frm["cbIdioma"]));
+                            Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession,idioma);
                             Post postAgregado = this._model.sp_adminfe_noticias_publicarPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
                             //Post postAgregado = null;
                             if (postAgregado != null)
