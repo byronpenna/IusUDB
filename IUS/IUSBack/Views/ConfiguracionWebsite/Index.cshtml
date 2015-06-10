@@ -128,12 +128,11 @@
         </div>
     }
     <div class="divImgSlider marginNull">
-        
+        <h2>Imagenes de Slider</h2>
         @if (slider != null && slider.Count > 0)
         {
             foreach (SliderImage image in slider)
             {
-                <h2>Imagenes de Slider</h2>
                 <div class="col-lg-6 divImgIndividual">
                     <input type="hidden" name="txtHdIdSliderImage" class="txtHdIdSliderImage" value="@image._idSliderImage" />
                     <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
