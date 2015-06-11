@@ -2,6 +2,8 @@
     //nicEditors.findEditor('editor').getContent();
     
     //plugins 
+        // chosen 
+            $(".cbCategorias").chosen();
         // rich text 
             bkLib.onDomLoaded(function() {
                 txtAreaEditor = new nicEditor({ maxHeight: 400 }).panelInstance('editor');

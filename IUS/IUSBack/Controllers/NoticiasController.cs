@@ -338,10 +338,12 @@ namespace IUSBack.Controllers
                     try
                     {
                         int idPost          = this.convertObjAjaxToInt(frm["txtHdIdPost"]);
+                        int[] idCategorias  = this.convertArrAjaxToInt( (object[]) frm["cbCategorias"]);
                         Post postActualizar = new Post(idPost, frm["txtTitulo"].ToString(), frm["contenido"].ToString());
                         string tags         = frm["tags"].ToString();
                         bool actualizo      = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
                         List<Tag> tagList   = this._model.sp_adminfe_noticias_updateTag(tags, idPost, usuarioSession._idUsuario, this._idPagina);
+                        List<CategoriaPost> categorias = this._model.sp_adminfe_noticias_updateCategoriaPost(idCategorias, idPost, usuarioSession._idUsuario, _idPagina);
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", actualizo);
                         respuesta.Add("tags", tagList);

@@ -122,8 +122,62 @@ namespace IUSBack.Models.Page.Administracion.Acciones
             }
         #endregion
         #region "acciones"
-            #region "ingresar"
-                public Post sp_adminfe_noticias_publicarPost(Post postAgregar, int idUsuarioEjecutor, int idPagina)
+                #region "tags"
+                    public Dictionary<object, object> sp_adminfe_noticias_agregarTag(int idPost, string[] tags, int idUsuarioEjecutor, int idPagina)
+                    {
+                        /*
+                         individual false = no todos se agregaron; global true = por lo menos uno se agrego
+                         */
+                        Dictionary<object, object> toReturn = new Dictionary<object, object>();
+                        List<PostTag> postsTags = new List<PostTag>();
+                        PostTag postTag;
+                        bool estadoGlobal = false, estadoIndividual = true;
+                        foreach (string tag in tags)
+                        {
+                            try
+                            {
+                                postTag = this._controlPostTag.sp_adminfe_noticias_agregarTag(idPost, tag, idUsuarioEjecutor, idPagina);
+                            }
+                            catch (Exception)
+                            {
+                                postTag = null;
+                            }
+                            if (postTag != null)
+                            {
+                                postsTags.Add(postTag);
+                            }
+                            else
+                            {
+                                estadoIndividual = false;
+                            }
+                        }
+                        if (postsTags.Count > 0)
+                        {
+                            estadoGlobal = true;
+                        }
+                        toReturn.Add("estadoGlobal", estadoGlobal);
+                        toReturn.Add("estadoIndividual", estadoIndividual);
+                        toReturn.Add("postTags", postsTags);
+                        return toReturn;
+                    }
+                    public List<Tag> sp_adminfe_noticias_updateTag(string tags, int idPost, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlPostTag.sp_adminfe_noticias_updateTag(tags, idPost, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
+                #region "posts"
+                    public Post sp_adminfe_noticias_publicarPost(Post postAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
@@ -138,25 +192,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         throw x;
                     }
                 }
-            #endregion
-            
-            #region "update"
-                public bool sp_adminfe_noticias_setThumbnailPost(Post thumbnailPost, int idUsuarioEjecutor, int idPagina)
-                {
-                    try
-                    {
-                        return this._controlPost.sp_adminfe_noticias_setThumbnailPost(thumbnailPost, idUsuarioEjecutor, idPagina);
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
-                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost, int idUsuarioEjecutor, int idPagina)
+                    public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
@@ -171,44 +207,40 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         throw x;
                     }
                 }
-                public Dictionary<object, object> sp_adminfe_noticias_agregarTag(int idPost, string[] tags, int idUsuarioEjecutor, int idPagina)
+                    public bool sp_adminfe_noticias_modificarPost(Post postActualizar, int idUsuarioEjecutor, int idPagina)
                 {
-                    /*
-                     individual false = no todos se agregaron; global true = por lo menos uno se agrego
-                     */
-                    Dictionary<object, object> toReturn = new Dictionary<object, object>();
-                    List<PostTag> postsTags = new List<PostTag>();
-                    PostTag postTag;
-                    bool estadoGlobal = false, estadoIndividual = true;
-                    foreach (string tag in tags)
+                    try
+                    {
+                        return this._controlPost.sp_adminfe_noticias_modificarPost(postActualizar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                #endregion
+                #region "categorias"
+                    public List<CategoriaPost> sp_adminfe_noticias_updateCategoriaPost(int[] idCategorias,int idPost,int idUsuarioEjecutor, int idPagina)
                     {
                         try
                         {
-                            postTag = this._controlPostTag.sp_adminfe_noticias_agregarTag(idPost, tag, idUsuarioEjecutor, idPagina);
+                            string strCategorias = string.Join(",",idCategorias);
+                            return this._controlCategoriaPost.sp_adminfe_noticias_updateCategoriaPost(strCategorias, idPost, idUsuarioEjecutor, idPagina);
                         }
-                        catch (Exception)
+                        catch (ErroresIUS x)
                         {
-                            postTag = null;
+                            throw x;
                         }
-                        if (postTag != null)
+                        catch (Exception x)
                         {
-                            postsTags.Add(postTag);
-                        }
-                        else
-                        {
-                            estadoIndividual = false;
+                            throw x;
                         }
                     }
-                    if (postsTags.Count > 0)
-                    {
-                        estadoGlobal = true;
-                    }
-                    toReturn.Add("estadoGlobal", estadoGlobal);
-                    toReturn.Add("estadoIndividual", estadoIndividual);
-                    toReturn.Add("postTags", postsTags);
-                    return toReturn;
-                }
-                public Dictionary<object, object> sp_adminfe_noticias_insertCategoriasPosts(int idPost,int[] categorias,int idUsuarioEjecutor,int idPagina)
+                    public Dictionary<object, object> sp_adminfe_noticias_insertCategoriasPosts(int idPost,int[] categorias,int idUsuarioEjecutor,int idPagina)
                 {
                     Dictionary<object, object> toReturn = new Dictionary<object, object>();
                     List<CategoriaPost> categoriasPosts = new List<CategoriaPost>();
@@ -246,37 +278,24 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     toReturn.Add("categorias", categoriasPosts);
                     return toReturn;
                 }
-                public List<Tag> sp_adminfe_noticias_updateTag(string tags, int idPost, int idUsuarioEjecutor, int idPagina)
-                {
-                    try
+                    
+                #endregion
+
+                public bool sp_adminfe_noticias_setThumbnailPost(Post thumbnailPost, int idUsuarioEjecutor, int idPagina)
                     {
-                        return this._controlPostTag.sp_adminfe_noticias_updateTag(tags, idPost,idUsuarioEjecutor, idPagina);
+                        try
+                        {
+                            return this._controlPost.sp_adminfe_noticias_setThumbnailPost(thumbnailPost, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
-                public bool sp_adminfe_noticias_modificarPost(Post postActualizar, int idUsuarioEjecutor, int idPagina)
-                {
-                    try
-                    {
-                        return this._controlPost.sp_adminfe_noticias_modificarPost(postActualizar, idUsuarioEjecutor, idPagina);
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
-            #endregion
         #endregion
     }
 }

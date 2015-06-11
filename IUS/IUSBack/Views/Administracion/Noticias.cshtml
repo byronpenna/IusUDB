@@ -1,6 +1,8 @@
 ﻿@using IUSLibs.ADMINFE.Entidades.Noticias
 @using IUSLibs.TRL.Entidades
 @section estilosPersonalizados{
+    <!-- chosen -->
+        <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Tags -->
         <link rel="stylesheet" href="~/Content/third-party/tags/bootstrap-tagsinput.css" />
     <!-- propios -->
@@ -13,6 +15,8 @@
             <script src="~/Content/third-party/richtext/nicEdit.js"></script>
         <!-- Tags -->
             <script src="~/Content/third-party/tags/bootstrap-tagsinput.js"></script>
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/Administracion/Noticias/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/functions.js"></script>
@@ -34,7 +38,6 @@
         </div>
     </div>
 </div>
-
 <div class="row marginNull">
     <form class="frmNoticia">
         <input type="hidden" name="txtHdIdPost" class="txtHdIdPost" value="@post._idPost" />
@@ -90,7 +93,7 @@
             </div>
             <div class="col-lg-6">
                 <label>Categoria</label>
-                <select class="form-control" name="cbCategorias" multiple>
+                <select class="form-control cbCategorias" name="cbCategorias" multiple>
                     @if (categorias != null)
                     {
                         foreach (PostCategoria categoria in categorias)

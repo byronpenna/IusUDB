@@ -52,6 +52,44 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                 }
                 return categoriaPost;
             }
+            public List<CategoriaPost> sp_adminfe_noticias_updateCategoriaPost(string categorias, int idPost, int idUsuarioEjecutor, int idPagina)
+            {
+                List<CategoriaPost> categoriasPosts = null;
+                CategoriaPost categoriaPost;
+                SPIUS sp = new SPIUS("sp_adminfe_noticias_updateCategoriaPost");
+                bool estado = false;
+                sp.agregarParametro("categorias", categorias);
+                sp.agregarParametro("idPost", idPost);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            foreach(DataRow row in tb[1].Rows){
+                                categoriaPost = new CategoriaPost((int)row["idCategoriaPost"], (int)row["id_post_fk"], (int)row["id_categoria_fk"]);
+                                categoriasPosts.Add(categoriaPost);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                if(estado = false && categoriasPosts.Count <= 0){
+                    throw new Exception("Error no controlado al querer actualizar categorias");
+                }
+                return categoriasPosts;
+            }
         #endregion
     }
 }

@@ -48,7 +48,9 @@
     function frmNoticia(formulario) {
         frm = serializeToJson(formulario.serializeArray());
         frm.contenido   = nicEditors.findEditor('editor').getContent();
-        frm.tags        = $(".txtEtiquetas").tagsinput('items');
+        frm.tags = $(".txtEtiquetas").tagsinput('items');
+        frm.cbCategorias = $(".cbCategorias").val();
+        console.log("formulario a enviar", frm);
         actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_publicarPost", frm, function (data) {
             $("#div_carga").hide();
             console.log("respuesta del servidor", data);
