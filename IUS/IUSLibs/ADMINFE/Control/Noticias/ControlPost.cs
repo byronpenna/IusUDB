@@ -12,6 +12,7 @@ using System.Text;
     using IUSLibs.GENERALS;
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.TRL.Entidades;
 namespace IUSLibs.ADMINFE.Control.Noticias
 {
     public class ControlPost:PadreLib
@@ -72,6 +73,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 rowResult = tb[1].Rows[0];
                                 usu = new Usuario((int)rowResult["id_usuario_fk"]);
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
+                                post._idioma = new Idioma((int)rowResult["id_idioma_fk"]);
                                 if (rowResult["miniatura"] != DBNull.Value)
                                 {
                                     post._miniatura = (byte[])rowResult["miniatura"];

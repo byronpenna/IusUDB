@@ -72,16 +72,25 @@
                 <select class="form-control" name="cbIdioma">
                     @if (idiomas != null && idiomas.Count > 0)
                     {
+                        string selected="";
                         foreach (Idioma idioma in idiomas)
                         {
-                            <option value="@idioma._idIdioma">@idioma._idioma</option>
+                            if (post._idioma != null && idioma._idIdioma == post._idioma._idIdioma)
+                            {
+                                selected = "selected";
+                            }
+                            else
+                            {
+                                selected = "";
+                            }
+                            <option value="@idioma._idIdioma" @selected >@idioma._idioma</option>
                         }
                     }
                 </select>
             </div>
             <div class="col-lg-6">
                 <label>Categoria</label>
-                <select class="form-control" name="cbCategorias">
+                <select class="form-control" name="cbCategorias" multiple>
                     @if (categorias != null)
                     {
                         foreach (PostCategoria categoria in categorias)

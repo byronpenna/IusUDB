@@ -17,6 +17,10 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                 this._idPostCategoria   = idPostCategoria;
                 this._categoria         = categoria;
             }
+            public PostCategoria(int idPostCategoria)
+            {
+                this._idPostCategoria = idPostCategoria;
+            }
         #endregion
     }
 }

@@ -107,22 +107,22 @@ namespace IUSBack.Controllers
                             ViewBag.categorias = categorias;
                             ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                             ViewBag.editMode = true;
+                            ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                             #region "Labels"
                                 ViewBag.titleModulo = "Modificar noticia";
                                 ViewBag.botonAccion = "Modificar";
-                                ViewBag.usuario = usuarioSession;
+                                ViewBag.usuario     = usuarioSession;
                                 ViewBag.accion      = 0;
                             #endregion
                             #region "Valores"
                                 ViewBag.post        = datosPost["post"];
                                 ViewBag.tags        = this._model.getComaTags((List<Tag>)datosPost["tags"]);
-                                ViewBag.categorias  = datosPost["categorias"];
                             #endregion
                             return View("~/Views/Administracion/Noticias.cshtml");
                         }catch(ErroresIUS){
                             return RedirectToAction("Unhandled", "Errors");
                         }
-                        catch (Exception) {
+                        catch (Exception x) {
                             return RedirectToAction("Unhandled", "Errors");
                         }
                     }
@@ -259,7 +259,7 @@ namespace IUSBack.Controllers
             public ActionResult sp_adminfe_noticias_publicarPost()
             {
                 // vars 
-                Dictionary<object, object> frm,respuestaTag, respuesta = null;
+                Dictionary<object, object> frm,respuestaTag,respuestaCate, respuesta = null;
                 frm = this.getAjaxFrmWithOutValidate();
                 Usuario usuarioSession  = this.getUsuarioSesion();
                 // do it
@@ -277,6 +277,7 @@ namespace IUSBack.Controllers
                                 respuesta.Add("estado", true);
                                 respuesta.Add("post", postAgregado);
                                 string[] tags = this.converArrAajaxToString((object[])frm["tags"]);
+                                int[] categorias = this.convertArrAjaxToInt((object[])frm["cbCategorias"]);
                                 if (tags != null)
                                 {
                                     respuestaTag = this._model.sp_adminfe_noticias_agregarTag(postAgregado._idPost, tags, usuarioSession._idUsuario, this._idPagina);
@@ -286,6 +287,17 @@ namespace IUSBack.Controllers
                                 {
                                     respuesta.Add("respuestaTag", null);
                                 }
+
+                                if (categorias != null)
+                                {
+                                    respuestaCate = this._model.sp_adminfe_noticias_insertCategoriasPosts(postAgregado._idPost, categorias, usuarioSession._idUsuario, this._idPagina);
+                                    respuesta.Add("respuestaCate", respuestaCate);
+                                }
+                                else
+                                {
+                                    respuesta.Add("respuestaCate", null);
+                                }
+
                             }
                             else
                             {
