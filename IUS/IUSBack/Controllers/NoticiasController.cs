@@ -341,7 +341,9 @@ namespace IUSBack.Controllers
                     {
                         int idPost          = this.convertObjAjaxToInt(frm["txtHdIdPost"]);
                         int[] idCategorias  = this.convertArrAjaxToInt( (object[]) frm["cbCategorias"]);
+                        Idioma idioma       = new Idioma(this.convertObjAjaxToInt(frm["cbIdioma"]));
                         Post postActualizar = new Post(idPost, frm["txtTitulo"].ToString(), frm["contenido"].ToString());
+                        postActualizar._idioma = idioma;
                         string tags         = frm["tags"].ToString();
                         bool actualizo      = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
                         List<Tag> tagList   = this._model.sp_adminfe_noticias_updateTag(tags, idPost, usuarioSession._idUsuario, this._idPagina);

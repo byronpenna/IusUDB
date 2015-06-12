@@ -121,6 +121,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("titulo", postActualizar._titulo);
                     sp.agregarParametro("contenido", postActualizar._contenido);
                     sp.agregarParametro("idPost", postActualizar._idPost);
+                    sp.agregarParametro("idIdioma", postActualizar._idioma._idIdioma);
                     sp.agregarParametro("idUsuarioEjecutor",idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     bool retorno = false;
