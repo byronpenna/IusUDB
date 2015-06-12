@@ -96,9 +96,15 @@
                 <select class="form-control cbCategorias" name="cbCategorias" multiple>
                     @if (categorias != null)
                     {
+                        string selected = "";
                         foreach (PostCategoria categoria in categorias)
                         {
-                            <option value="@categoria._idPostCategoria">@categoria._categoria</option>
+                            if (categoria._selected)
+                            {
+                                selected = "selected";
+                            }
+                            <option value="@categoria._idPostCategoria" @selected>@categoria._categoria</option>
+                            selected = "";
                         }
                     }
                     else

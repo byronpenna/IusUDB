@@ -101,13 +101,15 @@ namespace IUSBack.Controllers
                     {
                         try
                         {
-                            List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
+                            //List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
                             Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
+                            Post post = (Post)datosPost["post"];
                             ViewBag.permiso = permisos;
-                            ViewBag.categorias = categorias;
+                            ViewBag.categorias = this._model.sp_adminfe_noticias_getCategoriasPostById(post._idPost, usuarioSession._idUsuario, this._idPagina);//categorias;
                             ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                             ViewBag.editMode = true;
                             ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+
                             #region "Labels"
                                 ViewBag.titleModulo = "Modificar noticia";
                                 ViewBag.botonAccion = "Modificar";
@@ -115,7 +117,7 @@ namespace IUSBack.Controllers
                                 ViewBag.accion      = 0;
                             #endregion
                             #region "Valores"
-                                ViewBag.post        = datosPost["post"];
+                                ViewBag.post        = post;
                                 ViewBag.tags        = this._model.getComaTags((List<Tag>)datosPost["tags"]);
                             #endregion
                             return View("~/Views/Administracion/Noticias.cshtml");

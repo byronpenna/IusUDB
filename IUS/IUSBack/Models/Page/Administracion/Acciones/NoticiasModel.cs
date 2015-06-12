@@ -120,6 +120,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     throw x;
                 }
             }
+            public List<PostCategoria> sp_adminfe_noticias_getCategoriasPostById(int idPost, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return this._controlCategoriaPost.sp_adminfe_noticias_getCategoriasPostById(idPost, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
         #endregion
         #region "acciones"
                 #region "tags"
@@ -280,7 +295,6 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                 }
                     
                 #endregion
-
                 public bool sp_adminfe_noticias_setThumbnailPost(Post thumbnailPost, int idUsuarioEjecutor, int idPagina)
                     {
                         try

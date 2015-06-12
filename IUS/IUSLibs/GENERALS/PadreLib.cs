@@ -57,13 +57,23 @@ namespace IUSLibs.GENERALS
                 ErroresIUS x = new ErroresIUS(message,ErroresIUS.tipoError.sql, (int)row["errorCode"], row["errorSql"].ToString());
                 return x;
             }
+            #region "resultadoCorrectoGet"
+                protected bool resultadoCorrectoGet(DataTableCollection tb, int iTabla)
+            {
+                return this.resultadoCorrecto(tb, "estadoProc", iTabla);
+            }
+                protected bool resultadoCorrectoGet(DataTableCollection tb)
+            {
+                return this.resultadoCorrecto(tb, "estadoProc", tb.Count - 1);
+            }
+            #endregion
             #region "Resultado Correcto"
-                public bool resultadoCorrecto(DataSet ds)
+                protected bool resultadoCorrecto(DataSet ds)
                 {
                     string columnaEstado = "estadoProc";
                     return this.resultadoCorrecto(ds.Tables, columnaEstado);
                 }
-                public bool resultadoCorrecto(DataSet ds,string columnaEstado)
+                protected bool resultadoCorrecto(DataSet ds,string columnaEstado)
                 {
                     return this.resultadoCorrecto(ds.Tables,columnaEstado);
                 }
@@ -73,9 +83,13 @@ namespace IUSLibs.GENERALS
                 }
                 protected bool resultadoCorrecto(DataTableCollection tb,string columnaEstado)
                 {
+                    return this.resultadoCorrecto(tb, columnaEstado, 0);
+                }
+                protected bool resultadoCorrecto(DataTableCollection tb, string columnaEstado, int iTabla)
+                {
                     try
                     {
-                        if (tb != null && (int)tb[0].Rows[0][columnaEstado] == 1)
+                        if (tb != null && (int)tb[iTabla].Rows[0][columnaEstado] == 1)
                         {
                             return true;
                         }
@@ -85,7 +99,7 @@ namespace IUSLibs.GENERALS
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow rowError = tb[0].Rows[0];
-                                ErroresIUS errores = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"] , rowError["errorSql"].ToString());
+                                ErroresIUS errores = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorSql"].ToString());
                                 throw errores;
                             }
                             return false;
@@ -99,7 +113,6 @@ namespace IUSLibs.GENERALS
                     {
                         return false;
                     }
-                    
                 }
             #endregion
         #endregion

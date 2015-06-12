@@ -27,13 +27,15 @@
             if (data.estado) {
                 tags = data.tags;
                 txtTag = "";
-                $.each(tags, function (i, val) {
-                    if (i == 0) {
-                        txtTag += val._strTag;
-                    } else {
-                        txtTag += "," + val._strTag;
-                    }
-                });
+                if (tags !== null) {
+                    $.each(tags, function (i, val) {
+                        if (i == 0) {
+                            txtTag += val._strTag;
+                        } else {
+                            txtTag += "," + val._strTag;
+                        }
+                    });
+                }
                 $(".txtEtiquetas").val(txtTag);
                 alert("Actualizado correctamente");
             } else {

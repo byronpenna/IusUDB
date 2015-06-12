@@ -16,7 +16,39 @@ namespace IUSLibs.ADMINFE.Control.Noticias
     public class ControlCategoriaPost:PadreLib
     {
         #region "get"
-            
+            public List<PostCategoria> sp_adminfe_noticias_getCategoriasPostById(int idPost,int idUsuarioEjecutor,int idPagina)
+            {
+                SPIUS sp = new SPIUS("sp_adminfe_noticias_getCategoriasPostById");
+                sp.agregarParametro("idPost",idPost);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                List<PostCategoria> postsCategorias = null;
+                PostCategoria postCategoria;
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            postsCategorias = new List<PostCategoria>();
+                            foreach(DataRow row in tb[0].Rows){
+                                postCategoria = new PostCategoria((int)row["idPostCategoria"],row["categoria"].ToString(),(bool)row["selected"]);
+                                postsCategorias.Add(postCategoria);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return postsCategorias;
+            }
         #endregion
         #region "acciones"
             public CategoriaPost sp_adminfe_noticias_insertCategoriasPosts(int idPost,int idCategoria,int idUsuarioEjecutor, int idPagina)
@@ -70,7 +102,9 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                         estado = true;
                         if (tb[1].Rows.Count > 0)
                         {
+                            categoriasPosts = new List<CategoriaPost>();
                             foreach(DataRow row in tb[1].Rows){
+
                                 categoriaPost = new CategoriaPost((int)row["idCategoriaPost"], (int)row["id_post_fk"], (int)row["id_categoria_fk"]);
                                 categoriasPosts.Add(categoriaPost);
                             }
