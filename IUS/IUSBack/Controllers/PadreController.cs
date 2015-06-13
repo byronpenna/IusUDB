@@ -23,12 +23,32 @@ namespace IUSBack.Controllers
             {
                 usuarios = 3,gestionRoles = 5,
                 gestionPersonas=4,gestionIdiomaWebsite = 7,configuracionFront = 8,
-                Eventos = 9,Noticias = 10
+                Eventos = 9, Noticias = 10, Repositorio = 11
             }
             protected JavaScriptSerializer _jss;
             protected JavaScriptSerializer _jssmax;
+            private PadreModel _model;
         #endregion
         #region "funciones"
+            public ActionResult seguridadInicial(int idPagina)
+            {
+                Usuario usuarioSesion = this.getUsuarioSesion();
+                ActionResult retorno = null;
+                if (usuarioSesion != null)
+                {
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
+                    if ( !(permisos != null && permisos._ver) )
+                    {
+                        retorno = RedirectToAction("NotAllowed", "Errors");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }
+                return retorno;
+            }     
+
             #region "manejo de archivos"
                 public Byte[] getBytesFromFile(HttpPostedFileBase archivo)
                 {
@@ -132,7 +152,6 @@ namespace IUSBack.Controllers
                 }
                 return toReturn;
             }
-            
             public List<Dictionary<Object, Object>> getListAjaxFrm()
             {
                 return this.getListAjaxFrm("form");
@@ -215,6 +234,7 @@ namespace IUSBack.Controllers
                 this._jss = new JavaScriptSerializer();
                 this._jssmax = new JavaScriptSerializer();
                 this._jssmax.MaxJsonLength = Int32.MaxValue;
+                this._model = new PadreModel();
             }
         #endregion
         

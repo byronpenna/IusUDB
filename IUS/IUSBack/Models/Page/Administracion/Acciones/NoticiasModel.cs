@@ -192,7 +192,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     }
                 #endregion
                 #region "posts"
-                    public Post sp_adminfe_noticias_publicarPost(Post postAgregar, int idUsuarioEjecutor, int idPagina)
+                public Post sp_adminfe_noticias_publicarPost(Post postAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
@@ -207,7 +207,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         throw x;
                     }
                 }
-                    public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost, int idUsuarioEjecutor, int idPagina)
+                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
@@ -222,7 +222,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         throw x;
                     }
                 }
-                    public bool sp_adminfe_noticias_modificarPost(Post postActualizar, int idUsuarioEjecutor, int idPagina)
+                public bool sp_adminfe_noticias_modificarPost(Post postActualizar, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {

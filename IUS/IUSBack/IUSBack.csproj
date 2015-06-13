@@ -192,6 +192,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
+    <Compile Include="Controllers\RepositorioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +211,7 @@
     <Compile Include="Models\Page\Home\Entidades\MenuView.cs" />
     <Compile Include="Models\Page\Login\Acciones\LoginModel.cs" />
     <Compile Include="Models\Page\Login\Forms\User.cs" />
+    <Compile Include="Models\Page\Repositorio\Acciones\RepositorioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +249,8 @@
     <Content Include="Content\themes\iusback_theme\views\Login\style.css" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\media.css" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Repositorio\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Repositorio\style.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap.css" />
@@ -399,6 +403,8 @@
     <Content Include="Scripts\Views\GestionRoles\script.js" />
     <Content Include="Scripts\Views\GestionUsuarios\functions.js" />
     <Content Include="Scripts\Views\GestionUsuarios\script.js" />
+    <Content Include="Scripts\Views\Repositorio\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -510,6 +516,7 @@
     <Content Include="Views\Noticias\Index.cshtml" />
     <Content Include="Views\Shared\footer.cshtml" />
     <Content Include="Views\Noticias\setMiniatura.cshtml" />
+    <Content Include="Views\Repositorio\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
