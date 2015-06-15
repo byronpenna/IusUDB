@@ -12,12 +12,14 @@
     background:#9b9bff;
     cursor:pointer;
 }
-
+.inputNombreCarpeta{
+    margin-top:10%;
+    margin-bottom:5%;
+}
 .cuadritoIcono,.cuadritoIconoAdd{
     width:80%;
     padding-top:10%;
     padding-bottom:3%;
-    
 }
 .fileSelected{
     background:blue;

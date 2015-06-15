@@ -1,5 +1,12 @@
 ﻿$(document).ready(function () {
     // eventos 
+        // doble click
+            $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
+                seccion = $(this).parents(".detalleCarpeta");
+                nombre = $(this).text();
+                ttlNombreCarpeta(seccion, nombre);
+            })
+            
         // click 
             // herramientas carpetas
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
@@ -20,4 +27,13 @@
                     div = $(this).parents(".folder");
                     div.remove();
                 })
+            // actualizar carpeta
+                $(document).on("click", ".btnEditarCarpeta", function () {
+                    
+                });
+                $(document).on("click", ".btnCancelarEdicionCarpeta", function () {
+                    seccion = $(this).parents(".detalleCarpeta");
+                    btnCancelarEdicionCarpeta(seccion);
+                });
+
 })
