@@ -30,13 +30,27 @@ namespace IUSBack.Controllers
                 {
                     return seguridadInicial;
                 }
-                Usuario usuarioSession = this.getUsuarioSesion();
-                Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                ViewBag.titleModulo = "Repositorio Digital";
-                ViewBag.usuario     = usuarioSession;
-                ViewBag.permisos    = permisos;
-                ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                return View();
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    Dictionary<object, object> archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.titleModulo = "Repositorio Digital";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.permisos = permisos;
+                    ViewBag.carpetas = archivos["carpetas"];
+                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                
             }
         #endregion
         #region "acciones"

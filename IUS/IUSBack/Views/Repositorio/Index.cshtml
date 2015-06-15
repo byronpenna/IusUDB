@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.REPO.Entidades
+@section estilosPersonalizados{
     <!-- Propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/media.css" />
@@ -7,6 +8,9 @@
     <!-- Propios -->
         <script src="~/Scripts/Views/Repositorio/script.js"></script>
         <script src="~/Scripts/Views/Repositorio/functions.js"></script>
+}
+@{
+    List<Carpeta> carpetas = (List<Carpeta>)ViewBag.carpetas;
 }
 @section tabs{
     <ul>
@@ -33,6 +37,7 @@
     </div>
     <div class="col-lg-4 seccionHerramientas">
         <label>Herramientas</label>
+        
         <div class="accionesDiv form-control">
             <a href="#" class="ico" title="Editar">
                 <i class="fa fa-upload"></i>
@@ -52,6 +57,9 @@
             <a href="#" class="ico" title="Descargar">
                 <i class="fa fa-download"></i>
             </a>
+            <a href="#" class="ico" title="Nueva carpeta">
+                <i class="fa fa-folder"></i>
+            </a>
         </div>
     </div>
     <div class="col-lg-4">
@@ -67,30 +75,58 @@
 
 <div id="tab-1" class="row tab marginNull">
     <div class="folders">
-        <div class="col-lg-2 folder">
-            <div class="cuadritoIcono">
-                <img src="~/Content/themes/iusback_theme/img/general/folder.png" />
+        @if (carpetas != null && carpetas.Count > 0)
+        {
+            foreach (Carpeta carpeta in carpetas)
+            {
+                <div class="col-lg-2 folder ">
+                    <div class="cuadritoIcono ">
+                        <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                        <div>
+                            <h3>@carpeta._nombre</h3>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            
+        }
+        <!--
+        <div class="col-lg-2 folder ">
+            <div class="cuadritoIcono ">
+                <img src="~/Content/themes/iusback_theme/img/general/repositorio/folder.png" />
                 <div>
                     <h3>Imagenes</h3>
                 </div>
             </div>
         </div>
         <div class="col-lg-2 folder">
-            <div class="cuadritoIcono">
-                <img src="~/Content/themes/iusback_theme/img/general/image.png" />
+            <div class="cuadritoIcono ">
+                <img src="~/Content/themes/iusback_theme/img/general/repositorio/image.png" />
                 <div>
                     <h3>foto</h3>
                 </div>
             </div>
         </div>
         <div class="col-lg-2 folder">
-            <div class="cuadritoIcono fileSelected">
-                <img src="~/Content/themes/iusback_theme/img/general/wordico.png" />
+            <div class="cuadritoIcono ">
+                <img src="~/Content/themes/iusback_theme/img/general/repositorio/wordico.png" />
                 <div>
                     <h3>Doc</h3>
                 </div>
             </div>
         </div>
+        <div class="col-lg-2 folder">
+            <div class="cuadritoIcono ">
+                <img src="~/Content/themes/iusback_theme/img/general/repositorio/warning.png" />
+                <div>
+                    <h3>warning</h3>
+                </div>
+            </div>
+        </div>
+        -->
     </div>
     
 </div>

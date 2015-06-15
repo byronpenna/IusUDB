@@ -109,6 +109,8 @@
     <Compile Include="GENERALS\PadreLib.cs" />
     <Compile Include="LOGS\ErroresIUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REPO\Control\ControlCarpeta.cs" />
+    <Compile Include="REPO\Entidades\Carpeta.cs" />
     <Compile Include="SEC\Control\ControlPermiso.cs" />
     <Compile Include="SEC\Control\ControlPersona.cs" />
     <Compile Include="SEC\Control\ControlRoles.cs" />
