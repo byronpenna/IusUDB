@@ -8,6 +8,7 @@ using System.Web;
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.REPO.Control;
+    using IUSLibs.REPO.Entidades;
 namespace IUSBack.Models.Page.Repositorio.Acciones
 {
     public class RepositorioModel:PadreModel
@@ -39,7 +40,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "acciones"
-            
+            public Carpeta sp_repo_insertCarpeta(Carpeta carpeta,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._controlCarpeta.sp_repo_insertCarpeta(carpeta, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
         #endregion
     }
 }

@@ -6,11 +6,18 @@
 }
 .folder{
     text-align:center;
+    min-height:280px;
 }
-.cuadritoIcono{
+.cuadritoIcono:hover{
+    background:#9b9bff;
+    cursor:pointer;
+}
+
+.cuadritoIcono,.cuadritoIconoAdd{
     width:80%;
     padding-top:10%;
     padding-bottom:3%;
+    
 }
 .fileSelected{
     background:blue;

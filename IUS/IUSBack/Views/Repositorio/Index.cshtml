@@ -25,6 +25,7 @@
         </li>
     </ul>    
 }
+
 <div class="row marginNull rowHerramientas">
     <div class="col-lg-4">
 
@@ -57,7 +58,7 @@
             <a href="#" class="ico" title="Descargar">
                 <i class="fa fa-download"></i>
             </a>
-            <a href="#" class="ico" title="Nueva carpeta">
+            <a href="#" class="ico icoNuevaCarpeta" title="Nueva carpeta">
                 <i class="fa fa-folder"></i>
             </a>
         </div>
@@ -74,15 +75,17 @@
 </div>
 
 <div id="tab-1" class="row tab marginNull">
+    <input type="hidden" class="txtHdIdCarpetaPadre" value="-1" />
     <div class="folders">
         @if (carpetas != null && carpetas.Count > 0)
         {
             foreach (Carpeta carpeta in carpetas)
             {
-                <div class="col-lg-2 folder ">
+                <div class="col-lg-2 folder">
+                    <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
                     <div class="cuadritoIcono ">
                         <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
-                        <div>
+                        <div class="detalleCarpeta">
                             <h3>@carpeta._nombre</h3>
                         </div>
                     </div>
