@@ -224,6 +224,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.jpg" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_ius.png" />
     <Content Include="Content\themes\iusback_theme\img\general\sadcloud.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\wordico.png" />
     <Content Include="Content\themes\iusback_theme\img\views\ConfiguracionWebsite\noimage.png" />
     <Content Include="Content\themes\iusback_theme\img\views\eventos\noevento.png" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\media.css" />

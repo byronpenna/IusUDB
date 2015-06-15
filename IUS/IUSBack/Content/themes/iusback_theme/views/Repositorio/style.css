@@ -7,6 +7,15 @@
 .folder{
     text-align:center;
 }
+.cuadritoIcono{
+    width:80%;
+    padding-top:10%;
+    padding-bottom:3%;
+}
+.fileSelected{
+    background:blue;
+    color:white;
+}
 .folder img{
     width:50%;
     
