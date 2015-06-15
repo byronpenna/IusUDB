@@ -139,7 +139,8 @@
     .tabsHeader ul li{
         display:inline-block;
         width:25%;
-        background:rgb(104, 145, 162);
+        /*background:rgb(104, 145, 162);*/
+        background:#95A5A6;
         padding-top:1%;
         padding-bottom:1%;
         cursor:pointer;
@@ -147,7 +148,7 @@
         font-family:'latop';
     }
     .tabsHeader ul li:hover,.tabActive{
-        background: #287a9c !important;
+        background: #2c3e50 !important;
     }
     .tabActive{
         font-weight:bold;

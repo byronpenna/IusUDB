@@ -219,6 +219,7 @@
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
+    <Content Include="Content\themes\iusback_theme\img\general\folder.png" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.jpg" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_ius.png" />

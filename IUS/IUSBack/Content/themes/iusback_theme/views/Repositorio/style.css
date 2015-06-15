@@ -1,1 +1,20 @@
-﻿
+﻿.rowHerramientas{
+    margin-top:2%;
+}
+.folders{
+    margin-top:5%;
+}
+.folder{
+    text-align:center;
+}
+.folder img{
+    width:50%;
+    
+}
+.accionesDiv .ico{
+    margin-left:3%;
+    color:black;
+}
+.accionesDiv .ico:first-child{
+    margin-left:0;
+}
