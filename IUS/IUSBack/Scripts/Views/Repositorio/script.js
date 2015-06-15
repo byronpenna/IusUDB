@@ -8,6 +8,9 @@
             })
             
         // click 
+            $(document).on("click", ".cuadritoIcono", function () {
+                frm = 
+            });
             // herramientas carpetas
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
                     e.preventDefault();
