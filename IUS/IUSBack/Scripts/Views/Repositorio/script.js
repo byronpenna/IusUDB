@@ -29,7 +29,13 @@
                 })
             // actualizar carpeta
                 $(document).on("click", ".btnEditarCarpeta", function () {
-                    
+                    folder = $(this).parents(".folder");
+                    frm = {
+                        txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
+                        nombre: folder.find(".txtNombreCarpeta").val()
+                    }
+                    console.log("Formulario a enviar", frm);
+                    btnEditarCarpeta(frm, folder);
                 });
                 $(document).on("click", ".btnCancelarEdicionCarpeta", function () {
                     seccion = $(this).parents(".detalleCarpeta");

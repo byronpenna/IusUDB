@@ -55,6 +55,39 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_repo_updateCarpeta()
+            {
+                Dictionary<object, object> frm, respuesta=null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        Carpeta carpetaActualizar = new Carpeta(this.convertObjAjaxToInt(frm["txtHdIdCarpeta"]), frm["nombre"].ToString());
+                        Carpeta carpetaActualizada = this._model.sp_repo_updateCarpeta(carpetaActualizar, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("carpeta", carpetaActualizada);
+
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_repo_insertCarpeta()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -78,6 +111,7 @@ namespace IUSBack.Controllers
                         respuesta = this.errorEnvioFrmJSON();
                     }
                     
+
                 }
                 catch (ErroresIUS x)
                 {

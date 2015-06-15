@@ -40,6 +40,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "acciones"
+            public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._controlCarpeta.sp_repo_updateCarpeta(carpetaActualizar, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x; 
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Carpeta sp_repo_insertCarpeta(Carpeta carpeta,int idUsuarioEjecutor,int idPagina)
             {
                 try

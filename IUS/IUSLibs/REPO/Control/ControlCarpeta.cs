@@ -54,6 +54,46 @@ namespace IUSLibs.REPO.Control
             }
         #endregion
         #region "acciones"
+            public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar, int idUsuarioEjecutor, int idPagina)
+            {
+                SPIUS sp = new SPIUS("sp_repo_updateCarpeta");
+                Carpeta carpetaActualizada=null,carpetaPadre;
+                sp.agregarParametro("nombre", carpetaActualizar._nombre);
+                sp.agregarParametro("idCarpeta", carpetaActualizar._idCarpeta);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (tb[1].Rows.Count > 0)
+                    {
+                        DataRow row = tb[1].Rows[0];
+                        if (row["id_carpetapadre_fk"] != DBNull.Value)
+                        {
+                            carpetaPadre = new Carpeta((int)row["id_carpetapadre_fk"]);
+                        }
+                        else
+                        {
+                            carpetaPadre = new Carpeta();
+                        }
+                        carpetaActualizada = new Carpeta((int)row["idCarpeta"], row["nombre"].ToString(), (int)row["id_usuario_fk"], carpetaPadre, row["ruta"].ToString());
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                if (carpetaActualizada == null)
+                {
+                    ErroresIUS x = new ErroresIUS("Error desconocido", ErroresIUS.tipoError.generico, 0);
+                    throw x;
+                }
+                return carpetaActualizada;
+            }
             public Carpeta sp_repo_insertCarpeta(Carpeta carpetaIngresar,int idUsuarioEjecutor,int idPagina)
             {
                 SPIUS sp = new SPIUS("sp_repo_insertCarpeta");
