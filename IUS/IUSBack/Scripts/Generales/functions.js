@@ -205,6 +205,24 @@
             callback(imagen);
         }
     }
+    function getIndividualFormData(file,frm) {
+        error = new Object();
+        var data = null;
+        if (window.FormData !== undefined) {
+            data = new FormData();
+            data.append("file", file);
+            if (frm !== undefined) {
+                data.append("form", JSON.stringify(frm));
+                console.log("formulario agregado", frm);
+            }
+        } else {
+            error.message = "Esta caracteristica no esta disponible para su navegador\
+            por favor actualicelo o utilice otro(google chrome)\
+            ";
+            throw error;
+        }
+        return data;
+    }
     function getObjFormData(files, frm) {
 
         error = new Object();

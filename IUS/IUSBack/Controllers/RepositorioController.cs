@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 // liberias internas
     using IUSBack.Models.Page.Repositorio.Acciones;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.REPO.Entidades;
+
 namespace IUSBack.Controllers
 {
     public class RepositorioController : PadreController
@@ -55,6 +57,39 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_repo_uploadFile()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    var form = this._jss.Deserialize<Dictionary<object, object>>(Request.Form["form"]);
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (Request.Files.Count > 0)
+                    {
+                        List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
+                        foreach (HttpPostedFileBase file in files)
+                        {
+                            
+                            var fileName = Path.GetFileName(file.FileName);
+                            var path = Path.Combine(Server.MapPath("~/RepositorioDigital/"), fileName);
+                            file.SaveAs(path);
+                        }
+                        
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                
+                return Json(respuesta);
+            }
             public ActionResult sp_repo_updateCarpeta()
             {
                 Dictionary<object, object> frm, respuesta=null;

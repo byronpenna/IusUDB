@@ -448,6 +448,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\Page\Home\Forms\" />
+    <Folder Include="RepositorioDigital\Publico\" />
+    <Folder Include="RepositorioDigital\Usuarios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

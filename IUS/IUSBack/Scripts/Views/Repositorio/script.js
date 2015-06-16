@@ -6,7 +6,24 @@
                 nombre = $(this).text();
                 ttlNombreCarpeta(seccion, nombre);
             })
-            
+        // submit 
+            $(document).on("submit", "#frmSubir", function (e) {
+                
+                files = $("#flArchivos")[0].files;
+                formulariohtml = $(this);
+                frm = {};
+                console.log(files);
+                e.preventDefault();
+                cn = 0;
+                console.log(files.length);
+                $.each(files, function (file) {
+                    data = getIndividualFormData(files[cn], frm);
+                    frmSubir(data, formulariohtml.attr("action"));
+                    cn++;
+                })
+                
+                
+            })
         // click 
             $(document).on("click", ".cuadritoIcono", function () {
                 
@@ -24,12 +41,13 @@
                     });
                 })
             // subir archivos 
+        
                 $(document).on("click", ".divUpload", function (e) {
                     console.log("ocultar");
                     $(this).fadeOut();
                 })
                 $(document).on("click", ".contenedorUpload", function (e) {
-                    e.stopPropagate();
+                    e.stopPropagation();
                 });
             // guardar carpeta
                 $(document).on("click", ".btnGuardarCarpeta", function (e) {

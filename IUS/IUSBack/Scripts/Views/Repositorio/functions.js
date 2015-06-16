@@ -18,6 +18,13 @@
     }
     
 // scripts 
+    // subir archivo 
+        function frmSubir(data, url) {
+            accionAjaxWithImage(url, data, function (data) {
+                console.log("respuesta", data);
+
+            })
+        }
     // actualizar carpetas
         function btnEditarCarpeta(frm,folder) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_updateCarpeta", frm, function (data) {
