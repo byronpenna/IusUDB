@@ -60,12 +60,14 @@ namespace IUSBack.Controllers
             public ActionResult sp_repo_uploadFile()
             {
                 Dictionary<object, object> frm, respuesta = null;
+                bool guardo = false; bool guardoBase = false;
+                string path = "";
                 try
                 {
                     //var form = this._jss.Deserialize<Dictionary<object, object>>(Request.Form["form"]);
                     frm = this.getAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    bool guardo = false;
+                    
                     if (Request.Files.Count > 0)
                     {
                         List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
@@ -76,12 +78,24 @@ namespace IUSBack.Controllers
 
                                 var fileName = Path.GetFileName(file.FileName);
                                 var strExtension = Path.GetExtension(file.FileName);
-                                var path = Path.Combine(Server.MapPath("~/RepositorioDigital/"), fileName);
+                                //path = Path.Combine(Server.MapPath("~/RepositorioDigital/Usuarios/"+usuarioSession._idUsuario), fileName);
+                                path = this.getPath("~/RepositorioDigital/Usuarios/" + usuarioSession._idUsuario, fileName);
                                 file.SaveAs(path);
                                 guardo = true;
                                 ExtensionArchivo extension = new ExtensionArchivo(strExtension);
-                                //Archivo archivoAgregado = new Archivo(frm[""].ToString(), this.convertObjAjaxToInt(frm[""]), path, extension);
-
+                                Archivo archivoAgregar = new Archivo(fileName, this.convertObjAjaxToInt(frm["txtHdIdCarpetaPadre"]), path, extension);
+                                Archivo archivoAgregado = this._model.sp_repo_uploadFile(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
+                                if(archivoAgregado != null){
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", true);
+                                    respuesta.Add("archivo", archivoAgregado);
+                                }
+                                else
+                                {
+                                    ErroresIUS x = new ErroresIUS("Error inesperado", ErroresIUS.tipoError.generico, 0);
+                                    this.errorTryControlador(3, x);
+                                }
+                                
                             }  
                         }
                         /**/
@@ -90,11 +104,19 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS x)
                 {
+                    if (guardo && !guardoBase)
+                    {
+                        System.IO.File.Delete(path);
+                    }
                     ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
                     respuesta = this.errorTryControlador(1, error);
                 }
                 catch (Exception x)
                 {
+                    if (guardo && !guardoBase)
+                    {
+                        System.IO.File.Delete(path);
+                    }
                     ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                     respuesta = this.errorTryControlador(2, error);
                 }

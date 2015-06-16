@@ -11,7 +11,7 @@
                 
                 files = $("#flArchivos")[0].files;
                 formulariohtml = $(this);
-                frm = {};
+                frm = { txtHdIdCarpetaPadre: $(".txtHdIdCarpetaPadre").val() };
                 console.log(files);
                 e.preventDefault();
                 cn = 0;

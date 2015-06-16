@@ -50,6 +50,24 @@ namespace IUSBack.Controllers
             }     
 
             #region "manejo de archivos"
+                public string getPath(string path,string fileName){
+                    string retorno = "";
+                    try
+                    {
+                        path = Server.MapPath(path);
+                        //retorno = Path.Combine(, fileName);
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        retorno = Path.Combine(path, fileName);
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return retorno;
+                }
                 public Byte[] getBytesFromFile(HttpPostedFileBase archivo)
                 {
                     Stream fileStream = archivo.InputStream;

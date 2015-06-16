@@ -20,15 +20,22 @@ namespace IUSLibs.REPO.Control
             Archivo archivoAgregado=null; ExtensionArchivo extension; TipoArchivo tipoArchivo;
             SPIUS sp = new SPIUS("sp_repo_uploadFile");
             sp.agregarParametro("nombre", archivoAgregar._nombre);
-            sp.agregarParametro("idCarpeta", archivoAgregar._carpeta._idCarpeta);
+            if (archivoAgregar._carpeta._idCarpeta != -1)
+            {
+                sp.agregarParametro("idCarpeta", archivoAgregar._carpeta._idCarpeta);
+            }
+            else
+            {
+                sp.agregarParametro("idCarpeta", null);
+            }
             sp.agregarParametro("src", archivoAgregar._src);
-            sp.agregarParametro("extension", archivoAgregar._extension._idExtension);
+            sp.agregarParametro("extension", archivoAgregar._extension._extension);
             sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
             sp.agregarParametro("idPagina", idPagina);
             try
             {
                 DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                if (this.resultadoCorrectoGet(tb)) {
+                if (this.resultadoCorrecto(tb)) {
                     if (tb[1].Rows.Count > 0)
                     {
                         foreach (DataRow row in tb[1].Rows)
@@ -36,7 +43,16 @@ namespace IUSLibs.REPO.Control
                             tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
                             tipoArchivo._icono = row["icono"].ToString();
                             extension = new ExtensionArchivo((int)row["id_extension_fk"],tipoArchivo);
-                            archivoAgregado = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), (int)row["id_carpeta_fk"], row["src"].ToString(), extension);
+                            int idCarpeta;
+                            if(row["id_carpeta_fk"] == DBNull.Value){
+                                idCarpeta = 0;
+                            }
+                            else
+                            {
+                                idCarpeta = (int)row["id_carpeta_fk"];
+                            }
+                            archivoAgregado = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), idCarpeta, row["src"].ToString(), extension);
+                            
                         }
                     }
                 }
