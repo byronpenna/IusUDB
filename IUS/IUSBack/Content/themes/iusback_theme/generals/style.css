@@ -216,7 +216,7 @@
         left:-50%;
         text-align:center;
     }
-    #div_carga{
+    #div_carga,.modal{
         position:fixed;
         top:0;
         left:0;
@@ -225,6 +225,10 @@
 	    background: rgba(128, 128, 128,0.5);
 	    display:none;
 	    z-index:1;
+    }
+    .inputBackModal{
+        background:rgba(255,255,255,0.5);
+        position:static !important;
     }
 /* Tablas */
     .clickTr{

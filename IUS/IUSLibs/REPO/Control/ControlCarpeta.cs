@@ -17,6 +17,19 @@ namespace IUSLibs.REPO.Control
     public class ControlCarpeta:PadreLib
     {
         #region "Get"
+            public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta,int idUsuarioEjecutor, int idPagina)
+            {
+                Dictionary<object, object> retorno = null;
+                SPIUS sp = new SPIUS("sp_repo_entrarCarpeta");
+                /*
+                    @idCarpeta			int,
+	                -- seguridad 
+	                @idUsuarioEjecutor	int,
+	                @idPagina			int
+                 */
+                // procedimiento pendiente
+                return retorno;
+            }
             public Dictionary<object,object> sp_repo_getRootFolder(int idUsuarioEjecutor,int idPagina)
             {
                 SPIUS sp = new SPIUS("sp_repo_getRootFolder");

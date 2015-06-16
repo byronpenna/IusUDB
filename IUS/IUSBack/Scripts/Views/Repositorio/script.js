@@ -9,7 +9,7 @@
             
         // click 
             $(document).on("click", ".cuadritoIcono", function () {
-                frm = 
+                
             });
             // herramientas carpetas
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
@@ -17,6 +17,20 @@
                     div = getDivNewFolder();
                     $(".folders").prepend(div);
                 })
+                $(document).on("click", ".icoSubirFichero", function (e) {
+                    e.preventDefault();
+                    $(".divUpload").fadeIn(400, function () {
+                        
+                    });
+                })
+            // subir archivos 
+                $(document).on("click", ".divUpload", function (e) {
+                    console.log("ocultar");
+                    $(this).fadeOut();
+                })
+                $(document).on("click", ".contenedorUpload", function (e) {
+                    e.stopPropagate();
+                });
             // guardar carpeta
                 $(document).on("click", ".btnGuardarCarpeta", function (e) {
                     seccion = $(this).parents(".folder");
