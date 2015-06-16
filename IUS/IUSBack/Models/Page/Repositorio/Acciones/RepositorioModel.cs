@@ -15,11 +15,13 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
     {
         #region "propiedades"
             public ControlCarpeta _controlCarpeta;
+            public ControlArchivo _controlArchivo;
         #endregion
         #region "constructores"
             public RepositorioModel()
             {
                 this._controlCarpeta = new ControlCarpeta();
+                this._controlArchivo = new ControlArchivo();
             }
         #endregion
         #region "get"
@@ -40,6 +42,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "acciones"
+            public Archivo sp_repo_uploadFile(Archivo archivoAgregar,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._controlArchivo.sp_repo_uploadFile(archivoAgregar, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar,int idUsuarioEjecutor,int idPagina)
             {
                 try

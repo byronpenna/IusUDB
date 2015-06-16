@@ -62,18 +62,29 @@ namespace IUSBack.Controllers
                 Dictionary<object, object> frm, respuesta = null;
                 try
                 {
-                    var form = this._jss.Deserialize<Dictionary<object, object>>(Request.Form["form"]);
+                    //var form = this._jss.Deserialize<Dictionary<object, object>>(Request.Form["form"]);
+                    frm = this.getAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
+                    bool guardo = false;
                     if (Request.Files.Count > 0)
                     {
                         List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
-                        foreach (HttpPostedFileBase file in files)
+                        if (files.Count > 0)
                         {
-                            
-                            var fileName = Path.GetFileName(file.FileName);
-                            var path = Path.Combine(Server.MapPath("~/RepositorioDigital/"), fileName);
-                            file.SaveAs(path);
+                            foreach (HttpPostedFileBase file in files)
+                            {
+
+                                var fileName = Path.GetFileName(file.FileName);
+                                var strExtension = Path.GetExtension(file.FileName);
+                                var path = Path.Combine(Server.MapPath("~/RepositorioDigital/"), fileName);
+                                file.SaveAs(path);
+                                guardo = true;
+                                ExtensionArchivo extension = new ExtensionArchivo(strExtension);
+                                //Archivo archivoAgregado = new Archivo(frm[""].ToString(), this.convertObjAjaxToInt(frm[""]), path, extension);
+
+                            }  
                         }
+                        /**/
                         
                     }
                 }
