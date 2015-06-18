@@ -25,6 +25,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "get"
+            public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta,int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return _controlCarpeta.sp_repo_entrarCarpeta(carpeta, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Dictionary<object, object> sp_repo_getRootFolder(int idUsuarioEjecutor,int idPagina)
             {
                 try

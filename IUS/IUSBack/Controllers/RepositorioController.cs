@@ -26,7 +26,46 @@ namespace IUSBack.Controllers
             public RepositorioModel _model;
         #endregion 
         #region "url"
-            public ActionResult Index()
+            public ActionResult Index(int id = -1)
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    Dictionary<object, object> archivos;
+                    Carpeta carpeta;
+                    if (id != -1)
+                    {
+                         carpeta = new Carpeta(id);
+                         archivos = this._model.sp_repo_entrarCarpeta(carpeta, usuarioSession._idUsuario, this._idPagina);
+                    }
+                    else
+                    {
+                        archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
+                    }
+                    ViewBag.titleModulo = "Repositorio Digital";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.permisos = permisos;
+                    ViewBag.carpetas = archivos["carpetas"];
+                    ViewBag.archivos = archivos["archivos"];
+                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
+            /*public ActionResult Index()
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
@@ -55,9 +94,41 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
                 
-            }
+            }*/
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_repo_entrarCarpeta()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        Carpeta carpeta = new Carpeta(this.convertObjAjaxToInt(frm["idCarpeta"]));
+                        Dictionary<object,object> archivos = this._model.sp_repo_entrarCarpeta(carpeta, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("carpetas", archivos["carpetas"]);
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_repo_uploadFile()
             {
                 Dictionary<object, object> frm, respuesta = null;

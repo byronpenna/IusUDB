@@ -19,15 +19,41 @@ namespace IUSLibs.REPO.Control
         #region "Get"
             public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta,int idUsuarioEjecutor, int idPagina)
             {
-                Dictionary<object, object> retorno = null;
+                Dictionary<object, object> retorno = new Dictionary<object,object>();
+                List<Carpeta> carpetas = new List<Carpeta>();
+                List<Archivo> archivos = new List<Archivo>();
+                Carpeta carpetita;Usuario usuario;Carpeta carpetaPadre;
                 SPIUS sp = new SPIUS("sp_repo_entrarCarpeta");
-                /*
-                    @idCarpeta			int,
-	                -- seguridad 
-	                @idUsuarioEjecutor	int,
-	                @idPagina			int
-                 */
-                // procedimiento pendiente
+                sp.agregarParametro("idCarpeta", carpeta._idCarpeta);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if(tb[0].Rows.Count > 0){
+                            foreach(DataRow row in tb[0].Rows){
+                                usuario = new Usuario((int)row["id_usuario_fk"]);
+                                carpetaPadre = new Carpeta((int)row["id_carpetapadre_fk"]);
+                                carpetita = new Carpeta((int)row["idCarpeta"],row["nombre"].ToString(),usuario,carpetaPadre,row["ruta"].ToString());
+                                carpetas.Add(carpetita);
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                retorno.Add("carpetas", carpetas);
+                retorno.Add("archivos", archivos);
                 return retorno;
             }
             public Dictionary<object,object> sp_repo_getRootFolder(int idUsuarioEjecutor,int idPagina)

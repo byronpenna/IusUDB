@@ -32,9 +32,55 @@
         ";
         return tr;
     }
+    function getStandarFolder(carpeta) {
+        div = "<div class='col-lg-2 folder'>\
+                    <input type='hidden' class='txtHdIdCarpeta' value='"+carpeta._idCarpeta+"'/>\
+                    <div class='row divHerramientasIndividual'>\
+                        <a href='#' class='ico' title='Descargar'>\
+                            <i class='fa fa-download'></i>\
+                        </a>\
+                        <a href='#' class='ico' title='Eliminar'>\
+                            <i class='fa fa-trash-o'></i>\
+                        </a>\
+                    </div>\
+                    <div class='cuadritoIcono cuadritoCarpeta'>\
+                        <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
+                        <div class='detalleCarpeta'>\
+                            <div class='normalMode'>\
+                                <h3 class='ttlNombreCarpeta'>"+carpeta._nombre+"</h3>\
+                            </div>\
+                            <div class='row marginNull hidden editMode'>\
+                                <div class='row marginNull inputNombreCarpeta'>\
+                                    <input type='text' class='form-control txtNombreCarpeta'>\
+                                </div>\
+                                <div class='row marginNull'>\
+                                    <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>\
+                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>";
+        return div;
+    }
 // scripts 
+    // entrar a carpeta
+        function cuadritoCarpeta(frm) {
+            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
+                console.log("respuesta servidor", data)
+                if (data.estado) {
+                    var divFolders = "";
+                    $.each(data.carpetas, function (i,carpeta) {
+                        console.log(carpeta);
+                        divFolders += getStandarFolder(carpeta);
+                    });
+                    window.history.pushState(null, "Titulo", "Repositorio/Index/" + frm.idCarpeta);
+                    $(".folders").empty().append(divFolders);
+                }
+            });
+        }
     // subir archivo 
-    function frmSubir(data, url,totalFiles) {
+        function frmSubir(data, url,totalFiles) {
         accionAjaxWithImage(url, data, function (data) {
             console.log("respuesta", data);            
             archivo = data.archivo;

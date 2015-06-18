@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
     // eventos 
+    $(window).bind("popstate", function (e) {
+        console.log("set back");
+    })
         // doble click
             $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
                 seccion = $(this).parents(".detalleCarpeta");
@@ -30,8 +33,9 @@
                 
             })
         // click 
-            $(document).on("click", ".cuadritoIcono", function () {
-                
+            $(document).on("click", ".cuadritoCarpeta", function () {
+                frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
+                cuadritoCarpeta(frm);
             });
             // herramientas carpetas
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
