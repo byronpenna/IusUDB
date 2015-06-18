@@ -42,6 +42,7 @@ namespace IUSBack.Controllers
                     ViewBag.usuario = usuarioSession;
                     ViewBag.permisos = permisos;
                     ViewBag.carpetas = archivos["carpetas"];
+                    ViewBag.archivos = archivos["archivos"];
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     return View();
                 }

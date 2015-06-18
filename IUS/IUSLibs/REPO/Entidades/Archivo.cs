@@ -33,6 +33,13 @@ namespace IUSLibs.REPO.Entidades
                 this._src = src;
                 this._extension = extension;
             }
+            public Archivo(int idArchivo, string nombre, Carpeta carpeta,ExtensionArchivo extension)
+            {
+                this._idArchivo = idArchivo;
+                this._nombre = nombre;
+                this._carpeta = carpeta;
+                this._extension = extension;
+            }
             public Archivo(int idArchivo,string nombre,int idCarpeta,string src,ExtensionArchivo extension)
             {
                 this._idArchivo = idArchivo;

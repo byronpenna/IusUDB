@@ -34,8 +34,8 @@ namespace IUSLibs.REPO.Control
             {
                 SPIUS sp = new SPIUS("sp_repo_getRootFolder");
                 Dictionary<object, object> retorno = new Dictionary<object,object>();
-                List<Carpeta> carpetas = new List<Carpeta>();
-                Carpeta carpeta; Usuario usuario; Carpeta carpetaPadre;
+                List<Carpeta> carpetas = new List<Carpeta>(); List<Archivo> archivos = new List<Archivo>();
+                Carpeta carpeta; Usuario usuario; Carpeta carpetaPadre; Archivo archivo;ExtensionArchivo extension;TipoArchivo tipoArchivo;
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);
                 try
@@ -52,6 +52,18 @@ namespace IUSLibs.REPO.Control
                                 carpetas.Add(carpeta);
                             }
                         }
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            carpeta = new Carpeta();
+                            foreach (DataRow row in tb[1].Rows)
+                            { 
+                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                tipoArchivo._icono = row["icono"].ToString();
+                                extension = new ExtensionArchivo((int)row["idExtension"],tipoArchivo);
+                                archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(),carpeta, extension);
+                                archivos.Add(archivo);
+                            }
+                        }
                     }
                 }
                 catch (ErroresIUS x)
@@ -63,6 +75,7 @@ namespace IUSLibs.REPO.Control
                     throw x;
                 }
                 retorno.Add("carpetas", carpetas);
+                retorno.Add("archivos", archivos);
                 return retorno;
             }
         #endregion
