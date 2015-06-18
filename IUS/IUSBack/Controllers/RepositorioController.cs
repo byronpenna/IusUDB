@@ -61,11 +61,12 @@ namespace IUSBack.Controllers
             {
                 Dictionary<object, object> frm, respuesta = null;
                 bool guardo = false; bool guardoBase = false;
-                string path = "";
+                string path = ""; string fileName = "¿?";
                 try
                 {
                     //var form = this._jss.Deserialize<Dictionary<object, object>>(Request.Form["form"]);
                     frm = this.getAjaxFrm();
+                    
                     Usuario usuarioSession = this.getUsuarioSesion();
                     
                     if (Request.Files.Count > 0)
@@ -76,7 +77,7 @@ namespace IUSBack.Controllers
                             foreach (HttpPostedFileBase file in files)
                             {
 
-                                var fileName = Path.GetFileName(file.FileName);
+                                fileName = Path.GetFileName(file.FileName);
                                 var strExtension = Path.GetExtension(file.FileName);
                                 //path = Path.Combine(Server.MapPath("~/RepositorioDigital/Usuarios/"+usuarioSession._idUsuario), fileName);
                                 path = this.getPath("~/RepositorioDigital/Usuarios/" + usuarioSession._idUsuario, fileName);
@@ -89,6 +90,7 @@ namespace IUSBack.Controllers
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
                                     respuesta.Add("archivo", archivoAgregado);
+                                    
                                 }
                                 else
                                 {
@@ -110,6 +112,9 @@ namespace IUSBack.Controllers
                     }
                     ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
                     respuesta = this.errorTryControlador(1, error);
+                    Archivo archivo = new Archivo(fileName);
+                    respuesta.Add("archivo", archivo);
+                    
                 }
                 catch (Exception x)
                 {
@@ -119,6 +124,9 @@ namespace IUSBack.Controllers
                     }
                     ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                     respuesta = this.errorTryControlador(2, error);
+                    Archivo archivo = new Archivo(fileName);
+                    respuesta.Add("archivo", archivo);
+                    
                 }
                 
                 return Json(respuesta);

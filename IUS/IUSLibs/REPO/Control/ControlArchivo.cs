@@ -40,7 +40,7 @@ namespace IUSLibs.REPO.Control
                     {
                         foreach (DataRow row in tb[1].Rows)
                         {
-                            tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                            tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
                             tipoArchivo._icono = row["icono"].ToString();
                             extension = new ExtensionArchivo((int)row["id_extension_fk"],tipoArchivo);
                             int idCarpeta;

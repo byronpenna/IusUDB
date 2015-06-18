@@ -15,12 +15,17 @@
                 console.log(files);
                 e.preventDefault();
                 cn = 0;
-                console.log(files.length);
+                totalFiles = files.length;
+                $(".imgCargando").find("img").removeClass("hidden");
+                $(".tbArchivos").empty();
+                $(".porcentajeCarga").empty();
                 $.each(files, function (file) {
+                    frm.cn = cn;
                     data = getIndividualFormData(files[cn], frm);
-                    frmSubir(data, formulariohtml.attr("action"));
+                    frmSubir(data, formulariohtml.attr("action"),totalFiles);
                     cn++;
-                })
+                });
+                /**/
                 
                 
             })

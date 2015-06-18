@@ -17,6 +17,12 @@ namespace IUSLibs.REPO.Entidades
             {
                 this._idTipoArchivo = _idTipoArchivo;
             }
+            public TipoArchivo(int _idTipoArchivo,string tipoArchivo)
+            {
+                this._idTipoArchivo = _idTipoArchivo;
+                this._tipoArchivo = tipoArchivo;
+            }
+
         #endregion
     }
 }

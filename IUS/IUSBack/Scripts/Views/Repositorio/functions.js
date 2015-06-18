@@ -16,15 +16,38 @@
                 </div>";
         return div;
     }
-    
+    function getTrArchivo(archivo,estado) {
+        icoEstado = "";
+        if (estado) {
+            icoEstado = "<i class='fa fa-check'></i>";
+        } else {
+            icoEstado = "<i class='fa fa-exclamation-circle'></i>";
+        }
+        tr = "\
+            <tr>\
+                <td>" + archivo._nombre + "</td>\
+                <td>" + archivo._extension._tipoArchivo._tipoArchivo + "</td>\
+                <td>"+ icoEstado + "</td>\
+            </tr>\
+        ";
+        return tr;
+    }
 // scripts 
     // subir archivo 
-        function frmSubir(data, url) {
-            accionAjaxWithImage(url, data, function (data) {
-                console.log("respuesta", data);
-
-            })
-        }
+    function frmSubir(data, url,totalFiles) {
+        accionAjaxWithImage(url, data, function (data) {
+            console.log("respuesta", data);            
+            archivo = data.archivo;
+            tr = getTrArchivo(archivo, data.estado);
+            $(".tbArchivos").append(tr);
+            porcentaje = $(".tbArchivos").find("tr").length / totalFiles * 100;
+            $(".porcentajeCarga").empty().append(porcentaje + "%");
+            if (porcentaje >= 100) {
+                $(".imgCargando").find("img").addClass("hidden");
+                $(".porcentajeCarga").empty().append("100%");
+            }
+         });
+    }
     // actualizar carpetas
         function btnEditarCarpeta(frm,folder) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_updateCarpeta", frm, function (data) {

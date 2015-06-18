@@ -19,7 +19,12 @@ namespace IUSLibs.REPO.Entidades
             {
                 this._idArchivo = idArchivo;
             }
+            public Archivo(string nombre)
+            {
+                this._nombre = nombre;
+            }
             // para agregar
+            
             public Archivo(string nombre, int idCarpeta, string src, ExtensionArchivo extension)
             {
                 this._nombre = nombre;
