@@ -23,6 +23,7 @@ namespace IUSLibs.REPO.Control
                 List<Carpeta> carpetas = new List<Carpeta>();
                 List<Archivo> archivos = new List<Archivo>();
                 Carpeta carpetita;Usuario usuario;Carpeta carpetaPadre;
+                TipoArchivo tipoArchivo; ExtensionArchivo extension; Archivo archivo;
                 SPIUS sp = new SPIUS("sp_repo_entrarCarpeta");
                 sp.agregarParametro("idCarpeta", carpeta._idCarpeta);
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -40,6 +41,18 @@ namespace IUSLibs.REPO.Control
                                 carpetas.Add(carpetita);
                             }
                             
+                        }
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            carpeta = new Carpeta();
+                            foreach (DataRow row in tb[1].Rows)
+                            {
+                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                tipoArchivo._icono = row["icono"].ToString();
+                                extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                                archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), carpeta, extension);
+                                archivos.Add(archivo);
+                            }
                         }
                         
                     }

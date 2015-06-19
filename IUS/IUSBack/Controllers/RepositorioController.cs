@@ -48,6 +48,7 @@ namespace IUSBack.Controllers
                     {
                         archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
                     }
+                    ViewBag.idCarpetaActual = id;
                     ViewBag.titleModulo = "Repositorio Digital";
                     ViewBag.usuario = usuarioSession;
                     ViewBag.permisos = permisos;
@@ -140,7 +141,7 @@ namespace IUSBack.Controllers
                     frm = this.getAjaxFrm();
                     
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    
+                    int idCarpetaPadre = this.convertObjAjaxToInt(frm["txtHdIdCarpetaPadre"]);
                     if (Request.Files.Count > 0)
                     {
                         List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
@@ -152,11 +153,11 @@ namespace IUSBack.Controllers
                                 fileName = Path.GetFileName(file.FileName);
                                 var strExtension = Path.GetExtension(file.FileName);
                                 //path = Path.Combine(Server.MapPath("~/RepositorioDigital/Usuarios/"+usuarioSession._idUsuario), fileName);
-                                path = this.getPath("~/RepositorioDigital/Usuarios/" + usuarioSession._idUsuario, fileName);
+                                path = this.getPath("~/RepositorioDigital/Usuarios/" + usuarioSession._idUsuario+"/"+idCarpetaPadre, fileName);
                                 file.SaveAs(path);
                                 guardo = true;
                                 ExtensionArchivo extension = new ExtensionArchivo(strExtension);
-                                Archivo archivoAgregar = new Archivo(fileName, this.convertObjAjaxToInt(frm["txtHdIdCarpetaPadre"]), path, extension);
+                                Archivo archivoAgregar = new Archivo(fileName, idCarpetaPadre ,path, extension);
                                 Archivo archivoAgregado = this._model.sp_repo_uploadFile(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
                                 if(archivoAgregado != null){
                                     respuesta = new Dictionary<object, object>();

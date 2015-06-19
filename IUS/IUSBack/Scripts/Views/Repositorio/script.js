@@ -3,12 +3,7 @@
     $(window).bind("popstate", function (e) {
         console.log("set back");
     })
-        // doble click
-            $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
-                seccion = $(this).parents(".detalleCarpeta");
-                nombre = $(this).text();
-                ttlNombreCarpeta(seccion, nombre);
-            })
+        
         // submit 
             $(document).on("submit", "#frmSubir", function (e) {
                 
@@ -34,8 +29,10 @@
             })
         // click 
             $(document).on("click", ".cuadritoCarpeta", function () {
-                frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
-                cuadritoCarpeta(frm);
+                /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
+                cuadritoCarpeta(frm);*/
+                window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
+                //console.log("vas a redireccionar");
             });
             // herramientas carpetas
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
@@ -85,5 +82,18 @@
                     seccion = $(this).parents(".detalleCarpeta");
                     btnCancelarEdicionCarpeta(seccion);
                 });
+            // cambiar nombre carpeta
+                
+                $(document).on("click", ".sinRedirect", function (e) {
+                    e.stopPropagation();
+                })
+        // doble click
 
+                $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
+                    e.cancelBubble = true;
+                    seccion = $(this).parents(".detalleCarpeta");
+                    nombre = $(this).text();
+                    ttlNombreCarpeta(seccion, nombre);
+                    console.log("primero aqui");
+                })
 })
