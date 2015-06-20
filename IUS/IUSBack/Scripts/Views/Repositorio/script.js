@@ -60,8 +60,9 @@
                     seccion = $(this).parents(".folder");
                     frm = {
                             idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
-                            nombre: seccion.find(".txtNombreCarpeta").val()
+                            nombre: seccion.find(".txtNombreCarpetaSave").val()
                     }
+                    console.log("formulario a enviar", frm);
                     btnGuardarCarpeta(frm,seccion);
                 });
                 $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
