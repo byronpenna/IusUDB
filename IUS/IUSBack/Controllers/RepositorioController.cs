@@ -98,6 +98,36 @@ namespace IUSBack.Controllers
             }*/
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_repo_deleteFolder()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        bool estadoDelete = this._model.sp_repo_deleteFolder(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"]), this.convertObjAjaxToInt(frm["idCarpeta"]), usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", estadoDelete);
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_repo_entrarCarpeta()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -152,8 +182,7 @@ namespace IUSBack.Controllers
 
                                 fileName = Path.GetFileName(file.FileName);
                                 var strExtension = Path.GetExtension(file.FileName);
-                                //path = Path.Combine(Server.MapPath("~/RepositorioDigital/Usuarios/"+usuarioSession._idUsuario), fileName);
-                                path = this.getPath("~/RepositorioDigital/Usuarios/" + usuarioSession._idUsuario+"/"+idCarpetaPadre, fileName);
+                                path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"])+ usuarioSession._idUsuario+"/"+idCarpetaPadre, fileName);
                                 file.SaveAs(path);
                                 guardo = true;
                                 ExtensionArchivo extension = new ExtensionArchivo(strExtension);
@@ -163,7 +192,6 @@ namespace IUSBack.Controllers
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
                                     respuesta.Add("archivo", archivoAgregado);
-                                    
                                 }
                                 else
                                 {

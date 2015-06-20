@@ -18,6 +18,7 @@ namespace IUSBack.Models.General
                 Crear,Editar,Eliminar,Ver
             }
             private permisos _permiso;
+            
             #region "Permisos"
                 public permisos permiso
                 {

@@ -196,6 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\General\GestionFileServerModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\AdministracionModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\NoticiasModel.cs" />
     <Compile Include="Models\Page\ConfiguracionWebsite\Acciones\ConfiguracionWebsiteModel.cs" />
@@ -446,6 +447,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\General\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\Page\Home\Forms\" />
     <Folder Include="RepositorioDigital\Publico\" />

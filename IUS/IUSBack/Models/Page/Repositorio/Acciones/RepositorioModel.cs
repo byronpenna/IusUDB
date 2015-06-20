@@ -14,8 +14,8 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
     public class RepositorioModel:PadreModel
     {
         #region "propiedades"
-            public ControlCarpeta _controlCarpeta;
-            public ControlArchivo _controlArchivo;
+            private ControlCarpeta _controlCarpeta;
+            private ControlArchivo _controlArchivo;
         #endregion
         #region "constructores"
             public RepositorioModel()
@@ -57,6 +57,34 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "acciones"
+            public bool sp_repo_deleteFolder(string rutaRepositorio,int idCarpetaPadre,int idUsuarioEjecutor, int idPagina)
+            {
+                bool retorno = false;
+                try
+                {
+                    List<Carpeta> carpetasEliminar = this._controlCarpeta.sp_repo_deleteFolder(idCarpetaPadre, idUsuarioEjecutor, idPagina);
+                    retorno = true;
+                    string path = "";
+                    foreach (Carpeta carpeta in carpetasEliminar)
+                    {
+                        path = rutaRepositorio + idUsuarioEjecutor + "/" + carpeta._idCarpeta;
+                        if (System.IO.Directory.Exists(path))
+                        {
+                            System.IO.Directory.Delete(path,true);
+                        }
+                        
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return retorno;
+            }
             public Archivo sp_repo_uploadFile(Archivo archivoAgregar,int idUsuarioEjecutor,int idPagina)
             {
                 try

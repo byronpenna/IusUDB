@@ -64,6 +64,15 @@
         return div;
     }
 // scripts 
+    // eliminar carpeta
+        function icoEliminarCarpeta(frm,seccion) {
+            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFolder", frm, function (data) {
+                console.log("respuesta servidor", data);
+                if (data.estado) {
+                    seccion.remove();
+                }
+            });
+        }
     // entrar a carpeta
         function cuadritoCarpeta(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
@@ -81,19 +90,19 @@
         }
     // subir archivo 
         function frmSubir(data, url,totalFiles) {
-        accionAjaxWithImage(url, data, function (data) {
-            console.log("respuesta", data);            
-            archivo = data.archivo;
-            tr = getTrArchivo(archivo, data.estado);
-            $(".tbArchivos").append(tr);
-            porcentaje = $(".tbArchivos").find("tr").length / totalFiles * 100;
-            $(".porcentajeCarga").empty().append(porcentaje + "%");
-            if (porcentaje >= 100) {
-                $(".imgCargando").find("img").addClass("hidden");
-                $(".porcentajeCarga").empty().append("100%");
-            }
-         });
-    }
+            accionAjaxWithImage(url, data, function (data) {
+                console.log("respuesta", data);            
+                archivo = data.archivo;
+                tr = getTrArchivo(archivo, data.estado);
+                $(".tbArchivos").append(tr);
+                porcentaje = $(".tbArchivos").find("tr").length / totalFiles * 100;
+                $(".porcentajeCarga").empty().append(porcentaje + "%");
+                if (porcentaje >= 100) {
+                    $(".imgCargando").find("img").addClass("hidden");
+                    $(".porcentajeCarga").empty().append("100%");
+                }
+             });
+        }
     // actualizar carpetas
         function btnEditarCarpeta(frm,folder) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_updateCarpeta", frm, function (data) {

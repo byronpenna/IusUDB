@@ -119,6 +119,40 @@ namespace IUSLibs.REPO.Control
             }
         #endregion
         #region "acciones"
+            public List<Carpeta> sp_repo_deleteFolder(int idCarpetaPadre,int idUsuarioEjecutor,int idPagina)
+            {
+                SPIUS sp = new SPIUS("sp_repo_deleteFolder");
+                sp.agregarParametro("idFolder", idCarpetaPadre);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                List<Carpeta> carpetas = null;
+                Carpeta carpeta;
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            carpetas = new List<Carpeta>();
+                            foreach (DataRow row in tb[1].Rows)
+                            {
+                                carpeta = new Carpeta((int)row["idDelete"]);
+                                carpetas.Add(carpeta);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return carpetas;
+            }
             public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar, int idUsuarioEjecutor, int idPagina)
             {
                 SPIUS sp = new SPIUS("sp_repo_updateCarpeta");

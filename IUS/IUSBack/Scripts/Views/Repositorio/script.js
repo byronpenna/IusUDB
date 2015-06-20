@@ -68,6 +68,16 @@
                     div = $(this).parents(".folder");
                     div.remove();
                 })
+            // eliminar carpeta
+                $(document).on("click", ".icoEliminarCarpeta", function () {
+                    seccion = $(this).parents(".folder");
+                    frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
+                    var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
+                    if (x) {
+                        icoEliminarCarpeta(frm, seccion);
+                    }
+                    
+                });
             // actualizar carpeta
                 $(document).on("click", ".btnEditarCarpeta", function () {
                     folder = $(this).parents(".folder");
@@ -83,7 +93,6 @@
                     btnCancelarEdicionCarpeta(seccion);
                 });
             // cambiar nombre carpeta
-                
                 $(document).on("click", ".sinRedirect", function (e) {
                     e.stopPropagation();
                 })

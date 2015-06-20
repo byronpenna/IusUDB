@@ -16,8 +16,6 @@ namespace IUSBack.Controllers
 {
     public class PadreController : Controller
     {
-        //
-        // GET: /Padre/
         #region "propiedades"
             public enum paginas
             {
@@ -28,9 +26,12 @@ namespace IUSBack.Controllers
             protected JavaScriptSerializer _jss;
             protected JavaScriptSerializer _jssmax;
             private PadreModel _model;
+            public Dictionary<string, string> _RUTASGLOBALES;
+            public GestionFileServerModel gestionArchivosServer;
         #endregion
         #region "funciones"
-            public ActionResult seguridadInicial(int idPagina)
+            #region "iniciales"
+                public ActionResult seguridadInicial(int idPagina)
             {
                 Usuario usuarioSesion = this.getUsuarioSesion();
                 ActionResult retorno = null;
@@ -47,10 +48,17 @@ namespace IUSBack.Controllers
                     return RedirectToAction("index", "login");
                 }
                 return retorno;
-            }     
-
+            }
+                public Dictionary<string,string> setRutasGlobales()
+                {
+                    Dictionary<string, string> rutas = new Dictionary<string, string>();
+                    //this._RUTASGLOBALES.Add("REPOSITORIO_DIGITAL", "~/RepositorioDigital/Usuarios/");
+                    rutas.Add("REPOSITORIO_DIGITAL", "~/RepositorioDigital/Usuarios/");
+                    return rutas;
+                }
+            #endregion
             #region "manejo de archivos"
-                public string getPath(string path,string fileName){
+            /*public string getPath(string path,string fileName){
                     string retorno = "";
                     try
                     {
@@ -67,7 +75,7 @@ namespace IUSBack.Controllers
                         throw x;
                     }
                     return retorno;
-                }
+                }*/
                 public Byte[] getBytesFromFile(HttpPostedFileBase archivo)
                 {
                     Stream fileStream = archivo.InputStream;
@@ -253,6 +261,8 @@ namespace IUSBack.Controllers
                 this._jssmax = new JavaScriptSerializer();
                 this._jssmax.MaxJsonLength = Int32.MaxValue;
                 this._model = new PadreModel();
+                this._RUTASGLOBALES = this.setRutasGlobales();
+                this.gestionArchivosServer = new GestionFileServerModel();
             }
         #endregion
         
