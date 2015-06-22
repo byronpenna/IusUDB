@@ -57,7 +57,7 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "acciones"
-            public bool sp_repo_deleteFolder(string rutaRepositorio,int idCarpetaPadre,int idUsuarioEjecutor, int idPagina)
+                public bool sp_repo_deleteFolder(string rutaRepositorio,int idCarpetaPadre,int idUsuarioEjecutor, int idPagina)
             {
                 bool retorno = false;
                 try
@@ -86,6 +86,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 return retorno;
             }
             #region "controlArchivo"
+                public bool sp_repo_deleteFile(int idArchivo,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivo.sp_repo_deleteFile(idArchivo, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Archivo sp_repo_uploadFile(Archivo archivoAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try
@@ -132,36 +147,39 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                     }
                 }
             #endregion
-            public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar,int idUsuarioEjecutor,int idPagina)
-            {
-                try
+            #region "controlCarpeta"
+                public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar, int idUsuarioEjecutor, int idPagina)
                 {
-                    return this._controlCarpeta.sp_repo_updateCarpeta(carpetaActualizar, idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        return this._controlCarpeta.sp_repo_updateCarpeta(carpetaActualizar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
+                public Carpeta sp_repo_insertCarpeta(Carpeta carpeta, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x; 
+                    try
+                    {
+                        return this._controlCarpeta.sp_repo_insertCarpeta(carpeta, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
-            public Carpeta sp_repo_insertCarpeta(Carpeta carpeta,int idUsuarioEjecutor,int idPagina)
-            {
-                try
-                {
-                    return this._controlCarpeta.sp_repo_insertCarpeta(carpeta, idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
+            #endregion
+                
         #endregion
     }
 }

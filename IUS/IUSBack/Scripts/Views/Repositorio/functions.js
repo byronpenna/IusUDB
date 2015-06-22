@@ -87,6 +87,15 @@
         return div;
     }
 // scripts 
+    // eliminar archivos
+        function icoEliminarArchivo(frm,seccion) {
+            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {
+                console.log("Respuesta de servidor ", data);
+                if (data.estado) {
+                    seccion.remove();
+                }
+            });
+        }
     // cambiar nombre archivo
         function btnEditarArchivo(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {

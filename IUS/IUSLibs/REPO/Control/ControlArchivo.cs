@@ -15,6 +15,37 @@ namespace IUSLibs.REPO.Control
 {
     public class ControlArchivo:PadreLib
     {
+        public bool sp_repo_deleteFile(int idArchivo, int idUsuarioEjecutor, int idPagina)
+        {
+            bool estado = false;
+            SPIUS sp = new SPIUS("sp_repo_deleteFile");
+            sp.agregarParametro("idArchivo", idArchivo);
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrecto(tb))
+                {
+                    estado = true;   
+                }
+                else
+                {
+                    DataRow row = tb[0].Rows[0];
+                    ErroresIUS x = this.getErrorFromExecProcedure(row);
+                    throw x;
+                }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            return estado;
+        }
         public Archivo sp_repo_changeFileName(Archivo archivoModificar,int idUsuarioEjecutor,int idPagina)
         {
             SPIUS sp = new SPIUS("sp_repo_changeFileName");

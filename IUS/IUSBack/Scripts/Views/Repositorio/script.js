@@ -34,6 +34,15 @@
                 window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
                 //console.log("vas a redireccionar");
             });
+            // eliminar archivos 
+                $(document).on("click", ".icoEliminarArchivo", function () {
+                    var x = confirm("Esta seguro que desea eliminar este archivo");
+                    if (x) {
+                        seccion = $(this).parents(".folder");
+                        frm = { idArchivo: seccion.find(".txtHdIdArchivo").val() }
+                        icoEliminarArchivo(frm,seccion);
+                    }
+                })
             // cambiar nombre archivo 
                 $(document).on("click", ".btnEditarArchivo", function (e) {
                     seccion = $(this).parents(".folder");
