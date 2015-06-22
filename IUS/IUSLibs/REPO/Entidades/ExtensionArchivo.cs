@@ -21,6 +21,12 @@ namespace IUSLibs.REPO.Entidades
             {
                 this._extension = extension;
             }
+            public ExtensionArchivo(int idExtension,string extension, TipoArchivo tipoArchivo)
+            {
+                this._idExtension = idExtension;
+                this._extension = extension;
+                this._tipoArchivo = tipoArchivo;
+            }
             public ExtensionArchivo(int idExtension,TipoArchivo tipoArchivo)
             {
                 this._idExtension = idExtension;

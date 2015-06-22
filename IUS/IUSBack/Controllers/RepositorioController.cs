@@ -66,6 +66,31 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
             }
+            public ActionResult DescargarFichero()
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    
+                    string ruta = this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + "/1/Metas.docx";
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath(ruta));
+                    string fileName = "nombre.docx";
+                    return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
         #endregion
         #region "acciones ajax"
             #region "controlArchivo"
@@ -78,7 +103,7 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            bool estado = this._model.sp_repo_deleteFile(this.convertObjAjaxToInt(frm["idArchivo"]), usuarioSession._idUsuario, this._idPagina);
+                            bool estado = this._model.sp_repo_deleteFile(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"]),this.convertObjAjaxToInt(frm["idArchivo"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
                         }

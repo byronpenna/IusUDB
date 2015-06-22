@@ -15,9 +15,9 @@ namespace IUSLibs.REPO.Control
 {
     public class ControlArchivo:PadreLib
     {
-        public bool sp_repo_deleteFile(int idArchivo, int idUsuarioEjecutor, int idPagina)
+        public Archivo sp_repo_deleteFile(int idArchivo, int idUsuarioEjecutor, int idPagina)
         {
-            bool estado = false;
+            TipoArchivo tipoArchivo; ExtensionArchivo extension; Archivo archivo = null;
             SPIUS sp = new SPIUS("sp_repo_deleteFile");
             sp.agregarParametro("idArchivo", idArchivo);
             sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -25,9 +25,27 @@ namespace IUSLibs.REPO.Control
             try
             {
                 DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                if (this.resultadoCorrecto(tb))
+                if (this.resultadoCorrectoGet(tb))
                 {
-                    estado = true;   
+                    if (tb[0].Rows.Count > 0)
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
+                        tipoArchivo._icono = row["icono"].ToString();
+                        extension = new ExtensionArchivo((int)row["id_extension_fk"], row["extension"].ToString(), tipoArchivo);
+                        int idCarpeta;
+                        if (row["id_carpeta_fk"] == DBNull.Value)
+                        {
+                            idCarpeta = 0;
+                        }
+                        else
+                        {
+                            idCarpeta = (int)row["id_carpeta_fk"];
+                        }
+                        archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), idCarpeta, row["src"].ToString(), extension);
+                        
+                    }
+                    
                 }
                 else
                 {
@@ -44,7 +62,7 @@ namespace IUSLibs.REPO.Control
             {
                 throw x;
             }
-            return estado;
+            return archivo;
         }
         public Archivo sp_repo_changeFileName(Archivo archivoModificar,int idUsuarioEjecutor,int idPagina)
         {

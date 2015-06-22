@@ -86,11 +86,32 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 return retorno;
             }
             #region "controlArchivo"
-                public bool sp_repo_deleteFile(int idArchivo,int idUsuarioEjecutor,int idPagina)
+                public bool sp_repo_deleteFile(string path,int idArchivo,int idUsuarioEjecutor,int idPagina)
                 {
+                    bool estado = false;
                     try
                     {
-                        return this._controlArchivo.sp_repo_deleteFile(idArchivo, idUsuarioEjecutor, idPagina);
+                        
+                        Archivo archivo = this._controlArchivo.sp_repo_deleteFile(idArchivo, idUsuarioEjecutor, idPagina);
+                        if (archivo != null)
+                        {
+                            int idCarpeta;
+                            if (archivo._carpeta._idCarpeta <= 0)
+                            {
+                                idCarpeta = -1;
+                            }
+                            else
+                            {
+                                idCarpeta = archivo._carpeta._idCarpeta;
+                            }
+                            string rutaDelete = path  + idUsuarioEjecutor + "\\" + idCarpeta + "\\" + idArchivo + archivo._extension._extension;
+                            System.IO.File.Delete(rutaDelete);
+                            estado = true;
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Error desconocido archivo devuelto null", ErroresIUS.tipoError.generico, 0);
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -100,6 +121,7 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                     {
                         throw x;
                     }
+                    return estado;
                 }
                 public Archivo sp_repo_uploadFile(Archivo archivoAgregar, int idUsuarioEjecutor, int idPagina)
                 {
