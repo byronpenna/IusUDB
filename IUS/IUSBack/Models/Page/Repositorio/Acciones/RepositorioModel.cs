@@ -100,6 +100,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                     throw x;
                 }
             }
+            public Archivo sp_repo_refreshSourceFile(Archivo archivoModificar, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return this._controlArchivo.sp_repo_refreshSourceFile(archivoModificar, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar,int idUsuarioEjecutor,int idPagina)
             {
                 try

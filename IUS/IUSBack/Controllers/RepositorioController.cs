@@ -182,12 +182,14 @@ namespace IUSBack.Controllers
 
                                 fileName = Path.GetFileName(file.FileName);
                                 var strExtension = Path.GetExtension(file.FileName);
-                                path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"])+ usuarioSession._idUsuario+"/"+idCarpetaPadre, fileName);
-                                file.SaveAs(path);
-                                guardo = true;
                                 ExtensionArchivo extension = new ExtensionArchivo(strExtension);
-                                Archivo archivoAgregar = new Archivo(fileName, idCarpetaPadre ,path, extension);
+                                Archivo archivoAgregar = new Archivo(fileName.Substring(0, fileName.IndexOf(strExtension)), idCarpetaPadre, path, extension);
                                 Archivo archivoAgregado = this._model.sp_repo_uploadFile(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
+                                path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + usuarioSession._idUsuario + "/" + idCarpetaPadre), archivoAgregado._idArchivo.ToString()+strExtension);
+                                file.SaveAs(path);
+                                archivoAgregado._src = path;
+                                archivoAgregado = this._model.sp_repo_refreshSourceFile(archivoAgregado, usuarioSession._idUsuario, this._idPagina);
+                                guardo = true;
                                 if(archivoAgregado != null){
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
