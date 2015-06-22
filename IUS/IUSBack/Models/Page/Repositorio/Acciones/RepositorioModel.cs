@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+// sistema
+    using System.IO;
 // librerias internas 
     using IUSBack.Models.General;
 // librerias externas
@@ -9,6 +11,7 @@ using System.Web;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.REPO.Control;
     using IUSLibs.REPO.Entidades;
+    
 namespace IUSBack.Models.Page.Repositorio.Acciones
 {
     public class RepositorioModel:PadreModel
@@ -86,6 +89,20 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 return retorno;
             }
             #region "controlArchivo"
+                public Archivo sp_repo_getDownloadFile( int idArchivo, int idUsuarioEjecutor, int idPagina) {
+                    try
+                    {
+                        return this._controlArchivo.sp_repo_getDownloadFile(idArchivo, idUsuarioEjecutor, idPagina);   
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_repo_deleteFile(string path,int idArchivo,int idUsuarioEjecutor,int idPagina)
                 {
                     bool estado = false;

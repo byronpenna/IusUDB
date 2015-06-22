@@ -156,7 +156,7 @@
                 <div class="col-lg-2 folder">
                     <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
                     <div class="row divHerramientasIndividual">
-                        <a href="#" class="ico" title="Descargar">
+                        <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
                             <i class="fa fa-download"></i>
                         </a>
                         <a href="#" class="ico icoEliminarArchivo" title="Eliminar">

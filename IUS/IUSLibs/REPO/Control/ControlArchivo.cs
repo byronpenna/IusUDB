@@ -15,6 +15,47 @@ namespace IUSLibs.REPO.Control
 {
     public class ControlArchivo:PadreLib
     {
+        public Archivo sp_repo_getDownloadFile(int idArchivo,int idUsuarioEjecutor,int idPagina)
+        {
+            Archivo archivo = null; TipoArchivo tipoArchivo; ExtensionArchivo extension;
+            SPIUS sp = new SPIUS("sp_repo_getDownloadFile");
+            sp.agregarParametro("idArchivo", idArchivo);
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrectoGet(tb))
+                {
+                    if (tb[0].Rows.Count > 0)
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
+                        tipoArchivo._icono = row["icono"].ToString();
+                        extension = new ExtensionArchivo((int)row["id_extension_fk"], row["extension"].ToString(), tipoArchivo);
+                        int idCarpeta;
+                        if (row["id_carpeta_fk"] == DBNull.Value)
+                        {
+                            idCarpeta = 0;
+                        }
+                        else
+                        {
+                            idCarpeta = (int)row["id_carpeta_fk"];
+                        }
+                        archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), idCarpeta, row["src"].ToString(), extension);
+                    }
+                }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            return archivo;
+        }
         public Archivo sp_repo_deleteFile(int idArchivo, int idUsuarioEjecutor, int idPagina)
         {
             TipoArchivo tipoArchivo; ExtensionArchivo extension; Archivo archivo = null;

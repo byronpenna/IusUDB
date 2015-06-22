@@ -66,7 +66,7 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
             }
-            public ActionResult DescargarFichero()
+            public ActionResult DescargarFichero(int id=-1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
@@ -75,20 +75,24 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    
-                    string ruta = this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + "/1/Metas.docx";
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Archivo archivo = this._model.sp_repo_getDownloadFile(id, usuarioSession._idUsuario, this._idPagina);
+                    string ruta = this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + "/"+usuarioSession._idUsuario+"/"+archivo._carpeta._idCarpeta+"/"+archivo._idArchivo+archivo._extension._extension+"";
                     byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath(ruta));
-                    string fileName = "nombre.docx";
+                    string fileName = archivo._nombre+archivo._extension._extension;
                     return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
 
                 }
                 catch (ErroresIUS x)
                 {
                     return RedirectToAction("Unhandled", "Errors");
+                    //return new EmptyResult();
                 }
                 catch (Exception x)
                 {
+                    // algun mejor error por aqui
                     return RedirectToAction("Unhandled", "Errors");
+                    //return new EmptyResult();
                 }
             }
         #endregion
