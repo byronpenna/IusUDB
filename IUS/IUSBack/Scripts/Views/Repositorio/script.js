@@ -34,6 +34,16 @@
                 window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
                 //console.log("vas a redireccionar");
             });
+            // cambiar nombre archivo 
+                $(document).on("click", ".btnEditarArchivo", function (e) {
+                    seccion = $(this).parents(".folder");
+                    frm = {
+                        idArchivo:      seccion.find(".txtHdIdArchivo").val(),
+                        nombreArchivo:  seccion.find(".txtNombreCarpeta").val()
+                    }
+                    console.log("formulario a enviar", frm);
+                    btnEditarArchivo(frm);
+                })
             // herramientas carpetas
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
                     e.preventDefault();
@@ -47,7 +57,6 @@
                     });
                 })
             // subir archivos 
-        
                 $(document).on("click", ".divUpload", function (e) {
                     console.log("ocultar");
                     $(this).fadeOut();

@@ -66,36 +66,6 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
             }
-            /*public ActionResult Index()
-            {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
-                if (seguridadInicial != null)
-                {
-                    return seguridadInicial;
-                }
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    Dictionary<object, object> archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
-                    ViewBag.titleModulo = "Repositorio Digital";
-                    ViewBag.usuario = usuarioSession;
-                    ViewBag.permisos = permisos;
-                    ViewBag.carpetas = archivos["carpetas"];
-                    ViewBag.archivos = archivos["archivos"];
-                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                    return View();
-                }
-                catch (ErroresIUS x)
-                {
-                    return RedirectToAction("Unhandled", "Errors");
-                }
-                catch (Exception x)
-                {
-                    return RedirectToAction("Unhandled", "Errors");
-                }
-                
-            }*/
         #endregion
         #region "acciones ajax"
             public ActionResult sp_repo_deleteFolder()
@@ -160,7 +130,9 @@ namespace IUSBack.Controllers
                 }
                 return Json(respuesta);
             }
-            public ActionResult sp_repo_uploadFile()
+            
+            #region "controlArchivo"
+                public ActionResult sp_repo_uploadFile()
             {
                 Dictionary<object, object> frm, respuesta = null;
                 bool guardo = false; bool guardoBase = false;
@@ -169,7 +141,7 @@ namespace IUSBack.Controllers
                 {
                     //var form = this._jss.Deserialize<Dictionary<object, object>>(Request.Form["form"]);
                     frm = this.getAjaxFrm();
-                    
+
                     Usuario usuarioSession = this.getUsuarioSesion();
                     int idCarpetaPadre = this.convertObjAjaxToInt(frm["txtHdIdCarpetaPadre"]);
                     if (Request.Files.Count > 0)
@@ -185,12 +157,13 @@ namespace IUSBack.Controllers
                                 ExtensionArchivo extension = new ExtensionArchivo(strExtension);
                                 Archivo archivoAgregar = new Archivo(fileName.Substring(0, fileName.IndexOf(strExtension)), idCarpetaPadre, path, extension);
                                 Archivo archivoAgregado = this._model.sp_repo_uploadFile(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
-                                path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + usuarioSession._idUsuario + "/" + idCarpetaPadre), archivoAgregado._idArchivo.ToString()+strExtension);
+                                path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + usuarioSession._idUsuario + "/" + idCarpetaPadre), archivoAgregado._idArchivo.ToString() + strExtension);
                                 file.SaveAs(path);
                                 archivoAgregado._src = path;
                                 archivoAgregado = this._model.sp_repo_refreshSourceFile(archivoAgregado, usuarioSession._idUsuario, this._idPagina);
                                 guardo = true;
-                                if(archivoAgregado != null){
+                                if (archivoAgregado != null)
+                                {
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
                                     respuesta.Add("archivo", archivoAgregado);
@@ -200,11 +173,11 @@ namespace IUSBack.Controllers
                                     ErroresIUS x = new ErroresIUS("Error inesperado", ErroresIUS.tipoError.generico, 0);
                                     this.errorTryControlador(3, x);
                                 }
-                                
-                            }  
+
+                            }
                         }
                         /**/
-                        
+
                     }
                 }
                 catch (ErroresIUS x)
@@ -217,7 +190,7 @@ namespace IUSBack.Controllers
                     respuesta = this.errorTryControlador(1, error);
                     Archivo archivo = new Archivo(fileName);
                     respuesta.Add("archivo", archivo);
-                    
+
                 }
                 catch (Exception x)
                 {
@@ -229,81 +202,124 @@ namespace IUSBack.Controllers
                     respuesta = this.errorTryControlador(2, error);
                     Archivo archivo = new Archivo(fileName);
                     respuesta.Add("archivo", archivo);
-                    
-                }
-                
-                return Json(respuesta);
-            }
-            public ActionResult sp_repo_updateCarpeta()
-            {
-                Dictionary<object, object> frm, respuesta=null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
-                    {
-                        Carpeta carpetaActualizar = new Carpeta(this.convertObjAjaxToInt(frm["txtHdIdCarpeta"]), frm["nombre"].ToString());
-                        Carpeta carpetaActualizada = this._model.sp_repo_updateCarpeta(carpetaActualizar, usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("carpeta", carpetaActualizada);
-
-                    }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
-                }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
-            public ActionResult sp_repo_insertCarpeta()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
-                    {
-                        Carpeta carpetaPadre;
-                        int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPadre"]);
-                        carpetaPadre = new Carpeta(idCarpetaPadre);
-                        Carpeta capetaIngresar = new Carpeta(frm["nombre"].ToString(), usuarioSession, carpetaPadre);
-                        Carpeta carpetaIngresada = this._model.sp_repo_insertCarpeta(capetaIngresar, usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("carpeta", carpetaIngresada);
-                    }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
-                    
 
                 }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
+
                 return Json(respuesta);
             }
+                public ActionResult sp_repo_changeFileName()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    { 
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            Archivo archivoModificar = new Archivo(this.convertObjAjaxToInt(frm["idArchivo"]), frm["nombreArchivo"].ToString());
+                            Archivo archivoModificado = this._model.sp_repo_changeFileName(archivoModificar, usuarioSession._idUsuario, this._idPagina);
+                            if (archivoModificado != null)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                                respuesta.Add("archivo", archivoModificado);
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
+                                throw x;
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
+            #endregion
+            #region "controlCarpeta"
+                public ActionResult sp_repo_updateCarpeta()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            Carpeta carpetaActualizar = new Carpeta(this.convertObjAjaxToInt(frm["txtHdIdCarpeta"]), frm["nombre"].ToString());
+                            Carpeta carpetaActualizada = this._model.sp_repo_updateCarpeta(carpetaActualizar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("carpeta", carpetaActualizada);
+
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
+                public ActionResult sp_repo_insertCarpeta()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            Carpeta carpetaPadre;
+                            int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPadre"]);
+                            carpetaPadre = new Carpeta(idCarpetaPadre);
+                            Carpeta capetaIngresar = new Carpeta(frm["nombre"].ToString(), usuarioSession, carpetaPadre);
+                            Carpeta carpetaIngresada = this._model.sp_repo_insertCarpeta(capetaIngresar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("carpeta", carpetaIngresada);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+
+
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }    
+            #endregion 
         #endregion 
 
     }

@@ -85,36 +85,53 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 }
                 return retorno;
             }
-            public Archivo sp_repo_uploadFile(Archivo archivoAgregar,int idUsuarioEjecutor,int idPagina)
-            {
-                try
+            #region "controlArchivo"
+                public Archivo sp_repo_uploadFile(Archivo archivoAgregar, int idUsuarioEjecutor, int idPagina)
                 {
-                    return this._controlArchivo.sp_repo_uploadFile(archivoAgregar, idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        return this._controlArchivo.sp_repo_uploadFile(archivoAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
+                public Archivo sp_repo_refreshSourceFile(Archivo archivoModificar, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+                    try
+                    {
+                        return this._controlArchivo.sp_repo_refreshSourceFile(archivoModificar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (Exception x)
+                public Archivo sp_repo_changeFileName(Archivo archivoModificar, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+                    try
+                    {
+                        return this._controlArchivo.sp_repo_changeFileName(archivoModificar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-            }
-            public Archivo sp_repo_refreshSourceFile(Archivo archivoModificar, int idUsuarioEjecutor, int idPagina)
-            {
-                try
-                {
-                    return this._controlArchivo.sp_repo_refreshSourceFile(archivoModificar, idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
+            #endregion
             public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar,int idUsuarioEjecutor,int idPagina)
             {
                 try

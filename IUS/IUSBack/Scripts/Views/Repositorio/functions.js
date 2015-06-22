@@ -87,6 +87,16 @@
         return div;
     }
 // scripts 
+    // cambiar nombre archivo
+        function btnEditarArchivo(frm) {
+            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {
+                console.log("Respuesta del servidor", data);
+                if (data.estado) {
+                    seccion.find(".ttlNombreCarpeta").empty().append(data.archivo._nombre);
+                    btnCancelarEdicionCarpeta(folder.find(".detalleCarpeta"));
+                }
+            });
+        }
     // eliminar carpeta
         function icoEliminarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFolder", frm, function (data) {

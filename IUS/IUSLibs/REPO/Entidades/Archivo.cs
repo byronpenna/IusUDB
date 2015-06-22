@@ -23,16 +23,20 @@ namespace IUSLibs.REPO.Entidades
             {
                 this._nombre = nombre;
             }
-            // para agregar
-            
-            public Archivo(string nombre, int idCarpeta, string src, ExtensionArchivo extension)
+            public Archivo(int idArchivo, string nombre)
             {
+                this._idArchivo = idArchivo;
                 this._nombre = nombre;
-                Carpeta carpeta = new Carpeta(idCarpeta);
-                this._carpeta = carpeta;
-                this._src = src;
-                this._extension = extension;
             }
+            // para agregar
+                public Archivo(string nombre, int idCarpeta, string src, ExtensionArchivo extension)
+                {
+                    this._nombre = nombre;
+                    Carpeta carpeta = new Carpeta(idCarpeta);
+                    this._carpeta = carpeta;
+                    this._src = src;
+                    this._extension = extension;
+                }
             public Archivo(int idArchivo, string nombre, Carpeta carpeta,ExtensionArchivo extension)
             {
                 this._idArchivo = idArchivo;

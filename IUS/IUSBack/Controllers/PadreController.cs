@@ -32,23 +32,23 @@ namespace IUSBack.Controllers
         #region "funciones"
             #region "iniciales"
                 public ActionResult seguridadInicial(int idPagina)
-            {
-                Usuario usuarioSesion = this.getUsuarioSesion();
-                ActionResult retorno = null;
-                if (usuarioSesion != null)
                 {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
-                    if ( !(permisos != null && permisos._ver) )
+                    Usuario usuarioSesion = this.getUsuarioSesion();
+                    ActionResult retorno = null;
+                    if (usuarioSesion != null)
                     {
-                        retorno = RedirectToAction("NotAllowed", "Errors");
+                        Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
+                        if ( !(permisos != null && permisos._ver) )
+                        {
+                            retorno = RedirectToAction("NotAllowed", "Errors");
+                        }
                     }
+                    else
+                    {
+                        return RedirectToAction("index", "login");
+                    }
+                    return retorno;
                 }
-                else
-                {
-                    return RedirectToAction("index", "login");
-                }
-                return retorno;
-            }
                 public Dictionary<string,string> setRutasGlobales()
                 {
                     Dictionary<string, string> rutas = new Dictionary<string, string>();

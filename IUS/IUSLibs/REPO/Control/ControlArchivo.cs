@@ -15,6 +15,54 @@ namespace IUSLibs.REPO.Control
 {
     public class ControlArchivo:PadreLib
     {
+        public Archivo sp_repo_changeFileName(Archivo archivoModificar,int idUsuarioEjecutor,int idPagina)
+        {
+            SPIUS sp = new SPIUS("sp_repo_changeFileName");
+            TipoArchivo tipoArchivo; ExtensionArchivo extension; Archivo archivo = null;
+            sp.agregarParametro("idArchivo", archivoModificar._idArchivo);
+            sp.agregarParametro("nombre", archivoModificar._nombre);
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrecto(tb))
+                {
+                    if (tb[1].Rows.Count > 0)
+                    {
+                        DataRow row = tb[1].Rows[0];
+                        tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
+                        tipoArchivo._icono = row["icono"].ToString();
+                        extension = new ExtensionArchivo((int)row["id_extension_fk"], tipoArchivo);
+                        int idCarpeta;
+                        if (row["id_carpeta_fk"] == DBNull.Value)
+                        {
+                            idCarpeta = 0;
+                        }
+                        else
+                        {
+                            idCarpeta = (int)row["id_carpeta_fk"];
+                        }
+                        archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), idCarpeta, row["src"].ToString(), extension);
+                    }
+                }
+                else
+                {
+                    DataRow row = tb[0].Rows[0];
+                    ErroresIUS x = this.getErrorFromExecProcedure(row);
+                    throw x;
+                }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            return archivo;
+        }
         public Archivo sp_repo_refreshSourceFile(Archivo archivoModificar,int idUsuarioEjecutor,int idPagina)
         {
             Archivo archivo = null; TipoArchivo tipoArchivo; ExtensionArchivo extension;
