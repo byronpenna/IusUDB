@@ -32,7 +32,10 @@
             $(document).on("click", ".cuadritoCarpeta", function () {
                 /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
                 cuadritoCarpeta(frm);*/
-                window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
+                var estado = $(this).attr("id");
+                if (estado != '0') {
+                    window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
+                }
                 //console.log("vas a redireccionar");
             });
             // directorio 

@@ -1,6 +1,6 @@
 ﻿// generics 
     function getDivNewFolder() {
-        div = "<div class='col-lg-2 folder'>\
+        div = "<div class='col-lg-2 folder '>\
                     <input type='hidden' class='txtHdIdCarpeta' value=''/>\
                     <div class='row divHerramientasIndividual'>\
                         <a href='#' class='ico' title='Descargar'>\
@@ -10,7 +10,7 @@
                             <i class='fa fa-trash-o'></i>\
                         </a>\
                     </div>\
-                    <div class='cuadritoIconoAdd cuadritoCarpeta'>\
+                    <div class='cuadritoIconoAdd cuadritoCarpeta' id='0'>\
                         <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder-opacity.png' class='imgFolder' />\
                         <div class='detalleCarpeta sinRedirect'>\
                             <div class='normalMode sinRedirect hidden'>\
@@ -186,6 +186,7 @@
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
                 console.log("Respuesta server", data);
                 if (data.estado) {
+                    seccion.find(".cuadritoCarpeta").attr("id", 1);
                     seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
 
                     seccion.find(".txtHdIdCarpeta").val(data.carpeta._idCarpeta);

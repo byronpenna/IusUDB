@@ -22,6 +22,17 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "actions results"
+            public ActionResult redirectToError(ErroresIUS x,bool si)
+            {
+                if (x.errorNumber == -5)
+                {
+                    return RedirectToAction("NotFolderFound", "Repositorio");
+                }
+                else
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
             public ActionResult Index()
             {
                 return View();

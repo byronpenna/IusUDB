@@ -63,6 +63,12 @@ namespace IUSLibs.REPO.Control
                             carpetaPadreRuta._ruta = row["strRuta"].ToString();
                         }
                     }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x =  this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
                 }
                 catch (ErroresIUS x)
                 {

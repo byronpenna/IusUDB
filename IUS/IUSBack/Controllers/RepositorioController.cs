@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.IO;
 // liberias internas
     using IUSBack.Models.Page.Repositorio.Acciones;
+    
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -60,7 +61,9 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                     ErrorsController error  = new ErrorsController();
+                     return error.redirectToError(x,true);
+                    //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
@@ -95,6 +98,10 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                     //return new EmptyResult();
                 }
+            }
+            public string NotFolderFound()
+            {
+                return "folder no encontrado";
             }
         #endregion
         #region "acciones ajax"

@@ -530,6 +530,7 @@
     <Content Include="Views\Shared\footer.cshtml" />
     <Content Include="Views\Noticias\setMiniatura.cshtml" />
     <Content Include="Views\Repositorio\Index.cshtml" />
+    <Content Include="Views\Errors\FolderNotFound.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
