@@ -220,11 +220,16 @@
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
+    <Content Include="Content\themes\iusback_theme\img\general\repositorio\adobe-reader.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder-opacity.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder-gray.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder.png" />
-    <Content Include="Content\themes\iusback_theme\img\general\repositorio\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\repositorio\image-gray.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.jpg" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_ius.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\repositorio\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\repositorio\music.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\repositorio\video.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\warning.png" />
     <Content Include="Content\themes\iusback_theme\img\general\sadcloud.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\wordico.png" />
