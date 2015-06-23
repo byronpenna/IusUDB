@@ -12,6 +12,7 @@
 @{
     List<Carpeta> carpetas = (List<Carpeta>)ViewBag.carpetas;
     List<Archivo> archivos = (List<Archivo>)ViewBag.archivos;
+    Carpeta carpetaActual = (Carpeta)ViewBag.carpetaActual;
 }
 @section tabs{
     <ul>
@@ -65,7 +66,7 @@
 
         <label for="txtDireccion">Ruta</label>
         <div class="input-group">
-            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="/" />
+            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="@carpetaActual._ruta" />
             <span class="input-group-addon spIrBuscar">Ir</span>
         </div>
         

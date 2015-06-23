@@ -22,7 +22,9 @@ namespace IUSLibs.REPO.Control
                 Dictionary<object, object> retorno = new Dictionary<object,object>();
                 List<Carpeta> carpetas = new List<Carpeta>();
                 List<Archivo> archivos = new List<Archivo>();
-                Carpeta carpetita;Usuario usuario;Carpeta carpetaPadre;
+                Carpeta carpetita;Usuario usuario;Carpeta carpetaPadre = null;
+                Carpeta carpetaPadreRuta = new Carpeta();
+                carpetaPadreRuta._ruta = "";
                 TipoArchivo tipoArchivo; ExtensionArchivo extension; Archivo archivo;
                 SPIUS sp = new SPIUS("sp_repo_entrarCarpeta");
                 sp.agregarParametro("idCarpeta", carpeta._idCarpeta);
@@ -54,7 +56,12 @@ namespace IUSLibs.REPO.Control
                                 archivos.Add(archivo);
                             }
                         }
-                        
+                        if (tb[2].Rows.Count > 0)
+                        {
+                            DataRow row = tb[2].Rows[0];
+                            carpetaPadreRuta = new Carpeta((int)row["idCarpeta"]);
+                            carpetaPadreRuta._ruta = row["strRuta"].ToString();
+                        }
                     }
                 }
                 catch (ErroresIUS x)
@@ -65,6 +72,7 @@ namespace IUSLibs.REPO.Control
                 {
                     throw x;
                 }
+                retorno.Add("carpetaPadre", carpetaPadreRuta);
                 retorno.Add("carpetas", carpetas);
                 retorno.Add("archivos", archivos);
                 return retorno;
@@ -115,6 +123,9 @@ namespace IUSLibs.REPO.Control
                 }
                 retorno.Add("carpetas", carpetas);
                 retorno.Add("archivos", archivos);
+                Carpeta carpetaActual = new Carpeta();
+                carpetaActual._ruta = "/";
+                retorno.Add("carpetaPadre", carpetaActual);
                 return retorno;
             }
             public Carpeta sp_repo_byRuta(string strRuta, int idUsuarioEjecutor,int idPagina)
