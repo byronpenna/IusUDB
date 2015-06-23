@@ -1,4 +1,5 @@
 ﻿// constantes
+    //var RAIZ = "http://admacad.udb.edu.sv/IUS/";
     var RAIZ = "http://localhost:7196/";
     //var RAIZ = "http://168.243.3.62/ius/"
 // idiomas 
