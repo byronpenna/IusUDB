@@ -28,68 +28,58 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "get"
-            public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta,int idUsuarioEjecutor, int idPagina)
-            {
-                try
+            #region "ControlCarpeta"
+                public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta,int idUsuarioEjecutor, int idPagina)
                 {
-                    return _controlCarpeta.sp_repo_entrarCarpeta(carpeta, idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
-            public Dictionary<object, object> sp_repo_getRootFolder(int idUsuarioEjecutor,int idPagina)
-            {
-                try
-                {
-                    return this._controlCarpeta.sp_repo_getRootFolder(idUsuarioEjecutor,idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
-        #endregion
-        #region "acciones"
-                public bool sp_repo_deleteFolder(string rutaRepositorio,int idCarpetaPadre,int idUsuarioEjecutor, int idPagina)
-            {
-                bool retorno = false;
-                try
-                {
-                    List<Carpeta> carpetasEliminar = this._controlCarpeta.sp_repo_deleteFolder(idCarpetaPadre, idUsuarioEjecutor, idPagina);
-                    retorno = true;
-                    string path = "";
-                    foreach (Carpeta carpeta in carpetasEliminar)
+                    try
                     {
-                        path = rutaRepositorio + idUsuarioEjecutor + "/" + carpeta._idCarpeta;
-                        if (System.IO.Directory.Exists(path))
-                        {
-                            System.IO.Directory.Delete(path,true);
-                        }
-                        
+                        return _controlCarpeta.sp_repo_entrarCarpeta(carpeta, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
                     }
                 }
-                catch (ErroresIUS x)
+                public Dictionary<object, object> sp_repo_getRootFolder(int idUsuarioEjecutor,int idPagina)
                 {
-                    throw x;
+                    try
+                    {
+                        return this._controlCarpeta.sp_repo_getRootFolder(idUsuarioEjecutor,idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (Exception x)
+                public Carpeta sp_repo_byRuta(string strRuta,int idUsuarioEjecutor,int idPagina)
                 {
-                    throw x;
+                    try
+                    {
+                        return this._controlCarpeta.sp_repo_byRuta(strRuta, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                return retorno;
-            }
+            #endregion
+        #endregion
+        #region "acciones"
+
             #region "controlArchivo"
-                public Archivo sp_repo_getDownloadFile( int idArchivo, int idUsuarioEjecutor, int idPagina) {
+            public Archivo sp_repo_getDownloadFile( int idArchivo, int idUsuarioEjecutor, int idPagina) {
                     try
                     {
                         return this._controlArchivo.sp_repo_getDownloadFile(idArchivo, idUsuarioEjecutor, idPagina);   
@@ -187,6 +177,34 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 }
             #endregion
             #region "controlCarpeta"
+                public bool sp_repo_deleteFolder(string rutaRepositorio, int idCarpetaPadre, int idUsuarioEjecutor, int idPagina)
+                {
+                    bool retorno = false;
+                    try
+                    {
+                        List<Carpeta> carpetasEliminar = this._controlCarpeta.sp_repo_deleteFolder(idCarpetaPadre, idUsuarioEjecutor, idPagina);
+                        retorno = true;
+                        string path = "";
+                        foreach (Carpeta carpeta in carpetasEliminar)
+                        {
+                            path = rutaRepositorio + idUsuarioEjecutor + "/" + carpeta._idCarpeta;
+                            if (System.IO.Directory.Exists(path))
+                            {
+                                System.IO.Directory.Delete(path, true);
+                            }
+
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return retorno;
+                }
                 public Carpeta sp_repo_updateCarpeta(Carpeta carpetaActualizar, int idUsuarioEjecutor, int idPagina)
                 {
                     try

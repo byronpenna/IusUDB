@@ -28,12 +28,18 @@
                 
             })
         // click 
+                
             $(document).on("click", ".cuadritoCarpeta", function () {
                 /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
                 cuadritoCarpeta(frm);*/
                 window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
                 //console.log("vas a redireccionar");
             });
+            // directorio 
+                $(document).on("click", ".spIrBuscar", function () {
+                    frm = { txtRuta: $(".txtDireccion").val() }
+                    spIrBuscar(frm);
+                });
             // eliminar archivos 
                 $(document).on("click", ".icoEliminarArchivo", function () {
                     var x = confirm("Esta seguro que desea eliminar este archivo");

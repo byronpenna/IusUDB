@@ -87,6 +87,15 @@
         return div;
     }
 // scripts 
+    // directorio
+        function spIrBuscar(frm) {
+            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
+                console.log("Respuesta de servidor", data);
+                if (data.estado) {
+                    window.location = RAIZ + "Repositorio/index/" + data.carpeta._idCarpeta;
+                }
+            })
+        }
     // eliminar archivos
         function icoEliminarArchivo(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {

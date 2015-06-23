@@ -117,6 +117,43 @@ namespace IUSLibs.REPO.Control
                 retorno.Add("archivos", archivos);
                 return retorno;
             }
+            public Carpeta sp_repo_byRuta(string strRuta, int idUsuarioEjecutor,int idPagina)
+            {
+                Carpeta carpeta = null;
+                SPIUS sp = new SPIUS("sp_repo_byRuta");
+                
+                sp.agregarParametro("strRuta", strRuta);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            carpeta = new Carpeta((int)row["id_carpetapadre_fk"]);
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return carpeta;
+            }
         #endregion
         #region "acciones"
             public List<Carpeta> sp_repo_deleteFolder(int idCarpetaPadre,int idUsuarioEjecutor,int idPagina)
@@ -142,6 +179,7 @@ namespace IUSLibs.REPO.Control
                             }
                         }
                     }
+
                 }
                 catch (ErroresIUS x)
                 {
