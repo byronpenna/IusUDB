@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstitucionesController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Models\page\Errors\Acciones\ErrorModel.cs" />
     <Compile Include="Models\page\Eventos\Acciones\EventoModel.cs" />
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
+    <Compile Include="Models\page\Instituciones\Acciones\InstitucionesModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,6 +226,10 @@
     <Content Include="Content\images\test\africa.jpg" />
     <Content Include="Content\images\test\cruz.png" />
     <Content Include="Content\images\views\eventos\noevento.png" />
+    <Content Include="Content\images\views\Instituciones\africa.png" />
+    <Content Include="Content\images\views\Instituciones\america.png" />
+    <Content Include="Content\images\views\Instituciones\asia-f.png" />
+    <Content Include="Content\images\views\Instituciones\europa.png" />
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
     <Content Include="Content\ius_theme\generals\style.css" />
@@ -231,6 +237,8 @@
     <Content Include="Content\ius_theme\views\Eventos\style.css" />
     <Content Include="Content\ius_theme\views\home\media.css" />
     <Content Include="Content\ius_theme\views\home\style.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\media.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\style.css" />
     <Content Include="Content\ius_theme\views\NotFound\media.css" />
     <Content Include="Content\ius_theme\views\NotFound\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\media.css" />
@@ -381,6 +389,10 @@
     <Content Include="Scripts\views\Eventos\script.js" />
     <Content Include="Scripts\views\Home\functions.js" />
     <Content Include="Scripts\views\Home\script.js" />
+    <Content Include="Scripts\views\Instituciones\functions.js" />
+    <Content Include="Scripts\views\Instituciones\script.js" />
+    <Content Include="Scripts\views\Instituciones\VerInstituciones\functions.js" />
+    <Content Include="Scripts\views\Instituciones\VerInstituciones\script.js" />
     <Content Include="Scripts\views\Noticias\functions.js" />
     <Content Include="Scripts\views\Noticias\script.js" />
     <Content Include="Web.config" />
@@ -432,6 +444,8 @@
     <Content Include="Views\Errors\disabledPost.cshtml" />
     <Content Include="Views\Errors\Unhandled.cshtml" />
     <Content Include="Views\Evento\Index.cshtml" />
+    <Content Include="Views\Instituciones\Index.cshtml" />
+    <Content Include="Views\Instituciones\VerInstituciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -461,7 +475,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7196</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

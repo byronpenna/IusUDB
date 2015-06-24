@@ -1,0 +1,35 @@
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/media.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Instituciones/script.js"></script>
+    <script src="~/Scripts/views/Instituciones/functions.js"></script>
+}
+
+<div class="row marginNull divContinentes">
+    <a href="@Url.Action("VerInstituciones","Instituciones")">
+        <div class="col-lg-3 continente">
+            <img src="~/Content/images/views/Instituciones/america.png" />
+            <h3 class="hidden">America</h3>
+        </div>
+    </a>
+    <a href="@Url.Action("VerInstituciones","Instituciones")">
+        <div class="col-lg-3 continente">
+            <img src="~/Content/images/views/Instituciones/africa.png" />
+            <h3 class="hidden">Africa</h3>
+        </div>
+    </a>
+    <a href="@Url.Action("VerInstituciones","Instituciones")">
+        <div class="col-lg-3 continente">
+            <img src="~/Content/images/views/Instituciones/asia-f.png" />
+            <h3 class="hidden">Asia</h3>
+        </div>
+    </a>
+    <a href="@Url.Action("VerInstituciones","Instituciones")">
+        <div class="col-lg-3 continente">
+            <img src="~/Content/images/views/Instituciones/europa.png" />
+            <h3 class="hidden">Europa</h3>
+        </div>
+    </a>
+</div>

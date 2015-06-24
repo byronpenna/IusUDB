@@ -25,13 +25,23 @@
                     </li>
                     <li>
                         <a href="#">
-                            Red IUS
+                            @ViewData["menu1.3"]
                         </a>
                     </li>
                     <li>
+                        <select class="form-control cbIdioma">
+                            <option value="-1">Idioma</option>
+                            @if (idiomas != null)
+                            {
+                                foreach (Idioma idioma in idiomas)
+                                {
+                                    <option value="@idioma._idIdioma">@idioma._idioma</option>
+                                }
+                            }
+                        </select>
                         <a href="http://168.243.3.62/iusback/" target="_blank">
                             <!--href="http://localhost:55869/"-->
-                            Login
+                            <!--Login-->
                         </a>
                     </li>
                     <li class="liSeach">
@@ -49,35 +59,28 @@
             <ul class="ulMenu">
                 <li>
                     <a href="#">
-                        Galeria
+                        @ViewData["menu2.1"]
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        Repositorio digital
+                    <a href="@Url.Action("Index","Instituciones")">
+                        @ViewData["menu2.2"]
                     </a>
                 </li>
                 <li>
                     <a href="~/Evento">
-                        Eventos
+                        @ViewData["menu2.3"]
                     </a>
                 </li>
                 <li>
                     <a href="">
-                        Noticias
+                        @ViewData["menu2.4"]
                     </a>
                 </li>
                 <li>
-                    <select class="form-control cbIdioma">
-                        <option value="-1">Idioma</option>
-                        @if (idiomas != null)
-                        {
-                            foreach (Idioma idioma in idiomas)
-                            {
-                                <option value="@idioma._idIdioma">@idioma._idioma</option>
-                            }
-                        }
-                    </select>
+                    <a href="">
+                        @ViewData["menu2.5"]
+                    </a>
                 </li>
             </ul>
         </div>
