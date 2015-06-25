@@ -1,0 +1,44 @@
+﻿/* Instituciones */
+    /* Descripcion general */
+        .divInstituciones{
+            margin-bottom:3%;
+        }
+        .cuadritoInstitucion{
+            margin-top:5%;
+            height:250px;
+        }
+        .cuadritoInstitucion .descripcionInstitucion,.cuadritoInstitucion .logoInstitucion{
+            height:100%;
+        }
+        /* Logo institucion */
+            .cuadritoInstitucion .logoInstitucion {
+                display:table;
+                background:#ecf0f1;
+            }
+            .cuadritoInstitucion .logoInstitucion div{
+                display:table-cell;
+                vertical-align:middle;
+        
+                padding-left:20%;
+                padding-right:20%;   
+            }
+
+            .cuadritoInstitucion .logoInstitucion img{
+                width:100%;
+    
+            }
+    /* Descripcion institucion */
+        .cuadritoInstitucion .descripcionInstitucion{
+            background:#c8cdd0;
+            text-align:center;
+        }
+        .descripcionInstitucion p, .descripcionInstitucion h3{
+            font-weight:bold;
+        }
+        .descripcionInstitucion h3{
+            color:#3498db;
+        }
+        .divContacto a{
+            display:block;
+        }
+    

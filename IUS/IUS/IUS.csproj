@@ -214,6 +214,7 @@
     <Content Include="Content\images\generales\bannerDonBosc.jpg" />
     <Content Include="Content\images\generales\calendar.png" />
     <Content Include="Content\images\generales\chat.png" />
+    <Content Include="Content\images\generales\tmp\don-bosco.png" />
     <Content Include="Content\images\generales\hamburguerButton.png" />
     <Content Include="Content\images\generales\image.png" />
     <Content Include="Content\images\generales\logo_IUS.jpg" />
@@ -223,6 +224,9 @@
     <Content Include="Content\images\generales\sadcloud.png" />
     <Content Include="Content\images\generales\slide.png" />
     <Content Include="Content\images\generales\slide2.png" />
+    <Content Include="Content\images\generales\tmp\koala.png" />
+    <Content Include="Content\images\generales\tmp\n1.png" />
+    <Content Include="Content\images\generales\tmp\n2.png" />
     <Content Include="Content\images\test\africa.jpg" />
     <Content Include="Content\images\test\cruz.png" />
     <Content Include="Content\images\views\eventos\noevento.png" />
@@ -239,6 +243,8 @@
     <Content Include="Content\ius_theme\views\home\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\style.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\media.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\style.css" />
     <Content Include="Content\ius_theme\views\NotFound\media.css" />
     <Content Include="Content\ius_theme\views\NotFound\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\media.css" />
