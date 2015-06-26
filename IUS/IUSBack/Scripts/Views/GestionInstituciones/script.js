@@ -1,17 +1,15 @@
 ﻿$(document).ready(function () {
     // plugins 
-        var dataTableInstituciones = $(".tbInstituciones").DataTable({
-            "bSort": false
-        });
+        // data table 
+            var dataTableInstituciones = $(".tbInstituciones").DataTable({
+                "bSort": false
+            });
+        // chosen
+            $(".cbPais").chosen({ no_results_text: "Ese pais no existe", width: '100%' });
     // eventos 
         $(document).on("click", ".btnAddInstitucion", function () {
-            data = [
-            '1',
-            '2',
-            '3',
-            '4',
-            '5'
-            ];
-            addDataTableRow(dataTableInstituciones, data);
+            frm = serializeSection($(".trFrmInstituciones"));
+            btnAddInstitucion(frm);
+            //addDataTableRow(dataTableInstituciones, data);
         })
 });

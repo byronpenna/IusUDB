@@ -13,6 +13,10 @@ namespace IUSLibs.FrontUI.Entidades
             public Continente _continente;
         #endregion
         #region "constructores"
+            public Pais(int idPais)
+            {
+                this._idPais = idPais;
+            }
             public Pais(int idPais, string pais, int idContinente)
             {
                 this._idPais = idPais;

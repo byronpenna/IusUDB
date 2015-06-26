@@ -1,7 +1,7 @@
 ﻿.divDatos{
     margin-top:5%;
 }
-.tbInstituciones tr td:first-child{
+.tbInstituciones tr td:first-child,.tbInstituciones tr th:first-child{
     display:none;
 }
 .txtAreaDireccion{

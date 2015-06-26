@@ -2,13 +2,17 @@
 @section estilosPersonalizados{
     <!-- plugins -->
         <!--Data table-->
-        <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+            <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/media.css" />
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>    
         <!-- Data table -->
             <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>
     <!-- propios -->
@@ -30,19 +34,19 @@
                         <th>Pais</th>
                         <th>Acciones</th>
                     </tr>
-                    <tr>
+                    <tr class="trFrmInstituciones">
                         <td></td>
                         <td>
                             <input class="txtNombreInstitucion form-control" name="txtNombreInstitucion" />
                         </td>
                         <td>
-                            <textarea class="txtAreaDireccion form-control"></textarea>
+                            <textarea class="txtAreaDireccion form-control" name="txtAreaDireccion"></textarea>
                         </td>
                         <td>
-                            <select>
+                            <select class="cbPais" name="cbPais">
                                 @if (paises != null && paises.Count > 0)
                                 {
-                                    int idContinente = -1;string optionGroup = "";bool abierto = false;
+                                    int idContinente = -1; string optionGroup = ""; bool abierto = false;
                                     foreach (Pais pais in paises)
                                     {
                                         if (pais._continente._idContinente != idContinente)
@@ -53,7 +57,7 @@
                                                 abierto = false;
                                             }
 
-                                            optionGroup = "<optgroup label='" + pais._continente._continente + "'></optgroup>";
+                                            optionGroup = "<optgroup label='" + pais._continente._continente + "'>";
                                             idContinente = pais._continente._idContinente;
                                             @(new HtmlString(optionGroup));
                                             abierto = true;
