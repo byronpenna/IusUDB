@@ -1,11 +1,86 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.FrontUI.Entidades
+@section estilosPersonalizados{
+    <!-- plugins -->
+        <!--Data table-->
+        <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/media.css" />
 }
 @section scriptsPersonalizados{
+    <!-- plugins -->
+        <!-- Data table -->
+            <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/GestionInstituciones/script.js"></script>
         <script src="~/Scripts/Views/GestionInstituciones/functions.js"></script>
 }
-gestion instituciones
+@{
+    List<Pais> paises = (List<Pais>)ViewBag.paises;
+}
+<div class="row marginNull">
+    <div class="row marginNull divDatos">
+        <div class="col-lg-8">
+            <table class="table table-hover tbInstituciones">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Pais</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="txtNombreInstitucion form-control" name="txtNombreInstitucion" />
+                        </td>
+                        <td>
+                            <textarea class="txtAreaDireccion form-control"></textarea>
+                        </td>
+                        <td>
+                            <select>
+                                @if (paises != null && paises.Count > 0)
+                                {
+                                    int idContinente = -1;string optionGroup = "";bool abierto = false;
+                                    foreach (Pais pais in paises)
+                                    {
+                                        if (pais._continente._idContinente != idContinente)
+                                        {
+                                            if (abierto)
+                                            {
+                                                optionGroup = "</optiongroup>";
+                                                abierto = false;
+                                            }
+
+                                            optionGroup = "<optgroup label='" + pais._continente._continente + "'></optgroup>";
+                                            idContinente = pais._continente._idContinente;
+                                            @(new HtmlString(optionGroup));
+                                            abierto = true;
+                                        }
+                                        <option value="@pais._idPais">@pais._pais</option>
+                                    }
+                                    optionGroup = "</optiongroup>";
+                                    @(new HtmlString(optionGroup));
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btnAddInstitucion">Agregar </button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <div class="col-lg-12">
+                <h3>Medios electronicos</h3>
+            </div>
+            <div class="col-lg-12">
+                <h3>Telefonos</h3>
+            </div>
+        </div>
+    </div>
+    
+</div>

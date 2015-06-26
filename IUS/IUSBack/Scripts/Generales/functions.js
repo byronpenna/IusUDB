@@ -29,7 +29,10 @@
         }
 // tabla
     // datatable 
-        // sirve para eliminar 
+    // sirve para eliminar 
+        function addDataTableRow(tb,data) {
+            tb.row.add(data).draw();
+        }
         function removeDataTable(table, tr) {
             oTable = table.DataTable();
             oTable.row(tr).remove().draw(false);

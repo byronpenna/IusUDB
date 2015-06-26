@@ -1,1 +1,9 @@
-﻿
+﻿.divDatos{
+    margin-top:5%;
+}
+.tbInstituciones tr td:first-child{
+    display:none;
+}
+.txtAreaDireccion{
+    resize:none;
+}

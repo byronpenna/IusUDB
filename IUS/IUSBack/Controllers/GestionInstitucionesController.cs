@@ -35,9 +35,12 @@ namespace IUSBack.Controllers
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
                 Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                ViewBag.titleModulo = "Manejo de instituciones";
-                ViewBag.usuario = usuarioSession;
-                ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                Dictionary<object, object> inicial = this._model.cargaInicialIndex();
+                // set viewbags
+                    ViewBag.paises = inicial["paises"];
+                    ViewBag.titleModulo = "Manejo de instituciones";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
 
             }
             catch (ErroresIUS x)

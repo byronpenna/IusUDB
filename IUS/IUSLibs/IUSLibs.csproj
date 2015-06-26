@@ -103,6 +103,9 @@
     <Compile Include="BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="BaseDatos\ConexionIUS.cs" />
+    <Compile Include="FrontUI\Control\ControlPais.cs" />
+    <Compile Include="FrontUI\Entidades\Continente.cs" />
+    <Compile Include="FrontUI\Entidades\Pais.cs" />
     <Compile Include="FrontUI\Eventos\Control\ControlEventos.cs" />
     <Compile Include="FrontUI\Noticias\Control\ControlComentario.cs" />
     <Compile Include="FrontUI\Noticias\Entidades\Comentario.cs" />
