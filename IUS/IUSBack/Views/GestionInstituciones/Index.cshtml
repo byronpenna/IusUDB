@@ -72,6 +72,7 @@
                         </td>
                         <td>
                             <button class="btnAddInstitucion">Agregar </button>
+                            
                         </td>
                     </tr>
                 </thead>
@@ -82,20 +83,21 @@
                         {
                             <tr>
                                 <td>
-                                    <input class="txtHdIdInstitucion" name="txtHdIdInstitucion" />
+                                    <input class="txtHdIdInstitucion" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
                                 </td>
-                                <th>
+                                <td>
                                     @institucion._nombre 
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     @institucion._direccion
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     @institucion._pais._pais
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     <button class="btn">Editar</button>
-                                </th>
+                                    <button class="btn btnDeleteInstitucion">Eliminar</button>
+                                </td>
                             </tr>
                         }
                         

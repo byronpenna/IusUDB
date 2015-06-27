@@ -41,8 +41,7 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                         throw x;
                     }
                     
-                }
-                
+                }    
             #endregion
             #region "acciones"
                 public Institucion sp_frontui_insertInstitucion(Institucion institucionAgregar,int idUsuarioEjecutor,int idPagina)
@@ -58,6 +57,21 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                     catch (Exception x)
                     {
                         throw x;
+                    }
+                }
+                public bool sp_frontui_deleteInstitucion(int idInstitucion, int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlInstitucion.sp_frontui_deleteInstitucion(idInstitucion, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x; 
                     }
                 }
             #endregion

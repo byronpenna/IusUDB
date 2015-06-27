@@ -52,39 +52,64 @@ namespace IUSLibs.FrontUI.Control
             }
         #endregion
         #region "acciones"
-            public Institucion sp_frontui_insertInstitucion(Institucion institucionAgregar,int idUsuarioEjecutor,int idPagina)
-        {
-            Institucion institucionAgregada = null;
-            SPIUS sp = new SPIUS("sp_frontui_insertInstitucion");
-
-            sp.agregarParametro("nombre", institucionAgregar._nombre);
-            sp.agregarParametro("direccion", institucionAgregar._direccion);
-            sp.agregarParametro("idPais", institucionAgregar._pais._idPais);
-            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-            sp.agregarParametro("idPagina", idPagina);
-            try
+            public bool sp_frontui_deleteInstitucion(int idInstitucion,int idUsuarioEjecutor,int idPagina)
             {
-                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                if (this.resultadoCorrecto(tb))
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_frontui_deleteInstitucion");
+                sp.agregarParametro("idInstitucion", idInstitucion);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
                 {
-                    if (tb[1].Rows.Count > 0)
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
                     {
-                        DataRow row = tb[1].Rows[0];
-                        institucionAgregada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_pais_fk"],(bool)row["estado"]);
-
+                        estado = true;
                     }
                 }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
             }
-            catch (ErroresIUS x)
+            public Institucion sp_frontui_insertInstitucion(Institucion institucionAgregar,int idUsuarioEjecutor,int idPagina)
             {
-                throw x;
+                Institucion institucionAgregada = null;
+                SPIUS sp = new SPIUS("sp_frontui_insertInstitucion");
+
+                sp.agregarParametro("nombre", institucionAgregar._nombre);
+                sp.agregarParametro("direccion", institucionAgregar._direccion);
+                sp.agregarParametro("idPais", institucionAgregar._pais._idPais);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            DataRow row = tb[1].Rows[0];
+                            institucionAgregada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_pais_fk"],(bool)row["estado"]);
+
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return institucionAgregada;
             }
-            catch (Exception x)
-            {
-                throw x;
-            }
-            return institucionAgregada;
-        }
         #endregion 
     }
 }
