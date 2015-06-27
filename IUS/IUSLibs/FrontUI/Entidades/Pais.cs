@@ -17,6 +17,11 @@ namespace IUSLibs.FrontUI.Entidades
             {
                 this._idPais = idPais;
             }
+            public Pais(int idPais,string pais)
+            {
+                this._idPais = idPais;
+                this._pais = pais;
+            }    
             public Pais(int idPais, string pais, int idContinente)
             {
                 this._idPais = idPais;

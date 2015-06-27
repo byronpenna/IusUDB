@@ -9,6 +9,7 @@
     // eventos 
         $(document).on("click", ".btnAddInstitucion", function () {
             frm = serializeSection($(".trFrmInstituciones"));
+            //console.log("formulario a enviar ", frm);
             btnAddInstitucion(frm);
             //addDataTableRow(dataTableInstituciones, data);
         })

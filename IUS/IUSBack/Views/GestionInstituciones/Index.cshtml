@@ -20,7 +20,8 @@
         <script src="~/Scripts/Views/GestionInstituciones/functions.js"></script>
 }
 @{
-    List<Pais> paises = (List<Pais>)ViewBag.paises;
+    List<Pais> paises               = (List<Pais>) ViewBag.paises;
+    List<Institucion> instituciones = (List<Institucion>) ViewBag.instituciones;
 }
 <div class="row marginNull">
     <div class="row marginNull divDatos">
@@ -74,7 +75,32 @@
                         </td>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @if (instituciones != null && instituciones.Count > 0)
+                    {
+                        foreach (Institucion institucion in instituciones)
+                        {
+                            <tr>
+                                <td>
+                                    <input class="txtHdIdInstitucion" name="txtHdIdInstitucion" />
+                                </td>
+                                <th>
+                                    @institucion._nombre 
+                                </th>
+                                <th>
+                                    @institucion._direccion
+                                </th>
+                                <th>
+                                    @institucion._pais._pais
+                                </th>
+                                <th>
+                                    <button class="btn">Editar</button>
+                                </th>
+                            </tr>
+                        }
+                        
+                    }
+                </tbody>
             </table>
         </div>
         <div class="col-lg-4">

@@ -12,27 +12,37 @@ namespace IUSLibs.FrontUI.Entidades
             public string   _nombre;
             public string   _direccion;
             public Pais     _pais;
+            public bool _estado;
         #endregion
         #region "constructores"
-            public Institucion(int idInstitucion, string nombre, string direccion, int idPais)
+            public Institucion(int idInstitucion, string nombre, string direccion, int idPais,bool estado)
             {
                 this._idInstitucion = idInstitucion;
-                this._nombre = nombre;
-                this._direccion = direccion;
-                Pais pais = new Pais(idPais);
-                this._pais = pais;
+                this._nombre        = nombre;
+                this._direccion     = direccion;
+                Pais pais           = new Pais(idPais);
+                this._pais          = pais;
+                
             }
-            public Institucion(int idInstitucion, string nombre, string direccion, Pais pais)
+            public Institucion(int idInstitucion, string nombre, string direccion, Pais pais,bool estado)
             {
                 this._idInstitucion = idInstitucion;
-                this._nombre = nombre;
-                this._direccion = direccion;
-                this._pais = pais;
+                this._nombre        = nombre;
+                this._direccion     = direccion;
+                this._pais          = pais;
             }
             public Institucion(int idInstitucion)
             {
                 this._idInstitucion = idInstitucion;
             }
+            // para agregar
+                public Institucion(string nombre, string direccion,int idPais)
+                {
+                    this._nombre        = nombre;
+                    this._direccion     = direccion;
+                    Pais pais           = new Pais(idPais);
+                    this._pais          = pais;
+                }
         #endregion
     }
 }
