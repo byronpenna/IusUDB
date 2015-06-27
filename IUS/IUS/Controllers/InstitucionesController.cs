@@ -25,7 +25,7 @@ namespace IUS.Controllers
                 try
                 {
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
-                    ViewBag.instituciones = this._model.
+                    //ViewBag.instituciones = this._model.
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);

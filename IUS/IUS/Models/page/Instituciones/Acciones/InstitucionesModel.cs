@@ -5,9 +5,9 @@ using System.Web;
 // librerias internas
     using IUS.Models.general;
 // librerias externas
-using IUSLibs.LOGS;
+    using IUSLibs.LOGS;
     using IUSLibs.FrontUI.Control;
-    isu
+    using IUSLibs.FrontUI.Entidades;
 namespace IUS.Models.page.Instituciones.Acciones
 {
     public class InstitucionesModel:ModeloPadre
@@ -17,7 +17,7 @@ namespace IUS.Models.page.Instituciones.Acciones
         #endregion
         #region "funciones"
             #region "get"
-                public List<insti> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
+                public List<Institucion> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
                 {
                     try
                     {
