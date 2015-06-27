@@ -19,15 +19,17 @@ namespace IUS.Controllers
             private InstitucionesModel _model;
         #endregion
         #region "acciones url"
-            public ActionResult VerInstituciones()
+            public ActionResult VerInstituciones(int id)
             {
                 List<LlaveIdioma> traducciones;
                 try
                 {
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                    ViewBag.instituciones = this._model.
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
+                    
                 }
                 catch (ErroresIUS x)
                 {
