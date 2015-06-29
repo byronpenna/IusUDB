@@ -255,6 +255,8 @@
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetLogo\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetLogo\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetTel\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetTel\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\style.css" />
@@ -420,6 +422,8 @@
     <Content Include="Scripts\Views\GestionInstituciones\script.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetLogo\functions.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetLogo\script.js" />
+    <Content Include="Scripts\Views\GestionInstituciones\SetTel\functions.js" />
+    <Content Include="Scripts\Views\GestionInstituciones\SetTel\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\functions.js" />
     <Content Include="Scripts\Views\GestionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionRoles\functions.js" />
@@ -547,6 +551,8 @@
     <Content Include="Views\Errors\FolderNotFound.cshtml" />
     <Content Include="Views\GestionInstituciones\Index.cshtml" />
     <Content Include="Views\GestionInstituciones\SetLogo.cshtml" />
+    <Content Include="Views\GestionInstituciones\setTel.cshtml" />
+    <Content Include="Views\GestionInstituciones\setMedios.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

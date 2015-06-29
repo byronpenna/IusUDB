@@ -25,7 +25,7 @@
 }
 <div class="row marginNull">
     <div class="row marginNull divDatos">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <table class="table table-hover tbInstituciones">
                 <thead>
                     <tr>
@@ -100,6 +100,8 @@
                                     <a href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })" class="btn">
                                         Logo
                                     </a>
+                                    <a href="@Url.Action("setTel", "GestionInstituciones", new { id=institucion._idInstitucion})">Telefonos</a>
+                                    <a href="@Url.Action("setMedios","GestionInstituciones",new {id=institucion._idInstitucion})">Medios Electronicos</a>
                                 </td>
                             </tr>
                         }
@@ -108,14 +110,18 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-4">
+        <!--<div class="col-lg-4 divMediosInstitucion">
+            <h3>Seleccione institución</h3>
             <div class="col-lg-12">
                 <h3>Medios electronicos</h3>
+                <div class="row marginNull">
+                    dv
+                </div>
             </div>
             <div class="col-lg-12">
                 <h3>Telefonos</h3>
             </div>
-        </div>
+        </div>-->
     </div>
     
 </div>
