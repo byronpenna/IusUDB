@@ -37,6 +37,10 @@ namespace IUSLibs.FrontUI.Control
                                 {
                                     Pais pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
                                     institucion = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
+                                    if (row["logo"] != DBNull.Value)
+                                    {
+                                        institucion._logo = (byte[])row["logo"];
+                                    }
                                     instituciones.Add(institucion);
                                 }
                             }

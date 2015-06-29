@@ -21,7 +21,7 @@
             {
                 rutaImage = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
             }
-            <img src="@rutaImage"/>
+            <img class="imgThumbnail" src="@rutaImage" />
         </div>
         <input type="file" id="flMiniatura" />
         <input id="btnSubmit" class="btn" type="submit" value="Subir" />

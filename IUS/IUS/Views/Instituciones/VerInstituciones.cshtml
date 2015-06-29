@@ -9,7 +9,10 @@
 }
 @{
     List<Institucion> instituciones = (List<Institucion>)ViewBag.instituciones;
+    string imgDefault               = Url.Content("~/Content/images/generales/image-color.png");
+    string src                      = "";
 }
+
 <div class="row marginNull divInstituciones">
     @if (instituciones != null && instituciones.Count > 0)
     {
@@ -20,7 +23,15 @@
                 <div class="cuadritoInstitucion">
                     <div class="col-lg-5 logoInstitucion">
                         <div>
-                            <img src="~/Content/images/generales/tmp/n1.png" />
+                            @if (institucion._logo != null)
+                            {
+                                src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+                            }
+                            else
+                            {
+                                src = imgDefault;
+                            }
+                            <img src="@src" />
                         </div>
                     </div>
                     <div class="col-lg-7 descripcionInstitucion">

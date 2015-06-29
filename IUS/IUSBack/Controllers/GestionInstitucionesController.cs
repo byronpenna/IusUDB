@@ -128,6 +128,7 @@ namespace IUSBack.Controllers
                                         byte[] fileBytes = this.getBytesFromFile(file);
                                         Institucion institucionActualizar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), fileBytes);
                                         bool estado = this._model.sp_frontui_setLogoInstitucion(institucionActualizar, usuarioSession._idUsuario, this._idPagina);
+                                        respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado",estado);
                                         
                                     }
