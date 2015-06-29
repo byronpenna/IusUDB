@@ -190,6 +190,7 @@
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformacionController.cs" />
     <Compile Include="Controllers\InstitucionesController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Models\page\Errors\Acciones\ErrorModel.cs" />
     <Compile Include="Models\page\Eventos\Acciones\EventoModel.cs" />
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
+    <Compile Include="Models\page\Informacion\Acciones\InformacionModel.cs" />
     <Compile Include="Models\page\Instituciones\Acciones\InstitucionesModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -463,6 +465,11 @@
     <Content Include="Views\Instituciones\Index.cshtml" />
     <Content Include="Views\Instituciones\VerInstituciones.cshtml" />
     <Content Include="Views\Conocenos\Index.cshtml" />
+    <Content Include="Views\Informacion\Historia.cshtml" />
+    <Content Include="Views\Informacion\Organizacion.cshtml" />
+    <Content Include="Views\Informacion\Identidad.cshtml" />
+    <Content Include="Views\Informacion\Salesianos.cshtml" />
+    <Content Include="Views\Informacion\Ius.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,6 +20,10 @@ namespace IUS.Controllers
                 home=1,Noticias=4,Eventos=6,Instituciones=7,
                 conocenos=8
             }
+            public enum paginasInternas
+            {
+                Historia=9,Organizacion=10,Ius=11,Salesianos=12,Identidad=13
+            }
             public int _numeroNoticias = 2;
             public enum cookiesSistema {
                 Principal=0,idioma = 0
