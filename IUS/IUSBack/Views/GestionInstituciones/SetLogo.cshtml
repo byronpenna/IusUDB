@@ -1,0 +1,30 @@
+﻿@using IUSLibs.FrontUI.Entidades
+@section estilosPersonalizados{    
+    <!-- propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetLogo/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetLogo/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+    <script src="~/Scripts/Views/GestionInstituciones/SetLogo/script.js"></script>
+    <script src="~/Scripts/Views/GestionInstituciones/SetLogo/functions.js"></script>
+}
+@{
+    string rutaImage = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    Institucion institucion = (Institucion)ViewBag.institucion;
+}
+<div class="contenidoModulo">
+    <form method="post" id="frmMiniatura" action="@Url.Action("setMiniaturaLogo")">
+        <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion"/>
+        <div class="divImgThumbnail">
+            @if (institucion._logo != null)
+            {
+                rutaImage = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+            }
+            <img src="@rutaImage"/>
+        </div>
+        <input type="file" id="flMiniatura" />
+        <input id="btnSubmit" class="btn" type="submit" value="Subir" />
+    </form>
+    
+</div>

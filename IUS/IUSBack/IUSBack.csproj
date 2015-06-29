@@ -222,6 +222,7 @@
     <Content Include="Content\themes\iusback_theme\generals\media.css" />
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
+    <Content Include="Content\themes\iusback_theme\img\general\image.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\adobe-reader.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\excel-ico.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder-opacity.png" />
@@ -252,6 +253,8 @@
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetLogo\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetLogo\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\style.css" />
@@ -415,6 +418,8 @@
     <Content Include="Scripts\Views\GestionIdiomaWebsite\script.js" />
     <Content Include="Scripts\Views\GestionInstituciones\functions.js" />
     <Content Include="Scripts\Views\GestionInstituciones\script.js" />
+    <Content Include="Scripts\Views\GestionInstituciones\SetLogo\functions.js" />
+    <Content Include="Scripts\Views\GestionInstituciones\SetLogo\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\functions.js" />
     <Content Include="Scripts\Views\GestionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionRoles\functions.js" />
@@ -460,6 +465,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Views\Instituciones\Logos\" />
     <Folder Include="Controllers\General\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\Page\Home\Forms\" />
@@ -540,6 +546,7 @@
     <Content Include="Views\Repositorio\Index.cshtml" />
     <Content Include="Views\Errors\FolderNotFound.cshtml" />
     <Content Include="Views\GestionInstituciones\Index.cshtml" />
+    <Content Include="Views\GestionInstituciones\SetLogo.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

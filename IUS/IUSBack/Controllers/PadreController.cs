@@ -54,6 +54,7 @@ namespace IUSBack.Controllers
                     Dictionary<string, string> rutas = new Dictionary<string, string>();
                     //this._RUTASGLOBALES.Add("REPOSITORIO_DIGITAL", "~/RepositorioDigital/Usuarios/");
                     rutas.Add("REPOSITORIO_DIGITAL", "~/RepositorioDigital/Usuarios/");
+                    rutas.Add("LOGOS_INSTITUCIONES", "~/Content/Views/Instituciones/Logos/");
                     return rutas;
                 }
             #endregion

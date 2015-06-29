@@ -25,7 +25,8 @@ namespace IUS.Controllers
                 try
                 {
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
-                    //ViewBag.instituciones = this._model.
+                    string ip = Request.UserHostAddress;
+                    ViewBag.instituciones = this._model.sp_frontui_getInstitucionesByContinente(id, ip, this.idPagina);
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
@@ -41,6 +42,7 @@ namespace IUS.Controllers
                 }
                 return View();
             }
+            
             public ActionResult Index()
             {
                 List<LlaveIdioma> traducciones;
@@ -61,7 +63,6 @@ namespace IUS.Controllers
                 return View();
 
             }
-            
         #endregion
         #region "constructores"
             public InstitucionesController()

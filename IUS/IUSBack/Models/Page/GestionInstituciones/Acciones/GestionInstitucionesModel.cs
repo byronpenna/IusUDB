@@ -19,6 +19,21 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
         #endregion
         #region "funciones"
             #region "get"
+            public Institucion sp_frontui_getInstitucionById(int idInstitucion, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlInstitucion.sp_frontui_getInstitucionById(idInstitucion, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Dictionary<object, object> cargaInicialIndex(int idUsuarioEjecutor,int idPagina)
                 {
                     
@@ -44,6 +59,21 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                 }    
             #endregion
             #region "acciones"
+                public bool sp_frontui_setLogoInstitucion(Institucion institucionActualizar,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlInstitucion.sp_frontui_setLogoInstitucion(institucionActualizar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Institucion sp_frontui_insertInstitucion(Institucion institucionAgregar,int idUsuarioEjecutor,int idPagina)
                 {
                     try

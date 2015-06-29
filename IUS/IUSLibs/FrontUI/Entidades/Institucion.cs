@@ -12,9 +12,15 @@ namespace IUSLibs.FrontUI.Entidades
             public string   _nombre;
             public string   _direccion;
             public Pais     _pais;
-            public bool _estado;
+            public bool     _estado;
+            public byte[]   _logo;
         #endregion
         #region "constructores"
+            public Institucion(int idInstitucion, byte[] logo)
+            {
+                this._idInstitucion = idInstitucion;
+                this._logo          = logo;
+            }
             public Institucion(int idInstitucion, string nombre, string direccion, int idPais,bool estado)
             {
                 this._idInstitucion = idInstitucion;

@@ -87,11 +87,71 @@ namespace IUSLibs.FrontUI.Control
                     return instituciones;
                 }
             #endregion
-            
-        #endregion
-        #region "acciones"
-            
             #region "backend"
+                public Institucion sp_frontui_getInstitucionById(int idInstitucion,int idUsuarioEjecutor,int idPagina)
+                {
+                    Institucion institucion = null; 
+                    SPIUS sp = new SPIUS("sp_frontui_getInstitucionById");
+                    sp.agregarParametro("idInstitucion", idInstitucion);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                institucion = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_pais_fk"], (bool)row["estado"]);
+                                if (row["logo"] != DBNull.Value)
+                                {
+                                    institucion._logo = (byte[])row["logo"];
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return institucion;
+                }
+            #endregion
+        #endregion
+                #region "acciones"
+
+                #region "backend"
+                public bool sp_frontui_setLogoInstitucion(Institucion institucionActualizar,int idUsuarioEjecutor,int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_frontui_setLogoInstitucion");
+                    sp.agregarParametro("idInstitucion", institucionActualizar._idInstitucion);
+                    sp.agregarParametro("image", institucionActualizar._logo);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
                 public bool sp_frontui_deleteInstitucion(int idInstitucion,int idUsuarioEjecutor,int idPagina)
                 {
                     bool estado = false;
