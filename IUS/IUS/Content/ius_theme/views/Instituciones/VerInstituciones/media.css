@@ -1,1 +1,59 @@
-﻿
+﻿@media (min-width: 275px) and (max-width:550px) {
+    /* Imagen institucion */
+        .cuadritoInstitucion .logoInstitucion{
+            width:100%;
+        }
+        .cuadritoInstitucion{
+            height:auto;
+        }
+
+        .cuadritoInstitucion .logoInstitucion img {
+            width:30%;
+            margin-bottom:8%;
+            margin-top:8%;
+        }
+        .cuadritoInstitucion .logoInstitucion div {
+            display:block;
+            padding:0;
+            text-align:center;
+        }
+    /* Descripcion */
+        .cuadritoInstitucion .descripcionInstitucion{
+            width:100%;
+            height:auto;
+            padding-bottom:8%;
+        }
+}
+@media (min-width: 275px) and (max-width:400px) {
+    .cuadritoInstitucion .logoInstitucion img {
+        width: 40% !important;
+    }
+}
+@media (min-width: 769px) and (max-width:992px) {
+    /* Imagen institucion */
+        .divInstituciones{
+            margin-top:5%;
+            margin-bottom:8%;
+        }
+        .cuadritoInstitucion .logoInstitucion div{
+            display:block;
+            padding:0;
+            text-align:center;
+        }
+        .cuadritoInstitucion .logoInstitucion img{
+            width:40%;
+            margin-top:5%;
+            margin-bottom:5%;
+        }
+        .cuadritoInstitucion .logoInstitucion{
+            height:auto;
+        }
+    /* Descripcion institucion */
+        .cuadritoInstitucion .descripcionInstitucion{
+            height:250px;
+        }
+}
+/*Standar*/
+@media (min-width: 1100px) and (max-width:1200px) {
+    
+}
