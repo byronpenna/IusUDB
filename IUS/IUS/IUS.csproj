@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ConocenosController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -198,6 +199,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\general\ModeloPadre.cs" />
+    <Compile Include="Models\page\Conocenos\Acciones\ConocenosModel.cs" />
     <Compile Include="Models\page\Errors\Acciones\ErrorModel.cs" />
     <Compile Include="Models\page\Eventos\Acciones\EventoModel.cs" />
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
@@ -230,6 +232,11 @@
     <Content Include="Content\images\generales\tmp\n2.png" />
     <Content Include="Content\images\test\africa.jpg" />
     <Content Include="Content\images\test\cruz.png" />
+    <Content Include="Content\images\views\Conocenos\boscobg.jpg" />
+    <Content Include="Content\images\views\Conocenos\catolico.jpg" />
+    <Content Include="Content\images\views\Conocenos\francisco-papa.jpg" />
+    <Content Include="Content\images\views\Conocenos\santisimo.jpg" />
+    <Content Include="Content\images\views\Conocenos\tiempo.jpg" />
     <Content Include="Content\images\views\eventos\noevento.png" />
     <Content Include="Content\images\views\Instituciones\africa.png" />
     <Content Include="Content\images\views\Instituciones\america.png" />
@@ -238,6 +245,8 @@
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
     <Content Include="Content\ius_theme\generals\style.css" />
+    <Content Include="Content\ius_theme\views\Conocenos\media.css" />
+    <Content Include="Content\ius_theme\views\Conocenos\style.css" />
     <Content Include="Content\ius_theme\views\Eventos\media.css" />
     <Content Include="Content\ius_theme\views\Eventos\style.css" />
     <Content Include="Content\ius_theme\views\home\media.css" />
@@ -453,6 +462,7 @@
     <Content Include="Views\Evento\Index.cshtml" />
     <Content Include="Views\Instituciones\Index.cshtml" />
     <Content Include="Views\Instituciones\VerInstituciones.cshtml" />
+    <Content Include="Views\Conocenos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

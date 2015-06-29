@@ -1,0 +1,43 @@
+﻿#divSalesiano{
+    background:url('../../../images/views/Conocenos/boscobg.jpg');
+}
+#divHistoria{
+    background:url('../../../images/views/Conocenos/tiempo.jpg');   
+}
+#divIdentidad{
+    background:url('../../../images/views/Conocenos/catolico.jpg');
+}
+#divOrganizacion{
+    background:url('../../../images/views/Conocenos/francisco-papa.jpg');
+}
+#divIus{
+    background:url('../../../images/views/Conocenos/santisimo.jpg');
+}
+
+#divIdentidad,#divHistoria,#divOrganizacion,#divSalesiano,#divIus{
+    background-size:cover;
+    /*box-shadow:0 0 1px #CCC;*/
+    opacity: 0.5;
+}
+#divIdentidad:hover, #divHistoria:hover, #divOrganizacion:hover, #divSalesiano:hover, #divIus:hover{
+    opacity:1;
+}
+.divMenu{
+    height:300px;
+    margin:5%;
+    margin-top:10%;
+}
+.divMenu:hover {
+    
+    cursor:pointer;
+}
+.divMenu h3 {
+    background:rgba(0, 0, 0, 0.4);
+    margin:0;
+    width:30%;
+    color:white;
+    text-align:center;
+    padding-top:3%;
+    padding-bottom:3%;
+    font-weight:bold;
+}
