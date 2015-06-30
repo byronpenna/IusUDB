@@ -5,3 +5,12 @@
 .continente {
     text-align: center;
 }
+.nombreContinente{
+    visibility:hidden;
+}
+.tituloAyuda{
+    text-align:center;
+    margin-top: 5%;
+    margin-bottom:5%;
+    font-family:'latop';
+}
