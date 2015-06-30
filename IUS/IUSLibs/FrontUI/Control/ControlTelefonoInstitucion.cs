@@ -56,7 +56,32 @@ namespace IUSLibs.FrontUI.Control
                 return telefonos;
             }
         #endregion
-        #region "set"
+        #region "do"
+            public bool sp_frontui_deleteTelInstitucion(int idTel,int idUsuarioEjecutor, int idPagina)
+            {
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_frontui_deleteTelInstitucion");
+                sp.agregarParametro("idTel", idTel);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
+            }
             public TelefonoInstitucion sp_frontui_insertTelInstitucion(TelefonoInstitucion telefonoIngresar,int idUsuarioEjecutor,int idPagina)
             {
                 TelefonoInstitucion telefono = null;
