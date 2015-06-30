@@ -15,11 +15,31 @@ namespace IUSLibs.FrontUI.Control
 {
     public class ControlInstitucion:PadreLib
     {
+        #region "private"
+            private List<TelefonoInstitucion> getTelefonosByInstitucion(int idInstitucion,string ip,int idPagina)
+            {
+                List<TelefonoInstitucion> telefonos = null;
+                try
+                {
+                    ControlTelefonoInstitucion controlTel = new ControlTelefonoInstitucion();
+                    telefonos = controlTel.sp_frontui_spFront_getTelByInstitucion(idInstitucion, ip, idPagina);
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return telefonos;
+            }
+        #endregion
         #region "get"
             #region "frontend"
                 public List<Institucion> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
                 {
-                    List<Institucion> instituciones = null; Institucion institucion;
+                    List<Institucion> instituciones = null; Institucion institucion; int idInstitucion;
                     SPIUS sp = new SPIUS("sp_frontui_getInstitucionesByContinente");
                     
                     sp.agregarParametro("idContinente", idContinente);
@@ -36,7 +56,10 @@ namespace IUSLibs.FrontUI.Control
                                 foreach (DataRow row in tb[0].Rows)
                                 {
                                     Pais pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
-                                    institucion = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
+                                    idInstitucion = (int)row["idInstitucion"];
+                                    List<TelefonoInstitucion> telefonos = this.getTelefonosByInstitucion(idInstitucion,ip,idPagina);
+                                    institucion = new Institucion(idInstitucion, row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
+                                    institucion._telefonos = telefonos;
                                     if (row["logo"] != DBNull.Value)
                                     {
                                         institucion._logo = (byte[])row["logo"];

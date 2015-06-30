@@ -14,6 +14,9 @@ namespace IUSLibs.FrontUI.Entidades
             public Pais     _pais;
             public bool     _estado;
             public byte[]   _logo;
+            // extras a tabla
+                public List<TelefonoInstitucion> _telefonos;
+                
         #endregion
         #region "constructores"
             public Institucion(int idInstitucion, byte[] logo)
