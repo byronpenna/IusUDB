@@ -188,6 +188,7 @@
     <Compile Include="Controllers\GestionInstitucionesController.cs" />
     <Compile Include="Controllers\GestionPersonasController.cs" />
     <Compile Include="Controllers\GestionRolesController.cs" />
+    <Compile Include="Controllers\GestionTelefonosController.cs" />
     <Compile Include="Controllers\GestionUsuariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Models\Page\Errors\ErrorsModel.cs" />
     <Compile Include="Models\Page\GestionIdiomaWebsite\Acciones\GestionIdiomaWebsiteModel.cs" />
     <Compile Include="Models\Page\GestionInstituciones\Acciones\GestionInstitucionesModel.cs" />
+    <Compile Include="Models\Page\GestionInstituciones\Acciones\GestionTelefonoModel.cs" />
     <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\GestionPersonaModel.cs" />
     <Compile Include="Models\Page\GestionRoles\acciones\GestionRolesModel.cs" />

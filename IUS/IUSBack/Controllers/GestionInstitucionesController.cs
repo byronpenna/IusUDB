@@ -67,7 +67,9 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    ViewBag.titleModulo = "Telefono instituciones";
+                    Institucion institucion = this._model.sp_frontui_getInstitucionById(id, usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.institucion = institucion;
+                    ViewBag.titleModulo = "Telefonos de Instituciones";
                     ViewBag.usuario = usuarioSession;
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
 

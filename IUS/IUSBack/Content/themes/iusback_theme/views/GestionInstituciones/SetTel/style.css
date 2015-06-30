@@ -1,1 +1,13 @@
-﻿
+﻿.tbTelefonos thead tr th:first-child, .tbTelefonos thead tr td:first-child{
+    display:none;
+}
+.divInstitucionPrev{
+    text-align:center;
+    margin-top:2%;
+    margin-bottom: 2%;
+}
+.divInstitucionPrev img{
+    /*width:20%;*/
+    width:200px;
+    height:200px;
+}

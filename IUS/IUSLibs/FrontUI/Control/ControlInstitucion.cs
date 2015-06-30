@@ -127,9 +127,9 @@ namespace IUSLibs.FrontUI.Control
                 }
             #endregion
         #endregion
-                #region "acciones"
+        #region "acciones"
 
-                #region "backend"
+            #region "backend"
                 public bool sp_frontui_setLogoInstitucion(Institucion institucionActualizar,int idUsuarioEjecutor,int idPagina)
                 {
                     bool estado = false;

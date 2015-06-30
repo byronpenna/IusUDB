@@ -9,10 +9,43 @@
     <script src="~/Scripts/Views/GestionInstituciones/SetTel/script.js"></script>
     <script src="~/Scripts/Views/GestionInstituciones/SetTel/functions.js"></script>
 }
-<div class="row marginNull">
-    <table class="table">
-        <thead>
+@{
+    Institucion institucion = (Institucion)ViewBag.institucion;
+    string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+}
+<div class="row marginNull divInstitucionPrev">
+    @if (institucion._logo != null)
+    {
+        src = "data:image/png;base64,"+Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+    }
+    
+    <img src="@src" />
+    <h2 class="titleInstitucion">@institucion._nombre</h2>
+</div>
 
+<div class="row marginNull">
+    <table class="table tbTelefonos">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Telefono</th>
+                <th>Etiqueta</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion"/>
+                </th>
+                <th>
+                    <input type="tel" name="txtTelefono" class="form-control"/>
+                </th>
+                <th>
+                    <input type="tel" name="txtEtiqueta" class="form-control" />
+                </th>
+                <th>
+                    <button class="btn btnAgregarTel">Agregar</button>
+                </th>
+            </tr>
         </thead>
         <tbody>
 
