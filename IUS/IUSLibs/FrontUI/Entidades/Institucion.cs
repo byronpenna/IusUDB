@@ -16,7 +16,7 @@ namespace IUSLibs.FrontUI.Entidades
             public byte[]   _logo;
             // extras a tabla
                 public List<TelefonoInstitucion> _telefonos;
-                
+                public List<EnlaceInstitucion> _enlaces;
         #endregion
         #region "constructores"
             public Institucion(int idInstitucion, byte[] logo)

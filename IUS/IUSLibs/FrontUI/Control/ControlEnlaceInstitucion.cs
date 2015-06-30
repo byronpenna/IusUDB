@@ -16,6 +16,41 @@ namespace IUSLibs.FrontUI.Control
     public class ControlEnlaceInstitucion:PadreLib
     {
         #region "get"
+            public List<EnlaceInstitucion> sp_frontui_spFront_getEnlacesByInstitucion(int idInstitucion,string ip,int idPagina)
+            {
+                List<EnlaceInstitucion> enlaces = null; EnlaceInstitucion enlace;
+                SPIUS sp = new SPIUS("sp_frontui_spFront_getEnlacesByInstitucion");
+                
+                sp.agregarParametro("idInstitucion", idInstitucion);
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            enlaces = new List<EnlaceInstitucion>();
+                            foreach (DataRow row in tb[0].Rows)
+                            {
+                                enlace = new EnlaceInstitucion((int)row["idEnlace"], row["enlace"].ToString(), row["nombre_enlace"].ToString(), (int)row["id_institucion_fk"]);
+                                enlaces.Add(enlace);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+
+                return enlaces;
+            }
             public List<EnlaceInstitucion> sp_frontui_getEnlacesByInstitucion(int idInstitucion,int idUsuarioEjecutor,int idPagina)
             {
                 List<EnlaceInstitucion> enlaces = null; EnlaceInstitucion enlace;

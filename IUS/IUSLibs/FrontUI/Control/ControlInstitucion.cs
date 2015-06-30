@@ -34,6 +34,24 @@ namespace IUSLibs.FrontUI.Control
                 }
                 return telefonos;
             }
+            private List<EnlaceInstitucion> getEnlaceByInstitucion(int idInstitucion,string ip,int idPagina)
+            {
+                List<EnlaceInstitucion> enlaces = null;
+                try
+                {
+                    ControlEnlaceInstitucion controlEnlace = new ControlEnlaceInstitucion();
+                    enlaces = controlEnlace.sp_frontui_spFront_getEnlacesByInstitucion(idInstitucion, ip, idPagina);
+                }
+                catch (ErroresIUS)
+                {
+
+                }
+                catch (Exception)
+                {
+
+                }
+                return enlaces;
+            }
         #endregion
         #region "get"
             #region "frontend"
@@ -58,8 +76,10 @@ namespace IUSLibs.FrontUI.Control
                                     Pais pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
                                     idInstitucion = (int)row["idInstitucion"];
                                     List<TelefonoInstitucion> telefonos = this.getTelefonosByInstitucion(idInstitucion,ip,idPagina);
+                                    List<EnlaceInstitucion> enlaces = this.getEnlaceByInstitucion(idInstitucion, ip, idPagina);
                                     institucion = new Institucion(idInstitucion, row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
                                     institucion._telefonos = telefonos;
+                                    institucion._enlaces = enlaces;
                                     if (row["logo"] != DBNull.Value)
                                     {
                                         institucion._logo = (byte[])row["logo"];
