@@ -53,9 +53,10 @@
                                 </a>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <h5>Telefonos: </h5>
+                                
                                 @if (institucion._telefonos != null && institucion._telefonos.Count > 0)
                                 {
+                                    <h5>Telefonos: </h5>
                                     foreach (TelefonoInstitucion telefono in institucion._telefonos)
                                     {
                                         <a href="tel:+@telefono._telefono">
