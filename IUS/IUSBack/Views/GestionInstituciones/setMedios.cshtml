@@ -1,1 +1,50 @@
-﻿<h2>setMedios</h2>
+﻿@using IUSLibs.FrontUI.Entidades;
+@section estilosPersonalizados{
+    <!-- propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+    <script src="~/Scripts/Views/GestionInstituciones/SetMedios/script.js"></script>
+    <script src="~/Scripts/Views/GestionInstituciones/SetMedios/functions.js"></script>
+}
+@{
+    Institucion institucion = (Institucion)ViewBag.institucion;
+    string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+}
+<div class="row marginNull divInstitucionPrev">
+    @if (institucion._logo != null)
+    {
+        src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+    }
+    <img src="@src" />
+    <h2 class="titleInstitucion">@institucion._nombre</h2>
+</div>
+<div class="row marginNull">
+    <table class="table tbEnlaces">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Enlace</th>
+                <th>Texto enlace</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <input class="form-control txtEnlace" name="txtEnlace" />
+                </th>
+                <th>
+                    <input class="form-control txtTextoEnlace" name="txtTextoEnlace" />
+                </th>
+                <th>
+                    <button class="btn btnAgregar">Agregar</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>

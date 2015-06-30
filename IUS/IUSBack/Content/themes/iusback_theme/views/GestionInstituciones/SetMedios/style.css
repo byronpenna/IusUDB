@@ -1,0 +1,3 @@
+﻿.tbEnlaces thead tr th:first-child, .tbEnlaces tbody tr td:first-child{
+    display:none;
+}
