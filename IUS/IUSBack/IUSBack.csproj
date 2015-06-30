@@ -428,6 +428,7 @@
     <Content Include="Scripts\Views\GestionInstituciones\script.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetLogo\functions.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetLogo\script.js" />
+    <Content Include="Scripts\Views\GestionInstituciones\SetMedios\functions.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetMedios\script.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetTel\functions.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetTel\script.js" />
