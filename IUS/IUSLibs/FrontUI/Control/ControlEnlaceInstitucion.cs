@@ -52,6 +52,39 @@ namespace IUSLibs.FrontUI.Control
             }
         #endregion
         #region "set"
+            public bool sp_frontui_deleteEnlaceInstitucion(int idEnlace,int idUsuarioEjecutor,int idPagina)
+            {
+                bool estado = true;
+                SPIUS sp = new SPIUS("sp_frontui_deleteEnlaceInstitucion");
+
+                sp.agregarParametro("idEnlace",idEnlace);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
+            }
             public EnlaceInstitucion sp_frontui_insertEnlaceInstituciones(EnlaceInstitucion enlaceAgregar,int idUsuarioEjecutor,int idPagina)
             {
                 EnlaceInstitucion enlace = null;
