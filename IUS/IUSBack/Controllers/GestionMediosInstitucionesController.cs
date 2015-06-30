@@ -31,7 +31,10 @@ namespace IUSBack.Controllers
                     Usuario usuarioSession  = this.getUsuarioSesion();
                     Permiso permisos        = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     ViewBag.titleModulo     = "Medios electronicos instituciones";
+                    
                     Institucion institucion = this._institucionModel.sp_frontui_getInstitucionById(id, usuarioSession._idUsuario, this._idPagina);
+                    
+                    ViewBag.enlaces     = this._model.sp_frontui_getEnlacesByInstitucion(institucion._idInstitucion,usuarioSession._idUsuario,this._idPagina);
                     ViewBag.institucion = institucion;
                     ViewBag.usuario     = usuarioSession;
                     ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);

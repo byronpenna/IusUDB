@@ -10,7 +10,8 @@
     <script src="~/Scripts/Views/GestionInstituciones/SetMedios/functions.js"></script>
 }
 @{
-    Institucion institucion = (Institucion)ViewBag.institucion;
+    Institucion institucion         = (Institucion)ViewBag.institucion;
+    List<EnlaceInstitucion> enlaces = (List<EnlaceInstitucion>)ViewBag.enlaces;
     string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
 }
 <div class="row marginNull divInstitucionPrev">
@@ -46,7 +47,25 @@
             </tr>
         </thead>
         <tbody>
-
+            @if (enlaces != null && enlaces.Count > 0)
+            {
+                foreach (EnlaceInstitucion enlace in enlaces)
+                {
+                    <tr>
+                        <td>
+                            <input type="hidden" class="txtHdIdEnlace" value="@enlace._idEnlace"/>
+                        </td>
+                        <td>@enlace._enlace</td>
+                        <td>@enlace._nombreEnlace</td>
+                        <td>
+                            <button class="btn btnEliminar">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>        
+                }
+                
+            }
         </tbody>
     </table>
 </div>

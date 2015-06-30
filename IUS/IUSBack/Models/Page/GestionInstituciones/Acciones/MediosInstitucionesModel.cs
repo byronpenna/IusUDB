@@ -17,7 +17,21 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
         #endregion
         #region "funciones"
             #region "get"
-                
+                public List<EnlaceInstitucion> sp_frontui_getEnlacesByInstitucion(int idInstitucion, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlEnlace.sp_frontui_getEnlacesByInstitucion(idInstitucion, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                } 
             #endregion
             #region "set"
                 public EnlaceInstitucion sp_frontui_insertEnlaceInstituciones(EnlaceInstitucion enlaceAgregar, int idUsuarioEjecutor, int idPagina)
