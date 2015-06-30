@@ -10,27 +10,46 @@ using System.Web;
     using IUSLibs.FrontUI.Control;
 namespace IUSBack.Models.Page.GestionInstituciones.Acciones
 {
-    public class GestionTelefonoModel
+    public class GestionTelefonoModel:PadreModel
     {
         #region "propiedades"
             private ControlTelefonoInstitucion _controlTelefono;
         #endregion
         #region "funciones"
-            public TelefonoInstitucion sp_frontui_insertTelInstitucion(TelefonoInstitucion telefonoIngresar, int idUsuarioEjecutor, int idPagina)
-            {
-                try
+            #region "get"
+                public List<TelefonoInstitucion> sp_frontui_getTelInstitucionByInstitucion(int idInstitucion, int idUsuarioEjecutor,int idPagina)
                 {
-                    return this._controlTelefono.sp_frontui_insertTelInstitucion(telefonoIngresar, idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        return this._controlTelefono.sp_frontui_getTelInstitucionByInstitucion(idInstitucion, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
+            #endregion
+            #region "set"
+                public TelefonoInstitucion sp_frontui_insertTelInstitucion(TelefonoInstitucion telefonoIngresar, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+                    try
+                    {
+                        return this._controlTelefono.sp_frontui_insertTelInstitucion(telefonoIngresar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
+            #endregion
         #endregion
         #region "constructores"
             public GestionTelefonoModel()

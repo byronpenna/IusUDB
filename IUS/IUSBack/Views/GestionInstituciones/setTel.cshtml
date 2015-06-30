@@ -10,7 +10,9 @@
     <script src="~/Scripts/Views/GestionInstituciones/SetTel/functions.js"></script>
 }
 @{
-    Institucion institucion = (Institucion)ViewBag.institucion;
+    Institucion                 institucion = (Institucion)ViewBag.institucion;
+    List<TelefonoInstitucion>   telefonos   = (List<TelefonoInstitucion>)ViewBag.telefonos;
+    
     string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
 }
 <div class="row marginNull divInstitucionPrev">
@@ -48,7 +50,28 @@
             </tr>
         </thead>
         <tbody>
-
+            @if (telefonos != null && telefonos.Count > 0)
+            {
+                foreach (TelefonoInstitucion telefono in telefonos)
+                {
+                    <tr>
+                        <td>
+                            <input type="hidden" class="txtHdIdTel" name="txtHdIdTel" value="@telefono._idTelefono"/>
+                        </td>
+                        <td>@telefono._telefono</td>
+                        <td>@telefono._textoTelefono</td>
+                        <td>
+                            <button class="btn">
+                                Eliminar
+                            </button>
+                            <button class="btn">
+                                Editar
+                            </button>
+                        </td>
+                    </tr>    
+                }
+                
+            }
         </tbody>
     </table>
 </div>

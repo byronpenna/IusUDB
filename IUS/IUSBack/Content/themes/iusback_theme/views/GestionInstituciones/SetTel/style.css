@@ -1,4 +1,4 @@
-﻿.tbTelefonos thead tr th:first-child, .tbTelefonos thead tr td:first-child{
+﻿.tbTelefonos thead tr th:first-child, .tbTelefonos tbody tr td:first-child{
     display:none;
 }
 .divInstitucionPrev{

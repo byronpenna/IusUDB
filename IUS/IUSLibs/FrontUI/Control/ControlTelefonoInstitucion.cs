@@ -16,6 +16,47 @@ namespace IUSLibs.FrontUI.Control
     public class ControlTelefonoInstitucion:PadreLib
     {
         #region "get"
+            public List<TelefonoInstitucion> sp_frontui_getTelInstitucionByInstitucion(int idInstitucion, int idUsuarioEjecutor,int idPagina)
+            {
+                List<TelefonoInstitucion> telefonos = null; TelefonoInstitucion telefono;
+                SPIUS sp = new SPIUS("sp_frontui_getTelInstitucionByInstitucion");
+                sp.agregarParametro("idInstitucion", idInstitucion);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            telefonos = new List<TelefonoInstitucion>();
+                            foreach (DataRow row in tb[0].Rows)
+                            {
+                                telefono = new TelefonoInstitucion((int)row["idTelefono"], row["telefono"].ToString(), row["texto_telefono"].ToString(), (int)row["id_institucion_fk"]);
+                                telefonos.Add(telefono);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return telefonos;
+            }
+        #endregion
+        #region "set"
             public TelefonoInstitucion sp_frontui_insertTelInstitucion(TelefonoInstitucion telefonoIngresar,int idUsuarioEjecutor,int idPagina)
             {
                 TelefonoInstitucion telefono = null;

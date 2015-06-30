@@ -56,36 +56,6 @@ namespace IUSBack.Controllers
                 }
                 return View();
             }
-            public ActionResult setTel(int id=-1)
-            {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
-                if (seguridadInicial != null)
-                {
-                    return seguridadInicial;
-                }
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    Institucion institucion = this._model.sp_frontui_getInstitucionById(id, usuarioSession._idUsuario, this._idPagina);
-                    ViewBag.institucion = institucion;
-                    ViewBag.titleModulo = "Telefonos de Instituciones";
-                    ViewBag.usuario = usuarioSession;
-                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-
-                }
-                catch (ErroresIUS x)
-                {
-                    ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
-                    //return RedirectToAction("Unhandled", "Errors");
-                }
-                catch (Exception x)
-                {
-                    return RedirectToAction("Unhandled", "Errors");
-                }
-                return View();
-            }
             public ActionResult SetLogo(int id= -1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);

@@ -14,8 +14,42 @@ namespace IUSBack.Controllers
     public class GestionTelefonosController : PadreController
     {
         #region "propiedades"
-            public int                  _idPagina = (int)paginas.Instituciones;
-            public GestionTelefonoModel _model;
+            public int                          _idPagina = (int)paginas.Instituciones;
+            public GestionTelefonoModel         _model;
+            public GestionInstitucionesModel    _institucionModel;
+        #endregion
+        #region "resultados url"
+            public ActionResult Index(int id = -1)
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    Institucion institucion = this._institucionModel.sp_frontui_getInstitucionById(id, usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.institucion = institucion;
+                    ViewBag.telefonos = this._model.sp_frontui_getTelInstitucionByInstitucion(institucion._idInstitucion,usuarioSession._idUsuario,this._idPagina);
+                    ViewBag.titleModulo = "Telefonos de Instituciones";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View("~/Views/GestionInstituciones/setTel.cshtml");
+            }
         #endregion
         #region "acciones ajax"
             public ActionResult sp_frontui_insertTelInstitucion()
@@ -24,7 +58,6 @@ namespace IUSBack.Controllers
                 try
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
-
                     frm = this.getAjaxFrm();
                     if (usuarioSession != null && frm != null)
                     {
@@ -58,6 +91,7 @@ namespace IUSBack.Controllers
             public GestionTelefonosController()
             {
                 this._model = new GestionTelefonoModel();
+                this._institucionModel = new GestionInstitucionesModel();
             }
         #endregion
 
