@@ -34,6 +34,21 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                 }
             #endregion
             #region "do"
+                public TelefonoInstitucion sp_frontui_editTelInstitucion(TelefonoInstitucion telefonoEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlTelefono.sp_frontui_editTelInstitucion(telefonoEditar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_frontui_deleteTelInstitucion(int idTel, int idUsuarioEjecutor, int idPagina)
                 {
                     try

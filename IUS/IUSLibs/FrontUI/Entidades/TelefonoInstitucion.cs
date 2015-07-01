@@ -14,6 +14,12 @@ namespace IUSLibs.FrontUI.Entidades
             public Institucion  _institucion;
         #endregion
         #region "constructores"
+            public TelefonoInstitucion(int idTelefono, string telefono, string textoTelefono)
+            {
+                this._idTelefono = idTelefono;
+                this._telefono = telefono;
+                this._textoTelefono = textoTelefono;
+            }
             public TelefonoInstitucion(int idTelefono, string telefono, string textoTelefono, int idInstitucion)
             {
                 this._idTelefono = idTelefono;
