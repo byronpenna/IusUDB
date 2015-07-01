@@ -8,13 +8,12 @@
             })
             $(document).on("click", ".btnEditarTel", function () {
                 trTel = $(this).parents("tr");
-                //table = $(".tbInstituciones").DataTable();
                 btnEditarTel(trTel);
             })
             $(document).on("click", ".btnAgregarTel", function () {
                 seccion = $(this).parents("tr");
                 frm = serializeSection(seccion);
-                btnAgregarTel(frm);
+                btnAgregarTel(frm,seccion);
             });
             $(document).on("click", ".btnEliminarTel", function () {
                 seccion = $(this).parents("tr");

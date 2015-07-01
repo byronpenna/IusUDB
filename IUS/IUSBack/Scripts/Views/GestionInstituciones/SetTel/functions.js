@@ -1,10 +1,43 @@
 ﻿// genericas 
-    function getTrTel() {
-        tr = '\
+    function getTrTel(telefono) {
+        tr = "\
             <tr>\
-                <td\
+                <td>\
+                    <input type='hidden' class='txtHdIdTel' name='txtHdIdTel' value='"+telefono._idTelefono+"'/>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <input type='tel' name='txtTelefonoEdit' class='form-control txtTelefonoEdit' />\
+                    </div>\
+                    <div class='normalMode tdTelefono'>"+telefono._telefono+"</div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <input type='tel' name='txtEtiquetaEdit' class='form-control txtEtiquetaEdit' />\
+                    </div>\
+                    <div class='normalMode tdTextoTelefono'>"+telefono._textoTelefono+"</div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <button class='btn btnActualizar'>\
+                            Actualizar\
+                        </button>\
+                        <button class='btn'>\
+                            Cancelar\
+                        </button>\
+                    </div>\
+                    <div class='normalMode'>\
+                        <button class='btn btnEliminarTel'>\
+                            Eliminar\
+                        </button>\
+                        <button class='btn btnEditarTel'>\
+                            Editar\
+                        </button>\
+                    </div>\
+                </td>\
             </tr>\
-        ';
+        ";
+        return tr;
     }
     function fillInputsEdit(trTel,tel,callback) {
         trTel.find(".txtTelefonoEdit").val(tel.telefono);
@@ -43,9 +76,13 @@
             }
         })
     }
-    function btnAgregarTel(frm) {
+    function btnAgregarTel(frm, seccion) {
         actualizarCatalogo(RAIZ + "/GestionTelefonos/sp_frontui_insertTelInstitucion", frm, function (data) {
             console.log(data);
             /*Llenar tablita*/
+            tr = getTrTel(data.telefono);
+            //$(".tbTelefonos").dataTable().fnAddTr($(tr)[0]);
+            $(".tbodyTelefonos").prepend(tr);
+            clearTr(seccion);
         });
     }

@@ -55,9 +55,23 @@
                         <td>
                             <input type="hidden" class="txtHdIdEnlace" name="txtHdIdEnlace" value="@enlace._idEnlace" />
                         </td>
-                        <td>@enlace._enlace</td>
-                        <td>@enlace._nombreEnlace</td>
                         <td>
+                            <div class="editMode hidden">
+                                <input class="form-control txtEnlace" name="txtEnlace" />
+                            </div>
+                            <div class="normalMode tdEnlace">@enlace._enlace</div>
+                        
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <input class="form-control txtTextoEnlaceEdit" name="txtTextoEnlaceEdit" />
+                            </div>
+                            <div class="normalMode tdNombreEnlace">@enlace._nombreEnlace</div>
+                        </td>
+                        <td>
+                            <button class="btnEditar">
+                                Actualizar
+                            </button>
                             <button class="btn btnEliminar">
                                 Eliminar
                             </button>
