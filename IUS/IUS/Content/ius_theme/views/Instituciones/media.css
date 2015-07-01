@@ -1,1 +1,42 @@
-﻿
+﻿/* Maxs */
+    @media (max-width:700px) {
+        .tituloAyuda {
+            font-size: 1.8em;
+        }
+        .divContinentes{
+            text-align:center;
+        }
+        .divContinentes{
+            width:90%;
+            margin: 0 auto;
+            margin-top:10%;
+            margin-bottom:8%;
+        }
+        .continente{
+            width:100%;
+            margin-bottom:3%;
+        }
+        .nombreContinente{
+            visibility:visible;
+        }
+    }
+/*  Standars */
+    @media (min-width: 250px) and (max-width:400px) {
+        .tituloAyuda {
+            font-size: 1.5em;
+        }
+        .continente img{
+            width:80%;
+        }
+    }
+    @media (min-width: 500px) and (max-width:600px) {
+        body{
+            background:pink;
+        }
+        
+    }
+    @media (min-width: 600px) and (max-width:700px) {
+        .continente img{
+            width:50%;
+        }
+    }
