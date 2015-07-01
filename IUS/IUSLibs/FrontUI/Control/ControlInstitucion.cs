@@ -173,6 +173,40 @@ namespace IUSLibs.FrontUI.Control
         #region "acciones"
 
             #region "backend"
+                public Institucion sp_frontui_editInstitucion(Institucion institucionEditar,int idUsuarioEjecutor,int idPagina)
+                {
+                    Institucion institucionEditada = null; Pais pais;
+                    SPIUS sp = new SPIUS("sp_frontui_insertInstitucion");
+
+                    sp.agregarParametro("nombre", institucionEditar._nombre);
+                    sp.agregarParametro("direccion", institucionEditar._direccion);
+                    sp.agregarParametro("idPais", institucionEditar._pais._idPais);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
+                                institucionEditada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
+
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return institucionEditada;
+                }
                 public bool sp_frontui_setLogoInstitucion(Institucion institucionActualizar,int idUsuarioEjecutor,int idPagina)
                 {
                     bool estado = false;

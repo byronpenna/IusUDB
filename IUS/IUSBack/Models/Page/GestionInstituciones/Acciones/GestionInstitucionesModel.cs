@@ -19,7 +19,22 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
         #endregion
         #region "funciones"
             #region "get"
-            public Institucion sp_frontui_getInstitucionById(int idInstitucion, int idUsuarioEjecutor, int idPagina)
+                public List<Pais> sp_frontui_getPaises()
+                {
+                    try
+                    {
+                        return this._controlPais.sp_frontui_getPaises();
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public Institucion sp_frontui_getInstitucionById(int idInstitucion, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
@@ -59,6 +74,21 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                 }    
             #endregion
             #region "acciones"
+                public Institucion sp_frontui_editInstitucion(Institucion institucionEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlInstitucion.sp_frontui_editInstitucion(institucionEditar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_frontui_setLogoInstitucion(Institucion institucionActualizar,int idUsuarioEjecutor,int idPagina)
                 {
                     try

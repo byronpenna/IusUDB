@@ -8,6 +8,18 @@
             $(".cbPais").chosen({ no_results_text: "Ese pais no existe", width: '100%' });
     // eventos 
         // click    
+            
+            $(document).on("click", ".btnActualizarInstitucion", function () {
+                seccion = $(this).parents("tr");
+                frm = serializeSection(seccion);
+                btnActualizarInstitucion(frm,seccion);
+            })
+            $(document).on("click", ".btnEditar", function () {
+                trInstitucion = $(this).parents("tr");
+                //table = $(".tbInstituciones").DataTable();
+                btnEditar(trInstitucion);
+                
+            })
             $(document).on("click", ".btnDeleteInstitucion", function () {
                 //var x = confirm("¿?")
                 seccion = $(this).parents("tr");
