@@ -7,7 +7,8 @@
     <script src="~/Scripts/views/Instituciones/functions.js"></script>
 }
 <h2 class="tituloAyuda">
-    Encuentre nuestras instituciones por Continente
+    <!--Encuentre nuestras instituciones por Continente-->
+    @ViewData["titulo-busqueda-institucion"]
 </h2>
 <div class="row marginNull divContinentes">
     <a href="@Url.Action("VerInstituciones", "Instituciones", new { id=2 })">
