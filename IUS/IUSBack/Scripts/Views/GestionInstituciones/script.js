@@ -16,7 +16,8 @@
                 btnDeleteInstitucion(frm,seccion);
             });
             $(document).on("click", ".btnAddInstitucion", function () {
-                frm = serializeSection($(".trFrmInstituciones"));
-                btnAddInstitucion(frm);
+                seccion = $(".trFrmInstituciones");
+                frm = serializeSection(seccion);
+                btnAddInstitucion(frm,seccion);
             });
 });

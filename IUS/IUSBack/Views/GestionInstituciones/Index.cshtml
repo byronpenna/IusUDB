@@ -97,11 +97,11 @@
                                 <td>
                                     <button class="btn">Editar</button>
                                     <button class="btn btnDeleteInstitucion">Eliminar</button>
-                                    <a href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })" class="btn">
+                                    <a class="btn btnFromlink " href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })" class="btn">
                                         Logo
                                     </a>
-                                    <a href="@Url.Action("Index", "GestionTelefonos", new { id=institucion._idInstitucion})">Telefonos</a>
-                                    <a href="@Url.Action("Index","GestionMediosInstituciones",new {id=institucion._idInstitucion})">Medios Electronicos</a>
+                                    <a class="btn btnFromlink" href="@Url.Action("Index", "GestionTelefonos", new { id=institucion._idInstitucion})">Telefonos</a>
+                                    <a class="btn btnFromlink" href="@Url.Action("Index","GestionMediosInstituciones",new {id=institucion._idInstitucion})">Medios Electronicos</a>
                                 </td>
                             </tr>
                         }

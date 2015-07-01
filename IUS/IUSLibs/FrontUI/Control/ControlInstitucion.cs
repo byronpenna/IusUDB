@@ -226,7 +226,7 @@ namespace IUSLibs.FrontUI.Control
                 }
                 public Institucion sp_frontui_insertInstitucion(Institucion institucionAgregar,int idUsuarioEjecutor,int idPagina)
                 {
-                    Institucion institucionAgregada = null;
+                    Institucion institucionAgregada = null; Pais pais;
                     SPIUS sp = new SPIUS("sp_frontui_insertInstitucion");
 
                     sp.agregarParametro("nombre", institucionAgregar._nombre);
@@ -242,7 +242,8 @@ namespace IUSLibs.FrontUI.Control
                             if (tb[1].Rows.Count > 0)
                             {
                                 DataRow row = tb[1].Rows[0];
-                                institucionAgregada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_pais_fk"],(bool)row["estado"]);
+                                pais = new Pais( (int)row["id_pais_fk"],row["pais"].ToString());
+                                institucionAgregada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(),pais,(bool)row["estado"]);
 
                             }
                         }

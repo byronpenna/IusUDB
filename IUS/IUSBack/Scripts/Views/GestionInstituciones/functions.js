@@ -26,12 +26,14 @@
             }
         });
     }
-    function btnAddInstitucion(frm) {
+    function btnAddInstitucion(frm, seccion) {
+        
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_insertInstitucion", frm, function (data) {
             console.log(data);
             if (data.estado) {
                 tr = getTrInstituciones(data.institucion);
                 $(".tbInstituciones").dataTable().fnAddTr($(tr)[0]);
+                clearTr(seccion);
             }
         })
     }
