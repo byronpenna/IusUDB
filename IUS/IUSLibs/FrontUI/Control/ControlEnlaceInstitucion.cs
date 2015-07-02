@@ -87,6 +87,40 @@ namespace IUSLibs.FrontUI.Control
             }
         #endregion
         #region "set"
+            public EnlaceInstitucion sp_frontui_editEnlaceInstitucion(EnlaceInstitucion enlaceEditar,int idUsuarioEjecutor,int idPagina)
+            {
+                EnlaceInstitucion enlaceEditado = null; 
+                SPIUS sp = new SPIUS("sp_frontui_editEnlaceInstitucion");
+                
+                sp.agregarParametro("enlace", enlaceEditar._enlace);
+                sp.agregarParametro("nombreEnlace", enlaceEditar._nombreEnlace);
+                sp.agregarParametro("idEnlace", enlaceEditar._idEnlace);
+
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            DataRow row = tb[1].Rows[0];
+                            enlaceEditado = new EnlaceInstitucion((int)row["idEnlace"], row["enlace"].ToString(), row["nombre_enlace"].ToString(), (int)row["id_institucion_fk"]);
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return enlaceEditado;
+            }
             public bool sp_frontui_deleteEnlaceInstitucion(int idEnlace,int idUsuarioEjecutor,int idPagina)
             {
                 bool estado = true;
@@ -141,6 +175,7 @@ namespace IUSLibs.FrontUI.Control
                         {
                             DataRow row = tb[1].Rows[0];
                             enlace = new EnlaceInstitucion((int)row["idEnlace"],row["enlace"].ToString() ,row["nombre_enlace"].ToString(), (int)row["id_institucion_fk"]);
+
                         }
                     }
                 }

@@ -22,6 +22,13 @@ namespace IUSLibs.FrontUI.Entidades
                 Institucion institucion = new Institucion(idInstitucion);
                 this._institucion       = institucion;
             }
+            // para editar
+            public EnlaceInstitucion(int idEnlace, string enlace, string nombreEnlace)
+            {
+                this._idEnlace = idEnlace;
+                this._enlace = enlace;
+                this._nombreEnlace = nombreEnlace;
+            }
             // para agregar
             public EnlaceInstitucion(string enlace,string nombreEnlace,int idInstitucion)
             {

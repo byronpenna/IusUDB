@@ -34,6 +34,21 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                 } 
             #endregion
             #region "set"
+                public EnlaceInstitucion sp_frontui_editEnlaceInstitucion(EnlaceInstitucion enlaceEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlEnlace.sp_frontui_editEnlaceInstitucion(enlaceEditar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_frontui_deleteEnlaceInstitucion(int idEnlace,int idUsuarioEjecutor,int idPagina)
                 {
                     try
