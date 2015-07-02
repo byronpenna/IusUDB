@@ -10,19 +10,25 @@
                 files = $("#flArchivos")[0].files;
                 formulariohtml = $(this);
                 frm = { txtHdIdCarpetaPadre: $(".txtHdIdCarpetaPadre").val() };
-                console.log(files);
+                
                 e.preventDefault();
-                cn = 0;
-                totalFiles = files.length;
-                $(".imgCargando").find("img").removeClass("hidden");
-                $(".tbArchivos").empty();
-                $(".porcentajeCarga").empty();
-                $.each(files, function (file) {
-                    frm.cn = cn;
-                    data = getIndividualFormData(files[cn], frm);
-                    frmSubir(data, formulariohtml.attr("action"),totalFiles);
-                    cn++;
-                });
+                
+                if (frm.txtHdIdCarpetaPadre != -1 || frm.txtHdIdCarpetaPadre != '-1') {
+                    cn = 0;
+                    totalFiles = files.length;
+                    $(".imgCargando").find("img").removeClass("hidden");
+                    $(".tbArchivos").empty();
+                    $(".porcentajeCarga").empty();
+                    $.each(files, function (file) {
+                        frm.cn = cn;
+                        data = getIndividualFormData(files[cn], frm);
+                        frmSubir(data, formulariohtml.attr("action"), totalFiles);
+                        cn++;
+                    });
+                    
+                } else {
+                    alert("No se pueden subir ficheros a este directorio");
+                }
                 /**/
                 
                 
@@ -59,7 +65,7 @@
                         idArchivo:      seccion.find(".txtHdIdArchivo").val(),
                         nombreArchivo:  seccion.find(".txtNombreCarpeta").val()
                     }
-                    console.log("formulario a enviar", frm);
+                    
                     btnEditarArchivo(frm);
                 })
             // herramientas carpetas
@@ -76,7 +82,9 @@
                 })
             // subir archivos 
                 $(document).on("click", ".divUpload", function (e) {
-                    console.log("ocultar");
+                    if ($(".txtHdEstadoUpload").val() == 1 || $(".txtHdEstadoUpload").val() == 1) {
+                        window.location = RAIZ + "Repositorio/index/" + $(".txtHdIdCarpetaPadre").val();
+                    }
                     $(this).fadeOut();
                 })
                 $(document).on("click", ".contenedorUpload", function (e) {
@@ -89,7 +97,7 @@
                             idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
                             nombre: seccion.find(".txtNombreCarpetaSave").val()
                     }
-                    console.log("formulario a enviar", frm);
+                    
                     btnGuardarCarpeta(frm,seccion);
                 });
                 $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
@@ -113,7 +121,7 @@
                         txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
                         nombre: folder.find(".txtNombreCarpeta").val()
                     }
-                    console.log("Formulario a enviar", frm);
+                    
                     btnEditarCarpeta(frm, folder);
                 });
                 $(document).on("click", ".btnCancelarEdicionCarpeta", function () {
@@ -131,6 +139,6 @@
                     seccion = $(this).parents(".detalleCarpeta");
                     nombre = $(this).text();
                     ttlNombreCarpeta(seccion, nombre);
-                    console.log("primero aqui");
+                    
                 })
 })

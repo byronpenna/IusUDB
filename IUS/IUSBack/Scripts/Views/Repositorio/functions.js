@@ -140,9 +140,14 @@
             });
         }
     // subir archivo 
-        function frmSubir(data, url,totalFiles) {
+        function frmSubir(data, url, totalFiles) {
+            var estadoIndividual = false;
             accionAjaxWithImage(url, data, function (data) {
-                console.log("respuesta", data);            
+                console.log("respuesta", data);
+                if (data.estado && !estadoIndividual) {
+                    estadoIndividual = true;
+                    $(".txtHdEstadoUpload").val("1");
+                }
                 archivo = data.archivo;
                 tr = getTrArchivo(archivo, data.estado);
                 $(".tbArchivos").append(tr);
