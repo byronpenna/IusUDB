@@ -22,9 +22,11 @@
         <li class="btnTab" target="#tab-2">
             Compartidos
         </li>
-        <li class="btnTab" target="#tab-3">
-            Publicos
-        </li>
+        <a href="@Url.Action("Index","RepositorioPublico")">
+            <li class="btnTab" target="#tab-3">
+                Publicos
+            </li>
+        </a>
     </ul>    
 }
 <div class="modal divUpload">
@@ -112,7 +114,7 @@
 
 <div id="tab-1" class="row tab marginNull">
     <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
-    <div class="folders">
+    <div class="folders col-lg-8" >
         @if (carpetas != null && carpetas.Count > 0)
         {
             foreach (Carpeta carpeta in carpetas)
@@ -158,6 +160,9 @@
                 <div class="col-lg-2 folder">
                     <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
                     <div class="row divHerramientasIndividual">
+                        <a href="#" class="icoCompartirFile" title="Compartir">
+                            <i class="fa fa-share"></i>
+                        </a>
                         <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
                             <i class="fa fa-download"></i>
                         </a>
@@ -221,7 +226,21 @@
         </div>
         -->
     </div>
-    
+    <div class="shareSection col-lg-4 " >
+        <h3 class="text-center">Publico</h3>
+        <h4 class="nombreFileCompartir"></h4>
+        <div class="row divCompartirOpciones marginNull" >
+            <div class="col-lg-8">
+                <input placeholder="Nombre publico" class="txtNombreFileCompartir form-control" />
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btnCompartir">Compartir aqui</button>
+            </div>
+        </div>
+        <div class="row divCarpetasOpciones marginNull">
+
+        </div>
+    </div>
 </div>
 <div id="tab-2" class="row hidden tab marginNull">
     Compartidos

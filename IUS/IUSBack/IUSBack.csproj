@@ -196,6 +196,7 @@
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
     <Compile Include="Controllers\RepositorioController.cs" />
+    <Compile Include="Controllers\RepositorioPublicoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,6 +277,8 @@
     <Content Include="Content\themes\iusback_theme\views\Login\style.css" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\media.css" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\RepositorioPublico\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\RepositorioPublico\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\style.css" />
     <Content Include="Content\third-party\bootstrap\css\bootstrap-theme.css" />
@@ -438,6 +441,8 @@
     <Content Include="Scripts\Views\GestionRoles\script.js" />
     <Content Include="Scripts\Views\GestionUsuarios\functions.js" />
     <Content Include="Scripts\Views\GestionUsuarios\script.js" />
+    <Content Include="Scripts\Views\RepositorioPublico\functions.js" />
+    <Content Include="Scripts\Views\RepositorioPublico\script.js" />
     <Content Include="Scripts\Views\Repositorio\functions.js" />
     <Content Include="Scripts\Views\Repositorio\script.js" />
     <Content Include="Web.config" />
@@ -561,6 +566,7 @@
     <Content Include="Views\GestionInstituciones\SetLogo.cshtml" />
     <Content Include="Views\GestionInstituciones\setTel.cshtml" />
     <Content Include="Views\GestionInstituciones\setMedios.cshtml" />
+    <Content Include="Views\RepositorioPublico\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,8 +1,9 @@
 ﻿$(document).ready(function () {
     // eventos 
+    /*
     $(window).bind("popstate", function (e) {
         console.log("set back");
-    })
+    })*/
         
         // submit 
             $(document).on("submit", "#frmSubir", function (e) {
@@ -34,8 +35,19 @@
                 
             })
         // click 
-                
-            $(document).on("click", ".cuadritoCarpeta", function () {
+            // repositorio compartido
+                    $(document).on("click", ".icoCompartirFile", function (e) {
+                        e.preventDefault();
+                        folder = $(this).parents(".folder");
+                        initShareFile(folder);
+
+                    })
+                    $(document).on("click", ".btnCompartir", function () {
+
+                    })
+            // repositorio privado        
+
+                $(document).on("click", ".cuadritoCarpeta", function () {
                 /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
                 cuadritoCarpeta(frm);*/
                 var estado = $(this).attr("id");
@@ -133,7 +145,6 @@
                     e.stopPropagation();
                 })
         // doble click
-
                 $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
                     e.cancelBubble = true;
                     seccion = $(this).parents(".detalleCarpeta");

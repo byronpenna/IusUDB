@@ -86,6 +86,11 @@
                 </div>";
         return div;
     }
+    function initShareFile(folder) {
+        nombreArchivo = folder.find(".ttlNombreCarpeta").text();
+        $(".nombreFileCompartir").empty().append(nombreArchivo);
+        $(".txtNombreFileCompartir").val(nombreArchivo);
+    }
 // scripts 
     // directorio
         function spIrBuscar(frm) {

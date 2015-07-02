@@ -1,0 +1,26 @@
+﻿@section estilosPersonalizados{
+    <!-- Propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- Propios -->
+    <script src="~/Scripts/Views/RepositorioPublico/script.js"></script>
+    <script src="~/Scripts/Views/RepositorioPublico/functions.js"></script>
+}
+@section tabs{
+    <ul>
+        <a href="@Url.Action("Index","Repositorio")">
+            <li class="btnTab" target="#tab-1">
+                Personales
+            </li>
+        </a>
+        <li class="btnTab " target="#tab-2">
+            Compartidos
+        </li>
+        <li class="btnTab tabActive" target="#tab-3">
+            Publicos
+        </li>
+    </ul>
+}
+Repositorio publico
