@@ -1,7 +1,13 @@
 ﻿$(document).ready(function () {
     // eventos 
         // clicks 
-    
+            $(document).on("click", ".btnCancelar", function () {
+                var x = confirm("¿Esta seguro de cancelar edicion?");
+                if (x) {
+                    trMedio = $(this).parents("tr");
+                    controlesEdit(false, trMedio);
+                }
+            })
             $(document).on("click", ".btnActualizar", function () {
                 seccion = $(this).parents("tr");
                 frm = serializeSection(seccion);
