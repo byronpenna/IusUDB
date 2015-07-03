@@ -1,11 +1,13 @@
 ﻿@section estilosPersonalizados{
     <!-- Propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/style.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/media.css" />
 }
 @section scriptsPersonalizados{
     <!-- Propios -->
     <script src="~/Scripts/Views/RepositorioPublico/script.js"></script>
+    <script src="~/Scripts/Views/Repositorio/universales/functions.js"></script>
     <script src="~/Scripts/Views/RepositorioPublico/functions.js"></script>
 }
 @section tabs{
@@ -23,4 +25,56 @@
         </li>
     </ul>
 }
-Repositorio publico
+<div class="row marginNull rowHerramientas">
+    <div class="col-lg-4">
+
+        <label for="txtDireccion">Ruta</label>
+        <div class="input-group">
+            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="" />
+            <span class="input-group-addon spIrBuscar">Ir</span>
+        </div>
+
+    </div>
+    <div class="col-lg-4 seccionHerramientas">
+        <label>Herramientas</label>
+
+        <div class="accionesDiv form-control inputBackModal">
+            <a href="#" class="ico icoSubirFichero" title="Subir fichero">
+                <i class="fa fa-upload"></i>
+            </a>
+            <a href="#" class="ico" title="Editar">
+                <i class="fa fa-times"></i>
+            </a>
+            <a href="#" class="ico" title="Editar">
+                <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a href="#" class="ico" title="Compartir">
+                <i class="fa fa-share"></i>
+            </a>
+            <a href="#" class="ico" title="Publicar website">
+                <i class="fa fa-globe"></i>
+            </a>
+            <a href="#" class="ico" title="Descargar">
+                <i class="fa fa-download"></i>
+            </a>
+            <a href="#" class="ico icoNuevaCarpeta" title="Nueva carpeta">
+                <i class="fa fa-folder"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <label>Busqueda</label>
+        <div class="input-group">
+            <input class="form-control txtBusqueda inputBackModal" name="txtBusqueda" placeholder="Buscar en carpeta" />
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row marginNull">
+    <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+    <div class="folders col-lg-8">
+
+    </div>
+</div>

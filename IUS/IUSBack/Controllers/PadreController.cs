@@ -21,7 +21,8 @@ namespace IUSBack.Controllers
             {
                 usuarios = 3,gestionRoles = 5,
                 gestionPersonas=4,gestionIdiomaWebsite = 7,configuracionFront = 8,
-                Eventos = 9, Noticias = 10, Repositorio = 11, Instituciones = 12
+                Eventos = 9, Noticias = 10, Repositorio = 11, Instituciones = 12,
+                RepositorioPublico = 13
             }
             protected JavaScriptSerializer _jss;
             protected JavaScriptSerializer _jssmax;

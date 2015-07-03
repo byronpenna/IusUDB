@@ -120,9 +120,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REPO\Control\ControlArchivo.cs" />
     <Compile Include="REPO\Control\ControlCarpeta.cs" />
+    <Compile Include="REPO\Control\Publico\ControlCarpetaPublica.cs" />
     <Compile Include="REPO\Entidades\Archivo.cs" />
+    <Compile Include="REPO\Entidades\Publico\ArchivoPublico.cs" />
     <Compile Include="REPO\Entidades\Carpeta.cs" />
     <Compile Include="REPO\Entidades\ExtensionArchivo.cs" />
+    <Compile Include="REPO\Entidades\Publico\CarpetaPublica.cs" />
     <Compile Include="REPO\Entidades\TipoArchivo.cs" />
     <Compile Include="SEC\Control\ControlPermiso.cs" />
     <Compile Include="SEC\Control\ControlPersona.cs" />
