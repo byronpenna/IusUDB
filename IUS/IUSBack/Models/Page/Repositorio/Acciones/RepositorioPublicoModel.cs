@@ -23,8 +23,25 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             }
         #endregion
         #region "funciones"
+            #region "get"
+                public List<CarpetaPublica> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlCarpetaPublica.sp_repo_getRootFolderPublico(idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+            #endregion
             #region "set"
-        public CarpetaPublica sp_repo_insertCarpetaPublica(CarpetaPublica carpetaPublicaInsert, int idUsuarioEjecutor, int idPagina)
+                public CarpetaPublica sp_repo_insertCarpetaPublica(CarpetaPublica carpetaPublicaInsert, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {

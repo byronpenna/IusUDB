@@ -40,6 +40,7 @@ namespace IUSBack.Controllers
                     ViewBag.usuario = usuarioSession;
                     ViewBag.permisos = permisos;
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.carpetas = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
                     ViewBag.idCarpetaActual = id;
                 }
                 catch (ErroresIUS x)
@@ -55,6 +56,7 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "resultados ajax"
+            
             public ActionResult sp_repo_insertCarpetaPublica()
             {
                 Dictionary<object, object> frm, respuesta = null;

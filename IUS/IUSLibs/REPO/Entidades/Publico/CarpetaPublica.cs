@@ -11,6 +11,15 @@ namespace IUSLibs.REPO.Entidades.Publico
             public int              _idCarpetaPublica;
             public string           _nombre;
             public CarpetaPublica   _carpetaPadre;
+            // extras
+            private string icono = "folder.png";
+            public string getIcono
+            {
+                get
+                {
+                    return this.icono;
+                }
+            }
         #endregion
         #region "constructores"
             public CarpetaPublica() { 
@@ -28,6 +37,7 @@ namespace IUSLibs.REPO.Entidades.Publico
             public CarpetaPublica(int idCarpetaPublica, string nombre, CarpetaPublica carpetaPadre)
             {
                 this._idCarpetaPublica = idCarpetaPublica;
+                this._nombre = nombre;
                 this._carpetaPadre = carpetaPadre;
             }
             // para agregar
