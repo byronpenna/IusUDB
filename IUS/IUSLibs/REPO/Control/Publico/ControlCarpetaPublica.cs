@@ -18,7 +18,23 @@ namespace IUSLibs.REPO.Control.Publico
     {
         #region "funciones"
             #region "get"
-            
+        public List<CarpetaPublica> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
+                {
+                    List<CarpetaPublica> carpetas = null;
+                    SPIUS sp = new SPIUS("sp_repo_getRootFolderPublico");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            { }
+                        }
+                    }
+                    return carpetas;
+                }
             #endregion
             #region "set"
                 public CarpetaPublica sp_repo_insertCarpetaPublica(CarpetaPublica carpetaPublicaInsert,int idUsuarioEjecutor, int idPagina)
