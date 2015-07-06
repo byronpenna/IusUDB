@@ -1,5 +1,27 @@
 ﻿// generics 
-    function getTrArchivo(archivo,estado) {
+    function loadPublicFiles() {
+        frm = {};
+        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getRootFolderPublico", frm, function (data) {
+            console.log(data);
+            if (data.estado) {
+                div = "";
+                $.each(data.carpetas,function(i,carpeta){
+                    div += getDivCarpetasPublicas(carpeta);
+                });
+                $(".divCarpetasPublicasCompartir").empty().append(div);
+            }
+        });
+    }
+    function getDivCarpetasPublicas(carpeta) {
+        div = "\
+        <div class='divCarpetaPublica col-lg-6'>\
+            <img src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/folder.png' />\
+            <h4>"+carpeta._nombre+"</h4>\
+        </div>\
+        ";
+        return div;
+    }
+    function getTrArchivo(archivo, estado) {
         icoEstado = "";
         if (estado) {
             icoEstado = "<i class='fa fa-check'></i>";

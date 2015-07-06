@@ -7,7 +7,12 @@
                 $(".folders").prepend(div);
             })
             // entrar a carpeta
-                $(document).on("click",".")
+                $(document).on("click", ".cuadritoCarpeta", function () {
+                    var estado = $(this).attr("id");
+                    if (estado != '0') {
+                        window.location = RAIZ + "RepositorioPublico/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
+                    }
+                });
             // guardar carpeta
                 $(document).on("click", ".btnGuardarCarpeta", function (e) {
                     seccion = $(this).parents(".folder");

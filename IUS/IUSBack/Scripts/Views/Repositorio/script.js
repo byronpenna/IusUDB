@@ -4,7 +4,7 @@
     $(window).bind("popstate", function (e) {
         console.log("set back");
     })*/
-        
+        loadPublicFiles();
         // submit 
             $(document).on("submit", "#frmSubir", function (e) {
                 
@@ -48,14 +48,14 @@
             // repositorio privado        
 
                 $(document).on("click", ".cuadritoCarpeta", function () {
-                /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
-                cuadritoCarpeta(frm);*/
-                var estado = $(this).attr("id");
-                if (estado != '0') {
-                    window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
-                }
-                //console.log("vas a redireccionar");
-            });
+                    /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
+                    cuadritoCarpeta(frm);*/
+                    var estado = $(this).attr("id");
+                    if (estado != '0') {
+                        window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
+                    }
+                    //console.log("vas a redireccionar");
+                });
             // directorio 
                 $(document).on("click", ".spIrBuscar", function () {
                     frm = { txtRuta: $(".txtDireccion").val() }
