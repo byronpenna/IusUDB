@@ -18,6 +18,48 @@ namespace IUSLibs.REPO.Control.Publico
     {
         #region "funciones"
             #region "get"
+                public List<CarpetaPublica> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
+                {
+                    List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
+                    CarpetaPublica carpetaPadre;
+                    SPIUS sp = new SPIUS("sp_repo_entrarCarpetaPublica");
+                    sp.agregarParametro("idCarpeta", idCarpeta);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                carpetas = new List<CarpetaPublica>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    if (row["id_carpetapadre_fk"] != DBNull.Value)
+                                    {
+                                        carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
+                                    }
+                                    else
+                                    {
+                                        carpetaPadre = new CarpetaPublica();
+                                    }
+                                    carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                                    carpetas.Add(carpeta);
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return carpetas;
+                }
                 public List<CarpetaPublica> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
                 {
                     List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;

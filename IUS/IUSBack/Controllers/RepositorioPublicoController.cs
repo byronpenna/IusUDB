@@ -35,12 +35,21 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    Dictionary<object, object> archivos;
+                    if (id != -1)
+                    {
+                       archivos = this._model.sp_repo_entrarCarpetaPublica(id,usuarioSession._idUsuario,this._idPagina);
+                    }
+                    else
+                    {
+                        archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
+                    }
                     // viewback 
                     ViewBag.titleModulo = "Repositorio publico";
                     ViewBag.usuario = usuarioSession;
                     ViewBag.permisos = permisos;
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                    ViewBag.carpetas = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.carpetas = archivos["carpetas"];
                     ViewBag.idCarpetaActual = id;
                 }
                 catch (ErroresIUS x)

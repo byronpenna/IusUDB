@@ -24,11 +24,33 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
         #endregion
         #region "funciones"
             #region "get"
-                public List<CarpetaPublica> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
+                public Dictionary<object, object> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
-                        return this._controlCarpetaPublica.sp_repo_getRootFolderPublico(idUsuarioEjecutor, idPagina);
+                        Dictionary<object, object> archivos = new Dictionary<object, object>();
+                        List<CarpetaPublica> carpetas = this._controlCarpetaPublica.sp_repo_entrarCarpetaPublica(idCarpeta, idUsuarioEjecutor, idPagina);
+                        archivos.Add("carpetas", carpetas);
+                        return archivos;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    
+                }
+                public Dictionary<object,object> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        Dictionary<object,object> archivos = new Dictionary<object,object>();
+                        List<CarpetaPublica> carpetas = this._controlCarpetaPublica.sp_repo_getRootFolderPublico(idUsuarioEjecutor, idPagina);
+                        archivos.Add("carpetas", carpetas);
+                        return archivos;
                     }
                     catch (ErroresIUS x)
                     {

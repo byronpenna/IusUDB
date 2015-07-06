@@ -6,6 +6,8 @@
                 div = getDivNewFolder();
                 $(".folders").prepend(div);
             })
+            // entrar a carpeta
+                $(document).on("click",".")
             // guardar carpeta
                 $(document).on("click", ".btnGuardarCarpeta", function (e) {
                     seccion = $(this).parents(".folder");
