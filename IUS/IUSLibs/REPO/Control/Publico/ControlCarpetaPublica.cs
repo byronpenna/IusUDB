@@ -62,6 +62,47 @@ namespace IUSLibs.REPO.Control.Publico
 
             #endregion
             #region "set"
+                public CarpetaPublica sp_repo_updateCarpetaPublica(CarpetaPublica carpetaPublicaUpdate, int idUsuarioEjecutor, int idPagina)
+                {
+                    CarpetaPublica carpetaPublica = null;
+                    SPIUS sp = new SPIUS("sp_repo_updateCarpetaPublica");
+                    
+                    sp.agregarParametro("nombre", carpetaPublicaUpdate._nombre);
+                    sp.agregarParametro("idCarpeta",carpetaPublicaUpdate._idCarpetaPublica);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                CarpetaPublica carpetaPadre;
+                                if (row["id_carpetapadre_fk"] != DBNull.Value)
+                                {
+                                    carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
+                                }
+                                else
+                                {
+                                    carpetaPadre = new CarpetaPublica();
+                                }
+                                carpetaPublica = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return carpetaPublica;
+                }
                 public CarpetaPublica sp_repo_insertCarpetaPublica(CarpetaPublica carpetaPublicaInsert,int idUsuarioEjecutor, int idPagina)
                 {
                     CarpetaPublica carpetaPublica = null;
@@ -117,6 +158,7 @@ namespace IUSLibs.REPO.Control.Publico
                     return carpetaPublica;
 
                 }
+                
             #endregion
         #endregion
     }

@@ -38,3 +38,19 @@
                 </div>";
     return div;
 }
+// actualizar carpeta 
+    function ttlNombreCarpeta(seccion, nombre) {
+        seccion.find(".normalMode").addClass("hidden");
+        seccion.find(".editMode").removeClass("hidden");
+        folder = seccion.parents(".cuadritoIcono");
+        folder.removeClass("cuadritoIcono");
+        folder.addClass("cuadritoIconoAdd");
+        seccion.find(".txtNombreCarpeta").val(nombre);
+    }
+    function btnCancelarEdicionCarpeta(seccion) {
+        seccion.find(".editMode").addClass("hidden");
+        seccion.find(".normalMode").removeClass("hidden");
+        folder = seccion.parents(".cuadritoIcono");
+        folder.addClass("cuadritoIcono");
+        folder.removeClass("cuadritoIconoAdd");
+    }

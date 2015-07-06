@@ -56,6 +56,18 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                         throw x;
                     }
                 }
+                public CarpetaPublica sp_repo_updateCarpetaPublica(CarpetaPublica carpetaPublicaUpdate, int idUsuarioEjecutor, int idPagina)
+                {
+                    try{
+                        return this._controlCarpetaPublica.sp_repo_updateCarpetaPublica(carpetaPublicaUpdate, idUsuarioEjecutor, idPagina);
+                    }catch(ErroresIUS x){
+                        throw x;
+                    }
+                    catch(Exception x){
+                        throw x;
+                    }
+                    
+                }
             #endregion
         #endregion
     }

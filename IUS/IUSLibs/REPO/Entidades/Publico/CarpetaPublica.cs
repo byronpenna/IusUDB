@@ -40,6 +40,13 @@ namespace IUSLibs.REPO.Entidades.Publico
                 this._nombre = nombre;
                 this._carpetaPadre = carpetaPadre;
             }
+            // para cambiar nombre 
+                public CarpetaPublica(int idCarpeta,string nombre)
+                {
+                    this._idCarpetaPublica = idCarpeta;
+                    this._nombre = nombre;
+
+                }
             // para agregar
                 public CarpetaPublica(string nombre, int idCarpetaPadre)
                 {
