@@ -1,7 +1,31 @@
 ﻿// acciones script
-    function btnGuardarCarpeta(frm,seccion) {
+    function icoEliminarCarpeta(frm, seccion) {
+        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_deleteCarpetaPublica", frm, function (data) {
+            console.log(data);
+            if (data.estado) {
+                seccion.remove();
+            }
+        })
+    }
+    function btnGuardarCarpeta(frm, seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_insertCarpetaPublica", frm, function (data) {
             console.log(data);
+            if (data.estado) {
+                seccion.find(".cuadritoCarpeta").attr("id", 1);
+                seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
+
+                seccion.find(".txtHdIdCarpeta").val(data.carpeta.idCarpetaPublica);
+                seccion.find(".ttlNombreCarpeta").empty().append(data.carpeta._nombre);
+
+                seccion.find(".saveMode").remove();
+                seccion.find(".normalMode").removeClass("hidden");
+
+                x = seccion.find(".cuadritoIconoAdd");
+                x.removeClass("cuadritoIconoAdd");
+                x.addClass("cuadritoIcono");
+            } else {
+                alert("Ocurrio un error agregando la carpeta");
+            }
         })
     }
     function btnEditarCarpeta(frm, folder) {

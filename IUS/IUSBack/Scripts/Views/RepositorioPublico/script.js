@@ -29,6 +29,15 @@
                     seccion = $(this).parents(".detalleCarpeta");
                     btnCancelarEdicionCarpeta(seccion);
                 })
+                $(document).on("click", ".icoEliminarCarpeta", function () {
+                    seccion = $(this).parents(".folder");
+                    frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
+                    var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
+                    if (x) {
+                        icoEliminarCarpeta(frm, seccion);
+                    }
+
+                });
         // doble click
             $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
                 e.cancelBubble = true;

@@ -41,6 +41,20 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 }
             #endregion
             #region "set"
+                public bool sp_repo_deleteCarpetaPublica(int idCarpetaPublica, int idUsuarioEjecutor, int idPagina){
+                    try
+                    {
+                        return this._controlCarpetaPublica.sp_repo_deleteCarpetaPublica(idCarpetaPublica, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public CarpetaPublica sp_repo_insertCarpetaPublica(CarpetaPublica carpetaPublicaInsert, int idUsuarioEjecutor, int idPagina)
                 {
                     try
