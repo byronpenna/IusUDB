@@ -5,9 +5,12 @@
             console.log(data);
             if (data.estado) {
                 div = "";
-                $.each(data.carpetas,function(i,carpeta){
-                    div += getDivCarpetasPublicas(carpeta);
-                });
+                //console.log(typeof data.carpetas !== null);
+                if (typeof(data.carpetas) !== null) {
+                    $.each(data.carpetas, function (i, carpeta) {
+                        div += getDivCarpetasPublicas(carpeta);
+                    });
+                }
                 $(".divCarpetasPublicasCompartir").empty().append(div);
             }
         });
@@ -15,6 +18,7 @@
     function getDivCarpetasPublicas(carpeta) {
         div = "\
         <div class='divCarpetaPublica col-lg-6'>\
+            <input type='hidden' class='txtHdIdCarpetaPublica' value='" + carpeta._idCarpetaPublica + "'>\
             <img src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/folder.png' />\
             <h4>"+carpeta._nombre+"</h4>\
         </div>\
@@ -74,7 +78,22 @@
         $(".txtNombreFileCompartir").val(nombreArchivo);
     }
 // scripts 
-    // directorio
+        // compartir publico
+        function divCarpetaPublica(frm) {
+            actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    div = "";
+                    if (data.carpetas !== null) {
+                        $.each(data.carpetas, function (i, carpeta) {
+                            div += getDivCarpetasPublicas(carpeta);
+                        });
+                    }
+                    $(".divCarpetasPublicasCompartir").empty().append(div);
+                }
+            })
+        }
+        // directorio
         function spIrBuscar(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
                 console.log("Respuesta de servidor", data);
@@ -83,7 +102,7 @@
                 }
             })
         }
-    // eliminar archivos
+        // eliminar archivos
         function icoEliminarArchivo(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {
                 console.log("Respuesta de servidor ", data);
@@ -92,7 +111,7 @@
                 }
             });
         }
-    // cambiar nombre archivo
+        // cambiar nombre archivo
         function btnEditarArchivo(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {
                 console.log("Respuesta del servidor", data);
@@ -102,7 +121,7 @@
                 }
             });
         }
-    // eliminar carpeta
+        // eliminar carpeta
         function icoEliminarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFolder", frm, function (data) {
                 console.log("respuesta servidor", data);
@@ -111,7 +130,7 @@
                 }
             });
         }
-    // entrar a carpeta
+        // entrar a carpeta
         function cuadritoCarpeta(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
                 console.log("respuesta servidor", data)
@@ -126,7 +145,7 @@
                 }
             });
         }
-    // subir archivo 
+        // subir archivo 
         function frmSubir(data, url, totalFiles) {
             var estadoIndividual = false;
             accionAjaxWithImage(url, data, function (data) {
@@ -144,9 +163,9 @@
                     $(".imgCargando").find("img").addClass("hidden");
                     $(".porcentajeCarga").empty().append("100%");
                 }
-             });
+            });
         }
-    // actualizar carpetas
+        // actualizar carpetas
         function btnEditarCarpeta(frm,folder) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_updateCarpeta", frm, function (data) {
                 console.log("Respuesta server", data);
@@ -175,7 +194,7 @@
             folder.addClass("cuadritoIcono");
             folder.removeClass("cuadritoIconoAdd");
         }*/
-    // guardar carpeta
+        // guardar carpeta
         function btnGuardarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
                 console.log("Respuesta server", data);

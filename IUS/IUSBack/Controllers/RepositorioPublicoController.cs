@@ -65,7 +65,43 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "resultados ajax"
-            public ActionResult sp_repo_getRootFolderPublico()
+            #region
+                public ActionResult sp_repo_entrarCarpetaPublica()
+                {
+                     Dictionary<object, object> frm, respuesta = null;
+                     try
+                     {
+                         Usuario usuarioSession = this.getUsuarioSesion();
+                         frm = this.getAjaxFrm();
+                         if (usuarioSession != null && frm != null)
+                         {
+                             Dictionary<object, object> archivos = this._model.sp_repo_entrarCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpetaPublica"]), usuarioSession._idUsuario, this._idPagina);
+                             respuesta = new Dictionary<object, object>();
+                             respuesta.Add("estado", true);
+                             if (archivos["carpetas"] != null)
+                             {
+                                 respuesta.Add("carpetas", archivos["carpetas"]);
+                             }
+                             else
+                             {
+                                 respuesta.Add("carpetas", null);
+                             }
+                             
+                         }
+                     }
+                     catch (ErroresIUS x)
+                     {
+                         ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                         respuesta = this.errorTryControlador(1, error);
+                     }
+                     catch (Exception x)
+                     {
+                         ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                         respuesta = this.errorTryControlador(2, error);
+                     }
+                     return Json(respuesta);
+                }
+                public ActionResult sp_repo_getRootFolderPublico()
             {
                 Dictionary<object, object> frm, respuesta = null;
                 try
@@ -92,102 +128,105 @@ namespace IUSBack.Controllers
                 }
                 return Json(respuesta);
             }
-            public ActionResult sp_repo_deleteCarpetaPublica()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
+            #endregion
+            #region
+                public ActionResult sp_repo_deleteCarpetaPublica()
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
                     {
-                        bool estado = this._model.sp_repo_deleteCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpeta"]), usuarioSession._idUsuario, this._idPagina);
-                        if (estado)
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
                         {
+                            bool estado = this._model.sp_repo_deleteCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpeta"]), usuarioSession._idUsuario, this._idPagina);
+                            if (estado)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", estado);
+                            }
+                            else
+                            {
+                                ErroresIUS error = new ErroresIUS("Error inesperado", ErroresIUS.tipoError.generico, 0);
+                                throw error;
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
+                public ActionResult sp_repo_updateCarpetaPublica()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            CarpetaPublica carpetaUpdate = new CarpetaPublica(this.convertObjAjaxToInt(frm["txtHdIdCarpeta"]), frm["nombre"].ToString());
+                            CarpetaPublica carpetaActualizada = this._model.sp_repo_updateCarpetaPublica(carpetaUpdate,usuarioSession._idUsuario,this._idPagina);
                             respuesta = new Dictionary<object, object>();
-                            respuesta.Add("estado", estado);
+                            respuesta.Add("estado", true);
+                            respuesta.Add("carpeta", carpetaActualizada);
+
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
+                public ActionResult sp_repo_insertCarpetaPublica()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            CarpetaPublica carpetaIngresar = new CarpetaPublica(frm["nombre"].ToString(), this.convertObjAjaxToInt(frm["idCarpetaPadre"]));
+                            CarpetaPublica carpetaIngresada = this._model.sp_repo_insertCarpetaPublica(carpetaIngresar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("carpeta",carpetaIngresada);
                         }
                         else
                         {
-                            ErroresIUS error = new ErroresIUS("Error inesperado", ErroresIUS.tipoError.generico, 0);
-                            throw error;
+                            respuesta = this.errorEnvioFrmJSON();
                         }
-                    }
-                }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
-            public ActionResult sp_repo_updateCarpetaPublica()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
-                    {
-                        CarpetaPublica carpetaUpdate = new CarpetaPublica(this.convertObjAjaxToInt(frm["txtHdIdCarpeta"]), frm["nombre"].ToString());
-                        CarpetaPublica carpetaActualizada = this._model.sp_repo_updateCarpetaPublica(carpetaUpdate,usuarioSession._idUsuario,this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("carpeta", carpetaActualizada);
 
                     }
-                }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
-            public ActionResult sp_repo_insertCarpetaPublica()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    catch (ErroresIUS x)
                     {
-                        CarpetaPublica carpetaIngresar = new CarpetaPublica(frm["nombre"].ToString(), this.convertObjAjaxToInt(frm["idCarpetaPadre"]));
-                        CarpetaPublica carpetaIngresada = this._model.sp_repo_insertCarpetaPublica(carpetaIngresar, usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("carpeta",carpetaIngresada);
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
                     }
-                    else
+                    catch (Exception x)
                     {
-                        respuesta = this.errorEnvioFrmJSON();
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
                     }
-
+                    return Json(respuesta);
                 }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
+            #endregion
         #endregion
 
     }

@@ -34,7 +34,13 @@
                 
                 
             })
-        // click 
+    // click 
+            
+                $(document).on("dblclick", ".divCarpetaPublica", function (e) {
+                    frm = { idCarpetaPublica: $(this).find(".txtHdIdCarpetaPublica").val() }
+                    seccion = $(this).parents(".divCarpetasOpciones").find(".txtHdCarpetaPadrePublica").val(frm.idCarpetaPublica);
+                    divCarpetaPublica(frm);
+                })
             // repositorio compartido
                     $(document).on("click", ".icoCompartirFile", function (e) {
                         e.preventDefault();
