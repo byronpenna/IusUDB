@@ -35,10 +35,15 @@
                 
             })
     // click 
-            
+            // publico 
+                $(document).on("click", ".icoPublicoBack", function (e) {
+                    frm = { idCarpetaPublica: $(".txtHdCarpetaPadrePublica").val() }
+                    console.log("Formulario a enviar back", frm);
+                    icoPublicoBack(frm);
+                })
                 $(document).on("dblclick", ".divCarpetaPublica", function (e) {
                     frm = { idCarpetaPublica: $(this).find(".txtHdIdCarpetaPublica").val() }
-                    seccion = $(this).parents(".divCarpetasOpciones").find(".txtHdCarpetaPadrePublica").val(frm.idCarpetaPublica);
+                    //seccion = $(this).parents(".divCarpetasOpciones").find(".txtHdCarpetaPadrePublica").val(frm.idCarpetaPublica);
                     divCarpetaPublica(frm);
                 })
             // repositorio compartido
@@ -49,7 +54,9 @@
 
                     })
                     $(document).on("click", ".btnCompartir", function () {
-
+                        seccion = $(this).parents(".shareSection");
+                        frm = { idArchivo: seccion.find(".txtHdIdArchivoCompartir") }
+                        btnCompartir(frm, seccion);
                     })
             // repositorio privado        
 

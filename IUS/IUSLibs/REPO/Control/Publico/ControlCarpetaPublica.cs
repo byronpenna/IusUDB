@@ -18,6 +18,57 @@ namespace IUSLibs.REPO.Control.Publico
     {
         #region "funciones"
             #region "get"
+                public Dictionary<object,object> sp_repo_atrasCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
+                {
+                    Dictionary<object, object> retorno = new Dictionary<object,object>();
+                    int idCarpetaPadre;
+                    List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
+                    CarpetaPublica carpetaPadre;
+                    SPIUS sp = new SPIUS("sp_repo_atrasCarpetaPublica");
+                    sp.agregarParametro("idCarpeta", idCarpeta);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            idCarpetaPadre = (int)tb[0].Rows[0]["idCarpetaPadre"];
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                carpetas = new List<CarpetaPublica>();
+                                foreach (DataRow row in tb[1].Rows)
+                                {
+                                    if (row["id_carpetapadre_fk"] != DBNull.Value)
+                                    {
+                                        carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
+                                    }
+                                    else
+                                    {
+                                        carpetaPadre = new CarpetaPublica();
+                                    }
+                                    carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                                    carpetas.Add(carpeta);
+                                }
+                            }
+                        }else{
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    retorno.Add("idCarpetaPadre", idCarpetaPadre);
+                    retorno.Add("carpetas", carpetas);
+                    return retorno;
+                }
                 public List<CarpetaPublica> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
                 {
                     List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
@@ -101,7 +152,7 @@ namespace IUSLibs.REPO.Control.Publico
                     }
                     return carpetas;
                 }
-
+                
             #endregion
             #region "set"
                 public bool sp_repo_deleteCarpetaPublica(int idCarpetaPublica, int idUsuarioEjecutor, int idPagina)
@@ -232,7 +283,6 @@ namespace IUSLibs.REPO.Control.Publico
                     return carpetaPublica;
 
                 }
-                
             #endregion
         #endregion
     }

@@ -66,6 +66,38 @@ namespace IUSBack.Controllers
         #endregion
         #region "resultados ajax"
             #region
+                public ActionResult sp_repo_atrasCarpetaPublica()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            Dictionary<object, object> archivos = this._model.sp_repo_atrasCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpetaPublica"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("carpetas", archivos["carpetas"]);
+                            respuesta.Add("idCarpetaPadre", archivos["idCarpetaPadre"]);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_repo_entrarCarpetaPublica()
                 {
                      Dictionary<object, object> frm, respuesta = null;
@@ -75,18 +107,16 @@ namespace IUSBack.Controllers
                          frm = this.getAjaxFrm();
                          if (usuarioSession != null && frm != null)
                          {
-                             Dictionary<object, object> archivos = this._model.sp_repo_entrarCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpetaPublica"]), usuarioSession._idUsuario, this._idPagina);
+                             int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPublica"]);
+                             Dictionary<object, object> archivos = this._model.sp_repo_entrarCarpetaPublica(idCarpetaPadre, usuarioSession._idUsuario, this._idPagina);
                              respuesta = new Dictionary<object, object>();
                              respuesta.Add("estado", true);
-                             if (archivos["carpetas"] != null)
-                             {
-                                 respuesta.Add("carpetas", archivos["carpetas"]);
-                             }
-                             else
-                             {
-                                 respuesta.Add("carpetas", null);
-                             }
-                             
+                             respuesta.Add("carpetas", archivos["carpetas"]);
+                             respuesta.Add("idCarpetaPadre", idCarpetaPadre);
+                         }
+                         else
+                         {
+                            respuesta = this.errorEnvioFrmJSON();
                          }
                      }
                      catch (ErroresIUS x)
@@ -151,6 +181,10 @@ namespace IUSBack.Controllers
                                 throw error;
                             }
                         }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -179,6 +213,10 @@ namespace IUSBack.Controllers
                             respuesta.Add("estado", true);
                             respuesta.Add("carpeta", carpetaActualizada);
 
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)

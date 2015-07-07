@@ -24,6 +24,22 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
         #endregion
         #region "funciones"
             #region "get"
+                public Dictionary<object, object> sp_repo_atrasCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        Dictionary<object, object> archivos = this._controlCarpetaPublica.sp_repo_atrasCarpetaPublica(idCarpeta, idUsuarioEjecutor, idPagina);
+                        return archivos;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Dictionary<object, object> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
                 {
                     try

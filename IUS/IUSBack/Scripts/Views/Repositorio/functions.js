@@ -73,26 +73,52 @@
         return div;
     }
     function initShareFile(folder) {
-        nombreArchivo = folder.find(".ttlNombreCarpeta").text();
+        nombreArchivo   = folder.find(".ttlNombreCarpeta").text();
+        idArchivo = folder.find(".txtHdIdCarpeta").val();
         $(".nombreFileCompartir").empty().append(nombreArchivo);
         $(".txtNombreFileCompartir").val(nombreArchivo);
+        $(".txtHdIdArchivoCompartir").val(idArchivo);
+
     }
 // scripts 
         // compartir publico
-        function divCarpetaPublica(frm) {
-            actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-                console.log(data);
-                if (data.estado) {
-                    div = "";
-                    if (data.carpetas !== null) {
-                        $.each(data.carpetas, function (i, carpeta) {
-                            div += getDivCarpetasPublicas(carpeta);
-                        });
+            function btnCompartir(frm,seccion) {
+                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
+
+                });
+            }
+            function icoPublicoBack(frm) {
+                actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_atrasCarpetaPublica", frm, function (data) {
+                    console.log(data);
+                    if (data.estado) {
+                        div = "";
+                        if (data.carpetas !== null) {
+                            $.each(data.carpetas, function (i, carpeta) {
+                                div += getDivCarpetasPublicas(carpeta);
+                            });
+                            $(".txtHdCarpetaPadrePublica").val(data.idCarpetaPadre);
+                        }
+                        $(".divCarpetasPublicasCompartir").empty().append(div);
+
                     }
-                    $(".divCarpetasPublicasCompartir").empty().append(div);
-                }
-            })
-        }
+                })
+            }
+            function divCarpetaPublica(frm) {
+                actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
+                    console.log(data);
+                    if (data.estado) {
+                        div = "";
+                        if (data.carpetas !== null) {
+                            $.each(data.carpetas, function (i, carpeta) {
+                                div += getDivCarpetasPublicas(carpeta);
+                            });
+                            $(".txtHdCarpetaPadrePublica").val(data.idCarpetaPadre);
+                        }
+                        $(".divCarpetasPublicasCompartir").empty().append(div);
+
+                    }
+                })
+            }
         // directorio
         function spIrBuscar(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
