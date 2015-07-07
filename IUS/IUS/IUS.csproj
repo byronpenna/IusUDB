@@ -246,6 +246,7 @@
     <Content Include="Content\images\views\Instituciones\america.png" />
     <Content Include="Content\images\views\Instituciones\asia-f.png" />
     <Content Include="Content\images\views\Instituciones\europa.png" />
+    <Content Include="Content\images\views\Repositorio\cloud.png" />
     <Content Include="Content\images\views\Repositorio\image.png" />
     <Content Include="Content\images\views\Repositorio\powerpoint-ico.png" />
     <Content Include="Content\images\views\Repositorio\video.png" />

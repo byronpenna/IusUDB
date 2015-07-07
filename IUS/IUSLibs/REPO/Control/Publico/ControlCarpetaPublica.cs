@@ -19,166 +19,212 @@ namespace IUSLibs.REPO.Control.Publico
     {
         #region "funciones"
             #region "get"
-                public Dictionary<object,object> sp_repo_atrasCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
-                {
-                    Dictionary<object, object> retorno = new Dictionary<object,object>();
-                    int idCarpetaPadre;
-                    List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
-                    CarpetaPublica carpetaPadre;
-                    SPIUS sp = new SPIUS("sp_repo_atrasCarpetaPublica");
-                    sp.agregarParametro("idCarpeta", idCarpeta);
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
-                    try
+                #region "frontend"
+                    public List<CarpetaPublica> sp_repo_front_GetAllCarpetasPublica(int idCarpetaPadre,string ip, int idPagina)
                     {
-                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrectoGet(tb))
+                        List<CarpetaPublica> carpetasPublicas = null; CarpetaPublica carpeta;
+                        SPIUS sp = new SPIUS("sp_repo_front_GetAllCarpetasPublica");
+                        sp.agregarParametro("idCarpetaPadre", idCarpetaPadre);
+                        sp.agregarParametro("ip", ip);
+                        sp.agregarParametro("idPagina", idPagina);
+                        try
                         {
-                            idCarpetaPadre = (int)tb[0].Rows[0]["idCarpetaPadre"];
-                            if (tb[1].Rows.Count > 0)
+                            DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                            if (this.resultadoCorrectoGet(tb))
                             {
-                                carpetas = new List<CarpetaPublica>();
-                                foreach (DataRow row in tb[1].Rows)
+                                if (tb[0].Rows.Count > 0)
                                 {
-                                    if (row["id_carpetapadre_fk"] != DBNull.Value)
+                                    foreach (DataRow row in tb[0].Rows)
                                     {
-                                        carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
+                                        //carpeta = new CarpetaPublica((int)row["idCarpetaPublica"],row["nombre"].ToString(),row["id_carpetapadre_fk"])
                                     }
-                                    else
-                                    {
-                                        carpetaPadre = new CarpetaPublica();
-                                    }
-                                    carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
-                                    carpetas.Add(carpeta);
                                 }
                             }
-                        }else{
-                            DataRow row = tb[0].Rows[0];
-                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
                             throw x;
                         }
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                    retorno.Add("idCarpetaPadre", idCarpetaPadre);
-                    retorno.Add("carpetas", carpetas);
-                    return retorno;
-                }
-                public Dictionary<object,object> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                        return null;
+                    } 
+                #endregion
+                #region "backend"
+                    public Dictionary<object, object> sp_repo_atrasCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
+        {
+            Dictionary<object, object> retorno = new Dictionary<object, object>();
+            int idCarpetaPadre;
+            List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
+            CarpetaPublica carpetaPadre;
+            SPIUS sp = new SPIUS("sp_repo_atrasCarpetaPublica");
+            sp.agregarParametro("idCarpeta", idCarpeta);
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrectoGet(tb))
                 {
-                    Dictionary<object, object> retorno = new Dictionary<object, object>();
-                    // para carpetas
-                    List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
-                    CarpetaPublica carpetaPadre; Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
-                    // para archivos
-                    List<ArchivoPublico> archivos = null; ArchivoPublico archivo;
+                    idCarpetaPadre = (int)tb[0].Rows[0]["idCarpetaPadre"];
+                    if (tb[1].Rows.Count > 0)
+                    {
+                        carpetas = new List<CarpetaPublica>();
+                        foreach (DataRow row in tb[1].Rows)
+                        {
+                            if (row["id_carpetapadre_fk"] != DBNull.Value)
+                            {
+                                carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
+                            }
+                            else
+                            {
+                                carpetaPadre = new CarpetaPublica();
+                            }
+                            carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                            carpetas.Add(carpeta);
+                        }
+                    }
+                }
+                else
+                {
+                    DataRow row = tb[0].Rows[0];
+                    ErroresIUS x = this.getErrorFromExecProcedure(row);
+                    throw x;
+                }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            retorno.Add("idCarpetaPadre", idCarpetaPadre);
+            retorno.Add("carpetas", carpetas);
+            return retorno;
+        }
+                    public Dictionary<object, object> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
+        {
+            Dictionary<object, object> retorno = new Dictionary<object, object>();
+            // para carpetas
+            List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
+            CarpetaPublica carpetaPadre; Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
+            // para archivos
+            List<ArchivoPublico> archivos = null; ArchivoPublico archivo;
 
-                    // do
-                    SPIUS sp = new SPIUS("sp_repo_entrarCarpetaPublica");
-                    sp.agregarParametro("idCarpeta", idCarpeta);
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
-                    try
-                    {
-                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrectoGet(tb))
-                        {
-                            if (tb[0].Rows.Count > 0)
-                            {
-                                carpetas = new List<CarpetaPublica>();
-                                foreach (DataRow row in tb[0].Rows)
-                                {
-                                    if (row["id_carpetapadre_fk"] != DBNull.Value)
-                                    {
-                                        carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
-                                    }
-                                    else
-                                    {
-                                        carpetaPadre = new CarpetaPublica();
-                                    }
-                                    carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
-                                    carpetas.Add(carpeta);
-                                }
-                            }
-                            if (tb[1].Rows.Count > 0)
-                            {
-                                archivos = new List<ArchivoPublico>();
-                                foreach (DataRow row in tb[1].Rows)
-                                {
-                                    
-                                    tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
-                                    tipoArchivo._icono = row["icono"].ToString();
-                                    extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
-                                    archivoNormal = new Archivo((int)row["idArchivo"],extension);
-                                    archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, (int)row["id_carpetapublica_fk"], row["nombre_publico"].ToString(), (bool)row["estado"]);
-                                    archivos.Add(archivo);
-                                }
-                            }
-                        }
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                    retorno.Add("carpetas", carpetas);
-                    retorno.Add("archivos", archivos);
-                    return retorno;
-                }
-                public List<CarpetaPublica> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
+            // do
+            SPIUS sp = new SPIUS("sp_repo_entrarCarpetaPublica");
+            sp.agregarParametro("idCarpeta", idCarpeta);
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrectoGet(tb))
                 {
-                    List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
-                    CarpetaPublica carpetaPadre;
-                    SPIUS sp = new SPIUS("sp_repo_getRootFolderPublico");
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
-                    try
+                    if (tb[0].Rows.Count > 0)
                     {
-                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrectoGet(tb))
+                        carpetas = new List<CarpetaPublica>();
+                        foreach (DataRow row in tb[0].Rows)
                         {
-                            if (tb[0].Rows.Count > 0)
+                            if (row["id_carpetapadre_fk"] != DBNull.Value)
                             {
-                                carpetas = new List<CarpetaPublica>();
-                                foreach (DataRow row in tb[0].Rows)
-                                {
-                                    if (row["id_carpetapadre_fk"] != DBNull.Value)
-                                    {
-                                        carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
-                                    }
-                                    else
-                                    {
-                                        carpetaPadre = new CarpetaPublica();
-                                    }
-                                    carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
-                                    carpetas.Add(carpeta);
-                                }
+                                carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
                             }
+                            else
+                            {
+                                carpetaPadre = new CarpetaPublica();
+                            }
+                            carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                            carpetas.Add(carpeta);
                         }
                     }
-                    catch (ErroresIUS x)
+                    if (tb[1].Rows.Count > 0)
                     {
-                        throw x;
+                        archivos = new List<ArchivoPublico>();
+                        foreach (DataRow row in tb[1].Rows)
+                        {
+
+                            tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                            tipoArchivo._icono = row["icono"].ToString();
+                            extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                            archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                            archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, (int)row["id_carpetapublica_fk"], row["nombre_publico"].ToString(), (bool)row["estado"]);
+                            archivos.Add(archivo);
+                        }
                     }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                    return carpetas;
                 }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            retorno.Add("carpetas", carpetas);
+            retorno.Add("archivos", archivos);
+            return retorno;
+        }
+                    public List<CarpetaPublica> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
+        {
+            List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
+            CarpetaPublica carpetaPadre;
+            SPIUS sp = new SPIUS("sp_repo_getRootFolderPublico");
+            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+            sp.agregarParametro("idPagina", idPagina);
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrectoGet(tb))
+                {
+                    if (tb[0].Rows.Count > 0)
+                    {
+                        carpetas = new List<CarpetaPublica>();
+                        foreach (DataRow row in tb[0].Rows)
+                        {
+                            if (row["id_carpetapadre_fk"] != DBNull.Value)
+                            {
+                                carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
+                            }
+                            else
+                            {
+                                carpetaPadre = new CarpetaPublica();
+                            }
+                            carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                            carpetas.Add(carpeta);
+                        }
+                    }
+                }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            return carpetas;
+        }    
+                #endregion
+                
                 
             #endregion
             #region "set"
-                public bool sp_repo_deleteCarpetaPublica(int idCarpetaPublica, int idUsuarioEjecutor, int idPagina)
+                
+                #region "backend"
+                    public bool sp_repo_deleteCarpetaPublica(int idCarpetaPublica, int idUsuarioEjecutor, int idPagina)
                 {
                     bool estado = false;
                     SPIUS sp = new SPIUS("sp_repo_deleteCarpetaPublica");
@@ -210,7 +256,7 @@ namespace IUSLibs.REPO.Control.Publico
                     }
                     return estado;
                 }
-                public CarpetaPublica sp_repo_updateCarpetaPublica(CarpetaPublica carpetaPublicaUpdate, int idUsuarioEjecutor, int idPagina)
+                    public CarpetaPublica sp_repo_updateCarpetaPublica(CarpetaPublica carpetaPublicaUpdate, int idUsuarioEjecutor, int idPagina)
                 {
                     CarpetaPublica carpetaPublica = null;
                     SPIUS sp = new SPIUS("sp_repo_updateCarpetaPublica");
@@ -251,7 +297,7 @@ namespace IUSLibs.REPO.Control.Publico
                     }
                     return carpetaPublica;
                 }
-                public CarpetaPublica sp_repo_insertCarpetaPublica(CarpetaPublica carpetaPublicaInsert,int idUsuarioEjecutor, int idPagina)
+                    public CarpetaPublica sp_repo_insertCarpetaPublica(CarpetaPublica carpetaPublicaInsert,int idUsuarioEjecutor, int idPagina)
                 {
                     CarpetaPublica carpetaPublica = null;
                     SPIUS sp = new SPIUS("sp_repo_insertCarpetaPublica");
@@ -306,6 +352,7 @@ namespace IUSLibs.REPO.Control.Publico
                     return carpetaPublica;
 
                 }
+                #endregion
             #endregion
         #endregion
     }
