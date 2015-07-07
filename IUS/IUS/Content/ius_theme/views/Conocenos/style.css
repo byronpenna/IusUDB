@@ -22,6 +22,7 @@
     background-size:cover;
     /*box-shadow:0 0 1px #CCC;*/
     opacity: 0.5;
+    border-radius:15px;
 }
 #divIdentidad:hover, #divHistoria:hover, #divOrganizacion:hover, #divSalesiano:hover, #divIus:hover{
     opacity:1;
@@ -44,4 +45,5 @@
     padding-top:3%;
     padding-bottom:3%;
     font-weight:bold;
+    border-top-left-radius:15px;
 }

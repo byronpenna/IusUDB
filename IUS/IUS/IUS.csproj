@@ -194,6 +194,7 @@
     <Compile Include="Controllers\InstitucionesController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
+    <Compile Include="Controllers\RepositorioController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +208,7 @@
     <Compile Include="Models\page\Informacion\Acciones\InformacionModel.cs" />
     <Compile Include="Models\page\Instituciones\Acciones\InstitucionesModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
+    <Compile Include="Models\page\Repositorio\Acciones\RepositorioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +246,10 @@
     <Content Include="Content\images\views\Instituciones\america.png" />
     <Content Include="Content\images\views\Instituciones\asia-f.png" />
     <Content Include="Content\images\views\Instituciones\europa.png" />
+    <Content Include="Content\images\views\Repositorio\image.png" />
+    <Content Include="Content\images\views\Repositorio\powerpoint-ico.png" />
+    <Content Include="Content\images\views\Repositorio\video.png" />
+    <Content Include="Content\images\views\Repositorio\wordico.png" />
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
     <Content Include="Content\ius_theme\generals\style.css" />
@@ -261,6 +267,8 @@
     <Content Include="Content\ius_theme\views\NotFound\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\media.css" />
     <Content Include="Content\ius_theme\views\Noticias\style.css" />
+    <Content Include="Content\ius_theme\views\Repositorio\media.css" />
+    <Content Include="Content\ius_theme\views\Repositorio\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -470,6 +478,7 @@
     <Content Include="Views\Informacion\Identidad.cshtml" />
     <Content Include="Views\Informacion\Salesianos.cshtml" />
     <Content Include="Views\Informacion\Ius.cshtml" />
+    <Content Include="Views\Repositorio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
