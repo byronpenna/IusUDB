@@ -65,7 +65,39 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "resultados ajax"
-            #region
+            #region "get"
+                public ActionResult sp_repo_compartirArchivoPublico() { 
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            ArchivoPublico archivoAgregar = new ArchivoPublico(this.convertObjAjaxToInt(frm["txtHdIdArchivoCompartir"]), this.convertObjAjaxToInt(frm["txtHdCarpetaPadrePublica"]), frm["txtNombreFileCompartir"].ToString());
+                            ArchivoPublico archivoAgregado = this._model.sp_repo_compartirArchivoPublico(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("archivoPublico", archivoAgregado);
+
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_repo_atrasCarpetaPublica()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -159,7 +191,7 @@ namespace IUSBack.Controllers
                 return Json(respuesta);
             }
             #endregion
-            #region
+            #region "set"
                 public ActionResult sp_repo_deleteCarpetaPublica()
                 {
                     Dictionary<object, object> frm, respuesta = null;

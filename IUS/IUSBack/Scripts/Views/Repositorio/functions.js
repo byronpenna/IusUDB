@@ -2,10 +2,10 @@
     function loadPublicFiles() {
         frm = {};
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getRootFolderPublico", frm, function (data) {
-            console.log(data);
+            
             if (data.estado) {
                 div = "";
-                //console.log(typeof data.carpetas !== null);
+                
                 if (typeof(data.carpetas) !== null) {
                     $.each(data.carpetas, function (i, carpeta) {
                         div += getDivCarpetasPublicas(carpeta);
@@ -74,7 +74,8 @@
     }
     function initShareFile(folder) {
         nombreArchivo   = folder.find(".ttlNombreCarpeta").text();
-        idArchivo = folder.find(".txtHdIdCarpeta").val();
+        idArchivo       = folder.find(".txtHdIdArchivo").val();
+        console.log(idArchivo);
         $(".nombreFileCompartir").empty().append(nombreArchivo);
         $(".txtNombreFileCompartir").val(nombreArchivo);
         $(".txtHdIdArchivoCompartir").val(idArchivo);
@@ -83,13 +84,13 @@
 // scripts 
         // compartir publico
             function btnCompartir(frm,seccion) {
-                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
-
+                actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_compartirArchivoPublico", frm, function (data) {
+                    console.log(data);
                 });
             }
             function icoPublicoBack(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_atrasCarpetaPublica", frm, function (data) {
-                    console.log(data);
+                    
                     if (data.estado) {
                         div = "";
                         if (data.carpetas !== null) {
@@ -105,7 +106,7 @@
             }
             function divCarpetaPublica(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-                    console.log(data);
+                    
                     if (data.estado) {
                         div = "";
                         if (data.carpetas !== null) {
@@ -122,7 +123,7 @@
         // directorio
         function spIrBuscar(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
-                console.log("Respuesta de servidor", data);
+                
                 if (data.estado) {
                     window.location = RAIZ + "Repositorio/index/" + data.carpeta._idCarpeta;
                 }
@@ -131,7 +132,7 @@
         // eliminar archivos
         function icoEliminarArchivo(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {
-                console.log("Respuesta de servidor ", data);
+                
                 if (data.estado) {
                     seccion.remove();
                 }
@@ -140,7 +141,7 @@
         // cambiar nombre archivo
         function btnEditarArchivo(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {
-                console.log("Respuesta del servidor", data);
+                
                 if (data.estado) {
                     seccion.find(".ttlNombreCarpeta").empty().append(data.archivo._nombre);
                     btnCancelarEdicionCarpeta(folder.find(".detalleCarpeta"));
@@ -150,7 +151,7 @@
         // eliminar carpeta
         function icoEliminarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFolder", frm, function (data) {
-                console.log("respuesta servidor", data);
+                
                 if (data.estado) {
                     seccion.remove();
                 }
@@ -159,11 +160,11 @@
         // entrar a carpeta
         function cuadritoCarpeta(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
-                console.log("respuesta servidor", data)
+                
                 if (data.estado) {
                     var divFolders = "";
                     $.each(data.carpetas, function (i,carpeta) {
-                        console.log(carpeta);
+                        
                         divFolders += getStandarFolder(carpeta);
                     });
                     window.history.pushState(null, "Titulo", "Repositorio/Index/" + frm.idCarpeta);
@@ -175,7 +176,7 @@
         function frmSubir(data, url, totalFiles) {
             var estadoIndividual = false;
             accionAjaxWithImage(url, data, function (data) {
-                console.log("respuesta", data);
+                
                 if (data.estado && !estadoIndividual) {
                     estadoIndividual = true;
                     $(".txtHdEstadoUpload").val("1");
@@ -194,7 +195,7 @@
         // actualizar carpetas
         function btnEditarCarpeta(frm,folder) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_updateCarpeta", frm, function (data) {
-                console.log("Respuesta server", data);
+                
                 if (data.estado) {
                     folder.find(".ttlNombreCarpeta").empty().append(data.carpeta._nombre);
                     btnCancelarEdicionCarpeta(folder.find(".detalleCarpeta"));
@@ -223,7 +224,7 @@
         // guardar carpeta
         function btnGuardarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
-                console.log("Respuesta server", data);
+                
                 if (data.estado) {
                     seccion.find(".cuadritoCarpeta").attr("id", 1);
                     seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");

@@ -38,7 +38,7 @@
             // publico 
                 $(document).on("click", ".icoPublicoBack", function (e) {
                     frm = { idCarpetaPublica: $(".txtHdCarpetaPadrePublica").val() }
-                    console.log("Formulario a enviar back", frm);
+                    
                     icoPublicoBack(frm);
                 })
                 $(document).on("dblclick", ".divCarpetaPublica", function (e) {
@@ -55,7 +55,8 @@
                     })
                     $(document).on("click", ".btnCompartir", function () {
                         seccion = $(this).parents(".shareSection");
-                        frm = { idArchivo: seccion.find(".txtHdIdArchivoCompartir") }
+                        frm = serializeSection(seccion);
+                        console.log(frm);
                         btnCompartir(frm, seccion);
                     })
             // repositorio privado        

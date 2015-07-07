@@ -15,15 +15,18 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
     {
         #region "propiedades"
             private ControlCarpetaPublica _controlCarpetaPublica;
+            private ControlArchivoPublico _controlArchivoPublico;
         #endregion
         #region "constructores"
             public RepositorioPublicoModel()
             {
                 this._controlCarpetaPublica = new ControlCarpetaPublica();
+                this._controlArchivoPublico = new ControlArchivoPublico();
             }
         #endregion
         #region "funciones"
             #region "get"
+            
                 public Dictionary<object, object> sp_repo_atrasCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
                 {
                     try
@@ -79,6 +82,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 }
             #endregion
             #region "set"
+                public ArchivoPublico sp_repo_compartirArchivoPublico(ArchivoPublico archivoAgregar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoPublico.sp_repo_compartirArchivoPublico(archivoAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_repo_deleteCarpetaPublica(int idCarpetaPublica, int idUsuarioEjecutor, int idPagina){
                     try
                     {

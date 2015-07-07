@@ -21,18 +21,53 @@ namespace IUSLibs.REPO.Control.Publico
         {
             ArchivoPublico archivoCompartido = null;
             SPIUS sp = new SPIUS("sp_repo_compartirArchivoPublico");
-            /*
-                @			int,
-	            @	int,
-	            @		varchar(100),
-             */
-            sp.agregarParametro("idArchivo", archivoAgregar._idArchivoPublico);
-            sp.agregarParametro("idCarpetaPublica", archivoAgregar._carpetaPublica._idCarpetaPublica);
+            
+            sp.agregarParametro("idArchivo", archivoAgregar._archivoUsuario._idArchivo);
+            if (archivoAgregar._carpetaPublica._idCarpetaPublica == -1)
+            {
+                sp.agregarParametro("idCarpetaPublica", null);
+            }
+            else
+            {
+                sp.agregarParametro("idCarpetaPublica", archivoAgregar._carpetaPublica._idCarpetaPublica);
+            }
+            
             sp.agregarParametro("nombrePublico", archivoAgregar._nombre);
 
             sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
             sp.agregarParametro("idPagina", idPagina);
-            return archivoAgregar;
+
+            try
+            {
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrecto(tb))
+                {
+                    if (tb[1].Rows.Count > 0)
+                    {
+                        DataRow row = tb[1].Rows[0];
+                        CarpetaPublica carpetaPublica = null;
+                        if(row["id_carpetapublica_fk"] != DBNull.Value){
+                            carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
+                        }
+                        archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], (int)row["id_archivousuario_fk"],carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);
+                    }
+                }
+                else
+                {
+                    DataRow row = tb[0].Rows[0];
+                    ErroresIUS x = this.getErrorFromExecProcedure(row);
+                    throw x;
+                }
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+            return archivoCompartido;
         }
         #endregion
         #region "set"
