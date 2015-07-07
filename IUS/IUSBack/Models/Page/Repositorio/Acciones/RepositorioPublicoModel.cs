@@ -48,8 +48,9 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                     try
                     {
                         Dictionary<object, object> archivos = new Dictionary<object, object>();
-                        List<CarpetaPublica> carpetas = this._controlCarpetaPublica.sp_repo_entrarCarpetaPublica(idCarpeta, idUsuarioEjecutor, idPagina);
-                        archivos.Add("carpetas", carpetas);
+                        archivos = this._controlCarpetaPublica.sp_repo_entrarCarpetaPublica(idCarpeta, idUsuarioEjecutor, idPagina);
+                        //List<CarpetaPublica> carpetas = this._controlCarpetaPublica.sp_repo_entrarCarpetaPublica(idCarpeta, idUsuarioEjecutor, idPagina);
+                        //archivos.Add("carpetas", carpetas);
                         return archivos;
                     }
                     catch (ErroresIUS x)
@@ -69,6 +70,7 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                         Dictionary<object,object> archivos = new Dictionary<object,object>();
                         List<CarpetaPublica> carpetas = this._controlCarpetaPublica.sp_repo_getRootFolderPublico(idUsuarioEjecutor, idPagina);
                         archivos.Add("carpetas", carpetas);
+                        archivos.Add("archivos", null);
                         return archivos;
                     }
                     catch (ErroresIUS x)

@@ -50,6 +50,7 @@ namespace IUSBack.Controllers
                     ViewBag.permisos = permisos;
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     ViewBag.carpetas = archivos["carpetas"];
+                    ViewBag.archivos = archivos["archivos"];
                     ViewBag.idCarpetaActual = id;
                 }
                 catch (ErroresIUS x)
@@ -144,6 +145,7 @@ namespace IUSBack.Controllers
                              respuesta = new Dictionary<object, object>();
                              respuesta.Add("estado", true);
                              respuesta.Add("carpetas", archivos["carpetas"]);
+                             respuesta.Add("archivos", archivos["archivos"]);
                              respuesta.Add("idCarpetaPadre", idCarpetaPadre);
                          }
                          else

@@ -12,6 +12,7 @@ using System.Text;
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.REPO.Entidades.Publico;
+    using IUSLibs.REPO.Entidades;
 namespace IUSLibs.REPO.Control.Publico
 {
     public class ControlCarpetaPublica:PadreLib
@@ -69,10 +70,16 @@ namespace IUSLibs.REPO.Control.Publico
                     retorno.Add("carpetas", carpetas);
                     return retorno;
                 }
-                public List<CarpetaPublica> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
+                public Dictionary<object,object> sp_repo_entrarCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
                 {
+                    Dictionary<object, object> retorno = new Dictionary<object, object>();
+                    // para carpetas
                     List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
-                    CarpetaPublica carpetaPadre;
+                    CarpetaPublica carpetaPadre; Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
+                    // para archivos
+                    List<ArchivoPublico> archivos = null; ArchivoPublico archivo;
+
+                    // do
                     SPIUS sp = new SPIUS("sp_repo_entrarCarpetaPublica");
                     sp.agregarParametro("idCarpeta", idCarpeta);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -99,6 +106,20 @@ namespace IUSLibs.REPO.Control.Publico
                                     carpetas.Add(carpeta);
                                 }
                             }
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                archivos = new List<ArchivoPublico>();
+                                foreach (DataRow row in tb[1].Rows)
+                                {
+                                    
+                                    tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                    tipoArchivo._icono = row["icono"].ToString();
+                                    extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                                    archivoNormal = new Archivo((int)row["idArchivo"],extension);
+                                    archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, (int)row["id_carpetapublica_fk"], row["nombre_publico"].ToString(), (bool)row["estado"]);
+                                    archivos.Add(archivo);
+                                }
+                            }
                         }
                     }
                     catch (ErroresIUS x)
@@ -109,7 +130,9 @@ namespace IUSLibs.REPO.Control.Publico
                     {
                         throw x;
                     }
-                    return carpetas;
+                    retorno.Add("carpetas", carpetas);
+                    retorno.Add("archivos", archivos);
+                    return retorno;
                 }
                 public List<CarpetaPublica> sp_repo_getRootFolderPublico(int idUsuarioEjecutor, int idPagina)
                 {
