@@ -11,15 +11,82 @@ using System.Text;
     using IUSLibs.GENERALS;
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Entidades;
-    using IUSLibs.REPO.Entidades.Publico;    
+    // repositorio
+        using IUSLibs.REPO.Entidades.Publico;
+        using IUSLibs.REPO.Entidades;
 namespace IUSLibs.REPO.Control.Publico
 {
     public class ControlArchivoPublico:PadreLib
     {
         #region "get"
+        public List<ArchivoPublico> sp_repo_front_getArchivosPublicosByType(int idCarpeta,int idTipoArchivo, string ip, int idPagina)
+            {
+                List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;
+                Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
+                CarpetaPublica carpetaPublica;
+                SPIUS sp = new SPIUS("sp_repo_front_getAllArchivosPublicos");
+                /*En teoria este if esta demas pero para no dar error en caso de ataque */
+                if (idCarpeta != -1)
+                {
+                    sp.agregarParametro("idCarpeta", idCarpeta);
+                }
+                else
+                {
+                    sp.agregarParametro("idCarpeta", null);
+                }
+                sp.agregarParametro("idTipoArchivo", idTipoArchivo);
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            archivosPublicos = new List<ArchivoPublico>();
+                            foreach (DataRow row in tb[0].Rows)
+                            {
+
+                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                tipoArchivo._icono = row["icono"].ToString();
+                                extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                                archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                                if (row["id_carpetapublica_fk"] == DBNull.Value)
+                                {
+                                    carpetaPublica = new CarpetaPublica();
+                                }
+                                else
+                                {
+                                    carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
+                                }
+                                archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);
+                                archivosPublicos.Add(archivo);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return archivosPublicos;
+            }
             public List<ArchivoPublico> sp_repo_front_getAllArchivosPublicos(int idCarpeta, string ip, int idPagina)
             {
                 List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;
+                Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
+                CarpetaPublica carpetaPublica;
                 SPIUS sp = new SPIUS("sp_repo_front_getAllArchivosPublicos");
                 if (idCarpeta != -1)
                 {
@@ -37,8 +104,23 @@ namespace IUSLibs.REPO.Control.Publico
                     if (this.resultadoCorrectoGet(tb))
                     {
                         if (tb[0].Rows.Count > 0)
-                        { 
+                        {
+                            archivosPublicos = new List<ArchivoPublico>();
+                            foreach (DataRow row in tb[0].Rows)
+                            {
 
+                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                tipoArchivo._icono = row["icono"].ToString();
+                                extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                                archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                                if(row["id_carpetapublica_fk"] == DBNull.Value){
+                                    carpetaPublica = new CarpetaPublica();
+                                }else{
+                                    carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
+                                }
+                                archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal,carpetaPublica , row["nombre_publico"].ToString(), (bool)row["estado"]);
+                                archivosPublicos.Add(archivo);
+                            }
                         }
                     }
                     else

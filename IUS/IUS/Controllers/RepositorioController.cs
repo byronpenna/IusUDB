@@ -32,7 +32,9 @@ namespace IUS.Controllers
                     string lang         = this.getUserLang();
                     traducciones        = this._model.getTraduccion(lang, this.idPagina);
                     string ip           = Request.UserHostAddress;
-                    ViewBag.carpetas    = this._model.sp_repo_front_GetAllCarpetasPublica(id,ip,this.idPagina);
+                    Dictionary<object, object> archivos = this._model.sp_repo_front_GetAllCarpetasPublica(id, ip, this.idPagina);
+                    ViewBag.carpetas = archivos["carpetas"];
+                    ViewBag.archivos = archivos["archivos"];
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)

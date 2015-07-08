@@ -33,6 +33,14 @@ namespace IUSLibs.REPO.Entidades.Publico
                 this._nombre = nombre;
                 this._estado = estado;
             }
+            public ArchivoPublico(int idArchivoPublico, Archivo archivoUsuario, CarpetaPublica carpeta, string nombre, bool estado)
+            {
+                this._idArchivoPublico = idArchivoPublico;
+                this._archivoUsuario = archivoUsuario;
+                this._carpetaPublica = carpeta;
+                this._nombre = nombre;
+                this._estado = estado;
+            }
             public ArchivoPublico(int idArchivoPublico, int idArchivoUsuario, CarpetaPublica carpetaPublica, string nombre, bool estado)
             {
                 this._idArchivoPublico = idArchivoPublico;

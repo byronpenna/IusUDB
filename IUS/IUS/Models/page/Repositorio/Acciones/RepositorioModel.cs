@@ -14,14 +14,36 @@ namespace IUS.Models.page.Repositorio.Acciones
     {
         #region "propiedades"
             private ControlCarpetaPublica _controlCarpetaPublica;
+            private ControlArchivoPublico _controlArchivoPublico;
         #endregion
             #region "funciones"
                 #region "get"
-                    public List<CarpetaPublica> sp_repo_front_GetAllCarpetasPublica(int idCarpetaPadre, string ip, int idPagina)
+                    public Dictionary<object, object> sp_repo_front_getArchivosPublicosByType(int idCarpeta, int idTipoArchivo, string ip, int idPagina)
                     {
                         try
                         {
-                            return this._controlCarpetaPublica.sp_repo_front_GetAllCarpetasPublica(idCarpetaPadre, ip, idPagina);
+                            Dictionary<object, object> retorno = new Dictionary<object, object>();
+                            retorno.Add("carpetas", this._controlCarpetaPublica.sp_repo_front_GetAllCarpetasPublica(idCarpeta, ip, idPagina));
+                            retorno.Add("archivos", this._controlArchivoPublico.sp_repo_front_getArchivosPublicosByType(idCarpeta, idTipoArchivo, ip, idPagina));
+                            return retorno;
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    public Dictionary<object,object> sp_repo_front_GetAllCarpetasPublica(int idCarpetaPadre, string ip, int idPagina)
+                    {
+                        try
+                        {
+                            Dictionary<object,object> retorno = new Dictionary<object,object>();
+                            retorno.Add("carpetas",this._controlCarpetaPublica.sp_repo_front_GetAllCarpetasPublica(idCarpetaPadre, ip, idPagina));
+                            retorno.Add("archivos",this._controlArchivoPublico.sp_repo_front_getAllArchivosPublicos(idCarpetaPadre,ip,idPagina));
+                            return retorno;
                         }
                         catch (ErroresIUS x)
                         {
@@ -40,6 +62,7 @@ namespace IUS.Models.page.Repositorio.Acciones
             public RepositorioModel()
             {
                 this._controlCarpetaPublica = new ControlCarpetaPublica();
+                this._controlArchivoPublico = new ControlArchivoPublico();
             }
         #endregion
     }
