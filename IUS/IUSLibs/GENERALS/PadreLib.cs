@@ -15,10 +15,7 @@ namespace IUSLibs.GENERALS
             {
                 Crear=1,Editar=2,Eliminar=3,ver=4
             }
-            public enum TiposArchivos
-            {
-
-            }
+            
         #endregion
         #region "funciones heredadas"
         // contendra todas los metodos y atributos de uso general

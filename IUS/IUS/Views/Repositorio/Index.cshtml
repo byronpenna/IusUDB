@@ -1,14 +1,35 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.REPO.Entidades
+@section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/media.css" />
 }
+@{
+    List<TipoArchivo> tiposArchivos = (List<TipoArchivo>)ViewBag.tiposArchivos;
+}
 <div class="row marginNull busquedaRepo" >
+    <div class="row marginNull divRowTitulo">
+        <h2>Repositorio digital</h2>
+        <h4>Seleccione el tipo de archivo que desea encontrar</h4>
+    </div>
+    
     <div class="col-lg-3 seleccion">
         <a href="@Url.Action("AllFiles","Repositorio")">
             <img src="~/Content/images/views/Repositorio/cloud.png">
             <h3>Todo</h3>
         </a>
     </div>
+    @if (tiposArchivos != null && tiposArchivos.Count > 0)
+    {
+        foreach (TipoArchivo tipoArchivo in tiposArchivos)
+        {
+            <div class="col-lg-3 seleccion">
+                <img src="~/Content/images/views/Repositorio/@tipoArchivo._icono">
+                <h3>@tipoArchivo._tipoArchivo</h3>
+            </div>   
+        }
+        
+    }
+    <!--
     <div class="col-lg-3 seleccion">
         <img src="~/Content/images/views/Repositorio/image.png">
         <h3>Imagenes</h3>
@@ -25,4 +46,5 @@
         <img src="~/Content/images/views/Repositorio/powerpoint-ico.png">
         <h3>Presentaciones</h3>
     </div>
+    -->
 </div>

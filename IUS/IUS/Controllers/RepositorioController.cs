@@ -53,9 +53,12 @@ namespace IUS.Controllers
                 try
                 {
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
-                    string lang = this.getUserLang();
-                    traducciones = this._model.getTraduccion(lang, this.idPagina);
+                    
+                    string lang     = this.getUserLang();
+                    traducciones    = this._model.getTraduccion(lang, this.idPagina);
+                    string ip       = Request.UserHostAddress;
                     this.setTraduccion(traducciones);
+                    ViewBag.tiposArchivos = this._model.sp_repo_front_getTiposArchivos(ip, this.idPagina);
                 }
                 catch (ErroresIUS x)
                 {

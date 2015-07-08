@@ -6,6 +6,9 @@ using System.Web;
     using IUS.Models.general;
 // externas 
     using IUSLibs.LOGS;
+    // repositorio
+    using IUSLibs.REPO.Control;
+    using IUSLibs.REPO.Entidades;
     using IUSLibs.REPO.Control.Publico;
     using IUSLibs.REPO.Entidades.Publico;
 namespace IUS.Models.page.Repositorio.Acciones
@@ -18,6 +21,22 @@ namespace IUS.Models.page.Repositorio.Acciones
         #endregion
             #region "funciones"
                 #region "get"
+                    public List<TipoArchivo> sp_repo_front_getTiposArchivos(string ip, int idPagina)
+                    {
+                        try
+                        {
+                            ControlTipoArchivo control = new ControlTipoArchivo();
+                            return control.sp_repo_front_getTiposArchivos(ip,idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public Dictionary<object, object> sp_repo_front_getArchivosPublicosByType(int idCarpeta, int idTipoArchivo, string ip, int idPagina)
                     {
                         try

@@ -120,6 +120,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REPO\Control\ControlArchivo.cs" />
     <Compile Include="REPO\Control\ControlCarpeta.cs" />
+    <Compile Include="REPO\Control\ControlTipoArchivo.cs" />
     <Compile Include="REPO\Control\Publico\ControlArchivoPublico.cs" />
     <Compile Include="REPO\Control\Publico\ControlCarpetaPublica.cs" />
     <Compile Include="REPO\Entidades\Archivo.cs" />
