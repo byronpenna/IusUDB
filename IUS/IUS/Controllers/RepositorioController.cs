@@ -23,6 +23,33 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones url"
+            public ActionResult FileByCategory(int id=-1,int id2=-1)
+            {
+                List<LlaveIdioma> traducciones;
+                try
+                {
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                    string lang = this.getUserLang();
+                    traducciones = this._model.getTraduccion(lang, this.idPagina);
+                    string ip = Request.UserHostAddress;
+                    Dictionary<object, object> archivos = this._model.sp_repo_front_getArchivosPublicosByType(id,id2, ip, this.idPagina);
+                    ViewBag.carpetas    = archivos["carpetas"];
+                    ViewBag.archivos    = archivos["archivos"];
+                    ViewBag.accion      = "FileByCategory";
+                    ViewBag.tipo        = id2;
+                    this.setTraduccion(traducciones);
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View("~/Views/Repositorio/AllFiles.cshtml");
+                
+            }
             public ActionResult AllFiles(int id=-1)
             {
                 List<LlaveIdioma> traducciones;
@@ -35,6 +62,7 @@ namespace IUS.Controllers
                     Dictionary<object, object> archivos = this._model.sp_repo_front_GetAllCarpetasPublica(id, ip, this.idPagina);
                     ViewBag.carpetas = archivos["carpetas"];
                     ViewBag.archivos = archivos["archivos"];
+                    ViewBag.accion      = "AllFiles";
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)

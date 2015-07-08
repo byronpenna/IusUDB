@@ -10,6 +10,16 @@
 @{
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
+    int tipo;
+    try
+    {
+        tipo = (int)ViewBag.tipo;
+    }
+    catch (Exception)
+    {
+        tipo = -1;
+    }
+    
 }
 <h2 class="tituloPrincipal">Repositorio</h2>
 <div class="row marginNull" >
@@ -19,7 +29,7 @@
            foreach (CarpetaPublica carpeta in carpetas)
            {
                <div class="col-lg-2 folder">
-                   <a href="@Url.Action("AllFiles", "Repositorio", new {id= @carpeta._idCarpetaPublica})">
+                   <a href="@Url.Action(ViewBag.accion, "Repositorio", new {id= @carpeta._idCarpetaPublica,id2=tipo})">
                        <div class="cuadritoIcono cuadritoCarpeta">
                            <img src="~/Content/images/views/repositorio/@carpeta.getIcono" />
                            <h3>@carpeta._nombre</h3>
@@ -28,7 +38,7 @@
                </div>
            }
        }
-       @if (archivos != null && carpetas.Count > 0)
+       @if (archivos != null && archivos.Count > 0)
        {
            foreach (ArchivoPublico archivo in archivos) { 
               <div class="col-lg-2 folder">

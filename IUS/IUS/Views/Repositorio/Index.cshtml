@@ -22,12 +22,14 @@
     {
         foreach (TipoArchivo tipoArchivo in tiposArchivos)
         {
-            <div class="col-lg-3 seleccion">
-                <img src="~/Content/images/views/Repositorio/@tipoArchivo._icono">
-                <h3>@tipoArchivo._tipoArchivo</h3>
-            </div>   
+            <a href="@Url.Action("FileByCategory", "Repositorio", new { id= -1,id2=@tipoArchivo._idTipoArchivo})">
+                <div class="col-lg-3 seleccion">
+                    <img src="~/Content/images/views/Repositorio/@tipoArchivo._icono">
+                    <h3>@tipoArchivo._tipoArchivo</h3>
+                </div>
+            </a>
         }
-        
+
     }
     <!--
     <div class="col-lg-3 seleccion">

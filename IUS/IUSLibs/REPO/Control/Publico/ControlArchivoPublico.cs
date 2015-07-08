@@ -24,7 +24,7 @@ namespace IUSLibs.REPO.Control.Publico
                 List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;
                 Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
                 CarpetaPublica carpetaPublica;
-                SPIUS sp = new SPIUS("sp_repo_front_getAllArchivosPublicos");
+                SPIUS sp = new SPIUS("sp_repo_front_getArchivosPublicosByType");
                 /*En teoria este if esta demas pero para no dar error en caso de ataque */
                 if (idCarpeta != -1)
                 {
