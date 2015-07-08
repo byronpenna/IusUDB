@@ -25,6 +25,16 @@
         ";
         return div;
     }
+    function getDivArchivosPublicos(archivo) {
+        var div = "";
+        div = "\
+        <div class='divArchivoPublico col-lg-6'>\
+            <img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + archivo._archivoUsuario._extension._tipoArchivo._icono + "' />\
+            <h4>" + archivo._nombre + "</h4>\
+        </div>\
+        ";
+        return div;
+    }
     function getTrArchivo(archivo, estado) {
         icoEstado = "";
         if (estado) {
@@ -106,16 +116,25 @@
             }
             function divCarpetaPublica(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-                    
+                    console.log(data);
                     if (data.estado) {
-                        div = "";
+                        var div         = "";
+                        var divArchivo = "";
+                        $(".txtHdCarpetaPadrePublica").val(data.idCarpetaPadre);
                         if (data.carpetas !== null) {
                             $.each(data.carpetas, function (i, carpeta) {
                                 div += getDivCarpetasPublicas(carpeta);
                             });
-                            $(".txtHdCarpetaPadrePublica").val(data.idCarpetaPadre);
+                            
+                        }
+                        if (data.archivos !== null) {
+                            
+                            $.each(data.archivos, function (i, archivo) {
+                                divArchivo += getDivArchivosPublicos(archivo);
+                            })
                         }
                         $(".divCarpetasPublicasCompartir").empty().append(div);
+                        $(".divCarpetasPublicasCompartir").append(divArchivo);
 
                     }
                 })

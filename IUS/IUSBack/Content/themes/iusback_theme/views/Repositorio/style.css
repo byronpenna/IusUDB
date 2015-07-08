@@ -1,8 +1,8 @@
-﻿.divCarpetaPublica{
+﻿.divCarpetaPublica,.divArchivoPublico{
     margin-top:5%;
     text-align:center;
 }
-.divCarpetaPublica img{
+.divCarpetaPublica img,.divArchivoPublico img{
     width:30%;
 }
 .divControlesPublicos{
