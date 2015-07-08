@@ -6,6 +6,18 @@
                 div = getDivNewFolder();
                 $(".folders").prepend(div);
             })
+            // eliminar carpeta 
+                $(document).on("click", ".icoEliminarArchivo", function (e) {
+                    e.preventDefault();
+                    var x = confirm("¿Esta seguro que desea dejar de compartir este archivo?");
+                    if (x) {
+                        var seccion = $(this).parents(".folder");
+                        var frm = {
+                            idArchivoPublico: $(".txtHdIdArchivoPublico").val()
+                        }
+                        icoEliminarArchivo(frm,seccion);
+                    }
+                })
             // entrar a carpeta
                 $(document).on("click", ".cuadritoCarpeta", function () {
                     var estado = $(this).attr("id");

@@ -1,4 +1,10 @@
 ﻿// acciones script
+    function icoEliminarArchivo(frm,seccion) {
+        console.log(frm);
+        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_removeShareArchivoPublico", frm, function (data) {
+            console.log(data);
+        })
+    }
     function icoEliminarCarpeta(frm, seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_deleteCarpetaPublica", frm, function (data) {
             console.log(data);

@@ -88,15 +88,13 @@
                     
                     <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpetaPublica"/>
                     <div class="row divHerramientasIndividual">
-                        
                         <a href="#" class="ico" title="Descargar">
                             <i class="fa fa-download"></i>
                         </a>
                         <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
                             <i class="fa fa-trash-o"></i>
                         </a>
-                    </div>
-                    
+                    </div>                    
                         <div class="cuadritoIcono cuadritoCarpeta">
                             <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
                             <div class="detalleCarpeta">
@@ -123,6 +121,12 @@
             foreach (ArchivoPublico archivo in archivos)
             {
                 <div class="col-lg-2 folder">
+                    <input type="hidden" class="txtHdIdArchivoPublico" value="@archivo._idArchivoPublico" />
+                    <div class="row divHerramientasIndividual">
+                        <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
                     <div class="cuadritoIcono ">
                         <img src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
                         <div class="detalleCarpeta">
