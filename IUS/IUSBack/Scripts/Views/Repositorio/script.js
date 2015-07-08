@@ -57,7 +57,12 @@
                         seccion = $(this).parents(".shareSection");
                         frm = serializeSection(seccion);
                         console.log(frm);
-                        btnCompartir(frm, seccion);
+                        if (frm.txtHdCarpetaPadrePublica != "-1") {
+                            btnCompartir(frm, seccion);
+                        } else {
+                            alert("No se puede compartir en este directorio");
+                        }
+                        
                     })
             // repositorio privado        
 

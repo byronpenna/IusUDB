@@ -146,7 +146,7 @@ namespace IUSLibs.REPO.Control.Publico
         {
             ArchivoPublico archivoCompartido = null;
             SPIUS sp = new SPIUS("sp_repo_compartirArchivoPublico");
-            
+            Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
             sp.agregarParametro("idArchivo", archivoAgregar._archivoUsuario._idArchivo);
             if (archivoAgregar._carpetaPublica._idCarpetaPublica == -1)
             {
@@ -170,11 +170,17 @@ namespace IUSLibs.REPO.Control.Publico
                     if (tb[1].Rows.Count > 0)
                     {
                         DataRow row = tb[1].Rows[0];
+                        /*
                         CarpetaPublica carpetaPublica = null;
                         if(row["id_carpetapublica_fk"] != DBNull.Value){
                             carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
                         }
-                        archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], (int)row["id_archivousuario_fk"],carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);
+                        archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], (int)row["id_archivousuario_fk"],carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);*/
+                        tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                        tipoArchivo._icono = row["icono"].ToString();
+                        extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                        archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                        archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, (int)row["id_carpetapublica_fk"], row["nombre_publico"].ToString(), (bool)row["estado"]);
                     }
                 }
                 else

@@ -96,6 +96,14 @@
             function btnCompartir(frm,seccion) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_compartirArchivoPublico", frm, function (data) {
                     console.log(data);
+                    var div = "";
+                    if (data.estado) {
+                        div = getDivArchivosPublicos(data.archivoPublico);
+                        //clearTr(seccion);
+                        seccion.find(".nombreFileCompartir").empty();
+                        seccion.find(".txtNombreFileCompartir").val("");
+                    }
+                    $(".divCarpetasPublicasCompartir").append(div);
                 });
             }
             function icoPublicoBack(frm) {
