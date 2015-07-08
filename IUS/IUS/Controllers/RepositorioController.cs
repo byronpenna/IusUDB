@@ -23,6 +23,28 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones url"
+            public ActionResult AllFiles(int id=-1)
+            {
+                List<LlaveIdioma> traducciones;
+                try
+                {
+                    ViewBag.noticias    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                    string lang         = this.getUserLang();
+                    traducciones        = this._model.getTraduccion(lang, this.idPagina);
+                    string ip           = Request.UserHostAddress;
+                    ViewBag.carpetas    = this._model.sp_repo_front_GetAllCarpetasPublica(id,ip,this.idPagina);
+                    this.setTraduccion(traducciones);
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View();
+            }
             public ActionResult Index()
             {
                 List<LlaveIdioma> traducciones;

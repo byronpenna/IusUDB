@@ -1,0 +1,14 @@
+﻿.folders{
+    margin-top:5%;
+}
+.folder{
+    text-align:center;
+    min-height:280px;
+}
+.folder img{
+    width:30%;/* cambia con respecto al backend*/    
+}
+.tituloPrincipal{
+    text-align:center;
+    margin-top:5%;
+}

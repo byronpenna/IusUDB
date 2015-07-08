@@ -17,7 +17,50 @@ namespace IUSLibs.REPO.Control.Publico
     public class ControlArchivoPublico:PadreLib
     {
         #region "get"
-        public ArchivoPublico sp_repo_compartirArchivoPublico(ArchivoPublico archivoAgregar,int idUsuarioEjecutor, int idPagina)
+            public List<ArchivoPublico> sp_repo_front_getAllArchivosPublicos(int idCarpeta, string ip, int idPagina)
+            {
+                List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;
+                SPIUS sp = new SPIUS("sp_repo_front_getAllArchivosPublicos");
+                if (idCarpeta != -1)
+                {
+                    sp.agregarParametro("idCarpeta", idCarpeta);
+                }
+                else
+                {
+                    sp.agregarParametro("idCarpeta", null);
+                }
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        { 
+
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return archivosPublicos;
+            }
+        #endregion
+        #region "set"
+            public ArchivoPublico sp_repo_compartirArchivoPublico(ArchivoPublico archivoAgregar,int idUsuarioEjecutor, int idPagina)
         {
             ArchivoPublico archivoCompartido = null;
             SPIUS sp = new SPIUS("sp_repo_compartirArchivoPublico");
@@ -70,8 +113,6 @@ namespace IUSLibs.REPO.Control.Publico
             return archivoCompartido;
         }
         #endregion
-        #region "set"
-            
-        #endregion
+        
     }
 }

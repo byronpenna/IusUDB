@@ -1,0 +1,29 @@
+﻿@using IUSLibs.REPO.Entidades.Publico
+@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/AllFiles/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/AllFiles/media.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Repositorio/AllFiles/script.js"></script>
+    <script src="~/Scripts/views/Repositorio/AllFiles/functions.js"></script>
+}
+@{
+    List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
+}
+<h2 class="tituloPrincipal">Repositorio</h2>
+<div class="row marginNull" >
+    <div class="folders">
+       @if (carpetas != null && carpetas.Count > 0)
+       {
+           foreach (CarpetaPublica carpeta in carpetas)
+           {
+               <div class="col-lg-2 folder">
+                   <div class="cuadritoIcono cuadritoCarpeta">
+                       <img src="~/Content/images/views/repositorio/@carpeta.getIcono" />
+                       <h3>@carpeta._nombre</h3>
+                   </div>
+               </div>
+           }
+       }
+    </div>
+</div>

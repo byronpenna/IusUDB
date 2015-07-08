@@ -24,7 +24,14 @@ namespace IUSLibs.REPO.Control.Publico
                     {
                         List<CarpetaPublica> carpetasPublicas = null; CarpetaPublica carpeta;
                         SPIUS sp = new SPIUS("sp_repo_front_GetAllCarpetasPublica");
-                        sp.agregarParametro("idCarpetaPadre", idCarpetaPadre);
+                        if (idCarpetaPadre != -1)
+                        {
+                            sp.agregarParametro("idCarpetaPadre", idCarpetaPadre);
+                        }
+                        else
+                        {
+                            sp.agregarParametro("idCarpetaPadre", null);
+                        }
                         sp.agregarParametro("ip", ip);
                         sp.agregarParametro("idPagina", idPagina);
                         try
@@ -34,9 +41,20 @@ namespace IUSLibs.REPO.Control.Publico
                             {
                                 if (tb[0].Rows.Count > 0)
                                 {
+                                    carpetasPublicas = new List<CarpetaPublica>();
                                     foreach (DataRow row in tb[0].Rows)
                                     {
-                                        //carpeta = new CarpetaPublica((int)row["idCarpetaPublica"],row["nombre"].ToString(),row["id_carpetapadre_fk"])
+                                        CarpetaPublica carpetaPadre;
+                                        if (row["id_carpetapadre_fk"] != DBNull.Value)
+                                        {
+                                            carpetaPadre = new CarpetaPublica((int)row["id_carpetapadre_fk"]);
+                                        }
+                                        else
+                                        {
+                                            carpetaPadre = new CarpetaPublica();
+                                        }
+                                        carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                                        carpetasPublicas.Add(carpeta);
                                     }
                                 }
                             }
@@ -55,7 +73,7 @@ namespace IUSLibs.REPO.Control.Publico
                         {
                             throw x;
                         }
-                        return null;
+                        return carpetasPublicas;
                     } 
                 #endregion
                 #region "backend"
