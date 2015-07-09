@@ -29,13 +29,14 @@
 @{
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
+    CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
 }
 <div class="row marginNull rowHerramientas">
     <div class="col-lg-4">
 
         <label for="txtDireccion">Ruta</label>
         <div class="input-group">
-            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="" />
+            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="@carpetaPadre._strRuta" />
             <span class="input-group-addon spIrBuscar">Ir</span>
         </div>
 

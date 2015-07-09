@@ -75,11 +75,7 @@
                     }
                     //console.log("vas a redireccionar");
                 });
-            // directorio 
-                $(document).on("click", ".spIrBuscar", function () {
-                    frm = { txtRuta: $(".txtDireccion").val() }
-                    spIrBuscar(frm);
-                });
+            
             // eliminar archivos 
                 $(document).on("click", ".icoEliminarArchivo", function () {
                     var x = confirm("Esta seguro que desea eliminar este archivo");

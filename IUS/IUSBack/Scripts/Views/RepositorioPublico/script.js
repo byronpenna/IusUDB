@@ -1,7 +1,12 @@
 ﻿$(document).ready(function () {
     // eventos
         //click 
-            $(document).on("click", ".icoNuevaCarpeta", function (e) {
+            // Busqueda
+                /*$(document).on("click", ".spIrBuscar", function (e) {
+
+                })*/
+            //
+                $(document).on("click", ".icoNuevaCarpeta", function (e) {
                 e.preventDefault();
                 div = getDivNewFolder();
                 $(".folders").prepend(div);
@@ -19,7 +24,8 @@
                     }
                 })
             // entrar a carpeta
-                $(document).on("click", ".cuadritoCarpeta", function () {
+                $(document).on("click", ".cuadritoCarpeta", function (e) {
+                    e.cancelBubble = true;
                     var estado = $(this).attr("id");
                     if (estado != '0') {
                         window.location = RAIZ + "RepositorioPublico/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
@@ -57,6 +63,9 @@
                     }
 
                 });
+                $(document).on("click", ".sinRedirect", function (e) {
+                    e.stopPropagation();
+                })
         // doble click
             $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
                 e.cancelBubble = true;

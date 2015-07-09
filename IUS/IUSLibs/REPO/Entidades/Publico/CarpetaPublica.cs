@@ -12,6 +12,7 @@ namespace IUSLibs.REPO.Entidades.Publico
             public string           _nombre;
             public CarpetaPublica   _carpetaPadre;
             // extras
+            public string _strRuta;
             private string icono = "folder.png";
             public string getIcono
             {

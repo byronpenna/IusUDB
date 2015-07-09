@@ -26,7 +26,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
         #endregion
         #region "funciones"
             #region "get"
-            
+                public CarpetaPublica sp_repo_getPublicoByRuta( string strRuta,int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlCarpetaPublica.sp_repo_getPublicoByRuta(strRuta, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Dictionary<object, object> sp_repo_atrasCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
                 {
                     try

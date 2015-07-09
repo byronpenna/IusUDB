@@ -1,4 +1,12 @@
-﻿function getDivNewFolder() {
+﻿// eventos 
+    // click
+        // directorio 
+        $(document).on("click", ".spIrBuscar", function () {
+            frm = { txtRuta: $(".txtDireccion").val() }
+            spIrBuscar(frm);
+        });
+// generics
+    function getDivNewFolder() {
     div = "<div class='col-lg-2 folder '>\
                     <input type='hidden' class='txtHdIdCarpeta' value=''/>\
                     <div class='row divHerramientasIndividual'>\

@@ -36,12 +36,16 @@ namespace IUSBack.Controllers
                     Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> archivos;
+                    CarpetaPublica carpetaPadre;
                     if (id != -1)
                     {
                        archivos = this._model.sp_repo_entrarCarpetaPublica(id,usuarioSession._idUsuario,this._idPagina);
+                       carpetaPadre = (CarpetaPublica)archivos["carpetaPadre"];
                     }
                     else
                     {
+                        carpetaPadre = new CarpetaPublica();
+                        carpetaPadre._strRuta = "/";
                         archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
                     }
                     // viewback 
@@ -51,6 +55,7 @@ namespace IUSBack.Controllers
                     ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     ViewBag.carpetas = archivos["carpetas"];
                     ViewBag.archivos = archivos["archivos"];
+                    ViewBag.carpetaPadre = carpetaPadre;
                     ViewBag.idCarpetaActual = id;
                 }
                 catch (ErroresIUS x)
@@ -67,6 +72,37 @@ namespace IUSBack.Controllers
         #endregion
         #region "resultados ajax"
             #region "get"
+                public ActionResult sp_repo_getPublicoByRuta()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            CarpetaPublica carpeta = this._model.sp_repo_getPublicoByRuta(frm["txtRuta"].ToString(), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("carpetaPublica", carpeta);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_repo_compartirArchivoPublico() { 
                     Dictionary<object, object> frm, respuesta = null;
                     try

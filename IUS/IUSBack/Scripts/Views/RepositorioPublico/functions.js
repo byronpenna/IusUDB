@@ -1,8 +1,18 @@
 ﻿// acciones script
-    function icoEliminarArchivo(frm,seccion) {
+    function spIrBuscar(frm) {
         console.log(frm);
-        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_removeShareArchivoPublico", frm, function (data) {
+        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getPublicoByRuta", frm, function (data) {
             console.log(data);
+            if (data.estado) {
+                window.location = RAIZ + "RepositorioPublico/index/" + data.carpetaPublica._idCarpetaPublica;
+            }
+        })
+    }
+    function icoEliminarArchivo(frm, seccion) {
+        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_removeShareArchivoPublico", frm, function (data) {
+            if (data.estado) {
+                seccion.remove();
+            }
         })
     }
     function icoEliminarCarpeta(frm, seccion) {
