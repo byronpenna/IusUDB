@@ -1,1 +1,21 @@
-﻿
+﻿@media (max-width:500px) {
+    .seleccion{
+        width:100%;
+        margin-bottom:8%;
+    }
+    .divRowTitulo{
+        margin-top:8%;
+        margin-bottom:10%;
+    }
+}
+@media (min-width: 767px) and (max-width:992px) {
+    .seleccion {
+        margin-bottom:8%;
+    }
+}
+@media (min-width: 992px) and (max-width:1200px) {
+    
+    .seleccion {
+        margin-bottom:6%;
+    }
+}
