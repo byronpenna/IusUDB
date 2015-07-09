@@ -21,7 +21,18 @@
     }
     
 }
+
 <h2 class="tituloPrincipal">Repositorio</h2>
+<div class="row marginNull divBusqueda">
+    <div class="col-lg-4">
+        <div class="input-group">
+            <input class="form-control" />
+            <span class="input-group-addon spIrBuscar">Ir</span>
+        </div>
+        
+    </div>
+    
+</div>
 <div class="row marginNull" >
     <div class="folders">
        @if (carpetas != null && carpetas.Count > 0)
@@ -46,7 +57,6 @@
            foreach (ArchivoPublico archivo in archivos) { 
               <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 folder">
                   <div class="row divHerramientasIndividual">
-                      
                       <a href="@Url.Action("downloadFile", "Repositorio", new {id=archivo._idArchivoPublico })" class="ico" title="Descargar">
                           <i class="fa fa-download iconoHerramientas"></i>
                       </a>
