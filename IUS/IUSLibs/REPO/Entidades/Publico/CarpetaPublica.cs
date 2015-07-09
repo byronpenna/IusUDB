@@ -13,7 +13,15 @@ namespace IUSLibs.REPO.Entidades.Publico
             public CarpetaPublica   _carpetaPadre;
             // extras
             public string _strRuta;
-            private string icono = "folder.png";
+            private string icono        = "folder-green.png";
+            private string iconoFront   = "folder.png";
+            public string getIconoFront
+            {
+                get
+                {
+                    return this.iconoFront;
+                }
+            }
             public string getIcono
             {
                 get

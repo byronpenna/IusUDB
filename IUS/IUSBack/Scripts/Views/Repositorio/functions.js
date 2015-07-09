@@ -19,7 +19,7 @@
         div = "\
         <div class='divCarpetaPublica col-lg-6'>\
             <input type='hidden' class='txtHdIdCarpetaPublica' value='" + carpeta._idCarpetaPublica + "'>\
-            <img src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/folder.png' />\
+            <img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono+ "' />\
             <h4>"+carpeta._nombre+"</h4>\
         </div>\
         ";

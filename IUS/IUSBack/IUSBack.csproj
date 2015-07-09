@@ -231,6 +231,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\adobe-reader.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\excel-ico.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder-green.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder-opacity.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder-gray.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder.png" />

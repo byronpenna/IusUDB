@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.REPO.Entidades;
 namespace IUS.Controllers
 {
     public class RepositorioController : PadreController
@@ -75,6 +76,25 @@ namespace IUS.Controllers
                 }
                 return View();
             }
+            public ActionResult downloadFile(int id)
+            {
+                try
+                {
+                    string ip           = Request.UserHostAddress;
+                    Archivo archivo     = this._model.sp_repo_front_getDownloadFilePublic(id, ip, this.idPagina);
+                    byte[] fileBytes    = System.IO.File.ReadAllBytes(archivo._src);
+                    string fileName = archivo._nombre + archivo._extension._extension;
+                    return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
             public ActionResult Index()
             {
                 List<LlaveIdioma> traducciones;
@@ -98,6 +118,7 @@ namespace IUS.Controllers
                 }
                 return View();
             }
+            
         #endregion
     }
 }

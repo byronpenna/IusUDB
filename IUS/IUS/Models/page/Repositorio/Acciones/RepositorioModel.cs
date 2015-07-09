@@ -19,8 +19,23 @@ namespace IUS.Models.page.Repositorio.Acciones
             private ControlCarpetaPublica _controlCarpetaPublica;
             private ControlArchivoPublico _controlArchivoPublico;
         #endregion
-            #region "funciones"
+        #region "funciones"
                 #region "get"
+                    public Archivo sp_repo_front_getDownloadFilePublic(int idArchivoPublico, string ip, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlArchivoPublico.sp_repo_front_getDownloadFilePublic(idArchivoPublico, ip, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public List<TipoArchivo> sp_repo_front_getTiposArchivos(string ip, int idPagina)
                     {
                         try

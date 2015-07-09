@@ -1,6 +1,9 @@
 ﻿/*
     pruebas
     */
+.visiHidden{
+    visibility:hidden;
+}
 .pink{
     background:pink;
 }

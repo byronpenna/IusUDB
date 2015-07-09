@@ -30,8 +30,11 @@
            {
                <div class="col-lg-2 folder">
                    <a href="@Url.Action(ViewBag.accion, "Repositorio", new {id= @carpeta._idCarpetaPublica,id2=tipo})">
+                       <div class="row divHerramientasIndividual visiHidden">
+                           <i class="fa fa-download"></i>
+                       </div>
                        <div class="cuadritoIcono cuadritoCarpeta">
-                           <img src="~/Content/images/views/repositorio/@carpeta.getIcono" />
+                           <img src="~/Content/images/views/repositorio/@carpeta.getIconoFront" />
                            <h3>@carpeta._nombre</h3>
                        </div>
                    </a>
@@ -42,6 +45,14 @@
        {
            foreach (ArchivoPublico archivo in archivos) { 
               <div class="col-lg-2 folder">
+                  <div class="row divHerramientasIndividual">
+                      <a href="@Url.Action("downloadFile", "Repositorio", new {id=archivo._idArchivoPublico })" class="ico" title="Descargar">
+                          <i class="fa fa-download"></i>
+                      </a>
+                      <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
+                          <i class="fa fa-trash-o"></i>
+                      </a>
+                  </div>
                   <div class="cuadritoIcono ">
                       <img src="~/Content/images/views/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
                       <h3>@archivo._nombre</h3>
