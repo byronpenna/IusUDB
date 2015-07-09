@@ -1,1 +1,23 @@
-﻿
+﻿@media (max-width:500px) {
+    .folder{
+        width:100%;
+        min-height:initial;
+        margin-bottom:5%;
+    }
+    .folder img{
+        width:25%;
+    }
+    .tituloPrincipal {
+        margin-top:8%;
+        margin-bottom:8%;
+    }
+    
+    .iconoHerramientas{
+        font-size:1.5em;
+        margin-left:5%;
+    }
+    
+    .divHerramientasIndividual{
+        margin-bottom:5%;
+    }
+}

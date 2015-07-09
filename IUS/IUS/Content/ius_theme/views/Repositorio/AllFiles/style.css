@@ -3,7 +3,7 @@
 }
 .folder{
     text-align:center;
-    min-height:280px;
+    min-height:200px;
 }
 .folder img{
     width:30%;/* cambia con respecto al backend*/    
