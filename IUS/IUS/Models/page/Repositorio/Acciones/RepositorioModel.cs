@@ -77,6 +77,7 @@ namespace IUS.Models.page.Repositorio.Acciones
                             Dictionary<object,object> retorno = new Dictionary<object,object>();
                             retorno.Add("carpetas",this._controlCarpetaPublica.sp_repo_front_GetAllCarpetasPublica(idCarpetaPadre, ip, idPagina));
                             retorno.Add("archivos",this._controlArchivoPublico.sp_repo_front_getAllArchivosPublicos(idCarpetaPadre,ip,idPagina));
+                            retorno.Add("carpetaPadre", this._controlCarpetaPublica.sp_repo_front_getCarpetaPublicaFromId(idCarpetaPadre, ip, idPagina));
                             return retorno;
                         }
                         catch (ErroresIUS x)

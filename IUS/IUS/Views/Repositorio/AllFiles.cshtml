@@ -10,6 +10,12 @@
 @{
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
+    CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
+    string ruta = "/";
+    if (carpetaPadre != null)
+    {
+        ruta = carpetaPadre._strRuta;
+    }
     int tipo;
     try
     {
@@ -26,7 +32,7 @@
 <div class="row marginNull divBusqueda">
     <div class="col-lg-4">
         <div class="input-group">
-            <input class="form-control" />
+            <input class="form-control" value="@ruta" />
             <span class="input-group-addon spIrBuscar">Ir</span>
         </div>
         
