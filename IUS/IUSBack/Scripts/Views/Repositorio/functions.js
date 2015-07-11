@@ -208,12 +208,12 @@
         function frmSubir(data, url, totalFiles) {
             var estadoIndividual = false;
             accionAjaxWithImage(url, data, function (data) {
-                
+                console.log(data);
                 if (data.estado && !estadoIndividual) {
                     estadoIndividual = true;
                     $(".txtHdEstadoUpload").val("1");
                 }
-                archivo = data.archivo;
+                var archivo = data.archivo;
                 tr = getTrArchivo(archivo, data.estado);
                 $(".tbArchivos").append(tr);
                 porcentaje = $(".tbArchivos").find("tr").length / totalFiles * 100;
