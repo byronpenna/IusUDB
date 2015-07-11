@@ -36,6 +36,7 @@ namespace IUS.Controllers
                     Dictionary<object, object> archivos = this._model.sp_repo_front_getArchivosPublicosByType(id,id2, ip, this.idPagina);
                     ViewBag.carpetas    = archivos["carpetas"];
                     ViewBag.archivos    = archivos["archivos"];
+                    ViewBag.carpetaPadre = archivos["carpetaPadre"];
                     ViewBag.accion      = "FileByCategory";
                     ViewBag.tipo        = id2;
                     this.setTraduccion(traducciones);

@@ -11,10 +11,11 @@
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
     CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
-    string ruta = "/";
+    string ruta = "/"; string nombre = "Repositorio";
     if (carpetaPadre != null)
     {
         ruta = carpetaPadre._strRuta;
+        nombre = carpetaPadre._nombre;
     }
     int tipo;
     try
@@ -28,7 +29,7 @@
     
 }
 
-<h2 class="tituloPrincipal">Repositorio</h2>
+<h2 class="tituloPrincipal">@nombre</h2>
 <div class="row marginNull divBusqueda">
     <div class="col-lg-4">
         <div class="input-group">
@@ -36,6 +37,12 @@
             <span class="input-group-addon spIrBuscar">Ir</span>
         </div>
         
+    </div>
+    <div class="col-lg-offset-4 col-lg-4">
+        <div class="input-group">
+            <input class="form-control txtBusqueda" placeholder="Busquedar en carpeta" />
+            <span class="input-group-addon spIrBuscar">Buscar</span>
+        </div>
     </div>
     
 </div>
@@ -52,7 +59,7 @@
                        </div>
                        <div class="cuadritoIcono cuadritoCarpeta">
                            <img src="~/Content/images/views/repositorio/@carpeta.getIconoFront" />
-                           <h3>@carpeta._nombre</h3>
+                           <h3 class="folderTitle">@carpeta._nombre</h3>
                        </div>
                    </a>
                </div>
@@ -72,7 +79,7 @@
                   </div>
                   <div class="cuadritoIcono ">
                       <img src="~/Content/images/views/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
-                      <h3>@archivo._nombre</h3>
+                      <h3 class="folderTitle">@archivo._nombre</h3>
                   </div>
               </div> 
            }
