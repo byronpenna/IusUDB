@@ -4,7 +4,18 @@
     $(window).bind("popstate", function (e) {
         console.log("set back");
     })*/
-        loadPublicFiles();
+        loadPublicFiles();            
+        // keyup 
+            $(document).on("keyup", ".txtNombreFileCompartir", function (e) {
+                if ($(this).val() == "") {
+                    $(".divCarpetasPublicasCompartir .divCarpetaPublica").removeClass("hidden");
+                } else {
+                    $(".divCarpetasPublicasCompartir .divCarpetaPublica").addClass("hidden");
+                    var folders = $(".divCarpetaPublica .tituloCarpetaPublica:containsi(" + $(this).val() + ")");
+                    folders = folders.parents(".divCarpetaPublica");
+                    folders.removeClass("hidden");
+                }
+            })
         // submit 
             $(document).on("submit", "#frmSubir", function (e) {
                 
@@ -34,7 +45,7 @@
                 
                 
             })
-    // click 
+        // click 
             // publico 
                 $(document).on("click", ".icoPublicoBack", function (e) {
                     frm = { idCarpetaPublica: $(".txtHdCarpetaPadrePublica").val() }

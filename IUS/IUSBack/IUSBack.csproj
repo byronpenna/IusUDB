@@ -449,6 +449,7 @@
     <Content Include="Scripts\Views\Repositorio\functions.js" />
     <Content Include="Scripts\Views\Repositorio\script.js" />
     <Content Include="Scripts\Views\Repositorio\universales\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\universales\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

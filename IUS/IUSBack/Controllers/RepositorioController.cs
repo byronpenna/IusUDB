@@ -264,6 +264,11 @@ namespace IUSBack.Controllers
                         if (usuarioSession != null && frm != null)
                         {
                             Carpeta carpeta = this._model.sp_repo_byRuta(frm["txtRuta"].ToString(), usuarioSession._idUsuario, this._idPagina);
+                            if (carpeta == null)
+                            {
+                                ErroresIUS x = new ErroresIUS("Carpeta no encontrada", ErroresIUS.tipoError.generico, 0, "", true);
+                                throw x;
+                            }
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("carpeta", carpeta);

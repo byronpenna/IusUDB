@@ -1,10 +1,36 @@
 ﻿// eventos 
     // click
         // directorio 
-        $(document).on("click", ".spIrBuscar", function () {
-            frm = { txtRuta: $(".txtDireccion").val() }
-            spIrBuscar(frm);
-        });
+            $(document).on("click", ".spIrBuscar", function () {
+                frm = { txtRuta: $(".txtDireccion").val() }
+                if (frm.txtRuta.slice(-1) != "/") {
+                    frm.txtRuta += "/";
+                }
+                spIrBuscar(frm);
+            });
+    // keyup
+        // directorio
+            $(document).on("keyup", ".txtBusqueda", function (e) {
+                if ($(this).val() == "") {
+                    $(".folders .folder").removeClass("hidden");
+                } else {
+                    $(".folders .folder").addClass("hidden");
+                    var folders = $(".folder .ttlNombreCarpeta:containsi(" + $(this).val() + ")");
+                    folders = folders.parents(".folder");
+                    folders.removeClass("hidden");
+                }
+            })
+            $(document).on("keyup", ".txtDireccion", function (e) {
+                var charCode = e.which;
+                console.log(charCode);
+                if (charCode == 13) {// tecla enter
+                    frm = { txtRuta: $(".txtDireccion").val() }
+                    if (frm.txtRuta.slice(-1) != "/") {
+                        frm.txtRuta += "/";
+                    }
+                    spIrBuscar(frm);
+                }
+            })
 // generics
     function getDivNewFolder() {
     div = "<div class='col-lg-2 folder '>\
@@ -46,7 +72,7 @@
                 </div>";
     return div;
 }
-// actualizar carpeta 
+// actualizar carpeta
     function ttlNombreCarpeta(seccion, nombre) {
         seccion.find(".normalMode").addClass("hidden");
         seccion.find(".editMode").removeClass("hidden");

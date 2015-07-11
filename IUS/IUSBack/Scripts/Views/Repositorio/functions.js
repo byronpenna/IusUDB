@@ -20,7 +20,7 @@
         <div class='divCarpetaPublica col-lg-6'>\
             <input type='hidden' class='txtHdIdCarpetaPublica' value='" + carpeta._idCarpetaPublica + "'>\
             <img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono+ "' />\
-            <h4>"+carpeta._nombre+"</h4>\
+            <h4 class='tituloCarpetaPublica'>"+carpeta._nombre+"</h4>\
         </div>\
         ";
         return div;
@@ -149,10 +149,15 @@
             }
         // directorio
         function spIrBuscar(frm) {
+
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
                 console.log(data);
                 if (data.estado) {
                     window.location = RAIZ + "Repositorio/index/" + data.carpeta._idCarpeta;
+                } else {
+                    if (data.error._mostrar) {
+                        alert(data.error.Message);
+                    }
                 }
             })
         }
