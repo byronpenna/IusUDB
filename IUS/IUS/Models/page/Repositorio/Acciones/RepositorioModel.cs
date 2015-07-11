@@ -21,6 +21,21 @@ namespace IUS.Models.page.Repositorio.Acciones
         #endregion
         #region "funciones"
                 #region "get"
+                    public CarpetaPublica sp_repo_front_getCarpetaPublicaByRuta(string ruta,string ip, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlCarpetaPublica.sp_repo_front_getCarpetaPublicaByRuta(ruta, ip, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public Archivo sp_repo_front_getDownloadFilePublic(int idArchivoPublico, string ip, int idPagina)
                     {
                         try

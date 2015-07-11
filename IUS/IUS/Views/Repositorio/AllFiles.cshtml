@@ -31,12 +31,12 @@
 
 <h2 class="tituloPrincipal">@nombre</h2>
 <div class="row marginNull divBusqueda">
-    <div class="col-lg-4">
+    <div class="col-lg-4 divBusquedaRuta">
+        <input name="txtIdFiltro" type="hidden" value="-1" />
         <div class="input-group">
-            <input class="form-control" value="@ruta" />
+            <input class="form-control txtRutaPublica" name="txtRutaPublica" value="@ruta" />
             <span class="input-group-addon spIrBuscar">Ir</span>
         </div>
-        
     </div>
     <div class="col-lg-offset-4 col-lg-4">
         <div class="input-group">

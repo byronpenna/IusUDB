@@ -316,6 +316,12 @@
         var frm = serializeToJson(frm.serializeArray());
         return frm;
     }
+    function getFrmSection(selector,parentSection) {
+        var obj = new Object();
+        obj.seccion = selector.parents(parentSection);
+        obj.frm = serializeSection(obj.seccion);
+        return obj;
+    }
 // para select 
     function getOptionSelect(select,val) {
         option = select.find("option[value='" + val + "']");

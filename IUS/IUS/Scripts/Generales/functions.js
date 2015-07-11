@@ -59,6 +59,12 @@
         });
         return o;
     }
+    function getFrmSection(selector, parentSection) {
+        var obj = new Object();
+        obj.seccion = selector.parents(parentSection);
+        obj.frm = serializeSection(obj.seccion);
+        return obj;
+    }
     function serializeSection(section) {
         var frm = serializeToJson(section.find("input,select,textarea").serializeArray());
         return frm;

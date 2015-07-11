@@ -20,6 +20,41 @@ namespace IUSLibs.REPO.Control.Publico
         #region "funciones"
             #region "get"
                 #region "frontend"
+                    public CarpetaPublica sp_repo_front_getCarpetaPublicaByRuta(string ruta,string ip, int idPagina)
+                    {
+                        CarpetaPublica carpetaPublica = null;
+                        SPIUS sp = new SPIUS("sp_repo_front_getCarpetaPublicaByRuta");
+                        sp.agregarParametro("strRuta", ruta);
+                        sp.agregarParametro("ip", ip);
+                        sp.agregarParametro("idPagina", idPagina);
+                        try
+                        {
+                            DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                            if (this.resultadoCorrectoGet(tb))
+                            {
+                                if (tb[0].Rows.Count > 0)
+                                {
+                                    DataRow row = tb[0].Rows[0];
+                                    carpetaPublica = new CarpetaPublica((int)row["idCarpetaPublica"]);
+                                }
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                        return carpetaPublica;
+                    }
                     public CarpetaPublica sp_repo_front_getCarpetaPublicaFromId(int idCarpetaPadre, string ip, int idPagina)
                     {
                         CarpetaPublica carpetaPublica = null;

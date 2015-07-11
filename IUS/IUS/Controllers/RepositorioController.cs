@@ -9,6 +9,7 @@ using System.Web.Mvc;
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.REPO.Entidades;
+    using IUSLibs.REPO.Entidades.Publico;
 namespace IUS.Controllers
 {
     public class RepositorioController : PadreController
@@ -120,7 +121,39 @@ namespace IUS.Controllers
                 }
                 return View();
             }
-            
+        #endregion
+        #region "acciones ajax"
+            public ActionResult sp_repo_front_getCarpetaPublicaByRuta()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        string ip           = Request.UserHostAddress;
+                        CarpetaPublica carpetaPublica = this._model.sp_repo_front_getCarpetaPublicaByRuta(frm["txtRutaPublica"].ToString(), ip, this.idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("carpetaPublica", carpetaPublica);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
         #endregion
     }
 }
