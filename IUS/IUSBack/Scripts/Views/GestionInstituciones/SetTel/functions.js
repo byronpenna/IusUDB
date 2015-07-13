@@ -79,10 +79,21 @@
     function btnAgregarTel(frm, seccion) {
         actualizarCatalogo(RAIZ + "/GestionTelefonos/sp_frontui_insertTelInstitucion", frm, function (data) {
             console.log(data);
-            /*Llenar tablita*/
-            tr = getTrTel(data.telefono);
-            //$(".tbTelefonos").dataTable().fnAddTr($(tr)[0]);
-            $(".tbodyTelefonos").prepend(tr);
-            clearTr(seccion);
+            if (data.estado) {
+                /*Llenar tablita*/
+                tr = getTrTel(data.telefono);
+                //$(".tbTelefonos").dataTable().fnAddTr($(tr)[0]);
+                $(".tbodyTelefonos").prepend(tr);
+                $(".txtTelefono").val("");
+                $(".txtEtiqueta").val("");
+                //clearTr(seccion);
+            } else {
+                if (data.error._mostrar)
+                {
+                    alert(data.error.Message);
+                }
+                
+            }
+            
         });
     }

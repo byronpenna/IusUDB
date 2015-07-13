@@ -49,13 +49,15 @@ namespace IUSLibs.GENERALS
                     return true;
                 }
             }
-            protected ErroresIUS getErrorFromExecProcedure(DataRow row)
+            protected ErroresIUS getErrorFromExecProcedure(DataRow row,bool mostrar=false)
             {
                 string message = row["errorMessage"].ToString();
                 if(message == ""){
                     message = "Error no controlado";
                 }
+
                 ErroresIUS x = new ErroresIUS(message,ErroresIUS.tipoError.sql, (int)row["errorCode"], row["errorSql"].ToString());
+                x._mostrar = (bool)row["mostrar"];
                 return x;
             }
             #region "resultadoCorrectoGet"
@@ -100,7 +102,13 @@ namespace IUSLibs.GENERALS
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow rowError = tb[0].Rows[0];
+                                bool mostrar = false;
+                                if (tb[0].Columns.Contains("mostrar"))
+                                {
+                                    mostrar = (bool)rowError["mostrar"];
+                                }
                                 ErroresIUS errores = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorSql"].ToString());
+                                errores._mostrar = mostrar;
                                 throw errores;
                             }
                             return false;

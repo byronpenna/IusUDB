@@ -188,7 +188,12 @@ namespace IUSLibs.FrontUI.Control
                         else
                         {
                             DataRow row = tb[0].Rows[0];
-                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            bool mostrar = false;
+                            if (tb[0].Columns.Contains("mostrar"))
+                            {
+                                mostrar = true;
+                            }
+                            ErroresIUS x = this.getErrorFromExecProcedure(row,mostrar);
                             throw x;
                         }
                     }
