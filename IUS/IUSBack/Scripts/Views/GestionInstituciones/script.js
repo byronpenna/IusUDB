@@ -9,6 +9,11 @@
     // eventos 
         // click    
             
+            $(document).on("click", ".btnCancelar", function () {
+                trInstitucion = $(this).parents("tr");
+                console.log("entro");
+                controlesEdit(false, trInstitucion);
+            })
             $(document).on("click", ".btnActualizarInstitucion", function () {
                 seccion = $(this).parents("tr");
                 frm = serializeSection(seccion);

@@ -3,14 +3,47 @@
         tr = "\
             <tr>\
                 <td>\
-                    <input class='txtHdIdInstitucion' name='txtHdIdInstitucion' value='"+institucion.idInstitucion+"'>\
+                    <input class='txtHdIdInstitucion' name='txtHdIdInstitucion' value='" + institucion._idInstitucion + "'>\
+                    <input class='txtHdIdPais' name='txtHdIdPais' value='"+institucion._pais._idPais+"' />\
                 </td>\
-                <td>"+institucion._nombre+"</td>\
-                <td>"+institucion._direccion+"</td>\
-                <td>"+institucion._pais._pais+"</td>\
                 <td>\
-                    <button class='btn'>Editar</button>\
-                    <button class='btn btnDeleteInstitucion'>Eliminar</button>\
+                    <div class='editMode hidden'>\
+                        <input type='text' name='txtNombreInstitucionEdit' class='txtNombreInstitucionEdit form-control' />\
+                    </div>\
+                    <div class='normalMode tdNombre'>"+institucion._nombre+"</div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <textarea class='txtAreaDireccionEdit form-control' name='txtAreaDireccionEdit'></textarea>\
+                    </div>\
+                    <div class='normalMode tdDireccion '>"+institucion._direccion+"</div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <select class='cbPaisEdit' name='cbPaisEdit'></select>\
+                    </div>\
+                    <div class='normalMode tdPais'>\
+                    "+institucion._pais._pais+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <button class='btn btnActualizarInstitucion'>\
+                            Actualizar\
+                        </button>\
+                        <button class='btn'>\
+                            Cancelar\
+                        </button>\
+                    </div>\
+                    <div class='normalMode'>\
+                        <button class='btn btnEditar'>Editar</button>\
+                        <button class='btn btnDeleteInstitucion'>Eliminar</button>\
+                        <a class='btn btnFromlink ' href='"+RAIZ+'GestionInstituciones/SetLogo/'+institucion._idInstitucion+"' class='btn'>\
+                            Logo\
+                        </a>\
+                        <a class='btn btnFromlink' href='"+RAIZ+'GestionTelefonos/Index/'+institucion._idInstitucion+"'>Telefonos</a>\
+                        <a class='btn btnFromlink' href='"+RAIZ+'GestionMediosInstituciones/Index/'+institucion._idInstitucion+"'>Medios Electronicos</a>\
+                    </div>\
                 </td>\
             </tr>\
         ";
@@ -46,6 +79,7 @@
     }
 // acciones script
     function btnActualizarInstitucion(frm, trInstitucion) {
+        console.log("actualizar", frm);
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_editInstitucion", frm, function (data) {
             console.log(data);
             if (data.estado) {
@@ -77,7 +111,7 @@
         });
     }
     function btnAddInstitucion(frm, seccion) {
-        
+        console.log("formulario a agregar", frm);
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_insertInstitucion", frm, function (data) {
             console.log(data);
             if (data.estado) {
