@@ -23,7 +23,16 @@
                 $(document).on("click", ".btnAgregar", function () {
                     seccion = $(this).parents("tr");
                     frm = serializeSection(seccion);
-                    btnAgregar(frm);
+                    var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+                    if (regex.test(frm.txtEnlace)) {
+                        regex = new RegExp("^http://");
+                        if (!regex.test(frm.txtEnlace)) {
+                            frm.txtEnlace = "http://" + frm.txtEnlace;
+                        }
+                        btnAgregar(frm);
+                    } else {
+                        alert("Favor ingresar una url valida");
+                    }
                 })
                 $(document).on("click", ".btnEliminar", function () {
                     seccion = $(this).parents("tr");

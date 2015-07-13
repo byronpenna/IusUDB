@@ -64,10 +64,18 @@
         });
     }
     function btnAgregar(frm) {
+        console.log("a agregar", frm);
         actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_insertEnlaceInstituciones", frm, function (data) {
             console.log(data);
-            tr = getTrMedios(data.enlace);
-            $(".tbodyMedios").prepend(tr);
+            if (data.estado) {
+                tr = getTrMedios(data.enlace);
+                $(".tbodyMedios").prepend(tr);
+            } else {
+                if (data.error._mostrar) {
+                    alert(data.error.Message);
+                }
+            }
+            
         });
     }
     function btnEliminar(frm,tr) {

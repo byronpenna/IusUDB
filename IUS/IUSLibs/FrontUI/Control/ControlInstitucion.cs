@@ -176,11 +176,12 @@ namespace IUSLibs.FrontUI.Control
                 public Institucion sp_frontui_editInstitucion(Institucion institucionEditar,int idUsuarioEjecutor,int idPagina)
                 {
                     Institucion institucionEditada = null; Pais pais;
-                    SPIUS sp = new SPIUS("sp_frontui_insertInstitucion");
-
+                    SPIUS sp = new SPIUS("sp_frontui_editInstitucion");
+                    
                     sp.agregarParametro("nombre", institucionEditar._nombre);
                     sp.agregarParametro("direccion", institucionEditar._direccion);
                     sp.agregarParametro("idPais", institucionEditar._pais._idPais);
+                    sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
