@@ -2,7 +2,11 @@
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/home/Registro/style.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/home/Registro/media.css" />
 }
-
+@section scriptsPersonalizados{
+    <!-- Propios -->
+        <script src="~/Scripts/Views/Home/Registro/script.js"></script>
+        <script src="~/Scripts/Views/Home/Registro/functions.js"></script>
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +16,17 @@
 <body>
     <div class="row marginNull">
         <div class="col-lg-4">
-            <form action="/" class="frmRegistrar" method="post">
+            <form class="frmRegistrar" method="post">
                 <label>Nombres</label>
-                <input class="form-control" />
+                <input class="form-control" name="txtNombre"/>
                 <label>Apellidos</label>
-                <input class="form-control" />
+                <input class="form-control" name="txtApellidos"/>
                 <label>Email</label>
-                <input type="email" class="form-control" />
+                <input type="email" class="form-control" name="txtEmail"/>
                 <label>Fecha de nacimiento</label>
-                <input type="email" class="form-control" />
+                <input type="text" class="form-control dtpFechaNac" name="txtFechaNac"/>
                 <label>Contraseña</label>
-                <input type="email" class="form-control" />
+                <input type="password" class="form-control" name="txtPass" />
                 <button class="btn btn-primary">Registrarse</button>
             </form>
         </div>

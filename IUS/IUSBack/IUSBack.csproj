@@ -450,6 +450,8 @@
     <Content Include="Scripts\Views\GestionUsuarios\functions.js" />
     <Content Include="Scripts\Views\GestionUsuarios\script.js" />
     <Content Include="Scripts\Views\Home\functions.js" />
+    <Content Include="Scripts\Views\Home\Registro\functions.js" />
+    <Content Include="Scripts\Views\Home\Registro\script.js" />
     <Content Include="Scripts\Views\Home\script.js" />
     <Content Include="Scripts\Views\Login\functions.js" />
     <Content Include="Scripts\Views\Login\script.js" />
