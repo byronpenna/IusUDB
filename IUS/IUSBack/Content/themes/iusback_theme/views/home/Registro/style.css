@@ -1,3 +1,12 @@
 ﻿header{
     display:none;
 }
+.frmRegistrar span{
+    display:block;
+}
+.frmRegistrar .spanError{
+    color:red;
+}
+.frmRegistrar .spanSuccess{
+    color:green;
+}
