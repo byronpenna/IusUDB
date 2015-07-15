@@ -63,7 +63,8 @@ namespace IUSBack.Models.General
                         return toReturn;
                     }
                 #endregion
-                public String getMenuUsuario(int idUsuario)
+                    
+                    public String getMenuUsuario(int idUsuario)
                 {
                     List<Submenu> subMenu = this.getMenuCompleto(idUsuario);
                     String toReturn = "<ul>";

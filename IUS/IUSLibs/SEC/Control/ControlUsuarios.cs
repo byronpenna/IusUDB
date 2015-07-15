@@ -279,6 +279,7 @@ namespace IUSLibs.SEC.Control
                     toReturn = true;
                     foreach (DataRow row in tb.Rows)
                     {
+                        
                         menu = new Menu((int)row["idMenu"], row["menu"].ToString(), row["enlaceMenu"].ToString());
                         subMenu = new Submenu((int)row["idSubMenu"], menu, row["submenu"].ToString(), row["enlace"].ToString());
                         //this._subMenu.Add(subMenu);
