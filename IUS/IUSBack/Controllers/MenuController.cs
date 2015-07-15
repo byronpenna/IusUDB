@@ -25,27 +25,27 @@ namespace IUSBack.Controllers
         #endregion
         #region "acciones url"
             public ActionResult Index(int id=-1)
-        {
-            try
             {
-                Usuario usuarioSession  = this.getUsuarioSesion();
-                ViewBag.titleModulo     = "Detalle menu";
-                //ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                ViewBag.menus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                return View();
-            }
-            catch (ErroresIUS x)
-            {
-                ErrorsController error = new ErrorsController();
-                return error.redirectToError(x, true);
-                //return RedirectToAction("Unhandled", "Errors");
-            }
-            catch (Exception x)
-            {
-                return RedirectToAction("Unhandled", "Errors");
-            }
+                try
+                {
+                    Usuario usuarioSession  = this.getUsuarioSesion();
+                    ViewBag.titleModulo     = "Detalle menu";
+                    //ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
 
-        }
+            }
         #endregion
     }
 }

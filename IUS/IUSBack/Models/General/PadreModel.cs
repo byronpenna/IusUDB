@@ -63,8 +63,23 @@ namespace IUSBack.Models.General
                         return toReturn;
                     }
                 #endregion
-                    
-                    public String getMenuUsuario(int idUsuario)
+                public List<Menu> sp_sec_getMenu(int idUsuario)
+                {
+                    try
+                    {
+                        ControlMenu control = new ControlMenu();
+                        return control.sp_sec_getMenu(idUsuario);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public String getMenuUsuario(int idUsuario)
                 {
                     List<Submenu> subMenu = this.getMenuCompleto(idUsuario);
                     String toReturn = "<ul>";

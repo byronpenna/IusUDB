@@ -231,6 +231,7 @@
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\profle.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\adobe-reader.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\excel-ico.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\folder-green.png" />
@@ -276,6 +277,8 @@
     <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\media.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\home\Registro\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\home\Registro\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Login\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Login\style.css" />
@@ -446,6 +449,10 @@
     <Content Include="Scripts\Views\GestionRoles\script.js" />
     <Content Include="Scripts\Views\GestionUsuarios\functions.js" />
     <Content Include="Scripts\Views\GestionUsuarios\script.js" />
+    <Content Include="Scripts\Views\Home\functions.js" />
+    <Content Include="Scripts\Views\Home\script.js" />
+    <Content Include="Scripts\Views\Login\functions.js" />
+    <Content Include="Scripts\Views\Login\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\functions.js" />
     <Content Include="Scripts\Views\RepositorioPublico\script.js" />
     <Content Include="Scripts\Views\Repositorio\functions.js" />
@@ -575,6 +582,7 @@
     <Content Include="Views\GestionInstituciones\setMedios.cshtml" />
     <Content Include="Views\RepositorioPublico\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

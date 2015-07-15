@@ -25,35 +25,39 @@ namespace IUSBack.Controllers
         #endregion
 
         #region "Vistas"
-
-        public ActionResult Index()
-        {
-            if (Session["usuario"] != null)
+            public ActionResult Registro()
             {
-                try
+                return View();
+            }
+            public ActionResult Index()
+            {
+                if (Session["usuario"] != null)
                 {
-                    ViewBag.titleModulo = "Sistema administrativo IUS";
-                    Usuario usu = (Usuario)Session["usuario"];
-                    ViewBag.usuario = usu;
-                    ViewBag.subMenus = this.homeModel.getMenuUsuario(usu._idUsuario);
-                    return View();
+                    try
+                    {
+                        ViewBag.titleModulo = "Sistema administrativo IUS";
+                        Usuario usu = (Usuario)Session["usuario"];
+                        ViewBag.usuario = usu;
+                        ViewBag.subMenus = this.homeModel.getMenuUsuario(usu._idUsuario);
+                        //ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                        return View();
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErrorsController error = new ErrorsController();
+                        var obj = error.redirectToError(x);
+                        return RedirectToAction(obj["controlador"], obj["accion"]);
+                    }
+                    catch (Exception)
+                    {
+                        return RedirectToAction("index", "login");
+                    }
                 }
-                catch (ErroresIUS x)
-                {
-                    ErrorsController error = new ErrorsController();
-                    var obj = error.redirectToError(x);
-                    return RedirectToAction(obj["controlador"], obj["accion"]);
-                }
-                catch (Exception)
+                else
                 {
                     return RedirectToAction("index", "login");
                 }
             }
-            else
-            {
-                return RedirectToAction("index", "login");
-            }
-        }
         #endregion
         
     }

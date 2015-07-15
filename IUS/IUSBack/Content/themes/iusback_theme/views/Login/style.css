@@ -2,6 +2,18 @@
     display:none;
 }
 /*
+    Botones seleccion
+    */
+    .divSeleccionLogin{
+        text-align:center;
+    }
+    #frmInvitado input,#frmInvitado button,#frmInvitado a{
+        margin-top:5%;
+    }
+    #frmInvitado button{
+        margin-bottom:5%;
+    }
+/*
     Plantilla
     */
     body, html {

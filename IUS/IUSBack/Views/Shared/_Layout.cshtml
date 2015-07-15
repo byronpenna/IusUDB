@@ -3,9 +3,11 @@
     String menu = ViewBag.subMenus;
     DateTime hoy = DateTime.Now;
     Usuario usuarioSession = null;
+    List<Menu> menus = null;
     try
     {
         usuarioSession = (Usuario)ViewBag.usuario;
+        menus = (List<Menu>)ViewBag.menus;
     }
     catch (Exception)
     {
@@ -34,6 +36,21 @@
             <div class="col-lg-10 paddingNull">
                 <nav class="menu">
                     @(new HtmlString(menu))
+                    <ul>
+                        
+                        @if (menus != null && menus.Count > 0)
+                        {
+                            foreach (Menu menucito in menus)
+                            {
+                                <li>
+                                    <a href="@Url.Content(menucito._enlace)">
+                                        @menucito._menu
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+
                 </nav>
             </div>
         </div>

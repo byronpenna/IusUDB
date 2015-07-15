@@ -1,10 +1,36 @@
 ﻿@model IUSBack.Models.Page.Login.Forms.User
-@section scriptsPersonalizados{
+@section estilosPersonalizados {
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Login/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Login/media.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Login/media.css" />    
 }
+@section scriptsPersonalizados{
+    <script src="~/Scripts/Views/Login/script.js"></script>
+    <script src="~/Scripts/Views/Login/functions.js"></script>    
+}
+
 <div class="container">
-    <div class="card card-container">
+    <div class="card card-container divSeleccionLogin">
+        <div class="col-lg-6 pointer" id="btnUsuarioLogin">
+            Usuarios
+        </div>
+        <div class="col-lg-6 pointer" id="btnAdminLogin">
+            Administradores
+        </div>
+    </div>
+    <div class="card card-container" id="divLoginInvitado">
+        <form action="/" id="frmInvitado" method="post">
+            <img id="profile-img" class="profile-img-card" src="~/Content/themes/iusback_theme/img/general/profle.png" />
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <span class="visibilitiHidden"> </span>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <span class="visibilitiHidden"> </span>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            <a href="@Url.Action("Registro","Home")" class="forgot-password">
+                Registrarse
+            </a>
+        </form>
+    </div>
+    <div class="card card-container hidden" id="divLoginAdmin">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="~/Content/themes/iusback_theme/img/general/logo_ius.png" />
         <p id="profile-name" class="profile-name-card"></p>
@@ -26,8 +52,6 @@
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
             <span>@ViewBag.errorLogin</span>
         }
-        <a href="#" class="forgot-password">
-            Forgot the password?
-        </a>
+        
     </div>
 </div>

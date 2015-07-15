@@ -156,6 +156,9 @@
     }
     /**/
 /* Generics */
+    .visibilitiHidden{
+        visibility:hidden;
+    }
     .fullSize{
         width: 100%;
     }

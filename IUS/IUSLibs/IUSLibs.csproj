@@ -129,6 +129,7 @@
     <Compile Include="REPO\Entidades\ExtensionArchivo.cs" />
     <Compile Include="REPO\Entidades\Publico\CarpetaPublica.cs" />
     <Compile Include="REPO\Entidades\TipoArchivo.cs" />
+    <Compile Include="SEC\Control\ControlMenu.cs" />
     <Compile Include="SEC\Control\ControlPermiso.cs" />
     <Compile Include="SEC\Control\ControlPersona.cs" />
     <Compile Include="SEC\Control\ControlRoles.cs" />
@@ -156,6 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FrontUI\Eventos\Entidades\" />
+    <Folder Include="SECPU\Control\" />
+    <Folder Include="SECPU\Entidades\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
