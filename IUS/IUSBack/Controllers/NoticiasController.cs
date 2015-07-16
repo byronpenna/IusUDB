@@ -39,7 +39,7 @@ namespace IUSBack.Controllers
                         {
                             ViewBag.titleModulo = "Escoger miniatura foto";
                             ViewBag.usuario = usuarioSession;
-                            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                            ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                             ViewBag.permiso = permisos;
                             ViewBag.post = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina)["post"];
                             return View();

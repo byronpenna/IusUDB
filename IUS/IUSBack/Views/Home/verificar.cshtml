@@ -1,0 +1,16 @@
+﻿@{
+    bool estado = (bool)ViewBag.estado;
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/Views/Home/Verificar/script.js"></script>
+    <script src="~/Scripts/Views/Home/Verificar/functions.js"></script>
+}
+<h2>Verificacion</h2>
+@if (estado)
+{
+    <span>Su cuenta a sido verificada exitosamente </span>
+}
+else
+{
+    <span>Ocurrio un error verificando</span>
+}

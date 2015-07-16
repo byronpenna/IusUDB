@@ -62,6 +62,23 @@ namespace IUSBack.Controllers
             {
                 return View();
             }
+            public ActionResult Verificar(int id=-1,int id2=-1)
+            {
+                try
+                {
+                    bool verificado = this.homeModel.sp_secpu_verificarCuenta(id, id2);
+                    ViewBag.estado = verificado;
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View();
+            }
             public ActionResult Index()
             {
                 if (Session["usuario"] != null)
@@ -71,8 +88,8 @@ namespace IUSBack.Controllers
                         ViewBag.titleModulo = "Sistema administrativo IUS";
                         Usuario usu = (Usuario)Session["usuario"];
                         ViewBag.usuario = usu;
-                        ViewBag.subMenus = this.homeModel.getMenuUsuario(usu._idUsuario);
-                        //ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                        
+                        ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
                         return View();
                     }
                     catch (ErroresIUS x)

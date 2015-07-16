@@ -14,6 +14,14 @@ namespace IUSLibs.SEC.Entidades
             public String _enlace;
         #endregion
         #region "Constructores"
+            public Submenu(int idSubMenu, int idMenu, String texto, String enlace)
+            {
+                this._idSubMenu = idSubMenu;
+                Menu menu = new Menu(idMenu);
+                this._menu = menu;
+                this._textoSubMenu = texto;
+                this._enlace = enlace;
+            }
             public Submenu(int idSubMenu,Menu menu, String texto,String enlace)
             {
                 this._idSubMenu = idSubMenu;

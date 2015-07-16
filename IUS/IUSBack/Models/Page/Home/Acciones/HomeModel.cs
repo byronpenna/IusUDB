@@ -24,6 +24,22 @@ namespace IUSBack.Models.Page.Home.Acciones
         }
         #endregion
         #region "acciones"
+            public bool sp_secpu_verificarCuenta(int num,int idUsuario)
+            {
+                try
+                {
+                    ControlCodigoVerificacion control = new ControlCodigoVerificacion();
+                    return control.sp_secpu_verificarCuenta(num, idUsuario);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public UsuarioPublico sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
             {
                 try

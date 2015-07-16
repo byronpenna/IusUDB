@@ -83,7 +83,7 @@ namespace IUSBack.Controllers
                         ViewBag.instituciones   = inicial["instituciones"];
                         ViewBag.titleModulo     = "Manejo de instituciones";
                         ViewBag.usuario         = usuarioSession;
-                        ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
 
                 }
                 catch (ErroresIUS x)

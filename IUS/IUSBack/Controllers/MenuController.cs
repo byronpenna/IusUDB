@@ -32,6 +32,7 @@ namespace IUSBack.Controllers
                     ViewBag.titleModulo     = "Detalle menu";
                     //ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.submenuss = this._model.sp_sec_getSubmenu(id, usuarioSession._idUsuario);
                     return View();
                 }
                 catch (ErroresIUS x)

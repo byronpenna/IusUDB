@@ -453,6 +453,8 @@
     <Content Include="Scripts\Views\Home\Registro\functions.js" />
     <Content Include="Scripts\Views\Home\Registro\script.js" />
     <Content Include="Scripts\Views\Home\script.js" />
+    <Content Include="Scripts\Views\Home\Verificar\functions.js" />
+    <Content Include="Scripts\Views\Home\Verificar\script.js" />
     <Content Include="Scripts\Views\Login\functions.js" />
     <Content Include="Scripts\Views\Login\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\functions.js" />
@@ -585,6 +587,7 @@
     <Content Include="Views\RepositorioPublico\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Home\verificar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

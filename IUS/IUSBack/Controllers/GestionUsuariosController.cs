@@ -35,7 +35,7 @@ namespace IUSBack.Controllers
                 {
                     List<Usuario> usuarios;
                     GestionPersonaModel modelPersona = new GestionPersonaModel();
-                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
                     List<Persona> personas = null;
                     if (permisos != null && permisos._ver)

@@ -79,6 +79,23 @@ namespace IUSBack.Models.General
                         throw x;
                     }
                 }
+                public List<Submenu> sp_sec_getSubmenu(int idMenu, int idUsuario)
+                {
+                    try
+                    {
+                        ControlSubMenu control = new ControlSubMenu();
+                        return control.sp_sec_getSubmenu(idMenu, idUsuario);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+
+                }
                 public String getMenuUsuario(int idUsuario)
                 {
                     List<Submenu> subMenu = this.getMenuCompleto(idUsuario);

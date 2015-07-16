@@ -35,7 +35,7 @@ namespace IUSBack.Controllers
                         ViewBag.titleModulo = "Configuración Web Site";
                         ViewBag.usuario     = usuarioSession;
                         ViewBag.permiso = permisos;
-                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         List<RedSocial> redesSociales = null;
                         Configuracion config = null;
                         List<Valor> valores = null;

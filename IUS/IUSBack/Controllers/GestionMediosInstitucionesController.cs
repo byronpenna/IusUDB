@@ -37,7 +37,7 @@ namespace IUSBack.Controllers
                     ViewBag.enlaces     = this._model.sp_frontui_getEnlacesByInstitucion(institucion._idInstitucion,usuarioSession._idUsuario,this._idPagina);
                     ViewBag.institucion = institucion;
                     ViewBag.usuario     = usuarioSession;
-                    ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
 
                 }
                 catch (ErroresIUS x)

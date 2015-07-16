@@ -35,7 +35,7 @@ namespace IUSBack.Controllers
                         ViewBag.usuario     = usuarioSession;
                         ViewBag.eventos     = eventos;
                         ViewBag.permiso     = permisos;
-                        ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         return View();
                     }
                     else

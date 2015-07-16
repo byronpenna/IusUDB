@@ -31,7 +31,7 @@ namespace IUSBack.Controllers
                     if (permisos != null && permisos._ver)
                     {
                         ViewBag.permiso = permisos;
-                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         ViewBag.personas = personas;
                         ViewBag.titleModulo = "Gestion de personas";
                         ViewBag.usuario = usuarioSession;

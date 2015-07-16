@@ -52,7 +52,7 @@ namespace IUSBack.Controllers
                     ViewBag.titleModulo = "Repositorio publico";
                     ViewBag.usuario = usuarioSession;
                     ViewBag.permisos = permisos;
-                    ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.carpetas = archivos["carpetas"];
                     ViewBag.archivos = archivos["archivos"];
                     ViewBag.carpetaPadre = carpetaPadre;

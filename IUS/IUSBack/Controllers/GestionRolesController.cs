@@ -45,7 +45,7 @@ namespace IUSBack.Controllers
                     // fill viewbag
                         if (permisos != null && permisos._ver)
                         {
-                            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                            ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                             ViewBag.roles = roles;
                             ViewBag.rolesTabla = rolesTabla;
                             ViewBag.usuarios = usuarios;
