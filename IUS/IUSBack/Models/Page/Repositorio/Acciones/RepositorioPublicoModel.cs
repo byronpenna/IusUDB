@@ -98,6 +98,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 }
             #endregion
             #region "set"
+                public ArchivoPublico sp_repo_renameFile(ArchivoPublico archivoEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoPublico.sp_repo_renameFile(archivoEditar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_repo_removeShareArchivoPublico(int idArchivoPublico, int idUsuarioEjecutor, int idPagina)
                 {
                     try

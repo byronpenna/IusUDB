@@ -15,6 +15,11 @@ namespace IUSLibs.REPO.Entidades.Publico
             public bool             _estado;
         #endregion
         #region "constructores"
+            public ArchivoPublico(int idArchivoPublico, string nombre)
+            {
+                this._idArchivoPublico = idArchivoPublico;
+                this._nombre = nombre;
+            }
             public ArchivoPublico(int idArchivoPublico,int idArchivoUsuario, int idCarpetaPublica, string nombre,bool estado) { 
                 this._idArchivoPublico  = idArchivoPublico;
                 Archivo archivoUsuario  = new Archivo(idArchivoUsuario);

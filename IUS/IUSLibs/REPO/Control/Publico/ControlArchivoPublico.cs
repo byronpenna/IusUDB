@@ -188,7 +188,42 @@ namespace IUSLibs.REPO.Control.Publico
             #endregion
         #endregion
         #region "set"
-            public bool sp_repo_removeShareArchivoPublico(int idArchivoPublico, int idUsuarioEjecutor, int idPagina)
+            #region "backend"
+                public ArchivoPublico sp_repo_renameFile(ArchivoPublico archivoEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    ArchivoPublico archivo = null;CarpetaPublica carpetaPublica = null;
+                    SPIUS sp = new SPIUS("sp_repo_renameFile");
+                    sp.agregarParametro("nombre", archivoEditar._nombre);
+                    sp.agregarParametro("idArchivo", archivoEditar._idArchivoPublico);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                
+                                if(row["id_carpetapublica_fk"] == DBNull.Value){
+                                    carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
+                                }
+                                archivo = new ArchivoPublico((int)row["idArchivoPublico"],row["nombre_publico"].ToString());
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return archivo;
+                }
+                public bool sp_repo_removeShareArchivoPublico(int idArchivoPublico, int idUsuarioEjecutor, int idPagina)
             {
                 bool estado = false;
 
@@ -214,7 +249,7 @@ namespace IUSLibs.REPO.Control.Publico
                 }
                 return estado;
             }
-            public ArchivoPublico sp_repo_compartirArchivoPublico(ArchivoPublico archivoAgregar,int idUsuarioEjecutor, int idPagina)
+                public ArchivoPublico sp_repo_compartirArchivoPublico(ArchivoPublico archivoAgregar,int idUsuarioEjecutor, int idPagina)
             {
                 ArchivoPublico archivoCompartido = null;
                 SPIUS sp = new SPIUS("sp_repo_compartirArchivoPublico");
@@ -272,7 +307,8 @@ namespace IUSLibs.REPO.Control.Publico
                 }
                 return archivoCompartido;
             }
+            #endregion
         #endregion
-        
+
     }
 }

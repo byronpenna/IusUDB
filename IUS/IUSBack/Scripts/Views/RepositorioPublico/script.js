@@ -5,6 +5,15 @@
                 /*$(document).on("click", ".spIrBuscar", function (e) {
 
                 })*/
+                $(document).on("click", ".btnEditarArchivo", function (e) {
+                    var seccion = $(this).parents(".folder");
+                    var frm = {
+                        idArchivo: seccion.find(".txtHdIdArchivoPublico").val(),
+                        nombreArchivo: seccion.find(".txtNombreCarpeta").val()
+                    }
+                    //console.log(frm);
+                    btnEditarArchivo(frm, seccion);
+                });
             //
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
                 e.preventDefault();

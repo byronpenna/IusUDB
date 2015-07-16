@@ -328,6 +328,38 @@ namespace IUSBack.Controllers
                     }
                     return Json(respuesta);
                 }
+                public ActionResult sp_repo_renameFile()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            ArchivoPublico archivoEditar = new ArchivoPublico(this.convertObjAjaxToInt(frm["idArchivo"]), frm["nombreArchivo"].ToString());
+                            ArchivoPublico archivoAgregado = this._model.sp_repo_renameFile(archivoEditar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("archivoPublico", archivoAgregado);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_repo_insertCarpetaPublica()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -360,7 +392,7 @@ namespace IUSBack.Controllers
                         respuesta = this.errorTryControlador(2, error);
                     }
                     return Json(respuesta);
-                }
+                }   
             #endregion
         #endregion
 

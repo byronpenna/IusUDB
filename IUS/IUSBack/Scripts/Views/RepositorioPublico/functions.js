@@ -1,4 +1,12 @@
 ﻿// acciones script
+    function btnEditarArchivo(frm,seccion) {
+        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_renameFile", frm, function (data) {
+            console.log(data);
+            if (data.estado) {
+
+            }
+        });
+    }
     function spIrBuscar(frm) {
         console.log(frm);
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getPublicoByRuta", frm, function (data) {
