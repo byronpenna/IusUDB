@@ -295,11 +295,21 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            Carpeta carpeta = new Carpeta(this.convertObjAjaxToInt(frm["idCarpeta"]));
-                            Dictionary<object, object> archivos = this._model.sp_repo_entrarCarpeta(carpeta, usuarioSession._idUsuario, this._idPagina);
+                            int idCarpeta = this.convertObjAjaxToInt(frm["idCarpeta"]);
+                            Carpeta carpeta = new Carpeta(idCarpeta);
+                            Dictionary<object, object> archivos=null;
+                            if (idCarpeta != -1)
+                            {
+                                archivos = this._model.sp_repo_entrarCarpeta(carpeta, usuarioSession._idUsuario, this._idPagina);
+                            }
+                            else
+                            {
+                                archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
+                            }
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("carpetas", archivos["carpetas"]);
+                            respuesta.Add("archivos", archivos["archivos"]);
                         }
                         else
                         {

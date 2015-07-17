@@ -9,11 +9,19 @@ namespace IUSLibs.REPO.Entidades
     public class Carpeta
     {
         #region "propiedades"
-            public int _idCarpeta;
-            public string _nombre;
-            public Usuario _usuario;
-            public Carpeta _carpetaPadre;
-            public string _ruta;
+            public int      _idCarpeta;
+            public string   _nombre;
+            public Usuario  _usuario;
+            public Carpeta  _carpetaPadre;
+            public string   _ruta;
+            public DateTime _fechaCreacion;
+            public string getFechaCreacion
+            {
+                get
+                {
+                    return String.Format("{0:dd/MM/yyyy}", this._fechaCreacion);
+                }
+            }
             // extras
             private string icono = "folder.png";
             public string getIcono{

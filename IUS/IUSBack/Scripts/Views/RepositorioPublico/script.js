@@ -18,7 +18,7 @@
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
                 e.preventDefault();
                 div = getDivNewFolder();
-                $(".folders").prepend(div);
+                $(".cuadriculaView").prepend(div);
             })
             // eliminar carpeta 
                 $(document).on("click", ".icoEliminarArchivo", function (e) {

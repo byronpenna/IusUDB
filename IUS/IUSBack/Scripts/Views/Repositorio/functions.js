@@ -1,4 +1,24 @@
 ﻿// generics 
+    function loadListFiles(file) {
+        var div = "\
+            <div class='row folderDetalles'>\
+                <div class='col-lg-6'>"+file._nombre+"</div>\
+                <div class='col-lg-3'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
+                <div class='col-lg-3'>" + file.getFechaCreacion + "</div>\
+            </div>\
+        ";
+        return div;
+    }
+    function loadListFolders(folder) {
+        var div = "\
+            <div class='row folderDetalles'>\
+                <div class='col-lg-6'>"+folder._nombre+"</div>\
+                <div class='col-lg-3'>Folder</div>\
+                <div class='col-lg-3'>" + folder.getFechaCreacion + "</div>\
+            </div>\
+        ";
+        return div;
+    }
     function loadPublicFiles() {
         frm = {};
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getRootFolderPublico", frm, function (data) {
@@ -92,6 +112,27 @@
 
     }
 // scripts 
+        // vistas
+            function icoVistaLista(frm, seccion) {
+                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
+                    console.log(data);
+                    var div = "";
+                    if (data.carpetas !== null) {
+                        $.each(data.carpetas, function (i,folder) {
+                            div += loadListFolders(folder);
+                        })
+                    }
+                    if (data.archivos !== null) {
+                        $.each(data.archivos, function (i, file) {
+                            div += loadListFiles(file)
+                        })
+                    }
+                    seccion.empty().append(div);
+                }, function () {
+                    seccion.empty().append("<img src='" + RAIZ + "Content/themes/iusback_theme/img/general/ajax-loader.gif" + "'>");
+                })
+            }
+            
         // compartir publico
             function btnCompartir(frm,seccion) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_compartirArchivoPublico", frm, function (data) {
@@ -200,7 +241,7 @@
                         divFolders += getStandarFolder(carpeta);
                     });
                     window.history.pushState(null, "Titulo", "Repositorio/Index/" + frm.idCarpeta);
-                    $(".folders").empty().append(divFolders);
+                    $(".cuadriculaView").empty().append(divFolders);
                 }
             });
         }

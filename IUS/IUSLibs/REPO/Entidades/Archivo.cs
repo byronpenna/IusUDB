@@ -13,6 +13,16 @@ namespace IUSLibs.REPO.Entidades
             public Carpeta          _carpeta;
             public string           _src;
             public ExtensionArchivo _extension;
+            public DateTime         _fechaCreacion;
+            #region "con get y set"
+                public string getFechaCreacion
+                {
+                    get
+                    {
+                        return String.Format("{0:dd/MM/yyyy}", this._fechaCreacion);
+                    }
+                }
+            #endregion
         #endregion
         #region "constructores"
             public Archivo(int idArchivo)

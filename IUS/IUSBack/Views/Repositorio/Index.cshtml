@@ -76,9 +76,8 @@
         </div>
         
     </div>
-    <div class="col-lg-4 seccionHerramientas">
+    <div class="col-lg-2 seccionHerramientas">
         <label>Herramientas</label>
-        
         <div class="accionesDiv form-control inputBackModal">
             <a href="#" class="ico icoSubirFichero" title="Subir fichero">
                 <i class="fa fa-upload"></i>
@@ -103,6 +102,17 @@
             </a>
         </div>
     </div>
+    <div class="col-lg-2">
+        <label>Vistas</label>
+        <div class="accionesDiv form-control inputBackModal">
+            <a href="#" class="ico iconoVistaCuadricula activeVista" title="Cuadricula">
+                <i class="fa fa-th-large"></i>
+            </a>
+            <a href="#" class="ico icoVistaLista " title="Lista">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
     <div class="col-lg-4">
         <label>Busqueda</label>
         <div class="input-group divBusquedaArchivos">
@@ -117,82 +127,100 @@
 <div id="tab-1" class="row tab marginNull">
     <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
     <div class="folders col-lg-8" >
-        @if (carpetas != null && carpetas.Count > 0)
-        {
-            foreach (Carpeta carpeta in carpetas)
+        <!-- 
+        
+            -->
+        <div class="listView hidden">
+            <div class="row">
+                <div class="col-lg-6">
+                    Metas
+                </div>
+                <div class="col-lg-3">
+                    Folder
+                </div>
+                <div class="col-lg-3">
+                    Fecha de creacion
+                </div>
+            </div>
+        </div>
+        <div class="cuadriculaView ">
+            @if (carpetas != null && carpetas.Count > 0)
             {
-                <div class="col-lg-2 folder">
+                foreach (Carpeta carpeta in carpetas)
+                {
+                    <div class="col-lg-2 folder">
                     
-                    <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
-                    <div class="row divHerramientasIndividual">
-                        <a href="#" class="ico" title="Descargar">
-                            <i class="fa fa-download"></i>
-                        </a>
-                        <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
-                            <i class="fa fa-trash-o"></i>
-                        </a>
-                    </div>
-                    <!--<a href="@Url.Action("Index", "Repositorio", new { id = @carpeta._idCarpeta })">-->
-                        <div class="cuadritoIcono cuadritoCarpeta">
-                            <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
-                            <div class="detalleCarpeta">
-                                <div class="normalMode sinRedirect">
-                                    <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
+                        <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
+                        <div class="row divHerramientasIndividual">
+                            <a href="#" class="ico" title="Descargar">
+                                <i class="fa fa-download"></i>
+                            </a>
+                            <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </div>
+                        <!--<a href="@Url.Action("Index", "Repositorio", new { id = @carpeta._idCarpeta })">-->
+                            <div class="cuadritoIcono cuadritoCarpeta">
+                                <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                                <div class="detalleCarpeta">
+                                    <div class="normalMode sinRedirect">
+                                        <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
+                                    </div>
+                                    <div class="row marginNull hidden editMode sinRedirect">
+                                        <div class='row marginNull inputNombreCarpeta'>
+                                            <input type='text' class='form-control txtNombreCarpeta'>
+                                        </div>
+                                        <div class='row marginNull'>
+                                            <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>
+                                            <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div class="row marginNull hidden editMode sinRedirect">
+                            </div>
+                        <!--</a>-->
+                    </div>
+                }
+            }
+            @if (archivos != null && archivos.Count > 0)
+            {
+                foreach (Archivo archivo in archivos)
+                {
+                    <div class="col-lg-2 folder">
+                        <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
+                        <div class="row divHerramientasIndividual">
+                            <a href="#" class="icoCompartirFile" title="Compartir">
+                                <i class="fa fa-share"></i>
+                            </a>
+                            <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
+                                <i class="fa fa-download"></i>
+                            </a>
+                            <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </div>
+                        <div class="cuadritoIcono ">
+                            <img src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
+                            <div class="detalleCarpeta">
+                                <div class="normalMode">
+                                    <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>
+                                </div>
+                                <div class="row marginNull hidden editMode">
                                     <div class='row marginNull inputNombreCarpeta'>
                                         <input type='text' class='form-control txtNombreCarpeta'>
                                     </div>
                                     <div class='row marginNull'>
-                                        <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>
+                                        <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
                                         <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-                    <!--</a>-->
-                </div>
-            }
-        }
-        @if (archivos != null && archivos.Count > 0)
-        {
-            foreach (Archivo archivo in archivos)
-            {
-                <div class="col-lg-2 folder">
-                    <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
-                    <div class="row divHerramientasIndividual">
-                        <a href="#" class="icoCompartirFile" title="Compartir">
-                            <i class="fa fa-share"></i>
-                        </a>
-                        <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
-                            <i class="fa fa-download"></i>
-                        </a>
-                        <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
-                            <i class="fa fa-trash-o"></i>
-                        </a>
-                    </div>
-                    <div class="cuadritoIcono ">
-                        <img src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
-                        <div class="detalleCarpeta">
-                            <div class="normalMode">
-                                <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>
-                            </div>
-                            <div class="row marginNull hidden editMode">
-                                <div class='row marginNull inputNombreCarpeta'>
-                                    <input type='text' class='form-control txtNombreCarpeta'>
-                                </div>
-                                <div class='row marginNull'>
-                                    <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
-                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
-                                </div>
-                            </div>
                             
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
-        }
+        </div>
     </div>
     <div class="shareSection col-lg-4 " >
         <input type="hidden" name="txtHdIdArchivoCompartir" class="txtHdIdArchivoCompartir" value="-1" />

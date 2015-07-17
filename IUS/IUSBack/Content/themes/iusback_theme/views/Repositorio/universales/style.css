@@ -31,8 +31,12 @@
 }
 .accionesDiv .ico{
     margin-left:3%;
-    color:black;
+    color:#95A5A6;
 }
+.activeVista{
+    color:#3498db !important;
+    
+} 
 /*Subir */
 .padreContenedorUpload{
     width:50%;

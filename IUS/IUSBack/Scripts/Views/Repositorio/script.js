@@ -46,6 +46,30 @@
                 
             })
         // click 
+            // vista
+                $(document).on("click", ".iconoVistaCuadricula", function (e) {
+                    e.preventDefault();
+                    var seccion = $(this).parents(".accionesDiv");
+                    $(".listView").addClass("hidden");
+                    $(".cuadriculaView").removeClass("hidden");
+                    
+                    seccion.find(".icoVistaLista").removeClass("activeVista");
+                    $(this).addClass("activeVista");
+
+                })
+                $(document).on("click", ".icoVistaLista", function (e) {
+                    e.preventDefault();
+                    var seccion = $(this).parents(".accionesDiv");
+                    $(".cuadriculaView").addClass("hidden");
+                    $(".listView").removeClass("hidden");
+                    seccion.find(".iconoVistaCuadricula").removeClass("activeVista");
+                    $(this).addClass("activeVista");
+                    var frm = {
+                        idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                    }
+                    var seccionModificar = $(".listView");
+                    icoVistaLista(frm, seccionModificar);
+                })
             // publico 
                 $(document).on("click", ".icoPublicoBack", function (e) {
                     frm = { idCarpetaPublica: $(".txtHdCarpetaPadrePublica").val() }
@@ -110,7 +134,7 @@
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
                     e.preventDefault();
                     div = getDivNewFolder();
-                    $(".folders").prepend(div);
+                    $(".cuadriculaView").prepend(div);
                 })
                 $(document).on("click", ".icoSubirFichero", function (e) {
                     e.preventDefault();

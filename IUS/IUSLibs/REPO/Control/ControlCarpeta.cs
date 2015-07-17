@@ -40,6 +40,7 @@ namespace IUSLibs.REPO.Control
                                 usuario = new Usuario((int)row["id_usuario_fk"]);
                                 carpetaPadre = new Carpeta((int)row["id_carpetapadre_fk"]);
                                 carpetita = new Carpeta((int)row["idCarpeta"],row["nombre"].ToString(),usuario,carpetaPadre,row["ruta"].ToString());
+                                carpetita._fechaCreacion = (DateTime)row["fecha_creacion"];
                                 carpetas.Add(carpetita);
                             }
                             
@@ -49,10 +50,12 @@ namespace IUSLibs.REPO.Control
                             carpeta = new Carpeta();
                             foreach (DataRow row in tb[1].Rows)
                             {
-                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                // archivos tipo
+                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
                                 tipoArchivo._icono = row["icono"].ToString();
                                 extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
                                 archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), carpeta, extension);
+                                archivo._fechaCreacion = (DateTime)row["fecha_creacion"];
                                 archivos.Add(archivo);
                             }
                         }

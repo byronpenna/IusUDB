@@ -350,7 +350,7 @@
         }
     }
 // cargaObjetos json 
-    function actualizarCatalogo(urlAjax,frm,callback) {
+    function actualizarCatalogo(urlAjax,frm,callback,before) {
         $.ajax({
             url: urlAjax,
             type: 'POST',
@@ -360,8 +360,14 @@
                 console.log(status);
                 console.log(error);
             },
+
             data: {
                 form: JSON.stringify(frm)
+            },
+            beforeSend: function(){
+                if (before !== undefined) {
+                    before();
+                }
             },
             success:function(data){
                 callback(data);
