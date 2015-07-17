@@ -3,7 +3,8 @@
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_renameFile", frm, function (data) {
             console.log(data);
             if (data.estado) {
-
+                seccion.find(".ttlNombreCarpeta").empty().append(data.archivoPublico._nombre);
+                btnCancelarEdicionCarpeta(seccion.find(".detalleCarpeta"));
             }
         });
     }
