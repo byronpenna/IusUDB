@@ -196,6 +196,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
+    <Compile Include="Controllers\RepositorioCompartidoController.cs" />
     <Compile Include="Controllers\RepositorioController.cs" />
     <Compile Include="Controllers\RepositorioPublicoController.cs" />
     <Compile Include="Global.asax.cs">
