@@ -9,6 +9,7 @@ using System.Web.Mvc;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.REPO.Entidades;
+    using IUSLibs.REPO.Entidades.Compartido;
 namespace IUSBack.Controllers
 {
     public class RepositorioCompartidoController : PadreController
@@ -17,14 +18,14 @@ namespace IUSBack.Controllers
             private RepositorioCompartidoModel _model;
             private int _idPagina = (int)paginas.Repositorio;
         #endregion
-            #region "constructores"
-                public RepositorioCompartidoController()
-                {
-                    this._model = new RepositorioCompartidoModel();
-                }
-            #endregion
+        #region "constructores"
+            public RepositorioCompartidoController()
+            {
+                this._model = new RepositorioCompartidoModel();
+            }
+        #endregion
 
-            #region "acciones url"
+        #region "acciones url"
             public ActionResult Index(int id=-1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
@@ -66,5 +67,48 @@ namespace IUSBack.Controllers
                 return View();
             }
         #endregion
+        #region "acciones ajax"
+            public ActionResult sp_repo_compartirArchivo()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        ArchivoCompartido archivoAgregar = new ArchivoCompartido(this.convertObjAjaxToInt(frm["idArchivo"]), this.convertObjAjaxToInt(frm["idUsuario"]));
+                        ArchivoCompartido archivoAgregado = this._model.sp_repo_compartirArchivo(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
+                        if (archivoAgregado != null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("archivoCompartido", archivoAgregado);
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
+                            throw x;
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
+        #endregion
+
     }
 }

@@ -12,24 +12,43 @@ using System.Web;
     // repo
     using IUSLibs.REPO.Control;
     using IUSLibs.REPO.Entidades;
-
+    using IUSLibs.REPO.Entidades.Compartido;
+    using IUSLibs.REPO.Control.Compartido;
 namespace IUSBack.Models.Page.Repositorio.Acciones
 {
     public class RepositorioCompartidoModel:PadreModel
     {
         #region "propiedades"
             private ControlCarpeta _controlCarpeta;
-            private ControlArchivo _controlArchivo;
+            private ControlArchivoCompartido _controlArchivoCompartido;
         #endregion
         #region "constructores"
             public RepositorioCompartidoModel()
             {
-                this._controlCarpeta = new ControlCarpeta();
-                this._controlArchivo = new ControlArchivo();
+                this._controlCarpeta            = new ControlCarpeta();
+                this._controlArchivoCompartido  = new ControlArchivoCompartido();
             }
         #endregion
-        #region "carpetas"
-            public List<Usuario> sp_sec_getAllUsuarios(int idUsuarioEjecutor, int idPagina)
+        #region "Funciones"
+            #region "repositorio compartido"
+                public ArchivoCompartido sp_repo_compartirArchivo(ArchivoCompartido archivoAgregar, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return this._controlArchivoCompartido.sp_repo_compartirArchivo(archivoAgregar, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+            #endregion
+            #region "otras"
+                public List<Usuario> sp_sec_getAllUsuarios(int idUsuarioEjecutor, int idPagina)
             {
                 try
                 {
@@ -45,36 +64,39 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                     throw x;
                 }
             }
-            public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta, int idUsuarioEjecutor, int idPagina)
-            {
-                try
+            #endregion
+            #region "archivos"
+                public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta, int idUsuarioEjecutor, int idPagina)
                 {
-                    return _controlCarpeta.sp_repo_entrarCarpeta(carpeta, idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        return _controlCarpeta.sp_repo_entrarCarpeta(carpeta, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
+                public Dictionary<object, object> sp_repo_getRootFolder(int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+                    try
+                    {
+                        return this._controlCarpeta.sp_repo_getRootFolder(idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
-            public Dictionary<object, object> sp_repo_getRootFolder(int idUsuarioEjecutor, int idPagina)
-            {
-                try
-                {
-                    return this._controlCarpeta.sp_repo_getRootFolder(idUsuarioEjecutor, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
+            #endregion
         #endregion
     }
 }
