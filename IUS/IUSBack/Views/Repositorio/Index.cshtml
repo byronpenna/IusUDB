@@ -21,11 +21,13 @@
         <li class="btnTab tabActive" target="#tab-1">
             Personales
         </li>
-        <li class="btnTab" target="#tab-2">
-            Compartidos
-        </li>
+        <a href="@Url.Action("Index","RepositorioCompartido")">
+            <li >
+                Compartidos
+            </li>
+        </a>
         <a href="@Url.Action("Index","RepositorioPublico")">
-            <li  target="#tab-3">
+            <li  >
                 Publicos
             </li>
         </a>

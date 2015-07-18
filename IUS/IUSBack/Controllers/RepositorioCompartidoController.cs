@@ -3,18 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+// liberias internas
+    using IUSBack.Models.Page.Repositorio.Acciones;
+// librerias externas
+    using IUSLibs.SEC.Entidades;
+    using IUSLibs.LOGS;
+    using IUSLibs.REPO.Entidades;
 namespace IUSBack.Controllers
 {
-    public class RepositorioCompartidoController : Controller
+    public class RepositorioCompartidoController : PadreController
     {
-        //
-        // GET: /RepositorioCompartido/
+        #region "propiedades"
+            private RepositorioCompartidoModel _model;
+            private int _idPagina = (int)paginas.Repositorio;
+        #endregion
+            #region "constructores"
+                public RepositorioCompartidoController()
+                {
+                    this._model = new RepositorioCompartidoModel();
+                }
+            #endregion
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+            #region "acciones url"
+            public ActionResult Index(int id=-1)
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Dictionary<object, object> archivos;
+                    Carpeta carpeta;
+                    if (id != -1)
+                    {
+                        carpeta = new Carpeta(id);
+                        archivos = this._model.sp_repo_entrarCarpeta(carpeta, usuarioSession._idUsuario, this._idPagina);
+                    }
+                    else
+                    {
+                        archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
+                    }
+                    ViewBag.titleModulo     = "Repositorio Compartido";
+                    ViewBag.carpetas        = archivos["carpetas"];
+                    ViewBag.archivos        = archivos["archivos"];
+                    ViewBag.carpetaActual   = archivos["carpetaPadre"];
+                    ViewBag.usuarios        = this._model.sp_sec_getAllUsuarios(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View();
+            }
+        #endregion
     }
 }

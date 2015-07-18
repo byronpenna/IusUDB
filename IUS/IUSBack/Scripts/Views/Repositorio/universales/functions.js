@@ -1,6 +1,7 @@
 ﻿// eventos 
     // click
         // directorio 
+            
             $(document).on("click", ".spIrBuscar", function () {
                 frm = { txtRuta: $(".txtDireccion").val() }
                 if (frm.txtRuta.slice(-1) != "/") {

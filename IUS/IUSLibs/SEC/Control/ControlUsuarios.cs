@@ -121,6 +121,37 @@ namespace IUSLibs.SEC.Control
                     List<Usuario> usuarios = this.getUsuarios(idUsuarioEjecutor,idPagina,-1, -1);
                     return usuarios;
                 }
+                public List<Usuario> sp_sec_getAllUsuarios(int idUsuarioEjecutor, int idPagina)
+                {
+                    List<Usuario> usuarios = new List<Usuario>();Usuario usuario;
+                    SPIUS sp = new SPIUS("sp_sec_getAllUsuarios");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString());
+                                    usuarios.Add(usuario);
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return usuarios;
+                }
                 public List<Usuario> getUsuarios(int idUsuarioEjecutor, int idPagina, int l1, int l2)
                 {
                     List<Usuario> usuarios = new List<Usuario>();
