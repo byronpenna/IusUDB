@@ -52,6 +52,7 @@ namespace IUSBack.Controllers
                     ViewBag.archivos        = archivos["archivos"];
                     ViewBag.carpetaActual   = archivos["carpetaPadre"];
                     ViewBag.usuarios        = this._model.sp_sec_getAllUsuarios(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.idUsuarioSesion = usuarioSession._idUsuario;
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                 }
                 catch (ErroresIUS x)

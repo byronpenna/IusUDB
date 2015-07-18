@@ -46,6 +46,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                     throw x;
                 }
             }
+                public List<Usuario> sp_repo_getUsuariosArchivosCompartidos(int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoCompartido.sp_repo_getUsuariosArchivosCompartidos(idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "otras"
                 public List<Usuario> sp_sec_getAllUsuarios(int idUsuarioEjecutor, int idPagina)

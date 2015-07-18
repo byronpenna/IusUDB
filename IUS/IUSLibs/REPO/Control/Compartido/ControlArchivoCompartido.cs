@@ -11,10 +11,45 @@ using System.Text;
     using IUSLibs.GENERALS;
     using IUSLibs.LOGS;
     using IUSLibs.REPO.Entidades.Compartido;
+    using IUSLibs.SEC.Entidades;
 namespace IUSLibs.REPO.Control.Compartido
 {
     public class ControlArchivoCompartido:PadreLib
     {
+        #region "get"
+            public List<Usuario> sp_repo_getUsuariosArchivosCompartidos(int idUsuarioEjecutor, int idPagina)
+            {
+                List<Usuario> usuarios = null; Usuario usuario;
+                SPIUS sp = new SPIUS("sp_repo_getUsuariosArchivosCompartidos");
+                //sp.agregarParametro("idUsuario", idUsuario);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            usuarios = new List<Usuario>();
+                            foreach(DataRow row in tb[1].Rows){
+                                usuario = new Usuario((int)row["idUsuario"],row["usuario"].ToString());
+                                usuarios.Add(usuario);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return usuarios;
+            }
+        #endregion
         #region "set"
             public ArchivoCompartido sp_repo_compartirArchivo(ArchivoCompartido archivoAgregar,int idUsuarioEjecutor, int idPagina)
         {

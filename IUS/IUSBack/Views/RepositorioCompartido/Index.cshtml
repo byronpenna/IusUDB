@@ -39,6 +39,7 @@
     List<Carpeta> carpetas = (List<Carpeta>)ViewBag.carpetas;
     List<Archivo> archivos = (List<Archivo>)ViewBag.archivos;
     List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
+    int idUsuarioSession = (int)ViewBag.idUsuarioSesion;
 }
 <div class="row marginNull rowHerramientas">
     <div class="col-lg-4">
@@ -172,7 +173,10 @@
                     {
                         foreach (Usuario usuario in usuarios)
                         {
-                            <option value="@usuario._idUsuario">@usuario._usuario</option>
+                            if (usuario._idUsuario != idUsuarioSession)
+                            {
+                                <option value="@usuario._idUsuario">@usuario._usuario</option>    
+                            }
                         }
                     }
                 </select>
