@@ -16,6 +16,44 @@
                     folders.removeClass("hidden");
                 }
             })
+        // keydown
+            $(document).on("keydown", ".txtNombreCarpeta", function (e) {
+                console.log(e.which);
+                switch (e.which) {
+                    case 13: {
+                        folder = $(this).parents(".folder");
+                        frm = {
+                            txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
+                            nombre: folder.find(".txtNombreCarpeta").val()
+                        }
+                        btnEditarCarpeta(frm, folder);
+                        break;
+                    }
+                    case 27: {
+                        seccion = $(this).parents(".detalleCarpeta");
+                        btnCancelarEdicionCarpeta(seccion);
+                        break;
+                    }
+                }
+                
+                
+            });
+            $(document).on("keydown", ".txtNombreCarpetaDetalle", function (e) {
+                var me = $(this);
+                var seccion = $(this).parents(".folderDetalles");
+                switch (e.which) {
+                    case 13: {
+                        var frm = {
+                            txtHdIdCarpeta: seccion.find(".txtHdIdCarpeta").val(),
+                            nombre: me.val()
+                        }
+                        console.log(frm);
+                        txtNombreCarpetaDetalle(frm, seccion);
+                        break;
+                    }
+                }
+            })
+            
         // submit 
             $(document).on("submit", "#frmSubir", function (e) {
                 
@@ -55,6 +93,11 @@
                     
                     seccion.find(".icoVistaLista").removeClass("activeVista");
                     $(this).addClass("activeVista");
+                    var frm = {
+                        idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                    }
+                    var seccionModificar = $(".cuadriculaView");
+                    iconoVistaCuadricula(frm, seccionModificar);
 
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
@@ -195,6 +238,11 @@
                     e.stopPropagation();
                 })
         // doble click
+                $(document).on("dblclick", ".spanNombreCarpeta", function (e) {
+                    var seccion = $(this).parents(".folderDetalles");
+                    seccion.find(".txtNombreCarpetaDetalle").val(seccion.find(".spanNombreCarpeta").text());
+                    controlesEdit(true, seccion);
+                })
                 $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
                     e.cancelBubble = true;
                     seccion = $(this).parents(".detalleCarpeta");
