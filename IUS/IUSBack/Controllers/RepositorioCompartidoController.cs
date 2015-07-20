@@ -47,13 +47,15 @@ namespace IUSBack.Controllers
                     {
                         archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
                     }
-                    ViewBag.titleModulo     = "Repositorio Compartido";
-                    ViewBag.carpetas        = archivos["carpetas"];
-                    ViewBag.archivos        = archivos["archivos"];
-                    ViewBag.carpetaActual   = archivos["carpetaPadre"];
-                    ViewBag.usuarios        = this._model.sp_sec_getAllUsuarios(usuarioSession._idUsuario, this._idPagina);
-                    ViewBag.idUsuarioSesion = usuarioSession._idUsuario;
-                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.titleModulo         = "Repositorio Compartido";
+                    ViewBag.carpetas            = archivos["carpetas"];
+                    ViewBag.archivos            = archivos["archivos"];
+                    ViewBag.carpetaActual       = archivos["carpetaPadre"];
+                    ViewBag.usuarios            = this._model.sp_sec_getAllUsuarios(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.idUsuarioSesion     = usuarioSession._idUsuario;
+                    ViewBag.usuariosCompartidos = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.carpetaActual       = archivos["carpetaPadre"];
+                    ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                 }
                 catch (ErroresIUS x)
                 {

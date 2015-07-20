@@ -43,12 +43,15 @@
                             foreach (Menu menucito in menus)
                             {
                                 <li>
-                                    <a href="@Url.Content(menucito._enlace)">
+                                    <a  href="@Url.Content(menucito._enlace)">
                                         @menucito._menu
                                     </a>
                                 </li>
                             }
                         }
+                        <li>
+                            <a id='menuLogOut' href='#'>Cerrar sesion</a>
+                        </li>
                     </ul>
 
                 </nav>

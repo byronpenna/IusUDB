@@ -27,12 +27,12 @@ namespace IUSLibs.REPO.Control.Compartido
                 try
                 {
                     DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrecto(tb))
+                    if (this.resultadoCorrectoGet(tb))
                     {
-                        if (tb[1].Rows.Count > 0)
+                        if (tb[0].Rows.Count > 0)
                         {
                             usuarios = new List<Usuario>();
-                            foreach(DataRow row in tb[1].Rows){
+                            foreach(DataRow row in tb[0].Rows){
                                 usuario = new Usuario((int)row["idUsuario"],row["usuario"].ToString());
                                 usuarios.Add(usuario);
                             }

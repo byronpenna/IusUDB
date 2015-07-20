@@ -1,4 +1,13 @@
-﻿.rowHerramientas{
+﻿/*Publico */
+.divCarpetaPublica,.divArchivoPublico{
+    margin-top:5%;
+    text-align:center;
+}
+.divCarpetaPublica img,.divArchivoPublico img{
+    width:30%;
+}
+/**********/
+.rowHerramientas{
     margin-top:2%;
 }
 .folders{

@@ -36,47 +36,25 @@
         <script src="~/Scripts/Views/Repositorio/RepositorioCompartido/functions.js"></script>
 }
 @{
-    List<Carpeta> carpetas = (List<Carpeta>)ViewBag.carpetas;
-    List<Archivo> archivos = (List<Archivo>)ViewBag.archivos;
-    List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
-    int idUsuarioSession = (int)ViewBag.idUsuarioSesion;
+    List<Carpeta> carpetas              = (List<Carpeta>)ViewBag.carpetas;
+    List<Archivo> archivos              = (List<Archivo>)ViewBag.archivos;
+    List<Usuario> usuarios              = (List<Usuario>)ViewBag.usuarios;
+    List<Usuario> usuariosCompartidos   = (List<Usuario>)ViewBag.usuariosCompartidos;
+    int idUsuarioSession                = (int)ViewBag.idUsuarioSesion;
+    Carpeta carpetaActual               = (Carpeta)ViewBag.carpetaActual;
 }
 <div class="row marginNull rowHerramientas">
     <div class="col-lg-4">
 
         <label for="txtDireccion">Ruta</label>
         <div class="input-group">
-            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="" />
+            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="@carpetaActual._ruta" />
             <span class="input-group-addon spIrBuscar">Ir</span>
         </div>
 
     </div>
     <div class="col-lg-4 seccionHerramientas">
-        <label>Herramientas</label>
-
-        <div class="accionesDiv form-control inputBackModal">
-            <a href="#" class="ico icoSubirFichero" title="Subir fichero">
-                <i class="fa fa-upload"></i>
-            </a>
-            <a href="#" class="ico" title="Editar">
-                <i class="fa fa-times"></i>
-            </a>
-            <a href="#" class="ico" title="Editar">
-                <i class="fa fa-pencil-square-o"></i>
-            </a>
-            <a href="#" class="ico" title="Compartir">
-                <i class="fa fa-share"></i>
-            </a>
-            <a href="#" class="ico" title="Publicar website">
-                <i class="fa fa-globe"></i>
-            </a>
-            <a href="#" class="ico" title="Descargar">
-                <i class="fa fa-download"></i>
-            </a>
-            <a href="#" class="ico icoNuevaCarpeta" title="Nueva carpeta">
-                <i class="fa fa-folder"></i>
-            </a>
-        </div>
+        
     </div>
     <div class="col-lg-4">
         <label>Busqueda</label>
@@ -184,6 +162,21 @@
                     <i class="fa fa-share"></i>
                 </span>
             </div>
+            
+        </div>
+        <div class="row marginNull" >
+            
+            @if (usuariosCompartidos != null && usuariosCompartidos.Count > 0)
+            {
+                foreach (Usuario usuarioCompartido in usuariosCompartidos)
+                {
+                    <div class="divCarpetaPublica col-lg-6">
+                        <input type="hidden" class="txtHdIdUsuario" value="@usuarioCompartido._idUsuario"/>
+                        <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
+                        <h4 class="tituloCarpetaPublica">@usuarioCompartido._usuario</h4>
+                    </div>
+                }
+            }
             
         </div>
     </div>
