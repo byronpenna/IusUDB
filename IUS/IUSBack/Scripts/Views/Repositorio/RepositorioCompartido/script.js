@@ -5,7 +5,8 @@
         // doble click
             $(document).on("dblclick", ".divCarpetaUsuarioCompartido", function (e) {
                 var frm = {
-                    idUserFile: $(this).find(".txtHdIdUsuario").val()
+                    idUserFile: $(this).find(".txtHdIdUsuario").val(),
+                    nombreCarpeta: $(this).find(".tituloCarpetaPublica").text()
                 }
                 console.log(frm);
                 var seccion = $(this).parents(".seccionCompartida");
@@ -30,6 +31,7 @@
                 actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
                     console.log("Respuesta servidor", data);
                     if (data.estado) {
+                        $(".divUsuarioCarpeta").addClass("hidden");
                         var div = "";
                         if (data.usuarios !== null) {
                             $.each(data.usuarios, function (i, usuario) {
@@ -45,7 +47,8 @@
             $(document).on("click", ".btnShareArchivo", function (e) {
                 var frm = {
                     idArchivo: $(".txtHdIdArchivoCompartir").val(),
-                    idUsuario: $(".cbUsuarios").val()
+                    idUsuario: $(".cbUsuarios").val(),
+                    nombreCarpeta: $(".cbUsuarios option:selected").text()
                 }
                 console.log(frm);
                 btnShareArchivo(frm)

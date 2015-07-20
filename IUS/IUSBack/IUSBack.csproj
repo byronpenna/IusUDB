@@ -233,6 +233,7 @@
     <Content Include="Content\themes\iusback_theme\generals\style.css" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menu\cursor.png" />
     <Content Include="Content\themes\iusback_theme\img\general\profle.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\adobe-reader.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\excel-ico.png" />

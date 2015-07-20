@@ -1,6 +1,16 @@
 ﻿.inline{
     display:inline-block;
 }
+/*Nuevos meno*/
+.divMenu{
+    padding-left:5%;
+    margin-top:5%;
+    text-align:center;
+}
+.divMenu img{
+    display:block;
+    width:20%;
+}
 /* Contendra todos los estilos generales del sistema */
 /*
     Clases de prueba

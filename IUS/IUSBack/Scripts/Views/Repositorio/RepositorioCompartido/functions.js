@@ -33,10 +33,13 @@
             }
         });
     }
-    function divCarpetaUsuarioCompartido(frm,seccion) {
+    function divCarpetaUsuarioCompartido(frm, seccion) {
+        var nombreUsuarioCarpeta = frm.nombreCarpeta;
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getFilesFromShareUserId", frm, function (data) {
             console.log("Respuesta de servidor",data);
             if (data.estado) {
+                $(".divUsuarioCarpeta").find(".hUsuarioCarpeta").empty().append(nombreUsuarioCarpeta);
+                $(".divUsuarioCarpeta").removeClass("hidden");
                 var div = "";
                 if (data.archivos !== null) {
                     $.each(data.archivosCompartidos, function (i, archivoCompartido) {
@@ -56,12 +59,21 @@
         $(".txtHdIdArchivoCompartir").val(idArchivo);
     }
     function btnShareArchivo(frm) {
+        var form = frm;
+        console.log(" ;) ", form);
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_compartirArchivo", frm, function (data) {
             console.log(data);
+            console.log("Frm es D: ",form);
             if (data.estado) {
-
+                var frm = {
+                    idUserFile: form.idUsuario,
+                    nombreCarpeta: form.nombreCarpeta
+                }
+                var seccion = $(".seccionCompartida");
+                divCarpetaUsuarioCompartido(frm, seccion);
             }
         })
+
     }
     function spIrBuscar(frm) {
         actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {

@@ -2,16 +2,21 @@
 @{
     List<Submenu> submenus = (List<Submenu>)ViewBag.submenuss;
 }
-@if (submenus != null && submenus.Count > 0)
-{
-    foreach (Submenu submenu in submenus)
+<div class="row marginNull">
+
+
+    @if (submenus != null && submenus.Count > 0)
     {
-        <div class="col-lg-3">
-            <a href="@Url.Content("~"+submenu._enlace)">
-                @submenu._textoSubMenu
-            </a>
-        </div>
-        
+        foreach (Submenu submenu in submenus)
+        {
+            <div class="col-lg-3 divMenu">
+                <img src="~/Content/themes/iusback_theme/img/general/menu/cursor.png"/>
+                <a href="@Url.Content("~"+submenu._enlace)">
+                    @submenu._textoSubMenu
+                </a>
+            </div>
+
+        }
+
     }
-   
-}
+</div>
