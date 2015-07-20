@@ -13,13 +13,14 @@
             });
         // click
             $(document).on("click", ".icoCompartidoBack", function () {
-                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
+                var frm = {};
+                actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
                     console.log("Respuesta servidor", data);
                     if (data.estado) {
                         var div = "";
                         if (data.usuarios !== null) {
                             $.each(data.usuarios, function (i, usuario) {
-
+                                div += getDivUsuarios(usuario);
                             })
                         }
                         $(".seccionCompartida").empty().append(div);

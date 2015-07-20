@@ -99,6 +99,30 @@ namespace IUSLibs.REPO.Control.Compartido
             
         #endregion
         #region "set"
+            public bool sp_repo_removeShareFile(int idArchivo,int idUsuarioEjecutor, int idPagina)
+            {
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_repo_removeShareFile");
+                sp.agregarParametro("idArchivo", idArchivo);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
+            }
             public ArchivoCompartido sp_repo_compartirArchivo(ArchivoCompartido archivoAgregar,int idUsuarioEjecutor, int idPagina)
         {
             SPIUS sp = new SPIUS("sp_repo_compartirArchivo");

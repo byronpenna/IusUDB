@@ -16,10 +16,11 @@
                 });
             //
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
-                e.preventDefault();
-                div = getDivNewFolder();
-                $(".cuadriculaView").prepend(div);
-            })
+                    console.log("D: D: D: D:")
+                    e.preventDefault();
+                    div = getDivNewFolder();
+                    $(".folders").prepend(div);
+                })
             // eliminar carpeta 
                 $(document).on("click", ".icoEliminarArchivo", function (e) {
                     e.preventDefault();

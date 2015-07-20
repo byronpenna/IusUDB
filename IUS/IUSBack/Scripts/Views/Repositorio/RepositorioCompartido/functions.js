@@ -9,6 +9,16 @@
         ";
         return div;
     }
+    function getDivUsuarios(usuario) {
+        var div = "\
+            <div class='divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6'>\
+                <input type='hidden' class='txtHdIdUsuario' value='"+usuario._idUsuario+"'/>\
+                <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/profle.png' />\
+                <h4 class='tituloCarpetaPublica'>"+usuario._usuario+"</h4>\
+            </div>\
+        ";
+        return div;
+    }
 // scripts 
     function divCarpetaUsuarioCompartido(frm,seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getFilesFromShareUserId", frm, function (data) {
