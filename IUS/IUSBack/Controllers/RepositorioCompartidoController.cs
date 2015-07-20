@@ -71,6 +71,38 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_repo_getUsuariosArchivosCompartidos()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        List<Usuario> usuarios = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("usuarios", usuarios);
+                    }
+                    else
+                    {
+                        ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_repo_getFilesFromShareUserId()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -84,6 +116,12 @@ namespace IUSBack.Controllers
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("archivos", archivos);
+
+                    }
+                    else
+                    {
+                        ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
+                        throw x;
                     }
                 }
                 catch (ErroresIUS x)

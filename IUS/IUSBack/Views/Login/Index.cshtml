@@ -9,7 +9,7 @@
 }
 
 <div class="container">
-    <div class="card card-container divSeleccionLogin">
+    <div class="card card-container divSeleccionLogin hidden">
         <div class="col-lg-6 pointer" id="btnUsuarioLogin">
             Usuarios
         </div>
@@ -17,7 +17,7 @@
             Administradores
         </div>
     </div>
-    <div class="card card-container" id="divLoginInvitado">
+    <div class="card card-container hidden" id="divLoginInvitado">
         <form action="/" id="frmInvitado" method="post">
             <img id="profile-img" class="profile-img-card" src="~/Content/themes/iusback_theme/img/general/profle.png" />
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -30,7 +30,7 @@
             </a>
         </form>
     </div>
-    <div class="card card-container hidden" id="divLoginAdmin">
+    <div class="card card-container " id="divLoginAdmin">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="~/Content/themes/iusback_theme/img/general/logo_ius.png" />
         <p id="profile-name" class="profile-name-card"></p>
