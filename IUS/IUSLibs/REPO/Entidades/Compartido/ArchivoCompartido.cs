@@ -23,6 +23,13 @@ namespace IUSLibs.REPO.Entidades.Compartido
                 this._archivo = archivo;
                 this._usuario = usuario;
             }
+            public ArchivoCompartido(int idArchivoCompartido, Archivo archivo, int idUsuario)
+            {
+                this._idArchivoCompartido = idArchivoCompartido;
+                this._archivo = archivo;
+                Usuario usuario = new Usuario(idUsuario);
+                this._usuario = usuario;
+            }
             public ArchivoCompartido(int idArchivoCompartido,int idArchivo, int idUsuario, DateTime fecha)
             {
                 Archivo archivo = new Archivo(idArchivo);

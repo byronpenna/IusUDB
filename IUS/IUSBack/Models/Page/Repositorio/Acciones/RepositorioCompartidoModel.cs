@@ -61,11 +61,26 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                         throw x;
                     }
                 }
-                public List<Archivo> sp_repo_getFilesFromShareUserId(int idUserFile,int idUsuarioEjecutor, int idPagina)
+                public List<ArchivoCompartido> sp_repo_getFilesFromShareUserId(int idUserFile,int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
                         return this._controlArchivoCompartido.sp_repo_getFilesFromShareUserId(idUserFile, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public bool sp_repo_removeShareFile(int idArchivo,int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoCompartido.sp_repo_removeShareFile(idArchivo, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {

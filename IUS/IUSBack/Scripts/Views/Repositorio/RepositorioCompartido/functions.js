@@ -1,10 +1,15 @@
 ﻿// generics 
-    function getDivArchivosCompartidos(archivo) {
+    function getDivArchivosCompartidos(archivoCompartido) {
         var div = "\
             <div class='divCarpetaPublica col-lg-6'>\
-                <input type='hidden' class='txtHdIdArchivoCompartido' value=''/>\
-                <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._extension._tipoArchivo._icono+"' />\
-                <h4 class='tituloCarpetaPublica'>"+archivo._nombre+"</h4>\
+                <div class='row marginNull'>\
+                    <a href='#' class='icoDejarDeCompartir' title='Compartir'>\
+                        <i class='fa fa-trash-o'></i>\
+                    </a>\
+                </div>\
+                <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
+                <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
+                <h4 class='tituloCarpetaPublica'>" + archivoCompartido._archivo._nombre + "</h4>\
             </div>\
         ";
         return div;
@@ -20,14 +25,22 @@
         return div;
     }
 // scripts 
+    function icoDejarDeCompartir(frm,seccion) {
+        actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_removeShareFile", frm, function (data) {
+            console.log(data);
+            if (data.estado) {
+                seccion.remove();
+            }
+        });
+    }
     function divCarpetaUsuarioCompartido(frm,seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getFilesFromShareUserId", frm, function (data) {
             console.log("Respuesta de servidor",data);
             if (data.estado) {
                 var div = "";
                 if (data.archivos !== null) {
-                    $.each(data.archivos, function (i, archivo) {
-                        div += getDivArchivosCompartidos(archivo);
+                    $.each(data.archivosCompartidos, function (i, archivoCompartido) {
+                        div += getDivArchivosCompartidos(archivoCompartido);
                     });
                 }
                 seccion.empty().append(div);

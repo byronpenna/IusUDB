@@ -12,6 +12,19 @@
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
         // click
+            
+            $(document).on("click", ".icoDejarDeCompartir", function (e) {
+                e.preventDefault();
+                var seccion = $(this).parents(".divCarpetaPublica");
+                var frm = {
+                    idArchivo: seccion.find(".txtHdIdArchivoCompartido").val()
+                }
+                var x = confirm("¿Esta seguro que desea dejar de compartir archivo?");
+                console.log("formulario a envar es", frm);
+                if (x) {
+                    icoDejarDeCompartir(frm, seccion);
+                }
+            })
             $(document).on("click", ".icoCompartidoBack", function () {
                 var frm = {};
                 actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
