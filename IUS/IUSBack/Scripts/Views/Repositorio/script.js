@@ -248,6 +248,5 @@
                     seccion = $(this).parents(".detalleCarpeta");
                     nombre = $(this).text();
                     ttlNombreCarpeta(seccion, nombre);
-                    
                 })
 })

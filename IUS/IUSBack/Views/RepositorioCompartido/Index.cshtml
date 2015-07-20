@@ -164,13 +164,13 @@
             </div>
             
         </div>
-        <div class="row marginNull" >
+        <div class="row marginNull seccionCompartida" >
             
             @if (usuariosCompartidos != null && usuariosCompartidos.Count > 0)
             {
                 foreach (Usuario usuarioCompartido in usuariosCompartidos)
                 {
-                    <div class="divCarpetaPublica col-lg-6">
+                    <div class="divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6">
                         <input type="hidden" class="txtHdIdUsuario" value="@usuarioCompartido._idUsuario"/>
                         <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
                         <h4 class="tituloCarpetaPublica">@usuarioCompartido._usuario</h4>

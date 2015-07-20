@@ -2,6 +2,15 @@
     // plugins
         $(".cbUsuarios").chosen({ no_results_text: "No existe ese usuario", width: '100%' });
     //eventos
+        // doble click
+            $(document).on("dblclick", ".divCarpetaUsuarioCompartido", function (e) {
+                var frm = {
+                    idUserFile: $(this).find(".txtHdIdUsuario").val()
+                }
+                console.log(frm);
+                var seccion = $(this).parents(".seccionCompartida");
+                divCarpetaUsuarioCompartido(frm,seccion);
+            });
         // click
             $(document).on("click", ".btnShareArchivo", function (e) {
                 var frm = {

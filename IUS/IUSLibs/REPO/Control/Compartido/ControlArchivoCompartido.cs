@@ -11,17 +11,19 @@ using System.Text;
     using IUSLibs.GENERALS;
     using IUSLibs.LOGS;
     using IUSLibs.REPO.Entidades.Compartido;
+    using IUSLibs.REPO.Entidades;
     using IUSLibs.SEC.Entidades;
 namespace IUSLibs.REPO.Control.Compartido
 {
     public class ControlArchivoCompartido:PadreLib
     {
         #region "get"
-            public List<Usuario> sp_repo_getUsuariosArchivosCompartidos(int idUsuarioEjecutor, int idPagina)
+            public List<Archivo> sp_repo_getFilesFromShareUserId(int idUserFile,int idUsuarioEjecutor, int idPagina)
             {
-                List<Usuario> usuarios = null; Usuario usuario;
-                SPIUS sp = new SPIUS("sp_repo_getUsuariosArchivosCompartidos");
-                //sp.agregarParametro("idUsuario", idUsuario);
+                List<Archivo> archivos=null; Archivo archivo; 
+                TipoArchivo tipoArchivo; ExtensionArchivo extension;
+                SPIUS sp = new SPIUS("sp_repo_getFilesFromShareUserId");
+                sp.agregarParametro("idUserFile", idUserFile);
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);
                 try
@@ -31,10 +33,23 @@ namespace IUSLibs.REPO.Control.Compartido
                     {
                         if (tb[0].Rows.Count > 0)
                         {
-                            usuarios = new List<Usuario>();
-                            foreach(DataRow row in tb[0].Rows){
-                                usuario = new Usuario((int)row["idUsuario"],row["usuario"].ToString());
-                                usuarios.Add(usuario);
+                            archivos = new List<Archivo>();
+                            foreach (DataRow row in tb[0].Rows) { 
+                                
+                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
+                                tipoArchivo._icono = row["icono"].ToString();
+                                extension = new ExtensionArchivo((int)row["id_extension_fk"], tipoArchivo);
+                                int idCarpeta;
+                                if (row["id_carpeta_fk"] == DBNull.Value)
+                                {
+                                    idCarpeta = 0;
+                                }
+                                else
+                                {
+                                    idCarpeta = (int)row["id_carpeta_fk"];
+                                }
+                                archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), idCarpeta, row["src"].ToString(), extension);
+                                archivos.Add(archivo);
                             }
                         }
                     }
@@ -47,8 +62,41 @@ namespace IUSLibs.REPO.Control.Compartido
                 {
                     throw x;
                 }
-                return usuarios;
-            }
+                return archivos;
+            }    
+            public List<Usuario> sp_repo_getUsuariosArchivosCompartidos(int idUsuarioEjecutor, int idPagina)
+                {
+                    List<Usuario> usuarios = null; Usuario usuario;
+                    SPIUS sp = new SPIUS("sp_repo_getUsuariosArchivosCompartidos");
+                    //sp.agregarParametro("idUsuario", idUsuario);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                usuarios = new List<Usuario>();
+                                foreach(DataRow row in tb[0].Rows){
+                                    usuario = new Usuario((int)row["idUsuario"],row["usuario"].ToString());
+                                    usuarios.Add(usuario);
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return usuarios;
+                }
+            
         #endregion
         #region "set"
             public ArchivoCompartido sp_repo_compartirArchivo(ArchivoCompartido archivoAgregar,int idUsuarioEjecutor, int idPagina)

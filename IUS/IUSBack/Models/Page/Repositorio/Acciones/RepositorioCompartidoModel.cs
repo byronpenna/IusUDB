@@ -61,24 +61,39 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                         throw x;
                     }
                 }
+                public List<Archivo> sp_repo_getFilesFromShareUserId(int idUserFile,int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoCompartido.sp_repo_getFilesFromShareUserId(idUserFile, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "otras"
                 public List<Usuario> sp_sec_getAllUsuarios(int idUsuarioEjecutor, int idPagina)
-            {
-                try
                 {
-                    ControlUsuarios control = new ControlUsuarios();
-                    return control.sp_sec_getAllUsuarios(idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        ControlUsuarios control = new ControlUsuarios();
+                        return control.sp_sec_getAllUsuarios(idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
             #endregion
             #region "archivos"
                 public Dictionary<object, object> sp_repo_entrarCarpeta(Carpeta carpeta, int idUsuarioEjecutor, int idPagina)
