@@ -79,7 +79,7 @@ namespace IUSBack.Models.General
                         throw x;
                     }
                 }
-                public List<Submenu> sp_sec_getSubmenu(int idMenu, int idUsuario)
+                public Dictionary<object,object> sp_sec_getSubmenu(int idMenu, int idUsuario)
                 {
                     try
                     {

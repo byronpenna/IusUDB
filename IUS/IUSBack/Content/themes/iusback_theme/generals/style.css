@@ -1,6 +1,9 @@
 ﻿.inline{
     display:inline-block;
 }
+.activeMenu{
+    color:#95A5A6;
+}
 /*Nuevos meno*/
 .divMenu{
     padding-left:5%;

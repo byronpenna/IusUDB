@@ -29,10 +29,14 @@ namespace IUSBack.Controllers
                 try
                 {
                     Usuario usuarioSession  = this.getUsuarioSesion();
-                    ViewBag.titleModulo     = "Detalle menu";
+                    
                     //ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    ViewBag.submenuss = this._model.sp_sec_getSubmenu(id, usuarioSession._idUsuario);
+                    Dictionary<object,object> respuesta = this._model.sp_sec_getSubmenu(id, usuarioSession._idUsuario);
+                    Menu menuPadre = (Menu)respuesta["menuPadre"];
+                    ViewBag.titleModulo = menuPadre._menu;
+                    ViewBag.submenuss = respuesta["submenus"];
+                    
                     return View();
                 }
                 catch (ErroresIUS x)

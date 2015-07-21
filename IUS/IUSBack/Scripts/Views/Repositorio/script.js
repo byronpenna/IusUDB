@@ -17,16 +17,30 @@
                 }
             })
         // keydown
-            $(document).on("keydown", ".txtNombreCarpeta", function (e) {
-                console.log(e.which);
+            $(document).on("keydown", ".txtNombreArchivo", function (e) {
                 switch (e.which) {
                     case 13: {
-                        folder = $(this).parents(".folder");
-                        frm = {
-                            txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
-                            nombre: folder.find(".txtNombreCarpeta").val()
+                        var folder = $(this).parents(".folder");
+                        var frm = {
+                            idArchivo:seccion.find(".txtHdIdArchivo").val(),
+                            nombreArchivo: seccion.find(".txtNombreCarpeta").val()
                         }
-                        btnEditarCarpeta(frm, folder);
+                        btnEditarArchivo(frm,folder);
+                        break;
+                    }
+                }
+            })
+            
+            $(document).on("keydown", ".txtNombreCarpeta", function (e) {
+                switch (e.which) {
+                    case 13: {
+                        var folder = $(this).parents(".folder");
+                        if ($(this).hasClass("txtNombreArchivo"))
+                        {
+                            editarArchivo(folder);
+                        } else {
+                            editarFolder(folder);
+                        }
                         break;
                     }
                     case 27: {
@@ -43,12 +57,23 @@
                 var seccion = $(this).parents(".folderDetalles");
                 switch (e.which) {
                     case 13: {
-                        var frm = {
-                            txtHdIdCarpeta: seccion.find(".txtHdIdCarpeta").val(),
-                            nombre: me.val()
+                        if ($(this).hasClass(".txtNombreArchivoDetalle")) {
+                            var frm = {
+                                txtHdIdCarpeta: seccion.find(".txtHdIdCarpeta").val(),
+                                nombre: me.val()
+                            }
+                            
+                            txtNombreCarpetaDetalle(frm, seccion);
                         }
-                        console.log(frm);
-                        txtNombreCarpetaDetalle(frm, seccion);
+                        else {
+                            
+                            var frm = {
+                                idArchivo: seccion.find(".txtHdIdArchivo").val(),
+                                nombreArchivo: seccion.find(".txtNombreArchivoDetalle").val()
+                            }
+                            console.log("formulario a enviar", frm);
+                            txtNombreArchivoDetalle(frm,seccion);
+                        }
                         break;
                     }
                 }
@@ -87,7 +112,8 @@
             // vista
                 $(document).on("click", ".iconoVistaCuadricula", function (e) {
                     e.preventDefault();
-                    var seccion = $(this).parents(".accionesDiv");
+                    verCuadricula($(this));
+                    /*var seccion = $(this).parents(".accionesDiv");
                     $(".listView").addClass("hidden");
                     $(".cuadriculaView").removeClass("hidden");
                     
@@ -97,7 +123,7 @@
                         idCarpeta: $(".txtHdIdCarpetaPadre").val()
                     }
                     var seccionModificar = $(".cuadriculaView");
-                    iconoVistaCuadricula(frm, seccionModificar);
+                    iconoVistaCuadricula(frm, seccionModificar);*/
 
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
@@ -143,10 +169,13 @@
                         
                     })
             // repositorio privado        
-
+                $(document).on("click", ".carpetaDetalle", function (e) {
+                    window.location = RAIZ + "Repositorio/index/" + $(this).find(".txtHdIdCarpeta").val();
+                })
                 $(document).on("click", ".cuadritoCarpeta", function () {
                     /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
                     cuadritoCarpeta(frm);*/
+                    console.log("Cuadrito carpeta click");
                     var estado = $(this).attr("id");
                     if (estado != '0') {
                         window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
@@ -165,19 +194,25 @@
                 })
             // cambiar nombre archivo 
                 $(document).on("click", ".btnEditarArchivo", function (e) {
-                    seccion = $(this).parents(".folder");
-                    frm = {
+                    var seccion = $(this).parents(".folder");
+                    var frm = {
                         idArchivo:      seccion.find(".txtHdIdArchivo").val(),
                         nombreArchivo:  seccion.find(".txtNombreCarpeta").val()
                     }
-                    
-                    btnEditarArchivo(frm);
+                    btnEditarArchivo(frm,seccion);
                 })
             // herramientas carpetas
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
                     e.preventDefault();
-                    div = getDivNewFolder();
-                    $(".cuadriculaView").prepend(div);
+                    if ($(".cuadriculaView").hasClass("hidden")) {
+                        verCuadricula($(".iconoVistaCuadricula"), function () {
+                            div = getDivNewFolder();
+                            $(".cuadriculaView").prepend(div);
+                        });
+                    } else {
+                        div = getDivNewFolder();
+                        $(".cuadriculaView").prepend(div);
+                    }
                 })
                 $(document).on("click", ".icoSubirFichero", function (e) {
                     e.preventDefault();

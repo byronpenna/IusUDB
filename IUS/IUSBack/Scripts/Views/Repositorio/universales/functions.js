@@ -12,6 +12,12 @@
     // keyup
         // directorio
             $(document).on("keyup", ".txtBusqueda", function (e) {
+                var charCode = e.which;
+                console.log(charCode);
+                if (charCode == 27)
+                {
+                    $(this).val("");
+                }
                 if ($(this).val() == "") {
                     $(".folders .folder").removeClass("hidden");
                 } else {

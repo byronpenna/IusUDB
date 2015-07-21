@@ -1,6 +1,22 @@
 ﻿// generics 
     // vistas 
         // cuadricula
+            function verCuadricula(div,callback) {
+                var seccion = div.parents(".accionesDiv");
+                $(".listView").addClass("hidden");
+                $(".cuadriculaView").removeClass("hidden");
+
+                seccion.find(".icoVistaLista").removeClass("activeVista");
+                div.addClass("activeVista");
+                var frm = {
+                    idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                }
+                var seccionModificar = $(".cuadriculaView");
+                iconoVistaCuadricula(frm, seccionModificar,callback);
+                if (callback !== undefined) {
+                    callback();
+                }
+            }
             function loadCuadriculaCarpeta(carpeta) {
                 var div = "\
                     <div class='col-lg-2 folder'>\
@@ -73,7 +89,13 @@
             function loadListFiles(file) {
                 var div = "\
                     <div class='row folderDetalles'>\
-                        <div class='col-lg-6'>"+file._nombre+"</div>\
+                        <input type='hidden' class='txtHdIdArchivo' value='"+file._idArchivo+"'>\
+                        <div class='col-lg-6'>\
+                            <div class='normalMode inline'>\
+                                <span class='spanNombreCarpeta sinRedirect'>" + file._nombre + "</span>\
+                            </div>\
+                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>\
+                        </div>\
                         <div class='col-lg-3'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
                         <div class='col-lg-3'>" + file.getFechaCreacion + "</div>\
                     </div>\
@@ -82,7 +104,7 @@
             }
             function loadListFolders(folder) {
                 var div = "\
-                    <div class='row folderDetalles'>\
+                    <div class='row folderDetalles carpetaDetalle '>\
                         <input type='hidden' class='txtHdIdCarpeta' value='"+folder._idCarpeta+"'>\
                         <div class='col-lg-6'><i class='fa fa-folder'></i>\
                         <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect'>" + folder._nombre + "</span></div>\
@@ -95,6 +117,20 @@
                 return div;
             }
     // otras 
+        function editarFolder(folder) {
+            var frm = {
+                txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
+                nombre: folder.find(".txtNombreCarpeta").val()
+            }
+            btnEditarCarpeta(frm, folder);
+        }
+        function editarArchivo(seccion) {
+            var frm = {
+                idArchivo: seccion.find(".txtHdIdArchivo").val(),
+                nombreArchivo: seccion.find(".txtNombreCarpeta").val()
+            }
+            btnEditarArchivo(frm, seccion);
+        }
         function loadPublicFiles() {
             frm = {};
             actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getRootFolderPublico", frm, function (data) {
@@ -189,7 +225,7 @@
         }
 // scripts 
         // vistas
-            function iconoVistaCuadricula(frm, seccion) {
+            function iconoVistaCuadricula(frm, seccion,callback) {
                 actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
                     console.log("Data cuadricula",data);
                     var div = "";
@@ -204,6 +240,9 @@
                         })
                     }
                     seccion.empty().append(div);
+                    if (callback !== undefined) {
+                        callback();
+                    }
                 }, function () {
                     seccion.empty().append("<img src='" + RAIZ + "Content/themes/iusback_theme/img/general/ajax-loader.gif" + "'>");
                 })
@@ -308,9 +347,8 @@
         }
         // cambiar nombre archivo
             
-            function btnEditarArchivo(frm) {
+            function btnEditarArchivo(frm,folder) {
                 actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {
-                
                     if (data.estado) {
                         seccion.find(".ttlNombreCarpeta").empty().append(data.archivo._nombre);
                         btnCancelarEdicionCarpeta(folder.find(".detalleCarpeta"));
@@ -362,6 +400,19 @@
             });
         }
         // actualizar carpetas
+            function txtNombreArchivoDetalle(frm,seccion) {
+                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {
+                    console.log(data);
+                    if (data.estado) {
+                        console.log("D: D: ");
+                        seccion.find(".spanNombreCarpeta").empty().append(data.archivo._nombre);
+                        controlesEdit(false, seccion);
+                    }
+                    else {
+                        alert("Ocurrio un error cambiando de nombre");
+                    }
+                })
+            }
             function txtNombreCarpetaDetalle(frm, seccion) {
                 actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_updateCarpeta", frm, function (data) {
                     if (data.estado) {

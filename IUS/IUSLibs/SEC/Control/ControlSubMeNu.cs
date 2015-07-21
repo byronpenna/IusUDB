@@ -27,9 +27,11 @@ namespace IUSLibs.SEC.Control
 
                     return toReturn;
                 }
-                public List<Submenu> sp_sec_getSubmenu(int idMenu, int idUsuario)
+                public Dictionary<object,object> sp_sec_getSubmenu(int idMenu, int idUsuario)
                 {
                     List<Submenu> submenus= null; Submenu submenu;
+                    Dictionary<object, object> retorno = new Dictionary<object,object>();
+                    Menu menuPadre = null;
                     SPIUS sp = new SPIUS("sp_sec_getSubmenu");
                     sp.agregarParametro("idMenu", idMenu);
                     sp.agregarParametro("idUsuario", idUsuario);
@@ -51,6 +53,11 @@ namespace IUSLibs.SEC.Control
                                     submenus.Add(submenu);
                                 }
                             }
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                menuPadre = new Menu((int)row["idMenu"], row["menu"].ToString(), "");
+                            }
                         }
                     }
                     catch (ErroresIUS x)
@@ -61,7 +68,9 @@ namespace IUSLibs.SEC.Control
                     {
                         throw x;
                     }
-                    return submenus;
+                    retorno.Add("submenus", submenus);
+                    retorno.Add("menuPadre", menuPadre);
+                    return retorno;
                 }
             #endregion
         #endregion
