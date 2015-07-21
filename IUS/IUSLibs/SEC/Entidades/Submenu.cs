@@ -12,6 +12,7 @@ namespace IUSLibs.SEC.Entidades
             public Menu _menu;
             public String _textoSubMenu;
             public String _enlace;
+            public string _icono;
         #endregion
         #region "Constructores"
             public Submenu(int idSubMenu, int idMenu, String texto, String enlace)

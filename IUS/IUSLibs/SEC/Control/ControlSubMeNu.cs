@@ -44,6 +44,10 @@ namespace IUSLibs.SEC.Control
                                 foreach (DataRow row in tb[0].Rows)
                                 {
                                     submenu = new Submenu((int)row["idSubMenu"], (int)row["id_menu_fk"], row["submenu"].ToString(), row["enlace"].ToString());
+                                    if (row["icono"] != DBNull.Value)
+                                    {
+                                        submenu._icono = row["icono"].ToString();
+                                    }
                                     submenus.Add(submenu);
                                 }
                             }

@@ -7,11 +7,20 @@
 
     @if (submenus != null && submenus.Count > 0)
     {
+        string icono = "";
         foreach (Submenu submenu in submenus)
         {
+            if (submenu._icono != null && submenu._icono != "")
+            {
+                icono = submenu._icono;
+            }
+            else
+            {
+                icono = "cursor.png";
+            }
             <div class="col-lg-3 divMenu">
-                <img src="~/Content/themes/iusback_theme/img/general/menu/cursor.png"/>
                 <a href="@Url.Content("~"+submenu._enlace)">
+                    <img src="~/Content/themes/iusback_theme/img/general/menu/@icono" />
                     @submenu._textoSubMenu
                 </a>
             </div>
