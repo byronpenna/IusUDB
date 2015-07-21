@@ -79,7 +79,22 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
         #region "acciones"
 
             #region "controlArchivo"
-            public Archivo sp_repo_getDownloadFile( int idArchivo, int idUsuarioEjecutor, int idPagina) {
+                public List<Archivo> sp_repo_searchArchivo(string nombre, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivo.sp_repo_searchArchivo(nombre, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public Archivo sp_repo_getDownloadFile( int idArchivo, int idUsuarioEjecutor, int idPagina) {
                     try
                     {
                         return this._controlArchivo.sp_repo_getDownloadFile(idArchivo, idUsuarioEjecutor, idPagina);   
