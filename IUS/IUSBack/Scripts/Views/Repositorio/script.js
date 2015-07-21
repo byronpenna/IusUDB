@@ -5,6 +5,14 @@
         console.log("set back");
     })*/
         loadPublicFiles();            
+        // change 
+            $(document).on("change", ".rdBusqueda", function () {
+                if ($(this).val() == 0) {
+                    buscarEnCarpeta($(".txtBusqueda").val());
+                } else {
+                    $(".folders .folder").removeClass("hidden");
+                }
+            })
         // keyup 
             $(document).on("keyup", ".txtNombreFileCompartir", function (e) {
                 if ($(this).val() == "") {
@@ -18,6 +26,7 @@
             })
         // keydown
             $(document).on("keydown", ".txtNombreArchivo", function (e) {
+                
                 switch (e.which) {
                     case 13: {
                         var folder = $(this).parents(".folder");

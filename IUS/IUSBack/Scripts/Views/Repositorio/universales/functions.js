@@ -13,18 +13,20 @@
         // directorio
             $(document).on("keyup", ".txtBusqueda", function (e) {
                 var charCode = e.which;
-                console.log(charCode);
-                if (charCode == 27)
-                {
-                    $(this).val("");
-                }
-                if ($(this).val() == "") {
-                    $(".folders .folder").removeClass("hidden");
-                } else {
-                    $(".folders .folder").addClass("hidden");
-                    var folders = $(".folder .ttlNombreCarpeta:containsi(" + $(this).val() + ")");
-                    folders = folders.parents(".folder");
-                    folders.removeClass("hidden");
+                if ($(".rdBusqueda:checked").val() == 0) {
+                    if (charCode == 27) {
+                        $(this).val("");
+                    }
+                    buscarEnCarpeta($(this).val());
+                    /*
+                    if ($(this).val() == "") {
+                        $(".folders .folder").removeClass("hidden");
+                    } else {
+                        $(".folders .folder").addClass("hidden");
+                        var folders = $(".folder .ttlNombreCarpeta:containsi(" + $(this).val() + ")");
+                        folders = folders.parents(".folder");
+                        folders.removeClass("hidden");
+                    }*/
                 }
             })
             $(document).on("keyup", ".txtDireccion", function (e) {
@@ -39,6 +41,16 @@
                 }
             })
 // generics
+    function buscarEnCarpeta(txt) {
+        if (txt == "") {
+            $(".folders .folder").removeClass("hidden");
+        } else {
+            $(".folders .folder").addClass("hidden");
+            var folders = $(".folder .ttlNombreCarpeta:containsi(" + txt + ")");
+            folders = folders.parents(".folder");
+            folders.removeClass("hidden");
+        }
+    }
     function getDivNewFolder() {
     div = "<div class='col-lg-2 folder '>\
                     <input type='hidden' class='txtHdIdCarpeta' value=''/>\
