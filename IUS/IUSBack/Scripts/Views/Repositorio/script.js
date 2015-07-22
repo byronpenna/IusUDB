@@ -8,8 +8,12 @@
         // change 
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 0) {
+                    $(".btnBusqueda").addClass("hidden");
+                    $(".divBusquedaArchivos").removeClass("input-group");
                     buscarEnCarpeta($(".txtBusqueda").val());
                 } else {
+                    $(".divBusquedaArchivos").addClass("input-group");
+                    $(".btnBusqueda").removeClass("hidden");
                     $(".folders .folder").removeClass("hidden");
                 }
             })
@@ -191,96 +195,108 @@
                     }
                     //console.log("vas a redireccionar");
                 });
-            
-            // eliminar archivos 
-                $(document).on("click", ".icoEliminarArchivo", function () {
-                    var x = confirm("Esta seguro que desea eliminar este archivo");
-                    if (x) {
-                        seccion = $(this).parents(".folder");
-                        frm = { idArchivo: seccion.find(".txtHdIdArchivo").val() }
-                        icoEliminarArchivo(frm,seccion);
-                    }
-                })
-            // cambiar nombre archivo 
-                $(document).on("click", ".btnEditarArchivo", function (e) {
-                    var seccion = $(this).parents(".folder");
-                    var frm = {
-                        idArchivo:      seccion.find(".txtHdIdArchivo").val(),
-                        nombreArchivo:  seccion.find(".txtNombreCarpeta").val()
-                    }
-                    btnEditarArchivo(frm,seccion);
-                })
-            // herramientas carpetas
-                $(document).on("click", ".icoNuevaCarpeta", function (e) {
+                $(document).on("click", ".icoOpenLocation", function (e) {
                     e.preventDefault();
-                    if ($(".cuadriculaView").hasClass("hidden")) {
-                        verCuadricula($(".iconoVistaCuadricula"), function () {
+                    console.log("Iras a abrir")
+                    var seccion = $(this).parents(".folder");
+                    window.location = RAIZ + "Repositorio/index/" + seccion.find(".txtHdIdCarpetaContenedora").val();
+                });
+                $(document).on("click", ".btnBusqueda", function () {
+                    var frm = {
+                        txtBusqueda: $(".txtBusqueda").val()
+                    }
+                    var seccion = $(".cuadriculaView");
+                    btnBusqueda(frm, seccion);
+                })
+                // eliminar archivos 
+                    $(document).on("click", ".icoEliminarArchivo", function () {
+                        var x = confirm("Esta seguro que desea eliminar este archivo");
+                        if (x) {
+                            seccion = $(this).parents(".folder");
+                            frm = { idArchivo: seccion.find(".txtHdIdArchivo").val() }
+                            icoEliminarArchivo(frm,seccion);
+                        }
+                    })
+                // cambiar nombre archivo 
+                    $(document).on("click", ".btnEditarArchivo", function (e) {
+                        var seccion = $(this).parents(".folder");
+                        var frm = {
+                            idArchivo:      seccion.find(".txtHdIdArchivo").val(),
+                            nombreArchivo:  seccion.find(".txtNombreCarpeta").val()
+                        }
+                        btnEditarArchivo(frm,seccion);
+                    })
+                // herramientas carpetas
+                    $(document).on("click", ".icoNuevaCarpeta", function (e) {
+                        e.preventDefault();
+                        if ($(".cuadriculaView").hasClass("hidden")) {
+                            verCuadricula($(".iconoVistaCuadricula"), function () {
+                                div = getDivNewFolder();
+                                $(".cuadriculaView").prepend(div);
+                            });
+                        } else {
                             div = getDivNewFolder();
                             $(".cuadriculaView").prepend(div);
-                        });
-                    } else {
-                        div = getDivNewFolder();
-                        $(".cuadriculaView").prepend(div);
-                    }
-                })
-                $(document).on("click", ".icoSubirFichero", function (e) {
-                    e.preventDefault();
-                    $(".divUpload").fadeIn(400, function () {
+                        }
+                    })
+                    $(document).on("click", ".icoSubirFichero", function (e) {
+                        e.preventDefault();
+                        $(".divUpload").fadeIn(400, function () {
                         
+                        });
+                    })
+                // subir archivos 
+                    $(document).on("click", ".divUpload", function (e) {
+                        if ($(".txtHdEstadoUpload").val() == 1 || $(".txtHdEstadoUpload").val() == 1) {
+                            window.location = RAIZ + "Repositorio/index/" + $(".txtHdIdCarpetaPadre").val();
+                        }
+                        $(this).fadeOut();
+                    })
+                    $(document).on("click", ".contenedorUpload", function (e) {
+                        e.stopPropagation();
                     });
-                })
-            // subir archivos 
-                $(document).on("click", ".divUpload", function (e) {
-                    if ($(".txtHdEstadoUpload").val() == 1 || $(".txtHdEstadoUpload").val() == 1) {
-                        window.location = RAIZ + "Repositorio/index/" + $(".txtHdIdCarpetaPadre").val();
-                    }
-                    $(this).fadeOut();
-                })
-                $(document).on("click", ".contenedorUpload", function (e) {
-                    e.stopPropagation();
-                });
-            // guardar carpeta
-                $(document).on("click", ".btnGuardarCarpeta", function (e) {
-                    seccion = $(this).parents(".folder");
-                    frm = {
-                            idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
-                            nombre: seccion.find(".txtNombreCarpetaSave").val()
-                    }
+                // guardar carpeta
+                    $(document).on("click", ".btnGuardarCarpeta", function (e) {
+                        seccion = $(this).parents(".folder");
+                        frm = {
+                                idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
+                                nombre: seccion.find(".txtNombreCarpetaSave").val()
+                        }
                     
-                    btnGuardarCarpeta(frm,seccion);
-                });
-                $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
-                    div = $(this).parents(".folder");
-                    div.remove();
-                })
-            // eliminar carpeta
-                $(document).on("click", ".icoEliminarCarpeta", function () {
-                    seccion = $(this).parents(".folder");
-                    frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
-                    var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
-                    if (x) {
-                        icoEliminarCarpeta(frm, seccion);
-                    }
+                        btnGuardarCarpeta(frm,seccion);
+                    });
+                    $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
+                        div = $(this).parents(".folder");
+                        div.remove();
+                    })
+                // eliminar carpeta
+                    $(document).on("click", ".icoEliminarCarpeta", function () {
+                        seccion = $(this).parents(".folder");
+                        frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
+                        var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
+                        if (x) {
+                            icoEliminarCarpeta(frm, seccion);
+                        }
                     
-                });
-            // actualizar carpeta
-                $(document).on("click", ".btnEditarCarpeta", function () {
-                    folder = $(this).parents(".folder");
-                    frm = {
-                        txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
-                        nombre: folder.find(".txtNombreCarpeta").val()
-                    }
+                    });
+                // actualizar carpeta
+                    $(document).on("click", ".btnEditarCarpeta", function () {
+                        folder = $(this).parents(".folder");
+                        frm = {
+                            txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
+                            nombre: folder.find(".txtNombreCarpeta").val()
+                        }
                     
-                    btnEditarCarpeta(frm, folder);
-                });
-                $(document).on("click", ".btnCancelarEdicionCarpeta", function () {
-                    seccion = $(this).parents(".detalleCarpeta");
-                    btnCancelarEdicionCarpeta(seccion);
-                });
-            // cambiar nombre carpeta
-                $(document).on("click", ".sinRedirect", function (e) {
-                    e.stopPropagation();
-                })
+                        btnEditarCarpeta(frm, folder);
+                    });
+                    $(document).on("click", ".btnCancelarEdicionCarpeta", function () {
+                        seccion = $(this).parents(".detalleCarpeta");
+                        btnCancelarEdicionCarpeta(seccion);
+                    });
+                // cambiar nombre carpeta
+                    $(document).on("click", ".sinRedirect", function (e) {
+                        e.stopPropagation();
+                    })
         // doble click
                 $(document).on("dblclick", ".spanNombreCarpeta", function (e) {
                     var seccion = $(this).parents(".folderDetalles");

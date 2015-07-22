@@ -13,20 +13,14 @@
         // directorio
             $(document).on("keyup", ".txtBusqueda", function (e) {
                 var charCode = e.which;
+                if (charCode == 27) {
+                    $(this).val("");
+                }
+                console.log(charCode);
                 if ($(".rdBusqueda:checked").val() == 0) {
-                    if (charCode == 27) {
-                        $(this).val("");
-                    }
                     buscarEnCarpeta($(this).val());
-                    /*
-                    if ($(this).val() == "") {
-                        $(".folders .folder").removeClass("hidden");
-                    } else {
-                        $(".folders .folder").addClass("hidden");
-                        var folders = $(".folder .ttlNombreCarpeta:containsi(" + $(this).val() + ")");
-                        folders = folders.parents(".folder");
-                        folders.removeClass("hidden");
-                    }*/
+                } else if ($(".rdBusqueda:checked").val() == 0) {
+
                 }
             })
             $(document).on("keyup", ".txtDireccion", function (e) {

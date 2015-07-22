@@ -72,6 +72,7 @@ namespace IUSLibs.REPO.Control
                     {
                         if (tb[0].Rows.Count > 0)
                         {
+                            archivos = new List<Archivo>();
                             foreach (DataRow row in tb[0].Rows)
                             {
                                 if (row["id_carpeta_fk"] != DBNull.Value)
@@ -87,6 +88,7 @@ namespace IUSLibs.REPO.Control
                                 extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
                                 archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), carpeta, extension);
                                 archivo._fechaCreacion = (DateTime)row["fecha_creacion"];
+                                archivos.Add(archivo);
                             }
                         }
                     }

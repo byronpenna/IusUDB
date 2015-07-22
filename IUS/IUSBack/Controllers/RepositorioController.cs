@@ -261,7 +261,7 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            List<Archivo> archivos = this._model.sp_repo_searchArchivo(frm[""].ToString(), usuarioSession._idUsuario, this._idPagina);
+                            List<Archivo> archivos = this._model.sp_repo_searchArchivo(frm["txtBusqueda"].ToString(), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("archivos", archivos);

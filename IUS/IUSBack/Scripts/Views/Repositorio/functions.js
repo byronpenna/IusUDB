@@ -49,10 +49,12 @@
                     </div>";
                 return div;
             }
-            function loadCuadriculaFiles(archivo) {
+            function loadCuadriculaFiles(archivo, openLocation) {
+                
                 var div = "\
                     <div class='col-lg-2 folder'>\
                         <input type='hidden' class='txtHdIdArchivo' value='"+archivo._idArchivo+"'/>\
+<input type='hidden' class='txtHdIdCarpetaContenedora' value='" + archivo._carpeta._idCarpeta + "'/>\
                         <div class='row divHerramientasIndividual'>\
                             <a href='#' class='icoCompartirFile' title='Compartir'>\
                                 <i class='fa fa-share'></i>\
@@ -62,7 +64,13 @@
                             </a>\
                             <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
                                 <i class='fa fa-trash-o'></i>\
-                            </a>\
+                            </a>";
+                if (openLocation !== undefined && openLocation == true) {
+                    div += "<a href='#' class='ico icoOpenLocation' title='Abrir ubicacion'>\
+                                <i class='fa fa-folder-open'></i>\
+                            </a>";
+                }
+                div += "\
                         </div>\
                         <div class='cuadritoIcono '>\
                             <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._extension._tipoArchivo._icono+"' />\
@@ -224,6 +232,22 @@
 
         }
 // scripts 
+        function btnBusqueda(frm,seccion) {
+            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    var div = "";
+                    if (data.archivos !== undefined) {
+                        $.each(data.archivos, function (i,archivo) {
+                            div += loadCuadriculaFiles(archivo,true);
+                        })
+                    }
+                    seccion.empty().append(div);
+                } else {
+                    alert("Ocurrio un error en la busqueda");
+                }
+            })
+        }
         // vistas
             function iconoVistaCuadricula(frm, seccion,callback) {
                 actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
