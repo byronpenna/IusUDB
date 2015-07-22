@@ -133,20 +133,21 @@
             // vista
                 $(document).on("click", ".iconoVistaCuadricula", function (e) {
                     e.preventDefault();
-                    verCuadricula($(this));
+                    if (!isSearch) {
+                        verCuadricula($(this));
+                    } else {
+                        vistaCuadriculaBusqueda();
+                    }
+                    
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
                     e.preventDefault();
-                    var seccion = $(this).parents(".accionesDiv");
-                    $(".cuadriculaView").addClass("hidden");
-                    $(".listView").removeClass("hidden");
-                    seccion.find(".iconoVistaCuadricula").removeClass("activeVista");
-                    $(this).addClass("activeVista");
-                    var frm = {
-                        idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                    if (!isSearch) {
+                        verLista($(this));
+                    } else {
+                        vistaListaBusqueda();
                     }
-                    var seccionModificar = $(".listView");
-                    icoVistaLista(frm, seccionModificar);
+                    
                 })
             // publico 
                 $(document).on("click", ".icoPublicoBack", function (e) {
@@ -202,7 +203,7 @@
                     var vistaCuadricula = $(".iconoVistaCuadricula").hasClass("activeVista");
                     var vistaLista      = $(".icoVistaLista").hasClass("activeVista");
                     var target          = "";
-                    if (!$(this).hasClass(".btnBuscando")) {
+                    if (!$(this).hasClass("btnBuscando")) {
                         if (vistaCuadricula) {
                             var seccion = $(".cuadriculaView");
                             target = "cuadricula";
@@ -214,7 +215,7 @@
                             txtBusqueda: $(".txtBusqueda").val()
                         }
                         btnBusqueda(frm, seccion,target);
-                        $(this).addClass(".btnBuscando");
+                        $(this).addClass("btnBuscando");
                         $(this).empty().append("<i class='fa fa-times'></i>");
                     } else {
                         if (vistaCuadricula) {
@@ -223,7 +224,7 @@
                             }
                             var seccion = $(".cuadriculaView");
                             iconoVistaCuadricula(frm, seccion);
-                            $(this).removeClass(".btnBuscando");
+                            $(this).removeClass("btnBuscando");
                             $(this).empty().append("<i class='fa fa-search'></i>");
                         } else if (vistaLista) {
                             var frm = {
@@ -231,7 +232,7 @@
                             }
                             var seccionModificar = $(".listView");
                             icoVistaLista(frm, seccionModificar);
-                            $(this).removeClass(".btnBuscando");
+                            $(this).removeClass("btnBuscando");
                             $(this).empty().append("<i class='fa fa-search'></i>");
                         }
                     }

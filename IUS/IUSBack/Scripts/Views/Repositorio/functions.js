@@ -1,13 +1,31 @@
 ﻿// generics 
     // vistas 
+        // generales
+            function cambiarVistas(vistaVer) {
+                var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
+                var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");
+                $(".activeVista").removeClass("activeVista");
+                switch (vistaVer) {
+                    case "cuadricula": {
+                        lista.addClass("hidden");
+                        cuadricula.removeClass("hidden");
+                        pestaCuadricula.addClass("activeVista");
+                        //pestaLista.removeClass("activeLista");
+                        break;
+                    }
+                    case "lista": {
+                        cuadricula.addClass("hidden");
+                        lista.removeClass("hidden");
+                        pestaLista.addClass("activeVista");
+                        //pestaCuadricula.removeClass("activeLista");
+                        break;
+                    }
+                }
+            }
         // cuadricula
             function verCuadricula(div,callback) {
                 var seccion = div.parents(".accionesDiv");
-                $(".listView").addClass("hidden");
-                $(".cuadriculaView").removeClass("hidden");
-
-                seccion.find(".icoVistaLista").removeClass("activeVista");
-                div.addClass("activeVista");
+                cambiarVistas("cuadricula");
                 var frm = {
                     idCarpeta: $(".txtHdIdCarpetaPadre").val()
                 }
@@ -17,6 +35,16 @@
                     callback();
                 }
             }
+            function verLista(div) {
+                var seccion = div.parents(".accionesDiv");
+                cambiarVistas("lista");
+                var frm = {
+                    idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                }
+                var seccionModificar = $(".listView");
+                icoVistaLista(frm, seccionModificar);
+            }
+
             function loadCuadriculaCarpeta(carpeta) {
                 var div = "\
                     <div class='col-lg-2 folder'>\
@@ -125,6 +153,9 @@
                 return div;
             }
     // otras 
+        function isSearch() {
+            return $(".btnBusqueda").hasClass("btnBuscando");
+        }
         function editarFolder(folder) {
             var frm = {
                 txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
@@ -232,12 +263,32 @@
 
         }
 // scripts 
+        function vistaListaBusqueda() {
+            var seccion = $(".listView");
+            target = "lista";
+            var frm = {
+                txtBusqueda: $(".txtBusqueda").val()
+            }
+            btnBusqueda(frm, seccion, target);
+            cambiarVistas("lista");
+        }
+        function vistaCuadriculaBusqueda() {
+            var seccion = $(".cuadriculaView");
+            target = "cuadricula";
+            var frm = {
+                txtBusqueda: $(".txtBusqueda").val()
+            }
+            btnBusqueda(frm, seccion, target);
+            cambiarVistas("cuadricula");
+            /*$(".icoVistaLista").removeClass("activeVista");
+            $(".iconoVistaCuadricula").addClass("activeVista");*/
+        }
         function btnBusqueda(frm,seccion,target) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
                 console.log(data);
                 if (data.estado) {
                     var div = "";
-                    if (data.archivos !== undefined) {
+                    if (data.archivos !== undefined && data.archivos !== null) {
                         $.each(data.archivos, function (i, archivo) {
                             if (target == "cuadricula") {
                                 div += loadCuadriculaFiles(archivo, true);
@@ -245,6 +296,12 @@
                                 div += loadListFiles(archivo);
                             }
                         })
+                    } else {
+                        div += "\
+                            <div class='divNofoundResults'>\
+                                No se han encontrado archivos\
+                            </div>\
+                            ";
                     }
                     seccion.empty().append(div);
                     $(".encabezadoFicheros").empty().append("Resultados de busqueda");
@@ -465,23 +522,6 @@
                     }
                 })
             }
-        /*
-        function ttlNombreCarpeta(seccion,nombre) {
-            seccion.find(".normalMode").addClass("hidden");
-            seccion.find(".editMode").removeClass("hidden");
-            folder = seccion.parents(".cuadritoIcono");
-            folder.removeClass("cuadritoIcono");
-            folder.addClass("cuadritoIconoAdd");
-            seccion.find(".txtNombreCarpeta").val(nombre);
-        }*/
-        /*
-        function btnCancelarEdicionCarpeta(seccion) {
-            seccion.find(".editMode").addClass("hidden");
-            seccion.find(".normalMode").removeClass("hidden");
-            folder = seccion.parents(".cuadritoIcono");
-            folder.addClass("cuadritoIcono");
-            folder.removeClass("cuadritoIconoAdd");
-        }*/
         // guardar carpeta
         function btnGuardarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
