@@ -62,7 +62,7 @@ namespace IUSLibs.REPO.Control
                         if (tb[2].Rows.Count > 0)
                         {
                             DataRow row = tb[2].Rows[0];
-                            carpetaPadreRuta = new Carpeta((int)row["idCarpeta"]);
+                            carpetaPadreRuta = new Carpeta((int)row["idCarpeta"],row["nombre"].ToString());
                             carpetaPadreRuta._ruta = row["strRuta"].ToString();
                         }
                     }

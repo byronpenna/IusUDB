@@ -11,7 +11,11 @@
     margin-top:2%;
 }
 .folders{
-    margin-top:5%;
+    /*margin-top:5%;*/
+}
+.encabezadoFicheros{
+    text-align:center;
+    margin-bottom:5%;
 }
 .folder{
     text-align:center;

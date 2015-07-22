@@ -232,17 +232,22 @@
 
         }
 // scripts 
-        function btnBusqueda(frm,seccion) {
+        function btnBusqueda(frm,seccion,target) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
                 console.log(data);
                 if (data.estado) {
                     var div = "";
                     if (data.archivos !== undefined) {
-                        $.each(data.archivos, function (i,archivo) {
-                            div += loadCuadriculaFiles(archivo,true);
+                        $.each(data.archivos, function (i, archivo) {
+                            if (target == "cuadricula") {
+                                div += loadCuadriculaFiles(archivo, true);
+                            } else{
+                                div += loadListFiles(archivo);
+                            }
                         })
                     }
                     seccion.empty().append(div);
+                    $(".encabezadoFicheros").empty().append("Resultados de busqueda");
                 } else {
                     alert("Ocurrio un error en la busqueda");
                 }
@@ -264,6 +269,7 @@
                         })
                     }
                     seccion.empty().append(div);
+                    $(".encabezadoFicheros").empty().append(data.carpetaPadre._nombre);
                     if (callback !== undefined) {
                         callback();
                     }

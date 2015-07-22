@@ -117,7 +117,9 @@
         </div>
     </div>
     <div class="col-lg-4">
-        <label>Busqueda</label>
+        <div class="col-lg-6">
+            <label>Busqueda</label>
+        </div>
         <div class="row marginNull">
             En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked/>
             Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
@@ -133,10 +135,14 @@
 
 <div id="tab-1" class="row tab marginNull">
     <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+    
     <div class="folders col-lg-8" >
         <!-- 
         
             -->
+        <div class="row marginNull">
+            <h3 class="encabezadoFicheros">@carpetaActual._nombre</h3>
+        </div>
         <div class="listView hidden">
             <div class="row">
                 <div class="col-lg-6">

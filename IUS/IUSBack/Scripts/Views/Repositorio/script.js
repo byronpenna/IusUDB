@@ -43,7 +43,15 @@
                     }
                 }
             })
-            
+            $(document).on("keydown", ".txtBusqueda ", function (e) {
+                switch (e.which) {
+                    case 13: {
+                        if ($(".rdBusqueda:checked").val() == 1) {
+                            $(".btnBusqueda").click();
+                        }
+                    }
+                }
+            })
             $(document).on("keydown", ".txtNombreCarpeta", function (e) {
                 switch (e.which) {
                     case 13: {
@@ -126,18 +134,6 @@
                 $(document).on("click", ".iconoVistaCuadricula", function (e) {
                     e.preventDefault();
                     verCuadricula($(this));
-                    /*var seccion = $(this).parents(".accionesDiv");
-                    $(".listView").addClass("hidden");
-                    $(".cuadriculaView").removeClass("hidden");
-                    
-                    seccion.find(".icoVistaLista").removeClass("activeVista");
-                    $(this).addClass("activeVista");
-                    var frm = {
-                        idCarpeta: $(".txtHdIdCarpetaPadre").val()
-                    }
-                    var seccionModificar = $(".cuadriculaView");
-                    iconoVistaCuadricula(frm, seccionModificar);*/
-
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
                     e.preventDefault();
@@ -201,12 +197,45 @@
                     var seccion = $(this).parents(".folder");
                     window.location = RAIZ + "Repositorio/index/" + seccion.find(".txtHdIdCarpetaContenedora").val();
                 });
+                
                 $(document).on("click", ".btnBusqueda", function () {
-                    var frm = {
-                        txtBusqueda: $(".txtBusqueda").val()
+                    var vistaCuadricula = $(".iconoVistaCuadricula").hasClass("activeVista");
+                    var vistaLista      = $(".icoVistaLista").hasClass("activeVista");
+                    var target          = "";
+                    if (!$(this).hasClass(".btnBuscando")) {
+                        if (vistaCuadricula) {
+                            var seccion = $(".cuadriculaView");
+                            target = "cuadricula";
+                        } else {
+                            var seccion = $(".listView");
+                            target = "lista";
+                        }
+                        var frm = {
+                            txtBusqueda: $(".txtBusqueda").val()
+                        }
+                        btnBusqueda(frm, seccion,target);
+                        $(this).addClass(".btnBuscando");
+                        $(this).empty().append("<i class='fa fa-times'></i>");
+                    } else {
+                        if (vistaCuadricula) {
+                            var frm = {
+                                idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                            }
+                            var seccion = $(".cuadriculaView");
+                            iconoVistaCuadricula(frm, seccion);
+                            $(this).removeClass(".btnBuscando");
+                            $(this).empty().append("<i class='fa fa-search'></i>");
+                        } else if (vistaLista) {
+                            var frm = {
+                                idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                            }
+                            var seccionModificar = $(".listView");
+                            icoVistaLista(frm, seccionModificar);
+                            $(this).removeClass(".btnBuscando");
+                            $(this).empty().append("<i class='fa fa-search'></i>");
+                        }
                     }
-                    var seccion = $(".cuadriculaView");
-                    btnBusqueda(frm, seccion);
+                    
                 })
                 // eliminar archivos 
                     $(document).on("click", ".icoEliminarArchivo", function () {

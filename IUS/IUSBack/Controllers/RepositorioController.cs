@@ -337,6 +337,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("estado", true);
                             respuesta.Add("carpetas", archivos["carpetas"]);
                             respuesta.Add("archivos", archivos["archivos"]);
+                            respuesta.Add("carpetaPadre", archivos["carpetaPadre"]);
                         }
                         else
                         {
