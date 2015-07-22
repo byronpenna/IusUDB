@@ -40,6 +40,7 @@ namespace IUS.Controllers
                     ViewBag.carpetaPadre = archivos["carpetaPadre"];
                     ViewBag.accion      = "FileByCategory";
                     ViewBag.tipo        = id2;
+                    
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -123,6 +124,37 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_repo_searchArchivoPublico()
+            {
+                Dictionary<object, object> frm, respuesta=null;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        string ip           = Request.UserHostAddress;
+                        List<ArchivoPublico> archivos = this._model.sp_repo_searchArchivoPublico(this.convertObjAjaxToInt(frm["idCategoria"]), frm["nombre"].ToString(), ip, this.idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("archivos", archivos);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_repo_front_getCarpetaPublicaByRuta()
             {
                 Dictionary<object, object> frm, respuesta;

@@ -1,10 +1,30 @@
 ﻿$(document).ready(function () {
     // eventos
+        // change
+            $(document).on("change", ".rdBusqueda", function () {
+                if ($(this).val() == 1) {
+                    $(".folder").removeClass("hidden");
+                } else {
+                    buscarCarpeta($(".txtBusqueda").val())
+                }
+
+            });
         // click
             $(document).on("click", ".spIrBuscar", function () {
                 var obj = getFrmSection($(this), ".divBusquedaRuta");
                 spIrBuscar(obj.frm, obj.seccion);
             })
+            $(document).on("click", ".btnBuscarCarpeta", function () {
+                console.log("buscar");
+                var frm = {
+                    idCategoria: $(".txtHdTipoCategoria").val(),
+                    nombre: $(".txtBusqueda").val()
+                }
+                console.log("Form a enviar",frm);
+                btnBuscarCarpeta(frm);
+            })
+
+            
         // keyup    
             $(document).on("keyup", ".txtRutaPublica", function (e) {
                 var charCode = e.which;
@@ -14,20 +34,12 @@
                 }
             })
             $(document).on("keyup", ".txtBusqueda", function (e) {
-            if ($(this).val() == "") {
-                $(".folder").removeClass("hidden");
-            } else {
-                //if (!$(".folder").hasClass("hidden")) {
-                    $(".folder").addClass("hidden");
-                //}
-                var folders = $(".folder .folderTitle:containsi(" + $(this).val() + ")");
-                folders = folders.parents(".folder");
-                //folders.css("background", "yellow");
-                folders.removeClass("hidden");
-                /*folders.each(function (i, folder) {
-                    folder = folder.parents(".folder");
-                    console.log("este es", folder);
-                })*/
-            }
-        })
+                if ($(".rdBusqueda:checked").val() == 0) {
+                    if ($(this).val() == "") {
+                        $(".folder").removeClass("hidden");
+                    } else {
+                        buscarCarpeta($(this).val());
+                    }
+                }  
+            })
 })

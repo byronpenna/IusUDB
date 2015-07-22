@@ -28,61 +28,69 @@
     }
     
 }
-
+<input type="hidden" class="txtHdTipoCategoria" value="@tipo"/>
 <h2 class="tituloPrincipal">@nombre</h2>
 <div class="row marginNull divBusqueda">
     <div class="col-lg-4 divBusquedaRuta">
         <input name="txtIdFiltro" type="hidden" value="-1" />
+        <div class="row marginNull visiHidden">
+            _
+        </div>
         <div class="input-group">
             <input class="form-control txtRutaPublica" name="txtRutaPublica" value="@ruta" />
             <span class="input-group-addon spIrBuscar">Ir</span>
         </div>
     </div>
     <div class="col-lg-offset-4 col-lg-4">
+        <div class="row marginNull">
+            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
+            Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+        </div>
         <div class="input-group">
             <input class="form-control txtBusqueda" placeholder="Busquedar en carpeta" />
-            <span class="input-group-addon spIrBuscar">Buscar</span>
+            <span class="input-group-addon btnBuscarCarpeta">Buscar</span>
         </div>
     </div>
     
 </div>
-<div class="row marginNull" >
-    <div class="folders">
-       @if (carpetas != null && carpetas.Count > 0)
-       {
-           foreach (CarpetaPublica carpeta in carpetas)
-           {
-               <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 folder">
-                   <a href="@Url.Action(ViewBag.accion, "Repositorio", new {id= @carpeta._idCarpetaPublica,id2=tipo})">
-                       <div class="row divHerramientasIndividual visiHidden">
-                           <i class="fa fa-download"></i>
-                       </div>
-                       <div class="cuadritoIcono cuadritoCarpeta">
-                           <img src="~/Content/images/views/repositorio/@carpeta.getIconoFront" />
-                           <h3 class="folderTitle">@carpeta._nombre</h3>
-                       </div>
-                   </a>
-               </div>
-           }
-       }
-       @if (archivos != null && archivos.Count > 0)
-       {
-           foreach (ArchivoPublico archivo in archivos) { 
-              <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 folder">
-                  <div class="row divHerramientasIndividual">
-                      <a href="@Url.Action("downloadFile", "Repositorio", new {id=archivo._idArchivoPublico })" class="ico" title="Descargar">
-                          <i class="fa fa-download iconoHerramientas"></i>
-                      </a>
-                      <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
-                          <i class="fa fa-trash-o iconoHerramientas"></i>
-                      </a>
-                  </div>
-                  <div class="cuadritoIcono ">
-                      <img src="~/Content/images/views/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
-                      <h3 class="folderTitle">@archivo._nombre</h3>
-                  </div>
-              </div> 
-           }
-       }
+<div class="row marginNull folders">
+    <div class="">
+        @if (carpetas != null && carpetas.Count > 0)
+        {
+            foreach (CarpetaPublica carpeta in carpetas)
+            {
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 folder">
+                    <a href="@Url.Action(ViewBag.accion, "Repositorio", new {id= @carpeta._idCarpetaPublica,id2=tipo})">
+                        <div class="row divHerramientasIndividual visiHidden">
+                            <i class="fa fa-download"></i>
+                        </div>
+                        <div class="cuadritoIcono cuadritoCarpeta">
+                            <img src="~/Content/images/views/repositorio/@carpeta.getIconoFront" />
+                            <h3 class="folderTitle">@carpeta._nombre</h3>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+        @if (archivos != null && archivos.Count > 0)
+        {
+            foreach (ArchivoPublico archivo in archivos)
+            {
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 folder">
+                    <div class="row divHerramientasIndividual">
+                        <a href="@Url.Action("downloadFile", "Repositorio", new {id=archivo._idArchivoPublico })" class="ico" title="Descargar">
+                            <i class="fa fa-download iconoHerramientas"></i>
+                        </a>
+                        <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
+                            <i class="fa fa-trash-o iconoHerramientas"></i>
+                        </a>
+                    </div>
+                    <div class="cuadritoIcono ">
+                        <img src="~/Content/images/views/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
+                        <h3 class="folderTitle">@archivo._nombre</h3>
+                    </div>
+                </div>
+            }
+        }
     </div>
 </div>
