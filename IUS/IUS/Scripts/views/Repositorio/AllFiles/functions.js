@@ -1,10 +1,17 @@
 ﻿// generics
+    // acciones genericas
+    function cancelarBusqueda() {
+        actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
+
+        });
+    }
     function buscarCarpeta(nombre) {
         $(".folder").addClass("hidden");
         var folders = $(".folder .folderTitle:containsi(" + nombre + ")");
         folders = folders.parents(".folder");
         folders.removeClass("hidden");
     }
+    //div 
     function getDivArchivo(archivo){
         var div = "<div class='col-xs-6 col-sm-4 col-md-3 col-lg-2 folder'>\
                   <div class='row divHerramientasIndividual'>\
@@ -23,7 +30,7 @@
         return div;
     }
 // acciones scripts 
-    function btnBuscarCarpeta(frm) {
+    function btnBuscarCarpeta(frm,seccion) {
         actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
             console.log("Respuesta de busqueda",data);
             if (data.estado) {
@@ -41,6 +48,8 @@
                     ";
                 }
                 $(".folders").empty().append(div);
+                seccion.empty().append("<i class='fa fa-times'></i>");
+                seccion.addClass("btnBuscando");
             } else {
                 alert("Ocurrio un error agregando");
             }

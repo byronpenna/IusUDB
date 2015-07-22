@@ -15,13 +15,18 @@
                 spIrBuscar(obj.frm, obj.seccion);
             })
             $(document).on("click", ".btnBuscarCarpeta", function () {
-                console.log("buscar");
-                var frm = {
-                    idCategoria: $(".txtHdTipoCategoria").val(),
-                    nombre: $(".txtBusqueda").val()
+                if (!$(this).hasClass("btnBuscando")) {
+                    var frm = {
+                        idCategoria: $(".txtHdTipoCategoria").val(),
+                        nombre: $(".txtBusqueda").val()
+                    }
+                    console.log("Form a enviar", frm);
+                    btnBuscarCarpeta(frm, $(this));
+                } else {
+                    //console.log("Cancela busqueda");
+                    cancelarBusqueda();
                 }
-                console.log("Form a enviar",frm);
-                btnBuscarCarpeta(frm);
+                
             })
 
             
