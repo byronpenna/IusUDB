@@ -11,7 +11,7 @@
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
     CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
-    string ruta = "/"; string nombre = "Repositorio"; int idCarpetaPadre = -1;
+    string ruta = "/"; string nombre = ViewData["todo"].ToString(); int idCarpetaPadre = -1;
     if (carpetaPadre != null)
     {
         ruta = carpetaPadre._strRuta;
@@ -41,17 +41,17 @@
         </div>
         <div class="input-group">
             <input class="form-control txtRutaPublica" name="txtRutaPublica" value="@ruta" />
-            <span class="input-group-addon spIrBuscar">Ir</span>
+            <span class="input-group-addon spIrBuscar">@ViewData["texto-boton-ruta"]</span>
         </div>
     </div>
     <div class="col-lg-offset-4 col-lg-4">
         <div class="row marginNull">
-            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
-            Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+            @ViewData["selector-busqueda-1"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
+            @ViewData["selector-busqueda-2"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
         </div>
         <div class="input-group ">
-            <input class="form-control txtBusqueda " placeholder="Busquedar en carpeta" />
-            <span class="input-group-addon btnBuscarCarpeta hidden">Buscar</span>
+            <input class="form-control txtBusqueda " placeholder="@ViewData["texto-ayuda-busqueda"]" />
+            <span class="input-group-addon btnBuscarCarpeta hidden">@ViewData["texto-boton-busqueda"]</span>
         </div>
     </div>
     
