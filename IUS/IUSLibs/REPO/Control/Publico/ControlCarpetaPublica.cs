@@ -37,6 +37,11 @@ namespace IUSLibs.REPO.Control.Publico
                                     DataRow row = tb[0].Rows[0];
                                     carpetaPublica = new CarpetaPublica((int)row["idCarpetaPublica"]);
                                 }
+                                else
+                                {
+                                    ErroresIUS x = new ErroresIUS("No se encontro carpeta", ErroresIUS.tipoError.generico, 0, "", true);
+                                    throw x; 
+                                }
                             }
                             else
                             {

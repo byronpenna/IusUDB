@@ -50,7 +50,7 @@
     //div 
         function getDivCarpeta(carpeta) {
             var div = "<div class='col-xs-6 col-sm-4 col-md-3 col-lg-2 folder'>\
-                    <a href='>\
+                    <a href='" + RAIZ + "/Repositorio/" + $(".txtHdAccion").val() + "/" + carpeta._idCarpetaPublica + "/" + $(".txtHdTipoCategoria").val() + "'>\
                         <div class='row divHerramientasIndividual visiHidden'>\
                             <i class='fa fa-download'></i>\
                         </div>\
@@ -130,7 +130,12 @@
                 }
                 window.location = RAIZ + "Repositorio/" + accionControlador + "/" + data.carpetaPublica._idCarpetaPublica + "/" + frm.txtIdFiltro;
             } else {
-                alert("No se encontro la carpeta");
+                if (data.error._mostrar) {
+                    alert(data.error.Message);
+                } else {
+                    alert("Ocurrio un error");
+                }
+                
             }
         })
     }

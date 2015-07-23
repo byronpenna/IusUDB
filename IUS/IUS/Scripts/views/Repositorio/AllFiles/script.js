@@ -47,12 +47,18 @@
                 }
             })
             $(document).on("keyup", ".txtBusqueda", function (e) {
+                console.log(e.which);
                 if ($(".rdBusqueda:checked").val() == 0) {
+
                     if ($(this).val() == "") {
                         $(".folder").removeClass("hidden");
                     } else {
                         buscarCarpeta($(this).val());
                     }
-                }  
+                } else if($(".rdBusqueda:checked").val() == 1) {
+                    if(e.which == 13){
+                        $(".btnBuscarCarpeta").click();
+                    }
+                }
             })
 })
