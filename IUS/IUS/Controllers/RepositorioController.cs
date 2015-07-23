@@ -132,6 +132,19 @@ namespace IUS.Controllers
                 {
                     try
                     {
+                        string ip = Request.UserHostAddress;
+                        int idCategoria = this.convertObjAjaxToInt(frm["idCategoria"]); int idCarpeta = this.convertObjAjaxToInt(frm["idCarpeta"]);
+                        Dictionary<object, object> archivos;
+                        if (idCategoria == -1)
+                        {
+                            archivos = this._model.sp_repo_front_GetAllCarpetasPublica(idCarpeta, ip, this.idPagina);
+                        }
+                        else
+                        {
+                            archivos = this._model.sp_repo_front_getArchivosPublicosByType(idCarpeta, idCategoria, ip, this.idPagina);
+                        }
+                        archivos.Add("estado", true);
+                        respuesta = archivos;
                     }
                     catch (ErroresIUS x)
                     {
@@ -144,6 +157,7 @@ namespace IUS.Controllers
                         respuesta = this.errorTryControlador(2, error);
                     }
                 }
+                return Json(respuesta);
             }
             public ActionResult sp_repo_searchArchivoPublico()
             {

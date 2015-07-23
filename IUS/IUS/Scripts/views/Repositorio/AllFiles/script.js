@@ -4,8 +4,10 @@
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 1) {
                     $(".folder").removeClass("hidden");
+                    $(".btnBuscarCarpeta").removeClass("hidden");
                 } else {
                     buscarCarpeta($(".txtBusqueda").val())
+                    $(".btnBuscarCarpeta").addClass("hidden");
                 }
 
             });
@@ -15,18 +17,24 @@
                 spIrBuscar(obj.frm, obj.seccion);
             })
             $(document).on("click", ".btnBuscarCarpeta", function () {
-                if (!$(this).hasClass("btnBuscando")) {
-                    var frm = {
-                        idCategoria: $(".txtHdTipoCategoria").val(),
-                        nombre: $(".txtBusqueda").val()
+                if ($(".rdBusqueda:checked").val() == 1) {
+                    if (!$(this).hasClass("btnBuscando")) {
+                        var frm = {
+                            idCategoria: $(".txtHdTipoCategoria").val(),
+                            nombre: $(".txtBusqueda").val()
+                        }
+                        console.log("Form a enviar", frm);
+                        btnBuscarCarpeta(frm, $(this));
+                    } else {
+                        //console.log("Cancela busqueda");
+                        var frm = {
+                            idCarpeta: $(".txtHdIdCarpetaActual").val(),
+                            idCategoria: $(".txtHdTipoCategoria").val()
+                        }
+                        console.log("formulario a enviar es:", frm);
+                        cancelarBusqueda(frm);
                     }
-                    console.log("Form a enviar", frm);
-                    btnBuscarCarpeta(frm, $(this));
-                } else {
-                    //console.log("Cancela busqueda");
-                    cancelarBusqueda();
                 }
-                
             })
 
             

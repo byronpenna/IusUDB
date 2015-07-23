@@ -11,11 +11,12 @@
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
     CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
-    string ruta = "/"; string nombre = "Repositorio";
+    string ruta = "/"; string nombre = "Repositorio"; int idCarpetaPadre = -1;
     if (carpetaPadre != null)
     {
         ruta = carpetaPadre._strRuta;
         nombre = carpetaPadre._nombre;
+        idCarpetaPadre = carpetaPadre._idCarpetaPublica;
     }
     int tipo;
     try
@@ -29,6 +30,7 @@
     
 }
 <input type="hidden" class="txtHdTipoCategoria" value="@tipo"/>
+<input type="hidden" class="txtHdIdCarpetaActual" value="@idCarpetaPadre" />
 <h2 class="tituloPrincipal">@nombre</h2>
 <div class="row marginNull divBusqueda">
     <div class="col-lg-4 divBusquedaRuta">
@@ -80,9 +82,6 @@
                     <div class="row divHerramientasIndividual">
                         <a href="@Url.Action("downloadFile", "Repositorio", new {id=archivo._idArchivoPublico })" class="ico" title="Descargar">
                             <i class="fa fa-download iconoHerramientas"></i>
-                        </a>
-                        <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
-                            <i class="fa fa-trash-o iconoHerramientas"></i>
                         </a>
                     </div>
                     <div class="cuadritoIcono ">
