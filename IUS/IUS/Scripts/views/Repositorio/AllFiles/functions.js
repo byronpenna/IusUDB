@@ -62,12 +62,25 @@
                 </div>";
             return div;
         }
-        function getDivArchivo(archivo){
+        function getDivArchivo(archivo,idCategoria){
+            var accion = "";
+            if (idCategoria == -1) {
+                accion = "AllFiles";
+            } else {
+                accion = "FileByCategory";
+            }
             var div = "<div class='col-xs-6 col-sm-4 col-md-3 col-lg-2 folder'>\
                       <div class='row divHerramientasIndividual'>\
                           <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='ico' title='Descargar'>\
                               <i class='fa fa-download iconoHerramientas'></i>\
-                          </a>\
+                          </a>";
+            if (idCategoria !== undefined) {
+                div += "\
+                    <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "' class='ico' title='Abrir ubicacion de archivo'>\
+                        <i class='fa fa-folder-open'></i>\
+                    </a>";
+            }
+            div += "\
                       </div>\
                       <div class='cuadritoIcono '>\
                           <img src='"+RAIZ+"/Content/images/views/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
@@ -78,6 +91,7 @@
         }
 // acciones scripts 
     function btnBuscarCarpeta(frm,seccion) {
+        var idCategoria = frm.idCategoria;
         actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
             console.log("Respuesta de busqueda",data);
             if (data.estado) {
@@ -85,7 +99,7 @@
                 var div = "";
                 if (data.archivos !== undefined && data.archivos !== null) {
                     $.each(data.archivos,function(i,archivo){
-                        div += getDivArchivo(archivo);
+                        div += getDivArchivo(archivo,idCategoria);
                     })
                 } else {
                     div += "\
