@@ -24,7 +24,11 @@
     <div class="col-lg-3 col-md-3 col-sm-12 divSeccionComentarios">
         <h2 class="tituloComentarios">Comentarios</h2>
         <div class="btnDesplegableAddComent">
-            <span>Agregar comentario</span>
+            <span>
+                @ViewData["desplagable-boton-comentario"];
+
+                <!--Agregar comentario-->
+            </span>
             <span class="spanIco">
                 <i class="fa fa-angle-down"></i>
                 <!--<i class="fa fa-angle-up icoAccion"></i>-->
@@ -34,19 +38,20 @@
             <form id="frmComentario">
                 <input type="hidden" name="txtHdIdPost" value="@ViewBag.idPost" />
                 <div class="row marginNull rowForm">
-                    <label>Nombre:</label>
-                    <input class="form-control" name="txtNombre" placeholder="Nombre Apellido" />
+                    <label>@ViewData["label-nombre"]</label>
+                    <input class="form-control" name="txtNombre" placeholder="@ViewData["formato-nombre"]" /><!--Nombre Apellido-->
                 </div>
                 <div class="row marginNull rowForm">
-                    <label>Email:</label>
-                    <input type="email" class="form-control" name="txtEmail" placeholder="direccion@("@")dominio" />
+                    <label>@ViewData["label-email"]</label>
+                    <input type="email" class="form-control" name="txtEmail" placeholder="@ViewData["formato-email"]" /><!-- direccion@("@")dominio -->
                 </div>
                 <div class="row marginNull rowForm">
-                    <label>Comentario: </label>
+                    <label>@ViewData["label-comentario"]</label>
                     <textarea class="form-control" name="txtAreaComentario"></textarea>
                 </div>
                 <button class="btn btnComentar">
-                    Comentar
+                    @ViewData["boton-comentar"]
+                    <!-- Comentar -->
                 </button>
             </form>
         </div>
