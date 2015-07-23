@@ -66,12 +66,13 @@ namespace IUS.Models.page.Repositorio.Acciones
                             throw x;
                         }
                     }
-                    public List<TipoArchivo> sp_repo_front_getTiposArchivos(string ip, int idPagina)
+                    public List<TipoArchivo> sp_repo_front_getTiposArchivos(string lang,string ip, int idPagina)
                     {
                         try
                         {
                             ControlTipoArchivo control = new ControlTipoArchivo();
-                            return control.sp_repo_front_getTiposArchivos(ip,idPagina);
+                            lang = this.getStandarLang(lang);
+                            return control.sp_repo_front_getTiposArchivos(lang,ip,idPagina);
                         }
                         catch (ErroresIUS x)
                         {

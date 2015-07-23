@@ -17,10 +17,11 @@ namespace IUSLibs.REPO.Control
     {
         #region "funciones"
             #region "get"
-                public List<TipoArchivo> sp_repo_front_getTiposArchivos(string ip, int idPagina)
+                public List<TipoArchivo> sp_repo_front_getTiposArchivos(string lang,string ip, int idPagina)
                 {
                     List<TipoArchivo> tiposArchivos = null; TipoArchivo tipoArchivo;
                     SPIUS sp = new SPIUS("sp_repo_front_getTiposArchivos");
+                    sp.agregarParametro("lang", lang);
                     sp.agregarParametro("ip", ip);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -33,7 +34,7 @@ namespace IUSLibs.REPO.Control
                                 tiposArchivos = new List<TipoArchivo>();
                                 foreach (DataRow row in tb[0].Rows)
                                 {
-                                    tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString(), row["icono"].ToString());
+                                    tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["traduccion"].ToString(), row["icono"].ToString());
                                     tiposArchivos.Add(tipoArchivo);
                                 }
                             }

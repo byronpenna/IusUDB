@@ -8,14 +8,23 @@
 }
 <div class="row marginNull busquedaRepo" >
     <div class="row marginNull divRowTitulo">
-        <h2>Repositorio digital</h2>
-        <h4>Seleccione el tipo de archivo que desea encontrar</h4>
+        <h2>
+            @ViewData["Titulo"]
+            <!--Repositorio digital-->
+
+        </h2>
+        <h4>
+            @ViewData["Subtitulo"]
+            <!--Seleccione el tipo de archivo que desea encontrar-->
+        </h4>
     </div>
     
     <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 seleccion">
         <a href="@Url.Action("AllFiles","Repositorio")">
             <img src="~/Content/images/views/Repositorio/cloud.png">
-            <h3>Todo</h3>
+            <h3>
+                @ViewData["todo"]
+            </h3>
         </a>
     </div>
     @if (tiposArchivos != null && tiposArchivos.Count > 0)

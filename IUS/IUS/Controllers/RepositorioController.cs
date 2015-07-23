@@ -110,7 +110,7 @@ namespace IUS.Controllers
                     traducciones    = this._model.getTraduccion(lang, this.idPagina);
                     string ip       = Request.UserHostAddress;
                     this.setTraduccion(traducciones);
-                    ViewBag.tiposArchivos = this._model.sp_repo_front_getTiposArchivos(ip, this.idPagina);
+                    ViewBag.tiposArchivos = this._model.sp_repo_front_getTiposArchivos(lang,ip, this.idPagina);
                 }
                 catch (ErroresIUS x)
                 {
