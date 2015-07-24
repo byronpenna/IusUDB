@@ -36,28 +36,58 @@
 <div class="row marginNull divBusqueda">
     <div class="col-lg-4 divBusquedaRuta">
         <input name="txtIdFiltro" type="hidden" value="-1" />
-        <div class="row marginNull visiHidden">
-            _
-        </div>
+        <label>Ruta</label>
         <div class="input-group">
             <input class="form-control txtRutaPublica" name="txtRutaPublica" value="@ruta" />
             <span class="input-group-addon spIrBuscar">@ViewData["texto-boton-ruta"]</span>
         </div>
     </div>
-    <div class="col-lg-offset-4 col-lg-4">
+    <div class="col-lg-2">
+        <label>Vistas</label>
+        <div class="accionesDiv form-control inputBackModal">
+            <a href="#" class="ico controlVista iconoVistaCuadricula activeVista" title="Cuadricula">
+                <i class="fa fa-th-large"></i>
+            </a>
+            <a href="#" class="ico controlVista icoVistaLista " title="Lista">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-offset-2 col-lg-4">
         <div class="row marginNull">
-            @ViewData["selector-busqueda-1"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
-            @ViewData["selector-busqueda-2"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+            <div class="col-lg-6">
+                <label>Busqueda</label>
+            </div>
+            <div class="col-lg-6">
+                @ViewData["selector-busqueda-1"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
+                @ViewData["selector-busqueda-2"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+            </div>
+            
         </div>
         <div class="input-group ">
             <input class="form-control txtBusqueda " placeholder="@ViewData["texto-ayuda-busqueda"]" />
-            <span class="input-group-addon btnBuscarCarpeta hidden">@ViewData["texto-boton-busqueda"]</span>
+            <span class="input-group-addon btnBuscarCarpeta visiHidden">@ViewData["texto-boton-busqueda"]</span>
         </div>
     </div>
     
 </div>
 <div class="row marginNull folders">
-    <div class="">
+    <div class="lista">
+        <!--
+         <div class="col-lg-6">
+            Metas
+        </div>
+        <div class="col-lg-3">
+            Folder
+        </div>
+        <div class="col-lg-3">
+            Fecha de creación 
+        </div>
+            -->
+
+    </div>
+    
+    <div class="cuadricula">
         @if (carpetas != null && carpetas.Count > 0)
         {
             foreach (CarpetaPublica carpeta in carpetas)

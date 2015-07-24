@@ -15,3 +15,31 @@
 .divBusqueda{
     margin-top:3%;
 }
+.txtBusqueda{
+    width:100%;
+}
+.accionesDiv .ico{
+    margin-left:3%;
+    color:#95A5A6;
+}
+.activeVista{
+    color:#3498db !important;
+    
+} 
+
+/*Nuevoo*/
+.folders{
+    margin-bottom:5%;
+}
+.folderDetalles{
+    padding-top:2%;
+    padding-bottom:2%;
+}
+.folderDetalles a{
+    color:black;
+}
+    .folderDetalles:hover {
+        background:#F5F5F5;
+        font-weight:bold;
+        cursor:pointer;
+    }

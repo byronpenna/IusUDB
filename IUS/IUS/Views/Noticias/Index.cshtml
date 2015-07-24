@@ -22,10 +22,13 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 divSeccionComentarios">
-        <h2 class="tituloComentarios">Comentarios</h2>
+        <h2 class="tituloComentarios">
+            @ViewData["cabecera-comentarios"]
+            <!--Comentarios-->
+        </h2>
         <div class="btnDesplegableAddComent">
             <span>
-                @ViewData["desplagable-boton-comentario"];
+                @ViewData["desplagable-boton-comentario"]
 
                 <!--Agregar comentario-->
             </span>

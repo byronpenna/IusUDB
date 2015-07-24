@@ -4,14 +4,30 @@
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 1) {
                     $(".folder").removeClass("hidden");
-                    $(".btnBuscarCarpeta").removeClass("hidden");
+                    $(".btnBuscarCarpeta").removeClass("visiHidden");
                 } else {
                     buscarCarpeta($(".txtBusqueda").val())
-                    $(".btnBuscarCarpeta").addClass("hidden");
+                    $(".btnBuscarCarpeta").addClass("visiHidden");
                 }
 
             });
         // click
+            $(document).on("click", ".controlVista", function (e) {
+                e.preventDefault();
+                console.log("entro")
+                var frm = {
+                    idCategoria: $(".txtHdTipoCategoria").val(),
+                    idCarpeta: $(".txtHdIdCarpetaActual").val()
+                }
+                if ($(this).hasClass("icoVistaLista")) {
+                    accion = "lista";
+                } else if ($(this).hasClass("iconoVistaCuadricula")) {
+                    accion = "cuadricula";
+                }
+                icoVistaLista(frm, accion);
+            })
+            
+            
             $(document).on("click", ".spIrBuscar", function () {
                 var obj = getFrmSection($(this), ".divBusquedaRuta");
                 spIrBuscar(obj.frm, obj.seccion);

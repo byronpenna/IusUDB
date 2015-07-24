@@ -1,6 +1,25 @@
 ﻿// generics
     // acciones genericas   
-    
+    function vistaActiva(txtVista) {
+        $(".controlVista").removeClass("activeVista")
+        switch (txtVista) {
+            
+            case "cuadricula":
+                {
+                    $(".cuadricula").removeClass("hidden");
+                    $(".iconoVistaCuadricula").addClass("activeVista");
+                    $(".lista").addClass("hidden");
+                    break;
+                }
+            case "lista":
+                {
+                    $(".lista").removeClass("hidden");
+                    $(".icoVistaLista").addClass("activeVista");
+                    $(".cuadricula").addClass("hidden");
+                    break;
+                }
+        }
+    }
     function cambiarEstado(txt) {
         switch (txt) {
             case "buscar":
@@ -48,6 +67,41 @@
         folders.removeClass("hidden");
     }
     //div 
+        function getDivListaCarpeta(carpeta) {
+            var div = "\
+                <div class='row marginNull folderDetalles'>\
+                    <a href='" + RAIZ + "/Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1'>\
+                        <div class='col-lg-6'>\
+                            " + carpeta._nombre + "\
+                        </div>\
+                    </a>\
+                    <div class='col-lg-3'>\
+                        Folder\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        Fecha de creación\
+                    </div>\
+                </div>\
+            ";
+            return div;
+        }
+        function getDivListaArchivo(archivo) {
+            var div = "\
+                <div class='row marginNull folderDetalles'>\
+                    <div class='col-lg-6'>\
+                        " + archivo._nombre + "\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        Folder\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        Fecha de creación\
+                    </div>\
+                </div>\
+            ";
+            return div;
+        }
+        // cuadricula
         function getDivCarpeta(carpeta) {
             var div = "<div class='col-xs-6 col-sm-4 col-md-3 col-lg-2 folder'>\
                     <a href='" + RAIZ + "/Repositorio/" + $(".txtHdAccion").val() + "/" + carpeta._idCarpetaPublica + "/" + $(".txtHdTipoCategoria").val() + "'>\
@@ -90,52 +144,86 @@
             return div;
         }
 // acciones scripts 
-    function btnBuscarCarpeta(frm,seccion) {
-        var idCategoria = frm.idCategoria;
-        actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
-            console.log("Respuesta de busqueda",data);
-            if (data.estado) {
-                $(".tituloPrincipal").empty().append("Resultados busqueda");
-                var div = "";
-                if (data.archivos !== undefined && data.archivos !== null) {
-                    $.each(data.archivos,function(i,archivo){
-                        div += getDivArchivo(archivo,idCategoria);
-                    })
+    // otros eventos
+        function icoVistaLista(frm,accion) {
+            //console.log("llego aqui ");
+            actualizarCatalogo(RAIZ + "Repositorio/getArchivosSinBusqueda", frm, function (data) {
+                console.log("Data es: ", data);
+                if (data.estado) {
+                    var div = "";
+                    if (data.carpetas !== undefined && data.carpetas !== null) {
+                        $.each(data.carpetas, function (i, carpeta) {
+                            if (accion == "lista") {
+                                div += getDivListaCarpeta(carpeta);
+                            } else if(accion == "cuadricula"){
+                                div += getDivCarpeta(carpeta);
+                            }
+                        })
+                    }
+                    if (data.archivos !== undefined && data.archivos !== null) {
+                        $.each(data.archivos, function (i, archivo) {
+                            if (accion == "lista") {
+                                div += getDivListaArchivo(archivo);
+                            } else if (accion == "cuadricula") {
+                                div += getDivArchivo(archivo);
+                            }
+                        })
+                    }
+                    $("."+accion+"").empty().append(div);
+                    vistaActiva(accion);
                 } else {
-                    div += "\
-                    <div>\
-                        No se encontraron resultados\
-                    </div>\
-                    ";
-                }
-                $(".folders").empty().append(div);
-                cambiarEstado("buscar");
-                /*seccion.empty().append("<i class='fa fa-times'></i>");
-                seccion.addClass("btnBuscando");*/
-            } else {
-                alert("Ocurrio un error agregando");
-            }
-            
-        })
-    }
-    function spIrBuscar(frm, seccion) {
-        actualizarCatalogo(RAIZ + "Repositorio/sp_repo_front_getCarpetaPublicaByRuta", frm, function (data) {
-            console.log(data);
-            if (data.estado) {
-                var accionControlador = "";
-                if (frm.txtIdFiltro == -1) {
-                    accionControlador = "AllFiles";
-                } else {
-                    accionControlador = "FileByCategory";
-                }
-                window.location = RAIZ + "Repositorio/" + accionControlador + "/" + data.carpetaPublica._idCarpetaPublica + "/" + frm.txtIdFiltro;
-            } else {
-                if (data.error._mostrar) {
-                    alert(data.error.Message);
-                } else {
-                    alert("Ocurrio un error");
+                    alert("Error al recuperar vista");
                 }
                 
-            }
-        })
-    }
+            })
+        }
+    // eventos normales 
+        function btnBuscarCarpeta(frm,seccion) {
+            var idCategoria = frm.idCategoria;
+            actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
+                console.log("Respuesta de busqueda",data);
+                if (data.estado) {
+                    $(".tituloPrincipal").empty().append("Resultados busqueda");
+                    var div = "";
+                    if (data.archivos !== undefined && data.archivos !== null) {
+                        $.each(data.archivos,function(i,archivo){
+                            div += getDivArchivo(archivo,idCategoria);
+                        })
+                    } else {
+                        div += "\
+                        <div>\
+                            No se encontraron resultados\
+                        </div>\
+                        ";
+                    }
+                    $(".folders").empty().append(div);
+                    cambiarEstado("buscar");
+                    /*seccion.empty().append("<i class='fa fa-times'></i>");
+                    seccion.addClass("btnBuscando");*/
+                } else {
+                    alert("Ocurrio un error agregando");
+                }
+            
+            })
+        }
+        function spIrBuscar(frm, seccion) {
+            actualizarCatalogo(RAIZ + "Repositorio/sp_repo_front_getCarpetaPublicaByRuta", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    var accionControlador = "";
+                    if (frm.txtIdFiltro == -1) {
+                        accionControlador = "AllFiles";
+                    } else {
+                        accionControlador = "FileByCategory";
+                    }
+                    window.location = RAIZ + "Repositorio/" + accionControlador + "/" + data.carpetaPublica._idCarpetaPublica + "/" + frm.txtIdFiltro;
+                } else {
+                    if (data.error._mostrar) {
+                        alert(data.error.Message);
+                    } else {
+                        alert("Ocurrio un error");
+                    }
+                
+                }
+            })
+        }
