@@ -10,7 +10,18 @@
                 dateFormat: "dd/mm/yy"
             });
     // eventos 
+        // keydown
+            $(document).on("keydown", ".inputFormulario", function (e) {
+                console.log(e.which);
+                switch(e.which) {
+                    case 13: {
+                        $(".btnAgregarPersona").click();
+                        break;
+                    }
+                }
+            })
         // click
+
             // eliminar
                 $(document).on("click", ".btnEliminar", function () {
                     var x = confirm("¿esta seguro que desea eliminar este registro?");

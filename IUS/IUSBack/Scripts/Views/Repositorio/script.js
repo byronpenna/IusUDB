@@ -8,12 +8,12 @@
         // change 
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 0) {
-                    $(".btnBusqueda").addClass("hidden");
+                    $(".btnBusqueda").addClass("visibilitiHidden");
                     $(".divBusquedaArchivos").removeClass("input-group");
                     buscarEnCarpeta($(".txtBusqueda").val());
                 } else {
                     $(".divBusquedaArchivos").addClass("input-group");
-                    $(".btnBusqueda").removeClass("hidden");
+                    $(".btnBusqueda").removeClass("visibilitiHidden");
                     $(".folders .folder").removeClass("hidden");
                 }
             })
@@ -133,7 +133,7 @@
             // vista
                 $(document).on("click", ".iconoVistaCuadricula", function (e) {
                     e.preventDefault();
-                    if (!isSearch) {
+                    if (!isSearch()) {
                         verCuadricula($(this));
                     } else {
                         vistaCuadriculaBusqueda();
@@ -142,9 +142,11 @@
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
                     e.preventDefault();
-                    if (!isSearch) {
+                    if (!isSearch()) {
+                        console.log("No buscando");
                         verLista($(this));
                     } else {
+                        console.log("buscando");
                         vistaListaBusqueda();
                     }
                     

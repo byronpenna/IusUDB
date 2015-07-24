@@ -41,6 +41,7 @@
                 var frm = {
                     idCarpeta: $(".txtHdIdCarpetaPadre").val()
                 }
+                console.log("Formulario para lista", frm);
                 var seccionModificar = $(".listView");
                 icoVistaLista(frm, seccionModificar);
             }
