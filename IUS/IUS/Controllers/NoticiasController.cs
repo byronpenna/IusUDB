@@ -33,6 +33,7 @@ namespace IUS.Controllers
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     ViewBag.idPost = id;
                     ViewBag.comentarios = this._model.sp_frontUi_noticias_getComentariosPost(id, ip, this.idPagina);
+                    
                     Post post = (Post)cuerpoPagina["post"];
                     if (post._estado) {
                         ViewBag.post = post;

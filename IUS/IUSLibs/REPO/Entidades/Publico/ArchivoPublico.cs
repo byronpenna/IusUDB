@@ -13,6 +13,16 @@ namespace IUSLibs.REPO.Entidades.Publico
             public CarpetaPublica   _carpetaPublica;
             public string           _nombre;
             public bool             _estado;
+            public DateTime         _fechaCreacion;
+        #endregion
+        #region "get y set"
+            public string getFechaCreacion
+            {
+                get
+                {
+                    return String.Format("{0:yyyy-MM-dd HH:mm:ss}", this._fechaCreacion);
+                }
+            }
         #endregion
         #region "constructores"
             public ArchivoPublico(int idArchivoPublico, string nombre)

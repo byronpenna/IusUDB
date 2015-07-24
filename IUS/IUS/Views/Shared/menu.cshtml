@@ -14,17 +14,17 @@
                 </div>
                 <ul class="ulMenu">
                     <li>
-                        <a href="@Url.Action("Index", "Home")">
+                        <a href="@Url.Action("Index", "Home")" class="@ViewBag.menu11">
                             @ViewData["menu1.1"]
                         </a>
                     </li>
                     <li>
-                        <a href="http://localhost:55869/" target="_blank">
+                        <a href="http://localhost:55869/" target="_blank" class="@ViewBag.menu12">
                             @ViewData["menu1.2"]
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" class="@ViewBag.menu13">
                             @ViewData["menu1.3"]
                         </a>
                     </li>
@@ -58,27 +58,27 @@
             </div>
             <ul class="ulMenu">
                 <li>
-                    <a href="@Url.Action("Index","Conocenos")">
+                    <a href="@Url.Action("Index","Conocenos")" class="@ViewBag.menu21">
                         @ViewData["menu2.1"]
                     </a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index","Instituciones")">
+                    <a href="@Url.Action("Index","Instituciones")" class="@ViewBag.menu22">
                         @ViewData["menu2.2"]
                     </a>
                 </li>
                 <li>
-                    <a href="~/Evento">
+                    <a href="@Url.Action("Index","Evento")" class="@ViewBag.menu23">
                         @ViewData["menu2.3"]
                     </a>
                 </li>
-                <li>
-                    <a href="@Url.Action("Index","Repositorio")">
+                <li >
+                    <a href="@Url.Action("Index","Repositorio")" class="@ViewBag.menu24">
                         @ViewData["menu2.4"]
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#" class="@ViewBag.menu25">
                         @ViewData["menu2.5"]
                     </a>
                 </li>

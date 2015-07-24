@@ -29,6 +29,7 @@ namespace IUS.Controllers
                     ViewBag.instituciones = this._model.sp_frontui_getInstitucionesByContinente(id, ip, this.idPagina);
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
+                    ViewBag.menu22 = this.activeClass;
                     this.setTraduccion(traducciones);
                     
                 }
@@ -51,7 +52,8 @@ namespace IUS.Controllers
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
-                    this.setTraduccion(traducciones);       
+                    this.setTraduccion(traducciones);
+                    ViewBag.menu22 = this.activeClass;
                 }
                 catch (ErroresIUS x)
                 {

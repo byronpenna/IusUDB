@@ -30,7 +30,8 @@ namespace IUS.Controllers
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang,this.idPagina);
-                    this.setTraduccion(traducciones);       
+                    this.setTraduccion(traducciones);
+                    ViewBag.menu11 = this.activeClass;
                 }catch(ErroresIUS x){
                     ErrorsController error = new ErrorsController();
                     var obj = error.redirectToError(x);

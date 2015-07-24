@@ -14,6 +14,8 @@
 .yellow{
     background:yellow;
 }
+
+
 /*
     Generales
     */
@@ -158,3 +160,10 @@ header{
             display:block;
             color:white;
         }
+
+.menu2 .activeMenu{
+    color: #3498db !important;
+}
+.menu .activeMenu{
+    color:wheat;
+}

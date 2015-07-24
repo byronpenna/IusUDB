@@ -40,7 +40,7 @@ namespace IUS.Controllers
                     ViewBag.carpetaPadre = archivos["carpetaPadre"];
                     ViewBag.accion      = "FileByCategory";
                     ViewBag.tipo        = id2;
-                    
+                    ViewBag.menu24 = this.activeClass;
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -68,6 +68,7 @@ namespace IUS.Controllers
                     ViewBag.archivos        = archivos["archivos"];
                     ViewBag.carpetaPadre    = archivos["carpetaPadre"];
                     ViewBag.accion          = "AllFiles";
+                    ViewBag.menu24 = this.activeClass;
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -111,6 +112,7 @@ namespace IUS.Controllers
                     string ip       = Request.UserHostAddress;
                     this.setTraduccion(traducciones);
                     ViewBag.tiposArchivos = this._model.sp_repo_front_getTiposArchivos(lang,ip, this.idPagina);
+                    ViewBag.menu24 = this.activeClass;
                 }
                 catch (ErroresIUS x)
                 {

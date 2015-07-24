@@ -30,6 +30,7 @@ namespace IUS.Controllers
             }
             protected JavaScriptSerializer _jss;
             private ModeloPadre _model;
+            public string activeClass = "activeMenu";
         #endregion
         #region "funciones"
             #region "manejo de errores"

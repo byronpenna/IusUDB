@@ -28,6 +28,7 @@ namespace IUS.Controllers
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
+                    ViewBag.menu21 = this.activeClass;
                 }
                 catch (ErroresIUS x)
                 {

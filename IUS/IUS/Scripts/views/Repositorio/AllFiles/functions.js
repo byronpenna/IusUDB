@@ -70,16 +70,19 @@
         function getDivListaCarpeta(carpeta) {
             var div = "\
                 <div class='row marginNull folderDetalles'>\
-                    <a href='" + RAIZ + "/Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1'>\
+                    <a href='" + RAIZ + "/Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1' >\
                         <div class='col-lg-6'>\
-                            " + carpeta._nombre + "\
+                            <i class='fa fa-folder'></i> " + carpeta._nombre + "\
                         </div>\
                     </a>\
-                    <div class='col-lg-3'>\
+                    <div class='col-lg-2'>\
                         Folder\
                     </div>\
                     <div class='col-lg-3'>\
-                        Fecha de creación\
+                        \
+                    </div>\
+                    <div class='col-lg-1'>\
+                        \
                     </div>\
                 </div>\
             ";
@@ -91,11 +94,16 @@
                     <div class='col-lg-6'>\
                         " + archivo._nombre + "\
                     </div>\
-                    <div class='col-lg-3'>\
-                        Folder\
+                    <div class='col-lg-2'>\
+                        " + archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo + "\
                     </div>\
                     <div class='col-lg-3'>\
-                        Fecha de creación\
+                        "+archivo.getFechaCreacion+"\
+                    </div>\
+                    <div class='col-lg-1'>\
+                        <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico+ "'>\
+                            <i class='fa fa-download iconoHerramientas'></i>\
+                        </a>\
                     </div>\
                 </div>\
             ";
