@@ -21,7 +21,7 @@
     Permiso permisos = (Permiso)ViewBag.permiso;
 }
 <div class="marginNull cuerpoModulo">
-    <div class="row marginNull divResultado">
+    <div class="row marginNull divResultado hidden">
         <span class="spanMessage1 successMessage">Agregado exitosamente </span>
     </div>
     <table class="table table-hover tablePersonas tablaUniversal">
@@ -45,19 +45,19 @@
             <tr>
                 <th class="hidden"></th>
                 <th>
-                    <input type="text" name="txtNombrePersona" class="inputFormulario txtNombrePersona form-control soloLetras" />
+                    <input type="text" name="txtNombrePersona" tabindex="1" class="inputFormulario txtNombrePersona form-control soloLetras" />
                     <div class="row marginNull divResultado hidden">
                         
                     </div>
                 </th>
                 <th>
-                    <input type="text" name="txtApellidoPersona" class="inputFormulario txtApellidoPersona form-control soloLetras" />
+                    <input type="text" name="txtApellidoPersona" tabindex="2" class="inputFormulario txtApellidoPersona form-control soloLetras" />
                     <div class="row marginNull divResultado hidden">
                         
                     </div>
                 </th>
                 <th>
-                    <input type="text" name="dtFechaNacimiento" class="inputFormulario dtFechaNacimiento form-control" />
+                    <input type="text" name="dtFechaNacimiento" tabindex="3" class="inputFormulario dtFechaNacimiento form-control" />
                     <div class="row marginNull divResultado hidden">
                         
                     </div>
@@ -81,12 +81,18 @@
                     <td>
                         <div class="editMode hidden">
                             <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control" />
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
                         </div>
                         <div class="normalMode tdNombre">@persona._nombres</div>
                     </td>
                     <td>
                         <div class="editMode hidden">
                             <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control" />
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
                         </div>
                         <div class="normalMode tdApellido">@persona._apellidos</div>
 
@@ -94,6 +100,9 @@
                     <td>
                         <div class="editMode hidden">
                             <input type="text" name="dtFechaNacimiento" class="dtFechaNacimiento form-control" />
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
                         </div>
                         <div class="normalMode tdFechaNac">@persona.getFechaNac</div>
                     </td>

@@ -4,7 +4,7 @@
         tr.find(".tdApellido").empty().append(persona._apellidos);
         tr.find(".tdFechaNac").empty().append(persona.getFechaNac);
     }
-    function getTrPersona(persona) {
+    function getTrPersona(persona,permisos) {
         tr = "\
              <tr class='trPersona'>\
                 <td class='hidden'>\
@@ -30,12 +30,12 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <button class='btn btn-xs btnEditMode btnActualizar '  >Actualizar</button>\
+                        <button class='btn btn-xs btnEditMode btnActualizar '  "+permisos.stringEditar+">Actualizar</button>\
                         <button class='btn btn-xs btnEditMode btnCancelarEdit'>Cancelar</button>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btn-xs btnEditar' >Editar</button>\
-                        <button class='btn btn-xs btnEliminar'>Eliminar</button>\
+                        <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">Editar</button>\
+                        <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
                     </div>\
                 </td>\
             </tr>\
@@ -45,19 +45,40 @@
     }
 // actualizar 
     function actualizar(trPersona) {
-        console.log("actualizaste");
+        //console.log("actualizaste");
         //frm = serializeToJson(trPersona.find("input").serializeArray());
         frm = serializeSection(trPersona);
-        arrDate = frm.dtFechaNacimiento.split("/");
-        frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
-        actualizarCatalogo(RAIZ+"GestionPersonas/actualizarPersona", frm, function (data) {
-            if (data.estado) {
-                persona = data.persona;
-                actualizarTrTabla(trPersona, persona);
-                controlesEdit(false, trPersona); // deshabilitar la edicion
-                updateAllDataTable($('.tablePersonas'));
-            }
-        });
+        var val = validacionIngreso(frm);
+        console.log(val);
+        if (val.estado) {
+            arrDate = frm.dtFechaNacimiento.split("/");
+            frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
+            actualizarCatalogo(RAIZ + "GestionPersonas/actualizarPersona", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    persona = data.persona;
+                    actualizarTrTabla(trPersona, persona);
+                    controlesEdit(false, trPersona); // deshabilitar la edicion
+                    updateAllDataTable($('.tablePersonas'));
+                }
+            });
+        } else {
+            //trPersona.remove();
+            var errores;
+            $.each(val.campos, function (i, val) {
+                errores = "";
+                var divResultado = trPersona.find("." + i).parents(".editMode").find(".divResultado");
+                
+                if (val.length > 0) {
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += "<span class='spanMessage1 failMessage'>" + val + "</span>";
+                    })
+                    divResultado.empty().append(errores);
+                }
+            })
+        }
+        
     }
     function btnActualizarTodo(tabla) {
         accionActualizarGeneral(tabla, "GestionPersonas/actualizarTodo", function (data, frm) {
@@ -140,14 +161,14 @@
         console.log(frm);
         console.log(val);
         if (val.estado) {
-            /*arrDate = frm.dtFechaNacimiento.split("/");
+            arrDate = frm.dtFechaNacimiento.split("/");
             frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
             tbody = tr.parents("table").find("tbody");
             actualizarCatalogo(RAIZ + "GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
                 console.log("La respuesta del servidor fue:", data);
                 if (data.estado) {
                     persona = data.persona;
-                    newTr = getTrPersona(persona);
+                    newTr = getTrPersona(persona, data.permisos);
                     clearTr(tr);
                     //tbody.prepend(newTr);
                     $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
@@ -159,13 +180,13 @@
                         alert(data.error.Message);
                     }
                 }
-            });*/
+            });
             console.log("Agregaras");
         } else {
             var errores;
             $.each(val.campos, function (i,val) {
                 errores = "";
-                var divResultado = $("." + i).parents("th").find(".divResultado")
+                var divResultado = $(".tablePersonas thead").find("." + i).parents("th").find(".divResultado")
                 if (val.length > 0) {
                     console.log("entro");
                     divResultado.removeClass("hidden");

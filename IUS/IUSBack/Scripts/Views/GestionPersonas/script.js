@@ -15,7 +15,7 @@
                 console.log(e.which);
                 switch(e.which) {
                     case 13: {
-                        $(".btnAgregarPersona").click();
+                        $(".btnActualizar ").click();
                         break;
                     }
                 }
@@ -41,9 +41,7 @@
                     btnActualizarTodo(tabla);
                 });
                 $(document).on("click", ".btnActualizar", function () {
-                    var x = confirm("¿Esta seguro que desea actualizar esta persona?");
-                    trPersona = $(this).parents(".trPersona");
-                    if (x) {
+                        var trPersona = $(this).parents("tr");
                         actualizar(trPersona)
                         //
                 
@@ -51,20 +49,20 @@
                         oTable.draw();
                         $(".tablePersonas").dataTable();*/
                 
-                    }
+                    
                 })
             // editar
                 $(document).on("click", ".btnEditar", function () {
-                    var x = confirm("¿Esta seguro que desea editar esta persona?");
+                    //var x = confirm("¿Esta seguro que desea editar esta persona?");
                     trPersona = $(this).parents(".trPersona");
                     table = $(".tablePersonas").DataTable();
                     var d = table.row($(this)).data();
-                    if (x) {
+                    //if (x) {
                         editMode(trPersona);
                         //$(".tablePersonas").DataTable().clear();
                         //$(".tablePersonas").DataTable().draw();
                         //todoActualizar();
-                    }
+                    //}
                 });
                 $(document).on("click", ".btnCancelarEdit", function () {
                     trPersona = $(this).parents(".trPersona");

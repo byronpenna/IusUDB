@@ -124,21 +124,11 @@ namespace IUSBack.Controllers
                         try
                         {
                             Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), /*Convert.ToDateTime(frm["dtFechaNacimiento"].ToString())*/ DateTime.Parse(frm["dtFechaNacimiento"].ToString()));
-                            Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
-                            if (persona != null)
-                            {
-                                respuesta.Add("estado", true);
-                                respuesta.Add("persona", persona);
-                            }
-                            else
-                            {
-                                /*
-                                respuesta.Add("estado", false);
-                                respuesta.Add("errorType", 3);
-                                respuesta.Add("error", "Error al intentar ingresar persona");*/
-                                ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
-                                respuesta = this.errorTryControlador(3, x);
-                            }
+                            Dictionary<object, object> respuestaPeticion = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
+                            //Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta.Add("estado", true);
+                            respuesta.Add("persona",respuestaPeticion["persona"]);
+                            respuesta.Add("permisos", respuestaPeticion["permisos"]);
 
                         }
                         catch (ErroresIUS x)

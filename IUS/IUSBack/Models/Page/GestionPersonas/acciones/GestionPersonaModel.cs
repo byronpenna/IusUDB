@@ -46,12 +46,17 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     throw x;
                 }
             }
-            public Persona sp_hm_agregarPersona(Persona persona, int idUsuarioEjecutor,int idPagina)
+            public Dictionary<object,object> sp_hm_agregarPersona(Persona persona, int idUsuarioEjecutor,int idPagina)
             {
-                Persona personaAgregada = null;
+                Dictionary<object, object> retorno = new Dictionary<object, object>();
                 try
                 {
+                    Persona personaAgregada;
+                    Permiso permisos = this.sp_trl_getAllPermisoPagina(idUsuarioEjecutor, idPagina);
                     personaAgregada = this._control.sp_hm_agregarPersona(persona, idUsuarioEjecutor, idPagina);
+                    retorno.Add("persona", personaAgregada);
+                    retorno.Add("permisos", permisos);
+                    return retorno;
                 }
                 catch (ErroresIUS x)
                 {
@@ -61,7 +66,6 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 {
                     throw x;
                 }
-                return personaAgregada;
             }
             #region "actualizarPersona"
                 public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
