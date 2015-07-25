@@ -55,16 +55,19 @@
                     <select name="cbPersona" class="form-control cbPersona">
                         <option value="-1">Sin asignar</option>
                         @if (personas != null)
-                    {
-                        foreach (Persona persona in personas)
                         {
-                            <option value="@persona._idPersona">@persona.nombreCompleto</option>
+                            foreach (Persona persona in personas)
+                            {
+                                <option value="@persona._idPersona">@persona.nombreCompleto</option>
+                            }
                         }
-                    }
                     </select>
                 </td>
                 <td>
                     <input name="txtEditUsuario" type="text" class="form-control txtEditUsuario" />
+                    <div class="row marginNull divResultado hidden">
+
+                    </div>
                 </td>
                 <td>
                     <span class="txtDateActual">@String.Format("{0:dd/MM/yyyy}",hoy)</span>

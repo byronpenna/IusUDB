@@ -93,11 +93,11 @@
             });
             $(document).on("click", ".btnEditar", function () {
                 trUsuario = $(this).parents(".trUsuario");
-                var x = confirm("¿Esta seguro que desea editar este usuario?");
-                if (x) {
+                //var x = confirm("¿Esta seguro que desea editar este usuario?");
+                //if (x) {
                     verRoles(false);
                     formTableEditar(trUsuario);
-                }
+                //}
             })
         // experiencia de usuario 
             $(document).on("click", ".btnEditMode,.btnEditar", function () {

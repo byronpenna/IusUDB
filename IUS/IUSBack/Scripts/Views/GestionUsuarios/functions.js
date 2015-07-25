@@ -232,10 +232,27 @@
         //";
         return j;
     }
+// validaciones
+    function validacionIngreso(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            cbPersona: new Array(),
+            txtEditUsuario: new Array()
+        }
+        if (frm.txtEditUsuario == "") {
+            val.campos.txtEditUsuario.push("Usuario no puede quedar vacio");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
 // acciones scripts 
     function btnAgregarUsuario(tr) {
         frm = serializeSection(tr);
-        tbody = tr.parents("table").find("tbody");
+        var val = validacionIngreso(frm);
+        console.log(frm);
+        console.log(val);
+        /*tbody = tr.parents("table").find("tbody");
         actualizarCatalogo(RAIZ+"GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
             if (data.estado) {
                 tr = getTrUsuario(data.usuarioAgregado, data.permiso);
@@ -245,7 +262,7 @@
                 error = data.error;
                 alert(error.Message);
             }
-        });
+        });*/
         
         
     }

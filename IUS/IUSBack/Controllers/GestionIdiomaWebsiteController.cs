@@ -28,24 +28,44 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null)
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
                 {
-                    List<Idioma> idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
-                    List<Pagina> paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
-                    List<LlaveIdioma> tabla = this._model.sp_trl_tablitaGestionTraduccion(usuarioSession._idUsuario, this._idPagina);
-                    // generales
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    // propias de pagina
-                    ViewBag.idiomas         = idiomas;
-                    ViewBag.paginas         = paginas;
-                    ViewBag.tbTraducciones = tabla;
-                    ViewBag.titleModulo = "Traduccion del sitio web";
-                    ViewBag.usuario = usuarioSession;
+                    return seguridadInicial;
                 }
-                else
+                try
                 {
-                    return RedirectToAction("index", "login");
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    if (usuarioSession != null)
+                    {
+                        List<Idioma> idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+                        List<Pagina> paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
+                        List<LlaveIdioma> tabla = this._model.sp_trl_tablitaGestionTraduccion(usuarioSession._idUsuario, this._idPagina);
+                        // generales
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                        // propias de pagina
+                        ViewBag.idiomas = idiomas;
+                        ViewBag.paginas = paginas;
+                        ViewBag.tbTraducciones = tabla;
+                        ViewBag.titleModulo = "Traduccion del sitio web";
+                        ViewBag.permisos = permisos;
+                        ViewBag.usuario = usuarioSession;
+                    }
+                    else
+                    {
+                        return RedirectToAction("index", "login");
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
                 }
                 return View();
             }

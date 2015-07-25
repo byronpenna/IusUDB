@@ -75,7 +75,8 @@ namespace IUSBack.Controllers
                     {
                         ViewBag.titleModulo = "Noticias";
                         ViewBag.usuario     = usuarioSession;
-                        ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        //ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         ViewBag.permiso     = permisos;
                         List<Post> posts    = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
                         ViewBag.posts = posts;
@@ -106,7 +107,8 @@ namespace IUSBack.Controllers
                             Post post = (Post)datosPost["post"];
                             ViewBag.permiso = permisos;
                             ViewBag.categorias = this._model.sp_adminfe_noticias_getCategoriasPostById(post._idPost, usuarioSession._idUsuario, this._idPagina);//categorias;
-                            ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                            //ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                            ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                             ViewBag.editMode = true;
                             ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
 
@@ -149,7 +151,8 @@ namespace IUSBack.Controllers
                         List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
                         ViewBag.permiso     = permisos;
                         ViewBag.categorias  = categorias;
-                        ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        //ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         ViewBag.editMode    = false;
                         ViewBag.idiomas     = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                         #region "Labels"

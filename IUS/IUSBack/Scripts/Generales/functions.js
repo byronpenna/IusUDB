@@ -145,6 +145,16 @@
         }
     }
 // generics
+    function objArrIsEmpty(obj) {
+        var empty = true;
+        $.each(obj, function (i, val) {
+            if (val.length > 0) {
+                empty = false;
+                return false;
+            }
+        })
+        return empty;
+    }
     function clockHora(txtHora) {
         arrHora = txtHora.split(":");
         arrHoraFinal = arrHora[2].split(" ");
