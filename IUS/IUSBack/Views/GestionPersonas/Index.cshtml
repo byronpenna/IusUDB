@@ -21,6 +21,9 @@
     Permiso permisos = (Permiso)ViewBag.permiso;
 }
 <div class="marginNull cuerpoModulo">
+    <div class="row marginNull divResultado">
+        <span class="spanMessage1 successMessage">Agregado exitosamente </span>
+    </div>
     <table class="table table-hover tablePersonas tablaUniversal">
         <thead>
             <tr class="controlGlobal hidden">
@@ -43,12 +46,21 @@
                 <th class="hidden"></th>
                 <th>
                     <input type="text" name="txtNombrePersona" class="inputFormulario txtNombrePersona form-control soloLetras" />
+                    <div class="row marginNull divResultado hidden">
+                        
+                    </div>
                 </th>
                 <th>
                     <input type="text" name="txtApellidoPersona" class="inputFormulario txtApellidoPersona form-control soloLetras" />
+                    <div class="row marginNull divResultado hidden">
+                        
+                    </div>
                 </th>
                 <th>
                     <input type="text" name="dtFechaNacimiento" class="inputFormulario dtFechaNacimiento form-control" />
+                    <div class="row marginNull divResultado hidden">
+                        
+                    </div>
                 </th>
                 <th>
                     <button class="btn btn-xs btnAgregarPersona" @permisos.stringCrear>Crear</button>

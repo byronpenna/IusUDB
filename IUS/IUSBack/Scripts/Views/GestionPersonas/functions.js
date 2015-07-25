@@ -84,8 +84,40 @@
         trPersona.find(".dtFechaNacimiento").val(fechaNac);
         controlesEdit(true, trPersona);
     }
-
+// validaciones
+    function validacionIngreso(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            txtNombrePersona: new Array(),
+            txtApellidoPersona: new Array(),
+            dtFechaNacimiento: new Array()
+        }
+        if (frm.txtNombrePersona == "") {
+            val.campos.txtNombrePersona.push("Campo no debe quedar vacio");
+        }
+        if (frm.txtApellidoPersona == "") {
+            val.campos.txtApellidoPersona.push("Campo no debe quedar vacio");
+        }
+        if (frm.dtFechaNacimiento == "") {
+            val.campos.dtFechaNacimiento.push("Campo no debe quedar vacio");
+        } else {
+            var exp = /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[/\\/](19|20)\d{2}$/;
+            if (!exp.test(frm.dtFechaNacimiento)) {
+                console.log("No val");
+                val.campos.dtFechaNacimiento.push("Campo deber ser rellenado con formato dd/mm/yyyy")
+            } else {
+                console.log("Val");
+            }
+        }
+        if (val.campos.txtNombrePersona.length == 0 && val.campos.txtApellidoPersona == 0 && val.campos.dtFechaNacimiento == 0) {
+            estado = true;
+        }
+        val.estado = estado;
+        return val;
+    }
 // acciones desde script
+
     function btnEliminar(tr) {
         frm = serializeSection(tr);
         console.log("formulario a enviar", frm);
@@ -102,25 +134,49 @@
         });
     }
     function btnAgregarPersona(tr) {
+        $(".divResultado").addClass("hidden");
         frm = serializeSection(tr);
-        arrDate = frm.dtFechaNacimiento.split("/");
-        frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2],arrDate[1],arrDate[0]));
-        tbody = tr.parents("table").find("tbody");
-        actualizarCatalogo(RAIZ+"GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
-            console.log("La respuesta del servidor fue:", data);
-            if (data.estado) {
-                persona = data.persona;
-                newTr = getTrPersona(persona);
-                clearTr(tr);
-                //tbody.prepend(newTr);
-                $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
-                //updateAllDataTable($(".tablePersona"));   
-            } else {
-                if (data.error !== undefined) {
-                    alert(data.error.Message);
+        var val = validacionIngreso(frm);
+        console.log(frm);
+        console.log(val);
+        if (val.estado) {
+            /*arrDate = frm.dtFechaNacimiento.split("/");
+            frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
+            tbody = tr.parents("table").find("tbody");
+            actualizarCatalogo(RAIZ + "GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
+                console.log("La respuesta del servidor fue:", data);
+                if (data.estado) {
+                    persona = data.persona;
+                    newTr = getTrPersona(persona);
+                    clearTr(tr);
+                    //tbody.prepend(newTr);
+                    $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
+                    //updateAllDataTable($(".tablePersona"));   
                 } else {
-                    alert(data.error.Message);
+                    if (data.error !== undefined) {
+                        alert(data.error.Message);
+                    } else {
+                        alert(data.error.Message);
+                    }
                 }
-            }
-        });
+            });*/
+            console.log("Agregaras");
+        } else {
+            var errores;
+            $.each(val.campos, function (i,val) {
+                errores = "";
+                var divResultado = $("." + i).parents("th").find(".divResultado")
+                if (val.length > 0) {
+                    console.log("entro");
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += "<span class='spanMessage1 failMessage'>" + val + "</span>";
+                    })
+                    divResultado.empty().append(errores);
+                }
+            })
+        }
+        /*
+        
+        */
     }

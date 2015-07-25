@@ -1,3 +1,6 @@
 ﻿.tablaUniversal thead tr:nth-child(3) th{
     border-bottom:none;
 }
+.tablaUniversal thead tr th{
+    vertical-align:top;
+}
