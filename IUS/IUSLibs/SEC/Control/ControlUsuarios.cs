@@ -360,6 +360,85 @@ namespace IUSLibs.SEC.Control
                 return usu;
             }
         #endregion
+        // nuevas
+            public Usuario sp_usu_changePass(string pass,string ip,int idUsuarioEjecutor,int idPagina)
+            {
+
+                Usuario usuarioSession = null;Persona persona;
+                SPIUS sp = new SPIUS("sp_usu_changePass");
+                sp.agregarParametro("pass", pass);
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            DataRow row = tb[1].Rows[0];
+                            persona = new Persona((int)row["id_persona_fk"],row["nombres"].ToString(),row["apellidos"].ToString(),(DateTime)row["fecha_nacimiento"]);
+                            usuarioSession = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"],true, persona, row["pass"].ToString());
+                        }
+                    }
+                    return usuarioSession;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+
+            }
+            public Dictionary<object, object> logueo(Usuario usuarioLoguear)
+            {
+                Dictionary<object, object> retorno = new Dictionary<object,object>();
+                bool login = false; bool changePass = false; Usuario usuario = null;
+                SPIUS sp = new SPIUS("sp_sec_login2");
+                sp.agregarParametro("usuario", usuarioLoguear._usuario);
+                sp.agregarParametro("pass", usuarioLoguear._pass);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb) && tb[1].Rows.Count > 0)
+                    {
+                        login = true;
+                        
+                        DataRow row = tb[1].Rows[0];
+                        Persona persona = new Persona((int)row["id_persona_fk"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                        usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"], true, persona, row["pass"].ToString());
+
+                        if ((int)tb[tb.Count - 1].Rows[0]["changePass"] == 1)
+                        {
+                            changePass = true;
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                    retorno.Add("login", login);
+                    retorno.Add("changePass", changePass);
+                    retorno.Add("usuario", usuario);
+                }
+                catch (ErroresIUS x)
+                {
+                    
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return retorno;
+            }
+            
         #region "Constructores"
         public ControlUsuarios()
         {

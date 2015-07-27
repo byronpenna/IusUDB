@@ -303,6 +303,10 @@
             }
             return val;
         }
+// control de errores 
+    function getSpanMessageError(txt) {
+        return "<span class='spanMessage1 failMessage'>" + txt + "</span>";
+    }
 // serialize
     function serializeToJson(a) {
         var o = {};

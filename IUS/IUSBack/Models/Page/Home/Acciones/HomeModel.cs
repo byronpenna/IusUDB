@@ -24,6 +24,22 @@ namespace IUSBack.Models.Page.Home.Acciones
         }
         #endregion
         #region "acciones"
+            public Usuario sp_usu_changePass(string pass,string ip,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    ControlUsuarios controlUsuario = new ControlUsuarios();
+                    return controlUsuario.sp_usu_changePass(pass, ip, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public bool sp_secpu_verificarCuenta(int num,int idUsuario)
             {
                 try

@@ -464,6 +464,8 @@
     <Content Include="Scripts\Views\GestionRoles\script.js" />
     <Content Include="Scripts\Views\GestionUsuarios\functions.js" />
     <Content Include="Scripts\Views\GestionUsuarios\script.js" />
+    <Content Include="Scripts\Views\Home\ChangePassword\functions.js" />
+    <Content Include="Scripts\Views\Home\ChangePassword\script.js" />
     <Content Include="Scripts\Views\Home\functions.js" />
     <Content Include="Scripts\Views\Home\Registro\functions.js" />
     <Content Include="Scripts\Views\Home\Registro\script.js" />
@@ -606,6 +608,7 @@
     <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Home\verificar.cshtml" />
     <Content Include="Views\RepositorioCompartido\Index.cshtml" />
+    <Content Include="Views\Home\changePassword.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

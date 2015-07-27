@@ -16,6 +16,7 @@ namespace IUSBack.Controllers
     {
         #region "propiedades"
             public HomeModel homeModel;
+            
         #endregion
         #region "Constructores"
             public HomeController()
@@ -54,11 +55,48 @@ namespace IUSBack.Controllers
                 }
                 return Json(respuesta);
             }
-            
+            public ActionResult sp_usu_changePass()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    frm = this.getAjaxFrm();
+                    string ip       = Request.UserHostAddress;
+                    Usuario usuario = this.homeModel.sp_usu_changePass(frm["txtPass"].ToString(), ip, (int)Session["idUsuario"], (int)paginas.Home);
+                    if (usuario != null)
+                    {
+                        Session["usuario"] = usuario;
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        
+                    }
+                    else
+                    {
+                        ErroresIUS x = new ErroresIUS("Ocurrio un error no controlado");
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+                
+            }
         #endregion
 
         #region "Vistas"
             public ActionResult Registro()
+            {
+                return View();
+            }
+            public ActionResult changePassword()
             {
                 return View();
             }

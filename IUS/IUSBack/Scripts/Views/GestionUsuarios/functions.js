@@ -252,17 +252,35 @@
         var val = validacionIngreso(frm);
         console.log(frm);
         console.log(val);
-        /*tbody = tr.parents("table").find("tbody");
-        actualizarCatalogo(RAIZ+"GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
-            if (data.estado) {
-                tr = getTrUsuario(data.usuarioAgregado, data.permiso);
-                tbody.prepend(tr);
-                $(".tableUsuarios").dataTable().fnAddTr($(tr)[0]);
-            } else {
-                error = data.error;
-                alert(error.Message);
-            }
-        });*/
+        if (val.estado) {
+            tbody = tr.parents("table").find("tbody");
+            actualizarCatalogo(RAIZ + "GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
+                if (data.estado) {
+                    tr = getTrUsuario(data.usuarioAgregado, data.permiso);
+                    tbody.prepend(tr);
+                    $(".tableUsuarios").dataTable().fnAddTr($(tr)[0]);
+                } else {
+                    error = data.error;
+                    alert(error.Message);
+                }
+            });
+        } else {
+            var errores;
+            $.each(val.campos, function (i, val) {
+                errores = "";
+                var divResultado = $(".tableUsuarios thead").find("." + i).parents("td").find(".divResultado")
+                if (val.length > 0) {
+                    console.log("entro");
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += getSpanMessageError(val);
+                    })
+                    divResultado.empty().append(errores);
+                }
+            })
+            
+        }
+        /**/
         
         
     }

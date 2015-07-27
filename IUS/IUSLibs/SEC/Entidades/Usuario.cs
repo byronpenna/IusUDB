@@ -14,6 +14,8 @@ namespace IUSLibs.SEC.Entidades
             public bool _estado;
             public Persona _persona;
             public string _pass;
+            // extra a tabla 
+            //public bool logueado;
             #region "gets y sets"
                 public string getFechaCreacion
                 {
@@ -54,6 +56,11 @@ namespace IUSLibs.SEC.Entidades
         #endregion
        
         #region "Constructores"
+            public Usuario(string usuario, string pass)
+            {
+                this._usuario = usuario;
+                this._pass = pass;
+            }
             public Usuario(int idUsuario, String usuario, bool estado)
             {
                 this._idUsuario = idUsuario;
