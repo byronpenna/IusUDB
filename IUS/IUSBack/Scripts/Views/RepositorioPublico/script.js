@@ -14,6 +14,16 @@
                     //console.log(frm);
                     btnEditarArchivo(frm, seccion);
                 });
+                $(document).on("click", ".iconoVista", function (e) {
+                    e.preventDefault();
+                    if ($(this).hasClass("iconoVistaCuadricula")) {
+                        verCuadricula();
+                    } else if ($(this).hasClass("icoVistaLista")) {
+                        verLista();
+                    }
+                    
+                })
+                
             //
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
                     console.log("D: D: D: D:")

@@ -1,4 +1,41 @@
-﻿// acciones script
+﻿// genericas 
+    // ver lista 
+    function getDivLista(carpeta) {
+        var div = "\
+        <div class='row folderDetalles carpetaDetalle'>\
+            <div class='col-lg-3'>\
+                udb\
+            </div>\
+            <div class='col-lg-3'>\
+                Folder\
+            </div>\
+            <div class='col-lg-3'>\
+                \
+            </div>\
+            <div class='col-lg-3'>\
+                28/07/2015\
+            </div>\
+        </div>\
+        ";
+    }
+    function verLista() {
+        var frm = {
+            idCarpetaPublica: $(".txtHdIdCarpetaPadre").val()
+        }
+        var seccionModificar = $(".listView");
+        cambiarVistas("lista");
+        icoVistaLista(frm, seccionModificar);
+    }
+    function icoVistaLista(frm,seccion) {
+        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
+            console.log("la data devuelta por el servidor",data);
+        })
+    }
+    // ver cuadricula 
+        function verCuadricula() {
+            cambiarVistas("cuadricula");
+        }
+// acciones script
     function btnEditarArchivo(frm,seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_renameFile", frm, function (data) {
             console.log(data);

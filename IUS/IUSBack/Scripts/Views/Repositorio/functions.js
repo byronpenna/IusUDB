@@ -16,7 +16,7 @@
         }
     // vistas 
         // generales
-            function cambiarVistas(vistaVer) {
+            /*function cambiarVistas(vistaVer) {
                 var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
                 var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");
                 $(".activeVista").removeClass("activeVista");
@@ -36,7 +36,7 @@
                         break;
                     }
                 }
-            }
+            }*/
         // cuadricula
             function verCuadricula(div,callback) {
                 var seccion = div.parents(".accionesDiv");

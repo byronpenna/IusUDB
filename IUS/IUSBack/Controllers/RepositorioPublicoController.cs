@@ -177,7 +177,15 @@ namespace IUSBack.Controllers
                          if (usuarioSession != null && frm != null)
                          {
                              int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPublica"]);
-                             Dictionary<object, object> archivos = this._model.sp_repo_entrarCarpetaPublica(idCarpetaPadre, usuarioSession._idUsuario, this._idPagina);
+                             Dictionary<object, object> archivos ;
+                             if (idCarpetaPadre != -1)
+                             {
+                                 archivos = this._model.sp_repo_entrarCarpetaPublica(idCarpetaPadre, usuarioSession._idUsuario, this._idPagina);
+                             }
+                             else
+                             {
+                                 archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
+                             }
                              respuesta = new Dictionary<object, object>();
                              respuesta.Add("estado", true);
                              respuesta.Add("carpetas", archivos["carpetas"]);

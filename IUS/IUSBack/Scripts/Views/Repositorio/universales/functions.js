@@ -1,7 +1,6 @@
 ﻿// eventos 
     // click
         // directorio 
-            
             $(document).on("click", ".spIrBuscar", function () {
                 frm = { txtRuta: $(".txtDireccion").val() }
                 if (frm.txtRuta.slice(-1) != "/") {
@@ -35,6 +34,27 @@
                 }
             })
 // generics
+    function cambiarVistas(vistaVer) {
+        var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
+        var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");
+        $(".activeVista").removeClass("activeVista");
+        switch (vistaVer) {
+            case "cuadricula": {
+                lista.addClass("hidden");
+                cuadricula.removeClass("hidden");
+                pestaCuadricula.addClass("activeVista");
+                //pestaLista.removeClass("activeLista");
+                break;
+            }
+            case "lista": {
+                cuadricula.addClass("hidden");
+                lista.removeClass("hidden");
+                pestaLista.addClass("activeVista");
+                //pestaCuadricula.removeClass("activeLista");
+                break;
+            }
+        }
+    }
     function buscarEnCarpeta(txt) {
         if (txt == "") {
             $(".folders .folder").removeClass("hidden");
