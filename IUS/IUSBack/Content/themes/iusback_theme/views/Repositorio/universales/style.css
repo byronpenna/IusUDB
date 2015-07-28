@@ -1,6 +1,10 @@
 ﻿/*Publico */
+.divCarpetaPublica:hover{
+    background:#F5F5F5;
+}
 .divCarpetaPublica,.divArchivoPublico{
     margin-top:5%;
+    padding-top:3%;
     text-align:center;
 }
 .divCarpetaPublica img,.divArchivoPublico img{
@@ -22,7 +26,9 @@
     min-height:280px;
 }
 .cuadritoIcono:hover{
-    background:#9b9bff;
+    /*background:#9b9bff;*/
+    background:#95A5A6;
+    color:white;
     cursor:pointer;
 }
 .inputNombreCarpeta{

@@ -1,4 +1,19 @@
 ﻿// generics 
+        function printMessage(div, txt, success) {
+            var clase = "";
+            if (success) {
+                clase = "successMessage";
+            } else {
+                clase = "failMessage";
+            }
+            div.empty().append("<span class='" + clase + "'>" + txt + "</span>");
+            div.fadeIn("slow");
+            setTimeout(function () {
+                //alert("Hello");
+                div.fadeOut("slow");
+                
+            }, 2000);
+        }
     // vistas 
         // generales
             function cambiarVistas(vistaVer) {
@@ -189,7 +204,7 @@
         }
         function getDivCarpetasPublicas(carpeta) {
             div = "\
-            <div class='divCarpetaPublica col-lg-6'>\
+            <div class='divCarpetaPublica col-lg-6 pointer'>\
                 <input type='hidden' class='txtHdIdCarpetaPublica' value='" + carpeta._idCarpetaPublica + "'>\
                 <img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono+ "' />\
                 <h4 class='tituloCarpetaPublica'>"+carpeta._nombre+"</h4>\
@@ -258,7 +273,8 @@
             nombreArchivo   = folder.find(".ttlNombreCarpeta").text();
             idArchivo       = folder.find(".txtHdIdArchivo").val();
             console.log(idArchivo);
-            $(".nombreFileCompartir").empty().append(nombreArchivo);
+            var removeFileShare = "<a href='#' title='Dejar de compartir' class='icoCancelShare'><i class='fa fa-times '></i></a>";
+            $(".nombreFileCompartir").empty().append(nombreArchivo+" "+removeFileShare);// aqui 
             $(".txtNombreFileCompartir").val(nombreArchivo);
             $(".txtHdIdArchivoCompartir").val(idArchivo);
 
@@ -365,6 +381,12 @@
                         //clearTr(seccion);
                         seccion.find(".nombreFileCompartir").empty();
                         seccion.find(".txtNombreFileCompartir").val("");
+                    } else {
+                        if (data.error._mostrar) {
+                            console.log("imprmio error");
+                            printMessage($(".divMensajeRepoPublico"), data.error.Message, false);
+                            //$(".divMensajeRepoPublico").empty().append("<span class='failMessage'>" + data.error.Message + "</span>");
+                        }
                     }
                     $(".divCarpetasPublicasCompartir").append(div);
                 });

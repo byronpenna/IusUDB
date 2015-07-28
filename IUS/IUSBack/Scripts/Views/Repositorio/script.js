@@ -19,14 +19,14 @@
             })
         // keyup 
             $(document).on("keyup", ".txtNombreFileCompartir", function (e) {
-                if ($(this).val() == "") {
+                /*if ($(this).val() == "") {
                     $(".divCarpetasPublicasCompartir .divCarpetaPublica").removeClass("hidden");
                 } else {
                     $(".divCarpetasPublicasCompartir .divCarpetaPublica").addClass("hidden");
                     var folders = $(".divCarpetaPublica .tituloCarpetaPublica:containsi(" + $(this).val() + ")");
                     folders = folders.parents(".divCarpetaPublica");
                     folders.removeClass("hidden");
-                }
+                }*/
             })
         // keydown
             $(document).on("keydown", ".txtNombreArchivo", function (e) {
@@ -176,11 +176,21 @@
                         if (frm.txtHdCarpetaPadrePublica != "-1") {
                             btnCompartir(frm, seccion);
                         } else {
-                            alert("No se puede compartir en este directorio");
+                            //alert("No se puede compartir en este directorio");
+                            printMessage($(".divMensajeRepoPublico"), "No se puede compartir en este directorio", false);
+                            //$(".divMensajeRepoPublico").empty().append("<span class='failMessage'>No se puede compartir en este directorio</span>");
                         }
                         
                     })
-            // repositorio privado        
+            // repositorio privado      
+                    
+                $(document).on("click", ".icoCancelShare", function (e) {
+                    e.preventDefault();
+                    $(".nombreFileCompartir").empty();
+                    $(".txtNombreFileCompartir").val("");
+                    $(".txtHdIdArchivoCompartir").val(-1);
+
+                })
                 $(document).on("click", ".carpetaDetalle", function (e) {
                     window.location = RAIZ + "Repositorio/index/" + $(this).find(".txtHdIdCarpeta").val();
                 })
