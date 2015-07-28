@@ -105,6 +105,7 @@ namespace IUSLibs.REPO.Control
                                 usuario = new Usuario((int)row["id_usuario_fk"]);
                                 carpetaPadre = new Carpeta();
                                 carpeta = new Carpeta((int)row["idCarpeta"], row["nombre"].ToString(),usuario, carpetaPadre, row["ruta"].ToString());
+                                carpeta._fechaCreacion = (DateTime)row["fecha_creacion"];
                                 carpetas.Add(carpeta);
                             }
                         }

@@ -130,6 +130,9 @@
                 
             })
         // click 
+                $(document).on("click", ".closeModal", function (e) {
+                    $(".divUpload").click();
+                })
             // vista
                 $(document).on("click", ".iconoVistaCuadricula", function (e) {
                     e.preventDefault();
@@ -174,6 +177,9 @@
                         frm = serializeSection(seccion);
                         console.log(frm);
                         if (frm.txtHdCarpetaPadrePublica != "-1") {
+                            if ($(".txtHdIdArchivoCompartir").val() == -1) {
+                                printMessage($(".divMensajeRepoPublico"), "Seleccione un archivo a compartir", false);
+                            }
                             btnCompartir(frm, seccion);
                         } else {
                             //alert("No se puede compartir en este directorio");

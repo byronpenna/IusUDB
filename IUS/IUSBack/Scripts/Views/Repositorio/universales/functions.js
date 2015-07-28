@@ -97,7 +97,8 @@
     function btnCancelarEdicionCarpeta(seccion) {
         seccion.find(".editMode").addClass("hidden");
         seccion.find(".normalMode").removeClass("hidden");
-        folder = seccion.parents(".cuadritoIcono");
+        folder = seccion.parents(".cuadritoIconoAdd");
+
         folder.addClass("cuadritoIcono");
         folder.removeClass("cuadritoIconoAdd");
     }

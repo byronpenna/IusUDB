@@ -36,6 +36,11 @@
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            <div class="row marginNull">
+                <div class="col-lg-offset-11 col-lg-1">
+                    <i class="fa fa-times pointer closeModal"></i>
+                </div>
+            </div>
             <h3>Subir fichero</h3>
             <input type="hidden" class="txtHdEstadoUpload" value="-1"/>
             <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile","Repositorio")">
