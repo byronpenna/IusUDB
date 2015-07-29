@@ -1,5 +1,10 @@
 ﻿// eventos 
     // click
+        // folders  
+            $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
+                div = $(this).parents(".folder");
+                div.remove();
+            })
         // directorio 
             $(document).on("click", ".spIrBuscar", function () {
                 frm = { txtRuta: $(".txtDireccion").val() }
@@ -8,6 +13,7 @@
                 }
                 spIrBuscar(frm);
             });
+            
     // keyup
         // directorio
             $(document).on("keyup", ".txtBusqueda", function (e) {
@@ -34,6 +40,7 @@
                 }
             })
 // generics
+    
     function cambiarVistas(vistaVer) {
         var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
         var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");
@@ -66,12 +73,12 @@
         }
     }
     function getDivNewFolder() {
-    div = "<div class='col-lg-2 folder '>\
+            /*<a href='#' class='ico' title='Descargar'>\
+                                <i class='fa fa-download'></i>\
+                            </a>\*/
+        div = "<div class='col-lg-2 folder '>\
                     <input type='hidden' class='txtHdIdCarpeta' value=''/>\
                     <div class='row divHerramientasIndividual'>\
-                        <a href='#' class='ico' title='Descargar'>\
-                            <i class='fa fa-download'></i>\
-                        </a>\
                         <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
                             <i class='fa fa-trash-o'></i>\
                         </a>\
@@ -99,12 +106,13 @@
                                     <button class='btn btn-xs btnGuardarCarpeta'>Guardar</button>\
                                     <button class='btn btn-xs btnCancelarGuardarCarpeta'>Cancelar</button>\
                                 </div>\
+                                <div class='row marginNull mensajeNewFolder'></div>\
                             </div>\
                         </div>\
                     </div>\
                 </div>";
-    return div;
-}
+        return div;
+    }
 // actualizar carpeta
     function ttlNombreCarpeta(seccion, nombre) {
         seccion.find(".normalMode").addClass("hidden");

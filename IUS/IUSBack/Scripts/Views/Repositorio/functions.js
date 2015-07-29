@@ -1,4 +1,5 @@
 ﻿// generics 
+        /*
         function printMessage(div, txt, success) {
             var clase = "";
             if (success) {
@@ -13,7 +14,7 @@
                 div.fadeOut("slow");
                 
             }, 2000);
-        }
+        }*/
     // vistas 
         // generales
             /*function cambiarVistas(vistaVer) {

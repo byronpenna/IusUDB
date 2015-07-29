@@ -39,7 +39,7 @@
         <label for="txtDireccion">Ruta</label>
         <div class="input-group">
             <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="@carpetaPadre._strRuta" />
-            <span class="input-group-addon spIrBuscar">Ir</span>
+            <span class="input-group-addon spIrBuscar pointer">Ir</span>
         </div>
 
     </div>
@@ -94,29 +94,17 @@
 </div>
 <div class="row marginNull">
     <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+    <div class="divMensajesGenerales">
+
+    </div>
     <div class="folders col-lg-8">
         <div class="row marginNull">
             <h3 class="encabezadoFicheros">Carpeta actual</h3>
         </div>
         <div class="listView">
-            <!--
-            <div class="row folderDetalles carpetaDetalle">
-                <div class="col-lg-3">
-                    udb
-                </div>
-                <div class="col-lg-3">
-                    Folder
-                </div>
-                <div class="col-lg-3">
-                    byronpenna
-                </div>
-                <div class="col-lg-3">
-                    28/07/2015
-                </div>
-            </div>
-                -->
+            
         </div>
-        <div class="cuadriculaView hidden">
+        <div class="cuadriculaView">
             @if (carpetas != null && carpetas.Count > 0)
             {
                 foreach (CarpetaPublica carpeta in carpetas)

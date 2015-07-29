@@ -1,5 +1,10 @@
 ﻿$(document).ready(function () {
     // eventos
+        //keydown
+            
+            $(document).on("click", ".txtNombreCarpetaSave", function (e) {
+                console.log(e.wich);
+            })
         //click 
             // Busqueda
                 /*$(document).on("click", ".spIrBuscar", function (e) {
@@ -14,6 +19,10 @@
                     //console.log(frm);
                     btnEditarArchivo(frm, seccion);
                 });
+                $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
+                    div = $(this).parents(".folder");
+                    div.remove();
+                })
                 $(document).on("click", ".iconoVista", function (e) {
                     e.preventDefault();
                     if ($(this).hasClass("iconoVistaCuadricula")) {
@@ -23,10 +32,9 @@
                     }
                     
                 })
-                
             //
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
-                    console.log("D: D: D: D:")
+                    //console.log("D: D: D: D:")
                     e.preventDefault();
                     div = getDivNewFolder();
                     $(".cuadriculaView").prepend(div);
@@ -59,7 +67,12 @@
                         nombre: seccion.find(".txtNombreCarpetaSave").val()
                     }
                     console.log(frm);
-                    btnGuardarCarpeta(frm, seccion);
+                    if (frm.nombre != "") {
+                        btnGuardarCarpeta(frm, seccion);
+                    } else {
+                        printMessage($(".mensajeNewFolder"), "El nombre de la carpeta no puede ser vacio", false);
+                    }
+                    
                 })
             // cambiar nombre a carpeta
                 $(document).on("click", ".btnEditarCarpeta", function (e) {

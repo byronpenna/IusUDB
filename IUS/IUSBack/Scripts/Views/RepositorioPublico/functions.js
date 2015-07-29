@@ -21,20 +21,22 @@
     }
     function getDivListaCarpeta(carpetaPublica) {
         var div = "\
-        <div class='row folderDetalles carpetaDetalle'>\
-            <div class='col-lg-3'>\
-                " + carpetaPublica._nombre + "\
+        <a class='aLista' href='" + RAIZ + '/RepositorioPublico/index/' +carpetaPublica._idCarpetaPublica+ "' >\
+            <div class='row folderDetalles carpetaDetalle'>\
+                <div class='col-lg-3'>\
+                    " + carpetaPublica._nombre + "\
+                </div>\
+                <div class='col-lg-3'>\
+                    Folder\
+                </div>\
+                <div class='col-lg-3'>\
+                    \
+                </div>\
+                <div class='col-lg-3'>\
+                    "+carpetaPublica.getFechaCreacion+"\
+                </div>\
             </div>\
-            <div class='col-lg-3'>\
-                Folder\
-            </div>\
-            <div class='col-lg-3'>\
-                \
-            </div>\
-            <div class='col-lg-3'>\
-                "+carpetaPublica.getFechaCreacion+"\
-            </div>\
-        </div>\
+        </a>\
         ";
         return div;
     }
@@ -83,11 +85,16 @@
         });
     }
     function spIrBuscar(frm) {
-        console.log(frm);
+        //console.log(frm);
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getPublicoByRuta", frm, function (data) {
             console.log(data);
             if (data.estado) {
-                window.location = RAIZ + "RepositorioPublico/index/" + data.carpetaPublica._idCarpetaPublica;
+                if(data.carpetaPublica !== undefined && data.carpetaPublica !== null )
+                {
+                    window.location = RAIZ + "RepositorioPublico/index/" + data.carpetaPublica._idCarpetaPublica;
+                } else {
+                    printMessage($(".divMensajesGenerales"), "No se a encontrado ese directorio, por favor digite bien la ruta", false);
+                }
             }
         })
     }

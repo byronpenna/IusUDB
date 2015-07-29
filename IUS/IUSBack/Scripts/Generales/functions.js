@@ -145,6 +145,21 @@
         }
     }
 // generics
+    function printMessage(div, txt, success) {
+        var clase = "";
+        if (success) {
+            clase = "successMessage";
+        } else {
+            clase = "failMessage";
+        }
+        div.empty().append("<span class='" + clase + "'>" + txt + "</span>");
+        div.fadeIn("slow");
+        setTimeout(function () {
+            //alert("Hello");
+            div.fadeOut("slow");
+
+        }, 2000);
+    }
     function objArrIsEmpty(obj) {
         var empty = true;
         $.each(obj, function (i, val) {

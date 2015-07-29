@@ -313,10 +313,11 @@
                     
                         btnGuardarCarpeta(frm,seccion);
                     });
+                    /*
                     $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
                         div = $(this).parents(".folder");
                         div.remove();
-                    })
+                    })*/
                 // eliminar carpeta
                     $(document).on("click", ".icoEliminarCarpeta", function () {
                         seccion = $(this).parents(".folder");

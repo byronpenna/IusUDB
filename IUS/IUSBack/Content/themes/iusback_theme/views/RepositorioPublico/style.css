@@ -1,3 +1,11 @@
 ﻿.folders {
     margin-top:5%;
 }
+.divMensajesGenerales{
+    text-align:center;
+    font-size:1.2em;
+    margin-top:3%;
+}
+.aLista,.aLista:hover{
+    color:black;
+}
