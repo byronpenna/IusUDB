@@ -11,26 +11,36 @@ namespace IUSLibs.REPO.Entidades.Publico
             public int              _idCarpetaPublica;
             public string           _nombre;
             public CarpetaPublica   _carpetaPadre;
+            public DateTime         _fechaCreacion;
             // extras
             public string _strRuta;
             private string icono        = "folder-green.png";
             private string iconoFront   = "folder.png";
-            public string getIconoFront
-            {
-                get
+            #region "get y set"
+                public string getFechaCreacion
                 {
-                    return this.iconoFront;
+                    get
+                    {
+                        return String.Format("{0:dd/MM/yyyy}", this._fechaCreacion);
+                    }
                 }
-            }
-            public string getIcono
-            {
-                get
+                public string getIconoFront
                 {
-                    return this.icono;
+                    get
+                    {
+                        return this.iconoFront;
+                    }
                 }
-            }
+                public string getIcono
+                {
+                    get
+                    {
+                        return this.icono;
+                    }
+                }
+            #endregion
         #endregion
-        #region "constructores"
+            #region "constructores"
             public CarpetaPublica() { 
             }
             public CarpetaPublica(int idCarpetaPublica)

@@ -1,10 +1,29 @@
 ﻿// genericas 
     // ver lista 
-    function getDivLista(carpeta) {
+    function getDivListaArchivos(archivoPublico) {
+        // definir tipo de archivo 
+        var div = "\
+            <div class='row folderDetalles carpetaDetalle'>\
+                <div class='col-lg-3'>\
+                    " + archivoPublico._nombre + "\
+                </div>\
+                <div class='col-lg-3'>\
+                    " + archivoPublico._archivoUsuario._extension._tipoArchivo._tipoArchivo + "\
+                </div>\
+                <div class='col-lg-3'>\
+                    " + archivoPublico._archivoUsuario._carpeta._usuario._usuario + "\
+                </div>\
+                <div class='col-lg-3'>\
+                    " + archivoPublico.getFechaCreacion + "\
+                </div>\
+            </div>";
+        return div;
+    }
+    function getDivListaCarpeta(carpetaPublica) {
         var div = "\
         <div class='row folderDetalles carpetaDetalle'>\
             <div class='col-lg-3'>\
-                udb\
+                " + carpetaPublica._nombre + "\
             </div>\
             <div class='col-lg-3'>\
                 Folder\
@@ -13,10 +32,11 @@
                 \
             </div>\
             <div class='col-lg-3'>\
-                28/07/2015\
+                "+carpetaPublica.getFechaCreacion+"\
             </div>\
         </div>\
         ";
+        return div;
     }
     function verLista() {
         var frm = {
@@ -28,10 +48,27 @@
     }
     function icoVistaLista(frm,seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-            console.log("la data devuelta por el servidor",data);
+            console.log("la data devuelta por el servidor", data);
+            var div = "";
+            if (data.estado) {
+                if (data.carpetas !== undefined && data.carpetas !== null) {
+                    $.each(data.carpetas, function (i, carpeta) {
+                        div += getDivListaCarpeta(carpeta);
+                    })
+                }
+                if (data.archivos !== undefined && data.archivos !== null) {
+                    $.each(data.archivos, function (i, archivo) {
+                        div += getDivListaArchivos(archivo);
+                    })
+                }
+                seccion.empty().append(div);
+            }
         })
     }
     // ver cuadricula 
+        function getDivCuadricula(archivoPublico){
+
+        }    
         function verCuadricula() {
             cambiarVistas("cuadricula");
         }

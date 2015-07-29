@@ -39,6 +39,11 @@ namespace IUSLibs.REPO.Entidades
             {
                 this._idCarpeta = idCarpeta;
             }
+            public Carpeta(int idCarpeta, Usuario usuario)
+            {
+                this._idCarpeta = idCarpeta;
+                this._usuario = usuario;
+            }
             public Carpeta(int idCarpeta, string nombre)
             {
                 this._idCarpeta = idCarpeta;

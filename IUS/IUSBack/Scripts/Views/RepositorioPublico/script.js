@@ -29,7 +29,7 @@
                     console.log("D: D: D: D:")
                     e.preventDefault();
                     div = getDivNewFolder();
-                    $(".folders").prepend(div);
+                    $(".cuadriculaView").prepend(div);
                 })
             // eliminar carpeta 
                 $(document).on("click", ".icoEliminarArchivo", function (e) {

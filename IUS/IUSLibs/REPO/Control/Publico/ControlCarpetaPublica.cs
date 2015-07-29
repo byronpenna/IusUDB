@@ -253,7 +253,7 @@ namespace IUSLibs.REPO.Control.Publico
                     {
                         Dictionary<object, object> retorno = new Dictionary<object, object>();
                         // para carpetas
-                        List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
+                        List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta; Carpeta carpetaNormal; Usuario usuarioCarpeta;
                         CarpetaPublica carpetaPadre; Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
                         // para archivos
                         List<ArchivoPublico> archivos = null; ArchivoPublico archivo;
@@ -282,6 +282,7 @@ namespace IUSLibs.REPO.Control.Publico
                                             carpetaPadre = new CarpetaPublica();
                                         }
                                         carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                                        carpeta._fechaCreacion = (DateTime)row["fecha_creacion"];
                                         carpetas.Add(carpeta);
                                     }
                                 }
@@ -291,11 +292,14 @@ namespace IUSLibs.REPO.Control.Publico
                                     foreach (DataRow row in tb[1].Rows)
                                     {
 
-                                        tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                        tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
                                         tipoArchivo._icono = row["icono"].ToString();
                                         extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
-                                        archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                                        usuarioCarpeta = new Usuario((int)row["idUsuario"],row["usuario"].ToString());
+                                        carpetaNormal = new Carpeta((int)row["idCarpeta"], usuarioCarpeta);
+                                        archivoNormal = new Archivo((int)row["idArchivo"], extension,carpetaNormal);
                                         archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, (int)row["id_carpetapublica_fk"], row["nombre_publico"].ToString(), (bool)row["estado"]);
+                                        archivo._fechaCreacion = (DateTime)row["creacion_publica"];
                                         archivos.Add(archivo);
                                     }
                                 }
@@ -303,6 +307,7 @@ namespace IUSLibs.REPO.Control.Publico
                                 {
                                     DataRow row = tb[2].Rows[0];
                                     carpetaPublicaPadre = new CarpetaPublica((int)row["idCarpetaPublica"]);
+                                    carpetaPublicaPadre._fechaCreacion = (DateTime)row["fecha_creacion"];
                                     carpetaPublicaPadre._strRuta = row["strRuta"].ToString();
                                 }
                             }
@@ -346,6 +351,7 @@ namespace IUSLibs.REPO.Control.Publico
                                             carpetaPadre = new CarpetaPublica();
                                         }
                                         carpeta = new CarpetaPublica((int)row["idCarpetaPublica"], row["nombre"].ToString(), carpetaPadre);
+                                        carpeta._fechaCreacion = (DateTime)row["fecha_creacion"];
                                         carpetas.Add(carpeta);
                                     }
                                 }
