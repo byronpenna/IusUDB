@@ -342,10 +342,7 @@
                         seccion = $(this).parents(".detalleCarpeta");
                         btnCancelarEdicionCarpeta(seccion);
                     });
-                // cambiar nombre carpeta
-                    $(document).on("click", ".sinRedirect", function (e) {
-                        e.stopPropagation();
-                    })
+                
         // doble click
                 $(document).on("dblclick", ".spanNombreCarpeta", function (e) {
                     var seccion = $(this).parents(".folderDetalles");

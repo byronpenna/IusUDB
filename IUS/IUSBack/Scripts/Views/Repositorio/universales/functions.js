@@ -1,5 +1,9 @@
 ﻿// eventos 
     // click
+            // cambiar nombre carpeta
+            $(document).on("click", ".sinRedirect", function (e) {
+                e.stopPropagation();
+            })
         // busqueda 
             $(document).on("click", ".iconoVista", function (e) {
                 e.preventDefault();

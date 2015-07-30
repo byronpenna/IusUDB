@@ -73,4 +73,11 @@
                     window.location = RAIZ + "RepositorioCompartido/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
                 }
             });
+        // doble click
+            $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
+                e.cancelBubble = true;
+                var folder = $(this).parents(".folder");
+                printMessage(folder.find(".divMensajeCarpeta"), "En esta pestaña no se permite editar el nombre de los archivos y carpetas", false)
+            })
+        
 })
