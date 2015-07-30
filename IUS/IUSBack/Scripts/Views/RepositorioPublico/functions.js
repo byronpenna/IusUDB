@@ -1,78 +1,148 @@
 ﻿// genericas 
     // ver lista 
-    function getDivListaArchivos(archivoPublico) {
-        // definir tipo de archivo 
-        var div = "\
-            <div class='row folderDetalles carpetaDetalle'>\
-                <div class='col-lg-3'>\
-                    " + archivoPublico._nombre + "\
+        function getDivListaArchivos(archivoPublico) {
+            // definir tipo de archivo 
+            var div = "\
+                <div class='row folderDetalles carpetaDetalle'>\
+                    <div class='col-lg-3'>\
+                        " + archivoPublico._nombre + "\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        " + archivoPublico._archivoUsuario._extension._tipoArchivo._tipoArchivo + "\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        " + archivoPublico._archivoUsuario._carpeta._usuario._usuario + "\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        " + archivoPublico.getFechaCreacion + "\
+                    </div>\
+                </div>";
+            return div;
+        }
+        function getDivListaCarpeta(carpetaPublica) {
+            var div = "\
+            <a class='aLista' href='" + RAIZ + '/RepositorioPublico/index/' +carpetaPublica._idCarpetaPublica+ "' >\
+                <div class='row folderDetalles carpetaDetalle'>\
+                    <div class='col-lg-3'>\
+                        " + carpetaPublica._nombre + "\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        Folder\
+                    </div>\
+                    <div class='col-lg-3'>\
+                        \
+                    </div>\
+                    <div class='col-lg-3'>\
+                        "+carpetaPublica.getFechaCreacion+"\
+                    </div>\
                 </div>\
-                <div class='col-lg-3'>\
-                    " + archivoPublico._archivoUsuario._extension._tipoArchivo._tipoArchivo + "\
+            </a>\
+            ";
+            return div;
+        }
+        function verLista() {
+            var frm = {
+                idCarpetaPublica: $(".txtHdIdCarpetaPadre").val()
+            }
+            var seccionModificar = $(".listView");
+            cambiarVistas("lista");
+            icoVistaLista(frm, seccionModificar);
+        }
+        
+    // ver cuadricula 
+        function getDivCuadriculaCarpeta(carpeta) {
+            var div = "\
+            <div class='col-lg-2 folder'>\
+                <input type='hidden' class='txtHdIdCarpeta' value='"+carpeta._idCarpetaPublica+"' />\
+                <div class='row divHerramientasIndividual'>\
+                    <a href='#' class='ico' title='Descargar'>\
+                        <i class='fa fa-download'></i>\
+                    </a>\
+                    <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
+                        <i class='fa fa-trash-o'></i>\
+                    </a>\
                 </div>\
-                <div class='col-lg-3'>\
-                    " + archivoPublico._archivoUsuario._carpeta._usuario._usuario + "\
-                </div>\
-                <div class='col-lg-3'>\
-                    " + archivoPublico.getFechaCreacion + "\
-                </div>\
-            </div>";
-        return div;
-    }
-    function getDivListaCarpeta(carpetaPublica) {
-        var div = "\
-        <a class='aLista' href='" + RAIZ + '/RepositorioPublico/index/' +carpetaPublica._idCarpetaPublica+ "' >\
-            <div class='row folderDetalles carpetaDetalle'>\
-                <div class='col-lg-3'>\
-                    " + carpetaPublica._nombre + "\
-                </div>\
-                <div class='col-lg-3'>\
-                    Folder\
-                </div>\
-                <div class='col-lg-3'>\
-                    \
-                </div>\
-                <div class='col-lg-3'>\
-                    "+carpetaPublica.getFechaCreacion+"\
+                <div class='cuadritoIcono cuadritoCarpeta'>\
+                    <img src='~/Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
+                    <div class='detalleCarpeta'>\
+                        <div class='normalMode sinRedirect'>\
+                            <h3 class='ttlNombreCarpeta'>"+carpeta._nombre+"</h3>\
+                        </div>\
+                        <div class='row marginNull hidden editMode sinRedirect'>\
+                            <div class='row marginNull inputNombreCarpeta'>\
+                                <input type='text' class='form-control txtNombreCarpeta'>\
+                            </div>\
+                            <div class='row marginNull'>\
+                                <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>\
+                                <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                            </div>\
+                        </div>\
+                    </div>\
                 </div>\
             </div>\
-        </a>\
-        ";
-        return div;
-    }
-    function verLista() {
-        var frm = {
-            idCarpetaPublica: $(".txtHdIdCarpetaPadre").val()
-        }
-        var seccionModificar = $(".listView");
-        cambiarVistas("lista");
-        icoVistaLista(frm, seccionModificar);
-    }
-    function icoVistaLista(frm,seccion) {
-        actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-            console.log("la data devuelta por el servidor", data);
-            var div = "";
-            if (data.estado) {
-                if (data.carpetas !== undefined && data.carpetas !== null) {
-                    $.each(data.carpetas, function (i, carpeta) {
-                        div += getDivListaCarpeta(carpeta);
-                    })
-                }
-                if (data.archivos !== undefined && data.archivos !== null) {
-                    $.each(data.archivos, function (i, archivo) {
-                        div += getDivListaArchivos(archivo);
-                    })
-                }
-                seccion.empty().append(div);
-            }
-        })
-    }
-    // ver cuadricula 
-        function getDivCuadricula(archivoPublico){
-
+            ";
+            return div;
         }    
+        function getDivCuadriculaArchivo(archivo) {
+            var div = "\
+                <div class='col-lg-2 folder'>\
+                    <input type='hidden' class='txtHdIdArchivoPublico' value='"+archivo._idArchivoPublico+"' />\
+                    <div class='row divHerramientasIndividual'>\
+                        <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
+                            <i class='fa fa-trash-o'></i>\
+                        </a>\
+                    </div>\
+                    <div class='cuadritoIcono '>\
+                        <img src='~/Content/themes/iusback_theme/img/general/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
+                        <div class='detalleCarpeta'>\
+                            <div class='normalMode'>\
+                                <h3 class='ttlNombreCarpeta'>"+archivo._nombre+"</h3>\
+                            </div>\
+                            <div class='row marginNull hidden editMode'>\
+                                <div class='row marginNull inputNombreCarpeta'>\
+                                    <input type='text' class='form-control txtNombreCarpeta'>\
+                                </div>\
+                                <div class='row marginNull'>\
+                                    <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>\
+                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            ";
+            return div;
+        }
         function verCuadricula() {
             cambiarVistas("cuadricula");
+        }
+    // gnerales
+        function icoVistaLista(frm, seccion,op) {
+            actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
+                console.log("la data devuelta por el servidor", data);
+                var div = "";
+                if (data.estado) {
+                    if (data.carpetas !== undefined && data.carpetas !== null) {
+                        $.each(data.carpetas, function (i, carpeta) {
+                            if (op == "lista") {
+                                div += getDivListaCarpeta(carpeta);
+                            } else if (op == "cuadricula") {
+                                div += getDivCuadriculaCarpeta(carpeta);
+                            }
+                        })
+                    }
+                    if (data.archivos !== undefined && data.archivos !== null) {
+                        $.each(data.archivos, function (i, archivo) {
+                            if (op == "lista") {
+                                div += getDivListaArchivos(archivo);
+                            } else if (op == "cuadricula") {
+                                div += getDivCuadriculaArchivo(archivo)
+                            }
+                        })
+                    }
+                    seccion.empty().append(div);
+                }
+            })
         }
 // acciones script
     function btnEditarArchivo(frm,seccion) {

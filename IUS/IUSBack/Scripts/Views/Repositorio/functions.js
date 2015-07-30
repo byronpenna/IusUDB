@@ -110,7 +110,7 @@
                                 <i class='fa fa-trash-o'></i>\
                             </a>";
                 if (openLocation !== undefined && openLocation == true) {
-                    div += "<a href='#' class='ico icoOpenLocation' title='Abrir ubicacion'>\
+                    div += "<a href='" + RAIZ + 'Repositorio/ndex/' + archivo._carpeta._idCarpeta + "' class='ico icoOpenLocation' title='Abrir ubicacion'>\
                                 <i class='fa fa-folder-open'></i>\
                             </a>";
                 }
@@ -433,21 +433,21 @@
                 })
             }
         // directorio
-        function spIrBuscar(frm) {
-
-            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
-                console.log(data);
-                if (data.estado) {
-                    window.location = RAIZ + "Repositorio/index/" + data.carpeta._idCarpeta;
-                } else {
-                    if (data.error._mostrar) {
-                        alert(data.error.Message);
+            function spIrBuscar(frm) {
+                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
+                    //console.log(data);
+                    if (data.estado) {
+                        window.location = RAIZ + "Repositorio/index/" + data.carpeta._idCarpeta;
+                    } else {
+                        if (data.error._mostrar) {
+                            //alert(data.error.Message);
+                            printMessage($(".divMensajesGenerales"), "No se a encontrado ese directorio, por favor digite bien la ruta",false)
+                        }
                     }
-                }
-            })
-        }
+                })
+            }
         // eliminar archivos
-        function icoEliminarArchivo(frm,seccion) {
+            function icoEliminarArchivo(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {
                 
                 if (data.estado) {

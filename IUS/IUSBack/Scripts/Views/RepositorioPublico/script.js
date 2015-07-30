@@ -51,6 +51,11 @@
                     //console.log("D: D: D: D:")
                     e.preventDefault();
                     div = getDivNewFolder();
+                    if ($(".cuadriculaView").hasClass("hidden")) {
+
+                    } else {
+
+                    }
                     $(".cuadriculaView").prepend(div);
                 })
             // eliminar carpeta 
