@@ -95,11 +95,10 @@
                 return div;
             }
             function loadCuadriculaFiles(archivo, openLocation) {
-                
                 var div = "\
                     <div class='col-lg-2 folder'>\
                         <input type='hidden' class='txtHdIdArchivo' value='"+archivo._idArchivo+"'/>\
-<input type='hidden' class='txtHdIdCarpetaContenedora' value='" + archivo._carpeta._idCarpeta + "'/>\
+                        <input type='hidden' class='txtHdIdCarpetaContenedora' value='" + archivo._carpeta._idCarpeta + "'/>\
                         <div class='row divHerramientasIndividual'>\
                             <a href='#' class='icoCompartirFile' title='Compartir'>\
                                 <i class='fa fa-share'></i>\

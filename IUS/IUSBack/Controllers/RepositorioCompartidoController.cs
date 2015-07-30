@@ -47,6 +47,7 @@ namespace IUSBack.Controllers
                     {
                         archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
                     }
+                    ViewBag.idCarpetaActual     = id;
                     ViewBag.titleModulo         = "Repositorio Compartido";
                     ViewBag.carpetas            = archivos["carpetas"];
                     ViewBag.archivos            = archivos["archivos"];
@@ -74,7 +75,9 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones ajax"
-            public ActionResult sp_repo_removeShareFile()
+            #region "do"
+                //public ActionResult 
+                public ActionResult sp_repo_removeShareFile()
             {
                 Dictionary<object, object> frm, respuesta = null;
                 try
@@ -101,87 +104,61 @@ namespace IUSBack.Controllers
                 return Json(respuesta);
 
             }
-            public ActionResult sp_repo_getUsuariosArchivosCompartidos()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
+                public ActionResult sp_repo_compartirArchivo()
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
                     {
-                        List<Usuario> usuarios = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("usuarios", usuarios);
-                    }
-                    else
-                    {
-                        ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
-                        throw x;
-                    }
-                }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
-            public ActionResult sp_repo_getFilesFromShareUserId()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
-                    {
-                        List<ArchivoCompartido> archivos = this._model.sp_repo_getFilesFromShareUserId(this.convertObjAjaxToInt(frm["idUserFile"]), usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("archivosCompartidos", archivos);
-
-                    }
-                    else
-                    {
-                        ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
-                        throw x;
-                    }
-                }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
-            public ActionResult sp_repo_compartirArchivo()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
-                    {
-                        ArchivoCompartido archivoAgregar = new ArchivoCompartido(this.convertObjAjaxToInt(frm["idArchivo"]), this.convertObjAjaxToInt(frm["idUsuario"]));
-                        ArchivoCompartido archivoAgregado = this._model.sp_repo_compartirArchivo(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
-                        if (archivoAgregado != null)
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
                         {
+                            ArchivoCompartido archivoAgregar = new ArchivoCompartido(this.convertObjAjaxToInt(frm["idArchivo"]), this.convertObjAjaxToInt(frm["idUsuario"]));
+                            ArchivoCompartido archivoAgregado = this._model.sp_repo_compartirArchivo(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
+                            if (archivoAgregado != null)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                                respuesta.Add("archivoCompartido", archivoAgregado);
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
+                                throw x;
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
+            #endregion
+            #region "get"
+                public ActionResult sp_repo_getUsuariosArchivosCompartidos()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            List<Usuario> usuarios = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
-                            respuesta.Add("archivoCompartido", archivoAgregado);
+                            respuesta.Add("usuarios", usuarios);
                         }
                         else
                         {
@@ -189,23 +166,52 @@ namespace IUSBack.Controllers
                             throw x;
                         }
                     }
-                    else
+                    catch (ErroresIUS x)
                     {
-                        respuesta = this.errorEnvioFrmJSON();
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
                     }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                catch (ErroresIUS x)
+                public ActionResult sp_repo_getFilesFromShareUserId()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            List<ArchivoCompartido> archivos = this._model.sp_repo_getFilesFromShareUserId(this.convertObjAjaxToInt(frm["idUserFile"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("archivosCompartidos", archivos);
+
+                        }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
+            #endregion
         #endregion
 
     }
