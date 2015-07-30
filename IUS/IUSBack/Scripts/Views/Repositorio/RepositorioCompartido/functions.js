@@ -1,4 +1,15 @@
 ﻿// generics 
+    // vistas 
+        function verCuadricula() {
+            console.log("vista cuadricula");
+            cambiarVistas("cuadricula");
+        }    
+        function verLista() {
+            console.log("vista lista");
+            var seccionModificar = $(".listView");
+            cambiarVistas("lista");
+        }
+    // ***************    
     function getDivArchivosCompartidos(archivoCompartido) {
         var div = "\
             <div class='divCarpetaPublica col-lg-6'>\
@@ -55,7 +66,8 @@
     function icoCompartirFile(folder) {
         var nombreArchivo = folder.find(".ttlNombreCarpeta").text();
         var idArchivo = folder.find(".txtHdIdArchivo").val();
-        $(".nombreFileCompartir").empty().append(nombreArchivo);
+        var icoDelete = "<a href='#' title='No compartir archivo' class='icoCancelShare'><i class='fa fa-times '></i></a>";
+        $(".nombreFileCompartir").empty().append(nombreArchivo + " " + icoDelete);
         $(".txtHdIdArchivoCompartir").val(idArchivo);
     }
     function btnShareArchivo(frm) {
@@ -82,7 +94,8 @@
                 window.location = RAIZ + "RepositorioCompartido/index/" + data.carpeta._idCarpeta;
             } else {
                 if (data.error._mostrar) {
-                    alert(data.error.Message);
+                    //alert(data.error.Message);
+                    printMessage($(".divMensajesGenerales"), "No se a encontrado ese directorio, por favor digite bien la ruta", false)
                 }
             }
         })

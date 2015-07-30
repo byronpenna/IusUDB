@@ -52,7 +52,10 @@ namespace IUSBack.Controllers
                     ViewBag.archivos            = archivos["archivos"];
                     ViewBag.carpetaActual       = archivos["carpetaPadre"];
                     ViewBag.usuarios            = this._model.sp_sec_getAllUsuarios(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.usuario             = usuarioSession;// usuario actual y que mostrara nombre en la parte superior
+                    //********
                     ViewBag.idUsuarioSesion     = usuarioSession._idUsuario;
+                    //********
                     ViewBag.usuariosCompartidos = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
                     ViewBag.carpetaActual       = archivos["carpetaPadre"];
                     ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);

@@ -1,5 +1,14 @@
 ﻿// eventos 
     // click
+        // busqueda 
+            $(document).on("click", ".iconoVista", function (e) {
+                e.preventDefault();
+                if ($(this).hasClass("iconoVistaCuadricula")) {
+                    verCuadricula();
+                } else if ($(this).hasClass("icoVistaLista")) {
+                    verLista();
+                }
+            })
         // folders  
             $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
                 div = $(this).parents(".folder");
@@ -13,7 +22,6 @@
                 }
                 spIrBuscar(frm);
             });
-            
     // keyup
         // directorio
             $(document).on("keyup", ".txtBusqueda", function (e) {
@@ -40,7 +48,6 @@
                 }
             })
 // generics
-    
     function cambiarVistas(vistaVer) {
         var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
         var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");

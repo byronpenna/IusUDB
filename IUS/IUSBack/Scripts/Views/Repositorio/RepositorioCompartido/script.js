@@ -13,7 +13,11 @@
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
         // click
-            
+            $(document).on("click", ".icoCancelShare", function (e) {
+                e.preventDefault();
+                $(".nombreFileCompartir").empty();
+                $(".txtHdIdArchivoCompartir").val(-1);
+            })
             $(document).on("click", ".icoDejarDeCompartir", function (e) {
                 e.preventDefault();
                 var seccion = $(this).parents(".divCarpetaPublica");
@@ -51,7 +55,12 @@
                     nombreCarpeta: $(".cbUsuarios option:selected").text()
                 }
                 console.log(frm);
-                btnShareArchivo(frm)
+                if (frm.idUsuario != -1) {
+                    btnShareArchivo(frm)
+                } else {
+                    printMessage($(".divMessageCompartir"), "Por favor seleccione un usuario para compartir", false);
+                }
+                
             })
             $(document).on("click", ".icoCompartirFile", function (e) {
                 e.preventDefault();
