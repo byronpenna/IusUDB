@@ -36,7 +36,7 @@ namespace IUSBack.Controllers
                     Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> archivos;
-                    CarpetaPublica carpetaPadre;
+                    CarpetaPublica carpetaPadre = null;
                     if (id != -1)
                     {
                        archivos = this._model.sp_repo_entrarCarpetaPublica(id,usuarioSession._idUsuario,this._idPagina);
@@ -44,7 +44,7 @@ namespace IUSBack.Controllers
                     }
                     else
                     {
-                        carpetaPadre = new CarpetaPublica();
+                        carpetaPadre = new CarpetaPublica(id);
                         carpetaPadre._strRuta = "/";
                         archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
                     }

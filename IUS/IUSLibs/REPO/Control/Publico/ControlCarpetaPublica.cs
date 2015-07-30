@@ -306,7 +306,7 @@ namespace IUSLibs.REPO.Control.Publico
                                 if (tb[2].Rows.Count > 0)
                                 {
                                     DataRow row = tb[2].Rows[0];
-                                    carpetaPublicaPadre = new CarpetaPublica((int)row["idCarpetaPublica"]);
+                                    carpetaPublicaPadre = new CarpetaPublica((int)row["idCarpetaPublica"],row["nombre"].ToString());
                                     carpetaPublicaPadre._fechaCreacion = (DateTime)row["fecha_creacion"];
                                     carpetaPublicaPadre._strRuta = row["strRuta"].ToString();
                                 }

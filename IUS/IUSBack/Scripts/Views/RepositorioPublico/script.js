@@ -1,9 +1,25 @@
 ﻿$(document).ready(function () {
     // eventos
         //keydown
-            
-            $(document).on("click", ".txtNombreCarpetaSave", function (e) {
-                console.log(e.wich);
+            $(document).on("keydown", ".txtNombreCarpetaSave", function (e) {
+                var charCode = e.which;
+                var folder = $(this).parents(".folder");
+                switch (charCode) {
+                    case 13: {
+                        folder.find(".btnGuardarCarpeta").click();
+                        break;
+                    }
+                }
+            })
+            $(document).on("keydown", ".txtNombreCarpeta", function (e) {
+                var charCode = e.which;
+                var folder = $(this).parents(".folder");
+                switch (charCode) {
+                    case 13: {
+                        folder.find(".btnEditarCarpeta").click();
+                        break;
+                    }
+                }
             })
         //click 
             // Busqueda
@@ -87,7 +103,8 @@
                     seccion = $(this).parents(".detalleCarpeta");
                     btnCancelarEdicionCarpeta(seccion);
                 })
-                $(document).on("click", ".icoEliminarCarpeta", function () {
+                $(document).on("click", ".icoEliminarCarpeta", function (e) {
+                    e.preventDefault();
                     seccion = $(this).parents(".folder");
                     frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
                     var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");

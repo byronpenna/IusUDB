@@ -32,6 +32,11 @@
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
     CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
+    string nombreCarpetaActual = "Repositorio";
+    if(carpetaPadre._idCarpetaPublica != -1)
+    {
+        nombreCarpetaActual = carpetaPadre._nombre;
+    }
 }
 <div class="row marginNull rowHerramientas">
     <div class="col-lg-4">
@@ -99,7 +104,7 @@
     </div>
     <div class="folders col-lg-8">
         <div class="row marginNull">
-            <h3 class="encabezadoFicheros">Carpeta actual</h3>
+            <h3 class="encabezadoFicheros">@nombreCarpetaActual</h3>
         </div>
         <div class="listView">
             
