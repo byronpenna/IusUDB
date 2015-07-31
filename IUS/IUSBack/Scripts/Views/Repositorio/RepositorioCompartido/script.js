@@ -12,7 +12,46 @@
                 var seccion = $(this).parents(".seccionCompartida");
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
-        // click
+    // click
+        // busqueda 
+            $(document).on("click", ".btnBusqueda", function () {
+                var vistaCuadricula = $(".iconoVistaCuadricula").hasClass("activeVista");
+                var vistaLista = $(".icoVistaLista").hasClass("activeVista");
+                var target = "";
+                if (!$(this).hasClass("btnBuscando")) {
+                    if (vistaCuadricula) {
+                        var seccion = $(".cuadriculaView");
+                        target = "cuadricula";
+                    } else {
+                        var seccion = $(".listView");
+                        target = "lista";
+                    }
+                    var frm = {
+                        txtBusqueda: $(".txtBusqueda").val()
+                    }
+                    btnBusqueda(frm, seccion, target);
+                    $(this).addClass("btnBuscando");
+                    $(this).empty().append("<i class='fa fa-times'></i>");
+                } else {
+                    if (vistaCuadricula) {
+                        var frm = {
+                            idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                        }
+                        var seccion = $(".cuadriculaView");
+                        vista(frm, seccion,"cuadricula");
+                        $(this).removeClass("btnBuscando");
+                        $(this).empty().append("<i class='fa fa-search'></i>");
+                    } else if (vistaLista) {
+                        var frm = {
+                            idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                        }
+                        var seccionModificar = $(".listView");
+                        vista(frm, seccionModificar,"lista");
+                        $(this).removeClass("btnBuscando");
+                        $(this).empty().append("<i class='fa fa-search'></i>");
+                    }
+                }
+            })
             $(document).on("click", ".icoCancelShare", function (e) {
                 e.preventDefault();
                 $(".nombreFileCompartir").empty();
@@ -56,7 +95,12 @@
                 }
                 console.log(frm);
                 if (frm.idUsuario != -1) {
-                    btnShareArchivo(frm)
+                    if (frm.idArchivo != -1) {
+                        btnShareArchivo(frm)
+                    }
+                    else {
+                        printMessage($(".divMessageCompartir"), "Por favor seleccione un archivo para compartir", false);
+                    }
                 } else {
                     printMessage($(".divMessageCompartir"), "Por favor seleccione un usuario para compartir", false);
                 }
@@ -75,6 +119,7 @@
             });
         // doble click
             $(document).on("dblclick", ".ttlNombreCarpeta", function (e) {
+                
                 e.cancelBubble = true;
                 var folder = $(this).parents(".folder");
                 printMessage(folder.find(".divMensajeCarpeta"), "En esta pestaña no se permite editar el nombre de los archivos y carpetas", false)

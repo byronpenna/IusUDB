@@ -300,6 +300,7 @@
             /*$(".icoVistaLista").removeClass("activeVista");
             $(".iconoVistaCuadricula").addClass("activeVista");*/
         }
+        
         function btnBusqueda(frm,seccion,target) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
                 console.log(data);

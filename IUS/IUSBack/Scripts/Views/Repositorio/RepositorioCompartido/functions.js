@@ -89,12 +89,6 @@
                             <div class='row divHerramientasIndividual'>\
                                 <a href='#' class='icoCompartirFile' title='Compartir'>\
                                     <i class='fa fa-share'></i>\
-                                </a>\
-                                <a href='' class='ico' title='Descargar'>\
-                                    <i class='fa fa-download'></i>\
-                                </a>\
-                                <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
-                                    <i class='fa fa-trash-o'></i>\
                                 </a>";
                 if (openLocation !== undefined && openLocation == true) {
                     div += "<a href='#' class='ico icoOpenLocation' title='Abrir ubicacion'>\
@@ -156,6 +150,33 @@
                 return div;
             }
     // ***************    
+            function btnBusqueda(frm, seccion, target) {
+                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
+                    console.log(data);
+                    if (data.estado) {
+                        var div = "";
+                        if (data.archivos !== undefined && data.archivos !== null) {
+                            $.each(data.archivos, function (i, archivo) {
+                                if (target == "cuadricula") {
+                                    div += loadCuadriculaFiles(archivo, true);
+                                } else {
+                                    div += loadListFiles(archivo);
+                                }
+                            })
+                        } else {
+                            div += "\
+                    <div class='divNofoundResults'>\
+                        No se han encontrado archivos\
+                    </div>\
+                    ";
+                        }
+                        seccion.empty().append(div);
+                        $(".encabezadoFicheros").empty().append("Resultados de busqueda");
+                    } else {
+                        alert("Ocurrio un error en la busqueda");
+                    }
+                })
+            }
     function getDivArchivosCompartidos(archivoCompartido) {
         var div = "\
             <div class='divCarpetaPublica col-lg-6'>\
@@ -221,7 +242,7 @@
         console.log(" ;) ", form);
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_compartirArchivo", frm, function (data) {
             console.log(data);
-            console.log("Frm es D: ",form);
+            //console.log("Frm es D: ",form);
             if (data.estado) {
                 var frm = {
                     idUserFile: form.idUsuario,
@@ -229,6 +250,8 @@
                 }
                 var seccion = $(".seccionCompartida");
                 divCarpetaUsuarioCompartido(frm, seccion);
+            } else {
+                printMessage($(".divMessageCompartir"), data.error.Message, false);
             }
         })
 

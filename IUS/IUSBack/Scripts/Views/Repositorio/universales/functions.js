@@ -16,7 +16,8 @@
             $(document).on("click", ".sinRedirect", function (e) {
                 e.stopPropagation();
             })
-        // busqueda 
+        
+        // vistas 
             $(document).on("click", ".iconoVista", function (e) {
                 e.preventDefault();
                 if ($(this).hasClass("iconoVistaCuadricula")) {
@@ -64,7 +65,6 @@
                 }
             })
 // generics
-    
     
     function cambiarVistas(vistaVer) {
         var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
