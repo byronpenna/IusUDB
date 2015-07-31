@@ -21,6 +21,16 @@
                     desasociarRol(frm, trUsuarioRol);
                 }
             })
+    // keyup 
+            $(document).on("keydown", ".txtEditUsuario", function (e) {
+                switch (e.which) {
+                    case 13: {
+                        $(".btnAgregarUsuario").click();
+                        break;
+                    }
+                }
+            })
+            
     // Acciones tabla 
         // agregar 
             $(document).on("click", ".btnAgregarUsuario", function () {
