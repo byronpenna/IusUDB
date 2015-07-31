@@ -100,6 +100,13 @@
                     }
                 }
             })
+            $(document).on("keydown", ".txtNombreCarpetaSave", function (e) {
+                switch (e.which) {
+                    case 13: {
+                        $(".btnGuardarCarpeta").click();
+                    }
+                }
+            });
             
         // submit 
             $(document).on("submit", "#frmSubir", function (e) {
@@ -311,8 +318,12 @@
                                 idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
                                 nombre: seccion.find(".txtNombreCarpetaSave").val()
                         }
-                    
-                        btnGuardarCarpeta(frm,seccion);
+                        if (frm.nombre != "") {
+                            btnGuardarCarpeta(frm, seccion);
+                        } else {
+                            printMessage($(".mensajeNewFolder"), "No puede dejar vacio nombre de carpeta", false);
+                        }
+                        
                     });
                     /*
                     $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {
@@ -320,7 +331,8 @@
                         div.remove();
                     })*/
                 // eliminar carpeta
-                    $(document).on("click", ".icoEliminarCarpeta", function () {
+                    $(document).on("click", ".icoEliminarCarpeta", function (e) {
+                        e.preventDefault();
                         seccion = $(this).parents(".folder");
                         frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
                         var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");

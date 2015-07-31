@@ -13,8 +13,32 @@
                 var frm = new Object();
                 frm.idLlave     = $(".cbLlave").val();
                 frm.idIdioma    = $(".cbIdioma").val();
-                frm.traduccion  = $(".txtAreaTraduccion").val();
-                btnAgregarLlave(frm)
+                frm.traduccion = $(".txtAreaTraduccion").val();
+                console.log(frm);
+                var val = valAgregarLlave(frm);
+                console.log("Val es", val);
+                if (val.estado) {
+                    btnAgregarLlave(frm);
+                } else {
+                    var errores;
+                    $.each(val.campos, function (i, val) {
+                        errores = "";
+                        var divResultado = $(".divAgregarLlaves").find("." + i).parents(".grupoInput").find(".divResultado")
+                        if (val.length > 0) {
+                            //console.log("entro");
+                            divResultado.removeClass("hidden");
+                            $.each(val, function (i, val) {
+                                //errores += getSpanMessage("failMessage",val);
+                                printMessage(divResultado, val, false);
+                            })
+                            //divResultado.empty().append(errores);
+                            //printMessage(divResultado)
+                        }
+                    })
+                }
+                    
+                
+                
             });
             $(document).on("click", ".btnCancelarEdit", function () {
                 var x = confirm("¿Esta seguro que desea cancelar edicion del registro?");

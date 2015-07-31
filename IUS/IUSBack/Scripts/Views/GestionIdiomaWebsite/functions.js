@@ -107,6 +107,31 @@
         resetChosen(cbLlaves);
     }
 // actions functions
+    function valAgregarLlave(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            cbLlave:            new Array(),
+            cbPagina:           new Array(),
+            cbIdioma:           new Array(),
+            txtAreaTraduccion:  new Array()
+        }
+        if (frm.idLlave === null || frm.idLlave == -1 ) {
+            val.campos.cbLlave.push("Debe seleccionar una llave");
+        }
+        /*
+        if (frm.cbPagina == -1) {
+            val.campos.cbPagina.push("Debe seleccionar una pagina");
+        }*/
+        if (frm.idIdioma == -1) {
+            val.campos.cbPagina.push("Debe seleccionar una pagina");
+        }
+        if (frm.traduccion == "") {
+            val.campos.txtAreaTraduccion.push("La traduccion no puede ir vacia");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
     function btEliminarTraduccion(tr) {
         var frm = new Object();
         frm.idLlaveIdioma = tr.find(".txtHdIdLlaveIdioma").val();

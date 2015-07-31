@@ -28,8 +28,8 @@
 }
 
 <div class="row marginNull cuerpoModulo">
-    <div class="row marginNull">
-        <div class="col-lg-4">
+    <div class="row marginNull divAgregarLlaves">
+        <div class="col-lg-4 grupoInput">
             <label>Seleccione pagina</label>
             <select class="cbPagina">
                 <option disabled selected></option>
@@ -38,31 +38,47 @@
                     <option value="@pagina._idPagina">@pagina._pagina</option>
                 }
             </select>
+            <div class="row marginNull divResultado hidden">
+
+            </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 grupoInput">
             <label>Seleccione llave</label>
             <select class="cbLlave">
                 <option disabled selected>Seleccione pagina primero</option>
             </select>
+            <div class="row marginNull divResultado hidden">
+
+            </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 grupoInput">
             <label>Seleccione idioma</label>
             <select class="cbIdioma">
-                @foreach (Idioma idioma in idiomas) { 
-                   <option value="@idioma._idIdioma">@idioma._idioma</option>
+                @foreach (Idioma idioma in idiomas)
+                {
+                    <option value="@idioma._idIdioma">@idioma._idioma</option>
                 }
             </select>
+            <div class="row marginNull divResultado hidden">
+
+            </div>
         </div>
-        <div class="col-lg-12 divTraduccion" >
+        <div class="col-lg-12 divTraduccion grupoInput">
             <div class="col-lg-offset-4 col-lg-4">
                 <textarea placeholder="Ingrese traduccion de llave" class="form-control txtAreaTraduccion" name="txtAreaTraduccion"></textarea>
+                <div class="row marginNull divResultado hidden">
+
+                </div>
                 <div class="col-lg-12 text-center">
                     <button class="btn btn-primary btnAgregarLlave">
                         Agregar llave
                     </button>
                 </div>
-                
+
             </div>
+        </div>
+        <div class="row divMensajesAgregar">
+
         </div>
     </div>
     <div class="row marginNull">

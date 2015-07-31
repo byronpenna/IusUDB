@@ -145,6 +145,9 @@
         }
     }
 // generics
+    function getSpanMessage(clase,txt) {
+        return "<span class='" + clase + "'>" + txt + "</span>";
+    }
     function printMessage(div, txt, success) {
         var clase = "";
         if (success) {
@@ -152,7 +155,7 @@
         } else {
             clase = "failMessage";
         }
-        div.empty().append("<span class='" + clase + "'>" + txt + "</span>");
+        div.empty().append(getSpanMessage(clase, txt));//"<span class='" + clase + "'>" + txt + "</span>"
         div.fadeIn("slow");
         setTimeout(function () {
             //alert("Hello");
@@ -319,9 +322,9 @@
             return val;
         }
 // control de errores 
-    function getSpanMessageError(txt) {
+    /*function getSpanMessageError(txt) {
         return "<span class='spanMessage1 failMessage'>" + txt + "</span>";
-    }
+    }*/
 // serialize
     function serializeToJson(a) {
         var o = {};
