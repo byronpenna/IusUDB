@@ -54,7 +54,7 @@
                         <div class='col-lg-2 folder'>\
                             <input type='hidden' class='txtHdIdCarpeta' value='"+ carpeta._idCarpeta + "'/>\
                             <div class='row divHerramientasIndividual'>\
-                                <a href='#' class='ico' title='Descargar'>\
+                                <a href='#' class='ico icoDownload' title='Descargar'>\
                                     <i class='fa fa-download'></i>\
                                 </a>\
                                 <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
