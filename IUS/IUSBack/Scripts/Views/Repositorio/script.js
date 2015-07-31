@@ -6,6 +6,7 @@
     })*/
         loadPublicFiles();            
         // change 
+            /*
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 0) {
                     $(".btnBusqueda").addClass("visibilitiHidden");
@@ -16,7 +17,7 @@
                     $(".btnBusqueda").removeClass("visibilitiHidden");
                     $(".folders .folder").removeClass("hidden");
                 }
-            })
+            })*/
         // keyup 
             $(document).on("keyup", ".txtNombreFileCompartir", function (e) {
                 /*if ($(this).val() == "") {

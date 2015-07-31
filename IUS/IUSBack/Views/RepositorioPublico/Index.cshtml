@@ -88,10 +88,16 @@
         </div>
     </div>
     <div class="col-lg-4">
-        <label>Busqueda</label>
+        <div class="col-lg-6">
+            <label>Busqueda</label>
+        </div>
+        <div class="row marginNull">
+            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
+            Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+        </div>
         <div class="input-group">
             <input class="form-control txtBusqueda inputBackModal" name="txtBusqueda" placeholder="Buscar en carpeta" />
-            <span class="input-group-addon">
+            <span class="input-group-addon pointer btnBusqueda visibilitiHidden">
                 <i class="fa fa-search"></i>
             </span>
         </div>

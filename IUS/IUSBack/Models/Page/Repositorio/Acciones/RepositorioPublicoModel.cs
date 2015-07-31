@@ -96,6 +96,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                         throw x;
                     }
                 }
+                public List<ArchivoPublico> sp_repo_searchArchivoPublicoBack(string nombre, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoPublico.sp_repo_searchArchivoPublicoBack(nombre, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "set"
                 public ArchivoPublico sp_repo_renameFile(ArchivoPublico archivoEditar, int idUsuarioEjecutor, int idPagina)

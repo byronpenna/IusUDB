@@ -1,4 +1,16 @@
 ﻿// eventos 
+    // change 
+            $(document).on("change", ".rdBusqueda", function () {
+                if ($(this).val() == 0) {
+                    $(".btnBusqueda").addClass("visibilitiHidden");
+                    $(".divBusquedaArchivos").removeClass("input-group");
+                    buscarEnCarpeta($(".txtBusqueda").val());
+                } else {
+                    $(".divBusquedaArchivos").addClass("input-group");
+                    $(".btnBusqueda").removeClass("visibilitiHidden");
+                    $(".folders .folder").removeClass("hidden");
+                }
+            })
     // click
             // cambiar nombre carpeta
             $(document).on("click", ".sinRedirect", function (e) {
@@ -33,7 +45,7 @@
                 if (charCode == 27) {
                     $(this).val("");
                 }
-                console.log(charCode);
+                //console.log(charCode);
                 if ($(".rdBusqueda:checked").val() == 0) {
                     buscarEnCarpeta($(this).val());
                 } else if ($(".rdBusqueda:checked").val() == 0) {
@@ -52,6 +64,8 @@
                 }
             })
 // generics
+    
+    
     function cambiarVistas(vistaVer) {
         var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
         var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");

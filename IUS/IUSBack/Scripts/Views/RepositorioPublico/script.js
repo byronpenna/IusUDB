@@ -23,7 +23,45 @@
             })
         //click 
             // Busqueda
-                
+                $(document).on("click", ".btnBusqueda", function () {
+                    var vistaCuadricula = $(".iconoVistaCuadricula").hasClass("activeVista");
+                    var vistaLista = $(".icoVistaLista").hasClass("activeVista");
+                    var target = "";
+                    if (!$(this).hasClass("btnBuscando")) {
+                        if (vistaCuadricula) {
+                            var seccion = $(".cuadriculaView");
+                            target = "cuadricula";
+                        } else {
+                            var seccion = $(".listView");
+                            target = "lista";
+                        }
+                        var frm = {
+                            txtBusqueda: $(".txtBusqueda").val()
+                        }
+                        btnBusqueda(frm, seccion, target);
+                        $(this).addClass("btnBuscando");
+                        $(this).empty().append("<i class='fa fa-times'></i>");
+                    } else {
+                        if (vistaCuadricula) {
+                            var frm = {
+                                idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                            }
+                            var seccion = $(".cuadriculaView");
+                            verCuadricula();
+                            $(this).removeClass("btnBuscando");
+                            $(this).empty().append("<i class='fa fa-search'></i>");
+                        } else if (vistaLista) {
+                            var frm = {
+                                idCarpeta: $(".txtHdIdCarpetaPadre").val()
+                            }
+                            var seccionModificar = $(".listView");
+                            verLista();
+                            $(this).removeClass("btnBuscando");
+                            $(this).empty().append("<i class='fa fa-search'></i>");
+                        }
+                    }
+
+                })
                 $(document).on("click", ".btnEditarArchivo", function (e) {
                     var seccion = $(this).parents(".folder");
                     var frm = {
@@ -52,11 +90,13 @@
                     e.preventDefault();
                     div = getDivNewFolder();
                     if ($(".cuadriculaView").hasClass("hidden")) {
-
+                        verCuadricula(function () {
+                            $(".cuadriculaView").prepend(div);
+                        })
                     } else {
-
+                        $(".cuadriculaView").prepend(div);
                     }
-                    $(".cuadriculaView").prepend(div);
+                    
                 })
             // eliminar carpeta 
                 $(document).on("click", ".icoEliminarArchivo", function (e) {

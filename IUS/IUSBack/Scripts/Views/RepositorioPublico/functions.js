@@ -1,4 +1,29 @@
 ﻿// genericas 
+    // busqueda
+        function btnBusqueda(frm, seccion, target) {
+            actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_searchArchivoPublicoBack", frm, function (data) {
+                console.log(data);
+                var div = '';
+                if (data.archivos !== undefined && data.archivos !== null) {
+                    $.each(data.archivos, function (i, archivo) {
+                        if (target == "lista") {
+                            div += getDivListaArchivos(archivo);
+                        } else if (target == "cuadricula") {
+                            div += getDivCuadriculaArchivo(archivo)
+                        }
+                    })
+                } else {
+                    div += "\
+                            <div class='divNofoundResults'>\
+                                No se han encontrado archivos\
+                            </div>\
+                            ";
+                }
+                seccion.empty().append(div);
+                $(".encabezadoFicheros").empty().append("Resultados de busqueda");
+
+            });
+        }
     // ver lista 
         function getDivListaArchivos(archivoPublico) {
             // definir tipo de archivo 
@@ -46,7 +71,7 @@
             }
             var seccionModificar = $(".listView");
             cambiarVistas("lista");
-            icoVistaLista(frm, seccionModificar);
+            icoVista(frm, seccionModificar,"lista");
         }
         
     // ver cuadricula 
@@ -63,7 +88,7 @@
                     </a>\
                 </div>\
                 <div class='cuadritoIcono cuadritoCarpeta'>\
-                    <img src='~/Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
+                    <img src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
                     <div class='detalleCarpeta'>\
                         <div class='normalMode sinRedirect'>\
                             <h3 class='ttlNombreCarpeta'>"+carpeta._nombre+"</h3>\
@@ -93,7 +118,7 @@
                         </a>\
                     </div>\
                     <div class='cuadritoIcono '>\
-                        <img src='~/Content/themes/iusback_theme/img/general/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
+                        <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
                         <div class='detalleCarpeta'>\
                             <div class='normalMode'>\
                                 <h3 class='ttlNombreCarpeta'>"+archivo._nombre+"</h3>\
@@ -113,11 +138,16 @@
             ";
             return div;
         }
-        function verCuadricula() {
+        function verCuadricula(callback) {
+            var frm = {
+                idCarpetaPublica: $(".txtHdIdCarpetaPadre").val()
+            }
+            var seccionModificar = $(".cuadriculaView");
             cambiarVistas("cuadricula");
+            icoVista(frm, seccionModificar, "cuadricula",callback);
         }
     // gnerales
-        function icoVistaLista(frm, seccion,op) {
+        function icoVista(frm, seccion,op,callback) {
             actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
                 console.log("la data devuelta por el servidor", data);
                 var div = "";
@@ -141,6 +171,9 @@
                         })
                     }
                     seccion.empty().append(div);
+                    if (callback !== undefined) {
+                        callback();
+                    }
                 }
             })
         }

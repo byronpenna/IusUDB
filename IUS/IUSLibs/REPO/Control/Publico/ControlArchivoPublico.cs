@@ -239,9 +239,60 @@ namespace IUSLibs.REPO.Control.Publico
                 }
                 
             #endregion
+            #region "Backend"
+                public List<ArchivoPublico> sp_repo_searchArchivoPublicoBack(string nombre,int idUsuarioEjecutor, int idPagina)
+                {
+                    List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;
+                    Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
+                    CarpetaPublica carpetaPublica;
+                    SPIUS sp = new SPIUS("sp_repo_searchArchivoPublicoBack");
+                    sp.agregarParametro("nombre", nombre);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                archivosPublicos = new List<ArchivoPublico>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+
+                                    tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                    tipoArchivo._icono = row["icono"].ToString();
+                                    extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                                    archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                                    if (row["id_carpetapublica_fk"] == DBNull.Value)
+                                    {
+                                        carpetaPublica = new CarpetaPublica();
+                                    }
+                                    else
+                                    {
+                                        carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
+                                    }
+                                    archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);
+                                    archivosPublicos.Add(archivo);
+                                }
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return archivosPublicos;
+                }
+            #endregion
         #endregion
-        #region "set"
-            #region "backend"
+                #region "set"
+
+                #region "backend"
                 public ArchivoPublico sp_repo_renameFile(ArchivoPublico archivoEditar, int idUsuarioEjecutor, int idPagina)
                 {
                     ArchivoPublico archivo = null;CarpetaPublica carpetaPublica = null;
