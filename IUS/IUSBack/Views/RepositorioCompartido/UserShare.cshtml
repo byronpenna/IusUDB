@@ -1,0 +1,97 @@
+﻿@using IUSLibs.SEC.Entidades
+@section tabs{
+    <ul>
+        <a href="@Url.Action("Index","Repositorio")">
+            <li>
+                Personales
+            </li>
+        </a>
+        <li class="tabActive">
+            Compartidos
+        </li>
+        <a href="@Url.Action("Index","RepositorioPublico")">
+            <li>
+                Publicos
+            </li>
+        </a>
+    </ul>
+}
+@section estilosPersonalizados{
+    <!-- Plugins -->
+    <!-- chosen -->
+    <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
+    <!-- Propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/media.css" />
+}
+@{
+    List<Usuario> usuarios = (List<Usuario>)ViewBag.usuariosCompartidos;
+}
+<div class="row marginNull rowHerramientas">
+    <div class="col-lg-4">
+
+        <label for="txtDireccion">Ruta</label>
+        <div class="input-group">
+            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="-1" />
+            <span class="input-group-addon spIrBuscar">Ir</span>
+        </div>
+
+    </div>
+    <div class="col-lg-2 seccionHerramientas herramientaUserSection">
+        <!-- Archivos propios o ajenos -->
+        <label>Archivos</label>
+        <div class="accionesDiv form-control inputBackModal">
+            <a href="@Url.Action("Index","RepositorioCompartido")" class="ico iconoUsuario icoUser " title="Personales">
+                <i class="fa fa-user"></i>
+            </a>
+            <a href="#" class="ico iconoUsuario icoUsers activeVista" title="Compartidos">
+                <i class="fa fa-users"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 herramientaVistaSection">
+        <label>Vistas</label>
+        <div class="accionesDiv form-control inputBackModal">
+            <a href="#" class="ico iconoVista iconoVistaCuadricula activeVista" title="Cuadricula">
+                <i class="fa fa-th-large"></i>
+            </a>
+            <a href="#" class="ico iconoVista icoVistaLista " title="Lista">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="col-lg-6">
+            <label>Busqueda</label>
+        </div>
+        <div class="row marginNull">
+            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
+            Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+        </div>
+        <div class="input-group divBusquedaArchivos">
+            <input class="form-control txtBusqueda inputBackModal" name="txtBusqueda" placeholder="Buscar en carpeta" />
+            <span class="input-group-addon btnBusqueda visibilitiHidden">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row marginNull">
+    <div class="divMensajesGenerales">
+
+    </div>
+    <div class="folders col-lg-8">
+        @if (usuarios != null && usuarios.Count > 0)
+        {
+            foreach (Usuario usuario in usuarios)
+            {
+                <div class='col-lg-2 folder divUsuario pointer'>
+                    <input type='hidden' class='txtHdIdUsuario' value='@usuario._idUsuario'/>
+                    <img src='@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")' />
+                    <h4 class='tituloCarpetaPublica'>@usuario._usuario</h4>
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -15,15 +15,15 @@
     // click
         // compartido 
             $(document).on("click", ".iconoUsuario", function (e) {
-                e.preventDefault();
-                var frm = {}; var seccion;
+                //e.preventDefault();
+                /*var frm = {}; var seccion;
                 if ($(this).hasClass("icoUsers")) {   
                     cambiarVistaUsuario("users")
                     getUsuariosArchivosCompartidos(frm);
                 } else if ($(this).hasClass("icoUser")) {
                     cambiarVistaUsuario("user")
                     $(".herramientaVistaSection .activeVista").click();
-                }
+                }*/
             })
             $(document).on("dblclick", ".divUsuario", function () {
 

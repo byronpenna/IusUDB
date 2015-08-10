@@ -256,6 +256,9 @@
                         <a href='#' class='icoDejarDeCompartir' title='Compartir'>\
                             <i class='fa fa-trash-o'></i>\
                         </a>\
+                        <a href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
+                            <i class='fa fa-download'></i>\
+                        </a>\
                     </div>\
                     <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
                     <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
@@ -286,7 +289,7 @@
     function divCarpetaUsuarioCompartido(frm, seccion) {
         var nombreUsuarioCarpeta = frm.nombreCarpeta;
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getFilesFromShareUserId", frm, function (data) {
-            
+            console.log("data con archivos compartidos", data);
             if (data.estado) {
                 $(".divUsuarioCarpeta").find(".hUsuarioCarpeta").empty().append(nombreUsuarioCarpeta);
                 $(".divUsuarioCarpeta").removeClass("hidden");

@@ -82,11 +82,13 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     Archivo archivo = this._model.sp_repo_getDownloadFile(id, usuarioSession._idUsuario, this._idPagina);
-                    string ruta = this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + "/"+usuarioSession._idUsuario+"/"+archivo._carpeta._idCarpeta+"/"+archivo._idArchivo+archivo._extension._extension+"";
-                    byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath(ruta));
+                    //string ruta = this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + "/"+usuarioSession._idUsuario+"/"+archivo._carpeta._idCarpeta+"/"+archivo._idArchivo+archivo._extension._extension+"";
+                    
+                    //byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath(ruta));
+                    string ruta = archivo._src;
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(ruta);
                     string fileName = archivo._nombre+archivo._extension._extension;
                     return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-
                 }
                 catch (ErroresIUS x)
                 {

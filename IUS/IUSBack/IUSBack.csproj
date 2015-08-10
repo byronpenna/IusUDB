@@ -609,6 +609,7 @@
     <Content Include="Views\Home\verificar.cshtml" />
     <Content Include="Views\RepositorioCompartido\Index.cshtml" />
     <Content Include="Views\Home\changePassword.cshtml" />
+    <Content Include="Views\RepositorioCompartido\UserShare.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

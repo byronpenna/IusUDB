@@ -26,10 +26,34 @@ namespace IUSBack.Controllers
         #endregion
 
         #region "acciones url"
-            /*public ActionResult userShare(int id=-1)
+            public ActionResult UserShare(int id=-1)
             {
-
-            }*/
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    ViewBag.titleModulo = "Repositorio Compartido";
+                    ViewBag.usuario = usuarioSession;// usuario actual y que mostrara nombre en la parte superior
+                    List<Usuario> usuarios = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.usuariosCompartidos = usuarios;
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View();
+            }
             public ActionResult Index(int id=-1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
