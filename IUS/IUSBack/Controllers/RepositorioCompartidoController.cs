@@ -26,6 +26,10 @@ namespace IUSBack.Controllers
         #endregion
 
         #region "acciones url"
+            /*public ActionResult userShare(int id=-1)
+            {
+
+            }*/
             public ActionResult Index(int id=-1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);

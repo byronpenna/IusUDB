@@ -65,11 +65,20 @@
                 }
             })
 // generics
-    
+    function getVistaActual() {
+        var vista = "";
+        if ($(".iconoVistaCuadricula").hasClass("activeVista")) {
+            vista = "cuadricula";
+        } else if ($(".icoVistaLista").hasClass("activeVista")) {
+            vista = "lista";
+        }
+        return vista;
+    }
     function cambiarVistas(vistaVer) {
         var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
         var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");
-        $(".activeVista").removeClass("activeVista");
+        //$(".activeVista").removeClass("activeVista");
+        $(".herramientaVistaSection .activeVista").removeClass("activeVista");
         switch (vistaVer) {
             case "cuadricula": {
                 lista.addClass("hidden");

@@ -8,11 +8,26 @@
                     idUserFile: $(this).find(".txtHdIdUsuario").val(),
                     nombreCarpeta: $(this).find(".tituloCarpetaPublica").text()
                 }
-                console.log(frm);
+                
                 var seccion = $(this).parents(".seccionCompartida");
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
     // click
+        // compartido 
+            $(document).on("click", ".iconoUsuario", function (e) {
+                e.preventDefault();
+                var frm = {}; var seccion;
+                if ($(this).hasClass("icoUsers")) {   
+                    cambiarVistaUsuario("users")
+                    getUsuariosArchivosCompartidos(frm);
+                } else if ($(this).hasClass("icoUser")) {
+                    cambiarVistaUsuario("user")
+                    $(".herramientaVistaSection .activeVista").click();
+                }
+            })
+            $(document).on("dblclick", ".divUsuario", function () {
+
+            })
         // busqueda 
             $(document).on("click", ".btnBusqueda", function () {
                 var vistaCuadricula = $(".iconoVistaCuadricula").hasClass("activeVista");
@@ -64,7 +79,7 @@
                     idArchivo: seccion.find(".txtHdIdArchivoCompartido").val()
                 }
                 var x = confirm("¿Esta seguro que desea dejar de compartir archivo?");
-                console.log("formulario a envar es", frm);
+                
                 if (x) {
                     icoDejarDeCompartir(frm, seccion);
                 }
@@ -72,7 +87,7 @@
             $(document).on("click", ".icoCompartidoBack", function () {
                 var frm = {};
                 actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
-                    console.log("Respuesta servidor", data);
+                    
                     if (data.estado) {
                         $(".divUsuarioCarpeta").addClass("hidden");
                         var div = "";
@@ -93,7 +108,7 @@
                     idUsuario: $(".cbUsuarios").val(),
                     nombreCarpeta: $(".cbUsuarios option:selected").text()
                 }
-                console.log(frm);
+                
                 if (frm.idUsuario != -1) {
                     if (frm.idArchivo != -1) {
                         btnShareArchivo(frm)

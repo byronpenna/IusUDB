@@ -1,7 +1,7 @@
 ﻿// generics 
     // vistas 
         function verCuadricula() {
-            console.log("vista cuadricula");
+            
             var seccionModificar = $(".cuadriculaView");
             cambiarVistas("cuadricula");
             var frm = {
@@ -19,7 +19,7 @@
         }
         function vista(frm, seccion, op,callback) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
-                console.log(data);
+                
                 var div = "";
                 if (data.carpetas !== null) {
                     $.each(data.carpetas, function (i, folder) {
@@ -152,7 +152,7 @@
     // ***************    
             function btnBusqueda(frm, seccion, target) {
                 actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
-                    console.log(data);
+                    
                     if (data.estado) {
                         var div = "";
                         if (data.archivos !== undefined && data.archivos !== null) {
@@ -177,35 +177,107 @@
                     }
                 })
             }
-    function getDivArchivosCompartidos(archivoCompartido) {
-        var div = "\
-            <div class='divCarpetaPublica col-lg-6'>\
-                <div class='row marginNull'>\
-                    <a href='#' class='icoDejarDeCompartir' title='Compartir'>\
-                        <i class='fa fa-trash-o'></i>\
-                    </a>\
+    // compartido 
+        function cambiarVistaUsuario(vista) {
+            
+            var pestaUser = $(".icoUser"), pestaUsers = $(".icoUsers");
+            $(".herramientaUserSection .activeVista").removeClass("activeVista");
+            switch (vista) {
+                case "user": {
+                    pestaUser.addClass("activeVista");
+                    break;
+                }
+                case "users": {
+                    pestaUsers.addClass("activeVista");
+                    break;
+                }
+            }
+        }
+        function getUsuariosArchivosCompartidos(frm) {
+            var vistaActual = getVistaActual();
+            var seccion;
+            
+            switch (vistaActual) {
+                case "cuadricula": {
+                    seccion = $(".cuadriculaView");
+                    break;
+                }
+                case "lista": {
+                    seccion = $(".listView");
+                    break;
+                }
+            }
+            actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
+                console.log(data);
+                var div = "";
+                if (data.usuarios !== null) {
+                    $.each(data.usuarios, function (i, usuario) {
+                        if (vistaActual == "cuadricula") {
+                            div += getDivUsuariosPrincipal(usuario);
+                        } else if(vistaActual == "lista"){
+                            div += getDivUsuariosPrincipalLista(usuario);
+                        }
+                    })
+                }
+                seccion.empty().append(div);
+            })
+        }
+        // lista 
+            function getDivUsuariosPrincipal(usuario) {
+                var div = "\
+                    <div class='col-lg-2 folder divUsuario pointer'>\
+                        <input type='hidden' class='txtHdIdUsuario' value='" + usuario._idUsuario + "'/>\
+                        <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/profle.png' />\
+                        <h4 class='tituloCarpetaPublica'>" + usuario._usuario + "</h4>\
+                    </div>\
+                ";
+                return div;
+            }
+            function getDivUsuariosPrincipalLista(usuario) {
+                var div = "\
+                    <div class='row folderDetalles'>\
+                        <input type='hidden' class='txtHdIdArchivo' value='" + usuario._idUsuario + "'>\
+                        <div class='col-lg-6'>\
+                            <div class='normalMode inline'>\
+                                <span class='spanNombreCarpeta sinRedirect'>" + usuario._usuario + "</span>\
+                            </div>\
+                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>\
+                        </div>\
+                        <div class='col-lg-3'>Tipo</div>\
+                        <div class='col-lg-3'>Persona</div>\
+                    </div>\
+                ";
+                return div;
+            }
+        function getDivArchivosCompartidos(archivoCompartido) {
+            var div = "\
+                <div class='divCarpetaPublica col-lg-6'>\
+                    <div class='row marginNull'>\
+                        <a href='#' class='icoDejarDeCompartir' title='Compartir'>\
+                            <i class='fa fa-trash-o'></i>\
+                        </a>\
+                    </div>\
+                    <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
+                    <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
+                    <h4 class='tituloCarpetaPublica'>" + archivoCompartido._archivo._nombre + "</h4>\
                 </div>\
-                <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
-                <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
-                <h4 class='tituloCarpetaPublica'>" + archivoCompartido._archivo._nombre + "</h4>\
-            </div>\
-        ";
-        return div;
-    }
-    function getDivUsuarios(usuario) {
-        var div = "\
-            <div class='divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6'>\
-                <input type='hidden' class='txtHdIdUsuario' value='"+usuario._idUsuario+"'/>\
-                <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/profle.png' />\
-                <h4 class='tituloCarpetaPublica'>"+usuario._usuario+"</h4>\
-            </div>\
-        ";
-        return div;
-    }
+            ";
+            return div;
+        }
+        function getDivUsuarios(usuario) {
+            var div = "\
+                <div class='divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6'>\
+                    <input type='hidden' class='txtHdIdUsuario' value='"+usuario._idUsuario+"'/>\
+                    <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/profle.png' />\
+                    <h4 class='tituloCarpetaPublica'>"+usuario._usuario+"</h4>\
+                </div>\
+            ";
+            return div;
+        }
 // scripts 
     function icoDejarDeCompartir(frm,seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_removeShareFile", frm, function (data) {
-            console.log(data);
+            
             if (data.estado) {
                 seccion.remove();
             }
@@ -214,7 +286,7 @@
     function divCarpetaUsuarioCompartido(frm, seccion) {
         var nombreUsuarioCarpeta = frm.nombreCarpeta;
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getFilesFromShareUserId", frm, function (data) {
-            console.log("Respuesta de servidor",data);
+            
             if (data.estado) {
                 $(".divUsuarioCarpeta").find(".hUsuarioCarpeta").empty().append(nombreUsuarioCarpeta);
                 $(".divUsuarioCarpeta").removeClass("hidden");
@@ -239,10 +311,10 @@
     }
     function btnShareArchivo(frm) {
         var form = frm;
-        console.log(" ;) ", form);
+        
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_compartirArchivo", frm, function (data) {
-            console.log(data);
-            //console.log("Frm es D: ",form);
+            
+            
             if (data.estado) {
                 var frm = {
                     idUserFile: form.idUsuario,
@@ -258,7 +330,7 @@
     }
     function spIrBuscar(frm) {
         actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
-            console.log(data);
+            
             if (data.estado) {
                 window.location = RAIZ + "RepositorioCompartido/index/" + data.carpeta._idCarpeta;
             } else {
