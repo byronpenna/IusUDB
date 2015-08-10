@@ -47,7 +47,8 @@
     function actualizar(trPersona) {
         //console.log("actualizaste");
         //frm = serializeToJson(trPersona.find("input").serializeArray());
-        frm = serializeSection(trPersona);
+        var frm = serializeSection(trPersona);
+        console.log("formulario a enviar", frm);
         var val = validacionIngreso(frm);
         console.log(val);
         if (val.estado) {

@@ -11,15 +11,28 @@
             });
     // eventos 
         // keydown
-            $(document).on("keydown", ".inputFormulario", function (e) {
-                console.log(e.which);
+            $(document).on("keydown", ".txtEdit", function (e) {
+                console.log("entro");
+                var tr = $(this).parents(tr);
+                
                 switch(e.which) {
                     case 13: {
-                        $(".btnActualizar ").click();
+                        tr.find(".btnActualizar").click();
                         break;
                     }
                 }
             })
+            $(document).on("keydown", ".inputFormulario", function (e) {
+                var tr = $(this).parents(tr);
+                switch (e.which) {
+                    case 13: {
+                        tr.find(".btnAgregarPersona").click();
+                    }
+                }
+
+            })
+
+            
         // click
 
             // eliminar
