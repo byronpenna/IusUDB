@@ -102,14 +102,15 @@ namespace IUSLibs.GENERALS
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow rowError = tb[0].Rows[0];
-                                bool mostrar = false;
+                                /*bool mostrar = false;
                                 if (tb[0].Columns.Contains("mostrar"))
                                 {
                                     mostrar = (bool)rowError["mostrar"];
                                 }
                                 ErroresIUS errores = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorSql"].ToString());
-                                errores._mostrar = mostrar;
-                                throw errores;
+                                errores._mostrar = mostrar;*/
+                                ErroresIUS x = this.getErrorFromExecProcedure(rowError);
+                                throw x;
                             }
                             return false;
                         }

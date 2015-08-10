@@ -268,7 +268,7 @@ namespace IUSBack.Controllers
                             }
                             catch (ErroresIUS x)
                             {
-                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql,x._mostrar);
                                 respuesta = this.errorTryControlador(1, error);
                             }
                             catch (Exception x)

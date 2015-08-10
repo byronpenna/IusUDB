@@ -17,6 +17,7 @@
     //var RAIZ = "http://admacad.udb.edu.sv/IUSback/";
     //var RAIZ = "http://168.243.3.62/iusback/";
     var RAIZ = "http://localhost:55869/";
+    var SUCCESS_CLASS = "successMessage", FAIL_CLASS = "failMessage";
     //console.log("raiz es: ", RAIZ);
 // plugins 
     // chosen
@@ -151,9 +152,9 @@
     function printMessage(div, txt, success) {
         var clase = "";
         if (success) {
-            clase = "successMessage";
+            clase = SUCCESS_CLASS;
         } else {
-            clase = "failMessage";
+            clase = FAIL_CLASS;
         }
         div.empty().append(getSpanMessage(clase, txt));//"<span class='" + clase + "'>" + txt + "</span>"
         div.fadeIn("slow");
@@ -163,6 +164,7 @@
 
         }, 2000);
     }
+    
     function objArrIsEmpty(obj) {
         var empty = true;
         $.each(obj, function (i, val) {
@@ -324,6 +326,30 @@
 // control de errores 
     function getSpanMessageError(txt) {
         return "<span class='spanMessage1 failMessage'>" + txt + "</span>";
+    }
+    function getSpanSucOrFailMessage(txt,success) {
+        var span = "";
+        if (success !== undefined && success) {
+            span = "<span class='"+SUCCESS_CLASS+"'>" + txt + "</span>";
+        } else {
+            span = "<span class='" + FAIL_CLASS + "'>" + txt + "</span>";
+        }
+        return span;
+    }
+    function printAllMessageWithOutTable(divResultado,campos) {
+        $.each(campos, function (i, val) {
+            errores = "";
+            //var divResultado = $(".tableUsuarios thead").find("." + i).parents("td").find(".divResultado")
+            if (val.length > 0) {
+                //console.log("entro");
+                divResultado.removeClass("hidden");
+                $.each(val, function (i, val) {
+                    errores += getSpanSucOrFailMessage(val);
+                })
+                printMessage(divResultado, errores, false);
+                //divResultado.empty().append(errores);
+            }
+        })
     }
 // serialize
     function serializeToJson(a) {

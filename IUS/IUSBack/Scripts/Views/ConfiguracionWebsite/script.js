@@ -53,6 +53,13 @@
                 frmSection = $(this).parents(".agregarValorSection");
                 frm = serializeSection(frmSection);
                 console.log("formulario a agregar", frm);
-                btnAddValor(frm);
+                var seccion = $(".divMensajesAdd");
+                var val = validacionAddValor(frm);
+                if (val.estado) {
+                    btnAddValor(frm,seccion);
+                } else {
+                    printAllMessageWithOutTable(seccion, val.campos);
+                }
+                
             })
 });

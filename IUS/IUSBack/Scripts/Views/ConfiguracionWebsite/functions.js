@@ -103,7 +103,19 @@
             }
         });
     }
-    function btnAddValor(frm) {
+    function validacionAddValor(frm) {
+        // validacion 
+        var val = new Object();
+        val.campos = {
+            txtValores: new Array()
+        }
+        if (frm.txtValores == "") {
+            val.campos.txtValores.push("El valor no puede ser vacio");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
+    function btnAddValor(frm,seccion) {
         actualizarCatalogo(RAIZ + "/ConfiguracionWebsite/sp_adminfe_agregarValoresConfig", frm, function (data) {
             console.log("la respuesta es: ", data);
             if (data.estado) {
@@ -116,13 +128,18 @@
                     $(".txtValores").val("");
                     tbody.empty().append(newTr);
                 }
+                printMessage(seccion, "Valor agregado correctamente", true);
             } else {
                 //console.log("obj error es: ", data.error);
                 //alert("ocurrio un error");
+                /*
                 if (data.error !== undefined) {
                     alert(data.error.Message);
                 } else {
                     alert("Ocurrio un error");
+                }*/
+                if (data.error._mostrar) {
+                    printMessage(seccion, data.error.Message, false);
                 }
             }
         });

@@ -83,6 +83,9 @@
                         <button type="button" class="btn btnAddValor" @permiso.stringCrear>Agregar</button>
                     </div>
                 </div>
+                <div class="row marginNull divMensajesAdd">
+                    
+                </div>
                 <table class="table tableValores">
                     <thead>
                         <tr>
@@ -133,7 +136,7 @@
             <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data">
                 <h2>Subir una imagen</h2>
                 <div class="col-lg-6">
-                    <input class="flImagen" required type="file" id="file1" name="file1" /><!--multiple="multiple" -->
+                    <input class="flImagen" required type="file" id="file1" name="file1" accept="image/*" /><!--multiple="multiple" -->
                     <button type="submit" class="btn btn-primary">Subir</button>
                 </div>
             </form>
