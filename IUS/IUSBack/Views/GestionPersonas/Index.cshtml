@@ -21,8 +21,11 @@
     Permiso permisos = (Permiso)ViewBag.permiso;
 }
 <div class="marginNull cuerpoModulo">
-    <div class="row marginNull divResultado hidden">
-        <span class="spanMessage1 successMessage">Agregado exitosamente </span>
+    <div class="row marginNull divResultadoGeneral">
+        <div class="divResultado">
+
+        </div>
+        
     </div>
     <table class="table table-hover tablePersonas tablaUniversal">
         <thead>
@@ -80,7 +83,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control txtEdit" />
+                            <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control txtEdit soloLetras" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
@@ -89,7 +92,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control txtEdit" />
+                            <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control txtEdit soloLetras" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>

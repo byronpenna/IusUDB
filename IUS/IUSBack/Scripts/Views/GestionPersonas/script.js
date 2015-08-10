@@ -14,7 +14,6 @@
             $(document).on("keydown", ".txtEdit", function (e) {
                 console.log("entro");
                 var tr = $(this).parents(tr);
-                
                 switch(e.which) {
                     case 13: {
                         tr.find(".btnActualizar").click();

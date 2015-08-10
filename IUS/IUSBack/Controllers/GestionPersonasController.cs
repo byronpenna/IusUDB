@@ -136,7 +136,7 @@ namespace IUSBack.Controllers
                             /*respuesta.Add("estado", false);
                             respuesta.Add("errorType", 1);
                             respuesta.Add("error", x);*/
-                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql,x._mostrar);
                             respuesta = this.errorTryControlador(1, error);
                         }
                         catch (Exception x)

@@ -12,19 +12,19 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtNombrePersona' class='txtNombrePersona form-control'  />\
+                        <input type='text' name='txtNombrePersona' class='txtNombrePersona form-control txtEdit soloLetras'  />\
                     </div>\
                     <div class='normalMode tdNombre'>"+persona._nombres+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtApellidoPersona' class='txtApellidoPersona form-control' />\
+                        <input type='text' name='txtApellidoPersona' class='txtApellidoPersona form-control txtEdit soloLetras' />\
                     </div>\
                     <div class='normalMode tdApellido'>"+persona._apellidos+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='dtFechaNacimiento' class='dtFechaNacimiento form-control' />\
+                        <input type='text' name='dtFechaNacimiento' class='dtFechaNacimiento form-control txtEdit' />\
                     </div>\
                     <div class='normalMode tdFechaNac'>" + persona.getFechaNac + "</div>\
                 </td>\
@@ -156,7 +156,7 @@
         });
     }
     function btnAgregarPersona(tr) {
-        $(".divResultado").addClass("hidden");
+        $(".divResultadoGeneral .divResultado").hide();
         frm = serializeSection(tr);
         var val = validacionIngreso(frm);
         console.log(frm);
@@ -175,11 +175,15 @@
                     $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
                     //updateAllDataTable($(".tablePersona"));   
                 } else {
-                    if (data.error !== undefined) {
+                    if (data.error._mostrar) {
+                        console.log("a imprimir error");
+                        printMessage($(".divResultadoGeneral .divResultado"), data.error.Message, false)
+                    }
+                    /*if (data.error !== undefined) {
                         alert(data.error.Message);
                     } else {
                         alert(data.error.Message);
-                    }
+                    }*/
                 }
             });
             console.log("Agregaras");
