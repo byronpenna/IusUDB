@@ -118,17 +118,19 @@
         <div class="cuadriculaView">
             @if (carpetas != null && carpetas.Count > 0)
             {
+                string rutaWebsite = "";
                 foreach (CarpetaPublica carpeta in carpetas)
                 {
+                    rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1";
                     <div class="col-lg-2 folder">
-
                         <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpetaPublica" />
                         <div class="row divHerramientasIndividual">
-                            <a href="#" class="ico icoDownload" title="Descargar">
-                                <i class="fa fa-download"></i>
-                            </a>
+                            
                             <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
                                 <i class="fa fa-trash-o"></i>
+                            </a>
+                            <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
+                                <i class="fa fa-globe"></i>
                             </a>
                         </div>
                         <div class="cuadritoIcono cuadritoCarpeta">
@@ -154,13 +156,18 @@
             }
             @if (archivos != null && archivos.Count > 0)
             {
+                string rutaWebsite = "";
                 foreach (ArchivoPublico archivo in archivos)
                 {
+                    rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + archivo._carpetaPublica._idCarpetaPublica + "/-1";
                     <div class="col-lg-2 folder">
                         <input type="hidden" class="txtHdIdArchivoPublico" value="@archivo._idArchivoPublico" />
                         <div class="row divHerramientasIndividual">
                             <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
                                 <i class="fa fa-trash-o"></i>
+                            </a>
+                            <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
+                                <i class="fa fa-globe"></i>
                             </a>
                         </div>
                         <div class="cuadritoIcono ">

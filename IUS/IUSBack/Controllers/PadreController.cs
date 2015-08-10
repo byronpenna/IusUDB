@@ -24,6 +24,7 @@ namespace IUSBack.Controllers
                 Eventos = 9, Noticias = 10, Repositorio = 11, Instituciones = 12,
                 RepositorioPublico = 13, Home = 14
             }
+            public string URL_IUS = "http://localhost:7196/";
             protected JavaScriptSerializer _jss;
             protected JavaScriptSerializer _jssmax;
             private PadreModel _model;

@@ -22,11 +22,20 @@
                 }
             })
     // keyup 
-            $(document).on("keydown", ".txtEditUsuario", function (e) {
+            $(document).on("keydown", ".txtUsuarioEdit", function (e) {
                 switch (e.which) {
                     case 13: {
                         $(".btnAgregarUsuario").click();
                         break;
+                    }
+                }
+            })
+
+            $(document).on("keydown", ".txtEditUsuario", function (e) {
+                var tr = $(this).parents("tr");
+                switch (e.which) {
+                    case 13: {
+                        tr.find(".btnActualizar").click();
                     }
                 }
             })

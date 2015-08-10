@@ -57,6 +57,7 @@ namespace IUSBack.Controllers
                     ViewBag.archivos = archivos["archivos"];
                     ViewBag.carpetaPadre = carpetaPadre;
                     ViewBag.idCarpetaActual = id;
+                    ViewBag.URL_IUS = this.URL_IUS;
                 }
                 catch (ErroresIUS x)
                 {
