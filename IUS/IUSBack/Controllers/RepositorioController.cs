@@ -292,7 +292,16 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            Carpeta carpeta = this._model.sp_repo_byRuta(frm["txtRuta"].ToString(), usuarioSession._idUsuario, this._idPagina);
+                            string ruta =frm["txtRuta"].ToString();
+                            Carpeta carpeta;
+                            if (ruta != "/")
+                            {
+                                carpeta = this._model.sp_repo_byRuta(ruta, usuarioSession._idUsuario, this._idPagina);
+                            }
+                            else
+                            {
+                                carpeta = new Carpeta(-1);
+                            }
                             if (carpeta == null)
                             {
                                 ErroresIUS x = new ErroresIUS("Carpeta no encontrada", ErroresIUS.tipoError.generico, 0, "", true);

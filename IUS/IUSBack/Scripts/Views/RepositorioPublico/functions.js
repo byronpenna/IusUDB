@@ -75,7 +75,11 @@
         }
         
     // ver cuadricula 
-        function getDivCuadriculaCarpeta(carpeta) {
+        function getDivCuadriculaCarpeta(carpeta,base) {
+            var rutaWebsite = '#';
+            if(base !== undefined){
+                rutaWebsite = base + "Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1";
+            }
             var div = "\
             <div class='col-lg-2 folder'>\
                 <input type='hidden' class='txtHdIdCarpeta' value='"+carpeta._idCarpetaPublica+"' />\
@@ -85,6 +89,9 @@
                     </a>\
                     <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
                         <i class='fa fa-trash-o'></i>\
+                    </a>\
+                    <a href='"+rutaWebsite+"' target='_blank' class='ico' title='Ver website'>\
+                        xx<i class='fa fa-globe'></i>\
                     </a>\
                 </div>\
                 <div class='cuadritoIcono cuadritoCarpeta'>\
@@ -108,13 +115,20 @@
             ";
             return div;
         }    
-        function getDivCuadriculaArchivo(archivo) {
+        function getDivCuadriculaArchivo(archivo, base) {
+            var rutaWebsite = "#";
+            if (base !== undefined) {
+                rutaWebsite = base + "Repositorio/AllFiles/" + archivo._carpetaPublica._idCarpetaPublica + "/-1";
+            }
             var div = "\
                 <div class='col-lg-2 folder'>\
                     <input type='hidden' class='txtHdIdArchivoPublico' value='"+archivo._idArchivoPublico+"' />\
                     <div class='row divHerramientasIndividual'>\
                         <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
                             <i class='fa fa-trash-o'></i>\
+                        </a>\
+                        <a href='"+rutaWebsite+"' target='_blank' class='ico' title='Ver website'>\
+                            <i class='fa fa-globe'></i>\
                         </a>\
                     </div>\
                     <div class='cuadritoIcono '>\
@@ -149,7 +163,7 @@
     // gnerales
         function icoVista(frm, seccion,op,callback) {
             actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-                console.log("la data devuelta por el servidor", data);
+                console.log("la data devuelta por el servidor icoVista", data);
                 var div = "";
                 if (data.estado) {
                     if (data.carpetas !== undefined && data.carpetas !== null) {
@@ -157,7 +171,7 @@
                             if (op == "lista") {
                                 div += getDivListaCarpeta(carpeta);
                             } else if (op == "cuadricula") {
-                                div += getDivCuadriculaCarpeta(carpeta);
+                                div += getDivCuadriculaCarpeta(carpeta,base);
                             }
                         })
                     }
@@ -166,7 +180,7 @@
                             if (op == "lista") {
                                 div += getDivListaArchivos(archivo);
                             } else if (op == "cuadricula") {
-                                div += getDivCuadriculaArchivo(archivo)
+                                div += getDivCuadriculaArchivo(archivo,data.base)
                             }
                         })
                     }

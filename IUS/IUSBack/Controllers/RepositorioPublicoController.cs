@@ -82,7 +82,17 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            CarpetaPublica carpeta = this._model.sp_repo_getPublicoByRuta(frm["txtRuta"].ToString(), usuarioSession._idUsuario, this._idPagina);
+                            string ruta = frm["txtRuta"].ToString();
+                            CarpetaPublica carpeta;
+                            if (ruta != "/")
+                            {
+                                carpeta = this._model.sp_repo_getPublicoByRuta(ruta, usuarioSession._idUsuario, this._idPagina);
+                            }
+                            else
+                            {
+                                carpeta = new CarpetaPublica(-1);
+                            }
+                            
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("carpetaPublica", carpeta);
@@ -198,6 +208,7 @@ namespace IUSBack.Controllers
                              respuesta.Add("archivos", archivos["archivos"]);
                              respuesta.Add("idCarpetaPadre", idCarpetaPadre);
                              respuesta.Add("carpetaPadre", carpetaPadre);
+                             respuesta.Add("base", this.URL_IUS);
                          }
                          else
                          {
