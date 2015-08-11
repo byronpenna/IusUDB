@@ -237,22 +237,34 @@
         <h3 class="text-center">Publico</h3>
         <h4 class="nombreFileCompartir"></h4>
         <div class="row divCompartirOpciones marginNull" >
-            <div class="col-lg-8">
+            <!--<div class="col-lg-8">
                 <input placeholder="Nombre publico" name="txtNombreFileCompartir" class="txtNombreFileCompartir form-control" />
             </div>
             <div class="col-lg-4">
                 <button class="btn btnCompartir">Compartir aqui</button>
+            </div>-->
+            <div class="input-group">
+                <input placeholder="Nombre publico" name="txtNombreFileCompartir" class="txtNombreFileCompartir form-control" />
+                <span class=" input-group-addon btn btnCompartir">Compartir aqui</span>
             </div>
         </div>
+        <hr />
         <div class="row divCarpetasOpciones  marginNull">
             <input type="hidden" name="txtHdCarpetaPadrePublica" class="txtHdCarpetaPadrePublica" value="-1" />
             
             <div class="row marginNull divControlesPublicos">
-                <div class="col-lg-1">
+                <div class="col-lg-1 navPublicoBack">
                     <i class="fa fa-chevron-left icoPublicoBack pointer"></i>
                 </div>
-                <div class="col-lg-10 divMensajeRepoPublico" style="display:none;">
+                <div class="col-lg-10">
+                    <div class="input-group">
+                        <input class="form-control txtRutaPublica" value="/" />
+                        <span class="input-group-addon">Ir</span>
+                    </div>
+                    
+                    <div class="row marginNull divMensajeRepoPublico">
 
+                    </div>
                 </div>
             </div>
             

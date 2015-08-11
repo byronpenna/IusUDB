@@ -1,5 +1,13 @@
-﻿
-
+﻿/*Nuevo ruta*/
+.navPublicoBack {
+    height: 35px;
+    display:table;
+}
+.icoPublicoBack{
+    vertical-align:middle;
+    display:table-cell;
+}
+/************/
 .divControlesPublicos{
     margin-top:4%;
 }

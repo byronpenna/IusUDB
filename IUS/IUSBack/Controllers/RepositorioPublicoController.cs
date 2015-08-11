@@ -150,6 +150,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("estado", true);
                             respuesta.Add("carpetas", archivos["carpetas"]);
                             respuesta.Add("idCarpetaPadre", archivos["idCarpetaPadre"]);
+                            respuesta.Add("carpetaPadre", archivos["carpetaPadre"]);
                         }
                         else
                         {
@@ -179,19 +180,24 @@ namespace IUSBack.Controllers
                          {
                              int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPublica"]);
                              Dictionary<object, object> archivos ;
+                             CarpetaPublica carpetaPadre;
                              if (idCarpetaPadre != -1)
                              {
                                  archivos = this._model.sp_repo_entrarCarpetaPublica(idCarpetaPadre, usuarioSession._idUsuario, this._idPagina);
+                                 carpetaPadre = (CarpetaPublica)archivos["carpetaPadre"];
                              }
                              else
                              {
                                  archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
+                                 carpetaPadre = new CarpetaPublica(-1);
+                                 carpetaPadre._strRuta = "/";
                              }
                              respuesta = new Dictionary<object, object>();
                              respuesta.Add("estado", true);
                              respuesta.Add("carpetas", archivos["carpetas"]);
                              respuesta.Add("archivos", archivos["archivos"]);
                              respuesta.Add("idCarpetaPadre", idCarpetaPadre);
+                             respuesta.Add("carpetaPadre", carpetaPadre);
                          }
                          else
                          {

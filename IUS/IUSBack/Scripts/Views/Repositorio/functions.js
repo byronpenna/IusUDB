@@ -394,7 +394,7 @@
             }
             function icoPublicoBack(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_atrasCarpetaPublica", frm, function (data) {
-                    
+                    console.log("Data al dar atras", data);
                     if (data.estado) {
                         div = "";
                         if (data.carpetas !== null) {
@@ -404,7 +404,7 @@
                             $(".txtHdCarpetaPadrePublica").val(data.idCarpetaPadre);
                         }
                         $(".divCarpetasPublicasCompartir").empty().append(div);
-
+                        $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
                     }
                 })
             }
@@ -429,6 +429,7 @@
                         }
                         $(".divCarpetasPublicasCompartir").empty().append(div);
                         $(".divCarpetasPublicasCompartir").append(divArchivo);
+                        $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
 
                     }
                 })

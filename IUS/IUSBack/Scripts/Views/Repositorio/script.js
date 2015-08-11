@@ -165,7 +165,6 @@
             // publico 
                 $(document).on("click", ".icoPublicoBack", function (e) {
                     frm = { idCarpetaPublica: $(".txtHdCarpetaPadrePublica").val() }
-                    
                     icoPublicoBack(frm);
                 })
                 $(document).on("dblclick", ".divCarpetaPublica", function (e) {

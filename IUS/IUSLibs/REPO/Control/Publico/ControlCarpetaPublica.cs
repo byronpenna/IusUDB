@@ -199,7 +199,7 @@ namespace IUSLibs.REPO.Control.Publico
                     public Dictionary<object, object> sp_repo_atrasCarpetaPublica(int idCarpeta, int idUsuarioEjecutor, int idPagina)
                     {
                         Dictionary<object, object> retorno = new Dictionary<object, object>();
-                        int idCarpetaPadre;
+                        int idCarpetaPadre; CarpetaPublica carpetaPadreTotal;
                         List<CarpetaPublica> carpetas = null; CarpetaPublica carpeta;
                         CarpetaPublica carpetaPadre;
                         SPIUS sp = new SPIUS("sp_repo_atrasCarpetaPublica");
@@ -212,6 +212,8 @@ namespace IUSLibs.REPO.Control.Publico
                             if (this.resultadoCorrectoGet(tb))
                             {
                                 idCarpetaPadre = (int)tb[0].Rows[0]["idCarpetaPadre"];
+                                carpetaPadreTotal = new CarpetaPublica(idCarpetaPadre);
+                                carpetaPadreTotal._strRuta = tb[0].Rows[0]["strRuta"].ToString();
                                 if (tb[1].Rows.Count > 0)
                                 {
                                     carpetas = new List<CarpetaPublica>();
@@ -246,6 +248,7 @@ namespace IUSLibs.REPO.Control.Publico
                             throw x;
                         }
                         retorno.Add("idCarpetaPadre", idCarpetaPadre);
+                        retorno.Add("carpetaPadre", carpetaPadreTotal);
                         retorno.Add("carpetas", carpetas);
                         return retorno;
                     }
