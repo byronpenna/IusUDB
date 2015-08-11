@@ -550,7 +550,7 @@
         // guardar carpeta
         function btnGuardarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
-                
+                console.log("Data de carpeta agregada", data);
                 if (data.estado) {
                     seccion.find(".cuadritoCarpeta").attr("id", 1);
                     seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
@@ -561,6 +561,8 @@
                     seccion.find(".saveMode").remove();
                     seccion.find(".normalMode").removeClass("hidden");
                     
+                    seccion.find(".divHerramientasIndividual").fadeIn("slow");
+
                     x = seccion.find(".cuadritoIconoAdd");
                     x.removeClass("cuadritoIconoAdd");
                     x.addClass("cuadritoIcono");

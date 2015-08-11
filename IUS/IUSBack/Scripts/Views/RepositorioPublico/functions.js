@@ -218,7 +218,7 @@
     }
     function btnGuardarCarpeta(frm, seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_insertCarpetaPublica", frm, function (data) {
-            console.log(data);
+            console.log("data de carpeta INGRESADA",data);
             if (data.estado) {
                 seccion.find(".cuadritoCarpeta").attr("id", 1);
                 seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
@@ -228,7 +228,12 @@
 
                 seccion.find(".saveMode").remove();
                 seccion.find(".normalMode").removeClass("hidden");
-
+                //
+                seccion.find(".icoWebsiteFolder").attr("href", data.base + "Repositorio/AllFiles/" + data.carpeta._idCarpetaPublica + "/-1");
+                seccion.find(".icoWebsiteFolder").attr("target", "_blank");
+                seccion.find(".divHerramientasIndividual").fadeIn("slow");
+                //
+                
                 x = seccion.find(".cuadritoIconoAdd");
                 x.removeClass("cuadritoIconoAdd");
                 x.addClass("cuadritoIcono");

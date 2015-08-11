@@ -107,14 +107,15 @@
         }
     }
     function getDivNewFolder() {
-            /*<a href='#' class='ico' title='Descargar'>\
-                                <i class='fa fa-download'></i>\
-                            </a>\*/
+            /**/
         div = "<div class='col-lg-2 folder '>\
                     <input type='hidden' class='txtHdIdCarpeta' value=''/>\
-                    <div class='row divHerramientasIndividual'>\
+                    <div class='row divHerramientasIndividual' style='display:none'>\
                         <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
                             <i class='fa fa-trash-o'></i>\
+                        </a>\
+                        <a href='#' class='ico icoWebsiteFolder' title='Ver website'>\
+                            <i class='fa fa-globe'></i>\
                         </a>\
                     </div>\
                     <div class='cuadritoIconoAdd cuadritoCarpeta' id='0'>\

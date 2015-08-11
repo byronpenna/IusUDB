@@ -1,4 +1,7 @@
-﻿/*Nuevo ruta*/
+﻿.icoWebsiteFolder{
+    display:none;
+}
+/*Nuevo ruta*/
 .navPublicoBack {
     height: 35px;
     display:table;

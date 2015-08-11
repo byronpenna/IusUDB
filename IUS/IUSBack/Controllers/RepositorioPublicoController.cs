@@ -417,6 +417,7 @@ namespace IUSBack.Controllers
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("carpeta",carpetaIngresada);
+                            respuesta.Add("base", this.URL_IUS);
                         }
                         else
                         {
