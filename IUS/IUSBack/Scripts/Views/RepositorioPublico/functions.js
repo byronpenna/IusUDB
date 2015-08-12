@@ -237,7 +237,7 @@
                 seccion.find(".cuadritoCarpeta").attr("id", 1);
                 seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
 
-                seccion.find(".txtHdIdCarpeta").val(data.carpeta.idCarpetaPublica);
+                seccion.find(".txtHdIdCarpeta").val(data.carpeta._idCarpetaPublica);
                 seccion.find(".ttlNombreCarpeta").empty().append(data.carpeta._nombre);
 
                 seccion.find(".saveMode").remove();
