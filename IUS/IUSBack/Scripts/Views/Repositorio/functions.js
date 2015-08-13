@@ -567,7 +567,14 @@
                     x.removeClass("cuadritoIconoAdd");
                     x.addClass("cuadritoIcono");
                 } else {
-                    alert("Ocurrio un error intentando agregar carpeta");
+                    //alert("Ocurrio un error intentando agregar carpeta");
+                    var mjs = "";
+                    if (data.error._mostrar) {
+                        mjs = data.error.Message;
+                    } else {
+                        mjs = "Error no controlado";
+                    }
+                    printMessage($(".mensajeNewFolder"), mjs, false);
                 }
             });
         }
