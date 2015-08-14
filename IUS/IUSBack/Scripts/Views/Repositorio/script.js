@@ -59,9 +59,11 @@
                         var folder = $(this).parents(".folder");
                         if ($(this).hasClass("txtNombreArchivo"))
                         {
-                            editarArchivo(folder);
+                            //editarArchivo(folder);
+                            folder.find(".btnEditarArchivo").click();
                         } else {
-                            editarFolder(folder);
+                            //editarFolder(folder);
+                            folder.find(".btnEditarCarpeta").click();
                         }
                         break;
                     }
@@ -351,8 +353,12 @@
                             txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
                             nombre: folder.find(".txtNombreCarpeta").val()
                         }
-                    
-                        btnEditarCarpeta(frm, folder);
+                        console.log("formulario es: ", frm);
+                        if (frm.nombre != "") {
+                            btnEditarCarpeta(frm, folder);
+                        } else {
+                            printMessage(folder.find(".mensajeFolder"), "La carpeta no puede ser vacia", false);
+                        }
                     });
                     $(document).on("click", ".btnCancelarEdicionCarpeta", function () {
                         seccion = $(this).parents(".detalleCarpeta");
