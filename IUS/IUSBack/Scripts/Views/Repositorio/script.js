@@ -205,15 +205,19 @@
 
                 })
                 $(document).on("click", ".carpetaDetalle", function (e) {
-                    window.location = RAIZ + "Repositorio/index/" + $(this).find(".txtHdIdCarpeta").val();
+                    var nVista = getNumVistaActual();
+                    window.location = RAIZ + "Repositorio/index/" + $(this).find(".txtHdIdCarpeta").val() + "/" + nVista;
+
                 })
                 $(document).on("click", ".cuadritoCarpeta", function () {
                     /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
                     cuadritoCarpeta(frm);*/
                     console.log("Cuadrito carpeta click");
                     var estado = $(this).attr("id");
+                    var nVista = getNumVistaActual();
+                    //console.log("vista actual es:", nVista);
                     if (estado != '0') {
-                        window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
+                        window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val()+"/"+nVista;
                     }
                     //console.log("vas a redireccionar");
                 });

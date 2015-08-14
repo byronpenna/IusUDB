@@ -65,6 +65,21 @@
                 }
             })
 // generics
+    function getNumVistaActual() {
+        var vista = getVistaActual();
+        var n = -1;
+        switch (vista) {
+            case "cuadricula": {
+                n = -1;
+                break;
+            }
+            case "lista": {
+                n = 1;
+                break;
+            }
+        }
+        return n; 
+    }
     function getVistaActual() {
         var vista = "";
         if ($(".iconoVistaCuadricula").hasClass("activeVista")) {

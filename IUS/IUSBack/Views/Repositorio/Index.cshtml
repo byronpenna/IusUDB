@@ -12,9 +12,28 @@
         <script src="~/Scripts/Views/Repositorio/functions.js"></script>
 }
 @{
-    List<Carpeta> carpetas = (List<Carpeta>)ViewBag.carpetas;
-    List<Archivo> archivos = (List<Archivo>)ViewBag.archivos;
-    Carpeta carpetaActual = (Carpeta)ViewBag.carpetaActual;
+    List<Carpeta> carpetas  = (List<Carpeta>)ViewBag.carpetas;
+    List<Archivo> archivos  = (List<Archivo>)ViewBag.archivos;
+    Carpeta carpetaActual   = (Carpeta)ViewBag.carpetaActual;
+    int vista               = (int)ViewBag.vista; // -1 cuadricula, 1 lista
+    string oculto = "hidden",vistaActiva = "activeVista";
+    string[] clases = new string[2];
+    string[] activeVista = new string[2];
+    switch (vista)
+    {
+        case -1: // cuadricula 
+            {
+                clases[0]       = oculto;       clases[1]       = "";
+                activeVista[0]  = vistaActiva;  activeVista[1]  = "";
+                break;
+            }
+        case 1: // lista 
+            {
+                clases[0]       = "";       clases[1]       = oculto;
+                activeVista[0]  = "";       activeVista[1]  = vistaActiva;
+                break;
+            }
+    }
 }
 @section tabs{
     <ul>
@@ -89,22 +108,6 @@
             <a href="#" class="ico icoSubirFichero" title="Subir fichero">
                 <i class="fa fa-upload"></i>
             </a>
-            <!--
-            <a href="#" class="ico" title="Editar">
-                <i class="fa fa-times"></i>
-            </a>
-            <a href="#" class="ico" title="Editar">
-                <i class="fa fa-pencil-square-o"></i>
-            </a>
-            <a href="#" class="ico" title="Compartir">
-                <i class="fa fa-share"></i>
-            </a>
-            <a href="#" class="ico" title="Publicar website">
-                <i class="fa fa-globe"></i>
-            </a>
-            <a href="#" class="ico" title="Descargar">
-                <i class="fa fa-download"></i>
-            </a>-->
             <a href="#" class="ico icoNuevaCarpeta" title="Nueva carpeta">
                 <i class="fa fa-folder"></i>
             </a>
@@ -112,11 +115,11 @@
     </div>
     <div class="col-lg-2">
         <label>Vistas</label>
-        <div class="accionesDiv form-control inputBackModal">
-            <a href="#" class="ico iconoVistaCuadricula activeVista" title="Cuadricula">
+        <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
+            <a href="#" class="ico iconoVistaCuadricula  @activeVista[0] " title="Cuadricula"><!--activeVista-->
                 <i class="fa fa-th-large"></i>
             </a>
-            <a href="#" class="ico icoVistaLista " title="Lista">
+            <a href="#" class="ico icoVistaLista @activeVista[1]" title="Lista">
                 <i class="fa fa-bars"></i>
             </a>
         </div>
@@ -150,11 +153,42 @@
         <div class="row marginNull">
             <h3 class="encabezadoFicheros">@carpetaActual._nombre</h3>
         </div>
-        <div class="listView hidden">
-            
+        <div class="listView @clases[0]">
+            @if (carpetas != null && carpetas.Count > 0 && vista == 1)
+            {
+                foreach (Carpeta carpeta in carpetas)
+                {
+                    <div class='row folderDetalles carpetaDetalle '>
+                        <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpeta">
+                        <div class='col-lg-6'><i class='fa fa-folder'></i>
+                        <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect'>@carpeta._nombre</span></div>
+                        <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
+                        </div>
+                        <div class='col-lg-3'>Folder</div>
+                        <div class='col-lg-3'>@carpeta.getFechaCreacion</div>
+                    </div>
+                }
+            }
+            @if (archivos != null && archivos.Count > 0 && vista == 1)
+            {
+                foreach (Archivo archivo in archivos)
+                {
+                    <div class='row folderDetalles'>
+                        <input type='hidden' class='txtHdIdArchivo' value="@archivo._idArchivo">
+                        <div class='col-lg-6'>
+                            <div class='normalMode inline'>
+                                <span class='spanNombreCarpeta sinRedirect'>@archivo._nombre</span>
+                            </div>
+                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>
+                        </div>
+                        <div class='col-lg-3'>@archivo._extension._tipoArchivo._tipoArchivo </div>
+                        <div class='col-lg-3'>@archivo.getFechaCreacion</div>
+                    </div>
+                }
+            }
         </div>
-        <div class="cuadriculaView ">
-            @if (carpetas != null && carpetas.Count > 0)
+        <div class="cuadriculaView @clases[1]">
+            @if (carpetas != null && carpetas.Count > 0 && vista == -1)
             {
                 foreach (Carpeta carpeta in carpetas)
                 {
@@ -192,7 +226,7 @@
                     </div>
                 }
             }
-            @if (archivos != null && archivos.Count > 0)
+            @if (archivos != null && archivos.Count > 0 && vista == -1)
             {
                 foreach (Archivo archivo in archivos)
                 {

@@ -477,7 +477,7 @@
             });
         }
         // entrar a carpeta
-        function cuadritoCarpeta(frm) {
+        /*function cuadritoCarpeta(frm) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
                 
                 if (data.estado) {
@@ -490,7 +490,7 @@
                     $(".cuadriculaView").empty().append(divFolders);
                 }
             });
-        }
+        }*/
         // subir archivo 
         function frmSubir(data, url, totalFiles) {
             var estadoIndividual = false;

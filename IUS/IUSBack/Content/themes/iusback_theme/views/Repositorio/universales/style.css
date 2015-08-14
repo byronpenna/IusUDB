@@ -1,4 +1,19 @@
-﻿.icoDownload{
+﻿/*
+    NUEVO por el momento solo afecta a     
+*/
+
+.divCarpetasPublicasCompartir{
+    overflow-y: scroll;
+    height:250px;
+    margin-top:5%;
+}
+.divCarpetaPublica {
+    width:48%;
+}
+/*
+    *************************
+    */
+.icoDownload{
     display:none;
 }
 .divMensajesGenerales{

@@ -27,7 +27,7 @@ namespace IUSBack.Controllers
             public RepositorioModel _model;
         #endregion 
         #region "url"
-            public ActionResult Index(int id = -1)
+            public ActionResult Index(int id = -1, int id2= -1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
@@ -51,10 +51,11 @@ namespace IUSBack.Controllers
                     }
                     ViewBag.idCarpetaActual = id;
                     ViewBag.titleModulo = "Repositorio Digital";
-                    ViewBag.usuario = usuarioSession;
-                    ViewBag.permisos = permisos;
-                    ViewBag.carpetas = archivos["carpetas"];
-                    ViewBag.archivos = archivos["archivos"];
+                    ViewBag.vista = id2;
+                    ViewBag.usuario     = usuarioSession;
+                    ViewBag.permisos    = permisos;
+                    ViewBag.carpetas    = archivos["carpetas"];
+                    ViewBag.archivos    = archivos["archivos"];
                     ViewBag.carpetaActual = archivos["carpetaPadre"];
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     return View();
