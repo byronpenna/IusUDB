@@ -1,7 +1,29 @@
 ﻿// constantes
-    //var RAIZ = "http://admacad.udb.edu.sv/IUS/";
-    var RAIZ = "http://localhost:7196/";
-    //var RAIZ = "http://168.243.3.62/ius/"
+    // configuracion 
+        //var RAIZ = "http://admacad.udb.edu.sv/IUS/";
+        var RAIZ = "http://localhost:7196/";
+        //var RAIZ = "http://168.243.3.62/ius/"
+    // clases 
+        var SUCCESS_CLASS = "successMessage", FAIL_CLASS = "failMessage";
+// mensajeria 
+    function getSpanMessage(clase, txt) {
+        return "<span class='" + clase + "'>" + txt + "</span>";
+    }
+    function printMessage(div, txt, success) {
+        var clase = "";
+        if (success) {
+            clase = SUCCESS_CLASS;
+        } else {
+            clase = FAIL_CLASS;
+        }
+        div.empty().append(getSpanMessage(clase, txt));//"<span class='" + clase + "'>" + txt + "</span>"
+        div.fadeIn("slow");
+        setTimeout(function () {
+            //alert("Hello");
+            div.fadeOut("slow");
+
+        }, 2000);
+    }
 // idiomas 
     function setIdiomaPreferido() {
         var idIdioma = $.cookie('IUSidIdioma');

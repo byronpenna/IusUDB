@@ -26,8 +26,6 @@
                 }
                 icoVistaLista(frm, accion);
             })
-            
-            
             $(document).on("click", ".spIrBuscar", function () {
                 var obj = getFrmSection($(this), ".divBusquedaRuta");
                 spIrBuscar(obj.frm, obj.seccion);
@@ -52,8 +50,6 @@
                     }
                 }
             })
-
-            
         // keyup    
             $(document).on("keyup", ".txtRutaPublica", function (e) {
                 var charCode = e.which;

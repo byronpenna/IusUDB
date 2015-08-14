@@ -216,7 +216,6 @@
         }
         function spIrBuscar(frm, seccion) {
             actualizarCatalogo(RAIZ + "Repositorio/sp_repo_front_getCarpetaPublicaByRuta", frm, function (data) {
-                console.log(data);
                 if (data.estado) {
                     var accionControlador = "";
                     if (frm.txtIdFiltro == -1) {
@@ -227,9 +226,11 @@
                     window.location = RAIZ + "Repositorio/" + accionControlador + "/" + data.carpetaPublica._idCarpetaPublica + "/" + frm.txtIdFiltro;
                 } else {
                     if (data.error._mostrar) {
-                        alert(data.error.Message);
+                        printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                        //alert(data.error.Message);
                     } else {
-                        alert("Ocurrio un error");
+                        printMessage($(".divMensajesGenerales"), "Ocurrio un error", false);
+                        //alert("Ocurrio un error");
                     }
                 
                 }

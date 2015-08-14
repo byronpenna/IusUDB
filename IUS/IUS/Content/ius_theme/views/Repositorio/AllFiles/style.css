@@ -1,4 +1,14 @@
-﻿.folders{
+﻿/*
+    Mensajes
+    */
+.divMensajesGenerales{
+    text-align:center;
+    font-size:1.2em;
+    margin-top:3%;
+    
+}
+/**********************/
+.folders{
     margin-top:5%;
 }
 .folder{

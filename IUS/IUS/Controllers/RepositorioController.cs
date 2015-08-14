@@ -41,6 +41,7 @@ namespace IUS.Controllers
                     ViewBag.accion      = "FileByCategory";
                     ViewBag.tipo        = id2;
                     ViewBag.menu24 = this.activeClass;
+                    ViewBag.filtro = id2;
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -59,16 +60,17 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
-                    string lang         = this.getUserLang();
-                    traducciones        = this._model.getTraduccion(lang, this.idPagina);
-                    string ip           = Request.UserHostAddress;
+                    ViewBag.noticias                    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                    string lang                         = this.getUserLang();
+                    traducciones                        = this._model.getTraduccion(lang, this.idPagina);
+                    string ip                           = Request.UserHostAddress;
                     Dictionary<object, object> archivos = this._model.sp_repo_front_GetAllCarpetasPublica(id, ip, this.idPagina);
-                    ViewBag.carpetas        = archivos["carpetas"];
-                    ViewBag.archivos        = archivos["archivos"];
-                    ViewBag.carpetaPadre    = archivos["carpetaPadre"];
-                    ViewBag.accion          = "AllFiles";
-                    ViewBag.menu24 = this.activeClass;
+                    ViewBag.carpetas                    = archivos["carpetas"];
+                    ViewBag.archivos                    = archivos["archivos"];
+                    ViewBag.carpetaPadre                = archivos["carpetaPadre"];
+                    ViewBag.accion                      = "AllFiles";
+                    ViewBag.menu24                      = this.activeClass;
+                    ViewBag.filtro                      = -1;
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -200,8 +202,17 @@ namespace IUS.Controllers
                 {
                     try
                     {
-                        string ip           = Request.UserHostAddress;
-                        CarpetaPublica carpetaPublica = this._model.sp_repo_front_getCarpetaPublicaByRuta(frm["txtRutaPublica"].ToString(), ip, this.idPagina);
+                        string ip                       = Request.UserHostAddress;
+                        string ruta                     = frm["txtRutaPublica"].ToString();
+                        CarpetaPublica carpetaPublica;
+                        if (ruta != "/")
+                        {
+                            carpetaPublica = this._model.sp_repo_front_getCarpetaPublicaByRuta(ruta, ip, this.idPagina);
+                        }
+                        else
+                        {
+                            carpetaPublica = new CarpetaPublica(-1);
+                        }
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("carpetaPublica", carpetaPublica);
