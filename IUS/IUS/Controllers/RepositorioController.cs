@@ -25,8 +25,13 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones url"
-            public ActionResult FileByCategory(int id=-1,int id2=-1)
+            public ActionResult FileByCategory(int id=-1,int id2=-1,int id3 = -1)
             {
+                /*
+                 id = carpeta que estamos buscando
+                 id2 = filtro de busqueda de archivos
+                 id3    = vista a mostrar 
+                 */
                 List<LlaveIdioma> traducciones;
                 try
                 {
@@ -57,6 +62,11 @@ namespace IUS.Controllers
             }
             public ActionResult AllFiles(int id=-1)
             {
+                /*
+                 id     = carpeta que estamos buscando
+                 id2    = filtro de busqueda de archivos
+                 id3    = vista a mostrar 
+                 */
                 List<LlaveIdioma> traducciones;
                 try
                 {
