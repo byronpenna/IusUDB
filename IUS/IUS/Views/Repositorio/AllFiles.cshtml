@@ -11,7 +11,7 @@
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
     CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
-    string ruta = "/"; string nombre = ViewData["todo"].ToString(); int idCarpetaPadre = -1;
+    string ruta = "/"; string nombre = ""; int idCarpetaPadre = -1;
     int idFiltro = (int)ViewBag.filtro;
     if (carpetaPadre != null)
     {
