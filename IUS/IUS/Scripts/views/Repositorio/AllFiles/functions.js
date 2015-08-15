@@ -69,22 +69,22 @@
     //div 
         function getDivListaCarpeta(carpeta) {
             var div = "\
-                <div class='row marginNull folderDetalles'>\
-                    <a href='" + RAIZ + "/Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1' >\
+                <a href='" + RAIZ + "/Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1/1' class='aListaCarpeta'>\
+                    <div class='row marginNull folderDetalles'>\
                         <div class='col-lg-6'>\
-                            <i class='fa fa-folder'></i> " + carpeta._nombre + "\
+                            <i class='fa fa-folder'></i> " + carpeta._nombre + " \
                         </div>\
-                    </a>\
-                    <div class='col-lg-2'>\
-                        Folder\
+                        <div class='col-lg-2'>\
+                            Folder\
+                        </div>\
+                        <div class='col-lg-3'>\
+                            \
+                        </div>\
+                        <div class='col-lg-1'>\
+                            \
+                        </div>\
                     </div>\
-                    <div class='col-lg-3'>\
-                        \
-                    </div>\
-                    <div class='col-lg-1'>\
-                        \
-                    </div>\
-                </div>\
+                </a>\
             ";
             return div;
         }

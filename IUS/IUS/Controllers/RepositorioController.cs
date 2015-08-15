@@ -30,7 +30,7 @@ namespace IUS.Controllers
                 /*
                  id = carpeta que estamos buscando
                  id2 = filtro de busqueda de archivos
-                 id3    = vista a mostrar 
+                 id3    = vista a mostrar || -1 cuadricula, 1 lista
                  */
                 List<LlaveIdioma> traducciones;
                 try
@@ -45,8 +45,9 @@ namespace IUS.Controllers
                     ViewBag.carpetaPadre = archivos["carpetaPadre"];
                     ViewBag.accion      = "FileByCategory";
                     ViewBag.tipo        = id2;
-                    ViewBag.menu24 = this.activeClass;
-                    ViewBag.filtro = id2;
+                    ViewBag.menu24  = this.activeClass;
+                    ViewBag.filtro  = id2;
+                    ViewBag.vista = id3;
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -60,7 +61,7 @@ namespace IUS.Controllers
                 return View("~/Views/Repositorio/AllFiles.cshtml");
                 
             }
-            public ActionResult AllFiles(int id=-1)
+            public ActionResult AllFiles(int id=-1,int id2=-1,int id3=-1)
             {
                 /*
                  id     = carpeta que estamos buscando
@@ -81,6 +82,7 @@ namespace IUS.Controllers
                     ViewBag.accion                      = "AllFiles";
                     ViewBag.menu24                      = this.activeClass;
                     ViewBag.filtro                      = -1;
+                    ViewBag.vista                       = id3;
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
