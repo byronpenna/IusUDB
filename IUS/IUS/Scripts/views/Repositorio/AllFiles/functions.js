@@ -1,25 +1,49 @@
 ﻿// generics
     // acciones genericas   
-    function vistaActiva(txtVista) {
-        $(".controlVista").removeClass("activeVista")
-        switch (txtVista) {
-            
-            case "cuadricula":
-                {
-                    $(".cuadricula").removeClass("hidden");
-                    $(".iconoVistaCuadricula").addClass("activeVista");
-                    $(".lista").addClass("hidden");
-                    break;
+        // acciones vista
+            function getNumVistaActual() {
+                var vista = getVistaActual();
+                var n = -1;
+                switch (vista) {
+                    case "cuadricula": {
+                        n = -1;
+                        break;
+                    }
+                    case "lista": {
+                        n = 1;
+                        break;
+                    }
                 }
-            case "lista":
-                {
-                    $(".lista").removeClass("hidden");
-                    $(".icoVistaLista").addClass("activeVista");
-                    $(".cuadricula").addClass("hidden");
-                    break;
+                return n;
+            }
+            function getVistaActual() {
+                var vista = "";
+                if ($(".iconoVistaCuadricula").hasClass("activeVista")) {
+                    vista = "cuadricula";
+                } else if ($(".icoVistaLista").hasClass("activeVista")) {
+                    vista = "lista";
                 }
-        }
-    }
+                return vista;
+            }
+            function vistaActiva(txtVista) {
+                $(".controlVista").removeClass("activeVista")
+                switch (txtVista) {
+                    case "cuadricula":
+                        {
+                            $(".cuadricula").removeClass("hidden");
+                            $(".iconoVistaCuadricula").addClass("activeVista");
+                            $(".lista").addClass("hidden");
+                            break;
+                        }
+                    case "lista":
+                        {
+                            $(".lista").removeClass("hidden");
+                            $(".icoVistaLista").addClass("activeVista");
+                            $(".cuadricula").addClass("hidden");
+                            break;
+                        }
+                }
+            }
     function cambiarEstado(txt) {
         switch (txt) {
             case "buscar":
@@ -223,7 +247,9 @@
                     } else {
                         accionControlador = "FileByCategory";
                     }
-                    window.location = RAIZ + "Repositorio/" + accionControlador + "/" + data.carpetaPublica._idCarpetaPublica + "/" + frm.txtIdFiltro;
+                    var nVista = getNumVistaActual();
+                    //console.log(nVista);
+                    window.location = RAIZ + "Repositorio/" + accionControlador + "/" + data.carpetaPublica._idCarpetaPublica + "/" + frm.txtIdFiltro + "/" + nVista;
                 } else {
                     if (data.error._mostrar) {
                         printMessage($(".divMensajesGenerales"), data.error.Message, false);
