@@ -491,6 +491,7 @@
     <Content Include="Views\Informacion\Ius.cshtml" />
     <Content Include="Views\Repositorio\Index.cshtml" />
     <Content Include="Views\Repositorio\AllFiles.cshtml" />
+    <Content Include="Views\Errors\ErrorCritico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
