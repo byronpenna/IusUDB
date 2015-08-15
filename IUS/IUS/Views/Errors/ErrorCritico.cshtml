@@ -1,0 +1,32 @@
+﻿@using IUSLibs.LOGS
+@{
+    ViewBag.Title = "ErrorCritico";
+    string tipoError = (string)ViewBag.tipoErrorX;
+    Exception xGenerico = null; ErroresIUS xIus=null;
+    switch (tipoError)
+    {
+        case "IUS":
+            {
+                xIus = (ErroresIUS)ViewBag.errorX;
+                break;
+                
+            }
+        case "Generico":
+            {
+                xGenerico = (Exception)ViewBag.errorX;
+                break;
+            }
+    }
+}
+
+<h2>ErrorCritico</h2>
+@if (tipoError == "IUS")
+{
+    <p>@xIus.Message</p>    
+}
+else
+{
+    <p>@xGenerico.Message</p>
+}
+
+
