@@ -1,43 +1,7 @@
 ﻿// generics 
-        /*
-        function printMessage(div, txt, success) {
-            var clase = "";
-            if (success) {
-                clase = "successMessage";
-            } else {
-                clase = "failMessage";
-            }
-            div.empty().append("<span class='" + clase + "'>" + txt + "</span>");
-            div.fadeIn("slow");
-            setTimeout(function () {
-                //alert("Hello");
-                div.fadeOut("slow");
-                
-            }, 2000);
-        }*/
     // vistas 
         // generales
-            /*function cambiarVistas(vistaVer) {
-                var lista = $(".listView"); var cuadricula = $(".cuadriculaView");
-                var pestaLista = $(".icoVistaLista"); var pestaCuadricula = $(".iconoVistaCuadricula");
-                $(".activeVista").removeClass("activeVista");
-                switch (vistaVer) {
-                    case "cuadricula": {
-                        lista.addClass("hidden");
-                        cuadricula.removeClass("hidden");
-                        pestaCuadricula.addClass("activeVista");
-                        //pestaLista.removeClass("activeLista");
-                        break;
-                    }
-                    case "lista": {
-                        cuadricula.addClass("hidden");
-                        lista.removeClass("hidden");
-                        pestaLista.addClass("activeVista");
-                        //pestaCuadricula.removeClass("activeLista");
-                        break;
-                    }
-                }
-            }*/
+            
         // cuadricula
             function verCuadricula(div,callback) {
                 var seccion = div.parents(".accionesDiv");
@@ -280,6 +244,11 @@
 
         }
 // scripts 
+        function txtRutaPublica(frm) {
+            actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_compartirArchivoPublico", frm, function (data) {
+
+            })
+        }
         function vistaListaBusqueda() {
             var seccion = $(".listView");
             target = "lista";
@@ -297,8 +266,6 @@
             }
             btnBusqueda(frm, seccion, target);
             cambiarVistas("cuadricula");
-            /*$(".icoVistaLista").removeClass("activeVista");
-            $(".iconoVistaCuadricula").addClass("activeVista");*/
         }
         
         function btnBusqueda(frm,seccion,target) {
@@ -410,7 +377,7 @@
             }
             function divCarpetaPublica(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-                    
+                    console.log(data);
                     if (data.estado) {
                         var div         = "";
                         var divArchivo = "";
@@ -477,20 +444,7 @@
             });
         }
         // entrar a carpeta
-        /*function cuadritoCarpeta(frm) {
-            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
-                
-                if (data.estado) {
-                    var divFolders = "";
-                    $.each(data.carpetas, function (i,carpeta) {
-                        
-                        divFolders += getStandarFolder(carpeta);
-                    });
-                    window.history.pushState(null, "Titulo", "Repositorio/Index/" + frm.idCarpeta);
-                    $(".cuadriculaView").empty().append(divFolders);
-                }
-            });
-        }*/
+        
         // subir archivo 
         function frmSubir(data, url, totalFiles) {
             var estadoIndividual = false;

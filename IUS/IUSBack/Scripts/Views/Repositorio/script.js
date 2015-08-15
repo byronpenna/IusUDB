@@ -6,18 +6,7 @@
     })*/
         loadPublicFiles();            
         // change 
-            /*
-            $(document).on("change", ".rdBusqueda", function () {
-                if ($(this).val() == 0) {
-                    $(".btnBusqueda").addClass("visibilitiHidden");
-                    $(".divBusquedaArchivos").removeClass("input-group");
-                    buscarEnCarpeta($(".txtBusqueda").val());
-                } else {
-                    $(".divBusquedaArchivos").addClass("input-group");
-                    $(".btnBusqueda").removeClass("visibilitiHidden");
-                    $(".folders .folder").removeClass("hidden");
-                }
-            })*/
+            
         // keyup 
             $(document).on("keyup", ".txtNombreFileCompartir", function (e) {
                 /*if ($(this).val() == "") {
@@ -140,6 +129,10 @@
                 
             })
         // click 
+                $(document).on("click", ".txtRutaPublica", function () {
+                    frm = { txtRuta: $(".txtRutaPublica").val() }
+                    txtRutaPublica(frm);
+                })
                 $(document).on("click", ".closeModal", function (e) {
                     $(".divUpload").click();
                 })

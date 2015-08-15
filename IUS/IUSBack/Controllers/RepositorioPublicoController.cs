@@ -71,8 +71,76 @@ namespace IUSBack.Controllers
                 return View();
             }
         #endregion
+        #region "genericas"
+            public Dictionary<object, object> getArchivosNavegacion(int idCarpetaPadre,Usuario usuarioSession)
+            {
+                Dictionary<object, object> archivos;
+                CarpetaPublica carpetaPadre;
+                try
+                {
+                    if (idCarpetaPadre != -1)
+                    {
+                        archivos = this._model.sp_repo_entrarCarpetaPublica(idCarpetaPadre, usuarioSession._idUsuario, this._idPagina);
+                        carpetaPadre = (CarpetaPublica)archivos["carpetaPadre"];
+                    }
+                    else
+                    {
+                        archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
+                        carpetaPadre = new CarpetaPublica(-1);
+                        carpetaPadre._strRuta = "/";
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                archivos.Add("carpetaPadreSend", carpetaPadre);
+                return archivos;
+            }
+        #endregion
         #region "resultados ajax"
             #region "get"
+                public ActionResult sp_repo_getAjaxPublicoByRuta()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            /* Podria encapsularse en una funcion */
+                            string ruta = frm["txtRuta"].ToString();
+                            CarpetaPublica carpeta;
+                            if (ruta != "/")
+                            {
+                                carpeta = this._model.sp_repo_getPublicoByRuta(ruta, usuarioSession._idUsuario, this._idPagina);
+                            }
+                            else
+                            {
+                                carpeta = new CarpetaPublica(-1);
+                            }
+
+                                                              /* / \*/
+                            /* Podria encapsularse en una funcion |*/
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_repo_getPublicoByRuta()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -190,7 +258,7 @@ namespace IUSBack.Controllers
                          {
                              int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPublica"]);
                              Dictionary<object, object> archivos ;
-                             CarpetaPublica carpetaPadre;
+                             /*CarpetaPublica carpetaPadre;
                              if (idCarpetaPadre != -1)
                              {
                                  archivos = this._model.sp_repo_entrarCarpetaPublica(idCarpetaPadre, usuarioSession._idUsuario, this._idPagina);
@@ -201,13 +269,15 @@ namespace IUSBack.Controllers
                                  archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
                                  carpetaPadre = new CarpetaPublica(-1);
                                  carpetaPadre._strRuta = "/";
-                             }
+                             }*/
+                             archivos = this.getArchivosNavegacion(idCarpetaPadre, usuarioSession);
                              respuesta = new Dictionary<object, object>();
                              respuesta.Add("estado", true);
                              respuesta.Add("carpetas", archivos["carpetas"]);
                              respuesta.Add("archivos", archivos["archivos"]);
                              respuesta.Add("idCarpetaPadre", idCarpetaPadre);
-                             respuesta.Add("carpetaPadre", carpetaPadre);
+                             //respuesta.Add("carpetaPadre", carpetaPadre);
+                             respuesta.Add("carpetaPadre", archivos["carpetaPadreSend"]);
                              respuesta.Add("base", this.URL_IUS);
                          }
                          else
