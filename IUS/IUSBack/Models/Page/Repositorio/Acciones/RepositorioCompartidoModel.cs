@@ -32,20 +32,20 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
         #region "Funciones"
             #region "repositorio compartido"
                 public ArchivoCompartido sp_repo_compartirArchivo(ArchivoCompartido archivoAgregar, int idUsuarioEjecutor, int idPagina)
-            {
-                try
                 {
-                    return this._controlArchivoCompartido.sp_repo_compartirArchivo(archivoAgregar, idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        return this._controlArchivoCompartido.sp_repo_compartirArchivo(archivoAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
                 public List<Usuario> sp_repo_getUsuariosArchivosCompartidos(int idUsuarioEjecutor, int idPagina)
                 {
                     try
@@ -81,6 +81,20 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                     try
                     {
                         return this._controlArchivoCompartido.sp_repo_removeShareFile(idArchivo, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public bool sp_repo_dejarDeCompartirTodo(int idUsuario,int idUsuarioEjecutor,int idPagina){
+                    try
+                    {
+                        return this._controlArchivoCompartido.sp_repo_dejarDeCompartirTodo(idUsuario, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {

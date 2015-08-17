@@ -172,6 +172,32 @@ namespace IUSBack.Controllers
                     }
                     return Json(respuesta);
                 }
+                public ActionResult sp_repo_dejarDeCompartirTodo()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            bool estado = this._model.sp_repo_dejarDeCompartirTodo(this.convertObjAjaxToInt(frm["idUsuarioCompartido"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
             #endregion
             #region "get"
                 public ActionResult sp_repo_getUsuariosArchivosCompartidos()

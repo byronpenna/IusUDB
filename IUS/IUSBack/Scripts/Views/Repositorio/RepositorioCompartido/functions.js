@@ -278,6 +278,17 @@
             return div;
         }
 // scripts 
+    function txtBusquedaUsuario(txt) {
+        if (txt == "") {
+            $(".seccionCompartida .divCarpetaUsuarioCompartido").removeClass("hidden");
+        } else {
+            $(".seccionCompartida .divCarpetaUsuarioCompartido").addClass("hidden");
+            var usuarios = $(".seccionCompartida .divCarpetaUsuarioCompartido .tituloCarpetaPublica:containsi(" + txt + ")");
+            usuarios = usuarios.parents(".divCarpetaUsuarioCompartido");
+            usuarios.removeClass("hidden");
+        }
+
+    }
     function icoDejarDeCompartir(frm,seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_removeShareFile", frm, function (data) {
             
@@ -285,6 +296,18 @@
                 seccion.remove();
             }
         });
+    }
+    function btnDejarDeCompartirTodo(frm) {
+        actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_dejarDeCompartirTodo", frm, function (data) {
+            console.log("data regresada por servidor es", data);
+            if (data.estado) {
+                printMessage($(".divMessageCompartir"), "Se le dejo de compartir archivos exitosamente", true);
+                $(".icoCompartidoBack").click();
+            } else {
+                
+            }
+            
+        })
     }
     function divCarpetaUsuarioCompartido(frm, seccion) {
         var nombreUsuarioCarpeta = frm.nombreCarpeta;
@@ -300,6 +323,8 @@
                     });
                 }
                 seccion.empty().append(div);
+                $(".nombreFileCompartir").empty();
+                $(".txtHdIdArchivoCompartir").val(-1);
             } else {
                 alert("Ocurrio un error cargando los archivos");
             }
