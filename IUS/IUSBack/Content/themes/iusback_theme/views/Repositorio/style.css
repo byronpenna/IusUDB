@@ -1,4 +1,8 @@
-﻿.icoWebsiteFolder{
+﻿.divAccionesLista a{
+    color:black;
+    font-weight:normal;
+}
+.icoWebsiteFolder{
     display:none;
 }
 /*Nuevo ruta*/

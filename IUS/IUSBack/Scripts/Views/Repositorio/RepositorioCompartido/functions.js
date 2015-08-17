@@ -272,6 +272,11 @@
                 <div class='divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6'>\
                     <input type='hidden' class='txtHdIdUsuario' value='"+usuario._idUsuario+"'/>\
                     <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/profle.png' />\
+                    <div class='row'>\
+                        <a href='#' class='btnDejarDeCompartirTodo' title='No compartir nada'>\
+                            <i class='fa fa-trash-o'></i>\
+                        </a>\
+                    </div>\
                     <h4 class='tituloCarpetaPublica'>"+usuario._usuario+"</h4>\
                 </div>\
             ";

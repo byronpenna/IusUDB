@@ -234,8 +234,10 @@
             return div;
         }
         function initShareFile(folder) {
-            nombreArchivo   = folder.find(".ttlNombreCarpeta").text();
-            idArchivo       = folder.find(".txtHdIdArchivo").val();
+            /*nombreArchivo   = folder.find(".ttlNombreCarpeta").text();
+            idArchivo       = folder.find(".txtHdIdArchivo").val();*/
+            nombreArchivo = folder.find(".nombreAcompartir").text();
+            idArchivo = folder.find(".txtHdIdArchivo").val();
             
             var removeFileShare = "<a href='#' title='Dejar de compartir' class='icoCancelShare'><i class='fa fa-times '></i></a>";
             $(".nombreFileCompartir").empty().append(nombreArchivo+" "+removeFileShare);// aqui 
@@ -453,14 +455,15 @@
                 })
             }
         // eliminar archivos
-            function icoEliminarArchivo(frm,seccion) {
-            actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {
-                
-                if (data.estado) {
-                    seccion.remove();
-                }
-            });
-        }
+            function icoEliminarArchivo(frm,seccion,vista) {
+                actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {
+                    console.log("Respuesta elimianr", data);
+                    if (data.estado) {
+                        
+                        seccion.remove();
+                    }
+                });
+            }
         // cambiar nombre archivo
             
             function btnEditarArchivo(frm,folder) {

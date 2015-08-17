@@ -181,7 +181,7 @@
             // repositorio compartido
                     $(document).on("click", ".icoCompartirFile", function (e) {
                         e.preventDefault();
-                        folder = $(this).parents(".folder");
+                        folder = $(this).parents(".folderUni");
                         initShareFile(folder);
 
                     })
@@ -274,11 +274,26 @@
                     
                 })
                 // eliminar archivos 
-                    $(document).on("click", ".icoEliminarArchivo", function () {
+                    $(document).on("click", ".icoEliminarArchivo", function (e) {
+                        e.preventDefault();
                         var x = confirm("Esta seguro que desea eliminar este archivo");
+                        var classPadre = "";
                         if (x) {
-                            seccion = $(this).parents(".folder");
+                            
+                            var vista = getVistaActual();
+                            switch (vista) {
+                                case "cuadricula": {
+                                    classPadre = ".folder";
+                                    break;
+                                }
+                                case "lista": {
+                                    classPadre = ".folderDetalles";
+                                    break;
+                                }
+                            }
+                            seccion = $(this).parents(classPadre);
                             frm = { idArchivo: seccion.find(".txtHdIdArchivo").val() }
+                            console.log("formulario es:", frm);
                             icoEliminarArchivo(frm,seccion);
                         }
                     })

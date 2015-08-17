@@ -164,28 +164,40 @@
                         <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect'>@carpeta._nombre</span></div>
                         <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
                         </div>
-                        <div class='col-lg-3'>Folder</div>
-                        <div class='col-lg-3'>@carpeta.getFechaCreacion</div>
+                        <div class='col-lg-2'>Folder</div>
+                        <div class='col-lg-2'>@carpeta.getFechaCreacion</div>
+                        
                     </div>
                 }
             }
             @if (archivos != null && archivos.Count > 0 && vista == 1)
-            {
-                foreach (Archivo archivo in archivos)
-                {
-                    <div class='row folderDetalles'>
-                        <input type='hidden' class='txtHdIdArchivo' value="@archivo._idArchivo">
-                        <div class='col-lg-6'>
-                            <div class='normalMode inline'>
-                                <span class='spanNombreCarpeta sinRedirect'>@archivo._nombre</span>
-                            </div>
-                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>
-                        </div>
-                        <div class='col-lg-3'>@archivo._extension._tipoArchivo._tipoArchivo </div>
-                        <div class='col-lg-3'>@archivo.getFechaCreacion</div>
-                    </div>
-                }
-            }
+{
+    foreach (Archivo archivo in archivos)
+    {
+        <div class='row folderDetalles folderUni'>
+            <input type='hidden' class='txtHdIdArchivo' value="@archivo._idArchivo">
+            <div class='col-lg-6'>
+                <div class='normalMode inline'>
+                    <span class='spanNombreCarpeta sinRedirect nombreAcompartir'>@archivo._nombre</span>
+                </div>
+                <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>
+            </div>
+            <div class='col-lg-2'>@archivo._extension._tipoArchivo._tipoArchivo </div>
+            <div class='col-lg-2'>@archivo.getFechaCreacion</div>
+            <div class="col-lg-2 divAccionesLista">
+                <a href="#" class="icoCompartirFile" title="Compartir">
+                    <i class="fa fa-share"></i>
+                </a>
+                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
+                    <i class="fa fa-download"></i>
+                </a>
+                <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+            </div>
+        </div>
+    }
+}
         </div>
         <div class="cuadriculaView @clases[1]">
             @if (carpetas != null && carpetas.Count > 0 && vista == -1)
@@ -233,7 +245,7 @@
             {
                 foreach (Archivo archivo in archivos)
                 {
-                    <div class="col-lg-2 folder">
+                    <div class="col-lg-2 folder folderUni">
                         <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
                         <div class="row divHerramientasIndividual">
                             <a href="#" class="icoCompartirFile" title="Compartir">
@@ -250,7 +262,7 @@
                             <img src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
                             <div class="detalleCarpeta">
                                 <div class="normalMode">
-                                    <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>
+                                    <h3 class="ttlNombreCarpeta nombreAcompartir">@archivo._nombre</h3>
                                 </div>
                                 <div class="row marginNull hidden editMode">
                                     <div class='row marginNull inputNombreCarpeta'>
