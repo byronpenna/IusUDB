@@ -243,10 +243,43 @@
             $(".txtHdIdArchivoCompartir").val(idArchivo);
 
         }
-// scripts 
-        function txtRutaPublica(frm) {
-            actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_compartirArchivoPublico", frm, function (data) {
+        function printSeccionPublica(data) {
+            if (data.estado) {
+                var div = "";
+                var divArchivo = "";
+                $(".txtHdCarpetaPadrePublica").val(data.idCarpetaPadre);
+                if (data.carpetas !== null) {
+                    $.each(data.carpetas, function (i, carpeta) {
+                        div += getDivCarpetasPublicas(carpeta);
+                    });
 
+                }
+                if (data.archivos !== null) {
+
+                    $.each(data.archivos, function (i, archivo) {
+                        divArchivo += getDivArchivosPublicos(archivo);
+                    })
+                }
+                $(".divCarpetasPublicasCompartir").empty().append(div);
+                $(".divCarpetasPublicasCompartir").append(divArchivo);
+                $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
+
+            }
+            else {
+                if (data.error._mostrar) {
+                    printMessage($(".divMensajeRepoPublico"), data.error.Message, false);
+                    //$(".divMensajeRepoPublico").empty().append("<span class='failMessage'>" + data.error.Message + "</span>");
+                } else {
+                    printMessage($(".divMensajeRepoPublico"), "Ocurrio un error no controlado", false);
+                }
+            }
+        }
+// scripts 
+        function spIrPublico(frm) {
+            actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getAjaxPublicoByRuta", frm, function (data) {
+                console.log(data);
+                /*Esta funcion se puede encapsular */
+                printSeccionPublica(data);
             })
         }
         function vistaListaBusqueda() {
@@ -361,7 +394,7 @@
             }
             function icoPublicoBack(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_atrasCarpetaPublica", frm, function (data) {
-                    
+                    /*
                     if (data.estado) {
                         div = "";
                         if (data.carpetas !== null) {
@@ -372,12 +405,16 @@
                         }
                         $(".divCarpetasPublicasCompartir").empty().append(div);
                         $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
-                    }
+                    }*/
+                    console.log("la data del atras", data);
+                    printSeccionPublica(data);
                 })
             }
             function divCarpetaPublica(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
                     console.log(data);
+                    printSeccionPublica(data);
+                    /*
                     if (data.estado) {
                         var div         = "";
                         var divArchivo = "";
@@ -398,7 +435,7 @@
                         $(".divCarpetasPublicasCompartir").append(divArchivo);
                         $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
 
-                    }
+                    }*/
                 })
             }
         // directorio

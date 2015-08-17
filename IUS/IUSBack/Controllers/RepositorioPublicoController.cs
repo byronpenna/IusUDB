@@ -101,6 +101,13 @@ namespace IUSBack.Controllers
                 archivos.Add("carpetaPadreSend", carpetaPadre);
                 return archivos;
             }
+            /*public Dictionary<object, object> getRetornoStandarFicheros(Dictionary<object,object> data,int idCarpetaPadre,string baseUrl)
+            {
+                data.Add("idCarpetaPadre", idCarpetaPadre);
+                data.Add("carpetaPadre", data["carpetaPadreSend"]);
+                data.Add("base", this.URL_IUS);
+                return data;
+            }*/
         #endregion
         #region "resultados ajax"
             #region "get"
@@ -124,7 +131,15 @@ namespace IUSBack.Controllers
                             {
                                 carpeta = new CarpetaPublica(-1);
                             }
-
+                            Dictionary<object,object> archivos = this.getArchivosNavegacion(carpeta._idCarpetaPublica, usuarioSession);
+                            archivos.Add("estado", true);
+                            archivos.Add("idCarpetaPadre", carpeta._idCarpetaPublica);
+                            archivos.Add("carpetaPadre", archivos["carpetaPadreSend"]);
+                            archivos.Add("base", this.URL_IUS);
+                            respuesta = archivos;
+                            /*
+                             **************************
+                             */
                                                               /* / \*/
                             /* Podria encapsularse en una funcion |*/
                         }
@@ -224,11 +239,14 @@ namespace IUSBack.Controllers
                         if (usuarioSession != null && frm != null)
                         {
                             Dictionary<object, object> archivos = this._model.sp_repo_atrasCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpetaPublica"]), usuarioSession._idUsuario, this._idPagina);
-                            respuesta = new Dictionary<object, object>();
+                            /*respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("carpetas", archivos["carpetas"]);
                             respuesta.Add("idCarpetaPadre", archivos["idCarpetaPadre"]);
-                            respuesta.Add("carpetaPadre", archivos["carpetaPadre"]);
+                            respuesta.Add("carpetaPadre", archivos["carpetaPadre"]);*/
+                            archivos.Add("estado", true);
+                            archivos.Add("base", this.URL_IUS);
+                            respuesta = archivos;
                         }
                         else
                         {
@@ -247,7 +265,8 @@ namespace IUSBack.Controllers
                     }
                     return Json(respuesta);
                 }
-                public ActionResult sp_repo_entrarCarpetaPublica()
+                // ***********
+                    public ActionResult sp_repo_entrarCarpetaPublica()
                 {
                      Dictionary<object, object> frm, respuesta = null;
                      try
@@ -258,18 +277,6 @@ namespace IUSBack.Controllers
                          {
                              int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPublica"]);
                              Dictionary<object, object> archivos ;
-                             /*CarpetaPublica carpetaPadre;
-                             if (idCarpetaPadre != -1)
-                             {
-                                 archivos = this._model.sp_repo_entrarCarpetaPublica(idCarpetaPadre, usuarioSession._idUsuario, this._idPagina);
-                                 carpetaPadre = (CarpetaPublica)archivos["carpetaPadre"];
-                             }
-                             else
-                             {
-                                 archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
-                                 carpetaPadre = new CarpetaPublica(-1);
-                                 carpetaPadre._strRuta = "/";
-                             }*/
                              archivos = this.getArchivosNavegacion(idCarpetaPadre, usuarioSession);
                              respuesta = new Dictionary<object, object>();
                              respuesta.Add("estado", true);
@@ -297,6 +304,7 @@ namespace IUSBack.Controllers
                      }
                      return Json(respuesta);
                 }
+                // ***********
                 public ActionResult sp_repo_searchArchivoPublicoBack()
                 {
                     Dictionary<object, object> frm, respuesta = null;

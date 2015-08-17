@@ -19,6 +19,16 @@
                 }*/
             })
         // keydown
+            
+            $(document).on("keydown", ".txtRutaPublica", function (e) {
+                switch (e.which) {
+                    case 13: {
+                        $(".spIrPublico").click();
+                        break;
+                    }
+                }
+            })
+
             $(document).on("keydown", ".txtNombreArchivo", function (e) {
                 
                 switch (e.which) {
@@ -129,9 +139,10 @@
                 
             })
         // click 
-                $(document).on("click", ".txtRutaPublica", function () {
+                $(document).on("click", ".spIrPublico", function () {
                     frm = { txtRuta: $(".txtRutaPublica").val() }
-                    txtRutaPublica(frm);
+                    console.log("formulario a enviar", frm);
+                    spIrPublico(frm);
                 })
                 $(document).on("click", ".closeModal", function (e) {
                     $(".divUpload").click();
