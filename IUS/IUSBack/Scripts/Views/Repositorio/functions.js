@@ -16,14 +16,15 @@
                 }
             }
             function verLista(div) {
-                var seccion = div.parents(".accionesDiv");
+                //var seccion = div.parents(".accionesDiv");
                 cambiarVistas("lista");
                 var frm = {
                     idCarpeta: $(".txtHdIdCarpetaPadre").val()
                 }
                 
-                var seccionModificar = $(".listView");
-                //var seccionModificar = $(".targetListView");
+                //var seccionModificar = $(".listView");
+                var seccionModificar = $(".targetListView");
+                //seccionModificar.empty();
                 icoVistaLista(frm, seccionModificar);
             }
 
@@ -114,7 +115,7 @@
                         <input type='hidden' class='txtHdIdArchivo' value='"+file._idArchivo+"'>\
                         <div class='col-lg-6'>\
                             <div class='normalMode inline'>\
-                                <span class='spanNombreCarpeta sinRedirect nombreAcompartir'>" + file._nombre + "</span>\
+                                <span class='spanNombreCarpeta sinRedirect nombreAcompartir ttlNombreCarpeta'>" + file._nombre + "</span>\
                             </div>\
                             <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>\
                         </div>\
@@ -140,11 +141,11 @@
                     <div class='row folderDetalles carpetaDetalle '>\
                         <input type='hidden' class='txtHdIdCarpeta' value='"+folder._idCarpeta+"'>\
                         <div class='col-lg-6'><i class='fa fa-folder'></i>\
-                        <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect'>" + folder._nombre + "</span></div>\
+                        <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>" + folder._nombre + "</span></div>\
                         <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>\
                         </div>\
-                        <div class='col-lg-3'>Folder</div>\
-                        <div class='col-lg-3'>" + folder.getFechaCreacion + "</div>\
+                        <div class='col-lg-2'>Folder</div>\
+                        <div class='col-lg-2'>" + folder.getFechaCreacion + "</div>\
                     </div>\
                 ";
                 return div;
@@ -302,8 +303,8 @@
             })
         }
         function vistaListaBusqueda() {
-            var seccion = $(".listView");
-            //var seccion = $(".targetListView");
+            //var seccion = $(".listView");
+            var seccion = $(".targetListView");
             target = "lista";
             var frm = {
                 txtBusqueda: $(".txtBusqueda").val()
@@ -374,7 +375,7 @@
             }
             function icoVistaLista(frm, seccion) {
                 actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
-                    
+                    console.log("Vista lista para carpeta", data);
                     var div = "";
                     if (data.carpetas !== null) {
                         $.each(data.carpetas, function (i,folder) {

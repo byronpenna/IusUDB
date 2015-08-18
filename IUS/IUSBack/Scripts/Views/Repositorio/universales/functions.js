@@ -47,11 +47,12 @@
                     $(this).val("");
                 }
                 //console.log(charCode);
+                console.log($(".rdBusqueda:checked").val());
                 if ($(".rdBusqueda:checked").val() == 0) {
                     buscarEnCarpeta($(this).val());
-                } else if ($(".rdBusqueda:checked").val() == 0) {
+                } /*else if ($(".rdBusqueda:checked").val() == 0) {
 
-                }
+                }*/
             })
             $(document).on("keyup", ".txtDireccion", function (e) {
                 var charCode = e.which;
@@ -112,13 +113,34 @@
         }
     }
     function buscarEnCarpeta(txt) {
+        var vistaActual = getVistaActual();
+        var folder; var parents;
+        switch (vistaActual) {
+            case "cuadricula":
+                {
+                    folder  = $(".folders .cuadriculaView .folder");
+                    parents = ".folder";
+                    break;
+                }
+            case "lista":
+                {
+                    folder  = $(".folders .listView .folderDetalles");
+                    parents = ".folderDetalles";
+                    break;
+                }
+        }
+        console.log("yeah");
         if (txt == "") {
-            $(".folders .folder").removeClass("hidden");
+            //$(".folders .folder").removeClass("hidden");
+            folder.removeClass("hidden");
         } else {
-            $(".folders .folder").addClass("hidden");
-            var folders = $(".folder .ttlNombreCarpeta:containsi(" + txt + ")");
-            folders = folders.parents(".folder");
+            //$(".folders .folder").addClass("hidden");
+            folder.addClass("hidden");
+            //var folders = $(".folder .ttlNombreCarpeta:containsi(" + txt + ")");
+            var folders = folder.find(".ttlNombreCarpeta:containsi(" + txt + ")");
+            folders = folders.parents(parents);
             folders.removeClass("hidden");
+            //folders.css("background", "red");
         }
     }
     function getDivNewFolder() {

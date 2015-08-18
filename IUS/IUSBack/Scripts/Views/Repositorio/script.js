@@ -243,8 +243,9 @@
                             var seccion = $(".cuadriculaView");
                             target = "cuadricula";
                         } else {
-                            var seccion = $(".listView");
-                            //var seccion = $(".targetListView");
+                            //*********************************
+                            //var seccion = $(".listView");
+                            var seccion = $(".targetListView");
                             target = "lista";
                         }
                         var frm = {
@@ -266,8 +267,8 @@
                             var frm = {
                                 idCarpeta: $(".txtHdIdCarpetaPadre").val()
                             }
-                            var seccionModificar = $(".listView");
-                            //var seccionModificar = $(".targetListView")
+                            //var seccionModificar = $(".listView");
+                            var seccionModificar = $(".targetListView")
                             icoVistaLista(frm, seccionModificar);
                             $(this).removeClass("btnBuscando");
                             $(this).empty().append("<i class='fa fa-search'></i>");
