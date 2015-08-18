@@ -151,7 +151,7 @@
                     actualizarCatalogo(RAIZ + "/Repositorio/navHistory", frm, function (data) {
                         console.log("Respuesta de servido", data);
                         if (data.estado) {
-                            window.location = data.url;
+                            window.location = data.url + "#rowHerramientas";
                         }
                     })
                 })

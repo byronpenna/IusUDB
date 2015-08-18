@@ -99,52 +99,69 @@
 </div>
 <div class="row marginNull folders">
     <div class="lista @clases[0]">
-        @if (carpetas != null && carpetas.Count > 0 && idVista == 1)
-        {
-            foreach (CarpetaPublica carpeta in carpetas)
+        <div class="row divCabeceraList">
+            <div class="col-lg-6">
+                Nombre
+            </div>
+            <div class="col-lg-2">
+                Tipo Archivo
+            </div>
+            <div class="col-lg-2">
+                Fecha de creación 
+            </div>
+            <div class="col-lg-2">
+                Acciones
+            </div>
+        </div>
+        <div class="targetListView">
+            @if (carpetas != null && carpetas.Count > 0 && idVista == 1)
             {
-                <a href="@Url.Action(ViewBag.accion,"Repositorio",new {id=@carpeta._idCarpetaPublica,id2=tipo,id3=1})" class="aListaCarpeta">
+                foreach (CarpetaPublica carpeta in carpetas)
+                {
+                    <a href="@Url.Action(ViewBag.accion,"Repositorio",new {id=@carpeta._idCarpetaPublica,id2=tipo,id3=1})" class="aListaCarpeta">
+                        <div class='row marginNull folderDetalles'>
+                            <div class='col-lg-6'>
+                                <i class='fa fa-folder'></i> @carpeta._nombre
+                            </div>
+
+                            <div class='col-lg-2'>
+                                Folder
+                            </div>
+                            <div class='col-lg-3'>
+
+                            </div>
+                            <div class='col-lg-1'>
+
+                            </div>
+
+                        </div>
+                    </a>
+                }
+
+            }
+            @if (archivos != null && archivos.Count > 0)
+            {
+                foreach (ArchivoPublico archivo in archivos)
+                {
                     <div class='row marginNull folderDetalles'>
                         <div class='col-lg-6'>
-                            <i class='fa fa-folder'></i> @carpeta._nombre
+                            @archivo._nombre
                         </div>
-
                         <div class='col-lg-2'>
-                            Folder
+                            @archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo
                         </div>
                         <div class='col-lg-3'>
-
+                            @archivo.getFechaCreacion
                         </div>
                         <div class='col-lg-1'>
-
+                            <a href='@Url.Action("downloadFile", "Repositorio", new { id = archivo._idArchivoPublico })'>
+                                <i class='fa fa-download iconoHerramientas'></i>
+                            </a>
                         </div>
-
                     </div>
-                </a>
+                }
             }
-        }
-        @if (archivos != null && archivos.Count > 0)
-        {
-            foreach (ArchivoPublico archivo in archivos)
-            {
-                <div class='row marginNull folderDetalles'>
-                    <div class='col-lg-6'>
-                        @archivo._nombre
-                    </div>
-                    <div class='col-lg-2'>
-                        @archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo
-                    </div>
-                    <div class='col-lg-3'>
-                        @archivo.getFechaCreacion
-                    </div>
-                    <div class='col-lg-1'>
-                        <a href='@Url.Action("downloadFile", "Repositorio", new { id = archivo._idArchivoPublico })'>
-                            <i class='fa fa-download iconoHerramientas'></i>
-                        </a>
-                    </div>
-                </div>
-            }
-        }
+        </div>
     </div>
 
     
