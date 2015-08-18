@@ -23,6 +23,7 @@
                 }
                 
                 var seccionModificar = $(".listView");
+                //var seccionModificar = $(".targetListView");
                 icoVistaLista(frm, seccionModificar);
             }
 
@@ -102,18 +103,34 @@
                 return div;
             }
         // lista
-            function loadListFiles(file) {
+            function loadListFiles(file, url) {
+                if (url === undefined) {
+                    url = '#';
+                } else {
+                    url += '/' + file._idArchivo;
+                }
                 var div = "\
-                    <div class='row folderDetalles'>\
+                    <div class='row folderDetalles folderUni'>\
                         <input type='hidden' class='txtHdIdArchivo' value='"+file._idArchivo+"'>\
                         <div class='col-lg-6'>\
                             <div class='normalMode inline'>\
-                                <span class='spanNombreCarpeta sinRedirect'>" + file._nombre + "</span>\
+                                <span class='spanNombreCarpeta sinRedirect nombreAcompartir'>" + file._nombre + "</span>\
                             </div>\
                             <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>\
                         </div>\
-                        <div class='col-lg-3'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
-                        <div class='col-lg-3'>" + file.getFechaCreacion + "</div>\
+                        <div class='col-lg-2'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
+                        <div class='col-lg-2'>" + file.getFechaCreacion + "</div>\
+                        <div class='col-lg-2 divAccionesLista'>\
+                            <a href='#' class='icoCompartirFile' title='Compartir'>\
+                                <i class='fa fa-share'></i>\
+                            </a>\
+                            <a href='"+url+"' class='ico' title='Descargar'>\
+                                <i class='fa fa-download'></i>\
+                            </a>\
+                            <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
+                                <i class='fa fa-trash-o'></i>\
+                            </a>\
+                        </div>\
                     </div>\
                 ";
                 return div;
@@ -286,6 +303,7 @@
         }
         function vistaListaBusqueda() {
             var seccion = $(".listView");
+            //var seccion = $(".targetListView");
             target = "lista";
             var frm = {
                 txtBusqueda: $(".txtBusqueda").val()
@@ -313,7 +331,7 @@
                             if (target == "cuadricula") {
                                 div += loadCuadriculaFiles(archivo, true);
                             } else{
-                                div += loadListFiles(archivo);
+                                div += loadListFiles(archivo,data.urlBase);
                             }
                         })
                     } else {
@@ -365,7 +383,7 @@
                     }
                     if (data.archivos !== null) {
                         $.each(data.archivos, function (i, file) {
-                            div += loadListFiles(file)
+                            div += loadListFiles(file, data.urlBase);
                         })
                     }
                     seccion.empty().append(div);

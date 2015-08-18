@@ -268,6 +268,7 @@ namespace IUSBack.Controllers
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("archivos", archivos);
+                            respuesta.Add("urlBase", this.Url.Action("DescargarFichero","Repositorio"));
                         }
                     }
                     catch (ErroresIUS x)
@@ -350,6 +351,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("carpetas", archivos["carpetas"]);
                             respuesta.Add("archivos", archivos["archivos"]);
                             respuesta.Add("carpetaPadre", archivos["carpetaPadre"]);
+                            respuesta.Add("urlBase", this.Url.Action("DescargarFichero", "Repositorio"));
                         }
                         else
                         {
