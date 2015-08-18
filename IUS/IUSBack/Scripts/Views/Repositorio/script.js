@@ -138,7 +138,24 @@
                 
                 
             })
-        // click 
+    // click 
+                $(document).on("click", ".btnNavHistory", function () {
+                    /*
+                    0 atras 
+                    1 adelante
+                    */
+                    frm = {
+                        direccion: $(this).attr("id")
+                    }
+                    console.log("entro a navHistory");
+                    actualizarCatalogo(RAIZ + "/Repositorio/navHistory", frm, function (data) {
+                        console.log("Respuesta de servido", data);
+                        if (data.estado) {
+                            window.location = data.url;
+                        }
+                    })
+                })
+                
                 $(document).on("click", ".spIrPublico", function () {
                     frm = { txtRuta: $(".txtRutaPublica").val() }
                     console.log("formulario a enviar", frm);

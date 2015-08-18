@@ -225,6 +225,7 @@
     <Compile Include="Models\Page\Repositorio\Acciones\RepositorioCompartidoModel.cs" />
     <Compile Include="Models\Page\Repositorio\Acciones\RepositorioModel.cs" />
     <Compile Include="Models\Page\Repositorio\Acciones\RepositorioPublicoModel.cs" />
+    <Compile Include="Models\Page\Repositorio\Entidades\HistoryRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

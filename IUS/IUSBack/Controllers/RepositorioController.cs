@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.IO;
 // liberias internas
     using IUSBack.Models.Page.Repositorio.Acciones;
-    
+    using IUSBack.Models.Page.Repositorio.Entidades;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -29,13 +29,30 @@ namespace IUSBack.Controllers
         #region "url"
             public ActionResult Index(int id = -1, int id2= -1)
             {
+                /*
+                 * id: representa la carpeta actual
+                 * id2: representa la vista que aparecera
+                 */
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                //var xx = Session["HistoryRepo"];
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
                 try
                 {
+                    HistoryRepo history;
+                    if (Session["HistoryRepo"] == null)
+                    {
+                        history = new HistoryRepo(id);
+                        Session["HistoryRepo"] = history;
+                    }
+                    else
+                    {
+                        history = (HistoryRepo)Session["HistoryRepo"];
+                        history.insertHistory(id);
+                        Session["HistoryRepo"] = history;
+                    }
                     Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> archivos;
@@ -109,6 +126,47 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones ajax"
+                public ActionResult navHistory()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            HistoryRepo history = (HistoryRepo)Session["HistoryRepo"];
+                            Carpeta carpeta;
+                            if (this.convertObjAjaxToInt(frm["direccion"]) == 1)
+                            {
+                                carpeta = history.historyFoward();
+                            }
+                            else
+                            {
+                                carpeta = history.historyBack();
+                            }
+                            Session["HistoryRepo"] = history;
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("url", this.Url.Action("Index", "Repositorio", new { id = carpeta._idCarpeta }));
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
             #region "controlArchivo"
                 public ActionResult sp_repo_deleteFile()
                 {
