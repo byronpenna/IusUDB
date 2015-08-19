@@ -183,10 +183,25 @@ namespace IUS.Controllers
                 {
                     try
                     {
-                        string ip           = Request.UserHostAddress;
+
+                        List<LlaveIdioma> traducciones;
+                        string lang = this.getUserLang();
+                        traducciones = this._model.getTraduccion(lang, this.idPagina);
+                        this.setTraduccion(traducciones);
+                        string ip           = Request.UserHostAddress; bool encontrado = false;
                         List<ArchivoPublico> archivos = this._model.sp_repo_searchArchivoPublico(this.convertObjAjaxToInt(frm["idCategoria"]), frm["nombre"].ToString(), ip, this.idPagina);
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
+                        if (archivos != null && archivos.Count > 0)
+                        {
+                            encontrado = true;
+                        }
+                        else
+                        {
+                            //string mjs = ;
+                            respuesta.Add("notFoundMjs",ViewData["archivo-no-encontrado"]);
+                        }
+                        respuesta.Add("encontrado", encontrado);
                         respuesta.Add("archivos", archivos);
                     }
                     catch (ErroresIUS x)

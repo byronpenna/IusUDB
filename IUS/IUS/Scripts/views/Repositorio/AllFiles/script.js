@@ -14,22 +14,41 @@
         // click
             $(document).on("click", ".controlVista", function (e) {
                 e.preventDefault();
-                console.log("entro")
-                var frm = {
-                    idCategoria:    $(".txtHdTipoCategoria").val(),
-                    idCarpeta:      $(".txtHdIdCarpetaActual").val()
-                }
+                var seccion = null;
                 if ($(this).hasClass("icoVistaLista")) {
                     accion = "lista";
+                    seccion = $(".targetListView");
                 } else if ($(this).hasClass("iconoVistaCuadricula")) {
                     accion = "cuadricula";
+                    seccion = $(".cuadricula");
                 }
-                icoVistaLista(frm, accion);
+                
+                if (isSearch()) {
+                    var frm = {
+                        idCategoria: $(".txtHdTipoCategoria").val(),
+                        nombre: $(".txtBusqueda").val()
+                    }
+                    console.log("Buscaras en carpeta||||||", frm);
+                    btnBuscarCarpeta(frm, seccion, accion, function () {
+                        vistaActiva(accion);
+                    });
+
+                } else {
+                    var frm = {
+                        idCategoria: $(".txtHdTipoCategoria").val(),
+                        idCarpeta: $(".txtHdIdCarpetaActual").val()
+                    }
+                    console.log("Buscaras en lista||||||", frm);
+                    icoVistaLista(frm, accion);
+                }
+                
+                
             })
             $(document).on("click", ".spIrBuscar", function () {
                 var obj = getFrmSection($(this), ".divBusquedaRuta");
                 spIrBuscar(obj.frm, obj.seccion);
             })
+            //*********************************************************
             $(document).on("click", ".btnBuscarCarpeta", function () {
                 var vistaActual = getVistaActual();
                 var seccion = null;

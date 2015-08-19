@@ -187,6 +187,9 @@
         }
 // acciones scripts 
     // otros eventos
+        function isSearch() {
+            return $(".btnBuscarCarpeta").hasClass("btnBuscando");
+        }
         function icoVistaLista(frm,accion) {
             //console.log("llego aqui ");
             actualizarCatalogo(RAIZ + "Repositorio/getArchivosSinBusqueda", frm, function (data) {
@@ -225,33 +228,44 @@
             })
         }
     // eventos normales 
-        function btnBuscarCarpeta(frm,seccion,vista) {
+        function btnBuscarCarpeta(frm,seccion,vista,callback) {
             var idCategoria = frm.idCategoria;
-            
+            console.log("la vista es", vista);
             actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
                 console.log("Respuesta de busqueda",data);
                 if (data.estado) {
                     $(".tituloPrincipal").empty().append("Resultados busqueda");
                     var div = "";
-                    if (data.archivos !== undefined && data.archivos !== null) {
-                        $.each(data.archivos, function (i, archivo) {
-                            if (vista == "cuadricula") {
-                                div += getDivArchivo(archivo, idCategoria);
-                            } else if (vista == "lista") {
-                                div += getDivListaArchivo(archivo)
-                            }
-                            
-                        })
+                    if (data.encontrado) {
+                        if (data.archivos !== undefined && data.archivos !== null) {
+                            $.each(data.archivos, function (i, archivo) {
+                                if (vista == "cuadricula") {
+                                    div += getDivArchivo(archivo, idCategoria);
+                                } else if (vista == "lista") {
+                                    div += getDivListaArchivo(archivo)
+                                }
+
+                            })
+                        }
                     } else {
+                        if (data.notFoundMjs === null) {
+                            data.notFoundMjs = "";
+                        }
                         div += "\
-                        <div>\
-                            No se encontraron resultados\
+                        <div class='resultadosNotFound'>\
+                            <img src='"+ RAIZ + "Content/images/generales/sadcloud.png'>\
+                            <div class='row marginNull'>\
+                                "+data.notFoundMjs+"\
+                            </div>\
                         </div>\
                         ";
                     }
                     //$(".folders").empty().append(div);
                     seccion.empty().append(div);
                     cambiarEstado("buscar");
+                    if (callback !== undefined) {
+                        callback();
+                    }
                     /*seccion.empty().append("<i class='fa fa-times'></i>");
                     seccion.addClass("btnBuscando");*/
                 } else {

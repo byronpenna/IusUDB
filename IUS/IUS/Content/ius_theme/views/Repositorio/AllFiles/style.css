@@ -1,4 +1,15 @@
-﻿/*Nuevo para encabezado*/
+﻿/*Para resultados */
+
+.resultadosNotFound{
+    text-align:center;
+    font-size:1.5em;
+}
+.resultadosNotFound img{
+    width:15%;
+
+}
+/******************/
+/*Nuevo para encabezado*/
 .divCabeceraList{
     text-align:center;
     font-weight:bold;
