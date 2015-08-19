@@ -60,22 +60,32 @@
                 }
         }
     }
-    function cancelarBusqueda(frm) {
+    function cancelarBusqueda(frm,seccion,vista) {
         actualizarCatalogo(RAIZ + "Repositorio/getArchivosSinBusqueda", frm, function (data) {
             console.log(data);
             if (data.estado) {
                 var div = "";
                 if (data.carpetas !== undefined && data.carpetas !== null) {
                     $.each(data.carpetas, function (i, carpeta) {
-                        div += getDivCarpeta(carpeta);
+                        if (vista == "cuadricula") {
+                            div += getDivCarpeta(carpeta);
+                        } else if (vista == "lista") {
+                            div += getDivListaCarpeta(carpeta);
+                        }
+                        
                     })
                 }
                 if (data.archivos !== undefined && data.archivos !== null) {
                     $.each(data.archivos, function (i, archivo) {
-                        div += getDivArchivo(archivo);
+                        if (vista == "cuadricula") {
+                            div += getDivArchivo(archivo);
+                        } else if (vista == "lista") {
+                            div += getDivListaArchivo(archivo);
+                        }
                     })
                 }
-                $(".folders").empty().append(div);
+                //$(".folders").empty().append(div);
+                seccion.empty().append(div);
                 cambiarEstado("cancelar_busqueda");
                 $(".tituloPrincipal").empty().append(data.carpetaPadre._nombre);
 
@@ -201,7 +211,12 @@
                             }
                         })
                     }
-                    $("."+accion+"").empty().append(div);
+                    if (accion == "cuadricula") {
+                        $("." + accion + "").empty().append(div);
+                    } else if(accion == "lista"){
+                        $(".targetListView").empty().append(div);
+                    }
+                    
                     vistaActiva(accion);
                 } else {
                     alert("Error al recuperar vista");
@@ -210,16 +225,22 @@
             })
         }
     // eventos normales 
-        function btnBuscarCarpeta(frm,seccion) {
+        function btnBuscarCarpeta(frm,seccion,vista) {
             var idCategoria = frm.idCategoria;
+            
             actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
                 console.log("Respuesta de busqueda",data);
                 if (data.estado) {
                     $(".tituloPrincipal").empty().append("Resultados busqueda");
                     var div = "";
                     if (data.archivos !== undefined && data.archivos !== null) {
-                        $.each(data.archivos,function(i,archivo){
-                            div += getDivArchivo(archivo,idCategoria);
+                        $.each(data.archivos, function (i, archivo) {
+                            if (vista == "cuadricula") {
+                                div += getDivArchivo(archivo, idCategoria);
+                            } else if (vista == "lista") {
+                                div += getDivListaArchivo(archivo)
+                            }
+                            
                         })
                     } else {
                         div += "\
@@ -228,7 +249,8 @@
                         </div>\
                         ";
                     }
-                    $(".folders").empty().append(div);
+                    //$(".folders").empty().append(div);
+                    seccion.empty().append(div);
                     cambiarEstado("buscar");
                     /*seccion.empty().append("<i class='fa fa-times'></i>");
                     seccion.addClass("btnBuscando");*/

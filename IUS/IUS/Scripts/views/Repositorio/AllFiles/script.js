@@ -16,8 +16,8 @@
                 e.preventDefault();
                 console.log("entro")
                 var frm = {
-                    idCategoria: $(".txtHdTipoCategoria").val(),
-                    idCarpeta: $(".txtHdIdCarpetaActual").val()
+                    idCategoria:    $(".txtHdTipoCategoria").val(),
+                    idCarpeta:      $(".txtHdIdCarpetaActual").val()
                 }
                 if ($(this).hasClass("icoVistaLista")) {
                     accion = "lista";
@@ -31,14 +31,20 @@
                 spIrBuscar(obj.frm, obj.seccion);
             })
             $(document).on("click", ".btnBuscarCarpeta", function () {
+                var vistaActual = getVistaActual();
+                var seccion = null;
+                if (vistaActual == "cuadricula") {
+                    seccion = $(".cuadricula");
+                } else if (vistaActual == "lista") {
+                    seccion = $(".targetListView");
+                }
                 if ($(".rdBusqueda:checked").val() == 1) {
                     if (!$(this).hasClass("btnBuscando")) {
                         var frm = {
                             idCategoria: $(".txtHdTipoCategoria").val(),
                             nombre: $(".txtBusqueda").val()
                         }
-                        console.log("Form a enviar", frm);
-                        btnBuscarCarpeta(frm, $(this));
+                        btnBuscarCarpeta(frm,seccion,vistaActual);//$(this)
                     } else {
                         //console.log("Cancela busqueda");
                         var frm = {
@@ -46,7 +52,7 @@
                             idCategoria: $(".txtHdTipoCategoria").val()
                         }
                         console.log("formulario a enviar es:", frm);
-                        cancelarBusqueda(frm);
+                        cancelarBusqueda(frm,seccion,vistaActual);
                     }
                 }
             })
