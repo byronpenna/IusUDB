@@ -71,6 +71,19 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
+                    HistoryRepo history;
+                    if (Session["HistoryRepo"] == null)
+                    {
+                        history = new HistoryRepo(id);
+                        Session["HistoryRepo"] = history;
+                    }
+                    else
+                    {
+                        history = (HistoryRepo)Session["HistoryRepo"];
+                        history.insertHistory(id);
+                        Session["HistoryRepo"] = history;
+                    }
+                    //************************************
                     ViewBag.noticias                    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang                         = this.getUserLang();
                     traducciones                        = this._model.getTraduccion(lang, this.idPagina);
@@ -140,6 +153,44 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult navHistory()
+            {
+                Dictionary<object, object> frm, respuesta=null;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        string ip = Request.UserHostAddress;
+                        int direccion = this.convertObjAjaxToInt(frm["direccion"]);
+                        HistoryRepo history = (HistoryRepo)Session["HistoryRepo"];
+                        Carpeta carpeta;
+                        if (direccion == 1)
+                        {
+                            carpeta = history.historyFoward();
+                        }
+                        else
+                        {
+                            carpeta = history.historyBack();
+                        }
+                        Session["HistoryRepo"] = history;
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("url", this.Url.Action(frm["accion"].ToString(), "Repositorio", new { id = carpeta._idCarpeta, id2 = this.convertObjAjaxToInt(frm["filtro"]), id3 = this.convertObjAjaxToInt(frm["vista"]) }));
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                return Json(respuesta);
+            }
             public ActionResult getArchivosSinBusqueda()
             {
                 Dictionary<object, object> frm, respuesta=null;

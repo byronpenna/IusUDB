@@ -12,6 +12,21 @@
 
             });
         // click
+            $(document).on("click", ".btnNavHistory", function (e) {
+                /*
+                    0 atras 
+                    1 adelante
+                */
+                var frm = {
+                    direccion: $(this).attr("id"),
+                    accion: $(".txtHdAccion").val(),
+                    filtro: $(".txtIdFiltro").val(),
+                    vista: getNumVistaActual()
+                }
+                console.log(frm);
+                btnNavHistory(frm);
+            })
+            
             $(document).on("click", ".controlVista", function (e) {
                 e.preventDefault();
                 var seccion = null;

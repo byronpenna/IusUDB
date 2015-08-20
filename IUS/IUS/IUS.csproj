@@ -208,6 +208,7 @@
     <Compile Include="Models\page\Informacion\Acciones\InformacionModel.cs" />
     <Compile Include="Models\page\Instituciones\Acciones\InstitucionesModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
+    <Compile Include="Models\page\Repositorio\Acciones\HistoryRepo.cs" />
     <Compile Include="Models\page\Repositorio\Acciones\RepositorioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

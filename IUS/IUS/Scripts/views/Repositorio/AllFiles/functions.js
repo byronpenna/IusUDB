@@ -1,4 +1,12 @@
 ﻿// generics
+    function btnNavHistory(frm) {
+        actualizarCatalogo(RAIZ + "/Repositorio/navHistory", frm, function (data) {
+            console.log("Respuesta de servidor", data);
+            if (data.estado) {
+                window.location = data.url;
+            }
+        })
+    }
     // acciones genericas   
         // acciones vista
             function getNumVistaActual() {

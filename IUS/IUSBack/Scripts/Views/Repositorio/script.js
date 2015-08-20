@@ -147,7 +147,7 @@
                     frm = {
                         direccion: $(this).attr("id")
                     }
-                    console.log("entro a navHistory");
+                    //console.log("entro a navHistory");
                     actualizarCatalogo(RAIZ + "/Repositorio/navHistory", frm, function (data) {
                         console.log("Respuesta de servido", data);
                         if (data.estado) {
