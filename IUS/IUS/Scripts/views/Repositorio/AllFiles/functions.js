@@ -130,7 +130,13 @@
             ";
             return div;
         }
-        function getDivListaArchivo(archivo) {
+        function getDivListaArchivo(archivo,idCategoria) {
+            var accion="";
+            if (idCategoria !== undefined && idCategoria == -1) {
+                accion = "AllFiles";
+            } else {
+                accion = "FileByCategory";
+            }
             var div = "\
                 <div class='row marginNull folderDetalles'>\
                     <div class='col-lg-6'>\
@@ -145,7 +151,14 @@
                     <div class='col-lg-1'>\
                         <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico+ "'>\
                             <i class='fa fa-download iconoHerramientas'></i>\
-                        </a>\
+                        </a>";
+                if (idCategoria !== undefined) {
+                    div += "\
+                            <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "/1' class='ico' title='Abrir ubicacion de archivo'>\
+                                <i class='fa fa-folder-open'></i>\
+                            </a>";
+                }
+                div += "\
                     </div>\
                 </div>\
             ";
@@ -250,7 +263,7 @@
                                 if (vista == "cuadricula") {
                                     div += getDivArchivo(archivo, idCategoria);
                                 } else if (vista == "lista") {
-                                    div += getDivListaArchivo(archivo)
+                                    div += getDivListaArchivo(archivo, idCategoria);
                                 }
 
                             })

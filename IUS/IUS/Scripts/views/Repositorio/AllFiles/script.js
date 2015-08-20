@@ -43,7 +43,7 @@
                         idCategoria: $(".txtHdTipoCategoria").val(),
                         nombre: $(".txtBusqueda").val()
                     }
-                    console.log("Buscaras en carpeta||||||", frm);
+                    
                     btnBuscarCarpeta(frm, seccion, accion, function () {
                         vistaActiva(accion);
                     });
@@ -53,7 +53,7 @@
                         idCategoria: $(".txtHdTipoCategoria").val(),
                         idCarpeta: $(".txtHdIdCarpetaActual").val()
                     }
-                    console.log("Buscaras en lista||||||", frm);
+                    
                     icoVistaLista(frm, accion);
                 }
                 
