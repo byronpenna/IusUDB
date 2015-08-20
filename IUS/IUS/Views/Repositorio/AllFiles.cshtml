@@ -57,7 +57,7 @@
 <div class="row marginNull divBusqueda">
     <div class="col-lg-3 divBusquedaRuta">
         <input name="txtIdFiltro" class="txtIdFiltro" type="hidden" value="@idFiltro" />
-        <label>Ruta</label>
+        <label>@ViewData["cabecera-ruta"]</label>
         <div class="input-group">
             <input class="form-control txtRutaPublica" name="txtRutaPublica" value="@ruta" />
             <span class="input-group-addon spIrBuscar pointer">@ViewData["texto-boton-ruta"]</span>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <label>Vistas</label>
+            <label>@ViewData["cabecera-vistas"]</label>
             <div class="accionesDiv form-control inputBackModal">
                 <a href="#" class="ico controlVista iconoVistaCuadricula @activeVista[0]" title="Cuadricula">
                     <!--activeVista-->
@@ -97,7 +97,7 @@
     <div class="col-lg-4">
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Busqueda</label>
+                <label>@ViewData["cabecera-busqueda"]</label>
             </div>
             <div class="col-lg-6">
                 @ViewData["selector-busqueda-1"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
@@ -121,16 +121,16 @@
     <div class="lista @clases[0]">
         <div class="row divCabeceraList">
             <div class="col-lg-6">
-                Nombre
+                @ViewData["leyenda-list-1"]
             </div>
             <div class="col-lg-2">
-                Tipo Archivo
+                @ViewData["leyenda-list-2"]
             </div>
             <div class="col-lg-2">
-                Fecha de creación 
+                @ViewData["leyenda-list-3"]
             </div>
             <div class="col-lg-2">
-                Acciones
+                @ViewData["leyenda-list-4"]
             </div>
         </div>
         <div class="targetListView">
