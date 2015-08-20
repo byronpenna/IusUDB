@@ -148,7 +148,7 @@ namespace IUSBack.Controllers
                             Session["HistoryRepo"] = history;
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
-                            respuesta.Add("url", this.Url.Action("Index", "Repositorio", new { id = carpeta._idCarpeta }));
+                            respuesta.Add("url", this.Url.Action("Index", "Repositorio", new { id = carpeta._idCarpeta,id2= this.convertObjAjaxToInt(frm["vistaActual"]) }));
                         }
                         else
                         {

@@ -13,6 +13,12 @@
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
         // click
+            
+                $(document).on("click", ".carpetaDetalle", function (e) {
+                    var nVista = getNumVistaActual();
+                    console.log(nVista);
+                    window.location = RAIZ + "RepositorioCompartido/index/" + $(this).find(".txtHdIdCarpeta").val() + "/" + nVista;
+                })
                 $(document).on("click", ".btnDejarDeCompartirTodo", function (e) {
                     var x           = confirm("¿Esta seguro que desea dejar de compartir ?");
                     var divUsuario = $(this).parents(".divCarpetaUsuarioCompartido ");

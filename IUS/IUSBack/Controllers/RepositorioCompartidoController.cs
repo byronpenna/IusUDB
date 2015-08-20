@@ -54,8 +54,12 @@ namespace IUSBack.Controllers
                 }
                 return View();
             }
-            public ActionResult Index(int id=-1)
+            public ActionResult Index(int id = -1, int id2 = -1)
             {
+                /*
+                 * id: representa la carpeta actual
+                 * id2: representa la vista que aparecera
+                 */
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
                 {
@@ -77,6 +81,7 @@ namespace IUSBack.Controllers
                     }
                     ViewBag.idCarpetaActual     = id;
                     ViewBag.titleModulo         = "Repositorio Compartido";
+                    ViewBag.vista               = id2;
                     ViewBag.carpetas            = archivos["carpetas"];
                     ViewBag.archivos            = archivos["archivos"];
                     ViewBag.carpetaActual       = archivos["carpetaPadre"];

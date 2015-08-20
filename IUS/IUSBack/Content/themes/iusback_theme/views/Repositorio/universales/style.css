@@ -1,4 +1,12 @@
-﻿/*
+﻿/*Nuevo encabezado*/
+.divCabeceraList{
+    text-align:center;
+    font-weight:bold;
+    border-bottom: solid 1px black;
+    padding-bottom:3%;
+}
+/*****************/
+/*
     NUEVO por el momento solo afecta a     
 */
 

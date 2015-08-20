@@ -8,7 +8,15 @@
         // change 
             
         // keyup 
-            $(document).on("keyup", ".txtNombreFileCompartir", function (e) {
+            $(document).on("keydown", ".txtNombreFileCompartir", function (e) {
+                var charcode = e.which;
+                console.log(charcode);
+                switch (charcode) {
+                    case 13: {
+                        $(".btnCompartir").click();
+                        break;
+                    }
+                }
                 /*if ($(this).val() == "") {
                     $(".divCarpetasPublicasCompartir .divCarpetaPublica").removeClass("hidden");
                 } else {
@@ -145,7 +153,8 @@
                     1 adelante
                     */
                     frm = {
-                        direccion: $(this).attr("id")
+                        direccion: $(this).attr("id"),
+                        vistaActual: getNumVistaActual()
                     }
                     //console.log("entro a navHistory");
                     actualizarCatalogo(RAIZ + "/Repositorio/navHistory", frm, function (data) {
@@ -230,7 +239,6 @@
                 $(document).on("click", ".carpetaDetalle", function (e) {
                     var nVista = getNumVistaActual();
                     window.location = RAIZ + "Repositorio/index/" + $(this).find(".txtHdIdCarpeta").val() + "/" + nVista;
-
                 })
                 $(document).on("click", ".cuadritoCarpeta", function () {
                     /*frm = { idCarpeta: $(this).parents(".folder").find(".txtHdIdCarpeta").val() }
