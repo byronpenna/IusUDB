@@ -12,7 +12,18 @@
                 $(".cbSubMenu").chosen({ no_results_text: "Submenu no encontrado", width: '100%' });
     // eventos
         // keyup
-            $(document).on("keydown", ".txtRol", function (e) {
+            $(document).on("keydown", ".txtRolEdit", function (e) {
+                var charcode = e.which;
+                switch (charcode) {
+                    case 13: {
+                        $(this).parents("tr").find(".btnActualizar").click();
+                    }
+
+                }
+
+            })
+                
+            $(document).on("keydown", ".txtRolAgregar", function (e) {
                 var charcode = e.which;
                 switch (charcode) {
                     case 13: {

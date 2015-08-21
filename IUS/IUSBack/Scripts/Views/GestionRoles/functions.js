@@ -266,25 +266,29 @@ function validacionIngreso(frm) {
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtRol' class='txtRol form-control'  />\
+                        <input type='text' name='txtRol' class='txtRol form-control txtRolEdit'  />\
                     </div>\
-                    <div class='normalMode tdRol' >\
-                        "+ rol._rol + "\
-                    </div>\
+                    <div class='normalMode tdRol' >"+ rol._rol + "</div>\
                 </td>\
-                <td>\
+                <td class='tdEstadoRol'>\
                     <div class='normalMode'>\
                         "+ rol.stringEstado + "\
                     </div>\
                 </td>\
                 <td>\
-                    <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">\
-                        Editar\
-                    </button>\
-                    <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
-                    <button class='btn btn-xs btnDeshabilitar' " + permisos.stringEditar + " >\
-                        "+rol.txtBtnHabilitar+"\
-                    </button>\
+                    <div class='editMode hidden'>\
+                        <button class='btn btn-xs btnActualizar'>Actualizar</button>\
+                        <button class='btn btn-xs btnCancelarEdit'>Cancelar</button>\
+                    </div>\
+                    <div class='normalMode'>\
+                        <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">\
+                            Editar\
+                        </button>\
+                        <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                        <button class='btn btn-xs btnDeshabilitar' " + permisos.stringEditar + " >\
+                            "+rol.txtBtnHabilitar+"\
+                        </button>\
+                    </div>\
                 </td>\
             </tr>\
         ";
