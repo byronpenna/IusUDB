@@ -45,7 +45,7 @@
             });
             $(document).on("click", ".btnAddInstitucion", function () {
                 seccion = $(".trFrmInstituciones");
-                frm = serializeSection(seccion);
+                var frm = serializeSection(seccion);
                 var val = validacionIngreso(frm);
                 if (val.estado) {
                     btnAddInstitucion(frm, seccion, function () {

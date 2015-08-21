@@ -132,7 +132,16 @@
             if (data.estado) {
                 tr = getTrInstituciones(data.institucion);
                 $(".tbInstituciones").dataTable().fnAddTr($(tr)[0]);
-                clearTr(seccion);
+                //clearTr(seccion);
+                seccion.find(".txtNombreInstitucion").val("");
+                seccion.find(".txtAreaDireccion").val("");
+            } else {
+                console.log("Se fue al error");
+                if (data.error._mostrar) {
+                    printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                } else {
+                    printMessage($(".divMensajesGenerales"), "Ocurrio un error no controlado", false);
+                }
             }
             if (callback !== undefined) {
                 callback();
