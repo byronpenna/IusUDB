@@ -1,4 +1,14 @@
-﻿.ulTabGeneral{
+﻿/*
+
+    */
+.divInfoInstitucional{
+    text-align:center;
+    font-size:1.3em;
+    margin-top:5%;
+    margin-bottom:5%;
+}
+/************/
+.ulTabGeneral{
     background:#95a5a6;
 }
 .ulTabGeneral li{

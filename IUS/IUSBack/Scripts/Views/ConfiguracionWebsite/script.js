@@ -3,7 +3,16 @@
         // tabs 
             $('#horizontalTab').responsiveTabs();
     // eventos 
-        
+        // keydown
+            $(document).on("keydown", ".txtValores", function (e) {
+                var charcode = e.which;
+                switch (charcode) {
+                    case 13: {
+                        $(".btnAddValor").click();
+                        break;
+                    }
+                }
+            })
         // submit
             $(document).on("submit", "#frmInstitucional", function (e) {
                 e.preventDefault();

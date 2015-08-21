@@ -109,7 +109,8 @@ namespace IUSLibs.ADMINFE.Control
                                 DataRow row         = tb[1].Rows[0];
                                 pagina              = new Pagina((int)row["id_pagina_fk"]);
                                 byte[] byteImage    = (byte[])row["imagen"];
-                                string strImage     = Convert.ToBase64String(byteImage,0,byteImage.Length);
+                                //string strImage     = Convert.ToBase64String(byteImage,0,byteImage.Length);
+                                string strImage     = "";
                                 image = new SliderImage(idImagen, row["nombre"].ToString(),strImage, (bool)row["estado"], pagina, (DateTime)row["fecha_creacion"]);
                             }
                         }
