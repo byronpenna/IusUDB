@@ -39,9 +39,15 @@
                         <td></td>
                         <td>
                             <input class="txtNombreInstitucion form-control" name="txtNombreInstitucion" />
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
                         </td>
                         <td>
                             <textarea class="txtAreaDireccion form-control" name="txtAreaDireccion"></textarea>
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
                         </td>
                         <td>
                             <select class="cbPais" name="cbPais">
@@ -69,9 +75,12 @@
                                     @(new HtmlString(optionGroup));
                                 }
                             </select>
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
                         </td>
                         <td>
-                            <button class="btnAddInstitucion">Agregar </button>
+                            <button class="btn btnAddInstitucion">Agregar </button>
                             
                         </td>
                     </tr>

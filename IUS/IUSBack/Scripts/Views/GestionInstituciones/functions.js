@@ -77,6 +77,21 @@
             callback();
         });
     }
+    // validaciones 
+    function validacionIngreso(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            txtNombreInstitucion:   new Array(),
+            txtAreaDireccion:       new Array(),
+            cbPais:                 new Array()
+        }
+        if (frm.txtNombreInstitucion == "") {
+            val.campos.txtNombreInstitucion.push("Nombre de institucion no puede ir vacia");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
 // acciones script
     function btnActualizarInstitucion(frm, trInstitucion) {
         console.log("actualizar", frm);
@@ -110,7 +125,7 @@
             }
         });
     }
-    function btnAddInstitucion(frm, seccion) {
+    function btnAddInstitucion(frm, seccion,callback) {
         console.log("formulario a agregar", frm);
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_insertInstitucion", frm, function (data) {
             console.log(data);
@@ -118,6 +133,9 @@
                 tr = getTrInstituciones(data.institucion);
                 $(".tbInstituciones").dataTable().fnAddTr($(tr)[0]);
                 clearTr(seccion);
+            }
+            if (callback !== undefined) {
+                callback();
             }
         })
     }
