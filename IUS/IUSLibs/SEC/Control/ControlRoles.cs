@@ -93,13 +93,28 @@ namespace IUSLibs.SEC.Control
                     sp.agregarParametro("idPagina", idPagina);
                     try
                     {
-                        DataSet ds = sp.EjecutarProcedimiento();
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow rowRol = tb[1].Rows[0];
+                                rol = new Rol((int)rowRol["idRol"], rowRol["rol"].ToString(), (bool)rowRol["estado"]);
+                            }
+                        }
+                        else
+                        {
+                            DataRow rowError = tb[0].Rows[0];
+                            ErroresIUS x = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorSql"].ToString(),(bool)rowError["mostrar"]);
+                            throw x;
+                        }
+                        /*DataSet ds = sp.EjecutarProcedimiento();
                         DataTableCollection tables = this.getTables(ds);
                         if (tables != null && (int)tables[0].Rows[0]["estadoInsert"] == 1)
                         {
                             DataRow rowRol = tables[1].Rows[0];
                             rol = new Rol((int)rowRol["idRol"],rowRol["rol"].ToString(),(bool)rowRol["estado"]);
-                        }
+                        }*/
                     }
                     catch (ErroresIUS x)
                     {

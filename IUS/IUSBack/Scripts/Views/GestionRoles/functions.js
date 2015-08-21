@@ -305,7 +305,14 @@ function validacionIngreso(frm) {
                 $(".txtEstado").val("Activo");
                 addOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
             } else {
-                alert("Ocurrio un error");
+                if (data.error._mostrar) {
+                    printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                    
+                } else {
+                    printMessage($(".divMensajesGenerales"), "Ocurrio un error no controlado", false);
+                }
+                /*console.log("data error",data);
+                alert("Ocurrio un error");*/
             }
         });
     }

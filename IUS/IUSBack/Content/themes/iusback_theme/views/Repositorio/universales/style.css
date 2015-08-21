@@ -30,11 +30,8 @@
 .icoDownload{
     display:none;
 }
-.divMensajesGenerales{
-    text-align:center;
-    font-size:1.2em;
-    margin-top:3%;
-}
+
+
 /*Publico */
 .divCarpetaPublica:hover{
     background:#F5F5F5;

@@ -382,22 +382,21 @@ namespace IUSBack.Controllers
                     public ActionResult sp_sec_addRol()
                     {
                         Dictionary<object, object> frm, respuesta = null;
-                        frm = this.getAjaxFrm();
-                        Usuario usuarioSession = this.getUsuarioSesion();
-                        Rol rol,rolAgregar = new Rol(frm["txtRol"].ToString(), true); // Que sentido tendra agregar un rol inactivo D: 
-                        if (frm != null && usuarioSession != null)
+                        try
                         {
-                            respuesta = new Dictionary<object, object>();
-                            // poner un try y catch
-                            try
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            frm = this.getAjaxFrm();
+                            if (frm != null && usuarioSession != null)
                             {
+                                Rol rol, rolAgregar = new Rol(frm["txtRol"].ToString(), true); // Que sentido tendra agregar un rol inactivo D: 
+                                respuesta = new Dictionary<object, object>();
                                 rol = this._model.sp_sec_addRol(rolAgregar, usuarioSession._idUsuario, this._idPagina);
-                                Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
+                                Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                                 if (rol != null)
                                 {
                                     respuesta.Add("estado", true);
                                     respuesta.Add("rol", rol);
-                                    respuesta.Add("permisos",permisos);
+                                    respuesta.Add("permisos", permisos);
                                 }
                                 else
                                 {
@@ -406,23 +405,30 @@ namespace IUSBack.Controllers
                                     respuesta.Add("error", "Ocurrio un error inesperado");
                                 }
                             }
-                            catch (ErroresIUS x)
+                            else
                             {
-                                respuesta.Add("estado", false);
-                                respuesta.Add("errorType", 1);
-                                respuesta.Add("error", x);
+                                respuesta = this.errorEnvioFrmJSON();
                             }
-                            catch (Exception x)
-                            {
-                                respuesta.Add("estado", false);
-                                respuesta.Add("errorType", 2);
-                                respuesta.Add("error", x);
-                            }
+                            
                         }
-                        else
+                        catch (ErroresIUS x)
                         {
-                            respuesta = this.errorEnvioFrmJSON();
+                            /*respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 1);
+                            respuesta.Add("error", x);*/
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                            respuesta = this.errorTryControlador(1, error);
                         }
+                        catch (Exception x)
+                        {
+                            /*
+                            respuesta.Add("estado", false);
+                            respuesta.Add("errorType", 2);
+                            respuesta.Add("error", x);*/
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+                        
                         return Json(respuesta);
                     }
                 #endregion

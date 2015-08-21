@@ -1,4 +1,13 @@
-﻿.inline{
+﻿/*
+    Para mensajes generales
+    */
+.divMensajesGenerales{
+    text-align:center;
+    font-size:1.2em;
+    margin-top:3%;
+}
+/************/
+.inline{
     display:inline-block;
 }
 .activeMenu{
