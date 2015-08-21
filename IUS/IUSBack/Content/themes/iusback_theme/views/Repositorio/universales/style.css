@@ -1,4 +1,10 @@
-﻿/*Nuevo encabezado*/
+﻿/*Botones de acciones list*/
+.divAccionesLista a{
+    color:black;
+    font-weight:normal;
+}
+/************/
+/*Nuevo encabezado*/
 .divCabeceraList{
     text-align:center;
     font-weight:bold;

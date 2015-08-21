@@ -10,7 +10,8 @@
             vista(frm,seccionModificar,"cuadricula")
         }    
         function verLista() {
-            var seccionModificar = $(".listView");
+            //var seccionModificar = $(".listView");
+            var seccionModificar = $(".targetListView");
             cambiarVistas("lista");
             var frm = {
                 idCarpeta: $(".txtHdIdCarpetaPadre").val()
@@ -19,7 +20,6 @@
         }
         function vista(frm, seccion, op,callback) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
-                
                 var div = "";
                 if (data.carpetas !== null) {
                     $.each(data.carpetas, function (i, folder) {
@@ -89,7 +89,11 @@
                             <div class='row divHerramientasIndividual'>\
                                 <a href='#' class='icoCompartirFile' title='Compartir'>\
                                     <i class='fa fa-share'></i>\
-                                </a>";
+                                </a>\
+                                <a href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' class='ico' title='Descargar'>\
+                                    <i class='fa fa-download'></i>\
+                                </a>\
+                            ";
                 if (openLocation !== undefined && openLocation == true) {
                     div += "<a href='#' class='ico icoOpenLocation' title='Abrir ubicacion'>\
                                     <i class='fa fa-folder-open'></i>\
@@ -121,7 +125,7 @@
         // lista
             function loadListFiles(file) {
                 var div = "\
-                        <div class='row folderDetalles'>\
+                        <div class='row folderDetalles folderUni'>\
                             <input type='hidden' class='txtHdIdArchivo' value='"+ file._idArchivo + "'>\
                             <div class='col-lg-6'>\
                                 <div class='normalMode inline'>\
@@ -129,8 +133,16 @@
                                 </div>\
                                 <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>\
                             </div>\
-                            <div class='col-lg-3'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
-                            <div class='col-lg-3'>" + file.getFechaCreacion + "</div>\
+                            <div class='col-lg-2'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
+                            <div class='col-lg-2'>" + file.getFechaCreacion + "</div>\
+                            <div class='col-lg-2 divAccionesLista'>\
+                                <a href='#' class='icoCompartirFile' title='Compartir'>\
+                                    <i class='fa fa-share'></i>\
+                                </a>\
+                                <a href='" + RAIZ + "Repositorio/DescargarFichero/" + file._idArchivo + "' class='ico' title='Descargar'>\
+                                    <i class='fa fa-download'></i>\
+                                </a>\
+                            </div>\
                         </div>\
                     ";
                 return div;
@@ -143,8 +155,8 @@
                             <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect'>" + folder._nombre + "</span></div>\
                             <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>\
                             </div>\
-                            <div class='col-lg-3'>Folder</div>\
-                            <div class='col-lg-3'>" + folder.getFechaCreacion + "</div>\
+                            <div class='col-lg-2'>Folder</div>\
+                            <div class='col-lg-2'>" + folder.getFechaCreacion + "</div>\
                         </div>\
                     ";
                 return div;

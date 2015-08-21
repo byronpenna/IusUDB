@@ -133,7 +133,8 @@
                 })
                 $(document).on("click", ".icoCompartirFile", function (e) {
                     e.preventDefault();
-                    var folder = $(this).parents(".folder");
+                    //var folder = $(this).parents(".folder");
+                    var folder = $(this).parents(".folderUni");
                     icoCompartirFile(folder);
                 })
                 $(document).on("click", ".cuadritoCarpeta", function () {
