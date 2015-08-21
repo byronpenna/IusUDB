@@ -209,6 +209,7 @@
                 $(".tableLlaveIdioma").dataTable().fnAddTr($(tr)[0]);
                 $(".txtAreaTraduccion").val("");
                 llenarCbLlaves(data.llaves, $(".cbLlave"));
+                printMessage($(".divMensajesAgregar"), "Llave agregada correctamente", true);
             } else {
                 alert(data.error); // a partir de hoy los mensajes vendran del servidor
             }
