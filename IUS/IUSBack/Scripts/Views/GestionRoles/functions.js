@@ -245,6 +245,18 @@ function llenarTablaRolesUsuario(idUsuario) {
         
     });
 }
+function validacionIngreso(frm) {
+    var estado = false;
+    var val = new Object();
+    val.campos = {
+        txtRol: new Array()
+    }
+    if (frm.txtRol == "") {
+        val.campos.txtRol.push("Rol no puede ser vacio");
+    }
+    val.estado = objArrIsEmpty(val.campos);
+    return val;
+}
 // genericas
     function getTrRol(rol,permisos){
         tr = "\
@@ -285,7 +297,6 @@ function llenarTablaRolesUsuario(idUsuario) {
     // hace un insert directo a la tabla roles
     function agregarRol(frm,tbody,trInsert) {
         cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_addRol", frm, function (data) {
-            
             if (data.estado) {
                 rol = data.rol;
                 tr = getTrRol(rol, data.permisos);
@@ -350,8 +361,27 @@ function llenarTablaRolesUsuario(idUsuario) {
         eliminarRol(frm,tr);
     }
     function btnAgregarRol(tr) {
-        frm = serializeSection(tr);
-        tbody = tr.parents("table").find("tbody");
+        var frm = serializeSection(tr);
+        var tbody = tr.parents("table").find("tbody");
+        console.log("formulario a agregar", frm);
+        var val = validacionIngreso(frm);
+        if (val.estado) {
+            $(".tableRolesTab3 thead").find(".divResultado").empty();
+            agregarRol(frm, tbody, tr);
+        } else {
+            // falta ajustar para esta pantalla
+            var errores;
+            $.each(val.campos, function (i, val) {
+                errores = "";
+                var divResultado = $(".tableRolesTab3 thead").find("." + i).parents("td").find(".divResultado")
+                if (val.length > 0) {
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += getSpanMessageError(val);
+                    })
+                    divResultado.empty().append(errores);
+                }
+            })
+        }
         
-        agregarRol(frm,tbody,tr);
     }

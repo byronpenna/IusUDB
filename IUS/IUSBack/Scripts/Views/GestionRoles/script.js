@@ -11,6 +11,15 @@
                 $(".cbAsignarPermisos").chosen({ no_results_text: "Permiso no encontrado", width: '100%' });
                 $(".cbSubMenu").chosen({ no_results_text: "Submenu no encontrado", width: '100%' });
     // eventos
+        // keyup
+            $(document).on("keydown", ".txtRol", function (e) {
+                var charcode = e.which;
+                switch (charcode) {
+                    case 13: {
+                        $(".btnAgregarRol").click();
+                    }
+                }
+            })
         // click 
             $(document).on("click", "#btnAddRoles", function () {
                 var x = confirm("¿Esta seguro que desea agregar los siguientes roles?");
