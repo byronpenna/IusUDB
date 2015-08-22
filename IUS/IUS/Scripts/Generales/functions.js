@@ -24,6 +24,17 @@
 
         }, 2000);
     }
+// validacion
+    function objArrIsEmpty(obj) {
+        var empty = true;
+        $.each(obj, function (i, val) {
+            if (val.length > 0) {
+                empty = false;
+                return false;
+            }
+        })
+        return empty;
+    }
 // idiomas 
     function setIdiomaPreferido() {
         var idIdioma = $.cookie('IUSidIdioma');

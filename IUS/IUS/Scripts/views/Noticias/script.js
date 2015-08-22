@@ -4,7 +4,10 @@
             $(document).on("submit", "#frmComentario", function (e) {
                 e.preventDefault();
                 frm = serializeToJson($(this).serializeArray());
-                frmComentario(frm);
+                console.log("Comentario a agregar", frm);
+                var val = validarComentario( frm);
+                console.log(val);
+                //frmComentario(frm);
             })
         // click 
             $(document).on("click", ".btnDesplegableAddComent", function () {

@@ -75,11 +75,11 @@
         <div class="col-lg-4">
             <label>@ViewData["cabecera-vistas"]</label>
             <div class="accionesDiv form-control inputBackModal">
-                <a href="#" class="ico controlVista iconoVistaCuadricula @activeVista[0]" title="Cuadricula">
+                <a href="#" class="ico controlVista iconoVistaCuadricula @activeVista[0]" title="@ViewData["cuadricula-view-hover"]">
                     <!--activeVista-->
                     <i class="fa fa-th-large"></i>
                 </a>
-                <a href="#" class="ico controlVista icoVistaLista @activeVista[1]" title="Lista">
+                <a href="#" class="ico controlVista icoVistaLista @activeVista[1]" title="@ViewData["list-view-hover"]">
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
