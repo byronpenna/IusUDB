@@ -87,6 +87,7 @@ namespace IUSLibs.SEC.Control
                 }
                 return toReturn;
             }
+            
             #region "getUsuarios"
                 private Permiso setPemisos(DataRowCollection rows)
                 {

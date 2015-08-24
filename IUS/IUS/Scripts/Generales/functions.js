@@ -52,6 +52,7 @@
 // idiomas 
     function setIdiomaPreferido() {
         var idIdioma = $.cookie('IUSidIdioma');
+        console.log("id idioma global",idIdioma)
         if (idIdioma !== undefined) {
             $(".cbIdioma option[value='" + idIdioma + "']").attr("selected", true);
         }

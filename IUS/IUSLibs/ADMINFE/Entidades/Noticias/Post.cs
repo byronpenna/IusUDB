@@ -49,7 +49,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                 }
             #endregion
         #endregion
-            #region "constructores"
+        #region "constructores"
             public Post()
             {
 
