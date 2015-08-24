@@ -80,6 +80,7 @@ namespace IUS.Controllers
 
                 public string getUserLang()
                 {
+                    
                     String[] lng = Request.UserLanguages;
                     string lang = lng[0];
                     HttpCookie cookie = this.ControllerContext.HttpContext.Request.Cookies["IUSidioma"];
