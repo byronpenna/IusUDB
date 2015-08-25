@@ -182,21 +182,34 @@
     function getSpanMessage(clase,txt) {
         return "<span class='" + clase + "'>" + txt + "</span>";
     }
-    function printMessage(div, txt, success) {
-        var clase = "";
-        if (success) {
-            clase = SUCCESS_CLASS;
-        } else {
-            clase = FAIL_CLASS;
-        }
-        div.empty().append(getSpanMessage(clase, txt));//"<span class='" + clase + "'>" + txt + "</span>"
-        div.fadeIn("slow");
-        setTimeout(function () {
-            //alert("Hello");
-            div.fadeOut("slow");
+    // printMessage
+        function printMessageDiv(div,txt,time) {
+            div.empty().append(txt);//"<span class='" + clase + "'>" + txt + "</span>"
+            if (time === undefined) {
+                time = 2000;
+            }
+            div.fadeIn("slow");
+            setTimeout(function () {
+                //alert("Hello");
+                div.fadeOut("slow");
 
-        }, 2000);
-    }
+            }, time);
+        }
+        function printMessage(div, txt, success) {
+            var clase = "";
+            if (success) {
+                clase = SUCCESS_CLASS;
+            } else {
+                clase = FAIL_CLASS;
+            }
+            div.empty().append(getSpanMessage(clase, txt));//"<span class='" + clase + "'>" + txt + "</span>"
+            div.fadeIn("slow");
+            setTimeout(function () {
+                //alert("Hello");
+                div.fadeOut("slow");
+
+            }, 2000);
+        }
     
     
     function objArrIsEmpty(obj) {

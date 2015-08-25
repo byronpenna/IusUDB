@@ -43,7 +43,7 @@
         // directorio
             $(document).on("keyup", ".txtBusqueda", function (e) {
                 var charCode = e.which;
-                if (charCode == 27) {
+                if (charCode == 27) { // tecla esc cancela todo
                     $(this).val("");
                 }
                 //console.log(charCode);

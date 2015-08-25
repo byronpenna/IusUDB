@@ -80,6 +80,16 @@
     // funciones iniciales 
         eventosIniciales();
     // eventos 
+        // keypress    
+            $(document).on("keyup", ".txtBuscarEventoNombre", function (e) {
+                var charCode = e.which;
+                if (charCode == 27) { // tecla esc cancela todo
+                    $(this).val("");
+                }
+                var txtBusqueda = $(this).val();
+                console.log("Texto a buscar es",txtBusqueda);
+                buscarEvento(txtBusqueda);
+            })
         // submit
             $(document).on("submit", "#frmAgregarEvento", function (e) {
                 e.preventDefault();
@@ -123,6 +133,11 @@
                 rbTiempo(valTiempo,$(this));
             })
         // click
+            $(document).on("click", ".rbNombre", function () {
+                var id = $(this).val();
+                $(".controlBusqueda").addClass("hidden");
+                $(".controlesBusqueda").find("#" + id).removeClass("hidden");
+            })
             $(document).on("click", ".tbCompartir", function () {
                     $("#accordion").accordion("refresh");
                 });
@@ -187,7 +202,33 @@
                     }
                 });
                 $(document).on("click", ".btnPermisos", function () {
-                    btnPermisos();
+                    var frm = { idPermisos: $(".cbPermisosCompartir").val(), idUsuarioEvento: $(".trUsuarioCompartido.clickTr").find(".txtHdIdUsuarioEvento").val() }
+                    console.log("Formulario a enviar", frm);
+                    var val = validarIngresoPermiso(frm);
+                    if (val.estado) {
+                        btnPermisos(frm);
+                    } else {
+                        var errores;
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = $(".seccionCompartir").find("." + i).parents("div").find(".divResultado")
+                            if (val.length > 0) {
+                                console.log("entro");
+                                divResultado.removeClass("hidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                        var div = "";
+                        $.each(val.general, function (i, val) {
+                            div += "<div class='row marginNull'>";
+                                div += getSpanMessageError(val);
+                            div += "</div>";
+                        })
+                        printMessageDiv($(".divMensajesCompartirGenerales"), div);
+                    }
                 });
                 // tablas compartir
                 $(document).on("click", ".icoEliminarPermisoEvento", function () {

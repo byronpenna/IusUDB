@@ -15,8 +15,22 @@ function eventosIniciales() {
     });
 }
 // genericos
+    // busqueda 
+        function buscarEvento(txt) {
+            var eventoTitulo = $("#accordion .nombreEvento");
+            var eventoCuerpo = $("#accordion .detalleEvento");
+            eventoCuerpo.css("display","none");
+            if (txt == "") {
+                eventoTitulo.removeClass("hidden");
+            } else {
+                console.log("Llego hasta aqui");
+                eventoTitulo.addClass("hidden");
+                var escogidos = eventoTitulo.find(".spanNombreEvento:containsi(" + txt + ")");
+                escogidos = escogidos.parents(".nombreEvento");
+                escogidos.removeClass("hidden");
+            }
+        }
     // validaciones
-       
         function valIngresoEvento(frm) {
             var estado = false;
             var val = new Object();
@@ -38,8 +52,6 @@ function eventosIniciales() {
                 val.general.push("La fecha de fin debe ser mayor que la de inicio");
             }
             val.estado = objArrIsEmpty(val.campos);
-            console.log("val antes", val);
-            console.log("val antes", val.general.length);
             var estado = false;
             if (val.general.length == 0) {
                  estado = true;
@@ -336,8 +348,37 @@ function eventosIniciales() {
                 }
             })
         }
-        function btnPermisos() {
-            frm = { idPermisos: $(".cbPermisosCompartir").val(), idUsuarioEvento: $(".trUsuarioCompartido.clickTr").find(".txtHdIdUsuarioEvento").val() }
+        // agregar permisos usuario
+            function validarIngresoPermiso(frm) {
+                var estado = false;
+                var val = new Object();
+                val.campos = {
+                    cbPermisosCompartir:    new Array(),
+                    txtValidacionUsuario:   new Array()
+                };
+                val.general = new Array();
+                if (frm.idPermisos === undefined || frm.idPermisos === null || frm.idPermisos === -1) {
+                    val.general.push("Debe seleccionar permiso");
+                }
+                if (frm.idUsuarioEvento === undefined || frm.idUsuarioEvento === null || frm.idUsuarioEvento === -1) {
+                    //val.general.push("Debe seleccionar un usuario");
+                    val.general.push("Debe seleccionar un usuario");
+                }
+                val.estado = objArrIsEmpty(val.campos);
+                var estado = false;
+                if (val.general.length == 0) {
+                    estado = true;
+                }
+                if (estado && val.estado) {
+                    val.estado = true;
+                } else {
+                    val.estado = false;
+                }
+                //console.log(dateInicio.getHours());
+                return val;
+            }
+            function btnPermisos(frm) {
+            
             tbody = $(".tbPermisos");
             actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_agregarPermisoUsuarioEvento", frm, function (data) {
                 
@@ -358,6 +399,7 @@ function eventosIniciales() {
                 }
             })
         }
+
         function icoQuitarUsuario(tr) {
             frm = serializeSection(tr);
             frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
