@@ -357,12 +357,12 @@ function eventosIniciales() {
                     txtValidacionUsuario:   new Array()
                 };
                 val.general = new Array();
-                if (frm.idPermisos === undefined || frm.idPermisos === null || frm.idPermisos === -1) {
+                if (frm.idPermisos === undefined || frm.idPermisos === null || frm.idPermisos == -1) {
                     val.general.push("Debe seleccionar permiso");
                 }
-                if (frm.idUsuarioEvento === undefined || frm.idUsuarioEvento === null || frm.idUsuarioEvento === -1) {
+                if (frm.idUsuarioEvento === undefined || frm.idUsuarioEvento === null || frm.idUsuarioEvento == -1) {
                     //val.general.push("Debe seleccionar un usuario");
-                    val.general.push("Debe seleccionar un usuario");
+                    val.general.push("Debe seleccionar un usuario de la tabla");
                 }
                 val.estado = objArrIsEmpty(val.campos);
                 var estado = false;
@@ -374,7 +374,6 @@ function eventosIniciales() {
                 } else {
                     val.estado = false;
                 }
-                //console.log(dateInicio.getHours());
                 return val;
             }
             function btnPermisos(frm) {
@@ -399,26 +398,35 @@ function eventosIniciales() {
                 }
             })
         }
-
-        function icoQuitarUsuario(tr) {
-            frm = serializeSection(tr);
-            frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
-            
-            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
-                if (data.estado) {
-                    tr.remove();
-                    cb = getCbUsuarios(data.usuariosFaltantes);
-                    $(".cbUsuarioCompartir").empty().append(cb);
-                    resetChosen($(".cbUsuarioCompartir"));
+        // agregar usuarios a compartir
+            function validarIngresoUsuario(frm) {
+                var estado = false;
+                var val = new Object();
+                val.campos = {
+                    cbPermisosCompartir: new Array(),
+                    txtValidacionUsuario: new Array()
+                };
+                val.general = new Array();
+                if (frm.cbUsuarioCompartir === undefined || frm.cbUsuarioCompartir === null || frm.cbUsuarioCompartir == -1) {
+                    val.general.push("Seleccione un usuario");
                 }
-            });
-        }
-        function btnAgregarUsuarioCompartir(divFrm) {
-            frm = serializeSection(divFrm);
-            frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
-
+                if (frm.idEvento === undefined || frm.idEvento === null || frm.idEvento == -1) {
+                    val.general.push("Seleccione un evento");
+                }
+                val.estado = objArrIsEmpty(val.campos);
+                var estado = false;
+                if (val.general.length == 0) {
+                    estado = true;
+                }
+                if (estado && val.estado) {
+                    val.estado = true;
+                } else {
+                    val.estado = false;
+                }
+                return val;
+            }
+            function btnAgregarUsuarioCompartir(frm) {
             actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_compartirEventoUsuario", frm, function (data) {
-
                 if (data.estado) {
                     if (!(data.usuarioEventoAgregado === null)) {
                         cb = getCbUsuarios(data.usuariosFaltantes);
@@ -437,6 +445,20 @@ function eventosIniciales() {
                     }
                 } else {
                     alert("Ocurrio un error");
+                }
+            });
+        }
+
+        function icoQuitarUsuario(tr) {
+            frm = serializeSection(tr);
+            frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
+
+            actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_removeUsuarioEvento", frm, function (data) {
+                if (data.estado) {
+                    tr.remove();
+                    cb = getCbUsuarios(data.usuariosFaltantes);
+                    $(".cbUsuarioCompartir").empty().append(cb);
+                    resetChosen($(".cbUsuarioCompartir"));
                 }
             });
         }

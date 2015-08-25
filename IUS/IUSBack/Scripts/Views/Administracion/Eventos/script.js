@@ -190,8 +190,24 @@
                     
                 });
                 $(document).on("click", ".btnAgregarUsuarioCompartir", function () {
-                    divFrm = $(this).parents(".frmCompartirUsuario");
-                    btnAgregarUsuarioCompartir(divFrm);
+                    var divFrm      = $(this).parents(".frmCompartirUsuario");
+                    var frm         = serializeSection(divFrm);
+                    frm.idEvento = $(".areaCompartir").find(".txtHdIdEvento").val();
+                    //console.log(frm);
+                    var val = validarIngresoUsuario(frm);
+                    console.log("val es", val);
+                    if (val.estado) {
+                        btnAgregarUsuarioCompartir(frm);
+                    } else {
+                        var div = "";
+                        $.each(val.general, function (i, val) {
+                            div += "<div class='row marginNull'>";
+                            div += getSpanMessageError(val);
+                            div += "</div>";
+                        })
+                        console.log(div);
+                        printMessageDiv($(".divResultadoAgregarUsuario"), div);
+                    }
                 });
                 $(document).on("click", ".icoQuitarUsuario", function (e) {
                     e.stopPropagation();
