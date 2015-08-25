@@ -94,23 +94,45 @@
 // Actualizar
     function actualizar(trUsuario) {
         frm = serializeToJson(trUsuario.find("input,select").serializeArray());
-        actualizarCatalogo(RAIZ+"GestionUsuarios/actualizarUsuario", frm, function (data) {
-            if (data.estado) {
-                usuario = data.usuario;
-                actualizarInformacionTr(trUsuario,usuario)
-                controlesEdit(false, trUsuario); // salimos del modo de edicion
-                alert("actualizado correctamente");
-                if (!usuario._estado) {
-                    var x = confirm("El usuario que acaba de editar esta ¿deshabilitado desea habilitarlo?");
-                    if (x) {
-                        deshabilitarUsuario(usuario._idUsuario, trUsuario);
+        console.log(frm);
+        var val = validacionIngreso(frm);
+        if (val.estado) {
+            actualizarCatalogo(RAIZ + "GestionUsuarios/actualizarUsuario", frm, function (data) {
+                if (data.estado) {
+                    usuario = data.usuario;
+                    actualizarInformacionTr(trUsuario, usuario)
+                    controlesEdit(false, trUsuario); // salimos del modo de edicion
+                    alert("actualizado correctamente");
+                    if (!usuario._estado) {
+                        var x = confirm("El usuario que acaba de editar esta ¿deshabilitado desea habilitarlo?");
+                        if (x) {
+                            deshabilitarUsuario(usuario._idUsuario, trUsuario);
+                        }
                     }
+                    updateAllDataTable($(".tableUsuarios"));
+                } else {
+                    alert("Ocurrio un error durante la actualizacion");
                 }
-                updateAllDataTable($(".tableUsuarios"));
-            } else {
-                alert("Ocurrio un error durante la actualizacion");
-            }
-        });
+            });
+        } else {
+            console.log("no validado");
+            var errores;
+            $.each(val.campos, function (i, val) {
+                errores = "";
+                var divResultado = trUsuario.find("." + i).parents("td").find(".divResultado")
+                console.log(i, ": " + val);
+                if (val.length > 0) {
+                    console.log("entro");
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += getSpanMessageError(val);
+                    })
+                    console.log("errores", errores);
+                    divResultado.empty().append(errores);
+                }
+            })
+        }
+        
     }
     function actualizarInformacionTr(trUsuario,usuario) {
         trUsuario.find(".tdTxtNombreCompleto").empty().append(usuario._persona.nombreCompleto);
@@ -238,10 +260,11 @@
         var val = new Object();
         val.campos = {
             cbPersona: new Array(),
-            txtEditUsuario: new Array()
+            /*txtEditUsuario: new Array()*/
+            txtUsuarioEdit: new Array()
         }
         if (frm.txtEditUsuario == "") {
-            val.campos.txtEditUsuario.push("Usuario no puede quedar vacio");
+            val.campos.txtUsuarioEdit.push("Usuario no puede quedar vacio");
         }
         val.estado = objArrIsEmpty(val.campos);
         return val;
@@ -269,12 +292,14 @@
             $.each(val.campos, function (i, val) {
                 errores = "";
                 var divResultado = $(".tableUsuarios thead").find("." + i).parents("td").find(".divResultado")
+                console.log(i,": "+val);
                 if (val.length > 0) {
                     console.log("entro");
                     divResultado.removeClass("hidden");
                     $.each(val, function (i, val) {
                         errores += getSpanMessageError(val);
                     })
+                    console.log("errores", errores);
                     divResultado.empty().append(errores);
                 }
             })

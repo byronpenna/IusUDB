@@ -29,12 +29,15 @@
 @section tabs{
     <!--class="ulTabGeneral"-->
     <ul>
-        <li class="btnTab" target="#tab-1">
+        <li class="btnTab tabActive" target="#tab-1">
             Eventos
         </li>
         <li class="tbCompartir btnTab" target="#tab-2">
             Compartir
         </li>
+        <!--<li class="tbCompartir btnTab" target="#tab-3">
+            Eventos pasados
+        </li>-->
     </ul>
 }
 <div id="tab-1" class="row seccion tab">
@@ -115,16 +118,41 @@
 <div id="tab-2" class="tab hidden row marginNull">
     <div class="col-lg-4 eventosCompartirSection">
         <h3>Eventos</h3>
+            <div class="row marginNull controlesBusqueda">
+                <div class="row marginNull controlBusqueda" id="1">
+                    <div class="input-group">
+                        <input class="form-control txtBuscarEventoNombre" placeholder="Buscar por nombre" />
+                        <span class="input-group-addon">Buscar</span>
+                    </div>
+                </div>
+                <div class="row marginNull controlBusqueda hidden" id="2">
+                    <div class="col-lg-5">
+                        <label>De</label> <input class="form-control" />
+                    </div>
+                    <div class="col-lg-5">
+                        <label>Hasta</label> <input class="form-control"/>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="visibilitiHidden">_</label>
+                        <button class="btn">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+                <div class="row marginNull text-center cambioControl">
+                    Nombre <input type="radio" class="rbNombre" name="rbNombre" value="1" checked /> Fechas <input type="radio" class="rbNombre" name="rbNombre" value="2" />
+                </div>
+            </div>
             <!-- Hermoso acordeon de eventos -->
             @if (eventos != null && eventos.Count > 0)
             {
                 <div id="accordion">
                     @foreach (Evento evento in eventos)
                     {
-                        <h3 class="nombreEvento @evento.txtClaseColor ">
+                        <h3 class="tabDesplegableEvento nombreEvento @evento.txtClaseColor ">
                             <span class="spanNombreEvento">@evento._evento</span>
                         </h3>
-                        <div class="detalleEvento">
+                        <div class="tabDesplegableEvento detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
                             <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
                             <div class="row">
@@ -173,31 +201,31 @@
                                     </div>
                                 </div>
                             </div>
-                            @if (evento._propietario != 3)
-                            {
-                                <div class="row text-center sectionBotonesEvento">
-                                    <div class="normalMode">
-                                        @if (evento._propietario == 1 || evento._propietario == 2)
-                                        {
-                                            <button class="btn btnEditar">Editar</button>
-                                            <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
-                                        }
-                                        @if (evento._propietario == 1)
-                                        {
-                                            <button class="btn btnCompartir">Compartir</button>
-                                        }
-                                    </div>
-                                    <div class="editMode hidden">
-                                        <button class="btn btnActualizar">Actualizar</button>
-                                        <button class="btn btnCancelar">Cancelar</button>
-                                    </div>
-                                    <div class="quitarPublicacionMode hidden">
-                                        <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
-                                        <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
-                                    </div>
-                                </div>
-                            }
-                        </div>
+        @if (evento._propietario != 3)
+        {
+            <div class="row text-center sectionBotonesEvento">
+                <div class="normalMode">
+                    @if (evento._propietario == 1 || evento._propietario == 2)
+                    {
+                        <button class="btn btnEditar">Editar</button>
+                        <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
+                    }
+                    @if (evento._propietario == 1)
+                    {
+                        <button class="btn btnCompartir">Compartir</button>
+                    }
+                </div>
+                <div class="editMode hidden">
+                    <button class="btn btnActualizar">Actualizar</button>
+                    <button class="btn btnCancelar">Cancelar</button>
+                </div>
+                <div class="quitarPublicacionMode hidden">
+                    <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
+                    <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
+                </div>
+            </div>
+        }
+    </div>
                     }
                 </div>
             }
@@ -216,14 +244,18 @@
             <div id="tabUsuario">
                 <div class="row">
                     <h3 class="hEventoUsuario text-center">Seleccione evento a compartir</h3>
+                    <div class="divMensajesCompartirGenerales">
+
+                    </div>
                 </div>
-                <div class="row">
+                <div class="row seccionCompartir">
                     <div class="col-lg-6">
                         <div class="row marginNull frmCompartirUsuario">
                             <select class="cbUsuarioCompartir" name="cbUsuarioCompartir">
                                 <option value="-1" disabled selected>Seleccione usuario</option>
                             </select>
                             <button class="btn btn-primary btnAgregarUsuarioCompartir">Agregar</button>
+                            <div class="divResultadoAgregarUsuario text-center"></div>
                         </div>
                         <table class="table">
                             <thead>
@@ -231,6 +263,7 @@
                                     <th>Usuario</th>
                                     <th>Acciones</th>
                                 </tr>
+                                
                             </thead>
                             <tbody class="tbUsuarios"></tbody>
                         </table>
@@ -238,7 +271,11 @@
                     <div class="col-lg-6">
                         <div class="row">
                             <select class="cbPermisosCompartir" multiple></select>
+                            
                             <button class="btn btn-primary btnPermisos">Agregar</button>
+                            <div class="divResultado hidden">
+
+                            </div>
                         </div>
                         <table class="table">
                             <thead>
@@ -246,9 +283,12 @@
                                     <th>Permisos</th>
                                     <th>Acciones</th>
                                 </tr>
+                                
                             </thead>
                             <tbody class="tbPermisos"></tbody>
                         </table>
+                        
+                        
                     </div>
                 </div>
             </div>

@@ -67,6 +67,7 @@
                 $(document).on("click", ".btnEditar", function () {
                     //var x = confirm("¿Esta seguro que desea editar esta persona?");
                     trPersona = $(this).parents(".trPersona");
+                    trPersona.find(".divResultado").empty();
                     table = $(".tablePersonas").DataTable();
                     var d = table.row($(this)).data();
                     //if (x) {
@@ -82,11 +83,11 @@
                 })
             // experiencia de usuario
                 $(document).on("click", ".btnEditMode,.btnEditar", function () {
-                    cambiarEstadoControlGlobal();
+                    //cambiarEstadoControlGlobal();
                 })
                 $(document).on("click", ".btnCancelarGlobal", function () {
-                    cancelarGlobal();
-                    cambiarEstadoControlGlobal();
+                    //cancelarGlobal();
+                    //cambiarEstadoControlGlobal();
                 });
     // validaciones 
         
