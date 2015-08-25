@@ -146,6 +146,39 @@
         }
     }
 // generics
+    function getDateFromString(stringDate, format, stringTime, formatTime) {
+        var date;
+        var arrDate = stringDate.split("/");
+        var arrFormat = format.split(" ");
+        var format24 = true;
+        switch (format) {
+            case 'dd/mm/yyyy': {
+                date = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
+                break;
+            }
+        }
+        if (stringTime !== undefined && formatTime !== undefined) {
+            if (stringTime.indexOf("a.m.") != -1 || stringTime.indexOf("p.m.") != -1) {
+                format24 = false;
+            }
+            var arrTime = stringTime.split(" ");
+            var sFinal;
+            switch (formatTime) {
+                case 'hh:mm:ss': {
+                    sFinal = arrTime[0].split(":");
+                    if (format24 && arrTime[1] == "p.m.") {
+                        date.setHours(parseInt(sFinal[0]) + 12);
+                    } else {
+                        date.setHours(parseInt(sFinal[0]) + 12);
+                    }
+                    date.setMinutes(parseInt(sFinal[1]));
+                    date.setSeconds(parseInt(sFinal[1]));
+                    break;
+                }
+            }
+        }
+        return date;
+    }
     function getSpanMessage(clase,txt) {
         return "<span class='" + clase + "'>" + txt + "</span>";
     }
@@ -164,6 +197,7 @@
 
         }, 2000);
     }
+    
     
     function objArrIsEmpty(obj) {
         var empty = true;

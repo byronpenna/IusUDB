@@ -42,15 +42,15 @@
                 <input type="hidden" name="txtHdIdPost" value="@ViewBag.idPost" />
                 <div class="row marginNull rowForm">
                     <label>@ViewData["label-nombre"]</label>
-                    <input class="form-control" name="txtNombre" placeholder="@ViewData["formato-nombre"]" /><!--Nombre Apellido-->
+                    <input class="form-control soloLetras" required name="txtNombre" placeholder="@ViewData["formato-nombre"]" /><!--Nombre Apellido-->
                 </div>
                 <div class="row marginNull rowForm">
                     <label>@ViewData["label-email"]</label>
-                    <input type="email" class="form-control" name="txtEmail" placeholder="@ViewData["formato-email"]" /><!-- direccion@("@")dominio -->
+                    <input type="email" class="form-control" name="txtEmail" required  placeholder="@ViewData["formato-email"]" /><!-- direccion@("@")dominio -->
                 </div>
                 <div class="row marginNull rowForm">
                     <label>@ViewData["label-comentario"]</label>
-                    <textarea class="form-control" name="txtAreaComentario"></textarea>
+                    <textarea class="form-control" required name="txtAreaComentario"></textarea>
                 </div>
                 <button class="btn btnComentar">
                     @ViewData["boton-comentar"]

@@ -15,6 +15,43 @@ function eventosIniciales() {
     });
 }
 // genericos
+    // validaciones
+       
+        function valIngresoEvento(frm) {
+            var estado = false;
+            var val = new Object();
+            val.campos = {
+                tiempoFin:          new Array(),
+                tiempoInicio:       new Array(),
+                txtAreaDescripcion: new Array(),
+                txtEvento:          new Array(),
+                txtFechaFin:        new Array(),
+                txtFechaInicio:     new Array(),
+                txtHoraFin:         new Array(),
+                txtHoraInicio:      new Array()
+            }
+            val.general = new Array();
+            var dateInicio  = getDateFromString(frm.txtFechaInicio, "dd/mm/yyyy", frm.txtHoraInicio, "hh:mm:ss");
+            var dateFin     = getDateFromString(frm.txtFechaFin, "dd/mm/yyyy", frm.txtHoraFin, "hh:mm:ss");
+            
+            if ((dateFin - dateInicio) < 0) {
+                val.general.push("La fecha de fin debe ser mayor que la de inicio");
+            }
+            val.estado = objArrIsEmpty(val.campos);
+            console.log("val antes", val);
+            console.log("val antes", val.general.length);
+            var estado = false;
+            if (val.general.length == 0) {
+                 estado = true;
+            }
+            if (estado && val.estado) {
+                val.estado = true;
+            } else {
+                val.estado = false;
+            }
+            //console.log(dateInicio.getHours());
+            return val;
+        }
     // ui 
         function getTiempo(div,inputTxt,valTiempo) {
             horas = div.find(".horas");
@@ -437,6 +474,10 @@ function eventosIniciales() {
             $(".rbTiempo").prop("checked", false);
             $(".rbPm").prop("checked", true);
         }
+        function limpiarFormulario() {
+            $(".txtEvento").val(""); $(".txtAreaDescripcion").val("");
+            $(".dpFecha").val("");
+        }
         function frmAgregarEvento(frm, frmSection) {
             frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
             frm.txtHoraFin = horaConvert(frm.txtHoraFin);
@@ -450,7 +491,8 @@ function eventosIniciales() {
                     agregarEvento($("#calendar"), data.evento, true, 1);
                     div = getEventosAcordion(data.evento);
                     $("#accordion").prepend(div);
-                    clearTr(frmSection);
+                    //clearTr(frmSection); se comenta porq mata las horas
+                    limpiarFormulario();
                     resetRbTiempo();
                 } else {
                     if (data.error._mostrar && data.error.Message != "") {

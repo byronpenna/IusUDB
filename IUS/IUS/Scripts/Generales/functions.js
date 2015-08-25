@@ -25,6 +25,20 @@
         }, 2000);
     }
 // validacion
+    function soloNumeros() {
+        exp = "[0-9.]";
+        return exp;
+    }
+    function soloLetras() {
+        exp = "[a-z A-Zñáéíóú]";
+        return exp;
+    }
+    function test(exp, str) {
+        var patt = new RegExp(exp);
+        var res = patt.test(str);
+        return res;
+    }
+    
     function objArrIsEmpty(obj) {
         var empty = true;
         $.each(obj, function (i, val) {
@@ -38,6 +52,7 @@
 // idiomas 
     function setIdiomaPreferido() {
         var idIdioma = $.cookie('IUSidIdioma');
+        console.log("id idioma global",idIdioma)
         if (idIdioma !== undefined) {
             $(".cbIdioma option[value='" + idIdioma + "']").attr("selected", true);
         }
@@ -50,8 +65,9 @@
             console.log("La respuesta del servidor es: ", data);
             if (data.estado) {
                 $.removeCookie('IUSidioma')
-                $.cookie("IUSidioma", data.lang);
-                $.cookie("IUSidIdioma", data.idIdioma);
+                $.cookie("IUSidioma", data.lang, { path: '/' });
+                $.cookie("IUSidIdioma", data.idIdioma, { path: '/' });
+                //localStorage.key()
                 location.reload();
             } else {
                 alert("ocurrio un error");

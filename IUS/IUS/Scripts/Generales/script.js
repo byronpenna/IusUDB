@@ -9,6 +9,15 @@
         setIdiomaPreferido();
     // Constantes
     // Eventos 
+        // keypress
+            $(document).on("keypress", ".soloLetras", function (e) {
+                var str = String.fromCharCode(e.which);
+                exp = soloLetras();
+                var x = test(exp, str);
+                if (!x) {
+                    e.preventDefault();
+                }
+            })
         // click 
             $(document).on("click", ".desplegableMobile", function () {
                 ulMenu = $(this).parents(".mobileButton").parent().find(".ulMenu");
@@ -21,6 +30,7 @@
                 }
             });
         // change
+            
             $(document).on("change", ".cbIdioma", function () {
                 idIdioma = $(this).val();
                 console.log("entro");

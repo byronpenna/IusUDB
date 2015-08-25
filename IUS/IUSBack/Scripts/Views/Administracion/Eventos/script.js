@@ -82,13 +82,40 @@
     // eventos 
         // submit
             $(document).on("submit", "#frmAgregarEvento", function (e) {
-            e.preventDefault();
-            frm = serializeForm($(this));
-            console.log("formulario a enviar: ", frm);
-            var x = confirm("¿Esta seguro que desea agregar este evento?");
-            if (x) {
-                frmAgregarEvento(frm, $(this));
-            }
+                e.preventDefault();
+                frm = serializeForm($(this));
+                var val = valIngresoEvento(frm);
+                console.log(val);
+                if (val.estado) {
+                    $("#frmAgregarEvento .divResultadoMessage").addClass("hidden");
+                    var x = confirm("¿Esta seguro que desea agregar este evento?");
+                    if (x) {
+                        frmAgregarEvento(frm, $(this));
+                    }
+                } else {
+                    var errores;
+                    $.each(val.campos, function (i, val) {
+                        errores = "";
+                        var divResultado = $("#frmAgregarEvento").find("." + i).parents("td").find(".divResultado")
+                        if (val.length > 0) {
+                            console.log("entro");
+                            divResultado.removeClass("hidden");
+                            $.each(val, function (i, val) {
+                                errores += getSpanMessageError(val);
+                            })
+                            divResultado.empty().append(errores);
+                        }
+                    })
+                    var div = "";
+                    $.each(val.general, function (i, val) {
+                        div += getSpanMessageError(val);
+
+                    })
+                    //console.log("div malo", div);
+                    $(".divResultadoGlobal").removeClass("hidden");
+                    $(".divResultadoGlobal").empty().append(div);
+                }
+                
             });
         // change
             $(document).on("change", ".rbTiempo", function () {

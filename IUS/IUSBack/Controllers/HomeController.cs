@@ -96,27 +96,29 @@ namespace IUSBack.Controllers
             {
                 return View();
             }
-            public ActionResult changePassword()
-            {
-                return View();
-            }
-            public ActionResult Verificar(int id=-1,int id2=-1)
-            {
-                try
+            #region "parte del login"
+                public ActionResult changePassword()
                 {
-                    bool verificado = this.homeModel.sp_secpu_verificarCuenta(id, id2);
-                    ViewBag.estado = verificado;
+                    return View();
                 }
-                catch (ErroresIUS x)
+                public ActionResult Verificar(int id=-1,int id2=-1)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    try
+                    {
+                        bool verificado = this.homeModel.sp_secpu_verificarCuenta(id, id2);
+                        ViewBag.estado = verificado;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
+                    catch (Exception x)
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
+                    return View();
                 }
-                catch (Exception x)
-                {
-                    return RedirectToAction("Unhandled", "Errors");
-                }
-                return View();
-            }
+            #endregion
             public ActionResult Index()
             {
                 if (Session["usuario"] != null)
