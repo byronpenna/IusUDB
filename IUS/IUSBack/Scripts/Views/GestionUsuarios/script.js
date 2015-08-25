@@ -22,7 +22,7 @@
                 }
             })
     // keyup 
-            $(document).on("keydown", ".txtUsuarioEdit", function (e) {
+            $(document).on("keydown", ".enterNormal", function (e) {
                 switch (e.which) {
                     case 13: {
                         $(".btnAgregarUsuario").click();
@@ -31,7 +31,7 @@
                 }
             })
 
-            $(document).on("keydown", ".txtEditUsuario", function (e) {
+            $(document).on("keydown", ".enterEdit", function (e) {
                 var tr = $(this).parents("tr");
                 switch (e.which) {
                     case 13: {
