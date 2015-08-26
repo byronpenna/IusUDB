@@ -1,4 +1,11 @@
-﻿/*.ulTabGeneral{
+﻿/*Nuevo */
+    /*.divAgregarPermiso*/ 
+    .divResultado{
+        margin-top:3%;
+    }
+
+/*************/
+/*.ulTabGeneral{
     background:#95a5a6;
 }
 .ulTabGeneral li{

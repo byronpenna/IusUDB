@@ -32,6 +32,9 @@
     Permiso permisos = (Permiso)ViewBag.permisos;
 }
 <div id="tab-1" class="tab marginNull">
+    <div class="row marginNull divResultado">
+
+    </div>
     <div class="row divControlRolUsuario marginNull">    
         <div class="col-lg-6 seleccioneUsuarioDiv">
             <div class="col-lg-4 text-right divLbCbUsuairo">
@@ -59,7 +62,7 @@
                 </select>
             </div>
             <div class="col-lg-3">
-                <button class="btn btn-primary" type="button" id="btnAddRoles">Agregar roles</button>
+                <button class="btn" type="button" id="btnAddRoles">Agregar roles</button>
             </div>
         </div>
     </div>
@@ -113,25 +116,35 @@
                 </div>
             </div>
             <div class="row divBusquedaOpcionesTab2">
-                <div class="col-lg-8">
-                    <div class="col-lg-4">
-                        <label>Seleccione un submenu</label>
+                <div class="col-lg-8 divAgregarSubMenu">
+                    <div class="row marginNull">
+                        <div class="col-lg-4">
+                            <label>Seleccione un submenu</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <select class="cbSubMenu" multiple></select>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btnAsignarSubmenu btn">Asignar submenus</button>
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                        <select class="cbSubMenu" multiple></select>
-                    </div>
-                    <div class="col-lg-4">
-                        <button class="btnAsignarSubmenu">Asignar submenus</button>
+                    <div class="row marginNull divResultado">
+
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="col-lg-6">
-                        <select multiple class="cbAsignarPermisos">
-                            <option disabled>Asignar Permiso</option>
-                        </select>
+                <div class="col-lg-4 divAgregarPermiso">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <select multiple class="cbAsignarPermisos">
+                                <option disabled>Asignar Permiso</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <button class="btn btnAsignarPermiso">Asignar permiso</button>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <button class="btn btnAsignarPermiso">Asignar permiso</button>
+                    <div class="row divResultado">
+
                     </div>
                 </div>
             </div>

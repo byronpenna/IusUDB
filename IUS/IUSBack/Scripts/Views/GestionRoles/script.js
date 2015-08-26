@@ -41,7 +41,8 @@
                     if (frm.rolesAgregar != null) {
                         agregarRoles(frm);
                     }else {
-                        alert("Seleccione un rol a agregar");
+                        //alert("Seleccione un rol a agregar");
+                        printMessage($("#tab-1 .divResultado"), "Seleccione un rol a agregar", false);
                     }
                 }
             });
@@ -50,16 +51,46 @@
                     var frm = new Object();
                     frm.idRol       = $(".cbRolTab2").val();
                     frm.idSubMenu = $(".cbSubMenu").val();
-                    btnAsignarSubmenu(frm);
+                    console.log(frm);
+                    var val = validarAsignarSubMenu(frm);
+                    if (val.estado) {
+                        btnAsignarSubmenu(frm);
+                    }else{
+                        var div = "";
+                        $.each(val.general, function (i, val) {
+                            div += "<div class='row marginNull'>";
+                                div += getSpanMessageError(val);
+                            div += "</div class='row marginNull'>";
+                        })
+                        printMessageDiv($(".divAgregarSubMenu .divResultado"), div);
+                    }
+                    
                 });
                 $(document).on("click", ".btnAsignarPermiso", function () {
                     var frm = new Object();
                     var x = confirm("¿Esta seguro que desea asignar los siguientes permisos?");
+                    
                     if (x) {
                         frm.idRol       = $(".cbRolTab2").val();
                         frm.idPermisos  = $(".cbAsignarPermisos").val();
-                        frm.idSubMenu = $(".trSubMenu.activeTr").find(".txtIdSubMenu").val();
-                        btnAsignarPermiso(frm);
+                        frm.idSubMenu   = $(".trSubMenu.activeTr").find(".txtIdSubMenu").val();
+                        console.log("formulario a enviar", frm);
+                        var val = validarAsignarPermiso(frm);
+                        console.log(val);
+                        if (val.estado) {
+                            btnAsignarPermiso(frm);
+                        } else {
+                            var div = "";
+                            $.each(val.general, function (i, val) {
+                                div += "<div class='row marginNull'>";
+                                    div += getSpanMessageError(val);
+                                div += "</div class='row marginNull'>";
+                            })
+                            printMessageDiv($(".divAgregarPermiso .divResultado"), div);
+                            /*$(".divResultado").removeClass("hidden");
+                            $(".divResultado").empty().append(div);*/
+                        }
+                        
                     }
                 });
                 $(document).on("click", ".icoQuitarPermiso", function () {

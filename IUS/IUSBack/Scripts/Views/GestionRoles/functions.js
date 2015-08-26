@@ -1,4 +1,18 @@
-﻿function btnAsignarSubmenu(frm) {
+﻿/// <reference path="../Administracion/Eventos/functions.js" />
+    function validarAsignarSubMenu(frm) {
+        var val = new Object();
+        val.campos = {};
+        val.general = new Array();
+        if(frm.idSubMenu === undefined || frm.idSubMenu === null || frm.idSubMenu == -1){
+            val.general.push("Seleccione un submenu");
+        }
+        if (frm.idRol === undefined || frm.idRol === null || frm.idRol == -1 || frm.idRol == "") {
+            val.general.push("Seleccione un rol");
+        }
+        val.estado = getEstadoVal(val);
+        return val;
+    }
+    function btnAsignarSubmenu(frm) {
     cargarObjetoGeneral(RAIZ+"GestionRoles/agregarRolSubMenu", frm, function (data) {
         
         if (data.estado) {
@@ -12,19 +26,37 @@
         }
     })
 }
-function btnAsignarPermiso(frm) {
-    cargarObjetoGeneral(RAIZ+"GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
-        if (data.estado) {
-            tbody = llenarTablaPermisos(data.rolSubMenuPermiso);
-            options = llenarSelectPermisos(data.permisosFaltantes);
-            $(".tbodyTbPermisos").empty().append(tbody);
-            $(".cbAsignarPermisos").empty().append(options);
-            resetChosen($(".cbAsignarPermisos"));
-        } else {
-            alert("Ocurio un error al tratar de ingresar");
+// agregar permiso 
+    function validarAsignarPermiso(frm) {
+        var val = new Object();
+        val.campos = {};
+        val.general = new Array();
+        if (frm.idPermisos === undefined || frm.idPermisos === null || frm.idPermisos == -1) {
+            val.general.push("Seleccione un permiso");
         }
-    });
-}
+        if (frm.idSubMenu === undefined || frm.idSubMenu === null || frm.idSubMenu == -1) {
+            val.general.push("Seleccione un submenu");
+        }
+        if (frm.idRol === undefined || frm.idRol === null || frm.idRol == -1) {
+            val.general.push("Seleccione un rol");
+        }
+        val.estado = getEstadoVal(val);
+        return val;
+    }
+    function btnAsignarPermiso(frm) {
+        cargarObjetoGeneral(RAIZ+"GestionRoles/agregarPermisoSubmenuRol", frm, function (data) {
+            if (data.estado) {
+                tbody = llenarTablaPermisos(data.rolSubMenuPermiso);
+                options = llenarSelectPermisos(data.permisosFaltantes);
+                $(".tbodyTbPermisos").empty().append(tbody);
+                $(".cbAsignarPermisos").empty().append(options);
+                resetChosen($(".cbAsignarPermisos"));
+            } else {
+                alert("Ocurio un error al tratar de ingresar");
+            }
+        });
+    }
+
 function clickIcoQuitarPermiso(trPermiso) {
     var frm = new Object();
     frm.idRolSubmenuPermiso = trPermiso.find(".txtHdIdRolSubMenuPermiso").val();
