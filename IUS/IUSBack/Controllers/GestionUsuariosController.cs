@@ -124,7 +124,7 @@ namespace IUSBack.Controllers
                             }
                             catch (ErroresIUS x)
                             {
-                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber,x._errorSql);
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber,x._errorSql,x._mostrar);
                                 respuesta = this.errorTryControlador(1, error);
                             }
                             catch (Exception x)
@@ -154,7 +154,32 @@ namespace IUSBack.Controllers
                     [HttpPost]
                     public ActionResult actualizarUsuario()
                     {
-                        Usuario usuarioSession = this.getUsuarioSesion();
+                        Dictionary<object, object> frm, respuesta = null;
+                        try
+                        {
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            frm = this.getAjaxFrm();
+                            if (frm != null && usuarioSession != null)
+                            {
+                                respuesta = this._model.actualizarUsuario(frm, usuarioSession._idUsuario);
+                            }
+                            else
+                            {
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+                        return Json(respuesta);
+                        /*Usuario usuarioSession = this.getUsuarioSesion();
                         Dictionary<Object,Object> frm,toReturn;
                         frm = this.getAjaxFrm();
                         if (frm != null && usuarioSession != null)
@@ -165,7 +190,7 @@ namespace IUSBack.Controllers
                         {
                             toReturn = this.errorEnvioFrmJSON();
                         }
-                        return Json(toReturn);
+                        return Json(toReturn);*/
                     }
                     [HttpPost]
                     public ActionResult sp_sec_actualizarUsuariosGeneral()

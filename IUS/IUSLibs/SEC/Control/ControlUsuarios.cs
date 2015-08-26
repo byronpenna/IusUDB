@@ -231,7 +231,7 @@ namespace IUSLibs.SEC.Control
                         else
                         {
                             DataRow rowError = tb[0].Rows[0];
-                            ErroresIUS x = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorSql"].ToString());
+                            ErroresIUS x = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"], rowError["errorSql"].ToString(),(bool)rowError["mostrar"]);
                             throw x;
                         }
                     }
@@ -273,9 +273,33 @@ namespace IUSLibs.SEC.Control
                 sp.agregarParametro("idUsuario",usu._idUsuario);
                 sp.agregarParametro("usuario",usu._usuario);
                 sp.agregarParametro("idPersona",usu._persona._idPersona);
-                sp.agregarParametro("idPagina",idPagina);
-                sp.agregarParametro("usuarioEjecutor", idUsuarioEjecutor);
-                DataSet ds = sp.EjecutarProcedimiento();
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        DataRow rowUsuario = tb[1].Rows[0];
+                        Persona persona = new Persona((int)rowUsuario["id_persona_fk"], rowUsuario["nombres"].ToString(), rowUsuario["apellidos"].ToString());
+                        toReturn = new Usuario((int)rowUsuario["idUsuario"], rowUsuario["usuario"].ToString(), persona, (bool)rowUsuario["estado"]);
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                /*DataSet ds = sp.EjecutarProcedimiento();
                 if (!this.DataSetDontHaveTable(ds))
                 {
                     DataTable tablaEstado = ds.Tables[0];
@@ -290,7 +314,7 @@ namespace IUSLibs.SEC.Control
                         ErroresIUS x = new ErroresIUS(tablaEstado.Rows[0]["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)tablaEstado.Rows[0]["errorCode"]);
                         throw x;
                     }
-                }
+                }*/
                 return toReturn;
             }
             #endregion

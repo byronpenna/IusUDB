@@ -98,11 +98,11 @@
         var val = validacionIngreso(frm);
         if (val.estado) {
             actualizarCatalogo(RAIZ + "GestionUsuarios/actualizarUsuario", frm, function (data) {
+                console.log("Respuesta actualizar", data);
                 if (data.estado) {
                     usuario = data.usuario;
                     actualizarInformacionTr(trUsuario, usuario)
                     controlesEdit(false, trUsuario); // salimos del modo de edicion
-                    alert("actualizado correctamente");
                     if (!usuario._estado) {
                         var x = confirm("El usuario que acaba de editar esta ¿deshabilitado desea habilitarlo?");
                         if (x) {
@@ -111,7 +111,10 @@
                     }
                     updateAllDataTable($(".tableUsuarios"));
                 } else {
-                    alert("Ocurrio un error durante la actualizacion");
+                    //alert("Ocurrio un error durante la actualizacion");
+                    if (data.error._mostrar) {
+                        printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                    }
                 }
             });
         } else {
@@ -155,6 +158,7 @@
         
     }
     function entrarEditMode(trUsuario) {
+        trUsuario.find(".divResultado").empty();
         txtUsuario = trUsuario.find(".tdTxtUsuario").text();
         idPersonaActual = trUsuario.find(".txtHdIdPersona").val();
         controlesEdit(true, trUsuario);
@@ -283,8 +287,12 @@
                     tbody.prepend(tr);
                     $(".tableUsuarios").dataTable().fnAddTr($(tr)[0]);
                 } else {
-                    error = data.error;
-                    alert(error.Message);
+                    console.log("Error ", data);
+                    if (data.error._mostrar) {
+                        printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                    }
+                    /*error = data.error;
+                    alert(error.Message);*/
                 }
             });
         } else {
