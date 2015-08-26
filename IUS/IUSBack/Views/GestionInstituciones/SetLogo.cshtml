@@ -15,16 +15,24 @@
 }
 <div class="contenidoModulo">
     <form method="post" id="frmMiniatura" action="@Url.Action("setMiniaturaLogo")">
-        <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion"/>
-        <div class="divImgThumbnail">
-            @if (institucion._logo != null)
-            {
-                rutaImage = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
-            }
-            <img class="imgThumbnail" src="@rutaImage" />
+        <div class="todoForm">
+            <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
+            <div class="divImgThumbnail">
+                @if (institucion._logo != null)
+                {
+                    rutaImage = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+                }
+                <img class="imgThumbnail" src="@rutaImage" />
+            </div>
+            <!--<input type="file" id="flMiniatura" />-->
+            <div class="row marginNull">
+                <div class="fileUpload btn">
+                    <span>Seleccionar imagen</span>
+                    <input type="file" class="upload" id="flMiniatura" accept="image/*" required/>
+                </div>
+            </div>
+            <input id="btnSubmit" class="btn" type="submit" value="Subir" />
         </div>
-        <input type="file" id="flMiniatura" />
-        <input id="btnSubmit" class="btn" type="submit" value="Subir" />
     </form>
     
 </div>

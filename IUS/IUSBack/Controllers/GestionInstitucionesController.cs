@@ -46,7 +46,8 @@ namespace IUSBack.Controllers
                         ViewBag.institucion = this._model.sp_frontui_getInstitucionById(id,usuarioSession._idUsuario,this._idPagina);
                         ViewBag.titleModulo = "Logo institución";
                         ViewBag.usuario = usuarioSession;
-                        ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        //ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     }
                     else
                     {
