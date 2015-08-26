@@ -76,7 +76,24 @@
             }
         })
     }
-    function btnAgregarTel(frm, seccion) {
+    // agregar tel
+        function validarAgregarTel(frm) {
+            var val = new Object();
+            val.campos = {
+                txtEtiqueta: new Array(),
+                txtTelefono: new Array()
+            }
+            val.general = new Array();
+            if (frm.txtTelefono == "") {
+                val.campos.txtTelefono.push("No puede dejar este campo vacio");
+            }
+            if (frm.txtEtiqueta == "") {
+                val.campos.txtEtiqueta.push("No puede dejar este campo vacio");
+            }
+            val.estado = getEstadoVal(val);
+            return val;
+        }
+        function btnAgregarTel(frm, seccion) {
         actualizarCatalogo(RAIZ + "/GestionTelefonos/sp_frontui_insertTelInstitucion", frm, function (data) {
             console.log(data);
             if (data.estado) {
