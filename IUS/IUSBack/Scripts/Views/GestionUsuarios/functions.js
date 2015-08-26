@@ -98,11 +98,11 @@
         var val = validacionIngreso(frm);
         if (val.estado) {
             actualizarCatalogo(RAIZ + "GestionUsuarios/actualizarUsuario", frm, function (data) {
+                console.log("Respuesta actualizar", data);
                 if (data.estado) {
                     usuario = data.usuario;
                     actualizarInformacionTr(trUsuario, usuario)
                     controlesEdit(false, trUsuario); // salimos del modo de edicion
-                    alert("actualizado correctamente");
                     if (!usuario._estado) {
                         var x = confirm("El usuario que acaba de editar esta ¿deshabilitado desea habilitarlo?");
                         if (x) {
@@ -111,7 +111,10 @@
                     }
                     updateAllDataTable($(".tableUsuarios"));
                 } else {
-                    alert("Ocurrio un error durante la actualizacion");
+                    //alert("Ocurrio un error durante la actualizacion");
+                    if (data.error._mostrar) {
+                        printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                    }
                 }
             });
         } else {
@@ -122,12 +125,10 @@
                 var divResultado = trUsuario.find("." + i).parents("td").find(".divResultado")
                 console.log(i, ": " + val);
                 if (val.length > 0) {
-                    console.log("entro");
                     divResultado.removeClass("hidden");
                     $.each(val, function (i, val) {
                         errores += getSpanMessageError(val);
                     })
-                    console.log("errores", errores);
                     divResultado.empty().append(errores);
                 }
             })
@@ -155,6 +156,7 @@
         
     }
     function entrarEditMode(trUsuario) {
+        trUsuario.find(".divResultado").empty();
         txtUsuario = trUsuario.find(".tdTxtUsuario").text();
         idPersonaActual = trUsuario.find(".txtHdIdPersona").val();
         controlesEdit(true, trUsuario);
@@ -283,8 +285,12 @@
                     tbody.prepend(tr);
                     $(".tableUsuarios").dataTable().fnAddTr($(tr)[0]);
                 } else {
-                    error = data.error;
-                    alert(error.Message);
+                    console.log("Error ", data);
+                    if (data.error._mostrar) {
+                        printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                    }
+                    /*error = data.error;
+                    alert(error.Message);*/
                 }
             });
         } else {

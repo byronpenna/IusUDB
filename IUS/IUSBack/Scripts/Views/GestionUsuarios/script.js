@@ -96,19 +96,19 @@
             });
             // actualizar individual
             $(document).on("click", ".btnActualizar", function () {
-                var x = confirm("¿Esta seguro que desea salvar los cambios?");
+                //var x = confirm("¿Esta seguro que desea salvar los cambios?");
                 trUsuario = $(this).parents(".trUsuario");
-                if (x) {
+                //if (x) {
                     actualizar(trUsuario);
-                }
+                //}
             });
         // editar 
             $(document).on("click", ".btnCancelarEdit", function () {
                 trUsuario = $(this).parents(".trUsuario");
-                var x = confirm("¿Esta seguro que desea cancelar la edición?");
-                if (x) {
+                //var x = confirm("¿Esta seguro que desea cancelar la edición?");
+                //if (x) {
                     salirEditMode(trUsuario);
-                }
+                //}
             });
             $(document).on("click", ".btnEditar", function () {
                 trUsuario = $(this).parents(".trUsuario");

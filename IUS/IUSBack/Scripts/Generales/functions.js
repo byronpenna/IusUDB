@@ -210,18 +210,29 @@
 
             }, 2000);
         }
-    
-    
-    function objArrIsEmpty(obj) {
-        var empty = true;
-        $.each(obj, function (i, val) {
-            if (val.length > 0) {
-                empty = false;
+    //Valudaciones ingresos 
+        function getEstadoVal(val) {
+            val.estado = objArrIsEmpty(val.campos);
+            var estado = false;
+            if (val.general.length == 0) {
+                estado = true;
+            }
+            if (estado && val.estado) {
+                return true;
+            } else {
                 return false;
             }
-        })
-        return empty;
-    }
+        }
+        function objArrIsEmpty(obj) {
+            var empty = true;
+            $.each(obj, function (i, val) {
+                if (val.length > 0) {
+                    empty = false;
+                    return false;
+                }
+            })
+            return empty;
+        }
     function clockHora(txtHora) {
         arrHora = txtHora.split(":");
         arrHoraFinal = arrHora[2].split(" ");

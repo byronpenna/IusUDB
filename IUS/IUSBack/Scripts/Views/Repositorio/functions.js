@@ -408,6 +408,9 @@
                             
                             printMessage($(".divMensajeRepoPublico"), data.error.Message, false);
                             //$(".divMensajeRepoPublico").empty().append("<span class='failMessage'>" + data.error.Message + "</span>");
+                        } else {
+                            console.log(data);
+
                         }
                     }
                     $(".divCarpetasPublicasCompartir").append(div);

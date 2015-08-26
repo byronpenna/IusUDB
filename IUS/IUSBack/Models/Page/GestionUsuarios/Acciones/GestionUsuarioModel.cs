@@ -134,15 +134,19 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 }
                 catch (ErroresIUS x)
                 {
+                    throw x;
+                    /*
                     toReturn.Add("estado", false);
                     toReturn.Add("tipoError", 1);
-                    toReturn.Add("objError", x);
+                    toReturn.Add("objError", x);*/
                 }
                 catch (Exception x)
                 {
+                    throw x;
+                    /*
                     toReturn.Add("estado", false);
                     toReturn.Add("tipoError", 2);
-                    toReturn.Add("objError", x);
+                    toReturn.Add("objError", x);*/
                 }
                 return toReturn;
             }
