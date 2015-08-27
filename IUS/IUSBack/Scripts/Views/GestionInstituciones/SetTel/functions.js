@@ -7,13 +7,19 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='tel' name='txtTelefonoEdit' class='form-control txtTelefonoEdit' />\
+                        <input type='tel' name='txtTelefonoEdit' class='form-control txtTelefonoEdit txtFrmEditar soloNumerosDecimal' />\
+                        <div class='divResultado marginNull row hidden'>\
+                            _\
+                        </div>\
                     </div>\
                     <div class='normalMode tdTelefono'>"+telefono._telefono+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='tel' name='txtEtiquetaEdit' class='form-control txtEtiquetaEdit' />\
+                        <input type='tel' name='txtEtiquetaEdit' class='form-control txtEtiquetaEdit txtFrmEditar' />\
+                        <div class='divResultado marginNull row hidden'>\
+                            _\
+                        </div>\
                     </div>\
                     <div class='normalMode tdTextoTelefono'>"+telefono._textoTelefono+"</div>\
                 </td>\
@@ -27,11 +33,11 @@
                         </button>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btnEliminarTel'>\
-                            Eliminar\
-                        </button>\
                         <button class='btn btnEditarTel'>\
                             Editar\
+                        </button>\
+                        <button class='btn btnEliminarTel'>\
+                            Eliminar\
                         </button>\
                     </div>\
                 </td>\
@@ -58,17 +64,7 @@
             }
         });
     }
-    function btnEditarTel(trTel) {
-        telefono = {
-            telefono: trTel.find(".tdTelefono").text(),
-            textoTelfono: trTel.find(".tdTextoTelefono").text()
-             
-        }
-
-        fillInputsEdit(trTel, telefono, function () {
-            controlesEdit(true, trTel);
-        })
-    }
+    
     function btnEliminarTel(frm,tr) {
         actualizarCatalogo(RAIZ + "/GestionTelefonos/sp_frontui_deleteTelInstitucion", frm, function (data) {
             if (data.estado) {
@@ -76,6 +72,32 @@
             }
         })
     }
+    // editar tel 
+        function validarEditarTel() {
+            var val = new Object();
+            val.campos = {
+                txtEtiquetaEdit: new Array(),
+                txtTelefonoEdit: new Array()
+            }
+            val.general = new Array();
+            if (frm.txtEtiquetaEdit == "") {
+                val.campos.txtEtiquetaEdit.push("No puede dejar este campo vacio");
+            }
+            if (frm.txtTelefonoEdit == "") {
+                val.campos.txtTelefonoEdit.push("No puede dejar este campo vacio");
+            }
+            val.estado = getEstadoVal(val);
+            return val;
+        }
+        function btnEditarTel(trTel) {
+            telefono = {
+                telefono: trTel.find(".tdTelefono").text(),
+                textoTelfono: trTel.find(".tdTextoTelefono").text()
+            }
+            fillInputsEdit(trTel, telefono, function () {
+                controlesEdit(true, trTel);
+            })
+        }
     // agregar tel
         function validarAgregarTel(frm) {
             var val = new Object();
@@ -107,7 +129,8 @@
             } else {
                 if (data.error._mostrar)
                 {
-                    alert(data.error.Message);
+                    //alert(data.error.Message);
+                    printMessage($(".divMensajesGenerales"), data.error.Message, false);
                 }
                 
             }
