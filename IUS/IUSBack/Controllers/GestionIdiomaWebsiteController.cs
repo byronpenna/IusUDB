@@ -240,7 +240,8 @@ namespace IUSBack.Controllers
                     {
                         respuesta = new Dictionary<object, object>();
                         // variables mandar 
-                        int idLlaveIdioma = Convert.ToInt32( frm["txtHdIdLlaveIdioma"].ToString()); int frmIdLlave = Convert.ToInt32(frm["cbEditLlave"].ToString());
+                        //int idLlaveIdioma = Convert.ToInt32( frm["txtHdIdLlaveIdioma"].ToString()); int frmIdLlave = Convert.ToInt32(frm["cbEditLlave"].ToString());
+                        int idLlaveIdioma = Convert.ToInt32(frm["txtHdIdLlaveIdioma"].ToString()); int frmIdLlave = Convert.ToInt32(frm["txtHdIdLlave"].ToString());
                         int idIdioma = Convert.ToInt32(frm["cbEditIdioma"].ToString()); string traduccion = frm["txtAreaEditTraduccion"].ToString();
                         bool respuestaModel = this._model.sp_trl_actualizarLlaveIdioma(idLlaveIdioma,frmIdLlave,idIdioma,traduccion,usuarioSession._idUsuario,this._idPagina);
                         respuesta.Add("estado", respuestaModel);

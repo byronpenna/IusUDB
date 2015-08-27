@@ -56,6 +56,7 @@
             });
             $(document).on("click", ".btnActualizar", function () {
                 trTraduccion = $(this).parents("tr");
+                console.log("D: ");
                 btnActualizar(trTraduccion);
             });
             $(document).on("click", ".btEliminarTraduccion", function () {
