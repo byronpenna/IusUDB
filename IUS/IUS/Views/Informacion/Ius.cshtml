@@ -1,1 +1,53 @@
-﻿<h2>Ius</h2>
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/general/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/IUS/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/IUS/media.css" />
+}
+<div class="row marginNull cuerpoContenedor">
+    <div class="row marginNull cuerpoContenedor">
+        <h2 class="tituloPrincipal">@ViewData["titulo"]</h2>
+        <div class="divContenedorInfo">
+            <div class="row marginNull" style="margin-bottom:5%">
+                @ViewData["Texto-inicial"]
+            </div>
+            <div class="row marginNull">
+                <!-- Continentes presentes -->
+                    <div class="col-lg-6 tituloLlaves">
+                        @ViewData["etiqueta-continentes-presentes"]
+                    </div>
+                    <div class="col-lg-6">
+                        ____
+                    </div>
+                <!-- Numero de paises presentes -->
+                    <div class="col-lg-6 tituloLlaves">
+                        @ViewData["etiqueta-paises-presentes"]
+                    </div>
+                    <div class="col-lg-6">
+                        ____
+                    </div>
+                <!-- Total instituciones -->
+                    <div class="col-lg-6 tituloLlaves">
+                        @ViewData["etiqueta-numero-instituciones"]
+                    </div>
+                    <div class="col-lg-6">
+                        ____
+                    </div>
+                <!-- Numero de estudiantes -->
+                    <div class="col-lg-6 tituloLlaves">
+                        @ViewData["etiqueta-numero-estudiantes"]
+                    </div>
+                    <div class="col-lg-6">
+                        ____
+                    </div>
+                <!-- Numero de salesianos -->
+                    <div class="col-lg-6 tituloLlaves">
+                        @ViewData["etiqueta-numero-salesianos"]
+                    </div>
+                    <div class="col-lg-6">
+                        ____
+                    </div>
+            </div>
+            
+        </div>
+     </div>
+</div>

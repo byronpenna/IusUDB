@@ -1,1 +1,67 @@
-﻿<h2>Salesianos</h2>
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/general/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/Salesianos/style.css" />
+}
+<div class="row marginNull cuerpoContenedor">
+    <div class="row marginNull cuerpoContenedor">
+        <h2 class="tituloPrincipal">@ViewData["titulo"]</h2>
+        <div class="divContenedorInfo">
+            <!-- titulo oficial -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["titulo"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            <!-- Titulo Alternativo -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-titulo-alternativo"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            <!-- Fecha de fundacion -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-fecha-fundacion"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            <!-- Fundador -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-fundador"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            <!-- Salesianos en el mundo -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-salesianos"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            <!-- Paises presentes -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-paises"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            <!-- Inspectorias -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-inspectorias"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            <!-- Sitio web -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-website"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+        </div>
+    </div>
+</div>

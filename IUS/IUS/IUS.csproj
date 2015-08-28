@@ -270,8 +270,11 @@
     <Content Include="Content\ius_theme\views\Informacion\Historia\style.css" />
     <Content Include="Content\ius_theme\views\Informacion\Identidad\media.css" />
     <Content Include="Content\ius_theme\views\Informacion\Identidad\style.css" />
+    <Content Include="Content\ius_theme\views\Informacion\IUS\media.css" />
+    <Content Include="Content\ius_theme\views\Informacion\IUS\style.css" />
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\media.css" />
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\style.css" />
+    <Content Include="Content\ius_theme\views\Informacion\Salesianos\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\media.css" />
