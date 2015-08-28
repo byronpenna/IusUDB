@@ -265,6 +265,7 @@
     <Content Include="Content\ius_theme\views\Eventos\style.css" />
     <Content Include="Content\ius_theme\views\home\media.css" />
     <Content Include="Content\ius_theme\views\home\style.css" />
+    <Content Include="Content\ius_theme\views\Informacion\general\style.css" />
     <Content Include="Content\ius_theme\views\Informacion\Historia\media.css" />
     <Content Include="Content\ius_theme\views\Informacion\Historia\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\media.css" />

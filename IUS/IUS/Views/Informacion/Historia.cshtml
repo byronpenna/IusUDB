@@ -1,4 +1,16 @@
-﻿<div class="row marginNull divContenedorHistoria">
-    @ViewData["cuerpo"]
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/general/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/historia/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/informacion/historia/media.css" />
+}
+<div class="row marginNull cuerpoContenedor">
+    <h2 class="tituloPrincipal">@ViewData["titulo"]</h2>
+    <div class="divContenedorInfo">
+        @if (ViewData["cuerpo"] != null)
+        {
+            @(new HtmlString(@ViewData["cuerpo"].ToString()))
+        }
+    </div>
+    
 </div>
 
