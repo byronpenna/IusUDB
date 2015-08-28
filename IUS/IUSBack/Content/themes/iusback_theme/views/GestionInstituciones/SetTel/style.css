@@ -1,4 +1,7 @@
-﻿.tbTelefonos thead tr th:first-child, .tbTelefonos tbody tr td:first-child{
+﻿.divMensajesGenerales{
+    margin-bottom:3%;
+}
+.tbTelefonos thead tr th:first-child, .tbTelefonos tbody tr td:first-child{
     display:none;
 }
 .divInstitucionPrev{

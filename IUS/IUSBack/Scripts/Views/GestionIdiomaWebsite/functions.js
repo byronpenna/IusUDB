@@ -148,14 +148,19 @@
     function actualizarTrTabla(tr,llaveIdioma) {
 
     }
+    //******************************
     function btnActualizar(tr) {
         frm = serializeSection(tr);
-        
+        console.log(frm);
         actualizarCatalogo(RAIZ + "/GestionIdiomaWebsite/sp_trl_actualizarLlaveIdioma", frm, function (data) {
             console.log("La respuesta del servidor es: ", data);
             if (data.estado) {
                 // quitar edit mode 
                 controlesEdit(false, tr);
+                tr.find(".tdTxtPagina").empty().append(tr.find(".cbEditIdioma option:selected").text());
+                console.log(tr.find(".cbEditIdioma").val());
+                tr.find(".txtHdIdIdioma").val(tr.find(".cbEditIdioma").val());
+                tr.find(".tdTxtTraduccion").empty().append(tr.find(".txtAreaEditTraduccion").val());
                 updateAllDataTable($(".tableLlaveIdioma"));
             } else {
                 alert("ocurrio un error al intentar actualizar");
@@ -175,7 +180,7 @@
         //
         // llenar los controles
         actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/getObjetosTablita", frm, function (data) {
-
+            console.log("Los objetos de la tablita son", data);
             var cb = new Object(); var selected = new Object();
             cb.llave =  tr.find(".cbEditLlave");   cb.idioma = tr.find(".cbEditIdioma");
             cb.pagina = tr.find(".cbEditPagina");
