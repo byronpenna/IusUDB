@@ -257,6 +257,20 @@
         return j;
     }
 // validaciones
+    function validacionEdit(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            cbPersona: new Array(),
+            /*txtEditUsuario: new Array()*/
+            txtUsuarioEdit: new Array()
+        }
+        if (frm.txtEditUsuario == "") {
+            val.campos.txtEditUsuario.push("Usuario no puede quedar vacio");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
     function validacionIngreso(frm) {
         var estado = false;
         var val = new Object();
@@ -275,15 +289,17 @@
     function btnAgregarUsuario(tr) {
         frm = serializeSection(tr);
         var val = validacionIngreso(frm);
-        console.log(frm);
-        console.log(val);
+        tr.find(".divResultado").empty();
+        tr.find(".divResultado").addClass("hidden");
         if (val.estado) {
             tbody = tr.parents("table").find("tbody");
             actualizarCatalogo(RAIZ + "GestionUsuarios/sp_sec_agregarUsuario", frm, function (data) {
                 if (data.estado) {
+                    tr.find(".txtUsuarioEdit").val("");
                     tr = getTrUsuario(data.usuarioAgregado, data.permiso);
                     tbody.prepend(tr);
                     $(".tableUsuarios").dataTable().fnAddTr($(tr)[0]);
+                    
                 } else {
                     console.log("Error ", data);
                     if (data.error._mostrar) {
