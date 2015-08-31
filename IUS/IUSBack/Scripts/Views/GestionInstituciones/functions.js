@@ -8,19 +8,20 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtNombreInstitucionEdit' class='txtNombreInstitucionEdit form-control' />\
+                        <input type='text' name='txtNombreInstitucionEdit' class='txtNombreInstitucionEdit form-control txtNombreInstitucionVal txtEnterEdit' />\
+                        <div class='divResultado'></div>\
                     </div>\
                     <div class='normalMode tdNombre'>"+institucion._nombre+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <textarea class='txtAreaDireccionEdit form-control' name='txtAreaDireccionEdit'></textarea>\
+                        <textarea class='txtAreaDireccionEdit form-control txtAreaDireccionVal' name='txtAreaDireccionEdit'></textarea>\
                     </div>\
                     <div class='normalMode tdDireccion '>"+institucion._direccion+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <select class='cbPaisEdit' name='cbPaisEdit'></select>\
+                        <select class='cbPaisEdit cbPaisVal' name='cbPaisEdit'></select>\
                     </div>\
                     <div class='normalMode tdPais'>\
                     "+institucion._pais._pais+"\
@@ -78,16 +79,34 @@
         });
     }
     // validaciones 
+    function validacionEdit(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            
+            txtNombreInstitucionVal: new Array(),
+            txtAreaDireccionVal: new Array(),
+            cbPaisVal: new Array()
+        }
+        if (frm.txtNombreInstitucionEdit == "") {
+            val.campos.txtNombreInstitucionVal.push("Nombre de institucion no puede ir vacia");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
     function validacionIngreso(frm) {
         var estado = false;
         var val = new Object();
         val.campos = {
-            txtNombreInstitucion:   new Array(),
+            /*txtNombreInstitucion:   new Array(),
             txtAreaDireccion:       new Array(),
-            cbPais:                 new Array()
+            cbPais:                 new Array()*/
+            txtNombreInstitucionVal:    new Array(),
+            txtAreaDireccionVal:        new Array(),
+            cbPaisVal:                  new Array()
         }
         if (frm.txtNombreInstitucion == "") {
-            val.campos.txtNombreInstitucion.push("Nombre de institucion no puede ir vacia");
+            val.campos.txtNombreInstitucionVal.push("Nombre de institucion no puede ir vacia");
         }
         val.estado = objArrIsEmpty(val.campos);
         return val;

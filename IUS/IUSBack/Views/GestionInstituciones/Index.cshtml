@@ -41,19 +41,19 @@
                     <tr class="trFrmInstituciones">
                         <td></td>
                         <td>
-                            <input class="txtNombreInstitucion form-control" name="txtNombreInstitucion" />
+                            <input class="txtNombreInstitucion form-control txtNombreInstitucionVal" name="txtNombreInstitucion" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
                         </td>
                         <td>
-                            <textarea class="txtAreaDireccion form-control" name="txtAreaDireccion"></textarea>
+                            <textarea class="txtAreaDireccion form-control txtAreaDireccionVal" name="txtAreaDireccion"></textarea>
                             <div class="row marginNull divResultado hidden">
 
                             </div>
                         </td>
                         <td>
-                            <select class="cbPais" name="cbPais">
+                            <select class="cbPais cbPaisVal" name="cbPais">
                                 @if (paises != null && paises.Count > 0)
                                 {
                                     int idContinente = -1; string optionGroup = ""; bool abierto = false;
@@ -100,20 +100,23 @@
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <input type="text" name="txtNombreInstitucionEdit" class="txtNombreInstitucionEdit form-control" />
+                                        <input type="text" name="txtNombreInstitucionEdit" class="txtNombreInstitucionEdit form-control txtNombreInstitucionVal txtEnterEdit" />
+                                        <div class="divResultado">
+
+                                        </div>
                                     </div>
                                     <div class="normalMode tdNombre">@institucion._nombre</div>
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <textarea class="txtAreaDireccionEdit form-control" name="txtAreaDireccionEdit"></textarea>
+                                        <textarea class="txtAreaDireccionEdit form-control txtAreaDireccionVal" name="txtAreaDireccionEdit"></textarea>
                                     </div>
                                     <div class="normalMode tdDireccion ">@institucion._direccion</div>
                                     
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <select class="cbPaisEdit" name="cbPaisEdit"></select>
+                                        <select class="cbPaisEdit cbPaisVal " name="cbPaisEdit"></select>
                                     </div>
                                     <div class="normalMode tdPais">
                                         @institucion._pais._pais
