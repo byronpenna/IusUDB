@@ -355,12 +355,19 @@ function validacionIngreso(frm) {
         });
     }
     function eliminarRol(frm,tr) {
-        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_eliminarRol", frm, function (data) {
+        cargarObjetoGeneral(RAIZ + "GestionRoles/sp_sec_eliminarRol", frm, function (data) {
+            console.log("Respuesta del servidor al elminar es", data);
             if (data.estado) {
                 removeOptionSelect($(".cbRolTab2"), frm.txtHdIdRol, true);
                 tr.remove();
             } else {
-                alert("Ocurrio un error");
+                var mjs = "";
+                if (data.error._mostrar) {
+                    mjs = data.error.Message;
+                } else {
+                    mjs = "Ocurrio un error inesperado";
+                }
+                printMessage($(".divMensajesGenerales"),mjs , false);
             }
         });
     }

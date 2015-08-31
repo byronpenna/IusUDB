@@ -21,6 +21,10 @@
             })
             
         // click 
+            $(document).on("click", ".btnCancelar", function () {
+                var tr = $(this).parents("tr");
+                controlesEdit(false, tr);
+            })
             $(document).on("click", ".btnActualizar", function () {
                 seccion = $(this).parents("tr");
                 frm = serializeSection(seccion);
@@ -48,7 +52,9 @@
                 
             })
             $(document).on("click", ".btnEditarTel", function () {
-                trTel = $(this).parents("tr");
+                var trTel = $(this).parents("tr");
+                trTel.find(".divResultado").addClass("hidden");
+
                 btnEditarTel(trTel);
             })
             $(document).on("click", ".btnAgregarTel", function () {
