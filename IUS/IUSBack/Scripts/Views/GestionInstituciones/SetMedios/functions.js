@@ -9,6 +9,21 @@
         trMedios.find(".tdNombreEnlace").empty().append(medio._nombreEnlace);
         controlesEdit( false, trMedios);
     }
+    //************************
+    function validarAgregar(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            txtTextoEnlace: new Array()
+        }
+        val.general = new Array();
+        if (frm.txtTextoEnlace == "") {
+            val.campos.txtTextoEnlace.push("No puede dejar este campo vacio");
+        }
+        val.estado = getEstadoVal(val);
+        //console.log("Retorno val es", val);
+        return val;
+    }
     function getTrMedios(enlace) {
         tr = "\
         <tr>\
