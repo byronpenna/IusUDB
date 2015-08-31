@@ -34,18 +34,18 @@
                 <th>Texto enlace</th>
                 <th>Acciones</th>
             </tr>
-            <tr>
+            <tr class="trFormAgregar">
                 <th>
                     <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
                 </th>
                 <th>
-                    <input class="form-control txtEnlace" name="txtEnlace" />
+                    <input class="form-control txtEnlace txtEnterAgregar" name="txtEnlace" />
                     <div class="divResultado hidden">
                         _
                     </div>
                 </th>
                 <th>
-                    <input class="form-control txtTextoEnlace" name="txtTextoEnlace" />
+                    <input class="form-control txtTextoEnlace txtEnterAgregar" name="txtTextoEnlace" />
                     <div class="divResultado hidden">
                         _
                     </div>
@@ -67,6 +67,9 @@
                         <td>
                             <div class="editMode hidden">
                                 <input class="form-control txtEnlace" name="txtEnlace" />
+                                <div class="divResultado hidden">
+                                    _
+                                </div>
                             </div>
                             <div class="normalMode tdEnlace">@enlace._enlace</div>
                         
@@ -74,6 +77,9 @@
                         <td>
                             <div class="editMode hidden">
                                 <input class="form-control txtTextoEnlaceEdit" name="txtTextoEnlaceEdit" />
+                                <div class="divResultado hidden">
+                                    _
+                                </div>
                             </div>
                             <div class="normalMode tdNombreEnlace">@enlace._nombreEnlace</div>
                         </td>

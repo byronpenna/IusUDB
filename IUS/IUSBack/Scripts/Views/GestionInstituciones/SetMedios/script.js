@@ -1,5 +1,17 @@
 ﻿$(document).ready(function () {
     // eventos 
+        // keypress
+            $(document).on("keypress", ".txtEnterAgregar", function (e) {
+                var charCode = e.which;
+                var tr = $(this).parents("tr");
+                switch (charCode) {
+                    case 13:
+                        {
+                            tr.find(".btnAgregar").click();
+                            break;
+                        }
+                }
+            })
         // clicks 
            
                 $(document).on("click", ".btnCancelar", function () {
@@ -10,16 +22,48 @@
                     }
                 })
                 $(document).on("click", ".btnActualizar", function () {
-                    seccion = $(this).parents("tr");
+                    var seccion = $(this).parents("tr");
                     frm = serializeSection(seccion);
-                    console.log(frm);
-                    btnActualizar(frm, seccion);
+                    console.log("Formulario a actualizar",frm);
+                    var val = validarEdit(frm);
+                    console.log("val es",val);
+                    if (val.estado) {
+                        var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+                        if (regex.test(frm.txtEnlace)) {
+                            regex = new RegExp("^http://");
+                            if (!regex.test(frm.txtEnlace)) {
+                                frm.txtEnlace = "http://" + frm.txtEnlace;
+                            }
+                            btnActualizar(frm, seccion);
+                        }
+                        else {
+                            printMessage($(".divMensajesGenerales"), "Favor ingresar una url valida", false)
+                        }
+                    }
+                    else {
+                        seccion.find(".divResultado").removeClass("hidden");
+                        seccion.find(".divResultado").addClass("visibilitiHidden");
+                        var errores;
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = seccion.find("." + i).parents("td").find(".divResultado")
+                            if (val.length > 0) {
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += "<span class='spanMessage1 failMessage'>" + val + "</span>";
+                                })
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
                 $(document).on("click", ".btnEditar", function () {
-                    trMedio = $(this).parents("tr");
+                    var trMedio = $(this).parents("tr");
+                    trMedio.find(".divResultado").addClass("hidden");
                     btnEditar(trMedio);
                 })
-    
+                //*************************************
                 $(document).on("click", ".btnAgregar", function () {
                     var seccion = $(this).parents("tr");
                     frm = serializeSection(seccion);
