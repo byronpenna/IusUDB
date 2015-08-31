@@ -68,9 +68,9 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 }
             }
             #region "actualizarPersona"
-                public Dictionary<Object, Object> actualizarPersona(Persona persona,int idUsuario,int idPagina)
+                public Persona actualizarPersona(Persona persona,int idUsuario,int idPagina)
                 {
-                    Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
+                    /*Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
                     try
                     {
                         Persona personaActual = this._control.actualizarPersona(persona,idUsuario,idPagina);
@@ -96,7 +96,19 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         toReturn.Add("errorCode", -1);
                         toReturn.Add("errorMessage", x.Message);
                     }
-                    return toReturn;
+                    return toReturn;*/
+                    try
+                    {
+                        return this._control.actualizarPersona(persona, idUsuario, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
                 public Dictionary<Object, Object> actualizarPersona(List<Persona> personas, int idUsuarioEjecutor, int idPagina)
                 {

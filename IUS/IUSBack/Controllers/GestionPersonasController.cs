@@ -96,7 +96,38 @@ namespace IUSBack.Controllers
                 [HttpPost]
                 public ActionResult actualizarPersona()
                 {
-                    string frmText = Request.Form["form"];
+                    Dictionary<object, object> frm, respuesta = null;
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        respuesta = new Dictionary<object, object>();
+                        try
+                        {
+                            //Usuario usuarioSession = (Usuario)Session["usuario"];
+                            Persona personaActualizar = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                            Persona personaActualizada = this._model.actualizarPersona(personaActualizar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("persona", personaActualizada);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                    /*string frmText = Request.Form["form"];
                     Dictionary<Object, Object> frm, toReturn;
                     if (frmText != null && Session["usuario"] != null)
                     {
@@ -110,7 +141,8 @@ namespace IUSBack.Controllers
                     {
                         toReturn = this.errorEnvioFrmJSON();
                     }
-                    return Json(toReturn);
+                    return Json(toReturn);*/
+
                 }
                 [HttpPost]
                 public ActionResult sp_hm_agregarPersona()
@@ -133,17 +165,11 @@ namespace IUSBack.Controllers
                         }
                         catch (ErroresIUS x)
                         {
-                            /*respuesta.Add("estado", false);
-                            respuesta.Add("errorType", 1);
-                            respuesta.Add("error", x);*/
                             ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql,x._mostrar);
                             respuesta = this.errorTryControlador(1, error);
                         }
                         catch (Exception x)
                         {
-                            /*respuesta.Add("estado", false);
-                            respuesta.Add("errorType", 2);
-                            respuesta.Add("error", x);*/
                             ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                             respuesta = this.errorTryControlador(2, error);
                         }

@@ -54,9 +54,7 @@
         //console.log("actualizaste");
         //frm = serializeToJson(trPersona.find("input").serializeArray());
         var frm = serializeSection(trPersona);
-        console.log("formulario a enviar", frm);
         var val = validacionIngreso(frm);
-        console.log("LA VALIDACION ES:", val);
         trPersona.find(".divResultado").empty();
         trPersona.find(".divResultado").addClass("hidden");
         if (val.estado) {
