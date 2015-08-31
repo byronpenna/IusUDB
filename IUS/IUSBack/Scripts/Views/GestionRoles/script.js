@@ -124,6 +124,7 @@
                     }
                 });
             // tab3
+                
                 $(document).on("click", ".btnAgregarRol", function () {
                     tr = $(this).parents("tr");
                     btnAgregarRol(tr);
@@ -143,6 +144,7 @@
                     }
                 });
                 // edicion 
+                    
                     $(document).on("click", ".btnActualizar", function () {
                         tr = $(this).parents("tr");
                         btnActualizar(tr);
@@ -151,6 +153,9 @@
                         var x = confirm("¿Esta seguro que desea editar este rol?");
                         tr = $(this).parents("tr");
                         if (x) {
+                            var resultados = tr.find(".divResultado");
+                            resultados.empty();
+                            resultados.addClass("hidden");
                             btnEditar(tr);
                             controlesEdit(true, tr);
                         }

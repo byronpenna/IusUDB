@@ -195,13 +195,14 @@ namespace IUSLibs.SEC.Control
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        DataRow rowResultado = tb[1].Rows[0];
                         if (this.resultadoCorrecto(tb))
                         {
+                            DataRow rowResultado = tb[1].Rows[0];
                             rolRegresar = new Rol((int)rowResultado["idRol"], rowResultado["rol"].ToString(), (bool)rowResultado["estado"]);
                         }else{
-                           ErroresIUS x = new ErroresIUS(rowResultado["errorMessage"].ToString(),ErroresIUS.tipoError.sql,(int)rowResultado["errorCode"]);
-                           throw x;
+                            DataRow rowResult = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(rowResult);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)

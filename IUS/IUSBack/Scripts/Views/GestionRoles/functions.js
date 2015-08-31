@@ -277,6 +277,7 @@ function llenarTablaRolesUsuario(idUsuario) {
         
     });
 }
+
 function validacionIngreso(frm) {
     var estado = false;
     var val = new Object();
@@ -381,18 +382,42 @@ function validacionIngreso(frm) {
             }
         });
     }
+    
     function btnActualizar(tr) {
         frm = serializeSection(tr);
-        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_editarRol", frm, function (data) {
-            if (data.estado) {
-                rol = data.rol;
-                setTrRol(tr, rol);
-                updateOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
-                controlesEdit(false, tr);
-            } else {
-                alert("Ocurrio un error");
-            }
-        });
+        console.log("formulario a enviar",frm);
+        var val = validacionIngreso(frm);
+        if (val.estado) {
+            cargarObjetoGeneral(RAIZ + "GestionRoles/sp_sec_editarRol", frm, function (data) {
+                console.log("Respuesta servre", data);
+                if (data.estado) {
+                    rol = data.rol;
+                    setTrRol(tr, rol);
+                    updateOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
+                    controlesEdit(false, tr);
+                } else {
+                    //alert("Ocurrio un error durante la actualizacion");
+                    if (data.error._mostrar) {
+                        printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                    }
+                }
+            });
+        } else {
+            // falta ajustar para esta pantalla
+            var errores;
+            $.each(val.campos, function (i, val) {
+                errores = "";
+                var divResultado = tr.find("." + i).parents("td").find(".divResultado")
+                if (val.length > 0) {
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += getSpanMessageError(val);
+                    })
+                    divResultado.empty().append(errores);
+                }
+            })
+
+        }
     }
     function btnEditar(tr) {
         txtRol = tr.find(".tdRol").text();
@@ -403,6 +428,7 @@ function validacionIngreso(frm) {
         
         eliminarRol(frm,tr);
     }
+    
     function btnAgregarRol(tr) {
         var frm = serializeSection(tr);
         var tbody = tr.parents("table").find("tbody");
