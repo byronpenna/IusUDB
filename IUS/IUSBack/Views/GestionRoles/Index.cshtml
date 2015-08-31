@@ -44,9 +44,12 @@
                 <select class="form-control cbUsuarios">
                     <option></option>
                     @{
-                        foreach (Usuario usuario in usuarios)
+                        if (@usuarios != null)
                         {
-                            <option value="@usuario._idUsuario">@usuario._usuario</option>
+                            foreach (Usuario usuario in usuarios)
+                            {
+                                <option value="@usuario._idUsuario">@usuario._usuario</option>
+                            }    
                         }
                     }
                 </select>

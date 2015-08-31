@@ -162,7 +162,7 @@
                     });
                     $(document).on("click", ".btnCancelarEdit", function () {
                         tr = $(this).parents("tr");
-                        cancelarEdicion(tr);
+                        cancelarEdicion(tr,true);
                     });
         // change
             // tab1

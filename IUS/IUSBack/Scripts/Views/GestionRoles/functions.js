@@ -291,7 +291,8 @@ function validacionIngreso(frm) {
     return val;
 }
 // genericas
-    function getTrRol(rol,permisos){
+    //***********************************
+    function getTrRol(rol, permisos) {
         tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -300,13 +301,12 @@ function validacionIngreso(frm) {
                 <td>\
                     <div class='editMode hidden'>\
                         <input type='text' name='txtRol' class='txtRol form-control txtRolEdit'  />\
+                        <div class='divResultado'></div>\
                     </div>\
                     <div class='normalMode tdRol' >"+ rol._rol + "</div>\
                 </td>\
                 <td class='tdEstadoRol'>\
-                    <div class='normalMode'>\
-                        "+ rol.stringEstado + "\
-                    </div>\
+                    "+ rol.stringEstado + "\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
@@ -334,6 +334,7 @@ function validacionIngreso(frm) {
     // hace un insert directo a la tabla roles
     function agregarRol(frm,tbody,trInsert) {
         cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_addRol", frm, function (data) {
+            console.log("Data despues de agregado rol");
             if (data.estado) {
                 rol = data.rol;
                 tr = getTrRol(rol, data.permisos);

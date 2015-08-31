@@ -52,7 +52,14 @@
         retorno = tabla.find(objFind + "[value='" + val + "']");
         return retorno;
     }
-    function clearTr(tr){
+    function clearTrWithOutHidden(tr) {
+        tr.find(INPUTS).each(function (i) {
+            if ($(this).attr("type") != "hidden") {
+                $(this).val("");
+            }
+        });
+    }
+    function clearTr(tr) {
         tr.find(INPUTS).each(function (i) {
             $(this).val("");
         });
@@ -138,10 +145,16 @@
         }
 
     }
-    function cancelarEdicion(tr) {
+    function cancelarEdicion(tr, woHidden) {
+        // woHidden para saber si no quiere incluir los hidden debe usar true.
         var x = confirm("¿Esta seguro que desea cancelar la edicion?");
         if (x) {
-            clearTr(tr);
+            if (woHidden !== undefined && woHidden == true) {
+                clearTrWithOutHidden(tr);
+            } else {
+                clearTr(tr);
+            }
+            
             controlesEdit(false, tr);
         }
     }
