@@ -13,18 +13,24 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <input type='text' name='txtNombrePersona' class='txtNombrePersona form-control txtEdit soloLetras'  />\
+                        <div class='row marginNull divResultado hidden'>\
+                        </div>\
                     </div>\
                     <div class='normalMode tdNombre'>"+persona._nombres+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
                         <input type='text' name='txtApellidoPersona' class='txtApellidoPersona form-control txtEdit soloLetras' />\
+                        <div class='row marginNull divResultado hidden'>\
+                        </div>\
                     </div>\
                     <div class='normalMode tdApellido'>"+persona._apellidos+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
                         <input type='text' name='dtFechaNacimiento' class='dtFechaNacimiento form-control txtEdit' />\
+                        <div class='row marginNull divResultado hidden'>\
+                        </div>\
                     </div>\
                     <div class='normalMode tdFechaNac'>" + persona.getFechaNac + "</div>\
                 </td>\
@@ -50,7 +56,9 @@
         var frm = serializeSection(trPersona);
         console.log("formulario a enviar", frm);
         var val = validacionIngreso(frm);
-        console.log(val);
+        console.log("LA VALIDACION ES:", val);
+        trPersona.find(".divResultado").empty();
+        trPersona.find(".divResultado").addClass("hidden");
         if (val.estado) {
             arrDate = frm.dtFechaNacimiento.split("/");
             frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
@@ -61,6 +69,11 @@
                     actualizarTrTabla(trPersona, persona);
                     controlesEdit(false, trPersona); // deshabilitar la edicion
                     updateAllDataTable($('.tablePersonas'));
+                }
+                else {
+                    if (data.error._mostrar) {
+                        printMessage($(".divResultadoGeneral .divResultado"), data.error.Message, false)
+                    }
                 }
             });
         } else {
@@ -159,8 +172,8 @@
         $(".divResultadoGeneral .divResultado").hide();
         frm = serializeSection(tr);
         var val = validacionIngreso(frm);
-        console.log(frm);
-        console.log(val);
+        tr.find(".divResultado").empty();
+        tr.find(".divResultado").addClass("hidden")
         if (val.estado) {
             arrDate = frm.dtFechaNacimiento.split("/");
             frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
@@ -186,7 +199,7 @@
                     }*/
                 }
             });
-            console.log("Agregaras");
+            
         } else {
             var errores;
             $.each(val.campos, function (i,val) {

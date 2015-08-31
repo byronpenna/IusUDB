@@ -151,7 +151,7 @@
     //******************************
     function btnActualizar(tr) {
         frm = serializeSection(tr);
-        console.log(frm);
+        console.log("Formulario a actualizar",frm);
         actualizarCatalogo(RAIZ + "/GestionIdiomaWebsite/sp_trl_actualizarLlaveIdioma", frm, function (data) {
             console.log("La respuesta del servidor es: ", data);
             if (data.estado) {
@@ -160,7 +160,7 @@
                 tr.find(".tdTxtPagina").empty().append(tr.find(".cbEditIdioma option:selected").text());
                 console.log(tr.find(".cbEditIdioma").val());
                 tr.find(".txtHdIdIdioma").val(tr.find(".cbEditIdioma").val());
-                tr.find(".tdTxtTraduccion").empty().append(tr.find(".txtAreaEditTraduccion").val());
+                tr.find(".tdTxtTraduccion").empty().append(tr.find(".txtAreaEditTraduccion").val().replace(/\n/g,"<br>"));
                 updateAllDataTable($(".tableLlaveIdioma"));
             } else {
                 alert("ocurrio un error al intentar actualizar");
@@ -192,7 +192,12 @@
                 optionsLlaves = fillSelectLlave(data.llaves, selected.llave);
                 optionsIdioma = fillSelectIdioma(data.idiomas, selected.idioma);
                 optionsPagina = fillSelectPagina(data.paginas, selected.pagina);
-                txtTraduccion = $.trim(tr.find(".tdTxtTraduccion").text());
+                var txtTraduccion = $.trim(tr.find(".tdTxtTraduccion").html());
+                
+                txtTraduccion = txtTraduccion.replace(/<br>/g, " \n ");
+                console.log("para textarea*************************")
+                console.log( txtTraduccion);
+                console.log("**********")
                 // llenando para editar
                 cb.llave.empty().append(optionsLlaves);
                 cb.idioma.empty().append(optionsIdioma);
@@ -207,6 +212,7 @@
         
     }
     function btnAgregarLlave(frm) {
+        console.log("de aqui se va a agregar");
         actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_agregarLlaveIdioma", frm, function (data) {
             if (data.estado) {
                 tr = addRowTable(data.llaveIdioma);

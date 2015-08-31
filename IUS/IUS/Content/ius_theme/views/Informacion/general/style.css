@@ -1,0 +1,13 @@
+﻿.tituloPrincipal{
+    text-align:center;
+}
+.cuerpoContenedor{
+    margin-top:5%;
+    margin-bottom:5%;
+}
+.divContenedorInfo{
+    width:80%;
+    margin:0 auto;
+    text-align:justify;
+    margin-top:5%;
+}

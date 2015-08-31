@@ -42,6 +42,7 @@ namespace IUSBack.Controllers
                         List<Idioma> idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                         List<Pagina> paginas = this._model.sp_trl_getAllPaginas(usuarioSession._idUsuario, this._idPagina);
                         List<LlaveIdioma> tabla = this._model.sp_trl_tablitaGestionTraduccion(usuarioSession._idUsuario, this._idPagina);
+                        
                         // generales
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         // propias de pagina
@@ -139,6 +140,7 @@ namespace IUSBack.Controllers
                 }
             #endregion 
             #region "acciones"
+                //*********************************
                 public ActionResult sp_trl_agregarLlaveIdioma()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -155,6 +157,7 @@ namespace IUSBack.Controllers
                             llave = new Llave( Convert.ToInt32(frm["idLlave"].ToString()) );
                             idioma = new Idioma( Convert.ToInt32(frm["idIdioma"].ToString()) );
                             aAgregar = new LlaveIdioma(idioma, llave, frm["traduccion"].ToString());
+                            aAgregar._traduccion = aAgregar._traduccion.Replace("\n", "<br>");
                             llaveIdioma = this._model.sp_trl_agregarLlaveIdioma(aAgregar,usuarioSession._idUsuario,this._idPagina);
                             if (llaveIdioma != null)
                             {
@@ -243,6 +246,7 @@ namespace IUSBack.Controllers
                         //int idLlaveIdioma = Convert.ToInt32( frm["txtHdIdLlaveIdioma"].ToString()); int frmIdLlave = Convert.ToInt32(frm["cbEditLlave"].ToString());
                         int idLlaveIdioma = Convert.ToInt32(frm["txtHdIdLlaveIdioma"].ToString()); int frmIdLlave = Convert.ToInt32(frm["txtHdIdLlave"].ToString());
                         int idIdioma = Convert.ToInt32(frm["cbEditIdioma"].ToString()); string traduccion = frm["txtAreaEditTraduccion"].ToString();
+                        traduccion = traduccion.Replace("\n", "<br>");
                         bool respuestaModel = this._model.sp_trl_actualizarLlaveIdioma(idLlaveIdioma,frmIdLlave,idIdioma,traduccion,usuarioSession._idUsuario,this._idPagina);
                         respuesta.Add("estado", respuestaModel);
                     }
