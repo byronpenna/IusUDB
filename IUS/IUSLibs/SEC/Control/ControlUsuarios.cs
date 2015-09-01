@@ -429,18 +429,27 @@ namespace IUSLibs.SEC.Control
                 try
                 {
                     DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrecto(tb) && tb[1].Rows.Count > 0)
+                    if (this.resultadoCorrecto(tb))
                     {
-                        login = true;
-                        
-                        DataRow row = tb[1].Rows[0];
-                        Persona persona = new Persona((int)row["id_persona_fk"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
-                        usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"], true, persona, row["pass"].ToString());
-
-                        if ((int)tb[tb.Count - 1].Rows[0]["changePass"] == 1)
+                        if (tb[1].Rows.Count > 0)
                         {
-                            changePass = true;
+                            login = true;
+
+                            DataRow row = tb[1].Rows[0];
+                            Persona persona = new Persona((int)row["id_persona_fk"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                            usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"], true, persona, row["pass"].ToString());
+
+                            if ((int)tb[tb.Count - 1].Rows[0]["changePass"] == 1)
+                            {
+                                changePass = true;
+                            }
                         }
+                        else
+                        {
+                            ErroresIUS x = new ErroresIUS("Debe asignarle una persona a ese usuario para poder iniciar sesion", ErroresIUS.tipoError.sql, 0,"",true);
+                            throw x;
+                        }
+                        
                     }
                     else
                     {

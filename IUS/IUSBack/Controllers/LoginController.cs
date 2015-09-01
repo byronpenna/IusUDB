@@ -21,34 +21,6 @@ namespace IUSBack.Controllers
             [ValidateAntiForgeryToken]
             public ActionResult Index(User usu)
             {
-                /*bool login = false;
-                try
-                {
-                    login = this.modelLogin.login(usu);
-                }
-                catch (ErroresIUS x) {
-                    ErrorsController error = new ErrorsController();
-                    var obj = error.redirectToError(x);
-                    return RedirectToAction(obj["accion"], obj["controlador"]);
-                    //return Json(x.Message);
-                }
-                catch (Exception)
-                {
-                    return RedirectToAction("Unhandled", "Errors");
-                }
-                if (usu.usuario != null && usu.pass != null && login)
-                {
-                    Session["usuario"] = this.modelLogin.getUsuario;
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    if (usu.usuario != null && usu.pass != null)
-                    {
-                        ViewBag.errorLogin = "Usuario y/o contraseña incorrecta";
-                    }
-                    return View(usu);
-                }*/
                 Dictionary<object, object> respuesta;
                 ActionResult retorno = null;
                 try

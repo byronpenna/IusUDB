@@ -1,4 +1,22 @@
-﻿header{
+﻿/*Nuevo*/
+.frmRegistrar{
+    text-align:center;
+}
+.divInputForm{
+    margin-bottom:3%;
+}
+.tituloPrincipal{
+    text-align:center;
+    margin-bottom:5%;
+}
+.divFormulario{
+    margin-bottom:10%;
+}
+.btnRegistrarse{
+    margin-top:3%;
+}
+/*****************************/
+header{
     display:none;
 }
 .frmRegistrar span{
