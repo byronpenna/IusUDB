@@ -22,7 +22,7 @@
                     $(".frmRegistrar").find(".divResultado").addClass("visibilitiHidden");
                     $.each(val.campos, function (i, val) {
                         errores = "";
-                        console.log("I es ", i);
+                        
                         var divResultado = $(".frmRegistrar").find("." + i).parents(".vv").find(".divResultado");
                         if (val.length > 0) {
                             divResultado.removeClass("visibilitiHidden");

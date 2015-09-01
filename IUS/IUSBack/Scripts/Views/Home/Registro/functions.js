@@ -36,16 +36,24 @@
 // scripts 
     function frmRegistrar(frm) {
         actualizarCatalogo(RAIZ + "/Home/sp_secpu_addUsuario", frm, function (data) {
-            console.log(data);
+            console.log("Respuesta al querer agregar",data);
             $(".spanResultado").removeClass("hidden");
             if (data.estado) {
                 $(".spanResultado").addClass("spanSuccess");
                 $(".spanResultado").removeClass("spanError");
                 $(".spanResultado").empty().append("Registrado correctamente revise correo electronico para confirmar su cuenta");
+                clearTr($(".frmRegistrar"));
+                //
             } else {
+                var mjs = "";
                 $(".spanResultado").addClass("spanError");
                 $(".spanResultado").removeClass("spanSuccess");
-                $(".spanResultado").empty().append("Ocurrio un error");
+                if (data.error._mostrar) {
+                    mjs = data.error.Message;
+                } else {
+                    mjs = "Ocurrio un error agregando";
+                }
+                $(".spanResultado").empty().append(mjs);
             }
         });
     }

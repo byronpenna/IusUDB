@@ -29,7 +29,7 @@ namespace IUSBack.Controllers
                 try
                 {
                     Usuario usuarioSession  = this.getUsuarioSesion();
-                    if (Session["usuario"] != null)
+                    if (usuarioSession != null)
                     {
                         //ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
@@ -37,6 +37,7 @@ namespace IUSBack.Controllers
                         Menu menuPadre = (Menu)respuesta["menuPadre"];
                         ViewBag.titleModulo = menuPadre._menu;
                         ViewBag.submenuss = respuesta["submenus"];
+                        ViewBag.usuario = usuarioSession;
                         return View();
                     }
                     else
