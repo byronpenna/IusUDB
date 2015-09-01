@@ -103,6 +103,10 @@ namespace IUSBack.Controllers
                 }
                 public ActionResult Verificar(int id=-1,int id2=-1)
                 {
+                    /*
+                     id: numero de verificacion 
+                     id2: id del usuario
+                     */
                     try
                     {
                         bool verificado = this.homeModel.sp_secpu_verificarCuenta(id, id2);

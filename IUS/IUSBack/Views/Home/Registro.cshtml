@@ -14,23 +14,50 @@
     <title>Registro</title>
 </head>
 <body>
-    <div class="row marginNull">
-        <div class="col-lg-4">
+    <h2 class="tituloPrincipal">Registro de usuarios</h2>
+    <div class="row marginNull divFormulario">
             <form class="frmRegistrar" method="post">
-                <label>Nombres</label>
-                <input class="form-control" name="txtNombre"/>
-                <label>Apellidos</label>
-                <input class="form-control" name="txtApellidos"/>
-                <label>Email</label>
-                <input type="email" class="form-control" name="txtEmail"/>
-                <label>Fecha de nacimiento</label>
-                <input type="text" class="form-control dtpFechaNac" name="txtFechaNac"/>
-                <label>Contraseña</label>
-                <input type="password" class="form-control" name="txtPass" />
-                <span class="spanResultado spanSuccess hidden">Registrado exitosamente</span>
-                <button class="btn btn-primary">Registrarse</button>
+                <div class="col-lg-6 divInputForm vv">
+                    <label>Email</label>
+                    <input type="email" class="form-control txtEmail " name="txtEmail" />
+                    <div class="divResultado hidden ">
+                        _
+                    </div>
+                </div>
+                <div class="col-lg-6 divInputForm vv">
+                    <label>Contraseña</label>
+                    <input type="password" class=" form-control txtPass " name="txtPass" />
+                    <div class="divResultado hidden">
+                        _
+                    </div>
+                </div>
+                <div class="col-lg-6 divInputForm vv">
+                    <label>Nombres</label>
+                    <input class=" form-control txtNombre soloLetras" name="txtNombre" />
+                    <div class="divResultado hidden">
+                        _
+                    </div>
+                </div>
+                <div class="col-lg-6 divInputForm vv">
+                    <label>Apellidos</label>
+                    <input class=" form-control txtApellidos soloLetras" name="txtApellidos" />
+                    <div class="divResultado hidden">
+                        _
+                    </div>
+                </div>
+                <div class="col-lg-offset-4 col-lg-4 divInputForm vv">
+                    <label>Fecha de nacimiento</label>
+                    <input type="text" class=" form-control dtpFechaNac txtFechaNac" name="txtFechaNac" />
+                    <div class="divResultado hidden">
+                        _
+                    </div>
+                </div>
+                <div class="col-lg-offset-4 col-lg-4">
+                    <span class="spanResultado spanSuccess hidden">Registrado exitosamente</span>
+                    <button class="btn btnRegistrarse">Registrarse</button>
+                </div>
             </form>
-        </div>
+        
         
     </div>
 </body>
