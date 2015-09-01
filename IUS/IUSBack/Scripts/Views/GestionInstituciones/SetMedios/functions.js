@@ -9,6 +9,34 @@
         trMedios.find(".tdNombreEnlace").empty().append(medio._nombreEnlace);
         controlesEdit( false, trMedios);
     }
+    function validarEdit(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            txtTextoEnlaceEdit: new Array()
+        }
+        val.general = new Array();
+        if (frm.txtTextoEnlaceEdit == "") {
+            val.campos.txtTextoEnlaceEdit.push("No puede dejar este campo vacio");
+        }
+        val.estado = getEstadoVal(val);
+        //console.log("Retorno val es", val);
+        return val;
+    }
+    function validarAgregar(frm) {
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            txtTextoEnlace: new Array()
+        }
+        val.general = new Array();
+        if (frm.txtTextoEnlace == "") {
+            val.campos.txtTextoEnlace.push("No puede dejar este campo vacio");
+        }
+        val.estado = getEstadoVal(val);
+        //console.log("Retorno val es", val);
+        return val;
+    }
     function getTrMedios(enlace) {
         tr = "\
         <tr>\
@@ -70,13 +98,18 @@
             if (data.estado) {
                 tr = getTrMedios(data.enlace);
                 $(".tbodyMedios").prepend(tr);
+                limpiarInsert();
             } else {
                 if (data.error._mostrar) {
-                    alert(data.error.Message);
+                    //alert(data.error.Message);
+                    printMessage($(".divMensajesGenerales"), data.error.Message, false)
                 }
             }
             
         });
+    }
+    function limpiarInsert() {
+        $(".tbEnlaces thead .trFormAgregar").find(".form-control").val("");
     }
     function btnEliminar(frm,tr) {
         actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_deleteEnlaceInstitucion", frm, function (data) {

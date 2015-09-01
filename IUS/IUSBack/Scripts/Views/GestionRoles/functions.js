@@ -277,6 +277,7 @@ function llenarTablaRolesUsuario(idUsuario) {
         
     });
 }
+
 function validacionIngreso(frm) {
     var estado = false;
     var val = new Object();
@@ -290,7 +291,8 @@ function validacionIngreso(frm) {
     return val;
 }
 // genericas
-    function getTrRol(rol,permisos){
+    //***********************************
+    function getTrRol(rol, permisos) {
         tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -299,13 +301,12 @@ function validacionIngreso(frm) {
                 <td>\
                     <div class='editMode hidden'>\
                         <input type='text' name='txtRol' class='txtRol form-control txtRolEdit'  />\
+                        <div class='divResultado'></div>\
                     </div>\
                     <div class='normalMode tdRol' >"+ rol._rol + "</div>\
                 </td>\
                 <td class='tdEstadoRol'>\
-                    <div class='normalMode'>\
-                        "+ rol.stringEstado + "\
-                    </div>\
+                    "+ rol.stringEstado + "\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
@@ -333,6 +334,7 @@ function validacionIngreso(frm) {
     // hace un insert directo a la tabla roles
     function agregarRol(frm,tbody,trInsert) {
         cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_addRol", frm, function (data) {
+            console.log("Data despues de agregado rol");
             if (data.estado) {
                 rol = data.rol;
                 tr = getTrRol(rol, data.permisos);
@@ -353,12 +355,19 @@ function validacionIngreso(frm) {
         });
     }
     function eliminarRol(frm,tr) {
-        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_eliminarRol", frm, function (data) {
+        cargarObjetoGeneral(RAIZ + "GestionRoles/sp_sec_eliminarRol", frm, function (data) {
+            console.log("Respuesta del servidor al elminar es", data);
             if (data.estado) {
                 removeOptionSelect($(".cbRolTab2"), frm.txtHdIdRol, true);
                 tr.remove();
             } else {
-                alert("Ocurrio un error");
+                var mjs = "";
+                if (data.error._mostrar) {
+                    mjs = data.error.Message;
+                } else {
+                    mjs = "Ocurrio un error inesperado";
+                }
+                printMessage($(".divMensajesGenerales"),mjs , false);
             }
         });
     }
@@ -381,18 +390,42 @@ function validacionIngreso(frm) {
             }
         });
     }
+    
     function btnActualizar(tr) {
         frm = serializeSection(tr);
-        cargarObjetoGeneral(RAIZ+"GestionRoles/sp_sec_editarRol", frm, function (data) {
-            if (data.estado) {
-                rol = data.rol;
-                setTrRol(tr, rol);
-                updateOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
-                controlesEdit(false, tr);
-            } else {
-                alert("Ocurrio un error");
-            }
-        });
+        console.log("formulario a enviar",frm);
+        var val = validacionIngreso(frm);
+        if (val.estado) {
+            cargarObjetoGeneral(RAIZ + "GestionRoles/sp_sec_editarRol", frm, function (data) {
+                console.log("Respuesta servre", data);
+                if (data.estado) {
+                    rol = data.rol;
+                    setTrRol(tr, rol);
+                    updateOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);
+                    controlesEdit(false, tr);
+                } else {
+                    //alert("Ocurrio un error durante la actualizacion");
+                    if (data.error._mostrar) {
+                        printMessage($(".divMensajesGenerales"), data.error.Message, false);
+                    }
+                }
+            });
+        } else {
+            // falta ajustar para esta pantalla
+            var errores;
+            $.each(val.campos, function (i, val) {
+                errores = "";
+                var divResultado = tr.find("." + i).parents("td").find(".divResultado")
+                if (val.length > 0) {
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += getSpanMessageError(val);
+                    })
+                    divResultado.empty().append(errores);
+                }
+            })
+
+        }
     }
     function btnEditar(tr) {
         txtRol = tr.find(".tdRol").text();
@@ -403,6 +436,7 @@ function validacionIngreso(frm) {
         
         eliminarRol(frm,tr);
     }
+    
     function btnAgregarRol(tr) {
         var frm = serializeSection(tr);
         var tbody = tr.parents("table").find("tbody");

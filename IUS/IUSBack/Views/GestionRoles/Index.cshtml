@@ -44,9 +44,12 @@
                 <select class="form-control cbUsuarios">
                     <option></option>
                     @{
-                        foreach (Usuario usuario in usuarios)
+                        if (@usuarios != null)
                         {
-                            <option value="@usuario._idUsuario">@usuario._usuario</option>
+                            foreach (Usuario usuario in usuarios)
+                            {
+                                <option value="@usuario._idUsuario">@usuario._usuario</option>
+                            }    
                         }
                     }
                 </select>
@@ -234,6 +237,9 @@
                         <td>
                             <div class="editMode hidden">
                                 <input type="text" name="txtRol" class="txtRol txtRolEdit form-control"  />
+                                <div class="divResultado">
+
+                                </div>
                             </div>
                             <div class="normalMode tdRol" >@rol._rol</div>
                         </td>

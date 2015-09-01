@@ -175,11 +175,13 @@ namespace IUSBack.Controllers
                                 }
                             }
                             catch (ErroresIUS x) {
-                                this.errorTryControlador(1, x);
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                                respuesta = this.errorTryControlador(1, error);
                             }
                             catch (Exception x)
                             {
-                                this.errorTryControlador(2, x);
+                                ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                respuesta = this.errorTryControlador(2, x);
                             }
                         }
                         else
@@ -455,10 +457,14 @@ namespace IUSBack.Controllers
                                     respuesta = this.errorTryControlador(3, "Error no controlado");
                                 }
                             }catch(ErroresIUS x){
-                                respuesta = this.errorTryControlador(1,x);
+                                //respuesta = this.errorTryControlador(1,x);
+                                ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                                respuesta = this.errorTryControlador(1, error);
                             }
                             catch(Exception x){
-                                respuesta = this.errorTryControlador(2,x);
+                                //respuesta = this.errorTryControlador(2,x);
+                                ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                respuesta = this.errorTryControlador(2, error);
                             }
                             
                         }

@@ -136,11 +136,22 @@ namespace IUSLibs.SEC.Control
                     sp.agregarParametro("idPagina", idPagina);
                     try
                     {
-                        DataSet ds = sp.EjecutarProcedimiento();
+                        /*DataSet ds = sp.EjecutarProcedimiento();
                         DataTableCollection tables = this.getTables(ds);
                         if (tables != null && (int)tables[0].Rows[0]["estadoDelete"] == 1)
                         {
                             estado = true;
+                        }*/
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        else
+                        {
+                            DataRow rowResult = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(rowResult);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
@@ -195,13 +206,14 @@ namespace IUSLibs.SEC.Control
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        DataRow rowResultado = tb[1].Rows[0];
                         if (this.resultadoCorrecto(tb))
                         {
+                            DataRow rowResultado = tb[1].Rows[0];
                             rolRegresar = new Rol((int)rowResultado["idRol"], rowResultado["rol"].ToString(), (bool)rowResultado["estado"]);
                         }else{
-                           ErroresIUS x = new ErroresIUS(rowResultado["errorMessage"].ToString(),ErroresIUS.tipoError.sql,(int)rowResultado["errorCode"]);
-                           throw x;
+                            DataRow rowResult = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(rowResult);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)

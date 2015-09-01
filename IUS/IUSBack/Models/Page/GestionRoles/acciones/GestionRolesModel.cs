@@ -129,10 +129,9 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                 }
                 public Rol sp_sec_editarRol(Rol rol,int idUsuarioEjecutor,int idPagina)
                 {
-                    Rol rolRegresar = null;
                     try
                     {
-                        rolRegresar = this._control.sp_sec_editarRol(rol, idUsuarioEjecutor, idPagina);
+                        return this._control.sp_sec_editarRol(rol, idUsuarioEjecutor, idPagina);
                     }catch(ErroresIUS x){
                         throw x;
                     }
@@ -140,7 +139,6 @@ namespace IUSBack.Models.Page.GestionRoles.acciones
                     {
                         throw x;
                     }
-                    return rolRegresar;
                 }
             #endregion
         #endregion

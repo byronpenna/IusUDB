@@ -25,14 +25,46 @@
                 console.log("entro");
                 controlesEdit(false, trInstitucion);
             })
+            // **************************
+            $(document).on("keydown", ".txtEnterEdit", function (e) {
+                var charCode = e.which;
+                var tr = $(this).parents("tr");
+                switch (charCode) {
+                    case 13: {
+                        tr.find(".btnActualizarInstitucion").click();
+                    }
+                }
+            })
             $(document).on("click", ".btnActualizarInstitucion", function () {
                 seccion = $(this).parents("tr");
                 frm = serializeSection(seccion);
-                btnActualizarInstitucion(frm,seccion);
+                var val = validacionEdit(frm);
+                console.log("Formulario D: D: ", frm);
+                console.log("val", val);
+                if (val.estado) {
+                    btnActualizarInstitucion(frm, seccion);
+                }
+                else {
+                    var errores;
+                    $.each(val.campos, function (i, val) {
+                        errores = "";
+                        var divResultado = seccion.find("." + i).parents("td").find(".divResultado")
+                        if (val.length > 0) {
+                            divResultado.removeClass("hidden");
+                            $.each(val, function (i, val) {
+                                errores += getSpanMessageError(val);
+                                console.log(val);
+                            })
+                            divResultado.empty().append(errores);
+                        }
+                    });
+                }
             })
             $(document).on("click", ".btnEditar", function () {
                 trInstitucion = $(this).parents("tr");
                 //table = $(".tbInstituciones").DataTable();
+                trInstitucion.find(".divResultado").empty();
+                trInstitucion.find(".divResultado").addClass("hidden");
                 btnEditar(trInstitucion);
                 
             })
@@ -43,6 +75,7 @@
                 console.log(frm);
                 btnDeleteInstitucion(frm,seccion);
             });
+            //*************************************
             $(document).on("click", ".btnAddInstitucion", function () {
                 seccion = $(".trFrmInstituciones");
                 var frm = serializeSection(seccion);
