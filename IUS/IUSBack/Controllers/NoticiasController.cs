@@ -29,7 +29,6 @@ namespace IUSBack.Controllers
             public ActionResult setMiniatura(int id)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                
                 if (usuarioSession != null)
                 {
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
@@ -37,6 +36,7 @@ namespace IUSBack.Controllers
                     {
                         try
                         {
+                            ViewBag.selectedMenu = 4; // menu seleccionado 
                             ViewBag.titleModulo = "Escoger miniatura foto";
                             ViewBag.usuario = usuarioSession;
                             ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
@@ -73,6 +73,7 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver)
                     {
+                        ViewBag.selectedMenu = 4; // menu seleccionado 
                         ViewBag.titleModulo = "Noticias";
                         ViewBag.usuario     = usuarioSession;
                         //ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
@@ -102,6 +103,8 @@ namespace IUSBack.Controllers
                     {
                         try
                         {
+
+                            ViewBag.selectedMenu = 4; // menu seleccionado 
                             //List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
                             Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
                             Post post = (Post)datosPost["post"];
@@ -286,7 +289,6 @@ namespace IUSBack.Controllers
                                     string[] tags;
                                     try
                                     {
-                                    
                                         tags = this.converArrAajaxToString((object[])frm["tags"]);
                                     }
                                     catch (Exception x)
@@ -310,16 +312,25 @@ namespace IUSBack.Controllers
                                         respuesta.Add("respuestaTag", null);
                                     }
                                 // agregar categoria 
-                                int[] categorias = this.convertArrAjaxToInt((object[])frm["cbCategorias"]);
-                                if (categorias != null)
-                                {
-                                    respuestaCate = this._model.sp_adminfe_noticias_insertCategoriasPosts(postAgregado._idPost, categorias, usuarioSession._idUsuario, this._idPagina);
-                                    respuesta.Add("respuestaCate", respuestaCate);
-                                }
-                                else
-                                {
-                                    respuesta.Add("respuestaCate", null);
-                                }
+                                    int[] categorias;
+                                    try
+                                    {
+                                        categorias = this.convertArrAjaxToInt((object[])frm["cbCategorias"]);
+                                    }
+                                    catch (Exception)
+                                    {
+                                        categorias = new int[1];
+                                        categorias[0] = this.convertObjAjaxToInt(frm["cbCategorias"]);
+                                    }
+                                    if (categorias != null)
+                                    {
+                                        respuestaCate = this._model.sp_adminfe_noticias_insertCategoriasPosts(postAgregado._idPost, categorias, usuarioSession._idUsuario, this._idPagina);
+                                        respuesta.Add("respuestaCate", respuestaCate);
+                                    }
+                                    else
+                                    {
+                                        respuesta.Add("respuestaCate", null);
+                                    }
 
                             }
                             else

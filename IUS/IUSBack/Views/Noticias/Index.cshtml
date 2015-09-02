@@ -18,7 +18,7 @@
 }
 @section tabs{
     <ul>
-        <li class="btnTab" target="#tab-1">
+        <li class="btnTab tabActive" target="#tab-1">
             Noticias
         </li>
         <li class="tbCompartir btnTab" target="#tab-2">
@@ -51,6 +51,7 @@
                     <th>Ultima modificacion</th>
                     <th>Contenido</th>
                     <th>Usuario creador</th>
+                    <th>Idioma</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -68,6 +69,7 @@
                             <td>@post.getFechaModificacion</td>
                             <td class="tdContenido">@post._contenido</td>
                             <td>@post._usuario._usuario</td>
+                            <td>@post._idioma._idioma</td>
                             <td>
                                 <a class="btn btnPublicacion" @permiso.stringEditar>
                                     @post.getTxtEstado
