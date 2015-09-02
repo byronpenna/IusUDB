@@ -22,34 +22,13 @@ namespace IUS.Controllers
                 private int _idPaginaIdentidad      = (int)paginasInternas.Identidad;
         #endregion
         #region "acciones url"
-            /*public ActionResult Index() 
-            {
-                List<LlaveIdioma> traducciones;
-                try
-                {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
-                    string lang = this.getUserLang();
-                    traducciones = this._model.getTraduccion(lang, this.idPagina);
-                    this.setTraduccion(traducciones);
-                }
-                catch (ErroresIUS x)
-                {
-                    return RedirectToAction("Unhandled", "Errors");
-                }
-                catch (Exception x)
-                {
-                    return RedirectToAction("Unhandled", "Errors");
-                }
-                return View();
-            }*/
-            
             public ActionResult Historia()
             {
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this._idPaginaHistoria);
                     this.setTraduccion(traducciones);
                 }
@@ -68,8 +47,8 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this._idPaginaOrganizacion);
                     this.setTraduccion(traducciones);
                 }
@@ -88,8 +67,8 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this._idPaginaIus);
                     this.setTraduccion(traducciones);
                 }
@@ -108,8 +87,8 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this._idPaginaSalesianos);
                     this.setTraduccion(traducciones);
                 }
@@ -128,8 +107,8 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this._idPaginaIdentidad);
                     this.setTraduccion(traducciones);
                 }

@@ -24,10 +24,11 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                    string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     string ip = Request.UserHostAddress;
                     ViewBag.instituciones = this._model.sp_frontui_getInstitucionesByContinente(id, ip, this.idPagina);
-                    string lang = this.getUserLang();
+                    
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     ViewBag.menu22 = this.activeClass;
                     this.setTraduccion(traducciones);
@@ -48,9 +49,9 @@ namespace IUS.Controllers
             {
                 List<LlaveIdioma> traducciones;
                 try
-                {                
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                {
                     string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
                     ViewBag.menu22 = this.activeClass;

@@ -242,11 +242,15 @@ namespace IUSLibs.ADMINFE.Control.Noticias
         #endregion
         #region "front end"
             #region "get"
-                public List<Post> sp_adminfe_front_getTopNoticias(int n)
+                public List<Post> sp_adminfe_front_getTopNoticias(int n,string lang="")
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_front_getTopNoticias");
                     List<Post> posts = null; Post post;
                     sp.agregarParametro("n", n);
+                    if (lang != "")
+                    {
+                        sp.agregarParametro("idioma", lang);
+                    }
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());

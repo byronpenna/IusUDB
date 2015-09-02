@@ -18,21 +18,40 @@ namespace IUS.Models.general
             private string _lang;
         #endregion
         #region "funciones"
-            public List<Post> sp_adminfe_front_getTopNoticias(int n)
-            {
-                try
+            #region "getTopNoticias"
+                public List<Post> sp_adminfe_front_getTopNoticias(int n,string userLang="")
                 {
-                    return this._controlPost.sp_adminfe_front_getTopNoticias(n);
+                    string lang = this.getStandarLang(userLang);
+                    try
+                    {
+                        return this._controlPost.sp_adminfe_front_getTopNoticias(n,lang);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
+                /*
+                public List<Post> sp_adminfe_front_getTopNoticias(int n)
                 {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
+                    try
+                    {
+                        return this._controlPost.sp_adminfe_front_getTopNoticias(n);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }*/
+            #endregion
             #region "traducciones"
                 public List<Idioma> getIdiomas()
                 {

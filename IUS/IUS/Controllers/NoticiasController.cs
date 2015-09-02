@@ -30,7 +30,7 @@ namespace IUS.Controllers
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
                     cuerpoPagina = this._model.sp_adminfe_front_getNoticiaFromId(id);
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     ViewBag.idPost = id;
                     ViewBag.comentarios = this._model.sp_frontUi_noticias_getComentariosPost(id, ip, this.idPagina);
                     
