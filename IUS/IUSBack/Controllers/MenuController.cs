@@ -32,6 +32,7 @@ namespace IUSBack.Controllers
                     if (usuarioSession != null)
                     {
                         //ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ViewBag.selectedMenu = id;
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         Dictionary<object, object> respuesta = this._model.sp_sec_getSubmenu(id, usuarioSession._idUsuario);
                         Menu menuPadre = (Menu)respuesta["menuPadre"];

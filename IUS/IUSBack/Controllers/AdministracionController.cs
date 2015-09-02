@@ -30,6 +30,7 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPaginaEventos);
                     if (permisos != null && permisos._ver)
                     {
+                        ViewBag.selectedMenu = 4; // menu seleccionado 
                         List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
                         ViewBag.titleModulo = "Eventos";
                         ViewBag.usuario     = usuarioSession;
@@ -58,6 +59,7 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPaginaNoticias);
                     if (permisos != null && permisos._ver)
                     {
+                        ViewBag.selectedMenu = 4; // menu seleccionado 
                         ViewBag.permiso     = permisos;
                         ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
                         return View();

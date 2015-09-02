@@ -33,6 +33,7 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
+                    ViewBag.selectedMenu = 4; // menu seleccionado 
                     Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> archivos;

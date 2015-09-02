@@ -12,7 +12,9 @@
 }
 .activeMenu{
     color:#95A5A6;
-
+}
+.activeMenuPrincipal{
+    color:wheat !important;
 }
 /*Nuevos meno*/
 .divMenu{
