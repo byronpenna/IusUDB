@@ -35,18 +35,50 @@
             })
         // submit 
             $(document).on("submit", ".frmNoticia", function (e) {
-                formulario = $(this);
+                var formulario = $(this);
                 e.preventDefault();
-                $("#div_carga").fadeIn(400, function () {
-                    if ($("#btnSubmitNoticia").attr("action") == 1) {
-                        frmNoticia(formulario);
-                        //console.log("Ingresaras");
-                    } else {
-                        updatePost(formulario);
-                        //console.log("Vas a editar");
-                    }
-                    
-                });
+                //--------------
+                // capturando formulario
+                    formulario = serializeToJson(formulario.serializeArray());
+                    formulario.contenido = nicEditors.findEditor('editor').getContent();
+                    formulario.tags = $(".txtEtiquetas").val();
+                var val = validarInsert(formulario);
+                console.log("Val es", val);
+                $(".divResultado").addClass("hidden");
+                if (val.estado) {
+                    $("#div_carga").fadeIn(400, function () {
+                        if ($("#btnSubmitNoticia").attr("action") == 1) {
+                            //console.log("Formulario a agregar",formulario);
+                            frmNoticia(formulario);
+                            //console.log("Ingresaras");
+                        } else {
+                            updatePost(formulario);
+                        }
+                    });
+                } else {
+                    var errores;
+                    $.each(val.campos, function (i, val) {
+                        errores = "";
+                        var divResultado = $(".frmNoticia").find("." + i).parents(".contenedorControl").find(".divResultado")
+                        if (val.length > 0) {
+                            console.log("entro");
+                            divResultado.removeClass("hidden");
+                            $.each(val, function (i, val) {
+                                errores += "<span class='spanMessage1 failMessage'>" + val + "</span>";
+                            })
+                            divResultado.empty().append(errores);
+                        }
+                    })
+                    /*
+                    var div = "";
+                    $.each(val.general, function (i, val) {
+                        div += "<div class='row marginNull'>";
+                        div += getSpanMessageError(val);
+                        div += "</div>";
+                    })
+                    printMessageDiv($(".divMensajesGenerales"), div);
+                    */
+                }
                 
             })
         // click

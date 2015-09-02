@@ -278,21 +278,39 @@ namespace IUSBack.Controllers
                             //Post postAgregado = null;
                             if (postAgregado != null)
                             {
+                                
                                 respuesta = new Dictionary<object, object>();
                                 respuesta.Add("estado", true);
                                 respuesta.Add("post", postAgregado);
-                                string[] tags = this.converArrAajaxToString((object[])frm["tags"]);
+                                // agregar tags
+                                    string[] tags;
+                                    try
+                                    {
+                                    
+                                        tags = this.converArrAajaxToString((object[])frm["tags"]);
+                                    }
+                                    catch (Exception x)
+                                    {
+                                        string strTag = frm["tags"].ToString();
+                                        if (strTag == "")
+                                        {
+                                            tags = null;
+                                        }else{
+                                            tags = new string[1];
+                                            tags[0] = strTag;
+                                        }
+                                    }
+                                    if (tags != null)
+                                    {
+                                        respuestaTag = this._model.sp_adminfe_noticias_agregarTag(postAgregado._idPost, tags, usuarioSession._idUsuario, this._idPagina);
+                                        respuesta.Add("respuestaTag", respuestaTag);
+                                    }
+                                    else
+                                    {
+                                        respuesta.Add("respuestaTag", null);
+                                    }
+                                // agregar categoria 
                                 int[] categorias = this.convertArrAjaxToInt((object[])frm["cbCategorias"]);
-                                if (tags != null)
-                                {
-                                    respuestaTag = this._model.sp_adminfe_noticias_agregarTag(postAgregado._idPost, tags, usuarioSession._idUsuario, this._idPagina);
-                                    respuesta.Add("respuestaTag", respuestaTag);
-                                }
-                                else
-                                {
-                                    respuesta.Add("respuestaTag", null);
-                                }
-
                                 if (categorias != null)
                                 {
                                     respuestaCate = this._model.sp_adminfe_noticias_insertCategoriasPosts(postAgregado._idPost, categorias, usuarioSession._idUsuario, this._idPagina);

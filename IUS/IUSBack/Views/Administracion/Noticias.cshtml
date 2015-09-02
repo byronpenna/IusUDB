@@ -42,18 +42,29 @@
     <form class="frmNoticia">
         <input type="hidden" name="txtHdIdPost" class="txtHdIdPost" value="@post._idPost" />
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">
-            <label>Titulo</label>
-            <input type="text" name="txtTitulo" class="form-control" value="@post._titulo" />
+            <div class="contenedorControl">
+                <label>Titulo</label>
+                <input type="text" name="txtTitulo" class="form-control txtTitulo" value="@post._titulo" />
+                <div class="divResultado">
+
+                </div>
+            </div>
+            
         </div>
         <div class="row col-lg-offset-1 col-lg-10 seccionForm" style="padding:0">
             <div class="col-lg-9">
-                <label>Contenido</label>
-                <div class="divTamanioPersonalizado hidden">
-                    Tamaño personalizado(%)
-                    <input class="txtTamañoImagen soloNumerosDecimal" value="100" disabled />
-                    <input type="checkbox" name="ckTamanio" class="ckTamanio" />
+                <div class="contenedorControl">
+                    <label>Contenido</label>
+                    <div class="divTamanioPersonalizado hidden">
+                        Tamaño personalizado(%)
+                        <input class="txtTamañoImagen soloNumerosDecimal" value="100" disabled />
+                        <input type="checkbox" name="ckTamanio" class="ckTamanio" />
+                    </div>
+                    <textarea class="form-control editor" id="editor">@post._contenido</textarea>
+                    <div class="divResultado">
+
+                    </div>
                 </div>
-                <textarea class="form-control" id="editor">@post._contenido</textarea>
             </div>
             <div class="col-lg-3 sectionTodoImagesPost ">
                 <div class="row col-lg-12">
@@ -92,26 +103,31 @@
                 </select>
             </div>
             <div class="col-lg-6">
-                <label>Categoria</label>
-                <select class="form-control cbCategorias" name="cbCategorias" multiple>
-                    @if (categorias != null)
-                    {
-                        string selected = "";
-                        foreach (PostCategoria categoria in categorias)
+                <div class="contenedorControl">
+                    <label>Categoria</label>
+                    <select class="form-control cbCategorias" name="cbCategorias" multiple>
+                        @if (categorias != null)
                         {
-                            if (categoria._selected)
+                            string selected = "";
+                            foreach (PostCategoria categoria in categorias)
                             {
-                                selected = "selected";
+                                if (categoria._selected)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@categoria._idPostCategoria" @selected>@categoria._categoria</option>
+                                selected = "";
                             }
-                            <option value="@categoria._idPostCategoria" @selected>@categoria._categoria</option>
-                            selected = "";
                         }
-                    }
-                    else
-                    {
-                        <option value="-1">No hay categorias en el sistema</option>
-                    }
-                </select>
+                        else
+                        {
+                            <option value="-1">No hay categorias en el sistema</option>
+                        }
+                    </select>
+                    <div class="divResultado">
+
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="row">
@@ -119,6 +135,9 @@
                 </div>
                 <input type="text" name="txtEtiquetas" data-role="tagsinput" class="txtEtiquetas" value="@ViewBag.tags" />
             </div>
+        </div>
+        <div class="row marginNull divMensajesGenerales">
+
         </div>
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">
             <button class="btn btn-primary" id="btnSubmitNoticia" action="@ViewBag.accion">@ViewBag.botonAccion</button>
