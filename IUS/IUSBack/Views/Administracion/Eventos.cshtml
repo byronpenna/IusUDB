@@ -119,22 +119,31 @@
     <div class="col-lg-4 eventosCompartirSection">
         <h3>Eventos</h3>
             <div class="row marginNull controlesBusqueda">
+                <input type="hidden" class="txtHdBuscando" value="0"/>
                 <div class="row marginNull controlBusqueda" id="1">
                     <div class="input-group">
                         <input class="form-control txtBuscarEventoNombre" placeholder="Buscar por nombre" />
                         <span class="input-group-addon">Buscar</span>
                     </div>
                 </div>
-                <div class="row marginNull controlBusqueda hidden" id="2">
-                    <div class="col-lg-5">
-                        <label>De</label> <input class="form-control" />
+                <div class="row marginNull controlBusqueda divBusquedaRangoFecha hidden" id="2">
+                    <div class="divControl col-lg-5 ">
+                        <label>De</label>
+                        <input name="txtDeFechaBusqueda" class="form-control dpFecha txtDeFechaBusqueda" />
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
                     </div>
-                    <div class="col-lg-5">
-                        <label>Hasta</label> <input class="form-control"/>
+                    <div class="divControl col-lg-5 ">
+                        <label>Hasta</label>
+                        <input name="txtHastaFecha" class="form-control dpFecha txtHastaFecha" />
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
                     </div>
                     <div class="col-lg-2">
                         <label class="visibilitiHidden">_</label>
-                        <button class="btn">
+                        <button class="btn btnBuscarRangoFecha">
                             Buscar
                         </button>
                     </div>

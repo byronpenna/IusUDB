@@ -49,7 +49,8 @@
                 width: '80%'
             })
         // acordion    
-            $("#accordion").accordion({
+            getAccordion($("#accordion"));
+            /*$("#accordion").accordion({
                 collapsible: true,
                 active: false,
                 beforeActivate: function (e, ui) {
@@ -62,7 +63,7 @@
                         }
                     }
                 }
-            });
+            });*/
         // datePicker
             $(".dpFecha").datepicker({
                 dateFormat: "dd/mm/yy"
@@ -133,6 +134,12 @@
                 rbTiempo(valTiempo,$(this));
             })
         // click
+            //*****************************
+            $(document).on("click", ".btnBuscarRangoFecha", function () {
+                var frm = serializeSection($(this).parents(".divBusquedaRangoFecha"));
+                
+            })
+            //--------------------
             $(document).on("click", ".rbNombre", function () {
                 var id = $(this).val();
                 $(".controlBusqueda").addClass("hidden");

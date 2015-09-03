@@ -21,6 +21,49 @@ namespace IUSLibs.ADMINFE.Control
         #endregion 
         #region "funciones"
             #region "gets"
+                public List<Evento> sp_adminfe_buscarAllEventosPersonalesByDate(DateTime fechaInicio,DateTime fechaFin,int idUsuarioEjecutor,int idPagina)
+                {
+                    List<Evento> eventos = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_buscarAllEventosPersonalesByDate");
+                    sp.agregarParametro("fechaInicio", fechaInicio);
+                    sp.agregarParametro("fechaFin", fechaFin);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    Usuario usu; Evento evento;
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                eventos = new List<Evento>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    usu = new Usuario((int)row["id_usuario_creador_fk"]);
+                                    evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usu, (DateTime)row["fecha_creacion"], row["descripcion"].ToString());
+                                    evento._publicado = (bool)row["publicado"];
+                                    evento._propietario = (int)row["propietario"];
+                                    eventos.Add(evento);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+
+                    }catch(ErroresIUS x){
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return eventos;
+                }
                 public List<Evento> sp_adminfe_eventosCalendario(int idUsuario, int idPagina)
                 {
                     List<Evento> eventos = null;

@@ -15,7 +15,151 @@ function eventosIniciales() {
     });
 }
 // genericos
+    function getAccordion(div, withRefresh) {
+        if (withRefresh !== undefined && withRefresh == true) {
+            div.accordion("destroy");
+        }
+        div.accordion({
+            collapsible: true,
+            active: false,
+            beforeActivate: function (e, ui) {
+                if (e.originalEvent.type != "click") {
+                    e.preventDefault();
+                }
+                if (!(e.toElement === undefined)) {
+                    if (e.toElement.className == "txtEvento2") {
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+    }
+    
     // busqueda 
+        function getDivEvento(evento) {
+            var div = "<h3 class='tabDesplegableEvento nombreEvento "+evento.txtClaseColor+" '>\
+                            <span class='spanNombreEvento'>"+evento._evento+"</span>\
+                        </h3>\
+                        <div class='tabDesplegableEvento detalleEvento'>\
+                            <input type='hidden' name='txtHdIdEvento' class='txtHdIdEvento' value='"+evento._idEvento+"' />\
+                            <input type='hidden' name='txtHdEstadoEvento' class='txtHdEstadoEstado' value='"+evento._publicado+"' />\
+                            <div class='row'>\
+                                <div class='normalMode'>\
+                                    <p class='text-justify pDescripcionEvento'>"+evento._descripcion+"</p>\
+                                </div>\
+                                <div class='editMode hidden' style='margin-bottom:5%;'>\
+                                    <label>Nombre de evento</label>\
+                                    <input type='text' name='txtEvento2' class='txtEvento2' />\
+                                </div>\
+                                <div class='editMode hidden'>\
+                                    <div class='editMode hidden'>\
+                                        <label>Descripcion evento</label>\
+                                    </div>\
+                                    <textarea class='txtAreaDescripcion form-control' name='txtAreaDescripcion'></textarea>\
+                                </div>\
+                                <div class='quitarPublicacionMode hidden'>\
+                                    <label class='text-center'>Motivos para quitar del website</label>\
+                                    <textarea class='txtAreaMotivoQuitar form-control' name='txtAreaMotivoQuitar'></textarea>\
+                                </div>\
+                                <hr />\
+                                <div class='row text-center'>\
+                                    <div class='col-lg-6'>\
+                                        <div class='normalMode'>\
+                                            <label>Inicio: </label>\
+                                            <span class='spanFechaInicio'>"+evento.getFechaInicio+"</span>\
+                                        </div>\
+                                        <div class='editMode hidden'>\
+                                            <label>Inicio: </label>\
+                                            <input class='dpFecha txtFechaInicio form-control' name='txtFechaInicio' />\
+                                            <input type='time' class='txtHoraInicio form-control' name='txtHoraInicio' />\
+                                        </div>\
+                                    </div>\
+                                    <div class='col-lg-6'>\
+                                        <div class='normalMode'>\
+                                            <label>Fin: </label>\
+                                            <span class='spanFechaFin'>"+evento.getFechaFin+"</span>\
+                                        </div>\
+                                        <div class='editMode hidden'>\
+                                            <label>Fin: </label>\
+                                            <input class='dpFecha txtFechaFin form-control' name='txtFechaFin' />\
+                                            <input type='time' class='txtHoraFin form-control ' name='txtHoraFin' />\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>";
+            if (evento._propietario != 3)
+            {
+                div += "\
+                    <div class='row text-center sectionBotonesEvento'>\
+                        <div class='normalMode'>";
+                            if (evento._propietario == 1 || evento._propietario == 2)
+                            {
+                                div += "<button class='btn btnEditar'>Editar</button>\
+                                <button class='btn btnPublicar'>"+evento.txtBtnPublicar+"</button>";
+                            }
+                            if (evento._propietario == 1)
+                            {
+                                div += "<button class='btn btnCompartir'>Compartir</button>";
+                            }
+                    div += "\
+                        </div>\
+                        <div class='editMode hidden'>\
+                            <button class='btn btnActualizar'>Actualizar</button>\
+                            <button class='btn btnCancelar'>Cancelar</button>\
+                        </div>\
+                        <div class='quitarPublicacionMode hidden'>\
+                            <button class='btn btnAccionQuitarPublicacion'>Quitar publicacion</button>\
+                            <button class='btn btnCancelaQuitarPublicacion'>Cancelar</button>\
+                        </div>\
+                    </div>";
+            }
+            div += "\
+            </div>";
+            return div;
+
+        }
+        function prevBtnBuscarRangoFecha(frm) {
+            var val = valBusquedaRangoFechas(frm);
+            $(".divBusquedaRangoFecha").find(".divResultado").addClass("visibilitiHidden");
+            $(".divBusquedaRangoFecha").find(".divResultado").removeClass("hidden");
+            if (val.estado) {
+                btnBuscarRangoFecha(frm);
+            } else {
+                var errores;
+                $.each(val.campos, function (i, val) {
+                    errores = "";
+                    var divResultado = $(".divBusquedaRangoFecha").find("." + i).parents(".divControl").find(".divResultado")
+                    if (val.length > 0) {
+                        divResultado.removeClass("visibilitiHidden");
+                        $.each(val, function (i, val) {
+                            errores += "<span class='spanMessage1 failMessage'>" + val + "</span>";
+                        })
+                        divResultado.empty().append(errores);
+                    }
+                })
+            }
+        }
+        function btnBuscarRangoFecha(frm) {
+            actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_buscarAllEventosPersonalesByDate", frm, function (data) {
+                console.log("Respuesta del servidor es:", data);
+                if (data.estado) {
+                    if (data.eventos !== undefined && data.eventos !== null && data.eventos.length > 0)
+                    {
+                        //console.log("-_-");
+                        var divEventos = "";
+                        $.each(data.eventos, function (i,evento) {
+                            divEventos += getDivEvento(evento);
+                        })
+                        $("#accordion").empty().append(divEventos);
+                        getAccordion($("#accordion"), true);
+                        // Poniendolo en modo busqueda
+                        $(".txtHdBuscando").val("1");
+                        $(".btnBuscarRangoFecha").val("x");
+                    }
+                }
+            })
+        }
+
         function buscarEvento(txt) {
             var eventoTitulo = $("#accordion .nombreEvento");
             var eventoCuerpo = $("#accordion .detalleEvento");
@@ -62,6 +206,30 @@ function eventosIniciales() {
                 val.estado = false;
             }
             //console.log(dateInicio.getHours());
+            return val;
+        }
+        function valBusquedaRangoFechas(frm) {
+            var val = new Object();
+            val.campos = {
+                txtDeFechaBusqueda: new Array(),
+                txtHastaFecha:      new Array()
+            }
+            val.general = new Array();
+            if (frm.txtHastaFecha === undefined || frm.txtHastaFecha == "") {
+                val.campos.txtHastaFecha.push("Este campo no puede quedar vacio");
+            } else {
+                if (!FORMATO_FECHA.test(frm.txtHastaFecha)) {
+                    val.campos.txtHastaFecha.push("Campo debe ser rellenado con formato dd/mm/yyyy");
+                }
+            }
+            if (frm.txtDeFechaBusqueda === undefined || frm.txtDeFechaBusqueda == "") {
+                val.campos.txtDeFechaBusqueda.push("Este campo no puede quedar vacio");
+            } else {
+                if (!FORMATO_FECHA.test(frm.txtDeFechaBusqueda)) {
+                    val.campos.txtDeFechaBusqueda.push("Campo debe ser rellenado con formato dd/mm/yyyy");
+                }
+            }
+            val.estado = getEstadoVal(val);
             return val;
         }
     // ui 
