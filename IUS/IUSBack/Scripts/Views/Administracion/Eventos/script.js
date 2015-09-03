@@ -137,6 +137,14 @@
             //*****************************
             $(document).on("click", ".btnBuscarRangoFecha", function () {
                 var frm = serializeSection($(this).parents(".divBusquedaRangoFecha"));
+                var op = $(".txtHdBuscando").val();
+                if (op == 0) {
+                    // no esta buscando
+                    prevBtnBuscarRangoFecha(frm);
+                } else {
+                    // esta buscando 
+                    getEventosPrincipales();
+                }
                 
             })
             //--------------------

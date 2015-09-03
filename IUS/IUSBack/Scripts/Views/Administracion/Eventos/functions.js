@@ -34,7 +34,24 @@ function eventosIniciales() {
             }
         });
     }
-    
+    function getEventosPrincipales() {
+        var frm = new Object();
+        actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
+            if (data.estado) {
+                if (data.eventos !== undefined && data.eventos !== null && data.eventos.length > 0) {
+                    var divEventos = "";
+                    $.each(data.eventos, function (i, evento) {
+                        divEventos += getDivEvento(evento);
+                    })
+                    $("#accordion").empty().append(divEventos);
+                    getAccordion($("#accordion"), true);
+                    // Poniendolo en modo busqueda
+                    $(".txtHdBuscando").val("0");
+                    $(".btnBuscarRangoFecha").empty().append("Buscar");
+                }
+            }
+        })
+    }
     // busqueda 
         function getDivEvento(evento) {
             var div = "<h3 class='tabDesplegableEvento nombreEvento "+evento.txtClaseColor+" '>\
@@ -120,6 +137,7 @@ function eventosIniciales() {
         }
         function prevBtnBuscarRangoFecha(frm) {
             var val = valBusquedaRangoFechas(frm);
+            console.log("Val es", val);
             $(".divBusquedaRangoFecha").find(".divResultado").addClass("visibilitiHidden");
             $(".divBusquedaRangoFecha").find(".divResultado").removeClass("hidden");
             if (val.estado) {
@@ -137,6 +155,15 @@ function eventosIniciales() {
                         divResultado.empty().append(errores);
                     }
                 })
+                if (val.general.length > 0) {
+                    var div = "";
+                    $.each(val.general, function (i, val) {
+                        div += "<div class='row marginNull'>";
+                        div += getSpanMessageError(val);
+                        div += "</div>";
+                    })
+                    printMessageDiv($(".divAgregarSubMenu .divResultado"), div);
+                }
             }
         }
         function btnBuscarRangoFecha(frm) {
@@ -154,7 +181,7 @@ function eventosIniciales() {
                         getAccordion($("#accordion"), true);
                         // Poniendolo en modo busqueda
                         $(".txtHdBuscando").val("1");
-                        $(".btnBuscarRangoFecha").val("x");
+                        $(".btnBuscarRangoFecha").empty().append("x");
                     }
                 }
             })
@@ -209,7 +236,7 @@ function eventosIniciales() {
             return val;
         }
         function valBusquedaRangoFechas(frm) {
-            var val = new Object();
+            var val = new Object(); var estado1 = false; var estado2 = false;
             val.campos = {
                 txtDeFechaBusqueda: new Array(),
                 txtHastaFecha:      new Array()
@@ -218,6 +245,7 @@ function eventosIniciales() {
             if (frm.txtHastaFecha === undefined || frm.txtHastaFecha == "") {
                 val.campos.txtHastaFecha.push("Este campo no puede quedar vacio");
             } else {
+                estado1 = true;
                 if (!FORMATO_FECHA.test(frm.txtHastaFecha)) {
                     val.campos.txtHastaFecha.push("Campo debe ser rellenado con formato dd/mm/yyyy");
                 }
@@ -225,9 +253,18 @@ function eventosIniciales() {
             if (frm.txtDeFechaBusqueda === undefined || frm.txtDeFechaBusqueda == "") {
                 val.campos.txtDeFechaBusqueda.push("Este campo no puede quedar vacio");
             } else {
+                estado2 = true;
                 if (!FORMATO_FECHA.test(frm.txtDeFechaBusqueda)) {
                     val.campos.txtDeFechaBusqueda.push("Campo debe ser rellenado con formato dd/mm/yyyy");
                 }
+            }
+            if (estado1 && estado2) {
+                var dateInicio = getDateFromString(frm.txtDeFechaBusqueda, "dd/mm/yyyy", frm.txtHoraInicio, "hh:mm:ss");
+                var dateFin = getDateFromString(frm.txtHastaFecha, "dd/mm/yyyy", frm.txtHoraFin, "hh:mm:ss");
+                if ((dateFin - dateInicio) < 0) {
+                    val.general.push("La fecha de fin debe ser mayor que la de inicio")
+                }
+                
             }
             val.estado = getEstadoVal(val);
             return val;
