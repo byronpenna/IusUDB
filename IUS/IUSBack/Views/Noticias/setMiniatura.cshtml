@@ -24,7 +24,17 @@
             }
             <img class="imgThumbnail" src="@src" />    
         </div>
-        <input type="file" id="flMiniatura" />
+        
+        <div class="row marginNull">
+            <div class="fileUpload btn">
+                <span>Seleccionar imagen</span>
+                <input type="file" class="upload" id="flMiniatura" accept="image/*" required="">
+            </div>
+        </div>
+        
+        <!-- <input type="file" id="flMiniatura" /> -->
+
+
         <input id="btnSubmit" class="btn" type="submit" value="Subir" />
     </form>
 </div>
