@@ -16,10 +16,34 @@
         txt.prop("disabled", true);
     }
 // acciones scripts 
-    function updatePost(formulario) {
-        frm = serializeToJson(formulario.serializeArray());
-        frm.contenido = nicEditors.findEditor('editor').getContent();
-        frm.tags = $(".txtEtiquetas").val();
+    function validarInsert(frm) {
+        var val = new Object();
+        val.campos = {
+            cbCategorias:   new Array(),
+            cbIdioma:       new Array(),
+            txtEtiquetas:   new Array(),
+            txtHdIdPost:    new Array(),
+            txtTitulo:      new Array(),
+            editor:         new Array(),
+        }
+        val.general = new Array();
+        console.log($.isArray(frm.cbCategorias));
+        if (frm.cbCategorias === undefined ) { //!$.isArray(frm.cbCategorias)
+            val.campos.cbCategorias.push("Este campo no puede ir vacio");
+        }
+        if (frm.txtTitulo === undefined || frm.txtTitulo == "") {
+            val.campos.txtTitulo.push("Este campo no puede ir vacio");
+        }
+        if (frm.contenido === undefined || frm.contenido == "" || frm.contenido == "<br>") {
+            val.campos.editor.push("Vamos ingresa algo aqui ¿como puede haber una noticia sin contenido? :| ");
+        }
+        val.estado = getEstadoVal(val);
+        return val;
+    }
+    function updatePost(frm) {
+        //frm = serializeToJson(formulario.serializeArray());
+        //formulario.contenido = nicEditors.findEditor('editor').getContent();
+        //formulario.tags = $(".txtEtiquetas").val();
         console.log("Formulario a enviar:", frm);
         actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_modificarPost", frm, function (data) {
             console.log("la data devuelta por el servidor es:", data);
@@ -47,11 +71,11 @@
             }
         });
     }
-    function frmNoticia(formulario) {
-        frm = serializeToJson(formulario.serializeArray());
-        frm.contenido   = nicEditors.findEditor('editor').getContent();
-        frm.tags = $(".txtEtiquetas").tagsinput('items');
-        frm.cbCategorias = $(".cbCategorias").val();
+    function frmNoticia(frm) {
+        //frm = serializeToJson(formulario.serializeArray());
+        //frm.contenido   = nicEditors.findEditor('editor').getContent();
+        //frm.tags = $(".txtEtiquetas").tagsinput('items');
+        //frm.cbCategorias = $(".cbCategorias").val();
         console.log("formulario a enviar", frm);
         actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_noticias_publicarPost", frm, function (data) {
             $("#div_carga").hide();

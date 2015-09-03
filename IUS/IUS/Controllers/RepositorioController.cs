@@ -35,8 +35,8 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
                     string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     string ip = Request.UserHostAddress;
                     Dictionary<object, object> archivos = this._model.sp_repo_front_getArchivosPublicosByType(id,id2, ip, this.idPagina);
@@ -84,8 +84,8 @@ namespace IUS.Controllers
                         Session["HistoryRepo"] = history;
                     }
                     //************************************
-                    ViewBag.noticias                    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
-                    string lang                         = this.getUserLang();
+                    string lang = this.getUserLang();
+                    ViewBag.noticias                    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones                        = this._model.getTraduccion(lang, this.idPagina);
                     string ip                           = Request.UserHostAddress;
                     Dictionary<object, object> archivos = this._model.sp_repo_front_GetAllCarpetasPublica(id, ip, this.idPagina);
@@ -132,9 +132,8 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias);
-                    
-                    string lang     = this.getUserLang();
+                    string lang = this.getUserLang();
+                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones    = this._model.getTraduccion(lang, this.idPagina);
                     string ip       = Request.UserHostAddress;
                     this.setTraduccion(traducciones);

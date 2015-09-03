@@ -130,6 +130,7 @@ namespace IUSBack.Controllers
                     try
                     {
                         ViewBag.titleModulo = "Sistema administrativo IUS";
+                        ViewBag.selectedMenu = 1;
                         Usuario usu = (Usuario)Session["usuario"];
                         ViewBag.usuario = usu;
                         

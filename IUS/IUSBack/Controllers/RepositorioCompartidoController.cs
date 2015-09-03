@@ -79,6 +79,7 @@ namespace IUSBack.Controllers
                     {
                         archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
                     }
+                    ViewBag.selectedMenu = 4; // menu seleccionado 
                     ViewBag.idCarpetaActual     = id;
                     ViewBag.titleModulo         = "Repositorio Compartido";
                     ViewBag.vista               = id2;

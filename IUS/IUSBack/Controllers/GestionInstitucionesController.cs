@@ -39,6 +39,7 @@ namespace IUSBack.Controllers
                 {
                     if (id != -1)
                     {
+                        ViewBag.selectedMenu = 3; // menu seleccionado 
                         Usuario usuarioSession = this.getUsuarioSesion();
                         Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                         // set viewbags
@@ -76,6 +77,7 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
+                    ViewBag.selectedMenu = 3; // menu seleccionado 
                     Usuario usuarioSession              = this.getUsuarioSesion();
                     Permiso permisos                    = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> inicial  = this._model.cargaInicialIndex(usuarioSession._idUsuario,this._idPagina);

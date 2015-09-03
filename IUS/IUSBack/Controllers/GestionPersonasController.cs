@@ -30,6 +30,7 @@ namespace IUSBack.Controllers
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver)
                     {
+                        ViewBag.selectedMenu = 2; // menu seleccionado 
                         ViewBag.permiso = permisos;
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         ViewBag.personas = personas;

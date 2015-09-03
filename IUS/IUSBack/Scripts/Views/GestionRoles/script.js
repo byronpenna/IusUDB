@@ -60,7 +60,7 @@
                         $.each(val.general, function (i, val) {
                             div += "<div class='row marginNull'>";
                                 div += getSpanMessageError(val);
-                            div += "</div class='row marginNull'>";
+                            div += "</div>";
                         })
                         printMessageDiv($(".divAgregarSubMenu .divResultado"), div);
                     }

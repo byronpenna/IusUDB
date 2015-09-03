@@ -36,6 +36,7 @@ namespace IUSBack.Controllers
                 if (usuarioSession != null)
                 {
 
+                    ViewBag.selectedMenu = 2; // menu seleccionado 
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     // traer data
                         Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);

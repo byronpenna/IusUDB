@@ -19,8 +19,8 @@ namespace IUSLibs.ADMINFE.Control.Noticias
     {
         #region "backend"
             #region "Get"
-                public List<Post> sp_adminfe_noticias_getPosts(int idUsuarioEjecutor, int idPagina) { 
-                    List<Post> posts = null;
+                public List<Post> sp_adminfe_noticias_getPosts(int idUsuarioEjecutor, int idPagina) {
+                    List<Post> posts = null; Idioma idioma;
                     Post post;
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_getPosts");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -39,6 +39,8 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                     usuarioCreador = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
                                     post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(), (bool)row["estado"], usuarioCreador);
                                     post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                    idioma = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
+                                    post._idioma = idioma;
                                     posts.Add(post);
                                 }
                             }
@@ -242,11 +244,15 @@ namespace IUSLibs.ADMINFE.Control.Noticias
         #endregion
         #region "front end"
             #region "get"
-                public List<Post> sp_adminfe_front_getTopNoticias(int n)
+                public List<Post> sp_adminfe_front_getTopNoticias(int n,string lang="")
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_front_getTopNoticias");
                     List<Post> posts = null; Post post;
                     sp.agregarParametro("n", n);
+                    if (lang != "")
+                    {
+                        sp.agregarParametro("idioma", lang);
+                    }
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
