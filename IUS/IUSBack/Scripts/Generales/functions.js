@@ -18,7 +18,8 @@
     //var RAIZ = "http://168.243.3.62/iusback/";
     var RAIZ = "http://localhost:55869/";
     var SUCCESS_CLASS = "successMessage", FAIL_CLASS = "failMessage";
-    //console.log("raiz es: ", RAIZ);
+    // Validaciones 
+    var FORMATO_FECHA = /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[/\\/](19|20)\d{2}$/;
 // plugins 
     // chosen
         function resetChosen(chosen) {

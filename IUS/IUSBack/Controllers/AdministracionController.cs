@@ -423,7 +423,42 @@ namespace IUSBack.Controllers
                     }
                 #endregion
                 #region "gets"
-                    
+                    public ActionResult sp_adminfe_buscarAllEventosPersonalesByDate()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        try
+                        {
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            if (usuarioSession != null && frm != null)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                // ---------------------
+                                    DateTime fechaInicio = this.convertObjAjaxToDateTime(frm["txtDeFechaBusqueda"].ToString(), "");
+                                    DateTime fechaFin = this.convertObjAjaxToDateTime(frm["txtHastaFecha"].ToString(), "");
+                                // ----------------------
+                                List<Evento> eventos = this._model.sp_adminfe_buscarAllEventosPersonalesByDate(fechaInicio, fechaFin, usuarioSession._idUsuario, this._idPaginaNoticias);
+                                respuesta.Add("estado", true);
+                                respuesta.Add("eventos", eventos);
+                            }
+                            else
+                            {
+                                respuesta = this.errorEnvioFrmJSON();
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+                        
+                        return Json(respuesta);
+                    }
                     public ActionResult sp_adminfe_getPermisosUsuarioEvento()
                     {
                         Dictionary<object, object> frm, respuesta=null;
