@@ -33,20 +33,20 @@ namespace IUS.Models.page.Eventos.Acciones
                     }
                 }
                 public List<Evento> sp_adminfe_front_getTodayEvents(string ip,int idPagina)
-            {
-                try
                 {
-                    return this._controlEvento.sp_adminfe_front_getTodayEvents(ip, idPagina);
+                    try
+                    {
+                        return this._controlEvento.sp_adminfe_front_getTodayEvents(ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
             #endregion
         #endregion
         #region "constructores"

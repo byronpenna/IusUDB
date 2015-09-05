@@ -8,7 +8,9 @@ using System.Web;
         using IUSBack.Models.General;
         using IUSLibs.SEC.Control;
         using IUSLibs.SECPU.Control;
+        using IUSLibs.FrontUI.Eventos.Control;
     // entidades 
+        using IUSLibs.ADMINFE.Entidades;
         using IUSLibs.SEC.Entidades;
         using IUSLibs.SECPU.Entidades;
 namespace IUSBack.Models.Page.Home.Acciones
@@ -24,54 +26,75 @@ namespace IUSBack.Models.Page.Home.Acciones
         }
         #endregion
         #region "acciones"
-            public Usuario sp_usu_changePass(string pass,string ip,int idUsuarioEjecutor,int idPagina)
-            {
-                try
+            #region "funciones especiales"
+                public List<Evento> sp_adminfe_front_getTodayEvents(string ip,int idPagina)
                 {
-                    ControlUsuarios controlUsuario = new ControlUsuarios();
-                    return controlUsuario.sp_usu_changePass(pass, ip, idUsuarioEjecutor, idPagina);
+                    try
+                    {
+                        ControlEventos evt = new ControlEventos();
+                        return evt.sp_adminfe_front_getTodayEvents(ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
+            #endregion
+            #region "Registro de usuarios publicos"
+                public Usuario sp_usu_changePass(string pass, string ip, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+                    try
+                    {
+                        ControlUsuarios controlUsuario = new ControlUsuarios();
+                        return controlUsuario.sp_usu_changePass(pass, ip, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (Exception x)
+                public bool sp_secpu_verificarCuenta(int num, int idUsuario)
                 {
-                    throw x;
+                    try
+                    {
+                        ControlCodigoVerificacion control = new ControlCodigoVerificacion();
+                        return control.sp_secpu_verificarCuenta(num, idUsuario);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-            }
-            public bool sp_secpu_verificarCuenta(int num,int idUsuario)
-            {
-                try
+                public UsuarioPublico sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
                 {
-                    ControlCodigoVerificacion control = new ControlCodigoVerificacion();
-                    return control.sp_secpu_verificarCuenta(num, idUsuario);
+                    try
+                    {
+                        ControlUsuarioPublico control = new ControlUsuarioPublico();
+                        return control.sp_secpu_addUsuario(usuarioAgregar);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
-            public UsuarioPublico sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
-            {
-                try
-                {
-                    ControlUsuarioPublico control = new ControlUsuarioPublico();
-                    return control.sp_secpu_addUsuario(usuarioAgregar);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-            }
+            #endregion
+            
         #endregion
     }
 }

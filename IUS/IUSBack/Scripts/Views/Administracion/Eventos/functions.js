@@ -162,7 +162,7 @@ function eventosIniciales() {
                         div += getSpanMessageError(val);
                         div += "</div>";
                     })
-                    printMessageDiv($(".divAgregarSubMenu .divResultado"), div);
+                    printMessageDiv($(".divResultadoGeneralBusqueda"), div);
                 }
             }
         }
