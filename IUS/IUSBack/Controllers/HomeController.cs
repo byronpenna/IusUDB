@@ -133,7 +133,7 @@ namespace IUSBack.Controllers
                         ViewBag.selectedMenu = 1;
                         Usuario usu = (Usuario)Session["usuario"];
                         ViewBag.usuario = usu;
-                        
+                        ViewBag.eventosHoy = this.homeModel.sp_adminfe_front_getTodayEvents("127.0.0.1",1);
                         ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
                         return View();
                     }
