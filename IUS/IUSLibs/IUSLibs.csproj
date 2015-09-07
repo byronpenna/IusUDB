@@ -150,6 +150,7 @@
     <Compile Include="SEC\Entidades\Rol.cs" />
     <Compile Include="SEC\Entidades\RolSubMenu.cs" />
     <Compile Include="SEC\Entidades\RolSubMenuPermiso.cs" />
+    <Compile Include="SEC\Entidades\Sexo.cs" />
     <Compile Include="SEC\Entidades\Submenu.cs" />
     <Compile Include="SEC\Entidades\Usuario.cs" />
     <Compile Include="TRL\Control\ControlIdioma.cs" />

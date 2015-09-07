@@ -20,6 +20,33 @@ namespace IUSBack.Controllers
             private int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "url"
+            public ActionResult Extras()
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    ViewBag.selectedMenu = 2; // menu seleccionado 
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    // viewbag
+                        ViewBag.titleModulo = "Información adicional personas";
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
             public ActionResult Index()
             {
                 // mandar a traer personas

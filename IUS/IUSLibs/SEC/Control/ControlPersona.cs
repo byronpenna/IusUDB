@@ -155,7 +155,7 @@ namespace IUSLibs.SEC.Control
                 public List<Persona> getPersonas()
                 {
                     List<Persona> personas = new List<Persona>();
-                    Persona persona;
+                    Persona persona; Sexo sexo;
                     SPIUS sp = new SPIUS("sp_sec_getPersonas");
                     DataSet ds = sp.EjecutarProcedimiento();
                     if (!this.DataSetDontHaveTable(ds))
@@ -164,6 +164,8 @@ namespace IUSLibs.SEC.Control
                         foreach (DataRow row in table.Rows)
                         {
                             persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                            sexo = new Sexo((int)row["id_sexo_fk"], row["sexo"].ToString());
+                            persona._sexo = sexo;
                             personas.Add(persona);
                         }
                     }
