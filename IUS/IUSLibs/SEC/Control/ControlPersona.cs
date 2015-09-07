@@ -104,6 +104,9 @@ namespace IUSLibs.SEC.Control
                             {
                                 DataRow rowResult = tb[1].Rows[0];
                                 personaReturn = new Persona((int)rowResult["idPersona"], rowResult["nombres"].ToString(), rowResult["apellidos"].ToString(), (DateTime)rowResult["fecha_nacimiento"]);
+                                Sexo sexo = new Sexo((int)rowResult["id_sexo_fk"], rowResult["sexo"].ToString());
+                                personaReturn._sexo = sexo;
+
                             }
                             else
                             {

@@ -3,6 +3,9 @@
         tr.find(".tdNombre").empty().append(persona._nombres);
         tr.find(".tdApellido").empty().append(persona._apellidos);
         tr.find(".tdFechaNac").empty().append(persona.getFechaNac);
+        tr.find(".tdSexo").empty().append(persona._sexo._sexo);
+        tr.find(".txtHdIdSexo").val(persona._sexo._idSexo);
+        //console.log("Sexp a poner", persona._sexo.idSexo);
     }
     function getTrPersona(persona,permisos) {
         tr = "\
