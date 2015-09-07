@@ -43,11 +43,12 @@ namespace IUSLibs.SEC.Control
                 }
                 public Persona sp_hm_agregarPersona(Persona persona,int idUsuarioEjecutor,int idPagina)
                 {
-                    Persona personaAgregada = null;
+                    Persona personaAgregada = null; Sexo sexo;
                     SPIUS sp = new SPIUS("sp_hm_agregarPersona");
                     sp.agregarParametro("nombres",persona._nombres);
                     sp.agregarParametro("apellidos", persona._apellidos);
                     sp.agregarParametro("fechaNacimiento", persona._fechaNacimiento);
+                    sp.agregarParametro("idSexo", persona._sexo._idSexo);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -59,6 +60,8 @@ namespace IUSLibs.SEC.Control
                             {
                                 DataRow rowPersona = tb[1].Rows[0];
                                 personaAgregada = new Persona((int)rowPersona["idPersona"], rowPersona["nombres"].ToString(), rowPersona["apellidos"].ToString(), (DateTime)rowPersona["fecha_nacimiento"]);
+                                sexo = new Sexo((int)rowPersona["id_sexo_fk"], rowPersona["sexo"].ToString());
+                                personaAgregada._sexo = sexo;
                             }
                         }
                         /*if (tables != null)

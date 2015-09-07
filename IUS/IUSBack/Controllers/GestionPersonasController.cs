@@ -184,6 +184,8 @@ namespace IUSBack.Controllers
                         try
                         {
                             Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), /*Convert.ToDateTime(frm["dtFechaNacimiento"].ToString())*/ DateTime.Parse(frm["dtFechaNacimiento"].ToString()));
+                            Sexo sexo = new Sexo(this.convertObjAjaxToInt(frm["cbSexo"]));
+                            aAgregar._sexo = sexo;
                             Dictionary<object, object> respuestaPeticion = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
                             //Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);
