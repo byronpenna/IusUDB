@@ -69,6 +69,7 @@
         var val = validacionIngreso(frm);
         trPersona.find(".divResultado").empty();
         trPersona.find(".divResultado").addClass("hidden");
+        console.log("Formulario a enviar es", frm);
         if (val.estado) {
             arrDate = frm.dtFechaNacimiento.split("/");
             frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
@@ -121,12 +122,14 @@
     }
 //edit 
     function editMode(trPersona) {
-        nombres     = trPersona.find(".tdNombre").text();
-        apellidos   = trPersona.find(".tdApellido").text();
-        fechaNac = trPersona.find(".tdFechaNac").text();
+        var nombres     = trPersona.find(".tdNombre").text();
+        var apellidos   = trPersona.find(".tdApellido").text();
+        var fechaNac    = trPersona.find(".tdFechaNac").text();
+        var idSexo      = trPersona.find(".txtHdIdSexo").val();
         trPersona.find(".txtNombrePersona").val(nombres);
         trPersona.find(".txtApellidoPersona").val(apellidos);
         trPersona.find(".dtFechaNacimiento").val(fechaNac);
+        trPersona.find(".cbSexo").val(idSexo);
         controlesEdit(true, trPersona);
     }
 // validaciones

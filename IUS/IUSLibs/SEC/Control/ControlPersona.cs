@@ -93,6 +93,7 @@ namespace IUSLibs.SEC.Control
                         sp.agregarParametro("apellidos", persona._apellidos);
                         sp.agregarParametro("fecha", persona._fechaNacimiento);
                         sp.agregarParametro("idPersona", persona._idPersona);
+                        sp.agregarParametro("idSexo", persona._sexo._idSexo);
                     // para permisos
                         sp.agregarParametro("idUsuarioEjecutor", idUsuario);
                         sp.agregarParametro("idPagina", idPagina);

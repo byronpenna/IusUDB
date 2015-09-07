@@ -134,6 +134,8 @@ namespace IUSBack.Controllers
                         {
                             //Usuario usuarioSession = (Usuario)Session["usuario"];
                             Persona personaActualizar = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                            Sexo sexo = new Sexo(this.convertObjAjaxToInt(frm["cbSexo"]));
+                            personaActualizar._sexo = sexo;
                             Persona personaActualizada = this._model.actualizarPersona(personaActualizar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
