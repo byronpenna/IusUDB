@@ -284,6 +284,8 @@
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetTel\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetTel\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
@@ -459,6 +461,8 @@
     <Content Include="Scripts\Views\GestionInstituciones\SetMedios\script.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetTel\functions.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetTel\script.js" />
+    <Content Include="Scripts\Views\GestionPersonas\Extras\functions.js" />
+    <Content Include="Scripts\Views\GestionPersonas\Extras\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\functions.js" />
     <Content Include="Scripts\Views\GestionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionRoles\functions.js" />
@@ -611,6 +615,7 @@
     <Content Include="Views\RepositorioCompartido\Index.cshtml" />
     <Content Include="Views\Home\changePassword.cshtml" />
     <Content Include="Views\RepositorioCompartido\UserShare.cshtml" />
+    <Content Include="Views\GestionPersonas\Extras.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

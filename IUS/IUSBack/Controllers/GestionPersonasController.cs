@@ -20,6 +20,33 @@ namespace IUSBack.Controllers
             private int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "url"
+            public ActionResult Extras()
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    ViewBag.selectedMenu = 2; // menu seleccionado 
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    // viewbag
+                        ViewBag.titleModulo = "Información adicional personas";
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
             public ActionResult Index()
             {
                 // mandar a traer personas
@@ -107,6 +134,8 @@ namespace IUSBack.Controllers
                         {
                             //Usuario usuarioSession = (Usuario)Session["usuario"];
                             Persona personaActualizar = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
+                            Sexo sexo = new Sexo(this.convertObjAjaxToInt(frm["cbSexo"]));
+                            personaActualizar._sexo = sexo;
                             Persona personaActualizada = this._model.actualizarPersona(personaActualizar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
@@ -157,6 +186,8 @@ namespace IUSBack.Controllers
                         try
                         {
                             Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), /*Convert.ToDateTime(frm["dtFechaNacimiento"].ToString())*/ DateTime.Parse(frm["dtFechaNacimiento"].ToString()));
+                            Sexo sexo = new Sexo(this.convertObjAjaxToInt(frm["cbSexo"]));
+                            aAgregar._sexo = sexo;
                             Dictionary<object, object> respuestaPeticion = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
                             //Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);

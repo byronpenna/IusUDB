@@ -12,20 +12,23 @@ namespace IUSLibs.SEC.Entidades
             public String _nombres;
             public String _apellidos;
             public DateTime _fechaNacimiento; // por alguna extraña razon no hay solo date
-            public String nombreCompleto
-            {
-                get
+            public Sexo _sexo;
+            #region "calculados"
+                public String nombreCompleto
                 {
-                    return this._nombres + " " + this._apellidos;
+                    get
+                    {
+                        return this._nombres + " " + this._apellidos;
+                    }
                 }
-            }
-            public String getFechaNac
-            {
-                get
+                public String getFechaNac
                 {
-                    return String.Format("{0:dd/MM/yyyy}", this._fechaNacimiento);
+                    get
+                    {
+                        return String.Format("{0:dd/MM/yyyy}", this._fechaNacimiento);
+                    }
                 }
-            }
+            #endregion
         #endregion
         #region "constructores"
             public Persona(int idPersona, String nombres, String apellidos)

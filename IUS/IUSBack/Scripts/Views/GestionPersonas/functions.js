@@ -3,6 +3,9 @@
         tr.find(".tdNombre").empty().append(persona._nombres);
         tr.find(".tdApellido").empty().append(persona._apellidos);
         tr.find(".tdFechaNac").empty().append(persona.getFechaNac);
+        tr.find(".tdSexo").empty().append(persona._sexo._sexo);
+        tr.find(".txtHdIdSexo").val(persona._sexo._idSexo);
+        //console.log("Sexp a poner", persona._sexo.idSexo);
     }
     function getTrPersona(persona,permisos) {
         tr = "\
@@ -36,12 +39,24 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
+                        <select class='form-control'>\
+                            <option value='1'>Masculino</option>\
+                            <option value='2'>Femenino</option>\
+                        </select>\
+                        <div class='row marginNull divResultado hidden'>\
+                        </div>\
+                    </div>\
+                    <div class='normalMode tdSexo'>"+persona._sexo._sexo+"</div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
                         <button class='btn btn-xs btnEditMode btnActualizar '  "+permisos.stringEditar+">Actualizar</button>\
                         <button class='btn btn-xs btnEditMode btnCancelarEdit'>Cancelar</button>\
                     </div>\
                     <div class='normalMode'>\
                         <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">Editar</button>\
                         <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                        <a class='btn btn-xs ' href='"+RAIZ+"GestionPersonas/Extras'>Info adicional</a>\
                     </div>\
                 </td>\
             </tr>\
@@ -57,6 +72,7 @@
         var val = validacionIngreso(frm);
         trPersona.find(".divResultado").empty();
         trPersona.find(".divResultado").addClass("hidden");
+        console.log("Formulario a enviar es", frm);
         if (val.estado) {
             arrDate = frm.dtFechaNacimiento.split("/");
             frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
@@ -109,12 +125,14 @@
     }
 //edit 
     function editMode(trPersona) {
-        nombres     = trPersona.find(".tdNombre").text();
-        apellidos   = trPersona.find(".tdApellido").text();
-        fechaNac = trPersona.find(".tdFechaNac").text();
+        var nombres     = trPersona.find(".tdNombre").text();
+        var apellidos   = trPersona.find(".tdApellido").text();
+        var fechaNac    = trPersona.find(".tdFechaNac").text();
+        var idSexo      = trPersona.find(".txtHdIdSexo").val();
         trPersona.find(".txtNombrePersona").val(nombres);
         trPersona.find(".txtApellidoPersona").val(apellidos);
         trPersona.find(".dtFechaNacimiento").val(fechaNac);
+        trPersona.find(".cbSexo").val(idSexo);
         controlesEdit(true, trPersona);
     }
 // validaciones
@@ -168,16 +186,17 @@
     }
     function btnAgregarPersona(tr) {
         $(".divResultadoGeneral .divResultado").hide();
-        frm = serializeSection(tr);
+        var frm = serializeSection(tr);
         var val = validacionIngreso(frm);
         tr.find(".divResultado").empty();
         tr.find(".divResultado").addClass("hidden")
+        console.log(frm);
         if (val.estado) {
             arrDate = frm.dtFechaNacimiento.split("/");
             frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
             tbody = tr.parents("table").find("tbody");
             actualizarCatalogo(RAIZ + "GestionPersonas/sp_hm_agregarPersona", frm, function (data) {
-                console.log("La respuesta del servidor fue:", data);
+                console.log("Respuesta servidor",data);
                 if (data.estado) {
                     persona = data.persona;
                     newTr = getTrPersona(persona, data.permisos);
@@ -186,15 +205,15 @@
                     $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
                     //updateAllDataTable($(".tablePersona"));   
                 } else {
+                    var mjs = "";
                     if (data.error._mostrar) {
-                        console.log("a imprimir error");
-                        printMessage($(".divResultadoGeneral .divResultado"), data.error.Message, false)
-                    }
-                    /*if (data.error !== undefined) {
-                        alert(data.error.Message);
+                        mjs = data.error.Message;
+                        //printMessage($(".divResultadoGeneral .divResultado"), data.error.Message, false)
                     } else {
-                        alert(data.error.Message);
-                    }*/
+                        mjs = "Ocurrio un error no controlado";
+                    }
+                    printMessage($(".divResultadoGeneral .divResultado"), mjs, false);
+                    
                 }
             });
             
