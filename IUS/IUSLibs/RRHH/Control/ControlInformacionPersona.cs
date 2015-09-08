@@ -29,7 +29,7 @@ namespace IUSLibs.RRHH.Control
                 List<TelefonoPersona> telefonos= null; TelefonoPersona telefono;
                 // trayendo
                 SPIUS sp = new SPIUS("sp_rrhh_getInformacionPersonas");
-                sp.agregarParametro("idPersona", idUsuarioEjecutor);
+                sp.agregarParametro("idPersona", idPersona);
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);
                 try
@@ -102,7 +102,39 @@ namespace IUSLibs.RRHH.Control
             }
         #endregion
         #region "do"
-            
+            public InformacionPersona sp_rrhh_guardarInformacionPersona(InformacionPersona infoAgregar,int idUsuarioEjecutor, int idPagina)
+            {
+                InformacionPersona informacionPersona = null;
+                SPIUS sp = new SPIUS("sp_rrhh_guardarInformacionPersona");
+                sp.agregarParametro("numeroIdentificacion", infoAgregar._numeroIdentificacion);
+                sp.agregarParametro("idEstadoCivil", infoAgregar._pais._idPais);
+                sp.agregarParametro("idEstadoCivil", infoAgregar._estadoCivil._idEstadoCivil);
+                sp.agregarParametro("idPersona", infoAgregar._persona._idPersona);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        if (tb[1].Rows.Count > 0)
+                        {
+                            DataRow row = tb[1].Rows[0];
+                            infoAgregar = new InformacionPersona((int)row["idInformacionPersona"], (int)row["id_pais_fk"], row["numero_identificacion"].ToString(), (int)row["id_estadocivil_fk"], (int)row["id_persona_fk"], row["foto"].ToString());
+                        }
+                    }
+
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return informacionPersona;
+            }
         #endregion
     }
 }

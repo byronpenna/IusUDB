@@ -44,6 +44,7 @@
     </ul>
 }
 <div class="row marginNull " id="tab1">
+    <input  class="txtHdIdPersona" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
     <div class="row marginNull divInformacionPersonal divInformacion">
         <h2>Byron Peña</h2>
         <div class="col-lg-6 divImagePersona">
@@ -58,7 +59,7 @@
                 <button class="btn">Establecer</button>
             </form>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 divFrmInformacionExtra">
             <label>Seleccione pais</label>
             <select class="cbPais form-control" name="cbPais">
                 <option value="-1">Seleccione pais</option>
@@ -83,6 +84,9 @@
                     }
                 }
             </select>
+            <button class="btn btnGuardar">
+                Guardar
+            </button>
         </div>
     </div>
     <div class="marginNull row divInformacionContacto divInformacion">

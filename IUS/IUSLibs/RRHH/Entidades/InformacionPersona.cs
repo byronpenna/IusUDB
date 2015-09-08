@@ -34,6 +34,17 @@ namespace IUSLibs.RRHH.Entidades
                 this._persona               = persona;
                 this._fotoRuta              = foto;
             }
+            // para agregar
+                public InformacionPersona(int idPais, string numeroIdentificacion, int idEstadoCivil, int idPersona)
+                {
+                    Pais pais = new Pais(idPais);
+                    this._pais = pais;
+                    this._numeroIdentificacion = numeroIdentificacion;
+                    EstadoCivil estadoCivil = new EstadoCivil(idEstadoCivil);
+                    this._estadoCivil = estadoCivil;
+                    Persona persona = new Persona(idPersona);
+                    this._persona = persona;
+                }
         #endregion
     }
 }

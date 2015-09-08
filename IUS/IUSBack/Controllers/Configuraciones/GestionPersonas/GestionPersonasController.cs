@@ -38,6 +38,7 @@ namespace IUSBack.Controllers
                     ViewBag.informacionPersona      = data["informacionPersona"];
                     ViewBag.emails                  = data["emails"];
                     ViewBag.telefonos               = data["telefonos"];
+                    ViewBag.idPersona               = id;
                     // viewbag
                         ViewBag.titleModulo = "Información adicional personas";
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
