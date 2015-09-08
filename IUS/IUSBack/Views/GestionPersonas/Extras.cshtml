@@ -1,5 +1,6 @@
 ﻿@using IUSLibs.RRHH.Entidades
 @using IUSLibs.FrontUI.Entidades
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- Propios -->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
@@ -13,14 +14,20 @@
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
     InformacionPersona informacionPersona = null; List<EstadoCivil> estadosCiviles = null; List<Pais> paises = null;
-    string selected ="";
+    Persona persona = null;
+    string selected = ""; string numeroIdentificacion = "";
     try
     {
         telefonosPersonas   = (List<TelefonoPersona>)   ViewBag.telefonos;
         emailsPersonas      = (List<EmailPersona>)      ViewBag.emails;
         informacionPersona  = (InformacionPersona)      ViewBag.informacionPersona;
         estadosCiviles      = (List<EstadoCivil>)       ViewBag.estadosCiviles;
-        paises              = (List<Pais>)              ViewBag.paises;  
+        paises              = (List<Pais>)              ViewBag.paises;
+        persona             = (Persona)                 ViewBag.persona;
+        if (informacionPersona != null)
+        {
+            numeroIdentificacion = informacionPersona._numeroIdentificacion;
+        }
     }
     catch (Exception)
     {
@@ -47,7 +54,7 @@
 <div class="row marginNull " id="tab1">
     <input  class="txtHdIdPersona" type="hidden" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
     <div class="row marginNull divInformacionPersonal divInformacion">
-        <h2>Byron Peña</h2>
+        <h2>@persona.nombreCompleto</h2>
         <div class="col-lg-6 divImagePersona">
             <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
             <form action="/" method="post" class="frmImagenPersona">
@@ -70,7 +77,7 @@
                         selected = "";
                         foreach (Pais pais in paises)
                         {
-                            if (pais._idPais == informacionPersona._pais._idPais)
+                            if (informacionPersona != null && pais._idPais == informacionPersona._pais._idPais)
                             {
                                 selected = "selected";
                             }
@@ -85,7 +92,7 @@
             </div>
             <div class="divControl row marginNull">
                 <label>Numero de identificacion</label>
-                <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@informacionPersona._numeroIdentificacion" />
+                <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@numeroIdentificacion" />
             </div>
             <div class="divControl row marginNull">
                 <label>Seleccione estado civil</label>
@@ -96,7 +103,7 @@
                         selected = "";
                         foreach (EstadoCivil estadoCivil in estadosCiviles)
                         {
-                            if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                            if (informacionPersona != null && estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
                             {
                                 selected = "selected";
                             }
@@ -126,9 +133,16 @@
                 <table class="table tabla">
                     <thead>
                         <tr>
+                            <th class="hidden"></th>
                             <th>Email</th>
-                            <th>Descripción</th>
+                            <th>Etiqueta</th>
                             <th>Acciones</th>
+                        </tr>
+                        <tr>
+                            <th class="hidden"></th>
+                            <th><input name="txtEmail" class=" form-control txtEmail" type="email" /></th>
+                            <th><input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" /></th>
+                            <th><button class="btn">Guardar</button></th>
                         </tr>
                     </thead>
                     <tbody>

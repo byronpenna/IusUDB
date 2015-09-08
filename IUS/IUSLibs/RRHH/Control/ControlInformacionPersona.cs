@@ -14,6 +14,7 @@ using System.Text;
     // --------------
         using IUSLibs.RRHH.Entidades;
         using IUSLibs.FrontUI.Entidades;
+        using IUSLibs.SEC.Entidades;
 namespace IUSLibs.RRHH.Control
 {
     public class ControlInformacionPersona:PadreLib
@@ -24,7 +25,7 @@ namespace IUSLibs.RRHH.Control
                 Dictionary<object, object> retorno = null;
                 // variables
                 List<Pais> paises = null; Pais pais;/**/ List<EstadoCivil> estadosCiviles=null;EstadoCivil estadoCivil;
-                InformacionPersona informacionPersona = null;
+                InformacionPersona informacionPersona = null; Persona persona = null;
                 List<EmailPersona> emails=null; EmailPersona email;
                 List<TelefonoPersona> telefonos= null; TelefonoPersona telefono;
                 // trayendo
@@ -81,12 +82,18 @@ namespace IUSLibs.RRHH.Control
                                 telefonos.Add(telefono);
                             }
                         }
+                        if (tb[5].Rows.Count > 0)
+                        {
+                            DataRow row = tb[5].Rows[0];
+                            persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString());
+                        }
                         retorno = new Dictionary<object, object>();
                         retorno.Add("paises", paises);
                         retorno.Add("estadosCiviles", estadosCiviles);
                         retorno.Add("informacionPersona", informacionPersona);
                         retorno.Add("emails", emails);
                         retorno.Add("telefonos", telefonos);
+                        retorno.Add("persona", persona);
                     }
 
                 }
