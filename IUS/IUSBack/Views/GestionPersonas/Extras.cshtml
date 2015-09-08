@@ -1,4 +1,7 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.RRHH.Entidades
+@using IUSLibs.FrontUI.Entidades
+@using IUSLibs.SEC.Entidades
+@section estilosPersonalizados{
     <!-- Propios -->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
@@ -7,6 +10,29 @@
     <!-- propios -->
     <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
     <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
+}
+@{
+    List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
+    InformacionPersona informacionPersona = null; List<EstadoCivil> estadosCiviles = null; List<Pais> paises = null;
+    Persona persona = null;
+    string selected = ""; string numeroIdentificacion = "";
+    try
+    {
+        telefonosPersonas   = (List<TelefonoPersona>)   ViewBag.telefonos;
+        emailsPersonas      = (List<EmailPersona>)      ViewBag.emails;
+        informacionPersona  = (InformacionPersona)      ViewBag.informacionPersona;
+        estadosCiviles      = (List<EstadoCivil>)       ViewBag.estadosCiviles;
+        paises              = (List<Pais>)              ViewBag.paises;
+        persona             = (Persona)                 ViewBag.persona;
+        if (informacionPersona != null)
+        {
+            numeroIdentificacion = informacionPersona._numeroIdentificacion;
+        }
+    }
+    catch (Exception)
+    {
+        
+    }
 }
 @section tabs{
     <ul>
@@ -26,8 +52,9 @@
     </ul>
 }
 <div class="row marginNull " id="tab1">
+    <input  class="txtHdIdPersona" type="hidden" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
     <div class="row marginNull divInformacionPersonal divInformacion">
-        <h2>Byron Peña</h2>
+        <h2>@persona.nombreCompleto</h2>
         <div class="col-lg-6 divImagePersona">
             <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
             <form action="/" method="post" class="frmImagenPersona">
@@ -40,13 +67,62 @@
                 <button class="btn">Establecer</button>
             </form>
         </div>
-        <div class="col-lg-6">
-            <label>Seleccione pais</label>
-            <select class="cbPais form-control" name="cbPais"></select>
-            <label>Numero de identificacion</label>
-            <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000"/>
-            <label>Seleccione estado civil</label>
-            <select class="cbEstadoCivil form-control" name="cbEstadoCivil"></select>
+        <div class="col-lg-6 divFrmInformacionExtra">
+            <div class="divControl row marginNull">
+                <label>Seleccione pais</label>
+                <select class="cbPais form-control" name="cbPais">
+                    <option value="-1">Seleccione pais</option>
+                    @if (paises != null && paises.Count > 0)
+                    {
+                        selected = "";
+                        foreach (Pais pais in paises)
+                        {
+                            if (informacionPersona != null && pais._idPais == informacionPersona._pais._idPais)
+                            {
+                                selected = "selected";
+                            }
+                            else
+                            {
+                                selected = "";
+                            }
+                            <option value="@pais._idPais" @selected>@pais._pais</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="divControl row marginNull">
+                <label>Numero de identificacion</label>
+                <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@numeroIdentificacion" />
+            </div>
+            <div class="divControl row marginNull">
+                <label>Seleccione estado civil</label>
+                <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
+                    <option value="-1">Seleccione estado civil</option>
+                    @if (estadosCiviles != null && paises.Count > 0)
+                    {
+                        selected = "";
+                        foreach (EstadoCivil estadoCivil in estadosCiviles)
+                        {
+                            if (informacionPersona != null && estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                            {
+                                selected = "selected";
+                            }
+                            else
+                            {
+                                selected = "";
+                            }
+                            <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
+                        }
+                    }
+                </select>
+            </div>
+            
+            <button class="btn btnGuardarInformacionBasica">
+                Guardar
+            </button>
+            <div class="row marginNull divResultado divResultadoOperacion">
+
+            </div>
         </div>
     </div>
     <div class="marginNull row divInformacionContacto divInformacion">
@@ -57,26 +133,88 @@
                 <table class="table tabla">
                     <thead>
                         <tr>
+                            <th class="hidden"></th>
                             <th>Email</th>
                             <th>Etiqueta</th>
                             <th>Acciones</th>
                         </tr>
+                        <tr>
+                            <th class="hidden"></th>
+                            <th><input name="txtEmail" class=" form-control txtEmail" type="email" /></th>
+                            <th><input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" /></th>
+                            <th><button class="btn">Guardar</button></th>
+                        </tr>
                     </thead>
                     <tbody>
-
+                        @if (emailsPersonas != null && emailsPersonas.Count > 0)
+                        {
+                            foreach (EmailPersona emailPersona in emailsPersonas)
+                            {
+                                <tr>
+                                    <td>@emailPersona._email</td>
+                                    <td>@emailPersona.</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center">Persona no tiene registrado ningun correo electronico</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
             <div class="col-lg-6">
-                <h3>Numeros</h3>
+                <h3>Numeros telefonicos</h3>
                 <table class="table tabla">
                     <thead>
                         <tr>
+                            <th class="hidden"></th>
                             <th>Telefono</th>
                             <th>Pais</th>
                             <th>Etiqueta</th>
+                            <th>Acciones</th>
+                        </tr>
+                        <tr>
+                            <th class="hidden"></th>
+                            <th><input class="txtTelefono form-control" name="txtTelefono" /></th>
+                            <th>
+                                <select class="cbPais">
+                                    @if (paises != null && paises.Count > 0)
+                                    {
+                                        foreach (Pais pais in paises)
+                                        {
+                                            <option value="@pais._idPais" @selected>@pais._pais</option>    
+                                        }
+                                    }
+                                </select>
+                            </th>
+                            <th><input class="txtEtiquetaTel form-control" name="txtTelefono" /></th>
+                            <th><button class="btn">Agregar</button></th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @if (telefonosPersonas != null && telefonosPersonas.Count > 0)
+                        {
+                            foreach (TelefonoPersona telefono in telefonosPersonas)
+                            {
+                                <tr>
+                                    <td>@telefono._telefono</td>
+                                    <td>Sacar pais</td>
+                                    <td>@telefono._descripcion</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center">Persona no tiene registrado ningun numero telefonico</td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>

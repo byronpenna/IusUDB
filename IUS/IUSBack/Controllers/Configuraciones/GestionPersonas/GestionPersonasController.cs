@@ -20,7 +20,7 @@ namespace IUSBack.Controllers
             private int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "url"
-            public ActionResult Extras()
+            public ActionResult Extras(int id)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
@@ -29,9 +29,19 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    ViewBag.selectedMenu = 2; // menu seleccionado 
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.selectedMenu            = 2; // menu seleccionado 
+                    Usuario usuarioSession          = this.getUsuarioSesion();
+                    Permiso permisos                = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    Dictionary<object, object> data = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
+                    
+                    ViewBag.paises                  = data["paises"];
+                    ViewBag.estadosCiviles          = data["estadosCiviles"];
+                    ViewBag.informacionPersona      = data["informacionPersona"];
+
+                    ViewBag.emails                  = data["emails"];
+                    ViewBag.telefonos               = data["telefonos"];
+                    ViewBag.persona                 = data["persona"];
+                    ViewBag.idPersona               = id;
                     // viewbag
                         ViewBag.titleModulo = "Información adicional personas";
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
