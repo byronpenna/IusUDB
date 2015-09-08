@@ -33,9 +33,11 @@ namespace IUSBack.Controllers
                     Usuario usuarioSession          = this.getUsuarioSesion();
                     Permiso permisos                = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> data = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
+                    
                     ViewBag.paises                  = data["paises"];
                     ViewBag.estadosCiviles          = data["estadosCiviles"];
                     ViewBag.informacionPersona      = data["informacionPersona"];
+
                     ViewBag.emails                  = data["emails"];
                     ViewBag.telefonos               = data["telefonos"];
                     ViewBag.idPersona               = id;

@@ -61,48 +61,55 @@
             </form>
         </div>
         <div class="col-lg-6 divFrmInformacionExtra">
-            <label>Seleccione pais</label>
-            <select class="cbPais form-control" name="cbPais">
-                <option value="-1">Seleccione pais</option>
-                @if (paises != null && paises.Count > 0)
-{
-    selected = "";
-    foreach (Pais pais in paises)
-    {
-        if (pais._idPais == informacionPersona._pais._idPais)
-        {
-            selected = "selected";
-        }
-        else
-        {
-            selected = "";
-        }
-        <option value="@pais._idPais" @selected>@pais._pais</option>
-    }
-}
-            </select>
-            <label>Numero de identificacion</label>
-            <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@informacionPersona._numeroIdentificacion"/>
-            <label>Seleccione estado civil</label>
-            <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
-                <option value="-1">Seleccione estado civil</option>
-                @if (estadosCiviles != null && paises.Count > 0)
-                {
-                    selected = "";
-                    foreach (EstadoCivil estadoCivil in estadosCiviles)
+            <div class="divControl row marginNull">
+                <label>Seleccione pais</label>
+                <select class="cbPais form-control" name="cbPais">
+                    <option value="-1">Seleccione pais</option>
+                    @if (paises != null && paises.Count > 0)
                     {
-                        if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                        selected = "";
+                        foreach (Pais pais in paises)
                         {
-                            selected = "selected";
+                            if (pais._idPais == informacionPersona._pais._idPais)
+                            {
+                                selected = "selected";
+                            }
+                            else
+                            {
+                                selected = "";
+                            }
+                            <option value="@pais._idPais" @selected>@pais._pais</option>
                         }
-                        else
-                        {
-                            selected = "";
-                        }
-                        <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
                     }
-                }
-            </select>
+                </select>
+            </div>
+            <div class="divControl row marginNull">
+                <label>Numero de identificacion</label>
+                <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@informacionPersona._numeroIdentificacion" />
+            </div>
+            <div class="divControl row marginNull">
+                <label>Seleccione estado civil</label>
+                <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
+                    <option value="-1">Seleccione estado civil</option>
+                    @if (estadosCiviles != null && paises.Count > 0)
+                    {
+                        selected = "";
+                        foreach (EstadoCivil estadoCivil in estadosCiviles)
+                        {
+                            if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                            {
+                                selected = "selected";
+                            }
+                            else
+                            {
+                                selected = "";
+                            }
+                            <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
+                        }
+                    }
+                </select>
+            </div>
+            
             <button class="btn btnGuardarInformacionBasica">
                 Guardar
             </button>
