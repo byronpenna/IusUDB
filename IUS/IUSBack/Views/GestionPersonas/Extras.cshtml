@@ -1,4 +1,6 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.RRHH.Entidades
+@using IUSLibs.FrontUI.Entidades
+@section estilosPersonalizados{
     <!-- Propios -->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
@@ -7,6 +9,22 @@
     <!-- propios -->
     <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
     <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
+}
+@{
+    List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
+    InformacionPersona informacionPersona = null; List<EstadoCivil> estadosCiviles = null; List<Pais> paises = null;
+    try
+    {
+        telefonosPersonas   = (List<TelefonoPersona>)   ViewBag.telefonos;
+        emailsPersonas      = (List<EmailPersona>)      ViewBag.emails;
+        informacionPersona  = (InformacionPersona)      ViewBag.informacionPersona;
+        estadosCiviles      = (List<EstadoCivil>)       ViewBag.estadosCiviles;
+        paises              = (List<Pais>)              ViewBag.paises;  
+    }
+    catch (Exception)
+    {
+        
+    }
 }
 @section tabs{
     <ul>
@@ -42,11 +60,29 @@
         </div>
         <div class="col-lg-6">
             <label>Seleccione pais</label>
-            <select class="cbPais form-control" name="cbPais"></select>
+            <select class="cbPais form-control" name="cbPais">
+                <option value="-1">Seleccione pais</option>
+                @if (paises != null && paises.Count > 0)
+                {
+                    foreach (Pais pais in paises)
+                    {
+                        <option value="@pais._idPais">@pais._pais</option>
+                    }
+                }
+            </select>
             <label>Numero de identificacion</label>
-            <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000"/>
+            <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value=""/>
             <label>Seleccione estado civil</label>
-            <select class="cbEstadoCivil form-control" name="cbEstadoCivil"></select>
+            <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
+                <option value="-1">Seleccione estado civil</option>
+                @if (estadosCiviles != null && paises.Count > 0)
+                {
+                    foreach (EstadoCivil estadoCivil in estadosCiviles)
+                    {
+                        <option value="@estadoCivil._idEstadoCivil">@estadoCivil._estadoCivil</option>
+                    }
+                }
+            </select>
         </div>
     </div>
     <div class="marginNull row divInformacionContacto divInformacion">
@@ -58,12 +94,28 @@
                     <thead>
                         <tr>
                             <th>Email</th>
-                            <th>Etiqueta</th>
+                            <th>Descripción</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        @if (emailsPersonas != null && emailsPersonas.Count > 0)
+                        {
+                            foreach (EmailPersona emailPersona in emailsPersonas)
+                            {
+                                <tr>
+                                    <td>@emailPersona._email</td>
+                                    <td>@emailPersona.</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center">Persona no tiene registrado ningun correo electronico</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -75,8 +127,29 @@
                             <th>Telefono</th>
                             <th>Pais</th>
                             <th>Etiqueta</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @if (telefonosPersonas != null && telefonosPersonas.Count > 0)
+                        {
+                            foreach (TelefonoPersona telefono in telefonosPersonas)
+                            {
+                                <tr>
+                                    <td>@telefono._telefono</td>
+                                    <td>Sacar pais</td>
+                                    <td>@telefono._descripcion</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center">Persona no tiene registrado ningun numero telefonico</td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>

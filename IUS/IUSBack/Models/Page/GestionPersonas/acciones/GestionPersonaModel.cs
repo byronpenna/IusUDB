@@ -14,7 +14,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
     {
         
         #region "propiedades"
-        private ControlPersona _control;
+            private ControlPersona _control;
         #endregion 
         #region "gets"
             public List<Persona> getPersonas()
@@ -27,6 +27,22 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 else
                 {
                     return null;
+                }
+            }
+            public Dictionary<object, object> sp_rrhh_getInformacionPersonas(int idPersona, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    IUSLibs.RRHH.Control.ControlInformacionPersona informacionPersona = new IUSLibs.RRHH.Control.ControlInformacionPersona();
+                    return informacionPersona.sp_rrhh_getInformacionPersonas(idPersona,idUsuarioEjecutor,idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
                 }
             }
         #endregion

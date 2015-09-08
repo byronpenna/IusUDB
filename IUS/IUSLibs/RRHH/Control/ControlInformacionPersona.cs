@@ -23,12 +23,12 @@ namespace IUSLibs.RRHH.Control
             {
                 Dictionary<object, object> retorno = null;
                 // variables
-                List<Pais> paises; Pais pais;/**/ List<EstadoCivil> estadosCiviles;EstadoCivil estadoCivil;
-                InformacionPersona informacionPersona;
-                List<EmailPersona> emails; EmailPersona email;
-                List<TelefonoPersona> telefonos; TelefonoPersona telefono;
+                List<Pais> paises = null; Pais pais;/**/ List<EstadoCivil> estadosCiviles=null;EstadoCivil estadoCivil;
+                InformacionPersona informacionPersona = null;
+                List<EmailPersona> emails=null; EmailPersona email;
+                List<TelefonoPersona> telefonos= null; TelefonoPersona telefono;
                 // trayendo
-                SPIUS sp = new SPIUS("sp_repo_deleteFile");
+                SPIUS sp = new SPIUS("sp_rrhh_getInformacionPersonas");
                 sp.agregarParametro("idPersona", idUsuarioEjecutor);
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);
@@ -81,6 +81,12 @@ namespace IUSLibs.RRHH.Control
                                 telefonos.Add(telefono);
                             }
                         }
+                        retorno = new Dictionary<object, object>();
+                        retorno.Add("paises", paises);
+                        retorno.Add("estadosCiviles", estadosCiviles);
+                        retorno.Add("informacionPersona", informacionPersona);
+                        retorno.Add("emails", emails);
+                        retorno.Add("telefonos", telefonos);
                     }
 
                 }

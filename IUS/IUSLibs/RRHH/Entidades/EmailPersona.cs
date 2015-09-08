@@ -13,7 +13,6 @@ namespace IUSLibs.RRHH.Entidades
             public string   _email;
             public string   _descripcion;
             public Persona  _persona;
-            
         #endregion
         #region "Constructores"
             public EmailPersona(int idEmail)

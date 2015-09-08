@@ -181,25 +181,25 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Acciones\GestionPersonas\ExtrasPersonasController.cs" />
-    <Compile Include="Controllers\AdministracionController.cs" />
-    <Compile Include="Controllers\ConfiguracionWebsiteController.cs" />
-    <Compile Include="Controllers\ErrorsController.cs" />
-    <Compile Include="Controllers\GestionIdiomaWebsiteController.cs" />
-    <Compile Include="Controllers\GestionInstitucionesController.cs" />
-    <Compile Include="Controllers\GestionMediosInstitucionesController.cs" />
-    <Compile Include="Controllers\GestionPersonasController.cs" />
-    <Compile Include="Controllers\GestionRolesController.cs" />
-    <Compile Include="Controllers\GestionTelefonosController.cs" />
-    <Compile Include="Controllers\GestionUsuariosController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
-    <Compile Include="Controllers\NoticiasController.cs" />
-    <Compile Include="Controllers\PadreController.cs" />
-    <Compile Include="Controllers\RepositorioCompartidoController.cs" />
-    <Compile Include="Controllers\RepositorioController.cs" />
-    <Compile Include="Controllers\RepositorioPublicoController.cs" />
+    <Compile Include="Controllers\Administracion\AdministracionController.cs" />
+    <Compile Include="Controllers\Website\ConfiguracionWebsiteController.cs" />
+    <Compile Include="Controllers\Errors\ErrorsController.cs" />
+    <Compile Include="Controllers\Website\GestionIdiomaWebsiteController.cs" />
+    <Compile Include="Controllers\Website\GestionInstituciones\GestionInstitucionesController.cs" />
+    <Compile Include="Controllers\Website\GestionInstituciones\GestionMediosInstitucionesController.cs" />
+    <Compile Include="Controllers\Configuraciones\GestionPersonas\GestionPersonasController.cs" />
+    <Compile Include="Controllers\Configuraciones\GestionPersonas\ExtrasGestionPersonasController.cs" />
+    <Compile Include="Controllers\Configuraciones\GestionRolesController.cs" />
+    <Compile Include="Controllers\Website\GestionInstituciones\GestionTelefonosController.cs" />
+    <Compile Include="Controllers\Configuraciones\GestionUsuariosController.cs" />
+    <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Controllers\Home\LoginController.cs" />
+    <Compile Include="Controllers\General\MenuController.cs" />
+    <Compile Include="Controllers\Administracion\NoticiasController.cs" />
+    <Compile Include="Controllers\General\PadreController.cs" />
+    <Compile Include="Controllers\Administracion\Repositorio\RepositorioCompartidoController.cs" />
+    <Compile Include="Controllers\Administracion\Repositorio\RepositorioController.cs" />
+    <Compile Include="Controllers\Administracion\Repositorio\RepositorioPublicoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,6 +213,7 @@
     <Compile Include="Models\Page\GestionInstituciones\Acciones\GestionTelefonoModel.cs" />
     <Compile Include="Models\Page\GestionInstituciones\Acciones\MediosInstitucionesModel.cs" />
     <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
+    <Compile Include="Models\Page\GestionPersonas\acciones\ExtraGestionPersonasModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\GestionPersonaModel.cs" />
     <Compile Include="Models\Page\GestionRoles\acciones\GestionRolesModel.cs" />
     <Compile Include="Models\Page\GestionRolSubmenu\Acciones\GestionRolSubmenuModel.cs" />
@@ -526,7 +527,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Views\Instituciones\Logos\" />
-    <Folder Include="Controllers\General\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\Page\Home\Forms\" />
     <Folder Include="RepositorioDigital\Publico\" />

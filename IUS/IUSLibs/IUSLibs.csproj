@@ -132,6 +132,7 @@
     <Compile Include="REPO\Entidades\Publico\CarpetaPublica.cs" />
     <Compile Include="REPO\Entidades\TipoArchivo.cs" />
     <Compile Include="RRHH\Control\ControlInformacionPersona.cs" />
+    <Compile Include="RRHH\Entidades\EmailPersona.cs" />
     <Compile Include="RRHH\Entidades\EstadoCivil.cs" />
     <Compile Include="RRHH\Entidades\InformacionPersona.cs" />
     <Compile Include="RRHH\Entidades\TelefonoPersona.cs" />
