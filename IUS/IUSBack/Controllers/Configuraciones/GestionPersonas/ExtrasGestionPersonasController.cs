@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 // librerias internas
-
+    using IUSBack.Models.Page.GestionPersonas.acciones;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -15,6 +15,10 @@ namespace IUSBack.Controllers.GestionPersonas
     {
         //
         // GET: /ExtrasGestionPersonas/
+        #region "propiedades" 
+            public ExtraGestionPersonasModel _model;
+            public int _idPagina = (int)paginas.gestionPersonas;
+        #endregion
         #region "acciones ajax"
             public ActionResult sp_rrhh_guardarInformacionPersona()
             {
@@ -26,10 +30,11 @@ namespace IUSBack.Controllers.GestionPersonas
                     if (usuarioSession != null && frm != null)
                     {
                         InformacionPersona informacion = new InformacionPersona(this.convertObjAjaxToInt(frm["cbPais"]), frm["txtNumeroIdentificacion"].ToString(), this.convertObjAjaxToInt(frm["cbEstadoCivil"]), this.convertObjAjaxToInt(frm["txtHdIdPersona"]));
+                        InformacionPersona informacionAgregada = this._model.sp_rrhh_guardarInformacionPersona(informacion, usuarioSession._idUsuario, this._idPagina);
                         if(informacion != null){
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
-                            respuesta.Add("informacion", informacion);
+                            respuesta.Add("informacion", informacionAgregada);
                         }
                         else
                         {
@@ -56,6 +61,11 @@ namespace IUSBack.Controllers.GestionPersonas
                 return Json(respuesta);
             }
         #endregion
-
+        #region "constructores"
+            public ExtrasGestionPersonasController()
+            {
+                this._model = new ExtraGestionPersonasModel();
+            }
+        #endregion
     }
 }

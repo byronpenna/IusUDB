@@ -13,6 +13,7 @@
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
     InformacionPersona informacionPersona = null; List<EstadoCivil> estadosCiviles = null; List<Pais> paises = null;
+    string selected ="";
     try
     {
         telefonosPersonas   = (List<TelefonoPersona>)   ViewBag.telefonos;
@@ -44,7 +45,7 @@
     </ul>
 }
 <div class="row marginNull " id="tab1">
-    <input  class="txtHdIdPersona" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
+    <input  class="txtHdIdPersona" type="hidden" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
     <div class="row marginNull divInformacionPersonal divInformacion">
         <h2>Byron Peña</h2>
         <div class="col-lg-6 divImagePersona">
@@ -64,29 +65,50 @@
             <select class="cbPais form-control" name="cbPais">
                 <option value="-1">Seleccione pais</option>
                 @if (paises != null && paises.Count > 0)
-                {
-                    foreach (Pais pais in paises)
-                    {
-                        <option value="@pais._idPais">@pais._pais</option>
-                    }
-                }
+{
+    selected = "";
+    foreach (Pais pais in paises)
+    {
+        if (pais._idPais == informacionPersona._pais._idPais)
+        {
+            selected = "selected";
+        }
+        else
+        {
+            selected = "";
+        }
+        <option value="@pais._idPais" @selected>@pais._pais</option>
+    }
+}
             </select>
             <label>Numero de identificacion</label>
-            <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value=""/>
+            <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@informacionPersona._numeroIdentificacion"/>
             <label>Seleccione estado civil</label>
             <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
                 <option value="-1">Seleccione estado civil</option>
                 @if (estadosCiviles != null && paises.Count > 0)
                 {
+                    selected = "";
                     foreach (EstadoCivil estadoCivil in estadosCiviles)
                     {
-                        <option value="@estadoCivil._idEstadoCivil">@estadoCivil._estadoCivil</option>
+                        if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                        {
+                            selected = "selected";
+                        }
+                        else
+                        {
+                            selected = "";
+                        }
+                        <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
                     }
                 }
             </select>
-            <button class="btn btnGuardar">
+            <button class="btn btnGuardarInformacionBasica">
                 Guardar
             </button>
+            <div class="row marginNull divResultado divResultadoOperacion">
+
+            </div>
         </div>
     </div>
     <div class="marginNull row divInformacionContacto divInformacion">

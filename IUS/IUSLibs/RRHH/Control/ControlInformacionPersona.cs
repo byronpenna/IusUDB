@@ -107,7 +107,7 @@ namespace IUSLibs.RRHH.Control
                 InformacionPersona informacionPersona = null;
                 SPIUS sp = new SPIUS("sp_rrhh_guardarInformacionPersona");
                 sp.agregarParametro("numeroIdentificacion", infoAgregar._numeroIdentificacion);
-                sp.agregarParametro("idEstadoCivil", infoAgregar._pais._idPais);
+                sp.agregarParametro("idPais", infoAgregar._pais._idPais);
                 sp.agregarParametro("idEstadoCivil", infoAgregar._estadoCivil._idEstadoCivil);
                 sp.agregarParametro("idPersona", infoAgregar._persona._idPersona);
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -122,6 +122,12 @@ namespace IUSLibs.RRHH.Control
                             DataRow row = tb[1].Rows[0];
                             infoAgregar = new InformacionPersona((int)row["idInformacionPersona"], (int)row["id_pais_fk"], row["numero_identificacion"].ToString(), (int)row["id_estadocivil_fk"], (int)row["id_persona_fk"], row["foto"].ToString());
                         }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
                     }
 
                 }
