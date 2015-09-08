@@ -167,14 +167,32 @@
                 </table>
             </div>
             <div class="col-lg-6">
-                <h3>Numeros</h3>
+                <h3>Numeros telefonicos</h3>
                 <table class="table tabla">
                     <thead>
                         <tr>
+                            <th class="hidden"></th>
                             <th>Telefono</th>
                             <th>Pais</th>
                             <th>Etiqueta</th>
                             <th>Acciones</th>
+                        </tr>
+                        <tr>
+                            <th class="hidden"></th>
+                            <th><input class="txtTelefono form-control" name="txtTelefono" /></th>
+                            <th>
+                                <select class="cbPais">
+                                    @if (paises != null && paises.Count > 0)
+                                    {
+                                        foreach (Pais pais in paises)
+                                        {
+                                            <option value="@pais._idPais" @selected>@pais._pais</option>    
+                                        }
+                                    }
+                                </select>
+                            </th>
+                            <th><input class="txtEtiquetaTel form-control" name="txtTelefono" /></th>
+                            <th><button class="btn">Agregar</button></th>
                         </tr>
                     </thead>
                     <tbody>
