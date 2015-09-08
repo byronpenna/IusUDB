@@ -24,6 +24,9 @@ namespace IUSLibs.RRHH.Control
                 Dictionary<object, object> retorno = null;
                 // variables
                 List<Pais> paises; Pais pais;/**/ List<EstadoCivil> estadosCiviles;EstadoCivil estadoCivil;
+                InformacionPersona informacionPersona;
+                List<EmailPersona> emails; EmailPersona email;
+                List<TelefonoPersona> telefonos; TelefonoPersona telefono;
                 // trayendo
                 SPIUS sp = new SPIUS("sp_repo_deleteFile");
                 sp.agregarParametro("idPersona", idUsuarioEjecutor);
@@ -52,20 +55,31 @@ namespace IUSLibs.RRHH.Control
                                 estadosCiviles.Add(estadoCivil);
                             }
                         }
-                        if (tb[0].Rows.Count > 0)
+                        if (tb[2].Rows.Count > 0)
                         {
                             // Informacion personas 
-                            DataRow row = tb[0].Rows[0];
+                            DataRow row = tb[2].Rows[0];
+                            informacionPersona = new InformacionPersona((int)row["idInformacionPersona"], (int)row["id_pais_fk"], row["numero_identificacion"].ToString(), (int)row["id_estadocivil_fk"], (int)row["id_persona_fk"], row["foto"].ToString());
                         }
-                        if (tb[0].Rows.Count > 0)
+                        if (tb[3].Rows.Count > 0)
                         {
                             // mails 
-                            DataRow row = tb[0].Rows[0];
+                            emails = new List<EmailPersona>();
+                            foreach (DataRow row in tb[3].Rows)
+                            {
+                                email = new EmailPersona((int)row["idMailPersona"], row["email"].ToString(), row["descripcion"].ToString(), (int)row["id_persona_fk"]);
+                                emails.Add(email);
+                            }
                         }
-                        if (tb[0].Rows.Count > 0)
+                        if (tb[4].Rows.Count > 0)
                         {
                             // telefonos 
-                            DataRow row = tb[0].Rows[0];
+                            telefonos = new List<TelefonoPersona>();
+                            foreach (DataRow row in tb[4].Rows)
+                            {
+                                telefono = new TelefonoPersona((int)row["idTelefonoPersona"],row["telefono"].ToString(),row["descripcion"].ToString(),(int)row["id_pais_fk"],(int)row["id_persona_fk"]);
+                                telefonos.Add(telefono);
+                            }
                         }
                     }
 

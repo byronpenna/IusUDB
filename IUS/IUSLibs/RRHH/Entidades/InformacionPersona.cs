@@ -15,14 +15,25 @@ namespace IUSLibs.RRHH.Entidades
             public string       _numeroIdentificacion;
             public EstadoCivil  _estadoCivil;
             public Persona      _persona;
-            public byte[]       _foto;
+            public string       _fotoRuta;
         #endregion
         #region "Constructores"
             public InformacionPersona(int idInformacionPersona)
             {
                 this._idInformacionPersona = idInformacionPersona;
             }
-            
+            public InformacionPersona(int idInformacionPersona,int idPais,string numeroIdentificacion,int idEstadoCivil,int idPersona,string foto)
+            {
+                this._idInformacionPersona  = idInformacionPersona;
+                Pais pais                   = new Pais(idPais);
+                this._pais                  = pais;
+                this._numeroIdentificacion  = numeroIdentificacion;
+                EstadoCivil estadoCivil     = new EstadoCivil(idEstadoCivil);
+                this._estadoCivil           = estadoCivil;
+                Persona persona             = new Persona(idPersona);
+                this._persona               = persona;
+                this._fotoRuta              = foto;
+            }
         #endregion
     }
 }

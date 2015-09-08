@@ -181,6 +181,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Acciones\GestionPersonas\ExtrasPersonasController.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\ConfiguracionWebsiteController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
