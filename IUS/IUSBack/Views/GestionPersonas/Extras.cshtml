@@ -2,14 +2,20 @@
 @using IUSLibs.FrontUI.Entidades
 @using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
+    <!-- plugins -->        
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
 }
 @section scriptsPersonalizados{
-    <!-- propios -->
-    <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
-    <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
+    <!-- plugins -->
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
+        <!-- propios -->
+            <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
+            <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
 }
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
@@ -128,7 +134,7 @@
     <div class="marginNull row divInformacionContacto divInformacion">
         <h2>Informacion de contacto</h2>
         <div class="row marginNull">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <h3>Correos electronicos</h3>
                 <table class="table tabla">
                     <thead>
@@ -142,7 +148,7 @@
                             <th class="hidden"></th>
                             <th><input name="txtEmail" class=" form-control txtEmail" type="email" /></th>
                             <th><input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" /></th>
-                            <th><button class="btn">Guardar</button></th>
+                            <th><button class="btn btnGuardarEmail">Guardar</button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -166,7 +172,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <h3>Numeros telefonicos</h3>
                 <table class="table tabla">
                     <thead>
@@ -181,7 +187,7 @@
                             <th class="hidden"></th>
                             <th><input class="txtTelefono form-control" name="txtTelefono" /></th>
                             <th>
-                                <select class="cbPais">
+                                <select class="cbPais" name="cbPais">
                                     @if (paises != null && paises.Count > 0)
                                     {
                                         foreach (Pais pais in paises)
@@ -191,8 +197,10 @@
                                     }
                                 </select>
                             </th>
-                            <th><input class="txtEtiquetaTel form-control" name="txtTelefono" /></th>
-                            <th><button class="btn">Agregar</button></th>
+                            <th><input class="txtEtiquetaTel form-control" name="txtEtiquetaTel" /></th>
+                            <th>
+                                <button class="btn btnAgregarTel">Agregar</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -201,10 +209,16 @@
                             foreach (TelefonoPersona telefono in telefonosPersonas)
                             {
                                 <tr>
+                                    <td class="hidden">
+                                        <input name="txtHdIdTelefono" class="txtHdIdTelefono"  value="@telefono._idTelefonoPersona"/>
+                                    </td>
                                     <td>@telefono._telefono</td>
-                                    <td>Sacar pais</td>
+                                    <td>@telefono._pais._pais</td>
                                     <td>@telefono._descripcion</td>
-                                    <td></td>
+                                    <td>
+                                        <button class="btn">Editar</button>
+                                        <button class="btn btnEliminarTel">Eliminar</button>
+                                    </td>
                                 </tr>
                             }
                         }

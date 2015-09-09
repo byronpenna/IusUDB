@@ -35,6 +35,10 @@ namespace IUSLibs.FrontUI.Entidades
                 this._pais = pais;
                 this._continente = continente;
             }
+            public Pais(string pais)
+            {
+                this._pais = pais;
+            }
         #endregion
     }
 }
