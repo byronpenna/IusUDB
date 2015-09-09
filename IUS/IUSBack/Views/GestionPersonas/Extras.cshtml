@@ -134,7 +134,7 @@
     <div class="marginNull row divInformacionContacto divInformacion">
         <h2>Informacion de contacto</h2>
         <div class="row marginNull">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <h3>Correos electronicos</h3>
                 <table class="table tabla">
                     <thead>
@@ -172,7 +172,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <h3>Numeros telefonicos</h3>
                 <table class="table tabla">
                     <thead>
@@ -209,10 +209,16 @@
                             foreach (TelefonoPersona telefono in telefonosPersonas)
                             {
                                 <tr>
+                                    <td class="hidden">
+                                        <input name="txtHdIdTelefono" class="txtHdIdTelefono"  value="@telefono._idTelefonoPersona"/>
+                                    </td>
                                     <td>@telefono._telefono</td>
-                                    <td>Sacar pais</td>
+                                    <td>@telefono._pais._pais</td>
                                     <td>@telefono._descripcion</td>
-                                    <td></td>
+                                    <td>
+                                        <button class="btn">Editar</button>
+                                        <button class="btn btnEliminarTel">Eliminar</button>
+                                    </td>
                                 </tr>
                             }
                         }

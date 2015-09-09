@@ -19,6 +19,25 @@ namespace IUSLibs.RRHH.Control
     {
         #region "funciones"
             #region "do"
+                public bool sp_rrhh_eliminarTel(int idTelefonoPersona, int idUsuarioEjecutor,int idPagina)
+                {
+                    bool estado;
+                    SPIUS sp = new SPIUS("sp_rrhh_guardarTelefonoPersona");
+                    sp.agregarParametro("idTelefonoPersona", idTelefonoPersona);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try {
+
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public TelefonoPersona sp_rrhh_guardarTelefonoPersona(TelefonoPersona telefonoAgregar,int idUsuarioEjecutor,int idPagina)
                 {
                     TelefonoPersona telefonoAgregado = null;
