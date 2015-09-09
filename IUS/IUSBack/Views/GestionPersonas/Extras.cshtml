@@ -2,14 +2,20 @@
 @using IUSLibs.FrontUI.Entidades
 @using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
+    <!-- plugins -->        
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
 }
 @section scriptsPersonalizados{
-    <!-- propios -->
-    <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
-    <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
+    <!-- plugins -->
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
+        <!-- propios -->
+            <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
+            <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
 }
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
@@ -181,7 +187,7 @@
                             <th class="hidden"></th>
                             <th><input class="txtTelefono form-control" name="txtTelefono" /></th>
                             <th>
-                                <select class="cbPais">
+                                <select class="cbPais" name="cbPais">
                                     @if (paises != null && paises.Count > 0)
                                     {
                                         foreach (Pais pais in paises)
@@ -191,8 +197,10 @@
                                     }
                                 </select>
                             </th>
-                            <th><input class="txtEtiquetaTel form-control" name="txtTelefono" /></th>
-                            <th><button class="btn">Agregar</button></th>
+                            <th><input class="txtEtiquetaTel form-control" name="txtEtiquetaTel" /></th>
+                            <th>
+                                <button class="btn btnAgregarTel">Agregar</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>

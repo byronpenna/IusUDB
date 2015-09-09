@@ -1,8 +1,15 @@
 ﻿// genericas 
     
 // scripts
-function btnGuardarInformacionBasica(frm) {
-        
+    function valAgregarTel(frm) {
+        var val;
+    }
+    function btnAgregarTel(frm) {
+        actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
+
+        })
+    }
+    function btnGuardarInformacionBasica(frm) {
         actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
             console.log(data);
             if (data.estado) {
