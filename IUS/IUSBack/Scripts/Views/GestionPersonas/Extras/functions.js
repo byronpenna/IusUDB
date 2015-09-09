@@ -5,8 +5,11 @@
         var val;
     }
     function btnAgregarTel(frm) {
-        actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
+        actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarTelefonoPersona", frm, function (data) {
+            console.log(data);
+            if (data.estado) {
 
+            }
         })
     }
     function btnGuardarInformacionBasica(frm) {

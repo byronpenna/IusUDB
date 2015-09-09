@@ -79,6 +79,7 @@ namespace IUSLibs.RRHH.Control
                             foreach (DataRow row in tb[4].Rows)
                             {
                                 telefono = new TelefonoPersona((int)row["idTelefonoPersona"],row["telefono"].ToString(),row["descripcion"].ToString(),(int)row["id_pais_fk"],(int)row["id_persona_fk"]);
+                                telefono._pais._pais = row["pais"].ToString();
                                 telefonos.Add(telefono);
                             }
                         }
@@ -94,6 +95,12 @@ namespace IUSLibs.RRHH.Control
                         retorno.Add("emails", emails);
                         retorno.Add("telefonos", telefonos);
                         retorno.Add("persona", persona);
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
                     }
 
                 }

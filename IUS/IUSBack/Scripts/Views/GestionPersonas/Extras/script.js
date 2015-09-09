@@ -3,8 +3,15 @@
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
     // eventos
         // click
-            $(document).on("click", ".btnAgregarTel", function () {
+        
+            $(document).on("click", ".btnEliminarTel", function () {
                 var frm = serializeSection($(this).parents("tr"));
+                console.log(frm);
+
+            })
+            $(document).on("click", ".btnAgregarTel", function () {
+                var frm         = serializeSection($(this).parents("tr"));
+                frm.idPersona   = $(".txtHdIdPersona").val();
                 console.log("Formulario a enviar es", frm);
                 //var val = 
                 btnAgregarTel(frm);
