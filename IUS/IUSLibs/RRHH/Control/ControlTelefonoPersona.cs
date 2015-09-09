@@ -21,13 +21,23 @@ namespace IUSLibs.RRHH.Control
             #region "do"
                 public bool sp_rrhh_eliminarTel(int idTelefonoPersona, int idUsuarioEjecutor,int idPagina)
                 {
-                    bool estado;
-                    SPIUS sp = new SPIUS("sp_rrhh_guardarTelefonoPersona");
+                    bool estado=false;
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarTel");
                     sp.agregarParametro("idTelefonoPersona", idTelefonoPersona);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try {
-
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -37,6 +47,7 @@ namespace IUSLibs.RRHH.Control
                     {
                         throw x;
                     }
+                    return estado;
                 }
                 public TelefonoPersona sp_rrhh_guardarTelefonoPersona(TelefonoPersona telefonoAgregar,int idUsuarioEjecutor,int idPagina)
                 {

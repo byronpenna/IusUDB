@@ -5,9 +5,10 @@
         // click
         
             $(document).on("click", ".btnEliminarTel", function () {
-                var frm = serializeSection($(this).parents("tr"));
+                var tr  = $(this).parents("tr");
+                var frm = serializeSection(tr);
                 console.log(frm);
-
+                btnEliminarTel(frm,tr);
             })
             $(document).on("click", ".btnAgregarTel", function () {
                 var frm         = serializeSection($(this).parents("tr"));

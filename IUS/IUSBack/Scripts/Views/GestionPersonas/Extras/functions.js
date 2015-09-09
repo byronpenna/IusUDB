@@ -1,17 +1,28 @@
 ﻿// genericas 
     
 // scripts
-    function valAgregarTel(frm) {
-        var val;
-    }
-    function btnAgregarTel(frm) {
-        actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarTelefonoPersona", frm, function (data) {
-            console.log(data);
-            if (data.estado) {
+    // eliminar tel
+        function btnEliminarTel(frm,tr) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_eliminarTel", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }
+    // agregar tel
+        function valAgregarTel(frm) {
+            var val;
+        }
+        function btnAgregarTel(frm) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarTelefonoPersona", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
 
-            }
-        })
-    }
+                }
+            })
+        }
+    // informacion basica
     function btnGuardarInformacionBasica(frm) {
         actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
             console.log(data);

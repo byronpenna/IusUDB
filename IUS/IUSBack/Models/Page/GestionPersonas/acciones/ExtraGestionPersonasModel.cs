@@ -33,7 +33,23 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         throw x;
                     }
                 }
-                public InformacionPersona sp_rrhh_guardarInformacionPersona(InformacionPersona infoAgregar, int idUsuarioEjecutor, int idPagina)
+                public bool sp_rrhh_eliminarTel(int idTelefonoPersona,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlTelefono.sp_rrhh_eliminarTel(idTelefonoPersona, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                #region "informacion persona"
+                    public InformacionPersona sp_rrhh_guardarInformacionPersona(InformacionPersona infoAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
@@ -48,12 +64,13 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         throw x;
                     }
                 }
+                #endregion
             #endregion
             #region "get"
             #endregion
         #endregion
         #region "constructores"
-            public ExtraGestionPersonasModel()
+                public ExtraGestionPersonasModel()
             {
                 this._controlInformacion    = new ControlInformacionPersona();
                 this._controlTelefono       = new ControlTelefonoPersona();
