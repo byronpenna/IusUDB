@@ -15,25 +15,44 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #region "propiedades"
             private ControlInformacionPersona   _controlInformacion;
             private ControlTelefonoPersona      _controlTelefono;
+            private ControlEmailPersona         _controlEmail;
         #endregion
         #region "funciones"
             #region "do"
-                public TelefonoPersona sp_rrhh_guardarTelefonoPersona(TelefonoPersona telefonoAgregar,int idUsuarioEjecutor, int idPagina)
-                {
-                    try
+                #region "emails personas"
+                    public EmailPersona sp_rrhh_guardarCorreoPersona(EmailPersona emailAgregar,int idUsuarioEjecutor, int idPagina)
                     {
-                        return this._controlTelefono.sp_rrhh_guardarTelefonoPersona(telefonoAgregar, idUsuarioEjecutor, idPagina);
+                        try
+                        {
+                            return this._controlEmail.sp_rrhh_guardarCorreoPersona(emailAgregar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (ErroresIUS x)
+                #endregion
+                #region "telefono"
+                    public TelefonoPersona sp_rrhh_guardarTelefonoPersona(TelefonoPersona telefonoAgregar, int idUsuarioEjecutor, int idPagina)
                     {
-                        throw x;
+                        try
+                        {
+                            return this._controlTelefono.sp_rrhh_guardarTelefonoPersona(telefonoAgregar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
-                public bool sp_rrhh_eliminarTel(int idTelefonoPersona,int idUsuarioEjecutor,int idPagina)
+                    public bool sp_rrhh_eliminarTel(int idTelefonoPersona, int idUsuarioEjecutor, int idPagina)
                 {
                     try
                     {
@@ -48,6 +67,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         throw x;
                     }
                 }
+                #endregion    
                 #region "informacion persona"
                     public InformacionPersona sp_rrhh_guardarInformacionPersona(InformacionPersona infoAgregar, int idUsuarioEjecutor, int idPagina)
                 {
@@ -70,10 +90,11 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             #endregion
         #endregion
         #region "constructores"
-                public ExtraGestionPersonasModel()
+            public ExtraGestionPersonasModel()
             {
                 this._controlInformacion    = new ControlInformacionPersona();
                 this._controlTelefono       = new ControlTelefonoPersona();
+                this._controlEmail          = new ControlEmailPersona();
             }
         #endregion
     }

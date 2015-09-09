@@ -27,6 +27,14 @@ namespace IUSLibs.RRHH.Entidades
                 Persona persona = new Persona(idPersona);
                 this._persona = persona;
             }
+            // para agregar
+                public EmailPersona(string email, string descripcion, int idPersona)
+                {
+                    this._email = email;
+                    this._descripcion = descripcion;
+                    Persona persona = new Persona(idPersona);
+                    this._persona = persona;
+                }
         #endregion
     }
 }
