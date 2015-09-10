@@ -15,6 +15,10 @@
         ";
         return tr;
     }
+    function regresarNormalidadTrEmail(emailPersona,tr) {
+        controlesEdit(false, tr);
+    }
+    // numeros
     function getTrNumeros(telefono) {
         var tr = "\
         <tr>\
@@ -43,11 +47,15 @@
         tr.find(".txtHdIdPais").val(tel._pais._idPais);
         controlesEdit(false, tr);
     }
+    
 // scripts
     // agregar email
         function btnActualizarEmail(frm) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_actualizarCorreoPersona", frm, function (data) {
                 console.log(data);
+                if (data.estado) {
+
+                }
             })
         }
         function btnEliminarEmail(frm,tr) { 
