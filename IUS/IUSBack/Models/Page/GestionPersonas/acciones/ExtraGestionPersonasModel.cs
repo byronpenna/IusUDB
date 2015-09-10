@@ -67,6 +67,20 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     }
                 #endregion
                 #region "telefono"
+                    public TelefonoPersona sp_rrhh_editarTelefonoPersona(TelefonoPersona telefonoActualizar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlTelefono.sp_rrhh_editarTelefonoPersona(telefonoActualizar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x) {
+                            throw x;
+                        }
+                    }
                     public TelefonoPersona sp_rrhh_guardarTelefonoPersona(TelefonoPersona telefonoAgregar, int idUsuarioEjecutor, int idPagina)
                     {
                         try

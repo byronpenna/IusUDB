@@ -41,6 +41,16 @@ namespace IUSLibs.RRHH.Entidades
                     Persona persona = new Persona(idPersona);
                     this._persona = persona;
                 }
+            // para actualizar
+                public TelefonoPersona(int idTelefonoPersona, string telefono, string descripcion, int idPais)
+                {
+                    this._idTelefonoPersona = idTelefonoPersona;
+                    this._telefono = telefono;
+                    this._descripcion = descripcion;
+                    Pais pais = new Pais(idPais);
+                    this._pais = pais;
+                    
+                }
         #endregion
     }
 }
