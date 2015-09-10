@@ -70,6 +70,7 @@ namespace IUSLibs.RRHH.Control
                             {
                                 DataRow row = tb[1].Rows[0];
                                 telefonoAgregado = new TelefonoPersona((int)row["idTelefonoPersona"], row["telefono"].ToString(), row["descripcion"].ToString(), (int)row["id_pais_fk"], (int)row["id_persona_fk"]);
+                                telefonoAgregado._pais._pais = row["pais"].ToString();
                             }
 
                         }

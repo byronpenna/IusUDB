@@ -18,6 +18,26 @@
                     btnGuardarEmail(frm);
                 })
             // telefono  
+                // editar tel
+                    // edit | cancelar
+                        $(document).on("click", ".btnCancelarUpdateTel", function () {
+                            var tr = $(this).parents("tr");
+                            controlesEdit(false, tr);
+                        })
+                        $(document).on("click", ".btnEditarTel", function () {
+                            var tr = $(this).parents("tr");
+                            var telefono = $.trim(tr.find(".tdTelefono").text());
+                            var etiqueta = $.trim(tr.find(".tdEtiqueta").text());
+                            tr.find(".txtTelefono").val(telefono);
+                            tr.find(".txtEtiquetaTel").val(etiqueta);
+                            // cargar paises 
+                            controlesEdit(true, tr);
+                        })
+                    $(document).on("click", ".btnActualizarTel", function () {
+                        var tr = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        console.log(frm);
+                    })
                 $(document).on("click", ".btnEliminarTel", function () {
                     var tr  = $(this).parents("tr");
                     var frm = serializeSection(tr);
