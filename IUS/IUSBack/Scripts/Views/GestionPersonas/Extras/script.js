@@ -72,7 +72,7 @@
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         //console.log(frm);
-                        btnActualizarTel(frm);
+                        btnActualizarTel(frm,tr);
                     })
                 $(document).on("click", ".btnEliminarTel", function () {
                     var tr  = $(this).parents("tr");

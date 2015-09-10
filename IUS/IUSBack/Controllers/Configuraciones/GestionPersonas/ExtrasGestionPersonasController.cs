@@ -119,6 +119,7 @@ namespace IUSBack.Controllers.GestionPersonas
                             TelefonoPersona telefonoActualizado = this._model.sp_rrhh_editarTelefonoPersona(telefonoEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
+                            respuesta.Add("telefonoActualizado", telefonoActualizado);
                         }
                     }
                     catch (ErroresIUS x)

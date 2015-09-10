@@ -36,6 +36,13 @@
         var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
         return cb;
     }
+    function regresarNormalidadTrTel(tel,tr) {
+        tr.find(".tdTelefono").empty().append(tel._telefono);
+        tr.find(".tdPais").empty().append(tel._pais._pais);
+        tr.find(".tdEtiqueta").empty().append(tel._descripcion);
+        tr.find(".txtHdIdPais").val(tel._pais._idPais);
+        controlesEdit(false, tr);
+    }
 // scripts
     // agregar email
         function btnActualizarEmail(frm) {
@@ -60,9 +67,12 @@
             })
         }
     // telefono 
-            function btnActualizarTel(frm) {
+            function btnActualizarTel(frm,tr) {
                 actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_editarTelefonoPersona", frm, function (data) {
                     console.log("data servidor", data);
+                    if (data.estado) {
+                        regresarNormalidadTrTel(data.telefonoActualizado, tr);
+                    }
                 });
             }
         // eliminar tel
