@@ -19,6 +19,38 @@ namespace IUSLibs.RRHH.Control
     {
         #region "funciones"
             #region "do"
+                public bool sp_rrhh_eliminarCorreoPersona(int idEmailPersona,int idUsuarioEjecutor,int idPagina)
+                {
+                    bool estado = true;
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarCorreoPersona");
+                    sp.agregarParametro("idMailPersona", idEmailPersona);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
                 public EmailPersona sp_rrhh_guardarCorreoPersona(EmailPersona emailAgregar,int idUsuarioEjecutor, int idPagina)
                 {
                     EmailPersona emailAgregado = null;
@@ -33,7 +65,7 @@ namespace IUSLibs.RRHH.Control
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrectoGet(tb))
+                        if (this.resultadoCorrecto(tb))
                         {
                             if (tb[1].Rows.Count > 0)
                             {

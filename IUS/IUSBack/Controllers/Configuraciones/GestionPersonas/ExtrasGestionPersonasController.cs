@@ -20,6 +20,33 @@ namespace IUSBack.Controllers.GestionPersonas
             public int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_rrhh_eliminarCorreoPersona()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        bool eliminado = this._model.sp_rrhh_eliminarCorreoPersona(this.convertObjAjaxToInt(frm["txtIdEmailPersona"]), usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", eliminado);
+
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_rrhh_guardarCorreoPersona()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -29,7 +56,11 @@ namespace IUSBack.Controllers.GestionPersonas
                     frm = this.getAjaxFrm();
                     if (usuarioSession != null && frm != null)
                     {
-                        //EmailPersona emailAgregar = new EmailPersona();
+                        EmailPersona emailAgregar = new EmailPersona(frm["txtEmail"].ToString(), frm["txtEtiquetaEmail"].ToString(), this.convertObjAjaxToInt(frm["idPersona"]));
+                        EmailPersona emailAgregado = this._model.sp_rrhh_guardarCorreoPersona(emailAgregar, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("emailPersona", emailAgregado);
                     }
                 }
                 catch (ErroresIUS x)

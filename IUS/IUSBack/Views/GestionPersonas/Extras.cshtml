@@ -148,7 +148,7 @@
                             <th class="hidden"></th>
                             <th><input name="txtEmail" class=" form-control txtEmail" type="email" /></th>
                             <th><input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" /></th>
-                            <th><button class="btn btnGuardarEmail">Guardar</button></th>
+                            <th><button class="btn btnGuardarEmail btn-xs">Guardar</button></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -157,9 +157,15 @@
                             foreach (EmailPersona emailPersona in emailsPersonas)
                             {
                                 <tr>
+                                    <td class="hidden">
+                                        <input type="hidden" value="@emailPersona._idEmail" name="txtIdEmailPersona"/>
+                                    </td>
                                     <td>@emailPersona._email</td>
-                                    <td>@emailPersona.</td>
-                                    <td></td>
+                                    <td>@emailPersona._descripcion</td>
+                                    <td>
+                                        <button class="btn btnEditarEmail btn-xs" >Editar</button>
+                                        <button class="btn btnEliminarEmail btn-xs">Eliminar</button>
+                                    </td>
                                 </tr>
                             }
                         }
@@ -216,8 +222,8 @@
                                     <td>@telefono._pais._pais</td>
                                     <td>@telefono._descripcion</td>
                                     <td>
-                                        <button class="btn">Editar</button>
-                                        <button class="btn btnEliminarTel">Eliminar</button>
+                                        <button class="btn btn-xs">Editar</button>
+                                        <button class="btn btnEliminarTel btn-xs">Eliminar</button>
                                     </td>
                                 </tr>
                             }

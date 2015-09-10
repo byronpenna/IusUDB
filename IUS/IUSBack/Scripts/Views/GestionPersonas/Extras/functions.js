@@ -2,9 +2,17 @@
     
 // scripts
     // agregar email
+        function btnEliminarEmail(frm,tr) { 
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_eliminarCorreoPersona", frm, function (data) {
+                console.log("Respuesta servidor", data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            });
+        }
         function btnGuardarEmail(frm) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarCorreoPersona", frm, function (data) {
-                console.log(data);
+                console.log("respuesta servidor",data);
                 if (data.estado) {
 
                 }
@@ -33,17 +41,17 @@
                 })
             }
     // informacion basica
-    function btnGuardarInformacionBasica(frm) {
-        actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
-            console.log(data);
-            if (data.estado) {
-                printMessage($(".divResultadoOperacion"), "Informacion actualizada exitosamente", true);
-            } else {
-                if (data.error._mostrar) {
-                    printMessage($(".divResultadoOperacion"), data.error.Message, false);
+        function btnGuardarInformacionBasica(frm) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    printMessage($(".divResultadoOperacion"), "Informacion actualizada exitosamente", true);
                 } else {
-                    printMessage($(".divResultadoOperacion"), "Ocurrio un error no controlado", false);
+                    if (data.error._mostrar) {
+                        printMessage($(".divResultadoOperacion"), data.error.Message, false);
+                    } else {
+                        printMessage($(".divResultadoOperacion"), "Ocurrio un error no controlado", false);
+                    }
                 }
-            }
-        })
-    }
+            })
+        }

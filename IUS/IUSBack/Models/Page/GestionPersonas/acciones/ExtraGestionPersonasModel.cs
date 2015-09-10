@@ -20,6 +20,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #region "funciones"
             #region "do"
                 #region "emails personas"
+                    public bool sp_rrhh_eliminarCorreoPersona(int idEmailPersona,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlEmail.sp_rrhh_eliminarCorreoPersona(idEmailPersona, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public EmailPersona sp_rrhh_guardarCorreoPersona(EmailPersona emailAgregar,int idUsuarioEjecutor, int idPagina)
                     {
                         try
