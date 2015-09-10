@@ -5,7 +5,6 @@
         // click
             // email
                 // editar
-        
                     $(document).on("click", ".btnCancelarUpdateEmail", function () {
                     })
                     $(document).on("click", ".btnEditarEmail", function () {
@@ -50,13 +49,30 @@
                             var etiqueta = $.trim(tr.find(".tdEtiqueta").text());
                             tr.find(".txtTelefono").val(telefono);
                             tr.find(".txtEtiquetaTel").val(etiqueta);
+                            var frm = {}; var ops = "";
+                            var selectedPais = tr.find(".txtHdIdPais").val();
+                            console.log("selected pais", selectedPais);
+                            actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getPaises", frm, function (data) {
+                                console.log("data pais", data)
+                                var selected = false;
+                                if (data.estado && data.paises.length > 0) {
+                                    console.log("Entro aqui D: ");
+                                    $.each(data.paises, function (i, pais) {
+                                        ops += getCbPaises(pais, selected);
+                                    })
+                                    var cb = tr.find(".cbPais");
+                                    cb.empty().append(ops);
+                                    resetChosenWithSelectedVal(cb, selectedPais);
+                                }
+                            })
                             // cargar paises 
                             controlesEdit(true, tr);
                         })
                     $(document).on("click", ".btnActualizarTel", function () {
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
-                        console.log(frm);
+                        //console.log(frm);
+                        btnActualizarTel(frm);
                     })
                 $(document).on("click", ".btnEliminarTel", function () {
                     var tr  = $(this).parents("tr");
