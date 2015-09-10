@@ -19,6 +19,49 @@ namespace IUSLibs.RRHH.Control
     {
         #region "funciones"
             #region "do"
+                public TelefonoPersona sp_rrhh_editarTelefonoPersona(TelefonoPersona telefonoActualizar,int idUsuarioEjecutor,int idPagina)
+                {
+
+                    TelefonoPersona telefonoActualizado = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_editarTelefonoPersona");
+                    
+                    sp.agregarParametro("telefono", telefonoActualizar._telefono);
+                    sp.agregarParametro("descripcion", telefonoActualizar._descripcion);
+                    sp.agregarParametro("idPais", telefonoActualizar._pais._idPais);
+                    sp.agregarParametro("idTelefonoPersona", telefonoActualizar._idTelefonoPersona);
+                    
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if(tb[1].Rows.Count >0){
+                                DataRow row = tb[1].Rows[0];
+                                telefonoActualizado = new TelefonoPersona((int)row["idTelefonoPersona"], row["telefono"].ToString(), row["descripcion"].ToString(), (int)row["id_pais_fk"], (int)row["id_persona_fk"]);
+                                telefonoActualizado._pais._pais = row["pais"].ToString();
+                            }
+
+                            
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return telefonoActualizado;
+                }
                 public bool sp_rrhh_eliminarTel(int idTelefonoPersona, int idUsuarioEjecutor,int idPagina)
                 {
                     bool estado=false;
@@ -70,6 +113,7 @@ namespace IUSLibs.RRHH.Control
                             {
                                 DataRow row = tb[1].Rows[0];
                                 telefonoAgregado = new TelefonoPersona((int)row["idTelefonoPersona"], row["telefono"].ToString(), row["descripcion"].ToString(), (int)row["id_pais_fk"], (int)row["id_persona_fk"]);
+                                telefonoAgregado._pais._pais = row["pais"].ToString();
                             }
 
                         }

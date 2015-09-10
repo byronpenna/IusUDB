@@ -20,6 +20,36 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #region "funciones"
             #region "do"
                 #region "emails personas"
+                    public EmailPersona sp_rrhh_actualizarCorreoPersona(EmailPersona emailActualizar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlEmail.sp_rrhh_actualizarCorreoPersona(emailActualizar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    public bool sp_rrhh_eliminarCorreoPersona(int idEmailPersona,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlEmail.sp_rrhh_eliminarCorreoPersona(idEmailPersona, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public EmailPersona sp_rrhh_guardarCorreoPersona(EmailPersona emailAgregar,int idUsuarioEjecutor, int idPagina)
                     {
                         try
@@ -37,6 +67,20 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     }
                 #endregion
                 #region "telefono"
+                    public TelefonoPersona sp_rrhh_editarTelefonoPersona(TelefonoPersona telefonoActualizar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlTelefono.sp_rrhh_editarTelefonoPersona(telefonoActualizar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x) {
+                            throw x;
+                        }
+                    }
                     public TelefonoPersona sp_rrhh_guardarTelefonoPersona(TelefonoPersona telefonoAgregar, int idUsuarioEjecutor, int idPagina)
                     {
                         try
