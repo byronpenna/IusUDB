@@ -160,11 +160,32 @@
                                     <td class="hidden">
                                         <input type="hidden" value="@emailPersona._idEmail" name="txtIdEmailPersona"/>
                                     </td>
-                                    <td>@emailPersona._email</td>
-                                    <td>@emailPersona._descripcion</td>
                                     <td>
-                                        <button class="btn btnEditarEmail btn-xs" >Editar</button>
-                                        <button class="btn btnEliminarEmail btn-xs">Eliminar</button>
+                                        <div class="editMode hidden">
+                                            <input name="txtEmail" class=" form-control txtEmail" type="email" />
+                                        </div>
+                                        <div class="normalMode tdEmail">
+                                            @emailPersona._email
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" />
+                                        </div>
+                                        <div class="normalMode tdEtiqueta">
+                                            @emailPersona._descripcion
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <button class="btn btn-xs btnActualizarEmail">Actualizar</button>
+                                            <button class="btn btn-xs btnCancelarUpdateEmail">Cancelar</button>
+                                        </div>
+                                        <div class="normalMode tdTelefono">
+                                            <button class="btn btnEditarEmail btn-xs">Editar</button>
+                                            <button class="btn btnEliminarEmail btn-xs">Eliminar</button>
+                                        </div>
+                                        
                                     </td>
                                 </tr>
                             }

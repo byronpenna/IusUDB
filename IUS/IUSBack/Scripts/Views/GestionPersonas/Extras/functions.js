@@ -34,6 +34,11 @@
     }
 // scripts
     // agregar email
+        function btnActualizarEmail(frm) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_actualizarCorreoPersona", frm, function (data) {
+                console.log(data);
+            })
+        }
         function btnEliminarEmail(frm,tr) { 
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_eliminarCorreoPersona", frm, function (data) {
                 console.log("Respuesta servidor", data);
@@ -50,30 +55,30 @@
                 }
             })
         }
-    // telefono 
+        // telefono 
         // eliminar tel
-            function btnEliminarTel(frm,tr) {
-                actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_eliminarTel", frm, function (data) {
-                    console.log(data);
-                    if (data.estado) {
-                        tr.remove();
-                    }
-                })
-            }
+        function btnEliminarTel(frm,tr) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_eliminarTel", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }
         // agregar tel
-            function valAgregarTel(frm) {
-                var val;
-            }
-            function btnAgregarTel(frm) {
-                actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarTelefonoPersona", frm, function (data) {
-                    console.log(data);
-                    if (data.estado) {
-                        var tr = getTrNumeros(data.telefonoAgregado);
-                        $(".tbodyTelefonos").prepend(tr);
-                    }
-                })
-            }
-    // informacion basica
+        function valAgregarTel(frm) {
+            var val;
+        }
+        function btnAgregarTel(frm) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarTelefonoPersona", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    var tr = getTrNumeros(data.telefonoAgregado);
+                    $(".tbodyTelefonos").prepend(tr);
+                }
+            })
+        }
+        // informacion basica
         function btnGuardarInformacionBasica(frm) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
                 console.log(data);

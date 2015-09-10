@@ -4,10 +4,29 @@
     // eventos
         // click
             // email
+                // editar
+        
+                    $(document).on("click", ".btnCancelarUpdateEmail", function () {
+                    })
+                    $(document).on("click", ".btnEditarEmail", function () {
+                        var tr          = $(this).parents("tr");
+                        var email       = $.trim(tr.find(".tdEmail").text());
+                        var etiqueta    = $.trim(tr.find(".tdEtiqueta").text());
+                        console.log(email, etiqueta);
+                        tr.find(".txtEtiquetaEmail").val(etiqueta);
+                        tr.find(".txtEmail").val(email);
+                        controlesEdit(true, tr);
+                    })
+                    $(document).on("click", ".btnActualizarEmail", function () {
+                        var tr = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        console.log("Para actualizar", frm);
+                        btnActualizarEmail(frm);
+                    })
                 $(document).on("click", ".btnEliminarEmail", function () {
                     var tr  = $(this).parents("tr");
                     var frm = serializeSection(tr);
-                    console.log(frm);
+                    //console.log(frm);
                     btnEliminarEmail(frm,tr);
                 })
                 $(document).on("click", ".btnGuardarEmail", function () {
@@ -24,6 +43,7 @@
                             var tr = $(this).parents("tr");
                             controlesEdit(false, tr);
                         })
+                        //******************
                         $(document).on("click", ".btnEditarTel", function () {
                             var tr = $(this).parents("tr");
                             var telefono = $.trim(tr.find(".tdTelefono").text());
