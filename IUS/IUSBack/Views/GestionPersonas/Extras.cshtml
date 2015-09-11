@@ -63,7 +63,7 @@
         <h2>@persona.nombreCompleto</h2>
         <div class="col-lg-6 divImagePersona pink">
             <img class="imgPersona" src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
-            <form action="/" method="post" class="frmImagenPersona">
+            <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtraGestionPersonas")" method="post" class="frmImagenPersona">
                 <div class="row marginNull">
                     <div class="fileUpload btn">
                         <span>Seleccionar imagen</span>

@@ -60,9 +60,15 @@
         }
 // scripts
     // foto 
-        function frmImagenPersona(data,url) {
+        function frmImagenPersona(data, url, imagen) {
+            console.log("url es", url);
             accionAjaxWithImage(url, data, function (data) {
-
+                console.log(data);
+                if (data.estado) {
+                    getImageFromInputFile(imagen, function (imagen) {
+                        $(".imgPersona").attr("src", imagen.src);
+                    })
+                }
             })
         }
     // agregar email

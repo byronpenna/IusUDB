@@ -61,6 +61,7 @@ namespace IUSBack.Controllers
                     //this._RUTASGLOBALES.Add("REPOSITORIO_DIGITAL", "~/RepositorioDigital/Usuarios/");
                     rutas.Add("REPOSITORIO_DIGITAL", "~/RepositorioDigital/Usuarios/");
                     rutas.Add("LOGOS_INSTITUCIONES", "~/Content/Views/Instituciones/Logos/");
+                    rutas.Add("FOTOS_PERSONAL", "~/Recursos/Personal/");
                     rutas.Add("IUS_URL", URL_IUS);
                     return rutas;
                 }

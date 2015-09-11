@@ -10,10 +10,7 @@
                 e.preventDefault();
                 var imagen = $("#flMiniatura")[0].files[0];
                 console.log(imagen);
-                getImageFromInputFile(imagen, function (imagen) {
-                    
-                    $(".imgPersona").attr("src", imagen.src);
-                })
+                frmImagenPersona(data,$(this).attr("action"))
             })
         // click
             // email
