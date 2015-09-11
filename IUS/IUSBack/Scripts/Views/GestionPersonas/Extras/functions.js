@@ -1,60 +1,62 @@
 ﻿// genericas 
-    function getTrEmail(emailPersona){
-        var tr = "\
-        <tr>\
-            <td class='hidden'>\
-                <input type='hidden' value='"+emailPersona._idEmail+"' name='txtIdEmailPersona'/>\
-            </td>\
-            <td>"+emailPersona._email+"</td>\
-            <td>"+emailPersona._descripcion+"</td>\
-            <td>\
-                <button class='btn btnEditarEmail btn-xs' >Editar</button>\
-                <button class='btn btnEliminarEmail btn-xs'>Eliminar</button>\
-            </td>\
-        </tr>\
-        ";
-        return tr;
-    }
-    function regresarNormalidadTrEmail(emailPersona,tr) {
-        controlesEdit(false, tr);
-    }
+        function getTrEmail(emailPersona){
+            var tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input type='hidden' value='"+emailPersona._idEmail+"' name='txtIdEmailPersona'/>\
+                </td>\
+                <td>"+emailPersona._email+"</td>\
+                <td>"+emailPersona._descripcion+"</td>\
+                <td>\
+                    <button class='btn btnEditarEmail btn-xs' >Editar</button>\
+                    <button class='btn btnEliminarEmail btn-xs'>Eliminar</button>\
+                </td>\
+            </tr>\
+            ";
+            return tr;
+        }
+        function regresarNormalidadTrEmail(emailPersona,tr) {
+            tr.find(".tdEtiqueta").empty().append(emailPersona._descripcion)
+            tr.find(".tdEmail").empty().append(emailPersona._email);
+            controlesEdit(false, tr);
+        }
     // numeros
-    function getTrNumeros(telefono) {
-        var tr = "\
-        <tr>\
-            <td class='hidden'>\
-                <input name='txtHdIdTelefono' class='txtHdIdTelefono'  value='@telefono._idTelefonoPersona'/>\
-            </td>\
-            <td>"+telefono._telefono+"</td>\
-            <td>"+telefono._pais._pais+"</td>\
-            <td>"+telefono._descripcion+"</td>\
-            <td>\
-                <button class='btn btn-xs'>Editar</button>\
-                <button class='btn btnEliminarTel btn-xs'>Eliminar</button>\
-            </td>\
-        </tr>\
-        ";
-        return tr;
-    }
-    function getCbPaises(pais) {
-        var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
-        return cb;
-    }
-    function regresarNormalidadTrTel(tel,tr) {
-        tr.find(".tdTelefono").empty().append(tel._telefono);
-        tr.find(".tdPais").empty().append(tel._pais._pais);
-        tr.find(".tdEtiqueta").empty().append(tel._descripcion);
-        tr.find(".txtHdIdPais").val(tel._pais._idPais);
-        controlesEdit(false, tr);
-    }
+        function getTrNumeros(telefono) {
+            var tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input name='txtHdIdTelefono' class='txtHdIdTelefono'  value='@telefono._idTelefonoPersona'/>\
+                </td>\
+                <td>"+telefono._telefono+"</td>\
+                <td>"+telefono._pais._pais+"</td>\
+                <td>"+telefono._descripcion+"</td>\
+                <td>\
+                    <button class='btn btn-xs'>Editar</button>\
+                    <button class='btn btnEliminarTel btn-xs'>Eliminar</button>\
+                </td>\
+            </tr>\
+            ";
+            return tr;
+        }
+        function getCbPaises(pais) {
+            var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
+            return cb;
+        }
+        function regresarNormalidadTrTel(tel,tr) {
+            tr.find(".tdTelefono").empty().append(tel._telefono);
+            tr.find(".tdPais").empty().append(tel._pais._pais);
+            tr.find(".tdEtiqueta").empty().append(tel._descripcion);
+            tr.find(".txtHdIdPais").val(tel._pais._idPais);
+            controlesEdit(false, tr);
+        }
     
 // scripts
     // agregar email
-        function btnActualizarEmail(frm) {
+        function btnActualizarEmail(frm,tr) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_actualizarCorreoPersona", frm, function (data) {
-                console.log(data);
+                console.log("actualizacion mail",data);
                 if (data.estado) {
-
+                    regresarNormalidadTrEmail(data.emailActualizado, tr);
                 }
             })
         }

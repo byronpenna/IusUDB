@@ -35,8 +35,8 @@ namespace IUSLibs.RRHH.Control
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                         if (this.resultadoCorrecto(tb))
                         {
-                            if(tb[0].Rows.Count >0){
-                                DataRow row = tb[0].Rows[0];
+                            if(tb[1].Rows.Count >0){
+                                DataRow row = tb[1].Rows[0];
                                 emailActualizado = new EmailPersona((int)row["idMailPersona"],row["email"].ToString(),row["descripcion"].ToString(),(int)row["id_persona_fk"]);
                                 
                             }

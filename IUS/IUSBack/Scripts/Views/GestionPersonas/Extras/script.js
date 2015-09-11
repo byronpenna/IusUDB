@@ -20,7 +20,7 @@
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         console.log("Para actualizar", frm);
-                        btnActualizarEmail(frm);
+                        btnActualizarEmail(frm,tr);
                     })
                 $(document).on("click", ".btnEliminarEmail", function () {
                     var tr  = $(this).parents("tr");
