@@ -19,6 +19,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #endregion
         #region "funciones"
             #region "do"
+                
                 #region "emails personas"
                     public EmailPersona sp_rrhh_actualizarCorreoPersona(EmailPersona emailActualizar, int idUsuarioEjecutor, int idPagina)
                     {

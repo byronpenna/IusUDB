@@ -62,12 +62,12 @@
     <div class="row marginNull divInformacionPersonal divInformacion">
         <h2>@persona.nombreCompleto</h2>
         <div class="col-lg-6 divImagePersona">
-            <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
+            <img class="imgPersona" src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
             <form action="/" method="post" class="frmImagenPersona">
                 <div class="row marginNull">
                     <div class="fileUpload btn">
                         <span>Seleccionar imagen</span>
-                        <input type="file" class="upload" id="flMiniatura" accept="image/*" required />
+                        <input type="file" class="upload flFotoPersona" id="flMiniatura" accept="image/*" required />
                     </div>
                 </div>
                 <button class="btn">Establecer</button>

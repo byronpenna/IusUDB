@@ -20,6 +20,30 @@ namespace IUSBack.Controllers.GestionPersonas
             public int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_rrhh_setFotoInformacionPersona()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }  
             #region "correo"
                 public ActionResult sp_rrhh_actualizarCorreoPersona()
                 {

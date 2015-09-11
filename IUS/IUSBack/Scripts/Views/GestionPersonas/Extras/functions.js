@@ -59,6 +59,12 @@
             $(".txtEtiquetaTel").val("");
         }
 // scripts
+    // foto 
+        function frmImagenPersona(data,url) {
+            accionAjaxWithImage(url, data, function (data) {
+
+            })
+        }
     // agregar email
         function btnActualizarEmail(frm,tr) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_actualizarCorreoPersona", frm, function (data) {
@@ -120,7 +126,7 @@
                 })
             }
         // informacion basica
-        function btnGuardarInformacionBasica(frm) {
+            function btnGuardarInformacionBasica(frm) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
                 console.log(data);
                 if (data.estado) {

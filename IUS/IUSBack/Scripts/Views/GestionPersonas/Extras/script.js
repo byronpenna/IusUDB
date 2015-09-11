@@ -2,6 +2,19 @@
     // plugins
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
     // eventos
+        // submit 
+            $(document).on("submit", ".frmImagenPersona", function (e) {
+                var frm = new Object();
+                frm.idPersona = $(".txtHdIdPersona").val();
+                var data = getObjFormData($("#flMiniatura")[0].files, frm);
+                e.preventDefault();
+                var imagen = $("#flMiniatura")[0].files[0];
+                console.log(imagen);
+                getImageFromInputFile(imagen, function (imagen) {
+                    
+                    $(".imgPersona").attr("src", imagen.src);
+                })
+            })
         // click
             // email
                 // editar
