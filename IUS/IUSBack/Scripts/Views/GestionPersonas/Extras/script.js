@@ -6,6 +6,8 @@
             // email
                 // editar
                     $(document).on("click", ".btnCancelarUpdateEmail", function () {
+                        var tr = $(this).parents("tr");
+                        controlesEdit(false, tr);
                     })
                     $(document).on("click", ".btnEditarEmail", function () {
                         var tr          = $(this).parents("tr");

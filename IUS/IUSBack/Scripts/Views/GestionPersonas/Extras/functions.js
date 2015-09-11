@@ -20,6 +20,11 @@
             tr.find(".tdEmail").empty().append(emailPersona._email);
             controlesEdit(false, tr);
         }
+        function clearFrmAddEmail() {
+            $(".txtEmail").val("");
+            $(".txtEtiquetaEmail").val("");
+        }
+        
     // numeros
         function getTrNumeros(telefono) {
             var tr = "\
@@ -49,7 +54,10 @@
             tr.find(".txtHdIdPais").val(tel._pais._idPais);
             controlesEdit(false, tr);
         }
-    
+        function clearFrmAddTel() {
+            $(".txtTelefono").val("");
+            $(".txtEtiquetaTel").val("");
+        }
 // scripts
     // agregar email
         function btnActualizarEmail(frm,tr) {
@@ -72,7 +80,9 @@
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarCorreoPersona", frm, function (data) {
                 console.log("respuesta servidor",data);
                 if (data.estado) {
-
+                    var tr = getTrEmail(data.emailPersona);
+                    $(".tbodyEmail").prepend(tr);
+                    clearFrmAddEmail();
                 }
             })
         }
@@ -82,6 +92,7 @@
                     console.log("data servidor", data);
                     if (data.estado) {
                         regresarNormalidadTrTel(data.telefonoActualizado, tr);
+                        
                     }
                 });
             }
@@ -104,6 +115,7 @@
                     if (data.estado) {
                         var tr = getTrNumeros(data.telefonoAgregado);
                         $(".tbodyTelefonos").prepend(tr);
+                        clearFrmAddTel();
                     }
                 })
             }
