@@ -61,13 +61,18 @@
 // scripts
     // foto 
         function frmImagenPersona(data, url, imagen) {
-            console.log("url es", url);
-            accionAjaxWithImage(url, data, function (data) {
-                console.log(data);
-                if (data.estado) {
-                    getImageFromInputFile(imagen, function (imagen) {
-                        $(".imgPersona").attr("src", imagen.src);
+            getImageFromInputFile(imagen, function (imagen) {
+                if (imagen.width == imagen.height) {
+                    accionAjaxWithImage(url, data, function (data) {
+                        console.log(data);
+                        if (data.estado) {
+                            printMessage($(".divImagePersona .divResultado"), "Imagen asignada exitosamente", true);
+                            $(".imgPersona").attr("src", imagen.src);
+                        }
                     })
+                } else {
+                    //alert("La imagen debe ser cuadrada");
+                    printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
                 }
             })
         }

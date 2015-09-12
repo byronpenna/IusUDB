@@ -2,15 +2,27 @@
     // plugins
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
     // eventos
+        // change 
+            $(document).on("change", ".flFotoPersona", function (e) {
+                //console.log("Val es", );
+                if ($(this).val() == "") {
+                    $(".btnEstablecer").prop("disabled", true);
+                } else {
+                    $(".btnEstablecer").prop("disabled", false);
+                }
+                
+            })
         // submit 
             $(document).on("submit", ".frmImagenPersona", function (e) {
-                var frm = new Object();
-                frm.idPersona = $(".txtHdIdPersona").val();
-                var data = getObjFormData($("#flMiniatura")[0].files, frm);
+                var frm         = new Object();
+                frm.idPersona   = $(".txtHdIdPersona").val();
+                var files       = $("#flMiniatura")[0].files;
+                var data        = getObjFormData(files, frm);
                 e.preventDefault();
-                var imagen = $("#flMiniatura")[0].files[0];
-                console.log(imagen);
-                frmImagenPersona(data,$(this).attr("action"))
+                //var imagen = $("#flMiniatura")[0].files[0];
+                var imagen      = files[0]
+                //console.log(imagen);
+                frmImagenPersona(data, $(this).attr("action"), imagen);
             })
         // click
             // email

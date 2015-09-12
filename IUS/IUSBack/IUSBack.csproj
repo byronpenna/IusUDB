@@ -182,6 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Administracion\AdministracionController.cs" />
+    <Compile Include="Controllers\Configuraciones\GestionPersonas\FormacionPersonasController.cs" />
     <Compile Include="Controllers\Website\ConfiguracionWebsiteController.cs" />
     <Compile Include="Controllers\Errors\ErrorsController.cs" />
     <Compile Include="Controllers\Website\GestionIdiomaWebsiteController.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Models\Page\GestionInstituciones\Acciones\MediosInstitucionesModel.cs" />
     <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\ExtraGestionPersonasModel.cs" />
+    <Compile Include="Models\Page\GestionPersonas\acciones\FormacionPersonasModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\GestionPersonaModel.cs" />
     <Compile Include="Models\Page\GestionRoles\acciones\GestionRolesModel.cs" />
     <Compile Include="Models\Page\GestionRolSubmenu\Acciones\GestionRolSubmenuModel.cs" />
@@ -288,6 +290,8 @@
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
@@ -465,6 +469,8 @@
     <Content Include="Scripts\Views\GestionInstituciones\SetTel\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\Extras\functions.js" />
     <Content Include="Scripts\Views\GestionPersonas\Extras\script.js" />
+    <Content Include="Scripts\Views\GestionPersonas\FormacionPersonas\functions.js" />
+    <Content Include="Scripts\Views\GestionPersonas\FormacionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\functions.js" />
     <Content Include="Scripts\Views\GestionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionRoles\functions.js" />
@@ -618,6 +624,7 @@
     <Content Include="Views\Home\changePassword.cshtml" />
     <Content Include="Views\RepositorioCompartido\UserShare.cshtml" />
     <Content Include="Views\GestionPersonas\Extras.cshtml" />
+    <Content Include="Views\GestionPersonas\FormacionPersonas.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

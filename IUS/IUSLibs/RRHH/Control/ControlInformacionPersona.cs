@@ -119,7 +119,7 @@ namespace IUSLibs.RRHH.Control
             public InformacionPersona sp_rrhh_setFotoInformacionPersona(InformacionPersona info,int idUsuarioEjecutor,int idPagina)
             {
                 InformacionPersona infoRegresar = null;
-                SPIUS sp = new SPIUS("sp_rrhh_guardarInformacionPersona");
+                SPIUS sp = new SPIUS("sp_rrhh_setFotoInformacionPersona");
                 
                 sp.agregarParametro("foto", info._fotoRuta);
                 sp.agregarParametro("idPersona", info._persona._idPersona);
