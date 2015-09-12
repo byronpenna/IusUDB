@@ -62,13 +62,18 @@
     // foto 
         function frmImagenPersona(data, url, imagen) {
             getImageFromInputFile(imagen, function (imagen) {
-                accionAjaxWithImage(url, data, function (data) {
-                    console.log(data);
-                    if (data.estado) {
-                        $(".imgPersona").attr("src", imagen.src);
-                    }
-                })
-                
+                if (imagen.width == imagen.height) {
+                    accionAjaxWithImage(url, data, function (data) {
+                        console.log(data);
+                        if (data.estado) {
+                            printMessage($(".divImagePersona .divResultado"), "Imagen asignada exitosamente", true);
+                            $(".imgPersona").attr("src", imagen.src);
+                        }
+                    })
+                } else {
+                    //alert("La imagen debe ser cuadrada");
+                    printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
+                }
             })
         }
     // agregar email

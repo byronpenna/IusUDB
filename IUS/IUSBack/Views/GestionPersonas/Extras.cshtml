@@ -65,7 +65,7 @@
     <input  class="txtHdIdPersona" type="hidden" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
     <div class="row marginNull divInformacionPersonal divInformacion">
         <h2>@persona.nombreCompleto</h2>
-        <div class="col-lg-6 divImagePersona pink">
+        <div class="col-lg-6 divImagePersona ">
             <img class="imgPersona" src="@strFoto"/>
             <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">
                 <div class="row marginNull">
@@ -74,7 +74,8 @@
                         <input type="file" class="upload flFotoPersona" id="flMiniatura" accept="image/*" required />
                     </div>
                 </div>
-                <button class="btn">Establecer</button>
+                <button class="btn btnEstablecer" disabled>Establecer</button>
+                <div class="divResultado"></div>
             </form>
         </div>
         <div class="col-lg-6 divFrmInformacionExtra">

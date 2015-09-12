@@ -2,6 +2,16 @@
     // plugins
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
     // eventos
+        // change 
+            $(document).on("change", ".flFotoPersona", function (e) {
+                //console.log("Val es", );
+                if ($(this).val() == "") {
+                    $(".btnEstablecer").prop("disabled", true);
+                } else {
+                    $(".btnEstablecer").prop("disabled", false);
+                }
+                
+            })
         // submit 
             $(document).on("submit", ".frmImagenPersona", function (e) {
                 var frm         = new Object();

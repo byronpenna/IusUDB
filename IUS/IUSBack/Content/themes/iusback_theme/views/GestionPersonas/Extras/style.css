@@ -26,6 +26,10 @@
 /* Para la foto */
 .imgPersona{
     width:20%;
+    margin-bottom:3%;
+}
+.btnEstablecer{
+    margin-bottom:3%;
 }
 /*
     Para input file
