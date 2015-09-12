@@ -9,16 +9,19 @@ using System.Web.Script.Serialization;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.RRHH.Entidades;
 namespace IUSBack.Controllers
 {
     public class GestionPersonasController : PadreController
     {
         //
         // GET: /GestionPersonas/
+        
         #region "propiedades"
             public GestionPersonaModel _model;
             private int _idPagina = (int)paginas.gestionPersonas;
         #endregion
+            
         #region "url"
             public ActionResult Extras(int id)
             {
@@ -29,14 +32,22 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    ViewBag.selectedMenu            = 2; // menu seleccionado 
-                    Usuario usuarioSession          = this.getUsuarioSesion();
-                    Permiso permisos                = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    Dictionary<object, object> data = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
                     
-                    ViewBag.paises                  = data["paises"];
-                    ViewBag.estadosCiviles          = data["estadosCiviles"];
-                    ViewBag.informacionPersona      = data["informacionPersona"];
+                    ViewBag.selectedMenu                    = 2; // menu seleccionado 
+                    Usuario usuarioSession                  = this.getUsuarioSesion();
+                    Permiso permisos                        = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    Dictionary<object, object> data         = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
+                    InformacionPersona informarcionPersona  = (InformacionPersona)data["informacionPersona"];
+                    
+                    if (System.IO.File.Exists(informarcionPersona._fotoRuta))
+                    {
+                        informarcionPersona._tieneFoto = true;
+                        //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+                        informarcionPersona._fotoRuta = this.getRelativePathFromAbsolute(informarcionPersona._fotoRuta);
+                    }
+                    ViewBag.paises                          = data["paises"];
+                    ViewBag.estadosCiviles                  = data["estadosCiviles"];
+                    ViewBag.informacionPersona              = informarcionPersona;
 
                     ViewBag.emails                  = data["emails"];
                     ViewBag.telefonos               = data["telefonos"];

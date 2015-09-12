@@ -31,7 +31,8 @@ namespace IUSBack.Controllers.GestionPersonas
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    InformacionPersona info = new InformacionPersona(this.convertObjAjaxToInt(frm["idPersona"]));
+                    InformacionPersona info = new InformacionPersona();
+                    info._persona = new Persona(this.convertObjAjaxToInt(frm["idPersona"]));
                     if (usuarioSession != null && frm != null)
                     {
                         if (Request.Files.Count > 0)
@@ -44,8 +45,11 @@ namespace IUSBack.Controllers.GestionPersonas
                                     fileName = Path.GetFileName(file.FileName);
                                     var strExtension = Path.GetExtension(file.FileName);
                                     path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + info._persona._idPersona + "/"), info._persona._idPersona.ToString()+strExtension);
-                                    InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);
                                     file.SaveAs(path);
+                                    info._fotoRuta = path;
+                                    InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", true);
                                 }
                             }
                         }

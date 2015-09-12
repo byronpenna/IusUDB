@@ -125,6 +125,11 @@ namespace IUSBack.Controllers
                     return toReturn;
                 }
             #endregion
+            public string getRelativePathFromAbsolute(string absoultePath)
+            {
+                string appPath = System.Web.Hosting.HostingEnvironment.MapPath("~/");
+                return absoultePath.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+            }
             public Usuario getUsuarioSesion()
             {
                 Usuario usuario = null;

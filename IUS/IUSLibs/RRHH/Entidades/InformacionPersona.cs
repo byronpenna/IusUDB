@@ -16,8 +16,14 @@ namespace IUSLibs.RRHH.Entidades
             public EstadoCivil  _estadoCivil;
             public Persona      _persona;
             public string       _fotoRuta;
+            // adicionales
+            public bool         _tieneFoto = false;
         #endregion
         #region "Constructores"
+            public InformacionPersona()
+            {
+
+            }
             public InformacionPersona(int idInformacionPersona)
             {
                 this._idInformacionPersona = idInformacionPersona;

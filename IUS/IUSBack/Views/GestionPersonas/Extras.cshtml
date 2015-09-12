@@ -20,7 +20,7 @@
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
     InformacionPersona informacionPersona = null; List<EstadoCivil> estadosCiviles = null; List<Pais> paises = null;
-    Persona persona = null;
+    Persona persona = null; string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
     string selected = ""; string numeroIdentificacion = "";
     try
     {
@@ -33,6 +33,10 @@
         if (informacionPersona != null)
         {
             numeroIdentificacion = informacionPersona._numeroIdentificacion;
+        }
+        if (informacionPersona._tieneFoto)
+        {
+            strFoto = Url.Content(informacionPersona._fotoRuta);
         }
     }
     catch (Exception)
@@ -62,8 +66,8 @@
     <div class="row marginNull divInformacionPersonal divInformacion">
         <h2>@persona.nombreCompleto</h2>
         <div class="col-lg-6 divImagePersona pink">
-            <img class="imgPersona" src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
-            <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtraGestionPersonas")" method="post" class="frmImagenPersona">
+            <img class="imgPersona" src="@strFoto"/>
+            <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">
                 <div class="row marginNull">
                     <div class="fileUpload btn">
                         <span>Seleccionar imagen</span>
