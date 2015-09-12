@@ -16,6 +16,8 @@ build/
 # Para repositorio digital
 IUS/IUSBack/RepositorioDigital/Publico/**/*.*
 IUS/IUSBack/RepositorioDigital/Usuarios/**/*.*
+IUS/IUSBack/RepositorioDigital/Usuarios/**/*.*
+IUS/IUSBack/Recursos/**/*.*
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
  

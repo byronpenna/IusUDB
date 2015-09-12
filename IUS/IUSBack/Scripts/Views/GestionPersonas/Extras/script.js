@@ -2,10 +2,22 @@
     // plugins
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
     // eventos
+        // submit 
+            $(document).on("submit", ".frmImagenPersona", function (e) {
+                var frm = new Object();
+                frm.idPersona = $(".txtHdIdPersona").val();
+                var data = getObjFormData($("#flMiniatura")[0].files, frm);
+                e.preventDefault();
+                var imagen = $("#flMiniatura")[0].files[0];
+                console.log(imagen);
+                frmImagenPersona(data,$(this).attr("action"))
+            })
         // click
             // email
                 // editar
                     $(document).on("click", ".btnCancelarUpdateEmail", function () {
+                        var tr = $(this).parents("tr");
+                        controlesEdit(false, tr);
                     })
                     $(document).on("click", ".btnEditarEmail", function () {
                         var tr          = $(this).parents("tr");
@@ -20,7 +32,7 @@
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         console.log("Para actualizar", frm);
-                        btnActualizarEmail(frm);
+                        btnActualizarEmail(frm,tr);
                     })
                 $(document).on("click", ".btnEliminarEmail", function () {
                     var tr  = $(this).parents("tr");

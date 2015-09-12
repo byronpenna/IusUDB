@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+// librerias net
+    using System.IO;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
+    
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -20,6 +23,46 @@ namespace IUSBack.Controllers.GestionPersonas
             public int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_rrhh_setFotoInformacionPersona()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                string path = "";  string fileName = "";bool agregado = false;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    InformacionPersona info = new InformacionPersona(this.convertObjAjaxToInt(frm["idPersona"]));
+                    if (usuarioSession != null && frm != null)
+                    {
+                        if (Request.Files.Count > 0)
+                        {
+                            List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
+                            if (files.Count > 0)
+                            {
+                                foreach (HttpPostedFileBase file in files)
+                                {
+                                    fileName = Path.GetFileName(file.FileName);
+                                    var strExtension = Path.GetExtension(file.FileName);
+                                    path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + info._persona._idPersona + "/"), info._persona._idPersona.ToString()+strExtension);
+                                    InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);
+                                    file.SaveAs(path);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }  
             #region "correo"
                 public ActionResult sp_rrhh_actualizarCorreoPersona()
                 {

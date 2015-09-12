@@ -1,60 +1,82 @@
 ﻿// genericas 
-    function getTrEmail(emailPersona){
-        var tr = "\
-        <tr>\
-            <td class='hidden'>\
-                <input type='hidden' value='"+emailPersona._idEmail+"' name='txtIdEmailPersona'/>\
-            </td>\
-            <td>"+emailPersona._email+"</td>\
-            <td>"+emailPersona._descripcion+"</td>\
-            <td>\
-                <button class='btn btnEditarEmail btn-xs' >Editar</button>\
-                <button class='btn btnEliminarEmail btn-xs'>Eliminar</button>\
-            </td>\
-        </tr>\
-        ";
-        return tr;
-    }
-    function regresarNormalidadTrEmail(emailPersona,tr) {
-        controlesEdit(false, tr);
-    }
+        function getTrEmail(emailPersona){
+            var tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input type='hidden' value='"+emailPersona._idEmail+"' name='txtIdEmailPersona'/>\
+                </td>\
+                <td>"+emailPersona._email+"</td>\
+                <td>"+emailPersona._descripcion+"</td>\
+                <td>\
+                    <button class='btn btnEditarEmail btn-xs' >Editar</button>\
+                    <button class='btn btnEliminarEmail btn-xs'>Eliminar</button>\
+                </td>\
+            </tr>\
+            ";
+            return tr;
+        }
+        function regresarNormalidadTrEmail(emailPersona,tr) {
+            tr.find(".tdEtiqueta").empty().append(emailPersona._descripcion)
+            tr.find(".tdEmail").empty().append(emailPersona._email);
+            controlesEdit(false, tr);
+        }
+        function clearFrmAddEmail() {
+            $(".txtEmail").val("");
+            $(".txtEtiquetaEmail").val("");
+        }
+        
     // numeros
-    function getTrNumeros(telefono) {
-        var tr = "\
-        <tr>\
-            <td class='hidden'>\
-                <input name='txtHdIdTelefono' class='txtHdIdTelefono'  value='@telefono._idTelefonoPersona'/>\
-            </td>\
-            <td>"+telefono._telefono+"</td>\
-            <td>"+telefono._pais._pais+"</td>\
-            <td>"+telefono._descripcion+"</td>\
-            <td>\
-                <button class='btn btn-xs'>Editar</button>\
-                <button class='btn btnEliminarTel btn-xs'>Eliminar</button>\
-            </td>\
-        </tr>\
-        ";
-        return tr;
-    }
-    function getCbPaises(pais) {
-        var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
-        return cb;
-    }
-    function regresarNormalidadTrTel(tel,tr) {
-        tr.find(".tdTelefono").empty().append(tel._telefono);
-        tr.find(".tdPais").empty().append(tel._pais._pais);
-        tr.find(".tdEtiqueta").empty().append(tel._descripcion);
-        tr.find(".txtHdIdPais").val(tel._pais._idPais);
-        controlesEdit(false, tr);
-    }
-    
+        function getTrNumeros(telefono) {
+            var tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input name='txtHdIdTelefono' class='txtHdIdTelefono'  value='@telefono._idTelefonoPersona'/>\
+                </td>\
+                <td>"+telefono._telefono+"</td>\
+                <td>"+telefono._pais._pais+"</td>\
+                <td>"+telefono._descripcion+"</td>\
+                <td>\
+                    <button class='btn btn-xs'>Editar</button>\
+                    <button class='btn btnEliminarTel btn-xs'>Eliminar</button>\
+                </td>\
+            </tr>\
+            ";
+            return tr;
+        }
+        function getCbPaises(pais) {
+            var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
+            return cb;
+        }
+        function regresarNormalidadTrTel(tel,tr) {
+            tr.find(".tdTelefono").empty().append(tel._telefono);
+            tr.find(".tdPais").empty().append(tel._pais._pais);
+            tr.find(".tdEtiqueta").empty().append(tel._descripcion);
+            tr.find(".txtHdIdPais").val(tel._pais._idPais);
+            controlesEdit(false, tr);
+        }
+        function clearFrmAddTel() {
+            $(".txtTelefono").val("");
+            $(".txtEtiquetaTel").val("");
+        }
 // scripts
-    // agregar email
-        function btnActualizarEmail(frm) {
-            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_actualizarCorreoPersona", frm, function (data) {
+    // foto 
+        function frmImagenPersona(data, url, imagen) {
+            console.log("url es", url);
+            accionAjaxWithImage(url, data, function (data) {
                 console.log(data);
                 if (data.estado) {
-
+                    getImageFromInputFile(imagen, function (imagen) {
+                        $(".imgPersona").attr("src", imagen.src);
+                    })
+                }
+            })
+        }
+    // agregar email
+        function btnActualizarEmail(frm,tr) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_actualizarCorreoPersona", frm, function (data) {
+                console.log("actualizacion mail",data);
+                if (data.estado) {
+                    regresarNormalidadTrEmail(data.emailActualizado, tr);
                 }
             })
         }
@@ -70,7 +92,9 @@
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarCorreoPersona", frm, function (data) {
                 console.log("respuesta servidor",data);
                 if (data.estado) {
-
+                    var tr = getTrEmail(data.emailPersona);
+                    $(".tbodyEmail").prepend(tr);
+                    clearFrmAddEmail();
                 }
             })
         }
@@ -80,6 +104,7 @@
                     console.log("data servidor", data);
                     if (data.estado) {
                         regresarNormalidadTrTel(data.telefonoActualizado, tr);
+                        
                     }
                 });
             }
@@ -102,11 +127,12 @@
                     if (data.estado) {
                         var tr = getTrNumeros(data.telefonoAgregado);
                         $(".tbodyTelefonos").prepend(tr);
+                        clearFrmAddTel();
                     }
                 })
             }
         // informacion basica
-        function btnGuardarInformacionBasica(frm) {
+            function btnGuardarInformacionBasica(frm) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
                 console.log(data);
                 if (data.estado) {

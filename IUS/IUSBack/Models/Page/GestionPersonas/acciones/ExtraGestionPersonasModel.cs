@@ -19,6 +19,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #endregion
         #region "funciones"
             #region "do"
+                
                 #region "emails personas"
                     public EmailPersona sp_rrhh_actualizarCorreoPersona(EmailPersona emailActualizar, int idUsuarioEjecutor, int idPagina)
                     {
@@ -113,6 +114,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 }
                 #endregion    
                 #region "informacion persona"
+                    public InformacionPersona sp_rrhh_setFotoInformacionPersona(InformacionPersona info, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlInformacion.sp_rrhh_setFotoInformacionPersona(info, idUsuarioEjecutor, idPagina);;
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public InformacionPersona sp_rrhh_guardarInformacionPersona(InformacionPersona infoAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try
