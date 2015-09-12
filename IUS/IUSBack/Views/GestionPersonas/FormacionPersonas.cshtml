@@ -1,0 +1,33 @@
+﻿@section estilosPersonalizados{
+    <!-- plugins -->
+
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/FormacionPersonas/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/FormacionPersonas/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/script.js"></script>
+        <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/functions.js"></script>
+}
+@{
+    
+}
+@section tabs{
+    <ul>
+        <a href="@Url.Action("Extras", "GestionPersonas")">
+            <li>
+                Informacion
+            </li>
+        </a>
+        <li class="btnTab tabActive">
+            Formacion
+        </li>
+        <a href="@Url.Action("Index","RepositorioPublico")">
+            <li>
+                Laboral
+            </li>
+        </a>
+    </ul>
+}
+<h2>FormacionPersonas</h2>
