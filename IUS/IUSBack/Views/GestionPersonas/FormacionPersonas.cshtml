@@ -157,7 +157,7 @@
                 <th>
                 <input name="txtNombreCarrera" class="txtNombreCarrera form-control" /></th>
                 <th>
-                    <select class="cbNivelCarrera form-control">
+                    <select name="cbNivelCarrera" class="cbNivelCarrera form-control">
                         @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
                         {
                             foreach (NivelTitulo nivelTitulo in nivelesTitulo)
@@ -168,10 +168,10 @@
                     </select>
                 </th>
                 <th>
-                    <select class="cbInsticionesParaCarra form-control">
+                    <select class="cbInsticionesParaCarrera form-control" name="cbInsticionesParaCarrera">
                         @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
                         {
-                            string pais = "";bool abierto = false;
+                            string pais = ""; bool abierto = false;
                             foreach (InstitucionEducativa institucion in institucionesEducativas)
                             {
                                 if (pais != institucion._pais._pais)
@@ -195,7 +195,7 @@
                     </select>
                 </th>
                 <th>
-                    <button class="btn">Agregar</button>
+                    <button class="btn btnAgregarCarreraIndividual">Agregar</button>
                 </th>
             </tr>
         </thead>

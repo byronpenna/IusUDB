@@ -15,5 +15,11 @@
                 console.log("formulario a agregar",frm);
                 btnAgregarInstitucion(frm);
             })
+            $(document).on("click", ".btnAgregarCarreraIndividual", function (e) {
+                var frm = serializeSection($(this).parents("tr"));
+                console.log("formulario frm", frm);
+                btnAgregarCarreraIndividual(frm);
+            })
+            
             
 })

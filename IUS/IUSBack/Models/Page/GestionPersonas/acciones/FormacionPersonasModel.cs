@@ -15,9 +15,25 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #region "propiedades"
             private ControlFormacionPersona         _controlFormacion;
             private ControlInstitucionesEducativas  _controlInstitucionEducativa;
+            private ControlCarrera                  _controlCarrera;
         #endregion
         #region "funciones"
             #region "do"
+                public Carrera sp_rrhh_ingresarCarrera(Carrera carreraIngresar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlCarrera.sp_rrhh_ingresarCarrera(carreraIngresar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public InstitucionEducativa sp_rrhh_ingresarInstitucionEducativa(InstitucionEducativa institucionAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try
@@ -57,6 +73,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             {
                 this._controlFormacion              = new ControlFormacionPersona();
                 this._controlInstitucionEducativa   = new ControlInstitucionesEducativas();
+                this._controlCarrera                = new ControlCarrera();
             }
         #endregion
     }

@@ -134,6 +134,7 @@
     <Compile Include="RRHH\Control\ControlEmailPersona.cs" />
     <Compile Include="RRHH\Control\ControlInformacionPersona.cs" />
     <Compile Include="RRHH\Control\ControlTelefonoPersona.cs" />
+    <Compile Include="RRHH\Control\Formacion\ControlCarrera.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlFormacionPersona.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlInstitucionesEducativas.cs" />
     <Compile Include="RRHH\Entidades\EmailPersona.cs" />

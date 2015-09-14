@@ -10,7 +10,7 @@ namespace IUSLibs.RRHH.Entidades.Formacion
         #region "propiedades"
             public int                  _idCarrera;
             public string               _carrera;
-            public NivelTitulo          _nivelCarrera;
+            public NivelTitulo          _nivelTitulo;
             public InstitucionEducativa _institucion;
             
         #endregion
@@ -19,6 +19,24 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             {
                 this._idCarrera = idCarrera;
             }
+            public Carrera(int idCarrera,string carrera,int idNivelTitulo,int idInstitucion)
+            {
+                this._idCarrera = idCarrera;
+                this._carrera = carrera;
+                NivelTitulo nivelTitulo = new NivelTitulo(idNivelTitulo);
+                this._nivelTitulo = nivelTitulo;
+                InstitucionEducativa institucion = new InstitucionEducativa(idInstitucion);
+                this._institucion = institucion;
+            }
+            // para agregar 
+                public Carrera(string carrera, int idNivelTitulo, int idInstitucion)
+                {
+                    this._carrera = carrera;
+                    NivelTitulo nivelTitulo = new NivelTitulo(idNivelTitulo);
+                    this._nivelTitulo = nivelTitulo;
+                    InstitucionEducativa institucion = new InstitucionEducativa(idInstitucion);
+                    this._institucion = institucion;
+                }
         #endregion
     }
 }
