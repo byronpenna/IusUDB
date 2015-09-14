@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.RRHH.Entidades.Formacion
+@section estilosPersonalizados{
     <!-- plugins -->
 
     <!-- Propios -->
@@ -11,6 +12,13 @@
         <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/functions.js"></script>
 }
 @{
+    List<EstadoCarrera> estadosCarrera=null;
+    try{
+        Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
+        estadosCarrera = (List<EstadoCarrera>)info["estadosCarrera"];
+    }catch(Exception){
+        
+    }
     
 }
 @section tabs{
@@ -60,7 +68,13 @@
             </td>
             <td>
                 <select class="cbEstadoCarrera">
-
+                    @if (estadosCarrera != null && estadosCarrera.Count > 0)
+                    {
+                        foreach (EstadoCarrera estadoCarrera in estadosCarrera)
+                        {
+                            <option value="@estadoCarrera._idEstadoCarrera">@estadoCarrera._estado</option>   
+                        }
+                    }
                 </select>
             </td>
         </tr>

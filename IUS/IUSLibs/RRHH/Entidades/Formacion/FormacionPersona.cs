@@ -18,6 +18,10 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             public EstadoCarrera    _estado;
         #endregion
         #region "Constructores"
+            public FormacionPersona(int idFormacionPersona)
+            {
+                this._idFormacionPersona = idFormacionPersona;
+            }
             
         #endregion
     }

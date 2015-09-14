@@ -28,12 +28,14 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
                 try
                 {
-                    ViewBag.selectedMenu    = 2; // menu seleccionado 
-                    Usuario usuarioSession  = this.getUsuarioSesion();
+                    ViewBag.selectedMenu        = 2; // menu seleccionado 
+                    Usuario usuarioSession      = this.getUsuarioSesion();
                     // viewbag
-                    ViewBag.titleModulo     = "Información adicional personas";
-                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-
+                    ViewBag.titleModulo         = "Información adicional personas";
+                    ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    Dictionary<object, object> 
+                        informacionIni          = this._model.sp_rrhh_getInfoInicialFormacion(id, usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.infoIni             = informacionIni;
                 }
                 catch (ErroresIUS x)
                 {
