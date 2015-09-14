@@ -28,7 +28,8 @@ namespace IUSLibs.RRHH.Control.Formacion
                 {
                     List<EstadoCarrera> estadosCarrera = null; EstadoCarrera estadoCarrera;
                     List<Pais> paises = null; Pais pais;/**/ List<InstitucionEducativa> institucionesEducativas=null; InstitucionEducativa institucionEducativa;
-                    List<NivelTitulo> nivelesTitulo = null; NivelTitulo nivelTitulo; 
+                    List<NivelTitulo> nivelesTitulo = null; NivelTitulo nivelTitulo;
+                    List<Carrera> carreras = null; Carrera carrera;
                     Persona persona = null; 
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
@@ -84,6 +85,13 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 {
                                     nivelTitulo = new NivelTitulo((int)row["idNivel"], row["nombre_nivel"].ToString());
                                     nivelesTitulo.Add(nivelTitulo);
+                                }
+                            }
+                            if (tb[5].Rows.Count > 0)
+                            {
+                                carreras = new List<Carrera>();
+                                foreach (DataRow row in tb[4].Rows)
+                                {
                                 }
                             }
                         }
