@@ -1,5 +1,6 @@
 ﻿@using IUSLibs.RRHH.Entidades.Formacion
 @using IUSLibs.SEC.Entidades
+@using IUSLibs.FrontUI.Entidades
 @section estilosPersonalizados{
     <!-- plugins -->
 
@@ -14,14 +15,16 @@
 }
 @{
     List<EstadoCarrera> estadosCarrera=null;Persona persona= null;
+    List<Pais> paises=null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
-        estadosCarrera = (List<EstadoCarrera>)info["estadosCarrera"];
-        persona = (Persona)info["persona"];
+        estadosCarrera                  = (List<EstadoCarrera>)info["estadosCarrera"];
+        persona                         = (Persona)info["persona"];
+        paises                          = (List<Pais>)info["paises"];
+        
     }catch(Exception){
         
     }
-    
 }
 @section tabs{
     <ul>
@@ -107,7 +110,8 @@
     </table>
 </div>
 <div class="row marginNull divTab divInstituciones hidden">
-   <table class="table">
+    <h3 class="tituloTabDiv">Instituciones educativas</h3>
+    <table class="table">
        <thead>
            <tr>
                <th>Institucion educativa</th>
@@ -120,11 +124,15 @@
                </th>
                <th>
                    <select name="cbPaisInstitucionEducativa" class="form-control cbPaisInstitucionEducativa">
-
+                       @if(paises != null && paises.Count> 0){
+                           foreach(Pais pais in paises){
+                               <option value="@pais._idPais">@pais._pais</option>
+                           }
+                       }
                    </select>
                </th>
                <th>
-                   <button class="btn">Agregar institucion</button>
+                   <button class="btn btnAgregarInstitucion">Agregar institucion</button>
                </th>
            </tr>
        </thead>

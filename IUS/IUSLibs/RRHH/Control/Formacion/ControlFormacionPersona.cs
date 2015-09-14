@@ -14,6 +14,7 @@ using System.Text;
     // ---------------------
         using IUSLibs.RRHH.Entidades.Formacion;
         using IUSLibs.SEC.Entidades;
+        using IUSLibs.FrontUI.Entidades;
 namespace IUSLibs.RRHH.Control.Formacion
 {
     public class ControlFormacionPersona:PadreLib
@@ -26,6 +27,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                 public Dictionary<object, object> sp_rrhh_getInfoInicialFormacion(int idPersona,int idUsuarioEjecutor, int idPagina)
                 {
                     List<EstadoCarrera> estadosCarrera = null; EstadoCarrera estadoCarrera;
+                    List<Pais> paises = null; Pais pais;
                     Persona persona = null;
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
@@ -39,6 +41,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         {
                             if (tb[0].Rows.Count > 0)
                             {
+                                // estados de carrera
                                 estadosCarrera = new List<EstadoCarrera>();
                                 foreach (DataRow row in tb[0].Rows)
                                 {
@@ -48,9 +51,20 @@ namespace IUSLibs.RRHH.Control.Formacion
                             }
                             if (tb[1].Rows.Count > 0)
                             {
+                                // persona
                                 DataRow row = tb[1].Rows[0];
                                 persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString());
 
+                            }
+                            if (tb[2].Rows.Count > 0)
+                            {
+                                paises = new List<Pais>();
+                                // paises 
+                                foreach (DataRow row in tb[2].Rows)
+                                {
+                                    pais = new Pais((int)row["idPais"], row["pais"].ToString());
+                                    paises.Add(pais);
+                                }
                             }
                         }
                         else
@@ -61,6 +75,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         }
                         retorno.Add("estadosCarrera", estadosCarrera);
                         retorno.Add("persona", persona);
+                        retorno.Add("paises", paises);
                     }
                     catch (ErroresIUS x)
                     {
