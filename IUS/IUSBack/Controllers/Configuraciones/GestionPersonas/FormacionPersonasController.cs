@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.RRHH.Entidades.Formacion;
 namespace IUSBack.Controllers.Configuraciones.GestionPersonas
 {
     public class FormacionPersonasController : PadreController
@@ -47,6 +48,36 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     return RedirectToAction("Unhandled", "Errors");
                 }
                 return View("~/Views/GestionPersonas/FormacionPersonas.cshtml");
+            }
+        #endregion
+        #region "resultados ajax"
+            public ActionResult sp_rrhh_ingresarInstitucionEducativa()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        InstitucionEducativa institucionAgregar = new InstitucionEducativa(frm["txtInstitucionEducativa"].ToString(), this.convertObjAjaxToInt(frm["cbPaisInstitucionEducativa"]));
+                        InstitucionEducativa institucionAgregada = this._model.sp_rrhh_ingresarInstitucionEducativa(institucionAgregar, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("institucionEducativa", institucionAgregada);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
             }
         #endregion
         #region "constructores"

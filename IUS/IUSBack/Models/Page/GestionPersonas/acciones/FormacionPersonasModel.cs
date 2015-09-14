@@ -7,16 +7,32 @@ using System.Web;
 // Externas
     using IUSLibs.LOGS;
     using IUSLibs.RRHH.Control.Formacion;
+    using IUSLibs.RRHH.Entidades.Formacion;
 namespace IUSBack.Models.Page.GestionPersonas.acciones
 {
     public class FormacionPersonasModel:PadreModel
     {
         #region "propiedades"
-            private ControlFormacionPersona _controlFormacion;
+            private ControlFormacionPersona         _controlFormacion;
+            private ControlInstitucionesEducativas  _controlInstitucionEducativa;
         #endregion
         #region "funciones"
             #region "do"
-                
+                public InstitucionEducativa sp_rrhh_ingresarInstitucionEducativa(InstitucionEducativa institucionAgregar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlInstitucionEducativa.sp_rrhh_ingresarInstitucionEducativa(institucionAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "get"
                 public Dictionary<object, object> sp_rrhh_getInfoInicialFormacion(int idPersona, int idUsuarioEjecutor, int idPagina)
@@ -39,7 +55,8 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #region "constructores"
             public FormacionPersonasModel()
             {
-                this._controlFormacion = new ControlFormacionPersona();
+                this._controlFormacion              = new ControlFormacionPersona();
+                this._controlInstitucionEducativa   = new ControlInstitucionesEducativas();
             }
         #endregion
     }

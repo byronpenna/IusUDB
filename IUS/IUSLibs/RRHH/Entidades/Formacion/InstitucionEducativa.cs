@@ -18,6 +18,20 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             {
                 this._idInstitucion = idInstitucion;
             }
+            public InstitucionEducativa(int idInstitucion,string nombre,int idPais)
+            {
+                Pais pais = new Pais(idPais);
+                this._nombre        = nombre;
+                this._idInstitucion = idInstitucion;
+                this._pais          = pais;
+            }
+            // para agregar
+            public InstitucionEducativa(string nombre, int idPais)
+            {
+                Pais pais = new Pais(idPais);
+                this._nombre = nombre;
+                this._pais = pais;
+            }
         #endregion
     }
 }
