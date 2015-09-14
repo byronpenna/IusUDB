@@ -10,4 +10,10 @@
                 $("." + selector).removeClass("hidden");
                 $(this).addClass("activeVista");
             })
+            $(document).on("click", ".btnAgregarInstitucion", function (e) {
+                var frm = serializeSection($(this).parents("tr"));
+                console.log("formulario a agregar",frm);
+                btnAgregarInstitucion(frm);
+            })
+            
 })
