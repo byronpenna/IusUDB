@@ -1,8 +1,19 @@
-﻿.titlePersona{
+﻿.divControles .titlePersona, .tituloTabDiv{
     text-align:center;
+    
 }
+.tituloTabDiv {
+    margin-top:3%;
+}
+.divControles .titlePersona{
+    margin-bottom:3%;
+}
+
 
 .accionesDiv a{
     color:#95A5A6;
     margin-left:3%;
 }
+.activeVista{
+    color:#3498db !important;  
+} 

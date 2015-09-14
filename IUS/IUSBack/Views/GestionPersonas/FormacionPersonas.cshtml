@@ -41,11 +41,12 @@
     </ul>
     
 }
-<div class="row marginNull">
-    <div class="col-lg-offset-4 col-lg-4 text-center">
+<div class="row marginNull divControles">
+    <h2 class="titlePersona">@persona.nombreCompleto</h2>
+    <div class="col-lg-offset-5 col-lg-2 text-center">
         <label>Vistas</label>
         <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
-            <a href="#" id="divInformacionCarreras" class="icoVista" title="titulos persona">
+            <a href="#" id="divInformacionCarreras" class="icoVista activeVista" title="titulos persona">
                 <i class="fa fa-user"></i>
             </a>
             <a href="#" class="icoVista" title="Carreras">
@@ -58,8 +59,7 @@
     </div>
 </div>
 <div class="row marginNull divTab divInformacionCarreras">
-    <h2 class="titlePersona">@persona.nombreCompleto</h2>
-    <h3>Carreras</h3>
+    <h3 class="tituloTabDiv">Carreras</h3>
     <table class="table tbCarreras">
         <thead>
             <tr>
@@ -68,6 +68,7 @@
                 <td>Año Fin</td>
                 <td>Observaciones</td>
                 <td>Estado</td>
+                <td>Acciones</td>
             </tr>
             <tr>
                 <td>
@@ -93,6 +94,9 @@
                         }
                     </select>
                 </td>
+                <td>
+                    <button class="btn btnAgregarCarrera">Agregar</button>
+                </td>
             </tr>
         </thead>
         <tbody>
@@ -102,6 +106,44 @@
         </tbody>
     </table>
 </div>
-<div class="row marginNull divTab divInstituciones">
-    Aqui agregaremos las instituciones
+<div class="row marginNull divTab divInstituciones hidden">
+   <table class="table">
+       <thead>
+           <tr>
+               <th>Institucion educativa</th>
+               <th>País</th>
+               <th>Acciones</th>
+           </tr>
+           <tr>
+               <th>
+                   <input name="txtInstitucionEducativa" class="form-control txtInstitucionEducativa" />
+               </th>
+               <th>
+                   <select name="cbPaisInstitucionEducativa" class="form-control cbPaisInstitucionEducativa">
+
+                   </select>
+               </th>
+               <th>
+                   <button class="btn">Agregar institucion</button>
+               </th>
+           </tr>
+       </thead>
+       <tbody>
+           
+       </tbody>
+   </table>
+</div>
+<div class="row marginNull divTab divCarrearas hidden">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre carrera</th>
+                <th>Nivel carrera</th>
+                <th>Institucion</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 </div>
