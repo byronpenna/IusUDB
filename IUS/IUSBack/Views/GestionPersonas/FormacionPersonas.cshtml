@@ -16,13 +16,14 @@
 @{
     List<EstadoCarrera> estadosCarrera=null;Persona persona= null;
     List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
+    List<NivelTitulo> nivelesTitulo = null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
         estadosCarrera                  = (List<EstadoCarrera>)info["estadosCarrera"];
         persona                         = (Persona)info["persona"];
         paises                          = (List<Pais>)info["paises"];
         institucionesEducativas         = (List<InstitucionEducativa>)info["instituciones"];
-        
+        nivelesTitulo                   = (List<NivelTitulo>)info["nivelesTitulo"];
     }catch(Exception){
         
     }
@@ -156,7 +157,15 @@
                 <th>
                 <input name="txtNombreCarrera" class="txtNombreCarrera form-control" /></th>
                 <th>
-                    <select class="cbNivelCarrera form-control"></select>
+                    <select class="cbNivelCarrera form-control">
+                        @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
+                        {
+                            foreach (NivelTitulo nivelTitulo in nivelesTitulo)
+                            {
+                                <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                            }
+                        }
+                    </select>
                 </th>
                 <th>
                     <select class="cbInsticionesParaCarra form-control">
