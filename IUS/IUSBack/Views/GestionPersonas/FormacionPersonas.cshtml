@@ -15,12 +15,13 @@
 }
 @{
     List<EstadoCarrera> estadosCarrera=null;Persona persona= null;
-    List<Pais> paises=null;
+    List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
         estadosCarrera                  = (List<EstadoCarrera>)info["estadosCarrera"];
         persona                         = (Persona)info["persona"];
         paises                          = (List<Pais>)info["paises"];
+        institucionesEducativas         = (List<InstitucionEducativa>)info["instituciones"];
         
     }catch(Exception){
         
@@ -62,7 +63,7 @@
     </div>
 </div>
 <div class="row marginNull divTab divInformacionCarreras">
-    <h3 class="tituloTabDiv">Carreras</h3>
+    <h3 class="tituloTabDiv">Titulos</h3>
     <table class="table tbCarreras">
         <thead>
             <tr>
@@ -142,12 +143,51 @@
    </table>
 </div>
 <div class="row marginNull divTab divCarreras hidden">
-    <table>
+    <h3 class="tituloTabDiv">Carreras</h3>
+    <table class="table">
         <thead>
             <tr>
                 <th>Nombre carrera</th>
                 <th>Nivel carrera</th>
                 <th>Institucion</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <th>
+                <input name="txtNombreCarrera" class="txtNombreCarrera form-control" /></th>
+                <th>
+                    <select class="cbNivelCarrera form-control"></select>
+                </th>
+                <th>
+                    <select class="cbInsticionesParaCarra form-control">
+                        @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
+                        {
+                            string pais = "";bool abierto = false;
+                            foreach (InstitucionEducativa institucion in institucionesEducativas)
+                            {
+                                if (pais != institucion._pais._pais)
+                                {
+                                    pais = institucion._pais._pais;
+                                    if (abierto == true)
+                                    {
+                                        new HtmlString("</optgroup>");
+                                        abierto = false;
+                                    }
+                                    @(new HtmlString("<optgroup label='" + pais + "'>"));
+                                    abierto = true;
+                                }
+                                <option value="@institucion._idInstitucion">@institucion._nombre</option>
+                            }
+                            if (abierto == true)
+                            {
+                                @(new HtmlString("</optgroup>"));
+                            }
+                        }
+                    </select>
+                </th>
+                <th>
+                    <button class="btn">Agregar</button>
+                </th>
             </tr>
         </thead>
         <tbody>

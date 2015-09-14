@@ -27,7 +27,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                 public Dictionary<object, object> sp_rrhh_getInfoInicialFormacion(int idPersona,int idUsuarioEjecutor, int idPagina)
                 {
                     List<EstadoCarrera> estadosCarrera = null; EstadoCarrera estadoCarrera;
-                    List<Pais> paises = null; Pais pais;
+                    List<Pais> paises = null; Pais pais;/**/ List<InstitucionEducativa> institucionesEducativas=null; InstitucionEducativa institucionEducativa;
                     Persona persona = null;
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
@@ -66,6 +66,16 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     paises.Add(pais);
                                 }
                             }
+                            if (tb[3].Rows.Count > 0)
+                            {
+                                institucionesEducativas = new List<InstitucionEducativa>();
+                                foreach (DataRow row in tb[3].Rows)
+                                {
+                                    institucionEducativa = new InstitucionEducativa((int)row["idInstitucion"],row["nombre"].ToString(),(int)row["id_pais_fk"]);
+                                    institucionEducativa._pais._pais = row["pais"].ToString();
+                                    institucionesEducativas.Add(institucionEducativa);
+                                }
+                            }
                         }
                         else
                         {
@@ -76,6 +86,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         retorno.Add("estadosCarrera", estadosCarrera);
                         retorno.Add("persona", persona);
                         retorno.Add("paises", paises);
+                        retorno.Add("instituciones", institucionesEducativas);
                     }
                     catch (ErroresIUS x)
                     {
