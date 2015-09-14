@@ -19,7 +19,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             private int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "acciones url"
-            public ActionResult Index()
+            public ActionResult Index(int id)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)

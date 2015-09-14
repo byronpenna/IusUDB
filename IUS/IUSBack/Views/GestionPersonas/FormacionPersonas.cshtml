@@ -15,7 +15,7 @@
 }
 @section tabs{
     <ul>
-        <a href="@Url.Action("Extras", "GestionPersonas")">
+        <a href="@Url.Action("Extras", "GestionPersonas",new {id=43})">
             <li>
                 Informacion
             </li>
@@ -32,5 +32,42 @@
     
 }
 <table>
-    <thead></thead>
+    <thead>
+        <tr>
+            <td>Carrera</td>
+            <td>Año Inicio</td>
+            <td>Año Fin</td>
+            <td>Observaciones</td>
+            <td>Estado</td>
+        </tr>
+        <tr>
+            <td>
+                <select class="cbCarrera">
+
+                </select>
+            </td>
+            <td>
+                <input name="txtYearInicio" class="txtYearInicio" />
+            </td>
+            <td>
+                <input name="txtYearFin" class="txtYearFin" />
+            </td>
+            <td>
+                <textarea name="txtAreaObservaciones" class="txtAreaObservaciones"></textarea>
+            </td>
+            <td>
+                <input class="txtNombrePersona"/>
+            </td>
+            <td>
+                <select class="cbEstadoCarrera">
+
+                </select>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+        </tr>
+    </tbody>
 </table>
