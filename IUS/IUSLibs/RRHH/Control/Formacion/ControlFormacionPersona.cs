@@ -13,6 +13,7 @@ using System.Text;
         using IUSLibs.LOGS;
     // ---------------------
         using IUSLibs.RRHH.Entidades.Formacion;
+        using IUSLibs.SEC.Entidades;
 namespace IUSLibs.RRHH.Control.Formacion
 {
     public class ControlFormacionPersona:PadreLib
@@ -25,6 +26,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                 public Dictionary<object, object> sp_rrhh_getInfoInicialFormacion(int idPersona,int idUsuarioEjecutor, int idPagina)
                 {
                     List<EstadoCarrera> estadosCarrera = null; EstadoCarrera estadoCarrera;
+                    Persona persona = null;
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
                     sp.agregarParametro("idPersona", idPersona);
@@ -44,6 +46,12 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     estadosCarrera.Add(estadoCarrera);
                                 }
                             }
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString());
+
+                            }
                         }
                         else
                         {
@@ -52,7 +60,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                             throw x;
                         }
                         retorno.Add("estadosCarrera", estadosCarrera);
-
+                        retorno.Add("persona", persona);
                     }
                     catch (ErroresIUS x)
                     {

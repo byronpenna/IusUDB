@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.RRHH.Entidades.Formacion
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- plugins -->
 
@@ -12,10 +13,11 @@
         <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/functions.js"></script>
 }
 @{
-    List<EstadoCarrera> estadosCarrera=null;
+    List<EstadoCarrera> estadosCarrera=null;Persona persona= null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
         estadosCarrera = (List<EstadoCarrera>)info["estadosCarrera"];
+        persona = (Persona)info["persona"];
     }catch(Exception){
         
     }
@@ -39,49 +41,67 @@
     </ul>
     
 }
-<table>
-    <thead>
-        <tr>
-            <td>Carrera</td>
-            <td>Año Inicio</td>
-            <td>Año Fin</td>
-            <td>Observaciones</td>
-            <td>Estado</td>
-        </tr>
-        <tr>
-            <td>
-                <select class="cbCarrera">
-
-                </select>
-            </td>
-            <td>
-                <input name="txtYearInicio" class="txtYearInicio" />
-            </td>
-            <td>
-                <input name="txtYearFin" class="txtYearFin" />
-            </td>
-            <td>
-                <textarea name="txtAreaObservaciones" class="txtAreaObservaciones"></textarea>
-            </td>
-            <td>
-                <input class="txtNombrePersona"/>
-            </td>
-            <td>
-                <select class="cbEstadoCarrera">
-                    @if (estadosCarrera != null && estadosCarrera.Count > 0)
-                    {
-                        foreach (EstadoCarrera estadoCarrera in estadosCarrera)
+<div class="row marginNull">
+    <div class="col-lg-offset-4 col-lg-4 text-center">
+        <label>Vistas</label>
+        <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
+            <a href="#" id="divInformacionCarreras" class="icoVista" title="titulos persona">
+                <i class="fa fa-user"></i>
+            </a>
+            <a href="#" class="icoVista" title="Carreras">
+                <i class="fa fa-graduation-cap"></i>
+            </a>
+            <a href="#" id="divInstituciones" class="icoVista" title="Instituciones educativas">
+                <i class="fa fa-university"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row marginNull divTab divInformacionCarreras">
+    <h2 class="titlePersona">@persona.nombreCompleto</h2>
+    <h3>Carreras</h3>
+    <table class="table tbCarreras">
+        <thead>
+            <tr>
+                <td>Carrera</td>
+                <td>Año Inicio</td>
+                <td>Año Fin</td>
+                <td>Observaciones</td>
+                <td>Estado</td>
+            </tr>
+            <tr>
+                <td>
+                    <select class="cbCarrera form-control"></select>
+                </td>
+                <td>
+                    <input name="txtYearInicio" class="txtYearInicio form-control" />
+                </td>
+                <td>
+                    <input name="txtYearFin" class="txtYearFin form-control" />
+                </td>
+                <td>
+                    <textarea name="txtAreaObservaciones" class="txtAreaObservaciones form-control"></textarea>
+                </td>
+                <td>
+                    <select name="cbEstadoCarrera" class="cbEstadoCarrera form-control">
+                        @if (estadosCarrera != null && estadosCarrera.Count > 0)
                         {
-                            <option value="@estadoCarrera._idEstadoCarrera">@estadoCarrera._estado</option>   
+                            foreach (EstadoCarrera estadoCarrera in estadosCarrera)
+                            {
+                                <option value="@estadoCarrera._idEstadoCarrera">@estadoCarrera._estado</option>
+                            }
                         }
-                    }
-                </select>
-            </td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+                    </select>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row marginNull divTab divInstituciones">
+    Aqui agregaremos las instituciones
+</div>

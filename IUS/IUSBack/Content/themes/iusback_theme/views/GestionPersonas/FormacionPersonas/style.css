@@ -1,1 +1,8 @@
-﻿
+﻿.titlePersona{
+    text-align:center;
+}
+
+.accionesDiv a{
+    color:#95A5A6;
+    margin-left:3%;
+}
