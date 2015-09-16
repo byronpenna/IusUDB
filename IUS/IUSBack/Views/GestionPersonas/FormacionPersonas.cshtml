@@ -140,7 +140,20 @@
            </tr>
        </thead>
        <tbody>
-           
+           @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
+           {
+               foreach (InstitucionEducativa institucion in institucionesEducativas)
+               {
+                   <tr>
+                       <td>@institucion._nombre</td>
+                       <td>@institucion._pais._pais</td>
+                       <td>
+                           <button class="btn">Editar</button>
+                           <button class="btn">Eliminar</button>
+                       </td>
+                   </tr>
+               }
+           }
        </tbody>
    </table>
 </div>
