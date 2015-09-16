@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.RRHH.Entidades.Formacion;
 namespace IUSBack.Controllers.Configuraciones.GestionPersonas
 {
     public class FormacionPersonasController : PadreController
@@ -19,7 +20,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             private int _idPagina = (int)paginas.gestionPersonas;
         #endregion
         #region "acciones url"
-            public ActionResult Index()
+            public ActionResult Index(int id)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
@@ -28,12 +29,14 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
                 try
                 {
-                    ViewBag.selectedMenu    = 2; // menu seleccionado 
-                    Usuario usuarioSession  = this.getUsuarioSesion();
+                    ViewBag.selectedMenu        = 2; // menu seleccionado 
+                    Usuario usuarioSession      = this.getUsuarioSesion();
                     // viewbag
-                    ViewBag.titleModulo     = "Información adicional personas";
-                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-
+                    ViewBag.titleModulo         = "Información adicional personas";
+                    ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    Dictionary<object, object> 
+                        informacionIni          = this._model.sp_rrhh_getInfoInicialFormacion(id, usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.infoIni             = informacionIni;
                 }
                 catch (ErroresIUS x)
                 {
@@ -45,6 +48,64 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     return RedirectToAction("Unhandled", "Errors");
                 }
                 return View("~/Views/GestionPersonas/FormacionPersonas.cshtml");
+            }
+        #endregion
+        #region "resultados ajax"
+            public ActionResult sp_rrhh_ingresarCarrera()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        Carrera carreraAgregar  = new Carrera(frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]));
+                        Carrera carreraAgregada = this._model.sp_rrhh_ingresarCarrera(carreraAgregar, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("carreraAgregada", carreraAgregada);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
+            public ActionResult sp_rrhh_ingresarInstitucionEducativa()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        InstitucionEducativa institucionAgregar = new InstitucionEducativa(frm["txtInstitucionEducativa"].ToString(), this.convertObjAjaxToInt(frm["cbPaisInstitucionEducativa"]));
+                        InstitucionEducativa institucionAgregada = this._model.sp_rrhh_ingresarInstitucionEducativa(institucionAgregar, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("institucionEducativa", institucionAgregada);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
             }
         #endregion
         #region "constructores"

@@ -140,6 +140,12 @@ namespace IUSLibs.RRHH.Control
                             }
                         }
                     }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
                 }
                 catch (ErroresIUS x)
                 {
