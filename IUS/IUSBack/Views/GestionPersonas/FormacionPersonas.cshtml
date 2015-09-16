@@ -141,6 +141,7 @@
     </table>
 </div>
 <div class="row marginNull divTab divInstituciones hidden">
+    <!-- Instituciones educativas -->
     <h3 class="tituloTabDiv">Instituciones educativas</h3>
     <table class="table">
        <thead>
@@ -187,6 +188,7 @@
    </table>
 </div>
 <div class="row marginNull divTab divCarreras hidden">
+    <!-- carreras -->
     <h3 class="tituloTabDiv">Carreras</h3>
     <table class="table">
         <thead>
@@ -198,7 +200,8 @@
             </tr>
             <tr>
                 <th>
-                <input name="txtNombreCarrera" class="txtNombreCarrera form-control" /></th>
+                    <input name="txtNombreCarrera" class="txtNombreCarrera form-control" />
+                </th>
                 <th>
                     <select name="cbNivelCarrera" class="cbNivelCarrera form-control">
                         @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
@@ -249,12 +252,15 @@
                 foreach (Carrera carrera in carreras)
                 {
                     <tr>
+                        <td class="hidden">
+                            <input class="txtHdIdCarrera" name="txtHdIdCarrera" value="@carrera._idCarrera"/>
+                        </td>
                         <td>@carrera._carrera</td>
                         <td>@carrera._nivelTitulo._nombreNivel</td>
                         <td>@carrera._institucion._nombre</td>
                         <td>
                             <button class="btnEditarCarrera btn">Editar</button>
-                            <button class="btn">Eliminar</button>
+                            <button class="btn btnEliminarCarrera">Eliminar</button>
                             <!--<button class="btn">Cancelar</button>-->
                         </td>
                     </tr>

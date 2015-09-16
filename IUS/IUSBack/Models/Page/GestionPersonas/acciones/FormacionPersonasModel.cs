@@ -52,21 +52,36 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     }
                 #endregion
                 #region "carrera"
+                    public bool sp_rrhh_eliminarCarrera(int idCarrera, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlCarrera.sp_rrhh_eliminarCarrera(idCarrera, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }    
                     public Carrera sp_rrhh_ingresarCarrera(Carrera carreraIngresar, int idUsuarioEjecutor, int idPagina)
-                {
-                    try
                     {
-                        return this._controlCarrera.sp_rrhh_ingresarCarrera(carreraIngresar, idUsuarioEjecutor, idPagina);
+                        try
+                        {
+                            return this._controlCarrera.sp_rrhh_ingresarCarrera(carreraIngresar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
                 #endregion
                 #region "institucion educativa"
                     public bool sp_rrhh_eliminarInstitucionEducativa(int idInstitucionFormacion, int idUsuarioEjecutor, int idPagina)

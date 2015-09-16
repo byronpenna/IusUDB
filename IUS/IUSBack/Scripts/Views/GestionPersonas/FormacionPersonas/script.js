@@ -24,6 +24,13 @@
                     btnAgregarInstitucion(frm);
                 })
             // carreras 
+                
+                $(document).on("click", ".btnEliminarCarrera", function (e) {
+                    var tr = $(this).parents("tr");
+                    var frm = serializeSection(tr);
+                    console.log(frm);
+                    btnEliminarCarrera(frm, tr);
+                })
                 $(document).on("click", ".btnAgregarCarreraIndividual", function (e) {
                 var frm = serializeSection($(this).parents("tr"));
                 console.log("formulario frm", frm);

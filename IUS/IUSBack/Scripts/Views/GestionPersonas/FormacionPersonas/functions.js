@@ -14,7 +14,14 @@
             })
         }
     // carreras
-
+        function btnEliminarCarrera(frm,tr) {
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_eliminarCarrera", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }
         function btnAgregarCarreraIndividual(frm) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarCarrera", frm, function (data) {
                 console.log("Data servidor", data);

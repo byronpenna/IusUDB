@@ -108,6 +108,33 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
             #endregion
             #region "carreras"
+                public ActionResult sp_rrhh_eliminarCarrera()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            bool estado = this._model.sp_rrhh_eliminarCarrera(this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", estado);
+                        }
+                        
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_rrhh_ingresarCarrera()
                 {
                     Dictionary<object, object> frm, respuesta = null;

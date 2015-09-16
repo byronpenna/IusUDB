@@ -19,6 +19,32 @@ namespace IUSLibs.RRHH.Control.Formacion
     {
         #region "funciones"
             #region "do"
+                public bool sp_rrhh_eliminarCarrera(int idCarrera, int idUsuarioEjecutor, int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarCarrera");
+
+                    sp.agregarParametro("idCarrera", idCarrera);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
                 public Carrera sp_rrhh_ingresarCarrera(Carrera carreraIngresar,int idUsuarioEjecutor,int idPagina)
                 {
                     Carrera carreraIngresada = null;
