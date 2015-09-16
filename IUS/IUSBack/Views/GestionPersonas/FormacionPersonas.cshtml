@@ -16,7 +16,7 @@
 @{
     List<EstadoCarrera> estadosCarrera=null;Persona persona= null;
     List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
-    List<NivelTitulo> nivelesTitulo = null;
+    List<NivelTitulo> nivelesTitulo = null; List<Carrera> carreras = null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
         estadosCarrera                  = (List<EstadoCarrera>)info["estadosCarrera"];
@@ -24,6 +24,7 @@
         paises                          = (List<Pais>)info["paises"];
         institucionesEducativas         = (List<InstitucionEducativa>)info["instituciones"];
         nivelesTitulo                   = (List<NivelTitulo>)info["nivelesTitulo"];
+        carreras                        = (List<Carrera>)info["carreras"];
     }catch(Exception){
         
     }
@@ -200,7 +201,23 @@
             </tr>
         </thead>
         <tbody>
-            
+            <!-- mostrar aqui carrera -->
+            @if (carreras != null && carreras.Count > 0)
+            {
+                foreach (Carrera carrera in carreras)
+                {
+                    <tr>
+                        <td>@carrera._carrera</td>
+                        <td>@carrera._nivelTitulo._nombreNivel</td>
+                        <td>@carrera._institucion._nombre</td>
+                        <td>
+                            <button class="btnEditarCarrera btn">Editar</button>
+                            <button class="btn">Eliminar</button>
+                            <!--<button class="btn">Cancelar</button>-->
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </div>

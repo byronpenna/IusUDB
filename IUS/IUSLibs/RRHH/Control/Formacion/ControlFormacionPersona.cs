@@ -90,8 +90,12 @@ namespace IUSLibs.RRHH.Control.Formacion
                             if (tb[5].Rows.Count > 0)
                             {
                                 carreras = new List<Carrera>();
-                                foreach (DataRow row in tb[4].Rows)
+                                foreach (DataRow row in tb[5].Rows)
                                 {
+                                    carrera = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                    carrera._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
+                                    carrera._institucion._nombre = row["nombreInstitucion"].ToString();
+                                    carreras.Add(carrera);
                                 }
                             }
                         }
@@ -106,6 +110,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         retorno.Add("paises", paises);
                         retorno.Add("instituciones", institucionesEducativas);
                         retorno.Add("nivelesTitulo", nivelesTitulo);
+                        retorno.Add("carreras", carreras);
                     }
                     catch (ErroresIUS x)
                     {
