@@ -21,6 +21,31 @@ namespace IUSLibs.RRHH.Control.Formacion
     {
         #region "funciones"
             #region "do"
+                public bool sp_rrhh_eliminarTituloPersona(int idFormacionPersona,int idUsuarioEjecutor,int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarTituloPersona");
+                    sp.agregarParametro("idFormacionPersona", idFormacionPersona);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
                 public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar,int idUsuarioEjecutor,int idPagina)
                 {
                     FormacionPersona formacionAgregada = null;

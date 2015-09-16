@@ -35,6 +35,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                             throw x;
                         }
                     }
+                    public bool sp_rrhh_eliminarTituloPersona(int idFormacionPersona, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlFormacion.sp_rrhh_eliminarTituloPersona(idFormacionPersona, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                 #endregion
                 #region "carrera"
                     public Carrera sp_rrhh_ingresarCarrera(Carrera carreraIngresar, int idUsuarioEjecutor, int idPagina)

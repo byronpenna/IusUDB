@@ -122,6 +122,9 @@
                 foreach (FormacionPersona formacionPersona in formacionesPersonas)
                 {
                     <tr>
+                        <td class="hidden">
+                            <input name="txtHdIdFormacionPersona" class="txtHdIdFormacionPersona" value="@formacionPersona._idFormacionPersona"/>
+                        </td>
                         <td>@formacionPersona._carrera._carrera</td>
                         <td>@formacionPersona._yearInicio</td>
                         <td>@formacionPersona._yearInicio</td>
@@ -129,7 +132,7 @@
                         <td>@formacionPersona._estado._estado</td>
                         <td>
                             <button class="btn">Editar</button>
-                            <button class="btn">Eliminar</button>
+                            <button class="btn btnEliminarTitulo ">Eliminar</button>
                         </td>
                     </tr>
                 }

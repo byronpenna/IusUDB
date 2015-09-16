@@ -1,17 +1,28 @@
 ﻿// acciones script
-    function btnAgregarInstitucion(frm) {
-        actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarInstitucionEducativa", frm, function (data) {
-            console.log("Data servidor", data);
-        })
-    }
-    function btnAgregarCarrera(frm) {
-        actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarFormacionPersona", frm, function (data) {
-            console.log("la data es", data);
-
-        })
-    }
-    function btnAgregarCarreraIndividual(frm) {
-        actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarCarrera", frm, function (data) {
-            console.log("Data servidor", data);
-        })
-    }
+    // instituciones
+        function btnAgregarInstitucion(frm) {
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarInstitucionEducativa", frm, function (data) {
+                console.log("Data servidor", data);
+            })
+        }
+    // carreras
+        function btnAgregarCarreraIndividual(frm) {
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarCarrera", frm, function (data) {
+                console.log("Data servidor", data);
+            })
+        }
+        
+    // formacion personas
+        function btnAgregarCarrera(frm) {
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarFormacionPersona", frm, function (data) {
+                console.log("la data es", data);
+            })
+        }
+        function btnEliminarTitulo(frm,tr){
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_eliminarTituloPersona", frm, function (data) {
+                console.log("la data es:", data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }
