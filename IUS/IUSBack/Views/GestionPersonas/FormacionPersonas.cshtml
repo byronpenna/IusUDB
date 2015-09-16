@@ -47,6 +47,7 @@
     </ul>
     
 }
+<input type="hidden" class="txtHdIdPersona" value="@persona._idPersona" />
 <div class="row marginNull divControles">
     <h2 class="titlePersona">@persona.nombreCompleto</h2>
     <div class="col-lg-offset-5 col-lg-2 text-center">
@@ -78,12 +79,20 @@
             </tr>
             <tr>
                 <td>
-                    <select class="cbCarrera form-control"></select>
+                    <select name="cbCarrera" class="cbCarrera form-control">
+                        @if (carreras != null && carreras.Count > 0)
+                        {
+                            foreach (Carrera carrera in carreras)
+                            {
+                                <option value="@carrera._idCarrera">@carrera._carrera</option>
+                            }
+                        }
+                    </select>
                 </td>
-                <td>
+                <td class="tdFechaIniFinTitulo">
                     <input name="txtYearInicio" class="txtYearInicio form-control" />
                 </td>
-                <td>
+                <td class="tdFechaIniFinTitulo">
                     <input name="txtYearFin" class="txtYearFin form-control" />
                 </td>
                 <td>

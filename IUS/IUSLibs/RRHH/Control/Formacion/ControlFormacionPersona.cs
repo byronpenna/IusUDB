@@ -21,7 +21,42 @@ namespace IUSLibs.RRHH.Control.Formacion
     {
         #region "funciones"
             #region "do"
-                
+                public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar,int idUsuarioEjecutor,int idPagina)
+                {
+                    FormacionPersona formacionAgregada = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_ingresarFormacionPersona");
+                    sp.agregarParametro("yearInicio", formacionAgregar._yearInicio);
+                    sp.agregarParametro("yearFin", formacionAgregar._yearFin);
+                    sp.agregarParametro("observaciones", formacionAgregar._observaciones);
+                    sp.agregarParametro("idPersona", formacionAgregar._persona._idPersona);
+                    sp.agregarParametro("idCarrera", formacionAgregar._carrera._idCarrera);
+                    sp.agregarParametro("idEstadoCarrera", formacionAgregar._estado._idEstadoCarrera);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if(tb[0].Rows.Count >0){
+                                DataRow row = tb[0].Rows[0];
+                                formacionAgregada = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
+
+                            }
+                            
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return formacionAgregada;
+                }
             #endregion
             #region "get"
                 public Dictionary<object, object> sp_rrhh_getInfoInicialFormacion(int idPersona,int idUsuarioEjecutor, int idPagina)

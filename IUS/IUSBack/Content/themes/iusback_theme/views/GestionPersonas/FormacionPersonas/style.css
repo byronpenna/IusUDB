@@ -1,4 +1,8 @@
-﻿.divControles .titlePersona, .tituloTabDiv{
+﻿.tdFechaIniFinTitulo{
+    width:8%;   
+}
+
+.divControles .titlePersona, .tituloTabDiv{
     text-align:center;
     
 }
@@ -9,6 +13,7 @@
 .divControles .titlePersona{
     margin-bottom:3%;
 }
+
 
 
 .accionesDiv a{

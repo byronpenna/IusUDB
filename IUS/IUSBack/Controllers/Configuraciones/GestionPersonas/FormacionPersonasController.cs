@@ -51,35 +51,68 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             }
         #endregion
         #region "resultados ajax"
-            public ActionResult sp_rrhh_ingresarCarrera()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
+            #region "Formacion "
+                public ActionResult sp_rrhh_ingresarFormacionPersona()
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
                     {
-                        Carrera carreraAgregar  = new Carrera(frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]));
-                        Carrera carreraAgregada = this._model.sp_rrhh_ingresarCarrera(carreraAgregar, usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("carreraAgregada", carreraAgregada);
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            FormacionPersona formacionAgregar = new FormacionPersona(this.convertObjAjaxToInt(frm["txtYearInicio"]), this.convertObjAjaxToInt(frm["txtYearFin"]), frm["txtAreaObservaciones"].ToString(), this.convertObjAjaxToInt(frm["idPersona"]), this.convertObjAjaxToInt(frm["cbCarrera"]), this.convertObjAjaxToInt(frm["cbEstadoCarrera"]));
+                            FormacionPersona formacionAgregada = this._model.sp_rrhh_ingresarFormacionPersona(formacionAgregar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("formacionAgregada", formacionAgregada);
+                        }
                     }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                catch (ErroresIUS x)
+            #endregion
+            #region "carreras"
+                public ActionResult sp_rrhh_ingresarCarrera()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            Carrera carreraAgregar  = new Carrera(frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]));
+                            Carrera carreraAgregada = this._model.sp_rrhh_ingresarCarrera(carreraAgregar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("carreraAgregada", carreraAgregada);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
-            public ActionResult sp_rrhh_ingresarInstitucionEducativa()
+            #endregion
+            #region "instituciones educativas"
+                public ActionResult sp_rrhh_ingresarInstitucionEducativa()
             {
                 Dictionary<object, object> frm, respuesta = null;
                 try
@@ -107,9 +140,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
                 return Json(respuesta);
             }
+            #endregion
         #endregion
         #region "constructores"
-            public FormacionPersonasController()
+                public FormacionPersonasController()
             {
                 this._model = new FormacionPersonasModel();
             }

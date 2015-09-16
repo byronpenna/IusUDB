@@ -20,6 +20,12 @@
                 console.log("formulario frm", frm);
                 btnAgregarCarreraIndividual(frm);
             })
+            $(document).on("click", ".btnAgregarCarrera", function () {
+                var frm = serializeSection($(this).parents("tr"));
+                frm.idPersona = $(".txtHdIdPersona").val();
+                console.log("formulario", frm);
+                btnAgregarCarrera(frm);
+            })
             
             
 })
