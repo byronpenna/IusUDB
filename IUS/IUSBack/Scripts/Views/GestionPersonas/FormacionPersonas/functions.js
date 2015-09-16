@@ -5,7 +5,16 @@
                 console.log("Data servidor", data);
             })
         }
+        function btnEliminarInstitucion(frm, tr) {
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_eliminarInstitucionEducativa", frm, function (data) {
+                console.log("Data servidor", data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }
     // carreras
+
         function btnAgregarCarreraIndividual(frm) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarCarrera", frm, function (data) {
                 console.log("Data servidor", data);

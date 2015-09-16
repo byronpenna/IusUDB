@@ -35,6 +35,12 @@ namespace IUSLibs.RRHH.Control.Formacion
                         {
                             estado = true;
                         }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -70,6 +76,12 @@ namespace IUSLibs.RRHH.Control.Formacion
 
                             }
                             
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)

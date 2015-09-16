@@ -69,6 +69,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 }
                 #endregion
                 #region "institucion educativa"
+                    public bool sp_rrhh_eliminarInstitucionEducativa(int idInstitucionFormacion, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlInstitucionEducativa.sp_rrhh_eliminarInstitucionEducativa(idInstitucionFormacion, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public InstitucionEducativa sp_rrhh_ingresarInstitucionEducativa(InstitucionEducativa institucionAgregar, int idUsuarioEjecutor, int idPagina)
                     {
                         try

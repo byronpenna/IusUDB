@@ -11,6 +11,13 @@
                 $(this).addClass("activeVista");
             })
             // instituciones
+            
+                $(document).on("click", ".btnEliminarInstitucion", function (e) {
+                    var tr  = $(this).parents("tr");
+                    var frm = serializeSection();
+                    console.log("Formulario a agregar", frm);
+                    btnEliminarInstitucion(frm, tr);
+                })
                 $(document).on("click", ".btnAgregarInstitucion", function (e) {
                     var frm = serializeSection($(this).parents("tr"));
                     console.log("formulario a agregar",frm);
