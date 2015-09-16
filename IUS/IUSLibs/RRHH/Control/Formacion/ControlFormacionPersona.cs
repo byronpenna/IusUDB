@@ -65,6 +65,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                     List<Pais> paises = null; Pais pais;/**/ List<InstitucionEducativa> institucionesEducativas=null; InstitucionEducativa institucionEducativa;
                     List<NivelTitulo> nivelesTitulo = null; NivelTitulo nivelTitulo;
                     List<Carrera> carreras = null; Carrera carrera;
+                    List<FormacionPersona> formacionesPersonas = null; FormacionPersona formacionPersona;
                     Persona persona = null; 
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
@@ -133,6 +134,17 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     carreras.Add(carrera);
                                 }
                             }
+                            if (tb[6].Rows.Count > 0)
+                            {
+                                formacionesPersonas = new List<FormacionPersona>();
+                                foreach (DataRow row in tb[6].Rows)
+                                {
+                                    formacionPersona = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
+                                    formacionPersona._carrera._carrera = row["carrera"].ToString();
+                                    formacionPersona._estado._estado = row["estado"].ToString();
+                                    formacionesPersonas.Add(formacionPersona);
+                                }
+                            }
                         }
                         else
                         {
@@ -146,6 +158,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         retorno.Add("instituciones", institucionesEducativas);
                         retorno.Add("nivelesTitulo", nivelesTitulo);
                         retorno.Add("carreras", carreras);
+                        retorno.Add("formacionesPersonas", formacionesPersonas);
                     }
                     catch (ErroresIUS x)
                     {
