@@ -3,12 +3,16 @@
 @using IUSLibs.FrontUI.Entidades
 @section estilosPersonalizados{
     <!-- plugins -->
-
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/FormacionPersonas/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/FormacionPersonas/media.css" />
 }
 @section scriptsPersonalizados{
+    <!-- Plugins -->
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/script.js"></script>
         <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/functions.js"></script>
@@ -155,9 +159,11 @@
                    <input name="txtInstitucionEducativa" class="form-control txtInstitucionEducativa" />
                </th>
                <th>
-                   <select name="cbPaisInstitucionEducativa" class="form-control cbPaisInstitucionEducativa">
-                       @if(paises != null && paises.Count> 0){
-                           foreach(Pais pais in paises){
+                   <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+                       @if (paises != null && paises.Count > 0)
+                       {
+                           foreach (Pais pais in paises)
+                           {
                                <option value="@pais._idPais">@pais._pais</option>
                            }
                        }
@@ -165,7 +171,6 @@
                </th>
                <th>
                    <button class="btn btnAgregarInstitucion">Agregar institucion</button>
-                   
                </th>
            </tr>
        </thead>
@@ -186,29 +191,24 @@
                            <div class="normalMode tdNombreInstitucion">
                                @institucion._nombre
                            </div>
-                            
                        </td>
                        <td>
                            <div class="editMode hidden">
-                               <select name="cbPaisInstitucionEducativa" class="form-control cbPaisInstitucionEducativa">
-
-                               </select>
+                               <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa"></select>
                            </div>
                            <div class="normalMode tdPais">
                                @institucion._pais._pais
                            </div> 
-                           
                        </td>
                        <td>
                            <div class="editMode hidden">
                                 <button class="btn btnActualizarInstitucionEducativa">Actualizar</button>
-                                <button class="btn btnCancelarInstitucionEducativa">Cancelar</button>
+                                <button class="btn btnCancelarInstitucionEducativa btnCancelarUni">Cancelar</button>
                            </div>
                            <div class="normalMode tdEmail">
                                <button class="btn btnEditarInstitucion">Editar</button>
                                <button class="btn btnEliminarInstitucion">Eliminar</button>
                            </div>
-                           
                        </td>
                    </tr>
                }
