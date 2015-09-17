@@ -107,7 +107,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                             if(tb[1].Rows.Count > 0){
                                 DataRow row = tb[1].Rows[0];
                                 agregada = new InstitucionEducativa((int)row["idInstitucion"], row["nombre"].ToString(), (int)row["id_pais_fk"]);
-                                
+                                agregada._pais._pais = row["pais"].ToString();
                             }
                         }
                         else
@@ -130,7 +130,44 @@ namespace IUSLibs.RRHH.Control.Formacion
                 
             #endregion
             #region "get"
-                
+                public List<InstitucionEducativa> sp_rrhh_getInstitucionesEducativas(int idUsuarioEjecutor,int idPagina)
+                {
+                    List<InstitucionEducativa> institucionesEducativas = null; InstitucionEducativa institucion;
+                    SPIUS sp = new SPIUS("sp_rrhh_getInstitucionesEducativas");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                institucionesEducativas = new List<InstitucionEducativa>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    institucion = new InstitucionEducativa((int)row["idInstitucion"], row["nombre"].ToString(), (int)row["id_pais_fk"]);
+                                    institucionesEducativas.Add(institucion);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return institucionesEducativas;
+                }
             #endregion
         #endregion
     }

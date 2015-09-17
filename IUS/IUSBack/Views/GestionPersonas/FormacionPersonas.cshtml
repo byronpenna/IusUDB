@@ -174,7 +174,7 @@
                </th>
            </tr>
        </thead>
-       <tbody>
+       <tbody class="tbTablaFormacionPersonas">
            @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
            {
                foreach (InstitucionEducativa institucion in institucionesEducativas)
@@ -284,12 +284,44 @@
                         <td class="hidden">
                             <input class="txtHdIdCarrera" name="txtHdIdCarrera" value="@carrera._idCarrera"/>
                         </td>
-                        <td>@carrera._carrera</td>
-                        <td>@carrera._nivelTitulo._nombreNivel</td>
-                        <td>@carrera._institucion._nombre</td>
                         <td>
-                            <button class="btnEditarCarrera btn">Editar</button>
-                            <button class="btn btnEliminarCarrera">Eliminar</button>
+                            <div class="editMode hidden">
+                                <input name="txtNombreCarrera" class="txtNombreCarrera form-control" />
+                            </div>
+                            <div class="normalMode tdCarrera">
+                                @carrera._carrera
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <select name="cbNivelCarrera" class="cbNivelCarrera cbChosenCarrera form-control">
+                                </select>
+                            </div>
+                            <div class="normalMode tdEmail">
+                                @carrera._nivelTitulo._nombreNivel
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <select class="cbInsticionesParaCarrera form-control" name="cbInsticionesParaCarrera">
+                                </select>
+                            </div>
+                            <div class="normalMode tdEmail">
+                                @carrera._institucion._nombre
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <button class="btn btnActualizarCarrera">Actualizar</button>
+                                <button class="btn btnCancelarUni">Cancelar</button>
+                            </div>
+                            <div class="normalMode tdEmail">
+                                <button class="btnEditarCarrera btn">Editar</button>
+                                <button class="btn btnEliminarCarrera">Eliminar</button>
+                            </div>
+                            
                             <!--<button class="btn">Cancelar</button>-->
                         </td>
                     </tr>

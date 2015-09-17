@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     // plugins 
         $(".cbChosenPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
+        //$(".cbChosenInsti").chosen({ no_results_text: "Carrera no encontrada", width: '100%' });
     // eventos 
         // click 
             $(document).on("click", ".icoVista", function (e) {
@@ -63,7 +64,37 @@
                     btnAgregarInstitucion(frm);
                 })
             // carreras 
-                
+                // edicion 
+                $(document).on("click", ".btnEditarCarrera", function (e) {
+                    var tr = $(this).parents("tr");
+                    var datosSet = {};
+                    datosSet.carrera = $.trim(tr.find(".tdCarrera").text());
+                    // set
+                    var frm = {};
+                    actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditCarreras", frm, function (data) {
+                        console.log("data", data);
+                        if (data.estado) {
+                            var cbInstuciones = '', cbNivelesTitulos = '';
+                            if (data.nivelesTitulos != null && data.nivelesTitulos.length > 0) {
+                                $.each(data.nivelesTitulos, function (i,nivelTitulo) {
+                                    cbNivelesTitulos += getCbNivelTitulo(nivelTitulo);
+                                })
+                            }
+                            if (data.instituciones != null && data.instituciones.length > 0) {
+                                $.each(data.instituciones, function (i, institucion) {
+                                    cbInstuciones += getCbInstituciones(institucion);
+                                })
+                            }
+                            tr.find(".cbNivelCarrera").empty().append(cbNivelesTitulos);
+                            tr.find(".cbInsticionesParaCarrera").empty().append(cbInstuciones);
+                            resetChosenWithSelectedVal()
+                        } else {
+                            // cargar error de editar
+                        }
+                    })
+                    tr.find(".txtNombreCarrera").val(datosSet.carrera);
+                    controlesEdit(true, tr);
+                })
                 $(document).on("click", ".btnEliminarCarrera", function (e) {
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);

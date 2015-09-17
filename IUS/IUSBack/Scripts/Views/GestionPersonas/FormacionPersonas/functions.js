@@ -1,6 +1,7 @@
 ﻿// genericas
     // partes
-        function getTrInstitucionEducativa(institucion) {
+        // tr     
+            function getTrInstitucionEducativa(institucion) {
             var tr = "<tr>\
                        <td class='hidden'>\
                            <input name='txtHdIdInstitucionEducativa' class='txtHdIdInstitucionEducativa' value='"+institucion._idInstitucion+"' />\
@@ -16,17 +17,16 @@
                        </td>\
                        <td>\
                            <div class='editMode hidden'>\
-                               <select name='cbPaisInstitucionEducativa' class='form-control cbPaisInstitucionEducativa'>\
-                               </select>\
+                               <select name='cbPaisInstitucionEducativa' class=' cbChosenPais form-control cbPaisInstitucionEducativa'></select>\
                            </div>\
                            <div class='normalMode tdPais'>\
                                "+institucion._pais._pais+"\
-                           </div>\
+                           </div> \
                        </td>\
                        <td>\
                            <div class='editMode hidden'>\
                                 <button class='btn btnActualizarInstitucionEducativa'>Actualizar</button>\
-                                <button class='btn btnCancelarInstitucionEducativa'>Cancelar</button>\
+                                <button class='btn btnCancelarInstitucionEducativa btnCancelarUni'>Cancelar</button>\
                            </div>\
                            <div class='normalMode tdEmail'>\
                                <button class='btn btnEditarInstitucion'>Editar</button>\
@@ -36,14 +36,23 @@
                    </tr>";
             return tr;
         }
-        function getCbPaises(pais) {
+            
+        // cb
+            function getCbInstituciones(institucion) {
+                var cb = "<option value="+institucion._idInstitucion+">"+institucion._nombre+"</option>";
+                return cb;
+            }
+            function getCbNivelTitulo(nivelTitulo) {
+                var cb = "<option value=" + nivelTitulo._idNivel + ">" + nivelTitulo._nombreNivel + "</option>";
+                return cb;
+            }
+            function getCbPaises(pais) {
             var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
             return cb;
         }
 // acciones script
     // instituciones
-        // edicion 
-            function btnActualizarInstitucionEducativa(frm,tr) {
+        function btnActualizarInstitucionEducativa(frm,tr) {
                 actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarInstitucionEducativa", frm, function (data) {
                     console.log("data al editar", data);
                 })
@@ -51,6 +60,10 @@
         function btnAgregarInstitucion(frm) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarInstitucionEducativa", frm, function (data) {
                 console.log("Data servidor", data);
+                if (data.estado) {
+                    var tr = getTrInstitucionEducativa(data.institucionEducativa);
+                    $(".tbTablaFormacionPersonas").prepend(tr);
+                }
             })
         }
         function btnEliminarInstitucion(frm, tr) {

@@ -135,8 +135,10 @@
     <Compile Include="RRHH\Control\ControlInformacionPersona.cs" />
     <Compile Include="RRHH\Control\ControlTelefonoPersona.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlCarrera.cs" />
+    <Compile Include="RRHH\Control\Formacion\ControlEstadoCarrera.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlFormacionPersona.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlInstitucionesEducativas.cs" />
+    <Compile Include="RRHH\Control\Formacion\ControlNivelCarrera.cs" />
     <Compile Include="RRHH\Entidades\EmailPersona.cs" />
     <Compile Include="RRHH\Entidades\EstadoCivil.cs" />
     <Compile Include="RRHH\Entidades\Formacion\Carrera.cs" />
