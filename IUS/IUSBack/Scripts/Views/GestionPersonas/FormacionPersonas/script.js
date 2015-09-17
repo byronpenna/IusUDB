@@ -14,8 +14,8 @@
             
                 $(document).on("click", ".btnEliminarInstitucion", function (e) {
                     var tr  = $(this).parents("tr");
-                    var frm = serializeSection();
-                    console.log("Formulario a agregar", frm);
+                    var frm = serializeSection(tr);
+                    console.log("Formulario a eliminar", frm);
                     btnEliminarInstitucion(frm, tr);
                 })
                 $(document).on("click", ".btnAgregarInstitucion", function (e) {

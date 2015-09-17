@@ -174,7 +174,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            bool estado = this._model.sp_rrhh_eliminarInstitucionEducativa(this.convertObjAjaxToInt(frm[""]), usuarioSession._idUsuario, this._idPagina);
+                            bool estado = this._model.sp_rrhh_eliminarInstitucionEducativa(this.convertObjAjaxToInt(frm["txtHdIdInstitucionEducativa"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
 

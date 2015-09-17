@@ -22,7 +22,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                 public bool sp_rrhh_eliminarInstitucionEducativa(int idInstitucionFormacion, int idUsuarioEjecutor, int idPagina)
                 {
                     bool estado = false;
-                    SPIUS sp = new SPIUS("sp_rrhh_ingresarInstitucionEducativa");
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarInstitucionEducativa");
                     sp.agregarParametro("idInstitucionFormacion", idInstitucionFormacion);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
