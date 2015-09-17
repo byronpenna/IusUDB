@@ -22,7 +22,37 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             {
                 this._idFormacionPersona = idFormacionPersona;
             }
-            
+            // full atributos
+                public FormacionPersona(int idFormacionPersona,int yearInicio,int yearFin,string observaciones,int idPersona,int idCarrera,int idEstadoCarrera)
+                {
+                    // creacion de objetos
+                        Persona persona             = new Persona(idPersona);
+                        Carrera carrera             = new Carrera(idCarrera);
+                        EstadoCarrera estadoCarrera = new EstadoCarrera(idEstadoCarrera);
+                    // asignacion
+                        this._idFormacionPersona    = idFormacionPersona;
+                        this._yearInicio            = yearInicio;
+                        this._yearFin               = yearFin;
+                        this._observaciones         = observaciones;
+                        this._persona               = persona;
+                        this._carrera               = carrera;
+                        this._estado                = estadoCarrera;
+                }
+            // para agregar 
+                public FormacionPersona(int yearInicio, int yearFin, string observaciones, int idPersona, int idCarrera, int idEstadoCarrera)
+                {
+                    // creacion de objetos
+                        Persona persona = new Persona(idPersona);
+                        Carrera carrera = new Carrera(idCarrera);
+                        EstadoCarrera estadoCarrera = new EstadoCarrera(idEstadoCarrera);
+                    // asignacion
+                        this._yearInicio = yearInicio;
+                        this._yearFin = yearFin;
+                        this._observaciones = observaciones;
+                        this._persona = persona;
+                        this._carrera = carrera;
+                        this._estado = estadoCarrera;
+                }
         #endregion
     }
 }

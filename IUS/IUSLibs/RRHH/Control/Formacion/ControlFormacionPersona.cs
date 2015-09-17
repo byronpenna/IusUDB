@@ -21,7 +21,79 @@ namespace IUSLibs.RRHH.Control.Formacion
     {
         #region "funciones"
             #region "do"
-                
+                public bool sp_rrhh_eliminarTituloPersona(int idFormacionPersona,int idUsuarioEjecutor,int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarTituloPersona");
+                    sp.agregarParametro("idFormacionPersona", idFormacionPersona);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
+                public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar,int idUsuarioEjecutor,int idPagina)
+                {
+                    FormacionPersona formacionAgregada = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_ingresarFormacionPersona");
+                    sp.agregarParametro("yearInicio", formacionAgregar._yearInicio);
+                    sp.agregarParametro("yearFin", formacionAgregar._yearFin);
+                    sp.agregarParametro("observaciones", formacionAgregar._observaciones);
+                    sp.agregarParametro("idPersona", formacionAgregar._persona._idPersona);
+                    sp.agregarParametro("idCarrera", formacionAgregar._carrera._idCarrera);
+                    sp.agregarParametro("idEstadoCarrera", formacionAgregar._estado._idEstadoCarrera);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if(tb[0].Rows.Count >0){
+                                DataRow row = tb[0].Rows[0];
+                                formacionAgregada = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
+
+                            }
+                            
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return formacionAgregada;
+                }
             #endregion
             #region "get"
                 public Dictionary<object, object> sp_rrhh_getInfoInicialFormacion(int idPersona,int idUsuarioEjecutor, int idPagina)
@@ -30,6 +102,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                     List<Pais> paises = null; Pais pais;/**/ List<InstitucionEducativa> institucionesEducativas=null; InstitucionEducativa institucionEducativa;
                     List<NivelTitulo> nivelesTitulo = null; NivelTitulo nivelTitulo;
                     List<Carrera> carreras = null; Carrera carrera;
+                    List<FormacionPersona> formacionesPersonas = null; FormacionPersona formacionPersona;
                     Persona persona = null; 
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
@@ -90,8 +163,23 @@ namespace IUSLibs.RRHH.Control.Formacion
                             if (tb[5].Rows.Count > 0)
                             {
                                 carreras = new List<Carrera>();
-                                foreach (DataRow row in tb[4].Rows)
+                                foreach (DataRow row in tb[5].Rows)
                                 {
+                                    carrera = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                    carrera._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
+                                    carrera._institucion._nombre = row["nombreInstitucion"].ToString();
+                                    carreras.Add(carrera);
+                                }
+                            }
+                            if (tb[6].Rows.Count > 0)
+                            {
+                                formacionesPersonas = new List<FormacionPersona>();
+                                foreach (DataRow row in tb[6].Rows)
+                                {
+                                    formacionPersona = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
+                                    formacionPersona._carrera._carrera = row["carrera"].ToString();
+                                    formacionPersona._estado._estado = row["estado"].ToString();
+                                    formacionesPersonas.Add(formacionPersona);
                                 }
                             }
                         }
@@ -106,6 +194,8 @@ namespace IUSLibs.RRHH.Control.Formacion
                         retorno.Add("paises", paises);
                         retorno.Add("instituciones", institucionesEducativas);
                         retorno.Add("nivelesTitulo", nivelesTitulo);
+                        retorno.Add("carreras", carreras);
+                        retorno.Add("formacionesPersonas", formacionesPersonas);
                     }
                     catch (ErroresIUS x)
                     {
