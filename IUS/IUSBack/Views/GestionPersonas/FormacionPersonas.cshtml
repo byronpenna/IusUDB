@@ -177,12 +177,38 @@
                    <tr>
                        <td class="hidden">
                            <input name="txtHdIdInstitucionEducativa" class="txtHdIdInstitucionEducativa" value="@institucion._idInstitucion" />
+                           <input name="txtHdIdPaisInstitucion" class="txtHdIdPaisInstitucion" value="@institucion._pais._idPais"/>
                        </td>
-                       <td>@institucion._nombre</td>
-                       <td>@institucion._pais._pais</td>
                        <td>
-                           <button class="btn">Editar</button>
-                           <button class="btn btnEliminarInstitucion">Eliminar</button>
+                           <div class="editMode hidden">
+                               <input class="txtInstitucionEducativa form-control" name="txtInstitucionEducativa" />
+                           </div>
+                           <div class="normalMode tdNombreInstitucion">
+                               @institucion._nombre
+                           </div>
+                            
+                       </td>
+                       <td>
+                           <div class="editMode hidden">
+                               <select name="cbPaisInstitucionEducativa" class="form-control cbPaisInstitucionEducativa">
+
+                               </select>
+                           </div>
+                           <div class="normalMode tdPais">
+                               @institucion._pais._pais
+                           </div> 
+                           
+                       </td>
+                       <td>
+                           <div class="editMode hidden">
+                                <button class="btn btnActualizarInstitucionEducativa">Actualizar</button>
+                                <button class="btn btnCancelarInstitucionEducativa">Cancelar</button>
+                           </div>
+                           <div class="normalMode tdEmail">
+                               <button class="btn btnEditarInstitucion">Editar</button>
+                               <button class="btn btnEliminarInstitucion">Eliminar</button>
+                           </div>
+                           
                        </td>
                    </tr>
                }

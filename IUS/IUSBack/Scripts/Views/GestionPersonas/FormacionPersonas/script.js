@@ -12,6 +12,13 @@
             })
             // instituciones
             
+                $(document).on("click", ".btnEditarInstitucion", function (e) {
+                    var tr = $(this).parents("tr");
+                    var data = new Object();
+                    data.nombreInstitucion = $.trim(tr.find(".tdNombreInstitucion").text());
+                    data.idPais = tr.find(".txtHdIdPaisInstitucion").val();
+                    controlesEdit(true, tr);
+                });
                 $(document).on("click", ".btnEliminarInstitucion", function (e) {
                     var tr  = $(this).parents("tr");
                     var frm = serializeSection(tr);
