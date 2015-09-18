@@ -19,6 +19,27 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #endregion
         #region "funciones"
             #region "do"
+                #region "generales"
+                    public Dictionary<object, object> getEditCarrera(int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            Dictionary<object, object> retorno = new Dictionary<object, object>();
+                            ControlNivelCarrera controlNivelCarrera = new ControlNivelCarrera();
+                            retorno.Add("nivelesTitulos", controlNivelCarrera.sp_rrhh_getNivelesCarreras(idUsuarioEjecutor, idPagina));
+                            retorno.Add("instituciones", this._controlInstitucionEducativa.sp_rrhh_getInstitucionesEducativas(idUsuarioEjecutor,idPagina));
+                            return retorno;
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
                 #region "formacion personas"
                     public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar, int idUsuarioEjecutor, int idPagina)
                     {
@@ -84,6 +105,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     }
                 #endregion
                 #region "institucion educativa"
+                    public InstitucionEducativa sp_rrhh_editarInstitucionEducativa(InstitucionEducativa institucionEditar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlInstitucionEducativa.sp_rrhh_editarInstitucionEducativa(institucionEditar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public bool sp_rrhh_eliminarInstitucionEducativa(int idInstitucionFormacion, int idUsuarioEjecutor, int idPagina)
                     {
                         try

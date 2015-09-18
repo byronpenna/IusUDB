@@ -51,7 +51,39 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             }
         #endregion
         #region "resultados ajax"
-            #region "Formacion "
+            #region "otros"
+                public ActionResult getEditCarreras()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            respuesta = this._model.getEditCarrera(usuarioSession._idUsuario, this._idPagina);
+                            respuesta.Add("estado", true);
+
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
+            #endregion
+            #region "Formacion"
                 public ActionResult sp_rrhh_ingresarFormacionPersona()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -66,6 +98,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("formacionAgregada", formacionAgregada);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -92,6 +128,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                             bool estado = this._model.sp_rrhh_eliminarTituloPersona(this.convertObjAjaxToInt(frm["txtHdIdFormacionPersona"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -121,7 +161,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
                         }
-                        
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -150,6 +193,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                             respuesta.Add("estado", true);
                             respuesta.Add("carreraAgregada", carreraAgregada);
                         }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -165,6 +212,38 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
             #endregion
             #region "instituciones educativas"
+                public ActionResult sp_rrhh_editarInstitucionEducativa()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            InstitucionEducativa institucionEditar = new InstitucionEducativa(this.convertObjAjaxToInt(frm["txtHdIdInstitucionEducativa"]), frm["txtInstitucionEducativa"].ToString(), this.convertObjAjaxToInt(frm["cbPaisInstitucionEducativa"]));
+                            InstitucionEducativa institucionEditada = this._model.sp_rrhh_editarInstitucionEducativa(institucionEditar,usuarioSession._idUsuario,this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("institucionEditada", institucionEditada);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_rrhh_eliminarInstitucionEducativa()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -174,10 +253,14 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            bool estado = this._model.sp_rrhh_eliminarInstitucionEducativa(this.convertObjAjaxToInt(frm[""]), usuarioSession._idUsuario, this._idPagina);
+                            bool estado = this._model.sp_rrhh_eliminarInstitucionEducativa(this.convertObjAjaxToInt(frm["txtHdIdInstitucionEducativa"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
 
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -206,6 +289,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("institucionEducativa", institucionAgregada);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
