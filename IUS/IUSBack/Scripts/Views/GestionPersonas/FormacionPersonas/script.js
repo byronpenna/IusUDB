@@ -65,7 +65,7 @@
                 })
             // carreras 
                 // edicion 
-                $(document).on("click", ".btnEditarCarrera", function (e) {
+                    $(document).on("click", ".btnEditarCarrera", function (e) {
                     var tr = $(this).parents("tr");
                     var datosSet = {};
                     datosSet.carrera = $.trim(tr.find(".tdCarrera").text());
@@ -87,7 +87,7 @@
                             }
                             tr.find(".cbNivelCarrera").empty().append(cbNivelesTitulos);
                             tr.find(".cbInsticionesParaCarrera").empty().append(cbInstuciones);
-                            resetChosenWithSelectedVal()
+                            //resetChosenWithSelectedVal()
                         } else {
                             // cargar error de editar
                         }
@@ -95,6 +95,14 @@
                     tr.find(".txtNombreCarrera").val(datosSet.carrera);
                     controlesEdit(true, tr);
                 })
+                    $(document).on("click", ".btnActualizarCarrera", function (e) {
+                        console.log("D: ");
+                        var tr = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        console.log(frm);
+                        btnActualizarCarrera(frm, tr);
+                    })
+                    
                 $(document).on("click", ".btnEliminarCarrera", function (e) {
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);
@@ -102,10 +110,10 @@
                     btnEliminarCarrera(frm, tr);
                 })
                 $(document).on("click", ".btnAgregarCarreraIndividual", function (e) {
-                var frm = serializeSection($(this).parents("tr"));
-                console.log("formulario frm", frm);
-                btnAgregarCarreraIndividual(frm);
-            })
+                    var frm = serializeSection($(this).parents("tr"));
+                    console.log("formulario frm", frm);
+                    btnAgregarCarreraIndividual(frm);
+                })
             // formacion persona
                 
                 $(document).on("click", ".btnEditarTitulos", function () {

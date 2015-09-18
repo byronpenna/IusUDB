@@ -19,6 +19,41 @@ namespace IUSLibs.RRHH.Control.Formacion
     {
         #region "funciones"
             #region "do"
+                public Carrera sp_rrhh_editarCarrera(Carrera carreraEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    Carrera carreraEditada = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_editarCarrera");
+                    sp.agregarParametro("carrera", carreraEditar._carrera);
+                    sp.agregarParametro("idNivel", carreraEditar._nivelTitulo._idNivel);
+                    sp.agregarParametro("idInstitucion", carreraEditar._institucion._idInstitucion);
+                    sp.agregarParametro("idCarrera", carreraEditar._idCarrera);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                carreraEditada = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                carreraEditada._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
+                                carreraEditada._institucion._nombre = row["nombreInstitucion"].ToString();
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return carreraEditada;
+                }
                 public bool sp_rrhh_eliminarCarrera(int idCarrera, int idUsuarioEjecutor, int idPagina)
                 {
                     bool estado = false;
