@@ -21,6 +21,11 @@ namespace IUSLibs.RRHH.Control.Formacion
     {
         #region "funciones"
             #region "do"
+                public FormacionPersona sp_rrhh_editarFormacionPersona(FormacionPersona formacionEditar,int idUsuarioEjecutor,int idPagina)
+                {
+                    SPIUS sp = new SPIUS("sp_rrhh_editarFormacionPersona");
+
+                }
                 public bool sp_rrhh_eliminarTituloPersona(int idFormacionPersona,int idUsuarioEjecutor,int idPagina)
                 {
                     bool estado = false;

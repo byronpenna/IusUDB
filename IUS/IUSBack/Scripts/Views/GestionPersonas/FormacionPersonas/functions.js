@@ -145,7 +145,8 @@
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarCarrera", frm, function (data) {
                 console.log("Data servidor", data);
                 if (data.estado) {
-
+                    var tr = getTrCarrera(data.carreraAgregada);
+                    $(".tbodyCarrera").prepend(tr);
                 } else {
                     alert("Ocurrio un error")
                 }
