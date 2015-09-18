@@ -34,6 +34,12 @@ namespace IUSLibs.RRHH.Control.Formacion
                         {
                             estado = true;
                         }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -68,6 +74,12 @@ namespace IUSLibs.RRHH.Control.Formacion
 
                             }
                         }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -81,6 +93,46 @@ namespace IUSLibs.RRHH.Control.Formacion
                 }
             #endregion
             #region "get"
+                public List<Carrera> sp_rrhh_getCarreras(int idUsuarioEjecutor, int idPagina)
+                {
+                    List<Carrera> carreras = null; Carrera carrera;
+                    SPIUS sp = new SPIUS("sp_rrhh_getCarreras");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                carreras = new List<Carrera>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    carrera                             = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                    carrera._nivelTitulo._nombreNivel   = row["nombre_nivel"].ToString();
+                                    carrera._institucion._nombre        = row["nombreInstitucion"].ToString();
+                                    carreras.Add(carrera);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                        return carreras;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
         #endregion
     }

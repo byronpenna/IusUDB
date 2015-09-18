@@ -2,7 +2,7 @@
     // partes
         // tr     
             function getTrInstitucionEducativa(institucion) {
-            var tr = "<tr>\
+                var tr = "<tr>\
                        <td class='hidden'>\
                            <input name='txtHdIdInstitucionEducativa' class='txtHdIdInstitucionEducativa' value='"+institucion._idInstitucion+"' />\
                            <input name='txtHdIdPaisInstitucion' class='txtHdIdPaisInstitucion' value='"+institucion._pais._idPais+"'/>\
@@ -36,8 +36,15 @@
                    </tr>";
             return tr;
         }
-            
         // cb
+            function getCbCarrera(carrera) {
+                var cb = "<option value="+carrera._idCarrera+">"+carrera._carrera+"</option>";
+                return cb;
+            }
+            function getCbEstadosCarreras(estadoCarrera) {
+                var cb = "<option value="+estadoCarrera._idEstadoCarrera+">"+estadoCarrera._estado+"</option>";
+                return cb;
+            }
             function getCbInstituciones(institucion) {
                 var cb = "<option value="+institucion._idInstitucion+">"+institucion._nombre+"</option>";
                 return cb;

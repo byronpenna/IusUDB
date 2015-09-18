@@ -52,6 +52,31 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
         #endregion
         #region "resultados ajax"
             #region "otros"
+                public ActionResult getEditTitulos()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            respuesta = this._model.getEditTitulos(usuarioSession._idUsuario, this._idPagina);
+                            respuesta.Add("estado", true);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult getEditCarreras()
                 {
                     Dictionary<object, object> frm, respuesta = null;
