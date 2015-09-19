@@ -115,7 +115,8 @@ namespace IUSLibs.RRHH.Control.Formacion
                             if(tb[1].Rows.Count >0){
                                 DataRow row = tb[1].Rows[0];
                                 formacionAgregada = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
-
+                                formacionAgregada._carrera._carrera = row["carrera"].ToString();
+                                formacionAgregada._estado._estado = row["estado"].ToString();
                             }
                             
                         }
