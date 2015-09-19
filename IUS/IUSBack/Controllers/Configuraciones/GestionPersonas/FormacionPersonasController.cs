@@ -119,7 +119,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         if (usuarioSession != null && frm != null)
                         {
                             // -1 para id persona porq no es necesario 
-                            FormacionPersona formacionEditar = new FormacionPersona(this.convertObjAjaxToInt(frm["txtHdIdFormacionPersona"]), this.convertObjAjaxToInt(frm["txtYearInicio"]), this.convertObjAjaxToInt(frm["txtYearFin"]), frm["txtAreaObservaciones"].ToString(),0,this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), this.convertObjAjaxToInt(frm["cbEstadoCarrera"]));
+                            FormacionPersona formacionEditar = new FormacionPersona(this.convertObjAjaxToInt(frm["txtHdIdFormacionPersona"]), this.convertObjAjaxToInt(frm["txtYearInicio"]), this.convertObjAjaxToInt(frm["txtYearFin"]), frm["txtAreaObservaciones"].ToString(), 0, this.convertObjAjaxToInt(frm["cbCarrera"]), this.convertObjAjaxToInt(frm["cbEstadoCarrera"]));
                             FormacionPersona formacionEditada = this._model.sp_rrhh_editarFormacionPersona(formacionEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);

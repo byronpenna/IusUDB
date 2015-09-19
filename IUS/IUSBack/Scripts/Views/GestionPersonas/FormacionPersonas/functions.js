@@ -200,7 +200,7 @@
 
                     tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
                     tr.find(".tdInstitucionNombre").empty().append(carrera._institucion._nombre );
-
+                    tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
                     controlesEdit(false, tr);
                 } else {
                     alert("ocurrio un error");
