@@ -193,6 +193,18 @@
         function btnActualizarCarrera(frm, tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarCarrera", frm, function (data) {
                 console.log("data del serivdor", data);
+                if (data.estado) {
+                    var carrera = data.carreraEditada;
+                    tr.find(".txtHdIdCarrera").val(carrera._idCarrera);
+                    tr.find(".tdCarrera").empty().append(carrera._carrera);
+
+                    tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
+                    tr.find(".tdInstitucionNombre").empty().append(carrera._institucion._nombre );
+
+                    controlesEdit(false, tr);
+                } else {
+                    alert("ocurrio un error");
+                }
             })
         }
         function btnEliminarCarrera(frm, tr) {
@@ -218,6 +230,11 @@
         function btnActualizarTituloPersona(frm) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarFormacionPersona", frm, function (data) {
                 console.log("la data es", data);
+                if (data.estado) {
+
+                } else {
+                    alert("Ocurrio un error");
+                }
             })
         }
         function btnAgregarCarrera(frm) { // agrega formacion de personas a persar del nombre raro
