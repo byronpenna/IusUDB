@@ -39,6 +39,25 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                             throw x;
                         }
                     }
+                    public Dictionary<object, object> getEditTitulos(int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            Dictionary<object, object> toReturn = new Dictionary<object, object>();
+                            ControlEstadoCarrera controlEstadoCarrera = new ControlEstadoCarrera();
+                            toReturn.Add("estadosCarreras", controlEstadoCarrera.sp_rrhh_getEstadosCarreras(idUsuarioEjecutor, idPagina));
+                            toReturn.Add("carreras", this._controlCarrera.sp_rrhh_getCarreras(idUsuarioEjecutor, idPagina));
+                            return toReturn;
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                 #endregion
                 #region "formacion personas"
                     public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar, int idUsuarioEjecutor, int idPagina)
@@ -73,6 +92,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     }
                 #endregion
                 #region "carrera"
+                    public Carrera sp_rrhh_editarCarrera(Carrera carreraEditar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlCarrera.sp_rrhh_editarCarrera(carreraEditar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public bool sp_rrhh_eliminarCarrera(int idCarrera, int idUsuarioEjecutor, int idPagina)
                     {
                         try

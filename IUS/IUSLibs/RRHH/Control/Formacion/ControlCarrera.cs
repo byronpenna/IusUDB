@@ -19,6 +19,41 @@ namespace IUSLibs.RRHH.Control.Formacion
     {
         #region "funciones"
             #region "do"
+                public Carrera sp_rrhh_editarCarrera(Carrera carreraEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    Carrera carreraEditada = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_editarCarrera");
+                    sp.agregarParametro("carrera", carreraEditar._carrera);
+                    sp.agregarParametro("idNivel", carreraEditar._nivelTitulo._idNivel);
+                    sp.agregarParametro("idInstitucion", carreraEditar._institucion._idInstitucion);
+                    sp.agregarParametro("idCarrera", carreraEditar._idCarrera);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                carreraEditada = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                carreraEditada._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
+                                carreraEditada._institucion._nombre = row["nombreInstitucion"].ToString();
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return carreraEditada;
+                }
                 public bool sp_rrhh_eliminarCarrera(int idCarrera, int idUsuarioEjecutor, int idPagina)
                 {
                     bool estado = false;
@@ -33,6 +68,12 @@ namespace IUSLibs.RRHH.Control.Formacion
                         if (this.resultadoCorrecto(tb))
                         {
                             estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
@@ -64,9 +105,16 @@ namespace IUSLibs.RRHH.Control.Formacion
                             if (tb[1].Rows.Count > 0)
                             {
                                 DataRow row = tb[1].Rows[0];
-                                carreraIngresada = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
-
+                                carreraIngresada                            = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                carreraIngresada._nivelTitulo._nombreNivel  = row["nombre_nivel"].ToString();
+                                carreraIngresada._institucion._nombre       = row["nombreInstitucion"].ToString();
                             }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
@@ -81,6 +129,46 @@ namespace IUSLibs.RRHH.Control.Formacion
                 }
             #endregion
             #region "get"
+                public List<Carrera> sp_rrhh_getCarreras(int idUsuarioEjecutor, int idPagina)
+                {
+                    List<Carrera> carreras = null; Carrera carrera;
+                    SPIUS sp = new SPIUS("sp_rrhh_getCarreras");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                carreras = new List<Carrera>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    carrera                             = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                    carrera._nivelTitulo._nombreNivel   = row["nombre_nivel"].ToString();
+                                    carrera._institucion._nombre        = row["nombreInstitucion"].ToString();
+                                    carreras.Add(carrera);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                        return carreras;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
         #endregion
     }
