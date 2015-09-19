@@ -152,8 +152,8 @@
                             console.log("datos set", datosSet);
                             tr.find(".cbEstadoCarrera").val(datosSet.idEstadoCarrera);
                             tr.find(".txtYearInicio").val(datosSet.yearInicio);
-                            tr.find(".txtYearFin").val(datosSet.yearInicio);
-                            tr.find(".txtAreaObservaciones").val(datosSet.yearInicio);
+                            tr.find(".txtYearFin").val(datosSet.yearFin);
+                            tr.find(".txtAreaObservaciones").val(datosSet.observaciones);
                         controlesEdit(true, tr);
                     })
                 $(document).on("click", ".btnAgregarCarrera", function () {

@@ -82,6 +82,68 @@
                 ";
                 return tr;
             }
+            function getTrFormacionPersonas(formacionPersona) {
+                var tr = "\
+                    <tr>\
+                        <td class='hidden'>\
+                            <input name='txtHdIdFormacionPersona' class='txtHdIdFormacionPersona' value='"+ formacionPersona._idFormacionPersona + "'/>\
+                            <input name='txtHdIdEstadoCarrera' class='txtHdIdEstadoCarrera' value='"+ formacionPersona._estado._idEstadoCarrera + "' />\
+                            <input name='txtHdIdCarrera' class='txtHdIdCarrera' value='"+ formacionPersona._carrera._idCarrera + "' />\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <select name='cbCarrera' class='cbCarrera form-control'></select>\
+                            </div>\
+                            <div class='normalMode tdCarrera'>\
+                                "+ formacionPersona._carrera._carrera + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <input name='txtYearInicio' class='txtYearInicio form-control' />\
+                            </div>\
+                            <div class='normalMode tdYearInicio'>\
+                                "+ formacionPersona._yearInicio + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <input name='txtYearFin' class='txtYearFin form-control' />\
+                            </div>\
+                            <div class='normalMode tdYearFin'>\
+                                    "+formacionPersona._yearFin+"\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <textarea name='txtAreaObservaciones' class='txtAreaObservaciones form-control'></textarea>\
+                            </div>\
+                            <div class='normalMode tdObservaciones'>\
+                                "+ formacionPersona._observaciones + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <select name='cbEstadoCarrera' class='cbEstadoCarrera form-control'></select>\
+                            </div>\
+                            <div class='normalMode tdEstadoTitulo'>\
+                                "+ formacionPersona._estado._estado + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <button class='btn btnActualizarTituloPersona'>Actualizar</button>\
+                                <button class='btn btnCancelarUni'>Actualizar</button>\
+                            </div>\
+                            <div class='normalMode tdEmail'>\
+                                <button class='btn btnEditarTitulos '>Editar</button>\
+                                <button class='btn btnEliminarTitulo '>Eliminar</button>\
+                            </div>\
+                        </td>\
+                    </tr>\
+                ";
+                return tr;
+            }
         // cb
             function getCbCarrera(carrera) {
                 var cb = "<option value="+carrera._idCarrera+">"+carrera._carrera+"</option>";
@@ -158,9 +220,15 @@
                 console.log("la data es", data);
             })
         }
-        function btnAgregarCarrera(frm) {
+        function btnAgregarCarrera(frm) { // agrega formacion de personas a persar del nombre raro
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarFormacionPersona", frm, function (data) {
                 console.log("la data es", data);
+                if (data.estado) {
+                    var tr = getTrFormacionPersonas(data.formacionAgregada);
+                    $(".tbodyFormacionPersonas").prepend(tr);
+                } else {
+                    alert("Ocurrio un error");
+                }
             })
         }
         function btnEliminarTitulo(frm,tr){
