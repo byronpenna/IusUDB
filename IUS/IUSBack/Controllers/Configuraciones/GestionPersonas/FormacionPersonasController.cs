@@ -109,6 +109,39 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
             #endregion
             #region "Formacion"
+                public ActionResult sp_rrhh_editarFormacionPersona()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            // -1 para id persona porq no es necesario 
+                            FormacionPersona formacionEditar = new FormacionPersona(this.convertObjAjaxToInt(frm["txtHdIdFormacionPersona"]), this.convertObjAjaxToInt(frm["txtYearInicio"]), this.convertObjAjaxToInt(frm["txtYearFin"]), frm["txtAreaObservaciones"].ToString(),0,this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), this.convertObjAjaxToInt(frm["cbEstadoCarrera"]));
+                            FormacionPersona formacionEditada = this._model.sp_rrhh_editarFormacionPersona(formacionEditar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("formacionEditada", formacionEditada);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_rrhh_ingresarFormacionPersona()
                 {
                     Dictionary<object, object> frm, respuesta = null;

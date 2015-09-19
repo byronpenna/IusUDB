@@ -60,6 +60,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     }
                 #endregion
                 #region "formacion personas"
+                    public FormacionPersona sp_rrhh_editarFormacionPersona(FormacionPersona formacionEditar,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlFormacion.sp_rrhh_editarFormacionPersona(formacionEditar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar, int idUsuarioEjecutor, int idPagina)
                     {
                         try

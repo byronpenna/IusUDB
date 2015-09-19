@@ -115,41 +115,47 @@
                     btnAgregarCarreraIndividual(frm);
                 })
             // formacion persona
-                
-                $(document).on("click", ".btnEditarTitulos", function () {
-                    var tr = $(this).parents("tr");
-                    var datosSet = {};
-                    datosSet.yearInicio         = $.trim(tr.find(".tdYearInicio").text());
-                    datosSet.yearFin            = $.trim(tr.find(".tdYearFin").text());
-                    datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
-                    datosSet.idCarrera          = $.trim(tr.find(".txtHdIdCarrera").text());
-                    datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").text());
-                    // cargando selects 
-                        var frm = {};
-                        actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
-                            console.log("data para edit titulo es", data);
-                            var cbCarreras = "";var cbEstadoCarrera = "";
-                            if (data.carreras !== undefined && data.carreras != null && data.carreras.length > 0) {
-                                $.each(data.carreras, function (i,carrera) {
-                                    cbCarreras += getCbCarrera(carrera);
-                                })
-                            }
-                            if (data.estadosCarreras !== undefined && data.estadosCarreras != null && data.estadosCarreras.length > 0) {
-                                $.each(data.estadosCarreras, function (i,estadoCarrera) {
-                                    cbEstadoCarrera += getCbEstadosCarreras(estadoCarrera);
-                                })
-                            }
-                            tr.find(".cbEstadoCarrera").empty().append(cbEstadoCarrera);
-                            tr.find(".cbCarrera").empty().append(cbCarreras);
-                        })
-                    // set 
-                        console.log("datos set", datosSet);
-                        tr.find(".cbEstadoCarrera").val(datosSet.idEstadoCarrera);
-                        tr.find(".txtYearInicio").val(datosSet.yearInicio);
-                        tr.find(".txtYearFin").val(datosSet.yearInicio);
-                        tr.find(".txtAreaObservaciones").val(datosSet.yearInicio);
-                    controlesEdit(true, tr);
-                })
+                // edicion
+                    $(document).on("click", ".btnActualizarTituloPersona", function () {
+                        var tr = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        console.log("formulario a editar", frm);
+                        btnActualizarTituloPersona(frm);
+                    })
+                    $(document).on("click", ".btnEditarTitulos", function () {
+                        var tr = $(this).parents("tr");
+                        var datosSet = {};
+                        datosSet.yearInicio         = $.trim(tr.find(".tdYearInicio").text());
+                        datosSet.yearFin            = $.trim(tr.find(".tdYearFin").text());
+                        datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
+                        datosSet.idCarrera          = $.trim(tr.find(".txtHdIdCarrera").text());
+                        datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").text());
+                        // cargando selects 
+                            var frm = {};
+                            actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
+                                console.log("data para edit titulo es", data);
+                                var cbCarreras = "";var cbEstadoCarrera = "";
+                                if (data.carreras !== undefined && data.carreras != null && data.carreras.length > 0) {
+                                    $.each(data.carreras, function (i,carrera) {
+                                        cbCarreras += getCbCarrera(carrera);
+                                    })
+                                }
+                                if (data.estadosCarreras !== undefined && data.estadosCarreras != null && data.estadosCarreras.length > 0) {
+                                    $.each(data.estadosCarreras, function (i,estadoCarrera) {
+                                        cbEstadoCarrera += getCbEstadosCarreras(estadoCarrera);
+                                    })
+                                }
+                                tr.find(".cbEstadoCarrera").empty().append(cbEstadoCarrera);
+                                tr.find(".cbCarrera").empty().append(cbCarreras);
+                            })
+                        // set 
+                            console.log("datos set", datosSet);
+                            tr.find(".cbEstadoCarrera").val(datosSet.idEstadoCarrera);
+                            tr.find(".txtYearInicio").val(datosSet.yearInicio);
+                            tr.find(".txtYearFin").val(datosSet.yearInicio);
+                            tr.find(".txtAreaObservaciones").val(datosSet.yearInicio);
+                        controlesEdit(true, tr);
+                    })
                 $(document).on("click", ".btnAgregarCarrera", function () {
                     var frm = serializeSection($(this).parents("tr"));
                     frm.idPersona = $(".txtHdIdPersona").val();

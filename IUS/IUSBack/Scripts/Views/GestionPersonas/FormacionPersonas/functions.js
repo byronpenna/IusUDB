@@ -151,9 +151,13 @@
                     alert("Ocurrio un error")
                 }
             })
-        }
-        
+        }      
     // formacion personas
+        function btnActualizarTituloPersona(frm) {
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarFormacionPersona", frm, function (data) {
+                console.log("la data es", data);
+            })
+        }
         function btnAgregarCarrera(frm) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarFormacionPersona", frm, function (data) {
                 console.log("la data es", data);
