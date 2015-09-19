@@ -229,9 +229,15 @@
     // formacion personas
         function btnActualizarTituloPersona(frm) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarFormacionPersona", frm, function (data) {
-                console.log("la data es", data);
+                console.log("la data es de actualizacion es:", data);
                 if (data.estado) {
-
+                    var formacion = formacionEditada;
+                    tr.find(".tdCarrera").empty().append("");//formacion._carrera._carrera
+                    tr.find(".tdYearInicio").empty().append(formacion._yearInicio);
+                    tr.find(".tdYearFin").empty().append(formacion._yearFin);
+                    tr.find(".tdObservaciones").empty().append(formacion._observaciones);
+                    tr.find(".tdEstadoTitulo").empty().append("");//formacion._estado._estado
+                    
                 } else {
                     alert("Ocurrio un error");
                 }
