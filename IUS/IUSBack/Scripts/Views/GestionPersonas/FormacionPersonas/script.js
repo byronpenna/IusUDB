@@ -72,6 +72,7 @@
                         var datosSet = {};
                         datosSet.carrera        = $.trim(tr.find(".tdCarrera").text());
                         datosSet.idInstitucion  = tr.find(".txtHdIdInstitucion").val();
+                        datosSet.idNivelCarrera = tr.find(".txtHdIdNivelCarrera").val();
                         // set
                         var frm = {};
                         actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditCarreras", frm, function (data) {
@@ -93,11 +94,13 @@
                                 selectInstitucion.empty().append(cbInstuciones);
                                 
                                 resetChosenWithSelectedVal(selectInstitucion, datosSet.idInstitucion)
+                                resetChosenWithSelectedVal(selectCarrera, datosSet.idNivelCarrera)
                             } else {
                                 // cargar error de editar
                             }
                         })
                         tr.find(".txtNombreCarrera").val(datosSet.carrera);
+
                         controlesEdit(true, tr);
                     })
                     $(document).on("click", ".btnActualizarCarrera", function (e) {

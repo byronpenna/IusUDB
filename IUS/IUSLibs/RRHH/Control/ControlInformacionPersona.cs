@@ -133,11 +133,8 @@ namespace IUSLibs.RRHH.Control
                     {
                         if (tb[1].Rows.Count > 0)
                         {
-                            foreach (DataRow row in tb[1].Rows)
-                            {
-                                infoRegresar = new InformacionPersona((int)row["idInformacionPersona"], row["foto"].ToString());
-
-                            }
+                            DataRow row = tb[1].Rows[0];
+                            infoRegresar = new InformacionPersona((int)row["idInformacionPersona"], row["foto"].ToString());
                         }
                     }
                     else

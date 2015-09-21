@@ -196,11 +196,13 @@
                 if (data.estado) {
                     var carrera = data.carreraEditada;
                     tr.find(".txtHdIdCarrera").val(carrera._idCarrera);
+                    tr.find(".txtHdIdNivelCarrera").val(carrera._nivelTitulo._idNivel);
                     tr.find(".tdCarrera").empty().append(carrera._carrera);
 
                     tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
                     tr.find(".tdInstitucionNombre").empty().append(carrera._institucion._nombre );
                     tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
+                    
                     controlesEdit(false, tr);
                 } else {
                     alert("ocurrio un error");
