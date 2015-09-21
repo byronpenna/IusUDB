@@ -125,7 +125,7 @@
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         console.log("formulario a editar", frm);
-                        btnActualizarTituloPersona(frm);
+                        btnActualizarTituloPersona(frm,tr);
                     })
                     $(document).on("click", ".btnEditarTitulos", function () {
                         var tr = $(this).parents("tr");
@@ -156,6 +156,7 @@
                                 console.log("datos set para editar", datosSet);
                                 // reset chosen
                                 resetChosenWithSelectedVal(selectCarrera, datosSet.idCarrera);
+                                selectEstadoCarrera.val(datosSet.idEstadoCarrera)
                             })
                         // set 
                             console.log("datos set", datosSet);
