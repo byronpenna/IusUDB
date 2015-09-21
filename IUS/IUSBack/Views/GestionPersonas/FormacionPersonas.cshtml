@@ -1,4 +1,5 @@
-﻿@using IUSLibs.RRHH.Entidades.Formacion
+﻿@using IUSLibs.RRHH.Entidades
+@using IUSLibs.RRHH.Entidades.Formacion
 @using IUSLibs.SEC.Entidades
 @using IUSLibs.FrontUI.Entidades
 @section estilosPersonalizados{
@@ -23,6 +24,7 @@
     List<NivelTitulo> nivelesTitulo = null; List<Carrera> carreras = null;
     List<FormacionPersona> formacionesPersonas= null;
     string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
+    InformacionPersona informacion = null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
         estadosCarrera                  = (List<EstadoCarrera>)info["estadosCarrera"];
@@ -32,6 +34,12 @@
         nivelesTitulo                   = (List<NivelTitulo>)info["nivelesTitulo"];
         carreras                        = (List<Carrera>)info["carreras"];
         formacionesPersonas             = (List<FormacionPersona>)info["formacionesPersonas"];
+        informacion = (InformacionPersona)info["informacionPersona"];
+
+        if (informacion._tieneFoto)
+        {
+            strFoto = Url.Content(informacion._fotoRuta);
+        }
     }catch(Exception){
         
     }
@@ -58,7 +66,7 @@
 <div class="row marginNull divControles">
     <div class="row marginNull rowDataPersona">
         <h2 class="titlePersona">@persona.nombreCompleto</h2>
-        <img class=" imgPersona" src="@strFoto" />
+        <img class="imgPersona" src="@strFoto" />
     </div>
     
     <div class="col-lg-offset-5 col-lg-2 text-center">
