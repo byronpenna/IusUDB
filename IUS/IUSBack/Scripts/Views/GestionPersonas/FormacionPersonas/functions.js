@@ -82,6 +82,68 @@
                 ";
                 return tr;
             }
+            function getTrFormacionPersonas(formacionPersona) {
+                var tr = "\
+                    <tr>\
+                        <td class='hidden'>\
+                            <input name='txtHdIdFormacionPersona' class='txtHdIdFormacionPersona' value='"+ formacionPersona._idFormacionPersona + "'/>\
+                            <input name='txtHdIdEstadoCarrera' class='txtHdIdEstadoCarrera' value='"+ formacionPersona._estado._idEstadoCarrera + "' />\
+                            <input name='txtHdIdCarrera' class='txtHdIdCarrera' value='"+ formacionPersona._carrera._idCarrera + "' />\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <select name='cbCarrera' class='cbCarrera form-control'></select>\
+                            </div>\
+                            <div class='normalMode tdCarrera'>\
+                                "+ formacionPersona._carrera._carrera + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <input name='txtYearInicio' class='txtYearInicio form-control' />\
+                            </div>\
+                            <div class='normalMode tdYearInicio'>\
+                                "+ formacionPersona._yearInicio + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <input name='txtYearFin' class='txtYearFin form-control' />\
+                            </div>\
+                            <div class='normalMode tdYearFin'>\
+                                    "+formacionPersona._yearFin+"\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <textarea name='txtAreaObservaciones' class='txtAreaObservaciones form-control'></textarea>\
+                            </div>\
+                            <div class='normalMode tdObservaciones'>\
+                                "+ formacionPersona._observaciones + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <select name='cbEstadoCarrera' class='cbEstadoCarrera form-control'></select>\
+                            </div>\
+                            <div class='normalMode tdEstadoTitulo'>\
+                                "+ formacionPersona._estado._estado + "\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <button class='btn btnActualizarTituloPersona'>Actualizar</button>\
+                                <button class='btn btnCancelarUni'>Actualizar</button>\
+                            </div>\
+                            <div class='normalMode tdEmail'>\
+                                <button class='btn btnEditarTitulos '>Editar</button>\
+                                <button class='btn btnEliminarTitulo '>Eliminar</button>\
+                            </div>\
+                        </td>\
+                    </tr>\
+                ";
+                return tr;
+            }
         // cb
             function getCbCarrera(carrera) {
                 var cb = "<option value="+carrera._idCarrera+">"+carrera._carrera+"</option>";
@@ -131,6 +193,18 @@
         function btnActualizarCarrera(frm, tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarCarrera", frm, function (data) {
                 console.log("data del serivdor", data);
+                if (data.estado) {
+                    var carrera = data.carreraEditada;
+                    tr.find(".txtHdIdCarrera").val(carrera._idCarrera);
+                    tr.find(".tdCarrera").empty().append(carrera._carrera);
+
+                    tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
+                    tr.find(".tdInstitucionNombre").empty().append(carrera._institucion._nombre );
+                    tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
+                    controlesEdit(false, tr);
+                } else {
+                    alert("ocurrio un error");
+                }
             })
         }
         function btnEliminarCarrera(frm, tr) {
@@ -151,12 +225,33 @@
                     alert("Ocurrio un error")
                 }
             })
-        }
-        
+        }      
     // formacion personas
-        function btnAgregarCarrera(frm) {
+        function btnActualizarTituloPersona(frm) {
+            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarFormacionPersona", frm, function (data) {
+                console.log("la data es de actualizacion es:", data);
+                if (data.estado) {
+                    var formacion = formacionEditada;
+                    tr.find(".tdCarrera").empty().append("");//formacion._carrera._carrera
+                    tr.find(".tdYearInicio").empty().append(formacion._yearInicio);
+                    tr.find(".tdYearFin").empty().append(formacion._yearFin);
+                    tr.find(".tdObservaciones").empty().append(formacion._observaciones);
+                    tr.find(".tdEstadoTitulo").empty().append("");//formacion._estado._estado
+                    
+                } else {
+                    alert("Ocurrio un error");
+                }
+            })
+        }
+        function btnAgregarCarrera(frm) { // agrega formacion de personas a persar del nombre raro
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarFormacionPersona", frm, function (data) {
                 console.log("la data es", data);
+                if (data.estado) {
+                    var tr = getTrFormacionPersonas(data.formacionAgregada);
+                    $(".tbodyFormacionPersonas").prepend(tr);
+                } else {
+                    alert("Ocurrio un error");
+                }
             })
         }
         function btnEliminarTitulo(frm,tr){

@@ -23,8 +23,45 @@ namespace IUSLibs.RRHH.Control.Formacion
             #region "do"
                 public FormacionPersona sp_rrhh_editarFormacionPersona(FormacionPersona formacionEditar,int idUsuarioEjecutor,int idPagina)
                 {
-                    SPIUS sp = new SPIUS("sp_rrhh_editarFormacionPersona+");
+                    FormacionPersona formacionEditada=null;
+                    SPIUS sp = new SPIUS("sp_rrhh_editarFormacionPersona");
+                    
+                    sp.agregarParametro("yearInicio", formacionEditar._yearInicio);
+                    sp.agregarParametro("yearFin", formacionEditar._yearFin);
+                    sp.agregarParametro("observaciones", formacionEditar._observaciones);
+                    sp.agregarParametro("idCarrera", formacionEditar._carrera._idCarrera);
+                    sp.agregarParametro("idEstadoCarrera", formacionEditar._estado._idEstadoCarrera);
+                    sp.agregarParametro("idFormacionPersona", formacionEditar._idFormacionPersona);
 
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                formacionEditada = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return formacionEditada;
                 }
                 public bool sp_rrhh_eliminarTituloPersona(int idFormacionPersona,int idUsuarioEjecutor,int idPagina)
                 {
@@ -75,10 +112,11 @@ namespace IUSLibs.RRHH.Control.Formacion
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                         if (this.resultadoCorrecto(tb))
                         {
-                            if(tb[0].Rows.Count >0){
-                                DataRow row = tb[0].Rows[0];
+                            if(tb[1].Rows.Count >0){
+                                DataRow row = tb[1].Rows[0];
                                 formacionAgregada = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
-
+                                formacionAgregada._carrera._carrera = row["carrera"].ToString();
+                                formacionAgregada._estado._estado = row["estado"].ToString();
                             }
                             
                         }

@@ -1,7 +1,9 @@
 ﻿$(document).ready(function () {
     // plugins 
         $(".cbChosenPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
-        //$(".cbChosenInsti").chosen({ no_results_text: "Carrera no encontrada", width: '100%' });
+        $(".cbChosenCarrera").chosen({ no_results_text: "Carrera no encontrada", width: '100%' });
+        $(".cbChosenInstitucion").chosen({ no_results_text: "No se a encontrado institucion", width: '100%' });
+        
     // eventos 
         // click 
             $(document).on("click", ".icoVista", function (e) {
@@ -66,35 +68,38 @@
             // carreras 
                 // edicion 
                     $(document).on("click", ".btnEditarCarrera", function (e) {
-                    var tr = $(this).parents("tr");
-                    var datosSet = {};
-                    datosSet.carrera = $.trim(tr.find(".tdCarrera").text());
-                    // set
-                    var frm = {};
-                    actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditCarreras", frm, function (data) {
-                        console.log("data", data);
-                        if (data.estado) {
-                            var cbInstuciones = '', cbNivelesTitulos = '';
-                            if (data.nivelesTitulos != null && data.nivelesTitulos.length > 0) {
-                                $.each(data.nivelesTitulos, function (i,nivelTitulo) {
-                                    cbNivelesTitulos += getCbNivelTitulo(nivelTitulo);
-                                })
+                        var tr = $(this).parents("tr");
+                        var datosSet = {};
+                        datosSet.carrera        = $.trim(tr.find(".tdCarrera").text());
+                        datosSet.idInstitucion  = tr.find(".txtHdIdInstitucion").val();
+                        // set
+                        var frm = {};
+                        actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditCarreras", frm, function (data) {
+                            console.log("data", data);
+                            if (data.estado) {
+                                var cbInstuciones = '', cbNivelesTitulos = '';
+                                if (data.nivelesTitulos != null && data.nivelesTitulos.length > 0) {
+                                    $.each(data.nivelesTitulos, function (i,nivelTitulo) {
+                                        cbNivelesTitulos += getCbNivelTitulo(nivelTitulo);
+                                    })
+                                }
+                                if (data.instituciones != null && data.instituciones.length > 0) {
+                                    $.each(data.instituciones, function (i, institucion) {
+                                        cbInstuciones += getCbInstituciones(institucion);
+                                    })
+                                }
+                                var selectCarrera = tr.find(".cbNivelCarrera"); var selectInstitucion = tr.find(".cbInsticionesParaCarrera");
+                                selectCarrera.empty().append(cbNivelesTitulos);
+                                selectInstitucion.empty().append(cbInstuciones);
+                                
+                                resetChosenWithSelectedVal(selectInstitucion, datosSet.idInstitucion)
+                            } else {
+                                // cargar error de editar
                             }
-                            if (data.instituciones != null && data.instituciones.length > 0) {
-                                $.each(data.instituciones, function (i, institucion) {
-                                    cbInstuciones += getCbInstituciones(institucion);
-                                })
-                            }
-                            tr.find(".cbNivelCarrera").empty().append(cbNivelesTitulos);
-                            tr.find(".cbInsticionesParaCarrera").empty().append(cbInstuciones);
-                            //resetChosenWithSelectedVal()
-                        } else {
-                            // cargar error de editar
-                        }
+                        })
+                        tr.find(".txtNombreCarrera").val(datosSet.carrera);
+                        controlesEdit(true, tr);
                     })
-                    tr.find(".txtNombreCarrera").val(datosSet.carrera);
-                    controlesEdit(true, tr);
-                })
                     $(document).on("click", ".btnActualizarCarrera", function (e) {
                         console.log("D: ");
                         var tr = $(this).parents("tr");
@@ -115,41 +120,52 @@
                     btnAgregarCarreraIndividual(frm);
                 })
             // formacion persona
-                
-                $(document).on("click", ".btnEditarTitulos", function () {
-                    var tr = $(this).parents("tr");
-                    var datosSet = {};
-                    datosSet.yearInicio         = $.trim(tr.find(".tdYearInicio").text());
-                    datosSet.yearFin            = $.trim(tr.find(".tdYearFin").text());
-                    datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
-                    datosSet.idCarrera          = $.trim(tr.find(".txtHdIdCarrera").text());
-                    datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").text());
-                    // cargando selects 
-                        var frm = {};
-                        actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
-                            console.log("data para edit titulo es", data);
-                            var cbCarreras = "";var cbEstadoCarrera = "";
-                            if (data.carreras !== undefined && data.carreras != null && data.carreras.length > 0) {
-                                $.each(data.carreras, function (i,carrera) {
-                                    cbCarreras += getCbCarrera(carrera);
-                                })
-                            }
-                            if (data.estadosCarreras !== undefined && data.estadosCarreras != null && data.estadosCarreras.length > 0) {
-                                $.each(data.estadosCarreras, function (i,estadoCarrera) {
-                                    cbEstadoCarrera += getCbEstadosCarreras(estadoCarrera);
-                                })
-                            }
-                            tr.find(".cbEstadoCarrera").empty().append(cbEstadoCarrera);
-                            tr.find(".cbCarrera").empty().append(cbCarreras);
-                        })
-                    // set 
-                        console.log("datos set", datosSet);
-                        tr.find(".cbEstadoCarrera").val(datosSet.idEstadoCarrera);
-                        tr.find(".txtYearInicio").val(datosSet.yearInicio);
-                        tr.find(".txtYearFin").val(datosSet.yearInicio);
-                        tr.find(".txtAreaObservaciones").val(datosSet.yearInicio);
-                    controlesEdit(true, tr);
-                })
+                // edicion
+                    $(document).on("click", ".btnActualizarTituloPersona", function () {
+                        var tr = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        console.log("formulario a editar", frm);
+                        btnActualizarTituloPersona(frm);
+                    })
+                    $(document).on("click", ".btnEditarTitulos", function () {
+                        var tr = $(this).parents("tr");
+                        var datosSet = {};
+                        datosSet.yearInicio         = $.trim(tr.find(".tdYearInicio").text());
+                        datosSet.yearFin            = $.trim(tr.find(".tdYearFin").text());
+                        datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
+                        datosSet.idCarrera          = $.trim(tr.find(".txtHdIdCarrera").val());
+                        datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").val());
+                        // cargando selects 
+                            var frm = {};
+                            actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
+                                console.log("data para edit titulo es", data);
+                                var cbCarreras = "";var cbEstadoCarrera = "";
+                                if (data.carreras !== undefined && data.carreras != null && data.carreras.length > 0) {
+                                    $.each(data.carreras, function (i,carrera) {
+                                        cbCarreras += getCbCarrera(carrera);
+                                    })
+                                }
+                                if (data.estadosCarreras !== undefined && data.estadosCarreras != null && data.estadosCarreras.length > 0) {
+                                    $.each(data.estadosCarreras, function (i,estadoCarrera) {
+                                        cbEstadoCarrera += getCbEstadosCarreras(estadoCarrera);
+                                    })
+                                }
+                                var selectCarrera = tr.find(".cbCarrera");var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
+                                selectEstadoCarrera.empty().append(cbEstadoCarrera);
+                                selectCarrera.empty().append(cbCarreras);
+                                console.log("datos set para editar", datosSet);
+                                // reset chosen
+                                resetChosenWithSelectedVal(selectCarrera, datosSet.idCarrera);
+                            })
+                        // set 
+                            console.log("datos set", datosSet);
+                            tr.find(".cbEstadoCarrera").val(datosSet.idEstadoCarrera);
+                            tr.find(".txtYearInicio").val(datosSet.yearInicio);
+                            tr.find(".txtYearFin").val(datosSet.yearFin);
+                            tr.find(".txtAreaObservaciones").val(datosSet.observaciones);
+                            
+                        controlesEdit(true, tr);
+                    })
                 $(document).on("click", ".btnAgregarCarrera", function () {
                     var frm = serializeSection($(this).parents("tr"));
                     frm.idPersona = $(".txtHdIdPersona").val();
