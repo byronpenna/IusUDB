@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Administracion\AdministracionController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\FormacionPersonasController.cs" />
+    <Compile Include="Controllers\Configuraciones\GestionPersonas\GestionLaboralController.cs" />
     <Compile Include="Controllers\Website\ConfiguracionWebsiteController.cs" />
     <Compile Include="Controllers\Errors\ErrorsController.cs" />
     <Compile Include="Controllers\Website\GestionIdiomaWebsiteController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\Page\GestionPermisos\Acciones\GestionPermisosModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\ExtraGestionPersonasModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\FormacionPersonasModel.cs" />
+    <Compile Include="Models\Page\GestionPersonas\acciones\GestionLaboralModel.cs" />
     <Compile Include="Models\Page\GestionPersonas\acciones\GestionPersonaModel.cs" />
     <Compile Include="Models\Page\GestionRoles\acciones\GestionRolesModel.cs" />
     <Compile Include="Models\Page\GestionRolSubmenu\Acciones\GestionRolSubmenuModel.cs" />
@@ -625,6 +627,7 @@
     <Content Include="Views\RepositorioCompartido\UserShare.cshtml" />
     <Content Include="Views\GestionPersonas\Extras.cshtml" />
     <Content Include="Views\GestionPersonas\FormacionPersonas.cshtml" />
+    <Content Include="Views\GestionPersonas\GestionLaboral.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
