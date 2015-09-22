@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.RRHH.Entidades.Laboral
+@section estilosPersonalizados{
     <!-- plugins -->
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
@@ -32,33 +33,63 @@
     </ul>
 
 }
-
+@{
+    List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
+    try{
+        Dictionary<object,object> 
+            iniciales = (Dictionary<object,object>)ViewBag.iniciales;
+            empresas  = (List<Empresa>)iniciales["empresas"];
+            cargos    = (List<CargoEmpresa>)iniciales["cargos"];
+    }catch(Exception){
+        
+    }
+}
 <h2>GestionLaboral</h2>
-<table>
+<table class="table">
     <thead>
         <tr>
-            <td>Empresa</td>
-            <td>Inicio</td>
-            <td>Fin</td>
-            <td>Observaciones</td>
-            <td>Cargo desempeñado</td>
+            <th>Empresa</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Observaciones</th>
+            <th>Cargo desempeñado</th>
+            <th>Acciones</th>
         </tr>
         <tr>
-            <td>
-                <select class="cbEmpresa" name="cbEmpresa"></select>
-            </td>
-            <td>
-                <input type="number" class="txtInicio" name="txtInicio"/>
-            </td>
-            <td>
-                <input type="number" class="txtFin" name="txtFin" />
-            </td>
-            <td>
-                <textarea class="txtAreaObservacion" name="txtAreaObservacion"></textarea>
-            </td>
-            <td>
-                <select class="cbCargo" name="cbCargo"></select>
-            </td>
+            <th>
+                <select class="form-control cbEmpresa" name="cbEmpresa">
+                    @if (empresas != null && empresas.Count > 0)
+                    {
+                        foreach (Empresa empresa in empresas)
+                        {
+                            <option value="@empresa._idEmpresa">@empresa._nombre</option>
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <input type="number" class="form-control txtInicio" name="txtInicio" />
+            </th>
+            <th>
+                <input type="number" class="form-control txtFin" name="txtFin" />
+            </th>
+            <th>
+                <textarea class="form-control txtAreaObservacion" name="txtAreaObservacion"></textarea>
+            </th>
+            <th>
+                <select class="form-control cbCargo" name="cbCargo">
+                    @if (cargos != null && cargos.Count > 0)
+                    {
+                        foreach (CargoEmpresa cargo in cargos)
+                        {
+                            <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <button class="btn btnAgregarLaboralPersona">Agregar</button>
+            </th>
         </tr>
     </thead>
     <tbody>

@@ -22,7 +22,8 @@ namespace IUSLibs.RRHH.Control.Laboral
                 public Dictionary<object, object> sp_rrhh_getInfoInicialLaboralPersona(int idPersona, int idUsuarioEjecutor, int idPagina)
                 {
                     // variables 
-                        List<Empresa> empresas = null; Empresa empresa;
+                        List<Empresa>       empresas = null; Empresa        empresa;
+                        List<CargoEmpresa>  cargos   = null; CargoEmpresa   cargo;
                     // do 
                         Dictionary<object, object> retorno = new Dictionary<object, object>();
                         SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialLaboralPersona");
@@ -36,8 +37,23 @@ namespace IUSLibs.RRHH.Control.Laboral
                             {
                                 if (tb[0].Rows.Count > 0)
                                 {
-                                    //foreach(DataRow row in tb[])
+                                    empresas = new List<Empresa>();
+                                    foreach(DataRow row in tb[0].Rows){
+                                        empresa = new Empresa((int)row["idEmpresa"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_rubro_fk"]);
+                                        empresas.Add(empresa);
+                                    }
                                 }
+                                if (tb[1].Rows.Count > 0)
+                                {
+                                    cargos = new List<CargoEmpresa>();
+                                    foreach (DataRow row in tb[1].Rows)
+                                    {
+                                        cargo = new CargoEmpresa((int)row["idCargoEmpresa"], row["cargo"].ToString());
+                                        cargos.Add(cargo);
+                                    }
+                                }
+                                retorno.Add("cargos", cargos);
+                                retorno.Add("empresas", empresas);
                             }
                             else
                             {

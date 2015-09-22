@@ -19,7 +19,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             private GestionLaboralModel _model;
         #endregion
         #region "acciones url"
-            public ActionResult Index()
+            public ActionResult Index(int id)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
@@ -31,6 +31,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     Usuario usuarioSession  = this.getUsuarioSesion();
                     ViewBag.titleModulo     = "Información laboral personas";
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.iniciales       = this._model.sp_rrhh_getInfoInicialLaboralPersona(id, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (ErroresIUS x)
                 {
