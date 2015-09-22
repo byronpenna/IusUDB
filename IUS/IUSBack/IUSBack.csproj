@@ -294,6 +294,8 @@
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\laboral\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\laboral\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\media.css" />
@@ -474,6 +476,8 @@
     <Content Include="Scripts\Views\GestionPersonas\FormacionPersonas\functions.js" />
     <Content Include="Scripts\Views\GestionPersonas\FormacionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\functions.js" />
+    <Content Include="Scripts\Views\GestionPersonas\Laboral\functions.js" />
+    <Content Include="Scripts\Views\GestionPersonas\Laboral\script.js" />
     <Content Include="Scripts\Views\GestionPersonas\script.js" />
     <Content Include="Scripts\Views\GestionRoles\functions.js" />
     <Content Include="Scripts\Views\GestionRoles\script.js" />

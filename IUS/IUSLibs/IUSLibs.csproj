@@ -139,6 +139,7 @@
     <Compile Include="RRHH\Control\Formacion\ControlFormacionPersona.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlInstitucionesEducativas.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlNivelCarrera.cs" />
+    <Compile Include="RRHH\Control\Laboral\ControlLaboralPersona.cs" />
     <Compile Include="RRHH\Entidades\EmailPersona.cs" />
     <Compile Include="RRHH\Entidades\EstadoCivil.cs" />
     <Compile Include="RRHH\Entidades\Formacion\Carrera.cs" />
@@ -185,7 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FrontUI\Eventos\Entidades\" />
-    <Folder Include="RRHH\Control\Laboral\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
