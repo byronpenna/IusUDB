@@ -22,19 +22,19 @@
                 Informacion
             </li>
         </a>
-        <a href="@Url.Action("Index", "FormacionPersonas")">
-            <li class="btnTab tabActive">
+        <a href="@Url.Action("Index", "FormacionPersonas", new {id=43 })">
+            <li >
                 Formacion
             </li>
         </a>
-        <li>
+        <li class="btnTab tabActive">
             Laboral
         </li>
     </ul>
 
 }
 @{
-    List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
+    List<Empresa> empresas = null; List<CargoEmpresa> cargos = null; 
     try{
         Dictionary<object,object> 
             iniciales = (Dictionary<object,object>)ViewBag.iniciales;
@@ -45,6 +45,7 @@
     }
 }
 <h2>GestionLaboral</h2>
+<input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
 <table class="table">
     <thead>
         <tr>

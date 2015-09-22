@@ -17,7 +17,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #endregion
         #region "funciones"
             #region "do"
-                
+                public LaboralPersona sp_rrhh_insertLaboralPersonas(LaboralPersona laboralAgregar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlLaboral.sp_rrhh_insertLaboralPersonas(laboralAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "get"
                 public Dictionary<object, object> sp_rrhh_getInfoInicialLaboralPersona(int idPersona, int idUsuarioEjecutor, int idPagina)
