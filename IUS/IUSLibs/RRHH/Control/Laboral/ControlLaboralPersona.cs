@@ -55,6 +55,37 @@ namespace IUSLibs.RRHH.Control.Laboral
                     }
                     return laboralAgregado;
                 }
+                public bool sp_rrhh_eliminarLaboralPersonas(int idLaboralPersona, int idUsuarioEjecutor, int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarLaboralPersonas");
+                    sp.agregarParametro("idLaboralPersona", idLaboralPersona);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
             #endregion
             #region "get"
                 public Dictionary<object, object> sp_rrhh_getInfoInicialLaboralPersona(int idPersona, int idUsuarioEjecutor, int idPagina)
@@ -62,6 +93,7 @@ namespace IUSLibs.RRHH.Control.Laboral
                     // variables 
                     List<Empresa> empresas = null; Empresa empresa;
                     List<CargoEmpresa> cargos = null; CargoEmpresa cargo;
+                    List<LaboralPersona> laboralesPersona = null; LaboralPersona laboralPersona;
                     // do 
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialLaboralPersona");
@@ -91,8 +123,20 @@ namespace IUSLibs.RRHH.Control.Laboral
                                     cargos.Add(cargo);
                                 }
                             }
+                            if (tb[2].Rows.Count > 0)
+                            {
+                                laboralesPersona = new List<LaboralPersona>();
+                                foreach (DataRow row in tb[2].Rows)
+                                {
+                                    laboralPersona = new LaboralPersona((int)row["idLaboralPersona"], (int)row["id_empresa_fk"], (int)row["inicio"], (int)row["fin"],(int)row["id_persona_fk"] ,row["observaciones"].ToString(), (int)row["id_cargo_fk"]);
+                                    laboralPersona._empresa._nombre = row["nombreEmpresa"].ToString();
+                                    laboralPersona._cargo._cargo = row["cargo"].ToString();
+                                    laboralesPersona.Add(laboralPersona);
+                                }
+                            }
                             retorno.Add("cargos", cargos);
                             retorno.Add("empresas", empresas);
+                            retorno.Add("laboralesPersonas", laboralesPersona);
                         }
                         else
                         {

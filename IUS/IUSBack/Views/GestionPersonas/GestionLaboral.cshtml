@@ -34,12 +34,14 @@
 
 }
 @{
-    List<Empresa> empresas = null; List<CargoEmpresa> cargos = null; 
+    List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
+    List<LaboralPersona> laboralesPersonas = null;
     try{
         Dictionary<object,object> 
             iniciales = (Dictionary<object,object>)ViewBag.iniciales;
             empresas  = (List<Empresa>)iniciales["empresas"];
             cargos    = (List<CargoEmpresa>)iniciales["cargos"];
+            laboralesPersonas = (List<LaboralPersona>)iniciales["laboralesPersonas"];
     }catch(Exception){
         
     }
@@ -94,6 +96,27 @@
         </tr>
     </thead>
     <tbody>
-
+        @if (laboralesPersonas != null && laboralesPersonas.Count > 0)
+        {
+            foreach (LaboralPersona laboralPersona in laboralesPersonas)
+            {
+                <tr>
+                    <td class="hidden">
+                        <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
+                    </td>
+                    <td>@laboralPersona._empresa._nombre</td>
+                    <td>@laboralPersona._inicio</td>
+                    <td>@laboralPersona._fin</td>
+                    <td>@laboralPersona._observaciones</td>
+                    <td>@laboralPersona._cargo._cargo</td>
+                    <td>
+                        <button class="btn btnEditarLaboralPersona">Editar</button>
+                        <button class="btn btnEliminarLaboralPersona">Eliminar</button>
+                    </td>
+                </tr>
+                
+            }
+            
+        }
     </tbody>
 </table>

@@ -7,5 +7,8 @@
                 console.log("formulario a enviar",frm);
                 btnAgregarLaboralPersona(frm);
             })
-            
+            $(document).on("click", ".btnEliminarLaboralPersona", function () {
+                var frm = serializeSection($(this).parents("tr"));
+                console.log("formulario a enviar", frm);
+            })
 })

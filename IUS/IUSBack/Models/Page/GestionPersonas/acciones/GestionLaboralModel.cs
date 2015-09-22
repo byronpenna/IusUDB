@@ -17,6 +17,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #endregion
         #region "funciones"
             #region "do"
+                public bool sp_rrhh_eliminarLaboralPersonas(int idLaboralPersona, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlLaboral.sp_rrhh_eliminarLaboralPersonas(idLaboralPersona, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public LaboralPersona sp_rrhh_insertLaboralPersonas(LaboralPersona laboralAgregar, int idUsuarioEjecutor, int idPagina)
                 {
                     try

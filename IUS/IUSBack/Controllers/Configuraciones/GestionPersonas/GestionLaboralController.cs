@@ -49,6 +49,35 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             }
         #endregion
         #region "resultados ajax"
+            public ActionResult sp_rrhh_eliminarLaboralPersonas()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        bool elimino = this._model.sp_rrhh_eliminarLaboralPersonas(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]), usuarioSession._idUsuario, this._idPagina);
+                        respuesta.Add("estado", elimino); 
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_rrhh_insertLaboralPersonas()
             {
                 Dictionary<object, object> frm, respuesta = null;
