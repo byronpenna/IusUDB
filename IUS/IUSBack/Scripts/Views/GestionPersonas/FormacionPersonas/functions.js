@@ -196,11 +196,13 @@
                 if (data.estado) {
                     var carrera = data.carreraEditada;
                     tr.find(".txtHdIdCarrera").val(carrera._idCarrera);
+                    tr.find(".txtHdIdNivelCarrera").val(carrera._nivelTitulo._idNivel);
                     tr.find(".tdCarrera").empty().append(carrera._carrera);
 
                     tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
                     tr.find(".tdInstitucionNombre").empty().append(carrera._institucion._nombre );
                     tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
+                    
                     controlesEdit(false, tr);
                 } else {
                     alert("ocurrio un error");
@@ -227,17 +229,22 @@
             })
         }      
     // formacion personas
-        function btnActualizarTituloPersona(frm) {
+        function btnActualizarTituloPersona(frm,tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarFormacionPersona", frm, function (data) {
                 console.log("la data es de actualizacion es:", data);
                 if (data.estado) {
-                    var formacion = formacionEditada;
-                    tr.find(".tdCarrera").empty().append("");//formacion._carrera._carrera
-                    tr.find(".tdYearInicio").empty().append(formacion._yearInicio);
-                    tr.find(".tdYearFin").empty().append(formacion._yearFin);
-                    tr.find(".tdObservaciones").empty().append(formacion._observaciones);
-                    tr.find(".tdEstadoTitulo").empty().append("");//formacion._estado._estado
-                    
+                    var formacion = data.formacionEditada;
+                    // inputs hidden
+                        console.log("id carrera D: ", formacion._carrera._idCarrera);
+                        tr.find(".txtHdIdCarrera").val(formacion._carrera._idCarrera);
+                        tr.find(".txtHdIdEstadoCarrera").val(formacion._estado._idEstadoCarrera);
+                    // cosas visibles 
+                        tr.find(".tdCarrera").empty().append(formacion._carrera._carrera);//formacion._carrera._carrera
+                        tr.find(".tdYearInicio").empty().append(formacion._yearInicio);
+                        tr.find(".tdYearFin").empty().append(formacion._yearFin);
+                        tr.find(".tdObservaciones").empty().append(formacion._observaciones);
+                        tr.find(".tdEstadoTitulo").empty().append(formacion._estado._estado);//formacion._estado._estado
+                        controlesEdit(false, tr);
                 } else {
                     alert("Ocurrio un error");
                 }

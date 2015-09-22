@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.RRHH.Entidades;
     using IUSLibs.RRHH.Entidades.Formacion;
 namespace IUSBack.Controllers.Configuraciones.GestionPersonas
 {
@@ -36,6 +37,14 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     Dictionary<object, object> 
                         informacionIni          = this._model.sp_rrhh_getInfoInicialFormacion(id, usuarioSession._idUsuario, this._idPagina);
+                    InformacionPersona info     = (InformacionPersona)informacionIni["informacionPersona"];
+                    if (System.IO.File.Exists(info._fotoRuta))
+                    {
+                        info._tieneFoto = true;
+                        //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+                        info._fotoRuta = this.getRelativePathFromAbsolute(info._fotoRuta);
+                    }
+                    ViewBag.informacionPersona = info;
                     ViewBag.infoIni             = informacionIni;
                 }
                 catch (ErroresIUS x)

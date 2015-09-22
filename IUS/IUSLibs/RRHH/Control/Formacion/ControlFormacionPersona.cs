@@ -13,6 +13,7 @@ using System.Text;
         using IUSLibs.LOGS;
     // ---------------------
         using IUSLibs.RRHH.Entidades.Formacion;
+        using IUSLibs.RRHH.Entidades;
         using IUSLibs.SEC.Entidades;
         using IUSLibs.FrontUI.Entidades;
 namespace IUSLibs.RRHH.Control.Formacion
@@ -44,6 +45,9 @@ namespace IUSLibs.RRHH.Control.Formacion
                             {
                                 DataRow row = tb[1].Rows[0];
                                 formacionEditada = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
+                                formacionEditada._carrera._carrera = row["carrera"].ToString();
+                                formacionEditada._estado._estado = row["estado"].ToString();
+
                             }
                             else
                             {
@@ -146,6 +150,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                     List<NivelTitulo> nivelesTitulo = null; NivelTitulo nivelTitulo;
                     List<Carrera> carreras = null; Carrera carrera;
                     List<FormacionPersona> formacionesPersonas = null; FormacionPersona formacionPersona;
+                    InformacionPersona informacionPersona = null;
                     Persona persona = null; 
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
@@ -225,6 +230,11 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     formacionesPersonas.Add(formacionPersona);
                                 }
                             }
+                            if (tb[7].Rows.Count > 0)
+                            {
+                                DataRow row = tb[7].Rows[0];
+                                informacionPersona = new InformacionPersona((int)row["idInformacionPersona"],row["foto"].ToString());
+                            }
                         }
                         else
                         {
@@ -239,6 +249,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         retorno.Add("nivelesTitulo", nivelesTitulo);
                         retorno.Add("carreras", carreras);
                         retorno.Add("formacionesPersonas", formacionesPersonas);
+                        retorno.Add("informacionPersona", informacionPersona);
                     }
                     catch (ErroresIUS x)
                     {

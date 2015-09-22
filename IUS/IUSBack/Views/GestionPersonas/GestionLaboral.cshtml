@@ -1,0 +1,67 @@
+﻿@section estilosPersonalizados{
+    <!-- plugins -->
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/laboral/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/laboral/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- plugins -->
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionPersonas/Laboral/script.js"></script>
+        <script src="~/Scripts/Views/GestionPersonas/Laboral/functions.js"></script>
+}
+@section tabs{
+    <ul>
+        <a href="@Url.Action("Extras", "GestionPersonas",new {id=43})">
+            <li>
+                Informacion
+            </li>
+        </a>
+        <a href="@Url.Action("Index", "FormacionPersonas")">
+            <li class="btnTab tabActive">
+                Formacion
+            </li>
+        </a>
+        <li>
+            Laboral
+        </li>
+    </ul>
+
+}
+
+<h2>GestionLaboral</h2>
+<table>
+    <thead>
+        <tr>
+            <td>Empresa</td>
+            <td>Inicio</td>
+            <td>Fin</td>
+            <td>Observaciones</td>
+            <td>Cargo desempeñado</td>
+        </tr>
+        <tr>
+            <td>
+                <select class="cbEmpresa" name="cbEmpresa"></select>
+            </td>
+            <td>
+                <input type="number" class="txtInicio" name="txtInicio"/>
+            </td>
+            <td>
+                <input type="number" class="txtFin" name="txtFin" />
+            </td>
+            <td>
+                <textarea class="txtAreaObservacion" name="txtAreaObservacion"></textarea>
+            </td>
+            <td>
+                <select class="cbCargo" name="cbCargo"></select>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>

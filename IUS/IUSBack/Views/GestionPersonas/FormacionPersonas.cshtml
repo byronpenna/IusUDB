@@ -1,4 +1,5 @@
-﻿@using IUSLibs.RRHH.Entidades.Formacion
+﻿@using IUSLibs.RRHH.Entidades
+@using IUSLibs.RRHH.Entidades.Formacion
 @using IUSLibs.SEC.Entidades
 @using IUSLibs.FrontUI.Entidades
 @section estilosPersonalizados{
@@ -22,6 +23,8 @@
     List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
     List<NivelTitulo> nivelesTitulo = null; List<Carrera> carreras = null;
     List<FormacionPersona> formacionesPersonas= null;
+    string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
+    InformacionPersona informacion = null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
         estadosCarrera                  = (List<EstadoCarrera>)info["estadosCarrera"];
@@ -31,6 +34,12 @@
         nivelesTitulo                   = (List<NivelTitulo>)info["nivelesTitulo"];
         carreras                        = (List<Carrera>)info["carreras"];
         formacionesPersonas             = (List<FormacionPersona>)info["formacionesPersonas"];
+        informacion = (InformacionPersona)info["informacionPersona"];
+
+        if (informacion._tieneFoto)
+        {
+            strFoto = Url.Content(informacion._fotoRuta);
+        }
     }catch(Exception){
         
     }
@@ -45,7 +54,7 @@
         <li class="btnTab tabActive">
             Formacion
         </li>
-        <a href="@Url.Action("Index","RepositorioPublico")">
+        <a href="@Url.Action("Index","GestionLaboral")">
             <li>
                 Laboral
             </li>
@@ -55,7 +64,11 @@
 }
 <input type="hidden" class="txtHdIdPersona" value="@persona._idPersona" />
 <div class="row marginNull divControles">
-    <h2 class="titlePersona">@persona.nombreCompleto</h2>
+    <div class="row marginNull rowDataPersona">
+        <h2 class="titlePersona">@persona.nombreCompleto</h2>
+        <img class="imgPersona" src="@strFoto" />
+    </div>
+    
     <div class="col-lg-offset-5 col-lg-2 text-center">
         <label>Vistas</label>
         <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
@@ -332,6 +345,7 @@
                         <td class="hidden">
                             <input class="txtHdIdCarrera" name="txtHdIdCarrera" value="@carrera._idCarrera"/>
                             <input class="txtHdIdInstitucion" value="@carrera._institucion._idInstitucion"/>
+                            <input class="txtHdIdNivelCarrera" value="@carrera._nivelTitulo._idNivel" />
                         </td>
                         <td>
                             <div class="editMode hidden">
