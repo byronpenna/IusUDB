@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.RRHH.Entidades.Laboral
+@section estilosPersonalizados{
     <!-- plugins -->
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
@@ -21,47 +22,101 @@
                 Informacion
             </li>
         </a>
-        <a href="@Url.Action("Index", "FormacionPersonas")">
-            <li class="btnTab tabActive">
+        <a href="@Url.Action("Index", "FormacionPersonas", new {id=43 })">
+            <li >
                 Formacion
             </li>
         </a>
-        <li>
+        <li class="btnTab tabActive">
             Laboral
         </li>
     </ul>
 
 }
-
+@{
+    List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
+    List<LaboralPersona> laboralesPersonas = null;
+    try{
+        Dictionary<object,object> 
+            iniciales = (Dictionary<object,object>)ViewBag.iniciales;
+            empresas  = (List<Empresa>)iniciales["empresas"];
+            cargos    = (List<CargoEmpresa>)iniciales["cargos"];
+            laboralesPersonas = (List<LaboralPersona>)iniciales["laboralesPersonas"];
+    }catch(Exception){
+        
+    }
+}
 <h2>GestionLaboral</h2>
-<table>
+<input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
+<table class="table">
     <thead>
         <tr>
-            <td>Empresa</td>
-            <td>Inicio</td>
-            <td>Fin</td>
-            <td>Observaciones</td>
-            <td>Cargo desempeñado</td>
+            <th>Empresa</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Observaciones</th>
+            <th>Cargo desempeñado</th>
+            <th>Acciones</th>
         </tr>
         <tr>
-            <td>
-                <select class="cbEmpresa" name="cbEmpresa"></select>
-            </td>
-            <td>
-                <input type="number" class="txtInicio" name="txtInicio"/>
-            </td>
-            <td>
-                <input type="number" class="txtFin" name="txtFin" />
-            </td>
-            <td>
-                <textarea class="txtAreaObservacion" name="txtAreaObservacion"></textarea>
-            </td>
-            <td>
-                <select class="cbCargo" name="cbCargo"></select>
-            </td>
+            <th>
+                <select class="form-control cbEmpresa" name="cbEmpresa">
+                    @if (empresas != null && empresas.Count > 0)
+                    {
+                        foreach (Empresa empresa in empresas)
+                        {
+                            <option value="@empresa._idEmpresa">@empresa._nombre</option>
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <input type="number" class="form-control txtInicio" name="txtInicio" />
+            </th>
+            <th>
+                <input type="number" class="form-control txtFin" name="txtFin" />
+            </th>
+            <th>
+                <textarea class="form-control txtAreaObservacion" name="txtAreaObservacion"></textarea>
+            </th>
+            <th>
+                <select class="form-control cbCargo" name="cbCargo">
+                    @if (cargos != null && cargos.Count > 0)
+                    {
+                        foreach (CargoEmpresa cargo in cargos)
+                        {
+                            <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                        }
+                    }
+                </select>
+            </th>
+            <th>
+                <button class="btn btnAgregarLaboralPersona">Agregar</button>
+            </th>
         </tr>
     </thead>
     <tbody>
-
+        @if (laboralesPersonas != null && laboralesPersonas.Count > 0)
+        {
+            foreach (LaboralPersona laboralPersona in laboralesPersonas)
+            {
+                <tr>
+                    <td class="hidden">
+                        <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
+                    </td>
+                    <td>@laboralPersona._empresa._nombre</td>
+                    <td>@laboralPersona._inicio</td>
+                    <td>@laboralPersona._fin</td>
+                    <td>@laboralPersona._observaciones</td>
+                    <td>@laboralPersona._cargo._cargo</td>
+                    <td>
+                        <button class="btn btnEditarLaboralPersona">Editar</button>
+                        <button class="btn btnEliminarLaboralPersona">Eliminar</button>
+                    </td>
+                </tr>
+                
+            }
+            
+        }
     </tbody>
 </table>

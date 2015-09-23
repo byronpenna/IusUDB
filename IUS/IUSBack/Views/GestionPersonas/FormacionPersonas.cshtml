@@ -46,7 +46,7 @@
 }
 @section tabs{
     <ul>
-        <a href="@Url.Action("Extras", "GestionPersonas",new {id=43})">
+        <a href="@Url.Action("Extras", "GestionPersonas", new { id = persona._idPersona })">
             <li>
                 Informacion
             </li>
@@ -54,7 +54,7 @@
         <li class="btnTab tabActive">
             Formacion
         </li>
-        <a href="@Url.Action("Index","GestionLaboral")">
+        <a href="@Url.Action("Index", "GestionLaboral", new {id=persona._idPersona })">
             <li>
                 Laboral
             </li>

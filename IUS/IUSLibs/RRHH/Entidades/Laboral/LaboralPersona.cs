@@ -39,7 +39,21 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                         this._observaciones     = observaciones;
                         this._cargo             = cargo;
                 }
-
+            // Pata agregar
+                public LaboralPersona(int idEmpresa, int inicio, int fin, int idPersona, string observaciones, int idCargo)
+                {
+                    // do 
+                    Empresa empresa = new Empresa(idEmpresa);
+                    Persona persona = new Persona(idPersona);
+                    CargoEmpresa cargo = new CargoEmpresa(idCargo);
+                    // set 
+                    this._empresa = empresa;
+                    this._inicio = inicio;
+                    this._fin = fin;
+                    this._persona = persona;
+                    this._observaciones = observaciones;
+                    this._cargo = cargo;
+                }
         #endregion
     }
 }
