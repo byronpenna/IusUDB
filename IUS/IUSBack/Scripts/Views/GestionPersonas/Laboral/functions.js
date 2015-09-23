@@ -1,4 +1,15 @@
-﻿// acciones 
+﻿// genericas 
+    function getObjetoSetEditLaboral(tr) {
+        var datosSet = new Object();
+        // recolectando datos
+            datosSet.fechaInicio = $.trim(tr.find(".tdFechaInicio").text());
+            datosSet.fechaFin = $.trim(tr.find(".tdFechaFin").text());
+            datosSet.idEmpresa = tr.find(".txtHdIdEmpresa").val();
+            datosSet.idCargoEmpresa = tr.find(".txtHdIdCargoEmpresa").val();
+            datosSet.observaciones = $.trim(tr.find(".tdObservaciones").text());
+        return datosSet;
+    }
+// acciones 
     function btnAgregarLaboralPersona(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
             console.log(data);

@@ -55,6 +55,7 @@ namespace IUSLibs.RRHH.Control.Laboral
                     }
                     return laboralAgregado;
                 }
+                
                 public bool sp_rrhh_eliminarLaboralPersonas(int idLaboralPersona, int idUsuarioEjecutor, int idPagina)
                 {
                     bool estado = false;

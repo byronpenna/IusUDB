@@ -14,6 +14,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
     {
         #region "propiedades"
             private ControlLaboralPersona _controlLaboral;
+            
         #endregion
         #region "funciones"
             #region "do"
@@ -54,6 +55,26 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     try
                     {
                         return this._controlLaboral.sp_rrhh_getInfoInicialLaboralPersona(idPersona, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public Dictionary<object, object> sp_rrhh_getEditModeLaboralPersona(int idPersona,int idUsuario)
+                {
+                    try
+                    {
+                        Dictionary<object,object> retorno = new Dictionary<object,object>();
+                        retorno.Add("empresas",)
+                        retorno.Add("cargos",)
+                        ControlEmpresa controlEmpresa = new ControlEmpresa();
+
+                        this._controlLaboral.
                     }
                     catch (ErroresIUS x)
                     {

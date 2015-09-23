@@ -22,7 +22,7 @@
             })
             // instituciones
                 // edicion 
-                    $(document).on("click", ".btnEditarInstitucion", function (e) {
+                $(document).on("click", ".btnEditarInstitucion", function (e) {
                     // variables
                         var tr = $(this).parents("tr");
                         var datosSet = new Object();
