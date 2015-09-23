@@ -59,6 +59,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     if (usuarioSession != null && frm != null)
                     {
                         bool elimino = this._model.sp_rrhh_eliminarLaboralPersonas(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]), usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", elimino); 
                     }
                     else
