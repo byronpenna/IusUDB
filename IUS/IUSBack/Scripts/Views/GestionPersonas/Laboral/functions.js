@@ -25,7 +25,12 @@
             console.log(data);
         })
     }
-    function btnEliminarLaboralPersona(frm,tr) {
+    function btnActualizarLaboralPersona(frm) {
+        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
+            console.log("la respuesta es: ", data);
+        })
+    }
+    function btnEliminarLaboralPersona(frm, tr) {
         //**
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
             console.log(data);

@@ -53,4 +53,11 @@
                     var tr = $(this).parents("tr");
                     controlesEdit(false, tr);
                 })
+                $(document).on("click", ".btnActualizarLaboralPersona", function (e) {
+                    var tr = $(this).parents("tr");
+                    var frm = serializeSection(tr);
+                    console.log("formulario a enviar", frm);
+                    btnActualizarLaboralPersona(frm);
+                })
+                
 })
