@@ -42,6 +42,9 @@
                             var selectCargo = tr.find(".cbCargo"), selectEmpresa = tr.find(".cbEmpresa");
                             selectCargo.empty().append(cbCargos);
                             selectEmpresa.empty().append(cbEmpresas);
+                            // seleccionando
+                            selectCargo.val(datosSet.idCargoEmpresa);
+                            selectEmpresa.val(datosSet.idEmpresa);
                         })
                         tr.find(".txtInicio").val(datosSet.fechaInicio);
                         tr.find(".txtFin").val(datosSet.fechaFin);
@@ -57,7 +60,7 @@
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);
                     console.log("formulario a enviar", frm);
-                    btnActualizarLaboralPersona(frm);
+                    btnActualizarLaboralPersona(frm,tr);
                 })
                 
 })

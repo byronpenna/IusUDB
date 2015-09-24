@@ -117,6 +117,8 @@ namespace IUSLibs.RRHH.Control.Laboral
                                 foreach (DataRow row in tb[1].Rows)
                                 {
                                     laboralEditado = new LaboralPersona((int)row["idLaboralPersona"],(int)row["id_empresa_fk"],(int)row["inicio"],(int)row["fin"],(int)row["id_persona_fk"],row["observaciones"].ToString(),(int)row["id_cargo_fk"]);
+                                    laboralEditado._cargo._cargo = row["cargo"].ToString();
+                                    laboralEditado._empresa._nombre = row["nombreEmpresa"].ToString();
                                 }
                             }
                             else
