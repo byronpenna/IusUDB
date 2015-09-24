@@ -65,16 +65,16 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         throw x;
                     }
                 }
-                /*public Dictionary<object, object> sp_rrhh_getEditModeLaboralPersona(int idPersona,int idUsuario)
+                public Dictionary<object, object> sp_rrhh_getEditModeLaboralPersona(int idUsuarioEjecutor,int idPagina)
                 {
                     try
                     {
                         Dictionary<object,object> retorno = new Dictionary<object,object>();
-                        //retorno.Add("empresas",)
-                        //retorno.Add("cargos",)
                         ControlEmpresa controlEmpresa = new ControlEmpresa();
-
-                        //this._controlLaboral.
+                        ControlCargos controlCargos = new ControlCargos();
+                        retorno.Add("empresas",controlEmpresa.sp_rrhh_getEmpresas(idUsuarioEjecutor,idPagina));
+                        retorno.Add("cargos", controlCargos.sp_rrhh_getCargos(idUsuarioEjecutor, idPagina));
+                        return retorno;
                     }
                     catch (ErroresIUS x)
                     {
@@ -84,7 +84,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     {
                         throw x;
                     }
-                }*/
+                }
             #endregion
         #endregion
         #region "constructores"

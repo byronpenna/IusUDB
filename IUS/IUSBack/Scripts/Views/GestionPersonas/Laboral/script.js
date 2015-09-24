@@ -19,6 +19,30 @@
                         var tr = $(this).parents("tr");
                         var datosSet = getObjetoSetEditLaboral(tr);
                     // set 
+                        var frm = {  }
+                        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_getEditModeLaboralPersona", frm, function (data) {
+                            console.log("data devuelta para edit mode", data);
+                            var cbCargos = "", cbEmpresas = "";
+                            if (data.estado) {
+                                if (data.cargos !== undefined && data.cargos !== null && data.cargos.length > 0) {
+                                    console.log("D:");
+                                    $.each(data.cargos, function (i, cargo) {
+                                        cbCargos += getCbCargos(cargo);
+                                    })
+                                }
+                                if (data.empresas !== undefined && data.empresas !== null && data.empresas.length > 0) {
+                                    console.log(":/");
+                                    $.each(data.empresas, function (i, empresa) {
+                                        cbEmpresas += getCbEmpresas(empresa);
+                                    })
+                                }
+                            } else {
+                                
+                            }
+                            var selectCargo = tr.find(".cbCargo"), selectEmpresa = tr.find(".cbEmpresa");
+                            selectCargo.empty().append(cbCargos);
+                            selectEmpresa.empty().append(cbEmpresas);
+                        })
                         tr.find(".txtInicio").val(datosSet.fechaInicio);
                         tr.find(".txtFin").val(datosSet.fechaFin);
                         tr.find(".txtAreaObservacion").val(datosSet.observaciones);

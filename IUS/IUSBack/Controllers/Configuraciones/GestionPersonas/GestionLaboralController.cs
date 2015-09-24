@@ -58,7 +58,8 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     frm = this.getAjaxFrm();
                     if (usuarioSession != null && frm != null)
                     {
-
+                        respuesta = this._model.sp_rrhh_getEditModeLaboralPersona(usuarioSession._idUsuario, this._idPagina);
+                        respuesta.Add("estado", true);
                     }
                     else
                     {

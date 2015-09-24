@@ -1,4 +1,14 @@
 ﻿// genericas 
+    // texto 
+        function getCbCargos(cargo) {
+            var cb = "<option value='"+cargo._idCargoEmpresa+"'>" + cargo._cargo + "</option>";
+            return cb;
+        }
+        function getCbEmpresas(empresa)
+        {
+            var cb = "<option value='"+empresa._idEmpresa+"'>"+empresa._nombre+"</option>";
+            return cb;
+        }
     function getObjetoSetEditLaboral(tr) {
         var datosSet = new Object();
         // recolectando datos
