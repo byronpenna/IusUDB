@@ -44,6 +44,12 @@ namespace IUSLibs.RRHH.Control.Laboral
 
                             }
                         }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -55,7 +61,6 @@ namespace IUSLibs.RRHH.Control.Laboral
                     }
                     return laboralAgregado;
                 }
-                
                 public bool sp_rrhh_eliminarLaboralPersonas(int idLaboralPersona, int idUsuarioEjecutor, int idPagina)
                 {
                     bool estado = false;
@@ -86,6 +91,59 @@ namespace IUSLibs.RRHH.Control.Laboral
                         throw x;
                     }
                     return estado;
+                }
+                public LaboralPersona sp_rrhh_editarLaboralPersonas(LaboralPersona laboralEditar, int idUsuarioEjecutor, int idPagina)
+                {
+
+                    LaboralPersona laboralEditado = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_editarLaboralPersonas");
+                    
+                    sp.agregarParametro("idEmpresa", laboralEditar._empresa._idEmpresa);
+                    sp.agregarParametro("inicio", laboralEditar._inicio);
+                    sp.agregarParametro("fin", laboralEditar._fin);
+                    sp.agregarParametro("observaciones", laboralEditar._observaciones);
+                    sp.agregarParametro("idCargo", laboralEditar._cargo._idCargoEmpresa);
+                    sp.agregarParametro("idLaboralPersona", laboralEditar._idLaboralPersona);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                foreach (DataRow row in tb[1].Rows)
+                                {
+                                    laboralEditado = new LaboralPersona((int)row["idLaboralPersona"],(int)row["id_empresa_fk"],(int)row["inicio"],(int)row["fin"],(int)row["id_persona_fk"],row["observaciones"].ToString(),(int)row["id_cargo_fk"]);
+                                    laboralEditado._cargo._cargo = row["cargo"].ToString();
+                                    laboralEditado._empresa._nombre = row["nombreEmpresa"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return laboralEditado;
                 }
             #endregion
             #region "get"

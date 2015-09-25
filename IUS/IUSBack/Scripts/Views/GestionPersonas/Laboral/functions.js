@@ -1,4 +1,79 @@
 ﻿// genericas 
+    // texto 
+        function getCbCargos(cargo) {
+            var cb = "<option value='"+cargo._idCargoEmpresa+"'>" + cargo._cargo + "</option>";
+            return cb;
+        }
+        function getCbEmpresas(empresa)
+        {
+            var cb = "<option value='"+empresa._idEmpresa+"'>"+empresa._nombre+"</option>";
+            return cb;
+        }
+        function getTrLaboralPersona(){
+            var tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input type='hidden' value='"+@laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
+                    <input type='hidden' value='"+@laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\
+                    <input type='hidden' value='"+@laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <select class='form-control cbEmpresa' name='cbEmpresa'>\
+                        </select>\
+                    </div>\
+                    <div class='normalMode tdNombreEmpresa'>\
+                        "+laboralPersona._empresa._nombre+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <input type='number' class='form-control txtInicio' name='txtInicio' />\
+                    </div>\
+                    <div class='normalMode tdFechaInicio'>\
+                        "+laboralPersona._inicio+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <input type='number' class='form-control txtFin' name='txtFin' />\
+                    </div>\
+                    <div class='normalMode tdFechaFin'>\
+                        "+laboralPersona._fin+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <textarea class='form-control txtAreaObservacion' name='txtAreaObservacion'></textarea>\
+                    </div>\
+                    <div class='normalMode tdObservaciones'>\
+                        "+laboralPersona._observaciones+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <select class='form-control cbCargo' name='cbCargo'>\
+                        </select>\
+                    </div>\
+                    <div class='normalMode tdCargo'>\
+                        @laboralPersona._cargo._cargo\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <button class='btn btnActualizarLaboralPersona'>Actualizar</button>\
+                        <button class='btn btnCancelarUni'>Cancelar</button>\
+                    </div>\
+                    <div class='normalMode tdBotones'>\
+                        <button class='btn btnEditarLaboralPersona'>Editar</button>\
+                        <button class='btn btnEliminarLaboralPersona'>Eliminar</button>\
+                    </div>\
+                </td>\
+            </tr>\
+            ";
+
+            return tr;
+        }
     function getObjetoSetEditLaboral(tr) {
         var datosSet = new Object();
         // recolectando datos
@@ -15,7 +90,27 @@
             console.log(data);
         })
     }
-    function btnEliminarLaboralPersona(frm,tr) {
+    function btnActualizarLaboralPersona(frm,tr) {
+        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
+            console.log("la respuesta es: ", data);
+            if (data.estado) {
+                var laboral = data.laboralEditado;
+                // texto
+                    tr.find(".tdFechaInicio").empty().append(laboral._inicio);
+                    tr.find(".tdFechaFin").empty().append(laboral._fin);
+                    tr.find(".tdObservaciones").empty().append(laboral._observaciones)
+                    tr.find(".tdCargo").empty().append(laboral._cargo._cargo)
+                    tr.find(".tdNombreEmpresa").empty().append(laboral._empresa._nombre);
+                // hiddens 
+                    tr.find(".txtHdIdCargoEmpresa").val(laboral._cargo._idCargoEmpresa);
+                    tr.find(".txtHdIdEmpresa").val(laboral._empresa._idEmpresa);
+                controlesEdit(false, tr);
+            } else {
+                alert("Ocurrio un error tratand de actualizar");
+            }
+        })
+    }
+    function btnEliminarLaboralPersona(frm, tr) {
         //**
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
             console.log(data);

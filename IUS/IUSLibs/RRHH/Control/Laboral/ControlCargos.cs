@@ -31,7 +31,7 @@ namespace IUSLibs.RRHH.Control.Laboral
                         sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                         sp.agregarParametro("idPagina", idPagina);
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrecto(tb))
+                        if (this.resultadoCorrectoGet(tb))
                         {
                             if (tb[0].Rows.Count > 0)
                             {

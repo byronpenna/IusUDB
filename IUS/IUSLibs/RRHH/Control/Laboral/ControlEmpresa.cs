@@ -30,12 +30,12 @@ namespace IUSLibs.RRHH.Control.Laboral
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrecto(tb))
+                        if (this.resultadoCorrectoGet(tb))
                         {
                             empresas = new List<Empresa>();
                             if (tb[0].Rows.Count > 0)
                             {
-                                foreach (DataRow row in tb[2].Rows)
+                                foreach (DataRow row in tb[0].Rows)
                                 {
                                     empresa = new Empresa((int)row["idEmpresa"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_rubro_fk"]);
                                     empresa._rubro._rubro = row["rubro"].ToString();
