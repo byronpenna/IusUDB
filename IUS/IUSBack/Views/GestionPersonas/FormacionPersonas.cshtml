@@ -34,9 +34,8 @@
         nivelesTitulo                   = (List<NivelTitulo>)info["nivelesTitulo"];
         carreras                        = (List<Carrera>)info["carreras"];
         formacionesPersonas             = (List<FormacionPersona>)info["formacionesPersonas"];
-        informacion = (InformacionPersona)info["informacionPersona"];
-
-        if (informacion._tieneFoto)
+        informacion                     = (InformacionPersona)info["informacionPersona"];
+        if (informacion != null && informacion._tieneFoto)
         {
             strFoto = Url.Content(informacion._fotoRuta);
         }

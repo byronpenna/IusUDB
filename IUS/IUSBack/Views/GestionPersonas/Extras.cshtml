@@ -32,12 +32,13 @@
         persona             = (Persona)                 ViewBag.persona;
         if (informacionPersona != null)
         {
+            if (informacionPersona._tieneFoto)
+            {
+                strFoto = Url.Content(informacionPersona._fotoRuta);
+            }
             numeroIdentificacion = informacionPersona._numeroIdentificacion;
         }
-        if (informacionPersona._tieneFoto)
-        {
-            strFoto = Url.Content(informacionPersona._fotoRuta);
-        }
+        
     }
     catch (Exception)
     {
