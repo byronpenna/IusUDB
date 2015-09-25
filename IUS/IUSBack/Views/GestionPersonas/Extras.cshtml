@@ -89,13 +89,13 @@
                         selected = "";
                         foreach (Pais pais in paises)
                         {
-                            if (informacionPersona != null && pais._idPais == informacionPersona._pais._idPais)
+                            selected = "";
+                            if (informacionPersona != null)
                             {
-                                selected = "selected";
-                            }
-                            else
-                            {
-                                selected = "";
+                                if (pais._idPais == informacionPersona._pais._idPais)
+                                {
+                                    selected = "selected";
+                                }
                             }
                             <option value="@pais._idPais" @selected>@pais._pais</option>
                         }
@@ -115,14 +115,15 @@
                         selected = "";
                         foreach (EstadoCivil estadoCivil in estadosCiviles)
                         {
-                            if (informacionPersona != null && estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                            selected = "";
+                            if (informacionPersona != null)
                             {
-                                selected = "selected";
+                                if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                                {
+                                    selected = "selected";
+                                }
                             }
-                            else
-                            {
-                                selected = "";
-                            }
+                            
                             <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
                         }
                     }
