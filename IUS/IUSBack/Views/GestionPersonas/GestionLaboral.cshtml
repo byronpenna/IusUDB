@@ -1,6 +1,8 @@
 ﻿@using IUSLibs.RRHH.Entidades.Laboral
 @section estilosPersonalizados{
     <!-- plugins -->
+        <!--Data table-->
+            <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
@@ -9,6 +11,8 @@
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
+        <!-- Data table -->
+            <script src="~/Content/third-party/datatable/js/jquery.dataTables.js"></script>    
         <!-- chosen -->
             <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
     <!-- propios -->
@@ -49,9 +53,10 @@
 }
 <h2>GestionLaboral</h2>
 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
-<table class="table">
+<table class="table tablaLaboral">
     <thead>
         <tr>
+            <th class="hidden"></th>
             <th>Empresa</th>
             <th>Inicio</th>
             <th>Fin</th>
@@ -60,6 +65,7 @@
             <th>Acciones</th>
         </tr>
         <tr>
+            <th class="hidden"></th>
             <th>
                 <select class="form-control cbEmpresa" name="cbEmpresa">
                     @if (empresas != null && empresas.Count > 0)
@@ -158,8 +164,9 @@
                             <button class="btn btnCancelarUni">Cancelar</button>
                         </div>
                         <div class="normalMode tdBotones">
-                            <button class="btn btnEditarLaboralPersona">Editar</button>
-                            <button class="btn btnEliminarLaboralPersona">Eliminar</button>
+                            <button class="btn btnEditarLaboralPersona btn-sm">Editar</button>
+                            <button class="btn btnCargos btn-sm">Cargos desempeñados</button>
+                            <button class="btn btnEliminarLaboralPersona btn-sm">Eliminar</button>
                         </div>
                     </td>
                 </tr>
