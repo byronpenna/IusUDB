@@ -1,19 +1,22 @@
 ﻿$(document).ready(function () {
     // plugins 
-        $(".tablaLaboral").DataTable({
+        /*$(".tablaLaboral").DataTable({
             "bDestroy": true,
             "bSort": false
-        });
+        });*/
     // eventos 
         // click 
             // cargos 
-                $(document).on("click", ".btnCargos", function () {
-                    var tr = $(this).parents(".tr");
+                $(document).on("click", ".btnActividad", function () {
+                    var tr = $(this).parents("tr");
                     if (!tr.next().hasClass(".trTable")) {
                         // enseña los roles
+                        getTableActividades(tr);
+                        $(this).val("Ocultar actividades");
                     } else {
                         // oculta los roles
-
+                        tr.parents("table").find(".trTable").remove();
+                        $(this).val("Ver Actividades");
                     }
                 })
             // operaciones basicas

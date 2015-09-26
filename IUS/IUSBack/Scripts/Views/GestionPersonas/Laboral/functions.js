@@ -76,10 +76,35 @@
             return tr;
         }
         // table
-            function getTableCargos() {
-
+            function getTrTableActividades() {
+                var tr = "\
+                <tr class='trTable'>\
+                    <td colspan='6'>\
+                        <table class='table tablaActividadesEmpresa'>\
+                            <thead>\
+                                <tr>\
+                                    <td class='text-center' colspan='2'>Actividades realizadas</td>\
+                                </tr>\
+                                <tr>\
+                                    <th>Actividades realizadas</th>\
+                                    <th>Acciones</th>\
+                                </tr>\
+                            <thead>\
+                        </table>\
+                    </td>\
+                </tr>\
+                ";
+                return tr;
             }
-    // otras 
+    // otras
+         function getTableActividades(tr) {
+            var frm = {};
+            actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {
+                console.log("trajimonos D: ", data);
+                var tabla = getTrTableActividades();
+                tr.after(tabla);
+            })
+        }
         function getObjetoSetEditLaboral(tr) {
             var datosSet = new Object();
             // recolectando datos

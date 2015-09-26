@@ -139,6 +139,7 @@
     <Compile Include="RRHH\Control\Formacion\ControlFormacionPersona.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlInstitucionesEducativas.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlNivelCarrera.cs" />
+    <Compile Include="RRHH\Control\Laboral\ControlActividadEmpresa.cs" />
     <Compile Include="RRHH\Control\Laboral\ControlCargos.cs" />
     <Compile Include="RRHH\Control\Laboral\ControlEmpresa.cs" />
     <Compile Include="RRHH\Control\Laboral\ControlLaboralPersona.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="RRHH\Entidades\Formacion\InstitucionEducativa.cs" />
     <Compile Include="RRHH\Entidades\Formacion\NivelTitulo.cs" />
     <Compile Include="RRHH\Entidades\InformacionPersona.cs" />
+    <Compile Include="RRHH\Entidades\Laboral\ActividadEmpresa.cs" />
     <Compile Include="RRHH\Entidades\Laboral\CargoEmpresa.cs" />
     <Compile Include="RRHH\Entidades\Laboral\Empresa.cs" />
     <Compile Include="RRHH\Entidades\Laboral\LaboralPersona.cs" />
