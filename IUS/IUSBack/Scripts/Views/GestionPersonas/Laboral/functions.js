@@ -9,13 +9,13 @@
             var cb = "<option value='"+empresa._idEmpresa+"'>"+empresa._nombre+"</option>";
             return cb;
         }
-        function getTrLaboralPersona(){
+        function getTrLaboralPersona(laboralPersona) {
             var tr = "\
             <tr>\
                 <td class='hidden'>\
-                    <input type='hidden' value='"+@laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
-                    <input type='hidden' value='"+@laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\
-                    <input type='hidden' value='"+@laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
+                    <input type='hidden' value='"+laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
+                    <input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\
+                    <input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
@@ -56,7 +56,7 @@
                         </select>\
                     </div>\
                     <div class='normalMode tdCargo'>\
-                        @laboralPersona._cargo._cargo\
+                        "+laboralPersona._cargo._cargo+"\
                     </div>\
                 </td>\
                 <td>\
@@ -71,7 +71,6 @@
                 </td>\
             </tr>\
             ";
-
             return tr;
         }
     function getObjetoSetEditLaboral(tr) {
@@ -87,7 +86,13 @@
 // acciones 
     function btnAgregarLaboralPersona(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
-            console.log(data);
+            console.log("Data devuelta por el servidor",data);
+            if(data.estado){
+                var trAgregar = getTrLaboralPersona(data.laboralAgregada);
+                $(".tbodyLaboralPersona").prepend(trAgregar);
+            } else {
+                alert("Ocurrio un error");
+            }
         })
     }
     function btnActualizarLaboralPersona(frm,tr) {

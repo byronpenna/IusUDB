@@ -32,12 +32,13 @@
         persona             = (Persona)                 ViewBag.persona;
         if (informacionPersona != null)
         {
+            if (informacionPersona._tieneFoto)
+            {
+                strFoto = Url.Content(informacionPersona._fotoRuta);
+            }
             numeroIdentificacion = informacionPersona._numeroIdentificacion;
         }
-        if (informacionPersona._tieneFoto)
-        {
-            strFoto = Url.Content(informacionPersona._fotoRuta);
-        }
+        
     }
     catch (Exception)
     {
@@ -83,18 +84,18 @@
                 <label>Seleccione pais</label>
                 <select class="cbPais form-control" name="cbPais">
                     <option value="-1">Seleccione pais</option>
-                    @if (paises != null && paises.Count > 0)
+                    @if (paises != null && paises != null && paises.Count > 0)
                     {
                         selected = "";
                         foreach (Pais pais in paises)
                         {
-                            if (informacionPersona != null && pais._idPais == informacionPersona._pais._idPais)
+                            selected = "";
+                            if (informacionPersona != null)
                             {
-                                selected = "selected";
-                            }
-                            else
-                            {
-                                selected = "";
+                                if (pais._idPais == informacionPersona._pais._idPais)
+                                {
+                                    selected = "selected";
+                                }
                             }
                             <option value="@pais._idPais" @selected>@pais._pais</option>
                         }
@@ -114,14 +115,15 @@
                         selected = "";
                         foreach (EstadoCivil estadoCivil in estadosCiviles)
                         {
-                            if (informacionPersona != null && estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                            selected = "";
+                            if (informacionPersona != null)
                             {
-                                selected = "selected";
+                                if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                                {
+                                    selected = "selected";
+                                }
                             }
-                            else
-                            {
-                                selected = "";
-                            }
+                            
                             <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
                         }
                     }

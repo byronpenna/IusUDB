@@ -38,7 +38,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     Dictionary<object, object> 
                         informacionIni          = this._model.sp_rrhh_getInfoInicialFormacion(id, usuarioSession._idUsuario, this._idPagina);
                     InformacionPersona info     = (InformacionPersona)informacionIni["informacionPersona"];
-                    if (System.IO.File.Exists(info._fotoRuta))
+                    if (info != null && System.IO.File.Exists(info._fotoRuta))
                     {
                         info._tieneFoto = true;
                         //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");

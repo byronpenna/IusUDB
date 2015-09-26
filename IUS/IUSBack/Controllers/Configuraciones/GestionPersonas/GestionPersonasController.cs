@@ -39,7 +39,7 @@ namespace IUSBack.Controllers
                     Dictionary<object, object> data         = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
                     InformacionPersona informarcionPersona  = (InformacionPersona)data["informacionPersona"];
                     
-                    if (System.IO.File.Exists(informarcionPersona._fotoRuta))
+                    if (informarcionPersona != null && System.IO.File.Exists(informarcionPersona._fotoRuta))
                     {
                         informarcionPersona._tieneFoto = true;
                         //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");

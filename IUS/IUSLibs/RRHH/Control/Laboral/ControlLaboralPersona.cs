@@ -40,7 +40,9 @@ namespace IUSLibs.RRHH.Control.Laboral
                             if (tb[1].Rows.Count > 0)
                             {
                                 DataRow row = tb[1].Rows[0];
-                                laboralAgregado = new LaboralPersona((int)row["idLaboralPersona"], (int)row["id_empresa_fk"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], row["observaciones"].ToString(), (int)row["id_cargo_fk"]);
+                                laboralAgregado                     = new LaboralPersona((int)row["idLaboralPersona"], (int)row["id_empresa_fk"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], row["observaciones"].ToString(), (int)row["id_cargo_fk"]);
+                                laboralAgregado._cargo._cargo       = row["cargo"].ToString();
+                                laboralAgregado._empresa._nombre    = row["nombreEmpresa"].ToString();
 
                             }
                         }
