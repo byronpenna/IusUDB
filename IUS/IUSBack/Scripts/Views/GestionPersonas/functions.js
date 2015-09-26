@@ -56,7 +56,7 @@
                     <div class='normalMode'>\
                         <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">Editar</button>\
                         <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
-                        <a class='btn btn-xs ' href='"+RAIZ+"GestionPersonas/Extras'>Info adicional</a>\
+                        <a class='btn btn-xs ' href='"+RAIZ+"GestionPersonas/Extras/"+persona._idPersona+"'>Info adicional</a>\
                     </div>\
                 </td>\
             </tr>\

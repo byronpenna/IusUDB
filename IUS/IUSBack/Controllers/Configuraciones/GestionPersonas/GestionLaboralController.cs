@@ -29,6 +29,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
                 try
                 {
+                    ViewBag.selectedMenu = 2; // menu seleccionado 
                     Persona persona = new Persona(id);
                     Usuario usuarioSession  = this.getUsuarioSesion();
                     ViewBag.titleModulo     = "Información laboral personas";

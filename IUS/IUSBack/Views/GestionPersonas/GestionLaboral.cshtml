@@ -15,24 +15,7 @@
         <script src="~/Scripts/Views/GestionPersonas/Laboral/script.js"></script>
         <script src="~/Scripts/Views/GestionPersonas/Laboral/functions.js"></script>
 }
-@section tabs{
-    <ul>
-        <a href="@Url.Action("Extras", "GestionPersonas",new {id=43})">
-            <li>
-                Informacion
-            </li>
-        </a>
-        <a href="@Url.Action("Index", "FormacionPersonas", new {id=43 })">
-            <li >
-                Formacion
-            </li>
-        </a>
-        <li class="btnTab tabActive">
-            Laboral
-        </li>
-    </ul>
 
-}
 @{
     List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
     List<LaboralPersona> laboralesPersonas = null;
@@ -45,6 +28,24 @@
     }catch(Exception){
         
     }
+}
+@section tabs{
+    <ul>
+        <a href="@Url.Action("Extras", "GestionPersonas", new { id = ViewBag.idPersona })">
+            <li>
+                Informacion
+            </li>
+        </a>
+        <a href="@Url.Action("Index", "FormacionPersonas", new {id=ViewBag.idPersona })">
+            <li>
+                Formacion
+            </li>
+        </a>
+        <li class="btnTab tabActive">
+            Laboral
+        </li>
+    </ul>
+
 }
 <h2>GestionLaboral</h2>
 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
