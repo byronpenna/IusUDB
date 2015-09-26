@@ -1,13 +1,29 @@
 ﻿$(document).ready(function () {
+    // plugins 
+        $(".tablaLaboral").DataTable({
+            "bDestroy": true,
+            "bSort": false
+        });
     // eventos 
         // click 
-            $(document).on("click", ".btnAgregarLaboralPersona", function () {
+            // cargos 
+                $(document).on("click", ".btnCargos", function () {
+                    var tr = $(this).parents(".tr");
+                    if (!tr.next().hasClass(".trTable")) {
+                        // enseña los roles
+                    } else {
+                        // oculta los roles
+
+                    }
+                })
+            // operaciones basicas
+                $(document).on("click", ".btnAgregarLaboralPersona", function () {
                 var frm = serializeSection($(this).parents("tr"));
                 frm.idPersona = $(".txtHdIdPersona").val();
                 console.log("formulario a enviar",frm);
                 btnAgregarLaboralPersona(frm);
             })
-            $(document).on("click", ".btnEliminarLaboralPersona", function () {
+                $(document).on("click", ".btnEliminarLaboralPersona", function () {
                 var tr = $(this).parents("tr");
                 var frm = serializeSection(tr);
                 console.log("formulario a enviar", frm);
