@@ -84,7 +84,7 @@
                 <label>Seleccione pais</label>
                 <select class="cbPais form-control" name="cbPais">
                     <option value="-1">Seleccione pais</option>
-                    @if (paises != null && paises.Count > 0)
+                    @if (paises != null && paises != null && paises.Count > 0)
                     {
                         selected = "";
                         foreach (Pais pais in paises)
