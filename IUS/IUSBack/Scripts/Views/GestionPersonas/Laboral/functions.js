@@ -76,9 +76,12 @@
             return tr;
         }
         // table
-            function getTrTableActividades() {
+            function getTrTableActividades(idLaboralPersona,actividades) {
                 var tr = "\
                 <tr class='trTable'>\
+                    <td class='hidden'>\
+                        <input class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' value='"+idLaboralPersona+"'>\
+                    </td>\
                     <td colspan='6'>\
                         <table class='table tablaActividadesEmpresa'>\
                             <thead>\
@@ -86,10 +89,43 @@
                                     <td class='text-center' colspan='2'>Actividades realizadas</td>\
                                 </tr>\
                                 <tr>\
-                                    <th>Actividades realizadas</th>\
+                                    <th>Actividad realizada</th>\
                                     <th>Acciones</th>\
                                 </tr>\
+                                <tr>\
+                                    <th><input name='txtActividad' class='form-control txtActividad' /></th>\
+                                    <th>\
+                                        <button class='btnAgregarActividad btn'>Agregar</button>\
+                                    </th>\
+                                </tr>\
                             <thead>\
+                            <tbody>";
+                if (actividades !== undefined && actividades != null && actividades.length > 0) {
+                    $.each(actividades, function (i, actividad) {
+                        tr += "\
+                        <tr>\
+                            <td class='hidden'>\
+                                <input class='txtHdIdActividadEmpresa' value='" + actividad._idActividadesEmpresa + "'>\
+                            </td>\
+                            <td>" + actividad._actividad + "</td>\
+                            <td>\
+                                <button class='btnEliminarActividad btn'>Eliminar</button>\
+                                <button class='btnEditar btn' >Editar</button>\
+                            </td>\
+                        </tr>\
+                        "
+                    })
+                } else {
+                    tr += "\
+                    <tr>\
+                        <td class='text-center' colspan='2'>\
+                            Aun no se le agregan actividades que desempeño\
+                        </td>\
+                    </tr>\
+                    ";
+                }
+                tr += "\
+                            </tbody>\
                         </table>\
                     </td>\
                 </tr>\
@@ -98,10 +134,15 @@
             }
     // otras
          function getTableActividades(tr) {
-            var frm = {};
+            var frm = { idLaboralPersona: tr.find(".txtHdIdLaboralPersona").val() }; 
+            console.log("traer ", frm);
             actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {
                 console.log("trajimonos D: ", data);
-                var tabla = getTrTableActividades();
+                var actividades = null;
+                if(data.actividadesEmpresa !== undefined && data.actividadesEmpresa != null){
+                    actividades = data.actividadesEmpresa;
+                }
+                var tabla = getTrTableActividades(tr.find(".txtHdIdLaboralPersona").val(), actividades);
                 tr.after(tabla);
             })
         }
@@ -124,6 +165,14 @@
             }
         }
 // acciones 
+    function btnAgregarActividad(frm) {
+        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertActividadEmpresa", frm, function (data) {
+            console.log("Actividad ingresada ", data);
+            if (data.estado) {
+
+            }
+        })
+    }
     function btnAgregarLaboralPersona(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
             console.log("Data devuelta por el servidor",data);

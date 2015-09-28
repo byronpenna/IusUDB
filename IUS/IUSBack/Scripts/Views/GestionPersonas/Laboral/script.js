@@ -1,37 +1,47 @@
 ﻿$(document).ready(function () {
     // plugins 
-        /*$(".tablaLaboral").DataTable({
+        $(".tablaLaboral").DataTable({
             "bDestroy": true,
             "bSort": false
-        });*/
+        });
     // eventos 
         // click 
+
             // cargos 
                 $(document).on("click", ".btnActividad", function () {
                     var tr = $(this).parents("tr");
-                    if (!tr.next().hasClass(".trTable")) {
+                    if (!tr.next().hasClass("trTable")) {
                         // enseña los roles
                         getTableActividades(tr);
-                        $(this).val("Ocultar actividades");
+                        $(this).empty().append("Ocultar actividades");
                     } else {
                         // oculta los roles
                         tr.parents("table").find(".trTable").remove();
-                        $(this).val("Ver Actividades");
+                        $(this).empty().append("Ver Actividades");
                     }
                 })
             // operaciones basicas
-                $(document).on("click", ".btnAgregarLaboralPersona", function () {
-                var frm = serializeSection($(this).parents("tr"));
-                frm.idPersona = $(".txtHdIdPersona").val();
-                console.log("formulario a enviar",frm);
-                btnAgregarLaboralPersona(frm);
-            })
-                $(document).on("click", ".btnEliminarLaboralPersona", function () {
-                var tr = $(this).parents("tr");
-                var frm = serializeSection(tr);
-                console.log("formulario a enviar", frm);
-                btnEliminarLaboralPersona(frm,tr);
-            })
+                // actividades 
+                    
+                    $(document).on("click", ".btnAgregarActividad", function () {
+                        var frm         = serializeSection($(this).parents("tr"));
+                        //frm.idLaboral   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
+                        console.log("formulario a enviar es", frm);
+                        btnAgregarActividad(frm);
+                    })
+                // laboral persona 
+                    $(document).on("click", ".btnAgregarLaboralPersona", function () {
+                    var frm = serializeSection($(this).parents("tr"));
+                    frm.idPersona = $(".txtHdIdPersona").val();
+                    console.log("formulario a enviar",frm);
+                    btnAgregarLaboralPersona(frm);
+                })
+                    $(document).on("click", ".btnEliminarLaboralPersona", function () {
+                    var tr = $(this).parents("tr");
+                    var frm = serializeSection(tr);
+                    console.log("formulario a enviar", frm);
+                    btnEliminarLaboralPersona(frm,tr);
+                })
             // editar
                 $(document).on("click", ".btnEditarLaboralPersona", function () {
                     // variables

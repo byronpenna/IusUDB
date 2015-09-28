@@ -27,6 +27,13 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                     this._laboralPersona = laboral;
                     this._actividad = actividad;
                 }
+            // para agregar
+                public ActividadEmpresa(int idLaboralPersona, string actividad)
+                {
+                    LaboralPersona laboral = new LaboralPersona(idLaboralPersona);
+                    this._laboralPersona = laboral;
+                    this._actividad = actividad;
+                }
         #endregion
     }
 }

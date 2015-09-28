@@ -13,8 +13,8 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
     public class GestionLaboralModel:PadreModel
     {
         #region "propiedades"
-            private ControlLaboralPersona _controlLaboral;
-            
+            private ControlLaboralPersona   _controlLaboral;
+            private ControlActividadEmpresa _controlActividad;
         #endregion
         #region "funciones"
             #region "do"
@@ -65,15 +65,33 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         }
                     }
                 #endregion    
+                #region "actividades"
+                    public ActividadEmpresa sp_rrhh_insertActividadEmpresa(ActividadEmpresa actividadAgregar,int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlActividad.sp_rrhh_insertActividadEmpresa(actividadAgregar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x; 
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+
+                    }
+                #endregion
             #endregion
             #region "get"
                 #region "noramles"
-                    public List<ActividadEmpresa> sp_rrhh_getActividadesEmpresa(int idUsuarioEjecutor, int idPagina)
+                    public List<ActividadEmpresa> sp_rrhh_getActividadesEmpresa(int idLaboralPersona, int idUsuarioEjecutor, int idPagina)
                     {
                         try
                         {
                             ControlActividadEmpresa control = new ControlActividadEmpresa();
-                            return control.sp_rrhh_getActividadesEmpresa(idUsuarioEjecutor, idPagina);
+                            return control.sp_rrhh_getActividadesEmpresa(idLaboralPersona,idUsuarioEjecutor, idPagina);
                         }
                         catch (ErroresIUS x)
                         {
@@ -128,7 +146,8 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
         #region "constructores"
             public GestionLaboralModel()
             {
-                this._controlLaboral = new ControlLaboralPersona();
+                this._controlLaboral    = new ControlLaboralPersona();
+                this._controlActividad  = new ControlActividadEmpresa();
             }
         #endregion
     }
