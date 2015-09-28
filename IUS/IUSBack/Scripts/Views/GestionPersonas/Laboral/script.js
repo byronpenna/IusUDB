@@ -22,7 +22,13 @@
                 })
             // operaciones basicas
                 // actividades 
-                    
+                
+                    $(document).on("click", ".btnEliminarActividad", function () {
+                        var tr = $(this).parents(".trEliminarActividad");
+                        var frm = serializeSection(tr);
+                        console.log("Eliminar", frm);
+                        btnEliminarActividad(frm, tr);
+                    })
                     $(document).on("click", ".btnAgregarActividad", function () {
                         var frm         = serializeSection($(this).parents("tr"));
                         //frm.idLaboral   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();

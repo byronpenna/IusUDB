@@ -82,6 +82,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         }
 
                     }
+                    public bool sp_rrhh_eliminarActividadadesEmpresa(int idActividadEmpresa, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlActividad.sp_rrhh_eliminarActividadadesEmpresa(idActividadEmpresa, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                 #endregion
             #endregion
             #region "get"

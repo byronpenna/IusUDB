@@ -51,6 +51,36 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
         #endregion
         #region "resultados ajax"
             #region "actividades"
+                public ActionResult sp_rrhh_eliminarActividadadesEmpresa()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            bool elimino = this._model.sp_rrhh_eliminarActividadadesEmpresa(this.convertObjAjaxToInt(frm["txtHdIdActividadEmpresa"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", elimino);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_rrhh_insertActividadEmpresa()
                 {
                     Dictionary<object, object> frm, respuesta = null;

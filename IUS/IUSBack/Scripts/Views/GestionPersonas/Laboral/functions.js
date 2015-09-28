@@ -103,9 +103,9 @@
                 if (actividades !== undefined && actividades != null && actividades.length > 0) {
                     $.each(actividades, function (i, actividad) {
                         tr += "\
-                        <tr>\
+                        <tr class='trEliminarActividad'>\
                             <td class='hidden'>\
-                                <input class='txtHdIdActividadEmpresa' value='" + actividad._idActividadesEmpresa + "'>\
+                                <input class='txtHdIdActividadEmpresa' name='txtHdIdActividadEmpresa' value='" + actividad._idActividadesEmpresa + "'>\
                             </td>\
                             <td>" + actividad._actividad + "</td>\
                             <td>\
@@ -165,7 +165,18 @@
             }
         }
 // acciones 
-    function btnAgregarActividad(frm) {
+    // actividades
+        function btnEliminarActividad(frm,tr) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarActividadadesEmpresa", frm, function (data) {
+                console.log("Data de eliminar", data);
+                if (data.estado) {
+                    tr.remove();
+                } else {
+                    alert("Ocurrio un error");
+                }
+            })
+        }
+        function btnAgregarActividad(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertActividadEmpresa", frm, function (data) {
             console.log("Actividad ingresada ", data);
             if (data.estado) {
@@ -173,7 +184,8 @@
             }
         })
     }
-    function btnAgregarLaboralPersona(frm) {
+    // laboral
+        function btnAgregarLaboralPersona(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
             console.log("Data devuelta por el servidor",data);
             if(data.estado){
@@ -183,33 +195,33 @@
                 alert("Ocurrio un error");
             }
         })
-    }
-    function btnActualizarLaboralPersona(frm,tr) {
-        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
-            console.log("la respuesta es: ", data);
-            if (data.estado) {
-                var laboral = data.laboralEditado;
-                // texto
-                    tr.find(".tdFechaInicio").empty().append(laboral._inicio);
-                    tr.find(".tdFechaFin").empty().append(laboral._fin);
-                    tr.find(".tdObservaciones").empty().append(laboral._observaciones)
-                    tr.find(".tdCargo").empty().append(laboral._cargo._cargo)
-                    tr.find(".tdNombreEmpresa").empty().append(laboral._empresa._nombre);
-                // hiddens 
-                    tr.find(".txtHdIdCargoEmpresa").val(laboral._cargo._idCargoEmpresa);
-                    tr.find(".txtHdIdEmpresa").val(laboral._empresa._idEmpresa);
-                controlesEdit(false, tr);
-            } else {
-                alert("Ocurrio un error tratand de actualizar");
-            }
-        })
-    }
-    function btnEliminarLaboralPersona(frm, tr) {
-        //**
-        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
-            console.log(data);
-            if (data.estado) {
-                tr.remove();
-            }
-        })
-    }
+        }
+        function btnActualizarLaboralPersona(frm,tr) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
+                console.log("la respuesta es: ", data);
+                if (data.estado) {
+                    var laboral = data.laboralEditado;
+                    // texto
+                        tr.find(".tdFechaInicio").empty().append(laboral._inicio);
+                        tr.find(".tdFechaFin").empty().append(laboral._fin);
+                        tr.find(".tdObservaciones").empty().append(laboral._observaciones)
+                        tr.find(".tdCargo").empty().append(laboral._cargo._cargo)
+                        tr.find(".tdNombreEmpresa").empty().append(laboral._empresa._nombre);
+                    // hiddens 
+                        tr.find(".txtHdIdCargoEmpresa").val(laboral._cargo._idCargoEmpresa);
+                        tr.find(".txtHdIdEmpresa").val(laboral._empresa._idEmpresa);
+                    controlesEdit(false, tr);
+                } else {
+                    alert("Ocurrio un error tratand de actualizar");
+                }
+            })
+        }
+        function btnEliminarLaboralPersona(frm, tr) {
+            //**
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }

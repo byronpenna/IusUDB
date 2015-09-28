@@ -19,6 +19,26 @@ namespace IUSLibs.RRHH.Control.Laboral
     {
         #region "funciones"
             #region "do"
+                public bool sp_rrhh_eliminarActividadadesEmpresa(int idActividadEmpresa, int idUsuarioEjecutor, int idPagina)
+                {
+                    bool estado = false;
+                    SPIUS sp = new SPIUS("sp_rrhh_eliminarActividadadesEmpresa");
+                    sp.agregarParametro("idActividadEmpresa", idActividadEmpresa);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                    return estado;
+                }
                 public ActividadEmpresa sp_rrhh_insertActividadEmpresa(ActividadEmpresa actividadAgregar,int idUsuarioEjecutor, int idPagina)
                 {
                     ActividadEmpresa actividadIngresada = null;
