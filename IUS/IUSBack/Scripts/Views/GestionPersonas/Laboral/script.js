@@ -44,10 +44,12 @@
                         btnEliminarActividad(frm, tr);
                     })
                     $(document).on("click", ".btnAgregarActividad", function () {
-                        var frm         = serializeSection($(this).parents("tr"));
-                        //frm.idLaboral   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
+                        var tr                      = $(this).parents(".trAgregar");
+                        var frm                     = serializeSection(tr);
+                        frm.txtHdIdLaboralPersona   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
+                        //frm.idLaboral             = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
                         console.log("formulario a enviar es", frm);
-                        btnAgregarActividad(frm);
+                        btnAgregarActividad(frm,tr);
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {

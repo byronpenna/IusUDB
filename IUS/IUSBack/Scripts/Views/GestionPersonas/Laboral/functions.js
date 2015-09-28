@@ -76,7 +76,35 @@
             return tr;
         }
         // table
-            function getTrTableActividades(idLaboralPersona,actividades) {
+            function getTrActividadTabla(actividad) {
+                var tr = "\
+                <tr class='trEliminarActividad'>\
+                    <td class='hidden'>\
+                        <input class='txtHdIdActividadEmpresa' name='txtHdIdActividadEmpresa' value='" + actividad._idActividadesEmpresa + "'>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <input class='form-control txtActividad' name='txtActividad'>\
+                        </div>\
+                        <div class='normalMode tdActividad'>\
+                            " + actividad._actividad + "\
+                        </div>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
+                            <button class='btn btnCancelarUni' >Cancelar</button>\
+                        </div>\
+                        <div class='normalMode'>\
+                            <button class='btnEditarActividad btn' >Editar</button>\
+                            <button class='btnEliminarActividad btn'>Eliminar</button>\
+                        </div>\
+                    </td>\
+                </tr>\
+                ";
+                return tr;
+            }
+            function getTrTableActividades(idLaboralPersona, actividades) {
                 var tr = "\
                 <tr class='trTable'>\
                     <td class='hidden'>\
@@ -92,14 +120,14 @@
                                     <th>Actividad realizada</th>\
                                     <th>Acciones</th>\
                                 </tr>\
-                                <tr>\
+                                <tr class='trAgregar'>\
                                     <th><input name='txtActividad' class='form-control txtActividad' /></th>\
                                     <th>\
                                         <button class='btnAgregarActividad btn'>Agregar</button>\
                                     </th>\
                                 </tr>\
                             <thead>\
-                            <tbody>";
+                            <tbody class='tbodyActividades'>";
                 if (actividades !== undefined && actividades != null && actividades.length > 0) {
                     $.each(actividades, function (i, actividad) {
                         tr += "\
@@ -194,14 +222,20 @@
                 }
             })
         }
-        function btnAgregarActividad(frm) {
-        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertActividadEmpresa", frm, function (data) {
-            console.log("Actividad ingresada ", data);
-            if (data.estado) {
-
-            }
-        })
-    }
+        function btnAgregarActividad(frm, tr) {
+            
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertActividadEmpresa", frm, function (data) {
+                console.log("Actividad ingresada ", data);
+                if (data.estado) {
+                    if (data.actividadIngresada !== undefined && data.actividadIngresada != null) {
+                        var htmlTr = getTrActividadTabla(data.actividadIngresada);
+                        console.log("D: ingresaras tr",htmlTr);
+                        tr.parents("table").find(".tbodyActividades").prepend(htmlTr);
+                    }
+                
+                }
+            })
+        }
     // laboral
         function btnAgregarLaboralPersona(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
