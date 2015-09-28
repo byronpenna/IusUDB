@@ -207,9 +207,16 @@
         }
 // acciones 
     // actividades
-        function btnActualizarActividadEmpresa(frm) {
+        function btnActualizarActividadEmpresa(frm,tr) {
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarActividadEmpresa", frm, function (data) {
-                console.log("D: D: D: ",data);
+                console.log("D: D: D: ", data);
+                if (data.estado) {
+                    if (data.actividadEditada !== undefined && data.actividadEditada != null) {
+                        //************************
+                        tr.find(".tdActividad").empty().append(data.actividadEditada._actividad);
+                        controlesEdit(false, tr);
+                    }
+                }
             })
         }
         function btnEliminarActividad(frm, tr) {
@@ -223,7 +230,6 @@
             })
         }
         function btnAgregarActividad(frm, tr) {
-            
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertActividadEmpresa", frm, function (data) {
                 console.log("Actividad ingresada ", data);
                 if (data.estado) {
@@ -231,6 +237,7 @@
                         var htmlTr = getTrActividadTabla(data.actividadIngresada);
                         console.log("D: ingresaras tr",htmlTr);
                         tr.parents("table").find(".tbodyActividades").prepend(htmlTr);
+                        tr.find(".txtActividad").val("");
                     }
                 
                 }

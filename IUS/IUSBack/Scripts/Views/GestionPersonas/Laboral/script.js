@@ -35,7 +35,7 @@
                             var tr = $(this).parents(".trEliminarActividad");
                             var frm = serializeSection(tr);
                             console.log("formulario a enviar D: D: D: ", frm);
-                            btnActualizarActividadEmpresa(frm);
+                            btnActualizarActividadEmpresa(frm,tr);
                         })
                     $(document).on("click", ".btnEliminarActividad", function () {
                         var tr = $(this).parents(".trEliminarActividad");
