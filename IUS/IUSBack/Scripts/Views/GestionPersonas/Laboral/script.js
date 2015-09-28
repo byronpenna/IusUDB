@@ -22,7 +22,21 @@
                 })
             // operaciones basicas
                 // actividades 
-                
+                    // editar 
+                        $(document).on("click", ".btnEditarActividad", function () {
+                            var tr = $(this).parents(".trEliminarActividad");
+                            var datosSet = {
+                               actividad: $.trim(tr.find(".tdActividad").text())
+                            }
+                            tr.find(".txtActividad").val(datosSet.actividad);
+                            controlesEdit(true, tr);
+                        })
+                        $(document).on("click", ".btnActualizarActividadEmpresa", function () {
+                            var tr = $(this).parents(".trEliminarActividad");
+                            var frm = serializeSection(tr);
+                            console.log("formulario a enviar D: D: D: ", frm);
+                            btnActualizarActividadEmpresa(frm);
+                        })
                     $(document).on("click", ".btnEliminarActividad", function () {
                         var tr = $(this).parents(".trEliminarActividad");
                         var frm = serializeSection(tr);

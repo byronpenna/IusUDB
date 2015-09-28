@@ -66,6 +66,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     }
                 #endregion    
                 #region "actividades"
+                    public ActividadEmpresa sp_rrhh_editarActividadEmpresa(ActividadEmpresa actividadEditar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlActividad.sp_rrhh_editarActividadEmpresa(actividadEditar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x; 
+                        }
+                        catch (Exception x)
+                        {
+                            throw x; 
+                        }
+                    }
                     public ActividadEmpresa sp_rrhh_insertActividadEmpresa(ActividadEmpresa actividadAgregar,int idUsuarioEjecutor, int idPagina)
                     {
                         try

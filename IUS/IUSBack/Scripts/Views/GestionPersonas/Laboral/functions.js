@@ -107,10 +107,23 @@
                             <td class='hidden'>\
                                 <input class='txtHdIdActividadEmpresa' name='txtHdIdActividadEmpresa' value='" + actividad._idActividadesEmpresa + "'>\
                             </td>\
-                            <td>" + actividad._actividad + "</td>\
                             <td>\
-                                <button class='btnEliminarActividad btn'>Eliminar</button>\
-                                <button class='btnEditar btn' >Editar</button>\
+                                <div class='editMode hidden'>\
+                                    <input class='form-control txtActividad' name='txtActividad'>\
+                                </div>\
+                                <div class='normalMode tdActividad'>\
+                                    " + actividad._actividad + "\
+                                </div>\
+                            </td>\
+                            <td>\
+                                <div class='editMode hidden'>\
+                                    <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
+                                    <button class='btn btnCancelarUni' >Cancelar</button>\
+                                </div>\
+                                <div class='normalMode'>\
+                                    <button class='btnEditarActividad btn' >Editar</button>\
+                                    <button class='btnEliminarActividad btn'>Eliminar</button>\
+                                </div>\
                             </td>\
                         </tr>\
                         "
@@ -166,7 +179,12 @@
         }
 // acciones 
     // actividades
-        function btnEliminarActividad(frm,tr) {
+        function btnActualizarActividadEmpresa(frm) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarActividadEmpresa", frm, function (data) {
+                console.log("D: D: D: ",data);
+            })
+        }
+        function btnEliminarActividad(frm, tr) {
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarActividadadesEmpresa", frm, function (data) {
                 console.log("Data de eliminar", data);
                 if (data.estado) {

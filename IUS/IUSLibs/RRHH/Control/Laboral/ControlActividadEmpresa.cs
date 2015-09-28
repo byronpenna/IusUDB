@@ -19,6 +19,45 @@ namespace IUSLibs.RRHH.Control.Laboral
     {
         #region "funciones"
             #region "do"
+                public ActividadEmpresa sp_rrhh_editarActividadEmpresa(ActividadEmpresa actividadEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    ActividadEmpresa actividadEditada = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_editarActividadEmpresa");
+                    
+                    sp.agregarParametro("idActividadEmpresa", actividadEditar._idActividadesEmpresa);
+                    sp.agregarParametro("actividad",actividadEditar._actividad);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                actividadEditada = new ActividadEmpresa((int)row["idActividadesEmpresa"], (int)row["id_laboralpersona_fk"], row["actividad"].ToString());
+
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return actividadEditada;
+                }
                 public bool sp_rrhh_eliminarActividadadesEmpresa(int idActividadEmpresa, int idUsuarioEjecutor, int idPagina)
                 {
                     bool estado = false;
@@ -26,17 +65,29 @@ namespace IUSLibs.RRHH.Control.Laboral
                     sp.agregarParametro("idActividadEmpresa", idActividadEmpresa);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
-                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrecto(tb))
+                    try
                     {
-                        estado = true;
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
-                    else
+                    catch (ErroresIUS x)
                     {
-                        DataRow row = tb[0].Rows[0];
-                        ErroresIUS x = this.getErrorFromExecProcedure(row);
                         throw x;
                     }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    
                     return estado;
                 }
                 public ActividadEmpresa sp_rrhh_insertActividadEmpresa(ActividadEmpresa actividadAgregar,int idUsuarioEjecutor, int idPagina)
@@ -48,24 +99,34 @@ namespace IUSLibs.RRHH.Control.Laboral
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
-
-                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrecto(tb))
+                    try
                     {
-                        if (tb[1].Rows.Count > 0)
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
                         {
-                            DataRow row = tb[1].Rows[0];
-                            actividadIngresada = new ActividadEmpresa((int)row["idActividadesEmpresa"], (int)row["id_laboralpersona_fk"], row["actividad"].ToString());
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                actividadIngresada = new ActividadEmpresa((int)row["idActividadesEmpresa"], (int)row["id_laboralpersona_fk"], row["actividad"].ToString());
 
+                            }
                         }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                        return actividadIngresada;
                     }
-                    else
+                    catch (ErroresIUS x)
                     {
-                        DataRow row = tb[0].Rows[0];
-                        ErroresIUS x = this.getErrorFromExecProcedure(row);
                         throw x;
                     }
-                    return actividadIngresada;
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
                 }
             #endregion
             #region "get"
@@ -77,25 +138,37 @@ namespace IUSLibs.RRHH.Control.Laboral
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
-                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrectoGet(tb))
+                    try
                     {
-                        if (tb[0].Rows.Count > 0)
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
                         {
-                            actividadesEmpresa = new List<ActividadEmpresa>();
-                            foreach (DataRow row in tb[0].Rows)
+                            if (tb[0].Rows.Count > 0)
                             {
-                                actividadEmpresa = new ActividadEmpresa((int)row["idActividadesEmpresa"],(int)row["id_laboralpersona_fk"],row["actividad"].ToString());
-                                actividadesEmpresa.Add(actividadEmpresa);
+                                actividadesEmpresa = new List<ActividadEmpresa>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    actividadEmpresa = new ActividadEmpresa((int)row["idActividadesEmpresa"], (int)row["id_laboralpersona_fk"], row["actividad"].ToString());
+                                    actividadesEmpresa.Add(actividadEmpresa);
+                                }
                             }
                         }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
-                    else
+                    catch (ErroresIUS x)
                     {
-                        DataRow row = tb[0].Rows[0];
-                        ErroresIUS x = this.getErrorFromExecProcedure(row);
                         throw x;
                     }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    
                     return actividadesEmpresa;
                 }
                 
