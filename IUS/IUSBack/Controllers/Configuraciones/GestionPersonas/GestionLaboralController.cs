@@ -29,6 +29,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
                 try
                 {
+                    ViewBag.selectedMenu = 2; // menu seleccionado 
                     Persona persona = new Persona(id);
                     Usuario usuarioSession  = this.getUsuarioSesion();
                     ViewBag.titleModulo     = "Información laboral personas";
@@ -49,6 +50,33 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             }
         #endregion
         #region "resultados ajax"
+            public ActionResult sp_rrhh_getActividadesEmpresa()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        List<ActividadEmpresa> actividadesEmpresa = this._model.sp_rrhh_getActividadesEmpresa(usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("actividadesEmpresa", actividadesEmpresa);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }    
             public ActionResult sp_rrhh_getEditModeLaboralPersona()
             {
                 Dictionary<object, object> frm, respuesta = null;

@@ -1,15 +1,17 @@
 ﻿// genericas 
     // texto 
-        function getCbCargos(cargo) {
-            var cb = "<option value='"+cargo._idCargoEmpresa+"'>" + cargo._cargo + "</option>";
-            return cb;
-        }
-        function getCbEmpresas(empresa)
-        {
-            var cb = "<option value='"+empresa._idEmpresa+"'>"+empresa._nombre+"</option>";
-            return cb;
-        }
-        function getTrLaboralPersona(laboralPersona) {
+        // cb
+            function getCbCargos(cargo) {
+                var cb = "<option value='"+cargo._idCargoEmpresa+"'>" + cargo._cargo + "</option>";
+                return cb;
+            }
+            function getCbEmpresas(empresa)
+            {
+                var cb = "<option value='"+empresa._idEmpresa+"'>"+empresa._nombre+"</option>";
+                return cb;
+            }
+        // tr
+            function getTrLaboralPersona(laboralPersona) {
             var tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -73,16 +75,54 @@
             ";
             return tr;
         }
-    function getObjetoSetEditLaboral(tr) {
-        var datosSet = new Object();
-        // recolectando datos
-            datosSet.fechaInicio = $.trim(tr.find(".tdFechaInicio").text());
-            datosSet.fechaFin = $.trim(tr.find(".tdFechaFin").text());
-            datosSet.idEmpresa = tr.find(".txtHdIdEmpresa").val();
-            datosSet.idCargoEmpresa = tr.find(".txtHdIdCargoEmpresa").val();
-            datosSet.observaciones = $.trim(tr.find(".tdObservaciones").text());
-        return datosSet;
-    }
+        // table
+            function getTrTableActividades() {
+                var tr = "\
+                <tr class='trTable'>\
+                    <td colspan='6'>\
+                        <table class='table tablaActividadesEmpresa'>\
+                            <thead>\
+                                <tr>\
+                                    <td class='text-center' colspan='2'>Actividades realizadas</td>\
+                                </tr>\
+                                <tr>\
+                                    <th>Actividades realizadas</th>\
+                                    <th>Acciones</th>\
+                                </tr>\
+                            <thead>\
+                        </table>\
+                    </td>\
+                </tr>\
+                ";
+                return tr;
+            }
+    // otras
+         function getTableActividades(tr) {
+            var frm = {};
+            actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {
+                console.log("trajimonos D: ", data);
+                var tabla = getTrTableActividades();
+                tr.after(tabla);
+            })
+        }
+        function getObjetoSetEditLaboral(tr) {
+            var datosSet = new Object();
+            // recolectando datos
+                datosSet.fechaInicio = $.trim(tr.find(".tdFechaInicio").text());
+                datosSet.fechaFin = $.trim(tr.find(".tdFechaFin").text());
+                datosSet.idEmpresa = tr.find(".txtHdIdEmpresa").val();
+                datosSet.idCargoEmpresa = tr.find(".txtHdIdCargoEmpresa").val();
+                datosSet.observaciones = $.trim(tr.find(".tdObservaciones").text());
+            return datosSet;
+        }
+        function verCargos(estado, tr) {
+            if (estado) {
+
+            } else {
+                //$(".tableUsuarios").find(".trTableRol").remove();
+                tr.parents("table").find(".trTable").remove();
+            }
+        }
 // acciones 
     function btnAgregarLaboralPersona(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {

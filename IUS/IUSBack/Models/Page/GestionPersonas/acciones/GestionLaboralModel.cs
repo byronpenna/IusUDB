@@ -67,41 +67,62 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 #endregion    
             #endregion
             #region "get"
-                public Dictionary<object, object> sp_rrhh_getInfoInicialLaboralPersona(int idPersona, int idUsuarioEjecutor, int idPagina)
-                {
-                    try
+                #region "noramles"
+                    public List<ActividadEmpresa> sp_rrhh_getActividadesEmpresa(int idUsuarioEjecutor, int idPagina)
                     {
-                        return this._controlLaboral.sp_rrhh_getInfoInicialLaboralPersona(idPersona, idUsuarioEjecutor, idPagina);
+                        try
+                        {
+                            ControlActividadEmpresa control = new ControlActividadEmpresa();
+                            return control.sp_rrhh_getActividadesEmpresa(idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (ErroresIUS x)
+                #endregion
+                #region "diccionarios"
+                    public Dictionary<object, object> sp_rrhh_getInfoInicialLaboralPersona(int idPersona, int idUsuarioEjecutor, int idPagina)
                     {
-                        throw x;
+                        try
+                        {
+                            return this._controlLaboral.sp_rrhh_getInfoInicialLaboralPersona(idPersona, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (Exception x)
+                    public Dictionary<object, object> sp_rrhh_getEditModeLaboralPersona(int idUsuarioEjecutor, int idPagina)
                     {
-                        throw x;
+                        try
+                        {
+                            Dictionary<object, object> retorno = new Dictionary<object, object>();
+                            ControlEmpresa controlEmpresa = new ControlEmpresa();
+                            ControlCargos controlCargos = new ControlCargos();
+                            retorno.Add("empresas", controlEmpresa.sp_rrhh_getEmpresas(idUsuarioEjecutor, idPagina));
+                            retorno.Add("cargos", controlCargos.sp_rrhh_getCargos(idUsuarioEjecutor, idPagina));
+                            return retorno;
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                }
-                public Dictionary<object, object> sp_rrhh_getEditModeLaboralPersona(int idUsuarioEjecutor,int idPagina)
-                {
-                    try
-                    {
-                        Dictionary<object,object> retorno = new Dictionary<object,object>();
-                        ControlEmpresa controlEmpresa = new ControlEmpresa();
-                        ControlCargos controlCargos = new ControlCargos();
-                        retorno.Add("empresas",controlEmpresa.sp_rrhh_getEmpresas(idUsuarioEjecutor,idPagina));
-                        retorno.Add("cargos", controlCargos.sp_rrhh_getCargos(idUsuarioEjecutor, idPagina));
-                        return retorno;
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
+                #endregion
+                
             #endregion
         #endregion
         #region "constructores"
