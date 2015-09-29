@@ -120,7 +120,31 @@
                 $(document).on("click", ".btnAgregarCarreraIndividual", function (e) {
                     var frm = serializeSection($(this).parents("tr"));
                     console.log("formulario frm", frm);
-                    btnAgregarCarreraIndividual(frm);
+                    var val = validarIngresoCarreraIndividual(frm);
+                    if (val.estado) {
+                        btnAgregarCarreraIndividual(frm);
+                    } else {
+                        console.log("val es", val);
+                        var errores;
+                        var targetSeccion = $(".tablaCarrera .trAgregar");
+                        targetSeccion.find(".divResultado").addClass("visibilitiHidden");
+                        targetSeccion.find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = targetSeccion.find("." + i).parents("th").find(".divResultado")
+                            //console.log(i, ": " + val);
+                            if (val.length > 0) {
+                                //console.log("entro");
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                //console.log("errores", errores);
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
             // formacion persona
                 // edicion

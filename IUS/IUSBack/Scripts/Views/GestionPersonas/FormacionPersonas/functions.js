@@ -1,4 +1,23 @@
-﻿// genericas
+﻿function validarIngresoCarreraIndividual(frm) {
+    var val = new Object();
+    val.campos = {
+        cbInsticionesParaCarrera:   new Array(),
+        cbNivelCarrera:             new Array(),
+        txtNombreCarrera:           new Array()
+    }
+    if (frm.cbInsticionesParaCarrera == -1) {
+        val.campos.cbInsticionesParaCarrera.push("Este campo no puede quedar vacio")
+    }
+    if (frm.cbNivelCarrera == -1) {
+        val.campos.cbNivelCarrera.push("Este campo no puede quedar vacio")
+    }
+    if (frm.txtNombreCarrera == "") {
+        val.campos.txtNombreCarrera.push("Este campo no puede quedar vacio")
+    }
+    val.estado = objArrIsEmpty(val.campos);
+    return val;
+}
+// genericas
     // partes
         // tr     
             function getTrInstitucionEducativa(institucion) {
@@ -226,7 +245,12 @@
                     var tr = getTrCarrera(data.carreraAgregada);
                     $(".tbodyCarrera").prepend(tr);
                 } else {
-                    alert("Ocurrio un error")
+                    var mjs = "Ocurrio un error";
+                    if (data.error._mostrar) {
+                        mjs =  data.error.Message;
+                    }
+                    printMessage($(".divResultadoGeneralCarrera"),mjs, false);
+                    //alert("Ocurrio un error")
                 }
             })
         }      
