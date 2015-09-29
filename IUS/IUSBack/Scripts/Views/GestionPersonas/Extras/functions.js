@@ -64,11 +64,31 @@
                 <td class='hidden'>\
                     <input type='hidden' value='"+emailPersona._idEmail+"' name='txtIdEmailPersona'/>\
                 </td>\
-                <td>"+emailPersona._email+"</td>\
-                <td>"+emailPersona._descripcion+"</td>\
                 <td>\
-                    <button class='btn btnEditarEmail btn-xs' >Editar</button>\
-                    <button class='btn btnEliminarEmail btn-xs'>Eliminar</button>\
+                    <div class='editMode hidden'>\
+                        <input name='txtEmail' class=' form-control txtEmail' type='email' />\
+                    </div>\
+                    <div class='normalMode tdEmail'>\
+                        "+emailPersona._email+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <input class='txtEtiquetaEmail form-control' name='txtEtiquetaEmail' />\
+                    </div>\
+                    <div class='normalMode tdEtiqueta'>\
+                        "+emailPersona._descripcion+"\
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <button class='btn btn-xs btnActualizarEmail'>Actualizar</button>\
+                        <button class='btn btn-xs btnCancelarUpdateEmail'>Cancelar</button>\
+                    </div>\
+                    <div class='normalMode tdTelefono'>\
+                        <button class='btn btnEditarEmail btn-xs'>Editar</button>\
+                        <button class='btn btnEliminarEmail btn-xs'>Eliminar</button>\
+                    </div>\
                 </td>\
             </tr>\
             ";
@@ -90,13 +110,44 @@
             <tr>\
                 <td class='hidden'>\
                     <input name='txtHdIdTelefono' class='txtHdIdTelefono'  value='"+telefono._idTelefonoPersona+"'/>\
+                    <input name='txtHdIdPais' class='txtHdIdPais' value='"+telefono._pais._idPais+"' />\
                 </td>\
-                <td>"+telefono._telefono+"</td>\
-                <td>"+telefono._pais._pais+"</td>\
-                <td>"+telefono._descripcion+"</td>\
                 <td>\
-                    <button class='btn btn-xs'>Editar</button>\
-                    <button class='btn btnEliminarTel btn-xs'>Eliminar</button>\
+                    <div class='editMode hidden'>\
+                        <input class='txtTelefono form-control' name='txtTelefono' />\
+                        <div class='row marginNull divResultado hidden'>\
+                            _ \
+                        </div>\
+                    </div>\
+                    <div class='normalMode tdTelefono'>\
+                        "+telefono._telefono+" \
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <select class='cbPais' name='cbPais'></select>\
+                    </div>\
+                    <div class='normalMode tdPais'>\
+                        "+telefono._pais._pais+" \
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <input class='txtEtiquetaTel form-control' name='txtEtiquetaTel' />\
+                    </div>\
+                    <div class='normalMode tdEtiqueta'>\
+                        "+telefono._descripcion+" \
+                    </div>\
+                </td>\
+                <td>\
+                    <div class='editMode hidden'>\
+                        <button class='btn btn-xs btnActualizarTel'>Actualizar</button>\
+                        <button class='btn btn-xs btnCancelarUpdateTel'>Cancelar</button>\
+                    </div>\
+                    <div class='normalMode'>\
+                        <button class='btn btn-xs btnEditarTel'>Editar</button>\
+                        <button class='btn btnEliminarTel btn-xs'>Eliminar</button>\
+                    </div>\
                 </td>\
             </tr>\
             ";
