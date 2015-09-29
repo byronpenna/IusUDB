@@ -1,4 +1,31 @@
 ﻿// validacion 
+    function validarInsertExtra(frm) {
+        var val = new Object();
+        val.campos = {
+            cbPais:                     new Array(),
+            txtNumeroIdentificacion:    new Array(),
+            cbEstadoCivil:              new Array()
+        }
+        if (frm.cbPais == "") {
+            val.campos.cbPais.push("Campo no debe quedar vacio");
+        } else {
+            if (frm.cbPais == -1) {
+                val.campos.cbPais.push("Por favor seleccione un pais");
+            }
+        }
+        if (frm.txtNumeroIdentificacion == "") {
+            val.campos.txtNumeroIdentificacion.push("Campo no debe quedar vacio");
+        }
+        if (frm.cbEstadoCivil == "") {
+            val.campos.cbEstadoCivil.push("Campo no debe quedar vacio");
+        } else {
+            if (frm.cbEstadoCivil == -1) {
+                val.campos.cbEstadoCivil.push("Por favor seleccione un estado civil");
+            }
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
     function validarInsertEmail(frm) {
         var val = new Object();
         val.campos = {
@@ -170,16 +197,16 @@
             }
         // informacion basica
             function btnGuardarInformacionBasica(frm) {
-            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
-                console.log(data);
-                if (data.estado) {
-                    printMessage($(".divResultadoOperacion"), "Informacion actualizada exitosamente", true);
-                } else {
-                    if (data.error._mostrar) {
-                        printMessage($(".divResultadoOperacion"), data.error.Message, false);
+                actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
+                    console.log("D: D: informacion basica",data);
+                    if (data.estado) {
+                        printMessage($(".divResultadoOperacion"), "Informacion actualizada exitosamente", true);
                     } else {
-                        printMessage($(".divResultadoOperacion"), "Ocurrio un error no controlado", false);
+                        if (data.error._mostrar) {
+                            printMessage($(".divResultadoOperacion"), data.error.Message, false);
+                        } else {
+                            printMessage($(".divResultadoOperacion"), "Ocurrio un error no controlado", false);
+                        }
                     }
-                }
-            })
-        }
+                })
+            }

@@ -164,7 +164,28 @@
                     var frm             = serializeSection($(this).parents(".divFrmInformacionExtra"));
                     frm.txtHdIdPersona  = $(".txtHdIdPersona").val();
                     console.log("Formulario a enviar es", frm);
-                    //var val = 
-                    btnGuardarInformacionBasica(frm);
+                    var val = validarInsertExtra(frm);
+                    var theadTabla = $(".divFrmInformacionExtra");
+                    if (val.estado) {
+                        btnGuardarInformacionBasica(frm);
+                    } else {
+                        console.log(val);
+                        // errores 
+                        var errores;
+                        theadTabla.find(".divResultado").addClass("visibilitiHidden");
+                        theadTabla.find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = theadTabla.find("." + i).parents(".divControl").find(".divResultado")
+                            if (val.length > 0) {
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
 })
