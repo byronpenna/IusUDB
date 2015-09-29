@@ -76,9 +76,40 @@
             return tr;
         }
         // table
-            function getTrTableActividades() {
+            function getTrActividadTabla(actividad) {
+                var tr = "\
+                <tr class='trEliminarActividad'>\
+                    <td class='hidden'>\
+                        <input class='txtHdIdActividadEmpresa' name='txtHdIdActividadEmpresa' value='" + actividad._idActividadesEmpresa + "'>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <input class='form-control txtActividad' name='txtActividad'>\
+                        </div>\
+                        <div class='normalMode tdActividad'>\
+                            " + actividad._actividad + "\
+                        </div>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
+                            <button class='btn btnCancelarUni' >Cancelar</button>\
+                        </div>\
+                        <div class='normalMode'>\
+                            <button class='btnEditarActividad btn' >Editar</button>\
+                            <button class='btnEliminarActividad btn'>Eliminar</button>\
+                        </div>\
+                    </td>\
+                </tr>\
+                ";
+                return tr;
+            }
+            function getTrTableActividades(idLaboralPersona, actividades) {
                 var tr = "\
                 <tr class='trTable'>\
+                    <td class='hidden'>\
+                        <input class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' value='"+idLaboralPersona+"'>\
+                    </td>\
                     <td colspan='6'>\
                         <table class='table tablaActividadesEmpresa'>\
                             <thead>\
@@ -86,10 +117,56 @@
                                     <td class='text-center' colspan='2'>Actividades realizadas</td>\
                                 </tr>\
                                 <tr>\
-                                    <th>Actividades realizadas</th>\
+                                    <th>Actividad realizada</th>\
                                     <th>Acciones</th>\
                                 </tr>\
+                                <tr class='trAgregar'>\
+                                    <th><input name='txtActividad' class='form-control txtActividad' /></th>\
+                                    <th>\
+                                        <button class='btnAgregarActividad btn'>Agregar</button>\
+                                    </th>\
+                                </tr>\
                             <thead>\
+                            <tbody class='tbodyActividades'>";
+                if (actividades !== undefined && actividades != null && actividades.length > 0) {
+                    $.each(actividades, function (i, actividad) {
+                        tr += "\
+                        <tr class='trEliminarActividad'>\
+                            <td class='hidden'>\
+                                <input class='txtHdIdActividadEmpresa' name='txtHdIdActividadEmpresa' value='" + actividad._idActividadesEmpresa + "'>\
+                            </td>\
+                            <td>\
+                                <div class='editMode hidden'>\
+                                    <input class='form-control txtActividad' name='txtActividad'>\
+                                </div>\
+                                <div class='normalMode tdActividad'>\
+                                    " + actividad._actividad + "\
+                                </div>\
+                            </td>\
+                            <td>\
+                                <div class='editMode hidden'>\
+                                    <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
+                                    <button class='btn btnCancelarUni' >Cancelar</button>\
+                                </div>\
+                                <div class='normalMode'>\
+                                    <button class='btnEditarActividad btn' >Editar</button>\
+                                    <button class='btnEliminarActividad btn'>Eliminar</button>\
+                                </div>\
+                            </td>\
+                        </tr>\
+                        "
+                    })
+                } else {
+                    tr += "\
+                    <tr>\
+                        <td class='text-center' colspan='2'>\
+                            Aun no se le agregan actividades que desempeño\
+                        </td>\
+                    </tr>\
+                    ";
+                }
+                tr += "\
+                            </tbody>\
                         </table>\
                     </td>\
                 </tr>\
@@ -98,10 +175,15 @@
             }
     // otras
          function getTableActividades(tr) {
-            var frm = {};
+            var frm = { idLaboralPersona: tr.find(".txtHdIdLaboralPersona").val() }; 
+            console.log("traer ", frm);
             actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {
                 console.log("trajimonos D: ", data);
-                var tabla = getTrTableActividades();
+                var actividades = null;
+                if(data.actividadesEmpresa !== undefined && data.actividadesEmpresa != null){
+                    actividades = data.actividadesEmpresa;
+                }
+                var tabla = getTrTableActividades(tr.find(".txtHdIdLaboralPersona").val(), actividades);
                 tr.after(tabla);
             })
         }
@@ -124,7 +206,45 @@
             }
         }
 // acciones 
-    function btnAgregarLaboralPersona(frm) {
+    // actividades
+        function btnActualizarActividadEmpresa(frm,tr) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarActividadEmpresa", frm, function (data) {
+                console.log("D: D: D: ", data);
+                if (data.estado) {
+                    if (data.actividadEditada !== undefined && data.actividadEditada != null) {
+                        //************************
+                        tr.find(".tdActividad").empty().append(data.actividadEditada._actividad);
+                        controlesEdit(false, tr);
+                    }
+                }
+            })
+        }
+        function btnEliminarActividad(frm, tr) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarActividadadesEmpresa", frm, function (data) {
+                console.log("Data de eliminar", data);
+                if (data.estado) {
+                    tr.remove();
+                } else {
+                    alert("Ocurrio un error");
+                }
+            })
+        }
+        function btnAgregarActividad(frm, tr) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertActividadEmpresa", frm, function (data) {
+                console.log("Actividad ingresada ", data);
+                if (data.estado) {
+                    if (data.actividadIngresada !== undefined && data.actividadIngresada != null) {
+                        var htmlTr = getTrActividadTabla(data.actividadIngresada);
+                        console.log("D: ingresaras tr",htmlTr);
+                        tr.parents("table").find(".tbodyActividades").prepend(htmlTr);
+                        tr.find(".txtActividad").val("");
+                    }
+                
+                }
+            })
+        }
+    // laboral
+        function btnAgregarLaboralPersona(frm) {
         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
             console.log("Data devuelta por el servidor",data);
             if(data.estado){
@@ -134,33 +254,33 @@
                 alert("Ocurrio un error");
             }
         })
-    }
-    function btnActualizarLaboralPersona(frm,tr) {
-        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
-            console.log("la respuesta es: ", data);
-            if (data.estado) {
-                var laboral = data.laboralEditado;
-                // texto
-                    tr.find(".tdFechaInicio").empty().append(laboral._inicio);
-                    tr.find(".tdFechaFin").empty().append(laboral._fin);
-                    tr.find(".tdObservaciones").empty().append(laboral._observaciones)
-                    tr.find(".tdCargo").empty().append(laboral._cargo._cargo)
-                    tr.find(".tdNombreEmpresa").empty().append(laboral._empresa._nombre);
-                // hiddens 
-                    tr.find(".txtHdIdCargoEmpresa").val(laboral._cargo._idCargoEmpresa);
-                    tr.find(".txtHdIdEmpresa").val(laboral._empresa._idEmpresa);
-                controlesEdit(false, tr);
-            } else {
-                alert("Ocurrio un error tratand de actualizar");
-            }
-        })
-    }
-    function btnEliminarLaboralPersona(frm, tr) {
-        //**
-        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
-            console.log(data);
-            if (data.estado) {
-                tr.remove();
-            }
-        })
-    }
+        }
+        function btnActualizarLaboralPersona(frm,tr) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
+                console.log("la respuesta es: ", data);
+                if (data.estado) {
+                    var laboral = data.laboralEditado;
+                    // texto
+                        tr.find(".tdFechaInicio").empty().append(laboral._inicio);
+                        tr.find(".tdFechaFin").empty().append(laboral._fin);
+                        tr.find(".tdObservaciones").empty().append(laboral._observaciones)
+                        tr.find(".tdCargo").empty().append(laboral._cargo._cargo)
+                        tr.find(".tdNombreEmpresa").empty().append(laboral._empresa._nombre);
+                    // hiddens 
+                        tr.find(".txtHdIdCargoEmpresa").val(laboral._cargo._idCargoEmpresa);
+                        tr.find(".txtHdIdEmpresa").val(laboral._empresa._idEmpresa);
+                    controlesEdit(false, tr);
+                } else {
+                    alert("Ocurrio un error tratand de actualizar");
+                }
+            })
+        }
+        function btnEliminarLaboralPersona(frm, tr) {
+            //**
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
+                console.log(data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }

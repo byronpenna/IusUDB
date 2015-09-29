@@ -64,7 +64,7 @@
             getImageFromInputFile(imagen, function (imagen) {
                 if (imagen.width == imagen.height) {
                     accionAjaxWithImage(url, data, function (data) {
-                        console.log(data);
+                        console.log("D: D: ",data);
                         if (data.estado) {
                             printMessage($(".divImagePersona .divResultado"), "Imagen asignada exitosamente", true);
                             $(".imgPersona").attr("src", imagen.src);

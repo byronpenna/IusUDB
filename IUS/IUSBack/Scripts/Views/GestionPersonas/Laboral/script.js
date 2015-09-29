@@ -1,37 +1,69 @@
 ﻿$(document).ready(function () {
     // plugins 
-        /*$(".tablaLaboral").DataTable({
+        $(".tablaLaboral").DataTable({
             "bDestroy": true,
             "bSort": false
-        });*/
+        });
     // eventos 
         // click 
+
             // cargos 
                 $(document).on("click", ".btnActividad", function () {
                     var tr = $(this).parents("tr");
-                    if (!tr.next().hasClass(".trTable")) {
+                    if (!tr.next().hasClass("trTable")) {
                         // enseña los roles
                         getTableActividades(tr);
-                        $(this).val("Ocultar actividades");
+                        $(this).empty().append("Ocultar actividades");
                     } else {
                         // oculta los roles
                         tr.parents("table").find(".trTable").remove();
-                        $(this).val("Ver Actividades");
+                        $(this).empty().append("Ver Actividades");
                     }
                 })
             // operaciones basicas
-                $(document).on("click", ".btnAgregarLaboralPersona", function () {
-                var frm = serializeSection($(this).parents("tr"));
-                frm.idPersona = $(".txtHdIdPersona").val();
-                console.log("formulario a enviar",frm);
-                btnAgregarLaboralPersona(frm);
-            })
-                $(document).on("click", ".btnEliminarLaboralPersona", function () {
-                var tr = $(this).parents("tr");
-                var frm = serializeSection(tr);
-                console.log("formulario a enviar", frm);
-                btnEliminarLaboralPersona(frm,tr);
-            })
+                // actividades 
+                    // editar 
+                        $(document).on("click", ".btnEditarActividad", function () {
+                            var tr = $(this).parents(".trEliminarActividad");
+                            var datosSet = {
+                               actividad: $.trim(tr.find(".tdActividad").text())
+                            }
+                            tr.find(".txtActividad").val(datosSet.actividad);
+                            controlesEdit(true, tr);
+                        })
+                        $(document).on("click", ".btnActualizarActividadEmpresa", function () {
+                            var tr = $(this).parents(".trEliminarActividad");
+                            var frm = serializeSection(tr);
+                            console.log("formulario a enviar D: D: D: ", frm);
+                            btnActualizarActividadEmpresa(frm,tr);
+                        })
+                    $(document).on("click", ".btnEliminarActividad", function () {
+                        var tr = $(this).parents(".trEliminarActividad");
+                        var frm = serializeSection(tr);
+                        console.log("Eliminar", frm);
+                        btnEliminarActividad(frm, tr);
+                    })
+                    $(document).on("click", ".btnAgregarActividad", function () {
+                        var tr                      = $(this).parents(".trAgregar");
+                        var frm                     = serializeSection(tr);
+                        frm.txtHdIdLaboralPersona   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
+                        //frm.idLaboral             = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
+                        console.log("formulario a enviar es", frm);
+                        btnAgregarActividad(frm,tr);
+                    })
+                // laboral persona 
+                    $(document).on("click", ".btnAgregarLaboralPersona", function () {
+                    var frm = serializeSection($(this).parents("tr"));
+                    frm.idPersona = $(".txtHdIdPersona").val();
+                    console.log("formulario a enviar",frm);
+                    btnAgregarLaboralPersona(frm);
+                })
+                    $(document).on("click", ".btnEliminarLaboralPersona", function () {
+                    var tr = $(this).parents("tr");
+                    var frm = serializeSection(tr);
+                    console.log("formulario a enviar", frm);
+                    btnEliminarLaboralPersona(frm,tr);
+                })
             // editar
                 $(document).on("click", ".btnEditarLaboralPersona", function () {
                     // variables

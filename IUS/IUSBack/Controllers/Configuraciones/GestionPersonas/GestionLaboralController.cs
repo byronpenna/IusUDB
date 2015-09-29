@@ -50,63 +50,158 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             }
         #endregion
         #region "resultados ajax"
-            public ActionResult sp_rrhh_getActividadesEmpresa()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
+            #region "actividades"
+                public ActionResult sp_rrhh_editarActividadEmpresa()
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
                     {
-                        List<ActividadEmpresa> actividadesEmpresa = this._model.sp_rrhh_getActividadesEmpresa(usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("actividadesEmpresa", actividadesEmpresa);
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            ActividadEmpresa actividadEditar = new ActividadEmpresa(this.convertObjAjaxToInt(frm["txtHdIdActividadEmpresa"]),-1, frm["txtActividad"].ToString());
+                            ActividadEmpresa actividadEditada = this._model.sp_rrhh_editarActividadEmpresa(actividadEditar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("actividadEditada", actividadEditada);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
                     }
-                }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }    
-            public ActionResult sp_rrhh_getEditModeLaboralPersona()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    catch (ErroresIUS x)
                     {
-                        respuesta = this._model.sp_rrhh_getEditModeLaboralPersona(usuarioSession._idUsuario, this._idPagina);
-                        respuesta.Add("estado", true);
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
                     }
-                    else
+                    catch (Exception x)
                     {
-                        respuesta = this.errorEnvioFrmJSON();
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
                     }
+                    return Json(respuesta);
                 }
-                catch (ErroresIUS x)
+                public ActionResult sp_rrhh_eliminarActividadadesEmpresa()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            bool elimino = this._model.sp_rrhh_eliminarActividadadesEmpresa(this.convertObjAjaxToInt(frm["txtHdIdActividadEmpresa"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", elimino);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                catch (Exception x)
+                public ActionResult sp_rrhh_insertActividadEmpresa()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            ActividadEmpresa actividadIngresar = new ActividadEmpresa(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]), frm["txtActividad"].ToString());
+                            ActividadEmpresa actividadIngresada = this._model.sp_rrhh_insertActividadEmpresa(actividadIngresar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("actividadIngresada", actividadIngresada);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                return Json(respuesta);
-            }
-            
+                public ActionResult sp_rrhh_getActividadesEmpresa()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            List<ActividadEmpresa> actividadesEmpresa = this._model.sp_rrhh_getActividadesEmpresa(this.convertObjAjaxToInt(frm["idLaboralPersona"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("actividadesEmpresa", actividadesEmpresa);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }    
+                public ActionResult sp_rrhh_getEditModeLaboralPersona()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        if (usuarioSession != null && frm != null)
+                        {
+                            respuesta = this._model.sp_rrhh_getEditModeLaboralPersona(usuarioSession._idUsuario, this._idPagina);
+                            respuesta.Add("estado", true);
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
+            #endregion
             #region "laboral"
                 public ActionResult sp_rrhh_editarLaboralPersonas()
                 {
