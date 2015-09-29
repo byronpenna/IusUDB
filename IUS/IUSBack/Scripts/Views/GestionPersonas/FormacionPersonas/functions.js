@@ -41,6 +41,8 @@
                   <tr>\
                         <td class='hidden'>\
                             <input class='txtHdIdCarrera' name='txtHdIdCarrera' value='"+carrera._idCarrera+"'/>\
+                            <input class='txtHdIdInstitucion' value='"+carrera._institucion._idInstitucion+"'/>\
+                            <input class='txtHdIdNivelCarrera' value='"+carrera._nivelTitulo._idNivel+"' />\
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\

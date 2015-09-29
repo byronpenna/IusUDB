@@ -18,7 +18,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
         // GET: /FormacionPersonas/
         #region "propiedades"
             public FormacionPersonasModel _model;
-            private int _idPagina = (int)paginas.gestionPersonas;
+            private int _idPagina = (int)paginas.formacionAcademica;
         #endregion
         #region "acciones url"
             public ActionResult Index(int id)
