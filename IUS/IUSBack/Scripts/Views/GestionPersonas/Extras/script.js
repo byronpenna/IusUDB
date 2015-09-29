@@ -132,11 +132,14 @@
                     var frm         = serializeSection($(this).parents("tr"));
                     frm.idPersona   = $(".txtHdIdPersona").val();
                     var val = validarInsertTelefono(frm);
+                    var theadTabla = $(".tablaNumerosTelefonicos thead");
                     if (val.estado) {
+                        theadTabla.find(".divResultado").addClass("hidden");
+                        theadTabla.find(".divResultado").removeClass("visibilitiHidden");
                         btnAgregarTel(frm);
                     } else {
                         // errores 
-                        var errores; var theadTabla = $(".tablaNumerosTelefonicos thead");
+                        var errores; 
                         theadTabla.find(".divResultado").addClass("visibilitiHidden");
                         theadTabla.find(".divResultado").removeClass("hidden");
                         $.each(val.campos, function (i, val) {
@@ -158,9 +161,10 @@
                 })
             // informacion
                 $(document).on("click", ".btnGuardarInformacionBasica", function () {
-                    var frm = serializeSection($(this).parents(".divFrmInformacionExtra"));
+                    var frm             = serializeSection($(this).parents(".divFrmInformacionExtra"));
+                    frm.txtHdIdPersona  = $(".txtHdIdPersona").val();
                     console.log("Formulario a enviar es", frm);
-                    frm.txtHdIdPersona = $(".txtHdIdPersona").val();
+                    //var val = 
                     btnGuardarInformacionBasica(frm);
                 })
 })

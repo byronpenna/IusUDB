@@ -28,6 +28,7 @@
             val.campos.txtEtiquetaTel.push("Campo no debe quedar vacio");
         }
         val.estado = objArrIsEmpty(val.campos);
+        return val;
     }
 // genericas 
         function getTrEmail(emailPersona){
@@ -61,7 +62,7 @@
             var tr = "\
             <tr>\
                 <td class='hidden'>\
-                    <input name='txtHdIdTelefono' class='txtHdIdTelefono'  value='@telefono._idTelefonoPersona'/>\
+                    <input name='txtHdIdTelefono' class='txtHdIdTelefono'  value='"+telefono._idTelefonoPersona+"'/>\
                 </td>\
                 <td>"+telefono._telefono+"</td>\
                 <td>"+telefono._pais._pais+"</td>\
