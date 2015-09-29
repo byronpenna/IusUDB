@@ -207,8 +207,13 @@
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarCorreoPersona", frm, function (data) {
                 console.log("respuesta servidor",data);
                 if (data.estado) {
-                    var tr = getTrEmail(data.emailPersona);
-                    $(".tbodyEmail").prepend(tr);
+                    var tr      = getTrEmail(data.emailPersona);
+                    var tbody   = $(".tbodyEmail");
+                    if (tbody.find(".trNoReg").length == 0) {
+                        tbody.prepend(tr);
+                    } else {
+                        tbody.empty().append(tr);
+                    }
                     clearFrmAddEmail();
                 }
             })
@@ -241,7 +246,13 @@
                     console.log(data);
                     if (data.estado) {
                         var tr = getTrNumeros(data.telefonoAgregado);
-                        $(".tbodyTelefonos").prepend(tr);
+                        var tbody = $(".tbodyTelefonos");
+                        if (tbody.find(".trNoReg").length == 0) {
+                            tbody.prepend(tr);
+                        } else {
+                            tbody.empty().append(tr);
+                        }
+                        
                         clearFrmAddTel();
                     }
                 })
