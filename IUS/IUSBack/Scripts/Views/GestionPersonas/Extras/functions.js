@@ -1,4 +1,35 @@
-﻿// genericas 
+﻿// validacion 
+    function validarInsertEmail(frm) {
+        var val = new Object();
+        val.campos = {
+            txtEmail:           new Array(),
+            txtEtiquetaEmail:   new Array()
+        }
+        if (frm.txtEmail == "") {
+            val.campos.txtEmail.push("Campo no debe quedar vacio");
+        }
+        if (frm.txtEtiquetaEmail == "") {
+            val.campos.txtEtiquetaEmail.push("Campo no debe quedar vacio");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
+    function validarInsertTelefono(frm) {
+        var val = new Object();
+        val.campos = {
+            txtTelefono: new Array(),
+            cbPais: new Array(),
+            txtEtiquetaTel: new Array()
+        }
+        if (frm.txtTelefono == "") {
+            val.campos.txtTelefono.push("Campo no debe quedar vacio");
+        }
+        if (frm.txtEtiquetaTel == "") {
+            val.campos.txtEtiquetaTel.push("Campo no debe quedar vacio");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+    }
+// genericas 
         function getTrEmail(emailPersona){
             var tr = "\
             <tr>\

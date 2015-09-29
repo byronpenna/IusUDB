@@ -10,7 +10,6 @@
                 } else {
                     $(".btnEstablecer").prop("disabled", false);
                 }
-                
             })
         // submit 
             $(document).on("submit", ".frmImagenPersona", function (e) {
@@ -57,7 +56,32 @@
                     var frm         = serializeSection(tr);
                     frm.idPersona   = $(".txtHdIdPersona").val();
                     //console.log(frm);
-                    btnGuardarEmail(frm);
+                    var val         = validarInsertEmail(frm);
+                    if (val.estado)
+                    {
+                        $(".tablaCorreos thead").find(".divResultado").addClass("hidden");
+                        $(".tablaCorreos thead").find(".divResultado").removeClass("visibilitiHidden");
+                        btnGuardarEmail(frm);
+                    } else {
+                        var errores;
+                        $(".tablaCorreos thead").find(".divResultado").addClass("visibilitiHidden");
+                        $(".tablaCorreos thead").find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = $(".tablaCorreos thead").find("." + i).parents("th").find(".divResultado")
+                            //console.log(i, ": " + val);
+                            if (val.length > 0) {
+                                //console.log("entro");
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                //console.log("errores", errores);
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
             // telefono  
                 // editar tel
@@ -107,9 +131,30 @@
                 $(document).on("click", ".btnAgregarTel", function () {
                     var frm         = serializeSection($(this).parents("tr"));
                     frm.idPersona   = $(".txtHdIdPersona").val();
-                    console.log("Formulario a enviar es", frm);
-                    //var val = 
-                    btnAgregarTel(frm);
+                    var val = validarInsertTelefono(frm);
+                    if (val.estado) {
+                        btnAgregarTel(frm);
+                    } else {
+                        // errores 
+                        var errores; var theadTabla = $(".tablaNumerosTelefonicos thead");
+                        theadTabla.find(".divResultado").addClass("visibilitiHidden");
+                        theadTabla.find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = theadTabla.find("." + i).parents("th").find(".divResultado")
+                            //console.log(i, ": " + val);
+                            if (val.length > 0) {
+                                //console.log("entro");
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                //console.log("errores", errores);
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
             // informacion
                 $(document).on("click", ".btnGuardarInformacionBasica", function () {

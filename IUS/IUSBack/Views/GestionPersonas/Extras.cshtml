@@ -143,7 +143,7 @@
         <div class="row marginNull">
             <div class="col-lg-5">
                 <h3>Correos electronicos</h3>
-                <table class="table tabla">
+                <table class="table tabla tablaCorreos">
                     <thead>
                         <tr>
                             <th class="hidden"></th>
@@ -153,9 +153,21 @@
                         </tr>
                         <tr>
                             <th class="hidden"></th>
-                            <th><input name="txtEmail" class=" form-control txtEmail" type="email" /></th>
-                            <th><input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" /></th>
-                            <th><button class="btn btnGuardarEmail btn-xs">Guardar</button></th>
+                            <th>
+                                <input name="txtEmail" class=" form-control txtEmail" type="email" />
+                                <div class="row marginNull divResultado hidden ">
+                                    _
+                                </div>
+                            </th>
+                            <th>
+                                <input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" />
+                                <div class="row marginNull divResultado hidden">
+                                    _
+                                </div>
+                            </th>
+                            <th>
+                                <button class="btn btnGuardarEmail btn-xs">Guardar</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="tbodyEmail">
@@ -208,7 +220,7 @@
             </div>
             <div class="col-lg-7">
                 <h3>Numeros telefonicos</h3>
-                <table class="table tabla">
+                <table class="table tabla tablaNumerosTelefonicos">
                     <thead>
                         <tr>
                             <th class="hidden"></th>
@@ -219,7 +231,12 @@
                         </tr>
                         <tr>
                             <th class="hidden"></th>
-                            <th><input class="txtTelefono form-control" name="txtTelefono" /></th>
+                            <th>
+                                <input class="txtTelefono form-control" name="txtTelefono" />
+                                <div class="row marginNull divResultado hidden">
+
+                                </div>
+                            </th>
                             <th>
                                 <select class="cbPais" name="cbPais">
                                     @if (paises != null && paises.Count > 0)
@@ -230,8 +247,16 @@
                                         }
                                     }
                                 </select>
+                                <div class="row marginNull divResultado hidden">
+
+                                </div>
                             </th>
-                            <th><input class="txtEtiquetaTel form-control" name="txtEtiquetaTel" /></th>
+                            <th>
+                                <input class="txtEtiquetaTel form-control" name="txtEtiquetaTel" />
+                                <div class="row marginNull divResultado hidden">
+                                    _
+                                </div>
+                            </th>
                             <th>
                                 <button class="btn btnAgregarTel">Agregar</button>
                             </th>
