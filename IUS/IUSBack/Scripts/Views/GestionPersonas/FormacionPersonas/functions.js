@@ -1,4 +1,39 @@
-﻿// genericas
+﻿function validarIngresoInstituciones(frm) {
+    var val = new Object();
+    val.campos = {
+        cbInsticionesParaCarrera: new Array(),
+        txtInstitucionEducativa: new Array()
+    }
+    if (frm.cbPaisInstitucionEducativa == -1) {
+        val.campos.cbPaisInstitucionEducativa.push("Este campo no puede quedar vacio")
+    }
+    if (frm.txtInstitucionEducativa == "") {
+        val.campos.txtInstitucionEducativa.push("Este campo no puede quedar vacio")
+    }
+    val.estado = objArrIsEmpty(val.campos);
+    console.log("val es D: ", val);
+    return val;
+}
+function validarIngresoCarreraIndividual(frm) {
+    var val = new Object();
+    val.campos = {
+        cbInsticionesParaCarrera:   new Array(),
+        cbNivelCarrera:             new Array(),
+        txtNombreCarrera:           new Array()
+    }
+    if (frm.cbInsticionesParaCarrera == -1) {
+        val.campos.cbInsticionesParaCarrera.push("Este campo no puede quedar vacio")
+    }
+    if (frm.cbNivelCarrera == -1) {
+        val.campos.cbNivelCarrera.push("Este campo no puede quedar vacio")
+    }
+    if (frm.txtNombreCarrera == "") {
+        val.campos.txtNombreCarrera.push("Este campo no puede quedar vacio")
+    }
+    val.estado = objArrIsEmpty(val.campos);
+    return val;
+}
+// genericas
     // partes
         // tr     
             function getTrInstitucionEducativa(institucion) {
@@ -41,6 +76,8 @@
                   <tr>\
                         <td class='hidden'>\
                             <input class='txtHdIdCarrera' name='txtHdIdCarrera' value='"+carrera._idCarrera+"'/>\
+                            <input class='txtHdIdInstitucion' value='"+carrera._institucion._idInstitucion+"'/>\
+                            <input class='txtHdIdNivelCarrera' value='"+carrera._nivelTitulo._idNivel+"' />\
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
@@ -224,7 +261,12 @@
                     var tr = getTrCarrera(data.carreraAgregada);
                     $(".tbodyCarrera").prepend(tr);
                 } else {
-                    alert("Ocurrio un error")
+                    var mjs = "Ocurrio un error";
+                    if (data.error._mostrar) {
+                        mjs =  data.error.Message;
+                    }
+                    printMessage($(".divResultadoGeneralCarrera"),mjs, false);
+                    //alert("Ocurrio un error")
                 }
             })
         }      

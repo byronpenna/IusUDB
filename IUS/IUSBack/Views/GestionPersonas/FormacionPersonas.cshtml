@@ -207,19 +207,22 @@
 <div class="row marginNull divTab divInstituciones hidden">
     <!-- Instituciones educativas -->
     <h3 class="tituloTabDiv">Instituciones educativas</h3>
-    <table class="table">
+    <table class="table tablaInstitucionEducativa">
        <thead>
            <tr>
                <th>Institucion educativa</th>
                <th>País</th>
                <th>Acciones</th>
            </tr>
-           <tr>
+           <tr class="trAgregar">
                <th>
                    <input name="txtInstitucionEducativa" class="form-control txtInstitucionEducativa" />
+                   <div class="row marginNull divResultado hidden">
+                   </div>
                </th>
                <th>
                    <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+                       <option value="-1">Seleccione un país</option>
                        @if (paises != null && paises.Count > 0)
                        {
                            foreach (Pais pais in paises)
@@ -228,6 +231,8 @@
                            }
                        }
                    </select>
+                   <div class="row marginNull divResultado hidden">
+                   </div>
                </th>
                <th>
                    <button class="btn btnAgregarInstitucion">Agregar institucion</button>
@@ -279,7 +284,10 @@
 <div class="row marginNull divTab divCarreras hidden">
     <!-- carreras -->
     <h3 class="tituloTabDiv">Carreras</h3>
-    <table class="table">
+    <div class="divResultado divResultadoGeneralCarrera">
+
+    </div>
+    <table class="table tablaCarrera">
         <thead>
             <tr>
                 <th>Nombre carrera</th>
@@ -287,12 +295,16 @@
                 <th>Institucion</th>
                 <th>Acciones</th>
             </tr>
-            <tr>
+            <tr class="trAgregar">
                 <th>
                     <input name="txtNombreCarrera" class="txtNombreCarrera form-control" />
+                    <div class="row marginNull divResultado hidden">
+                        _
+                    </div>
                 </th>
                 <th>
                     <select name="cbNivelCarrera" class="cbNivelCarrera form-control">
+                        <option value="-1">Seleccione nivel de carrera</option>
                         @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
                         {
                             foreach (NivelTitulo nivelTitulo in nivelesTitulo)
@@ -301,9 +313,13 @@
                             }
                         }
                     </select>
+                    <div class="row marginNull divResultado hidden">
+                        _
+                    </div>
                 </th>
                 <th>
                     <select class="cbInsticionesParaCarrera cbChosenInstitucion form-control" name="cbInsticionesParaCarrera">
+                        <option value="-1">Seleccione una institucion</option>
                         @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
                         {
                             string pais = ""; bool abierto = false;
@@ -328,6 +344,9 @@
                             }
                         }
                     </select>
+                    <div class="row marginNull divResultado hidden">
+                        _
+                    </div>
                 </th>
                 <th>
                     <button class="btn btnAgregarCarreraIndividual">Agregar</button>
@@ -372,7 +391,6 @@
                             <div class="normalMode tdInstitucionNombre">
                                 @carrera._institucion._nombre
                             </div>
-                            
                         </td>
                         <td>
                             <div class="editMode hidden">

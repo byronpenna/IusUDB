@@ -10,7 +10,6 @@
                 } else {
                     $(".btnEstablecer").prop("disabled", false);
                 }
-                
             })
         // submit 
             $(document).on("submit", ".frmImagenPersona", function (e) {
@@ -57,7 +56,32 @@
                     var frm         = serializeSection(tr);
                     frm.idPersona   = $(".txtHdIdPersona").val();
                     //console.log(frm);
-                    btnGuardarEmail(frm);
+                    var val         = validarInsertEmail(frm);
+                    if (val.estado)
+                    {
+                        $(".tablaCorreos thead").find(".divResultado").addClass("hidden");
+                        $(".tablaCorreos thead").find(".divResultado").removeClass("visibilitiHidden");
+                        btnGuardarEmail(frm);
+                    } else {
+                        var errores;
+                        $(".tablaCorreos thead").find(".divResultado").addClass("visibilitiHidden");
+                        $(".tablaCorreos thead").find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = $(".tablaCorreos thead").find("." + i).parents("th").find(".divResultado")
+                            //console.log(i, ": " + val);
+                            if (val.length > 0) {
+                                //console.log("entro");
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                //console.log("errores", errores);
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
             // telefono  
                 // editar tel
@@ -107,15 +131,61 @@
                 $(document).on("click", ".btnAgregarTel", function () {
                     var frm         = serializeSection($(this).parents("tr"));
                     frm.idPersona   = $(".txtHdIdPersona").val();
-                    console.log("Formulario a enviar es", frm);
-                    //var val = 
-                    btnAgregarTel(frm);
+                    var val = validarInsertTelefono(frm);
+                    var theadTabla = $(".tablaNumerosTelefonicos thead");
+                    if (val.estado) {
+                        theadTabla.find(".divResultado").addClass("hidden");
+                        theadTabla.find(".divResultado").removeClass("visibilitiHidden");
+                        btnAgregarTel(frm);
+                    } else {
+                        // errores 
+                        var errores; 
+                        theadTabla.find(".divResultado").addClass("visibilitiHidden");
+                        theadTabla.find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = theadTabla.find("." + i).parents("th").find(".divResultado")
+                            //console.log(i, ": " + val);
+                            if (val.length > 0) {
+                                //console.log("entro");
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                //console.log("errores", errores);
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
             // informacion
                 $(document).on("click", ".btnGuardarInformacionBasica", function () {
-                    var frm = serializeSection($(this).parents(".divFrmInformacionExtra"));
+                    var frm             = serializeSection($(this).parents(".divFrmInformacionExtra"));
+                    frm.txtHdIdPersona  = $(".txtHdIdPersona").val();
                     console.log("Formulario a enviar es", frm);
-                    frm.txtHdIdPersona = $(".txtHdIdPersona").val();
-                    btnGuardarInformacionBasica(frm);
+                    var val = validarInsertExtra(frm);
+                    var theadTabla = $(".divFrmInformacionExtra");
+                    if (val.estado) {
+                        btnGuardarInformacionBasica(frm);
+                    } else {
+                        console.log(val);
+                        // errores 
+                        var errores;
+                        theadTabla.find(".divResultado").addClass("visibilitiHidden");
+                        theadTabla.find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = theadTabla.find("." + i).parents(".divControl").find(".divResultado")
+                            if (val.length > 0) {
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
+                    
                 })
 })
