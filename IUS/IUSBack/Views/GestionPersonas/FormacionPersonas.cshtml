@@ -207,19 +207,22 @@
 <div class="row marginNull divTab divInstituciones hidden">
     <!-- Instituciones educativas -->
     <h3 class="tituloTabDiv">Instituciones educativas</h3>
-    <table class="table">
+    <table class="table tablaInstitucionEducativa">
        <thead>
            <tr>
                <th>Institucion educativa</th>
                <th>País</th>
                <th>Acciones</th>
            </tr>
-           <tr>
+           <tr class="trAgregar">
                <th>
                    <input name="txtInstitucionEducativa" class="form-control txtInstitucionEducativa" />
+                   <div class="row marginNull divResultado hidden">
+                   </div>
                </th>
                <th>
                    <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+                       <option value="-1">Seleccione un país</option>
                        @if (paises != null && paises.Count > 0)
                        {
                            foreach (Pais pais in paises)
@@ -228,6 +231,8 @@
                            }
                        }
                    </select>
+                   <div class="row marginNull divResultado hidden">
+                   </div>
                </th>
                <th>
                    <button class="btn btnAgregarInstitucion">Agregar institucion</button>

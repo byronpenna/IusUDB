@@ -1,4 +1,20 @@
-﻿function validarIngresoCarreraIndividual(frm) {
+﻿function validarIngresoInstituciones(frm) {
+    var val = new Object();
+    val.campos = {
+        cbInsticionesParaCarrera: new Array(),
+        txtInstitucionEducativa: new Array()
+    }
+    if (frm.cbPaisInstitucionEducativa == -1) {
+        val.campos.cbPaisInstitucionEducativa.push("Este campo no puede quedar vacio")
+    }
+    if (frm.txtInstitucionEducativa == "") {
+        val.campos.txtInstitucionEducativa.push("Este campo no puede quedar vacio")
+    }
+    val.estado = objArrIsEmpty(val.campos);
+    console.log("val es D: ", val);
+    return val;
+}
+function validarIngresoCarreraIndividual(frm) {
     var val = new Object();
     val.campos = {
         cbInsticionesParaCarrera:   new Array(),
