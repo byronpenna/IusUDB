@@ -27,7 +27,7 @@ namespace IUSBack.Controllers.Website
                 try
                 {
                     Usuario usuarioSession  = this.getUsuarioSesion();
-                    ViewBag.selectedMenu    = 2; // menu seleccionado 
+                    ViewBag.selectedMenu    = 3; // menu seleccionado 
                     ViewBag.titleModulo     = "Recursos humanos";
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                 }

@@ -1,28 +1,84 @@
-﻿<div class="row marginNull">
-    <div class="col-lg-6">
-        <h3 class="text-center ">Formación</h3>
-        <div class="row marginNull">
-            <div class="row marginNull">
-                <div class="col-lg-4">
-                    <input type="checkbox" /><label>Nivel</label>
+﻿@section estilosPersonalizados{
+    <!-- Propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/media.css" />
+}
+<div class="row marginNull">
+    <div class="row marginNull controlCurriculum">
+        <div class="col-lg-6">
+            <h3 class="text-center ">Formación</h3>
+            <div class="row marginNull controlesBusqueda controlesCurriculum">
+                <div class="row marginNull">
+                    <div class="col-lg-3">
+                        <input type="checkbox" /><label>Nivel</label>
+                        <select class="form-control"></select>
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="checkbox" /><label>Area carrera</label>
+                        <select class="form-control"></select>
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="checkbox" /><label>Carrera</label>
+                        <select class="form-control"></select>
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="checkbox" /><label>Estado carrera</label>
+                        <select class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center col-lg-6">
+            <h3>Laboral</h3>
+            <div class="row marginNull controlesBusqueda controlesCurriculum">
+                <div class="col-lg-3">
+                    <label>Rubro empresa</label>
                     <select class="form-control"></select>
                 </div>
-                <div class="col-lg-4">
-                    <input type="checkbox" /><label>Area carrera</label>
+                <div class="col-lg-3">
+                    <label>Cargos</label>
                     <select class="form-control"></select>
                 </div>
-                <div class="col-lg-4">
-                    <input type="checkbox" /><label>Carrera</label>
+                <div class="col-lg-3">
+                    <label>Actividades</label>
                     <select class="form-control"></select>
                 </div>
             </div>
-            
         </div>
-        
-
     </div>
-    <div class="text-center col-lg-6">
-        <h3>Laboral</h3>
+    <div class="row marginNull detallesFinales">
+        <h3 class="text-center ">Información adicional</h3>
+        <div class="row controlesBusqueda marginNull">
+            <div class="col-lg-3">
+                <label>Modo de busqueda</label>
+                <select class="form-control">
+                    <option value="1">Academico y laboral</option>
+                    <option value="2">Academico o laboral</option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <label>Nacionalidad</label>
+                <select class="form-control"></select>
+            </div>
+            <div class="col-lg-3">
+                <label>Estado civil</label>
+                <select class="form-control"></select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row marginNull">
+        <table class="table tablaPersona">
+            <thead>
+                <tr>
+                    <th>Nombre completo</th>
+                    <th>Detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>    
     </div>
 </div>
 

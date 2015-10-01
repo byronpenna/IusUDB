@@ -313,6 +313,8 @@
     <Content Include="Content\themes\iusback_theme\views\Login\style.css" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\media.css" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\RecursosHumanos\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\RecursosHumanos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\RepositorioCompartido\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\RepositorioCompartido\style.css" />
     <Content Include="Content\themes\iusback_theme\views\RepositorioPublico\media.css" />
