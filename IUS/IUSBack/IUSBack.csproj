@@ -202,6 +202,7 @@
     <Compile Include="Controllers\Administracion\Repositorio\RepositorioCompartidoController.cs" />
     <Compile Include="Controllers\Administracion\Repositorio\RepositorioController.cs" />
     <Compile Include="Controllers\Administracion\Repositorio\RepositorioPublicoController.cs" />
+    <Compile Include="Controllers\Website\RecursosHumanosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

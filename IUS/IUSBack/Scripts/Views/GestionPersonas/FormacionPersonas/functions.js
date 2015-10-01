@@ -206,7 +206,16 @@
     // instituciones
         function btnActualizarInstitucionEducativa(frm,tr) {
                 actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarInstitucionEducativa", frm, function (data) {
-                    console.log("data al editar", data);
+                    console.log("La data es: ",data);
+                    if (data.estado) {
+                        tr.find(".tdNombreInstitucion").empty().append(data.institucionEditada._nombre);
+                        tr.find(".tdPais").empty().append(data.institucionEditada._pais._pais);
+                        tr.find(".txtHdIdPaisInstitucion").val(data.institucionEditada._pais._idPais)
+                        controlesEdit(false, tr);
+                    } else {
+                        printMessage($(".divResultadoGeneralInstituciones"), "Ocurrio un error", false);
+                    }
+                    
                 })
             }
         function btnAgregarInstitucion(frm,funcion) {
