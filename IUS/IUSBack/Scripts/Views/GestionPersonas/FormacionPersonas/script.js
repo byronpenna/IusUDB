@@ -31,6 +31,7 @@
                         datosSet.idPais = tr.find(".txtHdIdPaisInstitucion").val();
                         var cb = tr.find(".cbPaisInstitucionEducativa");
                     // seteando
+                        tr.find(".cbPaisInstitucionEducativa").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
                         var frm = {};
                         console.log("data es para setear", datosSet);
                         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getPaises", frm, function (data) {
