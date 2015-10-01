@@ -1,38 +1,38 @@
-﻿function validarIngresoInstituciones(frm) {
-    var val = new Object();
-    val.campos = {
-        cbInsticionesParaCarrera: new Array(),
-        txtInstitucionEducativa: new Array()
+﻿    function validarIngresoInstituciones(frm) {
+        var val = new Object();
+        val.campos = {
+            cbPaisInstitucionEducativa: new Array(),
+            txtInstitucionEducativa: new Array()
+        }
+        if (frm.cbPaisInstitucionEducativa == -1) {
+            val.campos.cbPaisInstitucionEducativa.push("Este campo no puede quedar vacio")
+        }
+        if (frm.txtInstitucionEducativa == "") {
+            val.campos.txtInstitucionEducativa.push("Este campo no puede quedar vacio")
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        console.log("val es D: ", val);
+        return val;
     }
-    if (frm.cbPaisInstitucionEducativa == -1) {
-        val.campos.cbPaisInstitucionEducativa.push("Este campo no puede quedar vacio")
+    function validarIngresoCarreraIndividual(frm) {
+        var val = new Object();
+        val.campos = {
+            cbInsticionesParaCarrera:   new Array(),
+            cbNivelCarrera:             new Array(),
+            txtNombreCarrera:           new Array()
+        }
+        if (frm.cbInsticionesParaCarrera == -1) {
+            val.campos.cbInsticionesParaCarrera.push("Este campo no puede quedar vacio")
+        }
+        if (frm.cbNivelCarrera == -1) {
+            val.campos.cbNivelCarrera.push("Este campo no puede quedar vacio")
+        }
+        if (frm.txtNombreCarrera == "") {
+            val.campos.txtNombreCarrera.push("Este campo no puede quedar vacio")
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
     }
-    if (frm.txtInstitucionEducativa == "") {
-        val.campos.txtInstitucionEducativa.push("Este campo no puede quedar vacio")
-    }
-    val.estado = objArrIsEmpty(val.campos);
-    console.log("val es D: ", val);
-    return val;
-}
-function validarIngresoCarreraIndividual(frm) {
-    var val = new Object();
-    val.campos = {
-        cbInsticionesParaCarrera:   new Array(),
-        cbNivelCarrera:             new Array(),
-        txtNombreCarrera:           new Array()
-    }
-    if (frm.cbInsticionesParaCarrera == -1) {
-        val.campos.cbInsticionesParaCarrera.push("Este campo no puede quedar vacio")
-    }
-    if (frm.cbNivelCarrera == -1) {
-        val.campos.cbNivelCarrera.push("Este campo no puede quedar vacio")
-    }
-    if (frm.txtNombreCarrera == "") {
-        val.campos.txtNombreCarrera.push("Este campo no puede quedar vacio")
-    }
-    val.estado = objArrIsEmpty(val.campos);
-    return val;
-}
 // genericas
     // partes
         // tr     
@@ -206,15 +206,29 @@ function validarIngresoCarreraIndividual(frm) {
     // instituciones
         function btnActualizarInstitucionEducativa(frm,tr) {
                 actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarInstitucionEducativa", frm, function (data) {
-                    console.log("data al editar", data);
+                    console.log("La data es: ",data);
+                    if (data.estado) {
+                        tr.find(".tdNombreInstitucion").empty().append(data.institucionEditada._nombre);
+                        tr.find(".tdPais").empty().append(data.institucionEditada._pais._pais);
+                        tr.find(".txtHdIdPaisInstitucion").val(data.institucionEditada._pais._idPais)
+                        controlesEdit(false, tr);
+                    } else {
+                        printMessage($(".divResultadoGeneralInstituciones"), "Ocurrio un error", false);
+                    }
+                    
                 })
             }
-        function btnAgregarInstitucion(frm) {
+        function btnAgregarInstitucion(frm,funcion) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarInstitucionEducativa", frm, function (data) {
-                console.log("Data servidor", data);
+                //console.log("Data servidor", data);
+                
                 if (data.estado) {
                     var tr = getTrInstitucionEducativa(data.institucionEducativa);
+                    
                     $(".tbTablaFormacionPersonas").prepend(tr);
+                    if (funcion !== undefined) {
+                        funcion(data);
+                    }
                 }
             })
         }

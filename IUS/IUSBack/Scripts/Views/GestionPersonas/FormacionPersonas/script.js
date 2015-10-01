@@ -51,6 +51,7 @@
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         console.log("formulario a enviar", frm);
+                        
                         btnActualizarInstitucionEducativa(frm,tr);
                     })
                     
@@ -59,12 +60,24 @@
                     var frm = serializeSection(tr);
                     //console.log("Formulario a eliminar", frm);
                     var val = validarIngresoInstituciones(frm);
+                    btnEliminarInstitucion(frm, tr);
+                })
+                $(document).on("click", ".btnAgregarInstitucion", function (e) {
+                    var tr  = $(this).parents("tr");
+                    var frm = serializeSection(tr);
+                    //console.log("formulario a agregar",frm);
+                    var val             = validarIngresoInstituciones(frm);
+                    var targetSeccion   = $(".tablaInstitucionEducativa .trAgregar");
                     if (val.estado) {
-                        btnEliminarInstitucion(frm, tr);
+                        targetSeccion.find(".divResultado").removeClass("visibilitiHidden");
+                        targetSeccion.find(".divResultado").addClass("hidden");
+                        btnAgregarInstitucion(frm, function (data) {
+                            if (data.estado) {
+                                tr.find(".txtInstitucionEducativa").val("");
+                            }
+                        });
                     } else {
-                        console.log("El valor de val", val);
                         var errores;
-                        var targetSeccion = $(".tablaInstitucionEducativa .trAgregar");
                         targetSeccion.find(".divResultado").addClass("visibilitiHidden");
                         targetSeccion.find(".divResultado").removeClass("hidden");
                         $.each(val.campos, function (i, val) {
@@ -83,12 +96,6 @@
                         })
                     }
                     
-                })
-                $(document).on("click", ".btnAgregarInstitucion", function (e) {
-                    var frm = serializeSection($(this).parents("tr"));
-                    console.log("formulario a agregar",frm);
-                    //var val = 
-                    btnAgregarInstitucion(frm);
                 })
             // carreras 
                 // edicion 
