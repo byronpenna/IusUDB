@@ -224,7 +224,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            Carrera carreraEditar = new Carrera(this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]));
+                            Carrera carreraEditar = new Carrera(this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]),this.convertObjAjaxToInt(frm[""]));
                             Carrera carreraEditada = this._model.sp_rrhh_editarCarrera(carreraEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
@@ -282,7 +282,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            Carrera carreraAgregar  = new Carrera(frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]));
+                            Carrera carreraAgregar = new Carrera(frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]), this.convertObjAjaxToInt(frm["cbAreaCarreras"]));
                             Carrera carreraAgregada = this._model.sp_rrhh_ingresarCarrera(carreraAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);

@@ -23,6 +23,7 @@
     List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
     List<NivelTitulo> nivelesTitulo = null; List<Carrera> carreras = null;
     List<FormacionPersona> formacionesPersonas= null;
+    List<AreaCarrera> areasCarreras = null;
     string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
     InformacionPersona informacion = null;
     try{
@@ -35,6 +36,7 @@
         carreras                        = (List<Carrera>)info["carreras"];
         formacionesPersonas             = (List<FormacionPersona>)info["formacionesPersonas"];
         informacion                     = (InformacionPersona)info["informacionPersona"];
+        areasCarreras                   = (List<AreaCarrera>)info["areasCarreras"];
         if (informacion != null && informacion._tieneFoto)
         {
             strFoto = Url.Content(informacion._fotoRuta);
@@ -298,6 +300,7 @@
                 <th>Nombre carrera</th>
                 <th>Nivel carrera</th>
                 <th>Institucion</th>
+                <th>Area carrera</th>
                 <th>Acciones</th>
             </tr>
             <tr class="trAgregar">
@@ -352,6 +355,17 @@
                     <div class="row marginNull divResultado hidden">
                         _
                     </div>
+                </th>
+                <th>
+                    <select name="cbAreaCarreras" class="form-control cbAreaCarreras">
+                        @if (areasCarreras != null && areasCarreras.Count > 0)
+                        {
+                            foreach (AreaCarrera areaCarrera in areasCarreras)
+                            {
+                                <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                            }
+                        }
+                    </select>
                 </th>
                 <th>
                     <button class="btn btnAgregarCarreraIndividual">Agregar</button>
