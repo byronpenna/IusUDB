@@ -15,7 +15,7 @@ using System.Text;
         using IUSLibs.RRHH.Entidades.Formacion;
 namespace IUSLibs.RRHH.Control.Formacion
 {
-    class ControlAreaCarrera:PadreLib
+    public class ControlAreaCarrera:PadreLib
     {
         #region "funciones"
             #region "do"
@@ -25,7 +25,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                 public List<AreaCarrera> sp_rrhh_getAreasCarreras(int idUsuarioEjecutor, int idPagina)
                 {
                     List<AreaCarrera> areasCarreras = null;
-                    SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
+                    SPIUS sp = new SPIUS("sp_rrhh_getAreasCarreras");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -35,6 +35,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         {
                             if (tb[0].Rows.Count > 0)
                             {
+                                areasCarreras = new List<AreaCarrera>();
                                 foreach(DataRow row in tb[0].Rows){
                                     AreaCarrera area = new AreaCarrera((int)row["idArea"], row["area"].ToString());
                                     areasCarreras.Add(area);

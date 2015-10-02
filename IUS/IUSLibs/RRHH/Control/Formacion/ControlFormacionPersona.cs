@@ -214,6 +214,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 foreach (DataRow row in tb[5].Rows)
                                 {
                                     carrera = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"], (int)row["id_area_fk"]);
+                                    carrera._area._area = row["area"].ToString();
                                     carrera._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
                                     carrera._institucion._nombre = row["nombreInstitucion"].ToString();
                                     carreras.Add(carrera);
