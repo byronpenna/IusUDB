@@ -26,6 +26,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                     sp.agregarParametro("carrera", carreraEditar._carrera);
                     sp.agregarParametro("idNivel", carreraEditar._nivelTitulo._idNivel);
                     sp.agregarParametro("idInstitucion", carreraEditar._institucion._idInstitucion);
+                    sp.agregarParametro("idArea", carreraEditar._area._idArea);
                     sp.agregarParametro("idCarrera", carreraEditar._idCarrera);
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);

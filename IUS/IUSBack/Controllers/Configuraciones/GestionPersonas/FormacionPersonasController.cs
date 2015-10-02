@@ -224,7 +224,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            Carrera carreraEditar = new Carrera(this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]),this.convertObjAjaxToInt(frm[""]));
+                            Carrera carreraEditar = new Carrera(this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]), this.convertObjAjaxToInt(frm["cbAreaCarreras"]));
                             Carrera carreraEditada = this._model.sp_rrhh_editarCarrera(carreraEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);

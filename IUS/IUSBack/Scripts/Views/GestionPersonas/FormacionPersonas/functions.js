@@ -182,6 +182,10 @@
                 return tr;
             }
         // cb
+            function getCbAreaCarrera(areaCarrera) {
+                var cb = "<option value="+areaCarrera._idArea+">"+areaCarrera._area+"</option>";
+                return cb;
+            }
             function getCbCarrera(carrera) {
                 var cb = "<option value="+carrera._idCarrera+">"+carrera._carrera+"</option>";
                 return cb;

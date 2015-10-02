@@ -26,8 +26,10 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         {
                             Dictionary<object, object> retorno = new Dictionary<object, object>();
                             ControlNivelCarrera controlNivelCarrera = new ControlNivelCarrera();
+                            ControlAreaCarrera controlAreaCarrera = new ControlAreaCarrera();
                             retorno.Add("nivelesTitulos", controlNivelCarrera.sp_rrhh_getNivelesCarreras(idUsuarioEjecutor, idPagina));
                             retorno.Add("instituciones", this._controlInstitucionEducativa.sp_rrhh_getInstitucionesEducativas(idUsuarioEjecutor,idPagina));
+                            retorno.Add("areasCarreras", controlAreaCarrera.sp_rrhh_getAreasCarreras(idUsuarioEjecutor,idPagina));
                             return retorno;
                         }
                         catch (ErroresIUS x)

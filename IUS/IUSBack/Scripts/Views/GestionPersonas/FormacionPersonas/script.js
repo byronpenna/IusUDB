@@ -111,7 +111,7 @@
                         actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditCarreras", frm, function (data) {
                             console.log("data", data);
                             if (data.estado) {
-                                var cbInstuciones = '', cbNivelesTitulos = '';
+                                var cbInstuciones = '', cbNivelesTitulos = '',cbAreaCarrera;
                                 if (data.nivelesTitulos != null && data.nivelesTitulos.length > 0) {
                                     $.each(data.nivelesTitulos, function (i,nivelTitulo) {
                                         cbNivelesTitulos += getCbNivelTitulo(nivelTitulo);
@@ -122,12 +122,21 @@
                                         cbInstuciones += getCbInstituciones(institucion);
                                     })
                                 }
+                                if (data.areasCarreras != null && data.areasCarreras.length > 0) {
+                                    $.each(data.areasCarreras, function (i, areaCarrera) {
+                                        cbAreaCarrera = getCbAreaCarrera(areaCarrera);
+                                    })
+                                }
+                                
                                 var selectCarrera = tr.find(".cbNivelCarrera"); var selectInstitucion = tr.find(".cbInsticionesParaCarrera");
+                                var selectAreaCarrera = tr.find(".cbAreaCarreras");
                                 selectCarrera.empty().append(cbNivelesTitulos);
                                 selectInstitucion.empty().append(cbInstuciones);
+                                selectAreaCarrera.empty().append(cbAreaCarrera);
                                 
                                 resetChosenWithSelectedVal(selectInstitucion, datosSet.idInstitucion)
                                 resetChosenWithSelectedVal(selectCarrera, datosSet.idNivelCarrera)
+                                
                             } else {
                                 // cargar error de editar
                             }
