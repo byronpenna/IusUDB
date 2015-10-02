@@ -247,17 +247,19 @@
     // carreras
         function btnActualizarCarrera(frm, tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarCarrera", frm, function (data) {
-                console.log("data del serivdor", data);
+                console.log("data del serivdor actualizados", data);
                 if (data.estado) {
                     var carrera = data.carreraEditada;
                     tr.find(".txtHdIdCarrera").val(carrera._idCarrera);
                     tr.find(".txtHdIdNivelCarrera").val(carrera._nivelTitulo._idNivel);
                     tr.find(".tdCarrera").empty().append(carrera._carrera);
+                    tr.find(".tdAreaCarrera").empty().append(carrera._area._area);
 
                     tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
                     tr.find(".tdInstitucionNombre").empty().append(carrera._institucion._nombre );
                     tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
-                    
+                    tr.find(".txtHdIdArea").val(carrera._area._idArea);
+                    //tdAreaCarrera
                     controlesEdit(false, tr);
                 } else {
                     alert("ocurrio un error");

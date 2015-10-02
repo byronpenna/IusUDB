@@ -40,8 +40,9 @@ namespace IUSLibs.RRHH.Control.Formacion
                             {
                                 DataRow row = tb[1].Rows[0];
                                 carreraEditada = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"], (int)row["id_area_fk"]);
-                                carreraEditada._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
-                                carreraEditada._institucion._nombre = row["nombreInstitucion"].ToString();
+                                carreraEditada._area._area                  = row["area"].ToString();
+                                carreraEditada._nivelTitulo._nombreNivel    = row["nombre_nivel"].ToString();
+                                carreraEditada._institucion._nombre         = row["nombreInstitucion"].ToString();
                             }
                         }
                     }
