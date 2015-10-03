@@ -41,6 +41,8 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                             ControlEstadoCarrera    controlEstadoCarrera    = new ControlEstadoCarrera();
                             ControlCargos           controlCargo            = new ControlCargos();
                             ControlCarrera          controlCarrera          = new ControlCarrera();
+                            ControlAreaCarrera      controlAreaCarrera      = new ControlAreaCarrera();
+                            ControlActividadEmpresa controlActividades      = new ControlActividadEmpresa();
                         // respuestas
                             respuesta.Add("nivelesTitulos", controlNivelCarrera.sp_rrhh_getNivelesCarreras(idUsuarioEjecutor, idPagina));
                             respuesta.Add("paises", controlPais.sp_frontui_getPaises());
@@ -49,7 +51,8 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                             
                             respuesta.Add("estadosCarreras",controlEstadoCarrera.sp_rrhh_getEstadosCarreras(idUsuarioEjecutor,idPagina));
                             respuesta.Add("cargos", controlCargo.sp_rrhh_getCargos(idUsuarioEjecutor, idPagina));
-                            //respuesta.Add("carreras",)
+                            respuesta.Add("carreras", controlAreaCarrera.sp_rrhh_getAreasCarreras(idUsuarioEjecutor, idPagina));
+                            //respuesta.Add("actividades", controlActividades.sp_rrhh_getActividadesEmpresa());
                         return respuesta;
                     }
                     catch (ErroresIUS x)
