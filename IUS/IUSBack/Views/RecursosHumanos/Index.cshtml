@@ -1,7 +1,27 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.RRHH.Entidades.Formacion
+@using IUSLibs.FrontUI.Entidades
+@section estilosPersonalizados{
     <!-- Propios -->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/style.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/media.css" />
+}
+@{
+    List<NivelTitulo> nivelesTitulos = null; Dictionary<object, object> objInicial = null;
+    List<Pais> paises = null;
+    try
+    {
+        objInicial      = (Dictionary<object, object>)ViewBag.objInicial;
+        if (objInicial != null)
+        {
+            nivelesTitulos  = ( List<NivelTitulo> ) objInicial["nivelesTitulos"];
+            paises          = ( List<Pais> )        objInicial["paises"];
+            
+        }
+    }
+    catch (Exception)
+    {
+        
+    }
 }
 <div class="row marginNull">
     <div class="row marginNull controlCurriculum">
@@ -11,7 +31,16 @@
                 <div class="row marginNull">
                     <div class="col-lg-3">
                         <input type="checkbox" /><label>Nivel</label>
-                        <select class="form-control"></select>
+                        <select class="form-control">
+                            <option value="-1">Todos</option>
+                            @if (nivelesTitulos != null)
+                            {
+                                foreach (NivelTitulo nivelTitulo in nivelesTitulos)
+                                {
+                                    <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                                }
+                            }
+                        </select>
                     </div>
                     <div class="col-lg-3">
                         <input type="checkbox" /><label>Area carrera</label>
@@ -57,8 +86,17 @@
                 </select>
             </div>
             <div class="col-lg-3">
-                <label>Nacionalidad</label>
-                <select class="form-control"></select>
+                <label>País de origen</label>
+                <select class="form-control">
+                    <option value="-1">Cualquiera</option>
+                    @if (paises != null)
+                    {
+                        foreach (Pais pais in paises)
+                        {
+                            <option value="@pais._idPais">@pais._pais</option>
+                        }
+                    }
+                </select>
             </div>
             <div class="col-lg-3">
                 <label>Estado civil</label>
