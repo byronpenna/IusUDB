@@ -145,6 +145,7 @@
     <Compile Include="RRHH\Control\Laboral\ControlCargos.cs" />
     <Compile Include="RRHH\Control\Laboral\ControlEmpresa.cs" />
     <Compile Include="RRHH\Control\Laboral\ControlLaboralPersona.cs" />
+    <Compile Include="RRHH\Control\Laboral\ControlRubroEmpresa.cs" />
     <Compile Include="RRHH\Entidades\EmailPersona.cs" />
     <Compile Include="RRHH\Entidades\EstadoCivil.cs" />
     <Compile Include="RRHH\Entidades\Formacion\Carrera.cs" />

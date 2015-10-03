@@ -1,6 +1,7 @@
 ﻿@using IUSLibs.RRHH.Entidades.Formacion
 @using IUSLibs.FrontUI.Entidades
 @using IUSLibs.RRHH.Entidades
+@using IUSLibs.RRHH.Entidades.Laboral
 @section estilosPersonalizados{
     <!-- Propios -->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/style.css" />
@@ -8,7 +9,8 @@
 }
 @{
     List<NivelTitulo> nivelesTitulos = null; Dictionary<object, object> objInicial = null;
-    List<Pais> paises = null; List<EstadoCivil> estadosCiviles=null;
+    List<Pais> paises = null; List<EstadoCivil> estadosCiviles = null; List<RubroEmpresa> rubrosEmpresa = null;
+    List<EstadoCarrera> estadosCarreras = null; List<CargoEmpresa> cargos = null;
     try
     {
         objInicial      = (Dictionary<object, object>)ViewBag.objInicial;
@@ -16,7 +18,10 @@
         {
             nivelesTitulos  = ( List<NivelTitulo> ) objInicial["nivelesTitulos"];
             paises          = ( List<Pais> )        objInicial["paises"];
-            estadosCiviles = (List<EstadoCivil>)objInicial["estadoCiviles"];
+            estadosCiviles  = (List<EstadoCivil>)objInicial["estadoCiviles"];
+            rubrosEmpresa   = (List<RubroEmpresa>)objInicial["rubrosEmpresas"];
+            cargos          = (List<CargoEmpresa>)objInicial["cargos"];
+            estadosCarreras = (List<EstadoCarrera>)objInicial["estadosCarreras"];
             
         }
     }
@@ -54,7 +59,15 @@
                     </div>
                     <div class="col-lg-3">
                         <input type="checkbox" /><label>Estado carrera</label>
-                        <select class="form-control"></select>
+                        <select class="form-control">
+                            @if (estadosCarreras != null)
+                            {
+                                foreach (EstadoCarrera estadoCarrera in estadosCarreras)
+                                {
+                                    <option value="@estadoCarrera._idEstadoCarrera">@estadoCarrera._estado</option>
+                                }
+                            }
+                        </select>
                     </div>
                 </div>
             </div>
@@ -64,15 +77,35 @@
             <div class="row marginNull controlesBusqueda controlesCurriculum">
                 <div class="col-lg-3">
                     <label>Rubro empresa</label>
-                    <select class="form-control"></select>
+                    <select class="form-control">
+                        <option value="-1">Todos los rubros</option>
+                        @if (rubrosEmpresa != null)
+                        {
+                            foreach (RubroEmpresa rubroEmpresa in rubrosEmpresa)
+                            {
+                                <option value="@rubroEmpresa._idRubro">@rubroEmpresa._rubro</option>
+                            }
+                        }
+                    </select>
                 </div>
                 <div class="col-lg-3">
                     <label>Cargos</label>
-                    <select class="form-control"></select>
+                    <select class="form-control">
+                        <option value="-1">Cualquier cargo</option>
+                        @if (cargos != null)
+                        {
+                            foreach (CargoEmpresa cargo in cargos) { 
+                                <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                            }
+                        }
+                    </select>
                 </div>
                 <div class="col-lg-3">
                     <label>Actividades</label>
-                    <select class="form-control"></select>
+                    <select class="form-control">
+                        <option value="-1">No importan las actividades</option>
+                        
+                    </select>
                 </div>
             </div>
         </div>

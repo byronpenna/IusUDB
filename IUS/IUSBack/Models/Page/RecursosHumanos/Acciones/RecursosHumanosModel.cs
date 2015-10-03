@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +14,7 @@ using System.Web;
         using IUSLibs.RRHH.Control.Formacion;
         using IUSLibs.FrontUI.Control;
         using IUSLibs.RRHH.Control;
+        using IUSLibs.RRHH.Control.Laboral;
 namespace IUSBack.Models.Page.RecursosHumanos.Acciones
 {
     public class RecursosHumanosModel:PadreModel
@@ -32,13 +33,23 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                     try
                     {
                         respuesta = new Dictionary<object, object>();
-                        ControlNivelCarrera controlCarrera      = new ControlNivelCarrera();
-                        ControlPais         controlPais         = new ControlPais();
-                        ControlEstadoCivil  controlEstadoCivil  = new ControlEstadoCivil();
-                        //controles
-                        respuesta.Add("nivelesTitulos", controlCarrera.sp_rrhh_getNivelesCarreras(idUsuarioEjecutor, idPagina));
-                        respuesta.Add("paises", controlPais.sp_frontui_getPaises());
-                        respuesta.Add("estadoCiviles", controlEstadoCivil.sp_rrhh_getEstadosCiviles());
+                        // controles
+                            ControlNivelCarrera     controlNivelCarrera     = new ControlNivelCarrera();
+                            ControlPais             controlPais             = new ControlPais();
+                            ControlEstadoCivil      controlEstadoCivil      = new ControlEstadoCivil();
+                            ControlRubroEmpresa     controlRubro            = new ControlRubroEmpresa();
+                            ControlEstadoCarrera    controlEstadoCarrera    = new ControlEstadoCarrera();
+                            ControlCargos           controlCargo            = new ControlCargos();
+                            ControlCarrera          controlCarrera          = new ControlCarrera();
+                        // respuestas
+                            respuesta.Add("nivelesTitulos", controlNivelCarrera.sp_rrhh_getNivelesCarreras(idUsuarioEjecutor, idPagina));
+                            respuesta.Add("paises", controlPais.sp_frontui_getPaises());
+                            respuesta.Add("estadoCiviles", controlEstadoCivil.sp_rrhh_getEstadosCiviles());
+                            respuesta.Add("rubrosEmpresas", controlRubro.sp_rrhh_getRubrosEmpresas());
+                            
+                            respuesta.Add("estadosCarreras",controlEstadoCarrera.sp_rrhh_getEstadosCarreras(idUsuarioEjecutor,idPagina));
+                            respuesta.Add("cargos", controlCargo.sp_rrhh_getCargos(idUsuarioEjecutor, idPagina));
+                            //respuesta.Add("carreras",)
                         return respuesta;
                     }
                     catch (ErroresIUS x)
