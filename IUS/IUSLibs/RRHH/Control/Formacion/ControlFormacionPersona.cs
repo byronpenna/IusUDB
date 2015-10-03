@@ -150,7 +150,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                     List<NivelTitulo> nivelesTitulo = null; NivelTitulo nivelTitulo;
                     List<Carrera> carreras = null; Carrera carrera;
                     List<FormacionPersona> formacionesPersonas = null; FormacionPersona formacionPersona;
-                    InformacionPersona informacionPersona = null;
+                    InformacionPersona informacionPersona = null; List<AreaCarrera> areasCarreras = null; AreaCarrera areaCarrera;
                     Persona persona = null; 
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialFormacion");
@@ -213,7 +213,8 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 carreras = new List<Carrera>();
                                 foreach (DataRow row in tb[5].Rows)
                                 {
-                                    carrera = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"]);
+                                    carrera = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"], (int)row["id_area_fk"]);
+                                    carrera._area._area = row["area"].ToString();
                                     carrera._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
                                     carrera._institucion._nombre = row["nombreInstitucion"].ToString();
                                     carreras.Add(carrera);
@@ -235,6 +236,16 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 DataRow row = tb[7].Rows[0];
                                 informacionPersona = new InformacionPersona((int)row["idInformacionPersona"],row["foto"].ToString());
                             }
+                            if(tb[8].Rows.Count >0)
+                            {
+                                areasCarreras = new List<AreaCarrera>();
+                                foreach (DataRow row in tb[8].Rows)
+                                {
+                                    areaCarrera = new AreaCarrera((int)row["idArea"], row["area"].ToString());
+                                    areasCarreras.Add(areaCarrera);
+                                }
+                                
+                            }
                         }
                         else
                         {
@@ -250,6 +261,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                         retorno.Add("carreras", carreras);
                         retorno.Add("formacionesPersonas", formacionesPersonas);
                         retorno.Add("informacionPersona", informacionPersona);
+                        retorno.Add("areasCarreras", areasCarreras);
                     }
                     catch (ErroresIUS x)
                     {
