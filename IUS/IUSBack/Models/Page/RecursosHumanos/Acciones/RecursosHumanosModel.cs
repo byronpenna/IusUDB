@@ -52,7 +52,7 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                             respuesta.Add("estadosCarreras",controlEstadoCarrera.sp_rrhh_getEstadosCarreras(idUsuarioEjecutor,idPagina));
                             respuesta.Add("cargos", controlCargo.sp_rrhh_getCargos(idUsuarioEjecutor, idPagina));
                             respuesta.Add("carreras", controlAreaCarrera.sp_rrhh_getAreasCarreras(idUsuarioEjecutor, idPagina));
-                            //respuesta.Add("actividades", controlActividades.sp_rrhh_getActividadesEmpresa());
+                            respuesta.Add("actividades", controlActividades.sp_rrhh_getActividadesEmpresaBuscar());
                         return respuesta;
                     }
                     catch (ErroresIUS x)

@@ -34,6 +34,11 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                     this._laboralPersona = laboral;
                     this._actividad = actividad;
                 }
+            // para busqueda
+                public ActividadEmpresa(string actividad)
+                {
+                    this._actividad = actividad;
+                }
         #endregion
     }
 }

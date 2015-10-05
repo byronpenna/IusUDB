@@ -11,6 +11,7 @@
     List<NivelTitulo> nivelesTitulos = null; Dictionary<object, object> objInicial = null;
     List<Pais> paises = null; List<EstadoCivil> estadosCiviles = null; List<RubroEmpresa> rubrosEmpresa = null;
     List<EstadoCarrera> estadosCarreras = null; List<CargoEmpresa> cargos = null;
+    List<ActividadEmpresa> actividades = null;
     try
     {
         objInicial      = (Dictionary<object, object>)ViewBag.objInicial;
@@ -22,7 +23,8 @@
             rubrosEmpresa   = (List<RubroEmpresa>)objInicial["rubrosEmpresas"];
             cargos          = (List<CargoEmpresa>)objInicial["cargos"];
             estadosCarreras = (List<EstadoCarrera>)objInicial["estadosCarreras"];
-            
+            actividades     = (List<ActividadEmpresa>)objInicial["actividades"];
+            //
         }
     }
     catch (Exception)
@@ -104,7 +106,13 @@
                     <label>Actividades</label>
                     <select class="form-control">
                         <option value="-1">No importan las actividades</option>
-                        
+                        @if (actividades != null && actividades.Count > 0)
+                        {
+                            foreach (ActividadEmpresa actividad in actividades)
+                            {
+                                <option>@actividad._actividad</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
