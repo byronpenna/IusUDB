@@ -317,6 +317,8 @@
                 console.log("la data es", data);
                 if (data.estado) {
                     var tr = getTrFormacionPersonas(data.formacionAgregada);
+                    var trFrm = $(".trAgregar");
+                    clearTrWithOutHidden(trFrm);
                     $(".tbodyFormacionPersonas").prepend(tr);
                 } else {
                     alert("Ocurrio un error");

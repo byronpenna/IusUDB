@@ -22,7 +22,7 @@
     List<NivelTitulo> nivelesTitulos = null; Dictionary<object, object> objInicial = null;
     List<Pais> paises = null; List<EstadoCivil> estadosCiviles = null; List<RubroEmpresa> rubrosEmpresa = null;
     List<EstadoCarrera> estadosCarreras = null; List<CargoEmpresa> cargos = null;
-    List<ActividadEmpresa> actividades = null;
+    List<ActividadEmpresa> actividades = null; List<AreaCarrera> areasCarreras = null;
     try
     {
         objInicial      = (Dictionary<object, object>)ViewBag.objInicial;
@@ -35,6 +35,7 @@
             cargos          = (List<CargoEmpresa>)objInicial["cargos"];
             estadosCarreras = (List<EstadoCarrera>)objInicial["estadosCarreras"];
             actividades     = (List<ActividadEmpresa>)objInicial["actividades"];
+            areasCarreras = (List<AreaCarrera>)objInicial["areasCarreras"];
             //
         }
     }
@@ -64,7 +65,16 @@
                     </div>
                     <div class="col-lg-3">
                         <input type="checkbox" /><label>Area carrera</label>
-                        <select class="form-control"></select>
+                        <select class="form-control">
+                            <option value="-1">Cualquier area</option>
+                            @if (areasCarreras != null && areasCarreras.Count > 0)
+                            {
+                                foreach (AreaCarrera areaCarrera in areasCarreras)
+                                {
+                                    <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                                }
+                            }
+                        </select>
                     </div>
                     <div class="col-lg-3">
                         <input type="checkbox" /><label>Carrera</label>
