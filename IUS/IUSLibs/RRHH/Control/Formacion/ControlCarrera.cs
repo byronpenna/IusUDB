@@ -108,9 +108,13 @@ namespace IUSLibs.RRHH.Control.Formacion
                             if (tb[1].Rows.Count > 0)
                             {
                                 DataRow row = tb[1].Rows[0];
-                                carreraIngresada = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"], (int)row["id_area_fk"]);
-                                carreraIngresada._nivelTitulo._nombreNivel  = row["nombre_nivel"].ToString();
-                                carreraIngresada._institucion._nombre       = row["nombreInstitucion"].ToString();
+                                carreraIngresada                = new Carrera((int)row["idCarrera"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_institucion_fk"], (int)row["id_area_fk"]);
+                                carreraIngresada.
+                                    _nivelTitulo._nombreNivel   = row["nombre_nivel"].ToString();
+                                carreraIngresada.
+                                    _institucion._nombre        = row["nombreInstitucion"].ToString();
+                                carreraIngresada._area._area    = row["area"].ToString();
+
                             }
                         }
                         else

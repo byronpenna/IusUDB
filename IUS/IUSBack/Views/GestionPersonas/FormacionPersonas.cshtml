@@ -246,7 +246,7 @@
            </tr>
        </thead>
        <tbody class="tbTablaFormacionPersonas">
-           @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
+           @if (institucionesEducativas != null && institucionesEducativas.Count > 0 && false)
            {
                foreach (InstitucionEducativa institucion in institucionesEducativas)
                {
@@ -283,6 +283,17 @@
                        </td>
                    </tr>
                }
+           }
+           else
+           {
+                <tr>
+                    @for(int i=0;i<3;i++){
+                        <td class="hidden"></td>
+                    }
+                    <td colspan="4" class="text-center">
+                        No hay instituciones disponibles
+                    </td>
+                </tr>   
            }
        </tbody>
    </table>
