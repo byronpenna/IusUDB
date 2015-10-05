@@ -501,6 +501,8 @@
     <Content Include="Scripts\Views\Home\Verificar\script.js" />
     <Content Include="Scripts\Views\Login\functions.js" />
     <Content Include="Scripts\Views\Login\script.js" />
+    <Content Include="Scripts\Views\RecursosHumanos\functions.js" />
+    <Content Include="Scripts\Views\RecursosHumanos\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\functions.js" />
     <Content Include="Scripts\Views\RepositorioPublico\script.js" />
     <Content Include="Scripts\Views\Repositorio\functions.js" />

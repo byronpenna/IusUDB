@@ -42,8 +42,6 @@ namespace IUSLibs.RRHH.Control
                                 telefonoActualizado = new TelefonoPersona((int)row["idTelefonoPersona"], row["telefono"].ToString(), row["descripcion"].ToString(), (int)row["id_pais_fk"], (int)row["id_persona_fk"]);
                                 telefonoActualizado._pais._pais = row["pais"].ToString();
                             }
-
-                            
                         }
                         else
                         {

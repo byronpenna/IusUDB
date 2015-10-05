@@ -6,28 +6,25 @@ using System.Text;
     using System.Data.Sql;
     using System.Data.SqlClient;
     using System.Data;
-// librerias internas
+// internas 
     // generales
         using IUSLibs.BaseDatos;
         using IUSLibs.GENERALS;
         using IUSLibs.LOGS;
-    // --------------
-        using IUSLibs.RRHH.Entidades.Formacion;
-namespace IUSLibs.RRHH.Control.Formacion
+    //----------
+        using IUSLibs.RRHH.Entidades;
+namespace IUSLibs.RRHH.Control
 {
-    public class ControlEstadoCarrera:PadreLib
+    public class ControlEstadoCivil:PadreLib
     {
         #region "funciones"
             #region "do"
-                
-            #endregion
+            #endregion 
             #region "get"
-                public List<EstadoCarrera> sp_rrhh_getEstadosCarreras(int idUsuarioEjecutor, int idPagina)
+                public List<EstadoCivil> sp_rrhh_getEstadosCiviles()
                 {
-                    List<EstadoCarrera> estadosCarreras = null; EstadoCarrera estadoCarrera;
-                    SPIUS sp = new SPIUS("sp_rrhh_getEstadosCarreras");
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
+                    List<EstadoCivil> estadosCiviles = null; EstadoCivil estadoCivil;
+                    SPIUS sp = new SPIUS("sp_rrhh_getEstadosCiviles");
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
@@ -35,24 +32,30 @@ namespace IUSLibs.RRHH.Control.Formacion
                         {
                             if (tb[0].Rows.Count > 0)
                             {
-                                estadosCarreras = new List<EstadoCarrera>();
+                                estadosCiviles = new List<EstadoCivil>();
                                 foreach (DataRow row in tb[0].Rows)
                                 {
-                                    estadoCarrera = new EstadoCarrera((int)row["idEstadoCarrera"], row["estado"].ToString());
-                                    estadosCarreras.Add(estadoCarrera);
+                                    estadoCivil = new EstadoCivil((int)row["idEstadoCivil"], row["estado_civil"].ToString());
+                                    estadosCiviles.Add(estadoCivil);
                                 }
                             }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
                     {
                         throw x;
                     }
-                    catch (Exception x)
+                    catch(Exception x)
                     {
                         throw x;
                     }
-                    return estadosCarreras;
+                    return estadosCiviles;
                 }
             #endregion
         #endregion

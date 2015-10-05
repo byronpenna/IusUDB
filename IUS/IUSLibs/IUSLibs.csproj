@@ -132,6 +132,7 @@
     <Compile Include="REPO\Entidades\Publico\CarpetaPublica.cs" />
     <Compile Include="REPO\Entidades\TipoArchivo.cs" />
     <Compile Include="RRHH\Control\ControlEmailPersona.cs" />
+    <Compile Include="RRHH\Control\ControlEstadoCivil.cs" />
     <Compile Include="RRHH\Control\ControlInformacionPersona.cs" />
     <Compile Include="RRHH\Control\ControlTelefonoPersona.cs" />
     <Compile Include="RRHH\Control\Formacion\ControlAreaCarrera.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="RRHH\Control\Laboral\ControlCargos.cs" />
     <Compile Include="RRHH\Control\Laboral\ControlEmpresa.cs" />
     <Compile Include="RRHH\Control\Laboral\ControlLaboralPersona.cs" />
+    <Compile Include="RRHH\Control\Laboral\ControlRubroEmpresa.cs" />
     <Compile Include="RRHH\Entidades\EmailPersona.cs" />
     <Compile Include="RRHH\Entidades\EstadoCivil.cs" />
     <Compile Include="RRHH\Entidades\Formacion\Carrera.cs" />

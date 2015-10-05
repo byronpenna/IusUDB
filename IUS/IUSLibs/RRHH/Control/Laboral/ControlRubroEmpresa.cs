@@ -11,23 +11,21 @@ using System.Text;
         using IUSLibs.BaseDatos;
         using IUSLibs.GENERALS;
         using IUSLibs.LOGS;
-    // --------------
-        using IUSLibs.RRHH.Entidades.Formacion;
-namespace IUSLibs.RRHH.Control.Formacion
+    //---------
+        using IUSLibs.RRHH.Entidades.Laboral;
+namespace IUSLibs.RRHH.Control.Laboral
 {
-    public class ControlEstadoCarrera:PadreLib
+    public class ControlRubroEmpresa:PadreLib
     {
         #region "funciones"
             #region "do"
-                
+
             #endregion
             #region "get"
-                public List<EstadoCarrera> sp_rrhh_getEstadosCarreras(int idUsuarioEjecutor, int idPagina)
+                public List<RubroEmpresa> sp_rrhh_getRubrosEmpresas()
                 {
-                    List<EstadoCarrera> estadosCarreras = null; EstadoCarrera estadoCarrera;
-                    SPIUS sp = new SPIUS("sp_rrhh_getEstadosCarreras");
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
+                    List<RubroEmpresa> rubros = null; RubroEmpresa rubro;
+                    SPIUS sp = new SPIUS("sp_rrhh_getRubrosEmpresas");
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
@@ -35,14 +33,15 @@ namespace IUSLibs.RRHH.Control.Formacion
                         {
                             if (tb[0].Rows.Count > 0)
                             {
-                                estadosCarreras = new List<EstadoCarrera>();
+                                rubros = new List<RubroEmpresa>();
                                 foreach (DataRow row in tb[0].Rows)
                                 {
-                                    estadoCarrera = new EstadoCarrera((int)row["idEstadoCarrera"], row["estado"].ToString());
-                                    estadosCarreras.Add(estadoCarrera);
+                                    rubro = new RubroEmpresa((int)row["idRubro"], row["rubro"].ToString());
+                                    rubros.Add(rubro);
                                 }
                             }
                         }
+                        return rubros;
                     }
                     catch (ErroresIUS x)
                     {
@@ -52,7 +51,6 @@ namespace IUSLibs.RRHH.Control.Formacion
                     {
                         throw x;
                     }
-                    return estadosCarreras;
                 }
             #endregion
         #endregion
