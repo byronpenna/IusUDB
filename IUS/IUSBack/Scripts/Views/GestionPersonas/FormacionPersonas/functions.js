@@ -77,7 +77,8 @@
                         <td class='hidden'>\
                             <input class='txtHdIdCarrera' name='txtHdIdCarrera' value='"+carrera._idCarrera+"'/>\
                             <input class='txtHdIdInstitucion' value='"+carrera._institucion._idInstitucion+"'/>\
-                            <input class='txtHdIdNivelCarrera' value='"+carrera._nivelTitulo._idNivel+"' />\
+                            <input class='txtHdIdNivelCarrera' value='" + carrera._nivelTitulo._idNivel + "' />\
+                            <input class='txtHdIdArea' value='" + carrera._area._idArea + "'>\
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
@@ -103,6 +104,14 @@
                             </div>\
                             <div class='normalMode tdEmail'>\
                                 "+carrera._institucion._nombre+"\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <select name='cbAreaCarreras' class='form-control cbAreaCarreras'></select>\
+                            </div>\
+                            <div class='normalMode tdAreaCarrera'>\
+                                "+carrera._area._area+"\
                             </div>\
                         </td>\
                         <td>\
@@ -317,6 +326,8 @@
                 console.log("la data es", data);
                 if (data.estado) {
                     var tr = getTrFormacionPersonas(data.formacionAgregada);
+                    var trFrm = $(".trAgregar");
+                    clearTrWithOutHidden(trFrm);
                     $(".tbodyFormacionPersonas").prepend(tr);
                 } else {
                     alert("Ocurrio un error");

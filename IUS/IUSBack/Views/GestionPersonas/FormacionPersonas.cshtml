@@ -97,8 +97,7 @@
                 <td>Estado</td>
                 <td>Acciones</td>
             </tr>
-            <tr>
-                
+            <tr class="trAgregar">
                 <td>
                     <select name="cbCarrera" class="cbCarrera cbChosenCarrera form-control">
                         @if (carreras != null && carreras.Count > 0)
@@ -247,7 +246,7 @@
            </tr>
        </thead>
        <tbody class="tbTablaFormacionPersonas">
-           @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
+           @if (institucionesEducativas != null && institucionesEducativas.Count > 0 && false)
            {
                foreach (InstitucionEducativa institucion in institucionesEducativas)
                {
@@ -284,6 +283,17 @@
                        </td>
                    </tr>
                }
+           }
+           else
+           {
+                <tr>
+                    @for(int i=0;i<3;i++){
+                        <td class="hidden"></td>
+                    }
+                    <td colspan="4" class="text-center">
+                        No hay instituciones disponibles
+                    </td>
+                </tr>   
            }
        </tbody>
    </table>

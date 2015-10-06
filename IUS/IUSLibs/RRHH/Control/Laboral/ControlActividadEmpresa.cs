@@ -130,6 +130,42 @@ namespace IUSLibs.RRHH.Control.Laboral
                 }
             #endregion
             #region "get"
+                public List<ActividadEmpresa> sp_rrhh_getActividadesEmpresaBuscar()// actividades empresas para area de busqueda
+                {
+                    List<ActividadEmpresa> actividadesEmpresas = null;
+                    ActividadEmpresa actividadEmpresa;
+                    SPIUS sp = new SPIUS("sp_rrhh_getActividadesEmpresaBuscar");
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                actividadesEmpresas = new List<ActividadEmpresa>();
+                                foreach(DataRow row in tb[0].Rows){
+                                    actividadEmpresa = new ActividadEmpresa(row["actividadEmpresa"].ToString());
+                                    actividadesEmpresas.Add(actividadEmpresa);
+                                }
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return actividadesEmpresas;
+                }
                 public List<ActividadEmpresa> sp_rrhh_getActividadesEmpresa(int idLaboralPersona,int idUsuarioEjecutor, int idPagina)
                 {
                     List<ActividadEmpresa> actividadesEmpresa = null; ActividadEmpresa actividadEmpresa;

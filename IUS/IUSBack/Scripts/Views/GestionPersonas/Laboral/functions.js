@@ -67,8 +67,9 @@
                         <button class='btn btnCancelarUni'>Cancelar</button>\
                     </div>\
                     <div class='normalMode tdBotones'>\
-                        <button class='btn btnEditarLaboralPersona'>Editar</button>\
-                        <button class='btn btnEliminarLaboralPersona'>Eliminar</button>\
+                        <button class='btn btnEditarLaboralPersona btn-sm'>Editar</button>\
+                        <button class='btn btnActividad btn-sm'>Actividades realizadas</button>\
+                        <button class='btn btnEliminarLaboralPersona btn-sm'>Eliminar</button>\
                     </div>\
                 </td>\
             </tr>\

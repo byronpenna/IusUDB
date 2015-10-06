@@ -3,14 +3,26 @@
 @using IUSLibs.RRHH.Entidades
 @using IUSLibs.RRHH.Entidades.Laboral
 @section estilosPersonalizados{
+    <!-- plugins -->
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- plugins -->
+        <!-- chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
+        <!-- propios -->
+            <script src="~/Scripts/Views/RecursosHumanos/script.js"></script>
+            <script src="~/Scripts/Views/RecursosHumanos/functions.js"></script>
 }
 @{
     List<NivelTitulo> nivelesTitulos = null; Dictionary<object, object> objInicial = null;
     List<Pais> paises = null; List<EstadoCivil> estadosCiviles = null; List<RubroEmpresa> rubrosEmpresa = null;
     List<EstadoCarrera> estadosCarreras = null; List<CargoEmpresa> cargos = null;
+    List<ActividadEmpresa> actividades = null; List<AreaCarrera> areasCarreras = null;
     try
     {
         objInicial      = (Dictionary<object, object>)ViewBag.objInicial;
@@ -22,7 +34,9 @@
             rubrosEmpresa   = (List<RubroEmpresa>)objInicial["rubrosEmpresas"];
             cargos          = (List<CargoEmpresa>)objInicial["cargos"];
             estadosCarreras = (List<EstadoCarrera>)objInicial["estadosCarreras"];
-            
+            actividades     = (List<ActividadEmpresa>)objInicial["actividades"];
+            areasCarreras = (List<AreaCarrera>)objInicial["areasCarreras"];
+            //
         }
     }
     catch (Exception)
@@ -51,7 +65,16 @@
                     </div>
                     <div class="col-lg-3">
                         <input type="checkbox" /><label>Area carrera</label>
-                        <select class="form-control"></select>
+                        <select class="form-control">
+                            <option value="-1">Cualquier area</option>
+                            @if (areasCarreras != null && areasCarreras.Count > 0)
+                            {
+                                foreach (AreaCarrera areaCarrera in areasCarreras)
+                                {
+                                    <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                                }
+                            }
+                        </select>
                     </div>
                     <div class="col-lg-3">
                         <input type="checkbox" /><label>Carrera</label>
@@ -75,7 +98,7 @@
         <div class="text-center col-lg-6">
             <h3>Laboral</h3>
             <div class="row marginNull controlesBusqueda controlesCurriculum">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <label>Rubro empresa</label>
                     <select class="form-control">
                         <option value="-1">Todos los rubros</option>
@@ -88,23 +111,30 @@
                         }
                     </select>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <label>Cargos</label>
-                    <select class="form-control">
+                    <select class="form-control cbCargo" name="cbCargo">
                         <option value="-1">Cualquier cargo</option>
                         @if (cargos != null)
                         {
-                            foreach (CargoEmpresa cargo in cargos) { 
+                            foreach (CargoEmpresa cargo in cargos)
+                            {
                                 <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
                             }
                         }
                     </select>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <label>Actividades</label>
-                    <select class="form-control">
+                    <select class="form-control cbActividad" name="cbActividad">
                         <option value="-1">No importan las actividades</option>
-                        
+                        @if (actividades != null && actividades.Count > 0)
+                        {
+                            foreach (ActividadEmpresa actividad in actividades)
+                            {
+                                <option>@actividad._actividad</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
@@ -122,7 +152,7 @@
             </div>
             <div class="col-lg-3">
                 <label>País de origen</label>
-                <select class="form-control">
+                <select class="form-control cbPais" name="cbPais">
                     <option value="-1">Cualquiera</option>
                     @if (paises != null)
                     {
@@ -148,7 +178,11 @@
             </div>
         </div>
     </div>
-    
+    <div class="row marginNull rowDispararAccion">
+        <div class="col-lg-offset-4 col-lg-4 text-center">
+            <button class="btn">Realizar busqueda de perfil</button>
+        </div>
+    </div>
     <div class="row marginNull">
         <table class="table tablaPersona">
             <thead>
