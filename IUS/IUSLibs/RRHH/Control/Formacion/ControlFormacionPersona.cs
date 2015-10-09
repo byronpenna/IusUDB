@@ -112,6 +112,19 @@ namespace IUSLibs.RRHH.Control.Formacion
                 public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar,int idUsuarioEjecutor,int idPagina)
                 {
                     FormacionPersona formacionAgregada = null;
+                    /*
+                     * @yearFin				int,
+	                    @observaciones			varchar(500),
+	                    @idPersona				int,
+	                    --@carrera				int,
+	                    @idEstadoCarrera		int,
+	                    @				varchar(200),
+	                    @				int,
+	                    @					int,
+	                    -- seguridad 
+	                    @idUsuarioEjecutor		int,
+	                    @idPagina				int
+                     */
                     SPIUS sp = new SPIUS("sp_rrhh_ingresarFormacionPersona");
                     //sp.agregarParametro("yearInicio", formacionAgregar._yearInicio);
                     sp.agregarParametro("yearFin", formacionAgregar._yearFin);
@@ -119,7 +132,9 @@ namespace IUSLibs.RRHH.Control.Formacion
                     sp.agregarParametro("idPersona", formacionAgregar._persona._idPersona);
                     //sp.agregarParametro("idCarrera", formacionAgregar._carrera._idCarrera);
                     sp.agregarParametro("idEstadoCarrera", formacionAgregar._estado._idEstadoCarrera);
-
+                    sp.agregarParametro("carrera", formacionAgregar._carrera);
+                    sp.agregarParametro("idNivel", formacionAgregar._nivelTitulo._idNivel);
+                    sp.agregarParametro("idArea", formacionAgregar._areaCarrera._idArea);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -255,6 +270,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                                         _areaCarrera._area = row["area"].ToString();
                                     formacionPersona.
                                         _nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
+                                    formacionesPersonas.Add(formacionPersona);
                                 }
                             }
                             if (tb[6].Rows.Count > 0)

@@ -166,9 +166,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         if (usuarioSession != null && frm != null)
                         {
                             FormacionPersona formacionAgregar = new FormacionPersona(   this.convertObjAjaxToInt(frm["txtYearFin"]),    frm["txtAreaObservaciones"].ToString(),
-                                                                                        this.convertObjAjaxToInt(frm["idPersona"]),     this.convertObjAjaxToInt(frm["cbEstadoCarrera"].ToString()), 
-                                                                                        frm["txtCarrera"].ToString(),                   this.convertObjAjaxToInt(frm["cbNivelTitulo"]), 
-                                                                                        this.convertObjAjaxToInt(frm["idAreaCarrera"]));
+                                                                                        this.convertObjAjaxToInt(frm["idPersona"]),     this.convertObjAjaxToInt(frm["cbEstadoCarrera"].ToString()),
+                                                                                        frm["txtCarrera"].ToString(),                   this.convertObjAjaxToInt(frm["cbNivelCarrera"]),
+                                                                                        this.convertObjAjaxToInt(frm["cbAreaCarrera"]));
                             FormacionPersona formacionAgregada = this._model.sp_rrhh_ingresarFormacionPersona(formacionAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
