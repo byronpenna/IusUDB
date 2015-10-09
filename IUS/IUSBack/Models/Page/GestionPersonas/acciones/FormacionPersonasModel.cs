@@ -48,7 +48,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                             Dictionary<object, object> toReturn = new Dictionary<object, object>();
                             ControlEstadoCarrera controlEstadoCarrera = new ControlEstadoCarrera();
                             toReturn.Add("estadosCarreras", controlEstadoCarrera.sp_rrhh_getEstadosCarreras(idUsuarioEjecutor, idPagina));
-                            toReturn.Add("carreras", this._controlCarrera.sp_rrhh_getCarreras(idUsuarioEjecutor, idPagina));
+                            //toReturn.Add("carreras", this._controlCarrera.sp_rrhh_getCarreras(idUsuarioEjecutor, idPagina));
                             return toReturn;
                         }
                         catch (ErroresIUS x)

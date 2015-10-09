@@ -204,18 +204,14 @@
                         datosSet.yearInicio         = $.trim(tr.find(".tdYearInicio").text());
                         datosSet.yearFin            = $.trim(tr.find(".tdYearFin").text());
                         datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
-                        datosSet.idCarrera          = $.trim(tr.find(".txtHdIdCarrera").val());
+                        datosSet.carrera            = $.trim(tr.find(".tdCarrera").text());
                         datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").val());
                         // cargando selects 
                             var frm = {};
                             actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
                                 console.log("data para edit titulo es", data);
                                 var cbCarreras = "";var cbEstadoCarrera = "";
-                                if (data.carreras !== undefined && data.carreras != null && data.carreras.length > 0) {
-                                    $.each(data.carreras, function (i,carrera) {
-                                        cbCarreras += getCbCarrera(carrera);
-                                    })
-                                }
+                                
                                 if (data.estadosCarreras !== undefined && data.estadosCarreras != null && data.estadosCarreras.length > 0) {
                                     $.each(data.estadosCarreras, function (i,estadoCarrera) {
                                         cbEstadoCarrera += getCbEstadosCarreras(estadoCarrera);
@@ -223,10 +219,10 @@
                                 }
                                 var selectCarrera = tr.find(".cbCarrera");var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
                                 selectEstadoCarrera.empty().append(cbEstadoCarrera);
-                                selectCarrera.empty().append(cbCarreras);
+                                
                                 console.log("datos set para editar", datosSet);
                                 // reset chosen
-                                resetChosenWithSelectedVal(selectCarrera, datosSet.idCarrera);
+                                
                                 selectEstadoCarrera.val(datosSet.idEstadoCarrera)
                             })
                         // set 
@@ -235,7 +231,7 @@
                             tr.find(".txtYearInicio").val(datosSet.yearInicio);
                             tr.find(".txtYearFin").val(datosSet.yearFin);
                             tr.find(".txtAreaObservaciones").val(datosSet.observaciones);
-                            
+                            tr.find(".txtCarrera").val(datosSet.carrera)
                         controlesEdit(true, tr);
                     })
                 $(document).on("click", ".btnAgregarCarrera", function () {
