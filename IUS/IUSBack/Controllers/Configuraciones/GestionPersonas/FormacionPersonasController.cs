@@ -128,7 +128,12 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         if (usuarioSession != null && frm != null)
                         {
                             // -1 para id persona porq no es necesario 
-                            FormacionPersona formacionEditar = new FormacionPersona(this.convertObjAjaxToInt(frm["txtHdIdFormacionPersona"]), this.convertObjAjaxToInt(frm["txtYearInicio"]), this.convertObjAjaxToInt(frm["txtYearFin"]), frm["txtAreaObservaciones"].ToString(), 0, this.convertObjAjaxToInt(frm["cbCarrera"]), this.convertObjAjaxToInt(frm["cbEstadoCarrera"]));
+                            FormacionPersona formacionEditar = new FormacionPersona(
+                                    this.convertObjAjaxToInt(frm["txtHdIdFormacionPersona"]),   this.convertObjAjaxToInt(frm["txtYearFin"]), 
+                                    frm["txtAreaObservaciones"].ToString(),                     0,
+                                    this.convertObjAjaxToInt(frm["cbEstadoCarrera"]),           frm["txtCarrera"].ToString(),
+                                    this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbAreaCarrera"]));
+                            //cbAreaCarrera,cbNivelCarrera
                             FormacionPersona formacionEditada = this._model.sp_rrhh_editarFormacionPersona(formacionEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
@@ -160,7 +165,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         frm = this.getAjaxFrm();
                         if (usuarioSession != null && frm != null)
                         {
-                            FormacionPersona formacionAgregar = new FormacionPersona(this.convertObjAjaxToInt(frm["txtYearInicio"]), this.convertObjAjaxToInt(frm["txtYearFin"]), frm["txtAreaObservaciones"].ToString(), this.convertObjAjaxToInt(frm["idPersona"]), this.convertObjAjaxToInt(frm["cbCarrera"]), this.convertObjAjaxToInt(frm["cbEstadoCarrera"]));
+                            FormacionPersona formacionAgregar = new FormacionPersona(   this.convertObjAjaxToInt(frm["txtYearFin"]),    frm["txtAreaObservaciones"].ToString(),
+                                                                                        this.convertObjAjaxToInt(frm["idPersona"]),     this.convertObjAjaxToInt(frm["cbEstadoCarrera"].ToString()), 
+                                                                                        frm["txtCarrera"].ToString(),                   this.convertObjAjaxToInt(frm["cbNivelTitulo"]), 
+                                                                                        this.convertObjAjaxToInt(frm["idAreaCarrera"]));
                             FormacionPersona formacionAgregada = this._model.sp_rrhh_ingresarFormacionPersona(formacionAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
