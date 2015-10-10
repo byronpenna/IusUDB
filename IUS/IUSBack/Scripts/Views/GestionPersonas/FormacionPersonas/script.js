@@ -210,16 +210,15 @@
                             var frm = {};
                             actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
                                 console.log("data para edit titulo es", data);
-                                var cbCarreras = "";var cbEstadoCarrera = "";
-                                
-                                if (data.estadosCarreras !== undefined && data.estadosCarreras != null && data.estadosCarreras.length > 0) {
-                                    $.each(data.estadosCarreras, function (i,estadoCarrera) {
-                                        cbEstadoCarrera += getCbEstadosCarreras(estadoCarrera);
-                                    })
-                                }
-                                var selectCarrera = tr.find(".cbCarrera");var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
-                                selectEstadoCarrera.empty().append(cbEstadoCarrera);
-                                
+                                var cbNiveles = ""; var cbEstadoCarrera = ""; var cbAreas = "";
+                                var cb = getCbsEditTitulos(data);
+                                var selectNiveles   = tr.find(".cbNivelCarrera"); var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
+                                var selectAreas     = tr.find(".cbAreaCarrera");
+                                // llenando select 
+                                selectEstadoCarrera.empty().append(cb.cbEstadoCarrera);
+                                selectNiveles.empty().append(cb.cbNiveles);
+                                selectAreas.empty().append(cb.cbAreasCarreras);
+
                                 console.log("datos set para editar", datosSet);
                                 // reset chosen
                                 
