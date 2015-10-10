@@ -26,16 +26,12 @@ namespace IUSLibs.RRHH.Control.Formacion
                 {
                     FormacionPersona formacionEditada=null;
                     SPIUS sp = new SPIUS("sp_rrhh_editarFormacionPersona");
-                    
-                    //sp.agregarParametro("yearInicio", formacionEditar._yearInicio);
                     sp.agregarParametro("yearFin", formacionEditar._yearFin);
                     sp.agregarParametro("observaciones", formacionEditar._observaciones);
-                    //sp.agregarParametro("idCarrera", formacionEditar._carrera._idCarrera);
                     sp.agregarParametro("idEstadoCarrera", formacionEditar._estado._idEstadoCarrera);
                     sp.agregarParametro("carrera", formacionEditar._carrera);
                     sp.agregarParametro("idNivel", formacionEditar._nivelTitulo._idNivel);
                     sp.agregarParametro("idArea", formacionEditar._areaCarrera._idArea);
-
                     sp.agregarParametro("idFormacionPersona", formacionEditar._idFormacionPersona);
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);

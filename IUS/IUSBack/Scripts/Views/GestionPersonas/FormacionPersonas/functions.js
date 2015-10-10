@@ -335,12 +335,16 @@
                         console.log("id carrera D: ", formacion._carrera._idCarrera);
                         tr.find(".txtHdIdCarrera").val(formacion._carrera._idCarrera);
                         tr.find(".txtHdIdEstadoCarrera").val(formacion._estado._idEstadoCarrera);
+                        tr.find(".txtHdIdNivel").val(formacion._nivelTitulo._idNivel);
+                        tr.find(".txtHdIdArea").val(formacion._areaCarrera._idArea);
                     // cosas visibles 
-                        tr.find(".tdCarrera").empty().append(formacion._carrera._carrera);//formacion._carrera._carrera
+                        tr.find(".tdCarrera").empty().append(formacion._carrera);//formacion._carrera._carrera
                         tr.find(".tdYearInicio").empty().append(formacion._yearInicio);
                         tr.find(".tdYearFin").empty().append(formacion._yearFin);
                         tr.find(".tdObservaciones").empty().append(formacion._observaciones);
                         tr.find(".tdEstadoTitulo").empty().append(formacion._estado._estado);//formacion._estado._estado
+                        tr.find(".tdNivelTitulo").empty().append(formacion._nivelTitulo._nombreNivel);
+                        tr.find(".tdAreaCarrera").empty().append(formacion._areaCarrera._area);
                         controlesEdit(false, tr);
                 } else {
                     alert("Ocurrio un error");
