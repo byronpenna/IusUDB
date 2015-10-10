@@ -45,7 +45,13 @@ namespace IUSLibs.RRHH.Control.Formacion
                             {
                                 DataRow row = tb[1].Rows[0];
                                 //formacionEditada
-                                formacionEditada = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_estadocarrera_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"]);
+                                formacionEditada = new FormacionPersona(
+                                                        (int)row["idFormacionPersona"],     (int)row["year_fin"], 
+                                                        row["observaciones"].ToString(),    (int)row["id_persona_fk"], 
+                                                        (int)row["id_estadocarrera_fk"],    row["carrera"].ToString(), 
+                                                        (int)row["id_nivel_fk"],            (int)row["id_area_fk"],
+                                                        row["institucion"].ToString(),      (int)row["id_paisinstitucion_fk"]
+                                                    );
                                 formacionEditada.
                                     _carrera = row["carrera"].ToString();
                                 formacionEditada.
@@ -122,15 +128,20 @@ namespace IUSLibs.RRHH.Control.Formacion
 	                    @idPagina				int
                      */
                     SPIUS sp = new SPIUS("sp_rrhh_ingresarFormacionPersona");
-                    //sp.agregarParametro("yearInicio", formacionAgregar._yearInicio);
                     sp.agregarParametro("yearFin", formacionAgregar._yearFin);
                     sp.agregarParametro("observaciones", formacionAgregar._observaciones);
                     sp.agregarParametro("idPersona", formacionAgregar._persona._idPersona);
-                    //sp.agregarParametro("idCarrera", formacionAgregar._carrera._idCarrera);
                     sp.agregarParametro("idEstadoCarrera", formacionAgregar._estado._idEstadoCarrera);
                     sp.agregarParametro("carrera", formacionAgregar._carrera);
                     sp.agregarParametro("idNivel", formacionAgregar._nivelTitulo._idNivel);
                     sp.agregarParametro("idArea", formacionAgregar._areaCarrera._idArea);
+                    /*
+                        				varchar(250),
+		                	int
+                     */
+                    sp.agregarParametro("institucion", formacionAgregar._institucion);
+                    sp.agregarParametro("idPaisInstitucion", formacionAgregar._paisInstitucion._idPais);
+
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -140,7 +151,13 @@ namespace IUSLibs.RRHH.Control.Formacion
                         {
                             if(tb[1].Rows.Count >0){
                                 DataRow row = tb[1].Rows[0];
-                                formacionAgregada       = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"],(int)row["id_estadocarrera_fk"],row["carrera"].ToString(),(int)row["id_nivel_fk"],(int)row["id_area_fk"]);
+                                formacionAgregada       = new FormacionPersona(
+                                                                (int)row["idFormacionPersona"],     (int)row["year_fin"], 
+                                                                row["observaciones"].ToString(),    (int)row["id_persona_fk"],
+                                                                (int)row["id_estadocarrera_fk"],    row["carrera"].ToString(),
+                                                                (int)row["id_nivel_fk"],            (int)row["id_area_fk"],
+                                                                row["institucion"].ToString(),      (int)row["id_paisinstitucion_fk"]
+                                                            );
                                 formacionAgregada.
                                     _carrera                    = row["carrera"].ToString();
                                 formacionAgregada.
@@ -257,7 +274,13 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     formacionPersona._carrera._carrera = row["carrera"].ToString();
                                     formacionPersona._estado._estado = row["estado"].ToString();
                                     formacionesPersonas.Add(formacionPersona);*/
-                                    formacionPersona = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_estadocarrera_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"]);
+                                    formacionPersona = new FormacionPersona(
+                                                            (int)row["idFormacionPersona"],     (int)row["year_fin"], 
+                                                            row["observaciones"].ToString(),    (int)row["id_persona_fk"], 
+                                                            (int)row["id_estadocarrera_fk"],    row["carrera"].ToString(), 
+                                                            (int)row["id_nivel_fk"],            (int)row["id_area_fk"],
+                                                            row["institucion"].ToString(),      (int)row["id_paisinstitucion_fk"]
+                                                       );
                                     formacionPersona.
                                         _carrera = row["carrera"].ToString();
                                     formacionPersona.
