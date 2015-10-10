@@ -206,6 +206,8 @@
                         datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
                         datosSet.carrera            = $.trim(tr.find(".tdCarrera").text());
                         datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").val());
+                        datosSet.idNivel            = tr.find(".txtHdIdNivel").val();
+                        datosSet.idArea        = tr.find(".txtHdIdArea").val();
                         // cargando selects 
                             var frm = {};
                             actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
@@ -223,6 +225,9 @@
                                 // reset chosen
                                 
                                 selectEstadoCarrera.val(datosSet.idEstadoCarrera)
+                                // reset normal 
+                                tr.find(".cbNivelCarrera").val(datosSet.idNivel);
+                                tr.find(".cbAreaCarrera").val(datosSet.idArea);
                             })
                         // set 
                             console.log("datos set", datosSet);
@@ -230,7 +235,11 @@
                             tr.find(".txtYearInicio").val(datosSet.yearInicio);
                             tr.find(".txtYearFin").val(datosSet.yearFin);
                             tr.find(".txtAreaObservaciones").val(datosSet.observaciones);
-                            tr.find(".txtCarrera").val(datosSet.carrera)
+                            tr.find(".txtCarrera").val(datosSet.carrera);
+                            console.log("D: ¬¬ ", datosSet.idNivel);
+                            console.log("D: ¬¬ ", datosSet.idArea);
+                            
+                            
                         controlesEdit(true, tr);
                     })
                 $(document).on("click", ".btnAgregarCarrera", function () {
