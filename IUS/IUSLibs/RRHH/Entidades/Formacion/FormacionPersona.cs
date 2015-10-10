@@ -68,6 +68,7 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                     this._estado            = estadoCarrera;
                     this._areaCarrera       = areaCarrera;
                     this._estado            = estadoCarrera;
+                    this._nivelTitulo       = nivelTitulo;
                 }
         #endregion
     }
