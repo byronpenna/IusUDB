@@ -266,8 +266,9 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             posts = new List<Post>();
                             foreach (DataRow row in tb[1].Rows)
                             {
-                                post = new Post((int)row["idPost"], row["titulo"].ToString(), row["contenido"].ToString());
-                                post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                post = new Post((int)row["idPost"], row["titulo"].ToString(),"");
+                                //post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                post._descripcion = row["breve_descripcion"].ToString();
                                 if (row["miniatura"] != System.DBNull.Value)
                                 {
                                     post._miniatura = (byte[])row["miniatura"];
