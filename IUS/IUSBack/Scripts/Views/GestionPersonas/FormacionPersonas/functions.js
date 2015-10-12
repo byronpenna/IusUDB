@@ -133,23 +133,16 @@
                     <tr>\
                         <td class='hidden'>\
                             <input name='txtHdIdFormacionPersona' class='txtHdIdFormacionPersona' value='"+ formacionPersona._idFormacionPersona + "'/>\
-                            <input name='txtHdIdEstadoCarrera' class='txtHdIdEstadoCarrera' value='"+ formacionPersona._estado._idEstadoCarrera + "' />\
-                            <input name='txtHdIdCarrera' class='txtHdIdCarrera' value='"+ formacionPersona._carrera._idCarrera + "' />\
+                            <input name='txtHdIdNivel' class='txtHdIdNivel' value='"+formacionPersona._nivelTitulo._idNivel+"'>\
+                            <input name='txtHdIdNivel' class='txtHdIdArea' value='"+formacionPersona._areaCarrera._idArea+"'>\
+                            <input name='txtHdIdPais' class='txtHdIdPais' value='"+formacionPersona._paisInstitucion._idPais+"' />\
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <select name='cbCarrera' class='cbCarrera form-control'></select>\
+                                <input type='text' name='txtCarrera' class='form-control txtCarrera' />\
                             </div>\
                             <div class='normalMode tdCarrera'>\
-                                "+ formacionPersona._carrera._carrera + "\
-                            </div>\
-                        </td>\
-                        <td>\
-                            <div class='editMode hidden'>\
-                                <input name='txtYearInicio' class='txtYearInicio form-control' />\
-                            </div>\
-                            <div class='normalMode tdYearInicio'>\
-                                "+ formacionPersona._yearInicio + "\
+                                " + formacionPersona._carrera + "\
                             </div>\
                         </td>\
                         <td>\
@@ -157,7 +150,7 @@
                                 <input name='txtYearFin' class='txtYearFin form-control' />\
                             </div>\
                             <div class='normalMode tdYearFin'>\
-                                    "+formacionPersona._yearFin+"\
+                                "+formacionPersona._yearFin+"\
                             </div>\
                         </td>\
                         <td>\
@@ -170,10 +163,35 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <select name='cbEstadoCarrera' class='cbEstadoCarrera form-control'></select>\
+                                <select name='cbNivelCarrera' class='cbNivelCarrera form-control'></select>\
                             </div>\
-                            <div class='normalMode tdEstadoTitulo'>\
-                                "+ formacionPersona._estado._estado + "\
+                            <div class='normalMode tdNivelTitulo'>\
+                                "+formacionPersona._nivelTitulo._nombreNivel+"\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <select name='cbAreaCarrera' class='cbAreaCarrera form-control'></select>\
+                            </div>\
+                            <div class='normalMode tdAreaCarrera'>\
+                                "+formacionPersona._areaCarrera._area+"\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <input class='form-control txtInstitucionEducativa' name='txtInstitucionEducativa' />\
+                            </div>\
+                            <div class='normalMode tdInstitucion'>\
+                                "+formacionPersona._institucion+"\
+                            </div>\
+                        </td>\
+                        <td>\
+                            <div class='editMode hidden'>\
+                                <select name='cbPaisInstitucionEducativa' class=' cbChosenPais form-control cbPaisInstitucionEducativa'>\
+                                </select>\
+                            </div>\
+                            <div class='normalMode tdPais'>\
+                                "+formacionPersona._paisInstitucion._pais+"\
                             </div>\
                         </td>\
                         <td>\

@@ -148,7 +148,8 @@ namespace IUSLibs.RRHH.Control.Formacion
                                                             );
                                 formacionAgregada.
                                     _carrera                    = row["carrera"].ToString();
-                                
+                                formacionAgregada.
+                                    _paisInstitucion._pais      = row["pais"].ToString();
                                 formacionAgregada.
                                     _areaCarrera._area          = row["area"].ToString();
                                 formacionAgregada.
