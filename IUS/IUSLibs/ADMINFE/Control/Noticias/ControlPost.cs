@@ -37,8 +37,9 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 foreach (DataRow row in tb[1].Rows)
                                 {
                                     usuarioCreador = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
-                                    post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(), (bool)row["estado"], usuarioCreador);
-                                    post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                    post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", (bool)row["estado"], usuarioCreador);
+                                    //post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                    post._descripcion = row["breve_descripcion"].ToString();
                                     idioma = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
                                     post._idioma = idioma;
                                     posts.Add(post);
@@ -152,6 +153,8 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("titulo", postAgregar._titulo);
                     sp.agregarParametro("contenido", postAgregar._contenido);
                     sp.agregarParametro("idIdioma", postAgregar._idioma._idIdioma);
+                    sp.agregarParametro("breveDescripcion", postAgregar._descripcion);
+                    
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try

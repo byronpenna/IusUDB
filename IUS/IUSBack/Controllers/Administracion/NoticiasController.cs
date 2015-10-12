@@ -277,6 +277,7 @@ namespace IUSBack.Controllers
                         {
                             Idioma idioma = new Idioma(this.convertObjAjaxToInt(frm["cbIdioma"]));
                             Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession,idioma);
+                            postAgregar._descripcion = frm["txtDescripcion"].ToString();
                             Post postAgregado = this._model.sp_adminfe_noticias_publicarPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
                             //Post postAgregado = null;
                             if (postAgregado != null)

@@ -79,14 +79,19 @@
             </div>
         </div>
         <div class="row col-lg-offset-1 col-lg-10 seccionForm">
-            <div class="col-lg-offset-5 col-lg-2">
+            
+            <div class="col-lg-5">
+                <label>Breve descripcion</label>
+                <input class="form-control txtDescripcion" name="txtDescripcion" value="@post._descripcion"/>
+            </div>
+            <div class="col-lg-4">
                 <label>
                     Idioma de noticia
                 </label>
                 <select class="form-control" name="cbIdioma">
                     @if (idiomas != null && idiomas.Count > 0)
                     {
-                        string selected="";
+                        string selected = "";
                         foreach (Idioma idioma in idiomas)
                         {
                             if (post._idioma != null && idioma._idIdioma == post._idioma._idIdioma)
@@ -97,12 +102,14 @@
                             {
                                 selected = "";
                             }
-                            <option value="@idioma._idIdioma" @selected >@idioma._idioma</option>
+                    <option value="@idioma._idIdioma" @selected>@idioma._idioma</option>
                         }
                     }
                 </select>
             </div>
-            <div class="col-lg-6">
+        </div>
+        <div class="row col-lg-offset-1 col-lg-10 seccionForm">
+            <div class="col-lg-5">
                 <div class="contenedorControl">
                     <label>Categoria</label>
                     <select class="form-control cbCategorias" name="cbCategorias" multiple>
@@ -130,7 +137,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="row">
+                <div class="row marginNull">
                     <label>Etiquetas</label>
                 </div>
                 <input type="text" name="txtEtiquetas" data-role="tagsinput" class="txtEtiquetas" value="@ViewBag.tags" />

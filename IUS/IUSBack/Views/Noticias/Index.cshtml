@@ -51,7 +51,7 @@
                     <th>Titulo</th>
                     <th>Creacion</th>
                     <th>Ultima modificacion</th>
-                    <th>Contenido</th>
+                    <th>Descripcion</th>
                     <th>Usuario creador</th>
                     <th>Idioma</th>
                     <th>Acciones</th>
@@ -69,7 +69,7 @@
                             <td>@post._titulo</td>
                             <td>@post.getFechaCreacion</td>
                             <td>@post.getFechaModificacion</td>
-                            <td class="tdContenido">@post._contenido</td>
+                            <td class="tdContenido">@post._descripcion</td>
                             <td>@post._usuario._usuario</td>
                             <td>@post._idioma._idioma</td>
                             <td>
@@ -89,13 +89,11 @@
                 else
                 {
                     <tr>
-                        <td class="text-center hidden"></td>
-                        <td class="text-center hidden"></td>
-                        <td class="text-center hidden"></td>
-                        <td class="text-center hidden"></td>
-                        <td class="text-center hidden"></td>
-                        <td class="text-center hidden"></td>
-                        <td class="text-center" colspan="6">No hay posts para mostrar</td>
+                        @for (int i = 0; i < 7; i++)
+                        {
+                            <td class="text-center hidden"></td>    
+                        }
+                        <td class="text-center" colspan="8">No hay posts para mostrar</td>
                     </tr>
                 }
             </tbody>
