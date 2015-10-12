@@ -207,23 +207,24 @@
                         datosSet.carrera            = $.trim(tr.find(".tdCarrera").text());
                         datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").val());
                         datosSet.idNivel            = tr.find(".txtHdIdNivel").val();
-                        datosSet.idArea        = tr.find(".txtHdIdArea").val();
+                        datosSet.idArea             = tr.find(".txtHdIdArea").val();
+                        datosSet.idPais             = tr.find(".txtHdIdPais").val();
                         // cargando selects 
                             var frm = {};
                             actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
                                 console.log("data para edit titulo es", data);
                                 var cbNiveles = ""; var cbEstadoCarrera = ""; var cbAreas = "";
                                 var cb = getCbsEditTitulos(data);
-                                var selectNiveles   = tr.find(".cbNivelCarrera"); var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
-                                var selectAreas     = tr.find(".cbAreaCarrera");
+                                var selectNiveles   = tr.find(".cbNivelCarrera");   var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
+                                var selectAreas     = tr.find(".cbAreaCarrera");    var selectPaises        = tr.find(".cbPaisInstitucionEducativa");
                                 // llenando select 
                                 selectEstadoCarrera.empty().append(cb.cbEstadoCarrera);
                                 selectNiveles.empty().append(cb.cbNiveles);
                                 selectAreas.empty().append(cb.cbAreasCarreras);
-
+                                selectPaises.empty().append(cb.cbPaises);
                                 console.log("datos set para editar", datosSet);
                                 // reset chosen
-                                
+                                resetChosenWithSelectedVal(selectPaises, datosSet.idPais);
                                 selectEstadoCarrera.val(datosSet.idEstadoCarrera)
                                 // reset normal 
                                 tr.find(".cbNivelCarrera").val(datosSet.idNivel);

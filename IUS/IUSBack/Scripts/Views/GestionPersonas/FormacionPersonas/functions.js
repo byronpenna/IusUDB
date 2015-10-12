@@ -210,6 +210,11 @@
                             cb.cbAreasCarreras += getCbAreas(areaCarrera);
                         })
                     }
+                    if (data.paises !== undefined && data.paises != null && data.paises.length > 0) {
+                        $.each(data.paises, function (i, pais) {
+                            cb.cbPaises        += getCbPaises(pais);
+                        })
+                    }
                     return cb;
                 }
             // individuales

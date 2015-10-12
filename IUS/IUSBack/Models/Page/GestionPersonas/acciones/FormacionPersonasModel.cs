@@ -6,8 +6,12 @@ using System.Web;
     using IUSBack.Models.General;
 // Externas
     using IUSLibs.LOGS;
-    using IUSLibs.RRHH.Control.Formacion;
-    using IUSLibs.RRHH.Entidades.Formacion;
+    // rrrhh
+        using IUSLibs.RRHH.Control.Formacion;
+        using IUSLibs.RRHH.Entidades.Formacion;
+    // front ui
+        using IUSLibs.FrontUI.Entidades;
+        using IUSLibs.FrontUI.Control;
 namespace IUSBack.Models.Page.GestionPersonas.acciones
 {
     public class FormacionPersonasModel:PadreModel
@@ -49,11 +53,11 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                             ControlEstadoCarrera    controlEstadoCarrera    = new ControlEstadoCarrera();
                             ControlNivelCarrera     controlNivel            = new ControlNivelCarrera();
                             ControlAreaCarrera      controlArea             = new ControlAreaCarrera();
+                            ControlPais             controlPais             = new ControlPais();
                             toReturn.Add("estadosCarreras", controlEstadoCarrera.sp_rrhh_getEstadosCarreras(idUsuarioEjecutor, idPagina));
                             toReturn.Add("nivelesCarreras", controlNivel.sp_rrhh_getNivelesCarreras(idUsuarioEjecutor, idPagina));
                             toReturn.Add("areasCarreras", controlArea.sp_rrhh_getAreasCarreras(idUsuarioEjecutor,idPagina));
-
-                            //toReturn.Add("carreras", this._controlCarrera.sp_rrhh_getCarreras(idUsuarioEjecutor, idPagina));
+                            toReturn.Add("paises", controlPais.sp_frontui_getPaises());
                             return toReturn;
                         }
                         catch (ErroresIUS x)
