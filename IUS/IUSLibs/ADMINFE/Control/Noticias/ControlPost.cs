@@ -77,6 +77,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 usu = new Usuario((int)rowResult["id_usuario_fk"]);
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
                                 post._idioma = new Idioma((int)rowResult["id_idioma_fk"]);
+                                post._descripcion = rowResult["breve_descripcion"].ToString();
                                 if (rowResult["miniatura"] != DBNull.Value)
                                 {
                                     post._miniatura = (byte[])rowResult["miniatura"];
@@ -125,6 +126,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("contenido", postActualizar._contenido);
                     sp.agregarParametro("idPost", postActualizar._idPost);
                     sp.agregarParametro("idIdioma", postActualizar._idioma._idIdioma);
+                    sp.agregarParametro("descripcion", postActualizar._descripcion);
                     sp.agregarParametro("idUsuarioEjecutor",idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     bool retorno = false;
