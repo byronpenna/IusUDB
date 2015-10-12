@@ -191,30 +191,56 @@
                 return tr;
             }
         // cb
-            function getCbAreaCarrera(areaCarrera) {
-                var cb = "<option value="+areaCarrera._idArea+">"+areaCarrera._area+"</option>";
-                return cb;
-            }
-            function getCbCarrera(carrera) {
-                var cb = "<option value="+carrera._idCarrera+">"+carrera._carrera+"</option>";
-                return cb;
-            }
-            function getCbEstadosCarreras(estadoCarrera) {
-                var cb = "<option value="+estadoCarrera._idEstadoCarrera+">"+estadoCarrera._estado+"</option>";
-                return cb;
-            }
-            function getCbInstituciones(institucion) {
-                var cb = "<option value="+institucion._idInstitucion+">"+institucion._nombre+"</option>";
-                return cb;
-            }
-            function getCbNivelTitulo(nivelTitulo) {
-                var cb = "<option value=" + nivelTitulo._idNivel + ">" + nivelTitulo._nombreNivel + "</option>";
-                return cb;
-            }
-            function getCbPaises(pais) {
-            var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
-            return cb;
-        }
+            // conjuntos
+                function getCbsEditTitulos(data){
+                    var cb = new Object();
+                    cb.cbEstadoCarrera = "";cb.cbNiveles = "";
+                    if (data.estadosCarreras !== undefined && data.estadosCarreras != null && data.estadosCarreras.length > 0) {
+                        $.each(data.estadosCarreras, function (i,estadoCarrera) {
+                            cb.cbEstadoCarrera += getCbEstadosCarreras(estadoCarrera);
+                        })
+                    }
+                    if (data.nivelesCarreras !== undefined && data.nivelesCarreras != null && data.nivelesCarreras.length > 0) {
+                        $.each(data.nivelesCarreras, function (i, nivelTitulo) {
+                            cb.cbNiveles += getCbNiveles(nivelTitulo);
+                        })
+                    }
+                    if (data.areasCarreras !== undefined && data.areasCarreras != null && data.areasCarreras.length > 0) {
+                        $.each(data.areasCarreras, function (i, areaCarrera) {
+                            cb.cbAreasCarreras += getCbAreas(areaCarrera);
+                        })
+                    }
+                    return cb;
+                }
+            // individuales
+                function getCbAreaCarrera(areaCarrera) {
+                    var cb = "<option value="+areaCarrera._idArea+">"+areaCarrera._area+"</option>";
+                    return cb;
+                }
+                function getCbAreas(areaCarrera) {
+                    var cb = "<option value="+areaCarrera._idArea+">"+areaCarrera._area+"</option>";
+                    return cb;
+                }
+                function getCbNiveles(nivelTitulo) {
+                    var cb = "<option value=" + nivelTitulo._idNivel + ">" + nivelTitulo._nombreNivel + "</option>";
+                    return cb;
+                }
+                function getCbEstadosCarreras(estadoCarrera) {
+                    var cb = "<option value="+estadoCarrera._idEstadoCarrera+">"+estadoCarrera._estado+"</option>";
+                    return cb;
+                }
+                function getCbInstituciones(institucion) {
+                    var cb = "<option value="+institucion._idInstitucion+">"+institucion._nombre+"</option>";
+                    return cb;
+                }
+                function getCbNivelTitulo(nivelTitulo) {
+                    var cb = "<option value=" + nivelTitulo._idNivel + ">" + nivelTitulo._nombreNivel + "</option>";
+                    return cb;
+                }
+                function getCbPaises(pais) {
+                    var cb = "<option value=" + pais._idPais + " >" + pais._pais + "</option>";
+                    return cb;
+                }
 // acciones script
     // instituciones
         function btnActualizarInstitucionEducativa(frm,tr) {
@@ -309,12 +335,16 @@
                         console.log("id carrera D: ", formacion._carrera._idCarrera);
                         tr.find(".txtHdIdCarrera").val(formacion._carrera._idCarrera);
                         tr.find(".txtHdIdEstadoCarrera").val(formacion._estado._idEstadoCarrera);
+                        tr.find(".txtHdIdNivel").val(formacion._nivelTitulo._idNivel);
+                        tr.find(".txtHdIdArea").val(formacion._areaCarrera._idArea);
                     // cosas visibles 
-                        tr.find(".tdCarrera").empty().append(formacion._carrera._carrera);//formacion._carrera._carrera
+                        tr.find(".tdCarrera").empty().append(formacion._carrera);//formacion._carrera._carrera
                         tr.find(".tdYearInicio").empty().append(formacion._yearInicio);
                         tr.find(".tdYearFin").empty().append(formacion._yearFin);
                         tr.find(".tdObservaciones").empty().append(formacion._observaciones);
                         tr.find(".tdEstadoTitulo").empty().append(formacion._estado._estado);//formacion._estado._estado
+                        tr.find(".tdNivelTitulo").empty().append(formacion._nivelTitulo._nombreNivel);
+                        tr.find(".tdAreaCarrera").empty().append(formacion._areaCarrera._area);
                         controlesEdit(false, tr);
                 } else {
                     alert("Ocurrio un error");

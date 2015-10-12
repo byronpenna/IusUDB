@@ -21,7 +21,7 @@
 @{
     List<EstadoCarrera> estadosCarrera=null;Persona persona= null;
     List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
-    List<NivelTitulo> nivelesTitulo = null; List<Carrera> carreras = null;
+    List<NivelTitulo> nivelesTitulo = null;
     List<FormacionPersona> formacionesPersonas= null;
     List<AreaCarrera> areasCarreras = null;
     string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
@@ -33,7 +33,6 @@
         paises                          = (List<Pais>)info["paises"];
         institucionesEducativas         = (List<InstitucionEducativa>)info["instituciones"];
         nivelesTitulo                   = (List<NivelTitulo>)info["nivelesTitulo"];
-        carreras                        = (List<Carrera>)info["carreras"];
         formacionesPersonas             = (List<FormacionPersona>)info["formacionesPersonas"];
         informacion                     = (InformacionPersona)info["informacionPersona"];
         areasCarreras                   = (List<AreaCarrera>)info["areasCarreras"];
@@ -91,30 +90,18 @@
         <thead>
             <tr>
                 <td>Carrera</td>
-                <td>Año Inicio</td>
                 <td>Año Fin</td>
                 <td>Observaciones</td>
                 <td>Estado</td>
+                <td>Nivel</td>
+                <td>Area</td>
+                <td>Institución</td>
+                <td>País</td>
                 <td>Acciones</td>
             </tr>
             <tr class="trAgregar">
                 <td>
-                    <select name="cbCarrera" class="cbCarrera cbChosenCarrera form-control">
-                        @if (carreras != null && carreras.Count > 0)
-                        {
-                            foreach (Carrera carrera in carreras)
-                            {
-                                <option value="@carrera._idCarrera">@carrera._carrera</option>
-                            }
-                        }
-                    </select>
-                </td>
-                <td class="tdFechaIniFinTitulo">
-                    <div class="editMode hidden">
-                    </div>
-                    <div class="normalMode tdEmail">
-                        <input name="txtYearInicio" class="txtYearInicio form-control" />
-                    </div>
+                    <input class="txtCarrera form-control" name="txtCarrera" placeholder="Carrera" />
                 </td>
                 <td class="tdFechaIniFinTitulo">
                     <input name="txtYearFin" class="txtYearFin form-control" />
@@ -134,6 +121,43 @@
                     </select>
                 </td>
                 <td>
+                    <select class="cbNivelCarrera form-control" name="cbNivelCarrera">
+                        @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
+                        {
+                            foreach (NivelTitulo nivelTitulo in nivelesTitulo)
+                            {
+                                <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select class="cbAreaCarrera form-control" name="cbAreaCarrera">
+                        @if (areasCarreras != null && areasCarreras.Count > 0)
+                        {
+                            foreach (AreaCarrera areaCarrera in areasCarreras)
+                            {
+                                <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td>
+                    <input class="form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                </td>
+                <td>
+                    <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+                        <option value="-1">Seleccione un país</option>
+                        @if (paises != null && paises.Count > 0)
+                        {
+                            foreach (Pais pais in paises)
+                            {
+                                <option value="@pais._idPais">@pais._pais</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td>
                     <button class="btn btnAgregarCarrera">Agregar</button>
                 </td>
             </tr>
@@ -147,22 +171,15 @@
                         <td class="hidden">
                             <input name="txtHdIdFormacionPersona" class="txtHdIdFormacionPersona" value="@formacionPersona._idFormacionPersona"/>
                             <input name="txtHdIdEstadoCarrera" class="txtHdIdEstadoCarrera" value="@formacionPersona._estado._idEstadoCarrera" />
-                            <input name="txtHdIdCarrera" class="txtHdIdCarrera" value="@formacionPersona._carrera._idCarrera" />
+                            <input name="txtHdIdNivel" class="txtHdIdNivel" value="@formacionPersona._nivelTitulo._idNivel">
+                            <input name="txtHdIdNivel" class="txtHdIdArea" value="@formacionPersona._areaCarrera._idArea">
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbCarrera" class="cbCarrera cbChosenCarrera form-control"></select>
+                                <input type="text" name="txtCarrera" class="form-control txtCarrera" />
                             </div>
                             <div class="normalMode tdCarrera">
-                                @formacionPersona._carrera._carrera
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <input name="txtYearInicio" class="txtYearInicio form-control" />
-                            </div>
-                            <div class="normalMode tdYearInicio">
-                                @formacionPersona._yearInicio
+                                @formacionPersona._carrera
                             </div>
                         </td>
                         <td>
@@ -191,14 +208,35 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
+                                <select name="cbNivelCarrera" class="cbNivelCarrera form-control"></select>
+                            </div>
+                            <div class="normalMode tdNivelTitulo">
+                                @formacionPersona._nivelTitulo._nombreNivel
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <select name="cbAreaCarrera" class="cbAreaCarrera form-control"></select>
+                            </div>
+                            <div class="normalMode tdAreaCarrera">
+                                @formacionPersona._areaCarrera._area
+                            </div>
+                        </td>
+                        <td>
+                            Institucion
+                        </td>
+                        <td>Pais</td>
+                        <td>
+                            <div class="editMode hidden">
                                 <button class="btn btnActualizarTituloPersona">Actualizar</button>
-                                <button class="btn btnCancelarUni">Actualizar</button>
+                                <button class="btn btnCancelarUni">Cancelar</button>
                             </div>
                             <div class="normalMode tdEmail">
                                 <button class="btn btnEditarTitulos ">Editar</button>
                                 <button class="btn btnEliminarTitulo ">Eliminar</button>
                             </div>
                         </td>
+                        
                     </tr>
                 }
             }
@@ -298,152 +336,4 @@
        </tbody>
    </table>
 </div>
-<div class="row marginNull divTab divCarreras hidden">
-    <!-- carreras -->
-    <h3 class="tituloTabDiv">Carreras</h3>
-    <div class="divResultado divResultadoGeneralCarrera">
 
-    </div>
-    <table class="table tablaCarrera">
-        <thead>
-            <tr>
-                <th>Nombre carrera</th>
-                <th>Nivel carrera</th>
-                <th>Institucion</th>
-                <th>Area carrera</th>
-                <th>Acciones</th>
-            </tr>
-            <tr class="trAgregar">
-                <th>
-                    <input name="txtNombreCarrera" class="txtNombreCarrera form-control" />
-                    <div class="row marginNull divResultado hidden">
-                        _
-                    </div>
-                </th>
-                <th>
-                    <select name="cbNivelCarrera" class="cbNivelCarrera form-control">
-                        <option value="-1">Seleccione nivel de carrera</option>
-                        @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
-                        {
-                            foreach (NivelTitulo nivelTitulo in nivelesTitulo)
-                            {
-                                <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
-                            }
-                        }
-                    </select>
-                    <div class="row marginNull divResultado hidden">
-                        _
-                    </div>
-                </th>
-                <th>
-                    <select class="cbInsticionesParaCarrera cbChosenInstitucion form-control" name="cbInsticionesParaCarrera">
-                        <option value="-1">Seleccione una institucion</option>
-                        @if (institucionesEducativas != null && institucionesEducativas.Count > 0)
-                        {
-                            string pais = ""; bool abierto = false;
-                            foreach (InstitucionEducativa institucion in institucionesEducativas)
-                            {
-                                if (pais != institucion._pais._pais)
-                                {
-                                    pais = institucion._pais._pais;
-                                    if (abierto == true)
-                                    {
-                                        new HtmlString("</optgroup>");
-                                        abierto = false;
-                                    }
-                                    @(new HtmlString("<optgroup label='" + pais + "'>"));
-                                    abierto = true;
-                                }
-                                <option value="@institucion._idInstitucion">@institucion._nombre</option>
-                            }
-                            if (abierto == true)
-                            {
-                                @(new HtmlString("</optgroup>"));
-                            }
-                        }
-                    </select>
-                    <div class="row marginNull divResultado hidden">
-                        _
-                    </div>
-                </th>
-                <th>
-                    <select name="cbAreaCarreras" class="form-control cbAreaCarreras">
-                        @if (areasCarreras != null && areasCarreras.Count > 0)
-                        {
-                            foreach (AreaCarrera areaCarrera in areasCarreras)
-                            {
-                                <option value="@areaCarrera._idArea">@areaCarrera._area</option>
-                            }
-                        }
-                    </select>
-                </th>
-                <th>
-                    <button class="btn btnAgregarCarreraIndividual">Agregar</button>
-                </th>
-            </tr>
-        </thead>
-        <tbody  class="tbodyCarrera">
-            <!-- mostrar aqui carrera -->
-            @if (carreras != null && carreras.Count > 0)
-            {
-                foreach (Carrera carrera in carreras)
-                {
-                    <tr>
-                        <td class="hidden">
-                            <input class="txtHdIdCarrera" name="txtHdIdCarrera" value="@carrera._idCarrera"/>
-                            <input class="txtHdIdInstitucion" value="@carrera._institucion._idInstitucion"/>
-                            <input class="txtHdIdNivelCarrera" value="@carrera._nivelTitulo._idNivel" />
-                            <input class="txtHdIdArea" value="@carrera._area._idArea">
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <input name="txtNombreCarrera" class="txtNombreCarrera form-control" />
-                            </div>
-                            <div class="normalMode tdCarrera">
-                                @carrera._carrera
-                            </div>
-                            
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <select name="cbNivelCarrera" class="cbNivelCarrera cbChosenCarrera form-control">
-                                </select>
-                            </div>
-                            <div class="normalMode tdNivelTitulo">
-                                @carrera._nivelTitulo._nombreNivel
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <select class="cbInsticionesParaCarrera cbChosenInstitucion form-control" name="cbInsticionesParaCarrera">
-                                </select>
-                            </div>
-                            <div class="normalMode tdInstitucionNombre">
-                                @carrera._institucion._nombre
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <select name="cbAreaCarreras" class="form-control cbAreaCarreras"></select>
-                            </div>
-                            <div class="normalMode tdAreaCarrera">
-                                @carrera._area._area
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <button class="btn btnActualizarCarrera">Actualizar</button>
-                                <button class="btn btnCancelarUni">Cancelar</button>
-                            </div>
-                            <div class="normalMode tdEmail">
-                                <button class="btnEditarCarrera btn">Editar</button>
-                                <button class="btn btnEliminarCarrera">Eliminar</button>
-                            </div>
-                            <!--<button class="btn">Cancelar</button>-->
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-</div>
