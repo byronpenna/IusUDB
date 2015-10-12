@@ -524,6 +524,7 @@
     <Content Include="Views\Repositorio\Index.cshtml" />
     <Content Include="Views\Repositorio\AllFiles.cshtml" />
     <Content Include="Views\Errors\ErrorCritico.cshtml" />
+    <Content Include="Views\Noticias\Todas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

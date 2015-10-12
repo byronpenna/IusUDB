@@ -249,6 +249,43 @@ namespace IUSLibs.ADMINFE.Control.Noticias
         #endregion
         #region "front end"
             #region "get"
+                public List<Post> sp_adminfe_front_getNoticiasPagina(int pagina,int cn,string ip,int idPagina)
+                {
+                    List<Post> posts = null; Post post;
+                    SPIUS sp = new SPIUS("sp_adminfe_front_getNoticiasPagina");
+                    
+                    sp.agregarParametro("pagina", pagina);
+                    sp.agregarParametro("cn", pagina);
+
+                    sp.agregarParametro("ip", ip);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                posts = new List<Post>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    post                    = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", true, (int)row["id_usuario_fk"]);
+                                    post._usuario._usuario  = row["usuario"].ToString();
+                                    post._descripcion       = row["breve_descripcion"].ToString();
+                                }
+                            }
+                        }
+                        return posts;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public List<Post> sp_adminfe_front_getTopNoticias(int n,string lang="")
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_front_getTopNoticias");
