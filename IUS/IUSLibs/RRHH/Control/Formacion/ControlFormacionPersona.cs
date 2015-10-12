@@ -28,7 +28,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                     SPIUS sp = new SPIUS("sp_rrhh_editarFormacionPersona");
                     sp.agregarParametro("yearFin", formacionEditar._yearFin);
                     sp.agregarParametro("observaciones", formacionEditar._observaciones);
-                    sp.agregarParametro("idEstadoCarrera", formacionEditar._estado._idEstadoCarrera);
+                    //sp.agregarParametro("idEstadoCarrera", formacionEditar._estado._idEstadoCarrera);
                     sp.agregarParametro("carrera", formacionEditar._carrera);
                     sp.agregarParametro("idNivel", formacionEditar._nivelTitulo._idNivel);
                     sp.agregarParametro("idArea", formacionEditar._areaCarrera._idArea);
@@ -48,14 +48,12 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 formacionEditada = new FormacionPersona(
                                                         (int)row["idFormacionPersona"],     (int)row["year_fin"], 
                                                         row["observaciones"].ToString(),    (int)row["id_persona_fk"], 
-                                                        (int)row["id_estadocarrera_fk"],    row["carrera"].ToString(), 
-                                                        (int)row["id_nivel_fk"],            (int)row["id_area_fk"],
-                                                        row["institucion"].ToString(),      (int)row["id_paisinstitucion_fk"]
+                                                        row["carrera"].ToString(),          (int)row["id_nivel_fk"],            
+                                                        (int)row["id_area_fk"],             row["institucion"].ToString(),      
+                                                        (int)row["id_paisinstitucion_fk"]
                                                     );
                                 formacionEditada.
                                     _carrera = row["carrera"].ToString();
-                                formacionEditada.
-                                    _estado._estado = row["estado"].ToString();
                                 formacionEditada.
                                     _areaCarrera._area = row["area"].ToString();
                                 formacionEditada.
@@ -114,24 +112,11 @@ namespace IUSLibs.RRHH.Control.Formacion
                 public FormacionPersona sp_rrhh_ingresarFormacionPersona(FormacionPersona formacionAgregar,int idUsuarioEjecutor,int idPagina)
                 {
                     FormacionPersona formacionAgregada = null;
-                    /*
-                     * @yearFin				int,
-	                    @observaciones			varchar(500),
-	                    @idPersona				int,
-	                    --@carrera				int,
-	                    @idEstadoCarrera		int,
-	                    @				varchar(200),
-	                    @				int,
-	                    @					int,
-	                    -- seguridad 
-	                    @idUsuarioEjecutor		int,
-	                    @idPagina				int
-                     */
                     SPIUS sp = new SPIUS("sp_rrhh_ingresarFormacionPersona");
                     sp.agregarParametro("yearFin", formacionAgregar._yearFin);
                     sp.agregarParametro("observaciones", formacionAgregar._observaciones);
                     sp.agregarParametro("idPersona", formacionAgregar._persona._idPersona);
-                    sp.agregarParametro("idEstadoCarrera", formacionAgregar._estado._idEstadoCarrera);
+                    //sp.agregarParametro("idEstadoCarrera", formacionAgregar._estado._idEstadoCarrera);
                     sp.agregarParametro("carrera", formacionAgregar._carrera);
                     sp.agregarParametro("idNivel", formacionAgregar._nivelTitulo._idNivel);
                     sp.agregarParametro("idArea", formacionAgregar._areaCarrera._idArea);
@@ -154,14 +139,13 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 formacionAgregada       = new FormacionPersona(
                                                                 (int)row["idFormacionPersona"],     (int)row["year_fin"], 
                                                                 row["observaciones"].ToString(),    (int)row["id_persona_fk"],
-                                                                (int)row["id_estadocarrera_fk"],    row["carrera"].ToString(),
-                                                                (int)row["id_nivel_fk"],            (int)row["id_area_fk"],
-                                                                row["institucion"].ToString(),      (int)row["id_paisinstitucion_fk"]
+                                                                row["carrera"].ToString(),          (int)row["id_nivel_fk"],            
+                                                                (int)row["id_area_fk"],             row["institucion"].ToString(),      
+                                                                (int)row["id_paisinstitucion_fk"]
                                                             );
                                 formacionAgregada.
                                     _carrera                    = row["carrera"].ToString();
-                                formacionAgregada.
-                                    _estado._estado             = row["estado"].ToString();
+                                
                                 formacionAgregada.
                                     _areaCarrera._area          = row["area"].ToString();
                                 formacionAgregada.
@@ -190,10 +174,9 @@ namespace IUSLibs.RRHH.Control.Formacion
             #region "get"
                 public Dictionary<object, object> sp_rrhh_getInfoInicialFormacion(int idPersona,int idUsuarioEjecutor, int idPagina)
                 {
-                    List<EstadoCarrera> estadosCarrera = null; EstadoCarrera estadoCarrera;
                     List<Pais> paises = null; Pais pais;/**/ List<InstitucionEducativa> institucionesEducativas=null; InstitucionEducativa institucionEducativa;
                     List<NivelTitulo> nivelesTitulo = null; NivelTitulo nivelTitulo;
-                    List<Carrera> carreras = null; Carrera carrera;
+                    
                     List<FormacionPersona> formacionesPersonas = null; FormacionPersona formacionPersona;
                     InformacionPersona informacionPersona = null; List<AreaCarrera> areasCarreras = null; AreaCarrera areaCarrera;
                     Persona persona = null; 
@@ -207,73 +190,61 @@ namespace IUSLibs.RRHH.Control.Formacion
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                         if (this.resultadoCorrectoGet(tb))
                         {
+                            
                             if (tb[0].Rows.Count > 0)
                             {
-                                // estados de carrera
-                                estadosCarrera = new List<EstadoCarrera>();
-                                foreach (DataRow row in tb[0].Rows)
-                                {
-                                    estadoCarrera = new EstadoCarrera((int)row["idEstadoCarrera"], row["estado"].ToString());
-                                    estadosCarrera.Add(estadoCarrera);
-                                }
-                            }
-                            if (tb[1].Rows.Count > 0)
-                            {
                                 // persona
-                                DataRow row = tb[1].Rows[0];
+                                DataRow row = tb[0].Rows[0];
                                 persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString());
 
                             }
-                            if (tb[2].Rows.Count > 0)
+                            if (tb[1].Rows.Count > 0)
                             {
                                 paises = new List<Pais>();
                                 // paises 
-                                foreach (DataRow row in tb[2].Rows)
+                                foreach (DataRow row in tb[1].Rows)
                                 {
                                     pais = new Pais((int)row["idPais"], row["pais"].ToString());
                                     paises.Add(pais);
                                 }
                             }
-                            if (tb[3].Rows.Count > 0)
+                            if (tb[2].Rows.Count > 0)
                             {
                                 institucionesEducativas = new List<InstitucionEducativa>();
-                                foreach (DataRow row in tb[3].Rows)
+                                foreach (DataRow row in tb[2].Rows)
                                 {
                                     institucionEducativa = new InstitucionEducativa((int)row["idInstitucion"],row["nombre"].ToString(),(int)row["id_pais_fk"]);
                                     institucionEducativa._pais._pais = row["pais"].ToString();
                                     institucionesEducativas.Add(institucionEducativa);
                                 }
                             }
-                            if (tb[4].Rows.Count > 0)
+                            if (tb[3].Rows.Count > 0)
                             {
                                 nivelesTitulo = new List<NivelTitulo>();
-                                foreach (DataRow row in tb[4].Rows)
+                                foreach (DataRow row in tb[3].Rows)
                                 {
                                     nivelTitulo = new NivelTitulo((int)row["idNivel"], row["nombre_nivel"].ToString());
                                     nivelesTitulo.Add(nivelTitulo);
                                 }
                             }
                             
-                            if (tb[5].Rows.Count > 0)
+                            if (tb[4].Rows.Count > 0)
                             {
                                 formacionesPersonas = new List<FormacionPersona>();
-                                foreach (DataRow row in tb[5].Rows)
+                                foreach (DataRow row in tb[4].Rows)
                                 {
-                                    /*formacionPersona = new FormacionPersona((int)row["idFormacionPersona"], (int)row["year_inicio"], (int)row["year_fin"], row["observaciones"].ToString(), (int)row["id_persona_fk"], (int)row["id_carrera_fk"], (int)row["id_estadocarrera_fk"]);
-                                    formacionPersona._carrera._carrera = row["carrera"].ToString();
-                                    formacionPersona._estado._estado = row["estado"].ToString();
-                                    formacionesPersonas.Add(formacionPersona);*/
+                                    
                                     formacionPersona = new FormacionPersona(
                                                             (int)row["idFormacionPersona"],     (int)row["year_fin"], 
                                                             row["observaciones"].ToString(),    (int)row["id_persona_fk"], 
-                                                            (int)row["id_estadocarrera_fk"],    row["carrera"].ToString(), 
-                                                            (int)row["id_nivel_fk"],            (int)row["id_area_fk"],
-                                                            row["institucion"].ToString(),      (int)row["id_paisinstitucion_fk"]
+                                                            row["carrera"].ToString(),          (int)row["id_nivel_fk"],            
+                                                            (int)row["id_area_fk"],             row["institucion"].ToString(),      
+                                                            (int)row["id_paisinstitucion_fk"]
                                                        );
                                     formacionPersona.
                                         _carrera = row["carrera"].ToString();
                                     formacionPersona.
-                                        _estado._estado = row["estado"].ToString();
+                                        _paisInstitucion._pais = row["pais"].ToString();
                                     formacionPersona.
                                         _areaCarrera._area = row["area"].ToString();
                                     formacionPersona.
@@ -281,15 +252,15 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     formacionesPersonas.Add(formacionPersona);
                                 }
                             }
-                            if (tb[6].Rows.Count > 0)
+                            if (tb[5].Rows.Count > 0)
                             {
-                                DataRow row = tb[6].Rows[0];
+                                DataRow row = tb[5].Rows[0];
                                 informacionPersona = new InformacionPersona((int)row["idInformacionPersona"],row["foto"].ToString());
                             }
-                            if(tb[7].Rows.Count >0)
+                            if(tb[6].Rows.Count >0)
                             {
                                 areasCarreras = new List<AreaCarrera>();
-                                foreach (DataRow row in tb[7].Rows)
+                                foreach (DataRow row in tb[6].Rows)
                                 {
                                     areaCarrera = new AreaCarrera((int)row["idArea"], row["area"].ToString());
                                     areasCarreras.Add(areaCarrera);
@@ -303,12 +274,11 @@ namespace IUSLibs.RRHH.Control.Formacion
                             ErroresIUS x = this.getErrorFromExecProcedure(row);
                             throw x;
                         }
-                        retorno.Add("estadosCarrera", estadosCarrera);
+                        
                         retorno.Add("persona", persona);
                         retorno.Add("paises", paises);
                         retorno.Add("instituciones", institucionesEducativas);
                         retorno.Add("nivelesTitulo", nivelesTitulo);
-                        retorno.Add("carreras", carreras);
                         retorno.Add("formacionesPersonas", formacionesPersonas);
                         retorno.Add("informacionPersona", informacionPersona);
                         retorno.Add("areasCarreras", areasCarreras);

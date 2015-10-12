@@ -19,7 +19,7 @@
         <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/functions.js"></script>
 }
 @{
-    List<EstadoCarrera> estadosCarrera=null;Persona persona= null;
+    Persona persona= null;
     List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
     List<NivelTitulo> nivelesTitulo = null;
     List<FormacionPersona> formacionesPersonas= null;
@@ -28,7 +28,6 @@
     InformacionPersona informacion = null;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
-        estadosCarrera                  = (List<EstadoCarrera>)info["estadosCarrera"];
         persona                         = (Persona)info["persona"];
         paises                          = (List<Pais>)info["paises"];
         institucionesEducativas         = (List<InstitucionEducativa>)info["instituciones"];
@@ -92,7 +91,7 @@
                 <td>Carrera</td>
                 <td>Año Fin</td>
                 <td>Observaciones</td>
-                <td>Estado</td>
+                <!--<td>Estado</td>-->
                 <td>Nivel</td>
                 <td>Area</td>
                 <td>Institución</td>
@@ -108,17 +107,6 @@
                 </td>
                 <td>
                     <textarea name="txtAreaObservaciones" class="txtAreaObservaciones form-control"></textarea>
-                </td>
-                <td>
-                    <select name="cbEstadoCarrera" class="cbEstadoCarrera form-control">
-                        @if (estadosCarrera != null && estadosCarrera.Count > 0)
-                        {
-                            foreach (EstadoCarrera estadoCarrera in estadosCarrera)
-                            {
-                                <option value="@estadoCarrera._idEstadoCarrera">@estadoCarrera._estado</option>
-                            }
-                        }
-                    </select>
                 </td>
                 <td>
                     <select class="cbNivelCarrera form-control" name="cbNivelCarrera">
@@ -170,7 +158,7 @@
                     <tr>
                         <td class="hidden">
                             <input name="txtHdIdFormacionPersona" class="txtHdIdFormacionPersona" value="@formacionPersona._idFormacionPersona"/>
-                            <input name="txtHdIdEstadoCarrera" class="txtHdIdEstadoCarrera" value="@formacionPersona._estado._idEstadoCarrera" />
+                            
                             <input name="txtHdIdNivel" class="txtHdIdNivel" value="@formacionPersona._nivelTitulo._idNivel">
                             <input name="txtHdIdNivel" class="txtHdIdArea" value="@formacionPersona._areaCarrera._idArea">
                         </td>
@@ -200,14 +188,6 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbEstadoCarrera" class="cbEstadoCarrera form-control"></select>
-                            </div>
-                            <div class="normalMode tdEstadoTitulo">
-                                @formacionPersona._estado._estado
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
                                 <select name="cbNivelCarrera" class="cbNivelCarrera form-control"></select>
                             </div>
                             <div class="normalMode tdNivelTitulo">
@@ -223,9 +203,23 @@
                             </div>
                         </td>
                         <td>
-                            Institucion
+                            <div class="editMode hidden">
+                                <input class="form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                            </div>
+                            <div class='normalMode '>
+                                @formacionPersona._institucion
+                            </div>
                         </td>
-                        <td>Pais</td>
+                        <td>
+                            <div class="editMode hidden">
+                                <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+
+                                </select>
+                            </div>
+                            <div class='normalMode '>
+                                @formacionPersona._paisInstitucion._pais
+                            </div>
+                        </td>
                         <td>
                             <div class="editMode hidden">
                                 <button class="btn btnActualizarTituloPersona">Actualizar</button>
