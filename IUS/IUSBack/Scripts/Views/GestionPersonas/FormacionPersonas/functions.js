@@ -285,7 +285,7 @@
             })
         }
     // carreras
-        function btnActualizarCarrera(frm, tr) {
+        /*function btnActualizarCarrera(frm, tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarCarrera", frm, function (data) {
                 console.log("data del serivdor actualizados", data);
                 if (data.estado) {
@@ -296,8 +296,9 @@
                     tr.find(".tdAreaCarrera").empty().append(carrera._area._area);
 
                     tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
-                    tr.find(".tdInstitucionNombre").empty().append(carrera._institucion._nombre );
-                    tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
+                    tr.find(".tdInstitucion").empty().append(carrera._institucion);
+                    console.log("D: ");
+                    //tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
                     tr.find(".txtHdIdArea").val(carrera._area._idArea);
                     //tdAreaCarrera
                     controlesEdit(false, tr);
@@ -305,7 +306,7 @@
                     alert("ocurrio un error");
                 }
             })
-        }
+        }*/
         function btnEliminarCarrera(frm, tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_eliminarCarrera", frm, function (data) {
                 console.log(data);
@@ -337,9 +338,10 @@
                 if (data.estado) {
                     var formacion = data.formacionEditada;
                     // inputs hidden
-                        console.log("id carrera D: ", formacion._carrera._idCarrera);
+                        /*console.log("id carrera D: ", formacion._carrera._idCarrera);
                         tr.find(".txtHdIdCarrera").val(formacion._carrera._idCarrera);
-                        tr.find(".txtHdIdEstadoCarrera").val(formacion._estado._idEstadoCarrera);
+                        tr.find(".txtHdIdEstadoCarrera").val(formacion._estado._idEstadoCarrera);*/
+                        tr.find(".txtHdIdPais").val(formacion._paisInstitucion._idPais);
                         tr.find(".txtHdIdNivel").val(formacion._nivelTitulo._idNivel);
                         tr.find(".txtHdIdArea").val(formacion._areaCarrera._idArea);
                     // cosas visibles 
@@ -347,9 +349,11 @@
                         tr.find(".tdYearInicio").empty().append(formacion._yearInicio);
                         tr.find(".tdYearFin").empty().append(formacion._yearFin);
                         tr.find(".tdObservaciones").empty().append(formacion._observaciones);
-                        tr.find(".tdEstadoTitulo").empty().append(formacion._estado._estado);//formacion._estado._estado
+                        
                         tr.find(".tdNivelTitulo").empty().append(formacion._nivelTitulo._nombreNivel);
                         tr.find(".tdAreaCarrera").empty().append(formacion._areaCarrera._area);
+                        tr.find(".tdInstitucion").empty().append(formacion._institucion);
+                        tr.find(".tdPais").empty().append(formacion._paisInstitucion._pais);
                         controlesEdit(false, tr);
                 } else {
                     alert("Ocurrio un error");

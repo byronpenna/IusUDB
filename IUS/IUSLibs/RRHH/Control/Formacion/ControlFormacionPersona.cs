@@ -55,12 +55,13 @@ namespace IUSLibs.RRHH.Control.Formacion
                                                         (int)row["id_paisinstitucion_fk"]
                                                     );
                                 formacionEditada.
-                                    _carrera = row["carrera"].ToString();
+                                    _carrera                    = row["carrera"].ToString();
                                 formacionEditada.
-                                    _areaCarrera._area = row["area"].ToString();
+                                    _areaCarrera._area          = row["area"].ToString();
                                 formacionEditada.
-                                    _nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
-
+                                    _nivelTitulo._nombreNivel   = row["nombre_nivel"].ToString();
+                                formacionEditada.
+                                    _paisInstitucion._pais      = row["pais"].ToString();
                             }
                             else
                             {

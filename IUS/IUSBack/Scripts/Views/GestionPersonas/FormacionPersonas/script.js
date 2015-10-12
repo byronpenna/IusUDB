@@ -206,9 +206,11 @@
                         datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
                         datosSet.carrera            = $.trim(tr.find(".tdCarrera").text());
                         datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").val());
+                        datosSet.institucion        = $.trim(tr.find(".tdInstitucion").text());
                         datosSet.idNivel            = tr.find(".txtHdIdNivel").val();
                         datosSet.idArea             = tr.find(".txtHdIdArea").val();
                         datosSet.idPais             = tr.find(".txtHdIdPais").val();
+
                         // cargando selects 
                             var frm = {};
                             actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
@@ -229,6 +231,7 @@
                                 // reset normal 
                                 tr.find(".cbNivelCarrera").val(datosSet.idNivel);
                                 tr.find(".cbAreaCarrera").val(datosSet.idArea);
+                                
                             })
                         // set 
                             console.log("datos set", datosSet);
@@ -237,10 +240,7 @@
                             tr.find(".txtYearFin").val(datosSet.yearFin);
                             tr.find(".txtAreaObservaciones").val(datosSet.observaciones);
                             tr.find(".txtCarrera").val(datosSet.carrera);
-                            console.log("D: ¬¬ ", datosSet.idNivel);
-                            console.log("D: ¬¬ ", datosSet.idArea);
-                            
-                            
+                            tr.find(".txtInstitucionEducativa").val(datosSet.institucion);
                         controlesEdit(true, tr);
                     })
                 $(document).on("click", ".btnAgregarCarrera", function () {
