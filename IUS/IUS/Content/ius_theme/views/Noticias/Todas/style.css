@@ -1,2 +1,11 @@
-﻿body {
+﻿.divTarjetasNoticias{
+    margin-top:5%;
+    margin-bottom:5%;
+}
+.imgNoticiaTarjeta{
+    text-align:center;
+    margin-bottom:3%;
+}
+.imgNoticiaTarjeta img{
+    width:20%;
 }

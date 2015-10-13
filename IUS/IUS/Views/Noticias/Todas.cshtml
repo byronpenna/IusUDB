@@ -9,6 +9,7 @@
 }
 @{
     List<Post> posts = null;
+    string src = "";
     try
     {
         posts = (List<Post>)ViewBag.noticiasPagina;
@@ -18,5 +19,31 @@
         
     }
 }
-
-<h2>Noticias</h2>
+<h2 class="text-center">Noticias</h2>
+<div class="row marginNull divTarjetasNoticias">
+    @if (posts != null && posts.Count > 0)
+    {
+        
+        foreach (Post post in posts)
+        {
+            if (post._miniatura != null)
+            {
+                src = "data:image/png;base64," + Convert.ToBase64String(post._miniatura);
+            }
+            else
+            {
+                src = Url.Content("~/Content/images/generales/image.png");
+            }
+            <div class="col-lg-3">
+                <h3 class="text-center">@post._titulo</h3>
+                <div class="imgNoticiaTarjeta">
+                    <img src="@src" />
+                </div>
+                <p>@post._descripcion</p>
+                <div class="row marginNull text-center">
+                    <a href="@Url.Action("")">Leer noticia</a>
+                </div>
+            </div>
+        }
+    }
+</div>

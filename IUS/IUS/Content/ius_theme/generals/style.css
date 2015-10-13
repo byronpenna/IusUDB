@@ -134,6 +134,9 @@ header{
     /*
         Feed noticias 
         */
+        .rowTodas{
+            margin-top:3%;
+        }
         .feedSection{
             background:#ecf0f1;
             padding-top:1%;

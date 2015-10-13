@@ -255,7 +255,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     SPIUS sp = new SPIUS("sp_adminfe_front_getNoticiasPagina");
                     
                     sp.agregarParametro("pagina", pagina);
-                    sp.agregarParametro("cn", pagina);
+                    sp.agregarParametro("cn", cn);
 
                     sp.agregarParametro("ip", ip);
                     sp.agregarParametro("idPagina", idPagina);
@@ -272,6 +272,11 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                     post                    = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", true, (int)row["id_usuario_fk"]);
                                     post._usuario._usuario  = row["usuario"].ToString();
                                     post._descripcion       = row["breve_descripcion"].ToString();
+                                    if (row["miniatura"] != System.DBNull.Value)
+                                    {
+                                        post._miniatura = (byte[])row["miniatura"];
+                                    }
+                                    posts.Add(post);
                                 }
                             }
                         }
