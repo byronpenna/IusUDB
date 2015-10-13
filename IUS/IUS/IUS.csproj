@@ -286,6 +286,8 @@
     <Content Include="Content\ius_theme\views\NotFound\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\media.css" />
     <Content Include="Content\ius_theme\views\Noticias\style.css" />
+    <Content Include="Content\ius_theme\views\Noticias\Todas\media.css" />
+    <Content Include="Content\ius_theme\views\Noticias\Todas\style.css" />
     <Content Include="Content\ius_theme\views\Repositorio\AllFiles\media.css" />
     <Content Include="Content\ius_theme\views\Repositorio\AllFiles\style.css" />
     <Content Include="Content\ius_theme\views\Repositorio\media.css" />
@@ -460,6 +462,8 @@
     <Content Include="Scripts\views\Instituciones\VerInstituciones\script.js" />
     <Content Include="Scripts\views\Noticias\functions.js" />
     <Content Include="Scripts\views\Noticias\script.js" />
+    <Content Include="Scripts\views\Noticias\Todas\functions.js" />
+    <Content Include="Scripts\views\Noticias\Todas\script.js" />
     <Content Include="Scripts\views\Repositorio\AllFiles\functions.js" />
     <Content Include="Scripts\views\Repositorio\AllFiles\script.js" />
     <Content Include="Scripts\views\Repositorio\functions.js" />
@@ -524,6 +528,7 @@
     <Content Include="Views\Repositorio\Index.cshtml" />
     <Content Include="Views\Repositorio\AllFiles.cshtml" />
     <Content Include="Views\Errors\ErrorCritico.cshtml" />
+    <Content Include="Views\Noticias\Todas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

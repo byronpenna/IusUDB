@@ -7,6 +7,7 @@ using System.Web;
 // externas 
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Control.Noticias;
+    using IUSLibs.ADMINFE.Entidades.Noticias;
     using IUSLibs.FrontUI.Noticias.Entidades;
     using IUSLibs.FrontUI.Noticias.Control;
 namespace IUS.Models.page.Noticias.Acciones
@@ -40,6 +41,21 @@ namespace IUS.Models.page.Noticias.Acciones
                         try
                         {
                             return this._controlComentario.sp_frontUi_noticias_getComentariosPost(idPost, ip, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    public List<Post> sp_adminfe_front_getNoticiasPagina(int pagina, int cn, string ip, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlPost.sp_adminfe_front_getNoticiasPagina(pagina, cn, ip, idPagina);
                         }
                         catch (ErroresIUS x)
                         {

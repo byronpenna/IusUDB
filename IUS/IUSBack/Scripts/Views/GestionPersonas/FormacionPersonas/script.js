@@ -206,28 +206,32 @@
                         datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
                         datosSet.carrera            = $.trim(tr.find(".tdCarrera").text());
                         datosSet.idEstadoCarrera    = $.trim(tr.find(".txtHdIdEstadoCarrera").val());
+                        datosSet.institucion        = $.trim(tr.find(".tdInstitucion").text());
                         datosSet.idNivel            = tr.find(".txtHdIdNivel").val();
-                        datosSet.idArea        = tr.find(".txtHdIdArea").val();
+                        datosSet.idArea             = tr.find(".txtHdIdArea").val();
+                        datosSet.idPais             = tr.find(".txtHdIdPais").val();
+
                         // cargando selects 
                             var frm = {};
                             actualizarCatalogo(RAIZ + "/FormacionPersonas/getEditTitulos", frm, function (data) {
                                 console.log("data para edit titulo es", data);
                                 var cbNiveles = ""; var cbEstadoCarrera = ""; var cbAreas = "";
                                 var cb = getCbsEditTitulos(data);
-                                var selectNiveles   = tr.find(".cbNivelCarrera"); var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
-                                var selectAreas     = tr.find(".cbAreaCarrera");
+                                var selectNiveles   = tr.find(".cbNivelCarrera");   var selectEstadoCarrera = tr.find(".cbEstadoCarrera");
+                                var selectAreas     = tr.find(".cbAreaCarrera");    var selectPaises        = tr.find(".cbPaisInstitucionEducativa");
                                 // llenando select 
                                 selectEstadoCarrera.empty().append(cb.cbEstadoCarrera);
                                 selectNiveles.empty().append(cb.cbNiveles);
                                 selectAreas.empty().append(cb.cbAreasCarreras);
-
+                                selectPaises.empty().append(cb.cbPaises);
                                 console.log("datos set para editar", datosSet);
                                 // reset chosen
-                                
+                                resetChosenWithSelectedVal(selectPaises, datosSet.idPais);
                                 selectEstadoCarrera.val(datosSet.idEstadoCarrera)
                                 // reset normal 
                                 tr.find(".cbNivelCarrera").val(datosSet.idNivel);
                                 tr.find(".cbAreaCarrera").val(datosSet.idArea);
+                                
                             })
                         // set 
                             console.log("datos set", datosSet);
@@ -236,10 +240,7 @@
                             tr.find(".txtYearFin").val(datosSet.yearFin);
                             tr.find(".txtAreaObservaciones").val(datosSet.observaciones);
                             tr.find(".txtCarrera").val(datosSet.carrera);
-                            console.log("D: ¬¬ ", datosSet.idNivel);
-                            console.log("D: ¬¬ ", datosSet.idArea);
-                            
-                            
+                            tr.find(".txtInstitucionEducativa").val(datosSet.institucion);
                         controlesEdit(true, tr);
                     })
                 $(document).on("click", ".btnAgregarCarrera", function () {

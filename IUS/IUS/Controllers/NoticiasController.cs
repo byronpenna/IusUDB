@@ -19,6 +19,31 @@ namespace IUS.Controllers
             private NoticiaModel _model;
         #endregion
         #region "acciones url"
+            public ActionResult Todas(int id=1,int id2=12)
+            {
+                List<LlaveIdioma> traducciones;
+                try
+                {
+                    string lang         = this.getUserLang();
+                    traducciones        = this._model.getTraduccion(lang, this.idPagina);
+                    string ip = Request.UserHostAddress;
+                    this.setTraduccion(traducciones);
+                    // por el momento no habra noticias
+                    //ViewBag.noticias    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
+                    ViewBag.noticiasPagina = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, ip, this.idPagina);
+                    ViewBag.menu25          = this.activeClass;
+                }
+                catch (ErroresIUS x) {
+                    ErrorsController error = new ErrorsController();
+                    var obj = error.redirectToError(x);
+                    return RedirectToAction(obj["accion"], obj["controlador"]);
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View();
+            }
             public ActionResult Index(int id)
             {
                 List<LlaveIdioma> traducciones;
@@ -57,6 +82,7 @@ namespace IUS.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
             }
+
         #endregion
         #region "acciones ajax"
             public ActionResult sp_frontUi_noticias_ponerComentario()

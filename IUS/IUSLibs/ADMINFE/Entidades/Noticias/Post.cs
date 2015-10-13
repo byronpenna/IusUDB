@@ -19,6 +19,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             public Usuario  _usuario;
             public byte[]   _miniatura;
             public Idioma   _idioma;
+            public string   _descripcion;
             #region "operacionales"
                 public string getTxtEstado
                 {
@@ -54,30 +55,31 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             {
 
             }
-            public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, int usuarioCreador) {
-                Usuario usu = new Usuario(usuarioCreador);
-                this._idPost = idPost;
-                this._fechaCreacion = fechaCreacion;
-                this._fechaModificacion = fechaModificacion;
-                this._titulo = titulo;
-                this._contenido = contenido;
-                this._estado = estado;
-                this._usuario = usu;
-            }
-            public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, Usuario usuarioCreador)
-            {
-                this._idPost            = idPost;
-                this._fechaCreacion     = fechaCreacion;
-                this._fechaModificacion = fechaModificacion;
-                this._titulo            = titulo;
-                this._contenido         = contenido;
-                this._estado            = estado;
-                this._usuario           = usuarioCreador;
-            }
             public Post(int idPost)
             {
                 this._idPost = idPost;
             }
+            // full atributos
+                public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, int usuarioCreador) {
+                    Usuario usu = new Usuario(usuarioCreador);
+                    this._idPost = idPost;
+                    this._fechaCreacion = fechaCreacion;
+                    this._fechaModificacion = fechaModificacion;
+                    this._titulo = titulo;
+                    this._contenido = contenido;
+                    this._estado = estado;
+                    this._usuario = usu;
+                }
+                public Post(int idPost, DateTime fechaCreacion, DateTime fechaModificacion, string titulo, string contenido, bool estado, Usuario usuarioCreador)
+                {
+                    this._idPost            = idPost;
+                    this._fechaCreacion     = fechaCreacion;
+                    this._fechaModificacion = fechaModificacion;
+                    this._titulo            = titulo;
+                    this._contenido         = contenido;
+                    this._estado            = estado;
+                    this._usuario           = usuarioCreador;
+                }
             // para actualizar 
                 public Post(int idPost, string titulo, string contenido)
                 {
@@ -99,6 +101,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                     this._usuario = usu;
                     this._idioma = idioma;
                 }
+            
         #endregion
     }
 }

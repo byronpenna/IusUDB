@@ -16,7 +16,7 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             public string           _observaciones;
             public Persona          _persona;
             public string           _carrera;
-            public EstadoCarrera    _estado;
+            //public EstadoCarrera    _estado;
             public NivelTitulo      _nivelTitulo;
             public AreaCarrera      _areaCarrera;
             public string           _institucion;
@@ -30,9 +30,9 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             // full atributos
                 public FormacionPersona(    int     idFormacionPersona, int     yearFin,
                                             string  observaciones,      int     idPersona,
-                                            int     idEstadoCarrera,    string  carrera,            
-                                            int     idNivelTitulo,      int     idAreaCarrera,
-                                            string  institucion,        int     idPais
+                                            string  carrera,            int     idNivelTitulo,
+                                            int     idAreaCarrera,      string  institucion,        
+                                            int     idPais
                                         )
                 {
                     // creacion de objetos
@@ -40,7 +40,6 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                         //Carrera carrera               = new Carrera(idCarrera);
                         NivelTitulo     nivelTitulo     = new NivelTitulo(idNivelTitulo);
                         AreaCarrera     areaCarrera     = new AreaCarrera(idAreaCarrera);
-                        EstadoCarrera   estadoCarrera   = new EstadoCarrera(idEstadoCarrera);
                         Pais            paisInstitucion = new Pais(idPais);
                     // asignacion
                         this._idFormacionPersona    = idFormacionPersona;
@@ -49,17 +48,16 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                         this._observaciones         = observaciones;
                         this._persona               = persona;
                         this._carrera               = carrera;
-                        this._estado                = estadoCarrera;
+                        //this._estado                = estadoCarrera;
                         this._areaCarrera           = areaCarrera;
                         this._nivelTitulo           = nivelTitulo;
-                        this._estado                = estadoCarrera;
+                        
                         this._institucion           = institucion;
                         this._paisInstitucion       = paisInstitucion;
                 }
             // para agregar 
-                public FormacionPersona(    int     yearFin,
-                                            string  observaciones,      int     idPersona,
-                                            int     idEstadoCarrera,    string  carrera,
+                public FormacionPersona(    int     yearFin,            string  observaciones,      
+                                            int     idPersona,          string  carrera,
                                             int     idNivelTitulo,      int     idAreaCarrera,
                                             string  institucion,        int     idPais
                                         )
@@ -69,16 +67,14 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                     //Carrera carrera               = new Carrera(idCarrera);
                     NivelTitulo     nivelTitulo     = new NivelTitulo(idNivelTitulo);
                     AreaCarrera     areaCarrera     = new AreaCarrera(idAreaCarrera);
-                    EstadoCarrera   estadoCarrera   = new EstadoCarrera(idEstadoCarrera);
                     Pais            paisInstitucion = new Pais(idPais);
                     // asignacion
                     this._yearFin           = yearFin;
                     this._observaciones     = observaciones;
                     this._persona           = persona;
                     this._carrera           = carrera;
-                    this._estado            = estadoCarrera;
                     this._areaCarrera       = areaCarrera;
-                    this._estado            = estadoCarrera;
+                    //this._estado            = estadoCarrera;
                     this._nivelTitulo       = nivelTitulo;
                     this._institucion       = institucion;
                     this._paisInstitucion   = paisInstitucion;

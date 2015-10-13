@@ -277,6 +277,7 @@ namespace IUSBack.Controllers
                         {
                             Idioma idioma = new Idioma(this.convertObjAjaxToInt(frm["cbIdioma"]));
                             Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession,idioma);
+                            postAgregar._descripcion = frm["txtDescripcion"].ToString();
                             Post postAgregado = this._model.sp_adminfe_noticias_publicarPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
                             //Post postAgregado = null;
                             if (postAgregado != null)
@@ -363,44 +364,57 @@ namespace IUSBack.Controllers
             }
             #region "Modificar"
                 public ActionResult sp_adminfe_noticias_modificarPost()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                frm = this.getAjaxFrmWithOutValidate();
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (frm != null && usuarioSession != null)
                 {
-                    try
+                    Dictionary<object, object> frm, respuesta = null;
+                    frm = this.getAjaxFrmWithOutValidate();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    if (frm != null && usuarioSession != null)
                     {
-                        int idPost          = this.convertObjAjaxToInt(frm["txtHdIdPost"]);
-                        int[] idCategorias  = this.convertArrAjaxToInt( (object[]) frm["cbCategorias"]);
-                        Idioma idioma       = new Idioma(this.convertObjAjaxToInt(frm["cbIdioma"]));
-                        Post postActualizar = new Post(idPost, frm["txtTitulo"].ToString(), frm["contenido"].ToString());
-                        postActualizar._idioma = idioma;
-                        string tags         = frm["tags"].ToString();
-                        bool actualizo      = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
-                        List<Tag> tagList   = this._model.sp_adminfe_noticias_updateTag(tags, idPost, usuarioSession._idUsuario, this._idPagina);
-                        List<CategoriaPost> categorias = this._model.sp_adminfe_noticias_updateCategoriaPost(idCategorias, idPost, usuarioSession._idUsuario, _idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", actualizo);
-                        respuesta.Add("tags", tagList);
+                        try
+                        {
+                            int idPost          = this.convertObjAjaxToInt(frm["txtHdIdPost"]);
+                            /*********************/
+                                //int[] idCategorias  = this.convertArrAjaxToInt( (object[]) frm["cbCategorias"]);
+                                int[] idCategorias;
+                                try
+                                {
+                                    idCategorias = this.convertArrAjaxToInt((object[])frm["cbCategorias"]);
+                                }
+                                catch (Exception)
+                                {
+                                    idCategorias = new int[1];
+                                    idCategorias[0] = this.convertObjAjaxToInt(frm["cbCategorias"]);
+                                }
+                            /*****************/
+                            Idioma idioma       = new Idioma(this.convertObjAjaxToInt(frm["cbIdioma"]));
+                            Post postActualizar = new Post(idPost, frm["txtTitulo"].ToString(), frm["contenido"].ToString());
+                            postActualizar._idioma      = idioma;
+                            postActualizar._descripcion = frm["txtDescripcion"].ToString();
+                            string tags         = frm["tags"].ToString();
+                            bool actualizo      = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
+                            List<Tag> tagList   = this._model.sp_adminfe_noticias_updateTag(tags, idPost, usuarioSession._idUsuario, this._idPagina);
+                            List<CategoriaPost> categorias = this._model.sp_adminfe_noticias_updateCategoriaPost(idCategorias, idPost, usuarioSession._idUsuario, _idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", actualizo);
+                            respuesta.Add("tags", tagList);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
                     }
-                    catch (ErroresIUS x)
+                    else
                     {
-                        ErroresIUS error = new ErroresIUS(x.Message,x.errorType,x.errorNumber,x._errorSql);
-                        respuesta = this.errorTryControlador(1, error);
+                        respuesta = this.errorEnvioFrmJSON();
                     }
-                    catch (Exception x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                        respuesta = this.errorTryControlador(2, error);
-                    }
+                    return Json(respuesta);
                 }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
             #endregion
         #endregion
     }

@@ -22,10 +22,7 @@ namespace IUSLibs.FrontUI.Eventos.Control
                 List<Evento> eventos = null;
                 Evento evento;
                 SPIUS sp = new SPIUS("sp_adminfe_front_getMonthEvents");
-                /*
-                    @			varchar(50),
-		            @	int
-                 */
+                
                 sp.agregarParametro("ip", ip);
                 sp.agregarParametro("idPagina", idPagina);
                 try

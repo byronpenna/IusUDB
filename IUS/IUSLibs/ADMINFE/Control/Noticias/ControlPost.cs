@@ -37,8 +37,9 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 foreach (DataRow row in tb[1].Rows)
                                 {
                                     usuarioCreador = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
-                                    post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(), (bool)row["estado"], usuarioCreador);
-                                    post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                    post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", (bool)row["estado"], usuarioCreador);
+                                    //post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                    post._descripcion = row["breve_descripcion"].ToString();
                                     idioma = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
                                     post._idioma = idioma;
                                     posts.Add(post);
@@ -76,6 +77,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 usu = new Usuario((int)rowResult["id_usuario_fk"]);
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
                                 post._idioma = new Idioma((int)rowResult["id_idioma_fk"]);
+                                post._descripcion = rowResult["breve_descripcion"].ToString();
                                 if (rowResult["miniatura"] != DBNull.Value)
                                 {
                                     post._miniatura = (byte[])rowResult["miniatura"];
@@ -124,6 +126,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("contenido", postActualizar._contenido);
                     sp.agregarParametro("idPost", postActualizar._idPost);
                     sp.agregarParametro("idIdioma", postActualizar._idioma._idIdioma);
+                    sp.agregarParametro("descripcion", postActualizar._descripcion);
                     sp.agregarParametro("idUsuarioEjecutor",idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     bool retorno = false;
@@ -152,6 +155,8 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("titulo", postAgregar._titulo);
                     sp.agregarParametro("contenido", postAgregar._contenido);
                     sp.agregarParametro("idIdioma", postAgregar._idioma._idIdioma);
+                    sp.agregarParametro("breveDescripcion", postAgregar._descripcion);
+                    
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -244,6 +249,43 @@ namespace IUSLibs.ADMINFE.Control.Noticias
         #endregion
         #region "front end"
             #region "get"
+                public List<Post> sp_adminfe_front_getNoticiasPagina(int pagina,int cn,string ip,int idPagina)
+                {
+                    List<Post> posts = null; Post post;
+                    SPIUS sp = new SPIUS("sp_adminfe_front_getNoticiasPagina");
+                    
+                    sp.agregarParametro("pagina", pagina);
+                    sp.agregarParametro("cn", pagina);
+
+                    sp.agregarParametro("ip", ip);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                posts = new List<Post>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    post                    = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", true, (int)row["id_usuario_fk"]);
+                                    post._usuario._usuario  = row["usuario"].ToString();
+                                    post._descripcion       = row["breve_descripcion"].ToString();
+                                }
+                            }
+                        }
+                        return posts;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public List<Post> sp_adminfe_front_getTopNoticias(int n,string lang="")
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_front_getTopNoticias");
@@ -261,8 +303,9 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             posts = new List<Post>();
                             foreach (DataRow row in tb[1].Rows)
                             {
-                                post = new Post((int)row["idPost"], row["titulo"].ToString(), row["contenido"].ToString());
-                                post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                post = new Post((int)row["idPost"], row["titulo"].ToString(),"");
+                                //post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                post._descripcion = row["breve_descripcion"].ToString();
                                 if (row["miniatura"] != System.DBNull.Value)
                                 {
                                     post._miniatura = (byte[])row["miniatura"];
