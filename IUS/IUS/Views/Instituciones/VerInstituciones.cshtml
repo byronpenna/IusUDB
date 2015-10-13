@@ -16,14 +16,17 @@
         <script src="~/Scripts/views/Instituciones/VerInstituciones/functions.js"></script>
 }
 @{
-    List<Institucion> instituciones = null;
-    List<Pais> paises = null;
+    Dictionary<object, object> objInicial = null;
+    List<Institucion> instituciones = null; List<Pais> paises = null;
+    Continente continente;
     string imgDefault               = Url.Content("~/Content/images/generales/image-color.png");
     string src                      = "";
     try
     {
-        instituciones   = (List<Institucion>)ViewBag.instituciones;
-        paises          = (List<Pais>)ViewBag.paises;
+        objInicial      = (Dictionary<object,object>)ViewBag.objIniciales;
+        instituciones   = (List<Institucion>)objInicial["instituciones"];
+        paises          = (List<Pais>)objInicial["paises"];
+        continente      = (Continente)objInicial["continente"];
     }
     catch (Exception)
     {
@@ -76,7 +79,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-7 descripcionInstitucion">
-                        <h3>@institucion._nombre</h3>
+                        <h3 class="hTituloInstitucion">@institucion._nombre</h3>
                         <div class="row marginNull">
                             <p>
                                 @institucion._direccion

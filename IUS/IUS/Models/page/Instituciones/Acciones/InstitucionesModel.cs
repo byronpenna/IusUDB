@@ -17,11 +17,14 @@ namespace IUS.Models.page.Instituciones.Acciones
         #endregion
         #region "funciones"
             #region "get"
-                public List<Institucion> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
+                public Dictionary<object,object> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
                 {
                     try
                     {
-                        return this._controlInstitucion.sp_frontui_getInstitucionesByContinente(idContinente, ip, idPagina);
+                        Dictionary<object, object> respuesta = new Dictionary<object, object>();
+                        respuesta = this._controlInstitucion.sp_frontui_getInstitucionesByContinente(idContinente, ip, idPagina);
+                        respuesta.Add("paises", this.sp_frontui_getPaisesFromContinente(idContinente, ip, idPagina));
+                        return respuesta;
                     }
                     catch (ErroresIUS x)
                     {
