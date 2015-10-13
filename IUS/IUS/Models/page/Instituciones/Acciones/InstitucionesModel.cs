@@ -32,6 +32,21 @@ namespace IUS.Models.page.Instituciones.Acciones
                         throw x;
                     }
                 }
+                public List<Pais> sp_frontui_getPaisesFromContinente(int idContinente, string ip, int idPagina)
+                {
+                    try
+                    {
+                        ControlPais controlPais = new ControlPais();
+                        return controlPais.sp_frontui_getPaisesFromContinente(idContinente, ip, idPagina);
+                    }
+                    catch (ErroresIUS x) {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
         #endregion
         #region "constructores"

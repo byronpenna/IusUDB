@@ -1,17 +1,58 @@
 ﻿@using IUSLibs.FrontUI.Entidades
 @section estilosPersonalizados{
-    <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/VerInstituciones/style.css" />
-    <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/VerInstituciones/media.css" />
+    <!-- Plugins -->
+        <!-- chosen -->
+            <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/VerInstituciones/style.css" />
+        <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/VerInstituciones/media.css" />
 }
 @section scriptsPersonalizados{
-    <script src="~/Scripts/views/Instituciones/VerInstituciones/script.js"></script>
-    <script src="~/Scripts/views/Instituciones/VerInstituciones/functions.js"></script>
+    <!-- Plugins -->
+        <!-- Chosen -->
+            <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/views/Instituciones/VerInstituciones/script.js"></script>
+        <script src="~/Scripts/views/Instituciones/VerInstituciones/functions.js"></script>
 }
 @{
-    List<Institucion> instituciones = (List<Institucion>)ViewBag.instituciones;
+    List<Institucion> instituciones = null;
+    List<Pais> paises = null;
     string imgDefault               = Url.Content("~/Content/images/generales/image-color.png");
     string src                      = "";
+    try
+    {
+        instituciones   = (List<Institucion>)ViewBag.instituciones;
+        paises          = (List<Pais>)ViewBag.paises;
+    }
+    catch (Exception)
+    {
+        
+    }
 }
+<div class="row marginNull rowFiltros">
+    <h3 class="text-center">Filtros</h3>
+    <div class="row marginNull">
+        <div class="col-lg-offset-2 col-lg-4 text-center">
+            <label>País:</label>
+            <select class="cbPais form-control">
+                <option value="-1">Todos los paises</option>
+                @if (paises != null && paises.Count > 0)
+                {
+                    foreach (Pais pais in paises)
+                    {
+                        <option value="@pais">@pais._pais</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-4 text-center">
+            <label>Nombre:</label>
+            <input class="txtNombreInstitucion form-control" />
+        </div>
+    </div>
+    
+</div>
 
 <div class="row marginNull divInstituciones">
     @if (instituciones != null && instituciones.Count > 0)
@@ -75,6 +116,12 @@
                                     }
                                 }
                                 
+                            </div>
+                        </div>
+                        <div class="row marginNull rowPais">
+                            <label>País</label>
+                            <div>
+                                @institucion._pais._pais
                             </div>
                         </div>
                     </div>

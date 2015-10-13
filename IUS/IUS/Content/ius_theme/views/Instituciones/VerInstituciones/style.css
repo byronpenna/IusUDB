@@ -1,11 +1,17 @@
 ﻿/* Instituciones */
+        .rowPais{
+            margin-top:3%;
+        }
+        .rowFiltros{
+            margin-top:5%;
+        }
     /* Descripcion general */
         .divInstituciones{
             margin-bottom:3%;
         }
         .cuadritoInstitucion{
             margin-top:5%;
-            height:250px;
+            height:280px;
         }
         .cuadritoInstitucion .descripcionInstitucion,.cuadritoInstitucion .logoInstitucion{
             height:100%;
