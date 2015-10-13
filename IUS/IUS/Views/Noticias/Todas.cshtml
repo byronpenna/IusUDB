@@ -1,1 +1,22 @@
-﻿<h2>Noticias</h2>
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/Todas/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/Todas/media.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Noticias/Todas/script.js"></script>
+    <script src="~/Scripts/views/Noticias/Todas/functions.js"></script>
+}
+@{
+    List<Post> posts = null;
+    try
+    {
+        posts = (List<Post>)ViewBag.noticiasPagina;
+    }
+    catch (Exception)
+    {
+        
+    }
+}
+
+<h2>Noticias</h2>
