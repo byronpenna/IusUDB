@@ -41,7 +41,7 @@
                 </div>
                 <p>@post._descripcion</p>
                 <div class="row marginNull text-center">
-                    <a href="@Url.Action("")">Leer noticia</a>
+                    <a href="@Url.Action("Index", "Noticias", new { id=post._idPost})">Leer noticia</a>
                 </div>
             </div>
         }
