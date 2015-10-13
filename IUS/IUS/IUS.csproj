@@ -354,6 +354,12 @@
     <Content Include="Content\third-party\bootstrap\js\bootstrap.js" />
     <Content Include="Content\third-party\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\third-party\bootstrap\js\npm.js" />
+    <Content Include="Content\third-party\chosen\css\chosen-sprite%402x.png" />
+    <Content Include="Content\third-party\chosen\css\chosen-sprite.png" />
+    <Content Include="Content\third-party\chosen\css\chosen.css" />
+    <Content Include="Content\third-party\chosen\css\chosen.min.css" />
+    <Content Include="Content\third-party\chosen\js\chosen.jquery.js" />
+    <Content Include="Content\third-party\chosen\js\chosen.jquery.min.js" />
     <Content Include="Content\third-party\cookiesjs\jquery.cookie.js" />
     <Content Include="Content\third-party\jqueryMobile\jquery.mobile-1.4.5.js" />
     <Content Include="Content\third-party\jqueryMobile\jquery.mobile-1.4.5.min.js" />

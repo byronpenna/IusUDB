@@ -55,9 +55,11 @@ namespace IUSLibs.FrontUI.Control
         #endregion
         #region "get"
             #region "frontend"
-                public List<Institucion> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
+                public Dictionary<object,object> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
                 {
+                    Dictionary<object, object> respuesta = new Dictionary<object, object>();
                     List<Institucion> instituciones = null; Institucion institucion; int idInstitucion;
+                    Continente continente=null;
                     SPIUS sp = new SPIUS("sp_frontui_getInstitucionesByContinente");
                     
                     sp.agregarParametro("idContinente", idContinente);
@@ -87,7 +89,15 @@ namespace IUSLibs.FrontUI.Control
                                     instituciones.Add(institucion);
                                 }
                             }
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                continente = new Continente((int)row["idContinente"], row["continente"].ToString());
+
+                            }
                         }
+                        respuesta.Add("continente", continente);
+                        respuesta.Add("instituciones", instituciones);
                     }
                     catch (ErroresIUS x)
                     {
@@ -97,7 +107,7 @@ namespace IUSLibs.FrontUI.Control
                     {
                         throw x;
                     }
-                    return instituciones;
+                    return respuesta;
                 }
                 public List<Institucion> sp_frontui_getInstituciones(int idUsuarioEjecutor, int idPagina)
                 {

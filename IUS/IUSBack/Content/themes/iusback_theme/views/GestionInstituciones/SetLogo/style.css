@@ -1,4 +1,7 @@
-﻿/* Input upload */
+﻿.divResultado{
+    margin-top:1%;
+}
+/* Input upload */
 .fileUpload {
     position: relative;
     overflow: hidden;
