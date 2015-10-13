@@ -18,7 +18,7 @@
 @{
     Dictionary<object, object> objInicial = null;
     List<Institucion> instituciones = null; List<Pais> paises = null;
-    Continente continente;
+    Continente continente = new Continente(-1);
     string imgDefault               = Url.Content("~/Content/images/generales/image-color.png");
     string src                      = "";
     try
@@ -34,6 +34,7 @@
     }
 }
 <div class="row marginNull rowFiltros">
+    <h2 class="text-center">@continente._continente</h2>
     <h3 class="text-center">Filtros</h3>
     <div class="row marginNull">
         <div class="col-lg-offset-2 col-lg-4 text-center">
@@ -65,6 +66,7 @@
             
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="cuadritoInstitucion">
+                    <input class="txtHdIdInstitucion hidden" value="@institucion._pais._idPais"/>
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-5 logoInstitucion pink">
                         <div>
                             @if (institucion._logo != null)
