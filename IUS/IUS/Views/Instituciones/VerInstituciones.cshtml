@@ -35,12 +35,12 @@
 }
 <div class="row marginNull rowFiltros">
     <h2 class="text-center">@continente._continente</h2>
-    <h3 class="text-center">Filtros</h3>
+    <h3 class="text-center">@ViewData["lb-filtro"]</h3>
     <div class="row marginNull">
         <div class="col-lg-offset-2 col-lg-4 text-center">
-            <label>País:</label>
+            <label>@ViewData["lb-selector-pais"]</label>
             <select class="cbPais form-control">
-                <option value="-1">Todos los paises</option>
+                <option value="-1">@ViewData["opcion-todos-paises"]</option>
                 @if (paises != null && paises.Count > 0)
                 {
                     foreach (Pais pais in paises)
@@ -51,7 +51,7 @@
             </select>
         </div>
         <div class="col-lg-4 text-center">
-            <label>Nombre:</label>
+            <label>@ViewData["lb-selector-nombre"]</label>
             <input class="txtNombreInstitucion form-control" />
         </div>
     </div>
@@ -88,11 +88,11 @@
                             </p>
                         </div>
                         <div class="row marginNull divContacto ">
-                            <h4>Contactenos</h4>
+                            <h4>@ViewData["tarjeta-titulo-contactanos"]</h4>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 @if (institucion._enlaces != null && institucion._enlaces.Count > 0)
                                 {
-                                    <h5>Enlaces: </h5>
+                                    <h5>@ViewData["tarjeta-label-enlaces"]</h5>
                                     foreach (EnlaceInstitucion enlace in institucion._enlaces)
                                     {
                                         <a href="@enlace._enlace">
@@ -112,7 +112,7 @@
                                 
                                 @if (institucion._telefonos != null && institucion._telefonos.Count > 0)
                                 {
-                                    <h5>Telefonos: </h5>
+                                    <h5>@ViewData["tarjeta-label-telefonos"] </h5>
                                     foreach (TelefonoInstitucion telefono in institucion._telefonos)
                                     {
                                         <a href="tel:+@telefono._telefono">
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         <div class="row marginNull rowPais">
-                            <label>País</label>
+                            <label>@ViewData["tarjeta-titulo-pais"]</label>
                             <div>
                                 @institucion._pais._pais
                             </div>
