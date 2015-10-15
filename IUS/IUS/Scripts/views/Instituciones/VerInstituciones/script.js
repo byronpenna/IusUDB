@@ -13,6 +13,7 @@
             })
         // change
             $(document).on("change", ".cbPais", function () {
-                
+                var idPais = $(this).val();
+                buscarPorPais(idPais);
             })
 });
