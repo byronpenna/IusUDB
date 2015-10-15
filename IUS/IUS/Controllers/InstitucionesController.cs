@@ -27,7 +27,7 @@ namespace IUS.Controllers
                     string lang = this.getUserLang();
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     string ip = Request.UserHostAddress;
-                    ViewBag.objIniciales = this._model.sp_frontui_getInstitucionesByContinente(id, ip, this.idPagina);
+                    ViewBag.objIniciales = this._model.sp_frontui_getInstitucionesByContinente(id,lang, ip, this.idPagina);
                     //ViewBag.paises = this._model.sp_frontui_getPaisesFromContinente(id, ip, this.idPagina);
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     ViewBag.menu22 = this.activeClass;

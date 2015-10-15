@@ -17,13 +17,13 @@ namespace IUS.Models.page.Instituciones.Acciones
         #endregion
         #region "funciones"
             #region "get"
-                public Dictionary<object,object> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
+                public Dictionary<object,object> sp_frontui_getInstitucionesByContinente(int idContinente,string lang,string ip,int idPagina)
                 {
                     try
                     {
                         Dictionary<object, object> respuesta = new Dictionary<object, object>();
                         respuesta = this._controlInstitucion.sp_frontui_getInstitucionesByContinente(idContinente, ip, idPagina);
-                        respuesta.Add("paises", this.sp_frontui_getPaisesFromContinente(idContinente, ip, idPagina));
+                        respuesta.Add("paises", this.sp_frontui_getPaisesFromContinente(idContinente, lang,ip, idPagina));
                         return respuesta;
                     }
                     catch (ErroresIUS x)
@@ -35,12 +35,12 @@ namespace IUS.Models.page.Instituciones.Acciones
                         throw x;
                     }
                 }
-                public List<Pais> sp_frontui_getPaisesFromContinente(int idContinente, string ip, int idPagina)
+                public List<Pais> sp_frontui_getPaisesFromContinente(int idContinente,string lang, string ip, int idPagina)
                 {
                     try
                     {
                         ControlPais controlPais = new ControlPais();
-                        return controlPais.sp_frontui_getPaisesFromContinente(idContinente, ip, idPagina);
+                        return controlPais.sp_frontui_getPaisesFromContinente(idContinente,lang,ip, idPagina);
                     }
                     catch (ErroresIUS x) {
                         throw x;

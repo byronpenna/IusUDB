@@ -36,11 +36,11 @@
         }
         else
         {
-            <div class="col-lg-12 text-center"><h4>No hay noticias para mostrar</h4></div>
+            <div class="col-lg-12 text-center"><h4>@ViewData["lb-nopost"]</h4></div>
         }
         <div class="row marginNull text-center rowTodas">
             <h3>
-                <a href="@Url.Action("Todas","Noticias")">Ver Todas</a> 
+                <a href="@Url.Action("Todas","Noticias")">@ViewData["lb-vertodos-posts"]</a> 
             </h3>
         </div>
     </div>

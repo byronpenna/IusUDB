@@ -19,12 +19,13 @@ namespace IUSLibs.FrontUI.Control
         #region "funciones"
         #region "frontend"
             #region "get"
-                public List<Pais> sp_frontui_getPaisesFromContinente(int idContinente,string ip,int idPagina)
+                public List<Pais> sp_frontui_getPaisesFromContinente(int idContinente,string lang,string ip,int idPagina)
                 {
                     List<Pais> paises = null; Pais pais;
                     SPIUS sp = new SPIUS("sp_frontui_getPaisesFromContinente");
                     
                     sp.agregarParametro("idContinente", idContinente);
+                    sp.agregarParametro("idioma", lang);
                     sp.agregarParametro("ip", ip);
                     sp.agregarParametro("idPagina", idPagina);
                     try
