@@ -372,6 +372,59 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return retorno;
                 }
+                public List<Post> sp_adminfe_front_buscarNoticias(Post postBuscar,int pagina,int cn,string idioma,string ip,int idPagina)
+                {
+                    
+                    List<Post> posts = null; Post post;
+                    SPIUS sp = new SPIUS("sp_adminfe_front_buscarNoticias");
+                    sp.agregarParametro("pagina", pagina);
+                    sp.agregarParametro("cn", cn);
+                    sp.agregarParametro("idioma",idioma);
+
+                    sp.agregarParametro("fechaIni", postBuscar._fechaInicioBusqueda);
+                    sp.agregarParametro("fechaFin", postBuscar._fechaFinBusqueda);
+                    sp.agregarParametro("titulo", postBuscar._titulo);
+                    
+                    sp.agregarParametro("ip", ip);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                posts = new List<Post>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    post = new Post((int)row["idPost"], row["titulo"].ToString(), "");
+                                    //post._contenido = post._contenido.Replace("&nbsp;", " ");
+                                    post._descripcion = row["breve_descripcion"].ToString();
+                                    if (row["miniatura"] != System.DBNull.Value)
+                                    {
+                                        post._miniatura = (byte[])row["miniatura"];
+                                    }
+                                    posts.Add(post);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return posts;
+                }
             #endregion
         #endregion
     }

@@ -66,6 +66,21 @@ namespace IUS.Models.page.Noticias.Acciones
                             throw x;
                         }
                     }
+                    public List<Post> sp_adminfe_front_buscarNoticias(Post postBuscar, int pagina, int cn, string idioma, string ip, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlPost.sp_adminfe_front_buscarNoticias(postBuscar, pagina, cn, idioma, ip, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                 #endregion
                 #region "do it"
                     public Comentario sp_frontUi_noticias_ponerComentario(Comentario comentarioAgregar,int idPagina)
