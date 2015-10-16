@@ -30,7 +30,7 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     // por el momento no habra noticias
                     ViewBag.noticias    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
-                    ViewBag.noticiasPagina = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, ip, this.idPagina);
+                    ViewBag.noticiasPagina = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
                     ViewBag.menu25          = this.activeClass;
                 }
                 catch (ErroresIUS x) {

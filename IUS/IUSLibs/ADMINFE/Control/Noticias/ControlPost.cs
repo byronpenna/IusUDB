@@ -249,13 +249,13 @@ namespace IUSLibs.ADMINFE.Control.Noticias
         #endregion
         #region "front end"
             #region "get"
-                public List<Post> sp_adminfe_front_getNoticiasPagina(int pagina,int cn,string ip,int idPagina)
+                public List<Post> sp_adminfe_front_getNoticiasPagina(int pagina,int cn,string idioma,string ip,int idPagina)
                 {
                     List<Post> posts = null; Post post;
                     SPIUS sp = new SPIUS("sp_adminfe_front_getNoticiasPagina");
-                    
                     sp.agregarParametro("pagina", pagina);
                     sp.agregarParametro("cn", cn);
+                    sp.agregarParametro("idioma", idioma);
 
                     sp.agregarParametro("ip", ip);
                     sp.agregarParametro("idPagina", idPagina);

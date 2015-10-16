@@ -45,7 +45,7 @@
                 {
                     foreach (Pais pais in paises)
                     {
-                        <option value="@pais">@pais._pais</option>
+                        <option value="@pais._idPais">@pais._pais</option>
                     }
                 }
             </select>
@@ -60,13 +60,17 @@
 
 <div class="row marginNull divInstituciones">
     @if (instituciones != null && instituciones.Count > 0)
+{
+    foreach (Institucion institucion in instituciones)
     {
-        foreach (Institucion institucion in instituciones)
-        {
-            
+        <div class="todoCuadritoInstitucion">
+
+
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="cuadritoInstitucion">
-                    <input class="txtHdIdInstitucion hidden" value="@institucion._pais._idPais"/>
+
+                    <input class="txtHdIdInstitucion hidden" value="@institucion._pais._idPais" />
+
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-5 logoInstitucion pink">
                         <div>
                             @if (institucion._logo != null)
@@ -92,35 +96,35 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 @if (institucion._enlaces != null && institucion._enlaces.Count > 0)
                                 {
-                                    <h5>@ViewData["tarjeta-label-enlaces"]</h5>
+                                <h5>@ViewData["tarjeta-label-enlaces"]</h5>
                                     foreach (EnlaceInstitucion enlace in institucion._enlaces)
                                     {
-                                        <a href="@enlace._enlace">
-                                            @enlace._nombreEnlace
-                                        </a>
+                                <a href="@enlace._enlace">
+                                    @enlace._nombreEnlace
+                                </a>
                                     }
-                                    <!--<a href="#">
-                                        www.udb.edu.sv
-                                    </a>
-                                    <a href="#">
-                                        info@udb.edu.sv
-                                    </a>-->    
+                                <!--<a href="#">
+                                    www.udb.edu.sv
+                                </a>
+                                <a href="#">
+                                    info@udb.edu.sv
+                                </a>-->
                                 }
-                                
+
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                
+
                                 @if (institucion._telefonos != null && institucion._telefonos.Count > 0)
                                 {
-                                    <h5>@ViewData["tarjeta-label-telefonos"] </h5>
+                                <h5>@ViewData["tarjeta-label-telefonos"] </h5>
                                     foreach (TelefonoInstitucion telefono in institucion._telefonos)
                                     {
-                                        <a href="tel:+@telefono._telefono">
-                                            @telefono._textoTelefono
-                                        </a>   
+                                <a href="tel:+@telefono._telefono">
+                                    @telefono._textoTelefono
+                                </a>
                                     }
                                 }
-                                
+
                             </div>
                         </div>
                         <div class="row marginNull rowPais">
@@ -132,6 +136,7 @@
                     </div>
                 </div>
             </div>
-        }
+        </div>
     }
+}
 </div>

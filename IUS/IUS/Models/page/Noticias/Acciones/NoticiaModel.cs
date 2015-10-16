@@ -51,11 +51,11 @@ namespace IUS.Models.page.Noticias.Acciones
                             throw x;
                         }
                     }
-                    public List<Post> sp_adminfe_front_getNoticiasPagina(int pagina, int cn, string ip, int idPagina)
+                    public List<Post> sp_adminfe_front_getNoticiasPagina(int pagina, int cn,string idioma, string ip, int idPagina)
                     {
                         try
                         {
-                            return this._controlPost.sp_adminfe_front_getNoticiasPagina(pagina, cn, ip, idPagina);
+                            return this._controlPost.sp_adminfe_front_getNoticiasPagina(pagina, cn, idioma,ip, idPagina);
                         }
                         catch (ErroresIUS x)
                         {
