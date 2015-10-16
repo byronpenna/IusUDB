@@ -5,6 +5,7 @@
         //var RAIZ = "http://168.243.3.62/ius/"
     // clases 
         var SUCCESS_CLASS = "successMessage", FAIL_CLASS = "failMessage";
+        var IMG_GENERALES = RAIZ + "/Content/images/generales/";
 // mensajeria 
     function getSpanMessage(clase, txt) {
         return "<span class='" + clase + "'>" + txt + "</span>";
@@ -80,7 +81,7 @@
             url: urlAjax,
             type: 'POST',
             error: function (xhr, status, error) {
-                console.log("entro a los errores");
+                consolhttp://localhost:7196/Scriptse.log("entro a los errores");
                 console.log(xhr);
                 console.log(status);
                 console.log(error);

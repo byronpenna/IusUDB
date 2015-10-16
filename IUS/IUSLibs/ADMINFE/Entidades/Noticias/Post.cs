@@ -48,6 +48,25 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                         return String.Format("{0:dd/MM/yyyy hh:mm:ss tt}", this._fechaModificacion);
                     }
                 }
+
+                public string convertMiniatura
+                {
+                    get
+                    {
+                        if (this._miniatura != null)
+                        {
+                            return Convert.ToBase64String(this._miniatura);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            #endregion
+            #region "otros"
+                public DateTime? _fechaInicioBusqueda;
+                public DateTime? _fechaFinBusqueda; // unicamente usado para las busquedas
             #endregion
         #endregion
         #region "constructores"
@@ -101,7 +120,8 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                     this._usuario = usu;
                     this._idioma = idioma;
                 }
-            
+            // para buscar
+                
         #endregion
     }
 }

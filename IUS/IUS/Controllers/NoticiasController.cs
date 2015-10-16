@@ -29,9 +29,11 @@ namespace IUS.Controllers
                     string ip = Request.UserHostAddress;
                     this.setTraduccion(traducciones);
                     // por el momento no habra noticias
-                    ViewBag.noticias    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
-                    ViewBag.noticiasPagina = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
+                    ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
+                    ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
                     ViewBag.menu25          = this.activeClass;
+                    ViewBag.numPage         = id;
+                    ViewBag.rango           = id2;
                 }
                 catch (ErroresIUS x) {
                     ErrorsController error = new ErrorsController();
@@ -82,7 +84,6 @@ namespace IUS.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
             }
-
         #endregion
         #region "acciones ajax"
             public ActionResult sp_frontUi_noticias_ponerComentario()
@@ -117,6 +118,60 @@ namespace IUS.Controllers
                     catch (Exception x)
                     {
                         ErroresIUS error = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+            public ActionResult sp_adminfe_front_buscarNoticias()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        //string ip = this.Request.ServerVariables["REMOTE_ADDR"];
+                        string ip = Request.UserHostAddress;
+                        Post postBuscar     = new Post();
+                        postBuscar._titulo  = frm["txtTituloNoticia"].ToString();
+                        string dateIni      = frm["dtpInicio"].ToString();string dateFin = frm["dtpFin"].ToString();
+                        postBuscar._fechaFinBusqueda = null;
+                        postBuscar._fechaInicioBusqueda = null;
+                        try
+                        {
+                            if (dateIni != "")
+                            {
+                                postBuscar._fechaInicioBusqueda = this.convertObjAjaxToDateTime(dateIni, "");
+                                if (dateFin != "")
+                                {
+                                    postBuscar._fechaFinBusqueda = this.convertObjAjaxToDateTime(dateFin, "");
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                        string lang      = this.getUserLang();
+                        List<Post> posts = this._model.sp_adminfe_front_buscarNoticias(postBuscar, this.convertObjAjaxToInt(frm["txtHdNumPage"]), this.convertObjAjaxToInt(frm["txtHdRango"]), lang, ip, this.idPagina);
+                        respuesta = new Dictionary<object,object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("posts", posts);
+                        
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
                         respuesta = this.errorTryControlador(2, error);
                     }
                 }

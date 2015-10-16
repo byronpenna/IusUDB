@@ -9,10 +9,13 @@
 }
 @{
     List<Post> posts = null;
+    int numPage = -1,rango=-1;
     string src = "";
     try
     {
-        posts = (List<Post>)ViewBag.noticiasPagina;
+        numPage = (int)ViewBag.numPage;
+        rango   = (int)ViewBag.rango;
+        posts   = (List<Post>)ViewBag.noticiasPagina;
     }
     catch (Exception)
     {
@@ -20,9 +23,11 @@
     }
 }
 <h2 class="text-center">Noticias</h2>
-<div class="row marginNull">
+<div class="row marginNull rowPadreParaBusqueda">
     <h3 class="text-center">Filtros</h3>
     <div class="row marginNull RowControlesFiltro">
+        <input type="hidden" name="txtHdNumPage" value="@numPage" />
+        <input type="hidden" name="txtHdRango" value="@rango" />
         <div class="col-lg-offset-3 col-lg-3">
             <div class="row marginNull">
                 <div class="col-lg-6">
@@ -35,16 +40,16 @@
                     <input type="radio" name="rbRangoFecha" value="0" />
                 </div>
             </div>
-            <input  class="form-control txtTituloNoticia"/>
+            <input name="txtTituloNoticia"  class="form-control txtTituloNoticia"/>
         </div>
         <div class="col-lg-3">
             <div class="col-lg-6">
                 <label>Fecha inicio</label>
-                <input class="form-control datePicker" placeholder="Fecha Inicio"/>
+                <input name="dtpInicio" class="form-control datePicker" placeholder="Fecha Inicio"/>
             </div>
             <div class="col-lg-6">
                 <label>Fecha fin</label>
-                <input class="form-control datePicker" placeholder="Fecha Fin" />
+                <input name="dtpFin" class="form-control datePicker" placeholder="Fecha Fin" />
             </div>
         </div>
     </div>
@@ -62,7 +67,7 @@
         {
             if (post._miniatura != null)
             {
-                src = "data:image/png;base64," + Convert.ToBase64String(post._miniatura);
+                src = "data:image/png;base64," + post.convertMiniatura; //Convert.ToBase64String(post._miniatura);
             }
             else
             {
