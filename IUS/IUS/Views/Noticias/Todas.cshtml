@@ -8,14 +8,19 @@
     <script src="~/Scripts/views/Noticias/Todas/functions.js"></script>
 }
 @{
-    List<Post> posts = null;
+    List<Post> posts = null; int cnPagina = 0;
+    bool abierto = false; string div = ""; bool mostrar = true;
+    Dictionary<object, object> noticias = null;
     int numPage = -1,rango=-1;
     string src = "";
     try
     {
-        numPage = (int)ViewBag.numPage;
-        rango   = (int)ViewBag.rango;
-        posts   = (List<Post>)ViewBag.noticiasPagina;
+        numPage     = (int)ViewBag.numPage;
+        rango       = (int)ViewBag.rango;
+        //posts   = (List<Post>)ViewBag.noticiasPagina;
+        noticias        = (Dictionary<object, object>)ViewBag.noticiasPagina;
+        posts       = (List<Post>)noticias["posts"];
+        cnPagina    = (int)noticias["cnPagina"];
     }
     catch (Exception)
     {
@@ -84,5 +89,43 @@
                 </div>
             </div>
         }
+    }
+    
+   
+</div>
+
+<div class="row marginNull">
+
+    @for (int i = 0; i < cnPagina; i++)
+    {
+        //d = i % 5;
+        if (!abierto)
+        {
+            // abrir
+            string classMostrar = "";
+            if (!mostrar)
+            {
+                classMostrar = "hidden";
+            }
+            div = "<div class='divContenedorNumeritos "+classMostrar+"'>";   
+            @(new HtmlString(div))
+            abierto = true;
+        }
+            <div class="col-lg-3 text-center">
+                @(i+1)
+            </div>
+        if ((i+1) % 4 == 0 && abierto)
+        {
+            // cierra div
+            div = "</div>";
+            mostrar = false;
+            abierto = false;
+            @(new HtmlString(div))
+        }
+    }
+    @if (abierto)
+    {
+        div = "</div>";
+        @(new HtmlString(div))
     }
 </div>
