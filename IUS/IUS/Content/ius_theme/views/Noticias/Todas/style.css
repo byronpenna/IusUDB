@@ -1,7 +1,22 @@
-﻿.RowControlesFiltro{
+﻿
+.num{
+    width:10%;
+    background:#F5F5F5;
+    color:#5BABE0;
+    margin-right:2%;
+    display:inline-block;
+    font-weight:bold;
+    padding-top:1%;
+    padding-bottom:1%;
+}
+.divContenedorNumeritos{
+    text-align:center;
+    margin-bottom:4%;
+}
+/*******************/
+.RowControlesFiltro{
     margin-top:3%;
 }
-
 .divTarjetasNoticias{
     margin-top:5%;
     margin-bottom:5%;
