@@ -10,8 +10,10 @@
                 })
             }
             target.empty().append(divPost);
+            var url = "/Noticias/todas/" + $.trim(frm.pagina) + "/" + frm.cn + "";
+            console.log("url",url);
+            window.history.pushState(0, "0", url);
         }
-
     }, function () {
         target.empty().append("\
             <div class='row text-center'>\
