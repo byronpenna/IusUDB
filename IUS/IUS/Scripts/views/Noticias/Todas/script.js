@@ -37,7 +37,8 @@
                     siguiente.addClass("grupoNumActivo");
                     siguiente.removeClass("hidden");
                 } else {
-                    console.log("D: ");
+                    //console.log("D: ");
+                    printMessage($(".divResultadoNumeritos"), "No hay mas resultados en esa dirección", false);
                 }
             })
             $(document).on("click", ".numPaginacion", function () {

@@ -102,50 +102,55 @@
         </div>
     </div>
     <div class="col-lg-4">
-        @for (int i = 0; i < cnPagina; i++)
-        {
-            //d = i % 5;
-            if (!abierto)
+        <div class="row marginNull numRow">
+            @for (int i = 0; i < cnPagina; i++)
             {
-                // abrir
-                string classMostrar = "";
-                if (!mostrar)
+                //d = i % 5;
+                if (!abierto)
                 {
-                    classMostrar = "hidden";
+                    // abrir
+                    string classMostrar = "";
+                    if (!mostrar)
+                    {
+                        classMostrar = "hidden";
+                    }
+                    else
+                    {
+                        classMostrar = "grupoNumActivo";
+                    }
+                    div = "<div class='divContenedorNumeritos " + classMostrar + "'>";
+                    @(new HtmlString(div))
+                    abierto = true;
+                }
+                if (i + 1 == numPage)
+                {
+                    activeNum = "activeNum";
                 }
                 else
                 {
-                    classMostrar = "grupoNumActivo";
+                    activeNum = "";
                 }
-                div = "<div class='divContenedorNumeritos " + classMostrar + "'>";
-                @(new HtmlString(div))
-                abierto = true;
+                <div class="num text-center @activeNum pointer numPaginacion ">
+                    @(i + 1)
+                </div>
+                if ((i + 1) % 4 == 0 && abierto)
+                {
+                    // cierra div
+                    div = "</div>";
+                    mostrar = false;
+                    abierto = false;
+                    @(new HtmlString(div))
+                }
             }
-            if (i+1 == numPage)
+            @if (abierto)
             {
-                activeNum = "activeNum";
-            }
-            else
-            {
-                activeNum = "";
-            }
-            <div class="num text-center @activeNum pointer numPaginacion ">
-                @(i + 1)
-            </div>
-            if ((i + 1) % 4 == 0 && abierto)
-            {
-                // cierra div
                 div = "</div>";
-                mostrar = false;
-                abierto = false;
                 @(new HtmlString(div))
             }
-        }
-        @if (abierto)
-        {
-            div = "</div>";
-            @(new HtmlString(div))
-        }
+        </div>
+        <div class="row divResultadoNumeritos text-center">
+
+        </div>
     </div>
     <div class="col-lg-4">
         <div class="num text-center flecha flechaRight pointer">
