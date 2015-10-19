@@ -21,6 +21,10 @@ namespace IUS.Controllers
         #region "acciones url"
             public ActionResult Todas(int id=1,int id2=12)
             {
+                /*
+                 id:    pagina que se desea visualizar
+                 id2:   elementos a mostrar
+                 */
                 List<LlaveIdioma> traducciones;
                 try
                 {
@@ -86,6 +90,23 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_adminfe_front_getNoticiasPagina()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    string lang = this.getUserLang();
+                    string ip   = Request.UserHostAddress;
+                    respuesta = this._model.sp_adminfe_front_getNoticiasPagina(this.convertObjAjaxToInt(frm["pagina"]), this.convertObjAjaxToInt(frm["cn"]), lang, ip, this.idPagina);
+                    respuesta.Add("estado", true);
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_frontUi_noticias_ponerComentario()
             {
                 Dictionary<object, object> frm, respuesta;
@@ -157,11 +178,14 @@ namespace IUS.Controllers
                         {
 
                         }
-                        string lang      = this.getUserLang();
-                        List<Post> posts = this._model.sp_adminfe_front_buscarNoticias(postBuscar, this.convertObjAjaxToInt(frm["txtHdNumPage"]), this.convertObjAjaxToInt(frm["txtHdRango"]), lang, ip, this.idPagina);
+                        string lang = this.getUserLang();
+                        respuesta   = this._model.sp_adminfe_front_buscarNoticias(postBuscar, this.convertObjAjaxToInt(frm["txtHdNumPage"]), this.convertObjAjaxToInt(frm["txtHdRango"]), lang, ip, this.idPagina);
+                        respuesta.Add("estado", true);
+                        /*List<Post> posts = (List<Post>)objPosts["posts"];
                         respuesta = new Dictionary<object,object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("posts", posts);
+                        respuesta.Add("")*/
                         
                     }
                     catch (ErroresIUS x)
