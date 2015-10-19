@@ -1,4 +1,4 @@
-﻿function paginacionNormal(frm) {
+﻿function paginacionNormal(frm,target) {
     actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_front_getNoticiasPagina", frm, function (data) {
         console.log(data);
         var divPost = "";
@@ -32,7 +32,7 @@ function numPaginacion(frm) {
         console.log("url", url);
         window.history.pushState(0, "0", url);
     } else {
-        paginacionNormal(frm);
+        paginacionNormal(frm,target);
     }
 }
 function getDivPost(post) {
