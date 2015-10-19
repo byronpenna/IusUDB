@@ -14,12 +14,30 @@
             })
             
             $(document).on("click", ".flecha", function () {
-                var padre = $(this).parents(".divContenedorNumeros");
-                var target = target.find(".grupoNumActivo");
+                var padre       = $(this).parents(".divContenedorNumeros");
+                var target      = padre.find(".grupoNumActivo");
+                var siguiente   = null;
+                
+                
                 if ($(this).hasClass("fechaLeft")) {
+                    /*console.log(target.prev())
+                    target.prev().addClass("grupoNumActivo");*/
+                    siguiente = target.prev();
+                } else if ($(this).hasClass("flechaRight")) {
+                    /*console.log(target.next())
+                    target.next().addClass("grupoNumActivo");*/
+                    siguiente = target.next();
+                }
+                console.log(siguiente);
+                console.log(siguiente.hasClass("divContenedorNumeritos"));
+                if (siguiente.hasClass("divContenedorNumeritos")) {
+                    target.addClass("hidden");
+                    target.removeClass("grupoNumActivo");
 
-                } else if($(this).hasClass("")){
-
+                    siguiente.addClass("grupoNumActivo");
+                    siguiente.removeClass("hidden");
+                } else {
+                    console.log("D: ");
                 }
             })
             $(document).on("click", ".numPaginacion", function () {
