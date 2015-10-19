@@ -178,11 +178,14 @@ namespace IUS.Controllers
                         {
 
                         }
-                        string lang      = this.getUserLang();
-                        List<Post> posts = this._model.sp_adminfe_front_buscarNoticias(postBuscar, this.convertObjAjaxToInt(frm["txtHdNumPage"]), this.convertObjAjaxToInt(frm["txtHdRango"]), lang, ip, this.idPagina);
+                        string lang = this.getUserLang();
+                        respuesta   = this._model.sp_adminfe_front_buscarNoticias(postBuscar, this.convertObjAjaxToInt(frm["txtHdNumPage"]), this.convertObjAjaxToInt(frm["txtHdRango"]), lang, ip, this.idPagina);
+                        respuesta.Add("estado", true);
+                        /*List<Post> posts = (List<Post>)objPosts["posts"];
                         respuesta = new Dictionary<object,object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("posts", posts);
+                        respuesta.Add("")*/
                         
                     }
                     catch (ErroresIUS x)

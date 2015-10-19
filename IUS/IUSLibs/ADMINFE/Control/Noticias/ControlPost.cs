@@ -380,9 +380,10 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return retorno;
                 }
-                public List<Post> sp_adminfe_front_buscarNoticias(Post postBuscar,int pagina,int cn,string idioma,string ip,int idPagina)
+                public Dictionary<object,object> sp_adminfe_front_buscarNoticias(Post postBuscar,int pagina,int cn,string idioma,string ip,int idPagina)
                 {
-                    
+
+                    Dictionary<object, object> retorno = new Dictionary<object, object>();
                     List<Post> posts = null; Post post;
                     SPIUS sp = new SPIUS("sp_adminfe_front_buscarNoticias");
                     sp.agregarParametro("pagina", pagina);
@@ -398,6 +399,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        int i = 0;
                         if (this.resultadoCorrectoGet(tb))
                         {
                             if (tb[0].Rows.Count > 0)
@@ -415,6 +417,12 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                     posts.Add(post);
                                 }
                             }
+                            if(tb[1].Rows.Count > 0){
+                                DataRow row = tb[1].Rows[0];
+                                i = (int)row["numPage"];
+                            }
+                            retorno.Add("posts", posts);
+                            retorno.Add("numPage", i);
                         }
                         else
                         {
@@ -431,7 +439,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     {
                         throw x;
                     }
-                    return posts;
+                    return retorno;
                 }
             #endregion
         #endregion
