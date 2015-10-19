@@ -100,6 +100,8 @@
                             var frm = {}; var ops = "";
                             var selectedPais = tr.find(".txtHdIdPais").val();
                             console.log("selected pais", selectedPais);
+                            tr.find(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
+                            console.log("intento poner chosen");
                             actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getPaises", frm, function (data) {
                                 console.log("data pais", data)
                                 var selected = false;
