@@ -1,4 +1,7 @@
-﻿
+﻿.activeNum{
+    background:#5BABE0 !important;
+    color:#F5F5F5 !important;
+}
 .num{
     width:10%;
     background:#F5F5F5;
