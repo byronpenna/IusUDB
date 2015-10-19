@@ -1,5 +1,4 @@
-﻿function numPaginacion(frm) {
-    var target = $(".divTarjetasNoticias");
+﻿function paginacionNormal(frm) {
     actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_front_getNoticiasPagina", frm, function (data) {
         console.log(data);
         var divPost = "";
@@ -11,7 +10,7 @@
             }
             target.empty().append(divPost);
             var url = "/Noticias/todas/" + $.trim(frm.pagina) + "/" + frm.cn + "";
-            console.log("url",url);
+            console.log("url", url);
             window.history.pushState(0, "0", url);
         }
     }, function () {
@@ -21,6 +20,20 @@
             </div>\
         ")
     })
+}
+function numPaginacion(frm) {
+    var target = $(".divTarjetasNoticias");
+    if ($(".txtHdBuscando").val() == 1) {
+        $(".txtHdNumPage").val(frm.pagina);
+        $(".txtHdRango").val(frm.cn);
+        $(".btnBuscar").click();
+        //---
+        var url = "/Noticias/todas/" + $.trim(frm.pagina) + "/" + frm.cn + "";
+        console.log("url", url);
+        window.history.pushState(0, "0", url);
+    } else {
+        paginacionNormal(frm);
+    }
 }
 function getDivPost(post) {
     var srcImg = IMG_GENERALES+"image.png";
@@ -46,9 +59,9 @@ function getDivPost(post) {
         </div>";
     return div;
 }
-function getNums(num) {
+function getNums(num,numPage) {
     var i; var classMostrar = "";
-    var div = ""; var abierto = false;
+    var div = ""; var abierto = false; var activeNum = "";
     for (i = 0; i < num; i++) {
         if (!abierto) {
             if (i == 0) {
@@ -59,8 +72,13 @@ function getNums(num) {
             div += "<div class='divContenedorNumeritos " + classMostrar + "'>";
             abierto = true;
         }
+        if (i + 1 == numPage) {
+            activeNum = "activeNum";
+        } else {
+            activeNum = "";
+        }
         div += "\
-            <div class='num text-center pointer numPaginacion '>\
+            <div class='num text-center "+activeNum+" pointer numPaginacion '>\
                 "+(i + 1)+"\
             </div>\
         "
@@ -74,7 +92,7 @@ function getNums(num) {
     }
     return div;
 }
-function btnBuscar(frm) {
+function btnBuscar(frm,btn) {
     actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_front_buscarNoticias", frm, function (data) {
         console.log("la data despues de buscar es:",data);
         var posts = "";
@@ -86,8 +104,11 @@ function btnBuscar(frm) {
             }
         }
         $(".divTarjetasNoticias").empty().append(posts);
-        var divNums = getNums(data.numPage);
+        var divNums = getNums(data.numPage, frm.txtHdNumPage);
         $(".numRow").empty().append(divNums);
+
+        btn.empty().append("Cancelar busqueda");
+        $(".txtHdBuscando").val(1);
     }, function () {
         $(".divTarjetasNoticias").empty().append("\
             <div class='row text-center'>\

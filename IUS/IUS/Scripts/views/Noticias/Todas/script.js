@@ -9,8 +9,9 @@
             //$(".rowPadreParaBusqueda")
             $(document).on("click",".btnBuscar",function(){
                 var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
-                console.log("form enviado a la hora de buscar",frm);
-                btnBuscar(frm);
+                console.log("form enviado a la hora de buscar", frm);
+                
+                btnBuscar(frm,$(this));
             })
             
             $(document).on("click", ".flecha", function () {
