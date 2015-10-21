@@ -47,6 +47,36 @@ namespace IUSBack.Controllers.Website
                 return View();
             }
         #endregion
+        #region "genericos"
+            public Dictionary<object, object> getArrElementosBusqueda(Dictionary<object,object> frm)
+            {
+                Dictionary<object, object> retorno = new Dictionary<object, object>();
+                // variables arr
+                int[] rubros = null; int[] areas = null;
+                int[] niveles = null;
+                // variables string 
+                string strRubros=null; string strAreas=null; string strNiveles= null;
+                if (frm.Keys.Contains("cbRubros"))
+                {
+                    rubros = this.convertArrAjaxToInt(frm["cbNiveles"]);
+                    strRubros = string.Join(",", rubros);
+                }
+                if (frm.Keys.Contains("cbAreas"))
+                {
+                    areas = this.convertArrAjaxToInt(frm["cbAreas"]);
+                    strAreas = string.Join(",", areas);
+                }
+                if (frm.Keys.Contains("cbNiveles"))
+                {
+                    niveles = this.convertArrAjaxToInt(frm["cbNiveles"]);
+                    strNiveles = string.Join(",",niveles);
+                }
+                retorno.Add("rubros", rubros);
+                retorno.Add("areas", strAreas);
+                retorno.Add("niveles", strNiveles);
+                return retorno;
+            }
+        #endregion
         #region "acciones ajax"
             public ActionResult sp_rrhh_buscarPersonas()
             {
@@ -57,10 +87,12 @@ namespace IUSBack.Controllers.Website
                     frm = this.getAjaxFrm();
                     if (usuarioSession != null && frm != null)
                     {
-                        if (frm.Keys.Contains("cbNiveles"))
-                        {
-                            int[] actividades = this.convertArrAjaxToInt(frm["cbNiveles"]);
-                        }
+                        Dictionary<object, object> objetos = new Dictionary<object, object>();
+                        objetos = this.getArrElementosBusqueda(frm);
+                        List<Persona> personas = this._model.sp_rrhh_buscarPersonas(objetos, frm["txtCarrera"].ToString(), null, usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("personas", personas);
                     }
                 }
                 catch (ErroresIUS x)
