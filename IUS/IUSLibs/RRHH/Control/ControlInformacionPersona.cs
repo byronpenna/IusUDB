@@ -114,6 +114,53 @@ namespace IUSLibs.RRHH.Control
                 }
                 return retorno;
             }
+            // la pondremos aqui porq no hay otro lugar para ubicarla
+            public List<Persona> sp_rrhh_buscarPersonas(
+                    string niveles, string areas,
+                    string carrera, string rubros,
+                    string cargos,  int idUsuarioEjecutor,
+                    int idPagina
+            )
+            {
+                List<Persona> personas = null;
+                Persona persona;
+                SPIUS sp = new SPIUS("sp_rrhh_getInformacionPersonas");
+                
+                sp.agregarParametro("niveles", niveles);
+                sp.agregarParametro("areas", areas);
+                sp.agregarParametro("carrera", carrera);
+
+                sp.agregarParametro("rubros", rubros);
+                sp.agregarParametro("cargos", cargos);
+
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            foreach (DataRow row in tb[0].Rows)
+                            {
+                                persona         = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                                persona._sexo   = new Sexo((int)row["id_sexo_fk"]);
+                                personas.Add(persona);
+                            }
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return personas;
+            }
         #endregion
         #region "do"
             public InformacionPersona sp_rrhh_setFotoInformacionPersona(InformacionPersona info,int idUsuarioEjecutor,int idPagina)
