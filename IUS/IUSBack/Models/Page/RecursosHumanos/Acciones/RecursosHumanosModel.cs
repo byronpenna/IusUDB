@@ -10,6 +10,7 @@ using System.Web;
     // entidades
         using IUSLibs.RRHH.Entidades.Formacion;
         using IUSLibs.RRHH.Entidades;
+        using IUSLibs.SEC.Entidades;
     // control
         using IUSLibs.RRHH.Control.Formacion;
         using IUSLibs.FrontUI.Control;
@@ -27,6 +28,27 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                 
             #endregion
             #region "get"
+                public List<Persona> sp_rrhh_buscarPersonas(
+                        string niveles, string areas,
+                        string carrera, string rubros,
+                        string cargos,  int idUsuarioEjecutor,
+                        int idPagina
+                )
+                {
+                    try
+                    {
+                        ControlInformacionPersona control = new ControlInformacionPersona();
+                        return control.sp_rrhh_buscarPersonas(niveles, areas, carrera, rubros, cargos, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Dictionary<object, object> cargaInicial(int idUsuarioEjecutor,int idPagina)
                 {
                     Dictionary<object, object> respuesta = null;
@@ -64,6 +86,7 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                         throw x;
                     }
                 }
+                
                 /*public List<NivelTitulo> sp_rrhh_getNivelesCarreras(int idUsuarioEjecutor, int idPagina)
                 {
                     try

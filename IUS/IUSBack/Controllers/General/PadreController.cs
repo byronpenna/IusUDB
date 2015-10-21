@@ -216,6 +216,42 @@ namespace IUSBack.Controllers
             }
             #region "conversiones"
                 #region "arrays"
+                    public int[] convertArrAjaxToInt(Object frm)
+                    {
+                        int[] toReturn = null;
+                        int ln;
+                        object[] x = null;
+                        try
+                        {
+                            x  = (object[])frm;
+                            ln = x.Length;
+                        }
+                        catch (Exception) {
+                            ln = 1;
+                        }
+                        toReturn = new int[ln];
+                        if (x != null)
+                        {
+                            int cn = 0;
+                            foreach (object obj in x)
+                            {
+                                toReturn[cn] = Convert.ToInt32(obj);
+                                cn++;
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                toReturn[0] = this.convertObjAjaxToInt(frm);
+                            }
+                            catch (Exception)
+                            {
+
+                            }
+                        }
+                        return toReturn;
+                    }
                     public int[] convertArrAjaxToInt(Object[] frm)
                     {
                         int[] toReturn = new int[frm.Length];
