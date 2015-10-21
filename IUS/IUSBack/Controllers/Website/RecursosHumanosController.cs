@@ -58,7 +58,7 @@ namespace IUSBack.Controllers.Website
                 string strRubros=null; string strAreas=null; string strNiveles= null;
                 if (frm.Keys.Contains("cbRubros"))
                 {
-                    rubros = this.convertArrAjaxToInt(frm["cbNiveles"]);
+                    rubros = this.convertArrAjaxToInt(frm["cbRubros"]);
                     strRubros = string.Join(",", rubros);
                 }
                 if (frm.Keys.Contains("cbAreas"))
@@ -71,7 +71,7 @@ namespace IUSBack.Controllers.Website
                     niveles = this.convertArrAjaxToInt(frm["cbNiveles"]);
                     strNiveles = string.Join(",",niveles);
                 }
-                retorno.Add("rubros", rubros);
+                retorno.Add("rubros", strRubros);
                 retorno.Add("areas", strAreas);
                 retorno.Add("niveles", strNiveles);
                 return retorno;
