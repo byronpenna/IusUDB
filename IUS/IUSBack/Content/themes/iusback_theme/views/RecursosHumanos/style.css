@@ -17,3 +17,19 @@
 .tablaPersona{
     margin-top:3%;
 }
+
+.btnBusquedaPerfil{
+    margin-bottom:5%;
+}
+
+/*Encabezado ficha*/
+.divEncabezadoFicha{
+    margin-top:5%;
+}
+.fotoEncabezadoFicha{
+    margin-top:3%;
+}
+.divEncabezadoFicha .informacionBasica{
+    padding-left:4%;
+    padding-top:4%;
+}
