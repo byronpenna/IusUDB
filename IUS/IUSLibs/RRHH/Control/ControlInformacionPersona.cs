@@ -116,16 +116,42 @@ namespace IUSLibs.RRHH.Control
             }
             // la pondremos aqui porq no hay otro lugar para ubicarla
             public List<Persona> sp_rrhh_buscarPersonas(
-                    string niveles, string areas,
+                    /*string niveles, string areas,
                     string carrera, string rubros,
                     string cargos,  int idUsuarioEjecutor,
-                    int idPagina
+                    int idPagina*/
+                    Dictionary<object, object> strArrElements, string carrera,
+                    string cargos, int idUsuarioEjecutor, int idPagina
             )
             {
                 List<Persona> personas = null;
                 Persona persona;
-                SPIUS sp = new SPIUS("sp_rrhh_getInformacionPersonas");
-                
+                SPIUS sp = new SPIUS("sp_rrhh_buscarPersonas");
+                string niveles = null; string areas = null; string rubros = null;
+                if(strArrElements["niveles"] != null){
+                    niveles = strArrElements["niveles"].ToString();
+                }
+                if(strArrElements["areas"] != null){
+                    areas = strArrElements["areas"].ToString();
+                }
+                if (strArrElements["rubros"] != null)
+                {
+                    rubros = strArrElements["rubros"].ToString();
+                }
+                /*
+                 -- formacion 
+	                @niveles				varchar(500),
+	                @areas					varchar(500),
+	                @carrera				varchar(500), -- independiente de tablitas 
+	
+	                -- profesional
+	                @rubros					varchar(500),
+	                @cargos					varchar(500),
+	                -- seguridad 
+	                @idUsuarioEjecutor		int,
+	                @idPagina				int
+                 */
+
                 sp.agregarParametro("niveles", niveles);
                 sp.agregarParametro("areas", areas);
                 sp.agregarParametro("carrera", carrera);
@@ -142,6 +168,7 @@ namespace IUSLibs.RRHH.Control
                     {
                         if (tb[0].Rows.Count > 0)
                         {
+                            personas = new List<Persona>();
                             foreach (DataRow row in tb[0].Rows)
                             {
                                 persona         = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);

@@ -29,16 +29,19 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
             #endregion
             #region "get"
                 public List<Persona> sp_rrhh_buscarPersonas(
-                        string niveles, string areas,
-                        string carrera, string rubros,
+                        /*string *niveles, *string areas,
+                        string carrera, *string rubros,
                         string cargos,  int idUsuarioEjecutor,
-                        int idPagina
+                        int idPagina*/
+                    Dictionary<object, object> strArrElements, string carrera,
+                    string cargos,int idUsuarioEjecutor,int idPagina
+
                 )
                 {
                     try
                     {
                         ControlInformacionPersona control = new ControlInformacionPersona();
-                        return control.sp_rrhh_buscarPersonas(niveles, areas, carrera, rubros, cargos, idUsuarioEjecutor, idPagina);
+                        return control.sp_rrhh_buscarPersonas(strArrElements, carrera, cargos, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {
