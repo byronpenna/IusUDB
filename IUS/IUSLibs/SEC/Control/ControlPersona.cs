@@ -10,6 +10,9 @@ using System.Text;
     using IUSLibs.BaseDatos;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    // recursos humanos
+    using IUSLibs.RRHH.Entidades.Formacion;
+    using IUSLibs.RRHH.Entidades.Laboral;
 namespace IUSLibs.SEC.Control
 {
     public class ControlPersona:PadreLib
@@ -177,6 +180,77 @@ namespace IUSLibs.SEC.Control
                         }
                     }
                     return personas;
+                }
+                // recursos humanos 
+                public Dictionary<object, object> sp_rrhh_detallePesona(int idPersona,int idUsuarioEjecutor,int idPagina)
+                {
+                    // variables 
+                        Dictionary<object, object> retorno = new Dictionary<object, object>();
+                        List<FormacionPersona> formaciones=null; List<LaboralPersona> laborales=null; List<Persona> personas = null;
+                        FormacionPersona formacion; LaboralPersona laboral; Persona persona;
+                    // do it 
+                        SPIUS sp = new SPIUS("sp_rrhh_detallePesona");
+                        sp.agregarParametro("idPersona", idPersona);
+                        sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                        sp.agregarParametro("idPagina", idPagina);
+                        try
+                        {
+                            DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                            if (this.resultadoCorrectoGet(tb))
+                            {
+                                if (tb[0].Rows.Count > 0)
+                                {
+                                    //Personas
+                                    personas = new List<Persona>();
+                                    foreach (DataRow row in tb[0].Rows)
+                                    {
+                                        persona         = new Persona((int)row["idPersona"],row["nombres"].ToString(),row["apellidos"].ToString(),(DateTime)row["fecha_nacimiento"]);
+                                        persona._sexo   = new Sexo((int)row["id_sexo_fk"], row["sexo"].ToString());
+                                        personas.Add(persona);
+                                    }
+                                }
+                                if (tb[1].Rows.Count > 0)
+                                {
+                                    //Formacion
+                                    formaciones = new List<FormacionPersona>();
+                                    foreach (DataRow row in tb[1].Rows)
+                                    {
+                                        formacion = new FormacionPersona((int)row["idFormacionPersona"], row["observaciones"].ToString(), (int)row["id_persona_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"], row["institucion"].ToString(), (int)row["id_paisinstitucion_fk"]);
+                                        formaciones.Add(formacion);
+                                    }
+                                }
+                                if (tb[2].Rows.Count > 0)
+                                {
+                                    //Laboral
+                                    laborales = new List<LaboralPersona>();
+                                    foreach (DataRow row in tb[2].Rows)
+                                    {
+                                        laboral = new LaboralPersona((int)row["idLaboralPersona"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], row["observaciones"].ToString(), (int)row["id_cargo_fk"]);
+                                        laboral._cargo._cargo = row["cargo"].ToString();
+                                        laboral._empresa._nombre = row["empresa"].ToString();
+                                        laborales.Add(laboral);
+                                    }
+                                }
+                                retorno.Add("personas", personas);
+                                retorno.Add("formaciones", formaciones);
+                                retorno.Add("laborales", laborales);
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    return retorno;
                 }
             #endregion
         #endregion

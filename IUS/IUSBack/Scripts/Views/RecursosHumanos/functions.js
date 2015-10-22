@@ -2,9 +2,12 @@
 function getTrPersonas(persona) {
     var tr = "\
         <tr>\
+            <td class='hidden'>\
+                <input type='text' name='txtHdIdPersona' class='txtHdIdPersona' value='" + persona._idPersona + "'>\
+            </td>\
             <td>" + persona.nombreCompleto + "</td>\
             <td>\
-                <a href='#' class='btn'>Ver ficha</a>\
+                <button class='btn btnVerFicha'>Ver ficha</button>\
             </td>\
         </tr>";
     return tr;
@@ -24,27 +27,33 @@ function getTrPersonasNull(loadIcon) {
     return tr;
 }
 // acciones script 
-function btnBusquedaPerfil(frm) {
-    var target = $(".tbodyPersonas");
-    actualizarCatalogo(RAIZ + "/RecursosHumanos/sp_rrhh_buscarPersonas", frm, function (data) {
-        console.log("La data devuelta es", data);
-        if (data.estado) {
-            var tr = getTrPersonasNull();
-            if (data.personas !== undefined && data.personas != null && data.personas.length > 0) {
-                console.log("entro aqui");
-                tr = "";
-                $.each(data.personas, function (i,persona) {
-                    tr += getTrPersonas(persona);
-                })
+    function btnVerFicha(frm) {
+        actualizarCatalogo(RAIZ + "/RecursosHumanos/sp_rrhh_detallePesona", frm, function (data) {
+            console.log("respuesta de servidor", data);
+
+        })
+    }
+    function btnBusquedaPerfil(frm) {
+        var target = $(".tbodyPersonas");
+        actualizarCatalogo(RAIZ + "/RecursosHumanos/sp_rrhh_buscarPersonas", frm, function (data) {
+            console.log("La data devuelta es", data);
+            if (data.estado) {
+                var tr = getTrPersonasNull();
+                if (data.personas !== undefined && data.personas != null && data.personas.length > 0) {
+                    console.log("entro aqui");
+                    tr = "";
+                    $.each(data.personas, function (i,persona) {
+                        tr += getTrPersonas(persona);
+                    })
+                } else {
+                    console.log("D: no entro");
+                }
+                target.empty().append(tr);
             } else {
-                console.log("D: no entro");
+                alert("Ocurrio un error");
             }
+        }, function () {
+            var tr = getTrPersonasNull(true);
             target.empty().append(tr);
-        } else {
-            alert("Ocurrio un error");
-        }
-    }, function () {
-        var tr = getTrPersonasNull(true);
-        target.empty().append(tr);
-    })
-}
+        })
+    }

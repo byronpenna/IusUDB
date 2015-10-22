@@ -12,8 +12,10 @@ using System.Web;
         using IUSLibs.RRHH.Entidades;
         using IUSLibs.SEC.Entidades;
     // control
-        using IUSLibs.RRHH.Control.Formacion;
+        using IUSLibs.SEC.Control;
         using IUSLibs.FrontUI.Control;
+        // recursos humanos
+        using IUSLibs.RRHH.Control.Formacion;
         using IUSLibs.RRHH.Control;
         using IUSLibs.RRHH.Control.Laboral;
 namespace IUSBack.Models.Page.RecursosHumanos.Acciones
@@ -89,7 +91,22 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                         throw x;
                     }
                 }
-                
+                public Dictionary<object, object> sp_rrhh_detallePesona(int idPersona, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        ControlPersona control = new ControlPersona();
+                        return control.sp_rrhh_detallePesona(idPersona, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 /*public List<NivelTitulo> sp_rrhh_getNivelesCarreras(int idUsuarioEjecutor, int idPagina)
                 {
                     try
