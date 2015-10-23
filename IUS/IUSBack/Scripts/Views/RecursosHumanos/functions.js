@@ -68,11 +68,27 @@
                 }
                 if (data.persona !== undefined && data.laborales != null && data.laborales.length > 0) {
                     $(".hNombreCompleto").empty().append(data.persona.nombreCompleto);
-                    $(".spanSexo").empty().append(data._sexo._sexo);
-                    $(".spanEdad").empty().append(data.getEdad);
-                    $(".spanNombrePais").empty().append();
+                    $(".spanSexo").empty().append(data.persona._sexo._sexo);
+                    $(".spanEdad").empty().append(data.persona.getEdad);
+                }
+                if (data.infoPersona !== undefined && data.infoPersona != null) {
+                    console.log("entro aqui D: ");
+                    var strFoto = "";
+                    if (data.infoPersona._fotoRuta !== undefined && data.infoPersona._fotoRuta != null && data.infoPersona._fotoRuta != "") {
+                        strFoto = data.infoPersona._fotoRuta;
+                    } else {
+                        strFoto = IMG_GENERALES + "profle.png";
+                    }
+                    $(".fotoPrincipalFicha").attr("src", strFoto);
+                    if (data.infoPersona._estadoCivil !== undefined && data.infoPersona._estadoCivil !== null) {
+                        $(".spanEstadoCivil").empty().append(data.infoPersona._estadoCivil._estadoCivil);
+                    }
+                    if (data.infoPersona._pais !== undefined && data.infoPersona._pais != null) {
+                        $(".spanNombrePais").empty().append(data.infoPersona._pais._pais);
+                    }
                     
-                    
+                } else {
+                    $(".fotoPrincipalFicha").attr("src",IMG_GENERALES + "profle.png");
                 }
                 console.log(trLaboral);
                 targetLaboral.empty().append(trLaboral);

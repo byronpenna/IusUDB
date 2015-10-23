@@ -33,7 +33,9 @@
     padding-left:4%;
     padding-top:4%;
 }
-
+.fotoPrincipalFicha{
+    width:50%;
+}
 /* Cuerpo ficha */
 .tituloCuerpoInformacion{
     margin-top:2%;
