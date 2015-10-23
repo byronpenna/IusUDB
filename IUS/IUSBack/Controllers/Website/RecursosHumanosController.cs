@@ -87,8 +87,7 @@ namespace IUSBack.Controllers.Website
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    /*if (usuarioSession != null && frm != null)
-                    {*/
+                    
                     respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                     if (respuesta == null)
                     {
@@ -104,11 +103,6 @@ namespace IUSBack.Controllers.Website
                         respuesta["infoPersona"] = informarcionPersona;
                         respuesta.Add("estado", true);
                     }
-                    /*}
-                    else
-                    {
-                        respuesta = errorEnvioFrmJSON();
-                    }*/
                 }
                 catch (ErroresIUS x)
                 {
