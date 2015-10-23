@@ -5,7 +5,14 @@
         $(".cbChosenInstitucion").chosen({ no_results_text: "No se a encontrado institucion", width: '100%' });
         
     // eventos 
+        // doble click  
+            $(document).on("dblclick", ".titlePersona", function (e) {
+                controlesEdit(true, $(this).parents(".divTituloNombre"));
+            })
         // click 
+            $(document).on("click", ".icoVolverAnombre", function () {
+                controlesEdit(false, $(this).parents(".divTituloNombre"));
+            })
             $(document).on("click", ".icoVista", function (e) {
                 e.preventDefault();
                 $(".divTab").addClass("hidden");
