@@ -13,6 +13,7 @@ using System.Text;
     // recursos humanos
     using IUSLibs.RRHH.Entidades.Formacion;
     using IUSLibs.RRHH.Entidades.Laboral;
+    using IUSLibs.RRHH.Entidades;
 namespace IUSLibs.SEC.Control
 {
     public class ControlPersona:PadreLib
@@ -186,8 +187,9 @@ namespace IUSLibs.SEC.Control
                 {
                     // variables 
                         Dictionary<object, object> retorno = new Dictionary<object, object>();
-                        List<FormacionPersona> formaciones=null; List<LaboralPersona> laborales=null; List<Persona> personas = null;
-                        FormacionPersona formacion; LaboralPersona laboral; Persona persona;
+                        List<FormacionPersona> formaciones=null; List<LaboralPersona> laborales=null;
+                        FormacionPersona formacion; LaboralPersona laboral; Persona persona = null;
+                        InformacionPersona infoPersona;
                     // do it 
                         SPIUS sp = new SPIUS("sp_rrhh_detallePesona");
                         sp.agregarParametro("idPersona", idPersona);
@@ -201,13 +203,10 @@ namespace IUSLibs.SEC.Control
                                 if (tb[0].Rows.Count > 0)
                                 {
                                     //Personas
-                                    personas = new List<Persona>();
-                                    foreach (DataRow row in tb[0].Rows)
-                                    {
-                                        persona         = new Persona((int)row["idPersona"],row["nombres"].ToString(),row["apellidos"].ToString(),(DateTime)row["fecha_nacimiento"]);
-                                        persona._sexo   = new Sexo((int)row["id_sexo_fk"], row["sexo"].ToString());
-                                        personas.Add(persona);
-                                    }
+                                    DataRow row = tb[0].Rows[0];
+                                    persona         = new Persona((int)row["idPersona"],row["nombres"].ToString(),row["apellidos"].ToString(),(DateTime)row["fecha_nacimiento"]);
+                                    persona._sexo   = new Sexo((int)row["id_sexo_fk"], row["sexo"].ToString());
+                                    
                                 }
                                 if (tb[1].Rows.Count > 0)
                                 {
@@ -216,6 +215,7 @@ namespace IUSLibs.SEC.Control
                                     foreach (DataRow row in tb[1].Rows)
                                     {
                                         formacion = new FormacionPersona((int)row["idFormacionPersona"], row["observaciones"].ToString(), (int)row["id_persona_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"], row["institucion"].ToString(), (int)row["id_paisinstitucion_fk"]);
+                                        formacion._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
                                         formaciones.Add(formacion);
                                     }
                                 }
@@ -231,7 +231,22 @@ namespace IUSLibs.SEC.Control
                                         laborales.Add(laboral);
                                     }
                                 }
-                                retorno.Add("personas", personas);
+                                if (tb[3].Rows.Count > 0)
+                                {
+                                    DataRow row = tb[3].Rows[0];
+                                    // tomar en cuenta los nulos
+                                    infoPersona = new InformacionPersona((int)row["idInformacionPersona"]);
+                                    if (row["numero_identificacion"] != DBNull.Value)
+                                    {
+                                        infoPersona._numeroIdentificacion = row["numero_identificacion"].ToString();
+                                    }
+                                    if (row["id_pais_fk"] != DBNull.Value)
+                                    {
+                                        //infoPersona._pais = new pai
+                                    }
+                                    //, (int), (int)row["id_estadocivil_fk"], (int)row["id_persona_fk"], row["foto"].ToString()
+                                }
+                                retorno.Add("persona", persona);
                                 retorno.Add("formaciones", formaciones);
                                 retorno.Add("laborales", laborales);
                             }

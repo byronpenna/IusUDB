@@ -88,6 +88,8 @@ namespace IUSBack.Controllers.Website
                     if (usuarioSession != null && frm != null)
                     {
                         respuesta = this._model.sp_rrhh_detallePesona(this.convertObjAjaxToInt(frm["txtHdIdPersona"]), usuarioSession._idUsuario, this._idPagina);
+                        respuesta.Add("estado", true);
+
                     }
                     else
                     {
