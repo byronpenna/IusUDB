@@ -90,7 +90,7 @@
                 } else {
                     $(".fotoPrincipalFicha").attr("src",IMG_GENERALES + "profle.png");
                 }
-                console.log(trLaboral);
+                
                 targetLaboral.empty().append(trLaboral);
                 targetEducacion.empty().append(trEducativo);
             }

@@ -87,7 +87,10 @@ namespace IUSBack.Controllers.Website
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    /*if (usuarioSession != null && frm != null)
+                    {*/
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = this._model.sp_rrhh_detallePesona(this.convertObjAjaxToInt(frm["txtHdIdPersona"]), usuarioSession._idUsuario, this._idPagina);
                         InformacionPersona informarcionPersona = (InformacionPersona)respuesta["infoPersona"];
@@ -100,12 +103,12 @@ namespace IUSBack.Controllers.Website
                         }
                         respuesta["infoPersona"] = informarcionPersona;
                         respuesta.Add("estado", true);
-
                     }
+                    /*}
                     else
                     {
                         respuesta = errorEnvioFrmJSON();
-                    }
+                    }*/
                 }
                 catch (ErroresIUS x)
                 {
