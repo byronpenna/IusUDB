@@ -20,6 +20,7 @@
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
     InformacionPersona informacionPersona = null; List<EstadoCivil> estadosCiviles = null; List<Pais> paises = null;
+    List<Persona> personas = null;
     Persona persona = null; string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
     string selected = ""; string numeroIdentificacion = "";
     try
@@ -30,6 +31,7 @@
         estadosCiviles      = (List<EstadoCivil>)       ViewBag.estadosCiviles;
         paises              = (List<Pais>)              ViewBag.paises;
         persona             = (Persona)                 ViewBag.persona;
+        personas            = (List<Persona>)ViewBag.personas;
         if (informacionPersona != null)
         {
             if (informacionPersona._tieneFoto)
@@ -65,7 +67,36 @@
 <div class="row marginNull " id="tab1">
     <input  class="txtHdIdPersona" type="hidden" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
     <div class="row marginNull divInformacionPersonal divInformacion">
-        <h2>@persona.nombreCompleto</h2>
+        <div class="row marginNull divTituloNombre">
+            <div class="normalMode">
+                <h2 class="hNombrePersona">@persona.nombreCompleto</h2>
+            </div>
+            <div class="editMode hidden">
+                <div class="col-lg-offset-4 col-lg-3 ">
+                    <select class="cbPersonas form-control">
+                        @if (personas != null && personas.Count > 0)
+                        {
+                            selected = "";
+                            foreach (Persona personaI in personas)
+                            {
+                                if (persona._idPersona == personaI._idPersona)
+                                {
+                                    selected = "selected";
+                                }
+                                else
+                                {
+                                    selected = "";
+                                }
+                                <option @selected value="@personaI._idPersona">@personaI.nombreCompleto</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-1">
+                    <i class="fa fa-times icoVolverAnombre"></i>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-6 divImagePersona ">
             <img class="imgPersona" src="@strFoto"/>
             <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">

@@ -11,6 +11,9 @@
                     $(".btnEstablecer").prop("disabled", false);
                 }
             })
+            $(document).on("change", ".cbPersonas", function (e) {
+                location.href = RAIZ + "GestionPersonas/Extras/" + $(this).val();
+            })
         // submit 
             $(document).on("submit", ".frmImagenPersona", function (e) {
                 var frm         = new Object();
@@ -23,7 +26,14 @@
                 //console.log(imagen);
                 frmImagenPersona(data, $(this).attr("action"), imagen);
             })
+        // doble click
+            $(document).on("dblclick", ".hNombrePersona", function () {
+                controlesEdit(true, $(this).parents(".divTituloNombre"));
+            })
         // click
+            $(document).on("click", ".icoVolverAnombre", function () {
+                controlesEdit(false, $(this).parents(".divTituloNombre"));
+            })
             // email
                 // editar
                     $(document).on("click", ".btnCancelarUpdateEmail", function () {
