@@ -228,7 +228,9 @@ namespace IUSBack.Controllers
                 Dictionary<object, object> frm, respuesta ;
                 frm = this.getAjaxFrm();
                 Usuario usuarioSession = this.getUsuarioSesion();
-                if (frm != null && usuarioSession != null)
+                
+                respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                if (respuesta == null)
                 {
                     try
                     {
@@ -257,10 +259,6 @@ namespace IUSBack.Controllers
                         respuesta = this.errorTryControlador(2, error);
                     }
                 }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
                 return Json(respuesta);
             }
             [ValidateInput(false)]
@@ -271,7 +269,8 @@ namespace IUSBack.Controllers
                 frm = this.getAjaxFrmWithOutValidate();
                 Usuario usuarioSession  = this.getUsuarioSesion();
                 // do it
-                    if (usuarioSession != null && frm != null)
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         try
                         {
@@ -355,10 +354,6 @@ namespace IUSBack.Controllers
 
                     
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
                 // return 
                 return Json(respuesta);
             }
@@ -368,7 +363,8 @@ namespace IUSBack.Controllers
                     Dictionary<object, object> frm, respuesta = null;
                     frm = this.getAjaxFrmWithOutValidate();
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (frm != null && usuarioSession != null)
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         try
                         {
@@ -408,10 +404,6 @@ namespace IUSBack.Controllers
                             ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                             respuesta = this.errorTryControlador(2, error);
                         }
-                    }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
                     }
                     return Json(respuesta);
                 }

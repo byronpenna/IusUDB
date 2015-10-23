@@ -119,7 +119,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             /* Podria encapsularse en una funcion */
                             string ruta = frm["txtRuta"].ToString();
@@ -164,7 +165,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             string ruta = frm["txtRuta"].ToString();
                             CarpetaPublica carpeta;
@@ -180,10 +182,6 @@ namespace IUSBack.Controllers
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("carpetaPublica", carpeta);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -204,7 +202,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             ArchivoPublico archivoAgregar = new ArchivoPublico(this.convertObjAjaxToInt(frm["txtHdIdArchivoCompartir"]), this.convertObjAjaxToInt(frm["txtHdCarpetaPadrePublica"]), frm["txtNombreFileCompartir"].ToString());
                             ArchivoPublico archivoAgregado = this._model.sp_repo_compartirArchivoPublico(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
@@ -212,10 +211,6 @@ namespace IUSBack.Controllers
                             respuesta.Add("estado", true);
                             respuesta.Add("archivoPublico", archivoAgregado);
 
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -237,14 +232,12 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Dictionary<object, object> archivos = this._model.sp_repo_atrasCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpetaPublica"]), usuarioSession._idUsuario, this._idPagina);
-                            /*respuesta = new Dictionary<object, object>();
-                            respuesta.Add("estado", true);
-                            respuesta.Add("carpetas", archivos["carpetas"]);
-                            respuesta.Add("idCarpetaPadre", archivos["idCarpetaPadre"]);
-                            respuesta.Add("carpetaPadre", archivos["carpetaPadre"]);*/
+                            
                             archivos.Add("estado", true);
                             archivos.Add("base", this.URL_IUS);
                             respuesta = archivos;
@@ -274,7 +267,9 @@ namespace IUSBack.Controllers
                      {
                          Usuario usuarioSession = this.getUsuarioSesion();
                          frm = this.getAjaxFrm();
-                         if (usuarioSession != null && frm != null)
+                         
+                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                         if (respuesta == null)
                          {
                              int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPublica"]);
                              Dictionary<object, object> archivos ;
@@ -313,7 +308,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             List<ArchivoPublico> archivos = this._model.sp_repo_searchArchivoPublicoBack(frm["txtBusqueda"].ToString(), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -340,7 +337,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Dictionary<object,object> archivos = this._model.sp_repo_getRootFolderPublico(usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -370,7 +369,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             int idArchivoPublico = this.convertObjAjaxToInt(frm["idArchivoPublico"]);
                             bool estado = this._model.sp_repo_removeShareArchivoPublico(idArchivoPublico, usuarioSession._idUsuario, this._idPagina);
@@ -397,7 +398,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool estado = this._model.sp_repo_deleteCarpetaPublica(this.convertObjAjaxToInt(frm["idCarpeta"]), usuarioSession._idUsuario, this._idPagina);
                             if (estado)
@@ -411,10 +413,7 @@ namespace IUSBack.Controllers
                                 throw error;
                             }
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -435,7 +434,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             CarpetaPublica carpetaUpdate = new CarpetaPublica(this.convertObjAjaxToInt(frm["txtHdIdCarpeta"]), frm["nombre"].ToString());
                             CarpetaPublica carpetaActualizada = this._model.sp_repo_updateCarpetaPublica(carpetaUpdate,usuarioSession._idUsuario,this._idPagina);
@@ -444,10 +445,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("carpeta", carpetaActualizada);
 
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -468,7 +466,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             ArchivoPublico archivoEditar = new ArchivoPublico(this.convertObjAjaxToInt(frm["idArchivo"]), frm["nombreArchivo"].ToString());
                             ArchivoPublico archivoAgregado = this._model.sp_repo_renameFile(archivoEditar, usuarioSession._idUsuario, this._idPagina);
@@ -476,10 +476,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("estado", true);
                             respuesta.Add("archivoPublico", archivoAgregado);
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -500,7 +497,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             CarpetaPublica carpetaIngresar = new CarpetaPublica(frm["nombre"].ToString(), this.convertObjAjaxToInt(frm["idCarpetaPadre"]));
                             CarpetaPublica carpetaIngresada = this._model.sp_repo_insertCarpetaPublica(carpetaIngresar, usuarioSession._idUsuario, this._idPagina);
@@ -509,10 +508,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("carpeta",carpetaIngresada);
                             respuesta.Add("base", this.URL_IUS);
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
 
                     }
                     catch (ErroresIUS x)
