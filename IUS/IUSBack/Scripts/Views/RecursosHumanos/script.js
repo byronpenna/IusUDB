@@ -16,4 +16,11 @@
                 console.log("Formulario a enviar es:", frm);
                 btnBusquedaPerfil(frm);
             });
+            $(document).on("click", ".btnVerFicha", function () {
+                var seccion = $(this).parents("tr");
+                var frm = serializeSection(seccion);
+                console.log("formulario a enviar es:", frm);
+                btnVerFicha(frm);
+            })
+            
 })

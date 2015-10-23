@@ -78,6 +78,36 @@ namespace IUSBack.Controllers.Website
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_rrhh_detallePesona()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    if (usuarioSession != null && frm != null)
+                    {
+                        respuesta = this._model.sp_rrhh_detallePesona(this.convertObjAjaxToInt(frm["txtHdIdPersona"]), usuarioSession._idUsuario, this._idPagina);
+                        respuesta.Add("estado", true);
+
+                    }
+                    else
+                    {
+                        respuesta = errorEnvioFrmJSON();
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }    
             public ActionResult sp_rrhh_buscarPersonas()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -93,6 +123,10 @@ namespace IUSBack.Controllers.Website
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("personas", personas);
+                    }
+                    else
+                    {
+                        respuesta = errorEnvioFrmJSON();
                     }
                 }
                 catch (ErroresIUS x)

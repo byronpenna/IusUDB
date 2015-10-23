@@ -28,6 +28,11 @@ namespace IUSLibs.SEC.Entidades
                         return String.Format("{0:dd/MM/yyyy}", this._fechaNacimiento);
                     }
                 }
+                public int getEdad { 
+                    get{
+                        return Convert.ToInt32(this._fechaNacimiento - DateTime.Now);
+                    }
+                }
             #endregion
         #endregion
         #region "constructores"
