@@ -14,6 +14,9 @@
     text-align:center;
     
 }
+.titlePersona:hover {
+    cursor:pointer;
+}
 .tituloTabDiv {
     margin-top:3%;
     margin-bottom:3%;

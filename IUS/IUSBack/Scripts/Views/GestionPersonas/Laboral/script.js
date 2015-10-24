@@ -4,10 +4,20 @@
             "bDestroy": true,
             "bSort": false
         });
-        
+        $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
     // eventos 
+        // doble click  
+            $(document).on("dblclick", ".titlePersona", function (e) {
+                controlesEdit(true, $(this).parents(".divTituloNombre"));
+            })
+        // change 
+            $(document).on("change", ".cbPersonas", function (e) {
+                location.href = RAIZ + "GestionLaboral/index/" + $(this).val();
+            })
         // click 
-
+            $(document).on("click", ".icoVolverAnombre", function () {
+                controlesEdit(false, $(this).parents(".divTituloNombre"));
+            })
             // cargos 
                 $(document).on("click", ".btnActividad", function () {
                     var tr = $(this).parents("tr");
