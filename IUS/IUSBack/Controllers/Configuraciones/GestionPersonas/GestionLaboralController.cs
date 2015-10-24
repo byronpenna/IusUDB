@@ -58,17 +58,15 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             ActividadEmpresa actividadEditar = new ActividadEmpresa(this.convertObjAjaxToInt(frm["txtHdIdActividadEmpresa"]),-1, frm["txtActividad"].ToString());
                             ActividadEmpresa actividadEditada = this._model.sp_rrhh_editarActividadEmpresa(actividadEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("actividadEditada", actividadEditada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -90,15 +88,13 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool elimino = this._model.sp_rrhh_eliminarActividadadesEmpresa(this.convertObjAjaxToInt(frm["txtHdIdActividadEmpresa"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", elimino);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -120,17 +116,15 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             ActividadEmpresa actividadIngresar = new ActividadEmpresa(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]), frm["txtActividad"].ToString());
                             ActividadEmpresa actividadIngresada = this._model.sp_rrhh_insertActividadEmpresa(actividadIngresar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("actividadIngresada", actividadIngresada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -152,7 +146,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             List<ActividadEmpresa> actividadesEmpresa = this._model.sp_rrhh_getActividadesEmpresa(this.convertObjAjaxToInt(frm["idLaboralPersona"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -179,14 +175,12 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             respuesta = this._model.sp_rrhh_getEditModeLaboralPersona(usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -210,7 +204,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             LaboralPersona laboralEditar = new LaboralPersona(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]), this.convertObjAjaxToInt(frm["cbEmpresa"]), this.convertObjAjaxToInt(frm["txtInicio"]), this.convertObjAjaxToInt(frm["txtFin"]), -1,frm["txtAreaObservacion"].ToString(), this.convertObjAjaxToInt(frm["cbCargo"]));
                             LaboralPersona laboralEditado = this._model.sp_rrhh_editarLaboralPersonas(laboralEditar, usuarioSession._idUsuario, this._idPagina);
@@ -239,15 +235,12 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool elimino = this._model.sp_rrhh_eliminarLaboralPersonas(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", elimino); 
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -269,17 +262,14 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             LaboralPersona laboral = new LaboralPersona(this.convertObjAjaxToInt(frm["cbEmpresa"]), this.convertObjAjaxToInt(frm["txtInicio"]), this.convertObjAjaxToInt(frm["txtFin"]), this.convertObjAjaxToInt(frm["idPersona"]), frm["txtAreaObservacion"].ToString(), this.convertObjAjaxToInt(frm["cbCargo"]));
                             LaboralPersona laboralAgregada = this._model.sp_rrhh_insertLaboralPersonas(laboral, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("laboralAgregada", laboralAgregada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)

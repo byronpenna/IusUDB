@@ -73,7 +73,9 @@ namespace IUSBack.Controllers
                     Dictionary<Object,Object> frm,respuesta;
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (frm != null && usuarioSession != null ) // el error de manejo de session deberia ser aparte
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<Object, Object>();
                         int idRol = Convert.ToInt32(frm["idRol"].ToString());
@@ -83,10 +85,6 @@ namespace IUSBack.Controllers
                         respuesta.Add("subMenusFaltantes", submenusFaltandes);
                         respuesta.Add("subMenusActuales", submenuActuales);
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
                     return Json(respuesta);
                 }
                 [HttpPost]
@@ -95,16 +93,14 @@ namespace IUSBack.Controllers
                     Dictionary<Object, Object> frm,respuesta;
                     Usuario usuario = this.getUsuarioSesion();
                     frm = this.getAjaxFrm("form");
-                    if (frm != null)
+
+                    respuesta = this.seguridadInicialAjax(usuario, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<Object, Object>();
                         List<Rol> roles = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuario._idUsuario, this._idPagina);
                         respuesta.Add("roles", roles);
                         respuesta.Add("estado", true);
-                    }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
                     }
                     return Json(respuesta);
                 }
@@ -132,7 +128,9 @@ namespace IUSBack.Controllers
                     Dictionary<Object, Object> frm, respuesta = null;
                     frm = this.getAjaxFrm();
                     Usuario usuarioSesion = this.getUsuarioSesion();
-                    if(frm != null && usuarioSesion != null){// manejar alguna vez mas sofisticado para usuario sesion
+                    respuesta = this.seguridadInicialAjax(usuarioSesion, frm);
+                    if (respuesta == null)
+                    {
                         respuesta = new Dictionary<Object, Object>();
                         GestionPermisosModel controlLocal = new GestionPermisosModel();
                         // vars 
@@ -145,10 +143,6 @@ namespace IUSBack.Controllers
                         respuesta.Add("permisos", permisos);
                         respuesta.Add("permisosFaltantes",permisosFaltantes);
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
                     return Json(respuesta);
                 }
             #endregion
@@ -160,7 +154,8 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             respuesta = new Dictionary<object, object>();
                             try
@@ -185,10 +180,6 @@ namespace IUSBack.Controllers
                                 respuesta = this.errorTryControlador(2, x);
                             }
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     [HttpPost]
@@ -198,7 +189,9 @@ namespace IUSBack.Controllers
                         GestionRolSubmenuModel control = new GestionRolSubmenuModel(this._idPagina);
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null) // lo del usuario puede mejorar
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             respuesta = new Dictionary<Object,Object>();
                             // vars
@@ -218,10 +211,6 @@ namespace IUSBack.Controllers
                                 respuesta.Add("estado", false);
                             }
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     [HttpPost]
@@ -231,7 +220,9 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         Usuario usuariosesion = this.getUsuarioSesion();
                         GestionPermisosModel control = new GestionPermisosModel();
-                        if (frm != null && usuariosesion != null) // pensar en algo bueno para usuariosession
+
+                        respuesta = this.seguridadInicialAjax(usuariosesion, frm);
+                        if (respuesta == null)
                         {
                             respuesta = new Dictionary<Object, Object>(); // meter esto en lo comentado
                             try
@@ -247,10 +238,6 @@ namespace IUSBack.Controllers
                                 respuesta.Add("estado", false);
                             }
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }      
                         return Json(respuesta);
                     }
                     [HttpPost]
@@ -283,7 +270,9 @@ namespace IUSBack.Controllers
                         Dictionary<Object, Object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null) // pensar usuario de una forma eficiente
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             // vars 
                                 int[] idSubMenus = this.convertArrAjaxToInt((Object[])frm["idSubMenu"]);
@@ -307,10 +296,6 @@ namespace IUSBack.Controllers
                                 {
                                     respuesta.Add("estado", false);
                                 }
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                         return Json(respuesta);
                     }
@@ -353,7 +338,9 @@ namespace IUSBack.Controllers
                         Dictionary<Object, Object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null) // usuario se puede manejar de una mejor forma
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             int[] idPermisos = this.convertArrAjaxToInt((Object[])frm["idPermisos"]);
                             GestionPermisosModel controlLocal = new GestionPermisosModel();
@@ -375,10 +362,6 @@ namespace IUSBack.Controllers
                                     respuesta.Add("estado", false);
                                 }
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     [HttpPost]
@@ -389,7 +372,9 @@ namespace IUSBack.Controllers
                         {
                             Usuario usuarioSession = this.getUsuarioSesion();
                             frm = this.getAjaxFrm();
-                            if (frm != null && usuarioSession != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 Rol rol, rolAgregar = new Rol(frm["txtRol"].ToString(), true); // Que sentido tendra agregar un rol inactivo D: 
                                 respuesta = new Dictionary<object, object>();
@@ -407,10 +392,6 @@ namespace IUSBack.Controllers
                                     respuesta.Add("errorType", 3);
                                     respuesta.Add("error", "Ocurrio un error inesperado");
                                 }
-                            }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
                             }
                             
                         }
@@ -442,7 +423,9 @@ namespace IUSBack.Controllers
                         frm = this.getAjaxFrm();
                         Rol rol,rolAgregar;
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try{
                                 rolAgregar = new Rol(this.convertObjAjaxToInt(frm["txtHdIdRol"]),frm["txtRol"].ToString());
@@ -469,10 +452,6 @@ namespace IUSBack.Controllers
                             }
                             
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     public ActionResult sp_sec_cambiarEstadoRol()
@@ -480,7 +459,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             respuesta = new Dictionary<object, object>();
                             try
@@ -504,10 +485,6 @@ namespace IUSBack.Controllers
                             {
                                 respuesta = this.errorTryControlador(2, x);
                             }
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                         return Json(respuesta);
                     }

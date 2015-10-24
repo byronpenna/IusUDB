@@ -68,7 +68,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             respuesta = this._model.getEditTitulos(usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);
@@ -93,7 +95,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             respuesta = this._model.getEditCarrera(usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);
@@ -125,7 +129,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             // -1 para id persona porq no es necesario 
                             FormacionPersona formacionEditar = new FormacionPersona(
@@ -140,10 +146,6 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("formacionEditada", formacionEditada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -165,7 +167,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             FormacionPersona formacionAgregar = new FormacionPersona(   this.convertObjAjaxToInt(frm["txtYearFin"]),                    frm["txtAreaObservaciones"].ToString(),
                                                                                         this.convertObjAjaxToInt(frm["idPersona"]),                     frm["txtCarrera"].ToString(),                                   
@@ -176,10 +180,6 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("formacionAgregada", formacionAgregada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -201,15 +201,13 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool estado = this._model.sp_rrhh_eliminarTituloPersona(this.convertObjAjaxToInt(frm["txtHdIdFormacionPersona"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -233,7 +231,9 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Carrera carreraEditar = new Carrera(this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]), this.convertObjAjaxToInt(frm["cbAreaCarreras"]));
                             Carrera carreraEditada = this._model.sp_rrhh_editarCarrera(carreraEditar, usuarioSession._idUsuario, this._idPagina);
@@ -261,15 +261,12 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool estado = this._model.sp_rrhh_eliminarCarrera(this.convertObjAjaxToInt(frm["txtHdIdCarrera"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -291,17 +288,15 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Carrera carreraAgregar = new Carrera(frm["txtNombreCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbNivelCarrera"]), this.convertObjAjaxToInt(frm["cbInsticionesParaCarrera"]), this.convertObjAjaxToInt(frm["cbAreaCarreras"]));
                             Carrera carreraAgregada = this._model.sp_rrhh_ingresarCarrera(carreraAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("carreraAgregada", carreraAgregada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -325,17 +320,15 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             InstitucionEducativa institucionEditar = new InstitucionEducativa(this.convertObjAjaxToInt(frm["txtHdIdInstitucionEducativa"]), frm["txtInstitucionEducativa"].ToString(), this.convertObjAjaxToInt(frm["cbPaisInstitucionEducativa"]));
                             InstitucionEducativa institucionEditada = this._model.sp_rrhh_editarInstitucionEducativa(institucionEditar,usuarioSession._idUsuario,this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("institucionEditada", institucionEditada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -357,16 +350,14 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool estado = this._model.sp_rrhh_eliminarInstitucionEducativa(this.convertObjAjaxToInt(frm["txtHdIdInstitucionEducativa"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
 
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -388,17 +379,15 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             InstitucionEducativa institucionAgregar = new InstitucionEducativa(frm["txtInstitucionEducativa"].ToString(), this.convertObjAjaxToInt(frm["cbPaisInstitucionEducativa"]));
                             InstitucionEducativa institucionAgregada = this._model.sp_rrhh_ingresarInstitucionEducativa(institucionAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("institucionEducativa", institucionAgregada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)

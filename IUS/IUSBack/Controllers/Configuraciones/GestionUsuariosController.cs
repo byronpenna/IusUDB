@@ -102,7 +102,9 @@ namespace IUSBack.Controllers
                         Usuario usuarioSession = this.getUsuarioSesion();
                         Usuario usuarioAgregado,usuarioAgregar;
                         Persona persona; Permiso permiso;
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try
                             {
@@ -134,15 +136,11 @@ namespace IUSBack.Controllers
                                 respuesta = this.errorTryControlador(2, x);
                             }
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                 #endregion
                 #region "Deshabilitar"
-            [HttpPost]
+                    [HttpPost]
                     public ActionResult cambiarEstadoUsuario()
                     {
                         Usuario usuarioSession = (Usuario)Session["usuario"];
@@ -160,13 +158,11 @@ namespace IUSBack.Controllers
                         {
                             Usuario usuarioSession = this.getUsuarioSesion();
                             frm = this.getAjaxFrm();
-                            if (frm != null && usuarioSession != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 respuesta = this._model.actualizarUsuario(frm, usuarioSession._idUsuario);
-                            }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
                             }
                         }
                         catch (ErroresIUS x)
