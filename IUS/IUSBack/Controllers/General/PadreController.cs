@@ -56,6 +56,22 @@ namespace IUSBack.Controllers
                     }
                     return retorno;
                 }
+                public Dictionary<object, object> seguridadInicialAjax(Usuario usuarioSession,Dictionary<object,object> frm)
+                {
+                    Dictionary<object, object> retorno = null;
+                    if (usuarioSession == null)
+                    {
+                        retorno = new Dictionary<object, object>();
+                        retorno.Add("estado", false);
+                        retorno.Add("errorType", 0);
+                        //retorno.Add("")
+                    }
+                    else if(frm == null)
+                    {
+                        retorno = this.errorEnvioFrmJSON();
+                    }
+                    return retorno;
+                }
                 public Dictionary<string,string> setRutasGlobales()
                 {
                     Dictionary<string, string> rutas = new Dictionary<string, string>();

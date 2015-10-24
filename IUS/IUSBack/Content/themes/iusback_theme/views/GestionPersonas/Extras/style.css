@@ -1,4 +1,6 @@
-﻿.divInformacionPersonal{
+﻿
+
+.divInformacionPersonal{
     margin-top:1%;
 }
 .divImagePersona{
@@ -23,6 +25,10 @@
     text-align:center;
     padding-top:3%;
 }
+.divInformacion h2{
+    margin:0;
+    padding:0;
+}
 /* Para la foto */
 .imgPersona{
     width:20%;
@@ -30,6 +36,11 @@
 }
 .btnEstablecer{
     margin-bottom:3%;
+}
+
+.divTituloNombre{
+    padding-top:3%;
+    padding-bottom:3%;
 }
 /*
     Para input file

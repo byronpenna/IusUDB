@@ -34,7 +34,9 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 try
                 {
                     IUSLibs.RRHH.Control.ControlInformacionPersona informacionPersona = new IUSLibs.RRHH.Control.ControlInformacionPersona();
-                    return informacionPersona.sp_rrhh_getInformacionPersonas(idPersona,idUsuarioEjecutor,idPagina);
+                    Dictionary<object,object> varInformacionPersona = informacionPersona.sp_rrhh_getInformacionPersonas(idPersona,idUsuarioEjecutor,idPagina);
+                    varInformacionPersona.Add("personas", this._control.getPersonas());
+                    return varInformacionPersona;
                 }
                 catch (ErroresIUS x)
                 {

@@ -134,7 +134,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             HistoryRepo history = (HistoryRepo)Session["HistoryRepo"];
                             Carpeta carpeta;
@@ -176,16 +177,14 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool estado = this._model.sp_repo_deleteFile(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"]),this.convertObjAjaxToInt(frm["idArchivo"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estado);
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -199,6 +198,7 @@ namespace IUSBack.Controllers
                     }
                     return Json(respuesta);
                 }
+                //#########
                 public ActionResult sp_repo_uploadFile()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -274,6 +274,7 @@ namespace IUSBack.Controllers
 
                     return Json(respuesta);
                 }
+                
                 public ActionResult sp_repo_changeFileName()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -281,7 +282,8 @@ namespace IUSBack.Controllers
                     { 
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Archivo archivoModificar = new Archivo(this.convertObjAjaxToInt(frm["idArchivo"]), frm["nombreArchivo"].ToString());
                             Archivo archivoModificado = this._model.sp_repo_changeFileName(archivoModificar, usuarioSession._idUsuario, this._idPagina);
@@ -297,10 +299,7 @@ namespace IUSBack.Controllers
                                 throw x;
                             }
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -321,7 +320,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             List<Archivo> archivos = this._model.sp_repo_searchArchivo(frm["txtBusqueda"].ToString(), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -351,7 +351,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             string ruta =frm["txtRuta"].ToString();
                             Carpeta carpeta;
@@ -392,7 +393,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             int idCarpeta = this.convertObjAjaxToInt(frm["idCarpeta"]);
                             Carpeta carpeta = new Carpeta(idCarpeta);
@@ -412,10 +414,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("carpetaPadre", archivos["carpetaPadre"]);
                             respuesta.Add("urlBase", this.Url.Action("DescargarFichero", "Repositorio"));
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -436,16 +435,14 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool estadoDelete = this._model.sp_repo_deleteFolder(Server.MapPath(this._RUTASGLOBALES["REPOSITORIO_DIGITAL"]), this.convertObjAjaxToInt(frm["idCarpeta"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", estadoDelete);
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -466,7 +463,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Carpeta carpetaActualizar = new Carpeta(this.convertObjAjaxToInt(frm["txtHdIdCarpeta"]), frm["nombre"].ToString());
                             Carpeta carpetaActualizada = this._model.sp_repo_updateCarpeta(carpetaActualizar, usuarioSession._idUsuario, this._idPagina);
@@ -475,10 +473,7 @@ namespace IUSBack.Controllers
                             respuesta.Add("carpeta", carpetaActualizada);
 
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
+                        
                     }
                     catch (ErroresIUS x)
                     {
@@ -499,7 +494,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Carpeta carpetaPadre;
                             int idCarpetaPadre = this.convertObjAjaxToInt(frm["idCarpetaPadre"]);
@@ -510,12 +506,6 @@ namespace IUSBack.Controllers
                             respuesta.Add("estado", true);
                             respuesta.Add("carpeta", carpetaIngresada);
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
-
-
                     }
                     catch (ErroresIUS x)
                     {

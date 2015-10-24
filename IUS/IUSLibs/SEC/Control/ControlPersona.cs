@@ -14,6 +14,8 @@ using System.Text;
     using IUSLibs.RRHH.Entidades.Formacion;
     using IUSLibs.RRHH.Entidades.Laboral;
     using IUSLibs.RRHH.Entidades;
+    // ----
+    using IUSLibs.FrontUI.Entidades;
 namespace IUSLibs.SEC.Control
 {
     public class ControlPersona:PadreLib
@@ -189,7 +191,7 @@ namespace IUSLibs.SEC.Control
                         Dictionary<object, object> retorno = new Dictionary<object, object>();
                         List<FormacionPersona> formaciones=null; List<LaboralPersona> laborales=null;
                         FormacionPersona formacion; LaboralPersona laboral; Persona persona = null;
-                        InformacionPersona infoPersona;
+                        InformacionPersona infoPersona = null;
                     // do it 
                         SPIUS sp = new SPIUS("sp_rrhh_detallePesona");
                         sp.agregarParametro("idPersona", idPersona);
@@ -242,13 +244,22 @@ namespace IUSLibs.SEC.Control
                                     }
                                     if (row["id_pais_fk"] != DBNull.Value)
                                     {
-                                        //infoPersona._pais = new pai
+                                        infoPersona._pais = new Pais((int)row["id_pais_fk"],row["pais"].ToString());
                                     }
-                                    //, (int), (int)row["id_estadocivil_fk"], (int)row["id_persona_fk"], row["foto"].ToString()
+                                    if (row["id_estadocivil_fk"] != DBNull.Value)
+                                    {
+                                        infoPersona._estadoCivil = new EstadoCivil((int)row["id_estadocivil_fk"], row["estado_civil"].ToString());
+                                    }
+                                    if (row["foto"] != DBNull.Value)
+                                    {
+                                        infoPersona._fotoRuta = row["foto"].ToString();
+                                    }
+                                    //, (int), (int), (int)row["id_persona_fk"], row["foto"].ToString()
                                 }
                                 retorno.Add("persona", persona);
                                 retorno.Add("formaciones", formaciones);
                                 retorno.Add("laborales", laborales);
+                                retorno.Add("infoPersona", infoPersona);
                             }
                             else
                             {

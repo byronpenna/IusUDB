@@ -30,7 +30,9 @@ namespace IUSLibs.SEC.Entidades
                 }
                 public int getEdad { 
                     get{
-                        return Convert.ToInt32(this._fechaNacimiento - DateTime.Now);
+                        //return Convert.ToInt32(DateTime.Now - this._fechaNacimiento);
+                        int diff = DateTime.Now.Year - this._fechaNacimiento.Year;
+                        return diff;
                     }
                 }
             #endregion

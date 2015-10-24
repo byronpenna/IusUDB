@@ -8,6 +8,8 @@ using System.Web.Mvc;
 // librerias externas 
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    
+    using IUSLibs.RRHH.Entidades;
 namespace IUSBack.Controllers.Website
 {
     public class RecursosHumanosController : PadreController
@@ -85,15 +87,21 @@ namespace IUSBack.Controllers.Website
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = this._model.sp_rrhh_detallePesona(this.convertObjAjaxToInt(frm["txtHdIdPersona"]), usuarioSession._idUsuario, this._idPagina);
+                        InformacionPersona informarcionPersona = (InformacionPersona)respuesta["infoPersona"];
+                        if (informarcionPersona != null && System.IO.File.Exists(informarcionPersona._fotoRuta))
+                        {
+                            informarcionPersona._tieneFoto = true;
+                            //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+                            informarcionPersona._fotoRuta = this.getRelativePathFromAbsolute(informarcionPersona._fotoRuta);
+                            informarcionPersona._fotoRuta = Url.Content(informarcionPersona._fotoRuta);
+                        }
+                        respuesta["infoPersona"] = informarcionPersona;
                         respuesta.Add("estado", true);
-
-                    }
-                    else
-                    {
-                        respuesta = errorEnvioFrmJSON();
                     }
                 }
                 catch (ErroresIUS x)

@@ -85,7 +85,9 @@ namespace IUSBack.Controllers
                             Dictionary<object, object> frm, respuesta;
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
-                            if (frm != null && usuarioSession != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 try
                                 {
@@ -124,10 +126,7 @@ namespace IUSBack.Controllers
                                 
 
                             }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
-                            }
+                            
                             return Json(respuesta);
                         }
                         public ActionResult sp_adminfe_publicarEventoWebsite()
@@ -136,7 +135,9 @@ namespace IUSBack.Controllers
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
                             EventoWebsite eventoPublicado;
-                            if (frm != null && usuarioSession != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 try
                                 {
@@ -163,12 +164,6 @@ namespace IUSBack.Controllers
                                     respuesta = this.errorTryControlador(2, errorIUS);
                                 }
                             }
-                            else
-                            {
-
-                                respuesta = this.errorEnvioFrmJSON();
-                            }
-
                             return Json(respuesta);
                         }
                         public ActionResult sp_adminfe_crearEvento()
@@ -179,7 +174,9 @@ namespace IUSBack.Controllers
                             {
                                 Usuario usuarioSession = this.getUsuarioSesion();
                                 frm = this.getAjaxFrm();
-                                if (usuarioSession != null && usuarioSession != null)
+                                
+                                respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                                if (respuesta == null)
                                 {
                                     respuesta               = new Dictionary<object, object>();
                                     DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
@@ -195,10 +192,6 @@ namespace IUSBack.Controllers
                                     {
                                         respuesta = this.errorTryControlador(3, "Ocurrio un error no controlado");
                                     }
-                                }
-                                else
-                                {
-                                    respuesta = this.errorEnvioFrmJSON();
                                 }
                             }
                             catch (ErroresIUS x)
@@ -218,7 +211,9 @@ namespace IUSBack.Controllers
                             Dictionary<object, object> frm, respuesta;
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
-                            if (frm != null && usuarioSession != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 try
                                 {
@@ -251,10 +246,6 @@ namespace IUSBack.Controllers
                                     respuesta = this.errorTryControlador(2, x);
                                 }
                             }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
-                            }
                             return Json(respuesta);
                         }
                     #endregion
@@ -264,7 +255,9 @@ namespace IUSBack.Controllers
                             Dictionary<object, object> frm, respuesta;
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
-                            if (frm != null && usuarioSession != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 try
                                 {
@@ -293,10 +286,6 @@ namespace IUSBack.Controllers
                                     respuesta = errorTryControlador(2, error);
                                 }
                             }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
-                            }
                             return Json(respuesta);
                         }
                         public ActionResult sp_adminfe_editarEventos()
@@ -304,7 +293,8 @@ namespace IUSBack.Controllers
                             Dictionary<object, object> frm, respuesta;
                             Usuario usuarioSession = this.getUsuarioSesion();
                             frm = this.getAjaxFrm(); Evento eventoEditado;
-                            if (usuarioSession != null && frm != null)
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 try
                                 {
@@ -335,10 +325,6 @@ namespace IUSBack.Controllers
                                     respuesta = this.errorTryControlador(2, errorIus);
                                 }
                             }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
-                            }
                             return Json(respuesta);
                         }
                         public ActionResult sp_adminfe_removeUsuarioEvento()
@@ -346,7 +332,9 @@ namespace IUSBack.Controllers
                             Dictionary<object, object> frm, respuesta;
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
-                            if (frm != null && usuarioSession != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 try
                                 {
@@ -375,10 +363,6 @@ namespace IUSBack.Controllers
                                     respuesta = this.errorTryControlador(2, x);
                                 }
                             }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
-                            }
                             return Json(respuesta);
                         }
                     #endregion
@@ -388,7 +372,8 @@ namespace IUSBack.Controllers
                         Usuario usuarioSesion = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
                         EventoWebsite eventoWebsite;
-                        if (usuarioSesion != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSesion, frm);
+                        if (respuesta == null)
                         {
                             try
                             {
@@ -430,7 +415,9 @@ namespace IUSBack.Controllers
                         {
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
-                            if (usuarioSession != null && frm != null)
+                            
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
                             {
                                 respuesta = new Dictionary<object, object>();
                                 // ---------------------
@@ -440,10 +427,6 @@ namespace IUSBack.Controllers
                                 List<Evento> eventos = this._model.sp_adminfe_buscarAllEventosPersonalesByDate(fechaInicio, fechaFin, usuarioSession._idUsuario, this._idPaginaNoticias);
                                 respuesta.Add("estado", true);
                                 respuesta.Add("eventos", eventos);
-                            }
-                            else
-                            {
-                                respuesta = this.errorEnvioFrmJSON();
                             }
                         }
                         catch (ErroresIUS x)
@@ -464,7 +447,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta=null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Dictionary<object, object> permisos = this._model.sp_adminfe_getPermisosUsuarioEvento(this.convertObjAjaxToInt(frm["idUsuarioEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
                             List<PermisoEvento> permisosFaltantes = (List<PermisoEvento>)permisos["permisosFaltantes"];
@@ -474,10 +459,6 @@ namespace IUSBack.Controllers
                             respuesta.Add("permisosFaltantes", permisosFaltantes);
                             respuesta.Add("permisosActuales", permisosActuales);
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     public ActionResult sp_adminfe_loadCompartirEventos()
@@ -485,7 +466,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try
                             {
@@ -508,12 +491,9 @@ namespace IUSBack.Controllers
                                 respuesta = this.errorTryControlador(2, x);
                             }                            
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
+                    //#########
                     public ActionResult sp_adminfe_getEventosPrincipales()
                     {
                         Dictionary<object, object> respuesta = new Dictionary<object, object>();

@@ -52,6 +52,7 @@ namespace IUSBack.Controllers
                     ViewBag.emails                  = data["emails"];
                     ViewBag.telefonos               = data["telefonos"];
                     ViewBag.persona                 = data["persona"];
+                    ViewBag.personas                = data["personas"];
                     ViewBag.idPersona               = id;
                     // viewbag
                         ViewBag.titleModulo = "Información adicional personas";

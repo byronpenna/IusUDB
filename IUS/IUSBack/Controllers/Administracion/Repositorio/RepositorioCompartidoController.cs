@@ -118,7 +118,8 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         bool estado = this._model.sp_repo_removeShareFile(this.convertObjAjaxToInt(frm["idArchivo"]), usuarioSession._idUsuario, this._idPagina);
                         respuesta = new Dictionary<object, object>();
@@ -145,7 +146,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             ArchivoCompartido archivoAgregar = new ArchivoCompartido(this.convertObjAjaxToInt(frm["idArchivo"]), this.convertObjAjaxToInt(frm["idUsuario"]));
                             ArchivoCompartido archivoAgregado = this._model.sp_repo_compartirArchivo(archivoAgregar, usuarioSession._idUsuario, this._idPagina);
@@ -160,10 +162,6 @@ namespace IUSBack.Controllers
                                 ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
                                 throw x;
                             }
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -185,7 +183,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool estado = this._model.sp_repo_dejarDeCompartirTodo(this.convertObjAjaxToInt(frm["idUsuarioCompartido"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -213,18 +213,20 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             List<Usuario> usuarios = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("usuarios", usuarios);
                         }
-                        else
+                        /*else
                         {
                             ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
                             throw x;
-                        }
+                        }*/
                     }
                     catch (ErroresIUS x)
                     {
@@ -245,7 +247,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             List<ArchivoCompartido> archivos = this._model.sp_repo_getFilesFromShareUserId(this.convertObjAjaxToInt(frm["idUserFile"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -253,11 +256,11 @@ namespace IUSBack.Controllers
                             respuesta.Add("archivosCompartidos", archivos);
 
                         }
-                        else
+                        /*else
                         {
                             ErroresIUS x = new ErroresIUS("Ocurrio un error inesperado", ErroresIUS.tipoError.generico, 0);
                             throw x;
-                        }
+                        }*/
                     }
                     catch (ErroresIUS x)
                     {

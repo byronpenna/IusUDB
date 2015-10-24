@@ -64,7 +64,19 @@
 <input type="hidden" class="txtHdIdPersona" value="@persona._idPersona" />
 <div class="row marginNull divControles">
     <div class="row marginNull rowDataPersona">
-        <h2 class="titlePersona">@persona.nombreCompleto</h2>
+        <div class="row marginNull divTituloNombre">
+            <div class="normalMode">
+                <h2 class="titlePersona">@persona.nombreCompleto</h2>
+            </div>
+            <div class="editMode hidden">
+                <div class="col-lg-offset-4 col-lg-3 ">
+                    <select class="cbPersonas form-control"></select>
+                </div>
+                <div class="col-lg-1">
+                    <i class="fa fa-times icoVolverAnombre"></i>
+                </div>
+            </div>
+        </div>
         <img class="imgPersona" src="@strFoto" />
     </div>
     

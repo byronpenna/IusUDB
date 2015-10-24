@@ -501,7 +501,12 @@
                 }
             },
             success:function(data){
-                callback(data);
+                if (!data.estado && data.errorType == 0) {
+                    location.reload();
+                } else {
+                    callback(data);
+                }
+                
             }
         });
     }
