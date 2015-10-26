@@ -268,15 +268,22 @@
         }
     // laboral
         function btnAgregarLaboralPersona(frm) {
-        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
-            console.log("Data devuelta por el servidor",data);
-            if(data.estado){
-                var trAgregar = getTrLaboralPersona(data.laboralAgregada);
-                $(".tbodyLaboralPersona").prepend(trAgregar);
-            } else {
-                alert("Ocurrio un error");
-            }
-        })
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
+                console.log("Data devuelta por el servidor",data);
+                if(data.estado){
+                    var trAgregar   = getTrLaboralPersona(data.laboralAgregada);
+                    var tbody       = $(".tbodyLaboralPersona");
+                    console.log("length es:", tbody.find(".trNoRegistro").length);
+                    if (tbody.find(".trNoRegistro").length == 0) {
+                        tbody.prepend(trAgregar);
+                    } else {
+                        tbody.empty().append(trAgregar);
+                    }
+                    
+                } else {
+                    alert("Ocurrio un error");
+                }
+            })
         }
         function btnActualizarLaboralPersona(frm,tr) {
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {

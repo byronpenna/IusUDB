@@ -68,7 +68,7 @@
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
                         var tr  = $(this).parents("tr");
                         var frm = serializeSection(tr);
-                        frm.idPersona = $(".txtHdIdPersona").val(tr);
+                        frm.idPersona = $(".txtHdIdPersona").val();//tr
                         console.log("formulario a enviar",frm);
                         var val = validarInsertLaboral(frm);
                         //var theadTabla = $(".rowControles");
