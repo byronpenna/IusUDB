@@ -4,3 +4,12 @@
     .titlePersona:hover {
         cursor:pointer;
     }
+
+/*************************/
+.rowDataPersona{
+    text-align:center;
+    margin-bottom:3%;
+}
+.imgPersona{
+    width:10%;
+}

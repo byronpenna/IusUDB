@@ -8,7 +8,9 @@ using System.Web.Mvc;
 // librerias externas 
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
-    using IUSLibs.RRHH.Entidades.Laboral;
+    // RRHH
+        using IUSLibs.RRHH.Entidades.Laboral;
+        using IUSLibs.RRHH.Entidades;
 namespace IUSBack.Controllers.Configuraciones.GestionPersonas
 {
     public class GestionLaboralController : PadreController
@@ -29,13 +31,22 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 }
                 try
                 {
-                    ViewBag.selectedMenu = 2; // menu seleccionado 
-                    Persona persona = new Persona(id);
-                    Usuario usuarioSession  = this.getUsuarioSesion();
-                    ViewBag.titleModulo     = "Información laboral personas";
-                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    ViewBag.iniciales       = this._model.sp_rrhh_getInfoInicialLaboralPersona(id, usuarioSession._idUsuario, this._idPagina);
-                    ViewBag.idPersona       = id;
+                    ViewBag.selectedMenu                = 2; // menu seleccionado 
+                    Persona persona                     = new Persona(id);
+                    Usuario usuarioSession              = this.getUsuarioSesion();
+                    Dictionary<object,object> iniciales = this._model.sp_rrhh_getInfoInicialLaboralPersona(id, usuarioSession._idUsuario, this._idPagina);
+                    InformacionPersona info             = (InformacionPersona)iniciales["infoPersona"];
+                    if (info != null && System.IO.File.Exists(info._fotoRuta))
+                    {
+                        info._tieneFoto = true;
+                        //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+                        info._fotoRuta = this.getRelativePathFromAbsolute(info._fotoRuta);
+                    }
+                    iniciales["infoPersona"]            = info;
+                    ViewBag.titleModulo                 = "Información laboral personas";
+                    ViewBag.menus                       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.iniciales                   = iniciales;
+                    ViewBag.idPersona                   = id;
                 }
                 catch (ErroresIUS x)
                 {

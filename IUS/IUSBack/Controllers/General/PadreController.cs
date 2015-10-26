@@ -29,6 +29,7 @@ namespace IUSBack.Controllers
                 public string URL_IUS = "http://localhost:7196/";
                 //public string URL_IUS = "http://168.243.3.62/iusback/";
                 //public string URL_IUS = "http://admacad.udb.edu.sv/IUSback/";
+                public string IMG_GENERALES = "~/Content/themes/iusback_theme/img/general/";
             #endregion
             protected JavaScriptSerializer _jss;
             protected JavaScriptSerializer _jssmax;
@@ -330,6 +331,7 @@ namespace IUSBack.Controllers
                 this._model = new PadreModel();
                 this._RUTASGLOBALES = this.setRutasGlobales();
                 this.gestionArchivosServer = new GestionFileServerModel();
+                ViewBag.IMG_GENERALES = this.IMG_GENERALES;
             }
         #endregion
         

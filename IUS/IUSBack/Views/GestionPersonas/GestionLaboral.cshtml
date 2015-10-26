@@ -1,4 +1,5 @@
-﻿@using IUSLibs.RRHH.Entidades.Laboral
+﻿@using IUSLibs.RRHH.Entidades
+@using IUSLibs.RRHH.Entidades.Laboral
 @using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- plugins -->
@@ -24,7 +25,8 @@
 @{
     List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
     List<LaboralPersona> laboralesPersonas = null; Persona persona = null;
-    List<Persona> personas = null;
+    List<Persona> personas = null;InformacionPersona infoPersona = null;
+    string strFoto = Url.Content(@ViewBag.IMG_GENERALES + "profle.png");
     try{
         Dictionary<object,object> 
             iniciales           = (Dictionary<object,object>)ViewBag.iniciales;
@@ -33,6 +35,11 @@
             cargos              = (List<CargoEmpresa>)iniciales["cargos"];
             laboralesPersonas   = (List<LaboralPersona>)iniciales["laboralesPersonas"];
             personas            = (List<Persona>)iniciales["personas"];
+            infoPersona         = (InformacionPersona)iniciales["infoPersona"];
+            if (infoPersona != null && infoPersona._tieneFoto)
+            {
+                strFoto = Url.Content(infoPersona._fotoRuta);
+            }
     }catch(Exception){
         
     }
@@ -55,39 +62,40 @@
     </ul>
 
 }
-<div class="row marginNull divTituloNombre">
-    <div class="normalMode">
-        <h2 class="titlePersona">@persona.nombreCompleto</h2>
-    </div>
-    <div class='editMode hidden'>
-        <div class="col-lg-offset-4 col-lg-3 ">
-            <select class="cbPersonas form-control">
-                @if (personas != null && personas.Count > 0)
-                {
-                    string selected = "";
-                    foreach (Persona personaI in personas)
+<div class="row marginNull rowDataPersona">
+    <div class="row marginNull divTituloNombre">
+        <div class="normalMode">
+            <h2 class="titlePersona">@persona.nombreCompleto </h2>
+        </div>
+        <div class='editMode hidden'>
+            <div class="col-lg-offset-4 col-lg-3 ">
+                <select class="cbPersonas form-control">
+                    @if (personas != null && personas.Count > 0)
                     {
-                        if (personaI._idPersona == persona._idPersona)
+                        string selected = "";
+                        foreach (Persona personaI in personas)
                         {
-                            selected = "selected";
+                            if (personaI._idPersona == persona._idPersona)
+                            {
+                                selected = "selected";
+                            }
+                            else
+                            {
+                                selected = "";
+                            }
+                            <option value="@personaI._idPersona" @selected>@personaI._nombres</option>
                         }
-                        else
-                        {
-                            selected = "";
-                        }
-                <option value="@personaI._idPersona" @selected>@personaI._nombres</option>
-                    }
 
-                }
-            </select>
-        </div>
-        <div class="col-lg-1">
-            <i class="fa fa-times icoVolverAnombre"></i>
+                    }
+                </select>
+            </div>
+            <div class="col-lg-1">
+                <i class="fa fa-times icoVolverAnombre"></i>
+            </div>
         </div>
     </div>
+    <img class="imgPersona" src="@strFoto" />
 </div>
-
-
 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
 <table class="table tablaLaboral">
     <thead>
