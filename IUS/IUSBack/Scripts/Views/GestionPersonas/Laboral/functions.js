@@ -175,7 +175,7 @@
                 return tr;
             }
     // otras
-         function getTableActividades(tr) {
+        function getTableActividades(tr) {
             var frm = { idLaboralPersona: tr.find(".txtHdIdLaboralPersona").val() }; 
             console.log("traer ", frm);
             actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {
@@ -205,6 +205,28 @@
                 //$(".tableUsuarios").find(".trTableRol").remove();
                 tr.parents("table").find(".trTable").remove();
             }
+        }
+        function validarInsertLaboral(frm) {
+            var val = new Object();
+            val.campos = {
+                cbCargo:            new Array(),
+                cbEmpresa:          new Array(),
+                txtAreaObservacion: new Array(),
+                txtFin:             new Array(),
+                txtInicio:          new Array()
+            }
+            console.log(frm);
+            if (frm.txtAreaObservacion == "") {
+                val.campos.txtAreaObservacion.push("Campo no debe quedar vacio");
+            }
+            if (frm.txtFin == "") {
+                val.campos.txtFin.push("Llenarlo");
+            }
+            if (frm.txtInicio == "") {
+                val.campos.txtInicio.push("Llenarlo");
+            }
+            val.estado = objArrIsEmpty(val.campos);
+            return val;
         }
 // acciones 
     // actividades

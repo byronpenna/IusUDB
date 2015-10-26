@@ -111,35 +111,60 @@
         <tr>
             <th class="hidden"></th>
             <th>
-                <select class="form-control cbEmpresa" name="cbEmpresa">
-                    @if (empresas != null && empresas.Count > 0)
-                    {
-                        foreach (Empresa empresa in empresas)
+                <div class="row marginNull divControl">
+                    <select class="form-control cbEmpresa" name="cbEmpresa">
+                        @if (empresas != null && empresas.Count > 0)
                         {
-                            <option value="@empresa._idEmpresa">@empresa._nombre</option>
+                            foreach (Empresa empresa in empresas)
+                            {
+                                <option value="@empresa._idEmpresa">@empresa._nombre</option>
+                            }
                         }
-                    }
-                </select>
+                    </select>
+                    <div class="row marginNull divResultado hidden">
+                        _
+                    </div>
+                </div>
             </th>
             <th>
-                <input type="number" class="form-control txtInicio" name="txtInicio" />
+                <div class="row marginNull divControl">
+                    <input type="number" class="form-control txtInicio" name="txtInicio" />
+                    <div class="row marginNull divResultado hidden">
+                        _
+                    </div>
+                </div>
             </th>
             <th>
-                <input type="number" class="form-control txtFin" name="txtFin" />
+                <div class="row marginNull divControl">
+                    <input type="number" class="form-control txtFin" name="txtFin" />
+                    <div class="row marginNull divResultado hidden">
+                        _
+                    </div>
+                </div>
             </th>
             <th>
-                <textarea class="form-control txtAreaObservacion" name="txtAreaObservacion"></textarea>
+                <div class="divControl row marginNull">
+                    <textarea class="form-control txtAreaObservacion" name="txtAreaObservacion"></textarea>
+                    <div class="row marginNull divResultado hidden">
+
+                    </div>
+                </div>
             </th>
             <th>
-                <select class="form-control cbCargo" name="cbCargo">
-                    @if (cargos != null && cargos.Count > 0)
-                    {
-                        foreach (CargoEmpresa cargo in cargos)
+                <div class="divControl row marginNull">
+                    <select class="form-control cbCargo" name="cbCargo">
+                        @if (cargos != null && cargos.Count > 0)
                         {
-                            <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                            foreach (CargoEmpresa cargo in cargos)
+                            {
+                                <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                            }
                         }
-                    }
-                </select>
+                    </select>
+                    <div class="row marginNull divResultado hidden">
+                        _
+                    </div>
+                </div>
             </th>
             <th>
                 <button class="btn btnAgregarLaboralPersona">Agregar</button>

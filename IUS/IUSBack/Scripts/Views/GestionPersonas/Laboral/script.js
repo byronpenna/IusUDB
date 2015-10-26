@@ -66,10 +66,33 @@
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
-                        var frm = serializeSection($(this).parents("tr"));
-                        frm.idPersona = $(".txtHdIdPersona").val();
+                        var tr  = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        frm.idPersona = $(".txtHdIdPersona").val(tr);
                         console.log("formulario a enviar",frm);
-                        btnAgregarLaboralPersona(frm);
+                        var val = validarInsertLaboral(frm);
+                        //var theadTabla = $(".rowControles");
+                        if (val.estado) {
+                            btnAgregarLaboralPersona(frm);
+                        } else {
+                            console.log(val);
+                            //############
+                            var errores;
+                            tr.find(".divResultado").addClass("visibilitiHidden");
+                            tr.find(".divResultado").removeClass("hidden");
+                            $.each(val.campos, function (i, val) {
+                                errores = "";
+                                var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                                if (val.length > 0) {
+                                    divResultado.removeClass("visibilitiHidden");
+                                    $.each(val, function (i, val) {
+                                        errores += getSpanMessageError(val);
+                                    })
+                                    divResultado.empty().append(errores);
+                                }
+                            })
+                        }
+                        
                     })
                     $(document).on("click", ".btnEliminarLaboralPersona", function () {
                     var tr = $(this).parents("tr");
