@@ -33,7 +33,9 @@ namespace IUSBack.Controllers.GestionPersonas
                     frm = this.getAjaxFrm();
                     InformacionPersona info = new InformacionPersona();
                     info._persona = new Persona(this.convertObjAjaxToInt(frm["idPersona"]));
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         if (Request.Files.Count > 0)
                         {
@@ -75,7 +77,8 @@ namespace IUSBack.Controllers.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             EmailPersona emailActualizar = new EmailPersona(this.convertObjAjaxToInt(frm["txtIdEmailPersona"]),frm["txtEmail"].ToString(),frm["txtEtiquetaEmail"].ToString());
                             EmailPersona emailActualizado = this._model.sp_rrhh_actualizarCorreoPersona(emailActualizar, usuarioSession._idUsuario, this._idPagina);
@@ -103,7 +106,9 @@ namespace IUSBack.Controllers.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool eliminado = this._model.sp_rrhh_eliminarCorreoPersona(this.convertObjAjaxToInt(frm["txtIdEmailPersona"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -130,7 +135,9 @@ namespace IUSBack.Controllers.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             EmailPersona emailAgregar = new EmailPersona(frm["txtEmail"].ToString(), frm["txtEtiquetaEmail"].ToString(), this.convertObjAjaxToInt(frm["idPersona"]));
                             EmailPersona emailAgregado = this._model.sp_rrhh_guardarCorreoPersona(emailAgregar, usuarioSession._idUsuario, this._idPagina);
@@ -160,7 +167,9 @@ namespace IUSBack.Controllers.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             TelefonoPersona telefonoEditar = new TelefonoPersona(this.convertObjAjaxToInt(frm["txtHdIdTelefono"]), frm["txtTelefono"].ToString(), frm["txtEtiquetaTel"].ToString(), this.convertObjAjaxToInt(frm["cbPais"]));
                             TelefonoPersona telefonoActualizado = this._model.sp_rrhh_editarTelefonoPersona(telefonoEditar, usuarioSession._idUsuario, this._idPagina);
@@ -188,7 +197,9 @@ namespace IUSBack.Controllers.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             bool agrego = this._model.sp_rrhh_eliminarTel(this.convertObjAjaxToInt(frm["txtHdIdTelefono"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
@@ -219,7 +230,9 @@ namespace IUSBack.Controllers.GestionPersonas
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             TelefonoPersona telefonoAgregar = new TelefonoPersona(frm["txtTelefono"].ToString(), frm["txtEtiquetaTel"].ToString(), this.convertObjAjaxToInt(frm["cbPais"]), this.convertObjAjaxToInt(frm["idPersona"]));
                             TelefonoPersona telefonoAgregado = this._model.sp_rrhh_guardarTelefonoPersona(telefonoAgregar, usuarioSession._idUsuario, this._idPagina);
@@ -253,7 +266,9 @@ namespace IUSBack.Controllers.GestionPersonas
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         InformacionPersona informacion = new InformacionPersona(this.convertObjAjaxToInt(frm["cbPais"]), frm["txtNumeroIdentificacion"].ToString(), this.convertObjAjaxToInt(frm["cbEstadoCivil"]), this.convertObjAjaxToInt(frm["txtHdIdPersona"]));
                         InformacionPersona informacionAgregada = this._model.sp_rrhh_guardarInformacionPersona(informacion, usuarioSession._idUsuario, this._idPagina);

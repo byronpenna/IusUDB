@@ -12,6 +12,8 @@ using System.Text;
         using IUSLibs.GENERALS;
         using IUSLibs.LOGS;
     //-------------------
+        using IUSLibs.SEC.Entidades;
+        using IUSLibs.RRHH.Entidades;
         using IUSLibs.RRHH.Entidades.Laboral;
 namespace IUSLibs.RRHH.Control.Laboral
 {
@@ -155,6 +157,8 @@ namespace IUSLibs.RRHH.Control.Laboral
                     List<Empresa> empresas = null; Empresa empresa;
                     List<CargoEmpresa> cargos = null; CargoEmpresa cargo;
                     List<LaboralPersona> laboralesPersona = null; LaboralPersona laboralPersona;
+                    InformacionPersona infoPersona = null;
+                    Persona persona =null ; 
                     // do 
                     Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_rrhh_getInfoInicialLaboralPersona");
@@ -195,9 +199,21 @@ namespace IUSLibs.RRHH.Control.Laboral
                                     laboralesPersona.Add(laboralPersona);
                                 }
                             }
+                            if (tb[3].Rows.Count > 0)
+                            {
+                                DataRow row = tb[3].Rows[0];
+                                persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString());
+                            }
+                            if (tb[4].Rows.Count > 0)
+                            {
+                                DataRow row = tb[4].Rows[0];
+                                infoPersona = new InformacionPersona((int)row["idInformacionPersona"],row["foto"].ToString());
+                            }
                             retorno.Add("cargos", cargos);
                             retorno.Add("empresas", empresas);
                             retorno.Add("laboralesPersonas", laboralesPersona);
+                            retorno.Add("persona", persona);
+                            retorno.Add("infoPersona", infoPersona);
                         }
                         else
                         {

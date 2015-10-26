@@ -6,6 +6,8 @@ using System.Web;
     using IUSBack.Models.General;
 // Externas
     using IUSLibs.LOGS;
+    using IUSLibs.SEC.Control;
+    // recursos humanos
     using IUSLibs.RRHH.Entidades.Laboral;
     using IUSLibs.RRHH.Control.Laboral;
 namespace IUSBack.Models.Page.GestionPersonas.acciones
@@ -138,7 +140,11 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     {
                         try
                         {
-                            return this._controlLaboral.sp_rrhh_getInfoInicialLaboralPersona(idPersona, idUsuarioEjecutor, idPagina);
+                            Dictionary<object,object> iniciales = this._controlLaboral.sp_rrhh_getInfoInicialLaboralPersona(idPersona, idUsuarioEjecutor, idPagina);
+                            ControlPersona personas = new ControlPersona();
+                            iniciales.Add("personas", personas.getPersonas());
+
+                            return iniciales;
                         }
                         catch (ErroresIUS x)
                         {

@@ -117,7 +117,7 @@ namespace IUSBack.Controllers
         #region "ajax action"
             #region "gets"
                 [HttpPost]
-                public ActionResult getJSONPersonas()
+            public ActionResult getJSONPersonas()
             {
                 List<Persona> personas = this._model.getPersonas();
                 return Json(personas);
@@ -125,14 +125,13 @@ namespace IUSBack.Controllers
             #endregion
             #region "acciones"
             [HttpPost]
-                public ActionResult actualizarTodo()
+                public ActionResult actualizarTodo()// no se puede estandarizar para sesion por una forma rara de traer frm
                 {
                     List<Dictionary<object, object>> frm;
                     Dictionary<object, object> respuesta = null;
                     frm = this.getListAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (frm != null && usuarioSession != null)
-                    {
+                    if (frm != null && usuarioSession != null){
                         List<Persona> personasActualizar = this.getPersonaFromForm(frm);
                         respuesta = this._model.actualizarPersona(personasActualizar, usuarioSession._idUsuario, this._idPagina);
 
@@ -149,7 +148,9 @@ namespace IUSBack.Controllers
                     Dictionary<object, object> frm, respuesta = null;
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<object, object>();
                         try
@@ -173,10 +174,6 @@ namespace IUSBack.Controllers
                             ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                             respuesta = this.errorTryControlador(2, error);
                         }
-                    }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
                     }
                     return Json(respuesta);
                     /*string frmText = Request.Form["form"];
@@ -202,7 +199,9 @@ namespace IUSBack.Controllers
                     Dictionary<object, object> frm, respuesta = null;
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<object, object>();
                         try
@@ -242,7 +241,9 @@ namespace IUSBack.Controllers
                     frm = this.getAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
                     bool estado;
-                    if (frm != null && usuarioSession != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         int idPersona = this.convertObjAjaxToInt(frm["txtHdIdPersona"]);
                         try{
@@ -264,10 +265,6 @@ namespace IUSBack.Controllers
                             ErroresIUS error = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
                             respuesta = this.errorTryControlador(2,error);
                         }
-                    }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
                     }
                     return Json(respuesta);
                 }

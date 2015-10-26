@@ -6,6 +6,7 @@ using System.Web;
     using IUSBack.Models.General;
 // Externas
     using IUSLibs.LOGS;
+    using IUSLibs.SEC.Control;
     // rrrhh
         using IUSLibs.RRHH.Control.Formacion;
         using IUSLibs.RRHH.Entidades.Formacion;
@@ -217,7 +218,10 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 {
                     try
                     {
-                        return this._controlFormacion.sp_rrhh_getInfoInicialFormacion(idPersona, idUsuarioEjecutor, idPagina);
+                        ControlPersona controlPersona = new ControlPersona();
+                        Dictionary<object,object> informacionIni = this._controlFormacion.sp_rrhh_getInfoInicialFormacion(idPersona, idUsuarioEjecutor, idPagina);
+                        informacionIni.Add("personas", controlPersona.getPersonas());
+                        return informacionIni;
                     }
                     catch (ErroresIUS x)
                     {
