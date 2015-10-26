@@ -79,7 +79,9 @@ namespace IUSBack.Controllers
                     Dictionary<Object,Object> frm,respuesta = null;
                     frm = this.getAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (frm != null && usuarioSession != null) // lo de usuario se puede mejorar
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<Object, Object>();
                         try
@@ -96,10 +98,6 @@ namespace IUSBack.Controllers
                             respuesta.Add("error", x);
                         }
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
                     return Json(respuesta);
                 }
                 public ActionResult getObjetosTablita()
@@ -107,7 +105,9 @@ namespace IUSBack.Controllers
                     Dictionary<Object, Object> frm, respuesta = null;
                     frm = this.getAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (frm != null && usuarioSession != null)// insistiendo que usuario deberia tener su propio manejo de error
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<Object, Object>();
                         int idLlaveIdioma = Convert.ToInt32(frm["idLlaveIdioma"].ToString());
@@ -133,10 +133,6 @@ namespace IUSBack.Controllers
                             respuesta.Add("error", "ocurrio un error al cargar la informacion");
                         }
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    } 
                     return Json(respuesta);
                 }
             #endregion 
@@ -150,7 +146,9 @@ namespace IUSBack.Controllers
                     LlaveIdioma llaveIdioma; LlaveIdioma aAgregar;
                     List<Llave> llaves;
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (frm != null && usuarioSession != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<object, object>();
                         try
@@ -187,10 +185,6 @@ namespace IUSBack.Controllers
                             respuesta.Add("error", x);
                         }
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
                     return Json(respuesta);
                 }
                 public ActionResult sp_trl_eliminarLlaveIdioma()
@@ -198,7 +192,9 @@ namespace IUSBack.Controllers
                     Dictionary<object, object> frm, respuesta = null;
                     frm = this.getAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (frm != null && usuarioSession != null) 
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<object, object>();
                         try
@@ -229,10 +225,6 @@ namespace IUSBack.Controllers
                         }
                         
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
                     return Json(respuesta);
                 }
                 public ActionResult sp_trl_actualizarLlaveIdioma()
@@ -240,7 +232,9 @@ namespace IUSBack.Controllers
                     Dictionary<Object, Object> frm, respuesta = null;
                     frm = this.getAjaxFrm();
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (frm != null && usuarioSession != null) // manejar diferente lo de los usuarios
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         respuesta = new Dictionary<object, object>();
                         // variables mandar 

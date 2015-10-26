@@ -59,7 +59,9 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         TelefonoInstitucion telefonoEditar = new TelefonoInstitucion(this.convertObjAjaxToInt(frm["txtHdIdTel"]), frm["txtTelefonoEdit"].ToString(), frm["txtEtiquetaEdit"].ToString());
                         TelefonoInstitucion telefonoEditado = this._model.sp_frontui_editTelInstitucion(telefonoEditar, usuarioSession._idUsuario, this._idPagina);
@@ -87,7 +89,9 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         bool agrego = this._model.sp_frontui_deleteTelInstitucion(this.convertObjAjaxToInt(frm["txtHdIdTel"]), usuarioSession._idUsuario, this._idPagina);
                         respuesta = new Dictionary<object, object>();
@@ -113,7 +117,9 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         TelefonoInstitucion telefonoIngresar = new TelefonoInstitucion(frm["txtTelefono"].ToString(), frm["txtEtiqueta"].ToString(), this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]));
                         TelefonoInstitucion telefonoAgregado = this._model.sp_frontui_insertTelInstitucion(telefonoIngresar, usuarioSession._idUsuario, this._idPagina);
@@ -121,11 +127,6 @@ namespace IUSBack.Controllers
                         respuesta.Add("estado", true);
                         respuesta.Add("telefono", telefonoAgregado);
 
-                    }
-                    else
-                    {
-                        ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
-                        respuesta = this.errorTryControlador(3, x);
                     }
                 }
                 catch (ErroresIUS x)

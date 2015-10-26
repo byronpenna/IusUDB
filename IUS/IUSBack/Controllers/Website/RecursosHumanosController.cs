@@ -123,7 +123,9 @@ namespace IUSBack.Controllers.Website
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         Dictionary<object, object> objetos = new Dictionary<object, object>();
                         objetos = this.getArrElementosBusqueda(frm);
@@ -131,10 +133,6 @@ namespace IUSBack.Controllers.Website
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("personas", personas);
-                    }
-                    else
-                    {
-                        respuesta = errorEnvioFrmJSON();
                     }
                 }
                 catch (ErroresIUS x)
