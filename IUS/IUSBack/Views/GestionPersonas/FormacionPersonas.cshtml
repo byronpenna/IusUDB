@@ -129,50 +129,85 @@
             </tr>
             <tr class="trAgregar">
                 <td>
-                    <input class="txtCarrera form-control" name="txtCarrera" placeholder="Carrera" />
+                    <div class="row marginNull divControl">
+                        <input class="txtCarrera form-control" name="txtCarrera" placeholder="Carrera" />
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
+                    </div>
                 </td>
                 <td class="tdFechaIniFinTitulo">
-                    <input name="txtYearFin" class="txtYearFin form-control" />
+                    <div class="row marginNull divControl">
+                        <input name="txtYearFin" class="txtYearFin form-control" />
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <textarea name="txtAreaObservaciones" class="txtAreaObservaciones form-control"></textarea>
+                    <div class="row marginNull divControl">
+                        <textarea name="txtAreaObservaciones" class="txtAreaObservaciones form-control"></textarea>
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <select class="cbNivelCarrera form-control" name="cbNivelCarrera">
-                        @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
-                        {
-                            foreach (NivelTitulo nivelTitulo in nivelesTitulo)
+                    <div class="row marginNull divControl">
+                        <select class="cbNivelCarrera form-control" name="cbNivelCarrera">
+                            @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
                             {
-                                <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                                foreach (NivelTitulo nivelTitulo in nivelesTitulo)
+                                {
+                                    <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                                }
                             }
-                        }
-                    </select>
+                        </select>
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <select class="cbAreaCarrera form-control" name="cbAreaCarrera">
-                        @if (areasCarreras != null && areasCarreras.Count > 0)
-                        {
-                            foreach (AreaCarrera areaCarrera in areasCarreras)
+                    <div class="row marginNull divControl">
+                        <select class="cbAreaCarrera form-control" name="cbAreaCarrera">
+                            @if (areasCarreras != null && areasCarreras.Count > 0)
                             {
-                                <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                                foreach (AreaCarrera areaCarrera in areasCarreras)
+                                {
+                                    <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                                }
                             }
-                        }
-                    </select>
+                        </select>
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <input class="form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                    <div class="row marginNull divControl">
+                        <input class="form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
-                        <option value="-1">Seleccione un país</option>
-                        @if (paises != null && paises.Count > 0)
-                        {
-                            foreach (Pais pais in paises)
+                    <div class="row marginNull divControl">
+                        <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+                            <option value="-1">Seleccione un país</option>
+                            @if (paises != null && paises.Count > 0)
                             {
-                                <option value="@pais._idPais">@pais._pais</option>
+                                foreach (Pais pais in paises)
+                                {
+                                    <option value="@pais._idPais">@pais._pais</option>
+                                }
                             }
-                        }
-                    </select>
+                        </select>
+                        <div class="row marginNull divResultado hidden">
+
+                        </div>
+                    </div>
                 </td>
                 <td>
                     <button class="btn btnAgregarCarrera">Agregar</button>

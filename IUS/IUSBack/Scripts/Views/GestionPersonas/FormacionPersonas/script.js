@@ -255,12 +255,33 @@
                             tr.find(".txtInstitucionEducativa").val(datosSet.institucion);
                         controlesEdit(true, tr);
                     })
-                $(document).on("click", ".btnAgregarCarrera", function () {
-                    var frm = serializeSection($(this).parents("tr"));
-                    frm.idPersona = $(".txtHdIdPersona").val();
-                    console.log("formulario", frm);
-                    btnAgregarCarrera(frm);
-                })
+                    $(document).on("click", ".btnAgregarCarrera", function () {
+                        var tr = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        frm.idPersona = $(".txtHdIdPersona").val();
+                        console.log("formulario", frm);
+                        var val = validarAgregarCarrera(frm);
+                        console.log("Validacion D: D: ",val);
+                        if (val.estado) {
+                            btnAgregarCarrera(frm);
+                        }else{
+                            var errores;
+                            tr.find(".divResultado").addClass("visibilitiHidden");
+                            tr.find(".divResultado").removeClass("hidden");
+                            $.each(val.campos, function (i, val) {
+                                errores = "";
+                                var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                                if (val.length > 0) {
+                                    divResultado.removeClass("visibilitiHidden");
+                                    $.each(val, function (i, val) {
+                                        errores += getSpanMessageError(val);
+                                    })
+                                    divResultado.empty().append(errores);
+                                }
+                            })
+                        }
+                    
+                    })
                 $(document).on("click", ".btnEliminarTitulo", function () {
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);
