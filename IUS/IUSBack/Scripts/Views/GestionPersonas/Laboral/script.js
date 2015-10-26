@@ -5,6 +5,8 @@
             "bSort": false
         });
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
+        $(".cbEmpresa").chosen({ no_results_text: "No se encontro esa empresa", width: '100%' });
+        $(".cbCargo").chosen({ no_results_text: "No se encontro cargo", width: '100%' });
     // eventos 
         // doble click  
             $(document).on("dblclick", ".titlePersona", function (e) {
@@ -64,11 +66,11 @@
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
-                    var frm = serializeSection($(this).parents("tr"));
-                    frm.idPersona = $(".txtHdIdPersona").val();
-                    console.log("formulario a enviar",frm);
-                    btnAgregarLaboralPersona(frm);
-                })
+                        var frm = serializeSection($(this).parents("tr"));
+                        frm.idPersona = $(".txtHdIdPersona").val();
+                        console.log("formulario a enviar",frm);
+                        btnAgregarLaboralPersona(frm);
+                    })
                     $(document).on("click", ".btnEliminarLaboralPersona", function () {
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);
