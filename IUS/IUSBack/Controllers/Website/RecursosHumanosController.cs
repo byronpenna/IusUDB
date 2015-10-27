@@ -55,9 +55,15 @@ namespace IUSBack.Controllers.Website
                 Dictionary<object, object> retorno = new Dictionary<object, object>();
                 // variables arr
                 int[] rubros = null; int[] areas = null;
-                int[] niveles = null;
+                int[] niveles = null; int[] cargos = null;
                 // variables string 
                 string strRubros=null; string strAreas=null; string strNiveles= null;
+                string strCargos = null;
+                if (frm.Keys.Contains("cbCargo"))
+                {
+                    cargos      = this.convertArrAjaxToInt(frm["cbCargo"]);
+                    strCargos   = string.Join(",", cargos);
+                }
                 if (frm.Keys.Contains("cbRubros"))
                 {
                     rubros = this.convertArrAjaxToInt(frm["cbRubros"]);
