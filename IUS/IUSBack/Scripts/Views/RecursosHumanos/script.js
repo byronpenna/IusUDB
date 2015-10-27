@@ -8,6 +8,7 @@
                 $(".cbNiveles").chosen({ no_results_text: "No se encontro ese nivel", width: '100%' });
                 $(".cbAreas").chosen({ no_results_text: "No se encontro esa area", width: '100%' });
                 $(".cbRubros").chosen({ no_results_text: "No se encontro ese rubro", width: '100%' });
+                $(".cbEstadoCivil").chosen({ no_results_text: "Estado civil no encontrado", width: '100%' });
                 //cbRubros
         // eventos 
             $(document).on("click", ".btnBusquedaPerfil", function () {
