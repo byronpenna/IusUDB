@@ -73,7 +73,7 @@
                         var val = validarInsertLaboral(frm);
                         //var theadTabla = $(".rowControles");
                         if (val.estado) {
-                            btnAgregarLaboralPersona(frm);
+                            btnAgregarLaboralPersona(frm,tr);
                         } else {
                             console.log(val);
                             //############
@@ -130,8 +130,10 @@
                             selectCargo.empty().append(cbCargos);
                             selectEmpresa.empty().append(cbEmpresas);
                             // seleccionando
-                            selectCargo.val(datosSet.idCargoEmpresa);
-                            selectEmpresa.val(datosSet.idEmpresa);
+                            resetChosenWithSelectedVal(selectCargo, datosSet.idCargoEmpresa)
+                            resetChosenWithSelectedVal(selectEmpresa, datosSet.idEmpresa)
+                            //selectCargo.val(datosSet.idCargoEmpresa);
+                            //selectEmpresa.val(datosSet.idEmpresa);
                         })
                         tr.find(".txtInicio").val(datosSet.fechaInicio);
                         tr.find(".txtFin").val(datosSet.fechaFin);

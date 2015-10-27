@@ -228,6 +228,12 @@
             val.estado = objArrIsEmpty(val.campos);
             return val;
         }
+
+        function limpiarAgregar(div) {
+            div.find(".txtInicio").val("");
+            div.find(".txtFin").val("");
+            div.find(".txtAreaObservacion").val("");
+        }
 // acciones 
     // actividades
         function btnActualizarActividadEmpresa(frm,tr) {
@@ -267,11 +273,13 @@
             })
         }
     // laboral
-        function btnAgregarLaboralPersona(frm) {
+        function btnAgregarLaboralPersona(frm,tr) {
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
-                console.log("Data devuelta por el servidor",data);
                 if(data.estado){
-                    var trAgregar   = getTrLaboralPersona(data.laboralAgregada);
+                    tr.find(".divResultado").removeClass("visibilitiHidden");
+                    tr.find(".divResultado").addClass("hidden");
+                    limpiarAgregar(tr);
+                    var trAgregar = getTrLaboralPersona(data.laboralAgregada);
                     var tbody       = $(".tbodyLaboralPersona");
                     console.log("length es:", tbody.find(".trNoRegistro").length);
                     if (tbody.find(".trNoRegistro").length == 0) {
@@ -285,6 +293,7 @@
                 }
             })
         }
+        
         function btnActualizarLaboralPersona(frm,tr) {
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
                 console.log("la respuesta es: ", data);
