@@ -148,7 +148,7 @@
                 <div class="col-lg-3">
                     <label>País de origen</label>
                     <select multiple class="form-control cbPais" name="cbPais">
-                        <option value="-1">Cualquiera</option>
+                        <!--<option value="-1">Cualquiera</option>-->
                         @if (paises != null)
                         {
                             foreach (Pais pais in paises)
@@ -160,8 +160,8 @@
                 </div>
                 <div class="col-lg-3">
                     <label>Estado civil</label>
-                    <select multiple class="cbEstadoCivil form-control">
-                        <option value="-1">Cualquiera</option>
+                    <select multiple class="cbEstadoCivil form-control" name="cbEstadoCivil">
+                        <!--<option value="-1">Cualquiera</option>-->
                         @if (estadosCiviles != null)
                         {
                             foreach (EstadoCivil estadoCivil in estadosCiviles)

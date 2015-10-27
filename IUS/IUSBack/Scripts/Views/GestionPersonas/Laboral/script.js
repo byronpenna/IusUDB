@@ -73,7 +73,7 @@
                         var val = validarInsertLaboral(frm);
                         //var theadTabla = $(".rowControles");
                         if (val.estado) {
-                            btnAgregarLaboralPersona(frm,tr);
+                            //btnAgregarLaboralPersona(frm,tr);
                         } else {
                             console.log(val);
                             //############

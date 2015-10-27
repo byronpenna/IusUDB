@@ -54,11 +54,12 @@ namespace IUSBack.Controllers.Website
             {
                 Dictionary<object, object> retorno = new Dictionary<object, object>();
                 // variables arr
-                int[] rubros = null; int[] areas = null;
-                int[] niveles = null; int[] cargos = null;
+                int[] rubros    = null; int[] areas             = null;
+                int[] niveles   = null; int[] cargos            = null;
+                int[] paises    = null; int[] estadosCiviles    = null;
                 // variables string 
                 string strRubros=null; string strAreas=null; string strNiveles= null;
-                string strCargos = null;
+                string strCargos = null; string strPais = null; string strEstadoCivil = null;
                 if (frm.Keys.Contains("cbCargo"))
                 {
                     cargos      = this.convertArrAjaxToInt(frm["cbCargo"]);
@@ -79,9 +80,23 @@ namespace IUSBack.Controllers.Website
                     niveles = this.convertArrAjaxToInt(frm["cbNiveles"]);
                     strNiveles = string.Join(",",niveles);
                 }
+                //-----------------------------
+                if (frm.Keys.Contains("cbPais"))
+                {
+                    paises  = this.convertArrAjaxToInt(frm["cbPais"]);
+                    strPais = string.Join(",", paises);
+                }
+                if (frm.Keys.Contains("cbEstadoCivil"))
+                {
+                    estadosCiviles = this.convertArrAjaxToInt(frm["cbEstadoCivil"]);
+                    strEstadoCivil = string.Join(",", estadosCiviles);
+                }
                 retorno.Add("rubros", strRubros);
                 retorno.Add("areas", strAreas);
                 retorno.Add("niveles", strNiveles);
+                retorno.Add("cargos", strCargos);
+                retorno.Add("estadosCiviles", strEstadoCivil);
+                retorno.Add("paises", strPais);
                 return retorno;
             }
         #endregion
@@ -135,7 +150,7 @@ namespace IUSBack.Controllers.Website
                     {
                         Dictionary<object, object> objetos = new Dictionary<object, object>();
                         objetos = this.getArrElementosBusqueda(frm);
-                        List<Persona> personas = this._model.sp_rrhh_buscarPersonas(objetos, frm["txtCarrera"].ToString(), null, usuarioSession._idUsuario, this._idPagina);
+                        List<Persona> personas = this._model.sp_rrhh_buscarPersonas(objetos, frm["txtCarrera"].ToString(), usuarioSession._idUsuario, this._idPagina);
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("personas", personas);
