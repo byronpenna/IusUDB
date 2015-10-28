@@ -36,14 +36,13 @@ namespace IUSBack.Models.Page.RecursosHumanos.Acciones
                         string cargos,  int idUsuarioEjecutor,
                         int idPagina*/
                     Dictionary<object, object> strArrElements, string carrera,
-                    string cargos,int idUsuarioEjecutor,int idPagina
-
+                    int idUsuarioEjecutor,int idPagina
                 )
                 {
                     try
                     {
                         ControlInformacionPersona control = new ControlInformacionPersona();
-                        return control.sp_rrhh_buscarPersonas(strArrElements, carrera, cargos, idUsuarioEjecutor, idPagina);
+                        return control.sp_rrhh_buscarPersonas(strArrElements, carrera, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {

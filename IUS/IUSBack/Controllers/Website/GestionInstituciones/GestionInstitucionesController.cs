@@ -110,16 +110,14 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         List<Pais> paises = this._model.sp_frontui_getPaises();
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("paises", paises);
-                    }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
                     }
                 }
                 catch (ErroresIUS x)
@@ -141,9 +139,10 @@ namespace IUSBack.Controllers
                     try
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             if (Request.Files.Count > 0)
                             {
@@ -179,11 +178,6 @@ namespace IUSBack.Controllers
                                 throw x;
                             }
                         }
-                        else
-                        {
-                            ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
-                            respuesta = this.errorTryControlador(3, x);
-                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -206,17 +200,15 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             Institucion institucionEditar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), frm["txtNombreInstitucionEdit"].ToString(), frm["txtAreaDireccionEdit"].ToString(), this.convertObjAjaxToInt(frm["cbPaisEdit"]), true);
                             Institucion institucionEditada = this._model.sp_frontui_editInstitucion(institucionEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("institucion", institucionEditada);
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
                     catch (ErroresIUS x)
@@ -238,16 +230,13 @@ namespace IUSBack.Controllers
                      {
                          Usuario usuarioSession = this.getUsuarioSesion();
                          frm = this.getAjaxFrm();
-                         if (usuarioSession != null && frm != null)
+                         
+                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                         if (respuesta == null)
                          {
                              respuesta = new Dictionary<object, object>();
                              bool estado = this._model.sp_frontui_deleteInstitucion(this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina);
                              respuesta.Add("estado", estado);
-                         }
-                         else
-                         {
-                             ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
-                             respuesta = this.errorTryControlador(3, x);
                          }
                      }
                      catch (ErroresIUS x)
@@ -269,7 +258,9 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                         
                             Institucion institucionAgregar,institucionAgregada=null;
@@ -287,10 +278,6 @@ namespace IUSBack.Controllers
                                 respuesta = this.errorTryControlador(3, x);
                             }
                         
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
 
                     }

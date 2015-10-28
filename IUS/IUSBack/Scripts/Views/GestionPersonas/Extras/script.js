@@ -178,7 +178,7 @@
                     frm.txtHdIdPersona  = $(".txtHdIdPersona").val();
                     console.log("Formulario a enviar es", frm);
                     var val = validarInsertExtra(frm);
-                    var theadTabla = $(".divFrmInformacionExtra");
+                    var theadTabla = $(".rowControles");
                     if (val.estado) {
                         btnGuardarInformacionBasica(frm);
                     } else {

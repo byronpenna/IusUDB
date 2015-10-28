@@ -5,6 +5,9 @@
         cursor:pointer;
     }
 
+.txtDate{
+    width: 10%;
+}
 /*************************/
 .rowDataPersona{
     text-align:center;
@@ -13,3 +16,4 @@
 .imgPersona{
     width:10%;
 }
+

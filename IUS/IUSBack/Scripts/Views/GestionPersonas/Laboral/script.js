@@ -5,6 +5,8 @@
             "bSort": false
         });
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
+        $(".cbEmpresa").chosen({ no_results_text: "No se encontro esa empresa", width: '100%' });
+        $(".cbCargo").chosen({ no_results_text: "No se encontro cargo", width: '100%' });
     // eventos 
         // doble click  
             $(document).on("dblclick", ".titlePersona", function (e) {
@@ -64,11 +66,34 @@
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
-                    var frm = serializeSection($(this).parents("tr"));
-                    frm.idPersona = $(".txtHdIdPersona").val();
-                    console.log("formulario a enviar",frm);
-                    btnAgregarLaboralPersona(frm);
-                })
+                        var tr  = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        frm.idPersona = $(".txtHdIdPersona").val();//tr
+                        console.log("formulario a enviar",frm);
+                        var val = validarInsertLaboral(frm);
+                        //var theadTabla = $(".rowControles");
+                        if (val.estado) {
+                            //btnAgregarLaboralPersona(frm,tr);
+                        } else {
+                            console.log(val);
+                            //############
+                            var errores;
+                            tr.find(".divResultado").addClass("visibilitiHidden");
+                            tr.find(".divResultado").removeClass("hidden");
+                            $.each(val.campos, function (i, val) {
+                                errores = "";
+                                var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                                if (val.length > 0) {
+                                    divResultado.removeClass("visibilitiHidden");
+                                    $.each(val, function (i, val) {
+                                        errores += getSpanMessageError(val);
+                                    })
+                                    divResultado.empty().append(errores);
+                                }
+                            })
+                        }
+                        
+                    })
                     $(document).on("click", ".btnEliminarLaboralPersona", function () {
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);
@@ -105,8 +130,10 @@
                             selectCargo.empty().append(cbCargos);
                             selectEmpresa.empty().append(cbEmpresas);
                             // seleccionando
-                            selectCargo.val(datosSet.idCargoEmpresa);
-                            selectEmpresa.val(datosSet.idEmpresa);
+                            resetChosenWithSelectedVal(selectCargo, datosSet.idCargoEmpresa)
+                            resetChosenWithSelectedVal(selectEmpresa, datosSet.idEmpresa)
+                            //selectCargo.val(datosSet.idCargoEmpresa);
+                            //selectEmpresa.val(datosSet.idEmpresa);
                         })
                         tr.find(".txtInicio").val(datosSet.fechaInicio);
                         tr.find(".txtFin").val(datosSet.fechaFin);

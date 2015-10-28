@@ -61,7 +61,8 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && frm != null)
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             EnlaceInstitucion enlaceEditar = new EnlaceInstitucion(this.convertObjAjaxToInt(frm["txtHdIdEnlace"]), frm["txtEnlace"].ToString(), frm["txtTextoEnlaceEdit"].ToString());
                             EnlaceInstitucion enlaceEditado = this._model.sp_frontui_editEnlaceInstitucion(enlaceEditar, usuarioSession._idUsuario, this._idPagina);
@@ -69,11 +70,6 @@ namespace IUSBack.Controllers
                             respuesta.Add("estado", true);
                             respuesta.Add("enlace", enlaceEditado);
 
-                        }
-                        else
-                        {
-                            ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
-                            respuesta = this.errorTryControlador(3, x);
                         }
                 }
                 catch (ErroresIUS x)
@@ -95,7 +91,8 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
                         bool estado = this._model.sp_frontui_deleteEnlaceInstitucion(this.convertObjAjaxToInt(frm["txtHdIdEnlace"]), usuarioSession._idUsuario, this._idPagina);
                         respuesta = new Dictionary<object, object>();
@@ -121,7 +118,9 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    if (usuarioSession != null && frm != null)
+                    
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
                     {
 
                         EnlaceInstitucion enlaceAgregar = new EnlaceInstitucion(frm["txtEnlace"].ToString(), frm["txtTextoEnlace"].ToString(), this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]));
@@ -129,11 +128,6 @@ namespace IUSBack.Controllers
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("enlace", enlaceAgregado);
-                    }
-                    else
-                    {
-                        ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
-                        respuesta = this.errorTryControlador(3, x);
                     }
                 }
                 catch (ErroresIUS x)

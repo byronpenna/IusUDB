@@ -149,7 +149,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta;
                         frm                         = this.getAjaxFrm();
                         Usuario usuarioSession      = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try{
                                 SliderImage image = this._model.sp_adminfe_cambiarEstado(this.convertObjAjaxToInt(frm["txtHdIdSliderImage"]), usuarioSession._idUsuario, this._idPagina);
@@ -174,10 +176,6 @@ namespace IUSBack.Controllers
                             
                             
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     public ActionResult sp_adminfe_eliminarImagenSlider()
@@ -185,7 +183,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try{
                                 bool estado = this._model.sp_adminfe_eliminarImagenSlider(this.convertObjAjaxToInt(frm["txtHdIdSliderImage"]), usuarioSession._idUsuario, this._idPagina);
@@ -200,10 +200,6 @@ namespace IUSBack.Controllers
                             }
                             
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                 #endregion
@@ -213,7 +209,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta = null;
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        if (usuarioSession != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try{
                                 int idValor = this.convertObjAjaxToInt(frm["txtIdValor"]);
@@ -238,10 +236,6 @@ namespace IUSBack.Controllers
                             }
                         
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     public ActionResult sp_adminfe_agregarValoresConfig()
@@ -249,7 +243,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try
                             {
@@ -280,10 +276,6 @@ namespace IUSBack.Controllers
                     
 
                         }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
-                        }
                         return Json(respuesta);
                     }
                     public ActionResult sp_adminfe_actualizarInfoConfig()
@@ -291,7 +283,9 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        if (frm != null && usuarioSession != null)
+                        
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
                         {
                             try
                             {
@@ -323,10 +317,6 @@ namespace IUSBack.Controllers
                             }
                     
 
-                        }
-                        else
-                        {
-                            respuesta = this.errorEnvioFrmJSON();
                         }
                         return Json(respuesta);
                     }

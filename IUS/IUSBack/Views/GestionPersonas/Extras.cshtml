@@ -111,62 +111,64 @@
             </form>
         </div>
         <div class="col-lg-6 divFrmInformacionExtra">
-            <div class="divControl row marginNull">
-                <label>Seleccione pais</label>
-                <select class="cbPais form-control" name="cbPais">
-                    <option value="-1">Seleccione pais</option>
-                    @if (paises != null && paises != null && paises.Count > 0)
-                    {
-                        selected = "";
-                        foreach (Pais pais in paises)
+            <div class="row marginNull rowControles">
+                <div class="divControl row marginNull">
+                    <label>Seleccione pais</label>
+                    <select class="cbPais form-control" name="cbPais">
+                        <option value="-1">Seleccione pais</option>
+                        @if (paises != null && paises != null && paises.Count > 0)
                         {
                             selected = "";
-                            if (informacionPersona != null)
+                            foreach (Pais pais in paises)
                             {
-                                if (pais._idPais == informacionPersona._pais._idPais)
+                                selected = "";
+                                if (informacionPersona != null)
                                 {
-                                    selected = "selected";
+                                    if (pais._idPais == informacionPersona._pais._idPais)
+                                    {
+                                        selected = "selected";
+                                    }
                                 }
+                                <option value="@pais._idPais" @selected>@pais._pais</option>
                             }
-                            <option value="@pais._idPais" @selected>@pais._pais</option>
                         }
-                    }
-                </select>
-                <div class="row marginNull divResultado hidden">
+                    </select>
+                    <div class="row marginNull divResultado hidden">
 
+                    </div>
                 </div>
-            </div>
-            <div class="divControl row marginNull">
-                <label>Numero de identificacion</label>
-                <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@numeroIdentificacion" />
-                <div class="row marginNull divResultado hidden">
+                <div class="divControl row marginNull">
+                    <label>Numero de identificacion</label>
+                    <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@numeroIdentificacion" />
+                    <div class="row marginNull divResultado hidden">
 
+                    </div>
                 </div>
-            </div>
-            <div class="divControl row marginNull">
-                <label>Seleccione estado civil</label>
-                <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
-                    <option value="-1">Seleccione estado civil</option>
-                    @if (estadosCiviles != null && paises.Count > 0)
-                    {
-                        selected = "";
-                        foreach (EstadoCivil estadoCivil in estadosCiviles)
+                <div class="divControl row marginNull">
+                    <label>Seleccione estado civil</label>
+                    <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
+                        <option value="-1">Seleccione estado civil</option>
+                        @if (estadosCiviles != null && paises.Count > 0)
                         {
                             selected = "";
-                            if (informacionPersona != null)
+                            foreach (EstadoCivil estadoCivil in estadosCiviles)
                             {
-                                if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                                selected = "";
+                                if (informacionPersona != null)
                                 {
-                                    selected = "selected";
+                                    if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                                    {
+                                        selected = "selected";
+                                    }
                                 }
-                            }
-                            
-                            <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
-                        }
-                    }
-                </select>
-                <div class="row marginNull divResultado hidden">
 
+                                <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
+                            }
+                        }
+                    </select>
+                    <div class="row marginNull divResultado hidden">
+
+                    </div>
                 </div>
             </div>
             

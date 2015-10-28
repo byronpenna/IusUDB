@@ -175,7 +175,7 @@
                 return tr;
             }
     // otras
-         function getTableActividades(tr) {
+        function getTableActividades(tr) {
             var frm = { idLaboralPersona: tr.find(".txtHdIdLaboralPersona").val() }; 
             console.log("traer ", frm);
             actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {
@@ -205,6 +205,34 @@
                 //$(".tableUsuarios").find(".trTableRol").remove();
                 tr.parents("table").find(".trTable").remove();
             }
+        }
+        function validarInsertLaboral(frm) {
+            var val = new Object();
+            val.campos = {
+                cbCargo:            new Array(),
+                cbEmpresa:          new Array(),
+                txtAreaObservacion: new Array(),
+                txtFin:             new Array(),
+                txtInicio:          new Array()
+            }
+            console.log(frm);
+            if (frm.txtAreaObservacion == "") {
+                val.campos.txtAreaObservacion.push("Campo no debe quedar vacio");
+            }
+            if (frm.txtFin == "") {
+                val.campos.txtFin.push("Llenarlo");
+            }
+            if (frm.txtInicio == "") {
+                val.campos.txtInicio.push("Llenarlo");
+            }
+            val.estado = objArrIsEmpty(val.campos);
+            return val;
+        }
+
+        function limpiarAgregar(div) {
+            div.find(".txtInicio").val("");
+            div.find(".txtFin").val("");
+            div.find(".txtAreaObservacion").val("");
         }
 // acciones 
     // actividades
@@ -245,17 +273,27 @@
             })
         }
     // laboral
-        function btnAgregarLaboralPersona(frm) {
-        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
-            console.log("Data devuelta por el servidor",data);
-            if(data.estado){
-                var trAgregar = getTrLaboralPersona(data.laboralAgregada);
-                $(".tbodyLaboralPersona").prepend(trAgregar);
-            } else {
-                alert("Ocurrio un error");
-            }
-        })
+        function btnAgregarLaboralPersona(frm,tr) {
+            actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
+                if(data.estado){
+                    tr.find(".divResultado").removeClass("visibilitiHidden");
+                    tr.find(".divResultado").addClass("hidden");
+                    limpiarAgregar(tr);
+                    var trAgregar = getTrLaboralPersona(data.laboralAgregada);
+                    var tbody       = $(".tbodyLaboralPersona");
+                    console.log("length es:", tbody.find(".trNoRegistro").length);
+                    if (tbody.find(".trNoRegistro").length == 0) {
+                        tbody.prepend(trAgregar);
+                    } else {
+                        tbody.empty().append(trAgregar);
+                    }
+                    
+                } else {
+                    alert("Ocurrio un error");
+                }
+            })
         }
+        
         function btnActualizarLaboralPersona(frm,tr) {
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_editarLaboralPersonas", frm, function (data) {
                 console.log("la respuesta es: ", data);

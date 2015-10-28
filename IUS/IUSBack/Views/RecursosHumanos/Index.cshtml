@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-lg-4">
                         <label>Cargos</label>
-                        <select class="form-control cbCargo" name="cbCargo">
+                        <select multiple class="form-control cbCargo" name="cbCargo">
                             <option value="-1">Cualquier cargo</option>
                             @if (cargos != null)
                             {
@@ -147,8 +147,8 @@
                 </div>
                 <div class="col-lg-3">
                     <label>País de origen</label>
-                    <select class="form-control cbPais" name="cbPais">
-                        <option value="-1">Cualquiera</option>
+                    <select multiple class="form-control cbPais" name="cbPais">
+                        <!--<option value="-1">Cualquiera</option>-->
                         @if (paises != null)
                         {
                             foreach (Pais pais in paises)
@@ -160,8 +160,8 @@
                 </div>
                 <div class="col-lg-3">
                     <label>Estado civil</label>
-                    <select class="form-control">
-                        <option value="-1">Cualquiera</option>
+                    <select multiple class="cbEstadoCivil form-control" name="cbEstadoCivil">
+                        <!--<option value="-1">Cualquiera</option>-->
                         @if (estadosCiviles != null)
                         {
                             foreach (EstadoCivil estadoCivil in estadosCiviles)
@@ -182,15 +182,17 @@
     
     <div class="row marginNull">
         <div class="col-lg-3">
-            <table class="table tablaPersona">
-                <thead>
-                    <tr>
-                        <th>Nombre completo</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="tbodyPersonas"></tbody>
-            </table>    
+            <div class="row marginNull divContenedorPersonas">
+                <table class="table tablaPersona">
+                    <thead>
+                        <tr>
+                            <th>Nombre completo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyPersonas"></tbody>
+                </table>    
+            </div>
         </div>
         <div class="col-lg-8">
             <div class="divEncabezadoFicha">

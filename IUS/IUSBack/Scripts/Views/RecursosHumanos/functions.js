@@ -96,7 +96,22 @@
             }
         }, function () {
             $(".spanEncabezadoFicha").empty().append("..");
-
+            var trLoadLaboral = "\
+                    <tr>\
+                        <td class='text-center' colspan='3'>\
+                            <img src ='" + IMG_GENERALES + "ajax-loader.gif '\
+                        </td>\
+                    </tr>\
+            ";
+            var trLoadEducativo = "\
+                    <tr>\
+                        <td class='text-center' colspan='4'>\
+                            <img src ='" + IMG_GENERALES + "ajax-loader.gif '\
+                        </td>\
+                    </tr>\
+            ";//"+IMG_GENERALES+"ajax-loader.gif"
+            targetEducacion.empty().append(trLoadEducativo);
+            targetLaboral.empty().append(trLoadLaboral);
         })
     }
     function btnBusquedaPerfil(frm) {

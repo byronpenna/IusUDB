@@ -33,6 +33,35 @@
         val.estado = objArrIsEmpty(val.campos);
         return val;
     }
+    function validarAgregarCarrera(frm) {
+        var val = new Object();
+        val.campos = {
+            cbAreaCarrera:              new Array(),
+            cbNivelCarrera:             new Array(),
+            cbPaisInstitucionEducativa: new Array(),
+            txtAreaObservaciones:       new Array(),
+            txtCarrera:                 new Array(),
+            txtInstitucionEducativa:    new Array(),
+            txtYearFin:                 new Array()
+        }
+        if (frm.cbPaisInstitucionEducativa == -1) {
+            val.campos.cbPaisInstitucionEducativa.push("Seleccione un país");
+        }
+        if (frm.txtAreaObservaciones == "") {
+            val.campos.txtAreaObservaciones.push("Debe llenar este campo");
+        }
+        if (frm.txtCarrera == "") {
+            val.campos.txtCarrera.push("Debe llenar este campo");
+        }
+        if (frm.txtInstitucionEducativa == "") {
+            val.campos.txtInstitucionEducativa.push("Debe llenar este campo");
+        }
+        if (frm.txtYearFin == "") {
+            val.campos.txtYearFin.push("Debe llenar este campo");
+        }
+        val.estado = objArrIsEmpty(val.campos);
+        return val;
+    }
 // genericas
     // partes
         // tr     

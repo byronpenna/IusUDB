@@ -121,13 +121,14 @@ namespace IUSLibs.RRHH.Control
                     string cargos,  int idUsuarioEjecutor,
                     int idPagina*/
                     Dictionary<object, object> strArrElements, string carrera,
-                    string cargos, int idUsuarioEjecutor, int idPagina
+                    int idUsuarioEjecutor, int idPagina
             )
             {
                 List<Persona> personas = null;
                 Persona persona;
                 SPIUS sp = new SPIUS("sp_rrhh_buscarPersonas");
                 string niveles = null; string areas = null; string rubros = null;
+                string cargos = null; string estadosCiviles = null; string paises = null;
                 if(strArrElements["niveles"] != null){
                     niveles = strArrElements["niveles"].ToString();
                 }
@@ -138,26 +139,28 @@ namespace IUSLibs.RRHH.Control
                 {
                     rubros = strArrElements["rubros"].ToString();
                 }
-                /*
-                 -- formacion 
-	                @niveles				varchar(500),
-	                @areas					varchar(500),
-	                @carrera				varchar(500), -- independiente de tablitas 
-	
-	                -- profesional
-	                @rubros					varchar(500),
-	                @cargos					varchar(500),
-	                -- seguridad 
-	                @idUsuarioEjecutor		int,
-	                @idPagina				int
-                 */
-
+                if (strArrElements["cargos"] != null)
+                {
+                    cargos = strArrElements["cargos"].ToString();
+                }
+                if (strArrElements["estadosCiviles"] != null)
+                {
+                    estadosCiviles = strArrElements["estadosCiviles"].ToString();
+                }
+                if (strArrElements["paises"] != null)
+                {
+                    paises = strArrElements["paises"].ToString();
+                }
+                
                 sp.agregarParametro("niveles", niveles);
                 sp.agregarParametro("areas", areas);
                 sp.agregarParametro("carrera", carrera);
 
                 sp.agregarParametro("rubros", rubros);
                 sp.agregarParametro("cargos", cargos);
+
+                sp.agregarParametro("paises", paises);
+                sp.agregarParametro("estadosCiviles", estadosCiviles);
 
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);
