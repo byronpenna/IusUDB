@@ -148,12 +148,13 @@ namespace IUSLibs.RRHH.Control.Laboral
                                     actividadesEmpresas.Add(actividadEmpresa);
                                 }
                             }
-                            else
-                            {
-                                DataRow row = tb[0].Rows[0];
-                                ErroresIUS x = this.getErrorFromExecProcedure(row);
-                                throw x;
-                            }
+
+                        }
+                        else
+                        {
+                            DataRow row = tb[tb.Count -1].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
