@@ -12,6 +12,7 @@
              <tr class='trPersona'>\
                 <td class='hidden'>\
                     <input type='hidden' name='txtHdIdPersona' class='txtHdIdPersona' value='"+persona._idPersona+"'>\
+                    <input class='txtHdIdSexo' value='"+persona._sexo._idSexo+"' />\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
@@ -39,7 +40,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <select class='form-control'>\
+                        <select class='form-control cbSexo' name='cbSexo'>\
                             <option value='1'>Masculino</option>\
                             <option value='2'>Femenino</option>\
                         </select>\
@@ -132,6 +133,9 @@
         trPersona.find(".txtNombrePersona").val(nombres);
         trPersona.find(".txtApellidoPersona").val(apellidos);
         trPersona.find(".dtFechaNacimiento").val(fechaNac);
+        trPersona.find(".dtFechaNacimiento").datepicker({
+            dateFormat: "dd/mm/yy"
+        });
         trPersona.find(".cbSexo").val(idSexo);
         controlesEdit(true, trPersona);
     }
