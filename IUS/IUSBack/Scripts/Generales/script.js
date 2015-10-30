@@ -22,8 +22,18 @@
         // keypress
             $(document).on("keypress", ".soloLetras", function (e) {
                 var str = String.fromCharCode(e.which);
+                console.log("E which",e.which)
+                //console.log("str es D: ", str);
                 exp = soloLetras();
-                var x = test(exp, str);
+                var x;
+                if (e.which != 8 || e.which != 0) {
+                    x = test(exp, str);
+                    console.log("es aqui D: ");
+                } else {
+                    x = true;
+                    console.log("es true");
+                }
+                 
                 if (!x) {
                     e.preventDefault();
                 }
