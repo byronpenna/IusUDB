@@ -31,8 +31,9 @@
 }
 /* Para la foto */
 .imgPersona{
-    width:20%;
+    /*width:80%;*/
     margin-bottom:3%;
+    height:auto;
 }
 .btnEstablecer{
     margin-bottom:3%;

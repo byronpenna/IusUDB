@@ -5,6 +5,8 @@
     <!-- plugins -->        
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
+        <!-- Jcrop -->
+            <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css"/>
     <!-- Propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
@@ -13,9 +15,11 @@
     <!-- plugins -->
         <!-- chosen -->
             <script src="~/Content/third-party/chosen/js/chosen.jquery.min.js"></script>
-        <!-- propios -->
-            <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
-            <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
+        <!-- jcrop -->
+            <script src="~/Content/third-party/jcrop/js/jquery.Jcrop.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
+        <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
 }
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
@@ -99,6 +103,15 @@
         </div>
         <div class="col-lg-6 divImagePersona ">
             <img class="imgPersona" src="@strFoto"/>
+            
+            <div class="row marginNull divCorte">
+                <input class="x" name="x" value="0" />
+                <input class="y" name="y" value="0" />
+
+                <input class="imgAlto" name="imgAlto" value="100" />
+                <input class="imgAncho" name="imgAncho" value="100" />
+            </div>
+            
             <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">
                 <div class="row marginNull">
                     <div class="fileUpload btn">

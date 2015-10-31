@@ -1,4 +1,12 @@
-﻿// validacion 
+﻿// jcrop 
+    function storeCoords(c) {
+        //console.log(c);
+        $(".x").val(c.x);
+        $(".y").val(c.y);
+        $(".imgAlto").val(c.h);
+        $(".imgAncho").val(c.w);
+    };
+// validacion 
     function validarInsertExtra(frm) {
         var val = new Object();
         val.campos = {
