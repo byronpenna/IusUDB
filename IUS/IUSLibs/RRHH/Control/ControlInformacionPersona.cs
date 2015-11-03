@@ -121,7 +121,7 @@ namespace IUSLibs.RRHH.Control
                     string cargos,  int idUsuarioEjecutor,
                     int idPagina*/
                     Dictionary<object, object> strArrElements, string carrera,
-                    int idUsuarioEjecutor, int idPagina
+                    int tipoBusqueda,int idUsuarioEjecutor, int idPagina
             )
             {
                 List<Persona> personas = null;
@@ -161,6 +161,8 @@ namespace IUSLibs.RRHH.Control
 
                 sp.agregarParametro("paises", paises);
                 sp.agregarParametro("estadosCiviles", estadosCiviles);
+
+                sp.agregarParametro("tipoBusqueda", tipoBusqueda);
 
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 // librerias net
     using System.IO;
+    using System.Drawing;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
     
@@ -46,8 +47,32 @@ namespace IUSBack.Controllers.GestionPersonas
                                 {
                                     fileName = Path.GetFileName(file.FileName);
                                     var strExtension = Path.GetExtension(file.FileName);
+                                    string path2 = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + info._persona._idPersona + "/"), info._persona._idPersona.ToString());
                                     path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + info._persona._idPersona + "/"), info._persona._idPersona.ToString()+strExtension);
                                     file.SaveAs(path);
+                                    using (Image image = Image.FromFile(path))
+                                    {
+                                        string rutaRecortada = path2 + "_recortada" + strExtension;
+                                        Rectangle cropArea = new Rectangle(this.convertObjAjaxToInt(frm["x"]), this.convertObjAjaxToInt(frm["y"]), this.convertObjAjaxToInt(frm["imgAncho"]), this.convertObjAjaxToInt(frm["imgAlto"]));
+                                        try
+                                        {
+                                            using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                            {
+                                                using (Graphics g = Graphics.FromImage(bitMap))
+                                                {
+                                                    g.DrawImage(image, new Rectangle(0,0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                }
+                                                bitMap.Save(rutaRecortada);
+                                            }
+                                            
+                                        }
+                                        catch (Exception x)
+                                        {
+
+                                        }
+                                    }
+                                    
+                                    
                                     info._fotoRuta = path;
                                     InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);
                                     respuesta = new Dictionary<object, object>();

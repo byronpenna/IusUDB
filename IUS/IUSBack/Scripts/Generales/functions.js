@@ -1,6 +1,6 @@
 ﻿// validaciones 
     function soloNumeros() {
-        exp = "[0-9.]";
+        exp = "[0-9./d]";
         return exp;
     }
     function soloLetras() {
@@ -10,6 +10,7 @@
     function test(exp, str) {
         var patt = new RegExp(exp);
         var res = patt.test(str);
+        console.log("res es", res);
         return res;
     }
 // Constantes 

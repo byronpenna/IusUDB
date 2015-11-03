@@ -2,6 +2,13 @@
     // plugins
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
+    // jcrop
+        var jcrop_api;
+        jcrop_api = $.Jcrop('.imgPersona', {
+            onSelect: storeCoords,
+            onChange: storeCoords,
+            aspectRatio: 1
+        });
     // eventos
         // change 
             $(document).on("change", ".flFotoPersona", function (e) {
@@ -11,6 +18,44 @@
                 } else {
                     $(".btnEstablecer").prop("disabled", false);
                 }
+                //##############################
+                var files = e.target.files;
+                for (var i = 0, f; f = files[i]; i++) {
+                    //Solo admitimos imágenes.
+                    if (!f.type.match('image.*')) {
+                        continue;
+                    }
+
+                    var reader = new FileReader();
+
+                    reader.onload = (function (theFile) {
+                        
+                        return function (e) {
+                            var image = new Image();
+                            image.src = e.target.result;
+                            image.onload = function () {
+
+                                // Creamos la imagen.
+                                //document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+                                $(".imgPersona").attr("src", e.target.result);
+                                $(".imgPersona").attr("style", "");
+                                var w = this.width; var h = this.height;
+                                console.log(w, h);
+                                jcrop_api.destroy();
+                                /*jcrop_api = $.Jcrop('.imgPersona', {
+                                    
+                                    onSelect: storeCoords,
+                                    onChange: storeCoords,
+                                    aspectRatio:1
+                                });*/
+                                //jcrop_api.setImage(e.target.result);
+                            }
+                        };
+                    })(f);
+
+                    reader.readAsDataURL(f);
+                }
+                
             })
             $(document).on("change", ".cbPersonas", function (e) {
                 location.href = RAIZ + "GestionPersonas/Extras/" + $(this).val();
@@ -18,7 +63,9 @@
         // submit 
             $(document).on("submit", ".frmImagenPersona", function (e) {
                 var frm         = new Object();
-                frm.idPersona   = $(".txtHdIdPersona").val();
+                frm = serializeSection($(".divCorte"));
+                frm.idPersona = $(".txtHdIdPersona").val();
+                
                 var files       = $("#flMiniatura")[0].files;
                 var data        = getObjFormData(files, frm);
                 e.preventDefault();

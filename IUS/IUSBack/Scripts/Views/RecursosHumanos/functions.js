@@ -66,31 +66,45 @@
                         trLaboral += getTrLaboral(laboral);
                     })
                 }
-                if (data.persona !== undefined && data.laborales != null && data.laborales.length > 0) {
-                    $(".hNombreCompleto").empty().append(data.persona.nombreCompleto);
-                    $(".spanSexo").empty().append(data.persona._sexo._sexo);
-                    $(".spanEdad").empty().append(data.persona.getEdad);
+                var strNombreCompleto, strSexo, strEdad;
+                if (data.persona !== undefined && data.persona != null) {
+                    strNombreCompleto   = data.persona.nombreCompleto;
+                    strSexo             = data.persona._sexo._sexo;
+                    strEdad             = data.persona.getEdad
+                } else {
+                    strNombreCompleto = "Sin asignar";
+                    strSexo = "Sin asignar";
+                    strEdad = "Sin asignar";
                 }
+                $(".hNombreCompleto").empty().append(strNombreCompleto);
+                $(".spanSexo").empty().append(strSexo);
+                $(".spanEdad").empty().append(strEdad);
+
+                var strPais = "Sin asignar",strEstadoCivil="Sin asignar"; // variables a poner
                 if (data.infoPersona !== undefined && data.infoPersona != null) {
                     console.log("entro aqui D: ");
                     var strFoto = "";
-                    if (data.infoPersona._fotoRuta !== undefined && data.infoPersona._fotoRuta != null && data.infoPersona._fotoRuta != "") {
+                    if (data.infoPersona._tieneFoto && data.infoPersona._fotoRuta !== undefined && data.infoPersona._fotoRuta != null && data.infoPersona._fotoRuta != "") {
                         strFoto = data.infoPersona._fotoRuta;
                     } else {
                         strFoto = IMG_GENERALES + "profle.png";
                     }
                     $(".fotoPrincipalFicha").attr("src", strFoto);
                     if (data.infoPersona._estadoCivil !== undefined && data.infoPersona._estadoCivil !== null) {
-                        $(".spanEstadoCivil").empty().append(data.infoPersona._estadoCivil._estadoCivil);
+                        //$(".spanEstadoCivil").empty().append(data.infoPersona._estadoCivil._estadoCivil);
+                        strEstadoCivil = data.infoPersona._estadoCivil._estadoCivil;
                     }
                     if (data.infoPersona._pais !== undefined && data.infoPersona._pais != null) {
-                        $(".spanNombrePais").empty().append(data.infoPersona._pais._pais);
+                        //$(".spanNombrePais").empty().append(data.infoPersona._pais._pais);
+                        strPais = data.infoPersona._pais._pais;
                     }
-                    
                 } else {
                     $(".fotoPrincipalFicha").attr("src",IMG_GENERALES + "profle.png");
                 }
-                
+
+                $(".spanEstadoCivil").empty().append(strEstadoCivil);
+                $(".spanNombrePais").empty().append(strPais);
+
                 targetLaboral.empty().append(trLaboral);
                 targetEducacion.empty().append(trEducativo);
             }

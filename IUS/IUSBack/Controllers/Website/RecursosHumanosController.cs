@@ -150,7 +150,7 @@ namespace IUSBack.Controllers.Website
                     {
                         Dictionary<object, object> objetos = new Dictionary<object, object>();
                         objetos = this.getArrElementosBusqueda(frm);
-                        List<Persona> personas = this._model.sp_rrhh_buscarPersonas(objetos, frm["txtCarrera"].ToString(), usuarioSession._idUsuario, this._idPagina);
+                        List<Persona> personas = this._model.sp_rrhh_buscarPersonas(objetos, frm["txtCarrera"].ToString(), this.convertObjAjaxToInt(frm["cbAcademicoLaboral"]), usuarioSession._idUsuario, this._idPagina);
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("personas", personas);
