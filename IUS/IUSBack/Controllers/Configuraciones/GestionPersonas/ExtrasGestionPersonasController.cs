@@ -58,9 +58,9 @@ namespace IUSBack.Controllers.GestionPersonas
                                         rutaRecortada = path2 + "_recortada" + strExtension;
                                         int x = decimal.ToInt32(image.Width * xx);
                                         int y = decimal.ToInt32(image.Height * yy);
-                                        int ancho = decimal.ToInt32(image.Width * xancho);
-                                        int alto = decimal.ToInt32(image.Height * yalto);
-                                        Rectangle cropArea = new Rectangle(x,y , ancho, alto);
+                                        int ancho = decimal.ToInt32(image.Height * xancho); //decimal.ToInt32(xancho);
+                                        int alto = decimal.ToInt32(image.Height * yalto); //decimal.ToInt32(yalto);
+                                        Rectangle cropArea = new Rectangle(x,y , ancho,ancho);
                                         try
                                         {
                                             using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))

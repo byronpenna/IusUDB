@@ -66,6 +66,8 @@
                 frm = serializeSection($(".divCorte"));
                 frm.idPersona = $(".txtHdIdPersona").val();
 
+                console.log($(".imgPersona").width(), $(".imgPersona").height());
+
                 frm.imgAlto     = frm.imgAlto / $(".imgPersona").width();
                 frm.imgAncho    = frm.imgAncho / $(".imgPersona").height();
                 frm.x           = frm.x / $(".imgPersona").width();
