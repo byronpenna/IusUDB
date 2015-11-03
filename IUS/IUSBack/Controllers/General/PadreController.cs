@@ -319,6 +319,10 @@ namespace IUSBack.Controllers
                     {
                         return Convert.ToInt32(obj.ToString());
                     }
+                    public decimal convertObjAjaxToDecimal(object obj)
+                    {
+                        return Convert.ToDecimal(obj.ToString());
+                    }
                 #endregion
             #endregion
         #endregion

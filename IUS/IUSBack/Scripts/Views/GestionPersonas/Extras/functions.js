@@ -179,8 +179,9 @@
 // scripts
     // foto 
         function frmImagenPersona(data, url, imagen) {
+            console.log("llevo hasta aqui ", url);
             getImageFromInputFile(imagen, function (imagen) {
-                if (imagen.width == imagen.height) {
+                //if (imagen.width == imagen.height) {
                     accionAjaxWithImage(url, data, function (data) {
                         console.log("D: D: ",data);
                         if (data.estado) {
@@ -188,10 +189,10 @@
                             $(".imgPersona").attr("src", imagen.src);
                         }
                     })
-                } else {
+                //} else {
                     //alert("La imagen debe ser cuadrada");
                     printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
-                }
+                //}
             })
         }
     // agregar email

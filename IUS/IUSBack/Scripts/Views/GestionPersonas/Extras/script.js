@@ -42,12 +42,12 @@
                                 var w = this.width; var h = this.height;
                                 console.log(w, h);
                                 jcrop_api.destroy();
-                                /*jcrop_api = $.Jcrop('.imgPersona', {
+                                jcrop_api = $.Jcrop('.imgPersona', {
                                     
                                     onSelect: storeCoords,
                                     onChange: storeCoords,
                                     aspectRatio:1
-                                });*/
+                                });
                                 //jcrop_api.setImage(e.target.result);
                             }
                         };
@@ -65,7 +65,12 @@
                 var frm         = new Object();
                 frm = serializeSection($(".divCorte"));
                 frm.idPersona = $(".txtHdIdPersona").val();
-                
+
+                frm.imgAlto     = frm.imgAlto / $(".imgPersona").width();
+                frm.imgAncho    = frm.imgAncho / $(".imgPersona").height();
+                frm.x           = frm.x / $(".imgPersona").width();
+                frm.y           = frm.y / $(".imgPersona").height();
+                console.log(frm);
                 var files       = $("#flMiniatura")[0].files;
                 var data        = getObjFormData(files, frm);
                 e.preventDefault();
