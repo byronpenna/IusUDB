@@ -38,15 +38,16 @@
                                 // Creamos la imagen.
                                 //document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
                                 $(".imgPersona").attr("src", e.target.result);
+                                $(".imgPersona").attr("style", "");
                                 var w = this.width; var h = this.height;
                                 console.log(w, h);
                                 jcrop_api.destroy();
-                                jcrop_api = $.Jcrop('.imgPersona', {
+                                /*jcrop_api = $.Jcrop('.imgPersona', {
                                     
                                     onSelect: storeCoords,
                                     onChange: storeCoords,
                                     aspectRatio:1
-                                });
+                                });*/
                                 //jcrop_api.setImage(e.target.result);
                             }
                         };
