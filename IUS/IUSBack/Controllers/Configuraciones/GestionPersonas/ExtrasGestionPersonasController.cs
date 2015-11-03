@@ -82,6 +82,8 @@ namespace IUSBack.Controllers.GestionPersonas
                                     InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
+                                    string ruta = Url.Content(this.getRelativePathFromAbsolute(info._fotoRuta));
+                                    respuesta.Add("imagen",ruta );
                                 }
                             }
                         }

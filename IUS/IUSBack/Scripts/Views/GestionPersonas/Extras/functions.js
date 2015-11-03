@@ -185,8 +185,12 @@
                     accionAjaxWithImage(url, data, function (data) {
                         console.log("D: D: ",data);
                         if (data.estado) {
+                            //jcrop_api.destroy();
                             printMessage($(".divImagePersona .divResultado"), "Imagen asignada exitosamente", true);
-                            $(".imgPersona").attr("src", imagen.src);
+                            //$(".imgPersona").attr("src", imagen.src);
+                            $(".imgPersona").attr("src", data.imagen);
+                            //jcrop_api.destroy();
+                            //$.Jcrop('.imgPersona').destroy();
                         }
                     })
                 //} else {

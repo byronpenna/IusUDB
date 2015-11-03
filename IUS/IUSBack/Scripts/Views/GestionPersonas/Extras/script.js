@@ -79,6 +79,7 @@
                 //var imagen = $("#flMiniatura")[0].files[0];
                 var imagen      = files[0]
                 //console.log(imagen);
+                jcrop_api.destroy();
                 frmImagenPersona(data, $(this).attr("action"), imagen);
             })
         // doble click
