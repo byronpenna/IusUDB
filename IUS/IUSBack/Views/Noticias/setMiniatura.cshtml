@@ -1,10 +1,16 @@
 ﻿@using IUSLibs.ADMINFE.Entidades.Noticias
 @section estilosPersonalizados{
+    <!--Plugins -->
+        <!-- Jcrop -->
+            <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css" />
     <!-- propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/style.css" />
+        <link rel=" stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/media.css" />
 }
 @section scriptsPersonalizados{
+    <!-- plugins -->
+        <!-- jcrop -->
+            <script src="~/Content/third-party/jcrop/js/jquery.Jcrop.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/functions.js"></script>
@@ -35,6 +41,6 @@
         <!-- <input type="file" id="flMiniatura" /> -->
 
 
-        <input id="btnSubmit" class="btn" type="submit" value="Subir" />
+        <input id="btnSubmit" class="btn botonSubir" type="submit" value="Subir" disabled />
     </form>
 </div>
