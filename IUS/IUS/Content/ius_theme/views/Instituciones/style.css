@@ -1,4 +1,10 @@
-﻿
+﻿/* New */
+.trP th{
+    vertical-align:middle !important;
+    text-align:center;
+}
+
+/***********/
 .divContinentes{
     margin-top:2%;
     margin-bottom:4%;

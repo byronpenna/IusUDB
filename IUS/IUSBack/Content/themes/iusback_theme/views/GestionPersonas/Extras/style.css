@@ -31,7 +31,7 @@
 }
 /* Para la foto */
 .imgPersona{
-    /*width:80%;*/
+    max-width:100%;
     margin-bottom:3%;
     height:auto;
 }

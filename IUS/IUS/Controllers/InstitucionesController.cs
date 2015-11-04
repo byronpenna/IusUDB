@@ -67,6 +67,39 @@ namespace IUS.Controllers
 
             }
         #endregion
+        #region "acciones ajax"
+            public ActionResult sp_frontui_getInstitucionesByContinente()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        string ip = Request.UserHostAddress;
+                        string lang = this.getUserLang();
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("instituciones",this._model.sp_frontui_getInstitucionesByContinente(this.convertObjAjaxToInt(frm["id"]), lang, ip, this.idPagina));
+                        respuesta.Add("estado", true);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+        #endregion
         #region "constructores"
             public InstitucionesController()
             {
