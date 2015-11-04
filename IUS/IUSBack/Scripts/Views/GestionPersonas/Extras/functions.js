@@ -189,13 +189,14 @@
                             printMessage($(".divImagePersona .divResultado"), "Imagen asignada exitosamente", true);
                             //$(".imgPersona").attr("src", imagen.src);
                             $(".imgPersona").attr("src", data.imagen);
+                            $(".imgPersona").attr("style", "");
                             //jcrop_api.destroy();
                             //$.Jcrop('.imgPersona').destroy();
                         }
                     })
                 //} else {
                     //alert("La imagen debe ser cuadrada");
-                    printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
+                    //printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
                 //}
             })
         }
