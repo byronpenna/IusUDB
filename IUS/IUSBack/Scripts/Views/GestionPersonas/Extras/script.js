@@ -12,11 +12,11 @@
     // eventos
         // change 
             $(document).on("change", ".flFotoPersona", function (e) {
-                //console.log("Val es", );
+                var boton = $(".btnEstablecer");
                 if ($(this).val() == "") {
-                    $(".btnEstablecer").prop("disabled", true);
+                    boton.prop("disabled", true);
                 } else {
-                    $(".btnEstablecer").prop("disabled", false);
+                    boton.prop("disabled", false);
                 }
                 //##############################
                 var files = e.target.files;

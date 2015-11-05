@@ -1,4 +1,12 @@
 ﻿$(document).ready(function () {
+    // plugins
+        // jcrop
+            var jcrop_api;
+            jcrop_api = $.Jcrop('.imgThumbnail', {
+                onSelect: storeCoords,
+                onChange: storeCoords,
+                aspectRatio: 1
+            });
     // eventos 
         // submit
             $(document).on("submit", "#frmMiniatura", function (e) {
@@ -31,4 +39,16 @@
                 //console.log("la data e enviar es ",data);
                 //frmMiniatura(data, $(this).attr("action"));
             })
+        // change 
+            $(document).on("change", "#flMiniatura", function (e) {
+                var boton = $(".botonSubir");
+                console.log("asdqw");
+                if ($(this).val() == "") {
+                    boton.prop("disabled", true);
+                } else {
+                    boton.prop("disabled", false);
+                }
+
+            });
+            
 })
