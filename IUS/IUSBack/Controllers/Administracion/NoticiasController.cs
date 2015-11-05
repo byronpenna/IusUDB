@@ -206,7 +206,8 @@ namespace IUSBack.Controllers
             }
             public ActionResult sp_adminfe_noticias_setThumbnailPost()
             {
-                Dictionary<object, object> frm, respuesta = null;
+                Dictionary<object, object> frm, 
+                    respuesta = null;
                 try
                 {
                     var form = this._jss.Deserialize<Dictionary<object,object>>(Request.Form["form"]);

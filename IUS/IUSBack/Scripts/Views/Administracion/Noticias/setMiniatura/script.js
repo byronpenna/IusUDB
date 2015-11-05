@@ -1,12 +1,12 @@
 ﻿$(document).ready(function () {
     // plugins
         // jcrop
-            var jcrop_api;
+            /*var jcrop_api;
             jcrop_api = $.Jcrop('.imgThumbnail', {
                 onSelect: storeCoords,
                 onChange: storeCoords,
                 aspectRatio: 1
-            });
+            });*/
     // eventos 
         // submit
             $(document).on("submit", "#frmMiniatura", function (e) {
@@ -60,7 +60,7 @@
                     if (images !== undefined && images != null) {
                         targetImg.attr("src", images.src);
                         targetImg.attr("style", "");
-                        jcrop_api.destroy();
+                        //jcrop_api.destroy();
                         jcrop_api = $.Jcrop('.imgThumbnail', {
                             onSelect: storeCoords,
                             onChange: storeCoords,
