@@ -337,6 +337,34 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return posts;
                 }
+                public Post sp_adminfe_front_getPicNoticiaFromId(int idPost)
+                {
+                    Post postRetorno = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_front_getPicNoticiaFromId");
+                    sp.agregarParametro("idPost", idPost);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                postRetorno = new Post((int)row["idPost"],(byte[])row["miniatura"]);
+
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return postRetorno;
+                }
                 public Dictionary<object,object> sp_adminfe_front_getNoticiaFromId(int idPost)
                 {
                     Post post = null; /*PostCategoria cat = null;*/ List<Tag> tags = null; Tag tag;

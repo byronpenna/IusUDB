@@ -1,8 +1,11 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+// Librerias net
+    using System.IO;
+    using System.Drawing;
 // librerias internas
     using IUSBack.Models.Page.Administracion.Acciones;
 // librerias externas
@@ -182,6 +185,25 @@ namespace IUSBack.Controllers
             
         #endregion
         #region "acciones ajax"
+            public string getImageThumbnail(int id)
+            {
+                string retorno = "";
+                try
+                {
+                    Post post = this._model._controlPost.sp_adminfe_front_getPicNoticiaFromId(id);
+                    retorno = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
+
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return retorno;
+            }
             public ActionResult sp_adminfe_noticias_setThumbnailPost()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -194,12 +216,41 @@ namespace IUSBack.Controllers
                         List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
                         if(files != null){
                             foreach(HttpPostedFileBase file in files ){
-                                byte[] fileBytes = this.getBytesFromFile(file);
+                                //
+                                decimal xx = this.convertObjAjaxToDecimal(form["x"]); decimal yy = this.convertObjAjaxToDecimal(form["y"]);
+                                decimal xancho = this.convertObjAjaxToDecimal(form["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(form["imgAlto"]);
+                                MemoryStream memory = new MemoryStream();
+                                using (Image image = Image.FromStream(file.InputStream))
+                                {
+                                    int x = decimal.ToInt32(image.Width * xx);
+                                    int y = decimal.ToInt32(image.Height * yy);
+                                    int ancho = decimal.ToInt32(image.Height * xancho);
+                                    int alto = decimal.ToInt32(image.Height * yalto); 
+                                    Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                                    try
+                                    {
+                                        using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                        {
+                                            using (Graphics g = Graphics.FromImage(bitMap))
+                                            {
+                                                g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                            }
+                                            bitMap.Save(memory,System.Drawing.Imaging.ImageFormat.Jpeg);
+                                        }
+
+                                    }
+                                    catch (Exception ex)
+                                    {
+
+                                    }
+                                }
+                                byte[] fileBytes = memory.ToArray(); //this.getBytesFromFile(file);
                                 Post postAgregar = new Post( this.convertObjAjaxToInt(form["txtHdIdPost"]) );
                                 postAgregar._miniatura = fileBytes;
                                 bool estado = this._model.sp_adminfe_noticias_setThumbnailPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
                                 respuesta = new Dictionary<object, object>();
                                 respuesta.Add("estado", estado);
+                                respuesta.Add("id", postAgregar._idPost);
                             }
                         }else{
                             ErroresIUS x = new ErroresIUS("No hay imagenes",ErroresIUS.tipoError.generico,0);

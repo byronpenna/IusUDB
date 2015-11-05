@@ -9,10 +9,12 @@
         };
 // scripts 
     function frmMiniatura(data, url, image) {
+        var targetImg = $(".imgThumbnail");
         accionAjaxWithImage(url, data, function (data) {
             console.log("reespueta", data);
             if (data.estado) {
-                $(".imgThumbnail").attr("src", image.src);
+                targetImg.attr("src", RAIZ + "getImageThumbnail/" + data.id);
+                targetImg.attr("style", "");
             }
         })
     }

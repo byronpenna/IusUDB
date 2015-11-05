@@ -120,6 +120,12 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                     this._usuario = usu;
                     this._idioma = idioma;
                 }
+            // solo foto
+                public Post(int idPost, byte[] foto)
+                {
+                    this._idPost = idPost;
+                    this._miniatura = foto;
+                }
             // para buscar
                 
         #endregion

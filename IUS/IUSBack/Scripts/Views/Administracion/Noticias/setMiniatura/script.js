@@ -11,17 +11,23 @@
         // submit
             $(document).on("submit", "#frmMiniatura", function (e) {
                 var files = $("#flMiniatura")[0].files;
+                console.log("files es D: ",files);
                 frm = serializeToJson($(this).serializeArray());
+                frm.imgAlto = frm.imgAlto / $(".imgThumbnail").width();
+                frm.imgAncho = frm.imgAncho / $(".imgThumbnail").height();
+                frm.x = frm.x / $(".imgThumbnail").width();
+                frm.y = frm.y / $(".imgThumbnail").height();
                 formulario = $(this);
                 data = getObjFormData(files, frm);
                 e.preventDefault();
+                jcrop_api.destroy();
                 getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
                     console.log(imagen.width, imagen.height);
-                    if (imagen.width == imagen.height) {
+                    //if (imagen.width == imagen.height) {
                         frmMiniatura(data, formulario.attr("action"),imagen);
-                    } else {
+                    //} else {
                         alert("La imagen debe ser cuadrada");
-                    }
+                    //}
                 })
                 /*
                 var oFReader = new FileReader();
@@ -48,7 +54,20 @@
                 } else {
                     boton.prop("disabled", false);
                 }
-
+                getImageFromInputFileEvent(e, function (images) {
+                    console.log(images);
+                    var targetImg = $(".imgThumbnail");
+                    if (images !== undefined && images != null) {
+                        targetImg.attr("src", images.src);
+                        targetImg.attr("style", "");
+                        jcrop_api.destroy();
+                        jcrop_api = $.Jcrop('.imgThumbnail', {
+                            onSelect: storeCoords,
+                            onChange: storeCoords,
+                            aspectRatio: 1
+                        });
+                    }
+                })
             });
             
 })
