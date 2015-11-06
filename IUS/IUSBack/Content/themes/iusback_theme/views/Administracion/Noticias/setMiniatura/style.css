@@ -24,6 +24,11 @@
     margin-top:4%;
 }
 .divImgThumbnail .imgThumbnail{
-    width:200px;
-    height:200px;
+    /*width:200px;
+    height:200px;*/
+    max-width:30%;
+}
+.imgThumbnail{
+    /*max-width:30%;*/
+    max-width:30%;
 }

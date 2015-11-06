@@ -303,7 +303,31 @@
         var width = (100 * parseFloat(ancho) / parseFloat(element.parent().css('width')));
         return width;
     }
-    function getImageFromInputFile(inputFile,callback) {
+    function getImageFromInputFileEvent(e,callback) { // solo para una imagen D: 
+        var files = e.target.files;
+        //var images = new Array();
+        console.log("eee D: ", e);
+        for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var image = new Image();
+                    image.src = e.target.result;
+                            
+                    image.onload = function () {
+                        callback(this);
+                    }
+                }
+
+            })(f);
+            reader.readAsDataURL(f);
+        }
+        
+    }
+    function getImageFromInputFile(inputFile, callback) {
         var reader = new FileReader();
         var img;
         reader.readAsDataURL(inputFile);

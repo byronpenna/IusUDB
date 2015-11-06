@@ -34,6 +34,10 @@
     max-width:100%;
     margin-bottom:3%;
     height:auto;
+    margin:0 auto;
+}
+.jcrop-tracker{
+    margin: 0 auto;
 }
 .btnEstablecer{
     margin-bottom:3%;
@@ -63,3 +67,5 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+/***************/

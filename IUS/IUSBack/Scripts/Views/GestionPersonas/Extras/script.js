@@ -33,11 +33,13 @@
                         return function (e) {
                             var image = new Image();
                             image.src = e.target.result;
+                            
                             image.onload = function () {
 
                                 // Creamos la imagen.
                                 //document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
                                 $(".imgPersona").attr("src", e.target.result);
+                                console.log("Este es el src del this",this.src)
                                 $(".imgPersona").attr("style", "");
                                 var w = this.width; var h = this.height;
                                 console.log(w, h);
