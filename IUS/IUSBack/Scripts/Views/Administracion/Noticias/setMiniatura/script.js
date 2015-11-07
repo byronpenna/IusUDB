@@ -23,11 +23,11 @@
                 jcrop_api.destroy();
                 getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
                     console.log(imagen.width, imagen.height);
-                    //if (imagen.width == imagen.height) {
+                    if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0)) {
                         frmMiniatura(data, formulario.attr("action"),imagen);
-                    //} else {
-                        alert("La imagen debe ser cuadrada");
-                    //}
+                    } else {
+                        printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
+                    }
                 })
                 /*
                 var oFReader = new FileReader();
