@@ -62,7 +62,6 @@ namespace IUSBack.Controllers.GestionPersonas
                                             int x       = decimal.ToInt32(image.Width * xx);
                                             int y       = decimal.ToInt32(image.Height * yy);
                                             int ancho   = decimal.ToInt32(image.Height * xancho); //decimal.ToInt32(xancho);
-                                            int alto    = decimal.ToInt32(image.Height * yalto); //decimal.ToInt32(yalto);
                                             Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
                                             try
                                             {

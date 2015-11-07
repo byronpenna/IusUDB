@@ -68,7 +68,25 @@
         return val;
     }
 // genericas 
-        function getTrEmail(emailPersona){
+        // foto 
+            function getFrmFoto() {
+                var frm         = new Object();
+                frm             = serializeSection($(".divCorte"));
+                frm.idPersona   = $(".txtHdIdPersona").val();
+                frm.imgAlto     = frm.imgAlto / $(".imgPersona").width();
+                frm.imgAncho    = frm.imgAncho / $(".imgPersona").height();
+                frm.x           = frm.x / $(".imgPersona").width();
+                frm.y = frm.y / $(".imgPersona").height();
+                return frm;
+            }
+            function inicialFoto() {
+                $(".x").val(0);
+                $(".y").val(0);
+                $(".imgAlto").val(0);
+                $(".imgAncho").val(0);
+            }
+
+        function getTrEmail(emailPersona) {
             var tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -181,9 +199,8 @@
 // scripts
     // foto 
         function frmImagenPersona(data, url, imagen,frm,jcrop_api) {
-            console.log("llevo hasta aqui ", url);
             getImageFromInputFile(imagen, function (imagen) {
-                if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAlto == frm.imgAncho) ) {
+                if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0 ) ) {
                     jcrop_api.destroy();
                     accionAjaxWithImage(url, data, function (data) {
                         console.log("D: D: ",data);
