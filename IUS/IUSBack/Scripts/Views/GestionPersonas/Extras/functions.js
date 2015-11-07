@@ -5,6 +5,8 @@
         $(".y").val(c.y);
         $(".imgAlto").val(c.h);
         $(".imgAncho").val(c.w);
+        /*$(".imgAlto").val(0);
+        $(".imgAncho").val(0);*/
     };
 // validacion 
     function validarInsertExtra(frm) {
@@ -178,26 +180,30 @@
         }
 // scripts
     // foto 
-        function frmImagenPersona(data, url, imagen) {
+        function frmImagenPersona(data, url, imagen,frm,jcrop_api) {
             console.log("llevo hasta aqui ", url);
             getImageFromInputFile(imagen, function (imagen) {
-                //if (imagen.width == imagen.height) {
+                if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAlto == frm.imgAncho) ) {
+                    jcrop_api.destroy();
                     accionAjaxWithImage(url, data, function (data) {
                         console.log("D: D: ",data);
                         if (data.estado) {
                             //jcrop_api.destroy();
                             printMessage($(".divImagePersona .divResultado"), "Imagen asignada exitosamente", true);
                             //$(".imgPersona").attr("src", imagen.src);
-                            $(".imgPersona").attr("src", data.imagen);
+                            $(".imgPersona").attr("src", data.imagen+ "?"+ (new Date()).getTime());
                             $(".imgPersona").attr("style", "");
+                            //*******************
+                            $(".imgAlto").val(0);
+                            $(".imgAncho").val(0);
                             //jcrop_api.destroy();
                             //$.Jcrop('.imgPersona').destroy();
                         }
                     })
-                //} else {
+                } else {
                     //alert("La imagen debe ser cuadrada");
-                    //printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
-                //}
+                    printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
+                }
             })
         }
     // agregar email

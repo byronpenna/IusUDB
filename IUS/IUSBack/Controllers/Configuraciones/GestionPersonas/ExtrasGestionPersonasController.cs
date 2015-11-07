@@ -50,42 +50,49 @@ namespace IUSBack.Controllers.GestionPersonas
                                     string path2 = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + info._persona._idPersona + "/"), info._persona._idPersona.ToString());
                                     path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + info._persona._idPersona + "/"), info._persona._idPersona.ToString()+strExtension);
                                     file.SaveAs(path);
-                                    string rutaRecortada = path; string rutaRecortada2 = path;
+                                    string rutaRecortada = path; 
                                     decimal xx = this.convertObjAjaxToDecimal(frm["x"]); decimal yy = this.convertObjAjaxToDecimal(frm["y"]);
                                     decimal xancho = this.convertObjAjaxToDecimal(frm["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(frm["imgAlto"]);
+                                    
                                     using (Image image = Image.FromFile(path))
                                     {
                                         rutaRecortada = path2 + "_recortada" + strExtension;
-                                        rutaRecortada2 = path2 + "_recortadatmp" + strExtension;
-                                        int x = decimal.ToInt32(image.Width * xx);
-                                        int y = decimal.ToInt32(image.Height * yy);
-                                        int ancho = decimal.ToInt32(image.Height * xancho); //decimal.ToInt32(xancho);
-                                        int alto = decimal.ToInt32(image.Height * yalto); //decimal.ToInt32(yalto);
-                                        Rectangle cropArea = new Rectangle(x,y , ancho,ancho);
-                                        try
+                                        if ((image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho == yalto)))
                                         {
-                                            using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                            int x       = decimal.ToInt32(image.Width * xx);
+                                            int y       = decimal.ToInt32(image.Height * yy);
+                                            int ancho   = decimal.ToInt32(image.Height * xancho); //decimal.ToInt32(xancho);
+                                            int alto    = decimal.ToInt32(image.Height * yalto); //decimal.ToInt32(yalto);
+                                            Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                                            try
                                             {
-                                                using (Graphics g = Graphics.FromImage(bitMap))
+                                                using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
                                                 {
-                                                    g.DrawImage(image, new Rectangle(0,0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                    using (Graphics g = Graphics.FromImage(bitMap))
+                                                    {
+                                                        g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                    }
+                                                    bitMap.Save(rutaRecortada);
                                                 }
-                                                bitMap.Save(rutaRecortada);
-                                                bitMap.Save(rutaRecortada2);
-                                            }
-                                            
-                                        }
-                                        catch (Exception ex)
-                                        {
 
+                                            }
+                                            catch (Exception ex)
+                                            {
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //rutaRecortada
+                                            file.SaveAs(rutaRecortada);
                                         }
                                     }
                                     info._fotoRuta = rutaRecortada;
                                     InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);
                                     respuesta = new Dictionary<object, object>();
                                     respuesta.Add("estado", true);
-                                    string ruta = Url.Content(this.getRelativePathFromAbsolute(rutaRecortada2));
-                                    respuesta.Add("imagen",ruta );
+                                    string ruta = Url.Content(this.getRelativePathFromAbsolute(rutaRecortada));
+                                    respuesta.Add("imagen",ruta);
                                 }
                             }
                         }

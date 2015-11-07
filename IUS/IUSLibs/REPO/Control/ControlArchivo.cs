@@ -26,6 +26,7 @@ namespace IUSLibs.REPO.Control
                 try
                 {
                     DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    
                     if (this.resultadoCorrectoGet(tb))
                     {
                         if (tb[0].Rows.Count > 0)
