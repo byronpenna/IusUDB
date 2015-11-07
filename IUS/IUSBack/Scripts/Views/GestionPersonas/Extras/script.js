@@ -56,7 +56,10 @@
                     })(f);
 
                     reader.readAsDataURL(f);*/
+                $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                 getImageFromInputFileEvent(e, function (images) {
+                    $(".divLoadingPhoto").empty();
+                    //$(".imgPersona").fadeIn("slow");
                     if (images !== undefined && images != null) {
                         targetImg.attr("src", images.src);
                         targetImg.attr("style", "");

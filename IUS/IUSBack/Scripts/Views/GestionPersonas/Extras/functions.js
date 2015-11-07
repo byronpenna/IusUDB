@@ -193,12 +193,12 @@
                             //$(".imgPersona").attr("src", imagen.src);
                             $(".imgPersona").attr("src", data.imagen+ "?"+ (new Date()).getTime());
                             $(".imgPersona").attr("style", "");
-                            //*******************
-                            $(".imgAlto").val(0);
-                            $(".imgAncho").val(0);
+                            $(".btnEstablecer").prop("disabled", true);
                             //jcrop_api.destroy();
                             //$.Jcrop('.imgPersona').destroy();
                         }
+                    }, function () {
+
                     })
                 } else {
                     //alert("La imagen debe ser cuadrada");
