@@ -33,7 +33,6 @@
                             onChange: storeCoords,
                             aspectRatio:1
                         });
-                        // valores iniciales 
                         inicialFoto();
                     }
                 });

@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
     // plugins
         // jcrop
-            /*var jcrop_api;
-            jcrop_api = $.Jcrop('.imgThumbnail', {
+            var jcrop_api = null;
+            /* jcrop_api = $.Jcrop('.imgThumbnail', {
                 onSelect: storeCoords,
                 onChange: storeCoords,
                 aspectRatio: 1
@@ -52,20 +52,24 @@
                 if ($(this).val() == "") {
                     boton.prop("disabled", true);
                 } else {
+                    $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                     boton.prop("disabled", false);
                 }
                 getImageFromInputFileEvent(e, function (images) {
-                    console.log(images);
+                    $(".divLoadingPhoto").empty();
                     var targetImg = $(".imgThumbnail");
                     if (images !== undefined && images != null) {
                         targetImg.attr("src", images.src);
                         targetImg.attr("style", "");
-                        //jcrop_api.destroy();
+                        if (jcrop_api != null) {
+                            jcrop_api.destroy();
+                        }
                         jcrop_api = $.Jcrop('.imgThumbnail', {
                             onSelect: storeCoords,
                             onChange: storeCoords,
                             aspectRatio: 1
                         });
+                        inicialFoto();
                     }
                 })
             });

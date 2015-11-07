@@ -1,4 +1,12 @@
-﻿/* Input upload */
+﻿/* Imagen */
+    .jcrop-holder,.imgThumbnail{
+        margin: 0 auto;
+    }
+    .divLoadingPhoto{
+        margin-top:2%;
+        margin-bottom:2%;
+    }
+/* Input upload */
 .fileUpload {
     position: relative;
     overflow: hidden;

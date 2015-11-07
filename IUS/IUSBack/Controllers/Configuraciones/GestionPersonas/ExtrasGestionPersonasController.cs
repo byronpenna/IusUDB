@@ -57,7 +57,7 @@ namespace IUSBack.Controllers.GestionPersonas
                                     using (Image image = Image.FromFile(path))
                                     {
                                         rutaRecortada = path2 + "_recortada" + strExtension;
-                                        if ((image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho == yalto)))
+                                        if ((image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho >0 )))
                                         {
                                             int x       = decimal.ToInt32(image.Width * xx);
                                             int y       = decimal.ToInt32(image.Height * yy);
