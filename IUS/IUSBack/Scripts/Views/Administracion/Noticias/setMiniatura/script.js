@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     // plugins
         // jcrop
-            var jcrop_api = null;
+            
             /* jcrop_api = $.Jcrop('.imgThumbnail', {
                 onSelect: storeCoords,
                 onChange: storeCoords,
@@ -20,13 +20,13 @@
                 formulario = $(this);
                 data = getObjFormData(files, frm);
                 e.preventDefault();
-                jcrop_api.destroy();
+                //jcrop_api.destroy();
                 getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
                     console.log(imagen.width, imagen.height);
                     if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0)) {
                         frmMiniatura(data, formulario.attr("action"),imagen);
                     } else {
-                        printMessage($(".divImagePersona .divResultado"), "La imagen debe ser cuadrada", false);
+                        printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
                     }
                 })
                 /*
@@ -51,6 +51,7 @@
                 console.log("asdqw");
                 if ($(this).val() == "") {
                     boton.prop("disabled", true);
+                    e.preventDefault();
                 } else {
                     $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                     boton.prop("disabled", false);
