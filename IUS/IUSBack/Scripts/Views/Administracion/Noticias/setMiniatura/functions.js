@@ -7,6 +7,12 @@
             $(".imgAlto").val(c.h);
             $(".imgAncho").val(c.w);
         };
+        function inicialFoto() {
+            $(".x").val(0);
+            $(".y").val(0);
+            $(".imgAlto").val(0);
+            $(".imgAncho").val(0);
+        }
 // scripts 
     function frmMiniatura(data, url, image) {
         var targetImg = $(".imgThumbnail");

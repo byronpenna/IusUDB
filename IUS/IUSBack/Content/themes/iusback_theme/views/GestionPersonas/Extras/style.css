@@ -34,11 +34,16 @@
     max-width:100%;
     margin-bottom:3%;
     height:auto;
-    margin:0 auto;
+    /*margin:0 auto;*/
 }
-.jcrop-tracker{
+.jcrop-holder,.imgPersona{
     margin: 0 auto;
 }
+.divLoadingPhoto{
+    margin-top:2%;
+    margin-bottom:2%;
+}
+
 .btnEstablecer{
     margin-bottom:3%;
 }

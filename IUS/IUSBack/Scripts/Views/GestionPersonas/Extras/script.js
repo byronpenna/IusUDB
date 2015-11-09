@@ -3,77 +3,47 @@
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
     // jcrop
-        var jcrop_api;
-        jcrop_api = $.Jcrop('.imgPersona', {
+        var jcrop_api = null;
+        /*jcrop_api = $.Jcrop('.imgPersona', {
             onSelect: storeCoords,
             onChange: storeCoords,
             aspectRatio: 1
-        });
+        });*/
     // eventos
         // change 
             $(document).on("change", ".flFotoPersona", function (e) {
-                var boton = $(".btnEstablecer");
+                var boton = $(".btnEstablecer"); var targetImg =$(".imgPersona");
                 if ($(this).val() == "") {
                     boton.prop("disabled", true);
                 } else {
+                    $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                     boton.prop("disabled", false);
                 }
-                //##############################
-                var files = e.target.files;
-                for (var i = 0, f; f = files[i]; i++) {
-                    //Solo admitimos imágenes.
-                    if (!f.type.match('image.*')) {
-                        continue;
+                getImageFromInputFileEvent(e, function (images) {
+                    $(".divLoadingPhoto").empty();
+                    //$(".imgPersona").fadeIn("slow");
+                    if (images !== undefined && images != null) {
+                        targetImg.attr("src", images.src);
+                        targetImg.attr("style", "");
+                        if (jcrop_api != null) {
+                            jcrop_api.destroy();
+                        }
+                        jcrop_api = $.Jcrop('.imgPersona', {
+                            onSelect: storeCoords,
+                            onChange: storeCoords,
+                            aspectRatio:1
+                        });
+                        inicialFoto();
                     }
-
-                    var reader = new FileReader();
-
-                    reader.onload = (function (theFile) {
-                        
-                        return function (e) {
-                            var image = new Image();
-                            image.src = e.target.result;
-                            
-                            image.onload = function () {
-
-                                // Creamos la imagen.
-                                //document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
-                                $(".imgPersona").attr("src", e.target.result);
-                                console.log("Este es el src del this",this.src)
-                                $(".imgPersona").attr("style", "");
-                                var w = this.width; var h = this.height;
-                                console.log(w, h);
-                                jcrop_api.destroy();
-                                jcrop_api = $.Jcrop('.imgPersona', {
-                                    
-                                    onSelect: storeCoords,
-                                    onChange: storeCoords,
-                                    aspectRatio:1
-                                });
-                                //jcrop_api.setImage(e.target.result);
-                            }
-                        };
-                    })(f);
-
-                    reader.readAsDataURL(f);
-                }
-                
+                });
             })
             $(document).on("change", ".cbPersonas", function (e) {
                 location.href = RAIZ + "GestionPersonas/Extras/" + $(this).val();
             })
         // submit 
             $(document).on("submit", ".frmImagenPersona", function (e) {
-                var frm         = new Object();
-                frm = serializeSection($(".divCorte"));
-                frm.idPersona = $(".txtHdIdPersona").val();
-
                 console.log($(".imgPersona").width(), $(".imgPersona").height());
-
-                frm.imgAlto     = frm.imgAlto / $(".imgPersona").width();
-                frm.imgAncho    = frm.imgAncho / $(".imgPersona").height();
-                frm.x           = frm.x / $(".imgPersona").width();
-                frm.y           = frm.y / $(".imgPersona").height();
+                var frm = getFrmFoto();
                 console.log(frm);
                 var files       = $("#flMiniatura")[0].files;
                 var data        = getObjFormData(files, frm);
@@ -81,8 +51,9 @@
                 //var imagen = $("#flMiniatura")[0].files[0];
                 var imagen      = files[0]
                 //console.log(imagen);
-                jcrop_api.destroy();
-                frmImagenPersona(data, $(this).attr("action"), imagen);
+                //jcrop_api.destroy();
+                frmImagenPersona(data, $(this).attr("action"), imagen,frm,jcrop_api);
+                //console.log("dATA ES", data);
             })
         // doble click
             $(document).on("dblclick", ".hNombrePersona", function () {

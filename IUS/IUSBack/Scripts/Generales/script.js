@@ -26,14 +26,11 @@
                 //console.log("str es D: ", str);
                 exp = soloLetras();
                 var x;
-                if (e.which != 8 || e.which != 0) {
+                if (e.which != 8 && e.which != 0) { // suprimir y delete
                     x = test(exp, str);
-                    console.log("es aqui D: ");
                 } else {
                     x = true;
-                    console.log("es true");
                 }
-                 
                 if (!x) {
                     e.preventDefault();
                 }
@@ -44,7 +41,12 @@
                     console.log($(this).val().indexOf("."));
                     if ( !($(this).val().indexOf(".") > 0 && str == ".") ) {
                         exp = soloNumeros();
-                        var x = test(exp, str);
+                        var x;
+                        if (e.which != 8 && e.which != 0) { // suprimir y delete
+                            x = test(exp, str);
+                        } else {
+                            x = true;
+                        }
                         console.log("valor de x", x);
                         if (!x) {
                             e.preventDefault();

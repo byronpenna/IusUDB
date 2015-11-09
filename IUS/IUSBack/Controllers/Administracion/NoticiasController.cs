@@ -207,6 +207,7 @@ namespace IUSBack.Controllers
             public ActionResult sp_adminfe_noticias_setThumbnailPost()
             {
                 Dictionary<object, object> frm, 
+                    
                     respuesta = null;
                 try
                 {
@@ -221,31 +222,35 @@ namespace IUSBack.Controllers
                                 decimal xx = this.convertObjAjaxToDecimal(form["x"]); decimal yy = this.convertObjAjaxToDecimal(form["y"]);
                                 decimal xancho = this.convertObjAjaxToDecimal(form["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(form["imgAlto"]);
                                 MemoryStream memory = new MemoryStream();
+                                byte[] fileBytes = this.getBytesFromFile(file); ;
                                 using (Image image = Image.FromStream(file.InputStream))
                                 {
-                                    int x = decimal.ToInt32(image.Width * xx);
-                                    int y = decimal.ToInt32(image.Height * yy);
-                                    int ancho = decimal.ToInt32(image.Height * xancho);
-                                    int alto = decimal.ToInt32(image.Height * yalto); 
-                                    Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
-                                    try
+                                    if (image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho > 0))
                                     {
-                                        using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                        int x = decimal.ToInt32(image.Width * xx);
+                                        int y = decimal.ToInt32(image.Height * yy);
+                                        int ancho = decimal.ToInt32(image.Height * xancho);
+                                        int alto = decimal.ToInt32(image.Height * yalto);
+                                        Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                                        try
                                         {
-                                            using (Graphics g = Graphics.FromImage(bitMap))
+                                            using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
                                             {
-                                                g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                using (Graphics g = Graphics.FromImage(bitMap))
+                                                {
+                                                    g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                }
+                                                bitMap.Save(memory, System.Drawing.Imaging.ImageFormat.Jpeg);
                                             }
-                                            bitMap.Save(memory,System.Drawing.Imaging.ImageFormat.Jpeg);
+                                            fileBytes = memory.ToArray(); //
                                         }
+                                        catch (Exception ex)
+                                        {
 
+                                        }
                                     }
-                                    catch (Exception ex)
-                                    {
-
-                                    }
+                                    
                                 }
-                                byte[] fileBytes = memory.ToArray(); //this.getBytesFromFile(file);
                                 Post postAgregar = new Post( this.convertObjAjaxToInt(form["txtHdIdPost"]) );
                                 postAgregar._miniatura = fileBytes;
                                 bool estado = this._model.sp_adminfe_noticias_setThumbnailPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
