@@ -39,6 +39,20 @@ namespace IUSBack.Controllers
         #endregion
         #region "funciones"
             #region "iniciales"
+                public ActionResult viewbagInicial(int idUsuario,int idPagina)
+                {
+                    ActionResult retorno = null;
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(idUsuario, idPagina);
+                    if (permisos != null && permisos._ver)
+                    {
+                        ViewBag.permiso = permisos;
+                    }
+                    else
+                    {
+                        retorno = RedirectToAction("NotAllowed", "Errors");
+                    }
+                    return retorno;
+                }
                 public ActionResult seguridadInicial(int idPagina)
                 {
                     Usuario usuarioSesion = this.getUsuarioSesion();
