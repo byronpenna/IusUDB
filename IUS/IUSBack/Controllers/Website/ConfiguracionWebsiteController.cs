@@ -29,8 +29,8 @@ namespace IUSBack.Controllers
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
                 {
-                    ActionResult accion = this.viewbagInicial(usuarioSession._idUsuario, this._idPagina);
-                    if (accion == null)
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                    if (seguridadInicial == null)
                     {
                         ViewBag.selectedMenu = 3; // menu seleccionado 
                         ViewBag.titleModulo = "Configuración Web Site";
@@ -69,7 +69,7 @@ namespace IUSBack.Controllers
                     }
                     else
                     {
-                        return accion;
+                        return seguridadInicial;
                     }
                 }
                 else

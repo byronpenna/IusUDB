@@ -60,7 +60,11 @@ namespace IUSBack.Controllers
                     if (usuarioSesion != null)
                     {
                         Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
-                        if ( !(permisos != null && permisos._ver) )
+                        if ( permisos != null && permisos._ver )
+                        {
+                            ViewBag.permiso = permisos;
+                        }
+                        else
                         {
                             retorno = RedirectToAction("NotAllowed", "Errors");
                         }
