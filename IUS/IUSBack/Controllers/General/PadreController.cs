@@ -53,7 +53,7 @@ namespace IUSBack.Controllers
                     }
                     return retorno;
                 }
-                public ActionResult seguridadInicial(int idPagina)
+                public ActionResult seguridadInicial(int idPagina,int selectedMenu=-1)
                 {
                     Usuario usuarioSesion = this.getUsuarioSesion();
                     ActionResult retorno = null;
@@ -62,7 +62,8 @@ namespace IUSBack.Controllers
                         Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
                         if ( permisos != null && permisos._ver )
                         {
-                            ViewBag.permiso = permisos;
+                            ViewBag.selectedMenu    = selectedMenu;
+                            ViewBag.permiso         = permisos;
                         }
                         else
                         {

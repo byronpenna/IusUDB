@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.FrontUI.Entidades;
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- propios -->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/style.css" />
@@ -13,6 +14,7 @@
     Institucion institucion         = (Institucion)ViewBag.institucion;
     List<EnlaceInstitucion> enlaces = (List<EnlaceInstitucion>)ViewBag.enlaces;
     string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    Permiso permiso = (Permiso)ViewBag.permiso;
 }
 <div class="row marginNull divInstitucionPrev">
     @if (institucion._logo != null)
@@ -51,7 +53,7 @@
                     </div>
                 </th>
                 <th class="thBtnGuardar">
-                    <button class="btn btnAgregar">Agregar</button>
+                    <button class="btn btnAgregar" @permiso.stringCrear>Agregar</button>
                 </th>
             </tr>
         </thead>
@@ -89,10 +91,10 @@
                                 <button class="btn btnCancelar">Cancelar</button>
                             </div>
                             <div class="normalMode">
-                                <button class="btn btnEditar">
+                                <button class="btn btnEditar" @permiso.stringEditar>
                                     Editar
                                 </button>
-                                <button class="btn btnEliminar">
+                                <button class="btn btnEliminar" @permiso.stringEliminar>
                                     Eliminar
                                 </button>
                             </div>

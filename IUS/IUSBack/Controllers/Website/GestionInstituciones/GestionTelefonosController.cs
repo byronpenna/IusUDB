@@ -21,7 +21,7 @@ namespace IUSBack.Controllers
         #region "resultados url"
             public ActionResult Index(int id = -1)
             {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina,3);
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
