@@ -336,6 +336,7 @@ namespace IUSBack.Controllers
                 this._RUTASGLOBALES = this.setRutasGlobales();
                 this.gestionArchivosServer = new GestionFileServerModel();
                 ViewBag.IMG_GENERALES = this.IMG_GENERALES;
+                ViewBag.urlIUS = this.URL_IUS;
             }
         #endregion
         
