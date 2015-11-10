@@ -91,6 +91,10 @@
             </div>
             <div class="col-lg-8 accesibilidadDiv">
                 <h2>@ViewBag.titleModulo</h2>
+                <div class="row marginNull divArbol">
+                    @RenderSection("arbol", false)
+                    
+                </div>
                 <div class="row tabsHeader col-lg-12">
                     @RenderSection("tabs", false)
                 </div>

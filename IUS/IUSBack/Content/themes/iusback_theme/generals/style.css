@@ -288,3 +288,16 @@
     color:#e74c3c;
 }
 /*Nuevo para mensajes en patntalla*/
+/*********************************************/
+.divArbol{
+    margin-top:1%;
+}
+.cuadritoArbol{
+    background: #ecf0f1;
+    padding-top:1%;
+    padding-bottom:1%;
+    font-size:0.9em;
+}
+.cuadritoArbol:hover{
+    border: 1px solid black;
+}

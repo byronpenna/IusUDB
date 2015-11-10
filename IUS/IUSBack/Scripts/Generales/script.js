@@ -11,6 +11,20 @@
             $(".txtHeaderHoraActual").empty().append(clockHora(txtTiempo));
         }, 1000);
     // eventos
+        // moveover
+            $(document).on("mouseover", ".cuadritoArbol", function () {
+                var chevron = $(this).find(".navChevron");
+                var divChevron = $(this).find(".divChevron");
+                chevron.removeClass("fa-chevron-right");
+                chevron.addClass("fa-chevron-down");
+                //divChevron.css("border", "1px solid black");
+
+            })
+            $(document).on("mouseleave", ".cuadritoArbol", function () {
+                var chevron = $(this).find(".navChevron");
+                chevron.removeClass("fa-chevron-down");
+                chevron.addClass("fa-chevron-right" );
+            })
         // click
             $(document).on("click", ".btnTab", function () {
                 $(".btnTab").removeClass("tabActive");

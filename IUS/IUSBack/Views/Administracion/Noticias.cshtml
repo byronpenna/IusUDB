@@ -21,6 +21,28 @@
         <script src="~/Scripts/Views/Administracion/Noticias/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/functions.js"></script>
 }
+@section arbol{
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@Url.Action("Index","Noticias")">
+            <div class="col-lg-8">
+                Noticias
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@ViewBag.currentUrl">
+            <div class="col-lg-8">
+                @ViewBag.titleModulo
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+}
 @{
     List<PostCategoria> categorias = (List<PostCategoria>)ViewBag.categorias;
     Post post = (Post)ViewBag.post;

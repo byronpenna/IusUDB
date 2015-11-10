@@ -39,7 +39,7 @@ namespace IUSBack.Controllers
         #endregion
         #region "funciones"
             #region "iniciales"
-                public ActionResult viewbagInicial(int idUsuario,int idPagina)
+                /*public ActionResult viewbagInicial(int idUsuario,int idPagina)
                 {
                     ActionResult retorno = null;
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(idUsuario, idPagina);
@@ -52,7 +52,7 @@ namespace IUSBack.Controllers
                         retorno = RedirectToAction("NotAllowed", "Errors");
                     }
                     return retorno;
-                }
+                }*/
                 public ActionResult seguridadInicial(int idPagina,int selectedMenu=-1)
                 {
                     Usuario usuarioSesion = this.getUsuarioSesion();
@@ -64,6 +64,7 @@ namespace IUSBack.Controllers
                         {
                             ViewBag.selectedMenu    = selectedMenu;
                             ViewBag.permiso         = permisos;
+                            ViewBag.currentUrl      = Request.Url.AbsoluteUri;
                         }
                         else
                         {

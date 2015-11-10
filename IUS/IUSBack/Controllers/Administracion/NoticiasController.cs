@@ -104,11 +104,16 @@ namespace IUSBack.Controllers
             public ActionResult ModificarNoticia(int id)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null)
+                /*if (usuarioSession != null)
                 {
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver && permisos._editar)
-                    {
+                    {*/
+                        ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                        if (seguridadInicial != null)
+                        {
+                            return seguridadInicial;
+                        }
                         try
                         {
 
@@ -116,7 +121,7 @@ namespace IUSBack.Controllers
                             //List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
                             Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
                             Post post = (Post)datosPost["post"];
-                            ViewBag.permiso = permisos;
+                            //ViewBag.permiso = permisos;
                             ViewBag.categorias = this._model.sp_adminfe_noticias_getCategoriasPostById(post._idPost, usuarioSession._idUsuario, this._idPagina);//categorias;
                             //ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
                             ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
@@ -140,7 +145,7 @@ namespace IUSBack.Controllers
                         catch (Exception x) {
                             return RedirectToAction("Unhandled", "Errors");
                         }
-                    }
+                    /*}
                     else
                     {
                         return RedirectToAction("NotAllowed", "Errors");
@@ -149,21 +154,28 @@ namespace IUSBack.Controllers
                 else
                 {
                     return RedirectToAction("index", "login");
-                }
+                }*/
             }
             public ActionResult IngresarNoticia()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null)
-                {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                /*if (usuarioSession != null)
+                {*/
+                    /*Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver && permisos._crear)
+                    {*/
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                    if (seguridadInicial != null)
+                    {
+                        return seguridadInicial;
+                    }
+                    try
                     {
                         List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
-                        ViewBag.permiso     = permisos;
+                        //ViewBag.permiso     = permisos;
                         ViewBag.categorias  = categorias;
                         //ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                        ViewBag.menus       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         ViewBag.editMode    = false;
                         ViewBag.idiomas     = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
                         #region "Labels"
@@ -175,15 +187,26 @@ namespace IUSBack.Controllers
                         ViewBag.post = new Post();
                         return View("~/Views/Administracion/Noticias.cshtml");
                     }
-                    else
+                    catch (ErroresIUS x)
                     {
-                        return RedirectToAction("NotAllowed", "Errors");
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, true);
+                        //return RedirectToAction("Unhandled", "Errors");
                     }
-                }
+                    catch (Exception x)
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
+                /*}
                 else
                 {
-                    return RedirectToAction("index", "login");
+                    return RedirectToAction("NotAllowed", "Errors");
                 }
+            }
+            else
+            {
+                return RedirectToAction("index", "login");
+            }*/
             }
         #endregion
         #region "generics"
