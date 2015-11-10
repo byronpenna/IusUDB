@@ -1,6 +1,7 @@
 ﻿/* Imagen */
     .jcrop-holder,.imgThumbnail{
         margin: 0 auto;
+        margin-top:5%;
     }
     .divLoadingPhoto{
         margin-top:2%;
@@ -35,8 +36,10 @@
     /*width:200px;
     height:200px;*/
     max-width:30%;
+
 }
 .imgThumbnail{
     /*max-width:30%;*/
-    max-width:30%;
+    max-width:70%;
+    
 }
