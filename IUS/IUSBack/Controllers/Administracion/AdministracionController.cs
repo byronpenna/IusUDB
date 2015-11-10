@@ -25,20 +25,38 @@ namespace IUSBack.Controllers
             public ActionResult Eventos()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null)
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPaginaEventos, 4);
+                if (seguridadInicial != null)
                 {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPaginaEventos);
-                    if (permisos != null && permisos._ver)
+                    return seguridadInicial;
+                }
+                /*if (usuarioSession != null)
+                {*/
+                    //Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPaginaEventos);
+                    /*if (permisos != null && permisos._ver)
+                    {*/
+                    try
                     {
-                        ViewBag.selectedMenu = 4; // menu seleccionado 
+                        //ViewBag.selectedMenu = 4; // menu seleccionado 
                         List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
                         ViewBag.titleModulo = "Eventos";
                         ViewBag.usuario     = usuarioSession;
                         ViewBag.eventos     = eventos;
-                        ViewBag.permiso     = permisos;
+                        //ViewBag.permiso     = permisos;
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                        return View();
                     }
+                    catch (ErroresIUS x)
+                    {
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, true);
+                        //return RedirectToAction("Unhandled", "Errors");
+                    }
+                    catch (Exception x)
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
+                        return View();
+                    /*}
                     else
                     {
                         return RedirectToAction("NotAllowed", "Errors");
@@ -48,7 +66,7 @@ namespace IUSBack.Controllers
                 {
                     return RedirectToAction("index", "login");
                     
-                }
+                }*/
                 
             }
             public ActionResult Noticias()

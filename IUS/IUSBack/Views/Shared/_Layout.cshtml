@@ -40,7 +40,7 @@
     <header>
         <div class="row marginNull">
             <div class="col-lg-2 sectionLogoMenu">
-                <a href="@Url.Action("Index","Home")">
+                <a href="@ViewBag.urlIUS">@*@Url.Action("Index", "Home")*@
                     <img src="~/Content/themes/iusback_theme/img/general/logo_ius.png" />
                 </a>
             </div>
@@ -55,7 +55,7 @@
                             foreach (Menu menucito in menus)
                             {
                                 cn++;
-                                if (cn == selectedMenu && selectedMenu != -1)
+                                if (menucito._idMenu == selectedMenu && selectedMenu != -1)
                                 {
                                     strActive = "activeMenuPrincipal";
                                 }

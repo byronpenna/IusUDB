@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.FrontUI.Entidades
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- plugins -->
         <!--Data table-->
@@ -22,6 +23,7 @@
 @{
     List<Pais> paises               = (List<Pais>) ViewBag.paises;
     List<Institucion> instituciones = (List<Institucion>) ViewBag.instituciones;
+    Permiso permiso = (Permiso)ViewBag.permiso;
 }
 <div class="row marginNull divMensajesGenerales">
 
@@ -83,8 +85,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btnAddInstitucion">Agregar </button>
-                            
+                            <button class="btn btnAddInstitucion" @permiso.stringCrear>Agregar </button>
                         </td>
                     </tr>
                 </thead>
@@ -132,9 +133,9 @@
                                         </button>
                                     </div>
                                     <div class="normalMode">
-                                        <button class="btn btnEditar">Editar</button>
-                                        <button class="btn btnDeleteInstitucion">Eliminar</button>
-                                        <a class="btn btnFromlink " href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })" class="btn">
+                                        <button class="btn btnEditar" @permiso.stringEditar>Editar</button>
+                                        <button class="btn btnDeleteInstitucion" @permiso.stringEliminar>Eliminar</button>
+                                        <a class="btn btnFromlink " href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })">
                                             Logo
                                         </a>
                                         <a class="btn btnFromlink" href="@Url.Action("Index", "GestionTelefonos", new { id=institucion._idInstitucion})">Telefonos</a>

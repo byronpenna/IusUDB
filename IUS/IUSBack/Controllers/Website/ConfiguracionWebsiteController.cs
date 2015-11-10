@@ -29,13 +29,12 @@ namespace IUSBack.Controllers
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
                 {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver)
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                    if (seguridadInicial == null)
                     {
                         ViewBag.selectedMenu = 3; // menu seleccionado 
                         ViewBag.titleModulo = "Configuración Web Site";
-                        ViewBag.usuario     = usuarioSession;
-                        ViewBag.permiso = permisos;
+                        ViewBag.usuario = usuarioSession;
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         List<RedSocial> redesSociales = null;
                         Configuracion config = null;
@@ -51,7 +50,7 @@ namespace IUSBack.Controllers
                                 redesSociales = (List<RedSocial>)dic["redesSociales"];
                                 valores = (List<Valor>)dic["valores"];
                             }
-                            
+
                         }
                         catch (ErroresIUS)
                         {
@@ -63,16 +62,15 @@ namespace IUSBack.Controllers
                             return RedirectToAction("Unhandled", "Errors");
                         }
                         ViewBag.redesSociales = redesSociales;
-                        ViewBag.config  = config;
+                        ViewBag.config = config;
                         ViewBag.valores = valores;
-                        ViewBag.slider = slider; 
+                        ViewBag.slider = slider;
                         return View();
                     }
                     else
                     {
-                        return RedirectToAction("NotAllowed", "Errors");
+                        return seguridadInicial;
                     }
-                    
                 }
                 else
                 {

@@ -763,11 +763,14 @@ function eventosIniciales() {
                     //clearTr(frmSection); se comenta porq mata las horas
                     limpiarFormulario();
                     resetRbTiempo();
+                    printMessage($(".divMensajeForm"), "Evento agregado correctamente", true);
                 } else {
                     if (data.error._mostrar && data.error.Message != "") {
-                        alert(data.error.Message);
+                        printMessage($(".divMensajeForm"), data.error.Message, false);
+                        //alert(data.error.Message);
                     } else {
-                        alert("ocurrio un error");
+                        printMessage($(".divMensajeForm"), data.error.Message, false);
+                        //alert("ocurrio un error");
                     }
                 
                 }

@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.FrontUI.Entidades;
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- propios -->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/style.css" />
@@ -12,7 +13,7 @@
 @{
     Institucion                 institucion = (Institucion)ViewBag.institucion;
     List<TelefonoInstitucion>   telefonos   = (List<TelefonoInstitucion>)ViewBag.telefonos;
-    
+    Permiso                     permiso     = (Permiso)ViewBag.permiso;
     string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
 }
 <div class="row marginNull divInstitucionPrev">
@@ -57,7 +58,7 @@
                     </div>
                 </th>
                 <th class="thBtnGuardar">
-                    <button class="btn btnAgregarTel">Agregar</button>
+                    <button class="btn btnAgregarTel" @permiso.stringCrear>Agregar</button>
                 </th>
             </tr>
         </thead>
@@ -99,10 +100,10 @@
                                 </button>
                             </div>
                             <div class="normalMode">
-                                <button class="btn btnEditarTel">
+                                <button class="btn btnEditarTel" @permiso.stringEditar>
                                     Editar
                                 </button>
-                                <button class="btn btnEliminarTel">
+                                <button class="btn btnEliminarTel" @permiso.stringEliminar>
                                     Eliminar
                                 </button>
                             </div>

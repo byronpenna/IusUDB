@@ -139,6 +139,7 @@
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_deleteInstitucion", frm, function (data) {
             console.log(data);
             if (data.estado) {
+                printMessage($(".divMensajesGenerales"), "Institucion eliminada correctamente", true);
                 table = $(".tbInstituciones");
                 removeDataTable(table, tr);
             }

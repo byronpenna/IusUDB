@@ -70,14 +70,14 @@ namespace IUSBack.Controllers
             }
             public ActionResult Index()
             {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina,3);
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
                 try
                 {
-                    ViewBag.selectedMenu = 3; // menu seleccionado 
+                    
                     Usuario usuarioSession              = this.getUsuarioSesion();
                     Permiso permisos                    = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> inicial  = this._model.cargaInicialIndex(usuarioSession._idUsuario,this._idPagina);

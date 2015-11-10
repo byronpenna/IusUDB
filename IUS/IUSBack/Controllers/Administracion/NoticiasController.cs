@@ -32,18 +32,23 @@ namespace IUSBack.Controllers
             public ActionResult setMiniatura(int id)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null)
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                /*if (usuarioSession != null)
                 {
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (permisos != null && permisos._ver)
-                    {
+                    {*/
                         try
                         {
-                            ViewBag.selectedMenu = 4; // menu seleccionado 
+                            //ViewBag.selectedMenu = 4; // menu seleccionado 
                             ViewBag.titleModulo = "Escoger miniatura foto";
                             ViewBag.usuario = usuarioSession;
                             ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                            ViewBag.permiso = permisos;
+                            //ViewBag.permiso = permisos;
                             ViewBag.post = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina)["post"];
                             return View();
                         }
@@ -56,7 +61,7 @@ namespace IUSBack.Controllers
                             return RedirectToAction("Unhandled", "Erros");
                         }
                         
-                        
+                     /*   
                     }
                     else
                     {
@@ -66,7 +71,7 @@ namespace IUSBack.Controllers
                 else
                 {
                     return RedirectToAction("index", "login");
-                }
+                }*/
                 
             }
             public ActionResult Index()

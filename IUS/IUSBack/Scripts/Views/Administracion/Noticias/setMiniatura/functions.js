@@ -1,4 +1,5 @@
-﻿// generics 
+﻿var jcrop_api = null;
+// generics 
     // jcrop 
         function storeCoords(c) {
             //console.log(c);
@@ -19,6 +20,7 @@
         accionAjaxWithImage(url, data, function (data) {
             console.log("reespueta", data);
             if (data.estado) {
+                jcrop_api.destroy();
                 targetImg.attr("src", RAIZ + "getImageThumbnail/" + data.id);
                 targetImg.attr("style", "");
             }
