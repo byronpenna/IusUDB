@@ -90,14 +90,19 @@
                 </div>
             </div>
             <div class="col-lg-8 accesibilidadDiv">
-                <h2>@ViewBag.titleModulo</h2>
+                <div class="row marginNull">
+                    <h2>
+                        <i class="globalLeft fa fa-chevron-left"></i>
+                        @ViewBag.titleModulo
+                        <i class=" globalRight fa fa-chevron-right"></i>
+                    </h2>
+                </div>
+                
                 <div class="row marginNull divArbol">
                     @RenderSection("arbol", false)
                     
                 </div>
-                <div class="row tabsHeader col-lg-12">
-                    @RenderSection("tabs", false)
-                </div>
+                
             </div>
             <div class="col-lg-2 informacionHeaderDiv">
                 <div class="row">
@@ -114,6 +119,11 @@
             </div>
         </div>
     </header>
+    <div class="row marginNull tabsHeader">
+        <div class="col-lg-offset-2 col-lg-8">
+            @RenderSection("tabs", false)
+        </div>
+    </div>
     @RenderBody()
     @Html.Partial("footer")
     @RenderSection("scriptsPersonalizados", false)
