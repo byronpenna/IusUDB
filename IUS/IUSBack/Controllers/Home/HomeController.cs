@@ -182,6 +182,11 @@ namespace IUSBack.Controllers
                         Session["backControl"] = Session["neutroControl"];
                     }*/
                 }
+                if (url == "")
+                {
+                    url = neutro;
+                }
+
                 return Redirect(url);
             }
         #endregion
