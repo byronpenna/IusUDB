@@ -407,13 +407,21 @@
                 }
             })
         }
+        function limpiarInputAgregar() {
+            $(".txtCarrera").val("");
+            $(".txtYearFin").val("");
+            $(".txtAreaObservaciones").val("");
+            $(".txtInstitucionEducativa").val("");
+
+        }
         function btnAgregarCarrera(frm) { // agrega formacion de personas a persar del nombre raro
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarFormacionPersona", frm, function (data) {
                 console.log("la data es", data);
                 if (data.estado) {
                     var tr = getTrFormacionPersonas(data.formacionAgregada);
                     var trFrm = $(".trAgregar");
-                    clearTrWithOutHidden(trFrm);
+                    limpiarInputAgregar();
+                    //clearTrWithOutHidden(trFrm);
                     $(".tbodyFormacionPersonas").prepend(tr);
                 } else {
                     alert("Ocurrio un error");

@@ -15,6 +15,28 @@
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/functions.js"></script>
 }
+@section arbol{
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@Url.Action("Index")">
+            <div class="col-lg-8">
+                Noticias
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@ViewBag.currentUrl">
+            <div class="col-lg-8">
+                Imagen noticia
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+}
 @{
     Post post = (Post)ViewBag.post;
     string src = "";

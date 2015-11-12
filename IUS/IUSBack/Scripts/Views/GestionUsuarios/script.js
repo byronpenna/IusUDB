@@ -1,14 +1,17 @@
 ﻿$(document).ready(function () {
-    // plugins
-        $(".tableUsuarios").DataTable({
-            "bDestroy": true,
-            "bSort": false
-        });
         setInterval(function () {
             //console.log("entro");
             txtTiempo = $(".txtHoraActual").text();
             $(".txtHoraActual").empty().append(clockHora(txtTiempo));
         }, 1000);
+    // plugins
+        // datatable 
+            $(".tableUsuarios").DataTable({
+                "bDestroy": true,
+                "bSort": false
+            });
+        // chosen
+            $(".cbPersona").chosen({ no_results_text: "No se a encontrado empleado", width: '100%' });
     // acciones sub tabla 
         // desasociar rol 
             $(document).on("click", ".btnDesasociar", function () {

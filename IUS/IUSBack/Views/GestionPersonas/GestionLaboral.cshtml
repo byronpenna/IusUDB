@@ -21,7 +21,28 @@
         <script src="~/Scripts/Views/GestionPersonas/Laboral/script.js"></script>
         <script src="~/Scripts/Views/GestionPersonas/Laboral/functions.js"></script>
 }
-
+@section arbol{
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@Url.Action("Index", "GestionPersonas")">
+            <div class="col-lg-8">
+                Personas
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@ViewBag.currentUrl">
+            <div class="col-lg-8">
+                Laboral
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+}
 @{
     List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
     List<LaboralPersona> laboralesPersonas = null; Persona persona = null;

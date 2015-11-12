@@ -3,7 +3,6 @@
         $(".cbChosenPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
         $(".cbChosenCarrera").chosen({ no_results_text: "Carrera no encontrada", width: '100%' });
         $(".cbChosenInstitucion").chosen({ no_results_text: "No se a encontrado institucion", width: '100%' });
-
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
     // eventos 
         // doble click  

@@ -171,7 +171,7 @@
         */
     .tabsHeader{
         text-align:center;
-        margin-top:2%;
+        margin-top:3% !important;
     }
     .tabsHeader ul li{
         display:inline-block;
@@ -288,3 +288,33 @@
     color:#e74c3c;
 }
 /*Nuevo para mensajes en patntalla*/
+/*********************************************/
+.divArbol{
+    margin-top:2%;
+}
+.cuadritoArbol{
+    background: #ecf0f1;
+    padding-top:1%;
+    padding-bottom:1%;
+    font-size:0.9em;
+    cursor:pointer;
+}
+.cuadritoArbol:hover{
+    /*border: 1px solid black;*/
+}
+/*Atras y adelante */
+.globalLeft, .globalRight {
+    cursor:pointer;
+    opacity:0.4;
+    font-size:0.8em;
+}
+.globalLeft:hover, .globalRight:hover {
+    opacity:1;
+}
+.globalRight{
+    margin-left: 2%;
+}
+.globalLeft{
+    margin-right:2%;
+}
+
