@@ -164,12 +164,23 @@ namespace IUSBack.Controllers
             {
                 string url = "";
                 Session["flagNav"] = true;
+                //Session["neutroControl"] = Request.Url.AbsoluteUri;
+                string adelante = Session["fowardControl"].ToString();
+                string neutro = Session["neutroControl"].ToString();
+                string atras = Session["backControl"].ToString();
                 if(id == 0){ // atras 
                     url = Session["backControl"].ToString();
-                    Session["fowardControl"] = Session["neutroControl"];
+                    if (Session["fowardControl"] != Session["neutroControl"])
+                    {
+                        Session["fowardControl"] = Session["neutroControl"];
+                    }
                 }else{
                     url = Session["neutroControl"].ToString();
-                    Session["backControl"] = Session["neutroControl"];
+                    /*
+                    if (Session["backControl"] != Session["neutroControl"])
+                    {
+                        Session["backControl"] = Session["neutroControl"];
+                    }*/
                 }
                 return Redirect(url);
             }

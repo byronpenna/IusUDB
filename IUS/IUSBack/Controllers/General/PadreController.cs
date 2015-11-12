@@ -59,9 +59,9 @@ namespace IUSBack.Controllers
                                 retorno = RedirectToAction("NotAllowed", "Errors");
                             }
                         }
-                        string s1 = Session["backControl"].ToString(); 
-                        string s2 = Session["neutroControl"].ToString();
-                        string s3 = Session["fowardControl"].ToString();
+                        string atras = Session["backControl"].ToString(); 
+                        string enmedio = Session["neutroControl"].ToString();
+                        string adelante = Session["fowardControl"].ToString();
                         if (!(bool)Session["flagNav"])
                         {
                             
