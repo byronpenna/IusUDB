@@ -45,18 +45,40 @@ namespace IUSBack.Controllers
                     ActionResult retorno = null;
                     if (usuarioSesion != null)
                     {
-                        
-                        Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
-                        if ( permisos != null && permisos._ver )
+
+                        if (idPagina != -1)
                         {
-                            ViewBag.selectedMenu    = selectedMenu;
-                            ViewBag.permiso         = permisos;
-                            ViewBag.currentUrl      = Request.Url.AbsoluteUri;
+                            Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
+                            if (permisos != null && permisos._ver)
+                            {
+                                
+                                ViewBag.permiso = permisos;   
+                            }
+                            else
+                            {
+                                retorno = RedirectToAction("NotAllowed", "Errors");
+                            }
+                        }
+                        string s1 = Session["backControl"].ToString(); 
+                        string s2 = Session["neutroControl"].ToString();
+                        string s3 = Session["fowardControl"].ToString();
+                        if (!(bool)Session["flagNav"])
+                        {
+                            
+                            Session["backControl"] = Session["neutroControl"];
+                            if (Request.Url.AbsoluteUri != Session["neutroControl"].ToString())
+                            {
+                                Session["neutroControl"] = Request.Url.AbsoluteUri;
+                            }
                         }
                         else
                         {
-                            retorno = RedirectToAction("NotAllowed", "Errors");
+                            Session["flagNav"] = false;
                         }
+                        
+                        
+                        ViewBag.selectedMenu = selectedMenu;
+                        ViewBag.currentUrl = Request.Url.AbsoluteUri;
                     }
                     else
                     {

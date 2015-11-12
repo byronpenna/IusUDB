@@ -31,7 +31,8 @@ namespace IUSBack.Controllers
                         Usuario usuario = (Usuario)respuesta["usuario"];
                         if ((bool)respuesta["changePass"])
                         {
-                            Session["idUsuario"] = usuario._idUsuario;
+                            Session["idUsuario"]        = usuario._idUsuario;
+                            
                             retorno =  RedirectToAction("changePassword", "Home");
                         }
                         else
@@ -39,6 +40,11 @@ namespace IUSBack.Controllers
                             Session["usuario"] = usuario;
                             retorno = RedirectToAction("Index", "Home");
                         }
+                        // nav 
+                        Session["backControl"] = "";
+                        Session["fowardControl"] = "";
+                        Session["neutroControl"] = "";
+                        Session["flagNav"] = false;
                     }
                     
                 }

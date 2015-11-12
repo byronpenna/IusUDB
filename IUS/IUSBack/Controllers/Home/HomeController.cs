@@ -125,33 +125,53 @@ namespace IUSBack.Controllers
             #endregion
             public ActionResult Index()
             {
-                if (Session["usuario"] != null)
+                // estandarizar 
+                /*if (Session["usuario"] != null)
+                {*/
+                ActionResult seguridadInicial = this.seguridadInicial(-1,-1);
+                if (seguridadInicial != null)
                 {
-                    try
-                    {
-                        ViewBag.titleModulo = "Sistema administrativo IUS";
-                        ViewBag.selectedMenu = 1;
-                        Usuario usu = (Usuario)Session["usuario"];
-                        ViewBag.usuario = usu;
-                        ViewBag.eventosHoy = this.homeModel.sp_adminfe_front_getTodayEvents("127.0.0.1",1);
-                        ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
-                        return View();
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        ErrorsController error = new ErrorsController();
-                        var obj = error.redirectToError(x);
-                        return RedirectToAction(obj["controlador"], obj["accion"]);
-                    }
-                    catch (Exception)
-                    {
-                        return RedirectToAction("index", "login");
-                    }
+                    return seguridadInicial;
                 }
-                else
+                try
+                {
+                    //Session["neutroControl"] 
+                    ViewBag.titleModulo = "Sistema administrativo IUS";
+                    ViewBag.selectedMenu = 1;
+                    Usuario usu = (Usuario)Session["usuario"];
+                    ViewBag.usuario = usu;
+                    ViewBag.eventosHoy = this.homeModel.sp_adminfe_front_getTodayEvents("127.0.0.1",1);
+                    ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    var obj = error.redirectToError(x);
+                    return RedirectToAction(obj["controlador"], obj["accion"]);
+                }
+                catch (Exception)
                 {
                     return RedirectToAction("index", "login");
                 }
+                /*}
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }*/
+            }
+            public ActionResult ControlesNav(int id)
+            {
+                string url = "";
+                Session["flagNav"] = true;
+                if(id == 0){ // atras 
+                    url = Session["backControl"].ToString();
+                    Session["fowardControl"] = Session["neutroControl"];
+                }else{
+                    url = Session["neutroControl"].ToString();
+                    Session["backControl"] = Session["neutroControl"];
+                }
+                return Redirect(url);
             }
         #endregion
         
