@@ -76,127 +76,103 @@ namespace IUSBack.Controllers
             }
             public ActionResult Index()
             {
-                Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null) { 
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver)
-                    {
-                        ViewBag.selectedMenu = 4; // menu seleccionado 
-                        ViewBag.titleModulo = "Noticias";
-                        ViewBag.usuario     = usuarioSession;
-                        //ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                        ViewBag.permiso     = permisos;
-                        List<Post> posts    = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
-                        ViewBag.posts = posts;
-                        return View();
-                    }
-                    else
-                    {
-                        return RedirectToAction("NotAllowed", "Errors");
-                    }
-                }
-                else
-                {
-                    return RedirectToAction("index", "login");
-                }
-            }
-            public ActionResult ModificarNoticia(int id)
-            {
-                Usuario usuarioSession = this.getUsuarioSesion();
-                /*if (usuarioSession != null)
-                {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver && permisos._editar)
-                    {*/
-                        ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
-                        if (seguridadInicial != null)
-                        {
-                            return seguridadInicial;
-                        }
-                        try
-                        {
-
-                            ViewBag.selectedMenu = 4; // menu seleccionado 
-                            //List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
-                            Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
-                            Post post = (Post)datosPost["post"];
-                            //ViewBag.permiso = permisos;
-                            ViewBag.categorias = this._model.sp_adminfe_noticias_getCategoriasPostById(post._idPost, usuarioSession._idUsuario, this._idPagina);//categorias;
-                            //ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                            ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                            ViewBag.editMode = true;
-                            ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
-
-                            #region "Labels"
-                                ViewBag.titleModulo = "Modificar noticia";
-                                ViewBag.botonAccion = "Modificar";
-                                ViewBag.usuario     = usuarioSession;
-                                ViewBag.accion      = 0;
-                            #endregion
-                            #region "Valores"
-                                ViewBag.post        = post;
-                                ViewBag.tags        = this._model.getComaTags((List<Tag>)datosPost["tags"]);
-                            #endregion
-                            return View("~/Views/Administracion/Noticias.cshtml");
-                        }catch(ErroresIUS){
-                            return RedirectToAction("Unhandled", "Errors");
-                        }
-                        catch (Exception x) {
-                            return RedirectToAction("Unhandled", "Errors");
-                        }
-                    /*}
-                    else
-                    {
-                        return RedirectToAction("NotAllowed", "Errors");
-                    }
-                }
-                else
-                {
-                    return RedirectToAction("index", "login");
-                }*/
-            }
-            public ActionResult IngresarNoticia()
-            {
-                Usuario usuarioSession = this.getUsuarioSesion();
-                /*if (usuarioSession != null)
-                {*/
-                    /*Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver && permisos._crear)
-                    {*/
+                try {
+                    Usuario usuarioSession = this.getUsuarioSesion();
                     ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
                     if (seguridadInicial != null)
                     {
                         return seguridadInicial;
                     }
-                    try
-                    {
-                        List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
-                        //ViewBag.permiso     = permisos;
-                        ViewBag.categorias  = categorias;
-                        //ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                        ViewBag.menus       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                        ViewBag.editMode    = false;
-                        ViewBag.idiomas     = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
-                        #region "Labels"
-                            ViewBag.titleModulo     = "Ingresar noticia";
-                            ViewBag.usuario         = usuarioSession;
-                            ViewBag.botonAccion     = "Guardar";
-                            ViewBag.accion          = 1;
-                        #endregion
-                        ViewBag.post = new Post();
-                        return View("~/Views/Administracion/Noticias.cshtml");
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        ErrorsController error = new ErrorsController();
-                        return error.redirectToError(x, true);
-                        //return RedirectToAction("Unhandled", "Errors");
-                    }
-                    catch (Exception x)
-                    {
-                        return RedirectToAction("Unhandled", "Errors");
-                    }
+                    ViewBag.titleModulo = "Noticias";
+                    ViewBag.usuario     = usuarioSession;
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    List<Post> posts    = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.posts = posts;
+                    return View();
+                }catch(ErroresIUS){
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x) {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
+            public ActionResult ModificarNoticia(int id)
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+                
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+
+                    ViewBag.selectedMenu = 4; // menu seleccionado 
+                    //List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
+                    Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
+                    Post post = (Post)datosPost["post"];
+                    //ViewBag.permiso = permisos;
+                    ViewBag.categorias = this._model.sp_adminfe_noticias_getCategoriasPostById(post._idPost, usuarioSession._idUsuario, this._idPagina);//categorias;
+                    //ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.editMode = true;
+                    ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+
+                    #region "Labels"
+                        ViewBag.titleModulo = "Modificar noticia";
+                        ViewBag.botonAccion = "Modificar";
+                        ViewBag.usuario     = usuarioSession;
+                        ViewBag.accion      = 0;
+                    #endregion
+                    #region "Valores"
+                        ViewBag.post        = post;
+                        ViewBag.tags        = this._model.getComaTags((List<Tag>)datosPost["tags"]);
+                    #endregion
+                    return View("~/Views/Administracion/Noticias.cshtml");
+                }catch(ErroresIUS){
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x) {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
+            public ActionResult IngresarNoticia()
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
+                    //ViewBag.permiso     = permisos;
+                    ViewBag.categorias  = categorias;
+                    //ViewBag.subMenus    = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.menus       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.editMode    = false;
+                    ViewBag.idiomas     = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+                    #region "Labels"
+                        ViewBag.titleModulo     = "Ingresar noticia";
+                        ViewBag.usuario         = usuarioSession;
+                        ViewBag.botonAccion     = "Guardar";
+                        ViewBag.accion          = 1;
+                    #endregion
+                    ViewBag.post = new Post();
+                    return View("~/Views/Administracion/Noticias.cshtml");
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
                 /*}
                 else
                 {
