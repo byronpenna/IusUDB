@@ -29,9 +29,14 @@ namespace IUSBack.Controllers
                 try
                 {
                     Usuario usuarioSession  = this.getUsuarioSesion();
-                    if (usuarioSession != null)
-                    {
+                    /*if (usuarioSession != null)
+                    {*/
                         //ViewBag.subMenus        = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                        ActionResult seguridadInicial = this.seguridadInicial(-1, -1);
+                        if (seguridadInicial != null)
+                        {
+                            return seguridadInicial;
+                        }
                         ViewBag.selectedMenu = id;
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         Dictionary<object, object> respuesta = this._model.sp_sec_getSubmenu(id, usuarioSession._idUsuario);
@@ -40,11 +45,11 @@ namespace IUSBack.Controllers
                         ViewBag.submenuss = respuesta["submenus"];
                         ViewBag.usuario = usuarioSession;
                         return View();
-                    }
+                    /*}
                     else
                     {
                         return RedirectToAction("index", "login");
-                    }
+                    }*/
                 }
                 catch (ErroresIUS x)
                 {
