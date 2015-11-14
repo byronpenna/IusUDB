@@ -37,12 +37,14 @@ function numPaginacion(frm) {
 function getDivPost(post) {
     var srcImg = IMG_GENERALES+"image.png";
     
-    if (post.convertMiniatura !== null) {
+    /*if (post.convertMiniatura !== null) {
         console.log
         srcImg = "data:image/png;base64," + post.convertMiniatura;
     } else {
         
-    }
+    }*/
+    srcImg = RAIZ_BACK + "Noticias/getImageThumbnail/" + post._idPost;
+
     //
     //
     /*var div = "\
@@ -78,7 +80,7 @@ function getDivPost(post) {
                                 </a>\
                             </div>\
                             <div class='col-lg-6 text-center'>\
-                                "+post._fechaCreacion+"\
+                                " + post.getFechaCreacion + "\
                             </div>\
                         </div>\
                     </div>\
@@ -134,7 +136,7 @@ function cancelarBuscando(frm) {
         }
         $(".divTarjetasNoticias").empty().append(posts);
         $(".btnBuscar").empty().append("Buscar");
-        $(".txtHdBuscando").val(1);
+        $(".txtHdBuscando").val(0);
     }, function () {
         $(".divTarjetasNoticias").empty().append("\
             <div class='row text-center'>\
@@ -145,7 +147,7 @@ function cancelarBuscando(frm) {
 }
 function btnBuscar(frm,btn) {
     actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_front_buscarNoticias", frm, function (data) {
-        
+        console.log("data es", data);
         var posts = "";
         if (data.estado) {
             if (data.posts !== undefined && data.posts !== null && data.posts.length > 0) {
@@ -157,8 +159,10 @@ function btnBuscar(frm,btn) {
         $(".divTarjetasNoticias").empty().append(posts);
         var divNums = getNums(data.numPage, frm.txtHdNumPage);
         $(".numRow").empty().append(divNums);
+        //btn.addClass("active");
+        //btn.empty().append("Cancelar busqueda");
 
-        btn.empty().append("Cancelar busqueda");
+        $(".btnCancelarBusqueda").prop("disabled", false);
         $(".txtHdBuscando").val(1);
     }, function () {
         $(".divTarjetasNoticias").empty().append("\

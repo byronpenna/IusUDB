@@ -350,8 +350,10 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow row = tb[0].Rows[0];
-                                postRetorno = new Post((int)row["idPost"],(byte[])row["miniatura"]);
-
+                                postRetorno = new Post((int)row["idPost"]);
+                                if(row["miniatura"] != DBNull.Value){
+                                    postRetorno._miniatura = (byte[])row["miniatura"];
+                                }
                             }
                         }
                     }
@@ -438,10 +440,10 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                     post = new Post((int)row["idPost"], row["titulo"].ToString(), "");
                                     //post._contenido = post._contenido.Replace("&nbsp;", " ");
                                     post._descripcion = row["breve_descripcion"].ToString();
-                                    if (row["miniatura"] != System.DBNull.Value)
+                                    /*if (row["miniatura"] != System.DBNull.Value)
                                     {
                                         post._miniatura = (byte[])row["miniatura"];
-                                    }
+                                    }*/
                                     posts.Add(post);
                                 }
                             }

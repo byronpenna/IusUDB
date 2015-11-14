@@ -7,6 +7,10 @@
     // eventos
         // click
             //$(".rowPadreParaBusqueda")
+            $(document).on("click", ".btnCancelarBusqueda", function () {
+                var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
+                cancelarBuscando(frm);
+            })
             $(document).on("click",".btnBuscar",function(){
                 var buscando = $(".txtHdBuscando").val();
                 if (buscando == 0) {

@@ -28,7 +28,7 @@
         
     }
 }
-<h2 class="text-center">Noticias</h2>
+<h2 class="text-center titulo">Noticias</h2>
 <div class="row marginNull rowPadreParaBusqueda">
     <h3 class="text-center">Filtros</h3>
     <div class="row marginNull RowControlesFiltro">
@@ -62,9 +62,17 @@
     </div>
     <div class="row marginNull RowControlesFiltro">
         <div class="col-lg-offset-3 col-lg-6 text-center">
-            <button class="btn btnBuscar ">Buscar</button>
+            <div class="btn-group">
+                <button class="btn btn-default btnCancelarBusqueda" disabled>Cancelar</button>
+                <button class="btn btn-default btnBuscar ">Buscar</button>
+            </div>
+            
         </div>
     </div>
+</div>
+<div class="row marginNull divDataGuiaBusqueda">
+    <h4>Resultados de busqueda</h4>
+    Noticias con titulo similar a: <strong class="DivGuititulo">""</strong> en el intervalo de tiempo <strong></strong>
 </div>
 <div class="row marginNull divTarjetasNoticias">
     @if (posts != null && posts.Count > 0)
@@ -104,7 +112,6 @@
                                 @post._fechaCreacion
                             </div>
                         </div>
-                        
                         <!--</div>-->
                     </div>
                 </div>
