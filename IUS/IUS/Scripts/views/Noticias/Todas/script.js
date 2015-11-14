@@ -8,10 +8,20 @@
         // click
             //$(".rowPadreParaBusqueda")
             $(document).on("click",".btnBuscar",function(){
-                var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
-                console.log("form enviado a la hora de buscar", frm);
+                var buscando = $(".txtHdBuscando").val();
+                if (buscando == 0) {
+                    var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
+                    console.log("form enviado a la hora de buscar", frm);
+                    btnBuscar(frm, $(this));
+                } else {
+                    console.log("cancelando");
+                    var frm = {
+                        pagina: 1, // pagina 
+                        cn: $(".txtHdRango").val()
+                    }
+                    cancelarBuscando(frm);
+                }
                 
-                btnBuscar(frm,$(this));
             })
             
             $(document).on("click", ".flecha", function () {
