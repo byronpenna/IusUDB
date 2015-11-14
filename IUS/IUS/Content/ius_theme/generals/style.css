@@ -1,4 +1,15 @@
 ﻿/*
+    */
+.colNoticia{
+    color:black;
+    
+}
+    .colNoticia p {
+        text-align: justify;
+        height:50px;
+    }
+    
+/*
     Mensajeria 
     */
 .successMessage{

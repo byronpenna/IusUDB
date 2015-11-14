@@ -18,7 +18,7 @@
                         src = Url.Content("~/Content/images/generales/image.png");
                     }
                     <a href="@this.Url.Action("Index", "Noticias", new { id = post._idPost })">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 colNoticia">
                             <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2 imgFeedNoticia">
                                 <!-- <img src="~/Content/images/test/cruz.png" /> -->
                                 <img src="@src" />
@@ -26,8 +26,9 @@
                             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10  cuerpoFeedNoticia">
                                 <h3>@post._titulo</h3>
                                 <p>
-                                    @post._descripcion...<span class="leerMas">@ViewData["lb-leer-mas"]</span>
+                                    @post._descripcion...
                                 </p>
+                                <span class="leerMas">@ViewData["lb-leer-mas"]</span>
                             </div>
                         </div>
                     </a>
