@@ -70,9 +70,13 @@
         </div>
     </div>
 </div>
-<div class="row marginNull divDataGuiaBusqueda">
+<div class="row marginNull divDataGuiaBusqueda visiHidden">
     <h4>Resultados de busqueda</h4>
-    Noticias con titulo similar a: <strong class="DivGuititulo">""</strong> en el intervalo de tiempo <strong></strong>
+    Noticias con titulo similar a: <strong class="divGuititulo">""</strong> 
+        <span class="spanIntervaloFecha"> en el intervalo de tiempo de 
+            <strong class="divGuiInicio"></strong> hasta 
+            <strong class="divGuiFin"></strong>
+        </span>
 </div>
 <div class="row marginNull divTarjetasNoticias">
     @if (posts != null && posts.Count > 0)

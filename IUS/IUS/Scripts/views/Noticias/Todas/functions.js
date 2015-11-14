@@ -135,8 +135,8 @@ function cancelarBuscando(frm) {
             }
         }
         $(".divTarjetasNoticias").empty().append(posts);
-        $(".btnBuscar").empty().append("Buscar");
-        $(".txtHdBuscando").val(0);
+        //$(".btnBuscar").empty().append("Buscar");
+        accesibilidadCancelar();
     }, function () {
         $(".divTarjetasNoticias").empty().append("\
             <div class='row text-center'>\
@@ -144,6 +144,39 @@ function cancelarBuscando(frm) {
             </div>\
         ")
     })
+}
+function accesibilidadCancelar() {
+    $(".txtHdBuscando").val(0);
+    $(".divDataGuiaBusqueda").addClass("visiHidden");
+    $(".btnCancelarBusqueda").prop("disabled", true);
+}
+function accesibilidadBusqueda(frm) {
+    $(".divDataGuiaBusqueda").removeClass("visiHidden");
+
+    $(".btnCancelarBusqueda").prop("disabled", false);
+    $(".divGuititulo").empty().append(frm.txtTituloNoticia);
+    //console.log(frm.dtpInicio);
+    if (frm.dtpInicio == "" && frm.dtpFin == "") {
+        
+        $(".spanIntervaloFecha").addClass("hidden");
+    } else {
+        //console.log("entro aca");
+        $(".spanIntervaloFecha").removeClass("hidden");
+        if (frm.dtpInicio == "") {
+            $(".divGuiInicio").empty().append("El origen de los tiempos");
+        } else {
+            $(".divGuiInicio").empty().append(frm.dtpInicio);
+        }
+        if (frm.dtpFin == "") {
+            $(".divGuiFin").empty().append("Hoy");
+        } else {
+            $(".divGuiFin").empty().append(frm.dtpFin);
+        }
+        
+    }
+    
+    
+    $(".txtHdBuscando").val(1);
 }
 function btnBuscar(frm,btn) {
     actualizarCatalogo(RAIZ + "/Noticias/sp_adminfe_front_buscarNoticias", frm, function (data) {
@@ -161,9 +194,8 @@ function btnBuscar(frm,btn) {
         $(".numRow").empty().append(divNums);
         //btn.addClass("active");
         //btn.empty().append("Cancelar busqueda");
-
-        $(".btnCancelarBusqueda").prop("disabled", false);
-        $(".txtHdBuscando").val(1);
+        accesibilidadBusqueda(frm);
+        
     }, function () {
         $(".divTarjetasNoticias").empty().append("\
             <div class='row text-center'>\

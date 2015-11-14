@@ -8,23 +8,27 @@
         // click
             //$(".rowPadreParaBusqueda")
             $(document).on("click", ".btnCancelarBusqueda", function () {
-                var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
+                //var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
+                var frm = {
+                    pagina: 1, // pagina 
+                    cn: $(".txtHdRango").val()
+                }
                 cancelarBuscando(frm);
             })
             $(document).on("click",".btnBuscar",function(){
                 var buscando = $(".txtHdBuscando").val();
-                if (buscando == 0) {
-                    var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
-                    console.log("form enviado a la hora de buscar", frm);
-                    btnBuscar(frm, $(this));
-                } else {
+                //if (buscando == 0) {
+                var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
+                console.log("form enviado a la hora de buscar", frm);
+                btnBuscar(frm, $(this));
+                /*} else {
                     console.log("cancelando");
                     var frm = {
                         pagina: 1, // pagina 
                         cn: $(".txtHdRango").val()
                     }
                     cancelarBuscando(frm);
-                }
+                }*/
                 
             })
             
