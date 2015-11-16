@@ -75,7 +75,7 @@ function getDivPost(post) {
                         <!--<div class='row marginNull text-center'>-->\
                         <div class='row marginNull'>\
                             <div class='col-lg-6 text-center'>\
-                                <a class='btn btn-default' href=''>\
+                                <a class='btn btn-default' href='"+RAIZ+"Noticias/Index/"+post._idPost+""+"'>\
                                     Leer noticia\
                                 </a>\
                             </div>\

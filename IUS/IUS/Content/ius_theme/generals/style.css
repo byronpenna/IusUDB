@@ -147,18 +147,21 @@ header{
         */
         .rowTodas{
             margin-top:3%;
+            background: #d1d1d1;
         }
         .feedSection{
             background:#ecf0f1;
             padding-top:1%;
-            padding-bottom:1%;
+            /*padding-bottom:1%;*/
+
         }
         .cuerpoFeedNoticia, .imgFeedNoticia{
             margin-top:3%;
         }
         .feedSection h3{
-            font-family:'circulap';
+            /*font-family:'circulap';*/
             margin-top:0;
+            font-family:'latop';
         }
         .cuerpoFeedNoticia{
             text-align:center;
@@ -190,4 +193,18 @@ header{
 }
 .menu .activeMenu{
     color:wheat;
+}
+
+/********************/
+.colNoticia{
+    padding-left:2%;
+    padding-right:2%;
+}
+.hVerTodos{
+    margin-top:1% !important;
+    margin-bottom:1%;
+}
+.aTodosPost:hover{
+    text-decoration:none;
+    color:white;
 }
