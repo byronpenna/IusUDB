@@ -148,7 +148,7 @@ header{
         */
         .rowTodas{
             margin-top:3%;
-            background: #A0B4BD;
+            background:url("../../images/generales/fondo_gris.png");/*****************************************************/
         }
         .feedSection{
             background:#ecf0f1;

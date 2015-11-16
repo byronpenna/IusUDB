@@ -13,29 +13,44 @@
         // change 
             $(document).on("change", ".flFotoPersona", function (e) {
                 var boton = $(".btnEstablecer"); var targetImg =$(".imgPersona");
+                console.log("D: ");
+                var cambiar = false;
                 if ($(this).val() == "") {
+                    console.log("Es vacio");
                     boton.prop("disabled", true);
                 } else {
+                    console.log("Es vacio NO NO NO");
+                    cambiar = true;
                     $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                     boton.prop("disabled", false);
                 }
-                getImageFromInputFileEvent(e, function (images) {
-                    $(".divLoadingPhoto").empty();
-                    //$(".imgPersona").fadeIn("slow");
-                    if (images !== undefined && images != null) {
-                        targetImg.attr("src", images.src);
-                        targetImg.attr("style", "");
-                        if (jcrop_api != null) {
-                            jcrop_api.destroy();
+                if (cambiar) {
+                    getImageFromInputFileEvent(e, function (images) {
+                        $(".divLoadingPhoto").empty();
+                        //$(".imgPersona").fadeIn("slow");
+                        console.log("mmm", images);
+                        if (images !== undefined && images != null) {
+                            targetImg.attr("src", images.src);
+                            targetImg.attr("style", "");
+                            if (jcrop_api != null) {
+                                jcrop_api.destroy();
+                            }
+                            jcrop_api = $.Jcrop('.imgPersona', {
+                                onSelect: storeCoords,
+                                onChange: storeCoords,
+                                aspectRatio: 1
+                            });
+                            inicialFoto();
                         }
-                        jcrop_api = $.Jcrop('.imgPersona', {
-                            onSelect: storeCoords,
-                            onChange: storeCoords,
-                            aspectRatio:1
-                        });
-                        inicialFoto();
+                    });
+                } else {
+                    if (jcrop_api != null) {
+                        jcrop_api.destroy();
                     }
-                });
+                    targetImg.attr("src", RAIZ + "Content/themes/iusback_theme/img/general/noimage.png");
+                    targetImg.attr("style", "");
+                }
+                
             })
             $(document).on("change", ".cbPersonas", function (e) {
                 location.href = RAIZ + "GestionPersonas/Extras/" + $(this).val();

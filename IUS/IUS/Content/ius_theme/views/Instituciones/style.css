@@ -21,3 +21,9 @@
     margin-bottom:5%;
     font-family:'latop';
 }
+.cuerpoInstituciones{
+    margin-bottom:4%;
+}
+.continente:hover{
+    cursor:pointer;
+}
