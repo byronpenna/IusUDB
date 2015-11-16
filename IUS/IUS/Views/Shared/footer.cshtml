@@ -4,10 +4,53 @@
     string src = "";
 }
 <footer>
+    <div class="row marginNull rowImportantes">
+        @*<h3 class="text-center">Eventos</h3>*@
+        <div class="col-lg-4">
+            <div class="DivEvento">
+                <div class="col-lg-4">
+                    <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionum/1.png")"/>
+                </div>
+                <div class="col-lg-8">
+                    <h4>Campaña contra el dengue</h4>
+                    <p>
+                        <strong>1/11/2015</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="DivEvento">
+                <div class="col-lg-4">
+                    <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionum/12.png")" />
+                </div>
+                <div class="col-lg-8">
+                    <h4>Venta de perritos</h4>
+                    <p>
+                        <strong>12/11/2015</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="DivEvento">
+                <div class="col-lg-4">
+                    <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionum/25.png")" />
+                </div>
+                <div class="col-lg-8">
+                    <h4>Fiesta :D </h4>
+                    <p>
+                        <strong>25/11/2015</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row feedSection marginNull">
+        
         @if (posts != null)
         {
-            <div class="row">
+            <div class="row marginNull">
                 @foreach (Post post in posts)
                 {
                     if(post._miniatura != null){

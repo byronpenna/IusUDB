@@ -217,4 +217,16 @@ header{
     text-decoration:none;
     color:black;
 }
+.rowImportantes{
+    background:url("../../images/generales/fondo_gris.png");
+    padding-top:1%;
+    padding-bottom:1%;
+}
+.minEvento{
+    width:60%;
+}
+.DivEvento{
+    margin-top:1%;
+    margin-bottom:1%;
+}
 /**/
