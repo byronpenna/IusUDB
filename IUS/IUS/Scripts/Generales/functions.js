@@ -3,6 +3,9 @@
         //var RAIZ = "http://admacad.udb.edu.sv/IUS/";
         var RAIZ = "http://localhost:7196/";
         //var RAIZ = "http://168.243.3.62/ius/"
+
+        //var RAIZ_BACK = RAIZ + "iusback/";
+        var RAIZ_BACK = "http://localhost:55869/";
     // clases 
         var SUCCESS_CLASS = "successMessage", FAIL_CLASS = "failMessage";
         var IMG_GENERALES = RAIZ + "/Content/images/generales/";

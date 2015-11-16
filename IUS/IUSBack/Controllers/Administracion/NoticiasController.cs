@@ -189,14 +189,25 @@ namespace IUSBack.Controllers
             
         #endregion
         #region "acciones ajax"
-            public string getImageThumbnail(int id)
+            public ActionResult getImageThumbnail(int id)
             {
                 string retorno = "";
                 try
                 {
                     Post post = this._model._controlPost.sp_adminfe_front_getPicNoticiaFromId(id);
-                    retorno = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
-
+                    //retorno = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
+                    
+                    if(post._miniatura != null){
+                        Stream stream = new MemoryStream(post._miniatura);
+                        return new FileStreamResult(stream, "image/jpeg");
+                    }
+                    else
+                    {
+                        string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                        return base.File(path, "image/jpeg");
+                    }
+                    //Image image = Image.FromStream(stream);
+                    
                 }
                 catch (ErroresIUS x)
                 {
@@ -206,7 +217,7 @@ namespace IUSBack.Controllers
                 {
                     throw x;
                 }
-                return retorno;
+                
             }
             public ActionResult sp_adminfe_noticias_setThumbnailPost()
             {
