@@ -21,7 +21,7 @@
     margin-top:3%;
 }
 .divTarjetasNoticias{
-    margin-top:5%;
+    /*margin-top:5%;*/
     margin-bottom:5%;
 }
 .imgNoticiaTarjeta{
@@ -56,4 +56,7 @@
 }
 .divMensajesBusqueda{
     margin-top:3%;
+}
+.divContenedorNumeros{
+    margin-bottom:2%;
 }
