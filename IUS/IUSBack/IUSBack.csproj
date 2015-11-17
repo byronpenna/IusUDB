@@ -557,6 +557,7 @@
     <Folder Include="RepositorioDigital\Publico\" />
     <Folder Include="RepositorioDigital\Usuarios\" />
     <Folder Include="Scripts\Generales\plugins\crop\" />
+    <Folder Include="Scripts\Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
