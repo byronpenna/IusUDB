@@ -47,3 +47,36 @@
     font-weight:bold;
     border-top-left-radius:15px;
 }
+
+/**************************** */
+.tituloLlaves{
+    text-align:right;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.divSalesianos,.divIus {
+    border-radius:5px;
+}
+.divIus{
+    /*background:red;*/
+    border-radius:5px;
+    padding:3%;
+    background:url("../../../images/generales/fondo_gris.png");
+    /*padding-left:3%;
+    padding-right:3%;*/
+}
+.divSalesianos{
+    background:#ECF0F1;
+    padding-bottom:2%;
+}
+    .divSalesianos h2 {
+        font-family:'latop';
+        margin-bottom:3%;
+    }
+
+.divContenedorInfo{
+
+}

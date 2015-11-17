@@ -17,6 +17,11 @@ namespace IUS.Controllers
         #region "propiedades"
             private ConocenosModel _model;
             private int idPagina = (int)paginas.conocenos;
+            private int _idPaginaHistoria = (int)paginasInternas.Historia;
+            private int _idPaginaOrganizacion = (int)paginasInternas.Organizacion;
+            private int _idPaginaIus = (int)paginasInternas.Ius;
+            private int _idPaginaSalesianos = (int)paginasInternas.Salesianos;
+            private int _idPaginaIdentidad = (int)paginasInternas.Identidad;
         #endregion
         #region "acciones url"
             public ActionResult Index()
@@ -28,6 +33,13 @@ namespace IUS.Controllers
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
+                    
+                    traducciones = this._model.getTraduccion(lang, this._idPaginaIus);
+                    this.setTraduccion(traducciones);
+
+                    traducciones = this._model.getTraduccion(lang, this._idPaginaSalesianos);
+                    this.setTraduccion(traducciones);
+
                     ViewBag.menu21 = this.activeClass;
                 }
                 catch (ErroresIUS x)
