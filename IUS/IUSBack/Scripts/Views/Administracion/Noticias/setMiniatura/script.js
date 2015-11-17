@@ -49,30 +49,42 @@
             $(document).on("change", "#flMiniatura", function (e) {
                 var boton = $(".botonSubir");
                 console.log("asdqw");
+                var cambiar = false;
                 if ($(this).val() == "") {
                     boton.prop("disabled", true);
                     e.preventDefault();
                 } else {
+                    cambiar = true;
                     $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                     boton.prop("disabled", false);
                 }
-                getImageFromInputFileEvent(e, function (images) {
-                    $(".divLoadingPhoto").empty();
-                    var targetImg = $(".imgThumbnail");
-                    if (images !== undefined && images != null) {
-                        targetImg.attr("src", images.src);
-                        targetImg.attr("style", "");
-                        if (jcrop_api != null) {
-                            jcrop_api.destroy();
+                var targetImg = $(".imgThumbnail");
+                if (cambiar) {
+                    getImageFromInputFileEvent(e, function (images) {
+                        $(".divLoadingPhoto").empty();
+                        if (images !== undefined && images != null) {
+                            targetImg.attr("src", images.src);
+                            targetImg.attr("style", "");
+                            if (jcrop_api != null) {
+                                jcrop_api.destroy();
+                            }
+                            jcrop_api = $.Jcrop('.imgThumbnail', {
+                                onSelect: storeCoords,
+                                onChange: storeCoords,
+                                aspectRatio: 1
+                            });
+                            inicialFoto();
                         }
-                        jcrop_api = $.Jcrop('.imgThumbnail', {
-                            onSelect: storeCoords,
-                            onChange: storeCoords,
-                            aspectRatio: 1
-                        });
-                        inicialFoto();
+                    })
+                } else {
+                    if (jcrop_api != null) {
+                        jcrop_api.destroy();
                     }
-                })
+                    targetImg.attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/noimage.png");
+                    targetImg.attr("style", "");
+                    $(".divLoadingPhoto").empty();
+                }
+                
             });
             
 })

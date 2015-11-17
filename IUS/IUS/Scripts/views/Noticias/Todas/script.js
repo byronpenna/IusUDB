@@ -20,16 +20,12 @@
                 //if (buscando == 0) {
                 var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
                 console.log("form enviado a la hora de buscar", frm);
-                btnBuscar(frm, $(this));
-                /*} else {
-                    console.log("cancelando");
-                    var frm = {
-                        pagina: 1, // pagina 
-                        cn: $(".txtHdRango").val()
-                    }
-                    cancelarBuscando(frm);
-                }*/
-                
+                if (frm.dtpFin != "" || frm.dtpInicio != "" || frm.txtTituloNoticia != "") {
+                    btnBuscar(frm, $(this));
+                } else {
+                    printMessage($(".divMensajesBusqueda"),"Debe seleccionar algun filtro para buscar", false);
+                }
+                //
             })
             
             $(document).on("click", ".flecha", function () {

@@ -257,6 +257,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\menu\tools.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\typography.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\unlocked.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\noimage.png" />
     <Content Include="Content\themes\iusback_theme\img\general\profle.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\adobe-reader.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\excel-ico.png" />
@@ -556,6 +557,7 @@
     <Folder Include="RepositorioDigital\Publico\" />
     <Folder Include="RepositorioDigital\Usuarios\" />
     <Folder Include="Scripts\Generales\plugins\crop\" />
+    <Folder Include="Scripts\Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
