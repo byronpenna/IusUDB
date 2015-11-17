@@ -3,6 +3,10 @@
     List<Submenu> submenus = (List<Submenu>)ViewBag.submenuss;
     
 }
+@section scriptsPersonalizados{
+    <script src="~/Scripts/Views/Menu/script.js"></script>
+    <script src="~/Scripts/Views/Menu/functions.js"></script>
+}
 <div class="row marginNull ">
     @if (submenus != null && submenus.Count > 0)
     {
@@ -19,11 +23,11 @@
             }
             <div class="col-lg-3 divMenu">
                 <a href="@Url.Content("~"+submenu._enlace)">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default panelMenuOp">
                         <div class="panel-body">
                             <img src="~/Content/themes/iusback_theme/img/general/menu/@icono" />
                         </div>
-                        <div class="panel-footer">
+                        <div class="panel-footer footerMenu">
                             @submenu._textoSubMenu
                         </div>
                     </div>
