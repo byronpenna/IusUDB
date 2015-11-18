@@ -100,6 +100,18 @@ namespace IUS.Controllers
                         }
                     }
                 }
+                public Dictionary<object, object> getDicTraduccion(List<LlaveIdioma> traducciones)
+                {
+                    Dictionary<object, object> retorno = new Dictionary<object, object>();
+                    if (traducciones != null)
+                    {
+                        foreach (LlaveIdioma traduccion in traducciones)
+                        {
+                            retorno[traduccion._llave._llave] = traduccion._traduccion;
+                        }
+                    }
+                    return retorno;
+                }
             #endregion
             #region "conversiones"
                 #region "arrays"
