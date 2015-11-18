@@ -159,7 +159,7 @@
                     })
                 } else {
                     tr += "\
-                    <tr>\
+                    <tr class='trNoActividad'>\
                         <td class='text-center' colspan='2'>\
                             Aun no se le agregan actividades que desempeño\
                         </td>\
@@ -217,26 +217,28 @@
             }
             console.log(frm);
             // vacios
-                if (frm.txtAreaObservacion == "") {
+                /*if (frm.txtAreaObservacion == "") {
                     val.campos.txtAreaObservacion.push("Campo no debe quedar vacio");
-                }
+                }*/
                 if (frm.txtFin == "") {
-                    val.campos.txtFin.push("Llenarlo");
+                    val.campos.txtFin.push("-Llenar campo<br>");
                 }
                 if (frm.txtInicio == "") {
-                    val.campos.txtInicio.push("Llenarlo");
+                    val.campos.txtInicio.push("-Llenar campo<br>");
                 }
             // fecha 
                 if (!(frm.txtFin >= 1970 && frm.txtFin <= 2100)) {
-                    val.campos.txtFin.push("Favor colocar una fecha coherente");
+                    val.campos.txtFin.push("-Favor colocar una fecha coherente");
                 }
                 if (!(frm.txtInicio >= 1970 && frm.txtInicio <= 2100)) {
-                    val.campos.txtInicio.push("Favor colocar una fecha coherente");
+                    val.campos.txtInicio.push("-Favor colocar una fecha coherente");
                 }
-                if (frm.txtInicio > frm.txtFin) {
+                
+           val.estado = objArrIsEmpty(val.campos);
+                if (frm.txtInicio > frm.txtFin) { // >= para que si esta trabajando ponga la misma fecha
+                    val.estado = false;
                     printMessage($(".divMensajesGenerales"), "La fecha de inicio debe ser menor que la de fin", false);
                 }
-            val.estado = objArrIsEmpty(val.campos);
             return val;
         }
 
@@ -275,9 +277,13 @@
                 if (data.estado) {
                     if (data.actividadIngresada !== undefined && data.actividadIngresada != null) {
                         var htmlTr = getTrActividadTabla(data.actividadIngresada);
-                        console.log("D: ingresaras tr",htmlTr);
+                        //console.log("D: ingresaras tr",htmlTr);
+                        if ($(".trNoActividad").length != -1) {
+                            tr.parents("table").find(".tbodyActividades").empty();   
+                        }
                         tr.parents("table").find(".tbodyActividades").prepend(htmlTr);
                         tr.find(".txtActividad").val("");
+                        
                     }
                 
                 }
