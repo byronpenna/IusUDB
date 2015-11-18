@@ -503,6 +503,8 @@
     <Content Include="Scripts\Views\Home\Verificar\script.js" />
     <Content Include="Scripts\Views\Login\functions.js" />
     <Content Include="Scripts\Views\Login\script.js" />
+    <Content Include="Scripts\Views\Menu\functions.js" />
+    <Content Include="Scripts\Views\Menu\script.js" />
     <Content Include="Scripts\Views\RecursosHumanos\functions.js" />
     <Content Include="Scripts\Views\RecursosHumanos\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\functions.js" />
@@ -557,7 +559,6 @@
     <Folder Include="RepositorioDigital\Publico\" />
     <Folder Include="RepositorioDigital\Usuarios\" />
     <Folder Include="Scripts\Generales\plugins\crop\" />
-    <Folder Include="Scripts\Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

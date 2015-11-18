@@ -254,6 +254,9 @@
     <Content Include="Content\images\generales\calendarionum\9.png" />
     <Content Include="Content\images\generales\chat.png" />
     <Content Include="Content\images\generales\fondo_gris.png" />
+    <Content Include="Content\images\generales\ico\clock.png" />
+    <Content Include="Content\images\generales\ico\contacts.png" />
+    <Content Include="Content\images\generales\ico\trophy.png" />
     <Content Include="Content\images\generales\image-color.png" />
     <Content Include="Content\images\generales\tmp\don-bosco.png" />
     <Content Include="Content\images\generales\hamburguerButton.png" />
@@ -514,6 +517,8 @@
     <Content Include="Scripts\Generales\jquery-2.1.3.min.js" />
     <Content Include="Scripts\Generales\jquery-ui.js" />
     <Content Include="Scripts\Generales\script.js" />
+    <Content Include="Scripts\views\Conocenos\functions.js" />
+    <Content Include="Scripts\views\Conocenos\script.js" />
     <Content Include="Scripts\views\Eventos\functions.js" />
     <Content Include="Scripts\views\Eventos\script.js" />
     <Content Include="Scripts\views\Home\functions.js" />

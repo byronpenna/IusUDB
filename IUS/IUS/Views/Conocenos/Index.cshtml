@@ -2,9 +2,116 @@
     <link rel="stylesheet" href="~/Content/ius_theme/views/Conocenos/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/views/Conocenos/media.css" />
 }
-<div class="row marginNull divMenus">
 
-    <div class="col-lg-6 col-md-6">
+<div class="row marginNull divMenus">
+    <div class="col-lg-5 vcenter ">
+        <div class="divSalesianos row marginNull">
+        <h2 class="tituloPrincipal text-center">Salesianos</h2>
+        <div class="row marginNull divContenedorInfo">
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["titulo"]</h6>
+                <span>0</span>
+            </div>
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["etiqueta-titulo-alternativo"]</h6>
+                <span>0</span>
+            </div>
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["etiqueta-fecha-fundacion"]</h6>
+                <span>0</span>
+            </div>
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["etiqueta-fundador"]</h6>
+                <span>0</span>
+            </div>
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["etiqueta-salesianos"]</h6>
+                <span>0</span>
+            </div>
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["etiqueta-paises"]</h6>
+                <span>0</span>
+            </div>
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["etiqueta-inspectorias"]</h6>
+                <span>0</span>
+            </div>
+            <div class="col-lg-6 text-center">
+                <h6>@ViewData["etiqueta-website"]</h6>
+                <span>0</span>
+            </div>
+        </div>
+    </div>
+    </div><!--
+    --><div class="col-lg-7 vcenter">
+        <div class="row marginNull divIus">
+        <h2 class="tituloPrincipal text-center">IUS</h2>
+        <div class="row marginNull" style="margin-bottom:5%">
+            @ViewData["Texto-inicial"]
+        </div>
+        <div class="row marginNull">
+            <!-- Continentes presentes -->
+            <div class="col-lg-6 tituloLlaves">
+                @ViewData["etiqueta-continentes-presentes"]
+            </div>
+            <div class="col-lg-6">
+                ____
+            </div>
+            <!-- Numero de paises presentes -->
+            <div class="col-lg-6 tituloLlaves">
+                @ViewData["etiqueta-paises-presentes"]
+            </div>
+            <div class="col-lg-6">
+                ____
+            </div>
+            <!-- Total instituciones -->
+            <div class="col-lg-6 tituloLlaves">
+                @ViewData["etiqueta-numero-instituciones"]
+            </div>
+            <div class="col-lg-6">
+                ____
+            </div>
+            <!-- Numero de estudiantes -->
+            <div class="col-lg-6 tituloLlaves">
+                @ViewData["etiqueta-numero-estudiantes"]
+            </div>
+            <div class="col-lg-6">
+                ____
+            </div>
+            <!-- Numero de salesianos -->
+            <div class="col-lg-6 tituloLlaves">
+                @ViewData["etiqueta-numero-salesianos"]
+            </div>
+            <div class="col-lg-6">
+                ____
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="row marginNull">
+        <div class="col-lg-offset-4 col-lg-4 text-center imgCambioContenedor">
+            <div class="divImgCambio">
+                <img class="imgCambio" src="~/Content/images/generales/ico/clock.png" />
+                <div class="divTxtCambio">Historia</div>
+            </div>
+            <div class="divImgCambio">
+                <img class="imgCambio" src="~/Content/images/generales/ico/contacts.png" />
+                <div class="divTxtCambio">Identidad</div>
+            </div>
+            <div class="divImgCambio">
+                <img class="imgCambio" src="~/Content/images/generales/ico/trophy.png" />
+                <div class="divTxtCambio">Organizacion</div>
+            </div>
+            
+        </div>
+
+    </div>
+    <div class="row marginNull">
+
+    </div>
+</div>
+    
+    @*<div class="col-lg-6 col-md-6">
         <a href="@Url.Action("Historia", "Informacion")">
             <div class="cuadrito divMenu" id="divHistoria">
                 <h3>
@@ -62,5 +169,5 @@
                 </h3>
             </div>
         </a>
-    </div>
-</div>
+    </div>*@
+<!--</div>-->
