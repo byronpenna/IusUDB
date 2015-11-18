@@ -59,7 +59,7 @@
         if (frm.txtYearFin == "") {
             val.campos.txtYearFin.push("Debe llenar este campo");
         }
-        if ( !(frm.txtYearFin > 1970 && frm.txtYearFin < 2100) ) {
+        if ( !(frm.txtYearFin >= 1970 && frm.txtYearFin <= 2100) ) {
             val.campos.txtYearFin.push("Favor colocar fecha coherente");
         }
         val.estado = objArrIsEmpty(val.campos);

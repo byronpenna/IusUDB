@@ -95,11 +95,11 @@
                         
                     })
                     $(document).on("click", ".btnEliminarLaboralPersona", function () {
-                    var tr = $(this).parents("tr");
-                    var frm = serializeSection(tr);
-                    console.log("formulario a enviar", frm);
-                    btnEliminarLaboralPersona(frm,tr);
-                })
+                        var tr = $(this).parents("tr");
+                        var frm = serializeSection(tr);
+                        console.log("formulario a enviar", frm);
+                        btnEliminarLaboralPersona(frm,tr);
+                    })
             // editar
                 $(document).on("click", ".btnEditarLaboralPersona", function () {
                     // variables

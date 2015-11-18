@@ -216,15 +216,26 @@
                 txtInicio:          new Array()
             }
             console.log(frm);
-            if (frm.txtAreaObservacion == "") {
-                val.campos.txtAreaObservacion.push("Campo no debe quedar vacio");
-            }
-            if (frm.txtFin == "") {
-                val.campos.txtFin.push("Llenarlo");
-            }
-            if (frm.txtInicio == "") {
-                val.campos.txtInicio.push("Llenarlo");
-            }
+            // vacios
+                if (frm.txtAreaObservacion == "") {
+                    val.campos.txtAreaObservacion.push("Campo no debe quedar vacio");
+                }
+                if (frm.txtFin == "") {
+                    val.campos.txtFin.push("Llenarlo");
+                }
+                if (frm.txtInicio == "") {
+                    val.campos.txtInicio.push("Llenarlo");
+                }
+            // fecha 
+                if (!(frm.txtFin >= 1970 && frm.txtFin <= 2100)) {
+                    val.campos.txtFin.push("Favor colocar una fecha coherente");
+                }
+                if (!(frm.txtInicio >= 1970 && frm.txtInicio <= 2100)) {
+                    val.campos.txtInicio.push("Favor colocar una fecha coherente");
+                }
+                if (frm.txtInicio > frm.txtFin) {
+                    printMessage($(".divMensajesGenerales"), "La fecha de inicio debe ser menor que la de fin", false);
+                }
             val.estado = objArrIsEmpty(val.campos);
             return val;
         }
@@ -283,6 +294,7 @@
                     var tbody       = $(".tbodyLaboralPersona");
                     console.log("length es:", tbody.find(".trNoRegistro").length);
                     if (tbody.find(".trNoRegistro").length == 0) {
+                        printMessage($(".divMensajesGenerales"), "Agregado correctamente", true);
                         tbody.prepend(trAgregar);
                     } else {
                         tbody.empty().append(trAgregar);
@@ -319,7 +331,10 @@
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
                 console.log(data);
                 if (data.estado) {
+                    printMessage($(".divMensajesGenerales"), "Eliminado correctamente", true);
                     tr.remove();
+                } else {
+                    printMessage($(".divMensajesGenerales"), "Ocurrio un error al tratar de eliminar", true);
                 }
             })
         }
