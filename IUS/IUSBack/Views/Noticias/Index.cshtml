@@ -36,7 +36,7 @@
     <div class="cuerpoModulo">
         @if (permiso._crear)
         {
-            <a class="btn" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
+            <a class="btn botonAgregarNoticia" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
                 Agregar entrada
             </a>
         }
@@ -73,17 +73,16 @@
                             <td>@post._usuario._usuario</td>
                             <td>@post._idioma._idioma</td>
                             <td>
-                                <div class="btn-group">
-                                    <a class="btn btnPublicacion" @permiso.stringEditar>
-                                        @post.getTxtEstado
-                                    </a>
-                                    <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
-                                        Editar
-                                    </a>
-                                    <a class="btn" href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
-                                        Imagen
-                                    </a>
-                                </div>
+                                
+                                <button class="btn btnPublicacion btn-default" @permiso.stringEditar>
+                                    @post.getTxtEstado
+                                </button>
+                                <a href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
+                                    Editar
+                                </a>
+                                <a href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
+                                    Imagen
+                                </a>
                             </td>
                         </tr>
                     }
