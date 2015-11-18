@@ -73,15 +73,17 @@
                             <td>@post._usuario._usuario</td>
                             <td>@post._idioma._idioma</td>
                             <td>
-                                <a class="btn btnPublicacion" @permiso.stringEditar>
-                                    @post.getTxtEstado
-                                </a>
-                                <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
-                                    Editar
-                                </a>
-                                <a class="btn" href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
-                                    Imagen
-                                </a>
+                                <div class="btn-group">
+                                    <a class="btn btnPublicacion" @permiso.stringEditar>
+                                        @post.getTxtEstado
+                                    </a>
+                                    <a class="btn" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
+                                        Editar
+                                    </a>
+                                    <a class="btn" href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
+                                        Imagen
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     }

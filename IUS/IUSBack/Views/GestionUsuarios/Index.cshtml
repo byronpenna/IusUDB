@@ -86,7 +86,7 @@
                     Activo
                 </td>
                 <td>
-                    <button class="btn btn-xs btnAgregarUsuario" @permiso.stringCrear>Crear</button>
+                    <button class="btn btn-xs btn-default btnAgregarUsuario" @permiso.stringCrear>Crear</button>
                 </td>
             </tr>
         </thead>
@@ -134,16 +134,19 @@
                             <button class="btn btn-sm btnEditMode btnCancelarEdit">Cancelar</button>
                         </div>
                         <div class="normalMode ">
-                            <button class="btn btn-xs btnEditar" @permiso.stringEditar>
-                                Editar
-                            </button>
-                            <button class="btn btn-xs btnDeshabilitar" @permiso.stringEditar>
-                                @usu.txtBtnHabilitar
-                            </button>
-                            <input type="button" class="btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
-                            <button class="btn btn-xs">
+                            <div class="btn-group">
+                                <button class="btn btn-xs btnEditar btn-default" @permiso.stringEditar>
+                                    Editar
+                                </button>
+                                <button class="btn btn-xs btnDeshabilitar btn-default" @permiso.stringEditar>
+                                    @usu.txtBtnHabilitar
+                                </button>
+                                <input type="button" class="btn-default btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
+                                
+                            </div>
+                            <a class="btn btn-xs">
                                 Ver persona
-                            </button>
+                            </a>
                         </div>
                     </td>
                 </tr>

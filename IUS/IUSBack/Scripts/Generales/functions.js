@@ -547,7 +547,11 @@
             processData:    false,
             data: formData,
             success: function (data) {
-                callBack(data);
+                if (!data.estado && data.errorType == 0) {
+                    location.reload();
+                } else {
+                    callback(data);
+                }
             },
             error: function (xhr, status, p3, p4) {
                 var err = "Error " + " " + status + " " + p3 + " " + p4;

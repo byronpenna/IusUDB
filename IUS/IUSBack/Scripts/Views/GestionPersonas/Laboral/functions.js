@@ -115,7 +115,7 @@
                         <table class='table tablaActividadesEmpresa'>\
                             <thead>\
                                 <tr>\
-                                    <td class='text-center' colspan='2'>Actividades realizadas</td>\
+                                    <td class='text-center titleTrTable' colspan='2'>Actividades realizadas</td>\
                                 </tr>\
                                 <tr>\
                                     <th>Actividad realizada</th>\
@@ -144,7 +144,7 @@
                                     " + actividad._actividad + "\
                                 </div>\
                             </td>\
-                            <td>\
+                            <td class='tdEditActividades'>\
                                 <div class='editMode hidden'>\
                                     <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
                                     <button class='btn btnCancelarUni' >Cancelar</button>\
