@@ -1,6 +1,10 @@
 ﻿// validaciones 
     function soloNumeros() {
-        exp = "[0-9./d]";
+        exp = "[0-9./]";
+        return exp;
+    }
+    function soloNumerosInt() {
+        exp = "[0-9]";
         return exp;
     }
     function soloLetras() {

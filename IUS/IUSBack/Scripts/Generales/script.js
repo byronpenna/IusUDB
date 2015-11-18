@@ -36,8 +36,7 @@
         // keypress
             $(document).on("keypress", ".soloLetras", function (e) {
                 var str = String.fromCharCode(e.which);
-                console.log("E which",e.which)
-                //console.log("str es D: ", str);
+                
                 exp = soloLetras();
                 var x;
                 if (e.which != 8 && e.which != 0) { // suprimir y delete
@@ -49,10 +48,35 @@
                     e.preventDefault();
                 }
             });
-            $(document).on("keypress", ".soloNumerosDecimal", function (e) {
+            $(document).on("keypress", ".soloNumerosInt", function (e) {
                 var str = String.fromCharCode(e.which);
                 if (!($(this).val().length == 0 && str == ".")) {
-                    console.log($(this).val().indexOf("."));
+                    console.log("busqueda de punto", $(this).val().indexOf("."));
+                    if (!($(this).val().indexOf(".") > 0 && str == ".")) {
+                        exp = soloNumerosInt();
+                        var x;
+                        if (e.which != 8 && e.which != 0) { // suprimir y delete
+                            x = test(exp, str);
+                        } else {
+                            x = true;
+                        }
+                        console.log("valor de x", x);
+                        if (!x) {
+                            e.preventDefault();
+                        }
+                    } else {
+                        e.preventDefault();
+                    }
+                } else {
+                    e.preventDefault();
+                }
+            })
+            $(document).on("keypress", ".soloNumerosDecimal", function (e) {
+                var str = String.fromCharCode(e.which);
+                console.log("e which", e.which);
+                console.log("str es ", str);
+                if (!($(this).val().length == 0 && str == ".")) {
+                    console.log("busqueda de punto",$(this).val().indexOf("."));
                     if ( !($(this).val().indexOf(".") > 0 && str == ".") ) {
                         exp = soloNumeros();
                         var x;

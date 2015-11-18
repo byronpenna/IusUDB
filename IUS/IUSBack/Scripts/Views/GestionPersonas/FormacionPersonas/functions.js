@@ -367,6 +367,7 @@
                 console.log("Data servidor", data);
                 if (data.estado) {
                     var tr = getTrCarrera(data.carreraAgregada);
+                    
                     $(".tbodyCarrera").prepend(tr);
                 } else {
                     var mjs = "Ocurrio un error";
@@ -423,6 +424,7 @@
                     limpiarInputAgregar();
                     //clearTrWithOutHidden(trFrm);
                     $(".tbodyFormacionPersonas").prepend(tr);
+                    printMessage($(".divMensajesAgregar"), "Agregado correctamente", true);
                 } else {
                     alert("Ocurrio un error");
                 }
@@ -432,7 +434,9 @@
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_eliminarTituloPersona", frm, function (data) {
                 console.log("la data es:", data);
                 if (data.estado) {
+                    
                     tr.remove();
+                    printMessage($(".divMensajesAgregar"), "Registro eliminado correctamente", true);
                 }
             })
         }
