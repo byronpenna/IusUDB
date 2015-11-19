@@ -29,7 +29,7 @@
                     </td>\
                     <td>" + persona.nombreCompleto + "</td>\
                     <td>\
-                        <button class='btn btnVerFicha'>Ver ficha</button>\
+                        <button class='btn btn-default btnVerFicha'>Ver ficha</button>\
                     </td>\
                 </tr>";
             return tr;
