@@ -263,6 +263,8 @@
                         console.log("Validacion D: D: ",val);
                         if (val.estado) {
                             btnAgregarCarrera(frm);
+                            tr.find(".divResultado").removeClass("visibilitiHidden");
+                            tr.find(".divResultado").addClass("hidden");
                         }else{
                             var errores;
                             tr.find(".divResultado").addClass("visibilitiHidden");

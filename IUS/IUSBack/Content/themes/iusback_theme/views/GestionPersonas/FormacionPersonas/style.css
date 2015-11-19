@@ -12,7 +12,7 @@
 /***********************/
 .divControles .titlePersona, .tituloTabDiv{
     text-align:center;
-    
+    font-family:'latop';
 }
 .titlePersona:hover {
     cursor:pointer;
@@ -36,5 +36,10 @@
 } 
 
 .tbCarreras{
-    margin-top:5%;
+    margin:0 auto;
+    margin-top:1%;
+    width:95%;
+}
+.tdControl{
+    text-align:center;
 }
