@@ -550,7 +550,7 @@
                 if (!data.estado && data.errorType == 0) {
                     location.reload();
                 } else {
-                    callback(data);
+                    callBack(data);
                 }
             },
             error: function (xhr, status, p3, p4) {

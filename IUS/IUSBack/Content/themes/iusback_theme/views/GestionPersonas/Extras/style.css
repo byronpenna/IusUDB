@@ -13,7 +13,10 @@
     margin-bottom:3%;
 }
 .tabla{
-    margin-top:5%;
+    /*margin-top:5%;*/
+    width:90%;
+    margin:0 auto;
+    margin-top:30px;
 }
 .tabla thead tr th {
     text-align:center;
@@ -23,15 +26,22 @@
 }
 .divInformacion h2,.divInformacion h3{
     text-align:center;
-    padding-top:3%;
+    /*padding-top:3%;*/
 }
 .divInformacion h2{
     margin:0;
     padding:0;
+    width:95%;
+    margin:0 auto;
+    margin-bottom:3%;
+    background:#ECF0F1;
+    padding-top:1%;
+    padding-bottom:1%;
+    color:#2C3E50;
 }
 /* Para la foto */
 .imgPersona{
-    max-width:100%;
+    max-width:50%;
     margin-bottom:3%;
     height:auto;
     /*margin:0 auto;*/
