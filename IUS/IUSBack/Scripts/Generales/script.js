@@ -36,7 +36,6 @@
         // keypress
             $(document).on("keypress", ".soloLetras", function (e) {
                 var str = String.fromCharCode(e.which);
-                
                 exp = soloLetras();
                 var x;
                 if (e.which != 8 && e.which != 0) { // suprimir y delete

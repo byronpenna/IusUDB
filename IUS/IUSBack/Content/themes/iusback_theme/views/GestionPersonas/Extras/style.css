@@ -26,6 +26,7 @@
 }
 .divInformacion h2,.divInformacion h3{
     text-align:center;
+    font-family:'latop';
     /*padding-top:3%;*/
 }
 .divInformacion h2{
@@ -84,3 +85,6 @@
 }
 
 /***************/
+.tablaNumerosTelefonicos thead tr th,.tablaCorreos thead tr th{
+    vertical-align:top;
+}

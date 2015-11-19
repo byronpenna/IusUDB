@@ -26,6 +26,7 @@
     var IMG_GENERALES = RAIZ + "/Content/themes/iusback_theme/img/general/";
     // Validaciones 
     var FORMATO_FECHA = /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[/\\/](19|20)\d{2}$/;
+    var FORMATO_EMAIL = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$";
 // plugins 
     // chosen
         function resetChosen(chosen) {
