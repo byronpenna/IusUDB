@@ -209,7 +209,12 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select class="form-control cbEmpresa input-sm" name="cbEmpresa"></select>
+                                <div class="divControl row marginNull">
+                                    <select class="form-control cbEmpresa input-sm" name="cbEmpresa"></select>
+                                    <div class="row marginNull divResultado hidden">
+                                        _
+                                    </div>
+                                </div>
                             </div>
                             <div class="normalMode tdNombreEmpresa">
                                 @laboralPersona._empresa._nombre
@@ -217,7 +222,12 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input type="number" class="form-control txtInicio input-sm" name="txtInicio" />
+                                <div class="divControl row marginNull">
+                                    <input type="number" class="form-control txtInicio input-sm soloNumerosInt" name="txtInicio"  min="1970" max="2100"/>
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
                             </div>
                             <div class="normalMode tdFechaInicio">
                                 @laboralPersona._inicio
@@ -226,7 +236,13 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input type="number" class="form-control txtFin input-sm" name="txtFin" />
+                                <div class="divControl row marginNull">
+                                    <input type="number" class="form-control txtFin input-sm" name="txtFin" min="1970" max="2100" />
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                
                             </div>
                             <div class="normalMode tdFechaFin">
                                 @laboralPersona._fin
@@ -234,7 +250,13 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
+                                <div class="divControl row marginNull">
+                                    <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                
                             </div>
                             <div class="normalMode tdObservaciones">
                                 @laboralPersona._observaciones
@@ -242,7 +264,13 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select class="form-control cbCargo input-sm" name="cbCargo"></select>
+                                <div class="divControl row marginNull">
+                                    <select class="form-control cbCargo input-sm" name="cbCargo" ></select>
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                
                             </div>
                             <div class="normalMode tdCargo">
                                 @laboralPersona._cargo._cargo
