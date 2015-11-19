@@ -61,7 +61,7 @@
             <tr>
                 <td class="hidden"></td>
                 <td>
-                    <select name="cbPersona" class="form-control cbPersona">
+                    <select name="cbPersona" class="form-control cbPersona input-sm">
                         <option value="-1">Sin asignar</option>
                         @if (personas != null)
                         {
@@ -73,7 +73,7 @@
                     </select>
                 </td>
                 <td>
-                    <input name="txtEditUsuario" type="text" class="form-control enterNormal txtUsuarioEdit " /> <!-- txtEditUsuario -->
+                    <input name="txtEditUsuario" type="text" class="input-sm form-control enterNormal txtUsuarioEdit " /> <!-- txtEditUsuario -->
                     <div class="row marginNull divResultado hidden">
 
                     </div>
@@ -130,15 +130,17 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <button class="btn btn-sm btnEditMode btnActualizar">Actualizar</button>
-                            <button class="btn btn-sm btnEditMode btnCancelarEdit">Cancelar</button>
+                            <div class='btn-group'>
+                                <button class="btn btn-xs btn-default btnEditMode btnActualizar">Actualizar</button>
+                                <button class="btn btn-xs btn-default btnEditMode btnCancelarEdit">Cancelar</button>
+                            </div>
                         </div>
                         <div class="normalMode ">
                             <div class="btn-group">
-                                <button class="btn btn-xs btnEditar btn-default" @permiso.stringEditar>
+                                <button class="btn btn-xs btn-default btnEditar" @permiso.stringEditar>
                                     Editar
                                 </button>
-                                <button class="btn btn-xs btnDeshabilitar btn-default" @permiso.stringEditar>
+                                <button class="btn btn-xs btn-default btnDeshabilitar" @permiso.stringEditar>
                                     @usu.txtBtnHabilitar
                                 </button>
                                 <input type="button" class="btn-default btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">

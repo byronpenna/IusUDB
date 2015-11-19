@@ -212,7 +212,7 @@
                 </td>\
                 <td class='tdNombre'>\
                     <div class='editMode hidden'>\
-                        <select name='cbPersona' class='form-control cbPersona'>\
+                        <select name='cbPersona' class='form-control cbPersona input-sm'>\
                             <option>Seleccione una persona</option>\
                         </select>\
                     </div>\
@@ -222,7 +222,7 @@
                 </td>\
                 <td class='tdUsuario'>\
                     <div class='editMode hidden'>\
-                        <input name='txtEditUsuario' type='text' class='form-control txtEditUsuario'/>\
+                        <input name='txtEditUsuario' type='text' class='form-control txtEditUsuario input-sm'/>\
                     </div>\
                     <div class='normalMode tdTxtUsuario'>\
                         "+ usu._usuario + "\
@@ -236,20 +236,24 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <button class='btn btn-sm btnEditMode btnActualizar'>Actualizar</button>\
-                        <button class='btn btn-sm btnEditMode btnCancelarEdit'>Cancelar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnEditMode btnActualizar'>Actualizar</button>\
+                            <button class='btn btn-xs btn-default btnEditMode btnCancelarEdit'>Cancelar</button>\
+                        </div>\
                     </div>\
                     <div class='normalMode '>\
-                        <button class='btn btn-xs btnEditar' "+permiso.stringEditar+">\
-                            Editar\
-                        </button>\
-                        <button class='btn btn-xs btnDeshabilitar' "+permiso.stringEditar+" >\
-                            "+ usu.txtBtnHabilitar + "\
-                        </button>\
-                        <input type='button' class='btn btn-xs btnVerRoles' "+permiso.stringEditar+" value='Ver Roles'>\
-                        <button class='btn btn-xs'>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnEditar' " + permiso.stringEditar + ">\
+                                Editar\
+                            </button>\
+                            <button class='btn btn-xs btn-default btnDeshabilitar' " + permiso.stringEditar + " >\
+                                "+ usu.txtBtnHabilitar + "\
+                            </button>\
+                            <input type='button' class='btn btn-xs btnVerRoles' "+permiso.stringEditar+" value='Ver Roles'>\
+                        </div>\
+                        <a class='btn btn-xs'>\
                             Ver persona\
-                        </button>\
+                        </a>\
                     </div>\
                 </td>\
             </tr>";
