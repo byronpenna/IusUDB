@@ -121,161 +121,166 @@
 <div class="marginNull row divMensajesGenerales">
     
 </div>
-<table class="table tablaLaboral">
-    <thead>
-        <tr>
-            <th class="hidden"></th>
-            <th>Empresa</th>
-            <th class="txtDate">Inicio</th>
-            <th class="txtDate">Fin</th>
-            <th>Observaciones</th>
-            <th>Cargo desempeñado</th>
-            <th>Acciones</th>
-        </tr>
-        <tr>
-            <th class="hidden"></th>
-            <th>
-                <div class="row marginNull divControl">
-                    <select class="form-control cbEmpresa" name="cbEmpresa">
-                        @if (empresas != null && empresas.Count > 0)
-                        {
-                            foreach (Empresa empresa in empresas)
+<div class="row marginNull divTablita">
+    <table class="table tablaLaboral">
+        <thead>
+            <tr>
+                <th class="hidden"></th>
+                <th>Empresa</th>
+                <th class="txtDate">Inicio</th>
+                <th class="txtDate">Fin</th>
+                <th>Observaciones</th>
+                <th>Cargo desempeñado</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <th class="hidden"></th>
+                <th>
+                    <div class="row marginNull divControl">
+                        <select class="form-control cbEmpresa input-sm" name="cbEmpresa">
+                            @if (empresas != null && empresas.Count > 0)
                             {
-                                <option value="@empresa._idEmpresa">@empresa._nombre</option>
+                                foreach (Empresa empresa in empresas)
+                                {
+                                    <option value="@empresa._idEmpresa">@empresa._nombre</option>
+                                }
                             }
-                        }
-                    </select>
-                    <div class="row marginNull divResultado hidden">
-                        _
+                        </select>
+                        <div class="row marginNull divResultado hidden">
+                            _
+                        </div>
                     </div>
-                </div>
-            </th>
-            <th>
-                <div class="row marginNull divControl">
-                    <input type="number" class="form-control txtInicio soloNumerosInt" name="txtInicio" min="1970" max="2100" />
-                    <div class="row marginNull divResultado hidden">
-                        _
+                </th>
+                <th>
+                    <div class="row marginNull divControl">
+                        <input type="number" class="form-control txtInicio soloNumerosInt input-sm" name="txtInicio" min="1970" max="2100" />
+                        <div class="row marginNull divResultado hidden">
+                            _
+                        </div>
                     </div>
-                </div>
-            </th>
-            <th>
-                <div class="row marginNull divControl">
-                    <input type="number" class="form-control txtFin soloNumerosInt" name="txtFin" min="1970" max="2100" />
-                    <div class="row marginNull divResultado hidden">
-                        _
+                </th>
+                <th>
+                    <div class="row marginNull divControl">
+                        <input type="number" class="form-control txtFin soloNumerosInt input-sm" name="txtFin" min="1970" max="2100" />
+                        <div class="row marginNull divResultado hidden">
+                            _
+                        </div>
                     </div>
-                </div>
-            </th>
-            <th>
-                <div class="divControl row marginNull">
-                    <textarea class="form-control txtAreaObservacion" name="txtAreaObservacion"></textarea>
-                    <div class="row marginNull divResultado hidden">
+                </th>
+                <th>
+                    <div class="divControl row marginNull">
+                        <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
+                        <div class="row marginNull divResultado hidden">
 
+                        </div>
                     </div>
-                </div>
-            </th>
-            <th>
-                <div class="divControl row marginNull">
-                    <select class="form-control cbCargo" name="cbCargo">
-                        @if (cargos != null && cargos.Count > 0)
-                        {
-                            foreach (CargoEmpresa cargo in cargos)
+                </th>
+                <th>
+                    <div class="divControl row marginNull">
+                        <select class="form-control cbCargo input-sm" name="cbCargo">
+                            @if (cargos != null && cargos.Count > 0)
                             {
-                                <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                                foreach (CargoEmpresa cargo in cargos)
+                                {
+                                    <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                                }
                             }
-                        }
-                    </select>
-                    <div class="row marginNull divResultado hidden">
-                        _
+                        </select>
+                        <div class="row marginNull divResultado hidden">
+                            _
+                        </div>
                     </div>
-                </div>
-            </th>
-            <th>
-                <button class="btn btnAgregarLaboralPersona">Agregar</button>
-            </th>
-        </tr>
-    </thead>
-    <tbody class="tbodyLaboralPersona">
-        @if (laboralesPersonas != null && laboralesPersonas.Count > 0)
-        {
-            foreach (LaboralPersona laboralPersona in laboralesPersonas)
+                </th>
+                <th class="tdBotones">
+                    <button class="btn btnAgregarLaboralPersona btn-default btn-md">Agregar</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbodyLaboralPersona">
+            @if (laboralesPersonas != null && laboralesPersonas.Count > 0)
             {
-                <tr>
-                    <td class="hidden">
-                        <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
-                        <input type="hidden" value="@laboralPersona._empresa._idEmpresa" class="txtHdIdEmpresa" name="txtHdIdEmpresa">
-                        <input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <select class="form-control cbEmpresa" name="cbEmpresa">
+                foreach (LaboralPersona laboralPersona in laboralesPersonas)
+                {
+                    <tr>
+                        <td class="hidden">
+                            <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
+                            <input type="hidden" value="@laboralPersona._empresa._idEmpresa" class="txtHdIdEmpresa" name="txtHdIdEmpresa">
+                            <input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <select class="form-control cbEmpresa input-sm" name="cbEmpresa"></select>
+                            </div>
+                            <div class="normalMode tdNombreEmpresa">
+                                @laboralPersona._empresa._nombre
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <input type="number" class="form-control txtInicio input-sm" name="txtInicio" />
+                            </div>
+                            <div class="normalMode tdFechaInicio">
+                                @laboralPersona._inicio
+                            </div>
 
-                            </select>
-                        </div>
-                        <div class="normalMode tdNombreEmpresa">
-                            @laboralPersona._empresa._nombre
-                        </div>
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <input type="number" class="form-control txtInicio" name="txtInicio" />
-                        </div>
-                        <div class="normalMode tdFechaInicio">
-                            @laboralPersona._inicio
-                        </div>
-                        
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <input type="number" class="form-control txtFin" name="txtFin" />
-                        </div>
-                        <div class="normalMode tdFechaFin">
-                            @laboralPersona._fin
-                        </div>
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <textarea class="form-control txtAreaObservacion" name="txtAreaObservacion"></textarea>
-                        </div>
-                        <div class="normalMode tdObservaciones">
-                            @laboralPersona._observaciones
-                        </div>
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <select class="form-control cbCargo" name="cbCargo">
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <input type="number" class="form-control txtFin input-sm" name="txtFin" />
+                            </div>
+                            <div class="normalMode tdFechaFin">
+                                @laboralPersona._fin
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
+                            </div>
+                            <div class="normalMode tdObservaciones">
+                                @laboralPersona._observaciones
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editMode hidden">
+                                <select class="form-control cbCargo input-sm" name="cbCargo"></select>
+                            </div>
+                            <div class="normalMode tdCargo">
+                                @laboralPersona._cargo._cargo
+                            </div>
+                        </td>
+                        <td class="tdBotones">
+                            <div class="editMode hidden">
+                                <div class="btn-group">
+                                    <button class="btnActualizarLaboralPersona btn btn-default btn-xs">Actualizar</button>
+                                    <button class="btnCancelarUni btn btn-default btn-xs">Cancelar</button>
+                                </div>
+                            </div>
+                            <div class="normalMode tdBotones">
+                                <div class="btn-group">
+                                    <button class="btnEditarLaboralPersona btn btn-xs btn-default">Editar</button>
+                                    <button class="btnActividad btn btn-xs btn-default">Actividades realizadas</button>
+                                    <button class="btnEliminarLaboralPersona btn btn-xs btn-default">Eliminar</button>
+                                </div>
 
-                            </select>
-                        </div>
-                        <div class="normalMode tdCargo">
-                            @laboralPersona._cargo._cargo
-                        </div>
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <button class="btn btnActualizarLaboralPersona">Actualizar</button>
-                            <button class="btn btnCancelarUni">Cancelar</button>
-                        </div>
-                        <div class="normalMode tdBotones">
-                            <button class="btn btnEditarLaboralPersona btn-sm">Editar</button>
-                            <button class="btn btnActividad btn-sm">Actividades realizadas</button>
-                            <button class="btn btnEliminarLaboralPersona btn-sm">Eliminar</button>
-                        </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+            else
+            {
+                <tr class="trNoRegistro">
+                    @for (int i = 0; i < 6; i++)
+                    {
+                        <td class="hidden"></td>
+                    }
+                    <td colspan="7" class="text-center ">
+                        No hay registro laboral para esta persona
                     </td>
                 </tr>
-                
             }
-            
-        }else{
-            <tr class="trNoRegistro">
-                @for (int i = 0; i < 6; i++)
-                {
-                    <td class="hidden"></td>    
-                }
-                <td colspan="7" class="text-center ">
-                    No hay registro laboral para esta persona 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
