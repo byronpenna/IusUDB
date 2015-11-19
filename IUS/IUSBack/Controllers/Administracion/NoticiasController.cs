@@ -37,41 +37,24 @@ namespace IUSBack.Controllers
                 {
                     return seguridadInicial;
                 }
-                /*if (usuarioSession != null)
+                try
                 {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver)
-                    {*/
-                        try
-                        {
-                            //ViewBag.selectedMenu = 4; // menu seleccionado 
-                            ViewBag.titleModulo = "Escoger miniatura foto";
-                            ViewBag.usuario = usuarioSession;
-                            ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                            //ViewBag.permiso = permisos;
-                            ViewBag.post = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina)["post"];
-                            return View();
-                        }
-                        catch (ErroresIUS x)
-                        {
-                            return RedirectToAction("Unhandled", "Erros");
-                        }
-                        catch (Exception x)
-                        {
-                            return RedirectToAction("Unhandled", "Erros");
-                        }
-                        
-                     /*   
-                    }
-                    else
-                    {
-                        return RedirectToAction("NotAllowed", "Errors");
-                    }
+                    //ViewBag.selectedMenu = 4; // menu seleccionado 
+                    ViewBag.titleModulo = "Escoger miniatura foto";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    //ViewBag.permiso = permisos;
+                    ViewBag.post = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina)["post"];
+                    return View();
                 }
-                else
+                catch (ErroresIUS x)
                 {
-                    return RedirectToAction("index", "login");
-                }*/
+                    return RedirectToAction("Unhandled", "Erros");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Erros");
+                }
                 
             }
             public ActionResult Index()
@@ -228,60 +211,69 @@ namespace IUSBack.Controllers
                 {
                     var form = this._jss.Deserialize<Dictionary<object,object>>(Request.Form["form"]);
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    if (Request.Files.Count > 0)
+                    respuesta = this.seguridadInicialAjax(usuarioSession, form);
+                    if (respuesta == null)
                     {
-                        List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
-                        if(files != null){
-                            foreach(HttpPostedFileBase file in files ){
-                                //
-                                decimal xx = this.convertObjAjaxToDecimal(form["x"]); decimal yy = this.convertObjAjaxToDecimal(form["y"]);
-                                decimal xancho = this.convertObjAjaxToDecimal(form["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(form["imgAlto"]);
-                                MemoryStream memory = new MemoryStream();
-                                byte[] fileBytes = this.getBytesFromFile(file); ;
-                                using (Image image = Image.FromStream(file.InputStream))
+                        if (Request.Files.Count > 0)
+                        {
+                            List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
+                            if (files != null)
+                            {
+                                foreach (HttpPostedFileBase file in files)
                                 {
-                                    if (image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho > 0))
+                                    //
+                                    decimal xx = this.convertObjAjaxToDecimal(form["x"]); decimal yy = this.convertObjAjaxToDecimal(form["y"]);
+                                    decimal xancho = this.convertObjAjaxToDecimal(form["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(form["imgAlto"]);
+                                    MemoryStream memory = new MemoryStream();
+                                    byte[] fileBytes = this.getBytesFromFile(file); ;
+                                    using (Image image = Image.FromStream(file.InputStream))
                                     {
-                                        int x = decimal.ToInt32(image.Width * xx);
-                                        int y = decimal.ToInt32(image.Height * yy);
-                                        int ancho = decimal.ToInt32(image.Height * xancho);
-                                        int alto = decimal.ToInt32(image.Height * yalto);
-                                        Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
-                                        try
+                                        if (image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho > 0))
                                         {
-                                            using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                            int x = decimal.ToInt32(image.Width * xx);
+                                            int y = decimal.ToInt32(image.Height * yy);
+                                            int ancho = decimal.ToInt32(image.Height * xancho);
+                                            int alto = decimal.ToInt32(image.Height * yalto);
+                                            Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                                            try
                                             {
-                                                using (Graphics g = Graphics.FromImage(bitMap))
+                                                using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
                                                 {
-                                                    g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                    using (Graphics g = Graphics.FromImage(bitMap))
+                                                    {
+                                                        g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                    }
+                                                    bitMap.Save(memory, System.Drawing.Imaging.ImageFormat.Jpeg);
                                                 }
-                                                bitMap.Save(memory, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                                fileBytes = memory.ToArray(); //
                                             }
-                                            fileBytes = memory.ToArray(); //
-                                        }
-                                        catch (Exception ex)
-                                        {
+                                            catch (Exception ex)
+                                            {
 
+                                            }
                                         }
+
                                     }
-                                    
+                                    Post postAgregar = new Post(this.convertObjAjaxToInt(form["txtHdIdPost"]));
+                                    postAgregar._miniatura = fileBytes;
+                                    bool estado = this._model.sp_adminfe_noticias_setThumbnailPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", estado);
+                                    respuesta.Add("id", postAgregar._idPost);
                                 }
-                                Post postAgregar = new Post( this.convertObjAjaxToInt(form["txtHdIdPost"]) );
-                                postAgregar._miniatura = fileBytes;
-                                bool estado = this._model.sp_adminfe_noticias_setThumbnailPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
-                                respuesta = new Dictionary<object, object>();
-                                respuesta.Add("estado", estado);
-                                respuesta.Add("id", postAgregar._idPost);
                             }
-                        }else{
-                            ErroresIUS x = new ErroresIUS("No hay imagenes",ErroresIUS.tipoError.generico,0);
-                            throw x;
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("No hay imagenes", ErroresIUS.tipoError.generico, 0);
+                                throw x;
+                            }
+                        }
+                        else
+                        {
+                            respuesta = this.errorEnvioFrmJSON();
                         }
                     }
-                    else
-                    {
-                        respuesta = this.errorEnvioFrmJSON();
-                    }
+                    
                 }
                 catch (ErroresIUS x)
                 {

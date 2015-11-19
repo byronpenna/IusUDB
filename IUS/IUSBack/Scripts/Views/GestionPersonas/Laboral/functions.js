@@ -115,7 +115,7 @@
                         <table class='table tablaActividadesEmpresa'>\
                             <thead>\
                                 <tr>\
-                                    <td class='text-center' colspan='2'>Actividades realizadas</td>\
+                                    <td class='text-center titleTrTable' colspan='2'>Actividades realizadas</td>\
                                 </tr>\
                                 <tr>\
                                     <th>Actividad realizada</th>\
@@ -144,7 +144,7 @@
                                     " + actividad._actividad + "\
                                 </div>\
                             </td>\
-                            <td>\
+                            <td class='tdEditActividades'>\
                                 <div class='editMode hidden'>\
                                     <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
                                     <button class='btn btnCancelarUni' >Cancelar</button>\
@@ -159,7 +159,7 @@
                     })
                 } else {
                     tr += "\
-                    <tr>\
+                    <tr class='trNoActividad'>\
                         <td class='text-center' colspan='2'>\
                             Aun no se le agregan actividades que desempeño\
                         </td>\
@@ -216,16 +216,29 @@
                 txtInicio:          new Array()
             }
             console.log(frm);
-            if (frm.txtAreaObservacion == "") {
-                val.campos.txtAreaObservacion.push("Campo no debe quedar vacio");
-            }
-            if (frm.txtFin == "") {
-                val.campos.txtFin.push("Llenarlo");
-            }
-            if (frm.txtInicio == "") {
-                val.campos.txtInicio.push("Llenarlo");
-            }
-            val.estado = objArrIsEmpty(val.campos);
+            // vacios
+                /*if (frm.txtAreaObservacion == "") {
+                    val.campos.txtAreaObservacion.push("Campo no debe quedar vacio");
+                }*/
+                if (frm.txtFin == "") {
+                    val.campos.txtFin.push("-Llenar campo<br>");
+                }
+                if (frm.txtInicio == "") {
+                    val.campos.txtInicio.push("-Llenar campo<br>");
+                }
+            // fecha 
+                if (!(frm.txtFin >= 1970 && frm.txtFin <= 2100)) {
+                    val.campos.txtFin.push("-Favor colocar una fecha coherente");
+                }
+                if (!(frm.txtInicio >= 1970 && frm.txtInicio <= 2100)) {
+                    val.campos.txtInicio.push("-Favor colocar una fecha coherente");
+                }
+                
+           val.estado = objArrIsEmpty(val.campos);
+                if (frm.txtInicio > frm.txtFin) { // >= para que si esta trabajando ponga la misma fecha
+                    val.estado = false;
+                    printMessage($(".divMensajesGenerales"), "La fecha de inicio debe ser menor que la de fin", false);
+                }
             return val;
         }
 
@@ -264,9 +277,13 @@
                 if (data.estado) {
                     if (data.actividadIngresada !== undefined && data.actividadIngresada != null) {
                         var htmlTr = getTrActividadTabla(data.actividadIngresada);
-                        console.log("D: ingresaras tr",htmlTr);
+                        //console.log("D: ingresaras tr",htmlTr);
+                        if ($(".trNoActividad").length != -1) {
+                            tr.parents("table").find(".tbodyActividades").empty();   
+                        }
                         tr.parents("table").find(".tbodyActividades").prepend(htmlTr);
                         tr.find(".txtActividad").val("");
+                        
                     }
                 
                 }
@@ -283,6 +300,7 @@
                     var tbody       = $(".tbodyLaboralPersona");
                     console.log("length es:", tbody.find(".trNoRegistro").length);
                     if (tbody.find(".trNoRegistro").length == 0) {
+                        printMessage($(".divMensajesGenerales"), "Agregado correctamente", true);
                         tbody.prepend(trAgregar);
                     } else {
                         tbody.empty().append(trAgregar);
@@ -319,7 +337,10 @@
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_eliminarLaboralPersonas", frm, function (data) {
                 console.log(data);
                 if (data.estado) {
+                    printMessage($(".divMensajesGenerales"), "Eliminado correctamente", true);
                     tr.remove();
+                } else {
+                    printMessage($(".divMensajesGenerales"), "Ocurrio un error al tratar de eliminar", true);
                 }
             })
         }

@@ -31,46 +31,34 @@ namespace IUSBack.Controllers
             public ActionResult Index()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null)
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
+                if (seguridadInicial != null)
                 {
-                    List<Usuario> usuarios;
-                    GestionPersonaModel modelPersona = new GestionPersonaModel();
-                    ViewBag.selectedMenu = 2; // menu seleccionado 
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario,this._idPagina);
-                    List<Persona> personas = null;
-                    if (permisos != null && permisos._ver)
-                    {
-                        try
-                        {
-                            ViewBag.titleModulo = "Gestion de usuarios";
-                            ViewBag.usuario = usuarioSession;
-                            usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
-                            personas = modelPersona.getPersonas();
-                        }
-                        catch (ErroresIUS)
-                        {
-                            usuarios = null;
-                        }
-                        catch (Exception)
-                        {
-                            usuarios = null;
-                        }
-                        ViewBag.permiso = permisos;
-                        ViewBag.usuarios = usuarios;
-                        ViewBag.personas = personas;
-                        return View();
-                    }
-                    else
-                    {
-                        return RedirectToAction("NotAllowed", "Errors");
-                    }
-                    
+                    return seguridadInicial;
                 }
-                else
+                List<Usuario> usuarios;
+                GestionPersonaModel modelPersona = new GestionPersonaModel();
+                ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                List<Persona> personas = null;
+                try
                 {
-                    return RedirectToAction("index", "login");
+                    ViewBag.titleModulo = "Gestion de usuarios";
+                    ViewBag.usuario = usuarioSession;
+                    usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
+                    personas = modelPersona.getPersonas();
                 }
+                catch (ErroresIUS)
+                {
+                    usuarios = null;
+                }
+                catch (Exception)
+                {
+                    usuarios = null;
+                }
+                ViewBag.usuarios = usuarios;
+                ViewBag.personas = personas;
+                return View();
+                
             }
         #endregion
         #region "funciones privadas"

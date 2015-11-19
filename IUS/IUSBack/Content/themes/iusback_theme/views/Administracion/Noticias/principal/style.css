@@ -34,3 +34,12 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+.botonAgregarNoticia{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    opacity:0.8;
+}
+.botonAgregarNoticia:hover{
+    opacity:1;
+}

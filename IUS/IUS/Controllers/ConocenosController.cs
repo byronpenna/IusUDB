@@ -53,6 +53,62 @@ namespace IUS.Controllers
                 return View();
             }
         #endregion
+        #region "acciones ajax"
+            public ActionResult getInfo()
+            {
+                /*
+                 1: historia 
+                 2: identidad 
+                 3: organización 
+                 */
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        List<LlaveIdioma> traducciones; 
+                        string lang = this.getUserLang();
+                        respuesta = new Dictionary<object, object>();
+                        int idPagina = -1;
+                        switch(this.convertObjAjaxToInt(frm["idSeleccion"])){
+                            case 1:{
+                                idPagina = this._idPaginaHistoria;
+                                break;
+                            }
+                            case 2:{
+                                idPagina = this._idPaginaIdentidad;
+                                break;
+                            }
+                            case 3:{
+                                idPagina = this._idPaginaOrganizacion;
+                                break;
+                            }
+                        }
+                        
+                        traducciones = this._model.getTraduccion(lang,idPagina);
+                        respuesta = this.getDicTraduccion(traducciones);
+                        respuesta.Add("estado", true);
+                        //respuesta.Add("traducciones", traducciones);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+        #endregion
         #region "constructores"
             public ConocenosController()
             {

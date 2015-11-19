@@ -104,3 +104,23 @@
 .divContenedorInfo{
 
 }
+.selectedIco{
+    opacity:1;
+}
+.tituloInfoL{
+    text-align:center;
+    margin-bottom:2%;
+}
+.divContenedorInfoL{
+    width:80%;
+    margin:0 auto;
+    text-align:justify;
+    margin-top:5%;
+}
+.divImageLoadingL{
+    text-align:center;
+}
+.imageLoadingL{
+    width:3%;
+    margin-top:5%;
+}

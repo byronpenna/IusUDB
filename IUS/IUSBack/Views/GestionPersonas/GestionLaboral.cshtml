@@ -118,6 +118,9 @@
     <img class="imgPersona" src="@strFoto" />
 </div>
 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
+<div class="marginNull row divMensajesGenerales">
+    
+</div>
 <table class="table tablaLaboral">
     <thead>
         <tr>
@@ -149,7 +152,7 @@
             </th>
             <th>
                 <div class="row marginNull divControl">
-                    <input type="number" class="form-control txtInicio" name="txtInicio" />
+                    <input type="number" class="form-control txtInicio soloNumerosInt" name="txtInicio" min="1970" max="2100" />
                     <div class="row marginNull divResultado hidden">
                         _
                     </div>
@@ -157,7 +160,7 @@
             </th>
             <th>
                 <div class="row marginNull divControl">
-                    <input type="number" class="form-control txtFin" name="txtFin" />
+                    <input type="number" class="form-control txtFin soloNumerosInt" name="txtFin" min="1970" max="2100" />
                     <div class="row marginNull divResultado hidden">
                         _
                     </div>
