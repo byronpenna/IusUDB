@@ -30,38 +30,57 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
-                Usuario usuarioSession = this.getUsuarioSesion();
-                ViewBag.titleModulo = "Gestión de permisos";
-                ViewBag.usuario = usuarioSession;
-                if (usuarioSession != null)
+                
+                /*if (usuarioSession != null)
+                {*/
+                try
                 {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
+                    if (seguridadInicial != null)
+                    {
+                        return seguridadInicial;
+                    }
+                    ViewBag.titleModulo = "Gestión de permisos";
+                    ViewBag.usuario = usuarioSession;
 
-                    ViewBag.selectedMenu = 2; // menu seleccionado 
+                    //ViewBag.selectedMenu = 2; // menu seleccionado 
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     // traer data
-                        Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                        List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
-                        List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario,this._idPagina);
-                        List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina,0);
+                    //Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
+                    List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina);
+                    List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina, 0);
                     // fill viewbag
-                        if (permisos != null && permisos._ver)
-                        {
-                            ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                            ViewBag.roles = roles;
-                            ViewBag.rolesTabla = rolesTabla;
-                            ViewBag.usuarios = usuarios;
-                            ViewBag.permisos = permisos;
-                            return View();
-                        }
-                        else
-                        {
-                            return RedirectToAction("NotAllowed", "Errors");
-                        }
+                    /*if (permisos != null && permisos._ver)
+                    {*/
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                        ViewBag.roles = roles;
+                        ViewBag.rolesTabla = rolesTabla;
+                        ViewBag.usuarios = usuarios;
+                        //ViewBag.permisos = permisos;
+                        return View();
+                    /*}
+                    else
+                    {
+                        return RedirectToAction("NotAllowed", "Errors");
+                    }*/
                 }
-                else
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                //}
+                /*else
                 {
                     return RedirectToAction("index", "login");
-                }
+                }*/
             }
         #endregion   
         #region "ajax functions"

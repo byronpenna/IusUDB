@@ -153,7 +153,7 @@
                 comboAddOpcion(combo, opcion, selected);
             });
         }
-        
+        resetChosenWithSelectedVal(combo, selected);
     }
     function entrarEditMode(trUsuario) {
         trUsuario.find(".divResultado").empty();

@@ -1,0 +1,57 @@
+﻿@section estilosPersonalizados{
+    <!-- plugins -->
+
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- plugins -->
+    
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionPersonas/Detalle/script.js"></script>
+        <script src="~/Scripts/Views/GestionPersonas/Detalle/functions.js"></script>
+}
+@section arbol{
+    <a class="col-lg-3 text-center cuadritoArbol" href="@Url.Action("Index")">
+        @*<a href="@Url.Action("Index")">*@
+        <div class="col-lg-8">
+            Personas
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+        @*</a>*@
+    </a>
+    <a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.currentUrl">
+        @*<a href="@ViewBag.currentUrl">*@
+        <div class="col-lg-8">
+            Info adicional
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+        @*</a>*@
+    </a>
+}
+<h2 class="text-center">Byron Aldair Peña Portillo</h2>
+<div class="row marginNull">
+    <div class="row marginNull imgPic">
+        <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
+    </div>
+    <div class="row marginNull divInfo">
+        <div class="col-lg-2 tarjetaInfo">
+            <h4>Pais de origen</h4>
+            <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/Canada.png")" />
+            Canada
+        </div>
+        <div class="col-lg-2 tarjetaInfo">
+            <h4>Sexo</h4>
+            <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/mas-i.png")" />
+            Masculino
+        </div>
+        <div class="col-lg-3">
+
+        </div>
+    </div>
+</div>

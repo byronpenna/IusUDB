@@ -1,0 +1,17 @@
+﻿.imgPic{
+    margin-top:3%;
+    text-align:center;
+}
+.tarjetaInfo{
+    text-align:center;
+}
+    .tarjetaInfo .img {
+        margin:0 auto;
+        margin-top:5%;
+        margin-bottom:5%;
+        display:block;
+    }
+    .tarjetaInfo .sex{
+        width:47px;
+        height:47px;
+    }
