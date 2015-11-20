@@ -47,9 +47,9 @@
         if (frm.cbPaisInstitucionEducativa == -1) {
             val.campos.cbPaisInstitucionEducativa.push("Seleccione un país");
         }
-        if (frm.txtAreaObservaciones == "") {
+        /*if (frm.txtAreaObservaciones == "") {
             val.campos.txtAreaObservaciones.push("Debe llenar este campo");
-        }
+        }*/
         if (frm.txtCarrera == "") {
             val.campos.txtCarrera.push("Debe llenar este campo");
         }
@@ -57,10 +57,10 @@
             val.campos.txtInstitucionEducativa.push("Debe llenar este campo");
         }
         if (frm.txtYearFin == "") {
-            val.campos.txtYearFin.push("Debe llenar este campo");
+            val.campos.txtYearFin.push("-Debe llenar este campo<br>");
         }
         if ( !(frm.txtYearFin >= 1970 && frm.txtYearFin <= 2100) ) {
-            val.campos.txtYearFin.push("Favor colocar fecha coherente");
+            val.campos.txtYearFin.push("-Favor colocar fecha coherente");
         }
         val.estado = objArrIsEmpty(val.campos);
         return val;
@@ -68,6 +68,7 @@
 // genericas
     // partes
         // tr     
+            /*
             function getTrInstitucionEducativa(institucion) {
                 var tr = "<tr>\
                        <td class='hidden'>\
@@ -92,17 +93,23 @@
                        </td>\
                        <td>\
                            <div class='editMode hidden'>\
-                                <button class='btn btnActualizarInstitucionEducativa'>Actualizar</button>\
-                                <button class='btn btnCancelarInstitucionEducativa btnCancelarUni'>Cancelar</button>\
+                                <div class='btn-group'>\
+                                    <button class='btn btnActualizarInstitucionEducativa'>Actualizar</button>\
+                                    <button class='btn btnCancelarInstitucionEducativa btnCancelarUni'>Cancelar</button>\
+                                </div>\
                            </div>\
                            <div class='normalMode tdEmail'>\
-                               <button class='btn btnEditarInstitucion'>Editar</button>\
-                               <button class='btn btnEliminarInstitucion'>Eliminar</button>\
+                                <div class='btn-group'>\
+                                   <button class='btn btnEditarInstitucion btn-default'>Editar</button>\
+                                   <button class='btn btnEliminarInstitucion btn-default'>Eliminar</button>\
+                                </div>\
                            </div>\
                        </td>\
                    </tr>";
             return tr;
             }
+            */
+            /*
             function getTrCarrera(carrera) {
                 var tr = "\
                   <tr>\
@@ -160,6 +167,7 @@
                 ";
                 return tr;
             }
+            */
             function getTrFormacionPersonas(formacionPersona) {
                 var tr = "\
                     <tr>\
@@ -228,12 +236,16 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <button class='btn btnActualizarTituloPersona'>Actualizar</button>\
-                                <button class='btn btnCancelarUni'>Actualizar</button>\
+                                <div class='btn-group'>\
+                                    <button class='btn btnActualizarTituloPersona btn-default btn-xs'>Actualizar</button>\
+                                    <button class='btn btnCancelarUni btn-default btn-xs'>Actualizar</button>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdEmail'>\
-                                <button class='btn btnEditarTitulos '>Editar</button>\
-                                <button class='btn btnEliminarTitulo '>Eliminar</button>\
+                                <div class='btn-group'>\
+                                    <button class='btn btnEditarTitulos btn-default btn-xs'>Editar</button>\
+                                    <button class='btn btnEliminarTitulo btn-default btn-xs'>Eliminar</button>\
+                                </div>\
                             </div>\
                         </td>\
                     </tr>\
@@ -370,7 +382,6 @@
                 console.log("Data servidor", data);
                 if (data.estado) {
                     var tr = getTrCarrera(data.carreraAgregada);
-                    
                     $(".tbodyCarrera").prepend(tr);
                 } else {
                     var mjs = "Ocurrio un error";

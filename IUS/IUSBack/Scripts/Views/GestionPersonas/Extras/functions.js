@@ -45,6 +45,11 @@
         if (frm.txtEmail == "") {
             val.campos.txtEmail.push("Campo no debe quedar vacio");
         }
+        var testEmail = test(FORMATO_EMAIL, frm.txtEmail);
+        //console.log("Test email es:",testEmail);
+        if (!testEmail) {
+            val.campos.txtEmail.push("Colocar formato correcto a email");
+        }
         if (frm.txtEtiquetaEmail == "") {
             val.campos.txtEtiquetaEmail.push("Campo no debe quedar vacio");
         }
@@ -94,7 +99,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input name='txtEmail' class=' form-control txtEmail' type='email' />\
+                        <input name='txtEmail' class='input-sm form-control txtEmail' type='email' />\
                     </div>\
                     <div class='normalMode tdEmail'>\
                         "+emailPersona._email+"\
@@ -102,7 +107,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input class='txtEtiquetaEmail form-control' name='txtEtiquetaEmail' />\
+                        <input class='txtEtiquetaEmail form-control input-sm' name='txtEtiquetaEmail' />\
                     </div>\
                     <div class='normalMode tdEtiqueta'>\
                         "+emailPersona._descripcion+"\
@@ -110,12 +115,16 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <button class='btn btn-xs btnActualizarEmail'>Actualizar</button>\
-                        <button class='btn btn-xs btnCancelarUpdateEmail'>Cancelar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnActualizarEmail'>Actualizar</button>\
+                            <button class='btn btn-xs btn-default btnCancelarUpdateEmail'>Cancelar</button>\
+                        </div>\
                     </div>\
                     <div class='normalMode tdTelefono'>\
-                        <button class='btn btnEditarEmail btn-xs'>Editar</button>\
-                        <button class='btn btnEliminarEmail btn-xs'>Eliminar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnEditarEmail '>Editar</button>\
+                            <button class='btn btn-xs btn-default btnEliminarEmail '>Eliminar</button>\
+                        </div>\
                     </div>\
                 </td>\
             </tr>\
@@ -142,7 +151,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input class='txtTelefono form-control' name='txtTelefono' />\
+                        <input class='input-sm txtTelefono form-control' name='txtTelefono' />\
                         <div class='row marginNull divResultado hidden'>\
                             _ \
                         </div>\
@@ -153,7 +162,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <select class='cbPais' name='cbPais'></select>\
+                        <select class='input-sm cbPais' name='cbPais'></select>\
                     </div>\
                     <div class='normalMode tdPais'>\
                         "+telefono._pais._pais+" \
@@ -161,7 +170,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input class='txtEtiquetaTel form-control' name='txtEtiquetaTel' />\
+                        <input class='input-sm txtEtiquetaTel form-control' name='txtEtiquetaTel' />\
                     </div>\
                     <div class='normalMode tdEtiqueta'>\
                         "+telefono._descripcion+" \
@@ -169,12 +178,16 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <button class='btn btn-xs btnActualizarTel'>Actualizar</button>\
-                        <button class='btn btn-xs btnCancelarUpdateTel'>Cancelar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnActualizarTel'>Actualizar</button>\
+                            <button class='btn btn-xs btn-default btnCancelarUpdateTel'>Cancelar</button>\
+                        </div>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btn-xs btnEditarTel'>Editar</button>\
-                        <button class='btn btnEliminarTel btn-xs'>Eliminar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnEditarTel'>Editar</button>\
+                            <button class='btn btn-xs btn-default btnEliminarTel'>Eliminar</button>\
+                        </div>\
                     </div>\
                 </td>\
             </tr>\

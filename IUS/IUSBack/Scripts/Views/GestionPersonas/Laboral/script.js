@@ -148,8 +148,31 @@
                 $(document).on("click", ".btnActualizarLaboralPersona", function (e) {
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);
-                    console.log("formulario a enviar", frm);
-                    btnActualizarLaboralPersona(frm,tr);
+                    var val = validarInsertLaboral(frm);
+                    //var theadTabla = $(".rowControles");
+                    console.log("val es ", val);
+                    if (val.estado) {
+                        tr.find(".divResultado").removeClass("visibilitiHidden");
+                        tr.find(".divResultado").addClass("hidden");
+                        btnActualizarLaboralPersona(frm, tr);
+                    } else {
+                        console.log(val);
+                        //############
+                        var errores;
+                        tr.find(".divResultado").addClass("visibilitiHidden");
+                        tr.find(".divResultado").removeClass("hidden");
+                        $.each(val.campos, function (i, val) {
+                            errores = "";
+                            var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                            if (val.length > 0) {
+                                divResultado.removeClass("visibilitiHidden");
+                                $.each(val, function (i, val) {
+                                    errores += getSpanMessageError(val);
+                                })
+                                divResultado.empty().append(errores);
+                            }
+                        })
+                    }
                 })
                 
 })

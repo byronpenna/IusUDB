@@ -22,26 +22,26 @@
         <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
 }
 @section arbol{
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@Url.Action("Index")">
-            <div class="col-lg-8">
-                Personas
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@ViewBag.currentUrl">
-            <div class="col-lg-8">
-                Info adicional
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
+    <a class="col-lg-3 text-center cuadritoArbol" href="@Url.Action("Index")">
+        @*<a href="@Url.Action("Index")">*@
+        <div class="col-lg-8">
+            Personas
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+        @*</a>*@
+    </a>
+    <a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.currentUrl">
+        @*<a href="@ViewBag.currentUrl">*@
+        <div class="col-lg-8">
+            Info adicional
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+        @*</a>*@
+    </a>
 }
 @{
     List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
@@ -95,7 +95,8 @@
     <div class="row marginNull divInformacionPersonal divInformacion">
         <div class="row marginNull divTituloNombre">
             <div class="normalMode">
-                <h2 class="hNombrePersona">@persona.nombreCompleto</h2>
+                <h2>Información basica</h2>
+                <h3 class="hNombrePersona">@persona.nombreCompleto</h3>
             </div>
             <div class="editMode hidden">
                 <div class="col-lg-offset-4 col-lg-3 ">
@@ -233,19 +234,19 @@
                         <tr>
                             <th class="hidden"></th>
                             <th>
-                                <input name="txtEmail" class=" form-control txtEmail" type="email" />
+                                <input name="txtEmail" class=" form-control txtEmail input-sm" type="email" />
                                 <div class="row marginNull divResultado hidden ">
                                     _
                                 </div>
                             </th>
                             <th>
-                                <input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" />
+                                <input class="txtEtiquetaEmail form-control input-sm" name="txtEtiquetaEmail" />
                                 <div class="row marginNull divResultado hidden">
                                     _
                                 </div>
                             </th>
                             <th>
-                                <button class="btn btnGuardarEmail btn-xs">Guardar</button>
+                                <button class="btnGuardarEmail btn btn-sm btn-default">Guardar</button>
                             </th>
                         </tr>
                     </thead>
@@ -260,7 +261,7 @@
                                     </td>
                                     <td>
                                         <div class="editMode hidden">
-                                            <input name="txtEmail" class=" form-control txtEmail" type="email" />
+                                            <input name="txtEmail" class=" form-control txtEmail input-sm" type="email" />
                                         </div>
                                         <div class="normalMode tdEmail">
                                             @emailPersona._email
@@ -268,7 +269,7 @@
                                     </td>
                                     <td>
                                         <div class="editMode hidden">
-                                            <input class="txtEtiquetaEmail form-control" name="txtEtiquetaEmail" />
+                                            <input class="txtEtiquetaEmail form-control input-sm" name="txtEtiquetaEmail" />
                                         </div>
                                         <div class="normalMode tdEtiqueta">
                                             @emailPersona._descripcion
@@ -276,12 +277,16 @@
                                     </td>
                                     <td>
                                         <div class="editMode hidden">
-                                            <button class="btn btn-xs btnActualizarEmail">Actualizar</button>
-                                            <button class="btn btn-xs btnCancelarUpdateEmail">Cancelar</button>
+                                            <div class='btn-group'>
+                                                <button class="btn btn-xs btn-default btnActualizarEmail">Actualizar</button>
+                                                <button class="btn btn-xs btn-default btnCancelarUpdateEmail">Cancelar</button>
+                                            </div>
                                         </div>
                                         <div class="normalMode tdTelefono">
-                                            <button class="btn btnEditarEmail btn-xs">Editar</button>
-                                            <button class="btn btnEliminarEmail btn-xs">Eliminar</button>
+                                            <div class='btn-group'>
+                                                <button class="btnEditarEmail btn btn-xs btn-default">Editar</button>
+                                                <button class="btnEliminarEmail btn btn-xs btn-default">Eliminar</button>
+                                            </div>
                                         </div>
                                         
                                     </td>
@@ -311,18 +316,18 @@
                         <tr>
                             <th class="hidden"></th>
                             <th>
-                                <input class="txtTelefono form-control" name="txtTelefono" />
+                                <input class="txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
                                 <div class="row marginNull divResultado hidden">
                                     _
                                 </div>
                             </th>
                             <th>
-                                <select class="cbPais" name="cbPais">
+                                <select class="cbPais input-sm" name="cbPais">
                                     @if (paises != null && paises.Count > 0)
                                     {
                                         foreach (Pais pais in paises)
                                         {
-                                            <option value="@pais._idPais" @selected>@pais._pais</option>    
+                                            <option value="@pais._idPais" @selected>@pais._pais</option>
                                         }
                                     }
                                 </select>
@@ -331,13 +336,13 @@
                                 </div>
                             </th>
                             <th>
-                                <input class="txtEtiquetaTel form-control" name="txtEtiquetaTel" />
+                                <input class="txtEtiquetaTel form-control input-sm" name="txtEtiquetaTel" />
                                 <div class="row marginNull divResultado hidden">
                                     _
                                 </div>
                             </th>
                             <th>
-                                <button class="btn btnAgregarTel">Agregar</button>
+                                <button class="btnAgregarTel btn btn-default">Agregar</button>
                             </th>
                         </tr>
                     </thead>
@@ -380,12 +385,16 @@
                                     </td>
                                     <td>
                                         <div class="editMode hidden">
-                                            <button class="btn btn-xs btnActualizarTel">Actualizar</button>
-                                            <button class="btn btn-xs btnCancelarUpdateTel">Cancelar</button>
+                                            <div class='btn-group'>
+                                                <button class="btn btn-xs btn-default btnActualizarTel">Actualizar</button>
+                                                <button class="btn btn-xs btn-default btnCancelarUpdateTel">Cancelar</button>
+                                            </div>
                                         </div>
                                         <div class="normalMode">
-                                            <button class="btn btn-xs btnEditarTel">Editar</button>
-                                            <button class="btn btnEliminarTel btn-xs">Eliminar</button>
+                                            <div class='btn-group'>
+                                                <button class="btn btn-xs btn-default btnEditarTel">Editar</button>
+                                                <button class="btn btn-xs btn-default btnEliminarTel">Eliminar</button>
+                                            </div>
                                         </div>
                                         
                                     </td>

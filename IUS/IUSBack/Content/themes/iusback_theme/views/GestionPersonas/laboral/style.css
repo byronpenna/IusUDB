@@ -20,6 +20,10 @@
 .trTable{
     background:gainsboro !important;
 }
+.tablaActividadesEmpresa{
+    width:95%;
+    margin: 0 auto;
+}
 .tablaActividadesEmpresa thead tr th,.tdEditActividades{
     text-align:center;
 }
@@ -28,4 +32,14 @@
     font-family:'latop';
     font-size:1.5em;
 }
-
+.tdBotones{
+    text-align:center;
+}
+.divTablita{
+    width:95%;
+    margin:0 auto;
+    margin-top:1%;
+}
+.tablaLaboral thead tr th{
+    vertical-align:top;
+}

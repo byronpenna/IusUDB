@@ -4,11 +4,11 @@
 .tdContenido{
     width:30%;
 }
-.cuerpoModulo a{
+/*.cuerpoModulo a{
     background:#DDDDDD;
     margin-bottom:2%;
     color:black;
-}
+}*/
 /*Tab 2*/
 .divPostThumbnail{
     text-align:center;
@@ -36,9 +36,16 @@
 }
 
 .botonAgregarNoticia{
-    border-top-left-radius: 15px;
+    /**/border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    opacity:0.8;
+    opacity:0.5;
+    background:#F5F5F5;
+    font-weight:bold;
+    color:black;
+    padding-top:1%;
+    padding-bottom:1%;
+    margin-bottom:2%;
+    border-color:black;
 }
 .botonAgregarNoticia:hover{
     opacity:1;

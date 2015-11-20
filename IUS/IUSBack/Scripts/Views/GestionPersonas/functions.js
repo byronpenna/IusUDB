@@ -51,12 +51,16 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <button class='btn btn-xs btnEditMode btnActualizar '  "+permisos.stringEditar+">Actualizar</button>\
-                        <button class='btn btn-xs btnEditMode btnCancelarEdit'>Cancelar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnEditMode btnActualizar '  " + permisos.stringEditar + ">Actualizar</button>\
+                            <button class='btn btn-xs btn-default btnEditMode btnCancelarEdit'>Cancelar</button>\
+                        </div>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">Editar</button>\
-                        <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnEditar' " + permisos.stringEditar + ">Editar</button>\
+                            <button class='btn btn-xs btn-default btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                        </div>\
                         <a class='btn btn-xs ' href='"+RAIZ+"GestionPersonas/Extras/"+persona._idPersona+"'>Info adicional</a>\
                     </div>\
                 </td>\
@@ -188,6 +192,11 @@
             }
         });
     }
+    function limpiarTrAgregar(tr) {
+        tr.find(".txtNombrePersona").val("");
+        tr.find(".txtApellidoPersona").val("");
+        tr.find(".dtFechaNacimiento").val("");
+    }
     function btnAgregarPersona(tr) {
         $(".divResultadoGeneral .divResultado").hide();
         var frm = serializeSection(tr);
@@ -204,9 +213,11 @@
                 if (data.estado) {
                     persona = data.persona;
                     newTr = getTrPersona(persona, data.permisos);
-                    clearTr(tr);
+                    //clearTr(tr);//##############################
+                    limpiarTrAgregar(tr);
                     //tbody.prepend(newTr);
                     $(".tablePersonas").dataTable().fnAddTr($(newTr)[0]);
+                    printMessage($(".divResultadoGeneral .divResultado"), "Persona agregada correctamente", true);
                     //updateAllDataTable($(".tablePersona"));   
                 } else {
                     var mjs = "";

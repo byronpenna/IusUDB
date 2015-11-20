@@ -310,17 +310,21 @@ function validacionIngreso(frm) {
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <button class='btn btn-xs btnActualizar'>Actualizar</button>\
-                        <button class='btn btn-xs btnCancelarEdit'>Cancelar</button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnActualizar'>Actualizar</button>\
+                            <button class='btn btn-xs btn-default btnCancelarEdit'>Cancelar</button>\
+                        </div>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btn-xs btnEditar' " + permisos.stringEditar + ">\
-                            Editar\
-                        </button>\
-                        <button class='btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
-                        <button class='btn btn-xs btnDeshabilitar' " + permisos.stringEditar + " >\
-                            "+rol.txtBtnHabilitar+"\
-                        </button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-xs btn-default btnEditar' " + permisos.stringEditar + ">\
+                                Editar\
+                            </button>\
+                            <button class='btn btn-xs btn-default btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                            <button class='btn btn-xs btn-default btnDeshabilitar' " + permisos.stringEditar + " >\
+                                "+rol.txtBtnHabilitar+"\
+                            </button>\
+                        </div>\
                     </div>\
                 </td>\
             </tr>\
@@ -339,6 +343,7 @@ function validacionIngreso(frm) {
                 rol = data.rol;
                 tr = getTrRol(rol, data.permisos);
                 tbody.prepend(tr);
+                printMessage($(".divMensajesGeneralesRoles"), "Rol agregado correctamente", true);
                 clearTr(trInsert);
                 $(".txtEstado").val("Activo");
                 addOptionSelect($(".cbRolTab2"), rol._idRol, rol._rol, true);

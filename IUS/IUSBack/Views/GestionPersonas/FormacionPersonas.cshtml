@@ -139,23 +139,23 @@
     <div class="row marginNull divMensajesAgregar divMensajesGenerales">
 
     </div>
-    <table class="table tbCarreras">
+    <table class="table tbCarreras table-hover">
         <thead>
             <tr>
-                <td>Carrera</td>
-                <td>Año Fin</td>
-                <td>Observaciones</td>
+                <th>Carrera</th>
+                <th>Año Fin</th>
+                <th>Observaciones</th>
                 <!--<td>Estado</td>-->
-                <td>Nivel</td>
-                <td>Area</td>
-                <td>Institución</td>
-                <td>País</td>
-                <td>Acciones</td>
+                <th>Nivel</th>
+                <th>Area</th>
+                <th>Institución</th>
+                <th>País</th>
+                <th>Acciones</th>
             </tr>
             <tr class="trAgregar">
                 <td>
                     <div class="row marginNull divControl">
-                        <input class="txtCarrera form-control" name="txtCarrera" placeholder="Carrera" />
+                        <input class="txtCarrera form-control input-sm" name="txtCarrera" placeholder="Carrera" />
                         <div class="row marginNull divResultado hidden">
 
                         </div>
@@ -163,7 +163,7 @@
                 </td>
                 <td class="tdFechaIniFinTitulo">
                     <div class="row marginNull divControl">
-                        <input name="txtYearFin" type="number" class="txtYearFin form-control soloNumerosInt" maxlength="4" min="1970" max="2100" />
+                        <input name="txtYearFin" type="number" class="txtYearFin form-control soloNumerosInt input-sm" maxlength="4" min="1970" max="2100" />
                         <div class="row marginNull divResultado hidden">
 
                         </div>
@@ -171,7 +171,7 @@
                 </td>
                 <td>
                     <div class="row marginNull divControl">
-                        <textarea name="txtAreaObservaciones" class="txtAreaObservaciones form-control"></textarea>
+                        <textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>
                         <div class="row marginNull divResultado hidden">
 
                         </div>
@@ -179,12 +179,12 @@
                 </td>
                 <td>
                     <div class="row marginNull divControl">
-                        <select class="cbNivelCarrera form-control" name="cbNivelCarrera">
+                        <select class="input-sm cbNivelCarrera form-control" name="cbNivelCarrera">
                             @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
                             {
                                 foreach (NivelTitulo nivelTitulo in nivelesTitulo)
                                 {
-                                    <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                            <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
                                 }
                             }
                         </select>
@@ -195,12 +195,12 @@
                 </td>
                 <td>
                     <div class="row marginNull divControl">
-                        <select class="cbAreaCarrera form-control" name="cbAreaCarrera">
+                        <select class="input-sm cbAreaCarrera form-control" name="cbAreaCarrera">
                             @if (areasCarreras != null && areasCarreras.Count > 0)
                             {
                                 foreach (AreaCarrera areaCarrera in areasCarreras)
                                 {
-                                    <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                            <option value="@areaCarrera._idArea">@areaCarrera._area</option>
                                 }
                             }
                         </select>
@@ -211,7 +211,7 @@
                 </td>
                 <td>
                     <div class="row marginNull divControl">
-                        <input class="form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                        <input class="input-sm form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
                         <div class="row marginNull divResultado hidden">
 
                         </div>
@@ -219,13 +219,13 @@
                 </td>
                 <td>
                     <div class="row marginNull divControl">
-                        <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+                        <select name="input-sm cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
                             <option value="-1">Seleccione un país</option>
                             @if (paises != null && paises.Count > 0)
                             {
                                 foreach (Pais pais in paises)
                                 {
-                                    <option value="@pais._idPais">@pais._pais</option>
+                            <option value="@pais._idPais">@pais._pais</option>
                                 }
                             }
                         </select>
@@ -235,7 +235,7 @@
                     </div>
                 </td>
                 <td>
-                    <button class="btn btnAgregarCarrera">Agregar</button>
+                    <button class="btn btnAgregarCarrera btn-default btn-xs">Agregar</button>
                 </td>
             </tr>
         </thead>
@@ -246,14 +246,14 @@
                 {
                     <tr>
                         <td class="hidden">
-                            <input name="txtHdIdFormacionPersona" class="txtHdIdFormacionPersona" value="@formacionPersona._idFormacionPersona"/>
+                            <input name="txtHdIdFormacionPersona" class="txtHdIdFormacionPersona" value="@formacionPersona._idFormacionPersona" />
                             <input name="txtHdIdNivel" class="txtHdIdNivel" value="@formacionPersona._nivelTitulo._idNivel">
                             <input name="txtHdIdNivel" class="txtHdIdArea" value="@formacionPersona._areaCarrera._idArea">
                             <input name="txtHdIdPais" class="txtHdIdPais" value="@formacionPersona._paisInstitucion._idPais" />
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input type="text" name="txtCarrera" class="form-control txtCarrera" />
+                                <input type="text" name="txtCarrera" class="input-sm form-control txtCarrera" />
                             </div>
                             <div class="normalMode tdCarrera">
                                 @formacionPersona._carrera
@@ -261,7 +261,7 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input name="txtYearFin" class="txtYearFin form-control" />
+                                <input name="txtYearFin" class="input-sm txtYearFin form-control" />
                             </div>
                             <div class="normalMode tdYearFin">
                                 @formacionPersona._yearFin
@@ -269,7 +269,7 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <textarea name="txtAreaObservaciones" class="txtAreaObservaciones form-control"></textarea>
+                                <textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>
                             </div>
                             <div class="normalMode tdObservaciones">
                                 @formacionPersona._observaciones
@@ -277,7 +277,7 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbNivelCarrera" class="cbNivelCarrera form-control"></select>
+                                <select name="cbNivelCarrera" class="input-sm cbNivelCarrera form-control"></select>
                             </div>
                             <div class="normalMode tdNivelTitulo">
                                 @formacionPersona._nivelTitulo._nombreNivel
@@ -285,7 +285,7 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbAreaCarrera" class="cbAreaCarrera form-control"></select>
+                                <select name="cbAreaCarrera" class="input-sm cbAreaCarrera form-control"></select>
                             </div>
                             <div class="normalMode tdAreaCarrera">
                                 @formacionPersona._areaCarrera._area
@@ -293,7 +293,7 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input class="form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                                <input class="input-sm form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
                             </div>
                             <div class='normalMode tdInstitucion'>
                                 @formacionPersona._institucion
@@ -301,122 +301,31 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
-
-                                </select>
+                                <select name="cbPaisInstitucionEducativa" class="input-sm cbChosenPais form-control cbPaisInstitucionEducativa"></select>
                             </div>
                             <div class='normalMode tdPais'>
                                 @formacionPersona._paisInstitucion._pais
                             </div>
                         </td>
                         <td>
-                            <div class="editMode hidden">
-                                <button class="btn btnActualizarTituloPersona">Actualizar</button>
-                                <button class="btn btnCancelarUni">Cancelar</button>
+                            <div class="editMode hidden tdControl">
+                                <div class="btn-group">
+                                    <button class="btn btnActualizarTituloPersona btn-default btn-xs">Actualizar</button>
+                                    <button class="btn btnCancelarUni btn-default btn-xs">Cancelar</button>
+                                </div>
                             </div>
-                            <div class="normalMode tdEmail">
-                                <button class="btn btnEditarTitulos ">Editar</button>
-                                <button class="btn btnEliminarTitulo ">Eliminar</button>
+                            <div class="normalMode tdEmail tdControl">
+                                <div class="btn-group">
+                                    <button class="btn btnEditarTitulos btn-default btn-xs">Editar</button>
+                                    <button class="btn btnEliminarTitulo btn-default btn-xs">Eliminar</button>
+                                </div>
+
                             </div>
                         </td>
-                        
+
                     </tr>
                 }
             }
         </tbody>
     </table>
 </div>
-<div class="row marginNull divTab divInstituciones hidden">
-    <!-- Instituciones educativas -->
-    <h3 class="tituloTabDiv">Instituciones educativas</h3>
-    <div class="divResultado divResultadoGeneralInstituciones">
-
-    </div>
-    <table class="table tablaInstitucionEducativa">
-       <thead>
-           <tr>
-               <th>Institucion educativa</th>
-               <th>País</th>
-               <th>Acciones</th>
-           </tr>
-           <tr class="trAgregar">
-               <th>
-                   <input name="txtInstitucionEducativa" class="form-control txtInstitucionEducativa" />
-                   <div class="row marginNull divResultado hidden">
-                       _
-                   </div>
-               </th>
-               <th>
-                   <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
-                       <option value="-1">Seleccione un país</option>
-                       @if (paises != null && paises.Count > 0)
-                       {
-                           foreach (Pais pais in paises)
-                           {
-                               <option value="@pais._idPais">@pais._pais</option>
-                           }
-                       }
-                   </select>
-                   <div class="row marginNull divResultado hidden">
-                       _
-                   </div>
-               </th>
-               <th>
-                   <button class="btn btnAgregarInstitucion">Agregar institucion</button>
-               </th>
-           </tr>
-       </thead>
-       <tbody class="tbTablaFormacionPersonas">
-           @if (institucionesEducativas != null && institucionesEducativas.Count > 0 && false)
-           {
-               foreach (InstitucionEducativa institucion in institucionesEducativas)
-               {
-                   <tr>
-                       <td class="hidden">
-                           <input name="txtHdIdInstitucionEducativa" class="txtHdIdInstitucionEducativa" value="@institucion._idInstitucion" />
-                           <input name="txtHdIdPaisInstitucion" class="txtHdIdPaisInstitucion" value="@institucion._pais._idPais"/>
-                       </td>
-                       <td>
-                           <div class="editMode hidden">
-                               <input class="txtInstitucionEducativa form-control" name="txtInstitucionEducativa" />
-                           </div>
-                           <div class="normalMode tdNombreInstitucion">
-                               @institucion._nombre
-                           </div>
-                       </td>
-                       <td>
-                           <div class="editMode hidden">
-                               <select name="cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa"></select>
-                           </div>
-                           <div class="normalMode tdPais">
-                               @institucion._pais._pais
-                           </div> 
-                       </td>
-                       <td>
-                           <div class="editMode hidden">
-                                <button class="btn btnActualizarInstitucionEducativa">Actualizar</button>
-                                <button class="btn btnCancelarInstitucionEducativa btnCancelarUni">Cancelar</button>
-                           </div>
-                           <div class="normalMode tdEmail">
-                               <button class="btn btnEditarInstitucion">Editar</button>
-                               <button class="btn btnEliminarInstitucion">Eliminar</button>
-                           </div>
-                       </td>
-                   </tr>
-               }
-           }
-           else
-           {
-                <tr>
-                    @for(int i=0;i<3;i++){
-                        <td class="hidden"></td>
-                    }
-                    <td colspan="4" class="text-center">
-                        No hay instituciones disponibles
-                    </td>
-                </tr>   
-           }
-       </tbody>
-   </table>
-</div>
-

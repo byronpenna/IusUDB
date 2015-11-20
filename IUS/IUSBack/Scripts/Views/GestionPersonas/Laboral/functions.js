@@ -12,70 +12,74 @@
             }
         // tr
             function getTrLaboralPersona(laboralPersona) {
-            var tr = "\
-            <tr>\
-                <td class='hidden'>\
-                    <input type='hidden' value='"+laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
-                    <input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\
-                    <input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
-                </td>\
-                <td>\
-                    <div class='editMode hidden'>\
-                        <select class='form-control cbEmpresa' name='cbEmpresa'>\
-                        </select>\
-                    </div>\
-                    <div class='normalMode tdNombreEmpresa'>\
-                        "+laboralPersona._empresa._nombre+"\
-                    </div>\
-                </td>\
-                <td>\
-                    <div class='editMode hidden'>\
-                        <input type='number' class='form-control txtInicio' name='txtInicio' />\
-                    </div>\
-                    <div class='normalMode tdFechaInicio'>\
-                        "+laboralPersona._inicio+"\
-                    </div>\
-                </td>\
-                <td>\
-                    <div class='editMode hidden'>\
-                        <input type='number' class='form-control txtFin' name='txtFin' />\
-                    </div>\
-                    <div class='normalMode tdFechaFin'>\
-                        "+laboralPersona._fin+"\
-                    </div>\
-                </td>\
-                <td>\
-                    <div class='editMode hidden'>\
-                        <textarea class='form-control txtAreaObservacion' name='txtAreaObservacion'></textarea>\
-                    </div>\
-                    <div class='normalMode tdObservaciones'>\
-                        "+laboralPersona._observaciones+"\
-                    </div>\
-                </td>\
-                <td>\
-                    <div class='editMode hidden'>\
-                        <select class='form-control cbCargo' name='cbCargo'>\
-                        </select>\
-                    </div>\
-                    <div class='normalMode tdCargo'>\
-                        "+laboralPersona._cargo._cargo+"\
-                    </div>\
-                </td>\
-                <td>\
-                    <div class='editMode hidden'>\
-                        <button class='btn btnActualizarLaboralPersona'>Actualizar</button>\
-                        <button class='btn btnCancelarUni'>Cancelar</button>\
-                    </div>\
-                    <div class='normalMode tdBotones'>\
-                        <button class='btn btnEditarLaboralPersona btn-sm'>Editar</button>\
-                        <button class='btn btnActividad btn-sm'>Actividades realizadas</button>\
-                        <button class='btn btnEliminarLaboralPersona btn-sm'>Eliminar</button>\
-                    </div>\
-                </td>\
-            </tr>\
-            ";
-            return tr;
-        }
+                var tr = "\
+                <tr>\
+                    <td class='hidden'>\
+                        <input type='hidden' value='"+laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
+                        <input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\
+                        <input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <select class='form-control cbEmpresa' name='cbEmpresa'>\
+                            </select>\
+                        </div>\
+                        <div class='normalMode tdNombreEmpresa'>\
+                            "+laboralPersona._empresa._nombre+"\
+                        </div>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <input type='number' class='form-control txtInicio' name='txtInicio' />\
+                        </div>\
+                        <div class='normalMode tdFechaInicio'>\
+                            "+laboralPersona._inicio+"\
+                        </div>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <input type='number' class='form-control txtFin' name='txtFin' />\
+                        </div>\
+                        <div class='normalMode tdFechaFin'>\
+                            "+laboralPersona._fin+"\
+                        </div>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <textarea class='form-control txtAreaObservacion' name='txtAreaObservacion'></textarea>\
+                        </div>\
+                        <div class='normalMode tdObservaciones'>\
+                            "+laboralPersona._observaciones+"\
+                        </div>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <select class='form-control cbCargo' name='cbCargo'>\
+                            </select>\
+                        </div>\
+                        <div class='normalMode tdCargo'>\
+                            "+laboralPersona._cargo._cargo+"\
+                        </div>\
+                    </td>\
+                    <td>\
+                        <div class='editMode hidden'>\
+                            <div class='btn-group'>\
+                                <button class='btn btnActualizarLaboralPersona btn-default btn-xs'>Actualizar</button>\
+                                <button class='btn btnCancelarUni btn-default btn-xs'>Cancelar</button>\
+                            </div>\
+                        </div>\
+                        <div class='normalMode tdBotones'>\
+                            <div class='btn-group'>\
+                                <button class='btn btnEditarLaboralPersona btn-xs btn-default'>Editar</button>\
+                                <button class='btn btnActividad btn-xs btn-default'>Actividades realizadas</button>\
+                                <button class='btn btnEliminarLaboralPersona btn-xs btn-default'>Eliminar</button>\
+                            </div>\
+                        </div>\
+                    </td>\
+                </tr>\
+                ";
+                return tr;
+            }
         // table
             function getTrActividadTabla(actividad) {
                 var tr = "\
@@ -93,12 +97,16 @@
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
-                            <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
-                            <button class='btn btnCancelarUni' >Cancelar</button>\
+                            <div class='btn-group'>\
+                                <button class='btnActualizarActividadEmpresa btn btn-default btn-xs'>Actualizar</button>\
+                                <button class='btn btnCancelarUni btn-default btn-xs' >Cancelar</button>\
+                            </div>\
                         </div>\
                         <div class='normalMode'>\
-                            <button class='btnEditarActividad btn' >Editar</button>\
-                            <button class='btnEliminarActividad btn'>Eliminar</button>\
+                            <div class='btn-group'>\
+                                <button class='btnEditarActividad btn btn-xs btn-default' >Editar</button>\
+                                <button class='btnEliminarActividad btn btn-xs btn-default'>Eliminar</button>\
+                            </div>\
                         </div>\
                     </td>\
                 </tr>\
@@ -122,9 +130,9 @@
                                     <th>Acciones</th>\
                                 </tr>\
                                 <tr class='trAgregar'>\
-                                    <th><input name='txtActividad' class='form-control txtActividad' /></th>\
+                                    <th><input name='txtActividad' class='form-control txtActividad input-sm' /></th>\
                                     <th>\
-                                        <button class='btnAgregarActividad btn'>Agregar</button>\
+                                        <button class='btnAgregarActividad btn btn-xs btn-default'>Agregar</button>\
                                     </th>\
                                 </tr>\
                             <thead>\
@@ -138,7 +146,7 @@
                             </td>\
                             <td>\
                                 <div class='editMode hidden'>\
-                                    <input class='form-control txtActividad' name='txtActividad'>\
+                                    <input class='form-control txtActividad input-sm' name='txtActividad'>\
                                 </div>\
                                 <div class='normalMode tdActividad'>\
                                     " + actividad._actividad + "\
@@ -146,12 +154,16 @@
                             </td>\
                             <td class='tdEditActividades'>\
                                 <div class='editMode hidden'>\
-                                    <button class='btnActualizarActividadEmpresa btn'>Actualizar</button>\
-                                    <button class='btn btnCancelarUni' >Cancelar</button>\
+                                    <div class='btn-group'>\
+                                        <button class='btnActualizarActividadEmpresa btn btn-xs btn-default'>Actualizar</button>\
+                                        <button class='btn btnCancelarUni btn-xs btn-default' >Cancelar</button>\
+                                    </div>\
                                 </div>\
                                 <div class='normalMode'>\
-                                    <button class='btnEditarActividad btn' >Editar</button>\
-                                    <button class='btnEliminarActividad btn'>Eliminar</button>\
+                                    <div class='btn-group'>\
+                                        <button class='btnEditarActividad btn btn-xs btn-default' >Editar</button>\
+                                        <button class='btnEliminarActividad btn btn-xs btn-default'>Eliminar</button>\
+                                    </div>\
                                 </div>\
                             </td>\
                         </tr>\
@@ -177,9 +189,8 @@
     // otras
         function getTableActividades(tr) {
             var frm = { idLaboralPersona: tr.find(".txtHdIdLaboralPersona").val() }; 
-            console.log("traer ", frm);
             actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {
-                console.log("trajimonos D: ", data);
+                
                 var actividades = null;
                 if(data.actividadesEmpresa !== undefined && data.actividadesEmpresa != null){
                     actividades = data.actividadesEmpresa;

@@ -96,7 +96,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <input type="text" name="txtNombrePersona" class="txtNombrePersona form-control txtEdit soloLetras" />
+                            <input type="text" name="txtNombrePersona" class="input-sm form-control txtNombrePersona txtEdit soloLetras" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
@@ -105,7 +105,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <input type="text" name="txtApellidoPersona" class="txtApellidoPersona form-control txtEdit soloLetras" />
+                            <input type="text" name="txtApellidoPersona" class="input-sm form-control txtApellidoPersona txtEdit soloLetras" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
@@ -115,7 +115,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <input type="text" name="dtFechaNacimiento" class="dtFechaNacimiento form-control txtEdit" />
+                            <input type="text" name="dtFechaNacimiento" class="input-sm dtFechaNacimiento form-control txtEdit" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
@@ -124,7 +124,7 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <select class="form-control cbSexo" name="cbSexo">
+                            <select class="input-sm form-control cbSexo" name="cbSexo">
                                 <option value="1">Masculino</option>
                                 <option value="2">Femenino</option>
                             </select>
@@ -136,8 +136,10 @@
                     </td>
                     <td>
                         <div class="editMode hidden">
-                            <button class="btn btn-xs btnEditMode btnActualizar " @permisos.stringEditar>Actualizar</button>
-                            <button class="btn btn-xs btnEditMode btnCancelarEdit">Cancelar</button>
+                            <div class='btn-group'>
+                                <button class="btn btn-xs btn-default btnEditMode btnActualizar " @permisos.stringEditar>Actualizar</button>
+                                <button class="btn btn-xs btn-default btnEditMode btnCancelarEdit">Cancelar</button>
+                            </div>
                         </div>
                         <div class="normalMode">
                             <div class="btn-group">
