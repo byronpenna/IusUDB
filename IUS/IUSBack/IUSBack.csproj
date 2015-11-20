@@ -244,6 +244,7 @@
     <Content Include="Content\themes\iusback_theme\generals\thirdParty\fontAwesome\css\font-awesome.min.css" />
     <Content Include="Content\themes\iusback_theme\generals\thirdParty\fontAwesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
+    <Content Include="Content\themes\iusback_theme\img\general\fondo_gris.png" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\bookshelf.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\calendar.png" />
@@ -474,6 +475,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\sexos\mas-i.png" />
     <Content Include="Content\themes\iusback_theme\img\views\ConfiguracionWebsite\noimage.png" />
     <Content Include="Content\themes\iusback_theme\img\views\eventos\noevento.png" />
+    <Content Include="Content\themes\iusback_theme\img\views\Persona\pastel.png" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />

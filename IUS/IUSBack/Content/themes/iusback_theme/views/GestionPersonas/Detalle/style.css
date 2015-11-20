@@ -2,6 +2,16 @@
     margin-top:3%;
     text-align:center;
 }
+.divInfo{
+    margin-top:3%;
+}
+.t1{
+    background:url('../../../img/general/fondo_gris.png');
+}
+.t2{
+    border-top:0.5px solid black;
+    border-bottom: 0.5px solid black;
+}
 .tarjetaInfo{
     text-align:center;
 }
@@ -15,3 +25,13 @@
         width:47px;
         height:47px;
     }
+
+.tituloSecciones{
+    text-align:center;
+    padding-top:1%;
+    padding-bottom:1%;
+    background:#ECF0F1;
+    width:90%;
+    margin: 0 auto;
+    margin-top:3%;
+}
