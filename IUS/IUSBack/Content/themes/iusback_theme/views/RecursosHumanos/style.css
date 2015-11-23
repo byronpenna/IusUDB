@@ -20,6 +20,8 @@
     overflow-y:scroll;
 }
 .tablaPersona{
+    width:95%;
+    margin: 0 auto;
     margin-top:3%;
 }
 
@@ -71,4 +73,11 @@
 }
 .hResultado{
     margin-bottom:3%;
+}
+.tituloFormacion{
+    margin-top:5%;
+}
+.tablaFormacion{
+    width:95%;
+    margin:0 auto;
 }
