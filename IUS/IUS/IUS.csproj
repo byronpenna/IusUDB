@@ -322,6 +322,7 @@
     <Content Include="Content\images\views\Repositorio\music.png" />
     <Content Include="Content\images\views\Repositorio\powerpoint-ico.png" />
     <Content Include="Content\images\views\Repositorio\video.png" />
+    <Content Include="Content\images\views\Repositorio\warning.png" />
     <Content Include="Content\images\views\Repositorio\wordico.png" />
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />

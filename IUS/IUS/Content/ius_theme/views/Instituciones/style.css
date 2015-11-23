@@ -19,11 +19,33 @@
     text-align:center;
     margin-top: 5%;
     margin-bottom:5%;
-    font-family:'latop';
+    font-family:'junctionp';
+    border-bottom: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 3%;
+    width:95%;
 }
 .cuerpoInstituciones{
-    margin-bottom:4%;
+    margin-bottom:5%;
+    width:95%;
+    margin: 0 auto;
 }
 .continente:hover{
     cursor:pointer;
+}
+
+.mitadLinks{
+    text-align:center;
+}
+.hContinente {
+    margin-bottom:2%;
+}
+.tdNull{
+    padding-top:2% !important;
+    padding-bottom:2% !important;
+}
+
+.rowImportantes{
+    margin-top:3%;
 }
