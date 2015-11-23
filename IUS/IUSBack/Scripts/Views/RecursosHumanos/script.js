@@ -14,13 +14,25 @@
             $(document).on("click", ".btnBusquedaPerfil", function () {
                 var seccion = $(this).parents(".divTodoForm");
                 var frm = serializeSection(seccion);
-                console.log("Formulario a enviar es:", frm);
-                btnBusquedaPerfil(frm);
+                var val = validarBusquedaPerfil(frm);
+                console.log("val es", val);
+                if (val.estado) {
+                    btnBusquedaPerfil(frm);
+                } else {
+                    console.log("D: D: D: ");
+                    printMessage($(".divMensajesBusqueda"), val.mjs, false);
+                }
+                
             });
             $(document).on("click", ".btnVerFicha", function () {
                 var seccion = $(this).parents("tr");
+                var tabla = $(this).parents("table");
+                tabla.find(".info").removeClass("info");
+                seccion.addClass("info");
+                $(".divBotonDetalle").removeClass("hidden");
                 var frm = serializeSection(seccion);
-                console.log("formulario a enviar es:", frm);
+                
+                
                 btnVerFicha(frm);
             })
             

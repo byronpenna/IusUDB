@@ -599,3 +599,10 @@
         }
         combo.append("<option value='"+opcion.value+"' "+txtActive+">"+opcion.text+"</option>");
     }
+
+/* Nuevos */
+    function irA(div) {
+        $('html,body').animate({
+            scrollTop: div.offset().top
+        }, 2000);
+    }
