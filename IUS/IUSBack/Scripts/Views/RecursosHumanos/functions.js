@@ -66,11 +66,12 @@
                         trLaboral += getTrLaboral(laboral);
                     })
                 }
-                var strNombreCompleto, strSexo, strEdad;
+                var strNombreCompleto, strSexo, strEdad,href='';
                 if (data.persona !== undefined && data.persona != null) {
                     strNombreCompleto   = data.persona.nombreCompleto;
                     strSexo             = data.persona._sexo._sexo;
-                    strEdad             = data.persona.getEdad
+                    strEdad             = data.persona.getEdad;
+                    href = RAIZ + "GestionPersonas/Detalle/" + data.persona._idPersona;
                 } else {
                     strNombreCompleto = "Sin asignar";
                     strSexo = "Sin asignar";
@@ -107,6 +108,8 @@
 
                 targetLaboral.empty().append(trLaboral);
                 targetEducacion.empty().append(trEducativo);
+                console.log("data de las personas", data.persona);
+                $(".aDetalleCompleto").attr("href", href);
             }
         }, function () {
             $(".spanEncabezadoFicha").empty().append("..");
@@ -142,20 +145,17 @@
     function btnBusquedaPerfil(frm) {
         var target = $(".tbodyPersonas");
         actualizarCatalogo(RAIZ + "/RecursosHumanos/sp_rrhh_buscarPersonas", frm, function (data) {
-            
+            irA($(".divResultado"));
             if (data.estado) {
                 var tr = getTrPersonasNull();
                 if (data.personas !== undefined && data.personas != null && data.personas.length > 0) {
-                    
                     tr = "";
                     $.each(data.personas, function (i,persona) {
                         tr += getTrPersonas(persona);
                     })
-                } else {
-                    
+                } else {   
                 }
                 target.empty().append(tr);
-                irA($(".divResultado"));
             } else {
                 alert("Ocurrio un error");
             }

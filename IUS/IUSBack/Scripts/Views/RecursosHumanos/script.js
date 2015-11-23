@@ -31,8 +31,6 @@
                 seccion.addClass("info");
                 $(".divBotonDetalle").removeClass("hidden");
                 var frm = serializeSection(seccion);
-                
-                
                 btnVerFicha(frm);
             })
             

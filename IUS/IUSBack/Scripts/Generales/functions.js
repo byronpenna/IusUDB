@@ -601,8 +601,11 @@
     }
 
 /* Nuevos */
-    function irA(div) {
+    function irA(div, time) {
+        if (time === undefined) {
+            time = 2000;
+        }
         $('html,body').animate({
             scrollTop: div.offset().top
-        }, 2000);
+        },time);
     }
