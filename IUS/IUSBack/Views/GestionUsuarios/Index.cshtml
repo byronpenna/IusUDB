@@ -146,9 +146,12 @@
                                 <input type="button" class="btn-default btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
                                 
                             </div>
-                            <a class="btn btn-xs">
-                                Ver persona
-                            </a>
+                            @if (usu._persona._idPersona != -1)
+                            {
+                                <a class="btn btn-xs" href="@Url.Action("Detalle", "GestionPersonas", new { id=usu._persona._idPersona})">
+                                    Ver persona
+                                </a>    
+                            }
                         </div>
                     </td>
                 </tr>

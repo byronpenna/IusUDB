@@ -1,0 +1,111 @@
+﻿@section estilosPersonalizados{
+    <!-- plugins -->
+
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- plugins -->
+    
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionPersonas/Detalle/script.js"></script>
+        <script src="~/Scripts/Views/GestionPersonas/Detalle/functions.js"></script>
+}
+@section arbol{
+    <a class="col-lg-3 text-center cuadritoArbol" href="@Url.Action("Index")">
+        @*<a href="@Url.Action("Index")">*@
+        <div class="col-lg-8">
+            Personas
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+        @*</a>*@
+    </a>
+    <a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.currentUrl">
+        @*<a href="@ViewBag.currentUrl">*@
+        <div class="col-lg-8">
+            Info adicional
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+        @*</a>*@
+    </a>
+}
+<h2 class="text-center">Byron Aldair Peña Portillo</h2>
+<div class="row marginNull">
+    <div class="row marginNull imgPic">
+        <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
+    </div>
+    <div class="row marginNull divInfo">
+        <div class="col-lg-offset-3 col-lg-2 tarjetaInfo t1">
+            <h3>Sexo</h3>
+            <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/mas-i.png")" />
+            <h4>Masculino</h4>
+        </div>
+        <div class="col-lg-2 tarjetaInfo t2" >
+            <h3>Pais de origen</h3>
+            <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/Canada.png")" />
+            <h4>Canada</h4>
+        </div>
+        <div class="col-lg-2 tarjetaInfo t1">
+            <h3>Nacio</h3>
+            <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/views/Persona/pastel.png")" />
+            <h4>05/08/1994</h4>
+        </div>
+    </div>
+    <div class="row marginNull divInfoI">
+        <h2 class="tituloSecciones">Informacion de contacto</h2>
+        <div class="col-lg-6">
+            <h3 class="text-center">Correos</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Etiqueta</th>
+                        <th>Accion</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>byronpenna@gmail.com</td>
+                        <td>Personal</td>
+                        <td>
+                            <a href="#" title="Escribir">
+                                <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
+                            </a>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <h3 class="text-center">Numeros telefonicos</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Telefono</th>
+                        <th>Etiqueta</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7871-9006</td>
+                        <td>Personal</td>
+                        <td>
+                            <a href="#" title="Llamar">
+                                <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>

@@ -115,6 +115,29 @@ namespace IUSBack.Controllers
                     return RedirectToAction("index", "login");
                 }*/
             }
+            public ActionResult Detalle(int id=-1) // este -1 es temporal 
+            {
+                Usuario usuarioSesion = this.getUsuarioSesion();
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    ViewBag.titleModulo = "Detalle persona";
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSesion._idUsuario);
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View();
+            }
         #endregion
         #region "privadas"
             private Persona getPersonaFromForm(Dictionary<object,object> frm){ 
@@ -142,7 +165,7 @@ namespace IUSBack.Controllers
             }
             #endregion
             #region "acciones"
-            [HttpPost]
+                [HttpPost]
                 public ActionResult actualizarTodo()// no se puede estandarizar para sesion por una forma rara de traer frm
                 {
                     List<Dictionary<object, object>> frm;

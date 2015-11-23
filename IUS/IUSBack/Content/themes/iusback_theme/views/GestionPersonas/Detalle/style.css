@@ -1,0 +1,48 @@
+﻿.imgPic{
+    margin-top:3%;
+    text-align:center;
+}
+.divInfo{
+    margin-top:3%;
+}
+.t1{
+    background:url('../../../img/general/fondo_gris.png');
+}
+.t2{
+    border-top:0.5px solid black;
+    border-bottom: 0.5px solid black;
+}
+.tarjetaInfo{
+    text-align:center;
+}
+    .tarjetaInfo .img {
+        margin:0 auto;
+        margin-top:5%;
+        margin-bottom:5%;
+        display:block;
+    }
+    .tarjetaInfo .sex{
+        width:47px;
+        height:47px;
+    }
+.divInfoI{
+    width:90%;
+    margin: 0 auto;
+}
+.minIco{
+    width:30px;
+    height:30px;
+    opacity:0.8;
+}
+.minIco:hover{
+    opacity:1;
+}
+.tituloSecciones{
+    text-align:center;
+    padding-top:1%;
+    padding-bottom:1%;
+    background:#ECF0F1;
+    /*margin: 0 auto;*/
+    margin-top:3%;
+    color:#2C3E50;
+}

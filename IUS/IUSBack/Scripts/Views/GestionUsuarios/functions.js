@@ -153,7 +153,7 @@
                 comboAddOpcion(combo, opcion, selected);
             });
         }
-        
+        resetChosenWithSelectedVal(combo, selected);
     }
     function entrarEditMode(trUsuario) {
         trUsuario.find(".divResultado").empty();
@@ -205,6 +205,7 @@
     }
 // genericas
     function getTrUsuario(usu, permiso) {
+        console.log("usuario antes de tr", usu);
         var j = "<tr class='trUsuario'>\
                 <td class='hidden'>\
                     <input type='hidden' name='txtHdIdUser'  class='txtHdIdUser' value='"+ usu._idUsuario + "' />\
@@ -249,11 +250,15 @@
                             <button class='btn btn-xs btn-default btnDeshabilitar' " + permiso.stringEditar + " >\
                                 "+ usu.txtBtnHabilitar + "\
                             </button>\
-                            <input type='button' class='btn btn-xs btnVerRoles' "+permiso.stringEditar+" value='Ver Roles'>\
-                        </div>\
-                        <a class='btn btn-xs'>\
-                            Ver persona\
-                        </a>\
+                            <input type='button' class='btn btn-xs btn-default btnVerRoles' "+permiso.stringEditar+" value='Ver Roles'>\
+                        </div>";
+        if (usu._persona._idPersona != -1) {
+            j += "\
+                   <a href='" + RAIZ + "GestionPersonas/Detalle/" + usu._persona._idPersona + "" + "' class='btn btn-xs'>\
+                        Ver persona\
+                   </a>";
+        }
+            j += "\
                     </div>\
                 </td>\
             </tr>";

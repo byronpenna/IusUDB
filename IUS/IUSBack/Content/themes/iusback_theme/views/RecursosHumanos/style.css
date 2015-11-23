@@ -46,3 +46,29 @@
     margin-top:2%;
     margin-bottom:4%;
 }
+/* Titulo  */
+.divTituloSec{
+    width:95%;
+    margin:0 auto;
+}
+.tituloSecciones,.subtituloSecciones{
+    text-align:center;
+    padding-top:1%;
+    padding-bottom:1%;
+    /*margin: 0 auto;*/
+    margin-top:3%;
+    
+}
+.tituloSecciones{
+    background:#95a5a6;
+    color:white;
+}
+.subtituloSecciones{
+    background:#ecf0f1;
+    color:#2C3E50;
+    width:95%;
+    margin: 0 auto;
+}
+.hResultado{
+    margin-bottom:3%;
+}
