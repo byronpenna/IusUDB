@@ -194,6 +194,13 @@
                 return tr;
             }
     // otras
+        function limpiarVal(tr,target) {
+            if (target === undefined) {
+                target = ".divResultado";
+            }
+            tr.find(target).addClass("hidden");
+            tr.find(target).removeClass("visibilitiHidden");
+        }
         function getTableActividades(tr) {
             var frm = { idLaboralPersona: tr.find(".txtHdIdLaboralPersona").val() }; 
             actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {

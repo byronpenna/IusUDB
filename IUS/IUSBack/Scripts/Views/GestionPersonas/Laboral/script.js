@@ -29,8 +29,11 @@
                         $(this).empty().append("Ocultar actividades");
                     } else {
                         // oculta los roles
-                        tr.parents("table").find(".trTable").remove();
-                        $(this).empty().append("Ver Actividades");
+                        if (tr.next().hasClass("trTable")) {
+                            tr.next().remove();
+                        }
+                        //tr.parents("table").find(".trTable").remove();
+                        $(this).empty().append("Actividades realizadas");
                     }
                 })
             // operaciones basicas
@@ -165,6 +168,7 @@
                 })
                 $(document).on("click", ".btnCancelarUni", function (e) {
                     var tr = $(this).parents("tr");
+                    limpiarVal(tr);
                     controlesEdit(false, tr);
                 })
                 $(document).on("click", ".btnActualizarLaboralPersona", function (e) {
@@ -179,7 +183,6 @@
                         btnActualizarLaboralPersona(frm, tr);
                     } else {
                         console.log(val);
-                        //############
                         var errores;
                         tr.find(".divResultado").addClass("visibilitiHidden");
                         tr.find(".divResultado").removeClass("hidden");
