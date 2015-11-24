@@ -1,4 +1,5 @@
-﻿.titlePersona{
+﻿/**/
+.titlePersona{
     text-align:center;
 }
     .titlePersona:hover {
@@ -31,6 +32,8 @@
     text-align:center;
     font-family:'latop';
     font-size:1.5em;
+    background:#3498db;
+    color:white;
 }
 .tdBotones{
     text-align:center;

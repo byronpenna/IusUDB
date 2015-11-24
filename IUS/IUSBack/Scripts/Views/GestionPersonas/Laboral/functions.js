@@ -61,7 +61,7 @@
                             "+laboralPersona._cargo._cargo+"\
                         </div>\
                     </td>\
-                    <td>\
+                    <td class='tdEditActividades'>\
                         <div class='editMode hidden'>\
                             <div class='btn-group'>\
                                 <button class='btn btnActualizarLaboralPersona btn-default btn-xs'>Actualizar</button>\
@@ -95,7 +95,7 @@
                             " + actividad._actividad + "\
                         </div>\
                     </td>\
-                    <td>\
+                    <td class='tdEditActividades'>\
                         <div class='editMode hidden'>\
                             <div class='btn-group'>\
                                 <button class='btnActualizarActividadEmpresa btn btn-default btn-xs'>Actualizar</button>\
@@ -130,7 +130,14 @@
                                     <th>Acciones</th>\
                                 </tr>\
                                 <tr class='trAgregar'>\
-                                    <th><input name='txtActividad' class='form-control txtActividad input-sm' /></th>\
+                                    <th>\
+                                        <div class='row marginNull divControl'>\
+                                            <input name='txtActividad' class='form-control txtActividad input-sm' />\
+                                            <div class='row marginNull divResultado hidden'>\
+                                                _\
+                                            </div>\
+                                        </div>\
+                                    </th>\
                                     <th>\
                                         <button class='btnAgregarActividad btn btn-xs btn-default'>Agregar</button>\
                                     </th>\
@@ -217,6 +224,17 @@
                 tr.parents("table").find(".trTable").remove();
             }
         }
+        function validarInsertActividad(frm) {
+            var val = new Object();
+            val.campos = {
+                txtActividad: new Array(),
+            }
+            if (frm.txtActividad == "") {
+                val.campos.txtActividad.push("-Debe llenar el campo <br>");
+            }
+            val.estado = objArrIsEmpty(val.campos);
+            return val;
+        }
         function validarInsertLaboral(frm) {
             var val = new Object();
             val.campos = {
@@ -289,7 +307,7 @@
                     if (data.actividadIngresada !== undefined && data.actividadIngresada != null) {
                         var htmlTr = getTrActividadTabla(data.actividadIngresada);
                         //console.log("D: ingresaras tr",htmlTr);
-                        if ($(".trNoActividad").length != -1) {
+                        if ($(".trNoActividad").length == 1) {
                             tr.parents("table").find(".tbodyActividades").empty();   
                         }
                         tr.parents("table").find(".tbodyActividades").prepend(htmlTr);

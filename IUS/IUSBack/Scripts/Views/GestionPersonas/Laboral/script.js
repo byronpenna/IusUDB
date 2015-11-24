@@ -56,13 +56,35 @@
                         console.log("Eliminar", frm);
                         btnEliminarActividad(frm, tr);
                     })
+                    //##############################################
                     $(document).on("click", ".btnAgregarActividad", function () {
                         var tr                      = $(this).parents(".trAgregar");
                         var frm                     = serializeSection(tr);
                         frm.txtHdIdLaboralPersona   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
                         //frm.idLaboral             = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
-                        console.log("formulario a enviar es", frm);
-                        btnAgregarActividad(frm,tr);
+                        //console.log("formulario a enviar es", frm);
+                        var val = validarInsertActividad(frm);
+                        if (val.estado) {
+                            btnAgregarActividad(frm, tr);
+                        } else {
+                            console.log("Val es",val);
+                            //############
+                            var errores;
+                            tr.find(".divResultado").addClass("visibilitiHidden");
+                            tr.find(".divResultado").removeClass("hidden");
+                            $.each(val.campos, function (i, val) {
+                                errores = "";
+                                var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                                if (val.length > 0) {
+                                    divResultado.removeClass("visibilitiHidden");
+                                    $.each(val, function (i, val) {
+                                        errores += getSpanMessageError(val);
+                                    })
+                                    divResultado.empty().append(errores);
+                                }
+                            })
+                        }
+                        
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
