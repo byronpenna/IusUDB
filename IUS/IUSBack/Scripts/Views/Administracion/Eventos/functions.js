@@ -760,6 +760,7 @@ function eventosIniciales() {
                     agregarEvento($("#calendar"), data.evento, true, 1);
                     div = getEventosAcordion(data.evento);
                     $("#accordion").prepend(div);
+                    irA($("#calendar"));
                     //clearTr(frmSection); se comenta porq mata las horas
                     limpiarFormulario();
                     resetRbTiempo();
