@@ -219,13 +219,13 @@
                 </td>
                 <td>
                     <div class="row marginNull divControl">
-                        <select name="input-sm cbPaisInstitucionEducativa" class=" cbChosenPais form-control cbPaisInstitucionEducativa">
+                        <select name="cbPaisInstitucionEducativa" class="input-sm cbChosenPais form-control cbPaisInstitucionEducativa">
                             <option value="-1">Seleccione un país</option>
                             @if (paises != null && paises.Count > 0)
                             {
                                 foreach (Pais pais in paises)
                                 {
-                            <option value="@pais._idPais">@pais._pais</option>
+                                    <option value="@pais._idPais">@pais._pais</option>
                                 }
                             }
                         </select>

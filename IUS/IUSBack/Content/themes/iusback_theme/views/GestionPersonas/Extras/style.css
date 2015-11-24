@@ -70,7 +70,7 @@
     position: relative;
     overflow: hidden;
     margin: 10px;
-    background:#DDDDDD;
+    /*background:#DDDDDD;*/
 }
 .fileUpload input.upload {
     position: absolute;
@@ -87,4 +87,8 @@
 /***************/
 .tablaNumerosTelefonicos thead tr th,.tablaCorreos thead tr th{
     vertical-align:top;
+}
+
+.rowControles{
+    width:95%;
 }

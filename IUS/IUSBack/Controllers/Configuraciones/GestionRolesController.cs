@@ -30,9 +30,6 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
-                
-                /*if (usuarioSession != null)
-                {*/
                 try
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
@@ -43,28 +40,17 @@ namespace IUSBack.Controllers
                     }
                     ViewBag.titleModulo = "Gestión de permisos";
                     ViewBag.usuario = usuarioSession;
-
-                    //ViewBag.selectedMenu = 2; // menu seleccionado 
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     // traer data
-                    //Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
                     List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina);
                     List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina, 0);
                     // fill viewbag
-                    /*if (permisos != null && permisos._ver)
-                    {*/
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         ViewBag.roles = roles;
                         ViewBag.rolesTabla = rolesTabla;
                         ViewBag.usuarios = usuarios;
-                        //ViewBag.permisos = permisos;
-                        return View();
-                    /*}
-                    else
-                    {
-                        return RedirectToAction("NotAllowed", "Errors");
-                    }*/
+                    return View();
                 }
                 catch (ErroresIUS x)
                 {
@@ -76,11 +62,6 @@ namespace IUSBack.Controllers
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                //}
-                /*else
-                {
-                    return RedirectToAction("index", "login");
-                }*/
             }
         #endregion   
         #region "ajax functions"
