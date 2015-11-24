@@ -110,19 +110,17 @@ namespace IUSLibs.TRL.Control
                     sp.agregarParametro("idPagina", idPagina);
                     try
                     {
-                        DataSet ds = sp.EjecutarProcedimiento();
-                        if (!this.DataSetDontHaveTable(ds))
+                        
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
                         {
-                            if (ds.Tables[0].Rows.Count > 0)
+                            if (tb[0].Rows.Count > 0)
                             {
-                                if ((int)ds.Tables[0].Rows[0]["estadoInsert"] == 1)
-                                {
-                                    DataRow rowActualizada = ds.Tables[1].Rows[0];
-                                    idioma  = new Idioma((int)rowActualizada["idIdioma"],rowActualizada["idioma"].ToString());
-                                    pagina = new Pagina((int)rowActualizada["idPagina"],rowActualizada["pagina"].ToString(), (bool)rowActualizada["estado"]);
-                                    llave   = new Llave((int)rowActualizada["idLlave"],rowActualizada["llave"].ToString(),pagina);
-                                    llaveIdiomaActualizada = new LlaveIdioma((int)rowActualizada["idLlaveIdioma"],idioma,llave,rowActualizada["traduccion"].ToString());
-                                }
+                                DataRow row = tb[1].Rows[0];
+                                idioma = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
+                                pagina = new Pagina((int)row["idPagina"], row["pagina"].ToString(), (bool)row["estado"]);
+                                llave = new Llave((int)row["idLlave"], row["llave"].ToString(), pagina);
+                                llaveIdiomaActualizada = new LlaveIdioma((int)row["idLlaveIdioma"], idioma, llave, row["traduccion"].ToString());
                             }
                         }
                     }
@@ -139,7 +137,6 @@ namespace IUSLibs.TRL.Control
                 public bool sp_trl_actualizarLlaveIdioma(int idLlaveIdioma,int idLlave,int idIdioma,string traduccion,int idUsuarioEjecutor, int idPagina)
                 {
                     bool toReturn = false;
-                    ErroresIUS errorIUS;
                     SPIUS sp = new SPIUS("sp_trl_actualizarLlaveIdioma");
                     sp.agregarParametro("idLlaveIdioma",idLlaveIdioma);
                     sp.agregarParametro("idLlave", idLlave);
@@ -149,25 +146,12 @@ namespace IUSLibs.TRL.Control
                     sp.agregarParametro("idPagina", idPagina);
                     try
                     {
-                        DataSet ds = sp.EjecutarProcedimiento();
-                        if (!this.DataSetDontHaveTable(ds))
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
                         {
-                            if (ds.Tables[0].Rows.Count > 0)
-                            {
-                            
-                                DataRow row = ds.Tables[0].Rows[0];
-                                if ((int)row["estadoUpdate"] == 1)
-                                {
-                                    toReturn = true;
-                                }
-                                else
-                                {
-                                    row = ds.Tables[1].Rows[0];
-                                    errorIUS = new ErroresIUS("", ErroresIUS.tipoError.sql,(int)row["errorNumber"]);
-                                    throw errorIUS;
-                                }
-                            }
+                            toReturn = true;
                         }
+
                     }
                     catch (ErroresIUS x)
                     {

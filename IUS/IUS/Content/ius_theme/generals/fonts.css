@@ -15,6 +15,10 @@
     font-family:'junctionpBold';
     src:url("../../fonts/junction/junction-bold.ttf");
 }   
+@font-face{
+    font-family:'junctionp';
+    src:url("../../fonts/junction/junction-regular.ttf");
+}   
 /*
 @font-face{
     font-family:'trackp';

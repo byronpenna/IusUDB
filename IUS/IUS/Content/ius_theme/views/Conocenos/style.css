@@ -59,6 +59,7 @@
 }
 .divSalesianos,.divIus {
     border-radius:5px;
+
 }
 .divIus{
     /*background:red;*/
@@ -69,11 +70,13 @@
     padding-right:3%;*/
 }
 .divSalesianos{
-    background:#ECF0F1;
+    /*background:#ECF0F1;*/
+    background:url("../../../images/generales/fondo_gris.png");
     padding-bottom:2%;
+    
 }
     .divSalesianos h2 {
-        font-family:'latop';
+        font-family:'latop' !important;
         margin-bottom:3%;
     }
 .imgCambioContenedor{
@@ -110,12 +113,15 @@
 .tituloInfoL{
     text-align:center;
     margin-bottom:2%;
+    background:#ECF0F1;
+    padding-top:1%;
+    padding-bottom:1%;
 }
 .divContenedorInfoL{
     width:80%;
     margin:0 auto;
     text-align:justify;
-    margin-top:5%;
+    /*margin-top:5%;*/
 }
 .divImageLoadingL{
     text-align:center;
@@ -123,4 +129,17 @@
 .imageLoadingL{
     width:3%;
     margin-top:5%;
+}
+
+
+.divContenedorInfo h6{
+    background:#ECF0F0;
+    font-family:'latop';
+    padding-top:2%;
+    padding-bottom:2%;
+}
+
+.tituloPrincipal {
+    font-family:'junctionpBold';
+    /*font-weight:bold;*/
 }

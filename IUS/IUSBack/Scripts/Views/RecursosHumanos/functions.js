@@ -53,7 +53,7 @@
         // targets
         var targetLaboral = $(".tbodyEmpresa"); var targetEducacion = $(".tbodyEducacion");
         actualizarCatalogo(RAIZ + "/RecursosHumanos/sp_rrhh_detallePesona", frm, function (data) {
-            console.log("respuesta de servidor", data);
+
             var trEducativo = ""; var trLaboral = "";
             if (data.estado) {
                 if (data.formaciones !== undefined && data.formaciones != null && data.formaciones.length > 0) {
@@ -66,11 +66,12 @@
                         trLaboral += getTrLaboral(laboral);
                     })
                 }
-                var strNombreCompleto, strSexo, strEdad;
+                var strNombreCompleto, strSexo, strEdad,href='';
                 if (data.persona !== undefined && data.persona != null) {
                     strNombreCompleto   = data.persona.nombreCompleto;
                     strSexo             = data.persona._sexo._sexo;
-                    strEdad             = data.persona.getEdad
+                    strEdad             = data.persona.getEdad;
+                    href = RAIZ + "GestionPersonas/Detalle/" + data.persona._idPersona;
                 } else {
                     strNombreCompleto = "Sin asignar";
                     strSexo = "Sin asignar";
@@ -82,7 +83,7 @@
 
                 var strPais = "Sin asignar",strEstadoCivil="Sin asignar"; // variables a poner
                 if (data.infoPersona !== undefined && data.infoPersona != null) {
-                    console.log("entro aqui D: ");
+                    
                     var strFoto = "";
                     if (data.infoPersona._tieneFoto && data.infoPersona._fotoRuta !== undefined && data.infoPersona._fotoRuta != null && data.infoPersona._fotoRuta != "") {
                         strFoto = data.infoPersona._fotoRuta;
@@ -107,6 +108,8 @@
 
                 targetLaboral.empty().append(trLaboral);
                 targetEducacion.empty().append(trEducativo);
+                console.log("data de las personas", data.persona);
+                $(".aDetalleCompleto").attr("href", href);
             }
         }, function () {
             $(".spanEncabezadoFicha").empty().append("..");
@@ -128,20 +131,29 @@
             targetLaboral.empty().append(trLoadLaboral);
         })
     }
+    function validarBusquedaPerfil(frm) {
+        var val = { estado: true, mjs: "" };
+        console.log("formulario antes de validar", frm);
+        if (frm.cbCargo === undefined && frm.cbRubros === undefined && frm.cbAreas === undefined && 
+            frm.cbNiveles === undefined && frm.cbPais === undefined && frm.cbEstadoCivil === undefined
+            && frm.txtCarrera == "" && frm.cbActividad == -1) {
+            val.estado = false;
+            val.mjs = "Debe rellenar por lo menos un campo para buscar";
+        }
+        return val;
+    }
     function btnBusquedaPerfil(frm) {
         var target = $(".tbodyPersonas");
         actualizarCatalogo(RAIZ + "/RecursosHumanos/sp_rrhh_buscarPersonas", frm, function (data) {
-            console.log("La data devuelta es", data);
+            irA($(".divResultado"));
             if (data.estado) {
                 var tr = getTrPersonasNull();
                 if (data.personas !== undefined && data.personas != null && data.personas.length > 0) {
-                    console.log("entro aqui");
                     tr = "";
                     $.each(data.personas, function (i,persona) {
                         tr += getTrPersonas(persona);
                     })
-                } else {
-                    console.log("D: no entro");
+                } else {   
                 }
                 target.empty().append(tr);
             } else {

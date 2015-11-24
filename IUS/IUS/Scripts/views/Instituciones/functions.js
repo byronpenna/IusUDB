@@ -5,7 +5,9 @@
             $.each(institucion._enlaces, function (i, enlace) {
                 enlaces += "\
                 <div class='row marginNull'>\
-                    " + enlace._enlace + "\
+                    <a href='"+enlace._enlaces+"'>\
+                        " + enlace._nombreEnlace + "\
+                    </a>\
                 </div>";
             })
         }
@@ -13,7 +15,9 @@
             $.each(institucion._telefonos, function (i, telelefono) {
                 tel += "\
                 <div class='row marginNull'>\
-                    " + telelefono._telefono + "\
+                    <a href='tel:" + telelefono._telefono + "'>\
+                        " + telelefono._textoTelefono + "\
+                    </a>\
                 </div>";
             })
         }
@@ -23,12 +27,12 @@
             <td>"+institucion._pais._pais+" </td>\
             <td>" + institucion._nombre + "</td>\
             <td>\
-                <div class='col-lg-6'>\
-                    <h4>Telefonos: </h4>\
-                    " + enlaces + "\
+                <div class='col-lg-6 mitadLinks'>\
+                    <h4>Telefonos </h4>\
+                    " + tel + "\
                 </div>\
-                <div class='col-lg-6'>\
-                    <h4>Medios electronicos: </h4>\
+                <div class='col-lg-6 mitadLinks'>\
+                    <h4>Medios electronicos </h4>\
                     "+enlaces+"\
                 </div>\
             </td>\
@@ -38,8 +42,8 @@
     }
     function getTrInstitucionNull() {
         var tr = "\
-            <tr>\
-                <td colspan='3' class='text-center'>No hay instituciones para mostrar</td>\
+            <tr >\
+                <td colspan='3' class='text-center tdNull'>No hay instituciones para mostrar</td>\
             </tr>\
         ";
         return tr;

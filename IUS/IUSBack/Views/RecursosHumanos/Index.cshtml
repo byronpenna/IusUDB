@@ -190,13 +190,18 @@
                 <button class="btn btn-default btn-primary btnBusquedaPerfil">Realizar busqueda de perfil</button>
             </div>
         </div>
+        <div class="divTituloSec">
+            <div class="row marginNull divMensajesBusqueda">
+
+            </div>
+        </div>
+        
     </div>
     <div class="divTituloSec">
         <h2 class="tituloSecciones hResultado">Resultados</h2>
     </div>
-    <div class="row marginNull">
+    <div class="row marginNull divResultado">
         <div class="divTituloSec">
-
             <div class="col-lg-4">
                 <div class="row marginNull divContenedorPersonas">
                     <table class="table tablaPersona">
@@ -245,6 +250,11 @@
                         </p>-->
                             </div>
                         </div>
+                        <div class="row marginNull divBotonDetalle hidden">
+                            <a href="#" class="btn btn-default aDetalleCompleto">
+                                Ver detalle completo
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -252,44 +262,48 @@
             </div>
         </div>
     </div>
+    <div class="divTituloSec">
+        <h2 class="subtituloSecciones hResultado tituloFormacion">Formación</h2>
+    </div>
     <div class="divCuerpoFormacion">
-        <div class="col-lg-6">
-            <h3 class="text-center tituloCuerpoInformacion ">Laboral</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Empresa</th>
-                        <th>Cargo</th>
-                        <th>Actividades</th>
-                        <!--<th>Observaciones</th>-->
-                    </tr>
-                </thead>
-                <tbody class="tbodyEmpresa">
-
-                </tbody>
-            </table>
+        <div class="divTituloSec">
+            <div class="col-lg-6">
+                <h3 class="text-center tituloCuerpoInformacion ">Laboral</h3>
+                <table class="table tablaFormacion">
+                    <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Cargo</th>
+                            <th>Actividades</th>
+                            <!--<th>Observaciones</th>-->
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyEmpresa"></tbody>
+                </table>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="text-center tituloCuerpoInformacion">Educativo</h3>
+                <table class="table tablaFormacion">
+                    <thead>
+                        <tr>
+                            <th>Carrera</th>
+                            <th>Institucion</th>
+                            <th>Nivel</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyEducacion">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <h3 class="text-center tituloCuerpoInformacion">Educativo</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Carrera</th>
-                        <th>Institucion</th>
-                        <th>Nivel</th>
-                        <th>Observaciones</th>
-                    </tr>
-                </thead>
-                <tbody class="tbodyEducacion">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        
     </div>
 </div>
 
