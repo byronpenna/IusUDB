@@ -202,7 +202,16 @@
                                         <div class="editMode hidden">
                                             <label>Inicio: </label>
                                             <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
-                                            <input type="time" class="txtHoraInicio form-control" name="txtHoraInicio" />
+                                            <div class="row marginNull divHora timeEdit">
+                                                <input type="text" class="txtHoraInicio txtHora form-control" name="txtHoraInicio" readonly />
+                                                <div class="horas"></div>
+                                                <div class="minutos"></div>
+
+                                                <div class="divTiempo">
+                                                    a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                                                    p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -213,7 +222,17 @@
                                         <div class="editMode hidden">
                                             <label>Fin: </label>
                                             <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
-                                            <input type="time" class="txtHoraFin form-control " name="txtHoraFin" />
+                                            @*<input type="time" class="txtHoraFin txtHora form-control " name="txtHoraFin" />*@
+                                            <div class="row marginNull divHora timeEdit">
+                                                <input type="text" class="txtHoraFin txtHora form-control" name="txtHoraFin" readonly />
+                                                <div class="horas"></div>
+                                                <div class="minutos"></div>
+
+                                                <div class="divTiempo">
+                                                    a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                                                    p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -222,23 +241,29 @@
         {
             <div class="row text-center sectionBotonesEvento">
                 <div class="normalMode">
-                    @if (evento._propietario == 1 || evento._propietario == 2)
-                    {
-                        <button class="btn btnEditar">Editar</button>
-                        <button class="btn btnPublicar">@evento.txtBtnPublicar</button>
-                    }
-                    @if (evento._propietario == 1)
-                    {
-                        <button class="btn btnCompartir">Compartir</button>
-                    }
+                    <div class='btn-group'>
+                        @if (evento._propietario == 1 || evento._propietario == 2)
+                        {
+                            <button class="btn btn-default btnEditar">Editar</button>
+                            <button class="btn btn-default btnPublicar">@evento.txtBtnPublicar</button>
+                        }
+                        @if (evento._propietario == 1)
+                        {
+                            <button class="btn btn-default btnCompartir">Compartir</button>
+                        }
+                    </div>
                 </div>
                 <div class="editMode hidden">
-                    <button class="btn btnActualizar">Actualizar</button>
-                    <button class="btn btnCancelar">Cancelar</button>
+                    <div class='btn-group'>
+                        <button class="btn btn-default btnActualizar">Actualizar</button>
+                        <button class="btn btn-default btnCancelar">Cancelar</button>
+                    </div>
                 </div>
                 <div class="quitarPublicacionMode hidden">
-                    <button class="btn btnAccionQuitarPublicacion">Quitar publicacion</button>
-                    <button class="btn btnCancelaQuitarPublicacion">Cancelar</button>
+                    <div class='btn-group'>
+                        <button class="btn btn-default btnAccionQuitarPublicacion">Quitar publicacion</button>
+                        <button class="btn btn-default btnCancelaQuitarPublicacion">Cancelar</button>
+                    </div>
                 </div>
             </div>
         }

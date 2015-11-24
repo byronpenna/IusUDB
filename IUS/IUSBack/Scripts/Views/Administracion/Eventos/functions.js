@@ -296,29 +296,21 @@ function eventosIniciales() {
             horaConvert(txt);
         }
         function refreshTime(inputSlide) {
-            //slideHora = inputSlide.parent().find(".horas");
+            
             div = $(inputSlide.target).parents(".divHora");
-            inputTxt = $(inputSlide.target).parents(".divHora").find(".txtHora");
-            /*horas = div.find(".horas");
-            minutos = div.find(".minutos");
-            segundos = div.find(".seg");
-            tiempo = div.find(".tiempo");
+            //if (!div.hasClass("timeEdit")) {
+                inputTxt = $(inputSlide.target).parents(".divHora").find(".txtHora");
 
-            txt = "@h:@m:@s @t";
-            txt = txt.replace("@h",valMinh(horas.slider("value")));
-            txt = txt.replace("@m",valMinh(minutos.slider("value")));
-            txt = txt.replace("@s","00");
-            if (tiempo.slider("value") == 0) {
-                tiempo = "a.m.";
-            } else {
-                tiempo = "p.m.";
-            }
-            txt = txt.replace("@t", tiempo);*/
-            valTiempo = div.find("input[class='rbTiempo']:checked").val();
-            txt = getTiempo(div, inputTxt, valTiempo);
-            //$(".txtHoraInicio").val(txt);
-            inputTxt.val(txt);
-            horaConvert(txt);
+                valTiempo = div.find("input[class='rbTiempo']:checked").val();
+                txt = getTiempo(div, inputTxt, valTiempo);
+
+                inputTxt.val(txt);
+                console.log("vas a poner ", txt);
+                horaConvert(txt);
+            //} else {
+              /*  console.log("yeaah");
+            }*/
+            
         }
         // usuarios
         function getCbUsuarios(usuarios) {
@@ -402,8 +394,8 @@ function eventosIniciales() {
             div.find(".txtAreaDescripcion").text(evento._descripcion);
             div.find(".txtFechaInicio").val(evento._fechaInicio);
             div.find(".txtFechaFin").val(evento._fechaFin);
-            //div.find(".txtHoraFin").val(evento._horaFin);
-            //div.find(".txtHoraInicio").val(evento.)
+            div.find(".txtHoraFin").val(evento._horaFin);
+            div.find(".txtHoraInicio").val(evento._horaInicio);
         }
         function llenarInputsVista(evento,div){
             h3 = div.prev();
