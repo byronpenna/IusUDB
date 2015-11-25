@@ -48,6 +48,7 @@ namespace IUS.Controllers
                     ViewBag.menu24  = this.activeClass;
                     ViewBag.filtro  = id2;
                     ViewBag.vista = id3;
+                    ViewBag.tiposArchivos = this._model.sp_repo_front_getTiposArchivos(lang, ip, this.idPagina);
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -96,6 +97,7 @@ namespace IUS.Controllers
                     ViewBag.menu24                      = this.activeClass;
                     ViewBag.filtro                      = -1;
                     ViewBag.vista                       = id3;
+                    ViewBag.tiposArchivos               = this._model.sp_repo_front_getTiposArchivos(lang, ip, this.idPagina);
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)

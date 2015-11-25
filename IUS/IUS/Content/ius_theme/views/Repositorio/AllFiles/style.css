@@ -43,6 +43,7 @@
 .tituloPrincipal{
     text-align:center;
     margin-top:5%;
+    
 }
 .divBusqueda{
     margin-top:3%;
@@ -58,7 +59,9 @@
     color:#3498db !important;
     
 } 
-
+.ico{
+    margin-bottom:2%;
+}
 /*Nuevoo*/
 .folders{
     margin-bottom:5%;
@@ -79,3 +82,9 @@
 .folderTitle{
     color:black;
 }
+/*
+.todo{
+    margin-left: auto;
+    margin-right:auto;
+    width:95%;
+}*/

@@ -154,7 +154,7 @@
                         </a>";
                 if (idCategoria !== undefined) {
                     div += "\
-                            <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "/1' class='ico' title='Abrir ubicacion de archivo'>\
+                            <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "/1' class='ico btn btn-default' title='Abrir ubicacion de archivo'>\
                                 <i class='fa fa-folder-open'></i>\
                             </a>";
                 }
@@ -190,12 +190,12 @@
             var div = "<div class='col-xs-6 col-sm-4 col-md-3 col-lg-2 folder'>\
                             <div class='row marginNull divTarjetaFile'>\
                         ";
-            if (idCategoria !== undefined) {
+            /*if (idCategoria !== undefined) {
                 div += "\
                     <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "' class='ico' title='Abrir ubicacion de archivo'>\
                         <i class='fa fa-folder-open'></i>\
                     </a>";
-            }
+            }*/
             div += "\
                       </div>\
                         <div class='cuadritoIcono '>\
@@ -205,7 +205,15 @@
                             <h3 class='folderTitle'>"+archivo._nombre+"</h3>\
                             <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='ico btn btn-block btn-default' title='Descargar'>\
                                 Descargar\
-                            </a>\
+                            </a>";
+            if (idCategoria !== undefined) {
+                div += "\
+                    <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "' class='ico btn btn-block btn-default' title='Abrir ubicacion de archivo'>\
+                        Abrir en carpeta\
+                    </a>";
+            }
+            //<i class='fa fa-folder-open'></i>
+            div += "\
                         </div>\
                     </div>\
                   </div> ";

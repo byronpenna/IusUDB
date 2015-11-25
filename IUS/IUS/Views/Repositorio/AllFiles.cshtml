@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.REPO.Entidades.Publico
+@using IUSLibs.REPO.Entidades
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/AllFiles/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/AllFiles/media.css" />
@@ -8,10 +9,10 @@
     <script src="~/Scripts/views/Repositorio/AllFiles/functions.js"></script>
 }
 @{
-    List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
-    List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
-    CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
-    
+    List<CarpetaPublica>    carpetas        = (List<CarpetaPublica>)ViewBag.carpetas;
+    List<ArchivoPublico>    archivos        = (List<ArchivoPublico>)ViewBag.archivos;
+    CarpetaPublica          carpetaPadre    = (CarpetaPublica)ViewBag.carpetaPadre;
+    List<TipoArchivo>       tiposArchivos   = (List<TipoArchivo>)ViewBag.tiposArchivos;
     string ruta = "/"; string nombre = ""; int idCarpetaPadre = -1;
     int idFiltro = (int)ViewBag.filtro; int idVista = (int)ViewBag.vista;
     string oculto = "hidden", vistaActiva = "activeVista";
@@ -25,6 +26,7 @@
         idCarpetaPadre = carpetaPadre._idCarpetaPublica;
     }
     int tipo;
+    
     try
     {
         tipo = (int)ViewBag.tipo;
@@ -33,6 +35,12 @@
     {
         tipo = -1;
     }
+    // selected 
+        string selected = "";
+        if (tipo == -1)
+        {
+            selected = "selected";
+        }
     switch (idVista)
     {
         case -1:// cuadricula 
@@ -53,8 +61,8 @@
 <input type="hidden" class="txtHdTipoCategoria" value="@tipo"/>
 <input type="hidden" class="txtHdIdCarpetaActual" value="@idCarpetaPadre" />
 <input type="hidden" class="txtHdAccion" value="@ViewBag.accion"/>
-<h2 class="tituloPrincipal">@nombre</h2>
-<div class="row marginNull divBusqueda">
+<h2 class="tituloPrincipal todo">@nombre</h2>
+<div class="row marginNull divBusqueda todo">
     <div class="col-lg-3 divBusquedaRuta">
         <input name="txtIdFiltro" class="txtIdFiltro" type="hidden" value="@idFiltro" />
         <label>@ViewData["cabecera-ruta"]</label>
@@ -63,8 +71,8 @@
             <span class="input-group-addon spIrBuscar pointer">@ViewData["texto-boton-ruta"]</span>
         </div>
     </div>
-    <div class="col-lg-5">
-        <div class="col-lg-4">
+    <div class="col-lg-6">
+        <div class="col-lg-2">
             <label class="visiHidden">_</label>
             <div class="row marginNull text-center">
                 <a href="#" class="btnNavHistory" id="0" title="Atras">
@@ -85,6 +93,27 @@
             </div>
         </div>
         <div class="col-lg-4">
+            <label>Filtros</label>
+            <select class="cbFiltro form-control">
+                @if (tiposArchivos != null)
+                {
+                    <option value="-1" @selected>@ViewData["todo"]</option>
+                    foreach (TipoArchivo tipoArchivo in tiposArchivos)
+                    {
+                        if (tipoArchivo._idTipoArchivo == tipo)
+                        {
+                            selected = "selected";
+                        }
+                        else
+                        {
+                            selected = "";
+                        }
+                        <option value="@tipoArchivo._idTipoArchivo" @selected>@tipoArchivo._tipoArchivo</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-2">
             <label class="visiHidden">_</label>
             <div class="row marginNull text-center">
                 <a href="#" class="btnNavHistory" id="1" title="Adelante">
@@ -93,31 +122,30 @@
             </div>
         </div>
     </div>
-    
-    <div class="col-lg-4">
+    <div class="col-lg-3">
         <div class="row marginNull">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <label>@ViewData["cabecera-busqueda"]</label>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 @ViewData["selector-busqueda-1"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
                 @ViewData["selector-busqueda-2"] <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
             </div>
-            
+
         </div>
         <div class="input-group ">
             <input class="form-control txtBusqueda " placeholder="@ViewData["texto-ayuda-busqueda"]" />
             <span class="input-group-addon btnBuscarCarpeta visiHidden pointer">@ViewData["texto-boton-busqueda"]</span>
         </div>
     </div>
-    
+
 </div>
-<div class="row marginNull">
+<div class="row marginNull todo">
     <div class="divMensajesGenerales">
 
     </div>
 </div>
-<div class="row marginNull folders">
+<div class="row marginNull folders todo ">
     <div class="lista @clases[0]">
         <div class="row divCabeceraList">
             <div class="col-lg-6">
