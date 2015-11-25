@@ -186,11 +186,10 @@
             } else {
                 accion = "FileByCategory";
             }
+            //<div class='row divHerramientasIndividual'>\
             var div = "<div class='col-xs-6 col-sm-4 col-md-3 col-lg-2 folder'>\
-                      <div class='row divHerramientasIndividual'>\
-                          <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='ico' title='Descargar'>\
-                              <i class='fa fa-download iconoHerramientas'></i>\
-                          </a>";
+                            <div class='row marginNull divTarjetaFile'>\
+                        ";
             if (idCategoria !== undefined) {
                 div += "\
                     <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "' class='ico' title='Abrir ubicacion de archivo'>\
@@ -199,10 +198,16 @@
             }
             div += "\
                       </div>\
-                      <div class='cuadritoIcono '>\
-                          <img src='"+RAIZ+"/Content/images/views/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
-                          <h3 class='folderTitle'>"+archivo._nombre+"</h3>\
-                      </div>\
+                        <div class='cuadritoIcono '>\
+                            <img src='"+RAIZ+"/Content/images/views/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
+                        </div>\
+                        <div class='row marginNull'>\
+                            <h3 class='folderTitle'>"+archivo._nombre+"</h3>\
+                            <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='ico btn btn-block btn-default' title='Descargar'>\
+                                Descargar\
+                            </a>\
+                        </div>\
+                    </div>\
                   </div> ";
             return div;
         }
