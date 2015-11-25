@@ -21,7 +21,8 @@
             console.log("reespueta", data);
             if (data.estado) {
                 jcrop_api.destroy();
-                targetImg.attr("src", RAIZ + "getImageThumbnail/" + data.id);
+                console.log("A poner es D: ", RAIZ + "Noticias/getImageThumbnail/" + data.id);
+                targetImg.attr("src", RAIZ + "Noticias/getImageThumbnail/" + data.id);
                 targetImg.attr("style", "");
             }
         })

@@ -89,12 +89,12 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden' >\
-                        <button class='btn btnEditMode btnActualizar' >Actualizar</button>\
-                        <button class='btn btnEditMode btnCancelarEdit' >Cancelar</button>\
+                        <button class='btn btn-default btn-sm btnEditMode btnActualizar' >Actualizar</button>\
+                        <button class='btn btn-default btn-sm btnEditMode btnCancelarEdit' >Cancelar</button>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btnEditarTraduccion'>Editar</button>\
-                        <button class='btn btEliminarTraduccion'>Eliminar</button>\
+                        <button class='btn btn-default btn-sm btnEditarTraduccion'>Editar</button>\
+                        <button class='btn btn-default btn-sm btEliminarTraduccion'>Eliminar</button>\
                     </div>\
                 </td>\
             </tr>\

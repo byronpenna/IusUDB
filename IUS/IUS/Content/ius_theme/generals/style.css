@@ -159,21 +159,30 @@ header{
         .cuerpoFeedNoticia, .imgFeedNoticia{
             margin-top:3%;
         }
+        .imgFeedNoticia{
+            margin-bottom:3%;
+        }
         .feedSection h3{
             /*font-family:'circulap';*/
             margin-top:0;
-            font-family:'latop';
+            font-family:'junctionpBold';
         }
         .cuerpoFeedNoticia{
             text-align:center;
         }
         .imgFeedNoticia img{
-            width:100%;
+            width:25%;
+            margin-bottom:2%;
+            border-radius:10px;
         }
         .leerMas{
             display:block;
-            color:#479fdd;
+            color:white;
             cursor:pointer;
+            font-weight:bold;
+            padding-top:1%;
+            padding-bottom:1%;
+            background:#3498db;
         }
     /*
         CopyRight
@@ -207,11 +216,11 @@ header{
 }
 .aRedirectPost{
     color:black;
-    opacity:0.5;
+    /*opacity:0.5;*/
 }
     .aRedirectPost:hover {
         color:black;
-        opacity:1;
+        /*opacity:1;*/
     }
 .aTodosPost:hover{
     text-decoration:none;

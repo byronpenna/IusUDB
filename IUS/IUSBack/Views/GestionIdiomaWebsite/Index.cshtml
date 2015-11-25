@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.TRL.Entidades
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- Plugins -->
         <!--Data table-->
@@ -25,6 +26,7 @@
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
     List<Pagina> paginas = (List<Pagina>)ViewBag.paginas;
     List<LlaveIdioma> llavesIdiomas = (List<LlaveIdioma>)ViewBag.tbTraducciones;
+    Permiso permisos = (Permiso)ViewBag.permiso;
 }
 
 <div class="row marginNull cuerpoModulo">
@@ -70,7 +72,7 @@
 
                 </div>
                 <div class="col-lg-12 text-center">
-                    <button class="btn btn-default btnAgregarLlave">
+                    <button class="btn btn-default btnAgregarLlave" @permisos.stringCrear>
                         Agregar llave
                     </button>
                 </div>
@@ -144,8 +146,8 @@
                                         <button class="btn btn-default btn-sm btnEditMode btnCancelarEdit" >Cancelar</button>
                                     </div>
                                     <div class="normalMode">
-                                        <button class="btn btn-default btn-sm btnEditarTraduccion">Editar</button>
-                                        <button class="btn btn-default btn-sm btEliminarTraduccion">Eliminar</button>
+                                        <button class="btn btn-default btn-sm btnEditarTraduccion" @permisos.stringEditar >Editar</button>
+                                        <button class="btn btn-default btn-sm btEliminarTraduccion" @permisos.stringEliminar >Eliminar</button>
                                     </div>
                                 </td>
                             </tr>

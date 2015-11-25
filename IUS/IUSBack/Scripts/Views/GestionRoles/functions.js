@@ -156,6 +156,9 @@ function quitarSubMenuArol(trSubMenu) {
         
         if (data.estado) {
             trSubMenu.remove();
+            if (trSubMenu.hasClass("activeTr")) {
+                $(".tbodyTbPermisos").empty();
+            }
             // limpiar cb 
             options = llenarCbSubmenuRol(data.submenuFaltante);
             $(".cbSubMenu").empty().append(options);

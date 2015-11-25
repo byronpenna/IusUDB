@@ -74,46 +74,31 @@ namespace IUSBack.Controllers
                 // mandar a traer personas
                 List<Persona> personas = this._model.getPersonas();
                 Usuario usuarioSession = this.getUsuarioSesion();
-                /*if (usuarioSession != null)
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
+                if (seguridadInicial != null)
                 {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    if (permisos != null && permisos._ver)
-                    {*/
-                        ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
-                        if (seguridadInicial != null)
-                        {
-                            return seguridadInicial;
-                        }
-                        try
-                        {
-                            //ViewBag.selectedMenu = 2; // menu seleccionado 
-                            //ViewBag.permiso = permisos;
-                            ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                            ViewBag.personas = personas;
-                            ViewBag.titleModulo = "Gestion de personas";
-                            ViewBag.usuario = usuarioSession;
-                            return View();
-                        }
-                        catch (ErroresIUS x)
-                        {
-                            ErrorsController error = new ErrorsController();
-                            return error.redirectToError(x, true);
-                            //return RedirectToAction("Unhandled", "Errors");
-                        }
-                        catch (Exception x)
-                        {
-                            return RedirectToAction("Unhandled", "Errors");
-                        }
-                    /*}
-                    else
-                    {
-                        return RedirectToAction("NotAllowed","Errors");
-                    }
+                    return seguridadInicial;
                 }
-                else
+                try
                 {
-                    return RedirectToAction("index", "login");
-                }*/
+                    //ViewBag.selectedMenu = 2; // menu seleccionado 
+                    //ViewBag.permiso = permisos;
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.personas = personas;
+                    ViewBag.titleModulo = "Gestion de personas";
+                    ViewBag.usuario = usuarioSession;
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
             }
             public ActionResult Detalle(int id=-1) // este -1 es temporal 
             {

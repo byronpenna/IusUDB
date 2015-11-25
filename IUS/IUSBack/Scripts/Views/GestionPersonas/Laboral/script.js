@@ -29,8 +29,11 @@
                         $(this).empty().append("Ocultar actividades");
                     } else {
                         // oculta los roles
-                        tr.parents("table").find(".trTable").remove();
-                        $(this).empty().append("Ver Actividades");
+                        if (tr.next().hasClass("trTable")) {
+                            tr.next().remove();
+                        }
+                        //tr.parents("table").find(".trTable").remove();
+                        $(this).empty().append("Actividades realizadas");
                     }
                 })
             // operaciones basicas
@@ -56,13 +59,35 @@
                         console.log("Eliminar", frm);
                         btnEliminarActividad(frm, tr);
                     })
+                    //##############################################
                     $(document).on("click", ".btnAgregarActividad", function () {
                         var tr                      = $(this).parents(".trAgregar");
                         var frm                     = serializeSection(tr);
                         frm.txtHdIdLaboralPersona   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
                         //frm.idLaboral             = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
-                        console.log("formulario a enviar es", frm);
-                        btnAgregarActividad(frm,tr);
+                        //console.log("formulario a enviar es", frm);
+                        var val = validarInsertActividad(frm);
+                        if (val.estado) {
+                            btnAgregarActividad(frm, tr);
+                        } else {
+                            console.log("Val es",val);
+                            //############
+                            var errores;
+                            tr.find(".divResultado").addClass("visibilitiHidden");
+                            tr.find(".divResultado").removeClass("hidden");
+                            $.each(val.campos, function (i, val) {
+                                errores = "";
+                                var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                                if (val.length > 0) {
+                                    divResultado.removeClass("visibilitiHidden");
+                                    $.each(val, function (i, val) {
+                                        errores += getSpanMessageError(val);
+                                    })
+                                    divResultado.empty().append(errores);
+                                }
+                            })
+                        }
+                        
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
@@ -143,6 +168,7 @@
                 })
                 $(document).on("click", ".btnCancelarUni", function (e) {
                     var tr = $(this).parents("tr");
+                    limpiarVal(tr);
                     controlesEdit(false, tr);
                 })
                 $(document).on("click", ".btnActualizarLaboralPersona", function (e) {
@@ -157,7 +183,6 @@
                         btnActualizarLaboralPersona(frm, tr);
                     } else {
                         console.log(val);
-                        //############
                         var errores;
                         tr.find(".divResultado").addClass("visibilitiHidden");
                         tr.find(".divResultado").removeClass("hidden");
