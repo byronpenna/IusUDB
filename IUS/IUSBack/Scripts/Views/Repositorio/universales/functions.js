@@ -143,20 +143,26 @@
             //folders.css("background", "red");
         }
     }
+    
+    /*<div class='row divHerramientasIndividual' style='display:none'>\
+        <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
+            <i class='fa fa-trash-o'></i>\
+        </a>\
+        <a href='#' class='ico icoWebsiteFolder' title='Ver website'>\
+            <i class='fa fa-globe'></i>\
+        </a>\
+    </div>\    */
     function getDivNewFolder() {
             /**/
         div = "<div class='col-lg-2 folder '>\
                     <input type='hidden' class='txtHdIdCarpeta' value=''/>\
-                    <div class='row divHerramientasIndividual' style='display:none'>\
-                        <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
-                            <i class='fa fa-trash-o'></i>\
-                        </a>\
-                        <a href='#' class='ico icoWebsiteFolder' title='Ver website'>\
-                            <i class='fa fa-globe'></i>\
-                        </a>\
-                    </div>\
                     <div class='cuadritoIconoAdd cuadritoCarpeta' id='0'>\
-                        <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder-opacity.png' class='imgFolder' />\
+                        <img class='imgCuadritoIcono' src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder-opacity.png' class='imgFolder' />\
+                        <div class='btn-group divHerramientasIndividual' style='display:none'>\
+                            <div class='ico btnAccion btn btn-default icoEliminarCarpeta ' title='Eliminar'>\
+                                <i class='fa fa-trash-o'></i>\
+                            </div>\
+                        </div>\
                         <div class='detalleCarpeta sinRedirect'>\
                             <div class='normalMode sinRedirect hidden'>\
                                 <h3 class='ttlNombreCarpeta'></h3>\
@@ -166,8 +172,8 @@
                                     <input type='text' class='form-control txtNombreCarpeta'>\
                                 </div>\
                                 <div class='row marginNull'>\
-                                    <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>\
-                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                    <button class='btn btn-default btn-xs btnEditarCarpeta'>Hecho</button>\
+                                    <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
                                 </div>\
                             </div>\
                             <div class='saveMode'>\
@@ -175,8 +181,10 @@
                                     <input type='text' class='form-control txtNombreCarpetaSave'>\
                                 </div>\
                                 <div class='row marginNull'>\
-                                    <button class='btn btn-xs btnGuardarCarpeta'>Guardar</button>\
-                                    <button class='btn btn-xs btnCancelarGuardarCarpeta'>Cancelar</button>\
+                                    <div class='btn-group'>\
+                                        <button class='btn btn-xs btn-default btnGuardarCarpeta'>Hecho</button>\
+                                        <button class='btn btn-xs btn-default btnCancelarGuardarCarpeta'>Cancelar</button>\
+                                    </div>\
                                 </div>\
                                 <div class='row marginNull mensajeNewFolder'></div>\
                             </div>\

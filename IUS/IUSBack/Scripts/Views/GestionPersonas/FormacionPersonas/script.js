@@ -29,6 +29,7 @@
             
             $(document).on("click", ".btnCancelarUni", function (e) {
                 var tr = $(this).parents("tr");
+                limpiarVal(tr);
                 controlesEdit(false, tr);
             })
             // instituciones
@@ -206,8 +207,26 @@
                     $(document).on("click", ".btnActualizarTituloPersona", function () {
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
-                        console.log("formulario a editar", frm);
-                        btnActualizarTituloPersona(frm,tr);
+                        //console.log("formulario a editar", frm);
+                        var val = validarAgregarCarrera(frm);
+                        if (val.estado) {
+                            btnActualizarTituloPersona(frm, tr);
+                        } else {
+                            var errores;
+                            tr.find(".divResultado").addClass("visibilitiHidden");
+                            tr.find(".divResultado").removeClass("hidden");
+                            $.each(val.campos, function (i, val) {
+                                errores = "";
+                                var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                                if (val.length > 0) {
+                                    divResultado.removeClass("visibilitiHidden");
+                                    $.each(val, function (i, val) {
+                                        errores += getSpanMessageError(val);
+                                    })
+                                    divResultado.empty().append(errores);
+                                }
+                            })
+                        }
                     })
                     $(document).on("click", ".btnEditarTitulos", function () {
                         var tr = $(this).parents("tr");
@@ -258,9 +277,9 @@
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         frm.idPersona = $(".txtHdIdPersona").val();
-                        console.log("formulario", frm);
+                        //console.log("formulario", frm);
                         var val = validarAgregarCarrera(frm);
-                        console.log("Validacion D: D: ",val);
+                        //console.log("Validacion D: D: ",val);
                         if (val.estado) {
                             btnAgregarCarrera(frm);
                             tr.find(".divResultado").removeClass("visibilitiHidden");

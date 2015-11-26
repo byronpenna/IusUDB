@@ -118,21 +118,6 @@
         </div>
         <img class="imgPersona" src="@strFoto" />
     </div>
-    
-    <!--<div class="col-lg-offset-5 col-lg-2 text-center">
-        <label>Vistas</label>
-        <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
-            <a href="#" id="divInformacionCarreras" class="icoVista activeVista" title="titulos persona">
-                <i class="fa fa-user"></i>
-            </a>
-            <a href="#" id="divCarreras" class="icoVista" title="Carreras">
-                <i class="fa fa-graduation-cap"></i>
-            </a>
-            <a href="#" id="divInstituciones" class="icoVista" title="Instituciones educativas">
-                <i class="fa fa-university"></i>
-            </a>
-        </div>
-    </div>-->
 </div>
 <div class="row marginNull divTab divInformacionCarreras">
     <h3 class="tituloTabDiv">Titulos</h3>
@@ -253,7 +238,12 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input type="text" name="txtCarrera" class="input-sm form-control txtCarrera" />
+                                <div class="row marginNull divControl">
+                                    <input class="form-control input-sm txtCarrera" name="txtCarrera" placeholder="Carrera" />
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
                             </div>
                             <div class="normalMode tdCarrera">
                                 @formacionPersona._carrera
@@ -261,7 +251,13 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input name="txtYearFin" class="input-sm txtYearFin form-control" />
+                                <div class="row marginNull divControl">
+                                    <input name="txtYearFin" type="number" class="txtYearFin form-control soloNumerosInt input-sm" maxlength="4" min="1970" max="2100" />
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                @*<input name="txtYearFin" class="input-sm txtYearFin form-control" />*@
                             </div>
                             <div class="normalMode tdYearFin">
                                 @formacionPersona._yearFin
@@ -269,7 +265,13 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>
+                                <div class="row marginNull divControl">
+                                    <textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                @*<textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>*@
                             </div>
                             <div class="normalMode tdObservaciones">
                                 @formacionPersona._observaciones
@@ -277,7 +279,21 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbNivelCarrera" class="input-sm cbNivelCarrera form-control"></select>
+                                <div class="row marginNull divControl">
+                                    <select class="input-sm cbNivelCarrera form-control" name="cbNivelCarrera">
+                                        @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
+                                        {
+                                            foreach (NivelTitulo nivelTitulo in nivelesTitulo)
+                                            {
+                                                <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                                            }
+                                        }
+                                    </select>
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                @*<select name="cbNivelCarrera" class="input-sm cbNivelCarrera form-control"></select>*@
                             </div>
                             <div class="normalMode tdNivelTitulo">
                                 @formacionPersona._nivelTitulo._nombreNivel
@@ -285,7 +301,21 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbAreaCarrera" class="input-sm cbAreaCarrera form-control"></select>
+                                <div class="row marginNull divControl">
+                                    <select class="input-sm cbAreaCarrera form-control" name="cbAreaCarrera">
+                                        @if (areasCarreras != null && areasCarreras.Count > 0)
+                                        {
+                                            foreach (AreaCarrera areaCarrera in areasCarreras)
+                                            {
+                                                <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                                            }
+                                        }
+                                    </select>
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                @*<select name="cbAreaCarrera" class="input-sm cbAreaCarrera form-control"></select>*@
                             </div>
                             <div class="normalMode tdAreaCarrera">
                                 @formacionPersona._areaCarrera._area
@@ -293,7 +323,13 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <input class="input-sm form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                                <div class="row marginNull divControl">
+                                    <input class="input-sm form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                @*<input class="input-sm form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />*@
                             </div>
                             <div class='normalMode tdInstitucion'>
                                 @formacionPersona._institucion
@@ -301,7 +337,22 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <select name="cbPaisInstitucionEducativa" class="input-sm cbChosenPais form-control cbPaisInstitucionEducativa"></select>
+                                <div class="row marginNull divControl">
+                                    <select name="cbPaisInstitucionEducativa" class="input-sm cbChosenPais form-control cbPaisInstitucionEducativa">
+                                        <option value="-1">Seleccione un país</option>
+                                        @if (paises != null && paises.Count > 0)
+                                        {
+                                            foreach (Pais pais in paises)
+                                            {
+                                                <option value="@pais._idPais">@pais._pais</option>
+                                            }
+                                        }
+                                    </select>
+                                    <div class="row marginNull divResultado hidden">
+
+                                    </div>
+                                </div>
+                                @*<select name="cbPaisInstitucionEducativa" class="input-sm cbChosenPais form-control cbPaisInstitucionEducativa"></select>*@
                             </div>
                             <div class='normalMode tdPais'>
                                 @formacionPersona._paisInstitucion._pais

@@ -604,10 +604,9 @@
         // guardar carpeta
         function btnGuardarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
-                
                 if (data.estado) {
                     seccion.find(".cuadritoCarpeta").attr("id", 1);
-                    seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
+                    seccion.find(".imgCuadritoIcono").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
 
                     seccion.find(".txtHdIdCarpeta").val(data.carpeta._idCarpeta);
                     seccion.find(".ttlNombreCarpeta").empty().append(data.carpeta._nombre);
