@@ -253,19 +253,23 @@
                 foreach (Carpeta carpeta in carpetas)
                 {
                     <div class="col-lg-2 folder">
-                    
                         <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
                         <div class="row divHerramientasIndividual">
-                            <a href="#" class="ico icoDownload" title="Descargar">
+                            @*<a href="#" class="ico icoDownload" title="Descargar">
                                 <i class="fa fa-download"></i>
-                            </a>
-                            <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
+                            </a>*@
+                            @*<a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
                                 <i class="fa fa-trash-o"></i>
-                            </a>
+                            </a>*@
                         </div>
                         <!--<a href="@Url.Action("Index", "Repositorio", new { id = @carpeta._idCarpeta })">-->
                             <div class="cuadritoIcono cuadritoCarpeta">
-                                <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                                <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                                <div class="btn-group">
+                                    <div class="ico btnAccion btn btn-default icoEliminarCarpeta " title="Eliminar">
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                                </div>
                                 <div class="detalleCarpeta">
                                     <div class="normalMode sinRedirect">
                                         <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
@@ -295,31 +299,18 @@
                 {
                     <div class="col-lg-2 folder folderUni">
                         <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
-                        <div class="row divHerramientasIndividual">
-                            
-                            @*<a href="#" class="icoCompartirFile" title="Compartir">
-                               <i class="fa fa-share"></i>
-                            </a>
-                            <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
-                                <i class="fa fa-download"></i>
-                            </a>
-                            <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
-                                <i class="fa fa-trash-o"></i>
-                            </a>*@
-                        </div>
                         <div class="cuadritoIcono">
                             <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
                             <div class="btn-group">
-                                <div class="btn btn-default icoCompartirFile" title="Compartir">
+                                <a class="urlDescargar" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })">
+                                </a>
+                                <div class="btnAccion btn btn-default icoCompartirFile" title="Compartir">
                                     <i class="fa fa-share"></i>
                                 </div>
-                                <div class="btn btn-default ico divDescargar" title="Descargar">
-                                    <a class="urlDescargar" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })">
-
-                                    </a>
+                                <div class="btnAccion btn btn-default ico divDescargar" title="Descargar">
                                     <i class="fa fa-download"></i>
                                 </div>
-                                <div class="btn btn-default ico icoEliminarArchivo" title="Eliminar">
+                                <div class="btnAccion btn btn-default ico icoEliminarArchivo" title="Eliminar">
                                     <i class="fa fa-trash-o"></i>
                                 </div>
                             </div>
@@ -378,15 +369,6 @@
             <div class="divCarpetasPublicasCompartir">
 
             </div>
-                <!-- Carpetas publicas -->
-            <!-- <div class="divCarpetaPublica col-lg-6">
-        <img src="~/Content/themes/iusback_theme/img/general/repositorio/folder.png" />
-        <h4>Nombre carpeta</h4>
-        </div>
-        <div class="divCarpetaPublica col-lg-6">
-            <img src="~/Content/themes/iusback_theme/img/general/repositorio/folder.png" />
-            <h4>Nombre carpeta</h4>
-        </div>-->
         </div>
     </div>
 </div>
