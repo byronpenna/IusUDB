@@ -196,8 +196,8 @@
                         <i class='fa fa-folder-open'></i>\
                     </a>";
             }*/
+            //</div>\
             div += "\
-                      </div>\
                         <div class='cuadritoIcono '>\
                             <img src='"+RAIZ+"/Content/images/views/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
                         </div>\
