@@ -254,14 +254,6 @@
                 {
                     <div class="col-lg-2 folder">
                         <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
-                        <div class="row divHerramientasIndividual">
-                            @*<a href="#" class="ico icoDownload" title="Descargar">
-                                <i class="fa fa-download"></i>
-                            </a>*@
-                            @*<a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
-                                <i class="fa fa-trash-o"></i>
-                            </a>*@
-                        </div>
                         <!--<a href="@Url.Action("Index", "Repositorio", new { id = @carpeta._idCarpeta })">-->
                             <div class="cuadritoIcono cuadritoCarpeta">
                                 <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
@@ -279,8 +271,10 @@
                                             <input type='text' class='form-control txtNombreCarpeta'>
                                         </div>
                                         <div class='row marginNull'>
-                                            <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>
-                                            <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                            <div class="btn-group">
+                                                <button class='btn btn-default btn-xs btnEditarCarpeta'>Hecho</button>
+                                                <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                            </div>
                                         </div>
                                         <div class="row marginNull mensajeFolder">
 
@@ -323,8 +317,10 @@
                                         <input type='text' class='form-control txtNombreCarpeta txtNombreArchivo'>
                                     </div>
                                     <div class='row marginNull'>
-                                        <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
-                                        <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                        <div class="btn-group">
+                                            <button class='btn btn-default btn-xs btnEditarArchivo'>Hecho</button>
+                                            <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                        </div>
                                     </div>
                                 </div>
                             
