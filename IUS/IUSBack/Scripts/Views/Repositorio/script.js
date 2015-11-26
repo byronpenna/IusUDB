@@ -146,7 +146,10 @@
                 
                 
             })
-    // click 
+        // click 
+                $(document).on("click", ".divDescargar", function () {
+                    $(this).find(".urlDescargar").click();
+                })    
                 $(document).on("click", ".btnNavHistory", function () {
                     /*
                     0 atras 

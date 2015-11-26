@@ -230,6 +230,17 @@
                                 <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
                                     <i class="fa fa-trash-o"></i>
                                 </a>
+                                @*<div class="btn-group">
+                                    <button class="btn btn-default">
+                                        <i class="fa fa-share"></i>
+                                    </button>
+                                    <button class="btn btn-default">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button class="btn btn-default">
+                                        <i class="fa fa-share"></i>
+                                    </button>
+                                </div>*@
                             </div>
                         </div>
                     }
@@ -285,29 +296,33 @@
                     <div class="col-lg-2 folder folderUni">
                         <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
                         <div class="row divHerramientasIndividual">
-                            @*<div class="btn-group">
-                                <a href="#" class="btn btn-default icoCompartirFile" title="Compartir">
-                                    <i class="fa fa-share"></i>
-                                </a>
-                                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="btn btn-default ico" title="Descargar">
-                                    <i class="fa fa-download"></i>
-                                </a>
-                                <a href="#" class="btn btn-default ico icoEliminarArchivo" title="Eliminar">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
-                            </div>*@
-                            <a href="#" class="icoCompartirFile" title="Compartir">
-                                <i class="fa fa-share"></i>
+                            
+                            @*<a href="#" class="icoCompartirFile" title="Compartir">
+                               <i class="fa fa-share"></i>
                             </a>
                             <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
                                 <i class="fa fa-download"></i>
                             </a>
                             <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
                                 <i class="fa fa-trash-o"></i>
-                            </a>
+                            </a>*@
                         </div>
                         <div class="cuadritoIcono">
-                            <img src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
+                            <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
+                            <div class="btn-group">
+                                <div class="btn btn-default icoCompartirFile" title="Compartir">
+                                    <i class="fa fa-share"></i>
+                                </div>
+                                <div class="btn btn-default ico divDescargar" title="Descargar">
+                                    <a class="urlDescargar" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })">
+
+                                    </a>
+                                    <i class="fa fa-download"></i>
+                                </div>
+                                <div class="btn btn-default ico icoEliminarArchivo" title="Eliminar">
+                                    <i class="fa fa-trash-o"></i>
+                                </div>
+                            </div>
                             <div class="detalleCarpeta">
                                 <div class="normalMode">
                                     <h3 class="ttlNombreCarpeta nombreAcompartir">@archivo._nombre</h3>

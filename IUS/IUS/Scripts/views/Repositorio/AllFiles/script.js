@@ -11,6 +11,18 @@
                 }
 
             });
+            $(document).on("change", ".cbFiltro", function () {
+                var accion = ""; var idCarpeta = $(".txtHdIdCarpetaActual").val();
+                if($(this).val() == -1){
+                    accion = "AllFiles/"+idCarpeta+"/"+$(this).val();
+                }else{
+                    accion = "FileByCategory/"+idCarpeta+"/"+$(this).val();
+                }
+                var url = RAIZ + "Repositorio/" + accion;
+                console.log("Accion", accion);
+                window.location = url;
+            })
+            
         // click
             $(document).on("click", ".btnNavHistory", function (e) {
                 /*
