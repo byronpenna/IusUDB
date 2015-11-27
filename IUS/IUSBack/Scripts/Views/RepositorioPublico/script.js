@@ -148,6 +148,7 @@
                 })
                 $(document).on("click", ".icoEliminarCarpeta", function (e) {
                     e.preventDefault();
+                    e.stopPropagation();
                     seccion = $(this).parents(".folder");
                     frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
                     var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
