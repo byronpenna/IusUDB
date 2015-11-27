@@ -167,6 +167,13 @@
         }
     }
 // generics
+    function limpiarVal(tr, target) {
+        if (target === undefined) {
+            target = ".divResultado";
+        }
+        tr.find(target).addClass("hidden");
+        tr.find(target).removeClass("visibilitiHidden");
+    }
     function getDateFromString(stringDate, format, stringTime, formatTime) {
         var date;
         var arrDate = stringDate.split("/");

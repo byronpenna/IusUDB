@@ -29,19 +29,24 @@
             }
 
             function loadCuadriculaCarpeta(carpeta) {
+                /*<div class='row divHerramientasIndividual'>\
+                    <a href='#' class='ico' title='Descargar'>\
+                        <i class='fa fa-download'></i>\
+                    </a>\
+                    <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
+                        <i class='fa fa-trash-o'></i>\
+                    </a>\
+                </div>\*/
                 var div = "\
                     <div class='col-lg-2 folder'>\
                         <input type='hidden' class='txtHdIdCarpeta' value='"+ carpeta._idCarpeta + "'/>\
-                        <div class='row divHerramientasIndividual'>\
-                            <a href='#' class='ico' title='Descargar'>\
-                                <i class='fa fa-download'></i>\
-                            </a>\
-                            <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
-                                <i class='fa fa-trash-o'></i>\
-                            </a>\
-                        </div>\
                         <div class='cuadritoIcono cuadritoCarpeta'>\
-                            <img src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono + "' />\
+                            <img class='imgCuadritoIcono' src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono + "' />\
+                            <div class='btn-group'>\
+                                <div class='ico btnAccion btn btn-default icoEliminarCarpeta ' title='Eliminar'>\
+                                    <i class='fa fa-trash-o'></i>\
+                                </div>\
+                            </div>\
                             <div class='detalleCarpeta'>\
                                 <div class='normalMode sinRedirect'>\
                                     <h3 class='ttlNombreCarpeta'>"+ carpeta._nombre + "</h3>\
@@ -60,41 +65,72 @@
                     </div>";
                 return div;
             }
+            /*<a href='#' class='icoCompartirFile' title='Compartir'>\
+                <i class='fa fa-share'></i>\
+            </a>\
+            <a href='' class='ico' title='Descargar'>\
+                <i class='fa fa-download'></i>\
+            </a>\
+            <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
+                <i class='fa fa-trash-o'></i>\
+            </a>*/
+            //<div class='row divHerramientasIndividual'>\
             function loadCuadriculaFiles(archivo, openLocation) {
                 var div = "\
-                    <div class='col-lg-2 folder'>\
+                    <div class='col-lg-2 folder folderUni'>\
                         <input type='hidden' class='txtHdIdArchivo' value='"+archivo._idArchivo+"'/>\
                         <input type='hidden' class='txtHdIdCarpetaContenedora' value='" + archivo._carpeta._idCarpeta + "'/>\
-                        <div class='row divHerramientasIndividual'>\
-                            <a href='#' class='icoCompartirFile' title='Compartir'>\
-                                <i class='fa fa-share'></i>\
-                            </a>\
-                            <a href='' class='ico' title='Descargar'>\
-                                <i class='fa fa-download'></i>\
-                            </a>\
-                            <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
-                                <i class='fa fa-trash-o'></i>\
-                            </a>";
-                if (openLocation !== undefined && openLocation == true) {
+                            ";
+                /*if (openLocation !== undefined && openLocation == true) {
                     div += "<a href='" + RAIZ + 'Repositorio/ndex/' + archivo._carpeta._idCarpeta + "' class='ico icoOpenLocation' title='Abrir ubicacion'>\
                                 <i class='fa fa-folder-open'></i>\
                             </a>";
+                }*/
+                //</div>\
+                var groupClass = "btn-group";
+                if (openLocation !== undefined && openLocation == true) {
+                    groupClass = "btn-group-vertical";
                 }
                 div += "\
-                        </div>\
                         <div class='cuadritoIcono '>\
-                            <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._extension._tipoArchivo._icono+"' />\
+                            <img  class='imgCuadritoIcono'  src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._extension._tipoArchivo._icono+"' />\
+                            <div class='"+groupClass+"'>\
+                                <a class='urlDescargar' href='"+RAIZ+"/Repositorio/DescargarFichero/"+archivo._idArchivo+"'>\
+                                </a>\
+                                <div class='btnAccion btn btn-default icoCompartirFile' title='Compartir'>\
+                                    <i class='fa fa-share'></i>\
+                                </div>\
+                                <div class='btnAccion btn btn-default ico divDescargar' title='Descargar'>\
+                                    <i class='fa fa-download'></i>\
+                                </div>";
+                if (openLocation !== undefined && openLocation == true) {
+                    //<a href='" + RAIZ + 'Repositorio/ndex/' + archivo._carpeta._idCarpeta + "' class='ico icoOpenLocation' title='Abrir ubicacion'>\
+                    //</a>
+                    div += "</div>\
+                            <div class='"+groupClass+"'>\
+                                <div class='btnAccion btn btn-default ico'>\
+                                    <i class='fa fa-folder-open'></i>\
+                                </div>\
+                                ";
+                }
+                div += "\
+                                <div class='btnAccion btn btn-default ico icoEliminarArchivo' title='Eliminar'>\
+                                    <i class='fa fa-trash-o'></i>\
+                                </div>\
+                            </div>\
                             <div class='detalleCarpeta'>\
                                 <div class='normalMode'>\
-                                    <h3 class='ttlNombreCarpeta'>"+archivo._nombre+"</h3>\
+                                    <h3 class='ttlNombreCarpeta nombreAcompartir'>" + archivo._nombre + "</h3>\
                                 </div>\
                                 <div class='row marginNull hidden editMode'>\
                                     <div class='row marginNull inputNombreCarpeta'>\
                                         <input type='text' class='form-control txtNombreCarpeta'>\
                                     </div>\
                                     <div class='row marginNull'>\
-                                        <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>\
-                                        <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                        <div class='btn-group'>\
+                                            <button class='btn btn-xs btnEditarArchivo'>Hecho</button>\
+                                            <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                        </div>\
                                     </div>\
                                 </div>\
                             </div>\
@@ -242,8 +278,10 @@
                                         <input type='text' class='form-control txtNombreCarpeta'>\
                                     </div>\
                                     <div class='row marginNull'>\
-                                        <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>\
-                                        <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                        <div class='btn-group'>\
+                                            <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>\
+                                            <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                        </div>\
                                     </div>\
                                 </div>\
                             </div>\
@@ -566,10 +604,9 @@
         // guardar carpeta
         function btnGuardarCarpeta(frm,seccion) {
             actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
-                
                 if (data.estado) {
                     seccion.find(".cuadritoCarpeta").attr("id", 1);
-                    seccion.find(".imgFolder").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
+                    seccion.find(".imgCuadritoIcono").attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder.png");
 
                     seccion.find(".txtHdIdCarpeta").val(data.carpeta._idCarpeta);
                     seccion.find(".ttlNombreCarpeta").empty().append(data.carpeta._nombre);

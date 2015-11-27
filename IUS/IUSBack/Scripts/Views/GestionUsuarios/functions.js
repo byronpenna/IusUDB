@@ -31,7 +31,7 @@
         if (val) {
             tablaRoles(trUsuario);
         } else {
-            $(".tableUsuarios").find(".trTableRol").remove();
+            trUsuario.next().remove();
         }
     }
     function getTbRoles(roles) {

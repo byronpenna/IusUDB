@@ -51,15 +51,20 @@
             });
         // ver roles 
             $(document).on("click", ".btnVerRoles", function () {
-                trUsuario = $(this).parents(".trUsuario");
+                var trUsuario = $(this).parents(".trUsuario");
+                console.log("D: ");
                 if (!trUsuario.next().hasClass("trTableRol")) {
                     //$(".tableUsuarios").find(".trTableRol").remove();
+                    console.log("yes :D");
+
                     verRoles(false);
                     verRoles(true, trUsuario);
                     $(this).val("Ocultar Roles");
+                    
                     //tablaRoles(trUsuario);
                 } else {
-                    verRoles(false);
+                    console.log("no :D");
+                    verRoles(false,trUsuario);
                     $(this).val("Ver Roles");
                     //$(".tableUsuarios").find(".trTableRol").remove();
                 }

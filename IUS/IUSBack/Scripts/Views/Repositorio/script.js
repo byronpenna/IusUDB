@@ -148,7 +148,8 @@
             })
         // click 
                 $(document).on("click", ".divDescargar", function () {
-                    $(this).find(".urlDescargar").click();
+                    var url = $(this).parent().find(".urlDescargar").attr("href");
+                    window.location = url;
                 })    
                 $(document).on("click", ".btnNavHistory", function () {
                     /*
@@ -388,6 +389,7 @@
                 // eliminar carpeta
                     $(document).on("click", ".icoEliminarCarpeta", function (e) {
                         e.preventDefault();
+                        e.stopPropagation();
                         seccion = $(this).parents(".folder");
                         frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
                         var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
