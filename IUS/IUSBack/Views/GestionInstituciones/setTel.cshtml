@@ -16,6 +16,28 @@
     Permiso                     permiso     = (Permiso)ViewBag.permiso;
     string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
 }
+@section arbol{
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@Url.Action("Index", "GestionInstituciones")">
+            <div class="col-lg-8">
+                Instituciones
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@ViewBag.currentUrl">
+            <div class="col-lg-8">
+                Telefonos
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+}
 <div class="row marginNull divInstitucionPrev">
     @if (institucion._logo != null)
     {
@@ -46,19 +68,19 @@
                     </div>
                 </th>
                 <th>
-                    <input type="tel" name="txtTelefono" class="form-control txtTelefono soloNumerosDecimal txtFrmAgregar" />
+                    <input type="tel" name="txtTelefono" class="form-control input-sm txtTelefono soloNumerosDecimal txtFrmAgregar" />
                     <div class="divResultado marginNull row hidden">
                         _
                     </div>
                 </th>
                 <th>
-                    <input type="tel" name="txtEtiqueta" class="form-control txtEtiqueta txtFrmAgregar" />
+                    <input type="tel" name="txtEtiqueta" class="form-control input-sm txtEtiqueta txtFrmAgregar" />
                     <div class="divResultado marginNull row hidden">
                         _
                     </div>
                 </th>
                 <th class="thBtnGuardar">
-                    <button class="btn btnAgregarTel" @permiso.stringCrear>Agregar</button>
+                    <button class="btn btn-default btn-sm btnAgregarTel" @permiso.stringCrear>Agregar</button>
                 </th>
             </tr>
         </thead>
@@ -92,20 +114,25 @@
                         </td>
                         <td>
                             <div class="editMode hidden">
-                                <button class="btn btnActualizar">
-                                    Actualizar
-                                </button>
-                                <button class="btn btnCancelar">
-                                    Cancelar
-                                </button>
+                                <div class="btn-group">
+                                    <button class="btn btn-default btn-xs btnActualizar">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-default btn-xs btnCancelar">
+                                        Cancelar
+                                    </button>
+                                </div>
                             </div>
                             <div class="normalMode">
-                                <button class="btn btnEditarTel" @permiso.stringEditar>
-                                    Editar
-                                </button>
-                                <button class="btn btnEliminarTel" @permiso.stringEliminar>
-                                    Eliminar
-                                </button>
+                                <div class="btn-group">
+                                    <button class="btn btn-default btn-xs btnEditarTel" @permiso.stringEditar>
+                                        Editar
+                                    </button>
+                                    <button class="btn btn-default btn-xs btnEliminarTel" @permiso.stringEliminar>
+                                        Eliminar
+                                    </button>
+                                </div>
+                                
                             </div>
                         </td>
                     </tr>    

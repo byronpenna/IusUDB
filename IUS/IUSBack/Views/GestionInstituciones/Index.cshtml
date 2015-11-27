@@ -25,6 +25,7 @@
     List<Institucion> instituciones = (List<Institucion>) ViewBag.instituciones;
     Permiso permiso = (Permiso)ViewBag.permiso;
 }
+
 <div class="row marginNull divMensajesGenerales">
 
 </div>
@@ -85,7 +86,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btnAddInstitucion" @permiso.stringCrear>Agregar </button>
+                            <button class="btn btnAddInstitucion btn-default " @permiso.stringCrear>Agregar </button>
                         </td>
                     </tr>
                 </thead>
@@ -125,21 +126,28 @@
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <button class="btn btnActualizarInstitucion">
-                                            Actualizar
-                                        </button>
-                                        <button class="btn btnCancelar">
-                                            Cancelar
-                                        </button>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btn-xs btnActualizarInstitucion">
+                                                Actualizar
+                                            </button>
+                                            <button class="btn btn-default btn-xs btnCancelar">
+                                                Cancelar
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="normalMode">
-                                        <button class="btn btnEditar" @permiso.stringEditar>Editar</button>
-                                        <button class="btn btnDeleteInstitucion" @permiso.stringEliminar>Eliminar</button>
-                                        <a class="btn btnFromlink " href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })">
-                                            Logo
-                                        </a>
-                                        <a class="btn btnFromlink" href="@Url.Action("Index", "GestionTelefonos", new { id=institucion._idInstitucion})">Telefonos</a>
-                                        <a class="btn btnFromlink" href="@Url.Action("Index","GestionMediosInstituciones",new {id=institucion._idInstitucion})">Medios Electronicos</a>
+                                        <div class="btn-group">
+                                            <button class="btn btnEditar btn btn-default btn-xs" @permiso.stringEditar>Editar</button>
+                                            <button class="btn btnDeleteInstitucion btn-default btn-xs" @permiso.stringEliminar>Eliminar</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })">
+                                                Logo
+                                            </a>
+                                            <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("Index", "GestionTelefonos", new { id=institucion._idInstitucion})">Telefonos</a>
+                                            <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("Index","GestionMediosInstituciones",new {id=institucion._idInstitucion})">Medios Electronicos</a>
+                                        </div>
+                                        
                                     </div>
                                 </td>
                             </tr>
