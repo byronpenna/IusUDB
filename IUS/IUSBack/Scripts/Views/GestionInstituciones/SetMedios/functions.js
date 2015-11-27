@@ -45,28 +45,38 @@
             </td>\
             <td>\
                 <div class='editMode hidden'>\
-                    <input class='form-control txtEnlace' name='txtEnlace' />\
+                    <input class='form-control input-sm txtEnlace' name='txtEnlace' />\
+                    <div class='divResultado hidden'>\
+                        _\
+                    </div>\
                 </div>\
                 <div class='normalMode tdEnlace'>"+enlace._enlace+"</div>\
             </td>\
             <td>\
                 <div class='editMode hidden'>\
-                    <input class='form-control txtTextoEnlaceEdit' name='txtTextoEnlaceEdit' />\
+                    <input class='form-control input-sm txtTextoEnlaceEdit' name='txtTextoEnlaceEdit' />\
+                    <div class='divResultado hidden'>\
+                        _\
+                    </div>\
                 </div>\
                 <div class='normalMode tdNombreEnlace'>"+enlace._nombreEnlace+"</div>\
             </td>\
             <td>\
                 <div class='editMode hidden'>\
-                    <button class='btn btnActualizar'>Actualizar</button>\
-                    <button class='btn btnCancelar'>Cancelar</button>\
+                    <div class='btn-group'>\
+                        <button class='btn btn-default btn-xs btnActualizar'>Actualizar</button>\
+                        <button class='btn btn-default btn-xs btnCancelar'>Cancelar</button>\
+                    </div>\
                 </div>\
                 <div class='normalMode'>\
-                    <button class='btn btnEditar'>\
-                        Editar\
-                    </button>\
-                    <button class='btn btnEliminar'>\
-                        Eliminar\
-                    </button>\
+                    <div class='btn-group'>\
+                        <button class='btn btn-default btn-xs btnEditar'>\
+                            Editar\
+                        </button>\
+                        <button class='btn btn-default btn-xs btnEliminar'>\
+                            Eliminar\
+                        </button>\
+                    </div>\
                 </div>\
             </td>\
         </tr>\
