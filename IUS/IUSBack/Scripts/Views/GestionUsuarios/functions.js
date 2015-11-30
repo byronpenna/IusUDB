@@ -31,7 +31,9 @@
         if (val) {
             tablaRoles(trUsuario);
         } else {
-            trUsuario.next().remove();
+            if (trUsuario !== undefined && trUsuario.next().hasClass("trTableRol")) {
+                trUsuario.next().remove();
+            }
         }
     }
     function getTbRoles(roles) {
@@ -164,6 +166,8 @@
         obj = cargarObjetoPersonas(function (Personas) {
             llenarCbPersonas(Personas,combo,idPersonaActual);
         });
+        $(".cbPersona").chosen({ no_results_text: "No se a encontrado empleado", width: '100%' });
+        resetChosenWithSelectedVal(combo, idPersonaActual);
         trUsuario.find(".txtEditUsuario").val($.trim(txtUsuario));
     
 
@@ -223,7 +227,9 @@
                 </td>\
                 <td class='tdUsuario'>\
                     <div class='editMode hidden'>\
-                        <input name='txtEditUsuario' type='text' class='form-control txtEditUsuario input-sm'/>\
+                        <input name='txtEditUsuario' type='text' class='form-control enterEdit txtUsuarioEdit txtEditUsuario input-sm'/>\
+                        <div class='row marginNull divResultado hidden'>\
+                        </div>\
                     </div>\
                     <div class='normalMode tdTxtUsuario'>\
                         "+ usu._usuario + "\

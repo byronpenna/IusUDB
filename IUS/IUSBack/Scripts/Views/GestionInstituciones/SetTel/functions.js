@@ -25,20 +25,24 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <button class='btn btnActualizar'>\
-                            Actualizar\
-                        </button>\
-                        <button class='btn'>\
-                            Cancelar\
-                        </button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-default btn-xs  btnActualizar'>\
+                                Actualizar\
+                            </button>\
+                            <button class='btn btn-default btn-xs btnCancelar'>\
+                                Cancelar\
+                            </button>\
+                        </div>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btnEditarTel'>\
-                            Editar\
-                        </button>\
-                        <button class='btn btnEliminarTel'>\
-                            Eliminar\
-                        </button>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-default btn-xs btnEditarTel'>\
+                                Editar\
+                            </button>\
+                            <button class='btn btn-default btn-xs  btnEliminarTel'>\
+                                Eliminar\
+                            </button>\
+                        </div>\
                     </div>\
                 </td>\
             </tr>\

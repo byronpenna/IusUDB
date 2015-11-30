@@ -57,7 +57,7 @@
                     //$(".tableUsuarios").find(".trTableRol").remove();
                     console.log("yes :D");
 
-                    verRoles(false);
+                    verRoles(false,trUsuario);
                     verRoles(true, trUsuario);
                     $(this).val("Ocultar Roles");
                     
@@ -105,6 +105,7 @@
             // actualizar individual
             $(document).on("click", ".btnActualizar", function () {
                 //var x = confirm("¿Esta seguro que desea salvar los cambios?");
+                console.log("ey este que ondas D: ");
                 trUsuario = $(this).parents(".trUsuario");
                 //if (x) {
                     actualizar(trUsuario);

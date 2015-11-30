@@ -69,12 +69,14 @@
                     frm = serializeSection(seccion);
                     var val;
                     var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+                    console.log("Frm antes", frm);
                     if (regex.test(frm.txtEnlace)) {
                         regex = new RegExp("^http://");
                         if (!regex.test(frm.txtEnlace)) {
                             frm.txtEnlace = "http://" + frm.txtEnlace;
                         }
                         //seccion.find(".divResultado").empty();
+                        console.log("Frm despues", frm);
                         seccion.find(".divResultado").addClass("hidden");
                         val = validarAgregar(frm);
                         console.log("El valor de val es", val);

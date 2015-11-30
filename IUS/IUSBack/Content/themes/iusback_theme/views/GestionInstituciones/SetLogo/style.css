@@ -6,7 +6,7 @@
     position: relative;
     overflow: hidden;
     margin: 10px;
-    background:#DDDDDD;
+    /*background:#DDDDDD;*/
 }
 .fileUpload input.upload {
     position: absolute;

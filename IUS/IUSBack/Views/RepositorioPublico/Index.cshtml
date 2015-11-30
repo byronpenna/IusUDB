@@ -105,7 +105,7 @@
                     rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1";
                     <div class="col-lg-2 folder">
                         <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpetaPublica" />
-                        <div class="row divHerramientasIndividual">
+                        @*<div class="row divHerramientasIndividual">
                             
                             <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
                                 <i class="fa fa-trash-o"></i>
@@ -113,9 +113,17 @@
                             <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
                                 <i class="fa fa-globe"></i>
                             </a>
-                        </div>
+                        </div>*@
                         <div class="cuadritoIcono cuadritoCarpeta">
-                            <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                            <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                            <div class="btn-group">
+                                <a href="#" class="ico btn btn-default icoEliminarCarpeta" title="Eliminar">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                                <a href="@rutaWebsite" target="_blank" class="ico btn btn-default" title="Ver website">
+                                    <i class="fa fa-globe"></i>
+                                </a>
+                            </div>
                             <div class="detalleCarpeta">
                                 <div class="normalMode sinRedirect">
                                     <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
@@ -143,16 +151,24 @@
                     rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + archivo._carpetaPublica._idCarpetaPublica + "/-1";
                     <div class="col-lg-2 folder">
                         <input type="hidden" class="txtHdIdArchivoPublico" value="@archivo._idArchivoPublico" />
-                        <div class="row divHerramientasIndividual">
+                        @*<div class="row divHerramientasIndividual">
                             <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
                                 <i class="fa fa-trash-o"></i>
                             </a>
                             <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
                                 <i class="fa fa-globe"></i>
                             </a>
-                        </div>
+                        </div>*@
                         <div class="cuadritoIcono ">
-                            <img src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
+                            <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
+                            <div class="btn-group">
+                                <a href="#" class="ico btn btn-default icoEliminarArchivo" title="Eliminar">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                                <a href="@rutaWebsite" class="ico btn btn-default" target="_blank" title="Ver website">
+                                    <i class="fa fa-globe"></i>
+                                </a>
+                            </div>
                             <div class="detalleCarpeta">
                                 <div class="normalMode">
                                     <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>

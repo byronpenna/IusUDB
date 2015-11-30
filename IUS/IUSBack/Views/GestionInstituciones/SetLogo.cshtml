@@ -13,6 +13,28 @@
     string rutaImage = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
     Institucion institucion = (Institucion)ViewBag.institucion;
 }
+@section arbol{
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@Url.Action("Index", "GestionInstituciones")">
+            <div class="col-lg-8">
+                Instituciones
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-3 text-center cuadritoArbol">
+        <a href="@ViewBag.currentUrl">
+            <div class="col-lg-8">
+                Logo
+            </div>
+            <div class="col-lg-4 divChevron">
+                <i class="fa fa-chevron-right navChevron"></i>
+            </div>
+        </a>
+    </div>
+}
 <div class="contenidoModulo">
     <form method="post" id="frmMiniatura" action="@Url.Action("setMiniaturaLogo")">
         <div class="todoForm">
@@ -28,12 +50,12 @@
             <!--<input type="file" id="flMiniatura" />-->
             <div class="row marginNull">
                 
-                <div class="fileUpload btn">
+                <div class="fileUpload btn btn-default">
                     <span>Seleccionar imagen</span>
                     <input type="file" class="upload" id="flMiniatura" accept="image/*" required/>
                 </div>
             </div>
-            <input id="btnSubmit" class="btn btnSubir" type="submit" value="Subir" disabled />
+            <input id="btnSubmit" class="btn btnSubir btn-default" type="submit" value="Subir" disabled />
             <div class="divResultado">
 
             </div>
