@@ -100,6 +100,9 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <input name='txtEmail' class='input-sm form-control txtEmail' type='email' />\
+                        <div class='row marginNull divResultado hidden'>\
+                            _\
+                        </div>\
                     </div>\
                     <div class='normalMode tdEmail'>\
                         "+emailPersona._email+"\
@@ -108,6 +111,9 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <input class='txtEtiquetaEmail form-control input-sm' name='txtEtiquetaEmail' />\
+                        <div class='row marginNull divResultado hidden'>\
+                            _\
+                        </div>\
                     </div>\
                     <div class='normalMode tdEtiqueta'>\
                         "+emailPersona._descripcion+"\
@@ -151,7 +157,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input class='input-sm txtTelefono form-control' name='txtTelefono' />\
+                        <input class='input-sm txtTelefono form-control soloNumerosInt' name='txtTelefono' />\
                         <div class='row marginNull divResultado hidden'>\
                             _ \
                         </div>\
@@ -163,6 +169,9 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <select class='input-sm cbPais' name='cbPais'></select>\
+                        <div class='row marginNull divResultado hidden'>\
+                            _\
+                        </div>\
                     </div>\
                     <div class='normalMode tdPais'>\
                         "+telefono._pais._pais+" \
@@ -171,6 +180,9 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <input class='input-sm txtEtiquetaTel form-control' name='txtEtiquetaTel' />\
+                        <div class='row marginNull divResultado hidden'>\
+                            _\
+                        </div>\
                     </div>\
                     <div class='normalMode tdEtiqueta'>\
                         "+telefono._descripcion+" \
