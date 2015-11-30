@@ -51,7 +51,29 @@
                             var tr = $(this).parents(".trEliminarActividad");
                             var frm = serializeSection(tr);
                             console.log("formulario a enviar D: D: D: ", frm);
-                            btnActualizarActividadEmpresa(frm,tr);
+
+                            var val = validarInsertActividad(frm);
+                            if (val.estado) {
+                                limpiarVal(tr);
+                                btnActualizarActividadEmpresa(frm, tr);
+                            } else {
+                                console.log("Val es", val);
+                                //############
+                                var errores;
+                                tr.find(".divResultado").addClass("visibilitiHidden");
+                                tr.find(".divResultado").removeClass("hidden");
+                                $.each(val.campos, function (i, val) {
+                                    errores = "";
+                                    var divResultado = tr.find("." + i).parents(".divControl").find(".divResultado")
+                                    if (val.length > 0) {
+                                        divResultado.removeClass("visibilitiHidden");
+                                        $.each(val, function (i, val) {
+                                            errores += getSpanMessageError(val);
+                                        })
+                                        divResultado.empty().append(errores);
+                                    }
+                                })
+                            }
                         })
                     $(document).on("click", ".btnEliminarActividad", function () {
                         var tr = $(this).parents(".trEliminarActividad");
@@ -166,8 +188,17 @@
 
                     controlesEdit(true, tr);
                 })
+                
                 $(document).on("click", ".btnCancelarUni", function (e) {
+                    
                     var tr = $(this).parents("tr");
+                    limpiarVal(tr);
+                    console.log("cancelando");
+                    //tr.css("background", "red");
+                    controlesEdit(false, tr);
+                })
+                $(document).on("click", ".btnCancelarAct", function (e) {
+                    var tr = $(this).parents(".trEliminarActividad");
                     limpiarVal(tr);
                     controlesEdit(false, tr);
                 })
