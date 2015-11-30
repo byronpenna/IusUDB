@@ -1,11 +1,12 @@
 ﻿// genericas 
     function getTrInstitucion(institucion) {
         var tel = ""; var enlaces = "";
+        console.log("los objetos de instituciones son", institucion);
         if (institucion._enlaces !== undefined && institucion._enlaces != null) {
             $.each(institucion._enlaces, function (i, enlace) {
                 enlaces += "\
                 <div class='row marginNull'>\
-                    <a href='"+enlace._enlaces+"'>\
+                    <a href='"+enlace._enlace+"'>\
                         " + enlace._nombreEnlace + "\
                     </a>\
                 </div>";
