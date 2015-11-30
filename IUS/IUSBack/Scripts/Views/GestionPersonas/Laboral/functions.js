@@ -89,7 +89,12 @@
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
-                            <input class='form-control txtActividad' name='txtActividad'>\
+                            <div class='row marginNull divControl'>\
+                                <input class='form-control txtActividad' name='txtActividad'>\
+                                <div class='row marginNull divResultado hidden'>\
+                                    _\
+                                </div>\
+                            </div>\
                         </div>\
                         <div class='normalMode tdActividad'>\
                             " + actividad._actividad + "\
@@ -153,7 +158,12 @@
                             </td>\
                             <td>\
                                 <div class='editMode hidden'>\
-                                    <input class='form-control txtActividad input-sm' name='txtActividad'>\
+                                    <div class='row marginNull divControl'>\
+                                        <input class='form-control txtActividad input-sm' name='txtActividad'>\
+                                        <div class='row marginNull divResultado hidden'>\
+                                            _\
+                                        </div>\
+                                    </div>\
                                 </div>\
                                 <div class='normalMode tdActividad'>\
                                     " + actividad._actividad + "\
@@ -163,7 +173,7 @@
                                 <div class='editMode hidden'>\
                                     <div class='btn-group'>\
                                         <button class='btnActualizarActividadEmpresa btn btn-xs btn-default'>Actualizar</button>\
-                                        <button class='btn btnCancelarUni btn-xs btn-default' >Cancelar</button>\
+                                        <button class='btn btnCancelarAct btn-xs btn-default' >Cancelar</button>\
                                     </div>\
                                 </div>\
                                 <div class='normalMode'>\

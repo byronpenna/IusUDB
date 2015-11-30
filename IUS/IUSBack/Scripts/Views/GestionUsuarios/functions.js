@@ -45,7 +45,7 @@
                                         <input type='hidden' name='idUsuario' class='idUsuario' value='"+ frm.idUsuario + "'>\
                                     </tr>\
                                     <tr  class='trTableRol'>\
-                                        <th colspan='3' class='text-center'>Roles</th>\
+                                        <td colspan='3' class='text-center titleTrTable'>Roles</td>\
                                     </tr>\
                                     <tr>\
                                         <th class='text-center'>Rol</th>\

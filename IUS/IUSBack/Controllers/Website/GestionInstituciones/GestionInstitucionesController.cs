@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 // net framework
     using System.IO;
+    using System.Drawing;
 // librerias internas 
     using IUSBack.Models.Page.GestionInstituciones.Acciones;
 // librerias externas
@@ -133,6 +134,31 @@ namespace IUSBack.Controllers
                 return Json(respuesta);
             }
             #region "set miniatura"
+                public ActionResult getImageThumbLogo(int id)
+                {
+                    try
+                    {
+                        Institucion institucion = this._model.sp_frontui_getLogoInstitucion(id);
+                        if (institucion._logo != null)
+                        {
+                            Stream stream = new MemoryStream(institucion._logo);
+                            return new FileStreamResult(stream, "image/jpeg");
+                        }
+                        else
+                        {
+                            string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                            return base.File(path, "image/jpeg");
+                        }
+                    }
+                    catch (ErroresIUS)
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
+                    catch (Exception x)
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
+                }
                 public ActionResult setMiniaturaLogo()
                 {
                     Dictionary<object, object> frm, respuesta = null;
@@ -158,12 +184,40 @@ namespace IUSBack.Controllers
                                         respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado", true);
                                         respuesta.Add("ruta", Url.Content(strDireccion));*/
-                                        byte[] fileBytes = this.getBytesFromFile(file);
+                                        decimal xx      = this.convertObjAjaxToDecimal(frm["x"]);       decimal yy = this.convertObjAjaxToDecimal(frm["y"]);
+                                        decimal xancho = this.convertObjAjaxToDecimal(frm["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(frm["imgAlto"]);
+                                        byte[] fileBytes = this.getBytesFromFile(file); ;
+                                        using (Image image = Image.FromStream(file.InputStream))
+                                        {
+                                            int x = decimal.ToInt32(image.Width * xx);
+                                            int y = decimal.ToInt32(image.Height * yy);
+                                            int ancho = decimal.ToInt32(image.Height * xancho);
+                                            int alto = decimal.ToInt32(image.Height * yalto);
+                                            MemoryStream memory = new MemoryStream();
+                                            Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                                            try
+                                            {
+                                                using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                                {
+                                                    using (Graphics g = Graphics.FromImage(bitMap))
+                                                    {
+                                                        g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                    }
+                                                    bitMap.Save(memory, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                                }
+                                                fileBytes = memory.ToArray(); //
+                                            }
+                                            catch (Exception ex)
+                                            {
+
+                                            }
+                                        }
+                                        //byte[] fileBytes = this.getBytesFromFile(file);
                                         Institucion institucionActualizar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), fileBytes);
                                         bool estado = this._model.sp_frontui_setLogoInstitucion(institucionActualizar, usuarioSession._idUsuario, this._idPagina);
                                         respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado",estado);
-                                        
+                                        respuesta.Add("id", institucionActualizar._idInstitucion);
                                     }
                                 }
                                 else

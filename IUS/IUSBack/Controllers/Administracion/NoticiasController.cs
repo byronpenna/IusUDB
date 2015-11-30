@@ -174,7 +174,7 @@ namespace IUSBack.Controllers
         #region "acciones ajax"
             public ActionResult getImageThumbnail(int id)
             {
-                string retorno = "";
+                //string retorno = "";
                 try
                 {
                     Post post = this._model._controlPost.sp_adminfe_front_getPicNoticiaFromId(id);

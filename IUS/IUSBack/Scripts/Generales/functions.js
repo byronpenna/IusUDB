@@ -8,7 +8,7 @@
         return exp;
     }
     function soloLetras() {
-        exp = "[a-z A-Zñáéíóú]";
+        exp = "[a-z A-ZñáéíóúÁÉÍÓÚ]";
         return exp;
     }
     function test(exp, str) {

@@ -28,13 +28,13 @@
 .tablaActividadesEmpresa thead tr th,.tdEditActividades{
     text-align:center;
 }
-.titleTrTable{
+/*.titleTrTable{
     text-align:center;
     font-family:'latop';
     font-size:1.5em;
     background:#3498db;
     color:white;
-}
+}*/
 .tdBotones{
     text-align:center;
 }

@@ -2,3 +2,14 @@
     background:#F5F5F5;
     border-color: black;
 }
+.tablaRolesUsuario{
+    width:95%;
+    margin:0 auto;
+}
+.divTableUsuarios {
+    width:95%;
+    margin:0 auto;
+}
+.trTableRol{
+    background:gainsboro !important;
+}
