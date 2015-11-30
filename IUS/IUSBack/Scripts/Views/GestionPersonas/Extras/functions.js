@@ -43,15 +43,15 @@
             txtEtiquetaEmail:   new Array()
         }
         if (frm.txtEmail == "") {
-            val.campos.txtEmail.push("Campo no debe quedar vacio");
+            val.campos.txtEmail.push("-Campo no debe quedar vacio<br>");
         }
         var testEmail = test(FORMATO_EMAIL, frm.txtEmail);
         //console.log("Test email es:",testEmail);
         if (!testEmail) {
-            val.campos.txtEmail.push("Colocar formato correcto a email");
+            val.campos.txtEmail.push("-Colocar formato correcto a email<br>");
         }
         if (frm.txtEtiquetaEmail == "") {
-            val.campos.txtEtiquetaEmail.push("Campo no debe quedar vacio");
+            val.campos.txtEtiquetaEmail.push("-Campo no debe quedar vacio<br>");
         }
         val.estado = objArrIsEmpty(val.campos);
         return val;

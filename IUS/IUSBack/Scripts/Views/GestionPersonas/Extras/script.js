@@ -82,6 +82,7 @@
                 // editar
                     $(document).on("click", ".btnCancelarUpdateEmail", function () {
                         var tr = $(this).parents("tr");
+                        limpiarVal(tr);
                         controlesEdit(false, tr);
                     })
                     $(document).on("click", ".btnEditarEmail", function () {
@@ -97,7 +98,29 @@
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         console.log("Para actualizar", frm);
-                        btnActualizarEmail(frm,tr);
+                        var val = validarInsertEmail(frm);
+                        if (val.estado) {
+                            btnActualizarEmail(frm, tr);
+                        }
+                        else {
+                            var errores;
+                            tr.find(".divResultado").addClass("visibilitiHidden");
+                            tr.find(".divResultado").removeClass("hidden");
+                            $.each(val.campos, function (i, val) {
+                                errores = "";
+                                var divResultado = tr.find("." + i).parents("td").find(".divResultado")
+                                //console.log(i, ": " + val);
+                                if (val.length > 0) {
+                                    //console.log("entro");
+                                    divResultado.removeClass("visibilitiHidden");
+                                    $.each(val, function (i, val) {
+                                        errores += getSpanMessageError(val);
+                                    })
+                                    //console.log("errores", errores);
+                                    divResultado.empty().append(errores);
+                                }
+                            })
+                        }
                     })
                 $(document).on("click", ".btnEliminarEmail", function () {
                     var tr  = $(this).parents("tr");
