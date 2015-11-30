@@ -8,11 +8,24 @@
         /*$(".imgAlto").val(0);
         $(".imgAncho").val(0);*/
     };
-    function frmMiniatura(data, url,image) {
+    function setFrmCoords(frm,imgQuery) {
+        frm.imgAlto     = frm.imgAlto / imgQuery.width();
+        frm.imgAncho    = frm.imgAncho / imgQuery.height();
+        frm.x           = frm.x / imgQuery.width();
+        frm.y           = frm.y / imgQuery.height();
+        return frm;
+    }
+    function frmMiniatura(data, url, image, jcrop_api) {
+        var targetImg = $(".imgThumbnail"), boton = $(".btnSubir");
         accionAjaxWithImage(url, data, function (data) {
             console.log("respuesta", data);
             if (data.estado) {
-                $(".imgThumbnail").attr("src", image.src);
+                jcrop_api.destroy();
+                //$(".imgThumbnail").attr("src", image.src);
+                targetImg.attr("src", RAIZ + "GestionInstituciones/getImageThumbLogo/" + data.id);
+                console.log("url a poner es", RAIZ + "GestionInstituciones/getImageThumbLogo/" + data.id);
+                targetImg.attr("style", "");
+                boton.prop("disabled", true);
             }
 
         })

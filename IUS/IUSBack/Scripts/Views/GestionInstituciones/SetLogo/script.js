@@ -48,15 +48,17 @@
                 var files = $("#flMiniatura")[0].files;
                 frm = serializeToJson($(this).serializeArray());
                 formulario = $(this);
+                frm = setFrmCoords(frm, $(".imgThumbnail"));
                 data = getObjFormData(files, frm);
                 e.preventDefault();
+                console.log("frm enviado es", frm);
                 getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
-                    if (imagen.width == imagen.height) {
-                        frmMiniatura(data, formulario.attr("action"), imagen)    
-                    } else {
+                    //if (imagen.width == imagen.height) {
+                        frmMiniatura(data, formulario.attr("action"), imagen,jcrop_api)    
+                    //} else {
                         //alert("La imagen debe ser cuadrada");
-                        printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
-                    }
+                        //printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
+                    //}
                 });
             })
         // click

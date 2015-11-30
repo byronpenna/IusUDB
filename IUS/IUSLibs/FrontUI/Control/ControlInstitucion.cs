@@ -218,6 +218,34 @@ namespace IUSLibs.FrontUI.Control
                     }
                     return institucionEditada;
                 }
+                public Institucion sp_frontui_getLogoInstitucion(int idInstitucion)
+                {
+                    Institucion institucionRetorno = null;
+                    SPIUS sp = new SPIUS("sp_frontui_getLogoInstitucion");
+                    sp.agregarParametro("idInstitucion", idInstitucion);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                institucionRetorno = new Institucion((int)row["idInstitucion"]);
+                                institucionRetorno._logo = (byte[])row["logo"];
+                            }
+                        }
+                        return institucionRetorno;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_frontui_setLogoInstitucion(Institucion institucionActualizar,int idUsuarioEjecutor,int idPagina)
                 {
                     bool estado = false;

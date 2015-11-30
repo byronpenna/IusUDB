@@ -71,7 +71,22 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                         throw x;
                     }
                     
-                }    
+                }
+                public Institucion sp_frontui_getLogoInstitucion(int idInstitucion)
+                {
+                    try
+                    {
+                        return this._controlInstitucion.sp_frontui_getLogoInstitucion(idInstitucion);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "acciones"
                 public Institucion sp_frontui_editInstitucion(Institucion institucionEditar, int idUsuarioEjecutor, int idPagina)
@@ -94,6 +109,7 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                     try
                     {
                         return this._controlInstitucion.sp_frontui_setLogoInstitucion(institucionActualizar, idUsuarioEjecutor, idPagina);
+                        //return this._controlInstitucion.sp_frontu_setLogoInstitucion(institucionActualizar, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {

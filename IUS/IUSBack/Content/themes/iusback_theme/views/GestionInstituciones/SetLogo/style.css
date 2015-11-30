@@ -1,5 +1,12 @@
-﻿.divResultado{
+﻿.jcrop-holder, .imgPersona{
+    margin:0 auto;
+}
+.divResultado{
     margin-top:1%;
+}
+.imgThumbnail{
+    max-width:50%;
+    height:auto;
 }
 /* Input upload */
 .fileUpload {
