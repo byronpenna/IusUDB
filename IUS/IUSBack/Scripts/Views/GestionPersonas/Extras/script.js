@@ -2,31 +2,33 @@
     // plugins
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
-    // jcrop
-        var jcrop_api = null;
-        /*jcrop_api = $.Jcrop('.imgPersona', {
-            onSelect: storeCoords,
-            onChange: storeCoords,
-            aspectRatio: 1
-        });*/
+        // jcrop
+            var jcrop_api = null;
+            /*jcrop_api = $.Jcrop('.imgPersona', {
+                onSelect: storeCoords,
+                onChange: storeCoords,
+                aspectRatio: 1
+            });*/
     // eventos
         // change 
             $(document).on("change", ".flFotoPersona", function (e) {
-                var boton = $(".btnEstablecer"); var targetImg =$(".imgPersona");
-                console.log("D: ");
-                var cambiar = false;
+                // vars 
+                    var boton = $(".btnEstablecer"); var targetImg = $(".imgPersona");
+                    var divLoading = $(".divLoadingPhoto");
+                    var cambiar = false;
+                // do it 
                 if ($(this).val() == "") {
                     console.log("Es vacio");
                     boton.prop("disabled", true);
                 } else {
                     console.log("Es vacio NO NO NO");
                     cambiar = true;
-                    $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
+                    divLoading.empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                     boton.prop("disabled", false);
                 }
                 if (cambiar) {
                     getImageFromInputFileEvent(e, function (images) {
-                        $(".divLoadingPhoto").empty();
+                        divLoading.empty();
                         //$(".imgPersona").fadeIn("slow");
                         console.log("mmm", images);
                         if (images !== undefined && images != null) {
