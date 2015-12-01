@@ -185,11 +185,8 @@ namespace IUSBack.Controllers
                                         respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado", true);
                                         respuesta.Add("ruta", Url.Content(strDireccion));*/
-                                        
                                         /*decimal xx      = ;*/       /*decimal yy = ;*/
                                         /*decimal xancho = ;*/ /*decimal yalto = ;*/
-                                        
-                                        
                                         /*Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
                                         byte[] fileBytes = this.getBytesFromFile(file); ;
                                         using (Image image = Image.FromStream(file.InputStream))

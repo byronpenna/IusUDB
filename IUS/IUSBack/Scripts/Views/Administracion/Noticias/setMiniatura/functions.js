@@ -16,7 +16,7 @@
         }
 // scripts 
     function frmMiniatura(data, url, image) {
-        var targetImg = $(".imgThumbnail");
+        var targetImg = $(".imgThumbnail"), boton = $(".botonSubir");
         accionAjaxWithImage(url, data, function (data) {
             console.log("reespueta", data);
             if (data.estado) {
@@ -24,6 +24,8 @@
                 console.log("A poner es D: ", RAIZ + "Noticias/getImageThumbnail/" + data.id);
                 targetImg.attr("src", RAIZ + "Noticias/getImageThumbnail/" + data.id);
                 targetImg.attr("style", "");
+                boton.prop("disabled", true);
+                console.log("deshabilitar D: ");
             }
         })
     }
