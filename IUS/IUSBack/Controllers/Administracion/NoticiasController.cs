@@ -8,6 +8,7 @@ using System.Web.Mvc;
     using System.Drawing;
 // librerias internas
     using IUSBack.Models.Page.Administracion.Acciones;
+    using IUSBack.Models.General;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -222,7 +223,7 @@ namespace IUSBack.Controllers
                                 foreach (HttpPostedFileBase file in files)
                                 {
                                     //
-                                    decimal xx = this.convertObjAjaxToDecimal(form["x"]); decimal yy = this.convertObjAjaxToDecimal(form["y"]);
+                                    /*decimal xx = this.convertObjAjaxToDecimal(form["x"]); decimal yy = this.convertObjAjaxToDecimal(form["y"]);
                                     decimal xancho = this.convertObjAjaxToDecimal(form["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(form["imgAlto"]);
                                     MemoryStream memory = new MemoryStream();
                                     byte[] fileBytes = this.getBytesFromFile(file); ;
@@ -253,7 +254,9 @@ namespace IUSBack.Controllers
                                             }
                                         }
 
-                                    }
+                                    }*/
+                                    Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(form["x"]),this.convertObjAjaxToDecimal(form["y"]),this.convertObjAjaxToDecimal(form["imgAncho"]),this.convertObjAjaxToDecimal(form["imgAlto"]));
+                                    byte[] fileBytes = this.getBytesRecortadosFromFile(file,coordenadas);
                                     Post postAgregar = new Post(this.convertObjAjaxToInt(form["txtHdIdPost"]));
                                     postAgregar._miniatura = fileBytes;
                                     bool estado = this._model.sp_adminfe_noticias_setThumbnailPost(postAgregar, usuarioSession._idUsuario, this._idPagina);

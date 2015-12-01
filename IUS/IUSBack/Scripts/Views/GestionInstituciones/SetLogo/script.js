@@ -54,7 +54,11 @@
                 console.log("frm enviado es", frm);
                 getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
                     //if (imagen.width == imagen.height) {
-                        frmMiniatura(data, formulario.attr("action"), imagen,jcrop_api)    
+                    if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0)) {
+                        frmMiniatura(data, formulario.attr("action"), imagen, jcrop_api);
+                    } else {
+                        printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
+                    }
                     //} else {
                         //alert("La imagen debe ser cuadrada");
                         //printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);

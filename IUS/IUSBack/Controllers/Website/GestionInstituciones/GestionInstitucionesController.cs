@@ -7,6 +7,7 @@ using System.Web.Mvc;
     using System.IO;
     using System.Drawing;
 // librerias internas 
+    using IUSBack.Models.General;
     using IUSBack.Models.Page.GestionInstituciones.Acciones;
 // librerias externas
     using IUSLibs.SEC.Entidades;
@@ -184,8 +185,12 @@ namespace IUSBack.Controllers
                                         respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado", true);
                                         respuesta.Add("ruta", Url.Content(strDireccion));*/
-                                        decimal xx      = this.convertObjAjaxToDecimal(frm["x"]);       decimal yy = this.convertObjAjaxToDecimal(frm["y"]);
-                                        decimal xancho = this.convertObjAjaxToDecimal(frm["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(frm["imgAlto"]);
+                                        
+                                        /*decimal xx      = ;*/       /*decimal yy = ;*/
+                                        /*decimal xancho = ;*/ /*decimal yalto = ;*/
+                                        
+                                        
+                                        /*Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
                                         byte[] fileBytes = this.getBytesFromFile(file); ;
                                         using (Image image = Image.FromStream(file.InputStream))
                                         {
@@ -211,8 +216,10 @@ namespace IUSBack.Controllers
                                             {
 
                                             }
-                                        }
+                                        }*/
                                         //byte[] fileBytes = this.getBytesFromFile(file);
+                                        Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
+                                        byte[] fileBytes = this.getBytesRecortadosFromFile(file, coordenadas); 
                                         Institucion institucionActualizar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), fileBytes);
                                         bool estado = this._model.sp_frontui_setLogoInstitucion(institucionActualizar, usuarioSession._idUsuario, this._idPagina);
                                         respuesta = new Dictionary<object, object>();

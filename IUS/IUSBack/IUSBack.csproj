@@ -206,6 +206,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\General\Coordenadas.cs" />
     <Compile Include="Models\General\GestionFileServerModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\AdministracionModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\NoticiasModel.cs" />
