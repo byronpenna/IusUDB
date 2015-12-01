@@ -1,4 +1,20 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.RRHH.Entidades.Laboral
+@using IUSLibs.RRHH.Entidades.Formacion
+@using IUSLibs.RRHH.Entidades
+@using IUSLibs.SEC.Entidades
+@{
+    Dictionary<object, object>  detalle     = (Dictionary<object, object>)ViewBag.detalle;
+    Dictionary<object, object>  medios      = (Dictionary<object, object>)ViewBag.medios;
+    // info
+        Persona                     persona     = (Persona)detalle["persona"];
+        List<FormacionPersona>      formaciones = (List<FormacionPersona>)detalle["formaciones"];
+        List<LaboralPersona>        laborales   = (List<LaboralPersona>)detalle["laborales"];
+        InformacionPersona          infoPersona = (InformacionPersona)detalle["infoPersona"];
+    // medios 
+        List<EmailPersona>          emails      = (List<EmailPersona>)medios["emails"];
+        List<TelefonoPersona>       telefonos   = (List<TelefonoPersona>)medios["telefonos"];
+}
+@section estilosPersonalizados{
     <!-- plugins -->
 
     <!-- Propios -->
@@ -70,7 +86,22 @@
                     
                 </thead>
                 <tbody>
-                    <tr>
+                    @if (emails != null && emails.Count > 0)
+                    {
+                        foreach (EmailPersona email in emails)
+                        {
+                            <tr>
+                                <td>@email._email</td>
+                                <td>@email._descripcion</td>
+                                <td>
+                                    <a href="#" title="Escribir">
+                                        <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @*<tr>
                         <td>byronpenna@gmail.com</td>
                         <td>Personal</td>
                         <td>
@@ -79,7 +110,7 @@
                             </a>
                             
                         </td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
         </div>
@@ -94,7 +125,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    
+                    @*<tr>
                         <td>7871-9006</td>
                         <td>Personal</td>
                         <td>
@@ -102,10 +134,40 @@
                                 <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
                             </a>
                         </td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
         </div>
     </div>
-    
+    <div class="row marginNull divInfoI">
+        <h2 class="tituloSecciones">Formación</h2>
+        <div class="col-lg-6">
+            <h3 class="text-center">Profesional</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Carrera</th>
+                        <th>Institución</th>
+                        <th>País</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <h3 class="text-center">Academica</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Cargo</th>
+                        <th>Tiempo</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
 </div>

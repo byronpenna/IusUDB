@@ -47,6 +47,36 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     throw x;
                 }
             }
+            public Dictionary<object, object> sp_rrhh_getMediosPersonas(int idPersona, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    return this._control.sp_rrhh_getMediosPersonas(idPersona, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+            public Dictionary<object, object> sp_rrhh_detallePesona(int idPersona,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    return this._control.sp_rrhh_detallePesona(idPersona, idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
         #endregion
         #region "Acciones"
             public bool sp_hm_eliminarPersona(int idPersona,int idUsuarioEjecutor,int idPagina)

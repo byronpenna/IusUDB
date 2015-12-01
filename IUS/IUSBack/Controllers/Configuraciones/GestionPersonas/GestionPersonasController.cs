@@ -109,8 +109,13 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    ViewBag.titleModulo = "Detalle persona";
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSesion._idUsuario);
+                    //Dictionary<object,object> detalle = this._model.
+                    Dictionary<object, object> detalle  = this._model.sp_rrhh_detallePesona(id, usuarioSesion._idUsuario, this._idPagina);
+                    Dictionary<object, object> medios   = this._model.sp_rrhh_getMediosPersonas(id, usuarioSesion._idUsuario,this._idPagina);
+                    ViewBag.titleModulo                 = "Detalle persona";
+                    ViewBag.detalle                     = detalle;
+                    ViewBag.medios                      = medios;
+                    ViewBag.menus                       = this._model.sp_sec_getMenu(usuarioSesion._idUsuario);
                 }
                 catch (ErroresIUS x)
                 {
