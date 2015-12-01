@@ -33,7 +33,7 @@
     Permiso permiso = (Permiso)ViewBag.permiso;
 }
 <div id="tab-1" class="row marginNull seccion tab">
-    <div class="cuerpoModulo">
+    <div class="cuerpoModulo divTable">
         @if (permiso._crear)
         {
             <a class="btn botonAgregarNoticia" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
