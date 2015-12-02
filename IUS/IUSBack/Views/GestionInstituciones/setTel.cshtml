@@ -52,93 +52,96 @@
     <div class="divMensajesGenerales">
 
     </div>
-    <table class="table tbTelefonos">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Telefono</th>
-                <th>Etiqueta</th>
-                <th>Acciones</th>
-            </tr>
-            <tr>
-                <th>
-                    <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion"/>
-                    <div class="divResultado marginNull row hidden">
+    <div class="divTable">
+        <table class="table tbTelefonos">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Telefono</th>
+                    <th>Etiqueta</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr>
+                    <th>
+                        <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
+                        <div class="divResultado marginNull row hidden">
 
-                    </div>
-                </th>
-                <th>
-                    <input type="tel" name="txtTelefono" class="form-control input-sm txtTelefono soloNumerosDecimal txtFrmAgregar" />
-                    <div class="divResultado marginNull row hidden">
-                        _
-                    </div>
-                </th>
-                <th>
-                    <input type="tel" name="txtEtiqueta" class="form-control input-sm txtEtiqueta txtFrmAgregar" />
-                    <div class="divResultado marginNull row hidden">
-                        _
-                    </div>
-                </th>
-                <th class="thBtnGuardar">
-                    <button class="btn btn-default btn-sm btnAgregarTel" @permiso.stringCrear>Agregar</button>
-                </th>
-            </tr>
-        </thead>
-        <tbody class="tbodyTelefonos">
-            @if (telefonos != null && telefonos.Count > 0)
-            {
-                foreach (TelefonoInstitucion telefono in telefonos)
+                        </div>
+                    </th>
+                    <th>
+                        <input type="tel" name="txtTelefono" class="form-control input-sm txtTelefono soloNumerosDecimal txtFrmAgregar" />
+                        <div class="divResultado marginNull row hidden">
+                            _
+                        </div>
+                    </th>
+                    <th>
+                        <input type="tel" name="txtEtiqueta" class="form-control input-sm txtEtiqueta txtFrmAgregar" />
+                        <div class="divResultado marginNull row hidden">
+                            _
+                        </div>
+                    </th>
+                    <th class="thBtnGuardar">
+                        <button class="btn btn-default btn-sm btnAgregarTel" @permiso.stringCrear>Agregar</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbodyTelefonos">
+                @if (telefonos != null && telefonos.Count > 0)
                 {
-                    <tr>
-                        <td>
-                            <input type="hidden" class="txtHdIdTel" name="txtHdIdTel" value="@telefono._idTelefono"/>
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <input type="tel" name="txtTelefonoEdit" class="form-control txtTelefonoEdit soloNumerosDecimal txtFrmEditar" />
-                                <div class="divResultado marginNull row hidden">
-                                    _
+                    foreach (TelefonoInstitucion telefono in telefonos)
+                    {
+                        <tr>
+                            <td>
+                                <input type="hidden" class="txtHdIdTel" name="txtHdIdTel" value="@telefono._idTelefono" />
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <input type="tel" name="txtTelefonoEdit" class="form-control txtTelefonoEdit soloNumerosDecimal txtFrmEditar" />
+                                    <div class="divResultado marginNull row hidden">
+                                        _
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="normalMode tdTelefono">@telefono._telefono</div>
-                        </td>
+                                <div class="normalMode tdTelefono">@telefono._telefono</div>
+                            </td>
 
-                        <td>
-                            <div class="editMode hidden">
-                                <input type="tel" name="txtEtiquetaEdit" class="form-control txtEtiquetaEdit txtFrmEditar" />
-                                <div class="divResultado marginNull row hidden">
-                                    _
+                            <td>
+                                <div class="editMode hidden">
+                                    <input type="tel" name="txtEtiquetaEdit" class="form-control txtEtiquetaEdit txtFrmEditar" />
+                                    <div class="divResultado marginNull row hidden">
+                                        _
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="normalMode tdTextoTelefono">@telefono._textoTelefono</div>      
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <div class="btn-group">
-                                    <button class="btn btn-default btn-xs btnActualizar">
-                                        Actualizar
-                                    </button>
-                                    <button class="btn btn-default btn-xs btnCancelar">
-                                        Cancelar
-                                    </button>
+                                <div class="normalMode tdTextoTelefono">@telefono._textoTelefono</div>
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs btnActualizar">
+                                            Actualizar
+                                        </button>
+                                        <button class="btn btn-default btn-xs btnCancelar">
+                                            Cancelar
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="normalMode">
-                                <div class="btn-group">
-                                    <button class="btn btn-default btn-xs btnEditarTel" @permiso.stringEditar>
-                                        Editar
-                                    </button>
-                                    <button class="btn btn-default btn-xs btnEliminarTel" @permiso.stringEliminar>
-                                        Eliminar
-                                    </button>
+                                <div class="normalMode">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default btn-xs btnEditarTel" @permiso.stringEditar>
+                                            Editar
+                                        </button>
+                                        <button class="btn btn-default btn-xs btnEliminarTel" @permiso.stringEliminar>
+                                            Eliminar
+                                        </button>
+                                    </div>
+
                                 </div>
-                                
-                            </div>
-                        </td>
-                    </tr>    
+                            </td>
+                        </tr>
+                    }
+
                 }
-                
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+    
 </div>

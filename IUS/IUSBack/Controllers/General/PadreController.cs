@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 // manejo de archivos
     using System.IO;
+    using System.Drawing;
 // sistema 
     using System.Web.Script.Serialization;
 // librerias internas
@@ -27,8 +28,8 @@ namespace IUSBack.Controllers
             }
             #region "espacio de configuracion"
                 public string URL_IUS = "http://localhost:7196/";
-                //public string URL_IUS = "http://168.243.3.62/iusback/";
-                //public string URL_IUS = "http://admacad.udb.edu.sv/IUSback/";
+                //public string URL_IUS = "http://168.243.3.62/ius/";
+                //public string URL_IUS = "http://admacad.udb.edu.sv/IUS/";
                 public string IMG_GENERALES = "~/Content/themes/iusback_theme/img/general/";
             #endregion
             protected JavaScriptSerializer _jss;
@@ -113,24 +114,39 @@ namespace IUSBack.Controllers
                 }
             #endregion
             #region "manejo de archivos"
-            /*public string getPath(string path,string fileName){
-                    string retorno = "";
-                    try
+                public Byte[] getBytesRecortadosFromFile(HttpPostedFileBase file,Coordenadas coordenadas)
+                {
+                    MemoryStream memory = new MemoryStream();
+                    byte[] fileBytes = this.getBytesFromFile(file);
+                    using (Image image = Image.FromStream(file.InputStream))
                     {
-                        path = Server.MapPath(path);
-                        //retorno = Path.Combine(, fileName);
-                        if (!Directory.Exists(path))
+                        if (image.Width != image.Height || (coordenadas._ancho > 0 && coordenadas._alto > 0 && coordenadas._ancho > 0))
                         {
-                            Directory.CreateDirectory(path);
+                            int x = decimal.ToInt32(image.Width * coordenadas._x);
+                            int y = decimal.ToInt32(image.Height * coordenadas._y);
+                            int ancho = decimal.ToInt32(image.Height * coordenadas._ancho);
+                            int alto = decimal.ToInt32(image.Height * coordenadas._alto);
+                            Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                            try
+                            {
+                                using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                {
+                                    using (Graphics g = Graphics.FromImage(bitMap))
+                                    {
+                                        g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                    }
+                                    bitMap.Save(memory, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                }
+                                fileBytes = memory.ToArray();
+                            }
+                            catch (Exception)
+                            {
+
+                            }
                         }
-                        retorno = Path.Combine(path, fileName);
                     }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                    return retorno;
-                }*/
+                    return fileBytes;
+                }
                 public Byte[] getBytesFromFile(HttpPostedFileBase archivo)
                 {
                     Stream fileStream = archivo.InputStream;
@@ -353,6 +369,7 @@ namespace IUSBack.Controllers
                     }
                 #endregion
             #endregion
+
         #endregion
         #region "contructores"
             public PadreController()

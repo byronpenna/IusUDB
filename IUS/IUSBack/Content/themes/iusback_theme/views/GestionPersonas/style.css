@@ -1,4 +1,12 @@
-﻿.tablaUniversal thead tr:nth-child(3) th{
+﻿/*Quitar en caso de usar tabs*/
+    .cuerpoModulo,.tabsHeader{
+        margin-top:0%;
+    }
+    .tabsHeader{
+        display:none;
+    }
+
+.tablaUniversal thead tr:nth-child(3) th{
     border-bottom:none;
 }
 .tablaUniversal thead tr th{

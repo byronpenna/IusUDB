@@ -40,8 +40,14 @@
                                 });
                             }
                         })
+                    } else {
+                        if (jcrop_api != null) {
+                            jcrop_api.destroy();
+                        }
+                        targetImg.attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/noimage.png");
+                        targetImg.attr("style", "");
+                        $(".divLoadingPhoto").empty();
                     }
-
                 })
         // submit
             $(document).on("submit", "#frmMiniatura", function (e) {
@@ -53,12 +59,11 @@
                 e.preventDefault();
                 console.log("frm enviado es", frm);
                 getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
-                    //if (imagen.width == imagen.height) {
-                        frmMiniatura(data, formulario.attr("action"), imagen,jcrop_api)    
-                    //} else {
-                        //alert("La imagen debe ser cuadrada");
-                        //printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
-                    //}
+                    if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0)) {
+                        frmMiniatura(data, formulario.attr("action"), imagen, jcrop_api);
+                    } else {
+                        printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
+                    }
                 });
             })
         // click

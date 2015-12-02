@@ -92,7 +92,7 @@ namespace IUSLibs.SEC.Control
                 public Persona actualizarPersona(Persona persona,int idUsuario,int idPagina)
                 {
                     Persona personaReturn = null;
-                    ErroresIUS errorIus; // manejo de errores
+                    // manejo de erroresErroresIUS errorIus; 
                     SPIUS sp = new SPIUS("sp_hm_editarPersona");
                     // para actualizar
                         sp.agregarParametro("nombres", persona._nombres);
@@ -277,6 +277,60 @@ namespace IUSLibs.SEC.Control
                             throw x;
                         }
                     return retorno;
+                }
+                public Dictionary<object, object> sp_rrhh_getMediosPersonas(int idPersona, int idUsuarioEjecutor, int idPagina)
+                {
+                    // vas
+                        List<EmailPersona> emails = null; List<TelefonoPersona> telefonos = null;
+                        EmailPersona email; TelefonoPersona telefono;
+                        Dictionary<object, object> retorno = new Dictionary<object, object>();
+                    // do it 
+                        SPIUS sp = new SPIUS("sp_rrhh_getMediosPersonas");
+                        sp.agregarParametro("idPersona", idPersona);
+                        sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                        sp.agregarParametro("idPagina", idPagina);
+                        try
+                        {
+                            DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                            if (this.resultadoCorrectoGet(tb))
+                            {
+                                if (tb[0].Rows.Count > 0)
+                                {
+                                    foreach(DataRow row in tb[0].Rows){
+                                        email = new EmailPersona((int)row["idMailPersona"], row["email"].ToString(), row["descripcion"].ToString());
+                                        emails.Add(email);
+                                    }
+                                    
+                                }
+                                if (tb[1].Rows.Count > 0)
+                                {
+                                    foreach (DataRow row in tb[1].Rows)
+                                    {
+                                        telefono                = new TelefonoPersona((int)row["idTelefonoPersona"]);
+                                        telefono._telefono      = row["telefono"].ToString();
+                                        telefono._descripcion   = row["descripcion"].ToString();
+                                        telefonos.Add(telefono);
+                                    }
+                                }
+                                retorno.Add("telefonos", telefonos);
+                                retorno.Add("emails", emails);
+                                return retorno;
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                 }
             #endregion
         #endregion

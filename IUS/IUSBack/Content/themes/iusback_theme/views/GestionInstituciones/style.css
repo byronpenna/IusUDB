@@ -1,5 +1,13 @@
-﻿.divDatos{
-    margin-top:5%;
+﻿/*Quitar en caso de usar tabs*/
+    .cuerpoModulo,.tabsHeader{
+        margin-top:0%;
+    }
+    .tabsHeader{
+        display:none;
+    }
+
+.divDatos{
+    /*margin-top:5%;*/
 }
 .tbInstituciones tr td:first-child,.tbInstituciones tr th:first-child{
     display:none;

@@ -70,23 +70,25 @@
         </div>
     </div>
     <div class="row divRoles">
-        <table class="table table-striped tbRoles table-hover tableRolesTab1">
-            <thead>
-                <tr>
-                    <th>Rol</th>
-                    <th>Estado Rol</th>
-                    <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody class="tbodyRolUsuario">
-                <tr>
-                    <td colspan="3" class="text-center">Seleccione usuario para mostrar sus roles</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="divTable">
+            <table class="table table-striped tbRoles table-hover tableRolesTab1">
+                <thead>
+                    <tr>
+                        <th>Rol</th>
+                        <th>Estado Rol</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody class="tbodyRolUsuario">
+                    <tr>
+                        <td colspan="3" class="text-center">Seleccione usuario para mostrar sus roles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-<div id="tab-2" class="tab hidden marginNull">
+<div id="tab-2" class="tab hidden marginNull divTable">
     <div class="row divSeleccioneRolTab2">
         <div class="divLbSelectRolTab2">
             <label>Seleccione Rol</label>
@@ -195,80 +197,83 @@
     <div class="row marginNull divMensajesGenerales divMensajesGeneralesRoles">
 
     </div>
-    <table class="table table-hover table-striped tableRolesTab3">
-        <thead>
-            <tr>
-                <th>
-                    Rol 
-                </th>
-                <th>
-                    Estado
-                </th>
-                <th>
-                    Acciones
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" name="txtRol" class="input-sm form-control txtRolAgregar txtRol" />
-                    <div class="row marginNull divResultado hidden">
+    <div class="divTable">
+        <table class="table table-hover tableRolesTab3">
+            <thead>
+                <tr>
+                    <th>
+                        Rol
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="txtRol" class="input-sm form-control txtRolAgregar txtRol" />
+                        <div class="row marginNull divResultado hidden">
 
-                    </div>
-                </td>
-                <td>
-                    <input type="text" name="txtEstado" class="input-sm form-control txtEstado" value="Activo" disabled />
-                </td>
-                <td>
-                    <button class="btn btn-xs btn-primary btnAgregarRol">
-                        Crear
-                    </button>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            @if (rolesTabla != null)
-            {
-                foreach (Rol rol in rolesTabla)
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" name="txtEstado" class="input-sm form-control txtEstado" value="Activo" disabled />
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-default btnAgregarRol">
+                            Crear
+                        </button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (rolesTabla != null)
                 {
-                    <tr>
-                        <td class="hidden">
-                            <input type="hidden" name="txtHdIdRol" class="txtHdIdRol" value="@rol._idRol" />
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <input type="text" name="txtRol" class="input-sm txtRol txtRolEdit form-control"  />
-                                <div class="divResultado">
+                    foreach (Rol rol in rolesTabla)
+                    {
+                        <tr>
+                            <td class="hidden">
+                                <input type="hidden" name="txtHdIdRol" class="txtHdIdRol" value="@rol._idRol" />
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <input type="text" name="txtRol" class="input-sm txtRol txtRolEdit form-control" />
+                                    <div class="divResultado">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="normalMode tdRol" >@rol._rol</div>
-                        </td>
-                        <td class="tdEstadoRol">
-                            @rol.stringEstado
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <button class="btn btn-xs btn-default btnActualizar">Actualizar</button>
-                                <button class="btn btn-xs btn-default btnCancelarEdit">Cancelar</button>
-                            </div>
-                            <div class="normalMode">
-                                <div class='btn-group'>
-                                    <button class="btn btn-xs btn-default btnEditar" @permisos.stringEditar>
-                                        Editar
-                                    </button>
-                                    <button class="btn btn-xs btn-default btnEliminar" @permisos.stringEliminar>
-                                        Eliminar
-                                    </button>
-                                    <button class="btn btn-xs btn-default btnDeshabilitar" @permisos.stringEditar>
-                                        @rol.txtBtnHabilitar
-                                    </button>
+                                <div class="normalMode tdRol">@rol._rol</div>
+                            </td>
+                            <td class="tdEstadoRol">
+                                @rol.stringEstado
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <button class="btn btn-xs btn-default btnActualizar">Actualizar</button>
+                                    <button class="btn btn-xs btn-default btnCancelarEdit">Cancelar</button>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                                <div class="normalMode">
+                                    <div class='btn-group'>
+                                        <button class="btn btn-xs btn-default btnEditar" @permisos.stringEditar>
+                                            Editar
+                                        </button>
+                                        <button class="btn btn-xs btn-default btnEliminar" @permisos.stringEliminar>
+                                            Eliminar
+                                        </button>
+                                        <button class="btn btn-xs btn-default btnDeshabilitar" @permisos.stringEditar>
+                                            @rol.txtBtnHabilitar
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-            
-        </tbody>
-    </table>
+
+            </tbody>
+        </table>
+    </div>
+    
 </div>

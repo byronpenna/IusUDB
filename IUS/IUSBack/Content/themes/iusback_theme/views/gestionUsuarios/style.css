@@ -1,4 +1,11 @@
-﻿.botonControl{
+﻿/*Quitar en caso se usar tabs*/
+    .cuerpoModulo,.tabsHeader{
+        margin-top:0%;
+    }
+    .tabsHeader{
+        display:none;
+    }
+.botonControl{
     background:#F5F5F5;
     border-color: black;
 }
@@ -6,10 +13,10 @@
     width:95%;
     margin:0 auto;
 }
-.divTableUsuarios {
+/*.divTableUsuarios {
     width:95%;
     margin:0 auto;
-}
+}*/
 .trTableRol{
     background:gainsboro !important;
 }
