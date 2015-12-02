@@ -75,7 +75,7 @@
         </div>
         <div class="col-lg-2 tarjetaInfo t2" >
             <h3>Pais de origen</h3>
-            <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/Canada.png")" />
+            <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/"+infoPersona._pais._idPais+".png")" />
             <h4>@pais</h4>
         </div>
         <div class="col-lg-2 tarjetaInfo t1">
@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="row marginNull divInfoI">
-        <h2 class="tituloSecciones">Informacion de contacto</h2>
+        <h2 class="tituloSecciones">Informacion de contacto <small><a href="@Url.Action("Extras", "GestionPersonas", new { id=@persona._idPersona})">Editar</a></small> </h2>
         <div class="col-lg-6">
             <h3 class="text-center">Correos</h3>
             <table class="table">
@@ -105,7 +105,7 @@
                                 <td>@email._email</td>
                                 <td>@email._descripcion</td>
                                 <td>
-                                    <a href="#" title="Escribir">
+                                    <a href="mailto:@email._email" title="Escribir">
                                         <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
                                     </a>
                                 </td>
@@ -150,7 +150,7 @@
                                 <td>@telefono._telefono</td>
                                 <td>@telefono._descripcion</td>
                                 <td>
-                                    <a href="#" title="Llamar">
+                                    <a href="tel:@telefono._telefono" title="Llamar">
                                         <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
                                     </a>
                                 </td>
@@ -181,7 +181,7 @@
     <div class="row marginNull divInfoI">
         <h2 class="tituloSecciones">Formación</h2>
         <div class="col-lg-6">
-            <h3 class="text-center">Profesional</h3>
+            <h3 class="text-center">Profesional <small><a href="@Url.Action("Index", "FormacionPersonas", new { id=persona._idPersona })">Editar</a></small></h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -212,7 +212,7 @@
             </table>
         </div>
         <div class="col-lg-6">
-            <h3 class="text-center">Academica</h3>
+            <h3 class="text-center">Academica <small><a href="@Url.Action("Index", "GestionLaboral", new {id=persona._idPersona })">Editar</a></small></h3>
             <table class="table">
                 <thead>
                     <tr>
