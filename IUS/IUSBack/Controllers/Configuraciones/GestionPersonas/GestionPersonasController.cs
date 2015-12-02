@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
+    
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -111,6 +112,13 @@ namespace IUSBack.Controllers
                 {
                     //Dictionary<object,object> detalle = this._model.
                     Dictionary<object, object> detalle  = this._model.sp_rrhh_detallePesona(id, usuarioSesion._idUsuario, this._idPagina);
+                    InformacionPersona informacion = (InformacionPersona)detalle["infoPersona"];
+                    if (informacion._fotoRuta != null && informacion._fotoRuta != "")
+                    {
+                        informacion._fotoRuta = this.getRelativePathFromAbsolute(informacion._fotoRuta);
+                        informacion._tieneFoto = true;
+                        detalle["infoPersona"] = informacion;
+                    }
                     Dictionary<object, object> medios   = this._model.sp_rrhh_getMediosPersonas(id, usuarioSesion._idUsuario,this._idPagina);
                     ViewBag.titleModulo                 = "Detalle persona";
                     ViewBag.detalle                     = detalle;

@@ -474,8 +474,8 @@
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\warning.png" />
     <Content Include="Content\themes\iusback_theme\img\general\sadcloud.png" />
     <Content Include="Content\themes\iusback_theme\img\general\repositorio\wordico.png" />
-    <Content Include="Content\themes\iusback_theme\img\general\sexos\fem-i.png" />
-    <Content Include="Content\themes\iusback_theme\img\general\sexos\mas-i.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\sexos\2.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\sexos\1.png" />
     <Content Include="Content\themes\iusback_theme\img\views\ConfiguracionWebsite\noimage.png" />
     <Content Include="Content\themes\iusback_theme\img\views\eventos\noevento.png" />
     <Content Include="Content\themes\iusback_theme\img\views\Persona\pastel.png" />

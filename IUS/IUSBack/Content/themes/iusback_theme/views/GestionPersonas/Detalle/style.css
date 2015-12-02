@@ -2,6 +2,9 @@
     margin-top:3%;
     text-align:center;
 }
+.imgPic img{
+    max-width:20%;
+}
 .divInfo{
     margin-top:3%;
 }

@@ -218,6 +218,7 @@ namespace IUSLibs.SEC.Control
                                     {
                                         formacion = new FormacionPersona((int)row["idFormacionPersona"], row["observaciones"].ToString(), (int)row["id_persona_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"], row["institucion"].ToString(), (int)row["id_paisinstitucion_fk"]);
                                         formacion._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
+                                        formacion._paisInstitucion._pais = row["pais"].ToString();
                                         formaciones.Add(formacion);
                                     }
                                 }
@@ -296,6 +297,7 @@ namespace IUSLibs.SEC.Control
                             {
                                 if (tb[0].Rows.Count > 0)
                                 {
+                                    emails = new List<EmailPersona>();
                                     foreach(DataRow row in tb[0].Rows){
                                         email = new EmailPersona((int)row["idMailPersona"], row["email"].ToString(), row["descripcion"].ToString());
                                         emails.Add(email);
@@ -304,6 +306,7 @@ namespace IUSLibs.SEC.Control
                                 }
                                 if (tb[1].Rows.Count > 0)
                                 {
+                                    telefonos = new List<TelefonoPersona>();
                                     foreach (DataRow row in tb[1].Rows)
                                     {
                                         telefono                = new TelefonoPersona((int)row["idTelefonoPersona"]);

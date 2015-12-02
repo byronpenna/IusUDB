@@ -13,6 +13,17 @@
     // medios 
         List<EmailPersona>          emails      = (List<EmailPersona>)medios["emails"];
         List<TelefonoPersona>       telefonos   = (List<TelefonoPersona>)medios["telefonos"];
+    // strings 
+        string pais     = "No esta definido";
+        string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
+        if (infoPersona._pais != null)
+        {
+             pais = infoPersona._pais._pais;    
+        }
+        if(infoPersona._tieneFoto){
+            fotoRuta = Url.Content(infoPersona._fotoRuta);
+        }
+        
 }
 @section estilosPersonalizados{
     <!-- plugins -->
@@ -50,26 +61,26 @@
         @*</a>*@
     </a>
 }
-<h2 class="text-center">Byron Aldair Peña Portillo</h2>
+<h2 class="text-center">@persona.nombreCompleto</h2>
 <div class="row marginNull">
     <div class="row marginNull imgPic">
-        <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")"/>
+        <img src="@fotoRuta"/>
     </div>
     <div class="row marginNull divInfo">
         <div class="col-lg-offset-3 col-lg-2 tarjetaInfo t1">
             <h3>Sexo</h3>
-            <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/mas-i.png")" />
-            <h4>Masculino</h4>
+            <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/"+persona._sexo._idSexo+".png")" />
+            <h4>@persona._sexo._sexo</h4>
         </div>
         <div class="col-lg-2 tarjetaInfo t2" >
             <h3>Pais de origen</h3>
             <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/Canada.png")" />
-            <h4>Canada</h4>
+            <h4>@pais</h4>
         </div>
         <div class="col-lg-2 tarjetaInfo t1">
             <h3>Nacio</h3>
             <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/views/Persona/pastel.png")" />
-            <h4>05/08/1994</h4>
+            <h4>@persona.getFechaNac</h4>
         </div>
     </div>
     <div class="row marginNull divInfoI">
@@ -83,7 +94,6 @@
                         <th>Etiqueta</th>
                         <th>Accion</th>
                     </tr>
-                    
                 </thead>
                 <tbody>
                     @if (emails != null && emails.Count > 0)
@@ -100,6 +110,12 @@
                                 </td>
                             </tr>
                         }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center">No hay correos asignados</td>
+                        </tr>
                     }
                     @*<tr>
                         <td>byronpenna@gmail.com</td>
@@ -125,7 +141,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    @if (telefonos != null)
+                    {
+                        foreach (TelefonoPersona telefono in telefonos)
+                        {
+                            <tr>
+                                <td>@telefono._telefono</td>
+                                <td>@telefono._descripcion</td>
+                                <td>
+                                    <a href="#" title="Llamar">
+                                        <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                No hay telefonos asignados
+                            </td>
+                        </tr>
+                    }
                     @*<tr>
                         <td>7871-9006</td>
                         <td>Personal</td>
@@ -152,7 +190,23 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    @if (formaciones != null && formaciones.Count > 0)
+                    {
+                        foreach (FormacionPersona formacion in formaciones)
+                        {
+                            <tr>
+                                <td>@formacion._carrera</td>
+                                <td>@formacion._institucion</td>
+                                <td>@formacion._paisInstitucion._pais</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center">No hay formación profesional asignada</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -166,7 +220,27 @@
                         <th>Tiempo</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    @if (laborales != null && laborales.Count > 0)
+                    {
+                        foreach (LaboralPersona laboral in laborales)
+                        {
+                            <tr>
+                                <td>@laboral._empresa._nombre</td>
+                                <td>@laboral._cargo._cargo</td>
+                                <td>Realizar suma</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="text-center" colspan="3">
+                                No hay información laboral
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
