@@ -101,8 +101,13 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
             }
-            public ActionResult Detalle(int id=-1) // este -1 es temporal 
+            public ActionResult Detalle(int id=-1,int id2= 1) // este -1 es temporal 
             {
+                /*
+                 Para id2
+                 * 1: Usuarios
+                 * 2: Personas
+                 */
                 Usuario usuarioSesion = this.getUsuarioSesion();
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);                if (seguridadInicial != null)
                 {
@@ -113,11 +118,35 @@ namespace IUSBack.Controllers
                     //Dictionary<object,object> detalle = this._model.
                     Dictionary<object, object> detalle  = this._model.sp_rrhh_detallePesona(id, usuarioSesion._idUsuario, this._idPagina);
                     InformacionPersona informacion = (InformacionPersona)detalle["infoPersona"];
-                    if (informacion._fotoRuta != null && informacion._fotoRuta != "")
+                    if (informacion != null)
                     {
-                        informacion._fotoRuta = this.getRelativePathFromAbsolute(informacion._fotoRuta);
-                        informacion._tieneFoto = true;
-                        detalle["infoPersona"] = informacion;
+                        if (informacion._fotoRuta != null && informacion._fotoRuta != "")
+                        {
+                            informacion._fotoRuta = this.getRelativePathFromAbsolute(informacion._fotoRuta);
+                            informacion._tieneFoto = true;
+                        }
+                    }
+                    else
+                    {
+                        informacion = new InformacionPersona();
+                        
+                    }
+                    detalle["infoPersona"] = informacion;
+                    ViewBag.idFrom = id2;
+                    switch (id2)
+                    {
+                        case 1:
+                            {
+                                ViewBag.textoFrom = "Usuarios";
+                                ViewBag.urlFrom = Url.Action("Index", "GestionUsuarios");
+                                break;
+                            }
+                        case 2:
+                            {
+                                ViewBag.textoFrom = "Personas";
+                                ViewBag.urlFrom = Url.Action("Index", "GestionPersonas");
+                                break;
+                            }
                     }
                     Dictionary<object, object> medios   = this._model.sp_rrhh_getMediosPersonas(id, usuarioSesion._idUsuario,this._idPagina);
                     ViewBag.titleModulo                 = "Detalle persona";
