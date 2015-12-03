@@ -118,33 +118,6 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             #region "actualizarPersona"
                 public Persona actualizarPersona(Persona persona,int idUsuario,int idPagina)
                 {
-                    /*Dictionary<Object, Object> toReturn = new Dictionary<Object, Object>();
-                    try
-                    {
-                        Persona personaActual = this._control.actualizarPersona(persona,idUsuario,idPagina);
-                        if (personaActual != null)
-                        {
-                            toReturn.Add("estado", true);
-                            toReturn.Add("persona", personaActual);
-                        }
-                        else
-                        {
-                            toReturn.Add("estado", false);
-                            toReturn.Add("mensaje", "Error no controlado");
-                        }
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        toReturn.Add("estado", false);
-                        toReturn.Add("errorCode", x.errorNumber);
-                        toReturn.Add("errorMessage", x.Message);
-                    }
-                    catch(Exception x){
-                        toReturn.Add("estado", false);
-                        toReturn.Add("errorCode", -1);
-                        toReturn.Add("errorMessage", x.Message);
-                    }
-                    return toReturn;*/
                     try
                     {
                         return this._control.actualizarPersona(persona, idUsuario, idPagina);

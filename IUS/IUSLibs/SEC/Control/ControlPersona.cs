@@ -129,38 +129,6 @@ namespace IUSLibs.SEC.Control
                         {
                             throw x;
                         }
-                        
-                    //DataSet ds = sp.EjecutarProcedimiento();
-                    /*if (!this.DataSetDontHaveTable(ds))
-                    {
-                        DataTable table = ds.Tables[0];
-
-                        if ((int)table.Rows[0]["estadoUpdate"] == 1)
-                        {
-                            if(ds.Tables.Count > 1 ){
-                                DataRow rowResult = ds.Tables[1].Rows[0];
-                                personaReturn = new Persona((int)rowResult["idPersona"], rowResult["nombres"].ToString(), rowResult["apellidos"].ToString(), (DateTime)rowResult["fecha_nacimiento"]);
-                            }else{
-                                errorIus = new ErroresIUS("Error no controlado sql", ErroresIUS.tipoError.sql, -2);
-                                throw errorIus;
-                            }
-                        }
-                        else
-                        {
-                            if (ds.Tables.Count > 1)
-                            {
-                                DataRow rowError = ds.Tables[1].Rows[0];
-                                errorIus = new ErroresIUS(rowError["errorMessage"].ToString(), ErroresIUS.tipoError.sql, (int)rowError["errorCode"]);
-                                throw errorIus;
-                            }
-                            else
-                            {
-                                errorIus = new ErroresIUS("Error no controlado sql", ErroresIUS.tipoError.sql, -2);
-                                throw errorIus;
-                            }
-                    
-                        }
-                    }*/
                     return personaReturn;
                 }
             #endregion
@@ -218,6 +186,7 @@ namespace IUSLibs.SEC.Control
                                     {
                                         formacion = new FormacionPersona((int)row["idFormacionPersona"], row["observaciones"].ToString(), (int)row["id_persona_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"], row["institucion"].ToString(), (int)row["id_paisinstitucion_fk"]);
                                         formacion._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
+                                        formacion._paisInstitucion._pais = row["pais"].ToString();
                                         formaciones.Add(formacion);
                                     }
                                 }
@@ -296,6 +265,7 @@ namespace IUSLibs.SEC.Control
                             {
                                 if (tb[0].Rows.Count > 0)
                                 {
+                                    emails = new List<EmailPersona>();
                                     foreach(DataRow row in tb[0].Rows){
                                         email = new EmailPersona((int)row["idMailPersona"], row["email"].ToString(), row["descripcion"].ToString());
                                         emails.Add(email);
@@ -304,6 +274,7 @@ namespace IUSLibs.SEC.Control
                                 }
                                 if (tb[1].Rows.Count > 0)
                                 {
+                                    telefonos = new List<TelefonoPersona>();
                                     foreach (DataRow row in tb[1].Rows)
                                     {
                                         telefono                = new TelefonoPersona((int)row["idTelefonoPersona"]);

@@ -66,108 +66,21 @@
         return val;
     }
 // genericas
+        function getDatasetEditar(tr) {
+            var datosSet = {};
+            datosSet.yearInicio = $.trim(tr.find(".tdYearInicio").text());
+            datosSet.yearFin = $.trim(tr.find(".tdYearFin").text());
+            datosSet.observaciones = $.trim(tr.find(".tdObservaciones").text());
+            datosSet.carrera = $.trim(tr.find(".tdCarrera").text());
+            datosSet.idEstadoCarrera = $.trim(tr.find(".txtHdIdEstadoCarrera").val());
+            datosSet.institucion = $.trim(tr.find(".tdInstitucion").text());
+            datosSet.idNivel = tr.find(".txtHdIdNivel").val();
+            datosSet.idArea = tr.find(".txtHdIdArea").val();
+            datosSet.idPais = tr.find(".txtHdIdPais").val();
+            return datosSet;
+        }
     // partes
         // tr     
-            /*
-            function getTrInstitucionEducativa(institucion) {
-                var tr = "<tr>\
-                       <td class='hidden'>\
-                           <input name='txtHdIdInstitucionEducativa' class='txtHdIdInstitucionEducativa' value='"+institucion._idInstitucion+"' />\
-                           <input name='txtHdIdPaisInstitucion' class='txtHdIdPaisInstitucion' value='"+institucion._pais._idPais+"'/>\
-                       </td>\
-                       <td>\
-                           <div class='editMode hidden'>\
-                               <input class='txtInstitucionEducativa form-control' name='txtInstitucionEducativa' />\
-                           </div>\
-                           <div class='normalMode tdNombreInstitucion'>\
-                               "+institucion._nombre+"\
-                           </div>\
-                       </td>\
-                       <td>\
-                           <div class='editMode hidden'>\
-                               <select name='cbPaisInstitucionEducativa' class=' cbChosenPais form-control cbPaisInstitucionEducativa'></select>\
-                           </div>\
-                           <div class='normalMode tdPais'>\
-                               "+institucion._pais._pais+"\
-                           </div> \
-                       </td>\
-                       <td>\
-                           <div class='editMode hidden'>\
-                                <div class='btn-group'>\
-                                    <button class='btn btnActualizarInstitucionEducativa'>Actualizar</button>\
-                                    <button class='btn btnCancelarInstitucionEducativa btnCancelarUni'>Cancelar</button>\
-                                </div>\
-                           </div>\
-                           <div class='normalMode tdEmail'>\
-                                <div class='btn-group'>\
-                                   <button class='btn btnEditarInstitucion btn-default'>Editar</button>\
-                                   <button class='btn btnEliminarInstitucion btn-default'>Eliminar</button>\
-                                </div>\
-                           </div>\
-                       </td>\
-                   </tr>";
-            return tr;
-            }
-            */
-            /*
-            function getTrCarrera(carrera) {
-                var tr = "\
-                  <tr>\
-                        <td class='hidden'>\
-                            <input class='txtHdIdCarrera' name='txtHdIdCarrera' value='"+carrera._idCarrera+"'/>\
-                            <input class='txtHdIdInstitucion' value='"+carrera._institucion._idInstitucion+"'/>\
-                            <input class='txtHdIdNivelCarrera' value='" + carrera._nivelTitulo._idNivel + "' />\
-                            <input class='txtHdIdArea' value='" + carrera._area._idArea + "'>\
-                        </td>\
-                        <td>\
-                            <div class='editMode hidden'>\
-                                <input name='txtNombreCarrera' class='txtNombreCarrera form-control' />\
-                            </div>\
-                            <div class='normalMode tdCarrera'>\
-                                "+carrera._carrera+"\
-                            </div>\
-                        </td>\
-                        <td>\
-                            <div class='editMode hidden'>\
-                                <select name='cbNivelCarrera' class='cbNivelCarrera cbChosenCarrera form-control'>\
-                                </select>\
-                            </div>\
-                            <div class='normalMode tdEmail'>\
-                                "+carrera._nivelTitulo._nombreNivel+"\
-                            </div>\
-                        </td>\
-                        <td>\
-                            <div class='editMode hidden'>\
-                                <select class='cbInsticionesParaCarrera form-control' name='cbInsticionesParaCarrera'>\
-                                </select>\
-                            </div>\
-                            <div class='normalMode tdEmail'>\
-                                "+carrera._institucion._nombre+"\
-                            </div>\
-                        </td>\
-                        <td>\
-                            <div class='editMode hidden'>\
-                                <select name='cbAreaCarreras' class='form-control cbAreaCarreras'></select>\
-                            </div>\
-                            <div class='normalMode tdAreaCarrera'>\
-                                "+carrera._area._area+"\
-                            </div>\
-                        </td>\
-                        <td>\
-                            <div class='editMode hidden'>\
-                                <button class='btn btnActualizarCarrera'>Actualizar</button>\
-                                <button class='btn btnCancelarUni'>Cancelar</button>\
-                            </div>\
-                            <div class='normalMode tdEmail'>\
-                                <button class='btnEditarCarrera btn'>Editar</button>\
-                                <button class='btn btnEliminarCarrera'>Eliminar</button>\
-                            </div>\
-                        </td>\
-                    </tr>\
-                ";
-                return tr;
-            }
-            */
             function getTrFormacionPersonas(formacionPersona) {
                 var tr = "\
                     <tr>\
@@ -179,7 +92,11 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <input type='text' name='txtCarrera' class='form-control txtCarrera' />\
+                                <div class='row marginNull divControl'>\
+                                    <input type='text' name='txtCarrera' class='input-sm form-control txtCarrera' />\
+                                    <div class='row marginNull divResultado hidden'>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdCarrera'>\
                                 " + formacionPersona._carrera + "\
@@ -187,7 +104,11 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <input name='txtYearFin' class='txtYearFin form-control' />\
+                                <div class='row marginNull divControl'>\
+                                    <input name='txtYearFin' type='number' class='txtYearFin form-control soloNumerosInt input-sm' />\
+                                    <div class='row marginNull divResultado hidden'>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdYearFin'>\
                                 "+formacionPersona._yearFin+"\
@@ -195,7 +116,11 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <textarea name='txtAreaObservaciones' class='txtAreaObservaciones form-control'></textarea>\
+                                <div class='row marginNull divControl'>\
+                                    <textarea name='txtAreaObservaciones' class='input-sm txtAreaObservaciones form-control'></textarea>\
+                                    <div class='row marginNull divResultado hidden'>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdObservaciones'>\
                                 "+ formacionPersona._observaciones + "\
@@ -203,7 +128,11 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <select name='cbNivelCarrera' class='cbNivelCarrera form-control'></select>\
+                                <div class='row marginNull divControl'>\
+                                    <select name='cbNivelCarrera' class='input-sm cbNivelCarrera form-control'></select>\
+                                    <div class='row marginNull divResultado hidden'>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdNivelTitulo'>\
                                 "+formacionPersona._nivelTitulo._nombreNivel+"\
@@ -211,7 +140,11 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <select name='cbAreaCarrera' class='cbAreaCarrera form-control'></select>\
+                                <div class='row marginNull divControl'>\
+                                    <select name='cbAreaCarrera' class='input-sm cbAreaCarrera form-control'></select>\
+                                    <div class='row marginNull divResultado hidden'>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdAreaCarrera'>\
                                 "+formacionPersona._areaCarrera._area+"\
@@ -219,7 +152,11 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <input class='form-control txtInstitucionEducativa' name='txtInstitucionEducativa' />\
+                                <div class='row marginNull divControl'>\
+                                    <input class='form-control txtInstitucionEducativa' name='txtInstitucionEducativa' />\
+                                    <div class='row marginNull divResultado hidden'>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdInstitucion'>\
                                 "+formacionPersona._institucion+"\
@@ -227,8 +164,12 @@
                         </td>\
                         <td>\
                             <div class='editMode hidden'>\
-                                <select name='cbPaisInstitucionEducativa' class=' cbChosenPais form-control cbPaisInstitucionEducativa'>\
-                                </select>\
+                                <div class='row marginNull divControl'>\
+                                    <select name='cbPaisInstitucionEducativa' class=' cbChosenPais form-control cbPaisInstitucionEducativa'>\
+                                    </select>\
+                                    <div class='row marginNull divResultado hidden'>\
+                                    </div>\
+                                </div>\
                             </div>\
                             <div class='normalMode tdPais'>\
                                 "+formacionPersona._paisInstitucion._pais+"\
@@ -238,7 +179,7 @@
                             <div class='editMode hidden'>\
                                 <div class='btn-group'>\
                                     <button class='btn btnActualizarTituloPersona btn-default btn-xs'>Actualizar</button>\
-                                    <button class='btn btnCancelarUni btn-default btn-xs'>Actualizar</button>\
+                                    <button class='btn btnCancelarUni btn-default btn-xs'>Cancelar</button>\
                                 </div>\
                             </div>\
                             <div class='normalMode tdEmail'>\
@@ -347,28 +288,6 @@
             })
         }
     // carreras
-        /*function btnActualizarCarrera(frm, tr) {
-            actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarCarrera", frm, function (data) {
-                console.log("data del serivdor actualizados", data);
-                if (data.estado) {
-                    var carrera = data.carreraEditada;
-                    tr.find(".txtHdIdCarrera").val(carrera._idCarrera);
-                    tr.find(".txtHdIdNivelCarrera").val(carrera._nivelTitulo._idNivel);
-                    tr.find(".tdCarrera").empty().append(carrera._carrera);
-                    tr.find(".tdAreaCarrera").empty().append(carrera._area._area);
-
-                    tr.find(".tdNivelTitulo").empty().append(carrera._nivelTitulo._nombreNivel)
-                    tr.find(".tdInstitucion").empty().append(carrera._institucion);
-                    console.log("D: ");
-                    //tr.find(".txtHdIdInstitucion").val(carrera._institucion._idInstitucion);
-                    tr.find(".txtHdIdArea").val(carrera._area._idArea);
-                    //tdAreaCarrera
-                    controlesEdit(false, tr);
-                } else {
-                    alert("ocurrio un error");
-                }
-            })
-        }*/
         function btnEliminarCarrera(frm, tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_eliminarCarrera", frm, function (data) {
                 console.log(data);

@@ -230,7 +230,8 @@
                     })
                     $(document).on("click", ".btnEditarTitulos", function () {
                         var tr = $(this).parents("tr");
-                        var datosSet = {};
+                        var datosSet = getDatasetEditar(tr);
+                        /*
                         datosSet.yearInicio         = $.trim(tr.find(".tdYearInicio").text());
                         datosSet.yearFin            = $.trim(tr.find(".tdYearFin").text());
                         datosSet.observaciones      = $.trim(tr.find(".tdObservaciones").text());
@@ -239,7 +240,7 @@
                         datosSet.institucion        = $.trim(tr.find(".tdInstitucion").text());
                         datosSet.idNivel            = tr.find(".txtHdIdNivel").val();
                         datosSet.idArea             = tr.find(".txtHdIdArea").val();
-                        datosSet.idPais             = tr.find(".txtHdIdPais").val();
+                        datosSet.idPais             = tr.find(".txtHdIdPais").val();*/
 
                         // cargando selects 
                             var frm = {};
@@ -256,6 +257,7 @@
                                 selectPaises.empty().append(cb.cbPaises);
                                 console.log("datos set para editar", datosSet);
                                 // reset chosen
+                                selectPaises.chosen({ no_results_text: "Pais no encontrado", width: '100%' });
                                 resetChosenWithSelectedVal(selectPaises, datosSet.idPais);
                                 selectEstadoCarrera.val(datosSet.idEstadoCarrera)
                                 // reset normal 
@@ -271,6 +273,9 @@
                             tr.find(".txtAreaObservaciones").val(datosSet.observaciones);
                             tr.find(".txtCarrera").val(datosSet.carrera);
                             tr.find(".txtInstitucionEducativa").val(datosSet.institucion);
+                        
+                        //reset btnEditarTitulos 
+                        //resetChosenWithSelectedVal()
                         controlesEdit(true, tr);
                     })
                     $(document).on("click", ".btnAgregarCarrera", function () {
