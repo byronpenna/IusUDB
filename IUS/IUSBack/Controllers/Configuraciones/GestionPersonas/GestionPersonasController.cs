@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
-    
+using System.Data.ProviderBase;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -164,6 +164,10 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
                 return View();
+            }
+            public ActionResult FichaPdf()
+            {
+                this._model
             }
         #endregion
         #region "privadas"

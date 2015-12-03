@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+// 
+    using System.IO;
+    using CrystalDecisions.CrystalReports.Engine;
 // librerias internas
     using IUSBack.Models.General;
 // librerias externas
@@ -76,6 +79,10 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 {
                     throw x;
                 }
+            }
+            public Stream getFichaPdf()
+            {
+
             }
         #endregion
         #region "Acciones"
