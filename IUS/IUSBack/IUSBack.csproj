@@ -262,6 +262,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\menu\typography.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\unlocked.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noimage.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\paises\0.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\1.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\10.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\101.png" />

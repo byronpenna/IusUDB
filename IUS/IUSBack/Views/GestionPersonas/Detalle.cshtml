@@ -16,10 +16,14 @@
     // strings 
         string pais     = "No esta definido";
         string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
-        
         if (infoPersona._pais != null)
         {
-             pais = infoPersona._pais._pais;    
+             pais = infoPersona._pais._pais;
+        }
+        else
+        {
+            infoPersona.instanciaPais();
+            infoPersona._pais._idPais = 0;
         }
         if(infoPersona._tieneFoto){
             fotoRuta = Url.Content(infoPersona._fotoRuta);
