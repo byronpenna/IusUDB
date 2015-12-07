@@ -82,27 +82,38 @@
                 return div;
             }
             function loadCuadriculaFiles(archivo, openLocation) {
+                /*
+                <div class='row divHerramientasIndividual'>\
+                    <a href='#' class='icoCompartirFile' title='Compartir'>\
+                        <i class='fa fa-share'></i>\
+                    </a>\
+                    <a href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' class='ico' title='Descargar'>\
+                        <i class='fa fa-download'></i>\
+                    </a>\
+                </div>\
+                */
                 var div = "\
                         <div class='col-lg-2 folder'>\
                             <input type='hidden' class='txtHdIdArchivo' value='"+ archivo._idArchivo + "'/>\
                             <input type='hidden' class='txtHdIdCarpetaContenedora' value='" + archivo._carpeta._idCarpeta + "'/>\
-                            <div class='row divHerramientasIndividual'>\
-                                <a href='#' class='icoCompartirFile' title='Compartir'>\
-                                    <i class='fa fa-share'></i>\
-                                </a>\
-                                <a href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' class='ico' title='Descargar'>\
-                                    <i class='fa fa-download'></i>\
-                                </a>\
                             ";
-                if (openLocation !== undefined && openLocation == true) {
-                    div += "<a href='#' class='ico icoOpenLocation' title='Abrir ubicacion'>\
-                                    <i class='fa fa-folder-open'></i>\
-                                </a>";
-                }
                 div += "\
-                            </div>\
                             <div class='cuadritoIcono '>\
-                                <img src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivo._extension._tipoArchivo._icono + "' />\
+                                <img class='imgCuadritoIcono' src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivo._extension._tipoArchivo._icono + "' />\
+                                <div class='btn-group'>\
+                                        <a href='#' class='btn btnAccion btn-default icoCompartirFile' title='Compartir'>\
+                                            <i class='fa fa-share'></i>\
+                                        </a>";
+                                    if (openLocation !== undefined && openLocation == true) {
+                                        div += "<a href='#' class='btn btnAccion btn-default ico icoOpenLocation' title='Abrir ubicacion'>\
+                                                        <i class='fa fa-folder-open'></i>\
+                                                    </a>";
+                                    }
+                div += "\
+                                    <a class='btn btnAccion btn-default ico' href=href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' title='Descargar'>\
+                                        <i class='fa fa-download'></i>\
+                                    </a>\
+                                </div>\
                                 <div class='detalleCarpeta'>\
                                     <div class='normalMode'>\
                                         <h3 class='ttlNombreCarpeta'>"+ archivo._nombre + "</h3>\
@@ -136,12 +147,14 @@
                             <div class='col-lg-2'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
                             <div class='col-lg-2'>" + file.getFechaCreacion + "</div>\
                             <div class='col-lg-2 divAccionesLista'>\
-                                <a href='#' class='icoCompartirFile' title='Compartir'>\
-                                    <i class='fa fa-share'></i>\
-                                </a>\
-                                <a href='" + RAIZ + "Repositorio/DescargarFichero/" + file._idArchivo + "' class='ico' title='Descargar'>\
-                                    <i class='fa fa-download'></i>\
-                                </a>\
+                                <div class='btn-group'>\
+                                    <a href='#' class='btnAccion btn btn-default icoCompartirFile' title='Compartir'>\
+                                        <i class='fa fa-share'></i>\
+                                    </a>\
+                                    <a class='btnAccion btn btn-default ico' href='" + RAIZ + "Repositorio/DescargarFichero/" + file._idArchivo + "' title='Descargar'>\
+                                        <i class='fa fa-download'></i>\
+                                    </a>\
+                                </div>\
                             </div>\
                         </div>\
                     ";

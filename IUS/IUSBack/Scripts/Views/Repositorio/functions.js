@@ -158,15 +158,17 @@
                         <div class='col-lg-2'>" + file._extension._tipoArchivo._tipoArchivo + "</div>\
                         <div class='col-lg-2'>" + file.getFechaCreacion + "</div>\
                         <div class='col-lg-2 divAccionesLista'>\
-                            <a href='#' class='icoCompartirFile' title='Compartir'>\
-                                <i class='fa fa-share'></i>\
-                            </a>\
-                            <a href='"+url+"' class='ico' title='Descargar'>\
-                                <i class='fa fa-download'></i>\
-                            </a>\
-                            <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
-                                <i class='fa fa-trash-o'></i>\
-                            </a>\
+                            <div class='btn-group'>\
+                                <a href='#' class='btnAccion btn btn-default icoCompartirFile' title='Compartir'>\
+                                    <i class='fa fa-share'></i>\
+                                </a>\
+                                <a href='" + url + "' class='btnAccion btn btn-default ico' title='Descargar'>\
+                                    <i class='fa fa-download'></i>\
+                                </a>\
+                                <a href='#' class='btnAccion btn btn-default ico icoEliminarArchivo' title='Eliminar'>\
+                                    <i class='fa fa-trash-o'></i>\
+                                </a>\
+                            </div>\
                         </div>\
                     </div>\
                 ";
