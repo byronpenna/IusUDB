@@ -123,8 +123,8 @@
                                             <input type='text' class='form-control txtNombreCarpeta'>\
                                         </div>\
                                         <div class='row marginNull'>\
-                                            <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>\
-                                            <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                            <button class='btn btn-xs btn-default btnEditarArchivo'>Actualizar</button>\
+                                            <button class='btn btn-xs btn-default btnCancelarEdicionCarpeta'>Cancelar</button>\
                                         </div>\
                                     </div>\
                                 </div>\

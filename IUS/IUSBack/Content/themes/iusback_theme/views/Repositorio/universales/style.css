@@ -135,3 +135,14 @@
         font-weight:bold;
         cursor:pointer;
     }
+
+.divNofoundResults{
+    text-align:center;
+    font-size:1.5em;
+}
+.divNofoundResults img{
+    display:block;
+    width:25%;
+    margin:0 auto;
+    margin-bottom:3%;
+}

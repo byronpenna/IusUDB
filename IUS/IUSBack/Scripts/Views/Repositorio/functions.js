@@ -128,8 +128,8 @@
                                     </div>\
                                     <div class='row marginNull'>\
                                         <div class='btn-group'>\
-                                            <button class='btn btn-xs btnEditarArchivo'>Hecho</button>\
-                                            <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                            <button class='btn btn-xs btn-default btnEditarArchivo'>Hecho</button>\
+                                            <button class='btn btn-xs btn-default btnCancelarEdicionCarpeta'>Cancelar</button>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -378,6 +378,7 @@
                     } else {
                         div += "\
                             <div class='divNofoundResults'>\
+                                <img src='" + IMG_GENERALES + "/sadcloud.png'>\
                                 No se han encontrado archivos\
                             </div>\
                             ";
