@@ -60,35 +60,36 @@
                     <i class="fa fa-times pointer closeModal"></i>
                 </div>
             </div>
-            <h3>Subir fichero</h3>
-            <input type="hidden" class="txtHdEstadoUpload" value="-1"/>
-            <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile","Repositorio")">
-                <div class="row marginNull divInputFile">
-                    <input type="file" id="flArchivos" multiple />
-                </div>
-                <button type="submit">Subir</button>
-                <h3>Ficheros cargados</h3>
-                <div class="loadAjax">
-                    <div class="row marginNull imgCargando">
-                        <img src="~/Content/themes/iusback_theme/img/general/ajax-loader.gif" class="hidden" />
+            <div class="divInfoI">
+                <h3 class="tituloSecciones">Cargar ficheros</h3>
+                <input type="hidden" class="txtHdEstadoUpload" value="-1" />
+                <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile","Repositorio")">
+                    <div class="row marginNull divInputFile">
+                        <input type="file" id="flArchivos" multiple />
                     </div>
-                    <div class="porcentajeCarga">
+                    <button class="btn btn-default" type="submit">Subir</button>
+                    <h3 class="tituloSecciones">Ficheros cargados</h3>
+                    <div class="loadAjax">
+                        <div class="row marginNull imgCargando">
+                            <img src="~/Content/themes/iusback_theme/img/general/ajax-loader.gif" class="hidden" />
+                        </div>
+                        <div class="porcentajeCarga">
 
+                        </div>
                     </div>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nombre archivo</th>
-                            <th>Tipo archivo</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbArchivos">
-
-                    </tbody>
-                </table>
-            </form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre archivo</th>
+                                <th>Tipo archivo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbArchivos"></tbody>
+                    </table>
+                </form>
+            </div>
+            
         </div>
     </div>
 </div>

@@ -151,7 +151,7 @@
                     var url = $(this).parent().find(".urlDescargar").attr("href");
                     window.location = url;
                 })    
-                $(document).on("click", ".btnNavHistory", function () {
+                $(document).on("click", ".btnNavHistory", function (e) {
                     /*
                     0 atras 
                     1 adelante
@@ -160,11 +160,12 @@
                         direccion: $(this).attr("id"),
                         vistaActual: getNumVistaActual()
                     }
+                    e.preventDefault();
                     //console.log("entro a navHistory");
                     actualizarCatalogo(RAIZ + "/Repositorio/navHistory", frm, function (data) {
                         console.log("Respuesta de servido", data);
                         if (data.estado) {
-                            window.location = data.url + "#rowHerramientas";
+                            window.location = data.url;//+ "#rowHerramientas"
                         }
                     })
                 })
