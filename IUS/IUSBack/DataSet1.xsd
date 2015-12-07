@@ -228,7 +228,7 @@
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Personas" msprop:Generator_TableClassName="PersonasDataTable" msprop:Generator_TableVarName="tablePersonas" msprop:Generator_TablePropName="Personas" msprop:Generator_RowDeletingName="PersonasRowDeleting" msprop:Generator_RowChangingName="PersonasRowChanging" msprop:Generator_RowEvHandlerName="PersonasRowChangeEventHandler" msprop:Generator_RowDeletedName="PersonasRowDeleted" msprop:Generator_UserTableName="Personas" msprop:Generator_RowChangedName="PersonasRowChanged" msprop:Generator_RowEvArgName="PersonasRowChangeEvent" msprop:Generator_RowClassName="PersonasRow">
+        <xs:element name="Personas" msprop:Generator_TableClassName="PersonasDataTable" msprop:Generator_TableVarName="tablePersonas" msprop:Generator_RowChangedName="PersonasRowChanged" msprop:Generator_TablePropName="Personas" msprop:Generator_RowDeletingName="PersonasRowDeleting" msprop:Generator_RowChangingName="PersonasRowChanging" msprop:Generator_RowEvHandlerName="PersonasRowChangeEventHandler" msprop:Generator_RowDeletedName="PersonasRowDeleted" msprop:Generator_RowClassName="PersonasRow" msprop:Generator_UserTableName="Personas" msprop:Generator_RowEvArgName="PersonasRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idPersona" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidPersona" msprop:Generator_ColumnPropNameInRow="idPersona" msprop:Generator_ColumnPropNameInTable="idPersonaColumn" msprop:Generator_UserColumnName="idPersona" type="xs:int" />
@@ -251,7 +251,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="formacion_personas" msprop:Generator_TableClassName="formacion_personasDataTable" msprop:Generator_TableVarName="tableformacion_personas" msprop:Generator_TablePropName="formacion_personas" msprop:Generator_RowDeletingName="formacion_personasRowDeleting" msprop:Generator_RowChangingName="formacion_personasRowChanging" msprop:Generator_RowEvHandlerName="formacion_personasRowChangeEventHandler" msprop:Generator_RowDeletedName="formacion_personasRowDeleted" msprop:Generator_UserTableName="formacion_personas" msprop:Generator_RowChangedName="formacion_personasRowChanged" msprop:Generator_RowEvArgName="formacion_personasRowChangeEvent" msprop:Generator_RowClassName="formacion_personasRow">
+        <xs:element name="formacion_personas" msprop:Generator_TableClassName="formacion_personasDataTable" msprop:Generator_TableVarName="tableformacion_personas" msprop:Generator_RowChangedName="formacion_personasRowChanged" msprop:Generator_TablePropName="formacion_personas" msprop:Generator_RowDeletingName="formacion_personasRowDeleting" msprop:Generator_RowChangingName="formacion_personasRowChanging" msprop:Generator_RowEvHandlerName="formacion_personasRowChangeEventHandler" msprop:Generator_RowDeletedName="formacion_personasRowDeleted" msprop:Generator_RowClassName="formacion_personasRow" msprop:Generator_UserTableName="formacion_personas" msprop:Generator_RowEvArgName="formacion_personasRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idFormacionPersona" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidFormacionPersona" msprop:Generator_ColumnPropNameInRow="idFormacionPersona" msprop:Generator_ColumnPropNameInTable="idFormacionPersonaColumn" msprop:Generator_UserColumnName="idFormacionPersona" type="xs:int" />
@@ -284,7 +284,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="laboral_personas" msprop:Generator_TableClassName="laboral_personasDataTable" msprop:Generator_TableVarName="tablelaboral_personas" msprop:Generator_TablePropName="laboral_personas" msprop:Generator_RowDeletingName="laboral_personasRowDeleting" msprop:Generator_RowChangingName="laboral_personasRowChanging" msprop:Generator_RowEvHandlerName="laboral_personasRowChangeEventHandler" msprop:Generator_RowDeletedName="laboral_personasRowDeleted" msprop:Generator_UserTableName="laboral_personas" msprop:Generator_RowChangedName="laboral_personasRowChanged" msprop:Generator_RowEvArgName="laboral_personasRowChangeEvent" msprop:Generator_RowClassName="laboral_personasRow">
+        <xs:element name="laboral_personas" msprop:Generator_TableClassName="laboral_personasDataTable" msprop:Generator_TableVarName="tablelaboral_personas" msprop:Generator_RowChangedName="laboral_personasRowChanged" msprop:Generator_TablePropName="laboral_personas" msprop:Generator_RowDeletingName="laboral_personasRowDeleting" msprop:Generator_RowChangingName="laboral_personasRowChanging" msprop:Generator_RowEvHandlerName="laboral_personasRowChangeEventHandler" msprop:Generator_RowDeletedName="laboral_personasRowDeleted" msprop:Generator_RowClassName="laboral_personasRow" msprop:Generator_UserTableName="laboral_personas" msprop:Generator_RowEvArgName="laboral_personasRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idLaboralPersona" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidLaboralPersona" msprop:Generator_ColumnPropNameInRow="idLaboralPersona" msprop:Generator_ColumnPropNameInTable="idLaboralPersonaColumn" msprop:Generator_UserColumnName="idLaboralPersona" type="xs:int" />
@@ -303,7 +303,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sexos" msprop:Generator_TableClassName="sexosDataTable" msprop:Generator_TableVarName="tablesexos" msprop:Generator_TablePropName="sexos" msprop:Generator_RowDeletingName="sexosRowDeleting" msprop:Generator_RowChangingName="sexosRowChanging" msprop:Generator_RowEvHandlerName="sexosRowChangeEventHandler" msprop:Generator_RowDeletedName="sexosRowDeleted" msprop:Generator_UserTableName="sexos" msprop:Generator_RowChangedName="sexosRowChanged" msprop:Generator_RowEvArgName="sexosRowChangeEvent" msprop:Generator_RowClassName="sexosRow">
+        <xs:element name="sexos" msprop:Generator_TableClassName="sexosDataTable" msprop:Generator_TableVarName="tablesexos" msprop:Generator_RowChangedName="sexosRowChanged" msprop:Generator_TablePropName="sexos" msprop:Generator_RowDeletingName="sexosRowDeleting" msprop:Generator_RowChangingName="sexosRowChanging" msprop:Generator_RowEvHandlerName="sexosRowChangeEventHandler" msprop:Generator_RowDeletedName="sexosRowDeleted" msprop:Generator_RowClassName="sexosRow" msprop:Generator_UserTableName="sexos" msprop:Generator_RowEvArgName="sexosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idSexo" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidSexo" msprop:Generator_ColumnPropNameInRow="idSexo" msprop:Generator_ColumnPropNameInTable="idSexoColumn" msprop:Generator_UserColumnName="idSexo" type="xs:int" />
@@ -336,4 +336,9 @@
       <xs:field xpath="mstns:idSexo" />
     </xs:unique>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Personas_formacion_personas" msdata:parent="Personas" msdata:child="formacion_personas" msdata:parentkey="idPersona" msdata:childkey="id_persona_fk" msprop:Generator_UserChildTable="formacion_personas" msprop:Generator_ChildPropName="Getformacion_personasRows" msprop:Generator_UserRelationName="Personas_formacion_personas" msprop:Generator_ParentPropName="PersonasRow" msprop:Generator_RelationVarName="relationPersonas_formacion_personas" msprop:Generator_UserParentTable="Personas" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>

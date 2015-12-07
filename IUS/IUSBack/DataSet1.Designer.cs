@@ -32,6 +32,8 @@ namespace IUSBack {
         
         private sexosDataTable tablesexos;
         
+        private global::System.Data.DataRelation relationPersonas_formacion_personas;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -266,6 +268,7 @@ namespace IUSBack {
                     this.tablesexos.InitVars();
                 }
             }
+            this.relationPersonas_formacion_personas = this.Relations["Personas_formacion_personas"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -284,6 +287,10 @@ namespace IUSBack {
             base.Tables.Add(this.tablelaboral_personas);
             this.tablesexos = new sexosDataTable();
             base.Tables.Add(this.tablesexos);
+            this.relationPersonas_formacion_personas = new global::System.Data.DataRelation("Personas_formacion_personas", new global::System.Data.DataColumn[] {
+                        this.tablePersonas.idPersonaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableformacion_personas.id_persona_fkColumn}, false);
+            this.Relations.Add(this.relationPersonas_formacion_personas);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -864,18 +871,21 @@ namespace IUSBack {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public formacion_personasRow Addformacion_personasRow(int year_fin, string observaciones, int id_persona_fk, string carrera, int id_nivel_fk, int id_area_fk, string institucion, int id_paisinstitucion_fk) {
+            public formacion_personasRow Addformacion_personasRow(int year_fin, string observaciones, PersonasRow parentPersonasRowByPersonas_formacion_personas, string carrera, int id_nivel_fk, int id_area_fk, string institucion, int id_paisinstitucion_fk) {
                 formacion_personasRow rowformacion_personasRow = ((formacion_personasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         year_fin,
                         observaciones,
-                        id_persona_fk,
+                        null,
                         carrera,
                         id_nivel_fk,
                         id_area_fk,
                         institucion,
                         id_paisinstitucion_fk};
+                if ((parentPersonasRowByPersonas_formacion_personas != null)) {
+                    columnValuesArray[3] = parentPersonasRowByPersonas_formacion_personas[0];
+                }
                 rowformacion_personasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowformacion_personasRow);
                 return rowformacion_personasRow;
@@ -1834,6 +1844,17 @@ namespace IUSBack {
             public void Setid_sexo_fkNull() {
                 this[this.tablePersonas.id_sexo_fkColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public formacion_personasRow[] Getformacion_personasRows() {
+                if ((this.Table.ChildRelations["Personas_formacion_personas"] == null)) {
+                    return new formacion_personasRow[0];
+                }
+                else {
+                    return ((formacion_personasRow[])(base.GetChildRows(this.Table.ChildRelations["Personas_formacion_personas"])));
+                }
+            }
         }
         
         /// <summary>
@@ -1987,6 +2008,17 @@ namespace IUSBack {
                 }
                 set {
                     this[this.tableformacion_personas.id_paisinstitucion_fkColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PersonasRow PersonasRow {
+                get {
+                    return ((PersonasRow)(this.GetParentRow(this.Table.ParentRelations["Personas_formacion_personas"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Personas_formacion_personas"]);
                 }
             }
             

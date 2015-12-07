@@ -153,6 +153,29 @@ namespace IUSLibs.SEC.Control
                     return personas;
                 }
                 // recursos humanos 
+                /*public DataSet prueba(int idPersona,int idUsuarioEjecutor,int idPagina)
+                {
+                    
+                    // do it 
+                    //SPIUS sp = new SPIUS("prueba");
+                    /sp.agregarParametro("idPersona", idPersona);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    SqlDataAdapter retorno;
+                    string[] consultas = new string[1];
+                    DataSet ds = new DataSet();
+                    consultas[0] = "select * from personas";
+                    //consultas[1] = "select * from formacion_personas";
+                    //consultas[2] = "select * from laboral_personas";
+                    //consultas[3] = "select * from sexos";
+                    ConexionIUS cn = new ConexionIUS();
+                    foreach(string consulta in consultas){
+                        SqlCommand command = new SqlCommand(consulta, cn.cn);
+                        SqlDataAdapter ada = new SqlDataAdapter(command);
+                        ada.Fill(ds);
+                    }
+                    return ds;
+                }*/
                 public Dictionary<object, object> sp_rrhh_detallePesona(int idPersona,int idUsuarioEjecutor,int idPagina)
                 {
                     // variables 

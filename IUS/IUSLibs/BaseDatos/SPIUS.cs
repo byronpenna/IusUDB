@@ -48,6 +48,36 @@ namespace IUSLibs.BaseDatos
                 #endregion
             #endregion
             #region "funciones a utilizar externo"
+                public SqlDataAdapter pruebaAdapter()
+                {
+                    
+                    ConexionIUS cn = new ConexionIUS();
+                    
+                    try{
+                        
+                        SqlCommand command = new SqlCommand(this.nombre, cn.cn);
+                        
+                        command.CommandType = CommandType.StoredProcedure;
+                        // se omitio el timeout
+                        this.parametrosAcommand(ref command);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        return adapter;
+                    }
+                    catch (SqlException x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message);
+                        error.errorType = ErroresIUS.tipoError.sql;
+                        error.errorNumber = x.Number;
+                        throw error;
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message);
+                        error.errorType = ErroresIUS.tipoError.generico;
+                        error.errorNumber = -1;
+                        throw x;
+                    }
+                }
                 public DataSet EjecutarProcedimiento()
                 {
                     DataSet ds;
