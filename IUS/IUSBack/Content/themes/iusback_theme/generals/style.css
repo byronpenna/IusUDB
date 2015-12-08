@@ -339,3 +339,8 @@
     width:95%;
     margin:0 auto;
 }
+
+.chosen-container-single .chosen-single{
+    border-radius:0 !important;
+    height:100% !important;
+}

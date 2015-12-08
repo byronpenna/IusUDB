@@ -590,7 +590,7 @@
     function cargarObjetoPersonas(callBack) {
         // funcion devuelve un objecto json con personas
         $.ajax({
-            url: 'GestionPersonas/getJSONPersonas',
+            url: RAIZ+'GestionPersonas/getJSONPersonas',
             type: 'POST',
             data: {},
             success: function (data) {

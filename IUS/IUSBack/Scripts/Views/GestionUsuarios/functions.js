@@ -169,8 +169,6 @@
         $(".cbPersona").chosen({ no_results_text: "No se a encontrado empleado", width: '100%' });
         resetChosenWithSelectedVal(combo, idPersonaActual);
         trUsuario.find(".txtEditUsuario").val($.trim(txtUsuario));
-    
-
     }
     function salirEditMode(trUsuario) {
         controlesEdit(false,trUsuario);
