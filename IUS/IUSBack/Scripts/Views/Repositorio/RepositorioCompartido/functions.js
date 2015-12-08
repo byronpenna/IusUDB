@@ -275,18 +275,20 @@
                 return div;
             }
         function getDivArchivosCompartidos(archivoCompartido) {
+            //<div class='row marginNull'>\
+            //</div>\
             var div = "\
                 <div class='divCarpetaPublica col-lg-6'>\
-                    <div class='row marginNull'>\
-                        <a href='#' class='icoDejarDeCompartir' title='Compartir'>\
+                    <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
+                    <img class='imgCuadritoIcono' src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
+                    <div class='btn-group'>\
+                        <a href='#' class='btn btn-default btnAccion icoDejarDeCompartir' title='Compartir'>\
                             <i class='fa fa-trash-o'></i>\
                         </a>\
-                        <a href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
+                        <a class='btn btn-default btnAccion' href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
                             <i class='fa fa-download'></i>\
                         </a>\
                     </div>\
-                    <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
-                    <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
                     <h4 class='tituloCarpetaPublica'>" + archivoCompartido._archivo._nombre + "</h4>\
                 </div>\
             ";
@@ -298,7 +300,7 @@
                     <input type='hidden' class='txtHdIdUsuario' value='"+usuario._idUsuario+"'/>\
                     <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/profle.png' />\
                     <div class='row'>\
-                        <a href='#' class='btnDejarDeCompartirTodo' title='No compartir nada'>\
+                        <a href='#' class='btn btn-default btnAccion btnDejarDeCompartirTodo' title='No compartir nada'>\
                             <i class='fa fa-trash-o'></i>\
                         </a>\
                     </div>\

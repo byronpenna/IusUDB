@@ -61,8 +61,10 @@
 }
 .cuadritoIcono:hover{
     /*background:#9b9bff;*/
-    background:#95A5A6;
-    color:white;
+    /*background:#95A5A6;*/
+    background:#F5F5F5;
+    /*color:white;*/
+    color:black;
     cursor:pointer;
 }
 .inputNombreCarpeta{

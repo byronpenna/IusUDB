@@ -20,3 +20,11 @@
 .divHerramientasIndividual{
     display:none;
 }
+.btnDejarDeCompartirTodo{
+    margin-top:4%;
+
+}
+.chosen-container-single .chosen-single{
+    border-radius:0;
+    height:100%;
+}
