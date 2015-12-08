@@ -14,5 +14,17 @@
 .divControlesPublicos{
     margin-top:4%;
 }
-
-
+/***************/
+.divInfoI{
+    width:90%;
+    margin: 0 auto;
+}
+.tituloSecciones{
+    text-align:center;
+    padding-top:1%;
+    padding-bottom:1%;
+    background:#ECF0F1;
+    /*margin: 0 auto;*/
+    margin-top:3%;
+    color:#2C3E50;
+}

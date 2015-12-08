@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+// 
+    using System.IO;
+    using CrystalDecisions.CrystalReports.Engine;
+    using System.Data.SqlClient;
+    using System.Data;
 // librerias internas
     using IUSBack.Models.General;
 // librerias externas
@@ -76,6 +81,32 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 {
                     throw x;
                 }
+            }
+            public Stream getFichaPdf(string ruta,int idPersona)
+            {
+                ReportDocument rd = new ReportDocument();
+                rd.Load(ruta);
+                DataSet1 ds = new DataSet1();
+                rd.SetDatabaseLogon("sa", "123456", "PROGRAMADOR", "ius");
+                /*rd.SetParameterValue("@idPersona", 1);
+                rd.SetParameterValue("@idUsuarioEjecutor", 1);
+                rd.SetParameterValue("@idPagina", 1);*/
+                //DataSet ds2  = new DataSet();
+                rd.SetParameterValue("idPersona", idPersona);
+                //rd.DataDefinition.FormulaFields["pic"].Text = "";
+                //ada.Fill(ds);
+                //rd.SetDataSource(ds2);
+                Stream retorno = null;
+                try
+                {
+                    retorno = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                    retorno.Seek(0, SeekOrigin.Begin);
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return retorno;
             }
         #endregion
         #region "Acciones"

@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -203,6 +206,11 @@
     <Compile Include="Controllers\Administracion\Repositorio\RepositorioController.cs" />
     <Compile Include="Controllers\Administracion\Repositorio\RepositorioPublicoController.cs" />
     <Compile Include="Controllers\Website\RecursosHumanosController.cs" />
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,6 +244,12 @@
     <Compile Include="Models\Page\Repositorio\Acciones\RepositorioPublicoModel.cs" />
     <Compile Include="Models\Page\Repositorio\Entidades\HistoryRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\iusback_theme\generals\fonts.css" />
@@ -262,6 +276,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\menu\typography.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\unlocked.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noimage.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\paises\0.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\1.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\10.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\101.png" />
@@ -822,6 +837,17 @@
     <Content Include="Content\themes\iusback_theme\generals\thirdParty\fontAwesome\scss\_rotated-flipped.scss" />
     <Content Include="Content\themes\iusback_theme\generals\thirdParty\fontAwesome\scss\_stacked.scss" />
     <Content Include="Content\themes\iusback_theme\generals\thirdParty\fontAwesome\scss\_variables.scss" />
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <Content Include="Views\Errors\NotAllowed.cshtml" />
     <Content Include="Views\GestionPersonas\Index.cshtml" />
@@ -851,6 +877,15 @@
     <Content Include="Views\GestionPersonas\GestionLaboral.cshtml" />
     <Content Include="Views\RecursosHumanos\Index.cshtml" />
     <Content Include="Views\GestionPersonas\Detalle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reportes\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+    using System.IO;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
-    
+using System.Data.ProviderBase;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -164,6 +165,14 @@ namespace IUSBack.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
                 return View();
+            }
+            public ActionResult FichaPdf(int id)
+            {
+                Stream stream = this._model.getFichaPdf(Path.Combine(Server.MapPath("~/Reportes"), "CrystalReport1.rpt"),id);
+                Response.Buffer = false;
+                Response.ClearContent();
+                Response.ClearHeaders();
+                return File(stream, "application/pdf");
             }
         #endregion
         #region "privadas"

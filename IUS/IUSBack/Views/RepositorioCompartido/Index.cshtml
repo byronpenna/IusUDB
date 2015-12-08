@@ -159,12 +159,14 @@
                             <div class='col-lg-2'>@archivo._extension._tipoArchivo._tipoArchivo </div>
                             <div class='col-lg-2'>@archivo.getFechaCreacion</div>
                             <div class="col-lg-2 divAccionesLista">
-                                <a href="#" class="icoCompartirFile" title="Compartir">
-                                    <i class="fa fa-share"></i>
-                                </a>
-                                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
-                                    <i class="fa fa-download"></i>
-                                </a>
+                                <div class="btn-group">
+                                    <a href="#" class="btnAccion btn btn-default icoCompartirFile" title="Compartir">
+                                        <i class="fa fa-share"></i>
+                                    </a>
+                                    <a class="btnAccion btn btn-default ico" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                </div>
                                 <!--
                                 <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
                                     <i class="fa fa-trash-o"></i>
@@ -221,10 +223,10 @@
                         <div class="cuadritoIcono ">
                             <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
                             <div class="btn-group">
-                                <a href="#" class="btn btn-default icoCompartirFile" title="Compartir">
+                                <a href="#" class="btnAccion btn btn-default icoCompartirFile" title="Compartir">
                                     <i class="fa fa-share"></i>
                                 </a>
-                                <a class="btn btn-default ico" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
+                                <a class="btnAccion btn btn-default ico" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
                                     <i class="fa fa-download"></i>
                                 </a>
                             </div>

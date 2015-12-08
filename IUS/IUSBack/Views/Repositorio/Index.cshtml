@@ -60,35 +60,36 @@
                     <i class="fa fa-times pointer closeModal"></i>
                 </div>
             </div>
-            <h3>Subir fichero</h3>
-            <input type="hidden" class="txtHdEstadoUpload" value="-1"/>
-            <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile","Repositorio")">
-                <div class="row marginNull divInputFile">
-                    <input type="file" id="flArchivos" multiple />
-                </div>
-                <button type="submit">Subir</button>
-                <h3>Ficheros cargados</h3>
-                <div class="loadAjax">
-                    <div class="row marginNull imgCargando">
-                        <img src="~/Content/themes/iusback_theme/img/general/ajax-loader.gif" class="hidden" />
+            <div class="divInfoI">
+                <h3 class="tituloSecciones">Cargar ficheros</h3>
+                <input type="hidden" class="txtHdEstadoUpload" value="-1" />
+                <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile","Repositorio")">
+                    <div class="row marginNull divInputFile">
+                        <input type="file" id="flArchivos" multiple />
                     </div>
-                    <div class="porcentajeCarga">
+                    <button class="btn btn-default" type="submit">Subir</button>
+                    <h3 class="tituloSecciones">Ficheros cargados</h3>
+                    <div class="loadAjax">
+                        <div class="row marginNull imgCargando">
+                            <img src="~/Content/themes/iusback_theme/img/general/ajax-loader.gif" class="hidden" />
+                        </div>
+                        <div class="porcentajeCarga">
 
+                        </div>
                     </div>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nombre archivo</th>
-                            <th>Tipo archivo</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbArchivos">
-
-                    </tbody>
-                </table>
-            </form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre archivo</th>
+                                <th>Tipo archivo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbArchivos"></tbody>
+                    </table>
+                </form>
+            </div>
+            
         </div>
     </div>
 </div>
@@ -221,15 +222,17 @@
                             <div class='col-lg-2'>@archivo._extension._tipoArchivo._tipoArchivo </div>
                             <div class='col-lg-2'>@archivo.getFechaCreacion</div>
                             <div class="col-lg-2 divAccionesLista">
-                                <a href="#" class="icoCompartirFile" title="Compartir">
-                                    <i class="fa fa-share"></i>
-                                </a>
-                                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" class="ico" title="Descargar">
-                                    <i class="fa fa-download"></i>
-                                </a>
-                                <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
+                                <div class="btn-group">
+                                    <a href="#" class="btnAccion btn btn-default icoCompartirFile" title="Compartir">
+                                        <i class="fa fa-share"></i>
+                                    </a>
+                                    <a class="btnAccion btn btn-default ico" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                    <a href="#" class="btnAccion btn btn-default ico icoEliminarArchivo" title="Eliminar">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
                                 @*<div class="btn-group">
                                     <button class="btn btn-default">
                                         <i class="fa fa-share"></i>

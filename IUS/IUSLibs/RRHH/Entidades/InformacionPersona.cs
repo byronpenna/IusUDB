@@ -19,6 +19,10 @@ namespace IUSLibs.RRHH.Entidades
             // adicionales
             public bool         _tieneFoto = false;
         #endregion
+            public void instanciaPais()
+            {
+                this._pais = new Pais(0);
+            }
         #region "Constructores"
             public InformacionPersona()
             {
