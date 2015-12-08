@@ -1,6 +1,11 @@
 ﻿.divUsuarioCarpeta img{
     width:15%;
 }
+.divUsuarioCarpeta h4{
+    background:#ECF0F1;
+    padding-top:2%;
+    padding-bottom:2%;
+}
 .divControlesPublicos{
     margin-top:5%;
     margin-bottom:5%;
@@ -28,3 +33,4 @@
     border-radius:0;
     height:100%;
 }
+

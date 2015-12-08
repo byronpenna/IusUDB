@@ -119,29 +119,35 @@
             
         // submit 
             $(document).on("submit", "#frmSubir", function (e) {
+                var inputFile = $("#flArchivos"); var divMensajes = $(".divMensajes");
+                var files = inputFile[0].files;
+                var formulariohtml = $(this);
                 
-                files = $("#flArchivos")[0].files;
-                formulariohtml = $(this);
                 frm = { txtHdIdCarpetaPadre: $(".txtHdIdCarpetaPadre").val() };
                 
                 e.preventDefault();
-                
-                if (frm.txtHdIdCarpetaPadre != -1 || frm.txtHdIdCarpetaPadre != '-1') {
-                    cn = 0;
-                    totalFiles = files.length;
-                    $(".imgCargando").find("img").removeClass("hidden");
-                    $(".tbArchivos").empty();
-                    $(".porcentajeCarga").empty();
-                    $.each(files, function (file) {
-                        frm.cn = cn;
-                        data = getIndividualFormData(files[cn], frm);
-                        frmSubir(data, formulariohtml.attr("action"), totalFiles);
-                        cn++;
-                    });
-                    
+                if (inputFile.val() != "") {
+                    if (frm.txtHdIdCarpetaPadre != -1 || frm.txtHdIdCarpetaPadre != '-1') {
+                        cn = 0;
+                        totalFiles = files.length;
+                        $(".imgCargando").find("img").removeClass("hidden");
+                        $(".tbArchivos").empty();
+                        $(".porcentajeCarga").empty();
+                        $.each(files, function (file) {
+                            frm.cn = cn;
+                            data = getIndividualFormData(files[cn], frm);
+                            frmSubir(data, formulariohtml.attr("action"), totalFiles);
+                            cn++;
+                        });
+                    } else {
+                        //alert();
+                        printMessage(divMensajes, "No se pueden subir ficheros a este directorio", false);
+                    }
                 } else {
-                    alert("No se pueden subir ficheros a este directorio");
+                    //alert("Por favor seleccione un archivo");
+                    printMessage(divMensajes, "Por favor seleccione un archivo", false);
                 }
+                
                 /**/
                 
                 
