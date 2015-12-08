@@ -62,6 +62,9 @@
                             <button class='btn btn-xs btn-default btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
                         </div>\
                         <a class='btn btn-xs ' href='"+RAIZ+"GestionPersonas/Extras/"+persona._idPersona+"'>Info adicional</a>\
+                        <a class='btn btn-xs' href='"+RAIZ+"GestionPersonas/Detalle/"+persona._idPersona+"'>\
+                            Ver ficha\
+                        </a>\
                     </div>\
                 </td>\
             </tr>\
@@ -71,13 +74,10 @@
     }
 // actualizar 
     function actualizar(trPersona) {
-        //console.log("actualizaste");
-        //frm = serializeToJson(trPersona.find("input").serializeArray());
         var frm = serializeSection(trPersona);
         var val = validacionIngreso(frm);
         trPersona.find(".divResultado").empty();
         trPersona.find(".divResultado").addClass("hidden");
-        console.log("Formulario a enviar es", frm);
         if (val.estado) {
             arrDate = frm.dtFechaNacimiento.split("/");
             frm.dtFechaNacimiento = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
@@ -101,7 +101,6 @@
             $.each(val.campos, function (i, val) {
                 errores = "";
                 var divResultado = trPersona.find("." + i).parents(".editMode").find(".divResultado");
-                
                 if (val.length > 0) {
                     divResultado.removeClass("hidden");
                     $.each(val, function (i, val) {
@@ -129,18 +128,24 @@
         });
     }
 //edit 
+    function getObjPersonaEdit() {
+        var persona = {
+            nombres:    trPersona.find(".tdNombre").text(),
+            apellidos:  trPersona.find(".tdApellido").text(),
+            fechaNac:   trPersona.find(".tdFechaNac").text(),
+            idSexo:     trPersona.find(".txtHdIdSexo").val()
+        }
+        return persona;
+    }
     function editMode(trPersona) {
-        var nombres     = trPersona.find(".tdNombre").text();
-        var apellidos   = trPersona.find(".tdApellido").text();
-        var fechaNac    = trPersona.find(".tdFechaNac").text();
-        var idSexo      = trPersona.find(".txtHdIdSexo").val();
-        trPersona.find(".txtNombrePersona").val(nombres);
-        trPersona.find(".txtApellidoPersona").val(apellidos);
-        trPersona.find(".dtFechaNacimiento").val(fechaNac);
+        var persona = getObjPersonaEdit(trPersona);
+        trPersona.find(".txtNombrePersona").val(persona.nombres);
+        trPersona.find(".txtApellidoPersona").val(persona.apellidos);
+        trPersona.find(".dtFechaNacimiento").val(persona.fechaNac);
         trPersona.find(".dtFechaNacimiento").datepicker({
             dateFormat: "dd/mm/yy"
         });
-        trPersona.find(".cbSexo").val(idSexo);
+        trPersona.find(".cbSexo").val(persona.idSexo);
         controlesEdit(true, trPersona);
     }
 // validaciones
@@ -179,11 +184,8 @@
 
     function btnEliminar(tr) {
         frm = serializeSection(tr);
-        console.log("formulario a enviar", frm);
-        
         //oTable.row('.selected').remove().draw(false);
         actualizarCatalogo(RAIZ + "GestionPersonas/sp_hm_eliminarPersona", frm, function (data) {
-            console.log("respuesta del servidor", data);
             if (data.estado) {
                 table = $(".tablePersonas");
                 removeDataTable(table, tr);
@@ -247,7 +249,4 @@
                 }
             })
         }
-        /*
-        
-        */
     }

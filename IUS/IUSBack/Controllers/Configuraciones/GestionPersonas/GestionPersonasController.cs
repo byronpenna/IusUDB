@@ -73,9 +73,6 @@ namespace IUSBack.Controllers
             }
             public ActionResult Index()
             {
-                // mandar a traer personas
-                List<Persona> personas = this._model.getPersonas();
-                Usuario usuarioSession = this.getUsuarioSesion();
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
                 if (seguridadInicial != null)
                 {
@@ -83,8 +80,9 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    //ViewBag.selectedMenu = 2; // menu seleccionado 
-                    //ViewBag.permiso = permisos;
+                    List<Persona> personas = this._model.getPersonas();
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    // ----------------
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.personas = personas;
                     ViewBag.titleModulo = "Gestion de personas";
@@ -95,7 +93,6 @@ namespace IUSBack.Controllers
                 {
                     ErrorsController error = new ErrorsController();
                     return error.redirectToError(x, true);
-                    //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
@@ -194,11 +191,12 @@ namespace IUSBack.Controllers
         #region "ajax action"
             #region "gets"
                 [HttpPost]
-            public ActionResult getJSONPersonas()
-            {
-                List<Persona> personas = this._model.getPersonas();
-                return Json(personas);
-            }
+                public ActionResult getJSONPersonas()
+                {
+
+                    List<Persona> personas = this._model.getPersonas();
+                    return Json(personas);
+                }
             #endregion
             #region "acciones"
                 [HttpPost]

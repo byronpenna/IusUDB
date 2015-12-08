@@ -240,9 +240,10 @@
             text-align:center;
             padding-top:1%;
             padding-bottom:1%;
-            position:fixed;
+            /*position:fixed;
             bottom:0;
-            width:100%;
+            width:100%;*/
+            
         }
         .copyRight span{
             display:block;
