@@ -7,7 +7,7 @@ using System.Web.Script.Serialization;
     using System.IO;
 // librerias internas
     using IUSBack.Models.Page.GestionPersonas.acciones;
-using System.Data.ProviderBase;
+    using System.Data.ProviderBase;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -251,22 +251,6 @@ namespace IUSBack.Controllers
                         }
                     }
                     return Json(respuesta);
-                    /*string frmText = Request.Form["form"];
-                    Dictionary<Object, Object> frm, toReturn;
-                    if (frmText != null && Session["usuario"] != null)
-                    {
-                        frm = _jss.Deserialize<Dictionary<Object, Object>>(frmText);
-                        Usuario usuarioSession = (Usuario)Session["usuario"];
-                        Persona personaActualizar = new Persona(Convert.ToInt32(frm["txtHdIdPersona"].ToString()), frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), Convert.ToDateTime(frm["dtFechaNacimiento"].ToString()));
-                        toReturn = this._model.actualizarPersona(personaActualizar, usuarioSession._idUsuario, this._idPagina);
-                
-                    }
-                    else
-                    {
-                        toReturn = this.errorEnvioFrmJSON();
-                    }
-                    return Json(toReturn);*/
-
                 }
                 [HttpPost]
                 public ActionResult sp_hm_agregarPersona()
@@ -281,11 +265,11 @@ namespace IUSBack.Controllers
                         respuesta = new Dictionary<object, object>();
                         try
                         {
-                            Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), /*Convert.ToDateTime(frm["dtFechaNacimiento"].ToString())*/ DateTime.Parse(frm["dtFechaNacimiento"].ToString()));
+                            Persona aAgregar = new Persona(frm["txtNombrePersona"].ToString(), frm["txtApellidoPersona"].ToString(), 
+                            DateTime.Parse(frm["dtFechaNacimiento"].ToString()));
                             Sexo sexo = new Sexo(this.convertObjAjaxToInt(frm["cbSexo"]));
                             aAgregar._sexo = sexo;
                             Dictionary<object, object> respuestaPeticion = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
-                            //Persona persona = this._model.sp_hm_agregarPersona(aAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta.Add("estado", true);
                             respuesta.Add("persona",respuestaPeticion["persona"]);
                             respuesta.Add("permisos", respuestaPeticion["permisos"]);
@@ -349,7 +333,6 @@ namespace IUSBack.Controllers
             public GestionPersonasController()
             {
                 this._model = new GestionPersonaModel();
-                this._jss = new JavaScriptSerializer();
             }
         #endregion
         
