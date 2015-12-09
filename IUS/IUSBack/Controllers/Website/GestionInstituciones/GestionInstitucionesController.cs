@@ -64,7 +64,7 @@ namespace IUSBack.Controllers
                     return error.redirectToError(x, true);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
-                catch (Exception x)
+                catch (Exception)
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
