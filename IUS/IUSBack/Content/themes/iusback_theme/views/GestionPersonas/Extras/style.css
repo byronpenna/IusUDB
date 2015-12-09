@@ -92,3 +92,11 @@
 .rowControles{
     width:95%;
 }
+
+.btnDisabled{
+    opacity:0.5;
+}
+    .btnDisabled:hover {
+        background:white;
+        cursor:default !important;
+    }
