@@ -17,14 +17,12 @@ namespace IUSBack.Controllers
     public class GestionRolesController : PadreController
     {
         #region "propiedades"
-        public GestionRolesModel _model;
-        public int _idPagina = (int)paginas.gestionRoles;
-        //public JavaScriptSerializer _jss;
+            public GestionRolesModel _model;
+            public int _idPagina = (int)paginas.gestionRoles;
         #endregion
         #region "constructores"
             public GestionRolesController(){
                 this._model = new GestionRolesModel();
-                this._jss = new JavaScriptSerializer();
             }
         #endregion
         #region "URL"
@@ -42,9 +40,9 @@ namespace IUSBack.Controllers
                     ViewBag.usuario = usuarioSession;
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     // traer data
-                    List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
-                    List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina);
-                    List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina, 0);
+                        List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
+                        List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina);
+                        List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina, 0);
                     // fill viewbag
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                         ViewBag.roles = roles;
@@ -56,7 +54,6 @@ namespace IUSBack.Controllers
                 {
                     ErrorsController error = new ErrorsController();
                     return error.redirectToError(x, true);
-                    //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
@@ -65,7 +62,6 @@ namespace IUSBack.Controllers
             }
         #endregion   
         #region "ajax functions"
-            
             #region "traer"
                 [HttpPost]
                 public ActionResult getJSONSubmenuFaltanteYactuales()
@@ -312,7 +308,6 @@ namespace IUSBack.Controllers
                             int[] roles = this.convertArrAjaxToInt((Object[])frm["rolesAgregar"]);
                             int idUsuario = Convert.ToInt32(frm["idUsuario"].ToString());
                             agrego = this._model.agregarRoles(roles, idUsuario, usuarioSession._idUsuario, this._idPagina);
-                            //List<Rol> roles = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuario._idUsuario, this._idPagina);
                             List<Rol> rolesFaltantes = this._model.getRolesFaltantes(Convert.ToInt32(frm["idUsuario"].ToString()), usuarioSession._idUsuario, this._idPagina);
                             if (agrego)
                             {
@@ -397,18 +392,11 @@ namespace IUSBack.Controllers
                         }
                         catch (ErroresIUS x)
                         {
-                            /*respuesta.Add("estado", false);
-                            respuesta.Add("errorType", 1);
-                            respuesta.Add("error", x);*/
                             ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
                             respuesta = this.errorTryControlador(1, error);
                         }
                         catch (Exception x)
                         {
-                            /*
-                            respuesta.Add("estado", false);
-                            respuesta.Add("errorType", 2);
-                            respuesta.Add("error", x);*/
                             ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                             respuesta = this.errorTryControlador(2, error);
                         }
@@ -441,12 +429,10 @@ namespace IUSBack.Controllers
                                     respuesta = this.errorTryControlador(3, "Error no controlado");
                                 }
                             }catch(ErroresIUS x){
-                                //respuesta = this.errorTryControlador(1,x);
                                 ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
                                 respuesta = this.errorTryControlador(1, error);
                             }
                             catch(Exception x){
-                                //respuesta = this.errorTryControlador(2,x);
                                 ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                                 respuesta = this.errorTryControlador(2, error);
                             }
@@ -459,7 +445,6 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> frm, respuesta = null;
                         frm = this.getAjaxFrm();
                         Usuario usuarioSession = this.getUsuarioSesion();
-                        
                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                         if (respuesta == null)
                         {
