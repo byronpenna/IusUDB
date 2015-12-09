@@ -59,7 +59,6 @@ namespace IUSLibs.SEC.Control
                     sp.agregarParametro("idPagina", idPagina);
                     try
                     {
-                        //DataSet ds = sp.EjecutarProcedimiento();
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                         if (this.resultadoCorrecto(tb)) {
                             if (tb[1].Rows.Count > 0)
@@ -70,14 +69,6 @@ namespace IUSLibs.SEC.Control
                                 personaAgregada._sexo = sexo;
                             }
                         }
-                        /*if (tables != null)
-                        {
-                            if ((int)tables[0].Rows[0]["estadoInsert"] == 1)
-                            {
-                                DataRow rowPersona = tables[1].Rows[0];
-                                personaAgregada = new Persona((int)rowPersona["idPersona"], rowPersona["nombres"].ToString(), rowPersona["apellidos"].ToString(), (DateTime)rowPersona["fecha_nacimiento"]);
-                            }
-                        }*/
                     }
                     catch (ErroresIUS x)
                     {
@@ -92,7 +83,6 @@ namespace IUSLibs.SEC.Control
                 public Persona actualizarPersona(Persona persona,int idUsuario,int idPagina)
                 {
                     Persona personaReturn = null;
-                    // manejo de erroresErroresIUS errorIus; 
                     SPIUS sp = new SPIUS("sp_hm_editarPersona");
                     // para actualizar
                         sp.agregarParametro("nombres", persona._nombres);
@@ -106,13 +96,20 @@ namespace IUSLibs.SEC.Control
                         try
                         {
                             DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                            if (this.resultadoCorrecto(tb) && tb[1].Rows.Count > 0)
+                            if (this.resultadoCorrecto(tb))
                             {
-                                DataRow rowResult = tb[1].Rows[0];
-                                personaReturn = new Persona((int)rowResult["idPersona"], rowResult["nombres"].ToString(), rowResult["apellidos"].ToString(), (DateTime)rowResult["fecha_nacimiento"]);
-                                Sexo sexo = new Sexo((int)rowResult["id_sexo_fk"], rowResult["sexo"].ToString());
-                                personaReturn._sexo = sexo;
-
+                                if (tb[1].Rows.Count > 0)
+                                {
+                                    DataRow rowResult = tb[1].Rows[0];
+                                    personaReturn = new Persona((int)rowResult["idPersona"], rowResult["nombres"].ToString(), rowResult["apellidos"].ToString(), (DateTime)rowResult["fecha_nacimiento"]);
+                                    Sexo sexo = new Sexo((int)rowResult["id_sexo_fk"], rowResult["sexo"].ToString());
+                                    personaReturn._sexo = sexo;
+                                }
+                                else
+                                {
+                                    ErroresIUS x = new ErroresIUS("Error desconocido");
+                                    throw x;
+                                }
                             }
                             else
                             {
@@ -138,7 +135,30 @@ namespace IUSLibs.SEC.Control
                     List<Persona> personas = new List<Persona>();
                     Persona persona; Sexo sexo;
                     SPIUS sp = new SPIUS("sp_sec_getPersonas");
-                    DataSet ds = sp.EjecutarProcedimiento();
+                    try
+                    {
+                        DataSet ds = sp.EjecutarProcedimiento();
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            foreach (DataRow row in tb[0].Rows)
+                            {
+                                persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                                sexo = new Sexo((int)row["id_sexo_fk"], row["sexo"].ToString());
+                                persona._sexo = sexo;
+                                personas.Add(persona);
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    /*
                     if (!this.DataSetDontHaveTable(ds))
                     {
                         DataTable table = ds.Tables[0];
@@ -149,33 +169,10 @@ namespace IUSLibs.SEC.Control
                             persona._sexo = sexo;
                             personas.Add(persona);
                         }
-                    }
+                    }*/
                     return personas;
                 }
                 // recursos humanos 
-                /*public DataSet prueba(int idPersona,int idUsuarioEjecutor,int idPagina)
-                {
-                    
-                    // do it 
-                    //SPIUS sp = new SPIUS("prueba");
-                    /sp.agregarParametro("idPersona", idPersona);
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
-                    SqlDataAdapter retorno;
-                    string[] consultas = new string[1];
-                    DataSet ds = new DataSet();
-                    consultas[0] = "select * from personas";
-                    //consultas[1] = "select * from formacion_personas";
-                    //consultas[2] = "select * from laboral_personas";
-                    //consultas[3] = "select * from sexos";
-                    ConexionIUS cn = new ConexionIUS();
-                    foreach(string consulta in consultas){
-                        SqlCommand command = new SqlCommand(consulta, cn.cn);
-                        SqlDataAdapter ada = new SqlDataAdapter(command);
-                        ada.Fill(ds);
-                    }
-                    return ds;
-                }*/
                 public Dictionary<object, object> sp_rrhh_detallePesona(int idPersona,int idUsuarioEjecutor,int idPagina)
                 {
                     // variables 

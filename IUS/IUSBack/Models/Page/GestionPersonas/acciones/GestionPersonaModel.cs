@@ -88,14 +88,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 rd.Load(ruta);
                 DataSet1 ds = new DataSet1();
                 rd.SetDatabaseLogon("sa", "123456", "PROGRAMADOR", "ius");
-                /*rd.SetParameterValue("@idPersona", 1);
-                rd.SetParameterValue("@idUsuarioEjecutor", 1);
-                rd.SetParameterValue("@idPagina", 1);*/
-                //DataSet ds2  = new DataSet();
                 rd.SetParameterValue("idPersona", idPersona);
-                //rd.DataDefinition.FormulaFields["pic"].Text = "";
-                //ada.Fill(ds);
-                //rd.SetDataSource(ds2);
                 Stream retorno = null;
                 try
                 {

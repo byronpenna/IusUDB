@@ -59,7 +59,8 @@
         color:white;
     }*/
     .panelMenuOp{
-        border-color:wheat;
+        /*border-color:wheat;*/
+        border-radius:0;
     }
     header{
         margin:0;
@@ -239,6 +240,10 @@
             text-align:center;
             padding-top:1%;
             padding-bottom:1%;
+            /*position:fixed;
+            bottom:0;
+            width:100%;*/
+            
         }
         .copyRight span{
             display:block;
@@ -338,4 +343,9 @@
 .divTable{
     width:95%;
     margin:0 auto;
+}
+
+.chosen-container-single .chosen-single{
+    border-radius:0 !important;
+    height:100% !important;
 }

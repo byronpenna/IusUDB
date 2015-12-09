@@ -28,12 +28,8 @@
                         tr.find(".btnAgregarPersona").click();
                     }
                 }
-
             })
-
-            
         // click
-
             // eliminar
                 $(document).on("click", ".btnEliminar", function () {
                     var x = confirm("¿esta seguro que desea eliminar este registro?");
@@ -53,29 +49,16 @@
                     btnActualizarTodo(tabla);
                 });
                 $(document).on("click", ".btnActualizar", function () {
-                        var trPersona = $(this).parents("tr");
-                        actualizar(trPersona)
-                        //
-                
-                        /*oTable = $(".tablePersonas").dataTable();
-                        oTable.draw();
-                        $(".tablePersonas").dataTable();*/
-                
-                    
+                    var trPersona = $(this).parents("tr");
+                    actualizar(trPersona);
                 })
             // editar
                 $(document).on("click", ".btnEditar", function () {
-                    //var x = confirm("¿Esta seguro que desea editar esta persona?");
                     trPersona = $(this).parents(".trPersona");
                     trPersona.find(".divResultado").empty();
                     table = $(".tablePersonas").DataTable();
                     var d = table.row($(this)).data();
-                    //if (x) {
-                        editMode(trPersona);
-                        //$(".tablePersonas").DataTable().clear();
-                        //$(".tablePersonas").DataTable().draw();
-                        //todoActualizar();
-                    //}
+                    editMode(trPersona);
                 });
                 $(document).on("click", ".btnCancelarEdit", function () {
                     trPersona = $(this).parents(".trPersona");
