@@ -506,7 +506,15 @@ function eventosIniciales() {
             calendar.fullCalendar('renderEvent', eventoAgregar, true);
         }
         function updateDespuesDePublicacion(eventoWebsite, detalle) {
-            detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
+            console.log("Evento website es:", eventoWebsite);
+            var icoPublicado = "";
+            if (eventoWebsite._evento._publicado)
+            {
+                icoPublicado = "<i class='fa fa-ban' title='" + eventoWebsite._evento.txtBtnPublicar + "'></i>";
+            } else {
+                icoPublicado = "<i class='fa fa-globe' title='" + eventoWebsite._evento.txtBtnPublicar + "'></i>";
+            }
+            detalle.find(".btnPublicar").empty().append(icoPublicado);
             if (eventoWebsite._estado == true) {
                 intEstado = 1;
             } else {
