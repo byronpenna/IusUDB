@@ -349,3 +349,12 @@
     border-radius:0 !important;
     height:100% !important;
 }
+
+
+.btnDisabled{
+    opacity:0.5;
+}
+    .btnDisabled:hover {
+        background:white;
+        cursor:default !important;
+    }

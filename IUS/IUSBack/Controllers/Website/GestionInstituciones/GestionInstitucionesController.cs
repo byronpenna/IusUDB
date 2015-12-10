@@ -64,7 +64,7 @@ namespace IUSBack.Controllers
                     return error.redirectToError(x, true);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
-                catch (Exception x)
+                catch (Exception)
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
@@ -167,7 +167,6 @@ namespace IUSBack.Controllers
                     {
                         Usuario usuarioSession = this.getUsuarioSesion();
                         frm = this.getAjaxFrm();
-                        
                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                         if (respuesta == null)
                         {
@@ -178,43 +177,6 @@ namespace IUSBack.Controllers
                                 {
                                     foreach (HttpPostedFileBase file in files)
                                     {
-                                        /*var strExtension    = Path.GetExtension(file.FileName);
-                                        string strDireccion = this._RUTASGLOBALES["LOGOS_INSTITUCIONES"] + frm["txtHdIdInstitucion"].ToString() + strExtension;
-                                        string path         = Server.MapPath(strDireccion);
-                                        file.SaveAs(path);
-                                        respuesta = new Dictionary<object, object>();
-                                        respuesta.Add("estado", true);
-                                        respuesta.Add("ruta", Url.Content(strDireccion));*/
-                                        /*decimal xx      = ;*/       /*decimal yy = ;*/
-                                        /*decimal xancho = ;*/ /*decimal yalto = ;*/
-                                        /*Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
-                                        byte[] fileBytes = this.getBytesFromFile(file); ;
-                                        using (Image image = Image.FromStream(file.InputStream))
-                                        {
-                                            int x = decimal.ToInt32(image.Width * xx);
-                                            int y = decimal.ToInt32(image.Height * yy);
-                                            int ancho = decimal.ToInt32(image.Height * xancho);
-                                            int alto = decimal.ToInt32(image.Height * yalto);
-                                            MemoryStream memory = new MemoryStream();
-                                            Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
-                                            try
-                                            {
-                                                using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
-                                                {
-                                                    using (Graphics g = Graphics.FromImage(bitMap))
-                                                    {
-                                                        g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
-                                                    }
-                                                    bitMap.Save(memory, System.Drawing.Imaging.ImageFormat.Jpeg);
-                                                }
-                                                fileBytes = memory.ToArray(); //
-                                            }
-                                            catch (Exception ex)
-                                            {
-
-                                            }
-                                        }*/
-                                        //byte[] fileBytes = this.getBytesFromFile(file);
                                         Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
                                         byte[] fileBytes = this.getBytesRecortadosFromFile(file, coordenadas); 
                                         Institucion institucionActualizar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), fileBytes);
@@ -320,7 +282,6 @@ namespace IUSBack.Controllers
                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                         if (respuesta == null)
                         {
-                        
                             Institucion institucionAgregar,institucionAgregada=null;
                             institucionAgregar = new Institucion(frm["txtNombreInstitucion"].ToString(), frm["txtAreaDireccion"].ToString(), this.convertObjAjaxToInt(frm["cbPais"]));
                             institucionAgregada = this._model.sp_frontui_insertInstitucion(institucionAgregar, usuarioSession._idUsuario, this._idPagina);

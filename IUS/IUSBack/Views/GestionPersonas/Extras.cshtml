@@ -44,11 +44,20 @@
     </a>
 }
 @{
-    List<TelefonoPersona> telefonosPersonas = null; List<EmailPersona> emailsPersonas = null;
-    InformacionPersona informacionPersona = null; List<EstadoCivil> estadosCiviles = null; List<Pais> paises = null;
-    List<Persona> personas = null;
-    Persona persona = null; string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
-    string selected = ""; string numeroIdentificacion = "";
+    // variables 
+    List<TelefonoPersona>   telefonosPersonas   = null;  List<EmailPersona> emailsPersonas  = null;
+    InformacionPersona      informacionPersona  = null;  List<EstadoCivil>  estadosCiviles  = null; 
+    List<Pais>              paises              = null;  List<Persona>      personas        = null;
+    Persona persona     = null; 
+    string  strFoto     = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
+    Permiso permisos    = (Permiso)ViewBag.permiso;
+    
+    string selected         = ""; string numeroIdentificacion = "";
+    string claseInputFile = "";
+    if (!permisos._editar)
+    {
+        claseInputFile = "btnDisabled";
+    }
     try
     {
         telefonosPersonas   = (List<TelefonoPersona>)   ViewBag.telefonos;
@@ -139,9 +148,9 @@
             
             <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">
                 <div class="row marginNull">
-                    <div class="fileUpload btn btn-default">
+                    <div class="fileUpload btn btn-default @claseInputFile">
                         <span>Seleccionar imagen</span>
-                        <input type="file" class="upload flFotoPersona" id="flMiniatura" accept="image/*" required />
+                        <input type="file" @permisos.stringEditar class="@claseInputFile upload flFotoPersona" id="flMiniatura" accept="image/*" required />
                     </div>
                 </div>
                 <button class="btn btnEstablecer btn-default" disabled>Establecer</button>
@@ -210,7 +219,7 @@
                 </div>
             </div>
             
-            <button class="btn btnGuardarInformacionBasica btn-default">
+            <button class="btn btnGuardarInformacionBasica btn-default" @permisos.stringCrear>
                 Guardar
             </button>
             <div class="row marginNull divResultado divResultadoOperacion">
@@ -246,7 +255,7 @@
                                 </div>
                             </th>
                             <th>
-                                <button class="btnGuardarEmail btn btn-sm btn-default">Guardar</button>
+                                <button class="btnGuardarEmail btn btn-sm btn-default" @permisos.stringCrear>Guardar</button>
                             </th>
                         </tr>
                     </thead>
@@ -290,8 +299,8 @@
                                         </div>
                                         <div class="normalMode tdTelefono">
                                             <div class='btn-group'>
-                                                <button class="btnEditarEmail btn btn-xs btn-default">Editar</button>
-                                                <button class="btnEliminarEmail btn btn-xs btn-default">Eliminar</button>
+                                                <button class="btnEditarEmail btn btn-xs btn-default" @permisos.stringEditar>Editar</button>
+                                                <button class="btnEliminarEmail btn btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
                                             </div>
                                         </div>
                                         
@@ -348,7 +357,7 @@
                                 </div>
                             </th>
                             <th>
-                                <button class="btnAgregarTel btn btn-default">Agregar</button>
+                                <button class="btnAgregarTel btn btn-default" @permisos.stringCrear>Agregar</button>
                             </th>
                         </tr>
                     </thead>
@@ -404,8 +413,8 @@
                                         </div>
                                         <div class="normalMode">
                                             <div class='btn-group'>
-                                                <button class="btn btn-xs btn-default btnEditarTel">Editar</button>
-                                                <button class="btn btn-xs btn-default btnEliminarTel">Eliminar</button>
+                                                <button class="btn btn-xs btn-default btnEditarTel" @permisos.stringEditar>Editar</button>
+                                                <button class="btn btn-xs btn-default btnEliminarTel" @permisos.stringEliminar>Eliminar</button>
                                             </div>
                                         </div>
                                         

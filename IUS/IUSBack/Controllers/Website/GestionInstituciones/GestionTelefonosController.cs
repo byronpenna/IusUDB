@@ -59,7 +59,6 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    
                     respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                     if (respuesta == null)
                     {

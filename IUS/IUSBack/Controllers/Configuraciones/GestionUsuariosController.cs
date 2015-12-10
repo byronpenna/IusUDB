@@ -43,9 +43,9 @@ namespace IUSBack.Controllers
                 try
                 {
                     ViewBag.titleModulo = "Gestion de usuarios";
-                    ViewBag.usuario = usuarioSession;
-                    usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
-                    personas = modelPersona.getPersonas();
+                    ViewBag.usuario     = usuarioSession;
+                    usuarios            = this._model.getUsuarios(usuarioSession._idUsuario);
+                    personas            = modelPersona.getPersonas();
                 }
                 catch (ErroresIUS)
                 {
@@ -164,18 +164,6 @@ namespace IUSBack.Controllers
                             respuesta = this.errorTryControlador(2, error);
                         }
                         return Json(respuesta);
-                        /*Usuario usuarioSession = this.getUsuarioSesion();
-                        Dictionary<Object,Object> frm,toReturn;
-                        frm = this.getAjaxFrm();
-                        if (frm != null && usuarioSession != null)
-                        {   
-                            toReturn = this._model.actualizarUsuario(frm,usuarioSession._idUsuario);
-                        }
-                        else
-                        {
-                            toReturn = this.errorEnvioFrmJSON();
-                        }
-                        return Json(toReturn);*/
                     }
                     [HttpPost]
                     public ActionResult sp_sec_actualizarUsuariosGeneral()

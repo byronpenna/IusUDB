@@ -132,7 +132,7 @@ namespace IUSLibs.SEC.Control
             #region "get"
                 public List<Persona> getPersonas()
                 {
-                    List<Persona> personas = new List<Persona>();
+                    List<Persona> personas = null;
                     Persona persona; Sexo sexo;
                     SPIUS sp = new SPIUS("sp_sec_getPersonas");
                     try
@@ -141,13 +141,18 @@ namespace IUSLibs.SEC.Control
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                         if (this.resultadoCorrectoGet(tb))
                         {
-                            foreach (DataRow row in tb[0].Rows)
+                            if (tb[0].Rows.Count > 0)
                             {
-                                persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
-                                sexo = new Sexo((int)row["id_sexo_fk"], row["sexo"].ToString());
-                                persona._sexo = sexo;
-                                personas.Add(persona);
+                                personas = new List<Persona>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                                    sexo = new Sexo((int)row["id_sexo_fk"], row["sexo"].ToString());
+                                    persona._sexo = sexo;
+                                    personas.Add(persona);
+                                }
                             }
+                            
                         }
                     }
                     catch (ErroresIUS x)

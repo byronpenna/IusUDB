@@ -29,11 +29,11 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
             #endregion 
         #endregion
         #region "constructores"
-        public GestionUsuarioModel(int idPagina)
-        {
-            this._idPagina = idPagina;
-            this._control = new ControlUsuarios();
-        }
+            public GestionUsuarioModel(int idPagina)
+            {
+                this._idPagina = idPagina;
+                this._control = new ControlUsuarios();
+            }
         #endregion
         
         public List<Usuario> getUsuarios(int idUsuarioEjecutor)
@@ -45,13 +45,13 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 Permiso permisoGestion = this._control.permisoGestion;
                 this._permisosGestion = permisoGestion;
             }
-            catch (ErroresIUS)
+            catch (ErroresIUS x)
             {
-
+                throw x;
             }
-            catch (Exception)
+            catch (Exception x)
             {
-
+                throw x;
             }
             return usuarios;
         }
@@ -135,18 +135,10 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 catch (ErroresIUS x)
                 {
                     throw x;
-                    /*
-                    toReturn.Add("estado", false);
-                    toReturn.Add("tipoError", 1);
-                    toReturn.Add("objError", x);*/
                 }
                 catch (Exception x)
                 {
                     throw x;
-                    /*
-                    toReturn.Add("estado", false);
-                    toReturn.Add("tipoError", 2);
-                    toReturn.Add("objError", x);*/
                 }
                 return toReturn;
             }
@@ -172,8 +164,6 @@ namespace IUSBack.Models.Page.GestionUsuarios.Acciones
                 }
                 return toReturn;
             }
-            
-            
         #endregion
     }
 }
