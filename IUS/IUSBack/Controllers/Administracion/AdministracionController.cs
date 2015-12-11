@@ -78,12 +78,39 @@ namespace IUSBack.Controllers
             #region "Eventos"
                 #region "acciones"
                     #region "agregar"
+                        public ActionResult sp_adminfe_eliminarEvento()
+                        {
+                            Dictionary<object, object> frm, respuesta;
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
+                            {
+                                try
+                                {
+                                    bool estado = this._model.sp_adminfe_eliminarEvento(this.convertObjAjaxToInt(frm["idEvento"]), usuarioSession._idUsuario, this._idPaginaEventos);
+                                    respuesta = new Dictionary<object, object>();
+                                    respuesta.Add("estado", estado);
+                                }
+                                catch (ErroresIUS x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql,x._mostrar);
+                                    respuesta = this.errorTryControlador(1, error);
+
+                                }
+                                catch (Exception x)
+                                {
+                                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                                    respuesta = this.errorTryControlador(2, error);
+                                }
+                            }
+                            return Json(respuesta);
+                        }                
                         public ActionResult sp_adminfe_agregarPermisoUsuarioEvento()
                         {
                             Dictionary<object, object> frm, respuesta;
                             frm = this.getAjaxFrm();
                             Usuario usuarioSession = this.getUsuarioSesion();
-                            
                             respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                             if (respuesta == null)
                             {
@@ -364,7 +391,7 @@ namespace IUSBack.Controllers
                             return Json(respuesta);
                         }
                     #endregion
-                    public ActionResult sp_adminfe_quitarEventoWebsite()
+                        public ActionResult sp_adminfe_quitarEventoWebsite()
                     {
                         Dictionary<object, object> frm, respuesta = null;
                         Usuario usuarioSesion = this.getUsuarioSesion();

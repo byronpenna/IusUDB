@@ -99,6 +99,31 @@ namespace IUSLibs.ADMINFE.Control
                 }
             #endregion
             #region "acciones"
+                public bool sp_adminfe_eliminarEvento(int idEvento, int idUsuarioEjecutor, int idPagina)
+                {
+                    bool eliminado = false;
+                    SPIUS sp = new SPIUS("sp_adminfe_eliminarEvento");
+                    sp.agregarParametro("idEvento", idEvento);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            eliminado = true;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return eliminado;
+                }
                 public Evento sp_adminfe_editarEventos(Evento eventoEditar, int idUsuario, int idPagina)
                 {
                     Evento eventoEditado;

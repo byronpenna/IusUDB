@@ -45,7 +45,6 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                             throw x;
                         }
                     }
-
                     public List<PermisoEvento> sp_adminfe_getPermisosFaltantesEvento(int idUsuarioEvento,int idUsuarioEjecutor,int idPagina)
                     {
                         try
@@ -144,6 +143,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     }
                 #endregion
                 #region "eliminacion"
+                    public bool sp_adminfe_eliminarEvento(int idEvento, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlEvento.sp_adminfe_eliminarEvento(idEvento, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public bool sp_adminfe_eliminarPermisoUsuarioEvento(int idPermisoUsuarioEvento, int idUsuarioEjecutor, int idPagina)
                     {
                         try
@@ -191,7 +205,7 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         }
                     }
                 #endregion
-                #region "creacion"
+                #region "creacion" 
                     public Dictionary<string,object> sp_adminfe_agregarPermisoUsuarioEvento(int[] idPermisos,int idUsuarioEvento,int idUsuarioEjecutor,int idPagina)
                     {
                         List<PermisoUsuarioEvento> permisosUsuariosEventos = new List<PermisoUsuarioEvento>();

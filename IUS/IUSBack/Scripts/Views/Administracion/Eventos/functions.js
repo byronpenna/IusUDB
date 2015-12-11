@@ -545,6 +545,29 @@ function eventosIniciales() {
             });
         }
         // acciones script
+        function btnEliminarEvento(frm,seccion) {
+            console.log("Frm enviado es", frm);
+            actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_eliminarEvento", frm, function (data) {
+                console.log("La data despues de eliminar", data);
+                if (data.estado) {
+                    var other = seccion.prev();
+                    other.remove();
+                    seccion.remove();
+                    $("#calendar").fullCalendar('removeEvents');
+                    $("#calendar").fullCalendar('rerenderEvents');
+                    $("#calendar").fullCalendar('Refetches');
+                    console.log("Todos los eventos ya fueron eliminados D: ");
+                    //eventosIniciales();
+                } else {
+                    if (data.error._mostrar) {
+                        printMessage(seccion.find(".divMensajes"), data.error.Message, false);
+                    } else {
+                        printMessage(seccion.find(".divMensajes"), "Ocurrio un error no controlado",false);
+                    }
+                }
+                
+            })
+        }
         function icoEliminarPermisoEvento(tr) {
             frm = serializeSection(tr);
         

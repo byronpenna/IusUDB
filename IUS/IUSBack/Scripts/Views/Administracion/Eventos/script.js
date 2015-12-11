@@ -19,26 +19,6 @@
                 slide: refreshTime,
                 change: refreshTime
             });
-            /*
-            $(".seg").slider({
-                orientation: "horizontal",
-                range: "min",
-                max: 59,
-                min: 0,
-                value: 0,
-                slide: refreshTime,
-                change: refreshTime
-            });
-            $(".tiempo").slider({
-                orientation: "horizontal",
-                range: "min",
-                max: 1,
-                min: 0,
-                value: 0,
-                slide: refreshTime,
-                change: refreshTime
-            })*/
-            //$(".horas").slider("value", 1);
         // chosen 
             $(".cbUsuarioCompartir").chosen({
                 no_results_text: "Usuario no encontrado",
@@ -50,20 +30,6 @@
             })
         // acordion    
             getAccordion($("#accordion"));
-            /*$("#accordion").accordion({
-                collapsible: true,
-                active: false,
-                beforeActivate: function (e, ui) {
-                    if (e.originalEvent.type != "click") {
-                        e.preventDefault();
-                    }
-                    if (!(e.toElement === undefined)) {
-                        if (e.toElement.className == "txtEvento2") {
-                            e.preventDefault();
-                        }
-                    }
-                }
-            });*/
         // datePicker
             $(".dpFecha").datepicker({
                 dateFormat: "dd/mm/yy"
@@ -134,6 +100,16 @@
                 rbTiempo(valTiempo,$(this));
             })
         // click
+            
+            $(document).on("click", ".btnEliminarEvento", function () {
+                var seccion = $(this).parents(".detalleEvento");
+                var frm = { idEvento: seccion.find(".txtHdIdEvento").val() }
+                console.log("Formulario a enviar aqui", frm);
+                var x = confirm("¿Esta seguro que desea eliminar evento?");
+                if (x) {
+                    btnEliminarEvento(frm, seccion);
+                }
+            })
             //*****************************
             $(document).on("click", ".btnBuscarRangoFecha", function () {
                 var frm = serializeSection($(this).parents(".divBusquedaRangoFecha"));
