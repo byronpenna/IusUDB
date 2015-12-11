@@ -331,7 +331,11 @@ function eventosIniciales() {
                             <input class='txtHdIdUsuarioEvento' name='txtHdIdUsuarioEvento' value='" + usuarioEvento._idEventoUsuario + "'>\
                         </td>\
                         <td>"+ usuarioEvento._usuario._usuario + "</td>\
-                        <td><i class='fa fa-times pointer icoQuitarUsuario'></td>\
+                        <td>\
+                            <button class='btn btn-default icoQuitarUsuario btn-xs'>\
+                                <i class='fa fa-trash'></i>\
+                            </button>\
+                        </td>\
                     </tr>";
             return tr;
         }
@@ -369,7 +373,11 @@ function eventosIniciales() {
                                 <input class='txtHdIdUsuarioEvento' name='txtHdIdUsuarioEvento' value='" + PermisoUsuarioEvento._usuarioEvento._idEventoUsuario + "'>\
                             </td>\
                             <td>" + PermisoUsuarioEvento._permiso._permiso + "</td>\
-                            <td><i class='fa fa-times pointer icoEliminarPermisoEvento'></td>\
+                            <td>\
+                                <button class='btn btn-default icoEliminarPermisoEvento'>\
+                                    <i class='fa fa-trash pointer'/>\
+                                </button>\
+                            </td>\
                         </tr>\
                     </tr>\
                 ";

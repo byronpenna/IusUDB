@@ -12,7 +12,6 @@
                         }
                 }
             })
-        
         // clicks 
                 $(document).on("click", ".btnCancelar", function () {
                     var x = confirm("¿Esta seguro de cancelar edicion?");

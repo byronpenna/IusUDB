@@ -4,8 +4,13 @@
         trMedio.find(".txtTextoEnlaceEdit").val(medio.nombreEnlace);
         callback();
     }
-    function exitEditMode(trMedios,medio) {
-        trMedios.find(".tdEnlace").empty().append(medio._enlace);
+    function exitEditMode(trMedios, medio) {
+        var enlace = "\
+        <a href='"+medio._enlace+"'>\
+            "+medio._enlace+"\
+        </a>\
+        "
+        trMedios.find(".tdEnlace").empty().append(enlace);
         trMedios.find(".tdNombreEnlace").empty().append(medio._nombreEnlace);
         controlesEdit( false, trMedios);
     }
@@ -98,7 +103,7 @@
     }
     function btnEditar(trMedio) {
         medio = {
-            enlace:         trMedio.find(".tdEnlace").text(),
+            enlace:         $.trim(trMedio.find(".tdEnlace").text()),
             nombreEnlace:   trMedio.find(".tdNombreEnlace").text(),
         }
         fillInputsEdit(trMedio, medio, function () {
