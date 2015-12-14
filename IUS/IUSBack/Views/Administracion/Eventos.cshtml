@@ -244,7 +244,11 @@
                                 {
                                     icoPublicar = "fa fa-ban";
                                 }
+                                
                                 <div class="row text-center sectionBotonesEvento">
+                                    <div class="row marginNull divMensajes">
+                                        bla bla bla
+                                    </div>
                                     <div class="normalMode">
                                         <div class='@group'>
                                             @if (evt1 || evento._propietario == 2)
@@ -263,7 +267,7 @@
                                                 <button class="btn btn-default btnCompartir" title="Compartir">
                                                     <i class="fa fa-share"></i>
                                                 </button>
-                                                <button class="btn btn-default" title="Eliminar">
+                                                <button class="btn btn-default btnEliminarEvento" title="Eliminar">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             }
@@ -321,7 +325,6 @@
                                     <th>Usuario</th>
                                     <th>Acciones</th>
                                 </tr>
-                                
                             </thead>
                             <tbody class="tbUsuarios"></tbody>
                         </table>

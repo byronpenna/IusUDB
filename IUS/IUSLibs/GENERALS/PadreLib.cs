@@ -62,13 +62,13 @@ namespace IUSLibs.GENERALS
             }
             #region "resultadoCorrectoGet"
                 protected bool resultadoCorrectoGet(DataTableCollection tb, int iTabla)
-            {
-                return this.resultadoCorrecto(tb, "estadoProc", iTabla);
-            }
+                {
+                    return this.resultadoCorrecto(tb, "estadoProc", iTabla);
+                }
                 protected bool resultadoCorrectoGet(DataTableCollection tb)
-            {
-                return this.resultadoCorrecto(tb, "estadoProc", tb.Count - 1);
-            }
+                {
+                    return this.resultadoCorrecto(tb, "estadoProc", tb.Count - 1);
+                }
             #endregion
             #region "Resultado Correcto"
                 protected bool resultadoCorrecto(DataSet ds)

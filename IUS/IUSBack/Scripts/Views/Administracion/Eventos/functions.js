@@ -506,7 +506,15 @@ function eventosIniciales() {
             calendar.fullCalendar('renderEvent', eventoAgregar, true);
         }
         function updateDespuesDePublicacion(eventoWebsite, detalle) {
-            detalle.find(".btnPublicar").text(eventoWebsite._evento.txtBtnPublicar);
+            console.log("Evento website es:", eventoWebsite);
+            var icoPublicado = "";
+            if (eventoWebsite._evento._publicado)
+            {
+                icoPublicado = "<i class='fa fa-ban' title='" + eventoWebsite._evento.txtBtnPublicar + "'></i>";
+            } else {
+                icoPublicado = "<i class='fa fa-globe' title='" + eventoWebsite._evento.txtBtnPublicar + "'></i>";
+            }
+            detalle.find(".btnPublicar").empty().append(icoPublicado);
             if (eventoWebsite._estado == true) {
                 intEstado = 1;
             } else {
@@ -537,6 +545,29 @@ function eventosIniciales() {
             });
         }
         // acciones script
+        function btnEliminarEvento(frm,seccion) {
+            console.log("Frm enviado es", frm);
+            actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_eliminarEvento", frm, function (data) {
+                console.log("La data despues de eliminar", data);
+                if (data.estado) {
+                    var other = seccion.prev();
+                    other.remove();
+                    seccion.remove();
+                    $("#calendar").fullCalendar('removeEvents');
+                    $("#calendar").fullCalendar('rerenderEvents');
+                    $("#calendar").fullCalendar('Refetches');
+                    console.log("Todos los eventos ya fueron eliminados D: ");
+                    //eventosIniciales();
+                } else {
+                    if (data.error._mostrar) {
+                        printMessage(seccion.find(".divMensajes"), data.error.Message, false);
+                    } else {
+                        printMessage(seccion.find(".divMensajes"), "Ocurrio un error no controlado",false);
+                    }
+                }
+                
+            })
+        }
         function icoEliminarPermisoEvento(tr) {
             frm = serializeSection(tr);
         
