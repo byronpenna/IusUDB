@@ -1,19 +1,40 @@
 ﻿// load
-function eventosIniciales() {
-    var frm = new Object();
-    actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
-        console.log("respuesta sp_adminfe_getEventosPrincipales: ", data);
-        if (data.estado) {
-            eventos = data.eventos;
-            if (!(eventos === null)) {
-                $.each(eventos, function (i, evento) {
-                    agregarEvento($("#calendar"), evento, true, evento._propietario);
-                });
+    function eventosIniciales() {
+        var frm = new Object();
+        actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
+            console.log("respuesta sp_adminfe_getEventosPrincipales: ", data);
+            if (data.estado) {
+                eventos = data.eventos;
+                if (!(eventos === null)) {
+                    $.each(eventos, function (i, evento) {
+                        agregarEvento($("#calendar"), evento, true, evento._propietario);
+                    });
+                }
+            } else {
             }
-        } else {
-        }
-    });
-}
+        });
+    }
+
+    function inputsTime(minutos,horas) {
+        horas.slider({
+            orientation: "horizontal",
+            range: "min",
+            max: 12,
+            min: 1,
+            value: 1,
+            slide: refreshTime,
+            change: refreshTime
+        });
+        minutos.slider({
+            orientation: "horizontal",
+            range: "min",
+            max: 59,
+            min: 0,
+            value: 0,
+            slide: refreshTime,
+            change: refreshTime
+        });
+    }
 // genericos
     function getAccordion(div, withRefresh) {
         if (withRefresh !== undefined && withRefresh == true) {
@@ -473,7 +494,15 @@ function eventosIniciales() {
                                         <div class='editMode hidden'>\
                                             <label>Inicio: </label>\
                                             <input class='dpFecha txtFechaInicio form-control' name='txtFechaInicio' />\
-                                            <input type='time' class='txtHoraInicio form-control' name='txtHoraInicio' />\
+                                            <div class='row marginNull divHora timeEdit'>\
+                                                <input type='text' class='txtHoraInicio form-control' name='txtHoraInicio' readonly />\
+                                                <div class='horas " + evento._idEvento + "h '></div>\
+                                                <div class='minutos " + evento._idEvento + "m'></div>\
+                                                <div class='divTiempo'>\
+                                                    a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0' />\
+                                                    p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1' checked />\
+                                                </div>\
+                                            </div>\
                                         </div>\
                                     </div>\
                                     <div class='col-lg-6'>\
@@ -484,7 +513,15 @@ function eventosIniciales() {
                                         <div class='editMode hidden'>\
                                             <label>Fin: </label>\
                                             <input class='dpFecha txtFechaFin form-control' name='txtFechaFin' />\
-                                            <input type='time' class='txtHoraFin form-control ' name='txtHoraFin' />\
+                                            <div class='row marginNull divHora timeEdit'>\
+                                                <input type='text' class='txtHoraFin txtHora form-control' name='txtHoraFin' readonly />\
+                                                <div class='horas " + evento._idEvento + "h '></div>\
+                                                <div class='minutos " + evento._idEvento + "m '></div>\
+                                                <div class='divTiempo'>\
+                                                    a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0' />\
+                                                    p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1' checked />\
+                                                </div>\
+                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -509,16 +546,21 @@ function eventosIniciales() {
                                     </div>\
                                 </div>\
                                 <div class='editMode hidden'>\
-                                    <button class='btn btn-default btnActualizar' >Actualizar</button>\
-                                    <button class='btn btn-default btnCancelar' >Cancelar</button>\
+                                    <div class='btn-group'>\
+                                        <button class='btn btn-default btnActualizar' >Actualizar</button>\
+                                        <button class='btn btn-default btnCancelar' >Cancelar</button>\
+                                    </div>\
                                 </div>\
                                 <div class='quitarPublicacionMode hidden'>\
-                                    <button class='btn btn-default btnAccionQuitarPublicacion'>Quitar publicacion</button>\
-                                    <button class='btn btn-default btnCancelaQuitarPublicacion'>Cancelar</button>\
+                                    <div class='btn-group'>\
+                                        <button class='btn btn-default btnAccionQuitarPublicacion'>Quitar publicacion</button>\
+                                        <button class='btn btn-default btnCancelaQuitarPublicacion'>Cancelar</button>\
+                                    </div>\
                                 </div>\
                             </div>\
                         </div>\
             ";
+            //<input type='time' class='txtHoraFin form-control ' name='txtHoraFin' />\
             return div;
         }
         function agregarEvento(calendar, evento, sticker, propio) {
@@ -824,6 +866,26 @@ function eventosIniciales() {
                     agregarEvento($("#calendar"), data.evento, true, 1);
                     div = getEventosAcordion(data.evento);
                     $("#accordion").prepend(div);
+
+                    inputsTime($("#accordion").find("." + data.evento._idEvento + "m"), $("#accordion").find("." + data.evento._idEvento + "h"));
+                    /*$("#accordion").find(data.evento._idEvento + "h").slider({
+                        orientation: "horizontal",
+                        range: "min",
+                        max: 12,
+                        min:1,
+                        value: 1,
+                        slide: refreshTime,
+                        change: refreshTime
+                    });
+                    $("#accordion").find(data.evento._idEvento + "m").slider({
+                        orientation: "horizontal",
+                        range: "min",
+                        max: 59,
+                        min: 0,
+                        value: 0,
+                        slide: refreshTime,
+                        change: refreshTime
+                    });*/
                     irA($("#calendar"));
                     //clearTr(frmSection); se comenta porq mata las horas
                     limpiarFormulario();
