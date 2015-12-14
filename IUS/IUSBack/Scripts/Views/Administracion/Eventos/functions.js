@@ -109,24 +109,44 @@ function eventosIniciales() {
                 div += "\
                     <div class='row text-center sectionBotonesEvento'>\
                         <div class='normalMode'>";
-                            if (evento._propietario == 1 || evento._propietario == 2)
-                            {
-                                div += "<button class='btn btnEditar'>Editar</button>\
-                                <button class='btn btnPublicar'>"+evento.txtBtnPublicar+"</button>";
-                            }
-                            if (evento._propietario == 1)
-                            {
-                                div += "<button class='btn btnCompartir'>Compartir</button>";
-                            }
+                            div += "<div class='btn-group-vertical'>";
+                                if (evento._propietario == 1 || evento._propietario == 2)
+                                {
+                                    div += "\
+                                    <button class='btn btnEditar' title='Editar'>\
+                                        <i class='fa fa-pencil'></i>\
+                                    </button>\
+                                    <button class='btn btnPublicar' title='" + evento.txtBtnPublicar + "'>\
+                                        <i class='fa fa-globe'></i>\
+                                    </button>";
+                                }
+                            div += "</div>";
+                            div += "<div class='btn-group-vertical'>";
+                                if (evento._propietario == 1)
+                                {
+                                    div += "\
+                                        <button class='btn btnCompartir' title='Compartir'>\
+                                            <i class='fa fa-share'></i>\
+                                        </button>\
+                                        <button class='btn btn-default btnEliminarEvento' title='Eliminar'>\
+                                            <i class='fa fa-trash'></i>\
+                                        </button>\
+                                    ";
+                                }
+                            div += "</div>";
                     div += "\
                         </div>\
                         <div class='editMode hidden'>\
-                            <button class='btn btnActualizar'>Actualizar</button>\
-                            <button class='btn btnCancelar'>Cancelar</button>\
+                            <div class='btn-group'>\
+                                <button class='btn btn-default btnActualizar'>Actualizar</button>\
+                                <button class='btn btn-default btnCancelar'>Cancelar</button>\
+                            </div>\
                         </div>\
                         <div class='quitarPublicacionMode hidden'>\
-                            <button class='btn btnAccionQuitarPublicacion'>Quitar publicacion</button>\
-                            <button class='btn btnCancelaQuitarPublicacion'>Cancelar</button>\
+                            <div class='btn-group'>\
+                                <button class='btn btn-default btnAccionQuitarPublicacion'>Quitar publicacion</button>\
+                                <button class='btn btn-default btnCancelaQuitarPublicacion'>Cancelar</button>\
+                            </div>\
                         </div>\
                     </div>";
             }
@@ -471,17 +491,30 @@ function eventosIniciales() {
                             </div>\
                             <div class='row text-center sectionBotonesEvento'>\
                                 <div class='normalMode'>\
-                                    <button class='btn btnEditar'>Editar</button>\
-                                        <button class='btn btnCompartir'>Compartir</button>\
-                                    <button class='btn btnPublicar'>"+ evento.txtBtnPublicar + "</button>\
+                                    <div class='btn-group-vertical'>\
+                                        <button class='btn btn-default btnEditar'>\
+                                            <i class='fa fa-pencil'></i>\
+                                        </button>\
+                                        <button class='btn btn-default btnPublicar' title='" + evento.txtBtnPublicar + "'>\
+                                            <i class='fa fa-globe'></i>\
+                                        </button>\
+                                    </div>\
+                                    <div class='btn-group-vertical'>\
+                                        <button class='btn btn-default btnCompartir'>\
+                                            <i class='fa fa-share'></i>\
+                                        </button>\
+                                        <button class='btn btn-default btnEliminarEvento' title='Eliminar'>\
+                                            <i class='fa fa-trash'></i>\
+                                        </button>\
+                                    </div>\
                                 </div>\
                                 <div class='editMode hidden'>\
-                                    <button class='btn btnActualizar' >Actualizar</button>\
-                                    <button class='btn btnCancelar' >Cancelar</button>\
+                                    <button class='btn btn-default btnActualizar' >Actualizar</button>\
+                                    <button class='btn btn-default btnCancelar' >Cancelar</button>\
                                 </div>\
                                 <div class='quitarPublicacionMode hidden'>\
-                                    <button class='btn btnAccionQuitarPublicacion'>Quitar publicacion</button>\
-                                    <button class='btn btnCancelaQuitarPublicacion'>Cancelar</button>\
+                                    <button class='btn btn-default btnAccionQuitarPublicacion'>Quitar publicacion</button>\
+                                    <button class='btn btn-default btnCancelaQuitarPublicacion'>Cancelar</button>\
                                 </div>\
                             </div>\
                         </div>\
