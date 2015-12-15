@@ -576,8 +576,10 @@
                 title: evento._evento,
                 start: evento.getFechaInicioUSA,
                 end: evento.getFechaFinUSA,
-                color: backColor
+                color: backColor,
+                id: evento._idEvento
             };
+            console.log("El evento agregado fue", evento._idEvento);
             calendar.fullCalendar('renderEvent', eventoAgregar, true);
         }
         function updateDespuesDePublicacion(eventoWebsite, detalle) {
@@ -621,16 +623,17 @@
         }
         // acciones script
         function btnEliminarEvento(frm,seccion) {
-            console.log("Frm enviado es", frm);
             actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_eliminarEvento", frm, function (data) {
                 console.log("La data despues de eliminar", data);
                 if (data.estado) {
+                    $("#calendar").fullCalendar('removeEvents', frm.idEvento);
                     var other = seccion.prev();
                     other.remove();
                     seccion.remove();
-                    $("#calendar").fullCalendar('removeEvents');
-                    $("#calendar").fullCalendar('rerenderEvents');
-                    $("#calendar").fullCalendar('Refetches');
+                    //#######################
+                    console.log("Id evento calendario", frm.idEvento);
+                    //$("#calendar").fullCalendar('rerenderEvents');
+                    //$("#calendar").fullCalendar('Refetches');
                     console.log("Todos los eventos ya fueron eliminados D: ");
                     //eventosIniciales();
                 } else {
