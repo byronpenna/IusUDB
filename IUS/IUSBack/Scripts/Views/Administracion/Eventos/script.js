@@ -2,24 +2,6 @@
     // plugins 
         // slide horizontal 
             inputsTime($(".minutos"), $(".horas"));
-            /*$(".horas").slider({
-                orientation: "horizontal",
-                range: "min",
-                max: 12,
-                min:1,
-                value: 1,
-                slide: refreshTime,
-                change: refreshTime
-            });
-            $(".minutos").slider({
-                orientation: "horizontal",
-                range: "min",
-                max: 59,
-                min: 0,
-                value: 0,
-                slide: refreshTime,
-                change: refreshTime
-            });*/
         // chosen 
             $(".cbUsuarioCompartir").chosen({
                 no_results_text: "Usuario no encontrado",

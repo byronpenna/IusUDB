@@ -854,54 +854,45 @@
             $(".dpFecha").val("");
         }
         function frmAgregarEvento(frm, frmSection) {
-            frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
-            frm.txtHoraFin = horaConvert(frm.txtHoraFin);
-            //console.log("formulario a enviar",frm);
-            frm.txtFechaFin     = fechaStandar(frm.txtFechaFin);
-            frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
-            console.log("formulario a enviar es:", frm);
-            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_crearEvento", frm, function (data) {
-                console.log("respuesta sp_adminfe_crearEvento", data);
-                if (data.estado) {
-                    agregarEvento($("#calendar"), data.evento, true, 1);
-                    div = getEventosAcordion(data.evento);
-                    $("#accordion").prepend(div);
-
-                    inputsTime($("#accordion").find("." + data.evento._idEvento + "m"), $("#accordion").find("." + data.evento._idEvento + "h"));
-                    /*$("#accordion").find(data.evento._idEvento + "h").slider({
-                        orientation: "horizontal",
-                        range: "min",
-                        max: 12,
-                        min:1,
-                        value: 1,
-                        slide: refreshTime,
-                        change: refreshTime
-                    });
-                    $("#accordion").find(data.evento._idEvento + "m").slider({
-                        orientation: "horizontal",
-                        range: "min",
-                        max: 59,
-                        min: 0,
-                        value: 0,
-                        slide: refreshTime,
-                        change: refreshTime
-                    });*/
-                    irA($("#calendar"));
-                    //clearTr(frmSection); se comenta porq mata las horas
-                    limpiarFormulario();
-                    resetRbTiempo();
-                    printMessage($(".divMensajeForm"), "Evento agregado correctamente", true);
-                } else {
-                    if (data.error._mostrar && data.error.Message != "") {
-                        printMessage($(".divMensajeForm"), data.error.Message, false);
-                        //alert(data.error.Message);
-                    } else {
-                        printMessage($(".divMensajeForm"), data.error.Message, false);
-                        //alert("ocurrio un error");
-                    }
+            // vars 
+                var target = $("#accordion");    
                 
-                }
-            });
+                frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
+                frm.txtHoraFin = horaConvert(frm.txtHoraFin);
+                frm.txtFechaFin     = fechaStandar(frm.txtFechaFin);
+                frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
+            // do it 
+                actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_crearEvento", frm, function (data) {
+                    console.log("respuesta sp_adminfe_crearEvento", data);
+                    if (data.estado) {
+                        agregarEvento($("#calendar"), data.evento, true, 1);
+                        div = getEventosAcordion(data.evento);
+                        if (target.find(".noEventoDiv").length == -1) {
+                            target.empty();
+                        }
+                        var noEvento = target.parents(".eventosCompartirSection").find(".noEventoDiv");
+                        console.log("D:", noEvento.length);
+                        if (noEvento.length != -1) {
+                            noEvento.remove();
+                        }
+                        target.prepend(div);
+                        inputsTime($("#accordion").find("." + data.evento._idEvento + "m"), $("#accordion").find("." + data.evento._idEvento + "h"));
+                        irA($("#calendar"));
+                        //clearTr(frmSection); se comenta porq mata las horas
+                        limpiarFormulario();
+                        resetRbTiempo();
+                        printMessage($(".divMensajeForm"), "Evento agregado correctamente", true);
+                    } else {
+                        if (data.error._mostrar && data.error.Message != "") {
+                            printMessage($(".divMensajeForm"), data.error.Message, false);
+                            //alert(data.error.Message);
+                        } else {
+                            printMessage($(".divMensajeForm"), data.error.Message, false);
+                            //alert("ocurrio un error");
+                        }
+                
+                    }
+                });
         
         }
         function btnCompartir(detalle) {
