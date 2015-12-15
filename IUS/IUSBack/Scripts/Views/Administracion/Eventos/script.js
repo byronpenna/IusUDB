@@ -17,9 +17,8 @@
             $(".dpFecha").datepicker({
                 dateFormat: "dd/mm/yy"
             });
-            
         // full calendar
-            $("#calendar").fullCalendar({
+            var calendar = $("#calendar").fullCalendar({
                 editable: true,
                 header: {
                     left: 'prev,next today',
@@ -92,6 +91,7 @@
                 if (x) {
                     btnEliminarEvento(frm, seccion);
                 }
+                calendar.fullCalendar('removeEvents', frm.idEvento);
             })
             //*****************************
             $(document).on("click", ".btnBuscarRangoFecha", function () {

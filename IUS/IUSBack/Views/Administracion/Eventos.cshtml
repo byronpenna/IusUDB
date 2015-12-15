@@ -252,7 +252,7 @@
                                         <div class='@group'>
                                             @if (evt1 || evento._propietario == 2)
                                             {
-                                                <button class="btn btn-default btnEditar" title="Editar">
+                                                <button class="btn btn-default btnEditar" title="Editar" @permiso.stringEditar>
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
                                                 <button class="btn btn-default btnPublicar" title="@evento.txtBtnPublicar">
@@ -266,7 +266,7 @@
                                                 <button class="btn btn-default btnCompartir" title="Compartir">
                                                     <i class="fa fa-share"></i>
                                                 </button>
-                                                <button class="btn btn-default btnEliminarEvento" title="Eliminar">
+                                                <button class="btn btn-default btnEliminarEvento" title="Eliminar" @permiso.stringEliminar>
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             }

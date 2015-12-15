@@ -453,11 +453,21 @@
             div.find(".spanFechaFin").empty().append(evento.getFechaFin);
             h3.find(".spanNombreEvento").empty().append(evento._evento);
         }
-        function getEventosAcordion(evento) {
+        function getEventosAcordion(evento,permisos) {
             if(evento._publicado){
                 intPublicado = 1
             }else{
                 intPublicado = 0;
+            }
+            var strEliminar = "", strEditar = "";
+            console.log("permisos antes de agregar", permisos);
+            if (permisos !== undefined) {
+                if (!permisos._eliminar) {
+                    strEliminar = "disabled";
+                }
+                if (!permisos._editar) {
+                    strEditar = "disabled";
+                }
             }
             div = "\
                         <h3 class='nombreEvento " + evento.txtClaseColor + " '>\
@@ -529,7 +539,7 @@
                             <div class='row text-center sectionBotonesEvento'>\
                                 <div class='normalMode'>\
                                     <div class='btn-group-vertical'>\
-                                        <button class='btn btn-default btnEditar'>\
+                                        <button class='btn btn-default btnEditar' "+strEditar+">\
                                             <i class='fa fa-pencil'></i>\
                                         </button>\
                                         <button class='btn btn-default btnPublicar' title='" + evento.txtBtnPublicar + "'>\
@@ -540,7 +550,7 @@
                                         <button class='btn btn-default btnCompartir'>\
                                             <i class='fa fa-share'></i>\
                                         </button>\
-                                        <button class='btn btn-default btnEliminarEvento' title='Eliminar'>\
+                                        <button class='btn btn-default btnEliminarEvento' title='Eliminar' "+strEliminar+">\
                                             <i class='fa fa-trash'></i>\
                                         </button>\
                                     </div>\
@@ -632,10 +642,6 @@
                     seccion.remove();
                     //#######################
                     console.log("Id evento calendario", frm.idEvento);
-                    //$("#calendar").fullCalendar('rerenderEvents');
-                    //$("#calendar").fullCalendar('Refetches');
-                    console.log("Todos los eventos ya fueron eliminados D: ");
-                    //eventosIniciales();
                 } else {
                     if (data.error._mostrar) {
                         printMessage(seccion.find(".divMensajes"), data.error.Message, false);
@@ -869,7 +875,7 @@
                     console.log("respuesta sp_adminfe_crearEvento", data);
                     if (data.estado) {
                         agregarEvento($("#calendar"), data.evento, true, 1);
-                        div = getEventosAcordion(data.evento);
+                        div = getEventosAcordion(data.evento,data.permisos);
                         if (target.find(".noEventoDiv").length == -1) {
                             target.empty();
                         }
