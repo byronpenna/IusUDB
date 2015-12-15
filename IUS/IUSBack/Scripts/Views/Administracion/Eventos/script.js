@@ -1,7 +1,8 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function () { 
     // plugins 
         // slide horizontal 
-            $(".horas").slider({
+            inputsTime($(".minutos"), $(".horas"));
+            /*$(".horas").slider({
                 orientation: "horizontal",
                 range: "min",
                 max: 12,
@@ -18,7 +19,7 @@
                 value: 0,
                 slide: refreshTime,
                 change: refreshTime
-            });
+            });*/
         // chosen 
             $(".cbUsuarioCompartir").chosen({
                 no_results_text: "Usuario no encontrado",
