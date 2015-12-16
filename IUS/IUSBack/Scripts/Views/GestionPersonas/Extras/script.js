@@ -4,11 +4,6 @@
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
         // jcrop
             var jcrop_api = null;
-            /*jcrop_api = $.Jcrop('.imgPersona', {
-                onSelect: storeCoords,
-                onChange: storeCoords,
-                aspectRatio: 1
-            });*/
     // eventos
         // change 
             $(document).on("change", ".flFotoPersona", function (e) {
@@ -65,12 +60,8 @@
                 var files       = $("#flMiniatura")[0].files;
                 var data        = getObjFormData(files, frm);
                 e.preventDefault();
-                //var imagen = $("#flMiniatura")[0].files[0];
                 var imagen      = files[0]
-                //console.log(imagen);
-                //jcrop_api.destroy();
                 frmImagenPersona(data, $(this).attr("action"), imagen,frm,jcrop_api);
-                //console.log("dATA ES", data);
             })
         // doble click
             $(document).on("dblclick", ".hNombrePersona", function () {
@@ -134,7 +125,6 @@
                     var tr          = $(this).parents("tr");
                     var frm         = serializeSection(tr);
                     frm.idPersona   = $(".txtHdIdPersona").val();
-                    //console.log(frm);
                     var val         = validarInsertEmail(frm);
                     if (val.estado)
                     {
@@ -148,14 +138,11 @@
                         $.each(val.campos, function (i, val) {
                             errores = "";
                             var divResultado = $(".tablaCorreos thead").find("." + i).parents("th").find(".divResultado")
-                            //console.log(i, ": " + val);
                             if (val.length > 0) {
-                                //console.log("entro");
                                 divResultado.removeClass("visibilitiHidden");
                                 $.each(val, function (i, val) {
                                     errores += getSpanMessageError(val);
                                 })
-                                //console.log("errores", errores);
                                 divResultado.empty().append(errores);
                             }
                         })
