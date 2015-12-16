@@ -154,7 +154,16 @@
         }
         
     // numeros
-        function getTrNumeros(telefono) {
+        function getTrNumeros(telefono,permisos) {
+            var strEditar = "", strEliminar = "";
+            if (permisos !== undefined) {
+                if (!permisos._editar) {
+                    strEditar = "disabled";
+                }
+                if (!permisos._eliminar) {
+                    strEliminar = "disabled";
+                }
+            }
             var tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -197,14 +206,22 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnActualizarTel'>Actualizar</button>\
-                            <button class='btn btn-xs btn-default btnCancelarUpdateTel'>Cancelar</button>\
+                            <button class='btn btn-xs btn-default btnActualizarTel' title='Aceptar'>\
+                                <i class='fa fa-check'></i>\
+                            </button>\
+                            <button class='btn btn-xs btn-default btnCancelarUpdateTel' title='Eliminar'>\
+                                <i class='fa fa-times'></i>\
+                            </button>\
                         </div>\
                     </div>\
                     <div class='normalMode'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditarTel'>Editar</button>\
-                            <button class='btn btn-xs btn-default btnEliminarTel'>Eliminar</button>\
+                            <button class='btn btn-xs btn-default btnEditarTel' " + strEditar + " title='Editar'>\
+                                <i class='fa fa-pencil'></i>\
+                            </button>\
+                            <button class='btn btn-xs btn-default btnEliminarTel' " + strEliminar + " title='Eliminar'>\
+                                <i class='fa fa-trash-o'></i>\
+                            </button>\
                         </div>\
                     </div>\
                 </td>\
@@ -310,9 +327,8 @@
             }
             function btnAgregarTel(frm) {
                 actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarTelefonoPersona", frm, function (data) {
-                    console.log(data);
                     if (data.estado) {
-                        var tr = getTrNumeros(data.telefonoAgregado);
+                        var tr = getTrNumeros(data.telefonoAgregado,data.permisos);
                         var tbody = $(".tbodyTelefonos");
                         if (tbody.find(".trNoReg").length == 0) {
                             tbody.prepend(tr);

@@ -274,7 +274,7 @@ namespace IUSBack.Controllers.GestionPersonas
                         {
                             TelefonoPersona telefonoAgregar = new TelefonoPersona(frm["txtTelefono"].ToString(), frm["txtEtiquetaTel"].ToString(), this.convertObjAjaxToInt(frm["cbPais"]), this.convertObjAjaxToInt(frm["idPersona"]));
                             TelefonoPersona telefonoAgregado = this._model.sp_rrhh_guardarTelefonoPersona(telefonoAgregar, usuarioSession._idUsuario, this._idPagina);
-                            respuesta = new Dictionary<object, object>();
+                            respuesta = this._model.getInstanciaRespuestaAjax(usuarioSession,this._idPagina);
                             respuesta.Add("estado", true);
                             respuesta.Add("telefonoAgregado", telefonoAgregado);
                         }

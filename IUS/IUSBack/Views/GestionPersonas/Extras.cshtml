@@ -357,7 +357,7 @@
                                 </div>
                             </th>
                             <th>
-                                <button class="btnAgregarTel btn btn-default" @permisos.stringCrear>Agregar</button>
+                                <button class="btnAgregarTel btn btn-default btn-sm" @permisos.stringCrear>Agregar</button>
                             </th>
                         </tr>
                     </thead>
@@ -373,7 +373,7 @@
                                     </td>
                                     <td>
                                         <div class="editMode hidden">
-                                            <input class="txtTelefono form-control soloNumerosInt" name="txtTelefono" />
+                                            <input class="txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
                                             <div class="row marginNull divResultado hidden">
                                                 _
                                             </div>
@@ -395,7 +395,7 @@
                                     </td>
                                     <td>
                                         <div class="editMode hidden">
-                                            <input class="txtEtiquetaTel form-control" name="txtEtiquetaTel" />
+                                            <input class="txtEtiquetaTel input-sm form-control" name="txtEtiquetaTel" />
                                             <div class="row marginNull divResultado hidden">
                                                 _
                                             </div>
@@ -407,14 +407,22 @@
                                     <td>
                                         <div class="editMode hidden">
                                             <div class='btn-group'>
-                                                <button class="btn btn-xs btn-default btnActualizarTel">Actualizar</button>
-                                                <button class="btn btn-xs btn-default btnCancelarUpdateTel">Cancelar</button>
+                                                <button class="btn btn-xs btn-default btnActualizarTel" title="Aceptar">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                                <button class="btn btn-xs btn-default btnCancelarUpdateTel" title="Cancelar">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="normalMode">
                                             <div class='btn-group'>
-                                                <button class="btn btn-xs btn-default btnEditarTel" @permisos.stringEditar>Editar</button>
-                                                <button class="btn btn-xs btn-default btnEliminarTel" @permisos.stringEliminar>Eliminar</button>
+                                                <button class="btn btn-xs btn-default btnEditarTel" @permisos.stringEditar title="Editar">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-xs btn-default btnEliminarTel" @permisos.stringEliminar title="Eliminar">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </button>
                                             </div>
                                         </div>
                                         

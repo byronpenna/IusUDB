@@ -236,14 +236,11 @@
                         $.each(val.campos, function (i, val) {
                             errores = "";
                             var divResultado = theadTabla.find("." + i).parents("th").find(".divResultado")
-                            //console.log(i, ": " + val);
                             if (val.length > 0) {
-                                //console.log("entro");
                                 divResultado.removeClass("visibilitiHidden");
                                 $.each(val, function (i, val) {
                                     errores += getSpanMessageError(val);
                                 })
-                                //console.log("errores", errores);
                                 divResultado.empty().append(errores);
                             }
                         })
