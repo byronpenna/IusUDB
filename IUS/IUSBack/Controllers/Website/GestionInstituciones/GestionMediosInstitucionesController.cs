@@ -118,14 +118,13 @@ namespace IUSBack.Controllers
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
                     frm = this.getAjaxFrm();
-                    
                     respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                     if (respuesta == null)
                     {
 
                         EnlaceInstitucion enlaceAgregar = new EnlaceInstitucion(frm["txtEnlace"].ToString(), frm["txtTextoEnlace"].ToString(), this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]));
                         EnlaceInstitucion enlaceAgregado = this._model.sp_frontui_insertEnlaceInstituciones(enlaceAgregar, usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
+                        respuesta = this._model.getInstanciaRespuestaAjax(usuarioSession, this._idPagina);
                         respuesta.Add("estado", true);
                         respuesta.Add("enlace", enlaceAgregado);
                     }
