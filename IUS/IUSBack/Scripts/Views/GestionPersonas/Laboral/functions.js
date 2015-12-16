@@ -331,22 +331,25 @@
     // laboral
         function btnAgregarLaboralPersona(frm,tr) {
             actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_insertLaboralPersonas", frm, function (data) {
-                if(data.estado){
+                console.log("la data es", data);
+                if (data.estado) {
+                    console.log("Entro aqui");
                     tr.find(".divResultado").removeClass("visibilitiHidden");
                     tr.find(".divResultado").addClass("hidden");
                     limpiarAgregar(tr);
                     var trAgregar = getTrLaboralPersona(data.laboralAgregada);
                     var tbody       = $(".tbodyLaboralPersona");
-                    console.log("length es:", tbody.find(".trNoRegistro").length);
                     if (tbody.find(".trNoRegistro").length == 0) {
                         printMessage($(".divMensajesGenerales"), "Agregado correctamente", true);
                         tbody.prepend(trAgregar);
                     } else {
                         tbody.empty().append(trAgregar);
                     }
-                    
                 } else {
-                    alert("Ocurrio un error");
+                    console.log("Entro al else");
+                    var mjs = "Ocurrio un error";
+                    printMessage($(".divMensajesGenerales"), mjs, false);
+                    //alert("Ocurrio un error");
                 }
             })
         }
@@ -379,7 +382,11 @@
                     printMessage($(".divMensajesGenerales"), "Eliminado correctamente", true);
                     tr.remove();
                 } else {
-                    printMessage($(".divMensajesGenerales"), "Ocurrio un error al tratar de eliminar", true);
+                    var mjs = "Ocurrio un error al tratar de eliminar";
+                    if (data.error._mostrar) {
+                        mjs = data.error.Message;
+                    }
+                    printMessage($(".divMensajesGenerales"), mjs , false);
                 }
             })
         }

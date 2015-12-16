@@ -43,11 +43,13 @@
         </a>
     </div>
 }
+
 @{
-    List<Empresa> empresas = null; List<CargoEmpresa> cargos = null;
-    List<LaboralPersona> laboralesPersonas = null; Persona persona = null;
-    List<Persona> personas = null;InformacionPersona infoPersona = null;
+    List<Empresa>           empresas            = null; List<CargoEmpresa>  cargos      = null;
+    List<LaboralPersona>    laboralesPersonas   = null; Persona             persona     = null;
+    List<Persona>           personas            = null; InformacionPersona   infoPersona = null;
     string strFoto = Url.Content(@ViewBag.IMG_GENERALES + "profle.png");
+    Permiso                 permisos            = (Permiso)ViewBag.permiso;
     try{
         Dictionary<object,object> 
             iniciales           = (Dictionary<object,object>)ViewBag.iniciales;
@@ -61,6 +63,7 @@
             {
                 strFoto = Url.Content(infoPersona._fotoRuta);
             }
+            
     }catch(Exception){
         
     }
@@ -285,9 +288,9 @@
                             </div>
                             <div class="normalMode tdBotones">
                                 <div class="btn-group">
-                                    <button class="btnEditarLaboralPersona btn btn-xs btn-default">Editar</button>
+                                    <button class="btnEditarLaboralPersona btn btn-xs btn-default" @permisos.stringEditar>Editar</button>
                                     <button class="btnActividad btn btn-xs btn-default">Actividades realizadas</button>
-                                    <button class="btnEliminarLaboralPersona btn btn-xs btn-default">Eliminar</button>
+                                    <button class="btnEliminarLaboralPersona btn btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
                                 </div>
 
                             </div>

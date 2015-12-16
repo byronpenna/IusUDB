@@ -32,7 +32,6 @@
                         if (tr.next().hasClass("trTable")) {
                             tr.next().remove();
                         }
-                        //tr.parents("table").find(".trTable").remove();
                         $(this).empty().append("Actividades realizadas");
                     }
                 })
@@ -50,14 +49,11 @@
                         $(document).on("click", ".btnActualizarActividadEmpresa", function () {
                             var tr = $(this).parents(".trEliminarActividad");
                             var frm = serializeSection(tr);
-                            console.log("formulario a enviar D: D: D: ", frm);
-
                             var val = validarInsertActividad(frm);
                             if (val.estado) {
                                 limpiarVal(tr);
                                 btnActualizarActividadEmpresa(frm, tr);
                             } else {
-                                console.log("Val es", val);
                                 //############
                                 var errores;
                                 tr.find(".divResultado").addClass("visibilitiHidden");
@@ -78,7 +74,6 @@
                     $(document).on("click", ".btnEliminarActividad", function () {
                         var tr = $(this).parents(".trEliminarActividad");
                         var frm = serializeSection(tr);
-                        console.log("Eliminar", frm);
                         btnEliminarActividad(frm, tr);
                     })
                     //##############################################
@@ -86,13 +81,10 @@
                         var tr                      = $(this).parents(".trAgregar");
                         var frm                     = serializeSection(tr);
                         frm.txtHdIdLaboralPersona   = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
-                        //frm.idLaboral             = $(this).parents(".trTable").find(".txtHdIdLaboralPersona").val();
-                        //console.log("formulario a enviar es", frm);
                         var val = validarInsertActividad(frm);
                         if (val.estado) {
                             btnAgregarActividad(frm, tr);
                         } else {
-                            console.log("Val es",val);
                             //############
                             var errores;
                             tr.find(".divResultado").addClass("visibilitiHidden");
@@ -115,14 +107,11 @@
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
                         var tr  = $(this).parents("tr");
                         var frm = serializeSection(tr);
-                        frm.idPersona = $(".txtHdIdPersona").val();//tr
-                        console.log("formulario a enviar",frm);
+                        frm.idPersona = $(".txtHdIdPersona").val();
                         var val = validarInsertLaboral(frm);
-                        //var theadTabla = $(".rowControles");
                         if (val.estado) {
                             btnAgregarLaboralPersona(frm,tr);
                         } else {
-                            console.log(val);
                             //############
                             var errores;
                             tr.find(".divResultado").addClass("visibilitiHidden");
@@ -144,7 +133,6 @@
                     $(document).on("click", ".btnEliminarLaboralPersona", function () {
                         var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
-                        console.log("formulario a enviar", frm);
                         btnEliminarLaboralPersona(frm,tr);
                     })
             // editar
@@ -155,17 +143,14 @@
                     // set 
                         var frm = {  }
                         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_getEditModeLaboralPersona", frm, function (data) {
-                            console.log("data devuelta para edit mode", data);
                             var cbCargos = "", cbEmpresas = "";
                             if (data.estado) {
                                 if (data.cargos !== undefined && data.cargos !== null && data.cargos.length > 0) {
-                                    console.log("D:");
                                     $.each(data.cargos, function (i, cargo) {
                                         cbCargos += getCbCargos(cargo);
                                     })
                                 }
                                 if (data.empresas !== undefined && data.empresas !== null && data.empresas.length > 0) {
-                                    console.log(":/");
                                     $.each(data.empresas, function (i, empresa) {
                                         cbEmpresas += getCbEmpresas(empresa);
                                     })
@@ -179,22 +164,16 @@
                             // seleccionando
                             resetChosenWithSelectedVal(selectCargo, datosSet.idCargoEmpresa)
                             resetChosenWithSelectedVal(selectEmpresa, datosSet.idEmpresa)
-                            //selectCargo.val(datosSet.idCargoEmpresa);
-                            //selectEmpresa.val(datosSet.idEmpresa);
                         })
                         tr.find(".txtInicio").val(datosSet.fechaInicio);
                         tr.find(".txtFin").val(datosSet.fechaFin);
                         tr.find(".txtAreaObservacion").val(datosSet.observaciones);
-
                     controlesEdit(true, tr);
                 })
                 
                 $(document).on("click", ".btnCancelarUni", function (e) {
-                    
                     var tr = $(this).parents("tr");
                     limpiarVal(tr);
-                    console.log("cancelando");
-                    //tr.css("background", "red");
                     controlesEdit(false, tr);
                 })
                 $(document).on("click", ".btnCancelarAct", function (e) {
@@ -206,14 +185,11 @@
                     var tr = $(this).parents("tr");
                     var frm = serializeSection(tr);
                     var val = validarInsertLaboral(frm);
-                    //var theadTabla = $(".rowControles");
-                    console.log("val es ", val);
                     if (val.estado) {
                         tr.find(".divResultado").removeClass("visibilitiHidden");
                         tr.find(".divResultado").addClass("hidden");
                         btnActualizarLaboralPersona(frm, tr);
                     } else {
-                        console.log(val);
                         var errores;
                         tr.find(".divResultado").addClass("visibilitiHidden");
                         tr.find(".divResultado").removeClass("hidden");
