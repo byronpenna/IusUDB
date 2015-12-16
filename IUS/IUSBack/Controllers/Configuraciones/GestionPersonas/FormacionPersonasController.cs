@@ -177,7 +177,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                                                                                         frm["txtInstitucionEducativa"].ToString(),                      this.convertObjAjaxToInt(frm["cbPaisInstitucionEducativa"])
                                                                                     );
                             FormacionPersona formacionAgregada = this._model.sp_rrhh_ingresarFormacionPersona(formacionAgregar, usuarioSession._idUsuario, this._idPagina);
-                            respuesta = new Dictionary<object, object>();
+                            respuesta = this._model.getInstanciaRespuestaAjax(usuarioSession, this._idPagina);
                             respuesta.Add("estado", true);
                             respuesta.Add("formacionAgregada", formacionAgregada);
                         }

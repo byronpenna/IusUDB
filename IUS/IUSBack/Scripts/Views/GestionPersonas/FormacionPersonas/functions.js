@@ -81,7 +81,16 @@
         }
     // partes
         // tr     
-            function getTrFormacionPersonas(formacionPersona) {
+            function getTrFormacionPersonas(formacionPersona,permisos) {
+                var strEditar = "", strEliminar = "";
+                if (permisos !== undefined) {
+                    if (!permisos._editar) {
+                        strEditar = "disabled";
+                    }
+                    if (!permisos._eliminar) {
+                        strEliminar = "disabled";
+                    }
+                }
                 var tr = "\
                     <tr>\
                         <td class='hidden'>\
@@ -184,8 +193,8 @@
                             </div>\
                             <div class='normalMode tdEmail'>\
                                 <div class='btn-group'>\
-                                    <button class='btn btnEditarTitulos btn-default btn-xs'>Editar</button>\
-                                    <button class='btn btnEliminarTitulo btn-default btn-xs'>Eliminar</button>\
+                                    <button class='btn btnEditarTitulos btn-default btn-xs' " + strEditar + ">Editar</button>\
+                                    <button class='btn btnEliminarTitulo btn-default btn-xs' "+strEliminar+">Eliminar</button>\
                                 </div>\
                             </div>\
                         </td>\
@@ -352,7 +361,7 @@
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarFormacionPersona", frm, function (data) {
                 console.log("la data es", data);
                 if (data.estado) {
-                    var tr = getTrFormacionPersonas(data.formacionAgregada);
+                    var tr = getTrFormacionPersonas(data.formacionAgregada,data.permisos);
                     var trFrm = $(".trAgregar");
                     limpiarInputAgregar();
                     //clearTrWithOutHidden(trFrm);
