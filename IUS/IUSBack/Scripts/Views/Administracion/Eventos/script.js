@@ -2,24 +2,6 @@
     // plugins 
         // slide horizontal 
             inputsTime($(".minutos"), $(".horas"));
-            /*$(".horas").slider({
-                orientation: "horizontal",
-                range: "min",
-                max: 12,
-                min:1,
-                value: 1,
-                slide: refreshTime,
-                change: refreshTime
-            });
-            $(".minutos").slider({
-                orientation: "horizontal",
-                range: "min",
-                max: 59,
-                min: 0,
-                value: 0,
-                slide: refreshTime,
-                change: refreshTime
-            });*/
         // chosen 
             $(".cbUsuarioCompartir").chosen({
                 no_results_text: "Usuario no encontrado",
@@ -35,9 +17,8 @@
             $(".dpFecha").datepicker({
                 dateFormat: "dd/mm/yy"
             });
-            
         // full calendar
-            $("#calendar").fullCalendar({
+            var calendar = $("#calendar").fullCalendar({
                 editable: true,
                 header: {
                     left: 'prev,next today',
@@ -110,6 +91,7 @@
                 if (x) {
                     btnEliminarEvento(frm, seccion);
                 }
+                calendar.fullCalendar('removeEvents', frm.idEvento);
             })
             //*****************************
             $(document).on("click", ".btnBuscarRangoFecha", function () {

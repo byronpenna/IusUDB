@@ -453,11 +453,21 @@
             div.find(".spanFechaFin").empty().append(evento.getFechaFin);
             h3.find(".spanNombreEvento").empty().append(evento._evento);
         }
-        function getEventosAcordion(evento) {
+        function getEventosAcordion(evento,permisos) {
             if(evento._publicado){
                 intPublicado = 1
             }else{
                 intPublicado = 0;
+            }
+            var strEliminar = "", strEditar = "";
+            console.log("permisos antes de agregar", permisos);
+            if (permisos !== undefined) {
+                if (!permisos._eliminar) {
+                    strEliminar = "disabled";
+                }
+                if (!permisos._editar) {
+                    strEditar = "disabled";
+                }
             }
             div = "\
                         <h3 class='nombreEvento " + evento.txtClaseColor + " '>\
@@ -529,7 +539,7 @@
                             <div class='row text-center sectionBotonesEvento'>\
                                 <div class='normalMode'>\
                                     <div class='btn-group-vertical'>\
-                                        <button class='btn btn-default btnEditar'>\
+                                        <button class='btn btn-default btnEditar' "+strEditar+">\
                                             <i class='fa fa-pencil'></i>\
                                         </button>\
                                         <button class='btn btn-default btnPublicar' title='" + evento.txtBtnPublicar + "'>\
@@ -540,7 +550,7 @@
                                         <button class='btn btn-default btnCompartir'>\
                                             <i class='fa fa-share'></i>\
                                         </button>\
-                                        <button class='btn btn-default btnEliminarEvento' title='Eliminar'>\
+                                        <button class='btn btn-default btnEliminarEvento' title='Eliminar' "+strEliminar+">\
                                             <i class='fa fa-trash'></i>\
                                         </button>\
                                     </div>\
@@ -576,8 +586,10 @@
                 title: evento._evento,
                 start: evento.getFechaInicioUSA,
                 end: evento.getFechaFinUSA,
-                color: backColor
+                color: backColor,
+                id: evento._idEvento
             };
+            console.log("El evento agregado fue", evento._idEvento);
             calendar.fullCalendar('renderEvent', eventoAgregar, true);
         }
         function updateDespuesDePublicacion(eventoWebsite, detalle) {
@@ -621,18 +633,15 @@
         }
         // acciones script
         function btnEliminarEvento(frm,seccion) {
-            console.log("Frm enviado es", frm);
             actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_eliminarEvento", frm, function (data) {
                 console.log("La data despues de eliminar", data);
                 if (data.estado) {
+                    $("#calendar").fullCalendar('removeEvents', frm.idEvento);
                     var other = seccion.prev();
                     other.remove();
                     seccion.remove();
-                    $("#calendar").fullCalendar('removeEvents');
-                    $("#calendar").fullCalendar('rerenderEvents');
-                    $("#calendar").fullCalendar('Refetches');
-                    console.log("Todos los eventos ya fueron eliminados D: ");
-                    //eventosIniciales();
+                    //#######################
+                    console.log("Id evento calendario", frm.idEvento);
                 } else {
                     if (data.error._mostrar) {
                         printMessage(seccion.find(".divMensajes"), data.error.Message, false);
@@ -854,54 +863,45 @@
             $(".dpFecha").val("");
         }
         function frmAgregarEvento(frm, frmSection) {
-            frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
-            frm.txtHoraFin = horaConvert(frm.txtHoraFin);
-            //console.log("formulario a enviar",frm);
-            frm.txtFechaFin     = fechaStandar(frm.txtFechaFin);
-            frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
-            console.log("formulario a enviar es:", frm);
-            actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_crearEvento", frm, function (data) {
-                console.log("respuesta sp_adminfe_crearEvento", data);
-                if (data.estado) {
-                    agregarEvento($("#calendar"), data.evento, true, 1);
-                    div = getEventosAcordion(data.evento);
-                    $("#accordion").prepend(div);
-
-                    inputsTime($("#accordion").find("." + data.evento._idEvento + "m"), $("#accordion").find("." + data.evento._idEvento + "h"));
-                    /*$("#accordion").find(data.evento._idEvento + "h").slider({
-                        orientation: "horizontal",
-                        range: "min",
-                        max: 12,
-                        min:1,
-                        value: 1,
-                        slide: refreshTime,
-                        change: refreshTime
-                    });
-                    $("#accordion").find(data.evento._idEvento + "m").slider({
-                        orientation: "horizontal",
-                        range: "min",
-                        max: 59,
-                        min: 0,
-                        value: 0,
-                        slide: refreshTime,
-                        change: refreshTime
-                    });*/
-                    irA($("#calendar"));
-                    //clearTr(frmSection); se comenta porq mata las horas
-                    limpiarFormulario();
-                    resetRbTiempo();
-                    printMessage($(".divMensajeForm"), "Evento agregado correctamente", true);
-                } else {
-                    if (data.error._mostrar && data.error.Message != "") {
-                        printMessage($(".divMensajeForm"), data.error.Message, false);
-                        //alert(data.error.Message);
-                    } else {
-                        printMessage($(".divMensajeForm"), data.error.Message, false);
-                        //alert("ocurrio un error");
-                    }
+            // vars 
+                var target = $("#accordion");    
                 
-                }
-            });
+                frm.txtHoraInicio = horaConvert(frm.txtHoraInicio);
+                frm.txtHoraFin = horaConvert(frm.txtHoraFin);
+                frm.txtFechaFin     = fechaStandar(frm.txtFechaFin);
+                frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
+            // do it 
+                actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_crearEvento", frm, function (data) {
+                    console.log("respuesta sp_adminfe_crearEvento", data);
+                    if (data.estado) {
+                        agregarEvento($("#calendar"), data.evento, true, 1);
+                        div = getEventosAcordion(data.evento,data.permisos);
+                        if (target.find(".noEventoDiv").length == -1) {
+                            target.empty();
+                        }
+                        var noEvento = target.parents(".eventosCompartirSection").find(".noEventoDiv");
+                        console.log("D:", noEvento.length);
+                        if (noEvento.length != -1) {
+                            noEvento.remove();
+                        }
+                        target.prepend(div);
+                        inputsTime($("#accordion").find("." + data.evento._idEvento + "m"), $("#accordion").find("." + data.evento._idEvento + "h"));
+                        irA($("#calendar"));
+                        //clearTr(frmSection); se comenta porq mata las horas
+                        limpiarFormulario();
+                        resetRbTiempo();
+                        printMessage($(".divMensajeForm"), "Evento agregado correctamente", true);
+                    } else {
+                        if (data.error._mostrar && data.error.Message != "") {
+                            printMessage($(".divMensajeForm"), data.error.Message, false);
+                            //alert(data.error.Message);
+                        } else {
+                            printMessage($(".divMensajeForm"), data.error.Message, false);
+                            //alert("ocurrio un error");
+                        }
+                
+                    }
+                });
         
         }
         function btnCompartir(detalle) {

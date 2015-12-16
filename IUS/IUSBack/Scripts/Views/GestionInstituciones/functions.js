@@ -37,13 +37,17 @@
                         </button>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btnEditar'>Editar</button>\
-                        <button class='btn btnDeleteInstitucion'>Eliminar</button>\
-                        <a class='btn btnFromlink ' href='"+RAIZ+'GestionInstituciones/SetLogo/'+institucion._idInstitucion+"' class='btn'>\
-                            Logo\
-                        </a>\
-                        <a class='btn btnFromlink' href='"+RAIZ+'GestionTelefonos/Index/'+institucion._idInstitucion+"'>Telefonos</a>\
-                        <a class='btn btnFromlink' href='"+RAIZ+'GestionMediosInstituciones/Index/'+institucion._idInstitucion+"'>Medios Electronicos</a>\
+                        <div class='btn-group'>\
+                            <button class='btn btn-default btnEditar btn-xs'>Editar</button>\
+                            <button class='btn btn-default btnDeleteInstitucion btn-xs'>Eliminar</button>\
+                        </div>\
+                        <div class='btn-group'>\
+                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionInstituciones/SetLogo/' + institucion._idInstitucion + "' class='btn'>\
+                                Logo\
+                            </a>\
+                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionTelefonos/Index/' + institucion._idInstitucion + "'>Telefonos</a>\
+                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionMediosInstituciones/Index/' + institucion._idInstitucion + "'>Medios Electronicos</a>\
+                        </div>\
                     </div>\
                 </td>\
             </tr>\

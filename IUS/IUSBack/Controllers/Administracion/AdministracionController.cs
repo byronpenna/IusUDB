@@ -203,7 +203,8 @@ namespace IUSBack.Controllers
                                 respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                                 if (respuesta == null)
                                 {
-                                    respuesta               = new Dictionary<object, object>();
+                                    //respuesta               = new Dictionary<object, object>();
+                                    respuesta               = this._model.getInstanciaRespuestaAjax(usuarioSession, this._idPaginaEventos);
                                     DateTime fechaInicio    = this.convertObjAjaxToDateTime(frm["txtFechaInicio"].ToString(),frm["txtHoraInicio"].ToString());
                                     DateTime fechaFin       = this.convertObjAjaxToDateTime(frm["txtFechaFin"].ToString(), frm["txtHoraFin"].ToString());
                                     Evento eventoAgregar    = new Evento(frm["txtEvento"].ToString(), fechaInicio, fechaFin, usuarioSession, frm["txtAreaDescripcion"].ToString());

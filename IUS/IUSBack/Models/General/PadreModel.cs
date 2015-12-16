@@ -149,6 +149,7 @@ namespace IUSBack.Models.General
                     return toReturn;
                 }
             #endregion
+            
             #region "Permisos"
                 private int getNumPermiso(permisos varPermiso)
                     {
@@ -214,7 +215,16 @@ namespace IUSBack.Models.General
                     }   
             #endregion
             #region "genericas"
-               
+                public Dictionary<object, object> getInstanciaRespuestaAjax(Usuario usuarioSesion, int idPagina, bool bPermiso = true)
+                {
+                    Dictionary<object, object> respuesta = new Dictionary<object, object>();
+                    if (bPermiso)
+                    {
+                        Permiso permisos = this.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
+                        respuesta.Add("permisos", permisos);
+                    }
+                    return respuesta;
+                }
             #endregion
         #endregion
     }
