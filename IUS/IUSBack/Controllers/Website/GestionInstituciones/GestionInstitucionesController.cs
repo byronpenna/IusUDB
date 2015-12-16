@@ -287,7 +287,7 @@ namespace IUSBack.Controllers
                             institucionAgregada = this._model.sp_frontui_insertInstitucion(institucionAgregar, usuarioSession._idUsuario, this._idPagina);
                             if (institucionAgregada != null)
                             {
-                                respuesta = new Dictionary<object, object>();
+                                respuesta = this._model.getInstanciaRespuestaAjax(usuarioSession, this._idPagina);
                                 respuesta.Add("estado",true);
                                 respuesta.Add("institucion", institucionAgregada);
                             }
