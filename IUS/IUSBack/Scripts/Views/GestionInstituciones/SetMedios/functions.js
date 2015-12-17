@@ -25,7 +25,6 @@
             val.campos.txtTextoEnlaceEdit.push("No puede dejar este campo vacio");
         }
         val.estado = getEstadoVal(val);
-        //console.log("Retorno val es", val);
         return val;
     }
     function validarAgregar(frm) {
@@ -39,10 +38,18 @@
             val.campos.txtTextoEnlace.push("No puede dejar este campo vacio");
         }
         val.estado = getEstadoVal(val);
-        //console.log("Retorno val es", val);
         return val;
     }
-    function getTrMedios(enlace) {
+    function getTrMedios(enlace,permisos) {
+        var strEditar = "", strEliminar = "";
+        if (permisos !== undefined) {
+            if (!permisos._editar) {
+                strEditar   = "disabled";
+            }
+            if (!permisos._eliminar) {
+                strEliminar = "disabled";
+            }
+        }
         tr = "\
         <tr>\
             <td>\
@@ -56,7 +63,7 @@
                     </div>\
                 </div>\
                 <div class='normalMode tdEnlace'>\
-                    <a href='@enlace._enlace'>\
+                    <a href='"+enlace._enlace+"'>\
                     " + enlace._enlace + "\
                     </a>\
                 </div>\
@@ -79,10 +86,10 @@
                 </div>\
                 <div class='normalMode'>\
                     <div class='btn-group'>\
-                        <button class='btn btn-default btn-xs btnEditar'>\
+                        <button class='btn btn-default btn-xs btnEditar' "+strEditar+">\
                             Editar\
                         </button>\
-                        <button class='btn btn-default btn-xs btnEliminar'>\
+                        <button class='btn btn-default btn-xs btnEliminar' "+strEliminar+">\
                             Eliminar\
                         </button>\
                     </div>\
@@ -115,14 +122,15 @@
         actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_insertEnlaceInstituciones", frm, function (data) {
             console.log(data);
             if (data.estado) {
-                tr = getTrMedios(data.enlace);
+                tr = getTrMedios(data.enlace,data.permisos);
                 $(".tbodyMedios").prepend(tr);
                 limpiarInsert();
             } else {
+                var mjs = "Ocurrio un error al agregar";
                 if (data.error._mostrar) {
-                    //alert(data.error.Message);
-                    printMessage($(".divMensajesGenerales"), data.error.Message, false)
+                    mjs = data.error.Message;
                 }
+                printMessage($(".divMensajesGenerales"), data.error.Message, false);
             }
             
         });

@@ -1,5 +1,14 @@
 ﻿// genericas 
-    function getTrTel(telefono) {
+    function getTrTel(telefono,permisos) {
+        var strEditar = "", strEliminar = "";
+        if (permisos !== undefined) {
+            if (!permisos._editar) {
+                strEditar   = "disabled";
+            }
+            if (!permisos._eliminar) {
+                strEliminar = "disabled";
+            }
+        }
         tr = "\
             <tr>\
                 <td>\
@@ -36,10 +45,10 @@
                     </div>\
                     <div class='normalMode'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-default btn-xs btnEditarTel'>\
+                            <button class='btn btn-default btn-xs btnEditarTel' "+strEditar+" >\
                                 Editar\
                             </button>\
-                            <button class='btn btn-default btn-xs  btnEliminarTel'>\
+                            <button class='btn btn-default btn-xs  btnEliminarTel' "+strEliminar+" >\
                                 Eliminar\
                             </button>\
                         </div>\
@@ -120,24 +129,22 @@
             return val;
         }
         function btnAgregarTel(frm, seccion) {
-        actualizarCatalogo(RAIZ + "/GestionTelefonos/sp_frontui_insertTelInstitucion", frm, function (data) {
-            console.log(data);
-            if (data.estado) {
-                /*Llenar tablita*/
-                tr = getTrTel(data.telefono);
-                //$(".tbTelefonos").dataTable().fnAddTr($(tr)[0]);
-                $(".tbodyTelefonos").prepend(tr);
-                $(".txtTelefono").val("");
-                $(".txtEtiqueta").val("");
-                //clearTr(seccion);
-            } else {
-                if (data.error._mostrar)
-                {
-                    //alert(data.error.Message);
-                    printMessage($(".divMensajesGenerales"), data.error.Message, false);
+            actualizarCatalogo(RAIZ + "/GestionTelefonos/sp_frontui_insertTelInstitucion", frm, function (data) {
+                if (data.estado) {
+                    /*Llenar tablita*/
+                    tr = getTrTel(data.telefono,data.permisos);
+                    //$(".tbTelefonos").dataTable().fnAddTr($(tr)[0]);
+                    $(".tbodyTelefonos").prepend(tr);
+                    $(".txtTelefono").val("");
+                    $(".txtEtiqueta").val("");
+                } else {
+                    var mjs = "Ocurrio un error no controlado";
+                    if (data.error._mostrar)
+                    {
+                        mjs = data.error.Message;
+                    }
+                    printMessage($(".divMensajesGenerales"), mjs, false);
                 }
-                
-            }
             
-        });
-    }
+            });
+        }

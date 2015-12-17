@@ -19,13 +19,14 @@
         <script src="~/Scripts/Views/GestionPersonas/FormacionPersonas/functions.js"></script>
 }
 @{
-    Persona persona= null;
-    List<Pais> paises = null; List<InstitucionEducativa> institucionesEducativas = null;
-    List<NivelTitulo> nivelesTitulo = null; List<Persona> personas = null;
-    List<FormacionPersona> formacionesPersonas= null;
-    List<AreaCarrera> areasCarreras = null;
+    Persona                 persona             = null;
+    List<Pais>              paises              = null; List<InstitucionEducativa>  institucionesEducativas = null;
+    List<NivelTitulo>       nivelesTitulo       = null; List<Persona>               personas                = null;
+    List<FormacionPersona>  formacionesPersonas = null;
+    List<AreaCarrera>       areasCarreras       = null;
     string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
-    InformacionPersona informacion = null;
+    InformacionPersona      informacion         = null;
+    Permiso                 permisos            = (Permiso)ViewBag.permiso;
     try{
         Dictionary<object, object> info = (Dictionary<object,object>)ViewBag.infoIni;
         persona                         = (Persona)info["persona"];
@@ -220,7 +221,7 @@
                     </div>
                 </td>
                 <td>
-                    <button class="btn btnAgregarCarrera btn-default btn-xs">Agregar</button>
+                    <button class="btn btnAgregarCarrera btn-default btn-xs" @permisos.stringCrear>Agregar</button>
                 </td>
             </tr>
         </thead>
@@ -366,10 +367,9 @@
                             </div>
                             <div class="normalMode tdEmail tdControl">
                                 <div class="btn-group">
-                                    <button class="btn btnEditarTitulos btn-default btn-xs">Editar</button>
-                                    <button class="btn btnEliminarTitulo btn-default btn-xs">Eliminar</button>
+                                    <button class="btn btnEditarTitulos btn-default btn-xs" @permisos.stringEditar >Editar</button>
+                                    <button class="btn btnEliminarTitulo btn-default btn-xs" @permisos.stringEliminar >Eliminar</button>
                                 </div>
-
                             </div>
                         </td>
 

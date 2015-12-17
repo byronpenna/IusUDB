@@ -1,5 +1,14 @@
 ﻿// genericas 
-    function getTrInstituciones(institucion) {
+    function getTrInstituciones(institucion,permisos) {
+        var strEditar="", strEliminar = "";
+        if (permisos !== undefined) {
+            if (!permisos._editar) {
+                strEditar   = "disabled";
+            }
+            if (!permisos._eliminar) {
+                strEliminar = "disabled";
+            }
+        }
         tr = "\
             <tr>\
                 <td>\
@@ -38,8 +47,8 @@
                     </div>\
                     <div class='normalMode'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-default btnEditar btn-xs'>Editar</button>\
-                            <button class='btn btn-default btnDeleteInstitucion btn-xs'>Eliminar</button>\
+                            <button class='btn btn-default btnEditar btn-xs' "+strEditar+">Editar</button>\
+                            <button class='btn btn-default btnDeleteInstitucion btn-xs' "+strEliminar+">Eliminar</button>\
                         </div>\
                         <div class='btn-group'>\
                             <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionInstituciones/SetLogo/' + institucion._idInstitucion + "' class='btn'>\
@@ -154,7 +163,7 @@
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_insertInstitucion", frm, function (data) {
             console.log(data);
             if (data.estado) {
-                tr = getTrInstituciones(data.institucion);
+                tr = getTrInstituciones(data.institucion,data.permisos);
                 $(".tbInstituciones").dataTable().fnAddTr($(tr)[0]);
                 //clearTr(seccion);
                 seccion.find(".txtNombreInstitucion").val("");

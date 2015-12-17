@@ -122,7 +122,7 @@ namespace IUSBack.Controllers
                     {
                         TelefonoInstitucion telefonoIngresar = new TelefonoInstitucion(frm["txtTelefono"].ToString(), frm["txtEtiqueta"].ToString(), this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]));
                         TelefonoInstitucion telefonoAgregado = this._model.sp_frontui_insertTelInstitucion(telefonoIngresar, usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
+                        respuesta = this._model.getInstanciaRespuestaAjax(usuarioSession, this._idPagina);
                         respuesta.Add("estado", true);
                         respuesta.Add("telefono", telefonoAgregado);
 

@@ -29,7 +29,6 @@
                 seccion = $(this).parents("tr");
                 frm = serializeSection(seccion);
                 seccion.find(".divResultado").addClass("hidden");
-                console.log(frm);
                 var val = validarEditarTel(frm);
                 if (val.estado) {
                     btnActualizar(frm, seccion);

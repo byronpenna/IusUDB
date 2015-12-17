@@ -1,12 +1,9 @@
 ﻿// jcrop 
     function storeCoords(c) {
-        //console.log(c);
         $(".x").val(c.x);
         $(".y").val(c.y);
         $(".imgAlto").val(c.h);
         $(".imgAncho").val(c.w);
-        /*$(".imgAlto").val(0);
-        $(".imgAncho").val(0);*/
     };
 // validacion 
     function validarInsertExtra(frm) {
@@ -91,7 +88,16 @@
                 $(".imgAncho").val(0);
             }
 
-        function getTrEmail(emailPersona) {
+        function getTrEmail(emailPersona,permisos) {
+            var strEditar = "", strEliminar = "";
+            if (permisos !== undefined) {
+                if(!permisos._editar){
+                    strEditar = "disabled";
+                }
+                if (!permisos._eliminar) {
+                    strEliminar = "disabled";
+                }
+            }
             var tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -128,8 +134,8 @@
                     </div>\
                     <div class='normalMode tdTelefono'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditarEmail '>Editar</button>\
-                            <button class='btn btn-xs btn-default btnEliminarEmail '>Eliminar</button>\
+                            <button class='btn btn-xs btn-default btnEditarEmail' "+strEditar+">Editar</button>\
+                            <button class='btn btn-xs btn-default btnEliminarEmail' "+strEliminar+">Eliminar</button>\
                         </div>\
                     </div>\
                 </td>\
@@ -148,7 +154,16 @@
         }
         
     // numeros
-        function getTrNumeros(telefono) {
+        function getTrNumeros(telefono,permisos) {
+            var strEditar = "", strEliminar = "";
+            if (permisos !== undefined) {
+                if (!permisos._editar) {
+                    strEditar = "disabled";
+                }
+                if (!permisos._eliminar) {
+                    strEliminar = "disabled";
+                }
+            }
             var tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -191,14 +206,22 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnActualizarTel'>Actualizar</button>\
-                            <button class='btn btn-xs btn-default btnCancelarUpdateTel'>Cancelar</button>\
+                            <button class='btn btn-xs btn-default btnActualizarTel' title='Aceptar'>\
+                                <i class='fa fa-check'></i>\
+                            </button>\
+                            <button class='btn btn-xs btn-default btnCancelarUpdateTel' title='Eliminar'>\
+                                <i class='fa fa-times'></i>\
+                            </button>\
                         </div>\
                     </div>\
                     <div class='normalMode'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditarTel'>Editar</button>\
-                            <button class='btn btn-xs btn-default btnEliminarTel'>Eliminar</button>\
+                            <button class='btn btn-xs btn-default btnEditarTel' " + strEditar + " title='Editar'>\
+                                <i class='fa fa-pencil'></i>\
+                            </button>\
+                            <button class='btn btn-xs btn-default btnEliminarTel' " + strEliminar + " title='Eliminar'>\
+                                <i class='fa fa-trash-o'></i>\
+                            </button>\
                         </div>\
                     </div>\
                 </td>\
@@ -267,9 +290,8 @@
         }
         function btnGuardarEmail(frm) {
             actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarCorreoPersona", frm, function (data) {
-                console.log("respuesta servidor",data);
                 if (data.estado) {
-                    var tr      = getTrEmail(data.emailPersona);
+                    var tr      = getTrEmail(data.emailPersona,data.permisos);
                     var tbody   = $(".tbodyEmail");
                     if (tbody.find(".trNoReg").length == 0) {
                         tbody.prepend(tr);
@@ -305,9 +327,8 @@
             }
             function btnAgregarTel(frm) {
                 actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarTelefonoPersona", frm, function (data) {
-                    console.log(data);
                     if (data.estado) {
-                        var tr = getTrNumeros(data.telefonoAgregado);
+                        var tr = getTrNumeros(data.telefonoAgregado,data.permisos);
                         var tbody = $(".tbodyTelefonos");
                         if (tbody.find(".trNoReg").length == 0) {
                             tbody.prepend(tr);
