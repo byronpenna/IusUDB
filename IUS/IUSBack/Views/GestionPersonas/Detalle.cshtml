@@ -248,9 +248,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="row marginNull">
-            <h4 class="text-center">Exportar</h4>
-            <a href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona})">PDF</a>
-        </div>
+        
+    </div>
+    <div class="row marginNull text-center divInfoI">
+        <h2 class="tituloSecciones text-center">Exportar</h2>
+        <a href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona})">
+            <img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")"/>
+        </a>
     </div>
 </div>
