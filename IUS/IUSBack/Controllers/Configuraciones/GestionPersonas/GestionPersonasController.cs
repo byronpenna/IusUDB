@@ -12,6 +12,8 @@ using System.Web.Script.Serialization;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.RRHH.Entidades;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 namespace IUSBack.Controllers
 {
     public class GestionPersonasController : PadreController
@@ -163,13 +165,24 @@ namespace IUSBack.Controllers
                 }
                 return View();
             }
-            public ActionResult FichaPdf(int id)
+            public ActionResult FichaPdf(int id,int id2)
             {
-                Stream stream = this._model.getFichaPdf(Path.Combine(Server.MapPath("~/Reportes"), "CrystalReport1.rpt"),id);
+                /*Stream stream = this._model.getFichaPdf(Path.Combine(Server.MapPath("~/Reportes"), "CrystalReport1.rpt"),id);
                 Response.Buffer = false;
                 Response.ClearContent();
                 Response.ClearHeaders();
-                return File(stream, "application/pdf");
+                return File(stream, "application/pdf");*/
+
+                //ReportDocument rd = this._model.getFicha(Path.Combine(Server.MapPath("~/Reportes"), "CrystalReport1.rpt"), id,System.Web.HttpContext.Current.Response);
+
+                this._model.getFicha(Path.Combine(Server.MapPath("~/Reportes"), "CrystalReport1.rpt"), id, System.Web.HttpContext.Current.Response,id2);
+                return null;
+                /*Stream retorno = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                retorno.Seek(0, SeekOrigin.Begin);
+                Response.Buffer = false;
+                Response.ClearContent();
+                Response.ClearHeaders();
+                return File(retorno, "application/pdf");*/
             }
         #endregion
         #region "privadas"

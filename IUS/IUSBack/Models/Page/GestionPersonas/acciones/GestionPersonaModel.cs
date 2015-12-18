@@ -13,6 +13,7 @@ using System.Web;
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.SEC.Control;
+using CrystalDecisions.Shared;
 namespace IUSBack.Models.Page.GestionPersonas.acciones
 {
     public class GestionPersonaModel:PadreModel
@@ -82,7 +83,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     throw x;
                 }
             }
-            public Stream getFichaPdf(string ruta,int idPersona)
+            public Stream getFichaStream(string ruta,int idPersona)
             {
                 ReportDocument rd = new ReportDocument();
                 rd.Load(ruta);
@@ -100,6 +101,52 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     throw x;
                 }
                 return retorno;
+            }
+            private ExportFormatType getFormatReport(int numFormato)
+            {
+                ExportFormatType retorno;
+                switch (numFormato)
+                {
+                    case 1:
+                        {
+                            // pdf 
+                            retorno = ExportFormatType.PortableDocFormat;
+                            break;
+                        }
+                    case 2:
+                        {
+                            // word 
+                            retorno = ExportFormatType.WordForWindows;
+                            break;
+                        }
+                    case 3:{
+                        retorno = ExportFormatType.Excel;
+                        break;
+                    }
+                    default:{
+                        retorno = ExportFormatType.PortableDocFormat;
+                        break;
+                    }
+                }
+                return retorno;
+            }
+            public void getFicha(string ruta, int idPersona,HttpResponse response,int numFormato)
+            {
+                ReportDocument rd = new ReportDocument();
+                rd.Load(ruta);
+                DataSet1 ds = new DataSet1();
+                rd.SetDatabaseLogon("sa", "123456", "PROGRAMADOR", "ius");
+                rd.SetParameterValue("idPersona", idPersona);
+                try
+                {
+                    ExportFormatType format = this.getFormatReport(numFormato);
+                    rd.ExportToHttpResponse(format,response  , true, "Ficha");
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                //return rd;
             }
         #endregion
         #region "Acciones"
