@@ -16,6 +16,15 @@
             $(document).on("change", ".cbPersonas", function (e) {
                 location.href = RAIZ + "GestionLaboral/index/" + $(this).val();
             })
+        // submit 
+            $(document).on("submit", ".frmCurriculumn", function (e) {
+                var frm     = serializeSection($(this));
+                var files   = $(".flCurriculum")[0].files;
+                var data = getObjFormData(files, frm);
+                e.preventDefault();
+                console.log("El formulario es", frm);
+                frmCurriculumn(data, $(this).attr("action"));
+            })
         // click 
             $(document).on("click", ".icoVolverAnombre", function () {
                 controlesEdit(false, $(this).parents(".divTituloNombre"));
@@ -170,7 +179,6 @@
                         tr.find(".txtAreaObservacion").val(datosSet.observaciones);
                     controlesEdit(true, tr);
                 })
-                
                 $(document).on("click", ".btnCancelarUni", function (e) {
                     var tr = $(this).parents("tr");
                     limpiarVal(tr);
