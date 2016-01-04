@@ -10,7 +10,7 @@
     <script src="~/Scripts/views/Conocenos/functions.js"></script>
 }
 <div class="row marginNull divMenus">
-    <div class="col-lg-5 vcenter ">
+    @*<div class="col-lg-5 vcenter ">
         <div class="divSalesianos row marginNull">
         <h2 class="tituloPrincipal text-center">Salesianos</h2>
         <div class="row marginNull divContenedorInfo">
@@ -51,51 +51,51 @@
     </div><!--
     --><div class="col-lg-7 vcenter">
         <div class="row marginNull divIus">
-        <h2 class="tituloPrincipal text-center">IUS</h2>
-        <div class="row marginNull" style="margin-bottom:5%">
-            @ViewData["Texto-inicial"]
+            <h2 class="tituloPrincipal text-center">IUS</h2>
+            <div class="row marginNull" style="margin-bottom:5%">
+                @ViewData["Texto-inicial"]
+            </div>
+            <div class="row marginNull">
+                <!-- Continentes presentes -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-continentes-presentes"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+                <!-- Numero de paises presentes -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-paises-presentes"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+                <!-- Total instituciones -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-numero-instituciones"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+                <!-- Numero de estudiantes -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-numero-estudiantes"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+                <!-- Numero de salesianos -->
+                <div class="col-lg-6 tituloLlaves">
+                    @ViewData["etiqueta-numero-salesianos"]
+                </div>
+                <div class="col-lg-6">
+                    ____
+                </div>
+            </div>
         </div>
-        <div class="row marginNull">
-            <!-- Continentes presentes -->
-            <div class="col-lg-6 tituloLlaves">
-                @ViewData["etiqueta-continentes-presentes"]
-            </div>
-            <div class="col-lg-6">
-                ____
-            </div>
-            <!-- Numero de paises presentes -->
-            <div class="col-lg-6 tituloLlaves">
-                @ViewData["etiqueta-paises-presentes"]
-            </div>
-            <div class="col-lg-6">
-                ____
-            </div>
-            <!-- Total instituciones -->
-            <div class="col-lg-6 tituloLlaves">
-                @ViewData["etiqueta-numero-instituciones"]
-            </div>
-            <div class="col-lg-6">
-                ____
-            </div>
-            <!-- Numero de estudiantes -->
-            <div class="col-lg-6 tituloLlaves">
-                @ViewData["etiqueta-numero-estudiantes"]
-            </div>
-            <div class="col-lg-6">
-                ____
-            </div>
-            <!-- Numero de salesianos -->
-            <div class="col-lg-6 tituloLlaves">
-                @ViewData["etiqueta-numero-salesianos"]
-            </div>
-            <div class="col-lg-6">
-                ____
-            </div>
-        </div>
-        </div>
-    </div>
+    </div>*@
     <div class="row marginNull">
-        <div class="col-lg-offset-4 col-lg-4 text-center imgCambioContenedor">
+        <div class="col-lg-offset-3 col-lg-6 text-center imgCambioContenedor">
             <div class="divImgCambio" id="1">
                 <img class="imgCambio" src="~/Content/images/generales/ico/clock.png" />
                 <div class="divTxtCambio">Historia</div>
@@ -108,9 +108,15 @@
                 <img class="imgCambio" src="~/Content/images/generales/ico/trophy.png" />
                 <div class="divTxtCambio">Organizacion</div>
             </div>
-            
+            <div class="divImgCambio" id="4">
+                <img class="imgCambio" src="~/Content/images/generales/ico/pie-chart.png" />
+                <div class="divTxtCambio">Salesianos</div>
+            </div>
+            <div class="divImgCambio" id="5">
+                <img class="imgCambio" src="~/Content/images/generales/ico/document.png" />
+                <div class="divTxtCambio">IUS</div>
+            </div>
         </div>
-        
     </div>
     <div class="row marginNull">
         <div class="row marginNull divContenedorInfoL">
