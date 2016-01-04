@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     // eventos
+            
         // tap(slide)
             $(document).on("swipe", ".imgSlider", function () {
                 console.log("Hizo tap");
@@ -10,6 +11,4 @@
                 divSlider = $(this).parents(".slider");
                 navBtn(divSlider, direccion);
             })
-        
-
 })  

@@ -16,6 +16,11 @@
         }
         return next;
     }
+    function startSlider() {
+        setInterval(function () {
+            $(".navRight").click();
+        }, 3000);
+    }
 // acciones scripts 
     function navBtn(divSlider, direccion) {
         img = divSlider.find(".activeSliderImage");
