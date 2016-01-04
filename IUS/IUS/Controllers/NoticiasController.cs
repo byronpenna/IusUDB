@@ -33,7 +33,7 @@ namespace IUS.Controllers
                     string ip = Request.UserHostAddress;
                     this.setTraduccion(traducciones);
                     // por el momento no habra noticias
-                    ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
+                    //ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
                     ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
                     ViewBag.menu25          = this.activeClass;
                     ViewBag.numPage         = id;
