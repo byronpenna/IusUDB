@@ -4,9 +4,28 @@
     $(window).bind("popstate", function (e) {
         console.log("set back");
     })*/
-        loadPublicFiles();            
+        // iniciales
+            loadPublicFiles();
+        // tmp 
         // change 
-            
+            $(document).on("keyup", ".txtBusquedaCarpetaPublica", function (e) {
+                // variables
+                    var folders = $(".divCarpetasPublicasCompartir .divCarpetaPublica");
+                // do it 
+                    var charCode = e.which;
+                    if (charCode == 27) { // tecla esc cancela todo
+                        $(this).val("");
+                    }
+                    var txt = $(this).val();
+                    if (txt == "") {
+                        folders.removeClass("hidden");
+                    } else {
+                        folders.addClass("hidden");
+                        var foldersMostrados = folders.find(".tituloCarpetaPublica:containsi(" + txt + ")");
+                        foldersMostrados = foldersMostrados.parents(".divCarpetaPublica");
+                        foldersMostrados.removeClass("hidden");
+                    }
+            })
         // keyup 
             $(document).on("keydown", ".txtNombreFileCompartir", function (e) {
                 var charcode = e.which;

@@ -1,4 +1,12 @@
-﻿.icoWebsiteFolder{
+﻿/************/
+.folders {
+    border-right: solid 5px #F5F5F5;
+}
+.tituloBusquedaFolderPublico{
+    margin-top:5%;
+}
+/************/
+.icoWebsiteFolder{
     display:none;
 }
 /*Nuevo ruta*/
