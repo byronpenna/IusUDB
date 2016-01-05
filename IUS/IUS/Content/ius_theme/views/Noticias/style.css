@@ -13,6 +13,8 @@
         text-align:center;
         font-size:2.5em;
         width:100%;
+        margin-bottom:4%;
+        margin-top:4%;
     }
     .tituloComentarios{
         text-align:center;
@@ -86,4 +88,5 @@
         .comentariosSection{
             max-height:700px;
             overflow:auto;
+            margin-top:5%;
         }

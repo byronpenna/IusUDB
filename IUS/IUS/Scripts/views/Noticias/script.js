@@ -7,7 +7,7 @@
                 console.log("Comentario a agregar", frm);
                 var val = validarComentario( frm);
                 console.log(val);
-                //frmComentario(frm);
+                frmComentario(frm);
             })
         // click 
             $(document).on("click", ".btnDesplegableAddComent", function () {
