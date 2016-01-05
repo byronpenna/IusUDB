@@ -36,14 +36,6 @@
                         break;
                     }
                 }
-                /*if ($(this).val() == "") {
-                    $(".divCarpetasPublicasCompartir .divCarpetaPublica").removeClass("hidden");
-                } else {
-                    $(".divCarpetasPublicasCompartir .divCarpetaPublica").addClass("hidden");
-                    var folders = $(".divCarpetaPublica .tituloCarpetaPublica:containsi(" + $(this).val() + ")");
-                    folders = folders.parents(".divCarpetaPublica");
-                    folders.removeClass("hidden");
-                }*/
             })
         // keydown
             
