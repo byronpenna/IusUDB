@@ -7,7 +7,6 @@
         // iniciales
             loadPublicFiles();
         // tmp 
-        // change 
             $(document).on("keyup", ".txtBusquedaCarpetaPublica", function (e) {
                 // variables
                     var folders = $(".divCarpetasPublicasCompartir .divCarpetaPublica");
@@ -26,6 +25,8 @@
                         foldersMostrados.removeClass("hidden");
                     }
             })
+        // change 
+            
         // keyup 
             $(document).on("keydown", ".txtNombreFileCompartir", function (e) {
                 var charcode = e.which;

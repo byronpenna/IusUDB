@@ -1,4 +1,25 @@
 ﻿$(document).ready(function () {
+    // tmp 
+        
+        $(document).on("keyup", ".txtBusquedaUsuarioDiv", function (e) {
+            console.log("uhui");
+            // variables
+                var folders = $(".seccionCompartida .divCarpetaPublica");
+            // do it 
+                var charCode = e.which;
+                if (charCode == 27) { // tecla esc cancela todo
+                    $(this).val("");
+                }
+                var txt = $(this).val();
+                if (txt == "") {
+                    folders.removeClass("hidden");
+                } else {
+                    folders.addClass("hidden");
+                    var foldersMostrados = folders.find(".tituloCarpetaPublica:containsi(" + txt + ")");
+                    foldersMostrados = foldersMostrados.parents(".divCarpetaPublica");
+                    foldersMostrados.removeClass("hidden");
+                }
+        })
     // plugins
         $(".cbUsuarios").chosen({ no_results_text: "No existe ese usuario", width: '100%' });
     //eventos
@@ -13,7 +34,6 @@
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
         // click
-            
                 $(document).on("click", ".carpetaDetalle", function (e) {
                     var nVista = getNumVistaActual();
                     console.log(nVista);

@@ -1,4 +1,9 @@
-﻿.divUsuarioCarpeta img{
+﻿/* Buscar usuario */
+.folders {
+    border-right: solid 5px #F5F5F5;
+}
+/****/
+.divUsuarioCarpeta img{
     width:15%;
 }
 .divUsuarioCarpeta h4{
