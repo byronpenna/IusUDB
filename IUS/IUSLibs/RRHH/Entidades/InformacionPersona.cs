@@ -18,7 +18,8 @@ namespace IUSLibs.RRHH.Entidades
             public string       _fotoRuta;
             public string       _curriculumn;
             // adicionales
-            public bool         _tieneFoto = false;
+            public bool         _tieneFoto          = false;
+            public bool         _tieneCurriculumn   = false;
         #endregion
             public void instanciaPais()
             {

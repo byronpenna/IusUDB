@@ -121,12 +121,24 @@
     <img class="imgPersona" src="@strFoto" />
 </div>
 <div class="row marginNull divUploadVitae">
+    
     <h3>Curriculum PDF </h3>
+    <div class="row marginNull">
+        @if (infoPersona._tieneCurriculumn)
+        {
+            <a href="@infoPersona._curriculumn">Tiene curriculumn</a>
+        }
+        else
+        {
+            <span>No tiene curriculumn</span>
+        }
+    </div>
     <form class="frmCurriculumn" action="@Url.Action("subirCurriculumn", "GestionLaboral")">
         <input type="hidden" name="txtHdIdPersona" value="@persona._idPersona" />
         <input type="file" name="flCurriculum" class="flCurriculum" />
         <button class="btn btn-default">Subir</button>
     </form>
+
 </div>
 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
 <div class="marginNull row divMensajesGenerales">

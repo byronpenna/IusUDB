@@ -42,8 +42,14 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                     {
                         info._tieneFoto = true;
                         //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
-                        info._fotoRuta = this.getRelativePathFromAbsolute(info._fotoRuta);
+                        info._fotoRuta  = this.getRelativePathFromAbsolute(info._fotoRuta);
                     }
+                    if (info != null && System.IO.File.Exists(info._curriculumn))
+                    {
+                        info._tieneCurriculumn = true;
+                        info._curriculumn = this.getRelativePathFromAbsolute(info._curriculumn);
+                    }
+
                     iniciales["infoPersona"]            = info;
                     ViewBag.titleModulo                 = "Información laboral personas";
                     ViewBag.menus                       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
