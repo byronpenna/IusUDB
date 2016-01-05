@@ -326,7 +326,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                                     {
                                         fileName = Path.GetFileName(file.FileName);
                                         var strExtension = Path.GetExtension(file.FileName);
-                                        path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + idPersona + "/"), "curriculum " + strExtension);
+                                        path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + idPersona + "/"), "curriculum" + strExtension);
 
                                         file.SaveAs(path);
                                         ExtraGestionPersonasModel modeloInformacion = new ExtraGestionPersonasModel();
