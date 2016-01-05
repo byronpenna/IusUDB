@@ -331,6 +331,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                                         file.SaveAs(path);
                                         ExtraGestionPersonasModel modeloInformacion = new ExtraGestionPersonasModel();
                                         InformacionPersona info = modeloInformacion.sp_rrhh_setCurriculumnPersona(path, idPersona, usuarioSession._idUsuario, this._idPagina);
+                                        info._curriculumn = Url.Content(this.getRelativePathFromAbsolute(info._curriculumn));
                                         respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado", true);
                                         respuesta.Add("informacionPersona", info);
