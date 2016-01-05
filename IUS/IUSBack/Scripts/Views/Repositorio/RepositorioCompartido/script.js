@@ -41,7 +41,7 @@
             // busqueda 
                 $(document).on("click", ".btnBusqueda", function () {
                     var vistaCuadricula = $(".iconoVistaCuadricula").hasClass("activeVista");
-                    var vistaLista = $(".icoVistaLista").hasClass("activeVista");
+                    var vistaLista      = $(".icoVistaLista").hasClass("activeVista");
                     var target = "";
                     if (!$(this).hasClass("btnBuscando")) {
                         if (vistaCuadricula) {

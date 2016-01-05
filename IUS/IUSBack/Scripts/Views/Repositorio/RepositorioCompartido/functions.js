@@ -82,16 +82,7 @@
                 return div;
             }
             function loadCuadriculaFiles(archivo, openLocation) {
-                /*
-                <div class='row divHerramientasIndividual'>\
-                    <a href='#' class='icoCompartirFile' title='Compartir'>\
-                        <i class='fa fa-share'></i>\
-                    </a>\
-                    <a href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' class='ico' title='Descargar'>\
-                        <i class='fa fa-download'></i>\
-                    </a>\
-                </div>\
-                */
+
                 var div = "\
                         <div class='col-lg-2 folder'>\
                             <input type='hidden' class='txtHdIdArchivo' value='"+ archivo._idArchivo + "'/>\
@@ -110,7 +101,7 @@
                                                     </a>";
                                     }
                 div += "\
-                                    <a class='btn btnAccion btn-default ico' href=href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' title='Descargar'>\
+                                    <a class='btn btnAccion btn-default ico' href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' title='Descargar'>\
                                         <i class='fa fa-download'></i>\
                                     </a>\
                                 </div>\
@@ -181,6 +172,7 @@
                     if (data.estado) {
                         var div = "";
                         if (data.archivos !== undefined && data.archivos !== null) {
+                            console.log("a poner archivos para cuadricula", data.archivos);
                             $.each(data.archivos, function (i, archivo) {
                                 if (target == "cuadricula") {
                                     div += loadCuadriculaFiles(archivo, true);
