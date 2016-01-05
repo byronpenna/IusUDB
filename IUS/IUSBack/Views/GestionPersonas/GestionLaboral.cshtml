@@ -127,12 +127,15 @@
         {
             <a href="@Url.Content(infoPersona._curriculumn)">
                 <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")"/>
-                @*<h5>Visualizar</h5>*@
+                <input type="hidden" class="txtHdTieneVitae" value="1"/>
             </a>
         }
         else
         {
-            <span>No tiene curriculumn</span>
+            <a href="#">
+                <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-readerBn.png")"/>
+                <input type="hidden" class="txtHdTieneVitae" value="0" />
+            </a>
         }
     </div>
     <form class="frmCurriculumn" action="@Url.Action("subirCurriculumn", "GestionLaboral")">
@@ -143,7 +146,7 @@
                 <input type="file" name="flCurriculum" class="upload flCurriculum" />
             </div>
         </div>
-        <button class="btn btn-default">Subir</button>
+        <button class="btn btn-default btnSubir" disabled>Subir</button>
     </form>
 </div>
 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />

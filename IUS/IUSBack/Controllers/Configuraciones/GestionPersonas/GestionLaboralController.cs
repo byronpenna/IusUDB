@@ -349,7 +349,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                         respuesta = this.errorTryControlador(2, error);
                     }
-                    return null;
+                    return Json(respuesta);
                 }
             #endregion
         #endregion

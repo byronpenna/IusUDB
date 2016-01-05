@@ -208,6 +208,17 @@
             console.log("entro ");
             accionAjaxWithImage(url, data, function (data) {
                 console.log("La data es", data);
+                
+                if (data.estado) {
+                    if ($(".txtHdTieneVitae").val() == 0) {
+                        $(".txtHdTieneVitae").val(1);
+                        $(".icoCurriculumn").attr("src", IMG_GENERALES + "repositorio/adobe-readerBn.png");
+                    }
+                    printMessage($(".divMensajesGenerales"), "Curriculumn se actualizo correctamente", true);
+
+                } else {
+                    printMessage($(".divMensajesGenerales"), "Ocurrio un error", false);
+                }
             })
         }
 
