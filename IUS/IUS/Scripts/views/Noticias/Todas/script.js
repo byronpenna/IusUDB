@@ -7,6 +7,22 @@
     // eventos
         // click
             //$(".rowPadreParaBusqueda")
+            $(document).on("click", ".divDesplegableFiltro", function () {
+                // vars 
+                    var targetDiv = $('.rowPadreParaBusqueda ');
+                    var targetIco = $(this).find(".icoDesplegableNoticia");
+                    console.log("Este es el target ico",targetIco.attr("class"));
+                // do it 
+                    if (targetDiv.is(":visible")) {
+                        targetDiv.hide("slow");
+                        targetIco.removeClass("fa-angle-up");
+                        targetIco.addClass("fa-angle-down");
+                    } else {
+                        targetDiv.show("slow");
+                        targetIco.removeClass("fa-angle-down");
+                        targetIco.addClass("fa-angle-up");
+                    }
+            })
             $(document).on("click", ".btnCancelarBusqueda", function () {
                 //var frm = serializeSection($(this).parents(".rowPadreParaBusqueda"));
                 var frm = {

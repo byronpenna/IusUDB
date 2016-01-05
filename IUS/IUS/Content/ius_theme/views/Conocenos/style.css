@@ -80,11 +80,11 @@
         margin-bottom:3%;
     }
 .imgCambioContenedor{
-    margin-top:5%;
+    margin-top:1%;
 }
 .divImgCambio{
     display:inline-block;
-    width:30%;
+    width:18%;
     text-align:center;
     opacity:0.5;
     /*background:pink;*/
@@ -121,6 +121,7 @@
     width:80%;
     margin:0 auto;
     text-align:justify;
+    min-height:500px;
     /*margin-top:5%;*/
 }
 .divImageLoadingL{

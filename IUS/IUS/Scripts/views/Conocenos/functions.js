@@ -1,8 +1,10 @@
-﻿
-// genericos 
+﻿// genericos 
+    function inicial() {
+        // click al primero
+        $(".divImgCambio")[0].click();
+    }
     // div informacion 
         function getDivHistoria(data) {
-            
             var div = "\
                 <h2 class='tituloInfoL'>" + data.Titulo + "</h2>\
                 <div class='contenedorInfoL'>\

@@ -287,6 +287,8 @@
     <Content Include="Content\images\generales\fondo_gris.png" />
     <Content Include="Content\images\generales\ico\clock.png" />
     <Content Include="Content\images\generales\ico\contacts.png" />
+    <Content Include="Content\images\generales\ico\document.png" />
+    <Content Include="Content\images\generales\ico\pie-chart.png" />
     <Content Include="Content\images\generales\ico\trophy.png" />
     <Content Include="Content\images\generales\image-color.png" />
     <Content Include="Content\images\generales\tmp\don-bosco.png" />

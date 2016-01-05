@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     // eventos
-            
+            startSlider();
         // tap(slide)
             $(document).on("swipe", ".imgSlider", function () {
                 console.log("Hizo tap");

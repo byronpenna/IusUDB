@@ -204,6 +204,13 @@
                 return tr;
             }
     // otras
+        function frmCurriculumn(data,url) {
+            console.log("entro ");
+            accionAjaxWithImage(url, data, function (data) {
+                console.log("La data es", data);
+            })
+        }
+
         function getTableActividades(tr) {
             var frm = { idLaboralPersona: tr.find(".txtHdIdLaboralPersona").val() }; 
             actualizarCatalogo(RAIZ + "GestionLaboral/sp_rrhh_getActividadesEmpresa", frm, function (data) {

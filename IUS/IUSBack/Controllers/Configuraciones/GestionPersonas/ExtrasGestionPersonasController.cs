@@ -33,7 +33,6 @@ namespace IUSBack.Controllers.GestionPersonas
                     frm = this.getAjaxFrm();
                     InformacionPersona info = new InformacionPersona();
                     info._persona = new Persona(this.convertObjAjaxToInt(frm["idPersona"]));
-                    
                     respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                     if (respuesta == null)
                     {

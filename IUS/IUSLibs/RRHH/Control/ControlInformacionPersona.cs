@@ -195,6 +195,35 @@ namespace IUSLibs.RRHH.Control
             }
         #endregion
         #region "do"
+            public InformacionPersona sp_rrhh_setCurriculumnPersona(string rutaCurriculumn, int idPersona,int idUsuarioEjecutor,int idPagina)
+            {
+                InformacionPersona infoPersona = null;
+                SPIUS sp = new SPIUS("sp_rrhh_setCurriculumnPersona");
+                sp.agregarParametro("curriculumn", rutaCurriculumn);
+                sp.agregarParametro("idPersona", idPersona);
+
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        DataRow row                 = tb[1].Rows[0];
+                        infoPersona                 = new InformacionPersona((int)row["idInformacionPersona"]);
+                        infoPersona._curriculumn    = row["curriculumn"].ToString();
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return infoPersona;
+            }
             public InformacionPersona sp_rrhh_setFotoInformacionPersona(InformacionPersona info,int idUsuarioEjecutor,int idPagina)
             {
                 InformacionPersona infoRegresar = null;

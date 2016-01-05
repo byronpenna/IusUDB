@@ -1,5 +1,11 @@
 ﻿// iniciales
-    function getNextImage(img,direccion) {
+    function startSlider() {
+        console.log("inicio el slider");
+        setInterval(function () {
+            $("#navRight").click();
+        }, 5000);
+    }
+    function getNextImage(img, direccion) {
         var next;
         if (direccion == 1) {
             next = img.next();

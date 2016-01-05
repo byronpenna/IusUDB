@@ -10,7 +10,10 @@
 }
 @{
     List<SliderImage> slider = (List<SliderImage>)ViewBag.slider;
-    List<Post> post = (List<Post>)ViewBag.noticias;
+    //List<Post> post = (List<Post>)ViewBag.noticias;
+    List<Post> posts = (List<Post>)ViewBag.noticias;
+    // tmp 
+    string src = "";
 }
 
 <div class="slider">
@@ -45,4 +48,97 @@
             <h3>@ViewData["lb-no-slider"]</h3>
         </div>
     }
+</div>
+<div class="row marginNull footerPersonalizado">
+    <div class="row marginNull rowImportantes">
+        @*<h3 class="text-center">Eventos</h3>*@
+        <div class="col-lg-4">
+            <div class="DivEvento">
+                <div class="col-lg-4">
+                    <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionumsc/1.png")" />
+                </div>
+                <div class="col-lg-8">
+                    <h4>Campaña contra el dengue</h4>
+                    <p>
+                        <strong>1/11/2015</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="DivEvento">
+                <div class="col-lg-4">
+                    <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionumsc/12.png")" />
+                </div>
+                <div class="col-lg-8">
+                    <h4>Venta de perritos</h4>
+                    <p>
+                        <strong>12/11/2015</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="DivEvento">
+                <div class="col-lg-4">
+                    <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionumsc/25.png")" />
+                </div>
+                <div class="col-lg-8">
+                    <h4>Fiesta :D </h4>
+                    <p>
+                        <strong>25/11/2015</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row feedSection marginNull">
+        @if (posts != null)
+        {
+            <div class="row marginNull">
+                @foreach (Post post in posts)
+                {
+                    if (post._miniatura != null)
+                    {
+                        src = "data:image/png;base64," + Convert.ToBase64String(post._miniatura);
+                    }
+                    else
+                    {
+                        src = Url.Content("~/Content/images/generales/image.png");
+                    }
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 colNoticia ">
+                        <div class="row marginNull">
+                            <a class="aRedirectPost" href="@this.Url.Action("Index", "Noticias", new { id = post._idPost })">
+                                @*<div class="col-xs-2 col-sm-2 col-lg-2 col-md-2 imgFeedNoticia">*@
+                                <!-- <img src="~/Content/images/test/cruz.png" /> -->
+                                @*</div>*@
+                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10  cuerpoFeedNoticia">
+                                    <h3>@post._titulo</h3>
+                                    <div class="imgFeedNoticia">
+                                        <img src="@src" />
+                                    </div>
+                                    <p>
+                                        @post._descripcion...
+                                    </p>
+                                    <span class="leerMas">@ViewData["lb-leer-mas"]</span>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                }
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-12 text-center"><h4>@ViewData["lb-nopost"]</h4></div>
+        }
+        <div class="row marginNull text-center rowTodas">
+            <h3 class="hVerTodos">
+                <a class="aTodosPost" href="@Url.Action("Todas","Noticias")">@ViewData["lb-vertodos-posts"]</a>
+            </h3>
+        </div>
+    </div>
 </div>

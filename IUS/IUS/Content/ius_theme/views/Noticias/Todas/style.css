@@ -1,4 +1,16 @@
-﻿.activeNum{
+﻿/* para noticias */
+    .divMostrarFiltro{
+        width:15%;
+        margin:0 auto;
+        background:#F5F5F5;
+        padding-top:0.5%;
+        padding-bottom:0.5%;
+        margin-top:3%;
+    }
+    .icoDesplegableNoticia{
+        font-size:2em;
+    }
+.activeNum{
     background:#5BABE0 !important;
     color:#F5F5F5 !important;
 }
