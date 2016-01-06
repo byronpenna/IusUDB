@@ -84,6 +84,16 @@ namespace IUS.Controllers
                                 idPagina = this._idPaginaOrganizacion;
                                 break;
                             }
+                            case 4:
+                                {
+                                    idPagina = this._idPaginaIus;
+                                    break;
+                                }
+                            case 5:
+                                {
+                                    idPagina = this._idPaginaSalesianos;
+                                    break;
+                                }
                         }
                         
                         traducciones = this._model.getTraduccion(lang,idPagina);
