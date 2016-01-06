@@ -8,6 +8,8 @@
                 $(this).addClass("selectedIco");
                 var selecionado = parseInt($(this).attr("id"));
                 frm = { idSeleccion: selecionado };
+                window.history.pushState({}, "Titulo", "/Conocenos/Index/" + frm.idSeleccion);
+                //history.replaceState({}, "Titulo", "/Conocenos/Index/" + frm.idSeleccion);
                 divImgCambio(frm);
             })
     // iniciales

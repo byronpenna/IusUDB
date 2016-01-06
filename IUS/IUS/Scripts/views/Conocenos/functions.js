@@ -1,7 +1,13 @@
 ﻿// genericos 
     function inicial() {
         // click al primero
-        $(".divImgCambio")[0].click();
+        var i = $(".txtHdSeleccionadoBuble").val();
+        if (i == -1) {
+            i = 1;
+        }
+        i--;
+        console.log("El valor de i es:", i);
+        $(".divImgCambio")[i].click();
     }
     // div informacion 
         function getDivHistoria(data) {
@@ -120,6 +126,11 @@
             if (data.estado) {
                 var div = "";
                 console.log(frm.idSeleccion);
+                if (frm.idSeleccion == 1) {
+                    frm.idSeleccion = 2;
+                } else if(frm.idSeleccion == 2) {
+                    frm.idSeleccion = 1;
+                }
                 switch (frm.idSeleccion) {
                     case 1: {
                         div = getDivHistoria(data);

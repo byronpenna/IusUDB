@@ -10,6 +10,7 @@
     <script src="~/Scripts/views/Conocenos/functions.js"></script>
 }
 <div class="row marginNull divMenus">
+    <input type="hidden" class="txtHdSeleccionadoBuble" value="@ViewBag.seleccionado"/>
     @*<div class="col-lg-5 vcenter ">
         <div class="divSalesianos row marginNull">
         <h2 class="tituloPrincipal text-center">Salesianos</h2>
@@ -96,11 +97,11 @@
     </div>*@
     <div class="row marginNull">
         <div class="col-lg-offset-3 col-lg-6 text-center imgCambioContenedor">
-            <div class="divImgCambio" id="2">
+            <div class="divImgCambio" id="1"><!-- Este deberia ser 2 pero por orden tendre que ponerle 1-->
                 <img class="imgCambio" src="~/Content/images/generales/ico/contacts.png" />
                 <div class="divTxtCambio">Identidad</div>
             </div>
-            <div class="divImgCambio divImgCambioPrimero" id="1">
+            <div class="divImgCambio divImgCambioPrimero" id="2"><!-- Este deberia ser 1 pero por orden tendre que ponerle 2-->
                 <img class="imgCambio" src="~/Content/images/generales/ico/clock.png" />
                 <div class="divTxtCambio">Historia</div>
             </div>
