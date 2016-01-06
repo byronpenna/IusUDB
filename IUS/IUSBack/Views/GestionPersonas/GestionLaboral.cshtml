@@ -120,25 +120,34 @@
     </div>
     <img class="imgPersona" src="@strFoto" />
 </div>
-<div class="row marginNull divUploadVitae">
-    
-    <h3>Curriculum PDF </h3>
-    <div class="row marginNull">
+<div class="row marginNull divUploadVitae text-center">
+    <h3 class="tituloVitae">Curriculum PDF </h3>
+    <div class="row marginNull ">
         @if (infoPersona._tieneCurriculumn)
         {
-            <a href="@infoPersona._curriculumn">Tiene curriculumn</a>
+            <a href="@Url.Content(infoPersona._curriculumn)">
+                <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")"/>
+                <input type="hidden" class="txtHdTieneVitae" value="1"/>
+            </a>
         }
         else
         {
-            <span>No tiene curriculumn</span>
+            <a href="#">
+                <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-readerBn.png")"/>
+                <input type="hidden" class="txtHdTieneVitae" value="0" />
+            </a>
         }
     </div>
     <form class="frmCurriculumn" action="@Url.Action("subirCurriculumn", "GestionLaboral")">
         <input type="hidden" name="txtHdIdPersona" value="@persona._idPersona" />
-        <input type="file" name="flCurriculum" class="flCurriculum" />
-        <button class="btn btn-default">Subir</button>
+        <div class="row marginNull">
+            <div class="fileUpload btn btn-default">
+                <span>Subir hoja de vida</span>
+                <input type="file" name="flCurriculum" class="upload flCurriculum" />
+            </div>
+        </div>
+        <button class="btn btn-default btnSubir" disabled>Subir</button>
     </form>
-
 </div>
 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
 <div class="marginNull row divMensajesGenerales">

@@ -326,11 +326,12 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                                     {
                                         fileName = Path.GetFileName(file.FileName);
                                         var strExtension = Path.GetExtension(file.FileName);
-                                        path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + idPersona + "/"), "curriculum " + strExtension);
+                                        path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["FOTOS_PERSONAL"] + idPersona + "/"), "curriculum" + strExtension);
 
                                         file.SaveAs(path);
                                         ExtraGestionPersonasModel modeloInformacion = new ExtraGestionPersonasModel();
                                         InformacionPersona info = modeloInformacion.sp_rrhh_setCurriculumnPersona(path, idPersona, usuarioSession._idUsuario, this._idPagina);
+                                        info._curriculumn = Url.Content(this.getRelativePathFromAbsolute(info._curriculumn));
                                         respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado", true);
                                         respuesta.Add("informacionPersona", info);
@@ -349,7 +350,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
                         respuesta = this.errorTryControlador(2, error);
                     }
-                    return null;
+                    return Json(respuesta);
                 }
             #endregion
         #endregion

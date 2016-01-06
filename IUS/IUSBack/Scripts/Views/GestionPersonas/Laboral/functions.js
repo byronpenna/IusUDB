@@ -208,6 +208,17 @@
             console.log("entro ");
             accionAjaxWithImage(url, data, function (data) {
                 console.log("La data es", data);
+                var icoCurriculumn = $(".icoCurriculumn");
+                if (data.estado) {
+                    if ($(".txtHdTieneVitae").val() == 0) {
+                        $(".txtHdTieneVitae").val(1);
+                        icoCurriculumn.attr("src", IMG_GENERALES + "repositorio/adobe-reader.png");
+                        icoCurriculumn.parents("a").attr("href",data.informacionPersona._curriculumn);
+                    }
+                    printMessage($(".divMensajesGenerales"), "Curriculumn se actualizo correctamente", true);
+                } else {
+                    printMessage($(".divMensajesGenerales"), "Ocurrio un error", false);
+                }
             })
         }
 

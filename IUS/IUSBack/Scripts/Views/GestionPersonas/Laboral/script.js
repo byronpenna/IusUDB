@@ -16,6 +16,14 @@
             $(document).on("change", ".cbPersonas", function (e) {
                 location.href = RAIZ + "GestionLaboral/index/" + $(this).val();
             })
+            $(document).on("change", ".flCurriculum", function (e) {
+                var btnTarget = $(".btnSubir");
+                if ($(this).val() != "") {
+                    btnTarget.prop("disabled", false);
+                } else {
+                    btnTarget.prop("disabled", true);
+                }
+            })
         // submit 
             $(document).on("submit", ".frmCurriculumn", function (e) {
                 var frm     = serializeSection($(this));

@@ -238,6 +238,9 @@
             <div class='divArchivoPublico col-lg-6'>\
                 <img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + archivo._archivoUsuario._extension._tipoArchivo._icono + "' />\
                 <h4>" + archivo._nombre + "</h4>\
+                <a href='" + RAIZFRONT + "Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='btn btn-default'>\
+                    <i class='fa fa-download'></i>\
+                </a>\
             </div>\
             ";
             return div;
@@ -315,7 +318,7 @@
 
                 }
                 if (data.archivos !== null) {
-
+                    console.log("Los archivos publicos a enviar son: ", data.archivos);
                     $.each(data.archivos, function (i, archivo) {
                         divArchivo += getDivArchivosPublicos(archivo);
                     })
@@ -477,30 +480,8 @@
             }
             function divCarpetaPublica(frm) {
                 actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-                    console.log(data);
+                    console.log("La carpeta publica es: ",data);
                     printSeccionPublica(data);
-                    /*
-                    if (data.estado) {
-                        var div         = "";
-                        var divArchivo = "";
-                        $(".txtHdCarpetaPadrePublica").val(data.idCarpetaPadre);
-                        if (data.carpetas !== null) {
-                            $.each(data.carpetas, function (i, carpeta) {
-                                div += getDivCarpetasPublicas(carpeta);
-                            });
-                            
-                        }
-                        if (data.archivos !== null) {
-                            
-                            $.each(data.archivos, function (i, archivo) {
-                                divArchivo += getDivArchivosPublicos(archivo);
-                            })
-                        }
-                        $(".divCarpetasPublicasCompartir").empty().append(div);
-                        $(".divCarpetasPublicasCompartir").append(divArchivo);
-                        $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
-
-                    }*/
                 })
             }
         // directorio

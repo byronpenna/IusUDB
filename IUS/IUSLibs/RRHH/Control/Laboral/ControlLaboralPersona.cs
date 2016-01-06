@@ -206,8 +206,9 @@ namespace IUSLibs.RRHH.Control.Laboral
                             }
                             if (tb[4].Rows.Count > 0)
                             {
-                                DataRow row = tb[4].Rows[0];
-                                infoPersona = new InformacionPersona((int)row["idInformacionPersona"],row["foto"].ToString());
+                                DataRow row                 = tb[4].Rows[0];
+                                infoPersona                 = new InformacionPersona((int)row["idInformacionPersona"],row["foto"].ToString());
+                                infoPersona._curriculumn    = row["curriculumn"].ToString();
                             }
                             retorno.Add("cargos", cargos);
                             retorno.Add("empresas", empresas);
