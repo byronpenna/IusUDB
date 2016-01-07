@@ -39,7 +39,8 @@
                 if (frm.dtpFin != "" || frm.dtpInicio != "" || frm.txtTituloNoticia != "") {
                     btnBuscar(frm, $(this));
                 } else {
-                    printMessage($(".divMensajesBusqueda"),"Debe seleccionar algun filtro para buscar", false);
+                    var mjsErrorFilter = $(".mjs-error-ponerFiltroBusqueda").val();
+                    printMessage($(".divMensajesBusqueda"), mjsErrorFilter, false);
                 }
                 //
             })
