@@ -33,6 +33,10 @@
                 $(".tab").addClass("hidden");
                 $(target).removeClass("hidden");
             })
+            $(document).on("click", ".noHref", function (e) {
+                e.preventDefault();
+
+            })
         // keypress
             $(document).on("keypress", ".soloLetras", function (e) {
                 var str = String.fromCharCode(e.which);

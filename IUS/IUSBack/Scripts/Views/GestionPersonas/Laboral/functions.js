@@ -213,7 +213,8 @@
                     if ($(".txtHdTieneVitae").val() == 0) {
                         $(".txtHdTieneVitae").val(1);
                         icoCurriculumn.attr("src", IMG_GENERALES + "repositorio/adobe-reader.png");
-                        icoCurriculumn.parents("a").attr("href",data.informacionPersona._curriculumn);
+                        icoCurriculumn.parents("a").attr("href", data.informacionPersona._curriculumn);
+                        icoCurriculumn.parents("a").removeClass("noHref");
                     }
                     printMessage($(".divMensajesGenerales"), "Curriculumn se actualizo correctamente", true);
                 } else {
