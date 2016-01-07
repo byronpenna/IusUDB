@@ -24,7 +24,7 @@ namespace IUS.Controllers
             private int _idPaginaIdentidad = (int)paginasInternas.Identidad;
         #endregion
         #region "acciones url"
-            public ActionResult Index()
+            public ActionResult Index(int id=-1)
             {
                 List<LlaveIdioma> traducciones;
                 try
@@ -41,6 +41,7 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
 
                     ViewBag.menu21 = this.activeClass;
+                    ViewBag.seleccionado = id;
                 }
                 catch (ErroresIUS x)
                 {
@@ -84,6 +85,16 @@ namespace IUS.Controllers
                                 idPagina = this._idPaginaOrganizacion;
                                 break;
                             }
+                            case 4:
+                                {
+                                    idPagina = this._idPaginaIus;
+                                    break;
+                                }
+                            case 5:
+                                {
+                                    idPagina = this._idPaginaSalesianos;
+                                    break;
+                                }
                         }
                         
                         traducciones = this._model.getTraduccion(lang,idPagina);

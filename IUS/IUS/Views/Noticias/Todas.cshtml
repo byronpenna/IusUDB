@@ -28,9 +28,10 @@
         
     }
 }
-<h2 class="text-center titulo">Noticias</h2>
+<input class="mjs-error-ponerFiltroBusqueda" value="@ViewData["mjs-error-ponerFiltroBusqueda"]" />
+<h2 class="text-center titulo">@ViewData["titulo-noticias"]@*Noticias*@</h2>
 <div class="row marginNull rowPadreParaBusqueda" style="display:none">
-    <h3 class="text-center">Filtros</h3>
+    <h3 class="text-center">@ViewData["titulo-seccion-filtro"]@*Filtro*@</h3>
     <div class="row marginNull RowControlesFiltro ">
         <input type="hidden" class="txtHdNumPage" name="txtHdNumPage" value="@numPage" />
         <input type="hidden" class="txtHdRango" name="txtHdRango" value="@rango" />
@@ -38,7 +39,7 @@
         <div class="col-lg-offset-3 col-lg-3">
             <div class="row marginNull">
                 <div class="col-lg-6">
-                    <label>Titulo</label>
+                    <label>@ViewData["lb-control-tituloNoticia"]@*titulo*@</label>
                 </div>
                 <div class="col-lg-6">
                     <!--
@@ -53,20 +54,20 @@
         </div>
         <div class="col-lg-3">
             <div class="col-lg-6">
-                <label>Fecha inicio</label>
-                <input name="dtpInicio" class="form-control datePicker" placeholder="Fecha Inicio" />
+                <label>@ViewData["lb-control-fechaInicio"] @*Fecha inicio*@</label>
+                <input name="dtpInicio" class="form-control datePicker" placeholder="@ViewData["texto-fechaInicio"]" />
             </div>
             <div class="col-lg-6">
-                <label>Fecha fin</label>
-                <input name="dtpFin" class="form-control datePicker" placeholder="Fecha Fin" />
+                <label>@ViewData["lb-control-fechaFin"] @*Fecha fin*@</label>
+                <input name="dtpFin" class="form-control datePicker" placeholder="@ViewData["texto-fechaFin"]" />
             </div>
         </div>
     </div>
     <div class="row marginNull RowControlesFiltro">
         <div class="col-lg-offset-3 col-lg-6 text-center">
             <div class="btn-group">
-                <button class="btn btn-default btnCancelarBusqueda" disabled>Cancelar</button>
-                <button class="btn btn-default btnBuscar ">Buscar</button>
+                <button class="btn btn-default btnCancelarBusqueda" disabled>@ViewData["lb-boton-cancelar"] @*Cancelar*@</button>
+                <button class="btn btn-default btnBuscar ">@ViewData["lb-boton-aceptar"] @*Buscar*@</button>
             </div>
             <div class="row marginNull text-center divMensajesBusqueda">
 

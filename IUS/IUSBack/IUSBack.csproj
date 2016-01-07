@@ -263,6 +263,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\circle\tablet.png" />
     <Content Include="Content\themes\iusback_theme\img\general\fondo_gris.png" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.ico" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\bookshelf.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\calendar.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\cloud.png" />
