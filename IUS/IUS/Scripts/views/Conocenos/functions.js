@@ -29,7 +29,7 @@
             <div class='row marginNull divContenedorInfoL'>\
                 <h2 class='tituloInfoL'>Salesianos</h2>\
                 <div class='row marginNull'>\
-                    \
+                    " + obj["texto-inicial"] + "\
                 </div>\
                 <div class='row marginNull divContenedorInfo'>\
                     <div class='col-lg-6 text-center'>\
