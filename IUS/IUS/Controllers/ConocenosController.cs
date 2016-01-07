@@ -88,6 +88,7 @@ namespace IUS.Controllers
                             case 4:
                                 {
                                     idPagina = this._idPaginaIus;
+
                                     break;
                                 }
                             case 5:
@@ -98,7 +99,7 @@ namespace IUS.Controllers
                         }
                         
                         traducciones = this._model.getTraduccion(lang,idPagina);
-                        respuesta = this.getDicTraduccion(traducciones);
+                        respuesta = this.getDicTraduccion(traducciones,respuesta);
                         respuesta.Add("estado", true);
                         //respuesta.Add("traducciones", traducciones);
                     }

@@ -24,9 +24,13 @@
             $.each(data, function (i, val) {
                 obj[i] = val;
             })
+            //" + obj["Texto-inicial"] + "
             var div = "\
             <div class='row marginNull divContenedorInfoL'>\
                 <h2 class='tituloInfoL'>Salesianos</h2>\
+                <div class='row marginNull'>\
+                    " + obj["texto-inicial"] + "\
+                </div>\
                 <div class='row marginNull divContenedorInfo'>\
                     <div class='col-lg-6 text-center'>\
                         <h6>" + obj['Titulo'] + "</h6>\
@@ -121,16 +125,16 @@
 // scripts 
     function divImgCambio(frm) {
         var target = $(".divContenedorInfoL");
+        if (frm.idSeleccion == 1) {
+            frm.idSeleccion = 2;
+        } else if (frm.idSeleccion == 2) {
+            frm.idSeleccion = 1;
+        }
         actualizarCatalogo(RAIZ + "Conocenos/getInfo", frm, function (data) {
             console.log("la respuesta del servidor para la informacion es: ", data);
             if (data.estado) {
                 var div = "";
                 console.log(frm.idSeleccion);
-                if (frm.idSeleccion == 1) {
-                    frm.idSeleccion = 2;
-                } else if(frm.idSeleccion == 2) {
-                    frm.idSeleccion = 1;
-                }
                 switch (frm.idSeleccion) {
                     case 1: {
                         div = getDivHistoria(data);
@@ -149,6 +153,7 @@
                         break;
                     }
                     case 5:{
+                        console.log("El id de la pagina es: ", frm.idSeleccion);
                         div = getDivSalesianos(data);
                     }
                     default: {

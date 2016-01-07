@@ -123,7 +123,7 @@
 <div class="row marginNull divUploadVitae text-center">
     <h3 class="tituloVitae">Curriculum PDF </h3>
     <div class="row marginNull ">
-        @if (infoPersona._tieneCurriculumn)
+        @if (infoPersona != null && infoPersona._tieneCurriculumn)
         {
             <a href="@Url.Content(infoPersona._curriculumn)">
                 <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")"/>
@@ -132,7 +132,7 @@
         }
         else
         {
-            <a href="#">
+            <a href="#" class="noHref">
                 <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-readerBn.png")"/>
                 <input type="hidden" class="txtHdTieneVitae" value="0" />
             </a>
