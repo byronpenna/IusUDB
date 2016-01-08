@@ -19,50 +19,56 @@
             ";
             return div;
         }
+
         function getDivSalesianos(data) {
             var obj = new Array();
             $.each(data, function (i, val) {
                 obj[i] = val;
             })
+            
             //" + obj["Texto-inicial"] + "
             var div = "\
             <div class='row marginNull divContenedorInfoL'>\
                 <h2 class='tituloInfoL'>Salesianos</h2>\
-                <div class='row marginNull'>\
+                <div class='row marginNull divImageSalesianoWeb text-center'>\
+                    <img src='" + RAIZ + "/Content/images/generales/ico/globe.png'>\
+                    <a href='" + data.datosIus._websiteSalesiano + "'  target='_blank'>" + obj['etiqueta-website'] + "</a>\
+                </div>\
+                <div class='row marginNull divTextoInicial'>\
                     " + obj["texto-inicial"] + "\
                 </div>\
                 <div class='row marginNull divContenedorInfo'>\
                     <div class='col-lg-6 text-center'>\
                         <h6>" + obj['Titulo'] + "</h6>\
-                        <span>0</span>\
+                        <span>" + obj["texto-tituloOficial"] + "</span>\
                     </div>\
                     <div class='col-lg-6 text-center'>\
                         <h6>"+obj['etiqueta-titulo-alternativo']+"</h6>\
-                        <span>0</span>\
+                        <span>" + obj["texto-tituloAlternativo"] + "</span>\
                     </div>\
                     <div class='col-lg-6 text-center'>\
                         <h6>"+obj['etiqueta-fecha-fundacion']+"</h6>\
-                        <span>0</span>\
+                        <span>" + obj["texto-fechaFundacion"] + "</span>\
                     </div>\
                     <div class='col-lg-6 text-center'>\
                         <h6>"+obj['etiqueta-fundador']+"</h6>\
-                        <span>0</span>\
+                        <span>" + obj["texto-fundador"] + "</span>\
                     </div>\
                     <div class='col-lg-6 text-center'>\
                         <h6>"+obj['etiqueta-salesianos']+"</h6>\
-                        <span>0</span>\
+                        <span>" + data.datosIus._salesianosMundo + "</span>\
                     </div>\
                     <div class='col-lg-6 text-center'>\
                         <h6>"+obj['etiqueta-paises']+"</h6>\
-                        <span>0</span>\
+                        <span>" + data.datosIus._paisesPresencia + "</span>\
                     </div>\
                     <div class='col-lg-6 text-center'>\
                         <h6>"+obj['etiqueta-inspectorias']+"</h6>\
-                        <span>0</span>\
+                        <span>" + data.datosIus._provincias + "</span>\
                     </div>\
                     <div class='col-lg-6 text-center'>\
-                        <h6>"+obj['etiqueta-website']+"</h6>\
-                        <span>0</span>\
+                        <h6>" + obj["etiqueta-familias"] + "</h6>\
+                        <span>" + data.datosIus._gruposFamilia + "</span>\
                     </div>\
                 </div>\
             </div>";
