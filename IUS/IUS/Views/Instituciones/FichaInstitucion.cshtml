@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.FrontUI.Entidades;
+@section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucion/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucion/media.css" />
 }
@@ -6,4 +7,38 @@
     <script src="~/Scripts/views/Instituciones/script.js"></script>
     <script src="~/Scripts/views/Instituciones/functions.js"></script>
 }
-<h2>FichaInstitucion</h2>
+@{
+    Dictionary<object, object> data             = (Dictionary<object, object>)ViewBag.data;
+    Institucion institucion                     = (Institucion)data["institucion"];
+}
+<div class="row marginNull">
+    <div class="col-lg-4">
+        <img class="imgFotoInstitucion"  />
+    </div>
+    <div class="col-lg-8">
+        <h2>@institucion._nombre</h2>
+        <address>
+            @institucion._direccion
+        </address>
+        <div class="row marginNull">
+            @if (institucion._telefonos != null)
+            {
+                foreach (TelefonoInstitucion telefono in institucion._telefonos)
+                {
+                    <span>Tel. @telefono._telefono</span>
+                }    
+            }
+            
+        </div>
+        <div class="row">
+            @if (institucion._enlaces != null)
+            {
+                foreach (EnlaceInstitucion enlace in institucion._enlaces)
+                {
+                    <span>@enlace._enlace</span>
+                }    
+            }
+            
+        </div>
+    </div>
+</div>

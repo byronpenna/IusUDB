@@ -143,6 +143,62 @@ namespace IUSLibs.FrontUI.Control
                     }
                     return instituciones;
                 }
+                public Dictionary<object, object> sp_frontui_front_getInstitucionById(int idInstitucion, string ip, int idPagina)
+                {
+                    // variables 
+                        Dictionary<object, object> retorno = new Dictionary<object, object>();
+                        // normales
+                            Institucion institucion = null;
+                            TelefonoInstitucion telefono; EnlaceInstitucion enlace;
+                    // procedimiento
+                        SPIUS sp = new SPIUS("sp_frontui_front_getInstitucionById");
+                        sp.agregarParametro("idInstitucion", idInstitucion);
+                        sp.agregarParametro("ip", ip);
+                        sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row             = tb[0].Rows[0];
+                                institucion             = new Institucion((int)row["idInstitucion"],row["nombre"].ToString(),row["direccion"].ToString(),(int)row["id_pais_fk"],(bool)row["estado"]);
+                                institucion._pais._pais = row["pais"].ToString();
+                                institucion._logo       = (byte[])row["logo"];
+                                if (tb[1].Rows.Count > 0) // telefono
+                                {
+                                    institucion._telefonos = new List<TelefonoInstitucion>();
+                                    foreach (DataRow rowTelefono in tb[1].Rows)
+                                    {
+                                        telefono = new TelefonoInstitucion((int)rowTelefono["idTelefono"], row["telefono"].ToString(), row["texto_telefono"].ToString(), (int)row["id_institucion_fk"]);
+                                        institucion._telefonos.Add(telefono);
+                                    }
+                                }
+                                if (tb[2].Rows.Count > 0)// enlace 
+                                {
+                                    institucion._enlaces = new List<EnlaceInstitucion>();
+                                    foreach (DataRow rowEnlace in tb[2].Rows)
+                                    {
+                                        enlace = new EnlaceInstitucion((int)row["idEnlace"], row["enlace"].ToString(), row["nombre_enlace"].ToString(), (int)row["id_institucion_fk"]);
+                                        institucion._enlaces.Add(enlace);
+                                    }
+                                }
+                                retorno = new Dictionary<object, object>();
+                                retorno.Add("institucion", institucion);
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return retorno;
+                }
             #endregion
             #region "backend"
                 public Institucion sp_frontui_getInstitucionById(int idInstitucion,int idUsuarioEjecutor,int idPagina)

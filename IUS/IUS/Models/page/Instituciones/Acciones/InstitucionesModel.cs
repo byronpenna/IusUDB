@@ -50,6 +50,21 @@ namespace IUS.Models.page.Instituciones.Acciones
                         throw x;
                     }
                 }
+                public Dictionary<object, object> sp_frontui_front_getInstitucionById(int idInstitucion, string ip, int idPagina)
+                {
+                    try
+                    {
+                        return this._controlInstitucion.sp_frontui_front_getInstitucionById(idInstitucion, ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
         #endregion
         #region "constructores"
