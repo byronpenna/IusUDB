@@ -15,7 +15,8 @@ namespace IUS.Controllers
         //
         // GET: /Instituciones/
         #region "propiedades"
-            public int idPagina = (int)paginas.Instituciones;
+            public int idPagina                 = (int)paginas.Instituciones;
+            public int idPaginaFichaInstitucion = (int)paginasInternas.FichaInstitucion;
             private InstitucionesModel _model;
         #endregion
         #region "acciones url"
@@ -44,7 +45,26 @@ namespace IUS.Controllers
                 }
                 return View();
             }
-            
+            public ActionResult FichaInstitucion()
+            {
+                List<LlaveIdioma> traducciones;
+                try
+                {
+                    string lang = this.getUserLang();
+                    traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
+                    this.setTraduccion(traducciones);
+                    ViewBag.menu22 = this.activeClass;
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return View();
+            }
             public ActionResult Index()
             {
                 List<LlaveIdioma> traducciones;

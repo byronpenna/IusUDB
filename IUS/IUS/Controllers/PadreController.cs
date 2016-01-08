@@ -22,7 +22,7 @@ namespace IUS.Controllers
             }
             public enum paginasInternas
             {
-                Historia=9,Organizacion=10,Ius=11,Salesianos=12,Identidad=13
+                Historia=9,Organizacion=10,Ius=11,Salesianos=12,Identidad=13,FichaInstitucion=15
             }
             public int _numeroNoticias = 2;
             public enum cookiesSistema {

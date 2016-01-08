@@ -372,6 +372,8 @@
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\media.css" />
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\style.css" />
     <Content Include="Content\ius_theme\views\Informacion\Salesianos\style.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucion\media.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucion\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\media.css" />
@@ -632,6 +634,7 @@
     <Content Include="Views\Repositorio\AllFiles.cshtml" />
     <Content Include="Views\Errors\ErrorCritico.cshtml" />
     <Content Include="Views\Noticias\Todas.cshtml" />
+    <Content Include="Views\Instituciones\FichaInstitucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
