@@ -171,7 +171,16 @@ namespace IUSLibs.FrontUI.Control
                                     institucion._telefonos = new List<TelefonoInstitucion>();
                                     foreach (DataRow rowTelefono in tb[1].Rows)
                                     {
-                                        telefono = new TelefonoInstitucion((int)rowTelefono["idTelefono"], row["telefono"].ToString(), row["texto_telefono"].ToString(), (int)row["id_institucion_fk"]);
+                                        telefono = new TelefonoInstitucion((int)rowTelefono["idTelefono"], rowTelefono["telefono"].ToString(), rowTelefono["texto_telefono"].ToString(), (int)rowTelefono["id_institucion_fk"]);
+                                        telefono._institucion.getInstanciaPais((int)rowTelefono["idPais"]);
+                                        //telefono._institucion._pais._idPais = ;
+                                        string codigo = "";
+                                        if (DBNull.Value != rowTelefono["codigo_pais"])
+                                        {
+                                            codigo = rowTelefono["codigo_pais"].ToString();
+                                        }
+                                        
+                                        telefono._institucion._pais._codigoPais = codigo;
                                         institucion._telefonos.Add(telefono);
                                     }
                                 }
@@ -180,7 +189,7 @@ namespace IUSLibs.FrontUI.Control
                                     institucion._enlaces = new List<EnlaceInstitucion>();
                                     foreach (DataRow rowEnlace in tb[2].Rows)
                                     {
-                                        enlace = new EnlaceInstitucion((int)row["idEnlace"], row["enlace"].ToString(), row["nombre_enlace"].ToString(), (int)row["id_institucion_fk"]);
+                                        enlace = new EnlaceInstitucion((int)rowEnlace["idEnlace"], rowEnlace["enlace"].ToString(), rowEnlace["nombre_enlace"].ToString(), (int)rowEnlace["id_institucion_fk"]);
                                         institucion._enlaces.Add(enlace);
                                     }
                                 }

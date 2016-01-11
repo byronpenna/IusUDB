@@ -1,2 +1,11 @@
-﻿body {
+﻿.imgFotoInstitucion{
+    width:50%;
+    margin: 0 auto;
+}
+.rowFicha{
+    margin-top:3%;
+}
+.rowOtherData{
+    padding-left:3%;
+    padding-top:3%;
 }

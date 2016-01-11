@@ -44,5 +44,11 @@ namespace IUSLibs.FrontUI.Entidades
                 this._institucion       = institucion;
             }
         #endregion
+        #region "Funciones"
+            public void getInstanciaPais(int idPais)
+            {
+                this._institucion.getInstanciaPais(idPais);
+            }
+        #endregion
     }
 }
