@@ -28,17 +28,18 @@
             <td>"+institucion._pais._pais+" </td>\
             <td>" + institucion._nombre + "</td>\
             <td>\
-                <div class='col-lg-6 mitadLinks'>\
-                    <h4>Telefonos </h4>\
-                    " + tel + "\
-                </div>\
-                <div class='col-lg-6 mitadLinks'>\
-                    <h4>Medios electronicos </h4>\
-                    "+enlaces+"\
-                </div>\
+                <a href='" + RAIZ + "/Instituciones/FichaInstitucion/" + institucion._idInstitucion + "' class='btn btn-default'>Ficha</a>\
             </td>\
         </tr>\
         ";
+        /*<div class='col-lg-6 mitadLinks'>\
+                    <h4>Telefonos </h4>\
+        " + tel + "\
+                </div>\
+                <div class='col-lg-6 mitadLinks'>\
+                    <h4>Medios electronicos </h4>\
+        "+enlaces+"\
+                </div>\*/
         return tr;
     }
     function getTrInstitucionNull() {
