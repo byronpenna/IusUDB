@@ -135,16 +135,20 @@
                                         </div>
                                     </div>
                                     <div class="normalMode">
-                                        <div class="btn-group">
-                                            <button class="btn btnEditar btn btn-default btn-xs" @permiso.stringEditar>Editar</button>
-                                            <button class="btn btnDeleteInstitucion btn-default btn-xs" @permiso.stringEliminar>Eliminar</button>
+                                        <div class="row marginNull">
+                                            <div class="btn-group">
+                                                <button class="btn btnEditar btn btn-default btn-xs" @permiso.stringEditar>Editar</button>
+                                                <button class="btn btnDeleteInstitucion btn-default btn-xs" @permiso.stringEliminar>Eliminar</button>
+                                            </div>
                                         </div>
-                                        <div class="btn-group">
-                                            <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })">
-                                                Logo
-                                            </a>
-                                            <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("Index", "GestionTelefonos", new { id=institucion._idInstitucion})">Telefonos</a>
-                                            <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("Index","GestionMediosInstituciones",new {id=institucion._idInstitucion})">Medios Electronicos</a>
+                                        <div class="row marginNull">
+                                            <div class="btn-group">
+                                                <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("SetLogo", "GestionInstituciones", new { id = institucion._idInstitucion })">
+                                                    Logo
+                                                </a>
+                                                <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("Index", "GestionTelefonos", new { id=institucion._idInstitucion})">Telefonos</a>
+                                                <a class="btn btnFromlink btn-default btn-xs" href="@Url.Action("Index","GestionMediosInstituciones",new {id=institucion._idInstitucion})">Medios Electronicos</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
