@@ -107,6 +107,7 @@
     <Compile Include="BaseDatos\ConexionIUS.cs" />
     <Compile Include="FrontUI\Control\ControlEnlaceInstitucion.cs" />
     <Compile Include="FrontUI\Control\ControlInstitucion.cs" />
+    <Compile Include="FrontUI\Control\ControlNivelesEducaion.cs" />
     <Compile Include="FrontUI\Control\ControlPais.cs" />
     <Compile Include="FrontUI\Control\ControlTelefonoInstitucion.cs" />
     <Compile Include="FrontUI\Entidades\Continente.cs" />

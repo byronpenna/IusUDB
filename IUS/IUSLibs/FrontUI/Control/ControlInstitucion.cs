@@ -168,7 +168,9 @@ namespace IUSLibs.FrontUI.Control
                                 DataRow row             = tb[0].Rows[0];
                                 institucion             = new Institucion((int)row["idInstitucion"],row["nombre"].ToString(),row["direccion"].ToString(),(int)row["id_pais_fk"],(bool)row["estado"]);
                                 institucion._pais._pais = row["pais"].ToString();
-                                institucion._logo       = (byte[])row["logo"];
+                                if(DBNull.Value != row["logo"]){
+                                    institucion._logo = (byte[])row["logo"];
+                                }
                                 if (tb[1].Rows.Count > 0) // telefono
                                 {
                                     institucion._telefonos = new List<TelefonoInstitucion>();
@@ -387,12 +389,13 @@ namespace IUSLibs.FrontUI.Control
                 {
                     Institucion institucionAgregada = null; Pais pais;
                     SPIUS sp = new SPIUS("sp_frontui_insertInstitucion");
-
-                    sp.agregarParametro("nombre", institucionAgregar._nombre);
-                    sp.agregarParametro("direccion", institucionAgregar._direccion);
-                    sp.agregarParametro("idPais", institucionAgregar._pais._idPais);
-                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                    sp.agregarParametro("idPagina", idPagina);
+                    // parametros
+                        sp.agregarParametro("nombre", institucionAgregar._nombre);
+                        sp.agregarParametro("direccion", institucionAgregar._direccion);
+                        sp.agregarParametro("idPais", institucionAgregar._pais._idPais);
+                        sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                        sp.agregarParametro("idPagina", idPagina);
+                    // acciones
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());

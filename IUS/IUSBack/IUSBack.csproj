@@ -190,6 +190,7 @@
     <Compile Include="Controllers\Website\ConfiguracionWebsiteController.cs" />
     <Compile Include="Controllers\Errors\ErrorsController.cs" />
     <Compile Include="Controllers\Website\GestionIdiomaWebsiteController.cs" />
+    <Compile Include="Controllers\Website\GestionInstituciones\AdicionalesInstitucionesController.cs" />
     <Compile Include="Controllers\Website\GestionInstituciones\GestionInstitucionesController.cs" />
     <Compile Include="Controllers\Website\GestionInstituciones\GestionMediosInstitucionesController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\GestionPersonasController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Models\Page\ConfiguracionWebsite\Acciones\ConfiguracionWebsiteModel.cs" />
     <Compile Include="Models\Page\Errors\ErrorsModel.cs" />
     <Compile Include="Models\Page\GestionIdiomaWebsite\Acciones\GestionIdiomaWebsiteModel.cs" />
+    <Compile Include="Models\Page\GestionInstituciones\Acciones\AdicionalInstitucionesModel.cs" />
     <Compile Include="Models\Page\GestionInstituciones\Acciones\GestionInstitucionesModel.cs" />
     <Compile Include="Models\Page\GestionInstituciones\Acciones\GestionTelefonoModel.cs" />
     <Compile Include="Models\Page\GestionInstituciones\Acciones\MediosInstitucionesModel.cs" />
@@ -486,6 +488,8 @@
     <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\AdicionalesInstituciones\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\AdicionalesInstituciones\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetLogo\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\SetLogo\style.css" />
@@ -672,6 +676,8 @@
     <Content Include="Scripts\Views\ConfiguracionWebsite\script.js" />
     <Content Include="Scripts\Views\GestionIdiomaWebsite\functions.js" />
     <Content Include="Scripts\Views\GestionIdiomaWebsite\script.js" />
+    <Content Include="Scripts\Views\GestionInstituciones\AdicionalInstuticiones\functions.js" />
+    <Content Include="Scripts\Views\GestionInstituciones\AdicionalInstuticiones\script.js" />
     <Content Include="Scripts\Views\GestionInstituciones\functions.js" />
     <Content Include="Scripts\Views\GestionInstituciones\script.js" />
     <Content Include="Scripts\Views\GestionInstituciones\SetLogo\functions.js" />
@@ -879,6 +885,7 @@
     <Content Include="Views\GestionPersonas\GestionLaboral.cshtml" />
     <Content Include="Views\RecursosHumanos\Index.cshtml" />
     <Content Include="Views\GestionPersonas\Detalle.cshtml" />
+    <Content Include="Views\AdicionalesInstituciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
