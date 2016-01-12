@@ -10,6 +10,7 @@ namespace IUSLibs.RRHH.Entidades.Formacion
         #region "propiedades"
             public int      _idArea;
             public string   _area;
+            public string   _codigo;
         #endregion
         #region "Constructores"
             // minimo        
@@ -18,10 +19,11 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                     this._idArea = idArea;
                 }
             // full 
-                public AreaCarrera(int idArea,string area)
+                public AreaCarrera(int idArea,string area,string codigo="")
                 {
                     this._idArea    = idArea;
                     this._area      = area;
+                    this._codigo    = codigo;
                 }
         #endregion
     }

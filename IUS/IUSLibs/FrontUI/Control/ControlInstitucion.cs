@@ -11,6 +11,8 @@ using System.Text;
     using IUSLibs.GENERALS;
     using IUSLibs.LOGS;
     using IUSLibs.FrontUI.Entidades;
+    //---
+    using IUSLibs.RRHH.Entidades.Formacion;
 namespace IUSLibs.FrontUI.Control
 {
     public class ControlInstitucion:PadreLib
@@ -150,6 +152,7 @@ namespace IUSLibs.FrontUI.Control
                         // normales
                             Institucion institucion = null;
                             TelefonoInstitucion telefono; EnlaceInstitucion enlace;
+                            NivelEducacion nivelEducacion; AreaCarrera areaCarrera;
                     // procedimiento
                         SPIUS sp = new SPIUS("sp_frontui_front_getInstitucionById");
                         sp.agregarParametro("idInstitucion", idInstitucion);
@@ -184,13 +187,31 @@ namespace IUSLibs.FrontUI.Control
                                         institucion._telefonos.Add(telefono);
                                     }
                                 }
-                                if (tb[2].Rows.Count > 0)// enlace 
+                                if (tb[2].Rows.Count > 0) // enlace 
                                 {
                                     institucion._enlaces = new List<EnlaceInstitucion>();
                                     foreach (DataRow rowEnlace in tb[2].Rows)
                                     {
                                         enlace = new EnlaceInstitucion((int)rowEnlace["idEnlace"], rowEnlace["enlace"].ToString(), rowEnlace["nombre_enlace"].ToString(), (int)rowEnlace["id_institucion_fk"]);
                                         institucion._enlaces.Add(enlace);
+                                    }
+                                }
+                                if (tb[3].Rows.Count > 0) //niveles
+                                {
+                                    institucion._niveles = new List<NivelEducacion>();
+                                    foreach (DataRow rowNiveles in tb[3].Rows)
+                                    {
+                                        nivelEducacion = new NivelEducacion((int)rowNiveles["idNivelEducacion"], rowNiveles["codigo"].ToString(), rowNiveles["descripcion"].ToString());
+                                        institucion._niveles.Add(nivelEducacion);
+                                    }
+                                }
+                                if (tb[4].Rows.Count > 0) // areas de conocimiento
+                                {
+                                    institucion._areas = new List<AreaCarrera>();
+                                    foreach (DataRow rowAreas in tb[4].Rows)
+                                    {
+                                        areaCarrera = new AreaCarrera((int)rowAreas["idArea"], rowAreas["area"].ToString(), rowAreas["codigo"].ToString());
+                                        institucion._areas.Add(areaCarrera);
                                     }
                                 }
                                 retorno = new Dictionary<object, object>();

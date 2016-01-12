@@ -112,6 +112,7 @@
     <Compile Include="FrontUI\Entidades\Continente.cs" />
     <Compile Include="FrontUI\Entidades\EnlaceInstitucion.cs" />
     <Compile Include="FrontUI\Entidades\Institucion.cs" />
+    <Compile Include="FrontUI\Entidades\NivelEducacion.cs" />
     <Compile Include="FrontUI\Entidades\Pais.cs" />
     <Compile Include="FrontUI\Entidades\TelefonoInstitucion.cs" />
     <Compile Include="FrontUI\Eventos\Control\ControlEventos.cs" />
