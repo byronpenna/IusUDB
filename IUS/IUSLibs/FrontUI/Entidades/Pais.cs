@@ -8,11 +8,11 @@ namespace IUSLibs.FrontUI.Entidades
     public class Pais
     {
         #region "propiedades"
-            public int _idPais;
-            public string _pais;
-            public Continente _continente;
+            public int          _idPais;
+            public string       _pais;
+            public Continente   _continente;
+            public string       _codigoPais;
         #endregion
-            
         #region "constructores"
             public Pais(int idPais)
             {

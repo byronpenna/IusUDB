@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.FrontUI.Entidades;
+@section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucion/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucion/media.css" />
 }
@@ -6,4 +7,62 @@
     <script src="~/Scripts/views/Instituciones/script.js"></script>
     <script src="~/Scripts/views/Instituciones/functions.js"></script>
 }
-<h2>FichaInstitucion</h2>
+@{
+    string src = "";
+    Dictionary<object, object> data             = (Dictionary<object, object>)ViewBag.data;
+    Institucion institucion                     = (Institucion)data["institucion"];
+    if (institucion._logo != null)
+    {
+        src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+    }
+    else
+    {
+        src = Url.Content("~/Content/images/generales/image-color.png");
+    }
+}
+<div class="row marginNull rowFicha">
+    <div class="row marginNull">
+        <div class="col-lg-4 text-center">
+            <img class="imgFotoInstitucion" src="@src" />
+        </div>
+        <div class="col-lg-8">
+            <h2>@institucion._nombre</h2>
+            <address>
+                @institucion._direccion
+            </address>
+            <div class="row marginNull">
+                @if (institucion._telefonos != null)
+                {
+                    foreach (TelefonoInstitucion telefono in institucion._telefonos)
+                    {
+                        string tel = "";
+                        if (telefono._institucion._pais._codigoPais != "")
+                        {
+                            tel = "(" + telefono._institucion._pais._codigoPais + ")";
+                        }
+                        <span>Tel. @tel @telefono._telefono</span>
+                    }
+                }
+
+            </div>
+            <div class="row marginNull">
+                @if (institucion._enlaces != null)
+                {
+                    foreach (EnlaceInstitucion enlace in institucion._enlaces)
+                    {
+                        <span>@enlace._enlace</span>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="row marginNull rowOtherData">
+        <div class="row marginNull">
+            <h4>@ViewData["titulo-nivelesEducacion"]</h4>
+        </div>
+        <div class="row marginNull">
+            <h4>@ViewData["titulo-areasConocimiento"]</h4>
+        </div>
+    </div>
+</div>

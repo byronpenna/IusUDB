@@ -8,6 +8,8 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.FrontUI.Control;
+    using IUSLibs.FrontUI.Entidades;
 namespace IUS.Controllers
 {
     public class InstitucionesController : PadreController
@@ -45,12 +47,16 @@ namespace IUS.Controllers
                 }
                 return View();
             }
-            public ActionResult FichaInstitucion()
+            public ActionResult FichaInstitucion(int id)
             {
                 List<LlaveIdioma> traducciones;
                 try
                 {
                     string lang = this.getUserLang();
+                    //Institucion institucion = this._model.sp
+                    string ip = Request.UserHostAddress;
+                    Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(id, ip, this.idPaginaFichaInstitucion);
+                    ViewBag.data = data;
                     traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
                     this.setTraduccion(traducciones);
                     ViewBag.menu22 = this.activeClass;

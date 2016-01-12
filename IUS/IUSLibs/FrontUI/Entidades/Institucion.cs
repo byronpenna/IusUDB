@@ -53,5 +53,11 @@ namespace IUSLibs.FrontUI.Entidades
                     this._pais          = pais;
                 }
         #endregion
+        #region "metodos"
+            public void getInstanciaPais(int idPais)
+            {
+                this._pais = new Pais(idPais);
+            }
+        #endregion
     }
 }
