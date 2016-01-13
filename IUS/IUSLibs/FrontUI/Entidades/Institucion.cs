@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using IUSLibs.RRHH.Entidades.Formacion;
 namespace IUSLibs.FrontUI.Entidades
 {
     public class Institucion
@@ -15,8 +16,11 @@ namespace IUSLibs.FrontUI.Entidades
             public bool     _estado;
             public byte[]   _logo;
             // extras a tabla
-                public List<TelefonoInstitucion> _telefonos;
-                public List<EnlaceInstitucion> _enlaces;
+                public List<TelefonoInstitucion>    _telefonos;
+                public List<EnlaceInstitucion>      _enlaces;
+                //------------
+                public List<NivelEducacion>         _niveles;
+                public List<AreaCarrera>            _areas;
         #endregion
         #region "constructores"
             public Institucion(int idInstitucion, byte[] logo)

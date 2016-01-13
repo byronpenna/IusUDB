@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.FrontUI.Entidades;
+@using IUSLibs.RRHH.Entidades.Formacion;
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucion/style.css" />
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucion/media.css" />
@@ -50,7 +51,9 @@
                 {
                     foreach (EnlaceInstitucion enlace in institucion._enlaces)
                     {
-                        <span>@enlace._enlace</span>
+                        <span>
+                            <a href="@enlace._enlace">@enlace._enlace</a>
+                        </span>
                     }
                 }
 
@@ -58,11 +61,43 @@
         </div>
     </div>
     <div class="row marginNull rowOtherData">
-        <div class="row marginNull">
+        <div class="row marginNull filaOtherData">
             <h4>@ViewData["titulo-nivelesEducacion"]</h4>
+            @if (institucion._niveles != null && institucion._niveles.Count > 0)
+            {
+                foreach (NivelEducacion nivel in institucion._niveles)
+                {
+                    <div class="row marginNull">
+                        <div class="col-lg-2">
+                            @nivel._codigo -
+                        </div>
+                        <div class="col-lg-4">
+                            @nivel._descripcion
+                        </div>
+                    </div>
+
+                }
+
+            }
         </div>
-        <div class="row marginNull">
+        <div class="row marginNull filaOtherData">
             <h4>@ViewData["titulo-areasConocimiento"]</h4>
+            @if (institucion._areas != null && institucion._areas.Count > 0)
+            {
+                foreach (AreaCarrera area in institucion._areas)
+                {
+                    <div class="row marginNull">
+                        <div class="col-lg-2">
+                            @area._codigo -
+                        </div>
+                        <div class="col-lg-4">
+                            @area._area
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
+    @*</div>
+</div>*@

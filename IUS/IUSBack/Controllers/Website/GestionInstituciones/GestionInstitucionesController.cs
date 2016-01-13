@@ -81,7 +81,7 @@ namespace IUSBack.Controllers
                 {
                     
                     Usuario usuarioSession              = this.getUsuarioSesion();
-                    Permiso permisos                    = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                    //Permiso permisos                    = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> inicial  = this._model.cargaInicialIndex(usuarioSession._idUsuario,this._idPagina);
                     // set viewbags
                         ViewBag.paises          = inicial["paises"];
