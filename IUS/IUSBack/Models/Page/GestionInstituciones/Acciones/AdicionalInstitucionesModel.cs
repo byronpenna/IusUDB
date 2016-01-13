@@ -19,15 +19,15 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
             
         #endregion
         #region "funciones"
-        public Dictionary<object, object> getInfoInicialAdicionalInstituciones(int idUsuarioEjecutor,int idPagina)
+        public Dictionary<object, object> getInfoInicialAdicionalInstituciones(int idUsuarioEjecutor,int idPagina,int idInstitucion)
         {
             Dictionary<object, object> retorno = new Dictionary<object, object>();
             try
             {
                 ControlNivelesEducaion  controlNivel    = new ControlNivelesEducaion();
                 ControlAreaCarrera      controlArea     = new ControlAreaCarrera();
-                retorno.Add("nivelesEducacion", controlNivel.sp_frontui_getNivelesEducacion(idUsuarioEjecutor, idPagina));
-                retorno.Add("areasConocimiento", controlArea.sp_rrhh_getAreasCarreras(idUsuarioEjecutor, idPagina));
+                retorno.Add("nivelesEducacion", controlNivel.sp_frontui_getNivelesEducacion(idUsuarioEjecutor, idPagina,idInstitucion));
+                retorno.Add("areasConocimiento", controlArea.sp_frontui_getAreasConoInstituciones(idUsuarioEjecutor, idPagina,idInstitucion));
                 return retorno;
             }
             catch (ErroresIUS x)

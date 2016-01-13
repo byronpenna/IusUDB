@@ -9,6 +9,7 @@
     Dictionary<object, object>  iniciales           = (Dictionary<object, object>)ViewBag.iniciales;
     List<NivelEducacion>        nivelesEducacion    = (List<NivelEducacion>)iniciales["nivelesEducacion"];
     List<AreaCarrera>           areasCarrera        = (List<AreaCarrera>)iniciales["areasConocimiento"];
+    string claseExtra = "";
 }
 @section scriptsPersonalizados{
     <!-- propios -->
@@ -24,8 +25,6 @@
         <div class="row marginNull rowOpcionesNiveles">
             @if (nivelesEducacion != null && nivelesEducacion.Count > 0)
             {
-                string claseExtra = "";
-                
                 foreach (NivelEducacion nivelEducacion in nivelesEducacion)
                 {
                     if (nivelEducacion._selected)
@@ -65,8 +64,16 @@
             {
                 foreach (AreaCarrera area in areasCarrera)
                 {
+                    if (area._selected)
+                    {
+                        claseExtra = "cuadritoSelected";
+                    }
+                    else
+                    {
+                        claseExtra = "";
+                    }
                     <div class="col-lg-4 text-center">
-                        <div class="divAreaCarrera">
+                        <div class="divAreaCarrera @claseExtra">
                             <p>@area._area</p>
                         </div>
                     </div>

@@ -19,13 +19,14 @@ namespace IUSLibs.FrontUI.Control
     {
         #region "funciones"
             #region "get"
-                public List<NivelEducacion> sp_frontui_getNivelesEducacion(int idUsuarioEjecutor,int idPagina)
+                public List<NivelEducacion> sp_frontui_getNivelesEducacion(int idUsuarioEjecutor,int idPagina,int idInstitucion=-1)
                 {
                     NivelEducacion nivelEducacion = null;
-                    List<NivelEducacion> nivelesEducacion = null; List<NivelEducacion> nivelesSeleccionados = null;
+                    List<NivelEducacion> nivelesEducacion = null;
                     SPIUS sp = new SPIUS("sp_frontui_getNivelesEducacion");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
+                    sp.agregarParametro("idInstitucion", idInstitucion);
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());

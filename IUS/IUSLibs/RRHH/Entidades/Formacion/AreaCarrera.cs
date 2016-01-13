@@ -11,6 +11,8 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             public int      _idArea;
             public string   _area;
             public string   _codigo;
+            // adicionales 
+            public bool     _selected= false;
         #endregion
         #region "Constructores"
             // minimo        
