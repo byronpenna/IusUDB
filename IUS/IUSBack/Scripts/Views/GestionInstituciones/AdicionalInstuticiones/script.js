@@ -10,4 +10,10 @@
             $(this).find(".txtHdEstado").val(1)
         }
     })
+    $(document).on("click", ".btnGuardarAreaConocimiento", function () {
+
+    })
+    $(document).on("click", ".btnGuardarNivel", function () {
+
+    })
 })
