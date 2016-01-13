@@ -11,6 +11,22 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             public int      _idArea;
             public string   _area;
             public string   _codigo;
+            // adicionales 
+            public bool     _selected= false;
+        #endregion
+        #region "Propiedades calculadas"
+            public int getNumEstadoSelected
+            {
+                get
+                {
+                    if (this._selected)
+                    {
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                }
+            }
         #endregion
         #region "Constructores"
             // minimo        

@@ -25,7 +25,7 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
             }
         #endregion
         #region "url"
-            public ActionResult Index()
+            public ActionResult Index(int id)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 3);
                 if (seguridadInicial != null)
@@ -37,7 +37,7 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                     Usuario usuarioSession = this.getUsuarioSesion();
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.titleModulo = "Manejo de instituciones";
-                    ViewBag.iniciales = this._model.getInfoInicialAdicionalInstituciones(usuarioSession._idUsuario, this._idPagina);
+                    ViewBag.iniciales = this._model.getInfoInicialAdicionalInstituciones(usuarioSession._idUsuario, this._idPagina,id);
                     return View();
                 }
                 catch (ErroresIUS x)

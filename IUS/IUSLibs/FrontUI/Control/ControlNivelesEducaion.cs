@@ -19,13 +19,14 @@ namespace IUSLibs.FrontUI.Control
     {
         #region "funciones"
             #region "get"
-                public List<NivelEducacion> sp_frontui_getNivelesEducacion(int idUsuarioEjecutor,int idPagina)
+                public List<NivelEducacion> sp_frontui_getNivelesEducacion(int idUsuarioEjecutor,int idPagina,int idInstitucion=-1)
                 {
                     NivelEducacion nivelEducacion = null;
                     List<NivelEducacion> nivelesEducacion = null;
                     SPIUS sp = new SPIUS("sp_frontui_getNivelesEducacion");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
+                    sp.agregarParametro("idInstitucion", idInstitucion);
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
@@ -37,6 +38,10 @@ namespace IUSLibs.FrontUI.Control
                                 foreach (DataRow row in tb[0].Rows)
                                 {
                                     nivelEducacion = new NivelEducacion((int)row["idNivelEducacion"], row["codigo"].ToString(), row["descripcion"].ToString());
+                                    if ((int)row["isSelected"] == 1)
+                                    {
+                                        nivelEducacion._selected = true;
+                                    }
                                     nivelesEducacion.Add(nivelEducacion);
                                 }
                             }

@@ -11,6 +11,24 @@ namespace IUSLibs.FrontUI.Entidades
             public int      _idNivelEducacion;
             public string   _codigo;
             public string   _descripcion;
+            // diferentes a tablas 
+            public bool     _selected = false;
+            #region "propiedades construidas"
+                public int getNumEstado
+                {
+                    get
+                    {
+                        if (this._selected)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+            #endregion
         #endregion
         #region "constructores"
             // Para agregar

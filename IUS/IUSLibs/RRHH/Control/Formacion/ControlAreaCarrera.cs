@@ -22,6 +22,45 @@ namespace IUSLibs.RRHH.Control.Formacion
                 
             #endregion
             #region "get"
+                public List<AreaCarrera> sp_frontui_getAreasConoInstituciones(int idUsuarioEjecutor,int idPagina,int idInstitucion)
+                {
+                    List<AreaCarrera> areasCarreras = null;
+                    AreaCarrera areaCarrera;
+                    SPIUS sp = new SPIUS("sp_frontui_getAreasConoInstituciones");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    sp.agregarParametro("idInstitucion", idInstitucion);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                areasCarreras = new List<AreaCarrera>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    areaCarrera = new AreaCarrera((int)row["idArea"], row["area"].ToString(), row["codigo"].ToString());
+                                    if ((int)row["isSelected"] == 1)
+                                    {
+                                        areaCarrera._selected = true;
+                                    }
+                                    areasCarreras.Add(areaCarrera);
+                                }
+
+                            }
+                        }
+                        return areasCarreras;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public List<AreaCarrera> sp_rrhh_getAreasCarreras(int idUsuarioEjecutor, int idPagina)
                 {
                     List<AreaCarrera> areasCarreras = null;
