@@ -1,4 +1,7 @@
-﻿.cuadritoNivelEducacion{
+﻿.rowBotones{
+    margin-top:4%;
+}
+.cuadritoNivelEducacion{
     margin-bottom:8%;
     cursor:pointer;
     border:solid 1px black;

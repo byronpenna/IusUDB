@@ -22,6 +22,9 @@
 <div class="row marginNull">
     <div class="col-lg-6">
         <h3 class="text-center">Seleccione nivel</h3>
+        <div class="row marginNull text-center rowBotones">
+            <button class="btn btn-sm btn-default">Guardar</button>
+        </div>
         <div class="row marginNull rowOpcionesNiveles">
             @if (nivelesEducacion != null && nivelesEducacion.Count > 0)
             {
@@ -61,6 +64,9 @@
     </div>
     <div class="col-lg-6">
         <h3 class="text-center">Seleccione areas de conocimiento</h3>
+        <div class="row marginNull text-center rowBotones">
+            <button class="btn btn-default">Guardar</button>
+        </div>
         <div class="row marginNull divOpcionesAreaCono">
             @if (areasCarrera != null && areasCarrera.Count > 0)
             {
