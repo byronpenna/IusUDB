@@ -22,7 +22,7 @@ namespace IUSLibs.FrontUI.Control
                 public List<NivelEducacion> sp_frontui_getNivelesEducacion(int idUsuarioEjecutor,int idPagina)
                 {
                     NivelEducacion nivelEducacion = null;
-                    List<NivelEducacion> nivelesEducacion = null;
+                    List<NivelEducacion> nivelesEducacion = null; List<NivelEducacion> nivelesSeleccionados = null;
                     SPIUS sp = new SPIUS("sp_frontui_getNivelesEducacion");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
@@ -37,6 +37,10 @@ namespace IUSLibs.FrontUI.Control
                                 foreach (DataRow row in tb[0].Rows)
                                 {
                                     nivelEducacion = new NivelEducacion((int)row["idNivelEducacion"], row["codigo"].ToString(), row["descripcion"].ToString());
+                                    if ((int)row["isSelected"] == 1)
+                                    {
+                                        nivelEducacion._selected = true;
+                                    }
                                     nivelesEducacion.Add(nivelEducacion);
                                 }
                             }

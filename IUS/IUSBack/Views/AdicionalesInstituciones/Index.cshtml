@@ -1,10 +1,14 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿@using IUSLibs.FrontUI.Entidades
+@using IUSLibs.RRHH.Entidades.Formacion
 @section estilosPersonalizados{
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/AdicionalesInstituciones/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/AdicionalesInstituciones/media.css" />
+}
+@{
+    Dictionary<object, object>  iniciales           = (Dictionary<object, object>)ViewBag.iniciales;
+    List<NivelEducacion>        nivelesEducacion    = (List<NivelEducacion>)iniciales["nivelesEducacion"];
+    List<AreaCarrera>           areasCarrera        = (List<AreaCarrera>)iniciales["areasConocimiento"];
 }
 @section scriptsPersonalizados{
     <!-- propios -->
@@ -16,9 +20,33 @@
 </div>
 <div class="row marginNull">
     <div class="col-lg-6">
-        <h4 class="text-center">Seleccione nivel</h4>
-        <div class="row marginNull">
-            <div class="col-lg-4">
+        <h3 class="text-center">Seleccione nivel</h3>
+        <div class="row marginNull rowOpcionesNiveles">
+            @if (nivelesEducacion != null && nivelesEducacion.Count > 0)
+            {
+                string claseExtra = "";
+                
+                foreach (NivelEducacion nivelEducacion in nivelesEducacion)
+                {
+                    if (nivelEducacion._selected)
+                    {
+                        claseExtra = "cuadritoSelected";
+                    }
+                    else
+                    {
+                        claseExtra = "";
+                    }
+                    <div class="col-lg-6">
+                        <div class="cuadritoNivelEducacion @claseExtra">
+                            <p>
+                                @nivelEducacion._codigo - @nivelEducacion._descripcion
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+
+            @*<div class="col-lg-4">
                 ISCED 5 - Terciaria de corto ciclo
             </div>
             <div class="col-lg-4">
@@ -26,10 +54,33 @@
             </div>
             <div class="col-lg-4">
                 ISCED 7 - Grado en educación terciaria o nivel equivalente
-            </div>
+            </div>*@
+            
         </div>
     </div>
     <div class="col-lg-6">
-        <h4 class="text-center">Seleccione areas de conocimiento</h4>
+        <h3 class="text-center">Seleccione areas de conocimiento</h3>
+        <div class="row marginNull divOpcionesAreaCono">
+            @if (areasCarrera != null && areasCarrera.Count > 0)
+            {
+                foreach (AreaCarrera area in areasCarrera)
+                {
+                    <div class="col-lg-4 text-center">
+                        <div class="divAreaCarrera">
+                            <p>@area._area</p>
+                        </div>
+                    </div>
+                }
+            }
+            @*<div class="col-lg-12 text-center">
+                Educación
+            </div>
+            <div class="col-lg-12">
+                Tecnologías de la información y la comunicación (TIC)
+            </div>
+            <div class="col-lg-12">
+                Ingenierías, industria y construcción
+            </div>*@
+        </div>
     </div>
 </div>

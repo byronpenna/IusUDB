@@ -1,1 +1,54 @@
-﻿
+﻿.cuadritoNivelEducacion{
+    margin-bottom:8%;
+    cursor:pointer;
+    border:solid 1px black;
+    height:70px;
+    display:table;
+    width:100%;
+    padding-right:3%;
+    padding-left:3%;
+}
+.cuadritoNivelEducacion:hover,.divAreaCarrera:hover{
+    background:#F5F5F5;
+    /*color:white;*/
+}
+/* 1 */
+.cuadritoNivelEducacion p{
+    text-align:center;
+    position:relative;
+    display:table-cell;
+    vertical-align:middle;
+    
+}
+
+.cuadritoSelected,.cuadritoSelected:hover{
+    background:#95a5a6;
+    /*font-weight:bold;*/
+    color:white;
+}
+
+.rowOpcionesNiveles{
+    margin-top:8%;
+}
+.divAreaCarrera{
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-right:10px;
+    padding-left:10px;
+    border:solid 1px black; 
+    margin-bottom:3%;
+    height:120px;
+    display:table;
+    width:100%;
+    cursor:pointer;
+}
+/* 1 */
+.divAreaCarrera p{
+    text-align:center;
+    position:relative;
+    display:table-cell;
+    vertical-align:middle;
+}
+.divOpcionesAreaCono{
+    margin-top:8%;
+}

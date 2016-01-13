@@ -11,6 +11,8 @@ namespace IUSLibs.FrontUI.Entidades
             public int      _idNivelEducacion;
             public string   _codigo;
             public string   _descripcion;
+            // diferentes a tablas 
+            public bool     _selected = false;
         #endregion
         #region "constructores"
             // Para agregar
