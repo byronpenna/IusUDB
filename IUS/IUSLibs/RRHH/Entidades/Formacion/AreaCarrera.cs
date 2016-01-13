@@ -14,6 +14,20 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             // adicionales 
             public bool     _selected= false;
         #endregion
+        #region "Propiedades calculadas"
+            public int getNumEstadoSelected
+            {
+                get
+                {
+                    if (this._selected)
+                    {
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                }
+            }
+        #endregion
         #region "Constructores"
             // minimo        
                 public AreaCarrera(int idArea)

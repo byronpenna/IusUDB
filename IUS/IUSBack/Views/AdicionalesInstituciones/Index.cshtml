@@ -13,8 +13,8 @@
 }
 @section scriptsPersonalizados{
     <!-- propios -->
-        <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstituciones/script.js"></script>
-        <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstituciones/functions.js"></script>    
+        <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstuticiones/script.js"></script>
+        <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstuticiones/functions.js"></script>    
 }
 <div class="row marginNull divMensajesGenerales">
 
@@ -37,6 +37,8 @@
                     }
                     <div class="col-lg-6">
                         <div class="cuadritoNivelEducacion @claseExtra">
+                            <input type="hidden" class="txtHdIdNivelEducacion" value="@nivelEducacion._idNivelEducacion"/>
+                            <input type="hidden" class="txtHdEstado" value="@nivelEducacion.getNumEstado" />
                             <p>
                                 @nivelEducacion._codigo - @nivelEducacion._descripcion
                             </p>
@@ -74,6 +76,8 @@
                     }
                     <div class="col-lg-4 text-center">
                         <div class="divAreaCarrera @claseExtra">
+                            <input type="hidden" name="txtHdIdArea" class="txtHdIdArea" value="@area._idArea"/>
+                            <input type="hidden" name="txtHdIdEstadoArea" class="txtHdEstado txtHdIdEstadoArea"  value="@area.getNumEstadoSelected"/>
                             <p>@area._area</p>
                         </div>
                     </div>
