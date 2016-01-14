@@ -34,10 +34,11 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                 }
                 try
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    ViewBag.titleModulo = "Manejo de instituciones";
-                    ViewBag.iniciales = this._model.getInfoInicialAdicionalInstituciones(usuarioSession._idUsuario, this._idPagina,id);
+                    Usuario usuarioSession  = this.getUsuarioSesion();
+                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.titleModulo     = "Manejo de instituciones";
+                    ViewBag.iniciales       = this._model.getInfoInicialAdicionalInstituciones(usuarioSession._idUsuario, this._idPagina,id);
+                    ViewBag.idInstitucion   = id;
                     return View();
                 }
                 catch (ErroresIUS x)
@@ -52,6 +53,63 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                 }
             }
         #endregion
-        
+        #region "acciones ajax"
+            public ActionResult sp_frontui_insertAreaConocimientoInstitucion()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("areasConocimiento", this._model.sp_frontui_insertAreaConocimientoInstitucion(frm["strAreaCarrera"].ToString(), this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina));
+                        respuesta.Add("estado", true);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
+            public ActionResult sp_frontui_insertNivelInstituciones()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("nivelesEducacion", this._model.sp_frontui_insertNivelInstituciones(frm["strEstadoNivel"].ToString(), this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina));
+                        respuesta.Add("estado", true);
+                        //, , , 
+                    }   
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
+        #endregion
     }
 }

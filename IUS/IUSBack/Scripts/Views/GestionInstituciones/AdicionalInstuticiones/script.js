@@ -11,9 +11,27 @@
         }
     })
     $(document).on("click", ".btnGuardarAreaConocimiento", function () {
-
+        var frm = serializeSection($(".divAreaCarrera"));
+        frm.areaCarrera = new Array();
+        $.each(frm.txtHdIdEstadoArea, function (i, val) {
+            if (val == 1) {
+                frm.areaCarrera.push(frm.txtHdIdArea[i]);
+            }
+        })
+        frm.idInstitucion = $(".txtHdIdInstitucion").val();
+        btnGuardarAreaConocimiento(frm);
+        
     })
     $(document).on("click", ".btnGuardarNivel", function () {
-
+        var frm = serializeSection($(".rowOpcionesNiveles"));
+        frm.estadoNivel = new Array();
+        $.each(frm.txtHdEstadoNivel, function (i, val) {
+            if (val == 1) {
+                frm.estadoNivel.push(frm.txtHdIdNivelEducacion[i]);
+            }
+        })
+        frm.idInstitucion = $(".txtHdIdInstitucion").val();
+        
+        btnGuardarNivel(frm);
     })
 })
