@@ -14,6 +14,15 @@
 
     })
     $(document).on("click", ".btnGuardarNivel", function () {
-
+        var frm = serializeSection($(".rowOpcionesNiveles"));
+        frm.estadoNivel = new Array();
+        $.each(frm.txtHdEstadoNivel, function (i, val) {
+            if (val == 1) {
+                frm.estadoNivel.push(frm.txtHdIdNivelEducacion[i]);
+            }
+        })
+        frm.idInstitucion = $(".txtHdIdInstitucion").val();
+        
+        btnGuardarNivel(frm);
     })
 })

@@ -20,10 +20,14 @@
 
 </div>
 <div class="row marginNull">
+    <input type="hidden" class="txtHdIdInstitucion" value="@ViewBag.idInstitucion" />
     <div class="col-lg-6">
         <h3 class="text-center">Seleccione nivel</h3>
         <div class="row marginNull text-center rowBotones">
             <button class="btn btn-sm btn-default btnGuardarNivel">Guardar</button>
+            <div class="row marginNull divGeneralesNivelEducativo">
+
+            </div>
         </div>
         <div class="row marginNull rowOpcionesNiveles">
             @if (nivelesEducacion != null && nivelesEducacion.Count > 0)
@@ -40,8 +44,8 @@
                     }
                     <div class="col-lg-6">
                         <div class="cuadritoNivelEducacion @claseExtra">
-                            <input type="hidden" class="txtHdIdNivelEducacion" value="@nivelEducacion._idNivelEducacion"/>
-                            <input type="hidden" class="txtHdEstado" value="@nivelEducacion.getNumEstado" />
+                            <input type="hidden" class="txtHdIdNivelEducacion" name="txtHdIdNivelEducacion" value="@nivelEducacion._idNivelEducacion"/>
+                            <input type="hidden" class="txtHdEstado" name="txtHdEstadoNivel" value="@nivelEducacion.getNumEstado" />
                             <p>
                                 @nivelEducacion._codigo - @nivelEducacion._descripcion
                             </p>

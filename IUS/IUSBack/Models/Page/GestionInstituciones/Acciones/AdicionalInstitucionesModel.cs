@@ -10,7 +10,9 @@ using System.Web;
     // otras
         //using IUSLibs.FrontUI.Entidades;
         using IUSLibs.FrontUI.Control;
+        using IUSLibs.FrontUI.Entidades;
         using IUSLibs.RRHH.Control.Formacion;
+        
 namespace IUSBack.Models.Page.GestionInstituciones.Acciones
 {
     public class AdicionalInstitucionesModel:PadreModel
@@ -19,29 +21,49 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
             
         #endregion
         #region "funciones"
-        public Dictionary<object, object> getInfoInicialAdicionalInstituciones(int idUsuarioEjecutor,int idPagina,int idInstitucion)
-        {
-            Dictionary<object, object> retorno = new Dictionary<object, object>();
-            try
+            #region "get"
+                public Dictionary<object, object> getInfoInicialAdicionalInstituciones(int idUsuarioEjecutor,int idPagina,int idInstitucion)
             {
-                ControlNivelesEducaion  controlNivel    = new ControlNivelesEducaion();
-                ControlAreaCarrera      controlArea     = new ControlAreaCarrera();
-                retorno.Add("nivelesEducacion", controlNivel.sp_frontui_getNivelesEducacion(idUsuarioEjecutor, idPagina,idInstitucion));
-                retorno.Add("areasConocimiento", controlArea.sp_frontui_getAreasConoInstituciones(idUsuarioEjecutor, idPagina,idInstitucion));
-                return retorno;
+                Dictionary<object, object> retorno = new Dictionary<object, object>();
+                try
+                {
+                    ControlNivelesEducaion  controlNivel    = new ControlNivelesEducaion();
+                    ControlAreaCarrera      controlArea     = new ControlAreaCarrera();
+                    retorno.Add("nivelesEducacion", controlNivel.sp_frontui_getNivelesEducacion(idUsuarioEjecutor, idPagina,idInstitucion));
+                    retorno.Add("areasConocimiento", controlArea.sp_frontui_getAreasConoInstituciones(idUsuarioEjecutor, idPagina,idInstitucion));
+                    return retorno;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
             }
-            catch (ErroresIUS x)
-            {
-                throw x;
-            }
-            catch (Exception x)
-            {
-                throw x;
-            }
-        } 
+            #endregion
+            #region "set"
+                public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,int idInstitucion,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        ControlInstitucion controlInstitucion = new ControlInstitucion();
+                        return controlInstitucion.sp_frontui_insertNivelInstituciones(strNiveles, idInstitucion, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+            #endregion
         #endregion
         #region "constructores"
-            
+
         #endregion
     }
 }

@@ -271,6 +271,49 @@ namespace IUSLibs.FrontUI.Control
         #region "acciones"
 
             #region "backend"
+                #region "adicionales"
+                    public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,int idInstitucion,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            List<NivelEducacion> nivelesEducacion = null;
+                            NivelEducacion nivelEducacion;
+                            SPIUS sp = new SPIUS("sp_frontui_insertNivelInstituciones");
+                            /*
+                             *  @			varchar(250),
+		                        @		int,
+                             */
+                            sp.agregarParametro("strNiveles", strNiveles);
+                            sp.agregarParametro("idInstitucion", idInstitucion);
+
+                            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                            sp.agregarParametro("idPagina", idPagina);
+                            DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                            if (this.resultadoCorrecto(tb))
+                            {
+                                if (tb[1].Rows.Count > 0)
+                                {
+                                    nivelesEducacion = new List<NivelEducacion>();
+                                    foreach (DataRow row in tb[1].Rows)
+                                    {
+                                        nivelEducacion = new NivelEducacion((int)row["idNivelEducacion"], row["codigo"].ToString(), row["descripcion"].ToString());
+                                        nivelesEducacion.Add(nivelEducacion);
+                                    }
+                                }
+                            }
+                            return nivelesEducacion;
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
+
                 public Institucion sp_frontui_editInstitucion(Institucion institucionEditar,int idUsuarioEjecutor,int idPagina)
                 {
                     Institucion institucionEditada = null; Pais pais;
