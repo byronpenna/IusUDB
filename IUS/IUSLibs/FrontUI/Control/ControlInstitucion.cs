@@ -272,6 +272,49 @@ namespace IUSLibs.FrontUI.Control
 
             #region "backend"
                 #region "adicionales"
+                    public List<AreaCarrera> sp_frontui_insertAreaConocimientoInstitucion(string strArea, int idInstitucion, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            List<AreaCarrera> areasCarreras = null;
+                            AreaCarrera areaCarrera;
+                            SPIUS sp = new SPIUS("sp_frontui_insertAreaConocimientoInstitucion");
+
+                            sp.agregarParametro("strArea", strArea);
+                            sp.agregarParametro("idInstitucion", idInstitucion);
+
+                            sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                            sp.agregarParametro("idPagina", idPagina);
+                            DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                            if (this.resultadoCorrecto(tb))
+                            {
+                                if (tb[1].Rows.Count > 0)
+                                {
+                                    areasCarreras = new List<AreaCarrera>();
+                                    foreach (DataRow row in tb[1].Rows)
+                                    {
+                                        areaCarrera = new AreaCarrera((int)row["idArea"], row["area"].ToString(), row["codigo"].ToString());
+                                        areasCarreras.Add(areaCarrera);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                            return areasCarreras;
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,int idInstitucion,int idUsuarioEjecutor,int idPagina)
                     {
                         try
@@ -279,10 +322,7 @@ namespace IUSLibs.FrontUI.Control
                             List<NivelEducacion> nivelesEducacion = null;
                             NivelEducacion nivelEducacion;
                             SPIUS sp = new SPIUS("sp_frontui_insertNivelInstituciones");
-                            /*
-                             *  @			varchar(250),
-		                        @		int,
-                             */
+                            
                             sp.agregarParametro("strNiveles", strNiveles);
                             sp.agregarParametro("idInstitucion", idInstitucion);
 
@@ -300,6 +340,12 @@ namespace IUSLibs.FrontUI.Control
                                         nivelesEducacion.Add(nivelEducacion);
                                     }
                                 }
+                            }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
                             }
                             return nivelesEducacion;
                         }
@@ -337,6 +383,18 @@ namespace IUSLibs.FrontUI.Control
                                 institucionEditada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
 
                             }
+                            else
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                ErroresIUS x = this.getErrorFromExecProcedure(row);
+                                throw x;
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
@@ -392,6 +450,12 @@ namespace IUSLibs.FrontUI.Control
                         {
                             estado = true;
                         }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
                     }
                     catch (ErroresIUS x)
                     {
@@ -416,6 +480,12 @@ namespace IUSLibs.FrontUI.Control
                         if (this.resultadoCorrecto(tb))
                         {
                             estado = true;
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
@@ -451,6 +521,12 @@ namespace IUSLibs.FrontUI.Control
                                 institucionAgregada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(),pais,(bool)row["estado"]);
 
                             }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
                         }
                     }
                     catch (ErroresIUS x)
