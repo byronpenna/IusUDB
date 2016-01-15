@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 // modelos
     using IUS.Models.page.home.acciones;
 // librerias externas
@@ -26,6 +27,12 @@ namespace IUS.Controllers
             {
                 List<LlaveIdioma> traducciones;
                 try{
+                    //FormsAuthentication 
+                    if (this.HttpContext.User.Identity.IsAuthenticated)
+                    {
+                        string str = "";
+                        var x = this.HttpContext.User.Identity.Name.ToString();
+                    }
                     ViewBag.slider = this._model.sp_front_getSliderFromPage(this.idPagina);
                     string lang = this.getUserLang();
                     ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);

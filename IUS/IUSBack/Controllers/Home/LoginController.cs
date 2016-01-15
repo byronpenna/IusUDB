@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 // modelos
     using IUSBack.Models.Page.Login.Acciones;
     using IUSBack.Models.Page.Login.Forms;
@@ -29,6 +30,7 @@ namespace IUSBack.Controllers
                     if ((bool)respuesta["login"])
                     {
                         Usuario usuario = (Usuario)respuesta["usuario"];
+                        FormsAuthentication.SetAuthCookie(usuario._idUsuario.ToString(), false);
                         if ((bool)respuesta["changePass"])
                         {
                             Session["idUsuario"]        = usuario._idUsuario;
