@@ -5,7 +5,7 @@
 .rowFicha{
     margin-top:3%;
 }
-.rowOtherData{
+.rowOtherData,.rowHeader{
     padding-left:3%;
     padding-top:3%;
 }
