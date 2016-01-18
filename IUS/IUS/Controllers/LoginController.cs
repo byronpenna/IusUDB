@@ -43,6 +43,39 @@ namespace IUS.Controllers
                 
             }
         #endregion
+        #region "ajax"
+            public ActionResult sp_adminfe_front_getLogin()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        string lang = this.getUserLang();
+                        string ip = Request.UserHostAddress;
+                        respuesta = new Dictionary<object, object>();
+                        Session["usuarioPublico"] = this._model.sp_adminfe_front_getLogin(frm["txtEmail"].ToString(), frm["txtPass"].ToString(), ip, this.idPagina);
+                        respuesta.Add("estado", true);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
+        #endregion
         #region "Constructores"
             public LoginController()
             {

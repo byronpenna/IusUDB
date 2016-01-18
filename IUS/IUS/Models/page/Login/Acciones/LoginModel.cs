@@ -6,6 +6,8 @@ using System.Web;
     using IUS.Models.general;
 // librerias externas
     using IUSLibs.LOGS;
+    using IUSLibs.SECPU.Control;
+    using IUSLibs.SECPU.Entidades;
 namespace IUS.Models.page.Login.Acciones
 {
     public class LoginModel:ModeloPadre
@@ -14,7 +16,22 @@ namespace IUS.Models.page.Login.Acciones
             
         #endregion
         #region "funciones"
-            
+            public UsuarioPublico sp_adminfe_front_getLogin(string email,string pass,string ip,int idPagina)
+            {
+                try
+                {
+                    ControlUsuarioPublico control = new ControlUsuarioPublico();
+                    return control.sp_adminfe_front_getLogin(email, pass, ip, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
         #endregion
         #region "constructores"
             
