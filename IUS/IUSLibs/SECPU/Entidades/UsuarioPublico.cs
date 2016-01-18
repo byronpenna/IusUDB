@@ -15,6 +15,14 @@ namespace IUSLibs.SECPU.Entidades
             public DateTime             _fechaNac;
             public string               _pass;
             public EstadoUsuarioPublico _estadoUsuario;
+            #region "con proceso"
+                public string nombreCompleto
+                {
+                    get{
+                        return this._nombres+" "+this._apellidos;
+                    }
+                }
+            #endregion
         #endregion
         #region "constructores"
             public UsuarioPublico(int idUsuarioPublico, string nombres, string apellidos, string email, DateTime fechaNac, int idEstadoUsuario)
