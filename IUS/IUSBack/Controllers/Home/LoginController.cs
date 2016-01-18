@@ -12,7 +12,7 @@ using System.Web.Security;
     using IUSLibs.LOGS;
 namespace IUSBack.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : PadreController
     {
         #region "propiedades"
             public LoginModel modelLogin;
@@ -72,7 +72,20 @@ namespace IUSBack.Controllers
         #region "Views"
             public ActionResult Index()
             {
-                return View();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (usuarioSession == null)
+                {
+                    return View();
+                }
+                else
+                {
+                    Session["backControl"] = "";
+                    Session["fowardControl"] = "";
+                    Session["neutroControl"] = "";
+                    Session["flagNav"] = false;
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             public ActionResult LogOut(){
                 Session.Contents.RemoveAll();

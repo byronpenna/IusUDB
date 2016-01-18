@@ -193,6 +193,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformacionController.cs" />
     <Compile Include="Controllers\InstitucionesController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
     <Compile Include="Controllers\RepositorioController.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\page\home\acciones\HomeModel.cs" />
     <Compile Include="Models\page\Informacion\Acciones\InformacionModel.cs" />
     <Compile Include="Models\page\Instituciones\Acciones\InstitucionesModel.cs" />
+    <Compile Include="Models\page\Login\Acciones\LoginModel.cs" />
     <Compile Include="Models\page\Noticias\Acciones\NoticiaModel.cs" />
     <Compile Include="Models\page\Repositorio\Acciones\HistoryRepo.cs" />
     <Compile Include="Models\page\Repositorio\Acciones\RepositorioModel.cs" />
@@ -294,6 +296,7 @@
     <Content Include="Content\images\generales\ico\trophy.png" />
     <Content Include="Content\images\generales\image-color.png" />
     <Content Include="Content\images\generales\logo_IUS.ico" />
+    <Content Include="Content\images\generales\profle.png" />
     <Content Include="Content\images\generales\tmp\don-bosco.png" />
     <Content Include="Content\images\generales\hamburguerButton.png" />
     <Content Include="Content\images\generales\image.png" />
@@ -379,6 +382,8 @@
     <Content Include="Content\ius_theme\views\Instituciones\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\style.css" />
+    <Content Include="Content\ius_theme\views\login\media.css" />
+    <Content Include="Content\ius_theme\views\login\style.css" />
     <Content Include="Content\ius_theme\views\NotFound\media.css" />
     <Content Include="Content\ius_theme\views\NotFound\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\media.css" />
@@ -566,6 +571,8 @@
     <Content Include="Scripts\views\Instituciones\script.js" />
     <Content Include="Scripts\views\Instituciones\VerInstituciones\functions.js" />
     <Content Include="Scripts\views\Instituciones\VerInstituciones\script.js" />
+    <Content Include="Scripts\views\Login\functions.js" />
+    <Content Include="Scripts\views\Login\script.js" />
     <Content Include="Scripts\views\Noticias\functions.js" />
     <Content Include="Scripts\views\Noticias\script.js" />
     <Content Include="Scripts\views\Noticias\Todas\functions.js" />
@@ -636,6 +643,7 @@
     <Content Include="Views\Errors\ErrorCritico.cshtml" />
     <Content Include="Views\Noticias\Todas.cshtml" />
     <Content Include="Views\Instituciones\FichaInstitucion.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

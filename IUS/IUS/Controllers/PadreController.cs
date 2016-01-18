@@ -18,7 +18,7 @@ namespace IUS.Controllers
         #region "propiedades"
             public enum paginas { 
                 home=1,Noticias=4,Eventos=6,Instituciones=7,
-                conocenos=8,repositorio=14
+                conocenos=8,repositorio=14,login=15
             }
             public enum paginasInternas
             {
