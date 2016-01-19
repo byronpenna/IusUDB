@@ -22,8 +22,8 @@
     }
 }
 <div class="row marginNull rowFicha">
-    <div class="row marginNull">
-        <div class="col-lg-4 text-center">
+    <div class="row marginNull rowHeader">
+        <div class="col-lg-4">
             <img class="imgFotoInstitucion" src="@src" />
         </div>
         <div class="col-lg-8">
@@ -68,12 +68,7 @@
                 foreach (NivelEducacion nivel in institucion._niveles)
                 {
                     <div class="row marginNull">
-                        <div class="col-lg-2">
-                            @nivel._codigo -
-                        </div>
-                        <div class="col-lg-4">
-                            @nivel._descripcion
-                        </div>
+                        @nivel._codigo - @nivel._descripcion
                     </div>
 
                 }
@@ -87,12 +82,7 @@
                 foreach (AreaCarrera area in institucion._areas)
                 {
                     <div class="row marginNull">
-                        <div class="col-lg-2">
-                            @area._codigo -
-                        </div>
-                        <div class="col-lg-4">
-                            @area._area
-                        </div>
+                        @area._codigo - @area._area
                     </div>
                 }
             }

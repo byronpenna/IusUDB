@@ -9,6 +9,7 @@ using System.Web.Mvc;
     using IUS.Models.general;
 // librerias externas
     using IUSLibs.LOGS;
+    using IUSLibs.SECPU.Entidades;
     using IUSLibs.TRL.Entidades;
     using IUSLibs.TRL.Control;
 namespace IUS.Controllers
@@ -18,7 +19,7 @@ namespace IUS.Controllers
         #region "propiedades"
             public enum paginas { 
                 home=1,Noticias=4,Eventos=6,Instituciones=7,
-                conocenos=8,repositorio=14
+                conocenos=8,repositorio=14,login=15
             }
             public enum paginasInternas
             {
@@ -77,7 +78,15 @@ namespace IUS.Controllers
                     }
             
                 #endregion
-
+                public UsuarioPublico getUsuarioSession()
+                {
+                    UsuarioPublico usuario = null;
+                    if (Session["usuarioPublico"] != null)
+                    {
+                        usuario = (UsuarioPublico)Session["usuarioPublico"];
+                    }
+                    return usuario;
+                }
                 public string getUserLang()
                 {
                     

@@ -1,0 +1,48 @@
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/login/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/login/media.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Login/script.js"></script>
+    <script src="~/Scripts/views/Login/functions.js"></script>
+}
+@{
+    
+}
+<div class="container">
+    <div class="card card-container divSeleccionLogin">
+        <div class="col-lg-6 pointer activeMenu btnTabsLogin" id="btnUsuarioLogin">
+            Usuarios
+        </div>
+        <div class="col-lg-6 pointer btnTabsLogin" id="btnAdminLogin">
+            Administradores
+        </div>
+    </div>
+    <div class="card card-container " id="divLoginAdmin">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <form action="/" id="frmInvitado" method="post">
+            <img id="profile-img" class="profile-img-card" src="~/Content/images/generales/profle.png" />
+            <input type="email" id="inputEmail" class="form-control txtEmail" name="txtEmail" placeholder="Email address" required autofocus>
+            <span class="visibilitiHidden"> </span>
+            <input type="password" id="inputPassword" class="form-control txtPass" name="txtPass" placeholder="Password" required>
+            <span class="visibilitiHidden"> </span>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            <a href="#" class="forgot-password btnRegistrarse">
+                @*@Url.Action("Registro", "Home")*@
+                Registrarse
+            </a>
+        </form>
+        @*<img id="profile-img" class="profile-img-card" src="~/Content/images/generales/profle.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form action="/" id="frmLogin" method="post">
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <span class="visibilitiHidden"> </span>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <span class="visibilitiHidden"> </span>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            <a href="@Url.Action("Registro","Home")" class="forgot-password">
+                Registrarse
+            </a>
+        </form>*@
+    </div>
+</div>

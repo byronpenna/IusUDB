@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 // modelos
     using IUSBack.Models.Page.Login.Acciones;
     using IUSBack.Models.Page.Login.Forms;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
     using IUSLibs.LOGS;
 namespace IUSBack.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : PadreController
     {
         #region "propiedades"
             public LoginModel modelLogin;
@@ -29,6 +30,7 @@ namespace IUSBack.Controllers
                     if ((bool)respuesta["login"])
                     {
                         Usuario usuario = (Usuario)respuesta["usuario"];
+                        FormsAuthentication.SetAuthCookie(usuario._idUsuario.ToString(), false);
                         if ((bool)respuesta["changePass"])
                         {
                             Session["idUsuario"]        = usuario._idUsuario;
@@ -70,7 +72,20 @@ namespace IUSBack.Controllers
         #region "Views"
             public ActionResult Index()
             {
-                return View();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (usuarioSession == null)
+                {
+                    return View();
+                }
+                else
+                {
+                    Session["backControl"] = "";
+                    Session["fowardControl"] = "";
+                    Session["neutroControl"] = "";
+                    Session["flagNav"] = false;
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             public ActionResult LogOut(){
                 Session.Contents.RemoveAll();

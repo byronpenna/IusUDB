@@ -55,9 +55,15 @@ namespace IUSLibs.GENERALS
                 if(message == ""){
                     message = "Error no controlado";
                 }
-
                 ErroresIUS x = new ErroresIUS(message,ErroresIUS.tipoError.sql, (int)row["errorCode"], row["errorSql"].ToString());
-                x._mostrar = (bool)row["mostrar"];
+                if (!x._mostrar)
+                {
+                    x._mostrar = (bool)row["mostrar"];
+                }
+                else
+                {
+                    x._mostrar = true;
+                }
                 return x;
             }
             #region "resultadoCorrectoGet"

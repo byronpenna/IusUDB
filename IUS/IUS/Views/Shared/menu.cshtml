@@ -1,6 +1,11 @@
 ﻿@using IUSLibs.TRL.Entidades
+@using IUSLibs.SECPU.Entidades
 @{
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
+    UsuarioPublico usuarioSession = null;
+    if(ViewBag.usuarioSession != null){
+        usuarioSession = (UsuarioPublico)ViewBag.usuarioSession;
+    }
 }
 <header>
     <div class="row marginNull">
@@ -19,7 +24,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://localhost:55869/" target="_blank" class="@ViewBag.menu12">
+                        <a href="@Url.Action("Index","Login")" class="@ViewBag.menu12">
                             @ViewData["menu1.2"]
                         </a>
                     </li>
@@ -81,6 +86,12 @@
                     <a href="@Url.Action("Todas","Noticias")" class="@ViewBag.menu25">
                         @ViewData["menu2.5"]
                     </a>
+                </li>
+                <li>
+                    @if (usuarioSession != null)
+                    {
+                        <span>@usuarioSession.nombreCompleto</span> 
+                    }
                 </li>
             </ul>
         </div>
