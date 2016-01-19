@@ -14,8 +14,9 @@ namespace IUSBack.Controllers
     public class RepositorioPublicoController : PadreController
     {
         #region "propiedades"
-            public int                      _idPagina   = (int)paginas.RepositorioPublico;
+            public int                      _idPagina       = (int)paginas.RepositorioPublico;
             public RepositorioPublicoModel  _model;
+            public string                   _nombreClass    = "RepositorioPublicoController";
         #endregion
         #region "constructor"
             public RepositorioPublicoController()
@@ -31,10 +32,10 @@ namespace IUSBack.Controllers
                 {
                     return seguridadInicial;
                 }
+                Usuario usuarioSession = this.getUsuarioSesion();
                 try
                 {
                     ViewBag.selectedMenu = 4; // menu seleccionado 
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> archivos;
                     CarpetaPublica carpetaPadre = null;
@@ -62,12 +63,13 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS x)
                 {
-                    ErrorsController error  = new ErrorsController();
-                    return error.redirectToError(x,true);
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View();
             }

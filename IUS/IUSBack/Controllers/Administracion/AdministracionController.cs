@@ -16,10 +16,10 @@ namespace IUSBack.Controllers
     {
 
         #region "propiedades"
-            private int _idPaginaEventos = (int)paginas.Eventos;
-            private int _idPaginaNoticias = (int)paginas.Noticias;
+            private int                 _idPaginaEventos    = (int)paginas.Eventos;
+            private int                 _idPaginaNoticias   = (int)paginas.Noticias;
             private AdministracionModel _model;
-            
+            private string              _nombreClass        = "AdministracionController";
         #endregion
         #region "url"
             public ActionResult Eventos()
@@ -41,15 +41,17 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Eventos-" + this._nombreClass, usuarioSession._idUsuario, this._idPaginaEventos);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Eventos-" + this._nombreClass, usuarioSession._idUsuario, this._idPaginaEventos);
                 }
                 return View();
             }
-            public ActionResult Noticias()
+            // Al parecer no funciona 
+            /*public ActionResult Noticias()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
@@ -70,9 +72,8 @@ namespace IUSBack.Controllers
                 else
                 {
                     return RedirectToAction("index", "login");
-                }
-                
-            }
+                }  
+            }*/
         #endregion 
         #region "acciones"
             #region "Eventos"

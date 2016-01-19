@@ -52,6 +52,29 @@ namespace IUSBack.Controllers
                     bool estado = this._model.sp_sec_registrarError(x.Message, detalle, idUsuarioEjecutor, idPagina);
                     return RedirectToAction("Unhandled", "Errors");
                 }
+                public Dictionary<String, String> redirectToError(ErroresIUS x)
+                {
+                    var accion = new Dictionary<String, String>();
+                    if (x.errorType == ErroresIUS.tipoError.sql)
+                    {
+                        switch (x.errorNumber)
+                        {
+                            case 4060:
+                                {
+                                    // los parametros de conexion no son validos
+                                    accion.Add("controlador", "Errors");
+                                    accion.Add("accion", "DBNotAccess");
+                                    break;
+                                }
+                        }
+                    }
+                    if (accion.Count == 0)
+                    {
+                        accion.Add("controlador", "Errors");
+                        accion.Add("accion", "Unhandled");
+                    }
+                    return accion;
+                }
             #endregion
 
             public ActionResult Index()
@@ -110,28 +133,7 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region " funciones" 
-            public Dictionary<String,String> redirectToError(ErroresIUS x){
-                var accion = new Dictionary<String, String>();
-                if (x.errorType == ErroresIUS.tipoError.sql)
-                {
-                    switch (x.errorNumber)
-                    {
-                        case 4060:
-                            {
-                                // los parametros de conexion no son validos
-                                accion.Add("controlador","Errors");
-                                accion.Add("accion", "DBNotAccess");
-                                break;
-                            }
-                    }
-                }
-                if (accion.Count == 0)
-                {
-                    accion.Add("controlador", "Errors");
-                    accion.Add("accion", "Unhandled");
-                }
-                return accion;
-            }
+            
         #endregion
     }
 }

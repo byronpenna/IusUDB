@@ -56,7 +56,6 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 {
                     ErrorsController error = new ErrorsController();
                     return error.redirectToError(x, "Index-FormacionPersonasController", usuarioSession._idUsuario, this._idPagina);
-                    //return RedirectToAction("Unhandled", "Errors");
                 }
                 return View("~/Views/GestionPersonas/FormacionPersonas.cshtml");
             }
