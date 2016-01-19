@@ -28,10 +28,10 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 {
                     return seguridadInicial;
                 }
+                Usuario usuarioSession = this.getUsuarioSesion();
                 try
                 {
                     ViewBag.selectedMenu        = 2; // menu seleccionado 
-                    Usuario usuarioSession      = this.getUsuarioSesion();
                     // viewbag
                     ViewBag.titleModulo         = "Información adicional personas";
                     ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
@@ -50,11 +50,13 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true,"Index-FormacionPersonasController",usuarioSession._idUsuario,this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-FormacionPersonasController", usuarioSession._idUsuario, this._idPagina);
+                    //return RedirectToAction("Unhandled", "Errors");
                 }
                 return View("~/Views/GestionPersonas/FormacionPersonas.cshtml");
             }

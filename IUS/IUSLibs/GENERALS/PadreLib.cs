@@ -6,6 +6,10 @@ using System.Text;
     using System.Data;
     using System.Data.SqlClient;
     using IUSLibs.LOGS;
+// librerias externas
+    using IUSLibs.BaseDatos;
+
+    using IUSLibs.LOGS;
 namespace IUSLibs.GENERALS
 {
     public class PadreLib
@@ -19,6 +23,36 @@ namespace IUSLibs.GENERALS
         #endregion
         #region "funciones heredadas"
         // contendra todas los metodos y atributos de uso general
+            public bool sp_sec_registrarError(string mensaje,string detalle,int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    bool respuesta = false;
+                    SPIUS sp = new SPIUS("sp_sec_registrarError");
+                    
+                    sp.agregarParametro("mensaje", mensaje);
+                    sp.agregarParametro("detalle", detalle);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        respuesta = true;
+                    }
+                    return respuesta;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+            //############
             protected bool DataSetDontHaveTable(DataSet ds)
             {
                 bool toReturn = false;

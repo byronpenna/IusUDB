@@ -208,11 +208,11 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 // paises 
                                 foreach (DataRow row in tb[1].Rows)
                                 {
-                                    pais = new Pais((int)row["idPais"], row["pais"].ToString());
+                                    pais = new Pais((int)row["idPaisAA"], row["pais"].ToString());
                                     paises.Add(pais);
                                 }
                             }
-                            if (tb[2].Rows.Count > 0)
+                            /*if (tb[2].Rows.Count > 0)
                             {
                                 institucionesEducativas = new List<InstitucionEducativa>();
                                 foreach (DataRow row in tb[2].Rows)
@@ -221,21 +221,21 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     institucionEducativa._pais._pais = row["pais"].ToString();
                                     institucionesEducativas.Add(institucionEducativa);
                                 }
-                            }
-                            if (tb[3].Rows.Count > 0)
+                            }*/
+                            if (tb[2].Rows.Count > 0)
                             {
                                 nivelesTitulo = new List<NivelTitulo>();
-                                foreach (DataRow row in tb[3].Rows)
+                                foreach (DataRow row in tb[2].Rows)
                                 {
                                     nivelTitulo = new NivelTitulo((int)row["idNivel"], row["nombre_nivel"].ToString());
                                     nivelesTitulo.Add(nivelTitulo);
                                 }
                             }
                             
-                            if (tb[4].Rows.Count > 0)
+                            if (tb[3].Rows.Count > 0)
                             {
                                 formacionesPersonas = new List<FormacionPersona>();
-                                foreach (DataRow row in tb[4].Rows)
+                                foreach (DataRow row in tb[3].Rows)
                                 {
                                     
                                     formacionPersona = new FormacionPersona(
@@ -256,15 +256,15 @@ namespace IUSLibs.RRHH.Control.Formacion
                                     formacionesPersonas.Add(formacionPersona);
                                 }
                             }
-                            if (tb[5].Rows.Count > 0)
+                            if (tb[4].Rows.Count > 0)
                             {
-                                DataRow row = tb[5].Rows[0];
+                                DataRow row = tb[4].Rows[0];
                                 informacionPersona = new InformacionPersona((int)row["idInformacionPersona"],row["foto"].ToString());
                             }
-                            if(tb[6].Rows.Count >0)
+                            if(tb[5].Rows.Count >0)
                             {
                                 areasCarreras = new List<AreaCarrera>();
-                                foreach (DataRow row in tb[6].Rows)
+                                foreach (DataRow row in tb[5].Rows)
                                 {
                                     areaCarrera = new AreaCarrera((int)row["idArea"], row["area"].ToString());
                                     areasCarreras.Add(areaCarrera);
