@@ -11,6 +11,18 @@
     <div class="row marginNull">
         <div class="col-lg-2 col-md-12 logoHeaderDiv">
             <img src="~/Content/images/generales/logo_IUS.jpg" />
+            @if (usuarioSession != null)
+            {
+                <div class="row marginNull sessionSpace">
+                    <div class="row marginNull text-center">
+                        <span>@usuarioSession.nombreCompleto</span>
+                    </div>
+                    <div class="row marginNull text-center">
+                        <a href="#" class="aCerrarSession">Cerrar sesión</a>
+                    </div>
+                </div>
+                
+            }
         </div>
         <div class="col-lg-10 col-md-12 paddingNull">
             <nav class="menu">
@@ -86,12 +98,6 @@
                     <a href="@Url.Action("Todas","Noticias")" class="@ViewBag.menu25">
                         @ViewData["menu2.5"]
                     </a>
-                </li>
-                <li>
-                    @if (usuarioSession != null)
-                    {
-                        <span>@usuarioSession.nombreCompleto</span> 
-                    }
                 </li>
             </ul>
         </div>

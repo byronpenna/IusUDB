@@ -19,6 +19,14 @@
                 }
             })
         // click 
+            $(document).on("click", ".aCerrarSession", function () {
+                var frm = {};
+                actualizarCatalogo(RAIZ + "/Login/logOut", frm, function (data) {
+                    if (data.estado) {
+                        location.reload();
+                    }
+                })
+            })
             $(document).on("click", ".desplegableMobile", function () {
                 ulMenu = $(this).parents(".mobileButton").parent().find(".ulMenu");
                 if (ulMenu.is(':visible')) {

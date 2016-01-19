@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.SECPU.Entidades;
 namespace IUS.Controllers
 {
     public class LoginController : PadreController
@@ -55,7 +56,8 @@ namespace IUS.Controllers
                         string lang = this.getUserLang();
                         string ip = Request.UserHostAddress;
                         respuesta = new Dictionary<object, object>();
-                        Session["usuarioPublico"] = this._model.sp_adminfe_front_getLogin(frm["txtEmail"].ToString(), frm["txtPass"].ToString(), ip, this.idPagina);
+                        UsuarioPublico usuario = this._model.sp_adminfe_front_getLogin(frm["txtEmail"].ToString(), frm["txtPass"].ToString(), ip, this.idPagina);
+                        Session["usuarioPublico"] = usuario;
                         respuesta.Add("estado", true);
                     }
                     catch (ErroresIUS x)
@@ -73,6 +75,20 @@ namespace IUS.Controllers
                 {
                     respuesta = this.errorEnvioFrmJSON();
                 }
+                return Json(respuesta);
+            }
+            public ActionResult LogOut()
+            {
+                Dictionary<object, object> respuesta = new Dictionary<object, object>();
+                try{
+                    Session.Contents.RemoveAll();
+                    respuesta.Add("estado", true);
+                }
+                catch (Exception )
+                {
+
+                }
+
                 return Json(respuesta);
             }
         #endregion

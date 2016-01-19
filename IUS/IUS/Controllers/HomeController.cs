@@ -33,10 +33,10 @@ namespace IUS.Controllers
                         string str = "";
                         var x = this.HttpContext.User.Identity.Name.ToString();
                     }
-                    ViewBag.slider = this._model.sp_front_getSliderFromPage(this.idPagina);
-                    string lang = this.getUserLang();
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
-                    
+                    ViewBag.usuarioSession  = this.getUsuarioSession();
+                    ViewBag.slider          = this._model.sp_front_getSliderFromPage(this.idPagina);
+                    string lang             = this.getUserLang();
+                    ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang,this.idPagina);
                     this.setTraduccion(traducciones);
                     ViewBag.menu11 = this.activeClass;
