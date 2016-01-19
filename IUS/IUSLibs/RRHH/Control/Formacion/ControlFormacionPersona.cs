@@ -208,7 +208,7 @@ namespace IUSLibs.RRHH.Control.Formacion
                                 // paises 
                                 foreach (DataRow row in tb[1].Rows)
                                 {
-                                    pais = new Pais((int)row["idPaisAA"], row["pais"].ToString());
+                                    pais = new Pais((int)row["idPais"], row["pais"].ToString());
                                     paises.Add(pais);
                                 }
                             }
