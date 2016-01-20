@@ -17,8 +17,9 @@ namespace IUSBack.Controllers
     public class GestionRolesController : PadreController
     {
         #region "propiedades"
-            public GestionRolesModel _model;
-            public int _idPagina = (int)paginas.gestionRoles;
+            public GestionRolesModel    _model;
+            public int                  _idPagina       = (int)paginas.gestionRoles;
+            public string               _nombreClass    = "GestionRolesController";
         #endregion
         #region "constructores"
             public GestionRolesController(){
@@ -28,9 +29,9 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
+                Usuario usuarioSession = this.getUsuarioSesion();
                 try
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
                     if (seguridadInicial != null)
                     {
@@ -53,11 +54,12 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
         #endregion   

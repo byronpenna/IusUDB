@@ -20,13 +20,15 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
         //
         // GET: /GestionLaboral/
         #region "propiedades"
-            private int                 _idPagina = (int)paginas.gestionPersonas;
+            private int                 _idPagina       = (int)paginas.gestionPersonas;
             private GestionLaboralModel _model;
+            public string               _nombreClass    = "GestionLaboralController";
         #endregion
         #region "acciones url"
             public ActionResult Index(int id)
             {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                ActionResult    seguridadInicial    = this.seguridadInicial(this._idPagina);
+                Usuario         usuarioSession      = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -35,7 +37,6 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 {
                     ViewBag.selectedMenu                = 2; // menu seleccionado 
                     Persona persona                     = new Persona(id);
-                    Usuario usuarioSession              = this.getUsuarioSesion();
                     Dictionary<object,object> iniciales = this._model.sp_rrhh_getInfoInicialLaboralPersona(id, usuarioSession._idUsuario, this._idPagina);
                     InformacionPersona info             = (InformacionPersona)iniciales["infoPersona"];
                     if (info != null && System.IO.File.Exists(info._fotoRuta))
@@ -59,11 +60,12 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View("~/Views/GestionPersonas/GestionLaboral.cshtml");
             }
