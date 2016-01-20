@@ -28,11 +28,13 @@ namespace IUSBack.Controllers
         #region "propiedades"
             public int                          _idPagina = (int)paginas.Instituciones;
             public GestionInstitucionesModel    _model;
+            public string                       _nombreClass = "GestionInstitucionesController";
         #endregion
         #region "acciones url"
             public ActionResult SetLogo(int id= -1)
             {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                ActionResult    seguridadInicial    = this.seguridadInicial(this._idPagina);
+                Usuario         usuarioSession      = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -42,7 +44,6 @@ namespace IUSBack.Controllers
                     if (id != -1)
                     {
                         ViewBag.selectedMenu = 3; // menu seleccionado 
-                        Usuario usuarioSession = this.getUsuarioSesion();
                         Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                         // set viewbags
                         ViewBag.rutaLogo = this._RUTASGLOBALES["LOGOS_INSTITUCIONES"];
@@ -61,18 +62,20 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "SetLogo-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "SetLogo-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View();
             }
             public ActionResult Index()
             {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina,3);
+                ActionResult    seguridadInicial    = this.seguridadInicial(this._idPagina,3);
+                Usuario         usuarioSession      = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -80,7 +83,7 @@ namespace IUSBack.Controllers
                 try
                 {
                     
-                    Usuario usuarioSession              = this.getUsuarioSesion();
+                    
                     //Permiso permisos                    = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> inicial  = this._model.cargaInicialIndex(usuarioSession._idUsuario,this._idPagina);
                     // set viewbags
@@ -94,12 +97,13 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View();
             }

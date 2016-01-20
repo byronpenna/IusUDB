@@ -14,21 +14,22 @@ namespace IUSBack.Controllers
     public class GestionTelefonosController : PadreController
     {
         #region "propiedades"
-            public int                          _idPagina = (int)paginas.Instituciones;
+            public int                          _idPagina           = (int)paginas.Instituciones;
             public GestionTelefonoModel         _model;
             public GestionInstitucionesModel    _institucionModel;
+            public string                       _nombreClass        = "GestionTelefonosController";
         #endregion
         #region "resultados url"
             public ActionResult Index(int id = -1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina,3);
+                Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
                 try
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Institucion institucion = this._institucionModel.sp_frontui_getInstitucionById(id, usuarioSession._idUsuario, this._idPagina);
                     ViewBag.institucion = institucion;
@@ -41,12 +42,13 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View("~/Views/GestionInstituciones/setTel.cshtml");
             }

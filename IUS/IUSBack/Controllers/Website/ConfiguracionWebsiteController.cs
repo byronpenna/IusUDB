@@ -21,62 +21,53 @@ namespace IUSBack.Controllers
         // GET: /ConfiguracionWebsite/
         #region "propiedades"
             public ConfiguracionWebsiteModel _model;
-            private int _idPagina = (int)paginas.configuracionFront;
+            private int                     _idPagina       = (int)paginas.configuracionFront;
+            private string                  _nombreClass    = "ConfiguracionWebsiteController";
         #endregion
         #region "url"
             public ActionResult Index()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                if (usuarioSession != null)
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                if (seguridadInicial != null)
                 {
-                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
-                    if (seguridadInicial == null)
-                    {
-                        ViewBag.selectedMenu = 3; // menu seleccionado 
-                        ViewBag.titleModulo = "Configuración Web Site";
-                        ViewBag.usuario = usuarioSession;
-                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                        List<RedSocial> redesSociales = null;
-                        Configuracion config = null;
-                        List<Valor> valores = null;
-                        List<SliderImage> slider = null;
-                        try
-                        {
-                            Dictionary<object, object> dic = this._model.sp_adminfe_getConfiguraciones(usuarioSession._idUsuario, this._idPagina);
-                            slider = this._model.sp_adminfe_getSliderImage(1, usuarioSession._idUsuario, this._idPagina);
-                            if (dic != null)
-                            {
-                                config = (Configuracion)dic["configuracion"];
-                                redesSociales = (List<RedSocial>)dic["redesSociales"];
-                                valores = (List<Valor>)dic["valores"];
-                            }
-
-                        }
-                        catch (ErroresIUS)
-                        {
-
-                            return RedirectToAction("Unhandled", "Errors");
-                        }
-                        catch (Exception)
-                        {
-                            return RedirectToAction("Unhandled", "Errors");
-                        }
-                        ViewBag.redesSociales = redesSociales;
-                        ViewBag.config = config;
-                        ViewBag.valores = valores;
-                        ViewBag.slider = slider;
-                        return View();
-                    }
-                    else
-                    {
-                        return seguridadInicial;
-                    }
+                    return seguridadInicial;
                 }
-                else
+                ViewBag.selectedMenu = 3; // menu seleccionado 
+                ViewBag.titleModulo = "Configuración Web Site";
+                ViewBag.usuario = usuarioSession;
+                ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                List<RedSocial> redesSociales = null;
+                Configuracion config = null;
+                List<Valor> valores = null;
+                List<SliderImage> slider = null;
+                try
                 {
-                    return RedirectToAction("index", "login");
-                }
+                    Dictionary<object, object> dic = this._model.sp_adminfe_getConfiguraciones(usuarioSession._idUsuario, this._idPagina);
+                    slider = this._model.sp_adminfe_getSliderImage(1, usuarioSession._idUsuario, this._idPagina);
+                    if (dic != null)
+                    {
+                        config = (Configuracion)dic["configuracion"];
+                        redesSociales = (List<RedSocial>)dic["redesSociales"];
+                        valores = (List<Valor>)dic["valores"];
+                    }
 
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+                ViewBag.redesSociales = redesSociales;
+                ViewBag.config = config;
+                ViewBag.valores = valores;
+                ViewBag.slider = slider;
+                return View();
             }
         #endregion
         #region "generic"

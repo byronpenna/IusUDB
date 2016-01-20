@@ -15,8 +15,9 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
         //
         // GET: /AdicionalesInstituciones/
         #region "propiedades"
-            public AdicionalInstitucionesModel _model;
-            public int _idPagina = (int)paginas.Instituciones;
+            public AdicionalInstitucionesModel  _model;
+            public int                          _idPagina       = (int)paginas.Instituciones;
+            public string                       _nombreClass    = "AdicionalesInstitucionesController";
         #endregion
         #region "constructores"
             public AdicionalesInstitucionesController()
@@ -28,13 +29,13 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
             public ActionResult Index(int id)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 3);
+                Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
                 try
                 {
-                    Usuario usuarioSession  = this.getUsuarioSesion();
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.titleModulo     = "Manejo de instituciones";
                     ViewBag.iniciales       = this._model.getInfoInicialAdicionalInstituciones(usuarioSession._idUsuario, this._idPagina,id);
@@ -44,12 +45,13 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
         #endregion
