@@ -22,17 +22,61 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "actions results"
-            public ActionResult redirectToError(ErroresIUS x,bool si)
-            {
-                if (x.errorNumber == -5)
+            #region "redirectToError"
+                public ActionResult redirectToError(ErroresIUS x,bool si)
                 {
-                    return RedirectToAction("NotFolderFound", "Repositorio");
+                    //bool error = this._model.sp_sec_registrarError(x.Message)
+                    if (x.errorNumber == -5)
+                    {
+                        return RedirectToAction("NotFolderFound", "Repositorio");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
                 }
-                else
+                public ActionResult redirectToError(ErroresIUS x, bool si,string detalle,int idUsuarioEjecutor,int idPagina)
                 {
+                    bool estado = this._model.sp_sec_registrarError(x.Message, detalle, idUsuarioEjecutor, idPagina);
+                    if (x.errorNumber == -5)
+                    {
+                        return RedirectToAction("NotFolderFound", "Repositorio");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Unhandled", "Errors");
+                    }
+                }
+                public ActionResult redirectToError(Exception x, string detalle, int idUsuarioEjecutor, int idPagina)
+                {
+                    bool estado = this._model.sp_sec_registrarError(x.Message, detalle, idUsuarioEjecutor, idPagina);
                     return RedirectToAction("Unhandled", "Errors");
                 }
-            }
+                public Dictionary<String, String> redirectToError(ErroresIUS x)
+                {
+                    var accion = new Dictionary<String, String>();
+                    if (x.errorType == ErroresIUS.tipoError.sql)
+                    {
+                        switch (x.errorNumber)
+                        {
+                            case 4060:
+                                {
+                                    // los parametros de conexion no son validos
+                                    accion.Add("controlador", "Errors");
+                                    accion.Add("accion", "DBNotAccess");
+                                    break;
+                                }
+                        }
+                    }
+                    if (accion.Count == 0)
+                    {
+                        accion.Add("controlador", "Errors");
+                        accion.Add("accion", "Unhandled");
+                    }
+                    return accion;
+                }
+            #endregion
+
             public ActionResult Index()
             {
                 return View();
@@ -89,28 +133,7 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region " funciones" 
-            public Dictionary<String,String> redirectToError(ErroresIUS x){
-                var accion = new Dictionary<String, String>();
-                if (x.errorType == ErroresIUS.tipoError.sql)
-                {
-                    switch (x.errorNumber)
-                    {
-                        case 4060:
-                            {
-                                // los parametros de conexion no son validos
-                                accion.Add("controlador","Errors");
-                                accion.Add("accion", "DBNotAccess");
-                                break;
-                            }
-                    }
-                }
-                if (accion.Count == 0)
-                {
-                    accion.Add("controlador", "Errors");
-                    accion.Add("accion", "Unhandled");
-                }
-                return accion;
-            }
+            
         #endregion
     }
 }

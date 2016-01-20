@@ -6,6 +6,12 @@
 }
     
   */
+.sessionSpace{
+    padding-top:3%;
+}
+    .sessionSpace span{
+        font-weight:bold;
+    }
 .colNoticia p {
     text-align: justify;
     height:80px;

@@ -195,9 +195,14 @@ namespace IUSBack.Controllers
             public Usuario getUsuarioSesion()
             {
                 Usuario usuario = null;
-                if (Session["usuario"] != null)
+                try
                 {
-                    usuario = (Usuario)Session["usuario"];
+                    if (Session["usuario"] != null)
+                    {
+                        usuario = (Usuario)Session["usuario"];
+                    }
+                }
+                catch (Exception) { 
                 }
                 return usuario;
             }

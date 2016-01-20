@@ -35,6 +35,7 @@ namespace IUSBack.Controllers
                  */
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 //var xx = Session["HistoryRepo"];
+                Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -54,7 +55,6 @@ namespace IUSBack.Controllers
                         Session["HistoryRepo"] = history;
                     }
                     ViewBag.selectedMenu = 4; // menu seleccionado 
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> archivos;
                     Carpeta carpeta;
@@ -68,38 +68,39 @@ namespace IUSBack.Controllers
                         archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
                     }
                     ViewBag.idCarpetaActual = id;
-                    ViewBag.titleModulo = "Repositorio Digital";
-                    ViewBag.vista = id2;
-                    ViewBag.usuario     = usuarioSession;
-                    ViewBag.permisos    = permisos;
-                    ViewBag.carpetas    = archivos["carpetas"];
-                    ViewBag.archivos    = archivos["archivos"];
-                    ViewBag.carpetaActual = archivos["carpetaPadre"];
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.titleModulo     = "Repositorio Digital";
+                    ViewBag.vista           = id2;
+                    ViewBag.usuario         = usuarioSession;
+                    ViewBag.permisos        = permisos;
+                    ViewBag.carpetas        = archivos["carpetas"];
+                    ViewBag.archivos        = archivos["archivos"];
+                    ViewBag.carpetaActual   = archivos["carpetaPadre"];
+                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     return View();
                 }
                 catch (ErroresIUS x)
                 {
-                     ErrorsController error  = new ErrorsController();
-                     return error.redirectToError(x,true);
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-RepositorioController", usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-RepositorioController", usuarioSession._idUsuario, this._idPagina);
                 }
             }
-            
             public ActionResult DescargarFichero(int id=-1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
                 try
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
+                    //Usuario usuarioSession = this.getUsuarioSesion();
                     Archivo archivo = this._model.sp_repo_getDownloadFile(id, usuarioSession._idUsuario, this._idPagina);
                     //string ruta = this._RUTASGLOBALES["REPOSITORIO_DIGITAL"] + "/"+usuarioSession._idUsuario+"/"+archivo._carpeta._idCarpeta+"/"+archivo._idArchivo+archivo._extension._extension+"";
                     
@@ -111,13 +112,15 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "DescargarFichero-RepositorioControler", usuarioSession._idUsuario, this._idPagina);
                     //return new EmptyResult();
                 }
                 catch (Exception x)
                 {
                     // algun mejor error por aqui
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "DescargarFichero-RepositorioController", usuarioSession._idUsuario, this._idPagina);
                     //return new EmptyResult();
                 }
             }

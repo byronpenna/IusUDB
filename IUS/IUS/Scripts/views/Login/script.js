@@ -8,6 +8,7 @@
                 frmInvitado(frm);
             })
         // click
+            
             $(document).on("click", "#btnAdminLogin", function () {
                 //console.log("Entro");
                 window.location = RAIZ_BACK + "login/index";

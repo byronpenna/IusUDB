@@ -30,6 +30,7 @@ namespace IUSBack.Controllers
             public ActionResult Extras(int id)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -38,7 +39,6 @@ namespace IUSBack.Controllers
                 {
                     
                     ViewBag.selectedMenu                    = 2; // menu seleccionado 
-                    Usuario usuarioSession                  = this.getUsuarioSesion();
                     //Permiso permisos                        = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     Dictionary<object, object> data         = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
                     InformacionPersona informarcionPersona  = (InformacionPersona)data["informacionPersona"];
@@ -66,16 +66,18 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Extras-FormacionPersonasController", usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Extras-GestionPersonasController", usuarioSession._idUsuario, this._idPagina);
                 }
             }
             public ActionResult Index()
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
+                Usuario usuarioSession = this.getUsuarioSesion();//*
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -83,7 +85,6 @@ namespace IUSBack.Controllers
                 try
                 {
                     List<Persona> personas = this._model.getPersonas();
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     // ----------------
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.personas = personas;
@@ -94,11 +95,12 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-GestionPersonasController", usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-GestionPersonasController", usuarioSession._idUsuario, this._idPagina);
                 }
             }
             public ActionResult Detalle(int id=-1,int id2= 1) // este -1 es temporal 
@@ -157,11 +159,12 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-FormacionPersonasController", usuarioSesion._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-FormacionPersonasController", usuarioSesion._idUsuario, this._idPagina);
                 }
                 return View();
             }

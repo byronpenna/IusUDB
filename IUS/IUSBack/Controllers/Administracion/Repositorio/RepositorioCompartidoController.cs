@@ -15,8 +15,9 @@ namespace IUSBack.Controllers
     public class RepositorioCompartidoController : PadreController
     {
         #region "propiedades"
-            private RepositorioCompartidoModel _model;
-            private int _idPagina = (int)paginas.Repositorio;
+            private RepositorioCompartidoModel  _model;
+            private int                         _idPagina       = (int)paginas.Repositorio;
+            private string                      _nombreClass    = "RepositorioCompartidoController"; 
         #endregion
         #region "constructores"
             public RepositorioCompartidoController()
@@ -33,24 +34,26 @@ namespace IUSBack.Controllers
                 {
                     return seguridadInicial;
                 }
+                Usuario usuarioSession = this.getUsuarioSesion();
                 try
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     ViewBag.titleModulo = "Repositorio Compartido";
                     ViewBag.usuario = usuarioSession;// usuario actual y que mostrara nombre en la parte superior
                     List<Usuario> usuarios = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
                     ViewBag.usuariosCompartidos = usuarios;
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+
                 }
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "UserShare-"+this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "UserShare-"+this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View();
             }
@@ -61,13 +64,13 @@ namespace IUSBack.Controllers
                  * id2: representa la vista que aparecera
                  */
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
                 try
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     Dictionary<object, object> archivos;
                     Carpeta carpeta;
                     if (id != -1)
@@ -98,12 +101,13 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-"+this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-"+this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View();
             }
