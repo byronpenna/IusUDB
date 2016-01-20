@@ -71,16 +71,17 @@ namespace IUS.Controllers
                 }
                 return View();
             }
-            public ActionResult Index()
+            public ActionResult Index(int id=-1)
             {
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    string lang = this.getUserLang();
+                    string lang             = this.getUserLang();
                     //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
-                    traducciones = this._model.getTraduccion(lang, this.idPagina);
+                    traducciones            = this._model.getTraduccion(lang, this.idPagina);
+                    ViewBag.menu22          = this.activeClass;
+                    ViewBag.idContinente   = id;
                     this.setTraduccion(traducciones);
-                    ViewBag.menu22 = this.activeClass;
                 }
                 catch (ErroresIUS x)
                 {
