@@ -94,7 +94,7 @@
                     {
                         foreach (Institucion institucion in instituciones)
                         {
-                            <tr>
+                            <tr class="trPadre">
                                 <td>
                                     <input class="txtHdIdInstitucion" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
                                     <input class="txtHdIdPais" name="txtHdIdPais" value="@institucion._pais._idPais" />
@@ -112,7 +112,7 @@
                                     <div class="editMode hidden">
                                         <textarea class="txtAreaDireccionEdit form-control txtAreaDireccionVal" name="txtAreaDireccionEdit"></textarea>
                                     </div>
-                                    <div class="normalMode tdDireccion ">@institucion._direccion</div>
+                                    <div class="normalMode tdDireccion tdDireccionText ">@institucion._direccion</div>
                                     
                                 </td>
                                 <td class="tdPais">

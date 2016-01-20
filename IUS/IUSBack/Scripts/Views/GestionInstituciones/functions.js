@@ -161,14 +161,15 @@
         });
     }
     function btnEditar(trInstitucion) {
+        console.log("El valor del td direccion es", trInstitucion.find(".tdDireccionText").text());
         institucion = {
             nombre: trInstitucion.find(".tdNombre").text(),
-            direccion: trInstitucion.find(".tdDireccion").text(),
+            direccion: trInstitucion.find(".tdDireccionText").text(),
             idPais: trInstitucion.find(".txtHdIdPais").val(),
             idInstitucion: trInstitucion.find(".txtHdIdInstitucion").val(),
             
         }
-        console.log(institucion);
+        console.log("Institucion a poner al editar",institucion);
         fillInputsEdit(trInstitucion, institucion, function () {
             controlesEdit(true, trInstitucion);
         });
