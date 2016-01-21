@@ -29,6 +29,7 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
+                    ViewBag.usuarioSession = this.getUsuarioSession();
                     string lang         = this.getUserLang();
                     traducciones        = this._model.getTraduccion(lang, this.idPagina);
                     string ip = Request.UserHostAddress;
@@ -57,6 +58,7 @@ namespace IUS.Controllers
                 string ip = Request.UserHostAddress;
                 try
                 {
+                    ViewBag.usuarioSession = this.getUsuarioSession();
                     Dictionary<object, object> cuerpoPagina;
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);

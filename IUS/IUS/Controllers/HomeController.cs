@@ -28,11 +28,11 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try{
                     //FormsAuthentication 
-                    if (this.HttpContext.User.Identity.IsAuthenticated)
+                    /*if (this.HttpContext.User.Identity.IsAuthenticated)
                     {
                         string str = "";
                         var x = this.HttpContext.User.Identity.Name.ToString();
-                    }
+                    }*/
                     ViewBag.usuarioSession  = this.getUsuarioSession();
                     ViewBag.slider          = this._model.sp_front_getSliderFromPage(this.idPagina);
                     string lang             = this.getUserLang();
