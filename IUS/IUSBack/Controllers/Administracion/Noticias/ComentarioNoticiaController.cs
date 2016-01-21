@@ -18,7 +18,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
             public ComentarioModel  _model;
         #endregion
         #region "acciones url"
-            public ActionResult Index()
+            public ActionResult Index(int id)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
                 try {
@@ -29,6 +29,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
                     }
                     ViewBag.titleModulo = "Comentarios";
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.comentarios = this._model.sp_frontUi_noticias_back_getComentariosPost(id, usuarioSession._idUsuario, this._idPagina);
                     return View();
                 }
                 catch (ErroresIUS x)
@@ -41,6 +42,36 @@ namespace IUSBack.Controllers.Administracion.Noticias
                     ErrorsController error = new ErrorsController();
                     return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
+            }
+        #endregion
+        #region "ajax"
+            public ActionResult sp_frontUi_noticias_back_delComentarioPost()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                Usuario usuarioSession = this.getUsuarioSesion();
+                try
+                {
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        bool elimino = this._model.sp_frontUi_noticias_back_delComentarioPost(this.convertObjAjaxToInt(frm["idComentario"]), usuarioSession._idUsuario, this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", elimino);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                
+                return Json(respuesta);
             }
         #endregion
         #region "constructores"

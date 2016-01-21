@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.FrontUI.Noticias.Entidades
+@section estilosPersonalizados{
     <!-- plugins -->
     <!--Data table-->
     <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
@@ -14,14 +15,48 @@
     <script src="~/Scripts/Views/Administracion/Noticias/comentarios/script.js"></script>
     <script src="~/Scripts/Views/Administracion/Noticias/comentarios/functions.js"></script>
 }
-<div class="row marginNull">
-    <table class="table">
+@{
+    List<Comentario> comentarios = null;
+    try
+    {
+        comentarios = (List<Comentario>)ViewBag.comentarios;
+    }
+    catch (Exception)
+    {
+        
+    }
+    
+}
+<div class="row marginNull ">
+    <table class="table tbComentarios">
         <thead>
             <tr>
                 <th>Comentarios</th>
                 <th>Correo electrónico</th>
                 <th>IP que se realizo</th>
+                <th>Persona</th>
+                <th>Acciones</th>
             </tr>
         </thead>
+        <tbody>
+            @if (comentarios != null && comentarios.Count > 0)
+            {
+                foreach (Comentario comentario in comentarios)
+                {
+                    <tr>
+                        <td class="hidden">
+                            <input type="hidden" class="txtHdIdComentario" value="@comentario._idComentario"/>
+                        </td>
+                        <td>@comentario._comentario</td>
+                        <td>@comentario._email</td>
+                        <td>@comentario._ip</td>
+                        <td>@comentario._nombre</td>
+                        <td>
+                            <button class="btn btn-default btnEliminarComentario">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
     </table>
 </div>

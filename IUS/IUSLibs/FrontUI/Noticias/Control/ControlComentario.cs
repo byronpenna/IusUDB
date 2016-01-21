@@ -17,7 +17,71 @@ namespace IUSLibs.FrontUI.Noticias.Control
     public class ControlComentario:PadreLib
     {
         #region "backend"
-            //kji8.public List<Comentario> 
+            public List<Comentario> sp_frontUi_noticias_back_getComentariosPost(int idPost,int idUsuarioEjecutor,int idPagina)
+            {
+                List<Comentario> comentarios = null;
+                Comentario comentario;
+                SPIUS sp = new SPIUS("sp_frontUi_noticias_back_getComentariosPost");
+                sp.agregarParametro("idPost", idPost);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            comentarios = new List<Comentario>();
+                            foreach (DataRow row in tb[0].Rows)
+                            {
+                                comentario = new Comentario((int)row["idComentario"], row["comentario"].ToString(), row["correo_electronico"].ToString(), row["ip"].ToString(),row["nombre"].ToString(),(int)row["id_post_fk"],(DateTime)row["fecha_publicacion"]);
+                                comentarios.Add(comentario);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DataRow row = tb[0].Rows[0];
+                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        throw x;
+                    }
+                    return comentarios;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+            public bool sp_frontUi_noticias_back_delComentarioPost(int idComentario,int idUsuarioEjecutor,int idPagina)
+            {
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_frontUi_noticias_back_delComentarioPost");
+                sp.agregarParametro("idComentario", idComentario);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return estado;
+            }
         #endregion
         #region "front end"
             #region "get"
