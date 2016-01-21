@@ -17,7 +17,7 @@ namespace IUSLibs.FrontUI.Noticias.Control
     public class ControlComentario:PadreLib
     {
         #region "backend"
-            //public List<Comentario> 
+            //kji8.public List<Comentario> 
         #endregion
         #region "front end"
             #region "get"
