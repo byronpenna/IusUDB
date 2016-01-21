@@ -1,5 +1,6 @@
 ﻿@using IUSLibs.ADMINFE.Entidades
 @using IUSLibs.ADMINFE.Entidades.Noticias
+@using IUSLibs.ADMINFE.Entidades
 @section estilosPersonalizados{
     <link  rel="stylesheet" href="~/Content/ius_theme/views/home/style.css"/>    
     <link rel="stylesheet" href="~/Content/ius_theme/views/home/media.css" />   
@@ -11,7 +12,8 @@
 @{
     List<SliderImage> slider = (List<SliderImage>)ViewBag.slider;
     //List<Post> post = (List<Post>)ViewBag.noticias;
-    List<Post> posts = (List<Post>)ViewBag.noticias;
+    List<Post> posts        = (List<Post>)ViewBag.noticias;
+    List<Evento> eventos    = (List<Evento>)ViewBag.eventos;
     // tmp 
     string src = "";
 }
@@ -52,7 +54,26 @@
 <div class="row marginNull footerPersonalizado">
     <div class="row marginNull rowImportantes">
         @*<h3 class="text-center">Eventos</h3>*@
-        <div class="col-lg-4">
+        @if (eventos != null)
+        {
+            foreach (Evento evento in eventos)
+            {
+                <div class="col-lg-4">
+                    <div class="DivEvento">
+                        <div class="col-lg-4">
+                            <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionumsc/"+evento._fechaInicio.Day+".png")" />
+                        </div>
+                        <div class="col-lg-8">
+                            <h4>@evento._evento</h4>
+                            <p>
+                                <strong>@evento.getFechaFin</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        @*<div class="col-lg-4">
             <div class="DivEvento">
                 <div class="col-lg-4">
                     <img class="minEvento" src="@Url.Content("~/Content/images/generales/calendarionumsc/1.png")" />
@@ -90,7 +111,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
     <div class="row feedSection marginNull">
         @if (posts != null)

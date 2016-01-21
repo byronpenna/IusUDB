@@ -10,6 +10,8 @@ using IUS.Models.general;
     using IUSLibs.ADMINFE.Entidades;
     using IUSLibs.ADMINFE.Control;
     //
+    using IUSLibs.ADMINFE.Entidades;
+    using IUSLibs.FrontUI.Eventos.Control;
 namespace IUS.Models.page.home.acciones
 {
     public class HomeModel:ModeloPadre
@@ -23,7 +25,23 @@ namespace IUS.Models.page.home.acciones
             #endregion
         #endregion
         #region "funciones"
-            
+            public List<Evento> sp_adminfe_front_getMonthEvents(string ip,int idPagina)
+            {
+                
+                try
+                {
+                    ControlEventos control = new ControlEventos();
+                    return control.sp_adminfe_front_getMonthEvents(ip, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x) {
+                    throw x;
+                }
+
+            }
             public Idioma sp_trl_getIdiomaFromIds(int idIdioma)
             {
                 try

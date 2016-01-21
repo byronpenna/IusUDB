@@ -29,6 +29,7 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
+                    ViewBag.usuarioSession = this.getUsuarioSession();
                     string lang = this.getUserLang();
                     //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this.idPagina);

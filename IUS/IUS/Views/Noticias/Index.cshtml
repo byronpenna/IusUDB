@@ -40,14 +40,14 @@
         <div class="agregarComentarioSection " style="display:none" >
             <form id="frmComentario">
                 <input type="hidden" name="txtHdIdPost" value="@ViewBag.idPost" />
-                <div class="row marginNull rowForm">
+                @*<div class="row marginNull rowForm">
                     <label>@ViewData["label-nombre"]</label>
                     <input class="form-control soloLetras" required name="txtNombre" placeholder="@ViewData["formato-nombre"]" /><!--Nombre Apellido-->
                 </div>
                 <div class="row marginNull rowForm">
                     <label>@ViewData["label-email"]</label>
                     <input type="email" class="form-control" name="txtEmail" required  placeholder="@ViewData["formato-email"]" /><!-- direccion@("@")dominio -->
-                </div>
+                </div>*@
                 <div class="row marginNull rowForm">
                     <label>@ViewData["label-comentario"]</label>
                     <textarea class="form-control" required name="txtAreaComentario"></textarea>
@@ -57,6 +57,9 @@
                     <!-- Comentar -->
                 </button>
             </form>
+            <div class="row marginNull divPrintFrmComentario">
+
+            </div>
             <div class="row marginNull divMensajesComentarios">
 
             </div>

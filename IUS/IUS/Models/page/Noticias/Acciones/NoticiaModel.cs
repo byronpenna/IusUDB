@@ -83,11 +83,11 @@ namespace IUS.Models.page.Noticias.Acciones
                     }
                 #endregion
                 #region "do it"
-                    public Comentario sp_frontUi_noticias_ponerComentario(Comentario comentarioAgregar,int idPagina)
+                    public Comentario sp_frontUi_noticias_ponerComentario(Comentario comentarioAgregar,int idUsuario,int idPagina)
                     {
                         try
                         {
-                            return this._controlComentario.sp_frontUi_noticias_ponerComentario(comentarioAgregar, idPagina);
+                            return this._controlComentario.sp_frontUi_noticias_ponerComentario(comentarioAgregar,idUsuario, idPagina);
                         }
                         catch (ErroresIUS x)
                         {

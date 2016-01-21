@@ -35,20 +35,21 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    string lang = this.getUserLang();
+                    ViewBag.usuarioSession              = this.getUsuarioSession();
+                    string lang                         = this.getUserLang();
                     //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
-                    traducciones = this._model.getTraduccion(lang, this.idPagina);
-                    string ip = Request.UserHostAddress;
+                    traducciones                        = this._model.getTraduccion(lang, this.idPagina);
+                    string ip                           = Request.UserHostAddress;
                     Dictionary<object, object> archivos = this._model.sp_repo_front_getArchivosPublicosByType(id,id2, ip, this.idPagina);
-                    ViewBag.carpetas    = archivos["carpetas"];
-                    ViewBag.archivos    = archivos["archivos"];
-                    ViewBag.carpetaPadre = archivos["carpetaPadre"];
-                    ViewBag.accion      = "FileByCategory";
-                    ViewBag.tipo        = id2;
-                    ViewBag.menu24  = this.activeClass;
-                    ViewBag.filtro  = id2;
-                    ViewBag.vista = id3;
-                    ViewBag.tiposArchivos = this._model.sp_repo_front_getTiposArchivos(lang, ip, this.idPagina);
+                    ViewBag.carpetas                    = archivos["carpetas"];
+                    ViewBag.archivos                    = archivos["archivos"];
+                    ViewBag.carpetaPadre                = archivos["carpetaPadre"];
+                    ViewBag.accion                      = "FileByCategory";
+                    ViewBag.tipo                        = id2;
+                    ViewBag.menu24                      = this.activeClass;
+                    ViewBag.filtro                      = id2;
+                    ViewBag.vista                       = id3;
+                    ViewBag.tiposArchivos               = this._model.sp_repo_front_getTiposArchivos(lang, ip, this.idPagina);
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -85,7 +86,8 @@ namespace IUS.Controllers
                         Session["HistoryRepo"] = history;
                     }
                     //************************************
-                    string lang = this.getUserLang();
+                    ViewBag.usuarioSession              = this.getUsuarioSession();
+                    string lang                         = this.getUserLang();
                     ViewBag.noticias                    = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones                        = this._model.getTraduccion(lang, this.idPagina);
                     string ip                           = Request.UserHostAddress;
@@ -114,10 +116,11 @@ namespace IUS.Controllers
             {
                 try
                 {
-                    string ip           = Request.UserHostAddress;
-                    Archivo archivo     = this._model.sp_repo_front_getDownloadFilePublic(id, ip, this.idPagina);
-                    byte[] fileBytes    = System.IO.File.ReadAllBytes(archivo._src);
-                    string fileName = archivo._nombre + archivo._extension._extension;
+                    ViewBag.usuarioSession  = this.getUsuarioSession();
+                    string ip               = Request.UserHostAddress;
+                    Archivo archivo         = this._model.sp_repo_front_getDownloadFilePublic(id, ip, this.idPagina);
+                    byte[] fileBytes        = System.IO.File.ReadAllBytes(archivo._src);
+                    string fileName         = archivo._nombre + archivo._extension._extension;
                     return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
                 }
                 catch (ErroresIUS x)
@@ -134,13 +137,14 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    string lang = this.getUserLang();
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
-                    traducciones    = this._model.getTraduccion(lang, this.idPagina);
-                    string ip       = Request.UserHostAddress;
+                    string lang             = this.getUserLang();
+                    ViewBag.usuarioSession  = this.getUsuarioSession();
+                    ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
+                    traducciones            = this._model.getTraduccion(lang, this.idPagina);
+                    string ip               = Request.UserHostAddress;
                     this.setTraduccion(traducciones);
-                    ViewBag.tiposArchivos = this._model.sp_repo_front_getTiposArchivos(lang,ip, this.idPagina);
-                    ViewBag.menu24 = this.activeClass;
+                    ViewBag.tiposArchivos   = this._model.sp_repo_front_getTiposArchivos(lang,ip, this.idPagina);
+                    ViewBag.menu24          = this.activeClass;
                 }
                 catch (ErroresIUS x)
                 {
