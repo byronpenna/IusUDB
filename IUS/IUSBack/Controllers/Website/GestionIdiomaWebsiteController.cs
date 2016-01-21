@@ -16,8 +16,9 @@ namespace IUSBack.Controllers
         //
         // GET: /GestionIdiomaWebsite/
         #region "propiedades"
-            public int _idPagina = (int)paginas.gestionIdiomaWebsite;
-            public GestionIdiomaWebsiteModel _model;
+            public int                          _idPagina = (int)paginas.gestionIdiomaWebsite;
+            public GestionIdiomaWebsiteModel    _model;
+            public string                       _nombreClass = "GestionIdiomaWebsiteController";
         #endregion
         #region "constructores"
             public GestionIdiomaWebsiteController()
@@ -28,7 +29,8 @@ namespace IUSBack.Controllers
         #region "URL"
             public ActionResult Index()
             {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                ActionResult    seguridadInicial    = this.seguridadInicial(this._idPagina);
+                Usuario         usuarioSession      = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -36,7 +38,7 @@ namespace IUSBack.Controllers
                 try
                 {
                     ViewBag.selectedMenu = 3; // menu seleccionado 
-                    Usuario usuarioSession = this.getUsuarioSesion();
+                    
                     Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
                     if (usuarioSession != null)
                     {
@@ -62,12 +64,13 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 return View();
             }

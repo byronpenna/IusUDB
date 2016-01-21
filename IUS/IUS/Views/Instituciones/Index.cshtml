@@ -6,35 +6,28 @@
     <script src="~/Scripts/views/Instituciones/script.js"></script>
     <script src="~/Scripts/views/Instituciones/functions.js"></script>
 }
+<input type="hidden" class="txtHdIdSeleccionado" value="@ViewBag.idContinente" />
 <h2 class="tituloAyuda">
     <!--Encuentre nuestras instituciones por Continente-->
     @ViewData["titulo-busqueda-institucion"]
 </h2>
 <div class="row marginNull divContinentes">
-    <!--<a href="@Url.Action("VerInstituciones", "Instituciones", new { id=2 })">-->
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente" id="2">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente continente2" id="2" >
             <img src="~/Content/images/views/Instituciones/america.png" />
             <h3 class="nombreContinente">America</h3>
         </div>
-    <!--</a>-->
-    <!--<a href="@Url.Action("VerInstituciones", "Instituciones", new { id = 1 })">-->
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente" id="1">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente continente1" id="1" >
             <img src="~/Content/images/views/Instituciones/africa.png" />
             <h3 class="nombreContinente">Africa</h3>
         </div>
-    <!--</a>-->
-    <!--<a href="@Url.Action("VerInstituciones", "Instituciones", new { id = 3 })">-->
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente" id="3">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente continente3" id="3">
             <img src="~/Content/images/views/Instituciones/asia-f.png" />
             <h3 class="nombreContinente">Asia</h3>
         </div>
-    <!--</a>-->
-    <!--<a href="@Url.Action("VerInstituciones", "Instituciones", new { id = 4 })">-->
-        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente" id="4">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 continente continente4" id="4">
             <img src="~/Content/images/views/Instituciones/europa.png" />
             <h3 class="nombreContinente">Europa</h3>
         </div>
-    <!--</a>-->
 </div>
 <div class="marginNull row cuerpoInstituciones">
     <h3 class="hContinente text-center">@ViewData["lb-ayuda-tabla"]</h3>

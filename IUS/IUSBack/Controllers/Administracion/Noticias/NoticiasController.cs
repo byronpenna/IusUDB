@@ -22,6 +22,7 @@ namespace IUSBack.Controllers
         #region "propiedades"
             private int _idPagina = (int)paginas.Noticias;
             private NoticiasModel _model;
+            private string _nombreClass = "NoticiasController";
         #endregion 
         #region "constructores"
             public NoticiasController()
@@ -50,18 +51,20 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS x)
                 {
-                    return RedirectToAction("Unhandled", "Erros");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "setMiniatura-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Erros");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "setMiniatura-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 
             }
             public ActionResult Index()
             {
+                Usuario usuarioSession = this.getUsuarioSesion();
                 try {
-                    Usuario usuarioSession = this.getUsuarioSesion();
                     ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
                     if (seguridadInicial != null)
                     {
@@ -73,11 +76,13 @@ namespace IUSBack.Controllers
                     List<Post> posts    = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
                     ViewBag.posts = posts;
                     return View();
-                }catch(ErroresIUS){
-                    return RedirectToAction("Unhandled", "Errors");
+                }catch(ErroresIUS x){
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x) {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
             public ActionResult ModificarNoticia(int id)
@@ -114,11 +119,13 @@ namespace IUSBack.Controllers
                         ViewBag.tags        = this._model.getComaTags((List<Tag>)datosPost["tags"]);
                     #endregion
                     return View("~/Views/Administracion/Noticias.cshtml");
-                }catch(ErroresIUS){
-                    return RedirectToAction("Unhandled", "Errors");
+                }catch(ErroresIUS x){
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "ModificarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x) {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "ModificarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
             public ActionResult IngresarNoticia()
@@ -150,12 +157,13 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "IngresarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
                 catch (Exception x)
                 {
-                    return RedirectToAction("Unhandled", "Errors");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "IngresarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 /*}
                 else

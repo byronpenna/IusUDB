@@ -46,21 +46,47 @@
                         </button>\
                     </div>\
                     <div class='normalMode'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-default btnEditar btn-xs' "+strEditar+">Editar</button>\
-                            <button class='btn btn-default btnDeleteInstitucion btn-xs' "+strEliminar+">Eliminar</button>\
+                        <div class='btn-group-vertical'>\
+                            <button class='btnEditar btn btn-default btn-xs' " + strEditar + " title='Editar'>\
+                                <i class='fa fa-pencil'></i>\
+                            </button>\
+                            <button class='btnDeleteInstitucion btn btn-default btn-xs' " + strEliminar + "  title='Eliminar'>\
+                                <i class='fa fa-times'></i>\
+                            </button>\
                         </div>\
-                        <div class='btn-group'>\
-                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionInstituciones/SetLogo/' + institucion._idInstitucion + "' class='btn'>\
-                                Logo\
+                        <div class='btn-group-vertical'>\
+                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionTelefonos/Index/' + institucion._idInstitucion + "' title='Telefonos'>\
+                                <i class='fa fa-phone-square'></i>\
                             </a>\
-                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionTelefonos/Index/' + institucion._idInstitucion + "'>Telefonos</a>\
-                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionMediosInstituciones/Index/' + institucion._idInstitucion + "'>Medios Electronicos</a>\
+                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionMediosInstituciones/Index/' + institucion._idInstitucion + "' title='Medios Electronicos'>\
+                                <i class='fa fa-globe'></i>\
+                            </a>\
+                        </div>\
+                        <div class='btn-group-vertical' >\
+                            <a class='btn btnFromlink btn-default btn-xs' href='#' title='Establecer logo'>\
+                                <i class='fa fa-picture-o'></i>\
+                            </a>\
+                            <a href='#' class='btn btn-default btn-xs btnNiveArea' title='Mas detalles'>\
+                                <i class='fa fa-plus'></i>\
+                            </a>\
                         </div>\
                     </div>\
                 </td>\
             </tr>\
         ";
+        /*
+            <div class='btn-group'>\
+                <button class='btn btn-default btnEditar btn-xs' "+strEditar+">Editar</button>\
+                <button class='btn btn-default btnDeleteInstitucion btn-xs' "+strEliminar+">Eliminar</button>\
+            </div>\
+            <div class='btn-group'>\
+                <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionInstituciones/SetLogo/' + institucion._idInstitucion + "' class='btn'>\
+                    Logo\
+                </a>\
+                <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionTelefonos/Index/' + institucion._idInstitucion + "'>Telefonos</a>\
+                <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionMediosInstituciones/Index/' + institucion._idInstitucion + "'>Medios Electronicos</a>\
+            </div>\
+        */
         return tr;
     }
     function comboPaisAddOpcions(Paises,combo,selected) {
@@ -135,14 +161,15 @@
         });
     }
     function btnEditar(trInstitucion) {
+        console.log("El valor del td direccion es", trInstitucion.find(".tdDireccionText").text());
         institucion = {
             nombre: trInstitucion.find(".tdNombre").text(),
-            direccion: trInstitucion.find(".tdDireccion").text(),
+            direccion: trInstitucion.find(".tdDireccionText").text(),
             idPais: trInstitucion.find(".txtHdIdPais").val(),
             idInstitucion: trInstitucion.find(".txtHdIdInstitucion").val(),
             
         }
-        console.log(institucion);
+        console.log("Institucion a poner al editar",institucion);
         fillInputsEdit(trInstitucion, institucion, function () {
             controlesEdit(true, trInstitucion);
         });

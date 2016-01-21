@@ -1,4 +1,11 @@
-﻿// genericas 
+﻿function inicial() {
+    var seleccionado = $(".txtHdIdSeleccionado").val();
+    console.log("seleccionado es", seleccionado);
+    if (seleccionado != -1) {
+        $(".divContinentes").find("#" + seleccionado).click();
+    }
+}
+// genericas 
     function getTrInstitucion(institucion) {
         var tel = ""; var enlaces = "";
         console.log("los objetos de instituciones son", institucion);
@@ -51,40 +58,40 @@
         return tr;
     }
     // scripts 
-        function buscarContinente(frm) {
-            var target = $(".tbodyInstitucion");
-            actualizarCatalogo(RAIZ + "/Instituciones/sp_frontui_getInstitucionesByContinente", frm, function (data) {
-                console.log("D: :DP", data)
-                if (data.estado) {
-                    var instituciones = data.instituciones.instituciones;
+    function buscarContinente(frm) {
+        var target = $(".tbodyInstitucion");
+        actualizarCatalogo(RAIZ + "/Instituciones/sp_frontui_getInstitucionesByContinente", frm, function (data) {
+            console.log("D: :DP", data)
+            if (data.estado) {
+                var instituciones = data.instituciones.instituciones;
                 
-                    var tr = "";
-                    console.log("instituciones", instituciones);
-                    var hContinente = "";
-                    if (data.instituciones.continente !== undefined && data.instituciones.continente != null) {
-                        hContinente = data.instituciones.continente._continente;
-                    }
-                    if (instituciones !== undefined && instituciones != null && instituciones.length > 0) {
-                        console.log("entro aqui");
-                        $.each(instituciones, function (i,institucion) {
-                            tr += getTrInstitucion(institucion);
-                        });                        
-                    } else {
-                        tr = getTrInstitucionNull();
-                    }
-                
-                    target.empty().append(tr);
-                    $(".hContinente").empty().append(hContinente);
+                var tr = "";
+                console.log("instituciones", instituciones);
+                var hContinente = "";
+                if (data.instituciones.continente !== undefined && data.instituciones.continente != null) {
+                    hContinente = data.instituciones.continente._continente;
                 }
+                if (instituciones !== undefined && instituciones != null && instituciones.length > 0) {
+                    console.log("entro aqui");
+                    $.each(instituciones, function (i,institucion) {
+                        tr += getTrInstitucion(institucion);
+                    });                        
+                } else {
+                    tr = getTrInstitucionNull();
+                }
+                
+                target.empty().append(tr);
+                $(".hContinente").empty().append(hContinente);
+            }
             
-            }, function () {
-                var trLoading = "\
+        }, function () {
+            var trLoading = "\
             <tr>\
                 <td colspan='3' class='text-center'>\
                     <img src='" + IMG_GENERALES + "ajax-loader.gif'>\
                 </td>\
             </tr>\
             ";
-                target.empty().append(trLoading);
-            })
-        }
+            target.empty().append(trLoading);
+        })
+    }

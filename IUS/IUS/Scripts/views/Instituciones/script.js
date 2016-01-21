@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    
     // eventos
         // over
             $(document).on("mouseover", ".continente", function () {
@@ -13,7 +14,10 @@
                 var frm = {
                     id: $(this).attr("id")
                 }
+                
+                window.history.pushState({}, "Titulo", "/Instituciones/index/"+frm.id);
                 buscarContinente(frm);
             })
-            
+    // iniciales
+        inicial();
 });

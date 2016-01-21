@@ -19,7 +19,8 @@ namespace IUSBack.Controllers
         // GET: /GestionUsuarios/
         #region "Propiedades"
             private GestionUsuarioModel _model;
-            private int _idPagina = (int)paginas.usuarios;
+            private int                 _idPagina       = (int)paginas.usuarios;
+            private string              _nombreClass    = "GestionUsuariosController";
         #endregion
         #region "constructores"
             public GestionUsuariosController()
@@ -31,33 +32,46 @@ namespace IUSBack.Controllers
             public ActionResult Index()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
-                if (seguridadInicial != null)
-                {
-                    return seguridadInicial;
-                }
-                List<Usuario> usuarios;
-                GestionPersonaModel modelPersona = new GestionPersonaModel();
-                ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                List<Persona> personas = null;
                 try
                 {
-                    ViewBag.titleModulo = "Gestion de usuarios";
-                    ViewBag.usuario     = usuarioSession;
-                    usuarios            = this._model.getUsuarios(usuarioSession._idUsuario);
-                    personas            = modelPersona.getPersonas();
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
+                    if (seguridadInicial != null)
+                    {
+                        return seguridadInicial;
+                    }
+                    List<Usuario> usuarios;
+                    GestionPersonaModel modelPersona = new GestionPersonaModel();
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    List<Persona> personas = null;
+                    try
+                    {
+                        ViewBag.titleModulo = "Gestion de usuarios";
+                        ViewBag.usuario = usuarioSession;
+                        usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
+                        personas = modelPersona.getPersonas();
+                    }
+                    catch (ErroresIUS)
+                    {
+                        usuarios = null;
+                    }
+                    catch (Exception)
+                    {
+                        usuarios = null;
+                    }
+                    ViewBag.usuarios = usuarios;
+                    ViewBag.personas = personas;
+                    return View();
                 }
-                catch (ErroresIUS)
+                catch (ErroresIUS x)
                 {
-                    usuarios = null;
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-                    usuarios = null;
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
-                ViewBag.usuarios = usuarios;
-                ViewBag.personas = personas;
-                return View();
                 
             }
         #endregion

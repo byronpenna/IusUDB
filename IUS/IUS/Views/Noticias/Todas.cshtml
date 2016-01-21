@@ -22,6 +22,7 @@
         noticias        = (Dictionary<object, object>)ViewBag.noticiasPagina;
         posts       = (List<Post>)noticias["posts"];
         cnPagina    = (int)noticias["cnPagina"];
+        string tmp  = ViewData["mjs-error-noResultados"].ToString();
     }
     catch (Exception)
     {
@@ -29,6 +30,7 @@
     }
 }
 <input type="hidden" class="mjs-error-ponerFiltroBusqueda" value="@ViewData["mjs-error-ponerFiltroBusqueda"]" />
+<input type="hidden" class="mjs-error-noResultados" value="@ViewData["mjs-error-noResultados"]" />
 <h2 class="text-center titulo">@ViewData["titulo-noticias"]@*Noticias*@</h2>
 <div class="row marginNull rowPadreParaBusqueda" style="display:none">
     <h3 class="text-center">@ViewData["titulo-seccion-filtro"]@*Filtro*@</h3>

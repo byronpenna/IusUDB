@@ -69,8 +69,8 @@
                     siguiente.addClass("grupoNumActivo");
                     siguiente.removeClass("hidden");
                 } else {
-                    //console.log("D: ");
-                    printMessage($(".divResultadoNumeritos"), "No hay mas resultados en esa dirección", false);
+                    console.log("D: no hay");
+                    printMessage($(".divResultadoNumeritos"), $(".mjs-error-noResultados").val(), false);
                 }
             })
             $(document).on("click", ".numPaginacion", function () {

@@ -22,8 +22,9 @@ namespace IUSBack.Controllers
         // GET: /GestionPersonas/
         
         #region "propiedades"
-            public GestionPersonaModel _model;
-            private int _idPagina = (int)paginas.gestionPersonas;
+            public GestionPersonaModel  _model;
+            private int                 _idPagina       = (int)paginas.gestionPersonas;
+            private string              _nombreClass    = "GestionPersonasController";
         #endregion
             
         #region "url"
@@ -66,12 +67,12 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true, "Extras-FormacionPersonasController", usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, true, "Extras-"+this._nombreClass+"", usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "Extras-GestionPersonasController", usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, "Extras-"+this._nombreClass+"", usuarioSession._idUsuario, this._idPagina);
                 }
             }
             public ActionResult Index()
@@ -95,12 +96,12 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true, "Index-GestionPersonasController", usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, true, "Index-"+this._nombreClass+"", usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "Index-GestionPersonasController", usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, "Index-" + this._nombreClass + "", usuarioSession._idUsuario, this._idPagina);
                 }
             }
             public ActionResult Detalle(int id=-1,int id2= 1) // este -1 es temporal 
@@ -159,12 +160,12 @@ namespace IUSBack.Controllers
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true, "Index-FormacionPersonasController", usuarioSesion._idUsuario, this._idPagina);
+                    return error.redirectToError(x, true, "Detalle-"+this._nombreClass+"", usuarioSesion._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "Index-FormacionPersonasController", usuarioSesion._idUsuario, this._idPagina);
+                    return error.redirectToError(x, "Detalle-"+this._nombreClass+"", usuarioSesion._idUsuario, this._idPagina);
                 }
                 return View();
             }

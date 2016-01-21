@@ -15,8 +15,9 @@ namespace IUSBack.Controllers
     public class HomeController:PadreController
     {
         #region "propiedades"
-            public HomeModel homeModel;
-            
+            public HomeModel    homeModel;
+            public string       _nombreClass = "HomeController";
+            public int          _idPagina = (int)paginas.Home;
         #endregion
         #region "Constructores"
             public HomeController()
@@ -128,7 +129,8 @@ namespace IUSBack.Controllers
                 // estandarizar 
                 /*if (Session["usuario"] != null)
                 {*/
-                ActionResult seguridadInicial = this.seguridadInicial(-1,-1);
+                ActionResult    seguridadInicial    = this.seguridadInicial(-1,-1);
+                Usuario         usu                 = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
@@ -138,7 +140,7 @@ namespace IUSBack.Controllers
                     //Session["neutroControl"] 
                     ViewBag.titleModulo = "Sistema administrativo IUS";
                     ViewBag.selectedMenu = 1;
-                    Usuario usu = (Usuario)Session["usuario"];
+                    
                     ViewBag.usuario = usu;
                     ViewBag.eventosHoy = this.homeModel.sp_adminfe_front_getTodayEvents("127.0.0.1",1);
                     ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
@@ -146,13 +148,16 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS x)
                 {
-                    ErrorsController error = new ErrorsController();
+                    /*ErrorsController error = new ErrorsController();
                     var obj = error.redirectToError(x);
-                    return RedirectToAction(obj["controlador"], obj["accion"]);
+                    return RedirectToAction(obj["controlador"], obj["accion"]);*/
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usu._idUsuario, this._idPagina);
                 }
-                catch (Exception)
+                catch (Exception x)
                 {
-                    return RedirectToAction("index", "login");
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usu._idUsuario, this._idPagina);
                 }
                 /*}
                 else

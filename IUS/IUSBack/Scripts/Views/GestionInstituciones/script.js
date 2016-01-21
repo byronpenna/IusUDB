@@ -61,7 +61,9 @@
                 }
             })
             $(document).on("click", ".btnEditar", function () {
-                trInstitucion = $(this).parents("tr");
+                trInstitucion = $(this).parents(".trPadre");
+                //console.log("El valor del td direccion es", );
+                //trInstitucion.find(".tdDireccion").css("background","red")
                 //table = $(".tbInstituciones").DataTable();
                 trInstitucion.find(".divResultado").empty();
                 trInstitucion.find(".divResultado").addClass("hidden");

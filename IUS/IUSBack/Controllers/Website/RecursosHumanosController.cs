@@ -17,18 +17,20 @@ namespace IUSBack.Controllers.Website
         #region "propiedades"
             private int                 _idPagina = (int)paginas.RecursosHumanos;
             public RecursosHumanosModel _model;
+            public string _nombreClass = "RecursosHumanosController";
         #endregion
         #region "acciones url"
             public ActionResult Index()
             {
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                ActionResult    seguridadInicial    = this.seguridadInicial(this._idPagina);
+                Usuario         usuarioSession      = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
                 try
                 {
-                    Usuario usuarioSession  = this.getUsuarioSesion();
+                    
                     ViewBag.selectedMenu    = 3; // menu seleccionado 
                     ViewBag.titleModulo     = "Recursos humanos";
                     // objetos para pagina
@@ -40,7 +42,7 @@ namespace IUSBack.Controllers.Website
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {

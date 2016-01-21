@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Administracion\AdministracionController.cs" />
+    <Compile Include="Controllers\Administracion\Noticias\ComentarioNoticiaController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\FormacionPersonasController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\GestionLaboralController.cs" />
     <Compile Include="Controllers\Website\ConfiguracionWebsiteController.cs" />
@@ -201,7 +202,7 @@
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Home\LoginController.cs" />
     <Compile Include="Controllers\General\MenuController.cs" />
-    <Compile Include="Controllers\Administracion\NoticiasController.cs" />
+    <Compile Include="Controllers\Administracion\Noticias\NoticiasController.cs" />
     <Compile Include="Controllers\General\PadreController.cs" />
     <Compile Include="Controllers\Administracion\Repositorio\RepositorioCompartidoController.cs" />
     <Compile Include="Controllers\Administracion\Repositorio\RepositorioController.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Models\General\Coordenadas.cs" />
     <Compile Include="Models\General\GestionFileServerModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\AdministracionModel.cs" />
+    <Compile Include="Models\Page\Administracion\Acciones\ComentarioModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\NoticiasModel.cs" />
     <Compile Include="Models\Page\ConfiguracionWebsite\Acciones\ConfiguracionWebsiteModel.cs" />
     <Compile Include="Models\Page\Errors\ErrorsModel.cs" />
@@ -478,6 +480,8 @@
     <Content Include="Content\themes\iusback_theme\img\views\Persona\pastel.png" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\style.css" />
@@ -666,6 +670,8 @@
     <Content Include="Scripts\Generales\script.js" />
     <Content Include="Scripts\Views\Administracion\Eventos\functions.js" />
     <Content Include="Scripts\Views\Administracion\Eventos\script.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\comentarios\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\comentarios\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\principal\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\principal\script.js" />
@@ -886,6 +892,7 @@
     <Content Include="Views\RecursosHumanos\Index.cshtml" />
     <Content Include="Views\GestionPersonas\Detalle.cshtml" />
     <Content Include="Views\AdicionalesInstituciones\Index.cshtml" />
+    <Content Include="Views\ComentarioNoticia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
