@@ -10,6 +10,7 @@ using System.Web.Mvc;
     using IUSLibs.TRL.Entidades;
     using IUSLibs.ADMINFE.Entidades.Noticias;
     using IUSLibs.FrontUI.Noticias.Entidades;
+    using IUSLibs.SECPU.Entidades;
 namespace IUS.Controllers
 {
     public class NoticiasController : PadreController
@@ -117,17 +118,27 @@ namespace IUS.Controllers
                     {
                         //string ip = this.Request.ServerVariables["REMOTE_ADDR"];
                         string ip = Request.UserHostAddress;
-                        Comentario comentarioAgregar = new Comentario(frm["txtAreaComentario"].ToString(), frm["txtEmail"].ToString(), ip, frm["txtNombre"].ToString(), this.convertObjAjaxToInt(frm["txtHdIdPost"]));
-                        Comentario comentarioAgregado = this._model.sp_frontUi_noticias_ponerComentario(comentarioAgregar, this.idPagina);
-                        if (comentarioAgregado != null)
+                        Comentario comentarioAgregar = new Comentario(frm["txtAreaComentario"].ToString(), "", ip, "", this.convertObjAjaxToInt(frm["txtHdIdPost"]));
+                        UsuarioPublico usuario = this.getUsuarioSession();
+                        if (usuario != null)
                         {
-                            respuesta = new Dictionary<object, object>();
-                            respuesta.Add("estado", true);
-                            respuesta.Add("comentario", comentarioAgregado);
+                            Comentario comentarioAgregado = this._model.sp_frontUi_noticias_ponerComentario(comentarioAgregar, usuario._idUsuarioPublico, this.idPagina);
+                            if (comentarioAgregado != null)
+                            {
+                                respuesta = new Dictionary<object, object>();
+                                respuesta.Add("estado", true);
+                                respuesta.Add("comentario", comentarioAgregado);
+                            }
+                            else
+                            {
+                                ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
+                                respuesta = this.errorTryControlador(3, x);
+                            }
                         }
                         else
                         {
-                            ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
+                            ErroresIUS x = new ErroresIUS("Debe iniciar sesion para poder comentar", ErroresIUS.tipoError.generico, 0);
+                            x._mostrar = true;
                             respuesta = this.errorTryControlador(3, x);
                         }
                     }

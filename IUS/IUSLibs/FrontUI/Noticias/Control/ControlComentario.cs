@@ -123,15 +123,16 @@ namespace IUSLibs.FrontUI.Noticias.Control
                 }
             #endregion
             #region "set"
-                public Comentario sp_frontUi_noticias_ponerComentario(Comentario comentarioAgregar,int idPagina)
+                public Comentario sp_frontUi_noticias_ponerComentario(Comentario comentarioAgregar,int idUsuario,int idPagina)
                 {
                     Comentario comentarioAgregado = null;
                     SPIUS sp = new SPIUS("sp_frontUi_noticias_ponerComentario");
                     sp.agregarParametro("comentario", comentarioAgregar._comentario);
-                    sp.agregarParametro("email", comentarioAgregar._email);
+                    sp.agregarParametro("idUsuario", idUsuario);
+                    //sp.agregarParametro("email", comentarioAgregar._email);
                     sp.agregarParametro("ip", comentarioAgregar._ip);
                     sp.agregarParametro("idPost", comentarioAgregar._post._idPost);
-                    sp.agregarParametro("nombre", comentarioAgregar._nombre);
+                    //sp.agregarParametro("nombre", comentarioAgregar._nombre);
                     sp.agregarParametro("idPagina", idPagina);
                     try
                     {

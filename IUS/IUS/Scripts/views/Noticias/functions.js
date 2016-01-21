@@ -47,7 +47,12 @@
                     divSeccionComentarios.prepend(div).show("slow");
                 }
             } else {
-                alert("No fue posible publicar comentario");
+                if (data.error !== undefined && data.error != null && data.error._mostrar) {
+                    printMessage($(".divPrintFrmComentario"), data.error.Message, false);
+                } else {
+                    printMessage($(".divPrintFrmComentario"), "No fue posible publicar comentario",false)
+                }
+                //alert();
             }
         });
     }
