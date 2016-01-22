@@ -61,7 +61,11 @@
 @*Inputs ocultos*@
     <input type="hidden" class="txtHdTipoCategoria" value="@tipo"/>
     <input type="hidden" class="txtHdIdCarpetaActual" value="@idCarpetaPadre" />
+    <input type="hidden" class="txtHdIdVista" value="@idVista"/>
     <input type="hidden" class="txtHdAccion" value="@ViewBag.accion"/>
+    
+    <input type="hidden" class="txtHdControlador"   value="@ViewBag.controlador"/>
+    <input type="hidden" class="txtHdMetodo"        value="@ViewBag.metodo" />
     @*abrir carpeta*@
         <input type="hidden" class="txtHdResultadoBusqueda" value="@ViewData["titulo-resultadoBusqueda"]"/>
         <input type="hidden" class="txtHdAbrirCarpeta" value="@ViewData["texto-abrirCarpeta"]" />

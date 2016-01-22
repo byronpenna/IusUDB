@@ -41,6 +41,7 @@
                             $(".cuadricula").removeClass("hidden");
                             $(".iconoVistaCuadricula").addClass("activeVista");
                             $(".lista").addClass("hidden");
+                            $(".txtHdIdVista").val(-1);
                             break;
                         }
                     case "lista":
@@ -48,9 +49,11 @@
                             $(".lista").removeClass("hidden");
                             $(".icoVistaLista").addClass("activeVista");
                             $(".cuadricula").addClass("hidden");
+                            $(".txtHdIdVista").val(1);
                             break;
                         }
                 }
+                
             }
     function cambiarEstado(txt) {
         switch (txt) {
@@ -255,6 +258,8 @@
                     }
                     
                     vistaActiva(accion);
+                    window.history.pushState({}, "", RAIZ  + $(".txtHdControlador").val() + "/" + $(".txtHdMetodo").val() + "/" + $(".txtHdIdCarpetaActual").val() + "/" + $(".txtHdTipoCategoria").val() + "/" + $(".txtHdIdVista").val())
+                    console.log($(".txtHdControlador").val());
                 } else {
                     alert("Error al recuperar vista");
                 }
