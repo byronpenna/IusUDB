@@ -72,6 +72,11 @@
             }
         })
     }
+    // validación 
+        function validarActualizacion() {
+            var val = { estado: true };
+            return val;
+        }
     // busqueda 
         function getDivEvento(evento) {
             var div = "<h3 class='tabDesplegableEvento nombreEvento "+evento.txtClaseColor+" '>\
@@ -786,22 +791,38 @@
         }
         function btnActualizar(detalle) {
             frm = serializeSection(detalle);
-            console.log("formulario a actualizar es: ", frm);
-            frm.txtFechaFin    = fechaStandar(frm.txtFechaFin);
-            frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
-            h3 = detalle.prev();
-            frm.txtEvento = h3.find(".txtEvento2").val();
-            if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
-                actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_editarEventos", frm, function (data) {
-                    if (data.estado) {
-                        llenarInputsVista(data.eventoEditado, detalle);
-                        controlesEdit(false, div);
+            var val = validarActualizacion(frm);
+            if (val.estado) {
+                console.log("formulario a actualizar es: ", frm);
+                frm.txtFechaFin = fechaStandar(frm.txtFechaFin);
+                frm.txtFechaInicio = fechaStandar(frm.txtFechaInicio);
+                h3 = detalle.prev();
+                frm.txtEvento = h3.find(".txtEvento2").val();
+                console.log("La fecha de inicio es", frm.txtHoraInicio);
+                if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
+                    var exp = /^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}$/;
+                    if (exp.test(frm.txtFechaInicio) && exp.test(frm.txtFechaFin)) {
+                        actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_editarEventos", frm, function (data) {
+                            console.log("La data es:", data);
+                            if (data.estado) {
+                                llenarInputsVista(data.eventoEditado, detalle);
+                                controlesEdit(false, div);
+                            } else {
+                                //alert("Ocurrio un error");
+                                if (data.error !== undefined && data.error != null && data.estado) {
+                                    printMessage($(".divMensajesEvento"), data.error.Message, false);
+                                } else {
+                                    printMessage($(".divMensajesEvento"), "Ocurrio un error", false);
+                                }
+                            }
+                        });
                     } else {
-                        alert("Ocurrio un error");
+                        printMessage($(".divMensajesEvento"), "Por favor ponga una fecha de inicio y de fin valida", false);
                     }
-                });
-            } else {
-                alert("Por favor ponga una hora de inicio y de fin ")
+                } else {
+                    printMessage($(".divMensajesEvento"), "Por favor ponga una hora de inicio y de fin valida", false);
+                    //alert()
+                }
             }
         }
         function btnAccionQuitarPublicacion(detalle) {
