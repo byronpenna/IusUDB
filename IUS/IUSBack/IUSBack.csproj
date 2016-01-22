@@ -566,7 +566,8 @@
     <Content Include="Content\third-party\datatable\images\sort_desc_disabled.png" />
     <Content Include="Content\third-party\datatable\js\jquery.dataTables.js" />
     <Content Include="Content\third-party\datatable\js\jquery.dataTables.min.js" />
-    <Content Include="Content\third-party\fullcalendar\changelog.txt" />
+    <Content Include="Content\third-party\fullcalendar\CHANGELOG.txt" />
+    <Content Include="Content\third-party\fullcalendar\CONTRIBUTING.txt" />
     <Content Include="Content\third-party\fullcalendar\fullcalendar.css" />
     <Content Include="Content\third-party\fullcalendar\fullcalendar.js" />
     <Content Include="Content\third-party\fullcalendar\fullcalendar.min.css" />
@@ -588,10 +589,13 @@
     <Content Include="Content\third-party\fullcalendar\lang\en-au.js" />
     <Content Include="Content\third-party\fullcalendar\lang\en-ca.js" />
     <Content Include="Content\third-party\fullcalendar\lang\en-gb.js" />
+    <Content Include="Content\third-party\fullcalendar\lang\en-ie.js" />
+    <Content Include="Content\third-party\fullcalendar\lang\en-nz.js" />
     <Content Include="Content\third-party\fullcalendar\lang\es.js" />
     <Content Include="Content\third-party\fullcalendar\lang\fa.js" />
     <Content Include="Content\third-party\fullcalendar\lang\fi.js" />
     <Content Include="Content\third-party\fullcalendar\lang\fr-ca.js" />
+    <Content Include="Content\third-party\fullcalendar\lang\fr-ch.js" />
     <Content Include="Content\third-party\fullcalendar\lang\fr.js" />
     <Content Include="Content\third-party\fullcalendar\lang\he.js" />
     <Content Include="Content\third-party\fullcalendar\lang\hi.js" />
@@ -625,7 +629,7 @@
     <Content Include="Content\third-party\fullcalendar\lib\jquery-ui.custom.min.js" />
     <Content Include="Content\third-party\fullcalendar\lib\jquery.min.js" />
     <Content Include="Content\third-party\fullcalendar\lib\moment.min.js" />
-    <Content Include="Content\third-party\fullcalendar\license.txt" />
+    <Content Include="Content\third-party\fullcalendar\LICENSE.txt" />
     <Content Include="Content\third-party\img\cropperIcons.png" />
     <Content Include="Content\third-party\jcrop\css\Jcrop.gif" />
     <Content Include="Content\third-party\jcrop\css\jquery.Jcrop.css" />
@@ -765,6 +769,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\third-party\fullcalendar\lib\cupertino\" />
     <Folder Include="Content\Views\Instituciones\Logos\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\Page\Home\Forms\" />

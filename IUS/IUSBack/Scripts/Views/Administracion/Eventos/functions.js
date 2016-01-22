@@ -14,7 +14,6 @@
             }
         });
     }
-
     function inputsTime(minutos,horas) {
         horas.slider({
             orientation: "horizontal",
@@ -636,11 +635,14 @@
             actualizarCatalogo(RAIZ + "/Administracion/sp_adminfe_eliminarEvento", frm, function (data) {
                 console.log("La data despues de eliminar", data);
                 if (data.estado) {
+                    console.log("Eliminar es");
+                    
                     $("#calendar").fullCalendar('removeEvents', frm.idEvento);
                     var other = seccion.prev();
                     other.remove();
                     seccion.remove();
                     //#######################
+
                     console.log("Id evento calendario", frm.idEvento);
                 } else {
                     if (data.error._mostrar) {
