@@ -154,7 +154,7 @@
                         </a>";
                 if (idCategoria !== undefined) {
                     div += "\
-                            <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "/1' class='ico btn btn-default' title='Abrir ubicacion de archivo'>\
+                            <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "/1' class='ico btn btn-default' title='" + $(".txtHdAbrirCarpeta").val() + "'>\
                                 <i class='fa fa-folder-open'></i>\
                             </a>";
                 }
@@ -203,13 +203,13 @@
                         </div>\
                         <div class='row marginNull'>\
                             <h3 class='folderTitle'>"+archivo._nombre+"</h3>\
-                            <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='ico btn btn-block btn-default' title='Descargar'>\
-                                Descargar\
+                            <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='ico btn btn-block btn-default'>\
+                                " + $(".txtHdDescargar").val() + "\
                             </a>";
             if (idCategoria !== undefined) {
                 div += "\
                     <a href='" + RAIZ + "/Repositorio/" + accion + "/" + archivo._carpetaPublica._idCarpetaPublica + "/" + idCategoria + "' class='ico btn btn-block btn-default' title='Abrir ubicacion de archivo'>\
-                        Abrir en carpeta\
+                        " + $(".txtHdAbrirCarpeta").val() + "\
                     </a>";
             }
             //<i class='fa fa-folder-open'></i>
@@ -268,7 +268,7 @@
             actualizarCatalogo(RAIZ + "Repositorio/sp_repo_searchArchivoPublico", frm, function (data) {
                 console.log("Respuesta de busqueda",data);
                 if (data.estado) {
-                    $(".tituloPrincipal").empty().append("Resultados busqueda");
+                    $(".tituloPrincipal").empty().append($(".txtHdResultadoBusqueda").val());//"Resultados busqueda"
                     var div = "";
                     if (data.encontrado) {
                         if (data.archivos !== undefined && data.archivos !== null) {
