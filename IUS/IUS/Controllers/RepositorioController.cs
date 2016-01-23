@@ -50,6 +50,9 @@ namespace IUS.Controllers
                     ViewBag.filtro                      = id2;
                     ViewBag.vista                       = id3;
                     ViewBag.tiposArchivos               = this._model.sp_repo_front_getTiposArchivos(lang, ip, this.idPagina);
+                    //
+                    ViewBag.metodo                      = "FileByCategory";
+                    ViewBag.controlador                 = "Repositorio";
                     this.setTraduccion(traducciones);
                 }
                 catch (ErroresIUS x)
@@ -101,6 +104,8 @@ namespace IUS.Controllers
                     ViewBag.vista                       = id3;
                     ViewBag.tiposArchivos               = this._model.sp_repo_front_getTiposArchivos(lang, ip, this.idPagina);
                     this.setTraduccion(traducciones);
+                    ViewBag.metodo = "AllFiles";
+                    ViewBag.controlador = "Repositorio";
                 }
                 catch (ErroresIUS x)
                 {

@@ -10,12 +10,25 @@
     <script src="~/Scripts/views/Home/functions.js"></script>
 }
 @{
-    List<SliderImage> slider = (List<SliderImage>)ViewBag.slider;
-    //List<Post> post = (List<Post>)ViewBag.noticias;
-    List<Post> posts        = (List<Post>)ViewBag.noticias;
-    List<Evento> eventos    = (List<Evento>)ViewBag.eventos;
-    // tmp 
-    string src = "";
+    List<SliderImage>   slider  = null;
+    List<Post>          posts   = null;
+    List<Evento>        eventos = null;
+    string              src = "";
+    try
+    {
+        slider  = (List<SliderImage>)ViewBag.slider;
+        //List<Post> post = (List<Post>)ViewBag.noticias;
+        posts   = (List<Post>)ViewBag.noticias;
+        eventos = (List<Evento>)ViewBag.eventos;
+        eventos.Add(eventos[0]);
+        eventos.Add(eventos[0]);
+        eventos.Add(eventos[0]);
+        // tmp 
+    }
+    catch (Exception)
+    {
+        
+    }
 }
 
 <div class="slider">
@@ -56,8 +69,10 @@
         @*<h3 class="text-center">Eventos</h3>*@
         @if (eventos != null)
         {
+            int i = 0;
             foreach (Evento evento in eventos)
             {
+                i++;
                 <div class="col-lg-4">
                     <div class="DivEvento">
                         <div class="col-lg-4">
@@ -71,6 +86,10 @@
                         </div>
                     </div>
                 </div>
+                if (i >= 3)
+                {
+                    break;
+                }
             }
         }
         @*<div class="col-lg-4">

@@ -58,9 +58,19 @@
             }
     }
 }
-<input type="hidden" class="txtHdTipoCategoria" value="@tipo"/>
-<input type="hidden" class="txtHdIdCarpetaActual" value="@idCarpetaPadre" />
-<input type="hidden" class="txtHdAccion" value="@ViewBag.accion"/>
+@*Inputs ocultos*@
+    <input type="hidden" class="txtHdTipoCategoria" value="@tipo"/>
+    <input type="hidden" class="txtHdIdCarpetaActual" value="@idCarpetaPadre" />
+    <input type="hidden" class="txtHdIdVista" value="@idVista"/>
+    <input type="hidden" class="txtHdAccion" value="@ViewBag.accion"/>
+    
+    <input type="hidden" class="txtHdControlador"   value="@ViewBag.controlador"/>
+    <input type="hidden" class="txtHdMetodo"        value="@ViewBag.metodo" />
+    @*abrir carpeta*@
+        <input type="hidden" class="txtHdResultadoBusqueda" value="@ViewData["titulo-resultadoBusqueda"]"/>
+        <input type="hidden" class="txtHdAbrirCarpeta" value="@ViewData["texto-abrirCarpeta"]" />
+        <input type="hidden" class="txtHdDescargar" value="@ViewData["text-boton-descargar"]" />
+
 <h2 class="tituloPrincipal todo">@nombre</h2>
 <div class="row marginNull divBusqueda todo">
     <div class="col-lg-3 divBusquedaRuta">
@@ -75,7 +85,7 @@
         <div class="col-lg-2">
             <label class="visiHidden">_</label>
             <div class="row marginNull text-center">
-                <a href="#" class="btn btn-default btnNavHistory" id="0" title="Atras">
+                <a href="#" class="btn btn-default btnNavHistory" id="0" title="@ViewData["hover-nav-atras"]">
                     <i class="fa fa-chevron-left"></i>
                 </a>
             </div>
@@ -93,7 +103,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <label>Filtros</label>
+            <label>@ViewData["cabecera-filtro"]</label>
             <select class="cbFiltro form-control">
                 @if (tiposArchivos != null)
                 {
@@ -116,7 +126,7 @@
         <div class="col-lg-2">
             <label class="visiHidden">_</label>
             <div class="row marginNull text-center">
-                <a href="#" class="btn btn-default btnNavHistory" id="1" title="Adelante">
+                <a href="#" class="btn btn-default btnNavHistory" id="1" title="@ViewData["hover-nav-adelante"]">
                     <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -242,8 +252,8 @@
                         </div>
                         <div class="row marginNull">
                             <h3 class="folderTitle">@archivo._nombre</h3>
-                            <a href="@Url.Action("downloadFile", "Repositorio", new {id=archivo._idArchivoPublico })" class="ico btn btn-block btn-default" title="Descargar">
-                                Descargar
+                            <a href="@Url.Action("downloadFile", "Repositorio", new {id=archivo._idArchivoPublico })" class="ico btn btn-block btn-default">
+                                @ViewData["text-boton-descargar"]
                             </a>
                         </div>
                     </div>

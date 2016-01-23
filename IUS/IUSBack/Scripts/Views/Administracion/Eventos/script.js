@@ -26,9 +26,10 @@
                     right: 'month,agendaWeek,agendaDay'
                 }
             });
-    // funciones iniciales 
-        eventosIniciales();
-    // eventos 
+    // eventos
+            $(document).on("click", ".btnTab", function () {
+                $('#calendar').fullCalendar('rerenderEvents');
+            })
         // keypress    
             $(document).on("keyup", ".txtBuscarEventoNombre", function (e) {
                 var charCode = e.which;
@@ -232,4 +233,6 @@
                     tr = $(this);
                     trUsuarioCompartido(tr);
                 });
+    // funciones iniciales 
+        eventosIniciales();
 });

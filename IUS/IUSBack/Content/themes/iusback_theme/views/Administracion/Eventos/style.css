@@ -2,6 +2,9 @@
 .row.seccion{
     margin:0;
 }
+.divMensajesEvento{
+    margin-top:3%;
+}
 /*Tabs */
     /*Tab eventos*/
     .divTiempo{
