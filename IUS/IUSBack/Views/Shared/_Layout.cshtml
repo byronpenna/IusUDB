@@ -56,6 +56,15 @@
                         @if (menus != null && menus.Count > 0)
                         {
                             int cn = 0;
+                            if (selectedMenu == 1)
+                            {
+                                strActive = "activeMenuPrincipal";
+                            }
+                            <li>
+                                <a href="@Url.Action("Index","Home")" class="@strActive">
+                                    Inicio
+                                </a>
+                            </li>
                             foreach (Menu menucito in menus)
                             {
                                 cn++;
