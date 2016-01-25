@@ -96,7 +96,7 @@
         </div>
     </div>
 </div>
-<div class="row marginNull rowHerramientas">
+<div class="row marginNull rowHerramientas" id="rowHerramientas">
     <div class="col-lg-3">
 
         <label for="txtDireccion">Ruta</label>
@@ -104,7 +104,7 @@
             <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="@carpetaActual._ruta" />
             <span class="input-group-addon spIrBuscar pointer">Ir</span>
         </div>
-        
+
     </div>
     <div class="col-lg-1">
         <label class="visibilitiHidden">_</label>
@@ -113,7 +113,7 @@
                 <i class="fa fa-chevron-left"></i>
             </a>
         </div>
-        
+
 
     </div>
     <div class="col-lg-2 seccionHerramientas">
@@ -130,7 +130,8 @@
     <div class="col-lg-2">
         <label>Vistas</label>
         <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
-            <a href="#" class="ico iconoVistaCuadricula  @activeVista[0] " title="Cuadricula"><!--activeVista-->
+            <a href="#" class="ico iconoVistaCuadricula  @activeVista[0] " title="Cuadricula">
+                <!--activeVista-->
                 <i class="fa fa-th-large"></i>
             </a>
             <a href="#" class="ico icoVistaLista @activeVista[1]" title="Lista">
@@ -145,14 +146,14 @@
                 <i class="fa fa-chevron-right"></i>
             </a>
         </div>
-        
+
     </div>
     <div class="col-lg-3">
         <div class="col-lg-6">
             <label>Busqueda</label>
         </div>
         <div class="row marginNull">
-            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked/>
+            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
             Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
         </div>
         <div class=" divBusquedaArchivos">
@@ -169,9 +170,9 @@
     <div class="divMensajesGenerales">
 
     </div>
-    <div class="folders col-lg-8" >
-        <!-- 
-        
+    <div class="folders col-lg-8" id="folders">
+        <!--
+
             -->
         <div class="row marginNull">
             <h3 class="encabezadoFicheros">@carpetaActual._nombre</h3>
@@ -237,16 +238,16 @@
                                     </a>
                                 </div>
                                 @*<div class="btn-group">
-                                    <button class="btn btn-default">
-                                        <i class="fa fa-share"></i>
-                                    </button>
-                                    <button class="btn btn-default">
-                                        <i class="fa fa-download"></i>
-                                    </button>
-                                    <button class="btn btn-default">
-                                        <i class="fa fa-share"></i>
-                                    </button>
-                                </div>*@
+                                        <button class="btn btn-default">
+                                            <i class="fa fa-share"></i>
+                                        </button>
+                                        <button class="btn btn-default">
+                                            <i class="fa fa-download"></i>
+                                        </button>
+                                        <button class="btn btn-default">
+                                            <i class="fa fa-share"></i>
+                                        </button>
+                                    </div>*@
                             </div>
                         </div>
                     }
@@ -259,36 +260,36 @@
                 foreach (Carpeta carpeta in carpetas)
                 {
                     <div class="col-lg-2 folder">
-                        <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
+                        <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta" />
                         <!--<a href="@Url.Action("Index", "Repositorio", new { id = @carpeta._idCarpeta })">-->
-                            <div class="cuadritoIcono cuadritoCarpeta">
-                                <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
-                                <div class="btn-group">
-                                    <div class="ico btnAccion btn btn-default icoEliminarCarpeta " title="Eliminar">
-                                        <i class="fa fa-trash-o"></i>
-                                    </div>
-                                </div>
-                                <div class="detalleCarpeta">
-                                    <div class="normalMode sinRedirect">
-                                        <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
-                                    </div>
-                                    <div class="row marginNull hidden editMode sinRedirect">
-                                        <div class='row marginNull inputNombreCarpeta'>
-                                            <input type='text' class='form-control txtNombreCarpeta'>
-                                        </div>
-                                        <div class='row marginNull'>
-                                            <div class="btn-group">
-                                                <button class='btn btn-default btn-xs btnEditarCarpeta'>Hecho</button>
-                                                <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
-                                            </div>
-                                        </div>
-                                        <div class="row marginNull mensajeFolder">
-
-                                        </div>
-                                    </div>
-
+                        <div class="cuadritoIcono cuadritoCarpeta">
+                            <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                            <div class="btn-group">
+                                <div class="ico btnAccion btn btn-default icoEliminarCarpeta " title="Eliminar">
+                                    <i class="fa fa-trash-o"></i>
                                 </div>
                             </div>
+                            <div class="detalleCarpeta">
+                                <div class="normalMode sinRedirect">
+                                    <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
+                                </div>
+                                <div class="row marginNull hidden editMode sinRedirect">
+                                    <div class='row marginNull inputNombreCarpeta'>
+                                        <input type='text' class='form-control txtNombreCarpeta'>
+                                    </div>
+                                    <div class='row marginNull'>
+                                        <div class="btn-group">
+                                            <button class='btn btn-default btn-xs btnEditarCarpeta'>Hecho</button>
+                                            <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                        </div>
+                                    </div>
+                                    <div class="row marginNull mensajeFolder">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <!--</a>-->
                     </div>
                 }
@@ -298,7 +299,7 @@
                 foreach (Archivo archivo in archivos)
                 {
                     <div class="col-lg-2 folder folderUni">
-                        <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo"/>
+                        <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo" />
                         <div class="cuadritoIcono">
                             <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
                             <div class="btn-group">
@@ -329,7 +330,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            
+
                             </div>
                         </div>
                     </div>

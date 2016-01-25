@@ -183,7 +183,7 @@
                     actualizarCatalogo(RAIZ + "/Repositorio/navHistory", frm, function (data) {
                         console.log("Respuesta de servido", data);
                         if (data.estado) {
-                            window.location = data.url;//+ "#rowHerramientas"
+                            window.location = data.url + "#rowHerramientas";//+ "#rowHerramientas"
                         }
                     })
                 })
@@ -271,7 +271,7 @@
                     var nVista = getNumVistaActual();
                     //console.log("vista actual es:", nVista);
                     if (estado != '0') {
-                        window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val()+"/"+nVista;
+                        window.location = RAIZ + "Repositorio/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val() + "/" + nVista + "#rowHerramientas";
                     }
                     //console.log("vas a redireccionar");
                 });
