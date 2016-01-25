@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 // librerias externas
+    using IUSLibs.ADMINFE.Control;
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -149,7 +150,24 @@ namespace IUSBack.Models.General
                     return toReturn;
                 }
             #endregion
-            
+            #region "para menu"
+                public int sp_adminfe_countTodayEvents(int idPagina,int idUsuarioEjecutor)
+                {
+                    try
+                    {
+                        ControlEvento control = new ControlEvento();
+                        return control.sp_adminfe_countTodayEvents(idPagina, idUsuarioEjecutor);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+            #endregion
             #region "Permisos"
                 private int getNumPermiso(permisos varPermiso)
                     {

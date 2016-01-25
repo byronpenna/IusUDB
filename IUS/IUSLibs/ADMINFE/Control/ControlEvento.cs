@@ -21,6 +21,34 @@ namespace IUSLibs.ADMINFE.Control
         #endregion 
         #region "funciones"
             #region "gets"
+                public int sp_adminfe_countTodayEvents(int idPagina,int idUsuarioEjecutor)
+                {
+                    int cnEventos = 0;
+                    try
+                    {
+                        SPIUS sp = new SPIUS("sp_adminfe_countTodayEvents");
+                        sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                        sp.agregarParametro("idPagina", idPagina);
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                cnEventos   = (int)row["eventosHoy"];
+                            }
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return cnEventos;
+                }
                 public List<Evento> sp_adminfe_buscarAllEventosPersonalesByDate(DateTime fechaInicio,DateTime fechaFin,int idUsuarioEjecutor,int idPagina)
                 {
                     List<Evento> eventos = null;
