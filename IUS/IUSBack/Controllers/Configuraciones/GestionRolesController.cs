@@ -19,7 +19,7 @@ namespace IUSBack.Controllers
         #region "propiedades"
             public GestionRolesModel    _model;
             public int                  _idPagina       = (int)paginas.gestionRoles;
-            public string               _nombreClass    = "GestionRolesController";
+            public string               _nombreClass    = "GestionRoles";
         #endregion
         #region "constructores"
             public GestionRolesController(){
@@ -27,9 +27,10 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "URL"
-            public ActionResult Index()
+            public ActionResult Index(int id=-1)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
+                string funcion = "Index";
                 try
                 {
                     ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);
@@ -37,29 +38,32 @@ namespace IUSBack.Controllers
                     {
                         return seguridadInicial;
                     }
-                    ViewBag.titleModulo = "Gestión de permisos";
-                    ViewBag.usuario = usuarioSession;
+                    ViewBag.titleModulo         = "Gestión de permisos";
+                    ViewBag.usuario             = usuarioSession;
                     GestionUsuarioModel usuariosModel = new GestionUsuarioModel((int)paginas.usuarios);
                     // traer data
-                        List<Usuario> usuarios = usuariosModel.getUsuarios(usuarioSession._idUsuario);
-                        List<Rol> roles = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina);
-                        List<Rol> rolesTabla = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina, 0);
+                        List<Usuario> usuarios  = usuariosModel.getUsuarios(usuarioSession._idUsuario);
+                        List<Rol> roles         = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina);
+                        List<Rol> rolesTabla    = this._model.getAllRoles(usuarioSession._idUsuario, this._idPagina, 0);
                     // fill viewbag
-                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                        ViewBag.roles = roles;
-                        ViewBag.rolesTabla = rolesTabla;
-                        ViewBag.usuarios = usuarios;
+                        ViewBag.menus       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                        ViewBag.roles       = roles;
+                        ViewBag.rolesTabla  = rolesTabla;
+                        ViewBag.usuarios    = usuarios;
+                        ViewBag.nombreClass = this._nombreClass;
+                        ViewBag.selectedTab = id;
+                        ViewBag.funcion     = funcion;
                     return View();
                 }
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, true, ""+funcion+"-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, ""+funcion+"-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
         #endregion   

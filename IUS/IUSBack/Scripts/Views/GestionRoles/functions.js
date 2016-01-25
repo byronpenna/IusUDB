@@ -1,4 +1,10 @@
 ﻿/// <reference path="../Administracion/Eventos/functions.js" />
+    function inicial() {
+        var idTab = $(".txtHdSelectedTab").val();
+        if (idTab != -1) {
+            $(".tabs").find("#" + idTab).click();
+        }
+    }
     function validarAsignarSubMenu(frm) {
         var val = new Object();
         val.campos = {};

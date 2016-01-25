@@ -19,18 +19,21 @@
         <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
 }
 @section tabs{
-    <ul>
-        <li class="btnTab tabActive" target="#tab-1">Asignar roles</li>
-        <li class="btnTab" target="#tab-2">Permisos roles</li>
-        <li class="btnTab" target="#tab-3">Administrar roles</li>
+    <ul class="tabs">
+        <li class="btnTab tabActive" target="#tab-1" id="1">Asignar roles</li>
+        <li class="btnTab" target="#tab-2" id="2">Permisos roles</li>
+        <li class="btnTab " target="#tab-3" id="3">Administrar roles</li>
     </ul>
 }
 @{
-    List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;
-    List<Rol> roles = (List < Rol >) ViewBag.roles;
-    List<Rol> rolesTabla = (List < Rol >) ViewBag.rolesTabla;
-    Permiso permisos = (Permiso)ViewBag.permiso;
+    List<Usuario> usuarios  = (List<Usuario>)ViewBag.usuarios;
+    List<Rol> roles         = (List < Rol >) ViewBag.roles;
+    List<Rol> rolesTabla    = (List < Rol >) ViewBag.rolesTabla;
+    Permiso permisos        = (Permiso)ViewBag.permiso;
 }
+<input type="hidden" class="txtHdNombreClass" value="@ViewBag.nombreClass" />
+<input type="hidden" class="txtHdSelectedTab" value="@ViewBag.selectedTab" />
+<input type="hidden" class="txtHdFuncion" value="@ViewBag.funcion" />
 <div id="tab-1" class="tab marginNull">
     <div class="row marginNull divResultado">
 

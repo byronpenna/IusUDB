@@ -32,6 +32,9 @@
                 }
             })
         // click 
+            $(document).on("click", ".btnTab", function () {
+                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/"+$(".txtHdFuncion").val()+"/" + $(this).attr("id"));
+            })
             $(document).on("click", "#btnAddRoles", function () {
                 var x = confirm("¿Esta seguro que desea agregar los siguientes roles?");
                 if (x) {
@@ -87,8 +90,6 @@
                                 div += "</div class='row marginNull'>";
                             })
                             printMessageDiv($(".divAgregarPermiso .divResultado"), div);
-                            /*$(".divResultado").removeClass("hidden");
-                            $(".divResultado").empty().append(div);*/
                         }
                         
                     }
@@ -150,15 +151,15 @@
                         btnActualizar(tr);
                     });
                     $(document).on("click", ".btnEditar", function () {
-                        var x = confirm("¿Esta seguro que desea editar este rol?");
+                        //var x = confirm("¿Esta seguro que desea editar este rol?");
                         tr = $(this).parents("tr");
-                        if (x) {
+                        //if (x) {
                             var resultados = tr.find(".divResultado");
                             resultados.empty();
                             resultados.addClass("hidden");
                             btnEditar(tr);
                             controlesEdit(true, tr);
-                        }
+                        //}
                     });
                     $(document).on("click", ".btnCancelarEdit", function () {
                         tr = $(this).parents("tr");
@@ -177,5 +178,6 @@
                     frm.idRol = $(this).val();
                     changeRolTab2(frm);
                 });
-        
+        // iniciales
+           inicial();
 })
