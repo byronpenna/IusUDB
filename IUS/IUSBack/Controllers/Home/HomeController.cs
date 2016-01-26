@@ -138,12 +138,14 @@ namespace IUSBack.Controllers
                 try
                 {
                     //Session["neutroControl"] 
-                    ViewBag.titleModulo = "Sistema administrativo IUS";
-                    ViewBag.selectedMenu = 1;
+                    ViewBag.titleModulo     = "Sistema administrativo IUS";
+                    ViewBag.selectedMenu    = 1;
                     
                     ViewBag.usuario = usu;
-                    ViewBag.eventosHoy = this.homeModel.sp_adminfe_front_getTodayEvents("127.0.0.1",1);
-                    ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                    ViewBag.eventosHoy      = this.homeModel.sp_adminfe_front_getTodayEvents("127.0.0.1",1);
+                    ViewBag.menus           = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                    ViewBag.cnEventos       = this.homeModel.sp_adminfe_countTodayEvents(this._idPagina, usu._idUsuario);
+                    ViewBag.selectedMenu    = 1;
                     return View();
                 }
                 catch (ErroresIUS x)

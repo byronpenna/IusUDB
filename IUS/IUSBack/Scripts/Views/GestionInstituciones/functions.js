@@ -10,7 +10,7 @@
             }
         }
         tr = "\
-            <tr>\
+            <tr class='trPadre'>\
                 <td>\
                     <input class='txtHdIdInstitucion' name='txtHdIdInstitucion' value='" + institucion._idInstitucion + "'>\
                     <input class='txtHdIdPais' name='txtHdIdPais' value='"+institucion._pais._idPais+"' />\

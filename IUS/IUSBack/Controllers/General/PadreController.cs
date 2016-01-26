@@ -79,6 +79,7 @@ namespace IUSBack.Controllers
                         //ViewBag.menus = this._model.sp_sec_getMenu(usuarioSesion._idUsuario);
                         ViewBag.selectedMenu = selectedMenu;
                         ViewBag.currentUrl = Request.Url.AbsoluteUri;
+                        ViewBag.cnEventos = this._model.sp_adminfe_countTodayEvents(idPagina, usuarioSesion._idUsuario);
                     }
                     else
                     {

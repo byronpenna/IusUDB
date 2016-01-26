@@ -4,10 +4,12 @@
     DateTime hoy = DateTime.Now;
     Usuario usuarioSession = null;
     List<Menu> menus = null;
+    int idEvento = 0;
     try
     {
-        usuarioSession = (Usuario)ViewBag.usuario;
-        menus = (List<Menu>)ViewBag.menus;
+        usuarioSession  = (Usuario)ViewBag.usuario;
+        menus           = (List<Menu>)ViewBag.menus;
+        idEvento        = (int)ViewBag.cnEventos;
     }
     catch (Exception)
     {
@@ -54,6 +56,15 @@
                         @if (menus != null && menus.Count > 0)
                         {
                             int cn = 0;
+                            if (selectedMenu == 1)
+                            {
+                                strActive = "activeMenuPrincipal";
+                            }
+                            <li>
+                                <a href="@Url.Action("Index","Home")" class="@strActive">
+                                    Inicio
+                                </a>
+                            </li>
                             foreach (Menu menucito in menus)
                             {
                                 cn++;
@@ -88,7 +99,7 @@
                     <span class="txtHeaderHoraActual">@String.Format("{0:hh:mm:ss tt}", hoy)</span>
                 </div>
                 <div>
-                    <i class="fa fa-calendar"></i> 0 eventos 
+                    <i class="fa fa-calendar"></i> @idEvento eventos 
                 </div>
             </div>
             <div class="col-lg-8 accesibilidadDiv">
