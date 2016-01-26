@@ -40,7 +40,6 @@ namespace IUSLibs.SECPU.Control
                                 usuarioLogs = new UsuarioPublico((int)row["idUsuarioPublico"], row["nombres"].ToString(), row["apellidos"].ToString(), row["email"].ToString(), (DateTime)row["fecha_nacimiento"], (int)row["id_estadousuario_fk"]);
                             }
                         }
-                        return usuarioLogs;
                     }
                     catch (ErroresIUS x)
                     {
@@ -54,9 +53,11 @@ namespace IUSLibs.SECPU.Control
                 }
             #endregion
             #region "set"
-                public UsuarioPublico sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
+                public Dictionary<object,object> sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
                 {
-                    UsuarioPublico usuarioAgregado = null;
+                    Dictionary<object, object> retorno = null;
+
+                    UsuarioPublico usuarioAgregado = null; CodigoVerificacion codigo = null;
                     SPIUS sp = new SPIUS("sp_secpu_addUsuario");
                     
                     sp.agregarParametro("nombres", usuarioAgregar._nombres);
@@ -68,13 +69,22 @@ namespace IUSLibs.SECPU.Control
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrecto(tb))
+                        if (this.resultadoCorrectoGet(tb))
                         {
+                            retorno = new Dictionary<object, object>();
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                usuarioAgregado = new UsuarioPublico((int)row["idUsuarioPublico"], row["nombres"].ToString(), row["apellidos"].ToString(), row["email"].ToString(), (DateTime)row["fecha_nacimiento"], row["pass"].ToString(),(int)row["id_estadousuario_fk"]);
+                                
+                            }
                             if (tb[1].Rows.Count > 0)
                             {
                                 DataRow row = tb[1].Rows[0];
-                                usuarioAgregado = new UsuarioPublico((int)row["idUsuarioPublico"], row["nombres"].ToString(), row["apellidos"].ToString(), row["email"].ToString(), (DateTime)row["fecha_nacimiento"], row["pass"].ToString(),(int)row["id_estadousuario_fk"]);
+                                codigo = new CodigoVerificacion((int)row["idCodigoVerificacion"], (int)row["numero"], (DateTime)row["fecha_vencimiento"], (int)row["id_usuariopublico_fk"]);
                             }
+                            retorno.Add("usuarioAgregado",usuarioAgregado);
+                            retorno.Add("codigoVerificacion", codigo);
                         }
                         else
                         {
@@ -91,7 +101,7 @@ namespace IUSLibs.SECPU.Control
                     {
                         throw x;
                     }
-                    return usuarioAgregado;
+                    return retorno;
                 }
             #endregion
         #endregion

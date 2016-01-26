@@ -16,15 +16,11 @@
                 }
             }
             function verLista(div) {
-                //var seccion = div.parents(".accionesDiv");
                 cambiarVistas("lista");
                 var frm = {
                     idCarpeta: $(".txtHdIdCarpetaPadre").val()
                 }
-                
-                //var seccionModificar = $(".listView");
                 var seccionModificar = $(".targetListView");
-                //seccionModificar.empty();
                 icoVistaLista(frm, seccionModificar);
             }
 
@@ -184,6 +180,9 @@
                         </div>\
                         <div class='col-lg-2'>Folder</div>\
                         <div class='col-lg-2'>" + folder.getFechaCreacion + "</div>\
+                        <div class='col-lg-2 btnEliminarLista'>\
+                            <i class='fa fa-trash'></i>\
+                        </div>\
                     </div>\
                 ";
                 return div;

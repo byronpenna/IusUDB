@@ -22,6 +22,28 @@ namespace IUSBack.Controllers
             private string              _nombreClass        = "AdministracionController";
         #endregion
         #region "url"
+            public ActionResult valEntrarEventos()
+            {
+                /*Usuario usuarioSesion = this.getUsuarioSesion();
+                if (usuarioSesion != null)
+                {
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
+                    if (permisos != null && permisos._ver)
+                    {
+                        RedirectToAction()
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("index", "login");
+                }
+                */
+                return null;
+            }
             public ActionResult Eventos()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
@@ -51,6 +73,7 @@ namespace IUSBack.Controllers
                 return View();
             }
             // Al parecer no funciona 
+            
             /*public ActionResult Noticias()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();

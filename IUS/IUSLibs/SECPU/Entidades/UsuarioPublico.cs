@@ -25,6 +25,10 @@ namespace IUSLibs.SECPU.Entidades
             #endregion
         #endregion
         #region "constructores"
+            public UsuarioPublico(int idUsuarioPublico)
+            {
+                this._idUsuarioPublico = idUsuarioPublico;
+            }
             public UsuarioPublico(int idUsuarioPublico, string nombres, string apellidos, string email, DateTime fechaNac, int idEstadoUsuario)
             {
                 this._idUsuarioPublico = idUsuarioPublico;
@@ -43,7 +47,7 @@ namespace IUSLibs.SECPU.Entidades
                 this._email = email;
                 this._fechaNac = fechaNac;
                 this._pass = pass;
-                EstadoUsuarioPublico estadoUsuario = new EstadoUsuarioPublico(idUsuarioPublico);
+                EstadoUsuarioPublico estadoUsuario = new EstadoUsuarioPublico(idEstadoUsuario);
                 this._estadoUsuario = estadoUsuario;
             }
             public UsuarioPublico(string nombres, string apellidos, string email, DateTime fechaNac, string pass)

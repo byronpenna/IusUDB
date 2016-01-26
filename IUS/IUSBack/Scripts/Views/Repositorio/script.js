@@ -406,10 +406,20 @@
                         div.remove();
                     })*/
                 // eliminar carpeta
+                    $(document).on("click", ".btnEliminarLista", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var seccion = $(this).parents(".folderDetalles");
+                        frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
+                        var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
+                        if (x) {
+                            icoEliminarCarpeta(frm, seccion);
+                        }
+                    })
                     $(document).on("click", ".icoEliminarCarpeta", function (e) {
                         e.preventDefault();
                         e.stopPropagation();
-                        seccion = $(this).parents(".folder");
+                        var seccion = $(this).parents(".folder");
                         frm = { idCarpeta: seccion.find(".txtHdIdCarpeta").val() }
                         var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
                         if (x) {

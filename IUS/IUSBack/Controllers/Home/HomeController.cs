@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
 // internas
     using IUSBack.Models.Page.Home.Acciones;
 // externas
@@ -26,6 +27,19 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones"
+             public int CustomIndexOf(string source, char toFind, int position)
+            {
+                int index = -1;
+                for (int i = 0; i < position; i++)
+                {
+                    index = source.IndexOf(toFind, index + 1);
+
+                    if (index == -1)
+                        break;
+                }
+
+                return index;
+            }
             public ActionResult sp_secpu_addUsuario() {
                 Dictionary<object, object> frm, respuesta = null;
                 try
@@ -33,12 +47,25 @@ namespace IUSBack.Controllers
                     frm = this.getAjaxFrm();
                     DateTime fechaNac = DateTime.Parse(frm["txtFechaNac"].ToString());
                     UsuarioPublico usuarioAgregar = new UsuarioPublico(frm["txtNombre"].ToString(), frm["txtApellidos"].ToString(), frm["txtEmail"].ToString(), fechaNac, frm["txtPass"].ToString());
-                    UsuarioPublico usuarioAgregado = this.homeModel.sp_secpu_addUsuario(usuarioAgregar);
+                    Dictionary<object,object> resp = this.homeModel.sp_secpu_addUsuario(usuarioAgregar);
+                    UsuarioPublico usuarioAgregado = (UsuarioPublico)resp["usuarioAgregado"];
+                    CodigoVerificacion codigo = (CodigoVerificacion)resp["codigoVerificacion"];
                     if (usuarioAgregado != null)
                     {
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("usuarioPublico", usuarioAgregado);
+                        string ruta = Request.Url.AbsoluteUri;
+                        ruta = ruta.Substring(0,CustomIndexOf(ruta, '/', 3));
+                        MailMessage m = new MailMessage();
+                        m.To.Add(usuarioAgregado._email);
+                        m.Subject = "Por favor confirmar cuenta IUS";
+                        m.Body =    "para confirmar su cuenta por favor ingrese al siguiente enlace <br>"+
+                            ruta+Url.Action("Verificar","Home",new {id=codigo._numero,id2=usuarioAgregado._idUsuarioPublico});
+                        m.IsBodyHtml = true;
+                        m.Priority = MailPriority.Normal;
+                        SmtpClient cliente = new SmtpClient();
+                        cliente.Send(m);
                     }else{
                         ErroresIUS x = new ErroresIUS("Error inesperado",ErroresIUS.tipoError.generico,0);
                         throw x;

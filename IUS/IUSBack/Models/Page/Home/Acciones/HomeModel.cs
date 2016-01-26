@@ -77,7 +77,7 @@ namespace IUSBack.Models.Page.Home.Acciones
                         throw x;
                     }
                 }
-                public UsuarioPublico sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
+                public Dictionary<object,object> sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
                 {
                     try
                     {
