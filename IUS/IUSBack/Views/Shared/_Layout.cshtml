@@ -4,12 +4,12 @@
     DateTime hoy = DateTime.Now;
     Usuario usuarioSession = null;
     List<Menu> menus = null;
-    int idEvento = 0;
+    int cnEventos = 0;
     try
     {
         usuarioSession  = (Usuario)ViewBag.usuario;
         menus           = (List<Menu>)ViewBag.menus;
-        idEvento        = (int)ViewBag.cnEventos;
+        cnEventos       = (int)ViewBag.cnEventos;
     }
     catch (Exception)
     {
@@ -99,7 +99,8 @@
                     <span class="txtHeaderHoraActual">@String.Format("{0:hh:mm:ss tt}", hoy)</span>
                 </div>
                 <div>
-                    <i class="fa fa-calendar"></i> @idEvento eventos 
+                    
+                    <i class="fa fa-calendar"></i> @cnEventos eventos 
                 </div>
             </div>
             <div class="col-lg-8 accesibilidadDiv">
