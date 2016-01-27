@@ -115,7 +115,7 @@ namespace IUSBack.Controllers
                 }
             #endregion
             #region "manejo de archivos"
-                public Byte[] getBytesRecortadosFromFile(HttpPostedFileBase file,Coordenadas coordenadas)
+                public Byte[] getBytesRecortadosFromFile(HttpPostedFileBase file,Coordenadas coordenadas,bool isCuadrada=true)
                 {
                     MemoryStream memory = new MemoryStream();
                     byte[] fileBytes = this.getBytesFromFile(file);
@@ -125,9 +125,20 @@ namespace IUSBack.Controllers
                         {
                             int x = decimal.ToInt32(image.Width * coordenadas._x);
                             int y = decimal.ToInt32(image.Height * coordenadas._y);
-                            int ancho = decimal.ToInt32(image.Height * coordenadas._ancho);
-                            int alto = decimal.ToInt32(image.Height * coordenadas._alto);
-                            Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+
+                            int ancho = 0;int alto = 0;
+                            if (isCuadrada)
+                            {
+                                ancho = decimal.ToInt32(image.Height * coordenadas._ancho);
+                                alto = ancho;
+                            }
+                            else
+                            {
+                                ancho   = decimal.ToInt32(image.Width * coordenadas._ancho);
+                                alto    = decimal.ToInt32(image.Height * coordenadas._alto);
+                            }
+                            
+                            Rectangle cropArea = new Rectangle(x, y, ancho,alto);
                             try
                             {
                                 using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))

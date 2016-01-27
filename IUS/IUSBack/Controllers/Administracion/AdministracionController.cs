@@ -24,25 +24,24 @@ namespace IUSBack.Controllers
         #region "url"
             public ActionResult valEntrarEventos()
             {
-                /*Usuario usuarioSesion = this.getUsuarioSesion();
+                Usuario usuarioSesion = this.getUsuarioSesion();
                 if (usuarioSesion != null)
                 {
-                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
+                    Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, this._idPaginaEventos);
                     if (permisos != null && permisos._ver)
                     {
-                        RedirectToAction()
+                        return RedirectToAction("Eventos", "Administracion");
                     }
                     else
                     {
-
+                        return Redirect(this.URL_IUS + "Evento/Index");
                     }
                 }
                 else
                 {
                     return RedirectToAction("index", "login");
                 }
-                */
-                return null;
+                //return null;
             }
             public ActionResult Eventos()
             {

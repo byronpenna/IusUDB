@@ -99,8 +99,9 @@
                     <span class="txtHeaderHoraActual">@String.Format("{0:hh:mm:ss tt}", hoy)</span>
                 </div>
                 <div>
-                    
-                    <i class="fa fa-calendar"></i> @cnEventos eventos 
+                    <a href="@Url.Action("valEntrarEventos","Administracion")">
+                        <i class="fa fa-calendar"></i> @cnEventos eventos 
+                    </a>
                 </div>
             </div>
             <div class="col-lg-8 accesibilidadDiv">

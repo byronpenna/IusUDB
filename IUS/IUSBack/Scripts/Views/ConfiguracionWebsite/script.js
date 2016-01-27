@@ -2,7 +2,53 @@
     // plugins 
         // tabs 
             $('#horizontalTab').responsiveTabs();
+        // jcrop
+            var jcrop_api = null;
     // eventos 
+        // chage 
+            $(document).on("change", ".flImagen", function (e) {
+                var divLoading = $(".divImgSlideLoading"); var boton = $(".btnSubir");
+                var targetImg   = $(".imgSlide");
+                var cambiar     = false;
+                if ($(this).val() == "") {
+                    boton.prop("disabled", true);
+                } else {
+                    cambiar = true;
+                    divLoading.empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
+                    boton.prop("disabled", false);
+                }
+                if (cambiar) {
+                    getImageFromInputFileEvent(e, function (images) {
+                        divLoading.empty();
+                        if (images !== undefined && images != null) {
+                            targetImg.attr("src", images.src);
+                            targetImg.attr("style", "");
+                            if (jcrop_api != null) {
+                                jcrop_api.destroy();
+                            }
+                            jcrop_api = $.Jcrop('.imgSlide', {
+                                //setSelect: [0, 0, 1745, 643],
+                                onSelect: storeCoords,
+                                onChange: storeCoords,
+                                allowSelect: true,
+                                aspectRatio: 300 / 100,
+                                allowResize: false,
+                                onRelease: releaseCheck
+                            });
+                            jcrop_api.enable();
+                            console.log("Mirar que pasa aqui");
+                            inicialFoto();
+                        }
+                    })
+                } else {
+                    //
+                    if (jcrop_api != null) {
+                        jcrop_api.destroy();
+                    }
+                    targetImg.attr("src", IMG_GENERALES + "noimage.png");
+                    targetImg.attr("style", "");
+                }
+            })
         // keydown
             $(document).on("keydown", ".txtValores", function (e) {
                 var charcode = e.which;
@@ -23,7 +69,10 @@
             $(document).on("submit", "#frm", function (e) { // imagen
                 var files = $("#file1")[0].files
                 //try{
-                    data = getObjFormData(files);
+                    //e.preventDefault();
+                    var frm = getFrmSlide();
+                    data = getObjFormData(files,frm);
+                    //console.log("El valor del frm es", frm);
                     e.preventDefault();
                     $("#div_carga").show();
                     section = $(this);
