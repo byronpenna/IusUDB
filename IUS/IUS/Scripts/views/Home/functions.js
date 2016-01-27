@@ -22,8 +22,9 @@
         }
         return next;
     }
+    var intervalo = null;
     function startSlider() {
-        setInterval(function () {
+        intervalo = setInterval(function () {
             $(".navRight").click();
         }, 3000);
     }
