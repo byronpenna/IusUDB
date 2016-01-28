@@ -44,7 +44,7 @@
                     if (jcrop_api != null) {
                         jcrop_api.destroy();
                     }
-                    targetImg.attr("src", RAIZ + "Content/themes/iusback_theme/img/general/noimage.png");
+                    targetImg.attr("src", IMG_GENERALES + "noimage.png");
                     targetImg.attr("style", "");
                 }
                 
@@ -60,7 +60,7 @@
                 var files       = $("#flMiniatura")[0].files;
                 var data        = getObjFormData(files, frm);
                 e.preventDefault();
-                var imagen      = files[0]
+                var imagen      = files[0];
                 frmImagenPersona(data, $(this).attr("action"), imagen,frm,jcrop_api);
             })
         // doble click

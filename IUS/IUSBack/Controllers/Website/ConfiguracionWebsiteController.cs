@@ -5,14 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 // librerias internas
     using IUSBack.Models.Page.ConfiguracionWebsite.Acciones;
+    using IUSBack.Models.General;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades;
 // subir
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+    using System.IO;
+    using System.Text;
+    using System.Threading.Tasks;
 namespace IUSBack.Controllers
 {
     public class ConfiguracionWebsiteController : PadreController
@@ -83,14 +84,49 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> respuesta;
                         SliderImage imageAgregar,imageAgregada;
                         List<SliderImage> sliderAgregar = null;//,sliderAgregado=null;
-                        var form = Request.Files["form"];
-                        var frm = Request.Form["form"];
-                        var vari = Request.Form["frm"];
+                        var form    = Request.Files["form"];
+                        //var frm     = Request.Form["form"];
+                        var frm     = this._jss.Deserialize<Dictionary<object, object>>(Request.Form["form"]);
+                        var vari    = Request.Form["frm"];
                         try
                         {
+                            
                             if (Request.Files.Count > 0)
                             {
-                                List<HttpPostedFileBase> archivos = this.getBaseFileFromRequest(Request);
+                                List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
+                                if (files.Count > 0)
+                                {
+                                    sliderAgregar = new List<SliderImage>();
+                                    foreach (HttpPostedFileBase file in files)
+                                    {
+                                        Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
+                                        byte[] fileBytes = this.getBytesRecortadosFromFile(file, coordenadas,false);
+                                        Pagina pagina = new Pagina(1);
+                                        imageAgregar = new SliderImage(file.FileName, fileBytes, true, pagina);
+                                        sliderAgregar.Add(imageAgregar);
+                                    }
+                                    Usuario usuarioSesion = this.getUsuarioSesion(); 
+                                    imageAgregada = this._model.sp_adminfe_saveImageSlider(sliderAgregar[0], usuarioSesion._idUsuario, this._idPagina);
+                                    //imageAgregada = null;
+                                    if (imageAgregada != null)
+                                    {
+                                        respuesta = new Dictionary<object, object>();
+                                        respuesta.Add("estado", true);
+                                        respuesta.Add("archivos", imageAgregada);
+                                        //respuesta.Add("archivos", "bla bla bla");
+                                    }
+                                    else
+                                    {
+                                        ErroresIUS x = new ErroresIUS("Error no controlado", ErroresIUS.tipoError.generico, 0);
+                                        respuesta = errorTryControlador(3, x);
+                                    }
+                                }
+                                else
+                                {
+                                    ErroresIUS x = new ErroresIUS("No hay imagenes", ErroresIUS.tipoError.generico, 0);
+                                    throw x;
+                                }
+                                /*List<HttpPostedFileBase> archivos = this.getBaseFileFromRequest(Request);
                                 sliderAgregar = new List<SliderImage>();
                                 foreach (HttpPostedFileBase archivo in archivos)
                                 {
@@ -113,7 +149,7 @@ namespace IUSBack.Controllers
                                 {
                                     ErroresIUS x = new ErroresIUS("Error no controlado",ErroresIUS.tipoError.generico,0);
                                     respuesta = errorTryControlador(3, x);
-                                }
+                                }*/
                             }
                             else
                             {

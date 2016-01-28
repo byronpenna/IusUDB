@@ -3,6 +3,8 @@
 @section scriptsPersonalizados{
     <!-- plugins -->
         <link rel="stylesheet" href="~/Content/third-party/tabs-master/css/responsive-tabs.css" />
+        <!-- Jcrop -->
+            <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css" />
     <!-- propios -->
         <script src="~/Scripts/Views/ConfiguracionWebsite/script.js"></script>
         <script src="~/Scripts/Views/ConfiguracionWebsite/functions.js"></script>
@@ -11,6 +13,8 @@
     <!-- plugins -->
         <!-- Tabs -->
             <script src="~/Content/third-party/tabs-master/js/jquery.responsiveTabs.min.js"></script>
+        <!-- jcrop -->
+            <script src="~/Content/third-party/jcrop/js/jquery.Jcrop.js"></script>
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/style.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/media.css" />
@@ -138,9 +142,22 @@
         <div class="subirDiv row marginNull">
             <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data">
                 <h2>Subir una imagen</h2>
+                @* ****Para imagen de slider **** *@
+                    <img class="imgSlide" src="@Url.Content("~/Content/themes/iusback_theme/img/general/noimage.png")"/>
+                    <div class="divImgSlideLoading">
+
+                    </div>
+                    <div class="row marginNull divCorte ">@*hidden*@
+                        <input class="x" name="x" value="0" />
+                        <input class="y" name="y" value="0" />
+
+                        <input class="imgAncho" name="imgAncho" value="0" />
+                        <input class="imgAlto" name="imgAlto" value="0" />
+                    </div>
+                @* ****  **** *@
                 <div class="col-lg-6">
                     <input class="flImagen" required type="file" id="file1" name="file1" accept="image/*" /><!--multiple="multiple" -->
-                    <button type="submit" class="btn btn-primary">Subir</button>
+                    <button type="submit" class="btn btn-primary btnSubir">Subir</button>
                 </div>
             </form>
         </div>

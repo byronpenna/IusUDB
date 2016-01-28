@@ -1,4 +1,32 @@
-﻿// tabla 
+﻿// genericas
+        function releaseCheck() {
+            this.setOptions({ setSelect: [0, 0, 700, 300] });
+        }
+    // para jCrop
+        function storeCoords(c) {
+            $(".x").val(c.x);
+            $(".y").val(c.y);
+            $(".imgAlto").val(c.h);
+            $(".imgAncho").val(c.w);
+        };
+        function inicialFoto() {
+            $(".x").val(0);
+            $(".y").val(0);
+            $(".imgAlto").val(0);
+            $(".imgAncho").val(0);
+        }
+    // para subida
+        function getFrmSlide() {
+            var imgElement  = $(".imgSlide");
+            var frm         = new Object();
+            frm             = serializeSection($(".divCorte"));
+            frm.imgAlto     = frm.imgAlto / imgElement.height();
+            frm.imgAncho    = frm.imgAncho / imgElement.width();
+            frm.x           = frm.x / imgElement.width();
+            frm.y           = frm.y / imgElement.height();
+            return frm;
+        }
+// tabla 
     function getTrValor(valor) {
         tr = "\
             <tr>\
@@ -64,11 +92,10 @@
     function formularioSubir(formData, url,section,imagen) {
         accionAjaxWithImage(url,data, function (data) {
             //console.log("La respuesta del servidor para frm es:",data);
-            
             if (data.estado) {
                 alert("Imagen ingresada correctamente");
-                imageFromServer = data.archivos;
-                imageFromServer._strImagen = imagen.src;
+                imageFromServer             = data.archivos;
+                imageFromServer._strImagen  = imagen.src;
                 div = getDivImageSlider(imageFromServer);
                 if ($(".divImgSlider").find(".noImageSection").length > 0) {
                     $(".divImgSlider").empty().prepend(div);
