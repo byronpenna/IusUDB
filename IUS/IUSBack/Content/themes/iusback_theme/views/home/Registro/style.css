@@ -1,4 +1,10 @@
-﻿/*Nuevo*/
+﻿.rowNoCorreo{
+    margin-top:4%;
+}
+.btnReenviar{
+    margin-top:3%;
+}
+/*Nuevo*/
 .frmRegistrar{
     text-align:center;
 }

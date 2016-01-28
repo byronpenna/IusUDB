@@ -25,7 +25,11 @@
     var intervalo = null;
     function startSlider() {
         intervalo = setInterval(function () {
-            $(".navRight").click();
+            var nav     = $(".navRight");
+            direccion   = nav.attr("direccion"); //0 izquierda 1 derecha
+            divSlider   = nav.parents(".slider");
+            navBtn(divSlider, direccion);
+            //nav.click();
         }, 3000);
     }
 // acciones scripts 

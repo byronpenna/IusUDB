@@ -27,7 +27,7 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones"
-             public int CustomIndexOf(string source, char toFind, int position)
+            private int CustomIndexOf(string source, char toFind, int position)
             {
                 int index = -1;
                 for (int i = 0; i < position; i++)
@@ -39,6 +39,50 @@ namespace IUSBack.Controllers
                 }
 
                 return index;
+            }
+            public ActionResult sp_secpu_reenviarCorreo()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    frm         = this.getAjaxFrm();
+                    respuesta   = new Dictionary<object, object>();
+                    Dictionary<object,object> retorno = this.homeModel.sp_secpu_reenviarCorreo(frm["txtEmail"].ToString());
+                    CodigoVerificacion codigo   = (CodigoVerificacion)retorno["codigo"];
+                    UsuarioPublico usuario      = (UsuarioPublico)retorno["usuarioPublico"];
+                    if (codigo != null)
+                    {
+                        
+                        this.enviarCorreo(usuario._email, codigo._numero, usuario._idUsuarioPublico);
+                        respuesta.Add("estado", true);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
+            public void enviarCorreo(string email,int codigo,int idUsuario)
+            {
+                //usuarioAgregado._email,codigo._numero
+                string ruta = Request.Url.AbsoluteUri;
+                ruta = ruta.Substring(0, CustomIndexOf(ruta, '/', 3));
+                MailMessage m = new MailMessage();
+                m.To.Add(email);
+                m.Subject = "Por favor confirmar cuenta IUS";
+                m.Body = "para confirmar su cuenta por favor ingrese al siguiente enlace <br>" +
+                    ruta + Url.Action("Verificar", "Home", new { id = codigo, id2 = idUsuario });
+                m.IsBodyHtml = true;
+                m.Priority = MailPriority.Normal;
+                SmtpClient cliente = new SmtpClient();
+                cliente.Send(m);
             }
             public ActionResult sp_secpu_addUsuario() {
                 Dictionary<object, object> frm, respuesta = null;
@@ -55,17 +99,8 @@ namespace IUSBack.Controllers
                         respuesta = new Dictionary<object, object>();
                         respuesta.Add("estado", true);
                         respuesta.Add("usuarioPublico", usuarioAgregado);
-                        string ruta = Request.Url.AbsoluteUri;
-                        ruta = ruta.Substring(0,CustomIndexOf(ruta, '/', 3));
-                        MailMessage m = new MailMessage();
-                        m.To.Add(usuarioAgregado._email);
-                        m.Subject = "Por favor confirmar cuenta IUS";
-                        m.Body =    "para confirmar su cuenta por favor ingrese al siguiente enlace <br>"+
-                            ruta+Url.Action("Verificar","Home",new {id=codigo._numero,id2=usuarioAgregado._idUsuarioPublico});
-                        m.IsBodyHtml = true;
-                        m.Priority = MailPriority.Normal;
-                        SmtpClient cliente = new SmtpClient();
-                        cliente.Send(m);
+                        this.enviarCorreo(usuarioAgregado._email, codigo._numero, usuarioAgregado._idUsuarioPublico);
+                        
                     }else{
                         ErroresIUS x = new ErroresIUS("Error inesperado",ErroresIUS.tipoError.generico,0);
                         throw x;
@@ -117,6 +152,7 @@ namespace IUSBack.Controllers
                 return Json(respuesta);
                 
             }
+        
         #endregion
 
         #region "Vistas"
