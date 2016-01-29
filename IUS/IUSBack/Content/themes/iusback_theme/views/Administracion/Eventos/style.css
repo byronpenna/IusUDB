@@ -1,4 +1,7 @@
-﻿/*Arreglos bootstrap*/
+﻿.ui-accordion .ui-accordion-content{
+    margin-bottom:3%;
+}
+/*Arreglos bootstrap*/
 .row.seccion{
     margin:0;
 }
