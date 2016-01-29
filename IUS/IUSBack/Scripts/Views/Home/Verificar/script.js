@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
     setTimeout(function () {
-        window.location = RAIZ + "login/index";
+        window.location = RAIZFRONT + "login/index";
     }, 3000);
 })
