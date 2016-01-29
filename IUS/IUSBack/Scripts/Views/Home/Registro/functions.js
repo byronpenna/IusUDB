@@ -33,6 +33,22 @@
         val.estado = getEstadoVal(val);
         return val;
     }
+    function btnReenviar(frm) {
+        actualizarCatalogo(RAIZ + "/Home/sp_secpu_reenviarCorreo", frm, function (data) {
+            console.log("La respuesta es", data);
+            var divImprimir = $(".rowMensajeReenviar");
+            if (data.estado) {
+                printMessage(divImprimir , "El correo se envio correctamente", true);
+            } else {
+                if (data.error !== undefined && data.error != null && data.error._mostrar) {
+                    printMessage(divImprimir, data.error.Message, false);
+                } else {
+                    printMessage(divImprimir,"Error no controlado", false);
+                }
+
+            }
+        })
+    }
 // scripts 
     function frmRegistrar(frm) {
         actualizarCatalogo(RAIZ + "/Home/sp_secpu_addUsuario", frm, function (data) {

@@ -26,6 +26,22 @@ namespace IUSBack.Models.Page.Home.Acciones
         }
         #endregion
         #region "acciones"
+                public Dictionary<object,object> sp_secpu_reenviarCorreo(string correo)
+                {
+                    try
+                    {
+                        ControlUsuarioPublico control = new ControlUsuarioPublico();
+                        return control.sp_secpu_reenviarCorreo(correo);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #region "funciones especiales"
                 public List<Evento> sp_adminfe_front_getTodayEvents(string ip,int idPagina)
                 {

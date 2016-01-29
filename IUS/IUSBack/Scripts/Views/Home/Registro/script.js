@@ -4,7 +4,17 @@
             $(".dtpFechaNac").datepicker({
                 dateFormat: "dd/mm/yy"
             });
-    // eventos
+        // eventos
+            $(document).on("click", ".btnReenviar", function (e) {
+                var frm = serializeSection($(this).parents(".divReenviarCorreo"));
+                console.log(frm);
+
+                btnReenviar(frm);
+            })
+            $(document).on("click", ".aNoCorreo", function (e) {
+                e.preventDefault();
+                irA($(".divReenviarCorreo"));
+            })
         // click
             $(document).on("submit", ".frmRegistrar", function (e) {
                 e.preventDefault();

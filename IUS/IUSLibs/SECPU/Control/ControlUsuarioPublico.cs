@@ -20,6 +20,44 @@ namespace IUSLibs.SECPU.Control
         #endregion
         #region "funciones"
             #region "get"
+                public Dictionary<object,object> sp_secpu_reenviarCorreo(string correo)
+                {
+                    CodigoVerificacion codigo = null;
+                    UsuarioPublico usuarioPublico = null;
+                    Dictionary<object, object> respuesta = null;
+                    SPIUS sp = new SPIUS("sp_secpu_reenviarCorreo");
+                    sp.agregarParametro("correo", correo);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                
+                                DataRow row = tb[0].Rows[0];
+                                codigo = new CodigoVerificacion((int)row["idCodigoVerificacion"], (int)row["numero"], (DateTime)row["fecha_vencimiento"], (int)row["id_usuariopublico_fk"]);
+                                usuarioPublico = new UsuarioPublico((int)row["idUsuarioPublico"]);
+                                usuarioPublico._nombres     = row["nombres"].ToString();
+                                usuarioPublico._apellidos   = row["apellidos"].ToString();
+                                usuarioPublico._email = row["email"].ToString();
+                                
+                            }
+                            respuesta.Add("usuarioPublico", usuarioPublico);
+                            respuesta.Add("codigo", codigo);
+                        }
+                        return respuesta;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public UsuarioPublico sp_adminfe_front_getLogin(string usuario,string pass,string ip,int idPagina)
                 {
                     UsuarioPublico usuarioLogs = null;
