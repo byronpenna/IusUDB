@@ -33,6 +33,22 @@ namespace IUS.Models.page.Conocenos.Acciones
                         throw x; 
                     }
                 }
+                public DatosIUS sp_adminfe_front_getDatosIUS(string ip,int idPagina)
+                {
+                    try
+                    {
+                        ControlDatosIUS control = new ControlDatosIUS();
+                        return control.sp_adminfe_front_getDatosIUS(ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "Set"
                 

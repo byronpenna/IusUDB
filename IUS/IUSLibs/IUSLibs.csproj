@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADMINFE\Control\ControlConfiguraciones.cs" />
+    <Compile Include="ADMINFE\Control\ControlDatosIUS.cs" />
     <Compile Include="ADMINFE\Control\ControlDatosSalesianos.cs" />
     <Compile Include="ADMINFE\Control\ControlEvento.cs" />
     <Compile Include="ADMINFE\Control\ControlEventoWebsite.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="ADMINFE\Control\Noticias\ControlPostCategoria.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlPostTag.cs" />
     <Compile Include="ADMINFE\Entidades\Configuracion.cs" />
+    <Compile Include="ADMINFE\Entidades\DatosIUS.cs" />
     <Compile Include="ADMINFE\Entidades\DatosSalesianos.cs" />
     <Compile Include="ADMINFE\Entidades\Evento.cs" />
     <Compile Include="ADMINFE\Entidades\EventoWebsite.cs" />
