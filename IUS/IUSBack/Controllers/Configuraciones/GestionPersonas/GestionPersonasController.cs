@@ -28,52 +28,61 @@ namespace IUSBack.Controllers
         #endregion
             
         #region "url"
-            public ActionResult Extras(int id)
+            public ActionResult Extras(int id=-1)
             {
+                
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }
-                try
+                if (id != -1)
                 {
-                    
-                    ViewBag.selectedMenu                    = 2; // menu seleccionado 
-                    //Permiso permisos                        = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
-                    Dictionary<object, object> data         = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
-                    InformacionPersona informarcionPersona  = (InformacionPersona)data["informacionPersona"];
-                    
-                    if (informarcionPersona != null && System.IO.File.Exists(informarcionPersona._fotoRuta))
+                    try
                     {
-                        informarcionPersona._tieneFoto = true;
-                        //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
-                        informarcionPersona._fotoRuta = this.getRelativePathFromAbsolute(informarcionPersona._fotoRuta);
-                    }
-                    ViewBag.paises                          = data["paises"];
-                    ViewBag.estadosCiviles                  = data["estadosCiviles"];
-                    ViewBag.informacionPersona              = informarcionPersona;
 
-                    ViewBag.emails                  = data["emails"];
-                    ViewBag.telefonos               = data["telefonos"];
-                    ViewBag.persona                 = data["persona"];
-                    ViewBag.personas                = data["personas"];
-                    ViewBag.idPersona               = id;
-                    // viewbag
+                        ViewBag.selectedMenu = 2; // menu seleccionado 
+                        //Permiso permisos                        = this._model.sp_trl_getAllPermisoPagina(usuarioSession._idUsuario, this._idPagina);
+                        Dictionary<object, object> data = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
+                        InformacionPersona informarcionPersona = (InformacionPersona)data["informacionPersona"];
+
+                        if (informarcionPersona != null && System.IO.File.Exists(informarcionPersona._fotoRuta))
+                        {
+                            informarcionPersona._tieneFoto = true;
+                            //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+                            informarcionPersona._fotoRuta = this.getRelativePathFromAbsolute(informarcionPersona._fotoRuta);
+                        }
+                        ViewBag.paises = data["paises"];
+                        ViewBag.estadosCiviles = data["estadosCiviles"];
+                        ViewBag.informacionPersona = informarcionPersona;
+
+                        ViewBag.emails = data["emails"];
+                        ViewBag.telefonos = data["telefonos"];
+                        ViewBag.persona = data["persona"];
+                        ViewBag.personas = data["personas"];
+                        ViewBag.idPersona = id;
+                        // viewbag
                         ViewBag.titleModulo = "Información adicional personas";
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    return View();
+                        return View();
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, true, "Extras-" + this._nombreClass + "", usuarioSession._idUsuario, this._idPagina);
+                    }
+                    catch (Exception x)
+                    {
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, "Extras-" + this._nombreClass + "", usuarioSession._idUsuario, this._idPagina);
+                    }
                 }
-                catch (ErroresIUS x)
+                else
                 {
-                    ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true, "Extras-"+this._nombreClass+"", usuarioSession._idUsuario, this._idPagina);
+                    return RedirectToAction("Index", "GestionPersonas");
                 }
-                catch (Exception x)
-                {
-                    ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "Extras-"+this._nombreClass+"", usuarioSession._idUsuario, this._idPagina);
-                }
+               
             }
             public ActionResult Index()
             {
