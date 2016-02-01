@@ -48,8 +48,13 @@ namespace IUS.Controllers
                 }
                 return View();
             }
-            public ActionResult FichaInstitucion(int id)
+            public ActionResult FichaInstitucion(int id=-1)
             {
+                
+                if (id == -1)
+                {
+                    return RedirectToAction("Index", "Instituciones");
+                }
                 List<LlaveIdioma> traducciones;
                 try
                 {

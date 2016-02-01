@@ -58,11 +58,13 @@ namespace IUS.Controllers
                         respuesta = new Dictionary<object, object>();
                         UsuarioPublico usuario = this._model.sp_adminfe_front_getLogin(frm["txtEmail"].ToString(), frm["txtPass"].ToString(), ip, this.idPagina);
                         Session["usuarioPublico"] = usuario;
+                        
                         respuesta.Add("estado", true);
                     }
                     catch (ErroresIUS x)
                     {
-                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql,x._mostrar);
+                        
                         respuesta = this.errorTryControlador(1, error);
                     }
                     catch (Exception x)
