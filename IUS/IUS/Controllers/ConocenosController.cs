@@ -94,9 +94,9 @@ namespace IUS.Controllers
                                 }
                             case 5:
                                 {
-                                    idPagina = this._idPaginaSalesianos;
-                                    string ip = Request.UserHostAddress;
-                                    respuesta.Add("datosIus",this._model.sp_adminfe_front_getDatosIUS(ip, idPagina));
+                                    idPagina    = this._idPaginaSalesianos;
+                                    string ip   = Request.UserHostAddress;
+                                    respuesta.Add("datosIus", this._model.sp_adminfe_front_getDatosSalesianos(ip, idPagina));
                                     break;
                                 }
                         }
