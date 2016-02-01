@@ -141,10 +141,13 @@
     @if (@permiso._crear)
     {
         <div class="subirDiv row marginNull">
-            <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data">
-                <h2>Subir una imagen</h2>
-                @* ****Para imagen de slider **** *@
-                    <img class="imgSlide" src="@Url.Content("~/Content/themes/iusback_theme/img/general/noimage.png")"/>
+            <div class="formularioSubir margenes text-center">
+                <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data">
+                    <h2 class="encabezadoTitulo">Subir una imagen</h2>
+                    @* ****Para imagen de slider **** *@
+                    <div class="row marginNull rowImagenCortar">
+                        <img class="imgSlide" src="@Url.Content("~/Content/themes/iusback_theme/img/general/noimage.png")" />
+                    </div>
                     <div class="divImgSlideLoading">
 
                     </div>
@@ -155,42 +158,53 @@
                         <input class="imgAncho" name="imgAncho" value="0" />
                         <input class="imgAlto" name="imgAlto" value="0" />
                     </div>
-                @* ****  **** *@
-                <div class="col-lg-6">
-                    <input class="flImagen" required type="file" id="file1" name="file1" accept="image/*" /><!--multiple="multiple" -->
-                    <button type="submit" class="btn btn-primary btnSubir">Subir</button>
-                </div>
-            </form>
-        </div>
+                    @* ****  **** *@
+                    <div class="row marginNull ">
+                        <div class="fileUpload btn btn-default rowImagen">
+                            <span>Seleccionar imagen</span>
+                            <input class="flImagen upload" required type="file" id="file1" name="file1" accept="image/*" /><!--multiple="multiple" -->
+                        </div>
+                    </div>
+                    <div class="row marginNull">
+                        <button type="submit" class="btn btn-default btnSubir">Subir</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+            
     }
-    <h2 class="leyendaImagen">Imagenes de Slider</h2>
-    <div class="divImgSlider marginNull">
-        @if (slider != null && slider.Count > 0)
-        {
-            foreach (SliderImage image in slider)
+    <div class="margenes">
+        <h2 class="leyendaImagen encabezadoTitulo">Imagenes de Slider</h2>
+        <div class="divImgSlider marginNull">
+            @if (slider != null && slider.Count > 0)
             {
-                <div class="col-lg-6 divImgIndividual">
-                    <input type="hidden" name="txtHdIdSliderImage" class="txtHdIdSliderImage" value="@image._idSliderImage" />
-                    <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
-                    <div class="row marginNull botonesControlImage">
-                        <button class="btn btnEliminarImage" @permiso.stringEliminar>
-                            Eliminar
-                        </button>
-                        <button class="btn btnDeshabilitarSliderImage" estado="@Convert.ToInt32(image._estado)" @permiso.stringEditar>
-                            @image.textoEstado
-                        </button>
-                    </div>                    
+                foreach (SliderImage image in slider)
+                {
+                    <div class="col-lg-6 divImgIndividual">
+                        <input type="hidden" name="txtHdIdSliderImage" class="txtHdIdSliderImage" value="@image._idSliderImage" />
+                        <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
+                        <div class="row marginNull botonesControlImage">
+                            <div class="btn-group">
+                                <button class="btn btn-default btnEliminarImage" @permiso.stringEliminar>
+                                    Eliminar
+                                </button>
+                                <button class="btn btn-default btnDeshabilitarSliderImage" estado="@Convert.ToInt32(image._estado)" @permiso.stringEditar>
+                                    @image.textoEstado
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="noImageSection">
+                    <img src="~/Content/themes/iusback_theme/img/views/ConfiguracionWebsite/noimage.png" />
+                    <h4>No hay ninguna imagen para mostrar</h4>
                 </div>
             }
-        }
-        else
-        {
-            <div class="noImageSection">
-                <img src="~/Content/themes/iusback_theme/img/views/ConfiguracionWebsite/noimage.png" />
-                <h4 >No hay ninguna imagen para mostrar</h4>
-            </div>
-        }
+        </div>
     </div>
-        
+    
 </div>
 
