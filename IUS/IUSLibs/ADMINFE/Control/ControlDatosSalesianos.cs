@@ -6,7 +6,7 @@ using System.Text;
     using System.Data.Sql;
     using System.Data.SqlClient;
     using System.Data;
-// librerias internas 
+// librerias internas
     using IUSLibs.BaseDatos;
     using IUSLibs.GENERALS;
     using IUSLibs.LOGS;
@@ -14,24 +14,15 @@ using System.Text;
 
 namespace IUSLibs.ADMINFE.Control
 {
-    public class ControlDatosIUS:PadreLib
+    public class ControlDatosSalesianos:PadreLib
     {
-        #region "propiedades"
-            
-        #endregion
-        #region "constructores"
-            public ControlDatosIUS()
-            {
-
-            }
-        #endregion
-        #region "funciones"
-            public DatosIUS sp_adminfe_front_getDatosIUS(string ip, int idPagina)
+        #region "get"
+            public DatosSalesianos sp_adminfe_front_getDatosSalesianos(string ip, int idPagina)
             {
                 try
                 {
-                    DatosIUS retorno = null;
-                    SPIUS sp = new SPIUS("sp_adminfe_front_getDatosIUS");
+                    DatosSalesianos retorno = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_front_getDatosSalesianos");
                     sp.agregarParametro("ip", ip);
                     sp.agregarParametro("idPagina", idPagina);
                     DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
@@ -40,8 +31,12 @@ namespace IUSLibs.ADMINFE.Control
                         if (tb[0].Rows.Count > 0)
                         {
                             DataRow row = tb[0].Rows[0];
-                            retorno = new DatosIUS((int)row["idDatoIuss"],(int)row["continentes_presentes"],(int)row["paises_presentes"],(int)row["total_instituciones"],(int)row["total_estudiantes"],(int)row["total_salesianos"]);
-
+                            retorno = new DatosSalesianos((int)row["salesianos_mundo"], (int)row["paises_presencia"], (int)row["provincias"], (int)row["grupos_familia"],row["website_salesiano"].ToString());
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
                         }
                     }
                     return retorno;

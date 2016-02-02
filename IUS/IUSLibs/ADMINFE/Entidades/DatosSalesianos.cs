@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IUSLibs.ADMINFE.Entidades
 {
-    public class DatosIus
+    public class DatosSalesianos
     {
         #region "propiedades" 
             public int      _salesianosMundo;
@@ -15,7 +15,7 @@ namespace IUSLibs.ADMINFE.Entidades
             public string   _websiteSalesiano;
         #endregion
         #region "constructores"
-            public DatosIus(int salesianosMundo,int paisesPresencia,int provincias,int gruposFamilia,string websiteSalesiano)
+            public DatosSalesianos(int salesianosMundo, int paisesPresencia, int provincias, int gruposFamilia, string websiteSalesiano)
             {
                 this._salesianosMundo   = salesianosMundo;
                 this._paisesPresencia   = paisesPresencia;

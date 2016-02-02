@@ -59,9 +59,11 @@ namespace IUS.Controllers
             public ActionResult getInfo()
             {
                 /*
-                 1: historia 
-                 2: identidad 
-                 3: organización 
+                 1: Historia 
+                 2: Identidad 
+                 3: Organización 
+                 4: Ius
+                 5: Salesianos
                  */
                 Dictionary<object, object> frm, respuesta;
                 frm = this.getAjaxFrm();
@@ -70,9 +72,10 @@ namespace IUS.Controllers
                     try
                     {
                         List<LlaveIdioma> traducciones; 
-                        string lang = this.getUserLang();
-                        respuesta = new Dictionary<object, object>();
-                        int idPagina = -1;
+                        string  lang        = this.getUserLang();
+                                respuesta   = new Dictionary<object, object>();
+                        int     idPagina    = -1;
+                        string  ip          = Request.UserHostAddress;
                         switch(this.convertObjAjaxToInt(frm["idSeleccion"])){
                             case 1:{
                                 idPagina = this._idPaginaHistoria;
@@ -89,14 +92,14 @@ namespace IUS.Controllers
                             case 4:
                                 {
                                     idPagina = this._idPaginaIus;
-
+                                    respuesta.Add("datosIus", this._model.sp_adminfe_front_getDatosIUS(ip, idPagina));
                                     break;
                                 }
                             case 5:
                                 {
-                                    idPagina = this._idPaginaSalesianos;
-                                    string ip = Request.UserHostAddress;
-                                    respuesta.Add("datosIus",this._model.sp_adminfe_front_getDatosIUS(ip, idPagina));
+                                    idPagina    = this._idPaginaSalesianos;
+                                    
+                                    respuesta.Add("datosIus", this._model.sp_adminfe_front_getDatosSalesianos(ip, idPagina));
                                     break;
                                 }
                         }

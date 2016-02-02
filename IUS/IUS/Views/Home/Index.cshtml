@@ -146,7 +146,7 @@
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 colNoticia ">
                         <div class="row marginNull">
-                            <a class="aRedirectPost" href="@this.Url.Action("Index", "Noticias", new { id = post._idPost })">
+                            
                                 @*<div class="col-xs-2 col-sm-2 col-lg-2 col-md-2 imgFeedNoticia">*@
                                 <!-- <img src="~/Content/images/test/cruz.png" /> -->
                                 @*</div>*@
@@ -158,9 +158,11 @@
                                     <p>
                                         @post._descripcion...
                                     </p>
-                                    <span class="leerMas">@ViewData["lb-leer-mas"]</span>
+                                    <a class="aRedirectPost" href="@this.Url.Action("Index", "Noticias", new { id = post._idPost })">
+                                        <span class="leerMas">@ViewData["lb-leer-mas"]</span>
+                                    </a>
                                 </div>
-                            </a>
+                            
                         </div>
 
                     </div>

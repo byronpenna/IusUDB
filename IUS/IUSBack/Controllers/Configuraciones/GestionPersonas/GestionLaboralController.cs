@@ -25,7 +25,7 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
             public string               _nombreClass    = "GestionLaboralController";
         #endregion
         #region "acciones url"
-            public ActionResult Index(int id)
+            public ActionResult Index(int id=-1)
             {
                 ActionResult    seguridadInicial    = this.seguridadInicial(this._idPagina);
                 Usuario         usuarioSession      = this.getUsuarioSesion();
@@ -33,41 +33,49 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                 {
                     return seguridadInicial;
                 }
-                try
+                if (id != -1)
                 {
-                    ViewBag.selectedMenu                = 2; // menu seleccionado 
-                    Persona persona                     = new Persona(id);
-                    Dictionary<object,object> iniciales = this._model.sp_rrhh_getInfoInicialLaboralPersona(id, usuarioSession._idUsuario, this._idPagina);
-                    InformacionPersona info             = (InformacionPersona)iniciales["infoPersona"];
-                    if (info != null && System.IO.File.Exists(info._fotoRuta))
+                    try
                     {
-                        info._tieneFoto = true;
-                        //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
-                        info._fotoRuta  = this.getRelativePathFromAbsolute(info._fotoRuta);
-                    }
-                    if (info != null && System.IO.File.Exists(info._curriculumn))
-                    {
-                        info._tieneCurriculumn = true;
-                        info._curriculumn = this.getRelativePathFromAbsolute(info._curriculumn);
-                    }
+                        ViewBag.selectedMenu = 2; // menu seleccionado 
+                        Persona persona = new Persona(id);
+                        Dictionary<object, object> iniciales = this._model.sp_rrhh_getInfoInicialLaboralPersona(id, usuarioSession._idUsuario, this._idPagina);
+                        InformacionPersona info = (InformacionPersona)iniciales["infoPersona"];
+                        if (info != null && System.IO.File.Exists(info._fotoRuta))
+                        {
+                            info._tieneFoto = true;
+                            //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+                            info._fotoRuta = this.getRelativePathFromAbsolute(info._fotoRuta);
+                        }
+                        if (info != null && System.IO.File.Exists(info._curriculumn))
+                        {
+                            info._tieneCurriculumn = true;
+                            info._curriculumn = this.getRelativePathFromAbsolute(info._curriculumn);
+                        }
 
-                    iniciales["infoPersona"]            = info;
-                    ViewBag.titleModulo                 = "Información laboral personas";
-                    ViewBag.menus                       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    ViewBag.iniciales                   = iniciales;
-                    ViewBag.idPersona                   = id;
+                        iniciales["infoPersona"] = info;
+                        ViewBag.titleModulo = "Información laboral personas";
+                        ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                        ViewBag.iniciales = iniciales;
+                        ViewBag.idPersona = id;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    }
+                    catch (Exception x)
+                    {
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    }
+                    return View("~/Views/GestionPersonas/GestionLaboral.cshtml");
                 }
-                catch (ErroresIUS x)
+                else
                 {
-                    ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    return RedirectToAction("Index", "GestionPersonas");
                 }
-                catch (Exception x)
-                {
-                    ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
-                }
-                return View("~/Views/GestionPersonas/GestionLaboral.cshtml");
+                
             }
         #endregion
         #region "resultados ajax"

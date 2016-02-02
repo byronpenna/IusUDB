@@ -79,6 +79,7 @@
             $.each(data, function (i, val) {
                 obj[i] = val;
             })
+            var datosIus = data.datosIus;
             var div = "\
             <div class='row marginNull divContenedorInfoL'>\
                 <h2 class='tituloInfoL'>IUS</h2>\
@@ -91,35 +92,35 @@
                         " + obj['etiqueta-continentes-presentes'] + "\
                     </div>\
                     <div class='col-lg-6'>\
-                        ____\
+                        " + datosIus._continentesPresentes + "\
                     </div>\
                     <!-- Numero de paises presentes -->\
                     <div class='col-lg-6 tituloLlaves'>\
                         " + obj['etiqueta-paises-presentes'] + "\
                     </div>\
                     <div class='col-lg-6'>\
-                        ____\
+                        " + datosIus._paisesPresentes + "\
                     </div>\
                     <!-- Total instituciones -->\
                     <div class='col-lg-6 tituloLlaves'>\
                         " + obj['etiqueta-numero-instituciones'] + "\
                     </div>\
                     <div class='col-lg-6'>\
-                        ____\
+                        " + datosIus._totalInstituciones + "\
                     </div>\
                     <!-- Numero de estudiantes -->\
                     <div class='col-lg-6 tituloLlaves'>\
                         " + obj['etiqueta-numero-estudiantes'] + "\
                     </div>\
                     <div class='col-lg-6'>\
-                        ____\
+                        " + datosIus._totalEstudiantes + "\
                     </div>\
                     <!-- Numero de salesianos -->\
                     <div class='col-lg-6 tituloLlaves'>\
                         " + obj['etiqueta-numero-salesianos'] + "\
                     </div>\
                     <div class='col-lg-6'>\
-                        ____\
+                        " + datosIus._totalSalesianos + "\
                     </div>\
                 </div>\
             </div>";

@@ -17,7 +17,23 @@ namespace IUS.Models.page.Conocenos.Acciones
         #endregion
         #region "funciones"
             #region "Get"
-                public DatosIus sp_adminfe_front_getDatosIUS(string ip, int idPagina)
+                public DatosSalesianos sp_adminfe_front_getDatosSalesianos(string ip, int idPagina)
+                {
+                    try
+                    {
+                        ControlDatosSalesianos control = new ControlDatosSalesianos();
+                        return control.sp_adminfe_front_getDatosSalesianos(ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x; 
+                    }
+                }
+                public DatosIUS sp_adminfe_front_getDatosIUS(string ip,int idPagina)
                 {
                     try
                     {
@@ -30,7 +46,7 @@ namespace IUS.Models.page.Conocenos.Acciones
                     }
                     catch (Exception x)
                     {
-                        throw x; 
+                        throw x;
                     }
                 }
             #endregion
