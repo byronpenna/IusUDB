@@ -27,6 +27,7 @@
                 }
             });
     // eventos
+
             $(document).on("click", ".btnTab", function () {
                 $('#calendar').fullCalendar('rerenderEvents');
             })
@@ -78,6 +79,17 @@
                 
             });
         // change
+            $(document).on("change", ".cbFiltroTipoEvento", function () {
+                var valor = $(this).val();
+                console.log("El valor es", valor);
+                if (valor != -1) {
+                    $(".txtHdTipoEvento").parents(".nombreEvento").addClass("hidden");
+                    $(".txtHdTipoEvento[value='" + valor + "']").parents(".nombreEvento").removeClass("hidden");
+                } else {
+                    $(".txtHdTipoEvento").parents(".nombreEvento").removeClass("hidden");
+                }
+                console.log("Quiere eliminar");
+            })
             $(document).on("change", ".rbTiempo", function () {
                 valTiempo = $(this).val();
                 rbTiempo(valTiempo,$(this));
