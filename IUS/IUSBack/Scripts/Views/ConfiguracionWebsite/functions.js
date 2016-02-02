@@ -1,6 +1,20 @@
 ﻿// jcrop
     var jcrop_api = null;
 // genericas
+        function getProporcionesUsuario() {
+            var proporciones = $(".imgAncho").val() / $(".imgAlto").val();
+            proporciones = redondeoProporcion(proporciones);
+            return proporciones;
+        }
+        function redondeoProporcion(proporciones) {
+            var entero = Math.floor(proporciones);
+            proporciones = proporciones - entero;
+            console.log("proporciones hasta aca", proporciones);
+            if (proporciones >= 0.95 && proporciones < 1) {
+                entero++;
+            }
+            return entero;
+        }
         function releaseCheck() {
             this.setOptions({ setSelect: [0, 0, 700, 300] });
         }

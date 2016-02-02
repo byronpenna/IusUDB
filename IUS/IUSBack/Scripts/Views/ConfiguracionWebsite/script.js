@@ -76,7 +76,19 @@
                     $("#div_carga").show();
                     section = $(this);
                     getImageFromInputFile($("#file1")[0].files[0], function (imagen) {
-                        formularioSubir(data, section.attr("action"), section, imagen);
+                        console.log("la imagen es", imagen.width);
+                        var proporciones = imagen.width / imagen.height;
+                        console.log("proporciones antes de redondear", proporciones);
+                        proporciones = redondeoProporcion(proporciones);
+                        var proporcionesUsuario = getProporcionesUsuario();
+                        console.log(proporciones, proporcionesUsuario);
+                        if (proporciones == 3 || proporcionesUsuario == 3) {
+                            //alert("Vas a agregar :D ");
+                            formularioSubir(data, section.attr("action"), section, imagen);
+                        } else {
+                            alert("imagen no tiene proporciones adecuadas ");
+                        }
+                        
                     });
                     
                 //} catch (error) {
