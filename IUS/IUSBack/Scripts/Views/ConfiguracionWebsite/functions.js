@@ -1,4 +1,6 @@
-﻿// genericas
+﻿// jcrop
+    var jcrop_api = null;
+// genericas
         function releaseCheck() {
             this.setOptions({ setSelect: [0, 0, 700, 300] });
         }
@@ -105,6 +107,11 @@
                     $(".divImgSlider").prepend(div);
                 }
                 section[0].reset();
+                //-------------------------
+                var targetImg = $(".imgSlide");
+                jcrop_api.destroy();
+                targetImg.attr("src", IMG_GENERALES + "noimage.png");
+                targetImg.attr("style", "");
             } else {
                 if (data.error !== undefined) {
                     alert(data.error.Message);

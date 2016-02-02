@@ -2,8 +2,7 @@
     // plugins 
         // tabs 
             $('#horizontalTab').responsiveTabs();
-        // jcrop
-            var jcrop_api = null;
+        
     // eventos 
         // chage 
             $(document).on("change", ".flImagen", function (e) {
