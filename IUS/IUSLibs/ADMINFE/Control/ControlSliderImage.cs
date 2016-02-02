@@ -18,6 +18,30 @@ namespace IUSLibs.ADMINFE.Control
     {
         #region "backend"
             #region "gets"
+                public SliderImage sp_adminfe_getImageSliderFromId(int idSliderImage)
+                {
+                    SliderImage image = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_getImageSliderFromId");
+                    sp.agregarParametro("idImagen", idSliderImage);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            image = new SliderImage((int)row["idSliderImage"], row["nombre"].ToString(), (byte[])row["imagen"], (bool)row["estado"], (int)row["id_pagina_fk"], (DateTime)row["fecha_creacion"]);
+                        }
+                        return image;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public List<SliderImage> sp_adminfe_getSliderImage(int idPaginaFe,int idUsuarioEjecutor, int idPagina)
                 {
                     List<SliderImage> imagenes = null;

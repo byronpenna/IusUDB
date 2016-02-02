@@ -32,15 +32,25 @@ namespace IUSLibs.ADMINFE.Entidades
             #endregion
         #endregion
             #region "constructores"
-            public SliderImage(int idSliderImage,string nombre,byte[] imagen,bool estado,Pagina pagina,DateTime fechaCreacion)
-            {
-                this._idSliderImage = idSliderImage;
-                this._nombre        = nombre;
-                this._imagen        = imagen;
-                this._pagina        = pagina;
-                this._fechaCreacion = fechaCreacion;
-                this._estado        = estado;
-            }
+                public SliderImage(int idSliderImage, string nombre, byte[] imagen, bool estado, int idPagina, DateTime fechaCreacion)
+                {
+                    this._idSliderImage = idSliderImage;
+                    this._nombre = nombre;
+                    this._imagen = imagen;
+                    Pagina pagina = new Pagina(idPagina);
+                    this._pagina = pagina;
+                    this._fechaCreacion = fechaCreacion;
+                    this._estado = estado;
+                }
+                public SliderImage(int idSliderImage,string nombre,byte[] imagen,bool estado,Pagina pagina,DateTime fechaCreacion)
+                {
+                    this._idSliderImage = idSliderImage;
+                    this._nombre        = nombre;
+                    this._imagen        = imagen;
+                    this._pagina        = pagina;
+                    this._fechaCreacion = fechaCreacion;
+                    this._estado        = estado;
+                }
             // para mandarlo serializado 
             public SliderImage(int idSliderImage, string nombre, string strImagen, bool estado, Pagina pagina, DateTime fechaCreacion)
             {

@@ -45,13 +45,15 @@
         div = "\
         <div class='col-lg-6 divImgIndividual'>\
             <input type='hidden' name='txtHdIdSliderImage' class='txtHdIdSliderImage' value='"+image._idSliderImage+"' />\
-            <img src='"+image._strImagen+"' class='fullSize' />\
-            <button class='btn btnEliminarImage'>\
-                Eliminar\
-            </button>\
-            <button class='btn btnDeshabilitarSliderImage' estado='"+image._estado+"'>\
-                "+image.textoEstado+"\
-            </button>\
+            <img src='" + RAIZ + "ConfiguracionWebsite/sliderImageFromId/" + image._idSliderImage + "' class='fullSize' />\
+            <div class='btn-group'>\
+                <button class='btn btn-default btnEliminarImage'>\
+                    Eliminar\
+                </button>\
+                <button class='btn btn-default btnDeshabilitarSliderImage' estado='" + image._estado + "'>\
+                    "+image.textoEstado+"\
+                </button>\
+            </div>\
         </div>";
         return div;
     }
@@ -96,7 +98,7 @@
                 alert("Imagen ingresada correctamente");
                 imageFromServer             = data.archivos;
                 imageFromServer._strImagen  = imagen.src;
-                div = getDivImageSlider(imageFromServer);
+                var div = getDivImageSlider(imageFromServer);
                 if ($(".divImgSlider").find(".noImageSection").length > 0) {
                     $(".divImgSlider").empty().prepend(div);
                 } else {
