@@ -1,0 +1,37 @@
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/login/LostPass/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/login/LostPass/media.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Login/LostPass/script.js"></script>
+    <script src="~/Scripts/views/Login/LostPass/functions.js"></script>
+}
+<div class="container">
+    <div class="card card-container " id="divLoginAdmin">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <form action="/" id="frmInvitado" method="post">
+            <label>Correo electronico: </label>
+            <input type="email" id="inputEmail" class="form-control txtEmail" name="txtEmail" placeholder="Email address" required autofocus>
+            <span class="visibilitiHidden"> </span>
+            @*<input type="password" id="inputPassword" class="form-control txtPass" name="txtPass" placeholder="Password" required>
+            <span class="visibilitiHidden"> </span>*@
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Recuperar contraseña</button>
+            <div class="row marginNull text-center">
+                <a href="#" class="forgot-password btnRegistrarse">
+                    @*@Url.Action("Registro", "Home")*@
+                    Registrarse
+                </a>
+            </div>
+            <div class="row marginNull text-center">
+                <a href="#" class="forgot-password btnOlvidoPass">
+                    @*@Url.Action("Registro", "Home")*@
+                    ¿Olvidaste la contraseña?
+                </a>
+            </div>
+            <div class="divMessageLogin">
+
+            </div>
+        </form>
+    </div>
+</div>
+

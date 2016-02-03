@@ -3,8 +3,8 @@
     <link rel="stylesheet" href="~/Content/ius_theme/views/login/media.css" />
 }
 @section scriptsPersonalizados{
-    <script src="~/Scripts/views/Login/script.js"></script>
-    <script src="~/Scripts/views/Login/functions.js"></script>
+    <script src="~/Scripts/views/Login/LostPass/script.js"></script>
+    <script src="~/Scripts/views/Login/LostPass/functions.js"></script>
 }
 @{
     
@@ -27,10 +27,18 @@
             <input type="password" id="inputPassword" class="form-control txtPass" name="txtPass" placeholder="Password" required>
             <span class="visibilitiHidden"> </span>
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-            <a href="#" class="forgot-password btnRegistrarse">
-                @*@Url.Action("Registro", "Home")*@
-                Registrarse
-            </a>
+            <div class="row marginNull text-center">
+                <a href="#" class="forgot-password btnRegistrarse">
+                    @*@Url.Action("Registro", "Home")*@
+                    Registrarse
+                </a>
+            </div>
+            <div class="row marginNull text-center">
+                <a href="#" class="forgot-password btnOlvidoPass">
+                    @*@Url.Action("Registro", "Home")*@
+                    ¿Olvidaste la contraseña?
+                </a>
+            </div>
             <div class="divMessageLogin">
                 
             </div>
