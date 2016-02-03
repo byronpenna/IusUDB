@@ -24,6 +24,22 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
         #endregion
         #region "funciones publicas"
             #region "gets"
+                public SliderImage sp_adminfe_getImageSliderFromId(int idSliderImage)
+                {
+                    try
+                    {
+                        return this._controlSlider.sp_adminfe_getImageSliderFromId(idSliderImage);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    
+                }
                 public Dictionary<object, object> sp_adminfe_getConfiguraciones(int idUsuarioEjecutor,int idPagina)
             {
                 try

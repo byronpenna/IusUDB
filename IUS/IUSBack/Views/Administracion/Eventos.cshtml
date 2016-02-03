@@ -156,6 +156,14 @@
                     Nombre <input type="radio" class="rbNombre" name="rbNombre" value="1" checked /> Fechas <input type="radio" class="rbNombre" name="rbNombre" value="2" />
                 </div>
             </div>
+            <div class="row marginNull divFiltroTipoEvento">
+                <select name="cbFiltroTipoEvento" class="form-control cbFiltroTipoEvento">
+                    <option value="-1" selected>Todos</option>
+                    <option value="1">Privados</option>
+                    <option value="2">Compartidos</option>
+                    <option value="3">Publicos</option>
+                </select>
+            </div>
             <!-- Hermoso acordeon de eventos -->
             @if (eventos != null && eventos.Count > 0)
             {
@@ -164,10 +172,12 @@
                     {
                         <h3 class="tabDesplegableEvento nombreEvento @evento.txtClaseColor ">
                             <span class="spanNombreEvento">@evento._evento</span>
+                            <input type="hidden" name="txtHdTipoEvento" class="txtHdTipoEvento" value="@evento._propietario" />
                         </h3>
                         <div class="tabDesplegableEvento detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
                             <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
+                            
                             <div class="row">
                                 <div class="normalMode">
                                     <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>

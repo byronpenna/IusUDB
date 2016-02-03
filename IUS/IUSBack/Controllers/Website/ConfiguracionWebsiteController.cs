@@ -70,6 +70,42 @@ namespace IUSBack.Controllers
                 ViewBag.slider = slider;
                 return View();
             }
+            public ActionResult sliderImageFromId(int id=-1)
+            {
+                
+                if (id != -1)
+                {
+                    try
+                    {
+                        SliderImage sliderImage = this._model.sp_adminfe_getImageSliderFromId(id);
+                        if (sliderImage != null)
+                        {
+                            Stream stream = new MemoryStream(sliderImage._imagen);
+                            return new FileStreamResult(stream, "image/jpeg");
+                        }
+                        else
+                        {
+                            string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                            return base.File(path, "image/jpeg");
+                        }
+                    }
+                    catch (ErroresIUS)
+                    {
+                        string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noimage.png");
+                        return base.File(path, "image/jpeg");
+                    }
+                    catch (Exception)
+                    {
+                        string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noimage.png");
+                        return base.File(path, "image/jpeg");
+                    }
+                }
+                else
+                {
+                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noimage.png");
+                    return base.File(path, "image/jpeg");
+                }
+            }
         #endregion
         #region "generic"
             
@@ -169,6 +205,7 @@ namespace IUSBack.Controllers
                         }
                         return Json(respuesta);                        
                     }
+                    
                     public ActionResult sp_adminfe_cambiarEstado()
                     {
                         Dictionary<object, object> frm, respuesta;

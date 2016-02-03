@@ -1,4 +1,20 @@
-﻿// genericas
+﻿// jcrop
+    var jcrop_api = null;
+// genericas
+        function getProporcionesUsuario() {
+            var proporciones = $(".imgAncho").val() / $(".imgAlto").val();
+            proporciones = redondeoProporcion(proporciones);
+            return proporciones;
+        }
+        function redondeoProporcion(proporciones) {
+            var entero = Math.floor(proporciones);
+            proporciones = proporciones - entero;
+            console.log("proporciones hasta aca", proporciones);
+            if (proporciones >= 0.95 && proporciones < 1) {
+                entero++;
+            }
+            return entero;
+        }
         function releaseCheck() {
             this.setOptions({ setSelect: [0, 0, 700, 300] });
         }
@@ -45,13 +61,15 @@
         div = "\
         <div class='col-lg-6 divImgIndividual'>\
             <input type='hidden' name='txtHdIdSliderImage' class='txtHdIdSliderImage' value='"+image._idSliderImage+"' />\
-            <img src='"+image._strImagen+"' class='fullSize' />\
-            <button class='btn btnEliminarImage'>\
-                Eliminar\
-            </button>\
-            <button class='btn btnDeshabilitarSliderImage' estado='"+image._estado+"'>\
-                "+image.textoEstado+"\
-            </button>\
+            <img src='" + RAIZ + "ConfiguracionWebsite/sliderImageFromId/" + image._idSliderImage + "' class='fullSize' />\
+            <div class='btn-group'>\
+                <button class='btn btn-default btnEliminarImage'>\
+                    Eliminar\
+                </button>\
+                <button class='btn btn-default btnDeshabilitarSliderImage' estado='" + image._estado + "'>\
+                    "+image.textoEstado+"\
+                </button>\
+            </div>\
         </div>";
         return div;
     }
@@ -96,13 +114,18 @@
                 alert("Imagen ingresada correctamente");
                 imageFromServer             = data.archivos;
                 imageFromServer._strImagen  = imagen.src;
-                div = getDivImageSlider(imageFromServer);
+                var div = getDivImageSlider(imageFromServer);
                 if ($(".divImgSlider").find(".noImageSection").length > 0) {
                     $(".divImgSlider").empty().prepend(div);
                 } else {
                     $(".divImgSlider").prepend(div);
                 }
                 section[0].reset();
+                //-------------------------
+                var targetImg = $(".imgSlide");
+                jcrop_api.destroy();
+                targetImg.attr("src", IMG_GENERALES + "noimage.png");
+                targetImg.attr("style", "");
             } else {
                 if (data.error !== undefined) {
                     alert(data.error.Message);
