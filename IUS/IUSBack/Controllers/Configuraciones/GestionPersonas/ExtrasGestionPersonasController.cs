@@ -118,8 +118,9 @@ namespace IUSBack.Controllers.GestionPersonas
                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                         if (respuesta == null)
                         {
-                            int idCorreo = this.convertObjAjaxToInt(frm[""]);
-                            bool resp = this._model.sp_rrhh_setEmailPrincipal(idCorreo, this.convertObjAjaxToInt(frm[""]), usuarioSession._idUsuario, this._idPagina);
+                            int idCorreo = this.convertObjAjaxToInt(frm["idCorreo"]);
+                            bool resp = this._model.sp_rrhh_setEmailPrincipal(idCorreo, this.convertObjAjaxToInt(frm["idPersona"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("idCorreo", idCorreo);
                         }

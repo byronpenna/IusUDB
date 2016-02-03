@@ -273,9 +273,13 @@
                                 {
                                     principal = "fa-star ";
                                 }
+                                else
+                                {
+                                    principal = "fa-star-o";
+                                }
                                 <tr>
                                     <td class="hidden">
-                                        <input type="hidden" value="@emailPersona._idEmail" name="txtIdEmailPersona"/>
+                                        <input type="hidden" value="@emailPersona._idEmail" class="txtIdEmailPersona" name="txtIdEmailPersona" />
                                     </td>
                                     <td>
                                         <i class="fa @principal icoStarPrincipal pointer"></i>

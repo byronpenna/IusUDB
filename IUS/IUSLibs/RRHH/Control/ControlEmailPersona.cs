@@ -26,8 +26,8 @@ namespace IUSLibs.RRHH.Control
                         @				int,
 	                    @				int,
                      */
-                    SPIUS sp = new SPIUS("sp_rrhh_actualizarCorreoPersona");
-                    sp.agregarParametro("idCorreo", idUsuarioEjecutor);
+                    SPIUS sp = new SPIUS("sp_rrhh_setEmailPrincipal");
+                    sp.agregarParametro("idCorreo", idCorreo);
                     sp.agregarParametro("idPersona", idPersona);
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);

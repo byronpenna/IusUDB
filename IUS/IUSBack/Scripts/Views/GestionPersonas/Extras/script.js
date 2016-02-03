@@ -68,6 +68,14 @@
                 controlesEdit(true, $(this).parents(".divTituloNombre"));
             })
         // click
+            $(document).on("click", ".icoStarPrincipal", function () {
+                var frm = {
+                    idCorreo:   $(this).parents("tr").find(".txtIdEmailPersona").val(),
+                    idPersona:  $(".txtHdIdPersona").val()
+                }
+                console.log("frm a enviar es", frm);
+                icoStarPrincipal(frm);
+            })
             $(document).on("click", ".icoVolverAnombre", function () {
                 controlesEdit(false, $(this).parents(".divTituloNombre"));
             })
