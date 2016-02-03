@@ -21,6 +21,21 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             #region "do"
                 
                 #region "emails personas"
+                    public bool sp_rrhh_setEmailPrincipal(int idCorreo, int idPersona, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlEmail.sp_rrhh_setEmailPrincipal(idCorreo, idPersona, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public EmailPersona sp_rrhh_actualizarCorreoPersona(EmailPersona emailActualizar, int idUsuarioEjecutor, int idPagina)
                     {
                         try

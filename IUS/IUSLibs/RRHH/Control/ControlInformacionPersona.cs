@@ -68,7 +68,8 @@ namespace IUSLibs.RRHH.Control
                             emails = new List<EmailPersona>();
                             foreach (DataRow row in tb[3].Rows)
                             {
-                                email = new EmailPersona((int)row["idMailPersona"], row["email"].ToString(), row["descripcion"].ToString(), (int)row["id_persona_fk"]);
+                                email               = new EmailPersona((int)row["idMailPersona"], row["email"].ToString(), row["descripcion"].ToString(), (int)row["id_persona_fk"]);
+                                email._principal    = (bool)row["principal"];
                                 emails.Add(email);
                             }
                         }
