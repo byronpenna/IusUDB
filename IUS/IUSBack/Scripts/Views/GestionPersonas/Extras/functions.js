@@ -245,6 +245,18 @@
             $(".txtEtiquetaTel").val("");
         }
 // scripts
+        function icoStarPrincipal(frm) {
+            actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_setEmailPrincipal", frm, function (data) {
+                console.log("la data es:", data);
+                if (data.estado) {
+                    $(".icoStarPrincipal").removeClass("fa-star");
+                    $(".icoStarPrincipal").addClass("fa-star-o");
+                    $(".txtIdEmailPersona[value='" + data.idCorreo + "']").parents("tr").find(".icoStarPrincipal").addClass("fa-star");
+                    $(".txtIdEmailPersona[value='" + data.idCorreo + "']").parents("tr").find(".icoStarPrincipal").removeClass("fa-star-o");
+                    //$(".txtIdEmailPersona[value='" + data.idCorreo + "']").parents("tr").find(".icoStarPrincipal").css("background", "red");
+                }
+            })
+        }
     // foto 
         function frmImagenPersona(data, url, imagen,frm,jcrop_api) {
             getImageFromInputFile(imagen, function (imagen) {

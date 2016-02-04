@@ -108,6 +108,35 @@ namespace IUSBack.Controllers.GestionPersonas
                 return Json(respuesta);
             }  
             #region "correo"
+                public ActionResult sp_rrhh_setEmailPrincipal()
+                {
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
+                        {
+                            int idCorreo = this.convertObjAjaxToInt(frm["idCorreo"]);
+                            bool resp = this._model.sp_rrhh_setEmailPrincipal(idCorreo, this.convertObjAjaxToInt(frm["idPersona"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("idCorreo", idCorreo);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_rrhh_actualizarCorreoPersona()
                 {
                     Dictionary<object, object> frm, respuesta = null;

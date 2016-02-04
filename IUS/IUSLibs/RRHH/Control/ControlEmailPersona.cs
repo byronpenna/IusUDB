@@ -19,6 +19,37 @@ namespace IUSLibs.RRHH.Control
     {
         #region "funciones"
             #region "do"
+                public bool sp_rrhh_setEmailPrincipal(int idCorreo,int idPersona,int idUsuarioEjecutor, int idPagina)
+                {
+                    bool retorno = false;
+                    /*
+                        @				int,
+	                    @				int,
+                     */
+                    SPIUS sp = new SPIUS("sp_rrhh_setEmailPrincipal");
+                    sp.agregarParametro("idCorreo", idCorreo);
+                    sp.agregarParametro("idPersona", idPersona);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            retorno = true;
+                        }
+                        return retorno;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public EmailPersona sp_rrhh_actualizarCorreoPersona(EmailPersona emailActualizar,int idUsuarioEjecutor, int idPagina)
                 {
                     EmailPersona emailActualizado=null;

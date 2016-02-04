@@ -236,12 +236,16 @@
                     <thead>
                         <tr>
                             <th class="hidden"></th>
+                            <th></th>
                             <th>Email</th>
                             <th>Etiqueta</th>
                             <th>Acciones</th>
                         </tr>
                         <tr>
                             <th class="hidden"></th>
+                            <th>
+                                
+                            </th>
                             <th>
                                 <input name="txtEmail" class=" form-control txtEmail input-sm" type="email" />
                                 <div class="row marginNull divResultado hidden ">
@@ -262,11 +266,23 @@
                     <tbody class="tbodyEmail">
                         @if (emailsPersonas != null && emailsPersonas.Count > 0)
                         {
+                            string principal = "fa-star-o";
                             foreach (EmailPersona emailPersona in emailsPersonas)
                             {
+                                if (emailPersona._principal)
+                                {
+                                    principal = "fa-star ";
+                                }
+                                else
+                                {
+                                    principal = "fa-star-o";
+                                }
                                 <tr>
                                     <td class="hidden">
-                                        <input type="hidden" value="@emailPersona._idEmail" name="txtIdEmailPersona"/>
+                                        <input type="hidden" value="@emailPersona._idEmail" class="txtIdEmailPersona" name="txtIdEmailPersona" />
+                                    </td>
+                                    <td>
+                                        <i class="fa @principal icoStarPrincipal pointer"></i>
                                     </td>
                                     <td>
                                         <div class="editMode hidden">

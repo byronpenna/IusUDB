@@ -20,6 +20,13 @@ namespace IUS.Controllers
             private LoginModel _model;
         #endregion
         #region "URL"
+            public ActionResult LostPass()
+            {
+                
+                
+                return View();
+
+            }
             public ActionResult Index()
             {
                 List<LlaveIdioma> traducciones;
