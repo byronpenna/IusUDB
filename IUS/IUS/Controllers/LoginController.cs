@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+// internas 
+    using System.Net.Mail;
 // modelos
     using IUS.Models.page.Login.Acciones;
 // librerias externas
@@ -20,10 +22,20 @@ namespace IUS.Controllers
             private LoginModel _model;
         #endregion
         #region "URL"
+            public ActionResult cambiarPass(int id,int id2)
+            {
+                /*
+                 id: representa al id del usuario
+                 id2: representa a el numero aleatorio
+                 */
+                ViewBag.accion              = 2;
+                ViewBag.idUsuarioPublico    = id;
+                ViewBag.numVal = id2;
+                return View("~/Views/Login/index.cshtml");
+            }
             public ActionResult LostPass()
             {
-                
-                
+                ViewBag.accion = 1;
                 return View();
 
             }
@@ -52,7 +64,35 @@ namespace IUS.Controllers
             }
         #endregion
         #region "ajax"
-            #region "lostPass"
+            #region "cambio de contraseña"
+                public ActionResult sp_secpu_cambiarPassPublico()
+                {
+                    Dictionary<object, object> frm, respuesta;
+                    frm = this.getAjaxFrm();
+                    if (frm != null)
+                    {
+                        try
+                        {
+                            bool cambio = false;
+
+                        }catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
                 public ActionResult sp_secpu_solicitarCambio()
                 {
                     Dictionary<object, object> frm, respuesta;
@@ -61,11 +101,18 @@ namespace IUS.Controllers
                     {
                         try
                         {
-                            ValidadorPassPublico validador = this._model.sp_secpu_solicitarCambio(frm["txtEmail"].ToString());
+                            string email = frm["txtEmail"].ToString();
+                            ValidadorPassPublico validador = this._model.sp_secpu_solicitarCambio(email);
                             respuesta = new Dictionary<object, object>();
-                            
+                            MailMessage m = new MailMessage();
+                            m.To.Add(email);
+                            m.Body = "Se a solicitado un cambio de contraseña por favor ingresar al siguiente enlace: ";
+                            m.Subject = "Solicitud cambio de contraseña";
+                            m.IsBodyHtml = true;
+                            m.Priority = MailPriority.Normal;
+                            SmtpClient cliente = new SmtpClient();
+                            cliente.Send(m);
                             respuesta.Add("estado", true);
-                            
                         }
                         catch (ErroresIUS x)
                         {

@@ -4,6 +4,13 @@
             var frm = serializeSection($(this));
             e.preventDefault();
             console.log("Entro aqui");
-            frmInvitado(frm);
+            if (frm.txtHdAccion == 1)
+            {
+                // para lost pass
+                frmInvitado(frm);
+            } else {
+
+            }
+                
         })
 })

@@ -6,7 +6,24 @@
     <script src="~/Scripts/views/Login/LostPass/script.js"></script>
     <script src="~/Scripts/views/Login/LostPass/functions.js"></script>
 }
+@{
+    int accion = (int)ViewBag.accion;
+    int idUsuarioPublico = -1;
+    int numVal = -1;
+    if (accion == 2)
+    {
+        //cambiar contraseña
+        idUsuarioPublico    = (int)ViewBag.idUsuarioPublico;
+        numVal              = (int)ViewBag.numVal;
+    }
+    
+}
 <div class="container">
+    <input class="txtHdAccion" name="txtHdAccion" value="@ViewBag" />
+    <input class="txtHdIdUsuario" name="txtHdIdUsuario" value="@idUsuarioPublico" />
+    <input class="txtHdNumVal" name="txtHdNumVal" value="@numVal" />
+
+    <input class="txtHdNum" value="" />
     <div class="card card-container " id="divLoginAdmin">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <form action="/" id="frmInvitado" method="post">

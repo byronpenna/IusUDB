@@ -91,6 +91,34 @@ namespace IUSLibs.SECPU.Control
                 }
             #endregion
             #region "set"
+                public bool sp_secpu_cambiarPassPublico(int idUsuarioPublico,int codigo,string pass,string ip,int idPagina)
+                {
+                    
+                    SPIUS sp = new SPIUS("sp_secpu_cambiarPassPublico");
+                    sp.agregarParametro("idUsuarioPublico", idUsuarioPublico);
+                    sp.agregarParametro("codigo", codigo);
+                    sp.agregarParametro("pass", pass);
+                    sp.agregarParametro("ip", ip);
+                    sp.agregarParametro("idPagina", idPagina);
+                    bool estado = false;
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        return estado;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public ValidadorPassPublico sp_secpu_solicitarCambio(string email)
                 {
                     ValidadorPassPublico retorno = null;
