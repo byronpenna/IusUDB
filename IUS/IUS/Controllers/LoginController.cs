@@ -52,54 +52,90 @@ namespace IUS.Controllers
             }
         #endregion
         #region "ajax"
-            public ActionResult sp_adminfe_front_getLogin()
-            {
-                Dictionary<object, object> frm, respuesta;
-                frm = this.getAjaxFrm();
-                if (frm != null)
+            #region "lostPass"
+                public ActionResult sp_secpu_solicitarCambio()
                 {
-                    try
+                    Dictionary<object, object> frm, respuesta;
+                    frm = this.getAjaxFrm();
+                    if (frm != null)
                     {
-                        string lang = this.getUserLang();
-                        string ip = Request.UserHostAddress;
-                        respuesta = new Dictionary<object, object>();
-                        UsuarioPublico usuario = this._model.sp_adminfe_front_getLogin(frm["txtEmail"].ToString(), frm["txtPass"].ToString(), ip, this.idPagina);
-                        Session["usuarioPublico"] = usuario;
+                        try
+                        {
+                            ValidadorPassPublico validador = this._model.sp_secpu_solicitarCambio(frm["txtEmail"].ToString());
+                            respuesta = new Dictionary<object, object>();
+                            
+                            respuesta.Add("estado", true);
+                            
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
+            #endregion
+            #region "login"
+                public ActionResult sp_adminfe_front_getLogin()
+                {
+                    Dictionary<object, object> frm, respuesta;
+                    frm = this.getAjaxFrm();
+                    if (frm != null)
+                    {
+                        try
+                        {
+                            string lang = this.getUserLang();
+                            string ip = Request.UserHostAddress;
+                            respuesta = new Dictionary<object, object>();
+                            UsuarioPublico usuario = this._model.sp_adminfe_front_getLogin(frm["txtEmail"].ToString(), frm["txtPass"].ToString(), ip, this.idPagina);
+                            Session["usuarioPublico"] = usuario;
                         
+                            respuesta.Add("estado", true);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql,x._mostrar);
+                        
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+                    }
+                    else
+                    {
+                        respuesta = this.errorEnvioFrmJSON();
+                    }
+                    return Json(respuesta);
+                }
+                public ActionResult LogOut()
+                {
+                    Dictionary<object, object> respuesta = new Dictionary<object, object>();
+                    try{
+                        Session.Contents.RemoveAll();
                         respuesta.Add("estado", true);
                     }
-                    catch (ErroresIUS x)
+                    catch (Exception )
                     {
-                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql,x._mostrar);
-                        
-                        respuesta = this.errorTryControlador(1, error);
-                    }
-                    catch (Exception x)
-                    {
-                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
-                        respuesta = this.errorTryControlador(2, error);
-                    }
-                }
-                else
-                {
-                    respuesta = this.errorEnvioFrmJSON();
-                }
-                return Json(respuesta);
-            }
-            public ActionResult LogOut()
-            {
-                Dictionary<object, object> respuesta = new Dictionary<object, object>();
-                try{
-                    Session.Contents.RemoveAll();
-                    respuesta.Add("estado", true);
-                }
-                catch (Exception )
-                {
 
-                }
+                    }
 
-                return Json(respuesta);
-            }
+                    return Json(respuesta);
+                }
+            #endregion
         #endregion
         #region "Constructores"
             public LoginController()
