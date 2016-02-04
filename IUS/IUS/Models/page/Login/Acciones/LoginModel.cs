@@ -20,7 +20,8 @@ namespace IUS.Models.page.Login.Acciones
             {
                 try
                 {
-
+                    ControlUsuarioPublico control = new ControlUsuarioPublico();
+                    return control.sp_secpu_cambiarPassPublico(idUsuarioPublico, codigo, pass, ip, idPagina);
                 }
                 catch (ErroresIUS x)
                 {

@@ -73,7 +73,8 @@ namespace IUS.Controllers
                     {
                         try
                         {
-                            bool cambio = false;
+                            string ip = Request.UserHostAddress;
+                            bool cambio = this._model.sp_secpu_cambiarPassPublico(this.convertObjAjaxToInt(frm["txtHdIdUsuario"]), this.convertObjAjaxToInt(frm["txtHdNumVal"]), frm["txtPass"].ToString(),ip,1); // por el momento la pagina sera 1
 
                         }catch (ErroresIUS x)
                         {

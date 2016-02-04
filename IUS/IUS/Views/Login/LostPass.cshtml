@@ -30,6 +30,13 @@
             <label>Correo electronico: </label>
             <input type="email" id="inputEmail" class="form-control txtEmail" name="txtEmail" placeholder="Email address" required autofocus>
             <span class="visibilitiHidden"> </span>
+
+            @if (accion == 2)
+            {
+                <input type="password" id="txtPass" class="form-control txtPass" name="txtPass" placeholder="Password" required autofocus>
+                <span class="visibilitiHidden"> </span>
+            }
+
             @*<input type="password" id="inputPassword" class="form-control txtPass" name="txtPass" placeholder="Password" required>
             <span class="visibilitiHidden"> </span>*@
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Recuperar contraseña</button>
