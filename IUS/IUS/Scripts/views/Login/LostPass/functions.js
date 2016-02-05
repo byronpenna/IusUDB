@@ -7,7 +7,7 @@
             }
         })
     }
-    function cambiarPass() {
+    function cambiarPass(frm) {
         actualizarCatalogo(RAIZ + "/Login/sp_secpu_cambiarPassPublico", frm, function (data) {
             console.log("La data devuelta es: ", data);
             if (data.estado) {

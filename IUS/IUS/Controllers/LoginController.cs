@@ -31,7 +31,7 @@ namespace IUS.Controllers
                 ViewBag.accion              = 2;
                 ViewBag.idUsuarioPublico    = id;
                 ViewBag.numVal = id2;
-                return View("~/Views/Login/index.cshtml");
+                return View("~/Views/Login/LostPass.cshtml");
             }
             public ActionResult LostPass()
             {
@@ -75,7 +75,8 @@ namespace IUS.Controllers
                         {
                             string ip = Request.UserHostAddress;
                             bool cambio = this._model.sp_secpu_cambiarPassPublico(this.convertObjAjaxToInt(frm["txtHdIdUsuario"]), this.convertObjAjaxToInt(frm["txtHdNumVal"]), frm["txtPass"].ToString(),ip,1); // por el momento la pagina sera 1
-
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
                         }catch (ErroresIUS x)
                         {
                             ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
@@ -106,9 +107,16 @@ namespace IUS.Controllers
                             ValidadorPassPublico validador = this._model.sp_secpu_solicitarCambio(email);
                             respuesta = new Dictionary<object, object>();
                             MailMessage m = new MailMessage();
+                            string ruta = Request.Url.AbsoluteUri;
+                            //########## TMP #########
+                            ruta = ruta.Substring(0, this.CustomIndexOf(ruta, '/', 3) );
+                            
+                            //###################
                             m.To.Add(email);
-                            m.Body = "Se a solicitado un cambio de contraseña por favor ingresar al siguiente enlace: ";
+                            m.Body = "Se a solicitado un cambio de contraseña por favor ingresar al siguiente enlace: <br>" +
+                                        ruta + Url.Action("cambiarPass", "Login", new { id=validador._usuarioPublico._idUsuarioPublico,id2=validador._codigo});
                             m.Subject = "Solicitud cambio de contraseña";
+                            //cambiarPass(usuario,numeroAleatorio)
                             m.IsBodyHtml = true;
                             m.Priority = MailPriority.Normal;
                             SmtpClient cliente = new SmtpClient();

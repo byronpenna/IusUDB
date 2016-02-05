@@ -54,8 +54,6 @@ namespace IUS.Controllers
                 }
             #endregion
             #region "genericas"
-                
-                
                 #region "getAjaxFrm"
                     public Dictionary<Object, Object> getAjaxFrm()
                     {
@@ -80,6 +78,19 @@ namespace IUS.Controllers
                     }
             
                 #endregion
+                public int CustomIndexOf(string source, char toFind, int position)
+                {
+                    int index = -1;
+                    for (int i = 0; i < position; i++)
+                    {
+                        index = source.IndexOf(toFind, index + 1);
+
+                        if (index == -1)
+                            break;
+                    }
+
+                    return index;
+                }
                 public UsuarioPublico getUsuarioSession()
                 {
                     UsuarioPublico usuario = null;
