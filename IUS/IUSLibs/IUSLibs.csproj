@@ -172,6 +172,7 @@
     <Compile Include="SECPU\Entidades\CodigoVerificacion.cs" />
     <Compile Include="SECPU\Entidades\EstadoUsuarioPublico.cs" />
     <Compile Include="SECPU\Entidades\UsuarioPublico.cs" />
+    <Compile Include="SECPU\Entidades\ValidadorPassPublico.cs" />
     <Compile Include="SEC\Control\ControlMenu.cs" />
     <Compile Include="SEC\Control\ControlPermiso.cs" />
     <Compile Include="SEC\Control\ControlPersona.cs" />

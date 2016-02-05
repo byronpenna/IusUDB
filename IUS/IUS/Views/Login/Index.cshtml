@@ -3,12 +3,13 @@
     <link rel="stylesheet" href="~/Content/ius_theme/views/login/media.css" />
 }
 @section scriptsPersonalizados{
-    <script src="~/Scripts/views/Login/LostPass/script.js"></script>
-    <script src="~/Scripts/views/Login/LostPass/functions.js"></script>
+    <script src="~/Scripts/views/Login/script.js"></script>
+    <script src="~/Scripts/views/Login/functions.js"></script>
 }
 @{
     
 }
+
 <div class="container">
     <div class="card card-container divSeleccionLogin">
         <div class="col-lg-6 pointer activeMenu btnTabsLogin" id="btnUsuarioLogin">
@@ -34,7 +35,7 @@
                 </a>
             </div>
             <div class="row marginNull text-center">
-                <a href="#" class="forgot-password btnOlvidoPass">
+                <a href="@Url.Action("LostPass","Login")" class="forgot-password btnOlvidoPass">
                     @*@Url.Action("Registro", "Home")*@
                     ¿Olvidaste la contraseña?
                 </a>

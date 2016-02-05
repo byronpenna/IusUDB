@@ -54,6 +54,8 @@ namespace IUS.Controllers
                 }
             #endregion
             #region "genericas"
+                
+                
                 #region "getAjaxFrm"
                     public Dictionary<Object, Object> getAjaxFrm()
                     {

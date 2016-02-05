@@ -91,6 +91,68 @@ namespace IUSLibs.SECPU.Control
                 }
             #endregion
             #region "set"
+                public bool sp_secpu_cambiarPassPublico(int idUsuarioPublico,int codigo,string pass,string ip,int idPagina)
+                {
+                    
+                    SPIUS sp = new SPIUS("sp_secpu_cambiarPassPublico");
+                    sp.agregarParametro("idUsuarioPublico", idUsuarioPublico);
+                    sp.agregarParametro("codigo", codigo);
+                    sp.agregarParametro("pass", pass);
+                    sp.agregarParametro("ip", ip);
+                    sp.agregarParametro("idPagina", idPagina);
+                    bool estado = false;
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        return estado;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                public ValidadorPassPublico sp_secpu_solicitarCambio(string email)
+                {
+                    ValidadorPassPublico retorno = null;
+                    SPIUS sp = new SPIUS("sp_secpu_solicitarCambio");
+                    sp.agregarParametro("email", email);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                retorno = new ValidadorPassPublico((int)row["idValidadorPass"], (int)row["codigo"], (DateTime)row["vencimiento"], (int)row["intentos"], (int)row["id_usuario_fk"]);
+
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                        return retorno;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Dictionary<object,object> sp_secpu_addUsuario(UsuarioPublico usuarioAgregar)
                 {
                     Dictionary<object, object> retorno = null;
@@ -146,7 +208,7 @@ namespace IUSLibs.SECPU.Control
         #region "constructores"
             public ControlUsuarioPublico()
             {
-
+                
             }
         #endregion
     }

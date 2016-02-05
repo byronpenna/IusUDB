@@ -6,28 +6,40 @@
     <script src="~/Scripts/views/Login/LostPass/script.js"></script>
     <script src="~/Scripts/views/Login/LostPass/functions.js"></script>
 }
+@{
+    int accion = (int)ViewBag.accion;
+    int idUsuarioPublico = -1;
+    int numVal = -1;
+    if (accion == 2)
+    {
+        //cambiar contraseña
+        idUsuarioPublico    = (int)ViewBag.idUsuarioPublico;
+        numVal              = (int)ViewBag.numVal;
+    }
+    
+}
 <div class="container">
+    <input class="txtHdAccion" name="txtHdAccion" value="@ViewBag" />
+    <input class="txtHdIdUsuario" name="txtHdIdUsuario" value="@idUsuarioPublico" />
+    <input class="txtHdNumVal" name="txtHdNumVal" value="@numVal" />
+
+    <input class="txtHdNum" value="" />
     <div class="card card-container " id="divLoginAdmin">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <form action="/" id="frmInvitado" method="post">
             <label>Correo electronico: </label>
             <input type="email" id="inputEmail" class="form-control txtEmail" name="txtEmail" placeholder="Email address" required autofocus>
             <span class="visibilitiHidden"> </span>
+
+            @if (accion == 2)
+            {
+                <input type="password" id="txtPass" class="form-control txtPass" name="txtPass" placeholder="Password" required autofocus>
+                <span class="visibilitiHidden"> </span>
+            }
+
             @*<input type="password" id="inputPassword" class="form-control txtPass" name="txtPass" placeholder="Password" required>
             <span class="visibilitiHidden"> </span>*@
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Recuperar contraseña</button>
-            <div class="row marginNull text-center">
-                <a href="#" class="forgot-password btnRegistrarse">
-                    @*@Url.Action("Registro", "Home")*@
-                    Registrarse
-                </a>
-            </div>
-            <div class="row marginNull text-center">
-                <a href="#" class="forgot-password btnOlvidoPass">
-                    @*@Url.Action("Registro", "Home")*@
-                    ¿Olvidaste la contraseña?
-                </a>
-            </div>
             <div class="divMessageLogin">
 
             </div>
