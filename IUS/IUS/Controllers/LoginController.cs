@@ -74,9 +74,10 @@ namespace IUS.Controllers
                         try
                         {
                             string ip = Request.UserHostAddress;
-                            bool cambio = this._model.sp_secpu_cambiarPassPublico(this.convertObjAjaxToInt(frm["txtHdIdUsuario"]), this.convertObjAjaxToInt(frm["txtHdNumVal"]), frm["txtPass"].ToString(),ip,1); // por el momento la pagina sera 1
+                            string lang = this._model.getStandarLang(this.getUserLang());
+                            bool cambio = this._model.sp_secpu_cambiarPassPublico(this.convertObjAjaxToInt(frm["txtHdIdUsuario"]), this.convertObjAjaxToInt(frm["txtHdNumVal"]), frm["txtPass"].ToString(),ip,1,lang); // por el momento la pagina sera 1
                             respuesta = new Dictionary<object, object>();
-                            respuesta.Add("estado", true);
+                            respuesta.Add("estado", cambio);
                         }catch (ErroresIUS x)
                         {
                             ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);

@@ -16,12 +16,12 @@ namespace IUS.Models.page.Login.Acciones
             
         #endregion
         #region "funciones"
-            public bool sp_secpu_cambiarPassPublico(int idUsuarioPublico, int codigo, string pass, string ip, int idPagina)
+            public bool sp_secpu_cambiarPassPublico(int idUsuarioPublico, int codigo, string pass, string ip, int idPagina,string lang)
             {
                 try
                 {
                     ControlUsuarioPublico control = new ControlUsuarioPublico();
-                    return control.sp_secpu_cambiarPassPublico(idUsuarioPublico, codigo, pass, ip, idPagina);
+                    return control.sp_secpu_cambiarPassPublico(idUsuarioPublico, codigo, pass, ip, idPagina,lang);
                 }
                 catch (ErroresIUS x)
                 {

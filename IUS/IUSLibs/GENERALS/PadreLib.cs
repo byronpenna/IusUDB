@@ -142,6 +142,7 @@ namespace IUSLibs.GENERALS
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow rowError = tb[0].Rows[0];
+                                string message = rowError["errorMessage"].ToString();
                                 /*bool mostrar = false;
                                 if (tb[0].Columns.Contains("mostrar"))
                                 {
