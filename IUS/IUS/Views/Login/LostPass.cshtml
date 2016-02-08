@@ -19,14 +19,16 @@
     
 }
 <div class="container">
-    <input class="txtHdAccion" name="txtHdAccion" value="@ViewBag" />
-    <input class="txtHdIdUsuario" name="txtHdIdUsuario" value="@idUsuarioPublico" />
-    <input class="txtHdNumVal" name="txtHdNumVal" value="@numVal" />
+    
 
-    <input class="txtHdNum" value="" />
+    @*<input class="txtHdNum" value="" />*@
     <div class="card card-container " id="divLoginAdmin">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <form action="/" id="frmInvitado" method="post">
+            <input type="hidden" class="txtHdAccion" name="txtHdAccion" value="@ViewBag.accion" />
+            <input type="hidden" class="txtHdIdUsuario" name="txtHdIdUsuario" value="@idUsuarioPublico" />
+            <input type="hidden" class="txtHdNumVal" name="txtHdNumVal" value="@numVal" />
+
             <label>Correo electronico: </label>
             <input type="email" id="inputEmail" class="form-control txtEmail" name="txtEmail" placeholder="Email address" required autofocus>
             <span class="visibilitiHidden"> </span>
