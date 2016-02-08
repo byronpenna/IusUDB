@@ -87,6 +87,8 @@ namespace IUS.Models.general
                 public List<LlaveIdioma> getTraduccion(string lang,int idPagina)
                 {
                     lang = this.getStandarLang(lang);
+                    //asdqw
+                    //asdqwe
                     ControlLlaveIdioma control = new ControlLlaveIdioma(idPagina, lang);
                     List<LlaveIdioma> traduccion;
                     try

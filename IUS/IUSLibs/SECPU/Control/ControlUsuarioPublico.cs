@@ -91,7 +91,7 @@ namespace IUSLibs.SECPU.Control
                 }
             #endregion
             #region "set"
-                public bool sp_secpu_cambiarPassPublico(int idUsuarioPublico,int codigo,string pass,string ip,int idPagina)
+                public bool sp_secpu_cambiarPassPublico(int idUsuarioPublico,int codigo,string pass,string ip,int idPagina,string lang)
                 {
                     
                     SPIUS sp = new SPIUS("sp_secpu_cambiarPassPublico");
@@ -100,6 +100,7 @@ namespace IUSLibs.SECPU.Control
                     sp.agregarParametro("pass", pass);
                     sp.agregarParametro("ip", ip);
                     sp.agregarParametro("idPagina", idPagina);
+                    sp.agregarParametro("lang", lang);
                     bool estado = false;
                     try
                     {
