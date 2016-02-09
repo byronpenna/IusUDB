@@ -23,7 +23,7 @@
                 var val = validarIngreso(frm);
                 console.log(val);
                 $(".frmRegistrar").find(".divResultado").addClass("hidden");
-                $(".spanResultado").addClass("hidden");
+                //$(".spanResultado").addClass("hidden");
                 if (val.estado) {
                     frmRegistrar(frm);
                 } else {

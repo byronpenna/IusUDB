@@ -51,14 +51,17 @@
     }
 // scripts 
     function frmRegistrar(frm) {
+        
+        console.log("vv'");
         actualizarCatalogo(RAIZ + "/Home/sp_secpu_addUsuario", frm, function (data) {
             console.log("Respuesta al querer agregar",data);
-            $(".spanResultado").removeClass("hidden");
+            //$(".spanResultado").removeClass("hidden");
             if (data.estado) {
-                $(".spanResultado").addClass("spanSuccess");
+                /*$(".spanResultado").addClass("spanSuccess");
                 $(".spanResultado").removeClass("spanError");
-                $(".spanResultado").empty().append("Registrado correctamente revise correo electronico para confirmar su cuenta");
+                $(".spanResultado").empty().append("Registrado correctamente revise correo electronico para confirmar su cuenta");*/
                 clearTr($(".frmRegistrar"));
+                printMessage($(".spanResultado"), "Registrado correctamente revise correo electronico para confirmar su cuenta", true);
                 //
             } else {
                 var mjs = "";
@@ -69,7 +72,11 @@
                 } else {
                     mjs = "Ocurrio un error agregando";
                 }
-                $(".spanResultado").empty().append(mjs);
+                //$(".spanResultado").empty().append(mjs);
+                printMessage($(".spanResultado"), mjs, false);
             }
+        }, function () {
+            var img = "<img src='" + IMG_GENERALES + "ajax-loader.gif'>";
+            $(".spanResultado").empty().append("Espere por favor </br>"+img);
         });
     }
