@@ -156,6 +156,31 @@ namespace IUSBack.Controllers
         #endregion
 
         #region "Vistas"
+            public ActionResult sp_usu_solicitarCambioPass()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    frm = this.getAjaxFrm();
+                    respuesta = this.seguridadInicialAjax(frm);
+                    if (respuesta == null)
+                    {
+                        respuesta = this.homeModel.sp_usu_solicitarCambioPass(frm["usuario"].ToString(), 4);
+                        respuesta.Add("estado", true);
+                    }
+                    return Json(respuesta);
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+            }
             public ActionResult Registro()
             {
                 return View();

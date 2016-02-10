@@ -69,7 +69,10 @@ namespace IUSBack.Controllers
             }
             
         #endregion
-        #region "Views"
+            #region "funciones ajax"
+                
+            #endregion
+            #region "Views"
             public ActionResult Index()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();

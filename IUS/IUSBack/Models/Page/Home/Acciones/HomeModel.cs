@@ -13,6 +13,7 @@ using System.Web;
         using IUSLibs.ADMINFE.Entidades;
         using IUSLibs.SEC.Entidades;
         using IUSLibs.SECPU.Entidades;
+
 namespace IUSBack.Models.Page.Home.Acciones
 {
     public class HomeModel:PadreModel
@@ -26,6 +27,22 @@ namespace IUSBack.Models.Page.Home.Acciones
         }
         #endregion
         #region "acciones"
+            public Dictionary<object, object> sp_usu_solicitarCambioPass(string usuario, int idPagina)
+            {
+                try
+                {
+                    ControlUsuarios control = new ControlUsuarios();
+                    return control.sp_usu_solicitarCambioPass(usuario, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
                 public Dictionary<object,object> sp_secpu_reenviarCorreo(string correo)
                 {
                     try

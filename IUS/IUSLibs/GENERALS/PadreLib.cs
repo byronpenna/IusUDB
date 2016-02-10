@@ -8,8 +8,6 @@ using System.Text;
     using IUSLibs.LOGS;
 // librerias externas
     using IUSLibs.BaseDatos;
-
-    using IUSLibs.LOGS;
 namespace IUSLibs.GENERALS
 {
     public class PadreLib
