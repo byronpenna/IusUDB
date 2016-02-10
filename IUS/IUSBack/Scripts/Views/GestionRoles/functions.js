@@ -4,6 +4,15 @@
         if (idTab != -1) {
             $(".tabs").find("#" + idTab).click();
         }
+
+        // para seleccionar usuario 
+        var idUsuario = $(".txtHdIdUsuario").val();
+        if (idTab == 1) {
+            //$(".")
+            //console.log("Debio haber cambiado");
+            resetChosenWithSelectedVal($(".cbUsuarios"), idUsuario);
+            $(".cbUsuarios").change();
+        }
     }
     function validarAsignarSubMenu(frm) {
         var val = new Object();

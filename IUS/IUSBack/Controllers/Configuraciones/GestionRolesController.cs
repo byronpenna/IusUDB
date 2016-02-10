@@ -27,7 +27,7 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "URL"
-            public ActionResult Index(int id=-1)
+            public ActionResult Index(int id=-1,int id2=-1)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
                 string funcion = "Index";
@@ -53,6 +53,7 @@ namespace IUSBack.Controllers
                         ViewBag.nombreClass = this._nombreClass;
                         ViewBag.selectedTab = id;
                         ViewBag.funcion     = funcion;
+                        ViewBag.idUsuario   = id2;
                     return View();
                 }
                 catch (ErroresIUS x)

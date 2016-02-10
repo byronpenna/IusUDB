@@ -33,7 +33,8 @@
             })
         // click 
             $(document).on("click", ".btnTab", function () {
-                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/"+$(".txtHdFuncion").val()+"/" + $(this).attr("id"));
+                var idUsuario = $(".txtHdIdUsuario").val();
+                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id")+"/"+idUsuario);
             })
             $(document).on("click", "#btnAddRoles", function () {
                 var x = confirm("¿Esta seguro que desea agregar los siguientes roles?");
@@ -170,7 +171,9 @@
                 $(document).on("change", ".cbUsuarios", function () {
                     // llenar tablita    
                     idUsuario = $(this).val();
-                    llenarTablaRolesUsuario(idUsuario);
+                    if (idUsuario != -1) {
+                        llenarTablaRolesUsuario(idUsuario);
+                    }
                 });
             // tab2
                 $(document).on("change", ".cbRolTab2", function () {
