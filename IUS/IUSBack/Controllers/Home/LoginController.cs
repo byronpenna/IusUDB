@@ -89,7 +89,7 @@ namespace IUSBack.Controllers
                         string ruta =   Request.Url.AbsoluteUri;
                         ruta        =   ruta.Substring(0, this.CustomIndexOf(ruta, '/', 3));
                         m.Body = "Se ha solicitado un cambio de contraseña, si usted lo hizo por favor haga clic en el siguiente enlace<br>" +
-                                        ruta + Url.Action("ForgetPass", "Login") + "/"; //+ val._usuario._idUsuario;
+                                        ruta + Url.Action("ForgetPass", "Login") + "/"+val._usuario._idUsuario; //+ val._usuario._idUsuario;
                         m.IsBodyHtml = true;
                         m.Priority = MailPriority.Normal;
                         SmtpClient cliente = new SmtpClient();
@@ -113,7 +113,7 @@ namespace IUSBack.Controllers
         #region "Views"
             public ActionResult ForgetPass()
             {
-                return null;
+                return View();
             }
             public ActionResult Index()
             {

@@ -10,13 +10,14 @@
     int accion = (int)ViewBag.accion;
     int idUsuarioPublico = -1;
     int numVal = -1;
+    string readMail = "";
     if (accion == 2)
     {
         //cambiar contraseña
         idUsuarioPublico    = (int)ViewBag.idUsuarioPublico;
         numVal              = (int)ViewBag.numVal;
+        readMail            = "readonly";
     }
-    
 }
 <div class="container">
     @*<input class="txtHdNum" value="" />*@
@@ -28,7 +29,7 @@
             <input type="hidden" class="txtHdNumVal" name="txtHdNumVal" value="@numVal" />
 
             <label>Correo electronico: </label>
-            <input type="email" id="inputEmail" class="form-control txtEmail" name="txtEmail" placeholder="Email address" required autofocus value="@ViewBag.correo" readonly>
+            <input type="email" id="inputEmail" class="form-control txtEmail" name="txtEmail" placeholder="Email address" required autofocus value="@ViewBag.correo" @readMail >
             <span class="visibilitiHidden"> </span>
 
             @if (accion == 2)
