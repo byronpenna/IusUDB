@@ -40,6 +40,21 @@ namespace IUSBack.Models.Page.Login.Acciones
             }
             return toReturn;
         }
+        public Dictionary<object, object> sp_usu_solicitarCambioPass(string usuario, int idPagina)
+        {
+            try
+            {
+                return this._controlUsuario.sp_usu_solicitarCambioPass(usuario, idPagina);
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+        }
         public Dictionary<object, object> logueo(User usu)
         {
             Dictionary<object, object> retorno = new Dictionary<object, object>();

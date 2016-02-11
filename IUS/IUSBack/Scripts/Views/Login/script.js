@@ -10,11 +10,14 @@
             $(document).on("click", ".aOlvidoContra", function (e) {
                 e.preventDefault();
                 var x = prompt("Ingrese correo electronico");
-                if (test(FORMATO_EMAIL, x)) {
-
-                } else {
+                /*if (test(FORMATO_EMAIL, x)) {*/
+                    var frm = {
+                        usuario: x
+                    }
+                    aOlvidoContra(frm);
+                /*} else {
                     printMessage($(".spanMensajes"),"Por favor coloque correctamente un email",false)
-                }
+                }*/
             })
             //$(document).on("click", "#btnAdminLogin", function () {
             //    cambiarActivePestania("admin");

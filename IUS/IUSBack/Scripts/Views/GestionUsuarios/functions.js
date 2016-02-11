@@ -45,7 +45,8 @@
                                         <input type='hidden' name='idUsuario' class='idUsuario' value='"+ frm.idUsuario + "'>\
                                     </tr>\
                                     <tr  class='trTableRol'>\
-                                        <td colspan='3' class='text-center titleTrTable'>Roles</td>\
+                                        <td colspan='2' class='text-center titleTrTable'>Roles</td>\
+                                        <td class='titleTrTable'><a class='btn btn-sm btn-default' href='" + RAIZ + "GestionRoles/Index/1/" + frm.idUsuario + "'>Agregar Roles</a></td>\
                                     </tr>\
                                     <tr>\
                                         <th class='text-center'>Rol</th>\

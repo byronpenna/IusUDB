@@ -1,6 +1,11 @@
-﻿function aOlvidoContra() {
-    actualizarCatalogo(RAIZ + "/Home/sp_secpu_reenviarCorreo", frm, function (data) {
+﻿function aOlvidoContra(frm) {
+    console.log("Entro aqui");
+    console.log("url", RAIZ + "/Login/sp_usu_solicitarCambioPass");
+    actualizarCatalogo(RAIZ + "/Login/sp_usu_solicitarCambioPass", frm, function (data) {
+        console.log("La data devuelta es:", data);
+        if (data.estado) {
 
+        }
     })
 }
 //#################

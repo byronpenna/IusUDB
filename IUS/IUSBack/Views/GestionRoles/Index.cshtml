@@ -33,6 +33,7 @@
 }
 <input type="hidden" class="txtHdNombreClass" value="@ViewBag.nombreClass" />
 <input type="hidden" class="txtHdSelectedTab" value="@ViewBag.selectedTab" />
+<input type="hidden" class="txtHdIdUsuario" value="@ViewBag.idUsuario"/>
 <input type="hidden" class="txtHdFuncion" value="@ViewBag.funcion" />
 <div id="tab-1" class="tab marginNull">
     <div class="row marginNull divResultado">
@@ -45,7 +46,7 @@
             </div>
             <div class="col-lg-4 ">
                 <select class="form-control cbUsuarios">
-                    <option></option>
+                    <option value="-1"></option>
                     @{
                         if (@usuarios != null)
                         {

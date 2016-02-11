@@ -386,6 +386,48 @@ namespace IUSLibs.SEC.Control
             }
         #endregion
         // nuevas
+            public Dictionary<object, object> sp_usu_solicitarCambioPass(string usuario,int idPagina)
+            {
+                Dictionary<object, object> retorno = null;
+                ValidadorPass validadorPass = null;
+                string email = "";
+                SPIUS sp = new SPIUS("sp_usu_changePass");
+                sp.agregarParametro("usuario", usuario);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        DataRow row;
+                        if(tb[1].Rows.Count > 0){
+                            row = tb[1].Rows[0];
+                            validadorPass = new ValidadorPass((int)row["idValidatorPass"], (int)row["codigo"], (DateTime)row["vencimiento"], (int)row["intentos"], (int)row["id_usuario_fk"]);
+                        }
+                        if (tb[2].Rows.Count > 0)
+                        {
+                            row = tb[2].Rows[0];
+                            email = row["email"].ToString();
+                        }
+                        retorno = new Dictionary<object, object>();
+                        retorno.Add("estado", true);
+                        retorno.Add("validadorPass", validadorPass);
+                        retorno.Add("email", email);
+
+                    }
+                    
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+
+                return retorno;
+            }
             public Usuario sp_usu_changePass(string pass,string ip,int idUsuarioEjecutor,int idPagina)
             {
 

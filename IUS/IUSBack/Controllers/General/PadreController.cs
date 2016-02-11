@@ -87,6 +87,15 @@ namespace IUSBack.Controllers
                     }
                     return retorno;
                 }
+                public Dictionary<object, object> seguridadInicialAjax(Dictionary<object, object> frm)
+                {
+                    Dictionary<object, object> retorno = null;
+                    if (frm == null)
+                    {
+                        retorno = this.errorEnvioFrmJSON();
+                    }
+                    return retorno;
+                }
                 public Dictionary<object, object> seguridadInicialAjax(Usuario usuarioSession,Dictionary<object,object> frm)
                 {
                     Dictionary<object, object> retorno = null;
