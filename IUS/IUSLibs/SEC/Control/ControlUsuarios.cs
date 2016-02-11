@@ -391,7 +391,7 @@ namespace IUSLibs.SEC.Control
                 Dictionary<object, object> retorno = null;
                 ValidadorPass validadorPass = null;
                 string email = "";
-                SPIUS sp = new SPIUS("sp_usu_changePass");
+                SPIUS sp = new SPIUS("sp_usu_solicitarCambioPass");
                 sp.agregarParametro("usuario", usuario);
                 sp.agregarParametro("idPagina", idPagina);
                 try

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+// otras 
+    using System.Net.Mail;
 // modelos
     using IUSBack.Models.Page.Login.Acciones;
     using IUSBack.Models.Page.Login.Forms;
@@ -69,10 +71,49 @@ namespace IUSBack.Controllers
             }
             
         #endregion
-            #region "funciones ajax"
-                
-            #endregion
-            #region "Views"
+        #region "funciones ajax"
+            public ActionResult sp_usu_solicitarCambioPass()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    frm = this.getAjaxFrm();
+                    respuesta = this.seguridadInicialAjax(frm);
+                    if (respuesta == null)
+                    {
+                        respuesta = this.modelLogin.sp_usu_solicitarCambioPass(frm["usuario"].ToString(), 4);
+                        MailMessage m = new MailMessage();
+                        m.To.Add(respuesta["email"].ToString());
+                        m.Subject   =   "Solicitud de cambio en contraseña";
+                        string ruta =   Request.Url.AbsoluteUri;
+                        ruta        =   ruta.Substring(0, this.CustomIndexOf(ruta, '/', 3));
+                        m.Body      =   "Se ha solicitado un cambio de contraseña, si usted lo hizo por favor haga clic en el siguiente enlace<br>"+
+                                        ruta + Url.Action("ForgetPass", "Login");
+                        m.IsBodyHtml = true;
+                        m.Priority = MailPriority.Normal;
+                        SmtpClient cliente = new SmtpClient();
+                        cliente.Send(m);
+                        respuesta.Add("estado", true);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
+        #endregion
+        #region "Views"
+            public ActionResult ForgetPass()
+            {
+                return null;
+            }
             public ActionResult Index()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();

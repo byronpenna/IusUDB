@@ -37,8 +37,22 @@ namespace IUSBack.Controllers
             private PadreModel _model;
             public Dictionary<string, string> _RUTASGLOBALES;
             public GestionFileServerModel gestionArchivosServer;
+            
         #endregion
         #region "funciones"
+            public int CustomIndexOf(string source, char toFind, int position)
+            {
+                int index = -1;
+                for (int i = 0; i < position; i++)
+                {
+                    index = source.IndexOf(toFind, index + 1);
+
+                    if (index == -1)
+                        break;
+                }
+
+                return index;
+            }
             #region "iniciales"
                 public ActionResult seguridadInicial(int idPagina,int selectedMenu=-1)
                 {
@@ -120,6 +134,7 @@ namespace IUSBack.Controllers
                     rutas.Add("LOGOS_INSTITUCIONES", "~/Content/Views/Instituciones/Logos/");
                     rutas.Add("FOTOS_PERSONAL", "~/Recursos/Personal/");
                     rutas.Add("IUS_URL", URL_IUS);
+                    
                     return rutas;
                 }
             #endregion
