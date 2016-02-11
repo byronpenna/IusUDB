@@ -82,13 +82,14 @@ namespace IUSBack.Controllers
                     if (respuesta == null)
                     {
                         respuesta = this.modelLogin.sp_usu_solicitarCambioPass(frm["usuario"].ToString(), 4);
+                        ValidadorPass val = (ValidadorPass)respuesta["validadorPass"];
                         MailMessage m = new MailMessage();
                         m.To.Add(respuesta["email"].ToString());
                         m.Subject   =   "Solicitud de cambio en contraseña";
                         string ruta =   Request.Url.AbsoluteUri;
                         ruta        =   ruta.Substring(0, this.CustomIndexOf(ruta, '/', 3));
-                        m.Body      =   "Se ha solicitado un cambio de contraseña, si usted lo hizo por favor haga clic en el siguiente enlace<br>"+
-                                        ruta + Url.Action("ForgetPass", "Login");
+                        m.Body = "Se ha solicitado un cambio de contraseña, si usted lo hizo por favor haga clic en el siguiente enlace<br>" +
+                                        ruta + Url.Action("ForgetPass", "Login") + "/"; //+ val._usuario._idUsuario;
                         m.IsBodyHtml = true;
                         m.Priority = MailPriority.Normal;
                         SmtpClient cliente = new SmtpClient();

@@ -22,16 +22,34 @@ namespace IUS.Controllers
             private LoginModel _model;
         #endregion
         #region "URL"
-            public ActionResult cambiarPass(int id,int id2)
+            public ActionResult cambiarPass(int id=-1,int id2=-1)
             {
                 /*
                  id: representa al id del usuario
                  id2: representa a el numero aleatorio
                  */
-                ViewBag.accion              = 2;
-                ViewBag.idUsuarioPublico    = id;
-                ViewBag.numVal = id2;
-                return View("~/Views/Login/LostPass.cshtml");
+                if (id != -1 && id2 != -1)
+                {
+                    UsuarioPublico usu = this._model.sp_secpu_getUsuarioPublico(id);
+                    if (usu != null)
+                    {
+                        ViewBag.accion = 2;
+                        ViewBag.idUsuarioPublico = id;
+                        ViewBag.correo = usu._email;
+                        ViewBag.numVal = id2;
+                        return View("~/Views/Login/LostPass.cshtml");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
+                    
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                
             }
             public ActionResult LostPass()
             {

@@ -48,6 +48,22 @@ namespace IUS.Models.page.Login.Acciones
                     throw x;
                 }
             }
+            public UsuarioPublico sp_secpu_getUsuarioPublico(int idUsuarioPublico)
+            {
+                try
+                {
+                    ControlUsuarioPublico control = new ControlUsuarioPublico();
+                    return control.sp_secpu_getUsuarioPublico(idUsuarioPublico);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public UsuarioPublico           sp_adminfe_front_getLogin   (string email,string pass,string ip,int idPagina)
             {
                 try
