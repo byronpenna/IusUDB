@@ -192,6 +192,7 @@
     <Compile Include="SEC\Entidades\Submenu.cs" />
     <Compile Include="SEC\Entidades\Usuario.cs" />
     <Compile Include="SEC\Entidades\ValidadorPass.cs" />
+    <Compile Include="SEC\Entidades\ValidatorPass.cs" />
     <Compile Include="TRL\Control\ControlIdioma.cs" />
     <Compile Include="TRL\Control\ControlLlave.cs" />
     <Compile Include="TRL\Control\ControlLlaveIdioma.cs" />

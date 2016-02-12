@@ -24,7 +24,7 @@ namespace IUSBack.Controllers
                 gestionPersonas=4,gestionIdiomaWebsite = 7,configuracionFront = 8,
                 Eventos = 9, Noticias = 10, Repositorio = 11, Instituciones = 12,
                 RepositorioPublico = 13, Home = 14, formacionAcademica=17,
-                RecursosHumanos = 18
+                RecursosHumanos = 18,forgetPass=20
             }
             #region "espacio de configuracion"
                 public string URL_IUS = "http://localhost:7196/";

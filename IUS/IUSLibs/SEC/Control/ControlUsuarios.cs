@@ -386,6 +386,38 @@ namespace IUSLibs.SEC.Control
             }
         #endregion
         // nuevas
+            public bool sp_usu_cambiarPassUsuario(int codigo,string pass,int idUsuario,int idPagina)
+            {
+                SPIUS sp = new SPIUS("sp_usu_cambiarPassUsuario");
+                /*
+                    @		int,
+	                @		varchar(600),
+	                -- control
+                 */
+                sp.agregarParametro("codigo", idUsuario);
+                sp.agregarParametro("pass", pass);
+
+                sp.agregarParametro("idUsuario", idUsuario);
+                sp.agregarParametro("idPagina", idPagina);
+                bool retorno = false;
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        retorno = true;
+                    }
+                    return retorno;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Dictionary<object, object> sp_usu_solicitarCambioPass(string usuario,int idPagina)
             {
                 Dictionary<object, object> retorno = null;
@@ -429,8 +461,9 @@ namespace IUSLibs.SEC.Control
 
                 return retorno;
             }
+            
             public Usuario sp_usu_changePass(string pass,string ip,int idUsuarioEjecutor,int idPagina)
-            {
+            {   // cambia contraseña pero solo 1 vez 
 
                 Usuario usuarioSession = null;Persona persona;
                 SPIUS sp = new SPIUS("sp_usu_changePass");
