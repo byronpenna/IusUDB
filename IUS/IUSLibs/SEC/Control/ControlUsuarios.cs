@@ -391,7 +391,7 @@ namespace IUSLibs.SEC.Control
                 Dictionary<object, object> retorno = null;
                 ValidadorPass validadorPass = null;
                 string email = "";
-                SPIUS sp = new SPIUS("sp_usu_changePass");
+                SPIUS sp = new SPIUS("sp_usu_solicitarCambioPass");
                 sp.agregarParametro("usuario", usuario);
                 sp.agregarParametro("idPagina", idPagina);
                 try
@@ -403,6 +403,7 @@ namespace IUSLibs.SEC.Control
                         if(tb[1].Rows.Count > 0){
                             row = tb[1].Rows[0];
                             validadorPass = new ValidadorPass((int)row["idValidatorPass"], (int)row["codigo"], (DateTime)row["vencimiento"], (int)row["intentos"], (int)row["id_usuario_fk"]);
+                            
                         }
                         if (tb[2].Rows.Count > 0)
                         {

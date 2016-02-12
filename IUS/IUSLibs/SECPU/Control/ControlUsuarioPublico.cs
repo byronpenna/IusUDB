@@ -20,6 +20,34 @@ namespace IUSLibs.SECPU.Control
         #endregion
         #region "funciones"
             #region "get"
+                public UsuarioPublico sp_secpu_getUsuarioPublico(int idUsuarioPublico)
+                {
+                    SPIUS sp = new SPIUS("sp_secpu_getUsuarioPublico");
+                    UsuarioPublico retorno = null;
+                    //@ int
+                    sp.agregarParametro("idUsuarioPublico", idUsuarioPublico);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                retorno = new UsuarioPublico((int)row["idUsuarioPublico"],row["nombres"].ToString(),row["apellidos"].ToString(),row["email"].ToString(),(DateTime)row["fecha_nacimiento"],(int)row["id_estadousuario_fk"]);
+                            }
+                        }
+                        return retorno;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Dictionary<object,object> sp_secpu_reenviarCorreo(string correo)
                 {
                     CodigoVerificacion codigo = null;
