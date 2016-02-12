@@ -720,6 +720,8 @@
     <Content Include="Scripts\Views\Home\script.js" />
     <Content Include="Scripts\Views\Home\Verificar\functions.js" />
     <Content Include="Scripts\Views\Home\Verificar\script.js" />
+    <Content Include="Scripts\Views\Login\ForgetPass\functions.js" />
+    <Content Include="Scripts\Views\Login\ForgetPass\script.js" />
     <Content Include="Scripts\Views\Login\functions.js" />
     <Content Include="Scripts\Views\Login\script.js" />
     <Content Include="Scripts\Views\Menu\functions.js" />
