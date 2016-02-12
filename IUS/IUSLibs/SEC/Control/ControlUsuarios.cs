@@ -411,7 +411,7 @@ namespace IUSLibs.SEC.Control
                             email = row["email"].ToString();
                         }
                         retorno = new Dictionary<object, object>();
-                        retorno.Add("estado", true);
+                        //retorno.Add("estado", true);
                         retorno.Add("validadorPass", validadorPass);
                         retorno.Add("email", email);
 

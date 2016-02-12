@@ -1,7 +1,8 @@
 ﻿function aOlvidoContra(frm) {
     console.log("Entro aqui");
     var url = RAIZ + "/Login/sp_usu_solicitarCambioPass";
-    console.log("url",url);
+    //console.log("url",url);
+    var target = $(".spanMensajes");
     actualizarCatalogo(url, frm, function (data) {
         console.log("La data devuelta es:", data);
         var mjs = "";
@@ -14,7 +15,14 @@
                 mjs = "Error no controlado";
             }
         }
-        printMessage($(".spanMensajes"), mjs, data.estado);
+        printMessage(target, mjs, data.estado);
+    }, function () {
+        target.empty().append("\
+            <div class='row marginNull'>\
+                Espere por favor\
+            </div>\
+            <img src='"+IMG_GENERALES+"ajax-loader.gif'>\
+        ");
     })
 }
 //#################
