@@ -34,6 +34,7 @@ namespace IUSBack.Controllers
                 {
                     return seguridadInicial;
                 }
+                ViewBag.datosIUS = (DatosIUS)this._model.getDatosIus();
                 ViewBag.selectedMenu = 3; // menu seleccionado 
                 ViewBag.titleModulo = "Configuración Web Site";
                 ViewBag.usuario = usuarioSession;

@@ -26,7 +26,7 @@ namespace IUSLibs.ADMINFE.Control
             }
         #endregion
         #region "funciones"
-            public DatosIUS sp_adminfe_front_getDatosIUS(string ip, int idPagina)
+            public DatosIUS sp_adminfe_front_getDatosIUS(string ip, int idPagina=-1)
             {
                 try
                 {

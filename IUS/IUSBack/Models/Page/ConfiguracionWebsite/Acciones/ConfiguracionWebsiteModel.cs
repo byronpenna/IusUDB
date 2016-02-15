@@ -24,6 +24,22 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
         #endregion
         #region "funciones publicas"
             #region "gets"
+                public DatosIUS getDatosIus()
+                {
+                    try
+                    {
+                        ControlDatosIUS control = new ControlDatosIUS();
+                        return control.sp_adminfe_front_getDatosIUS("");
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public SliderImage sp_adminfe_getImageSliderFromId(int idSliderImage)
                 {
                     try
