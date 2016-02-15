@@ -1,7 +1,7 @@
 ﻿function frmInvitado(frm) {
+    var target = $(".divMessageLogin");
     actualizarCatalogo(RAIZ + "Login/sp_usu_cambiarPassUsuario", frm, function (data) {
         console.log("La respuesta fue", data);
-        var target = $(".divMessageLogin");
         var mjs = "";
         if (data.estado) {
             mjs = "Contraseña fue cambiada exitosamente";

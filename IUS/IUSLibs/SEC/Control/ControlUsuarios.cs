@@ -68,6 +68,33 @@ namespace IUSLibs.SEC.Control
             }
         #endregion
         #region "Funciones publicas"
+            public Usuario sp_usu_getUsuarioById(int idUsuario)
+            {
+                try
+                {
+                    Usuario usuario = null;
+                    SPIUS sp = new SPIUS("sp_usu_getUsuarioById");
+                    sp.agregarParametro("idUsuario", idUsuario);
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if(tb[0].Rows.Count > 0)
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"], (bool)row["estado"], (int)row["id_persona_fk"]);
+                        }
+                    }
+                    return usuario;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public bool permisoPagina(int idUsuario,int idPagina,int nivelPermiso)
             {
                 bool toReturn = false;

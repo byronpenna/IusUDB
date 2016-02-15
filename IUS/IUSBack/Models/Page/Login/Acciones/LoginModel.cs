@@ -41,6 +41,21 @@ namespace IUSBack.Models.Page.Login.Acciones
             return toReturn;
         }
         #region "olvido la contraseña"
+            public Usuario sp_usu_getUsuarioById(int idUsuario)
+            {
+                try
+                {
+                    return this._controlUsuario.sp_usu_getUsuarioById(idUsuario);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public bool sp_usu_cambiarPassUsuario(int codigo, string pass, int idUsuario, int idPagina)
             {
                 try

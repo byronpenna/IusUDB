@@ -143,16 +143,30 @@ namespace IUSBack.Controllers
                  id:    codigo del usuario
                  id2:   idUsuario
                  */
-                if (id != -1 && id2 != -1)
-                {
-                    ViewBag.codigo      = id;
-                    ViewBag.idUsuario   = id2;
-                    return View();
-                }
-                else
+                try
+                    {
+                        Usuario usuario = this.modelLogin.sp_usu_getUsuarioById(id2);    
+                        if (id != -1 && id2 != -1 && usuario != null)
+                        {
+                            ViewBag.codigo = id;
+                            ViewBag.usuario = usuario;
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Login");
+                        }
+                        
+                    }
+                catch (ErroresIUS)
                 {
                     return RedirectToAction("Index", "Login");
                 }
+                catch (Exception)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                
                 
             }
             public ActionResult Index()

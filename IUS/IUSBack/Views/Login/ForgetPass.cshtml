@@ -1,4 +1,5 @@
-﻿@section estilosPersonalizados {
+﻿@using IUSLibs.SEC.Entidades
+@section estilosPersonalizados {
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Login/ForgetPass/style.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Login/ForgetPass/media.css" />
 }
@@ -6,15 +7,18 @@
     <script src="~/Scripts/Views/Login/ForgetPass/script.js"></script>
     <script src="~/Scripts/Views/Login/ForgetPass/functions.js"></script>
 }
+@{
+    Usuario usuario = (Usuario)ViewBag.usuario;
+}
 <div class="container">
     <div class="card card-container " id="divLoginAdmin">
         <form action="/" id="frmInvitado" method="post">
             @*inputs ocultos*@
-                <input class="txtHdIdUsuario" name="txtHdIdUsuario" value="@ViewBag.idUsuario" />
-                <input class="txtHdCodigo" name="" value="@ViewBag.codigo"/>
+                <input type="hidden" class="txtHdIdUsuario" name="txtHdIdUsuario" value="@usuario._idUsuario" />
+                <input type="hidden" class="txtHdCodigo" name="" value="@ViewBag.codigo"/>
 
-            <label>Correo electronico: </label>
-            <input id="txtUsuario" class="form-control txtUsuario" name="txtUsuario" placeholder="Email address" autofocus readonly>
+            <label>Usuario: </label>
+            <input id="txtUsuario" class="form-control txtUsuario" name="txtUsuario" placeholder="Email address" autofocus value="@usuario._usuario" readonly>
             <span class="visibilitiHidden"> </span>
 
             
