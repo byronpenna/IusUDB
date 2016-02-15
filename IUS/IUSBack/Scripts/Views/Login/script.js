@@ -9,12 +9,15 @@
             })
             $(document).on("click", ".aOlvidoContra", function (e) {
                 e.preventDefault();
-                var x = prompt("Ingrese correo electronico");
+                var x = prompt("Ingrese nombre de usuario");
                 /*if (test(FORMATO_EMAIL, x)) {*/
-                    var frm = {
-                        usuario: x
-                    }
+                var frm = {
+                    usuario: x
+                }
+                console.log("El valor de x es", x);
+                if (x !== null) {
                     aOlvidoContra(frm);
+                }
                 /*} else {
                     printMessage($(".spanMensajes"),"Por favor coloque correctamente un email",false)
                 }*/

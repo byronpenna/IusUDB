@@ -136,7 +136,7 @@ namespace IUSLibs.RRHH.Control
                             {
                                 DataRow row = tb[1].Rows[0];
                                 emailAgregado = new EmailPersona((int)row["idMailPersona"], row["email"].ToString(), row["descripcion"].ToString(), (int)row["id_persona_fk"]);
-
+                                emailAgregado._principal = (bool)row["principal"];
                             }
                         }
                         else
