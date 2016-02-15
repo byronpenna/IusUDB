@@ -82,6 +82,15 @@ namespace IUSLibs.SEC.Entidades
                 this._estado    = estado;
 
             }
+            public Usuario(int idUsuario, String usuario, DateTime fechaCreacion, bool estado, int id_persona_fk)
+            {
+                this._idUsuario = idUsuario;
+                this._usuario = usuario;
+                this._fechaCreacion = fechaCreacion;
+                this._estado = estado;
+                Persona persona = new Persona(id_persona_fk);
+                this._persona = persona;
+            }
             public Usuario(int idUsuario, String usuario, DateTime fechaCreacion, bool estado, Persona persona)
             {
                 this._idUsuario = idUsuario;

@@ -40,7 +40,38 @@ namespace IUSBack.Models.Page.Login.Acciones
             }
             return toReturn;
         }
-        public Dictionary<object, object> sp_usu_solicitarCambioPass(string usuario, int idPagina)
+        #region "olvido la contraseña"
+            public Usuario sp_usu_getUsuarioById(int idUsuario)
+            {
+                try
+                {
+                    return this._controlUsuario.sp_usu_getUsuarioById(idUsuario);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
+            public bool sp_usu_cambiarPassUsuario(int codigo, string pass, int idUsuario, int idPagina)
+            {
+                try
+                {
+                    return this._controlUsuario.sp_usu_cambiarPassUsuario(codigo, pass, idUsuario, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch(Exception x)
+                {
+                    throw x;
+                }
+            }
+            public Dictionary<object, object> sp_usu_solicitarCambioPass(string usuario, int idPagina)
         {
             try
             {
@@ -55,6 +86,8 @@ namespace IUSBack.Models.Page.Login.Acciones
                 throw x;
             }
         }
+        #endregion
+        
         public Dictionary<object, object> logueo(User usu)
         {
             Dictionary<object, object> retorno = new Dictionary<object, object>();

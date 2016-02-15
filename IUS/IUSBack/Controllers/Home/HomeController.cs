@@ -220,30 +220,46 @@ namespace IUSBack.Controllers
             public ActionResult ControlesNav(int id)
             {
                 string url = "";
-                Session["flagNav"] = true;
-                //Session["neutroControl"] = Request.Url.AbsoluteUri;
-                string adelante = Session["fowardControl"].ToString();
-                string neutro = Session["neutroControl"].ToString();
-                string atras = Session["backControl"].ToString();
-                if(id == 0){ // atras 
-                    url = Session["backControl"].ToString();
-                    if (Session["fowardControl"] != Session["neutroControl"])
-                    {
-                        Session["fowardControl"] = Session["neutroControl"];
-                    }
-                }else{
-                    url = Session["neutroControl"].ToString();
-                    /*
-                    if (Session["backControl"] != Session["neutroControl"])
-                    {
-                        Session["backControl"] = Session["neutroControl"];
-                    }*/
-                }
-                if (url == "")
+                try
                 {
-                    url = neutro;
-                }
+                    
+                    Session["flagNav"] = true;
+                    //Session["neutroControl"] = Request.Url.AbsoluteUri;
+                    string adelante = Session["fowardControl"].ToString();
+                    string neutro = Session["neutroControl"].ToString();
+                    string atras = Session["backControl"].ToString();
+                    if (id == 0)
+                    { // atras 
+                        url = Session["backControl"].ToString();
+                        if (Session["fowardControl"] != Session["neutroControl"])
+                        {
+                            Session["fowardControl"] = Session["neutroControl"];
+                        }
+                    }
+                    else
+                    {
+                        url = Session["neutroControl"].ToString();
+                        /*
+                        if (Session["backControl"] != Session["neutroControl"])
+                        {
+                            Session["backControl"] = Session["neutroControl"];
+                        }*/
+                    }
+                    if (url == "")
+                    {
+                        url = neutro;
+                    }
 
+                }
+                catch (ErroresIUS)
+                {
+                    url = Request.UrlReferrer.ToString();
+                }
+                catch (Exception)
+                {
+                    url = Request.UrlReferrer.ToString();
+                }
+                
                 return Redirect(url);
             }
         #endregion

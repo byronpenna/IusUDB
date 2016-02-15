@@ -63,7 +63,7 @@ namespace IUSBack.Controllers
                     return error.redirectToError(x, true);
                     //return RedirectToAction("Unhandled", "Errors");
                 }
-                catch (Exception x)
+                catch (Exception)
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
@@ -72,6 +72,32 @@ namespace IUSBack.Controllers
             
         #endregion
         #region "funciones ajax"
+            public ActionResult sp_usu_cambiarPassUsuario()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    frm = this.getAjaxFrm();
+                    respuesta = this.seguridadInicialAjax(frm);
+                    if (respuesta == null)
+                    {
+                        bool cambio = this.modelLogin.sp_usu_cambiarPassUsuario(this.convertObjAjaxToInt(frm["txtHdIdUsuario"]), frm["txtPass"].ToString(), this.convertObjAjaxToInt(frm["txtHdIdUsuario"]), (int)paginas.forgetPass);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", cambio);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_usu_solicitarCambioPass()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -89,7 +115,7 @@ namespace IUSBack.Controllers
                         string ruta =   Request.Url.AbsoluteUri;
                         ruta        =   ruta.Substring(0, this.CustomIndexOf(ruta, '/', 3));
                         m.Body = "Se ha solicitado un cambio de contraseña, si usted lo hizo por favor haga clic en el siguiente enlace<br>" +
-                                        ruta + Url.Action("ForgetPass", "Login") + "/"+val._usuario._idUsuario; //+ val._usuario._idUsuario;
+                                        ruta + Url.Action("ForgetPass", "Login") + "/"+val._codigo+"/"+val._usuario._idUsuario; //+ val._usuario._idUsuario;
                         m.IsBodyHtml = true;
                         m.Priority = MailPriority.Normal;
                         SmtpClient cliente = new SmtpClient();
@@ -111,9 +137,37 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "Views"
-            public ActionResult ForgetPass()
+            public ActionResult ForgetPass(int id=-1,int id2=-1)
             {
-                return View();
+                /*
+                 id:    codigo del usuario
+                 id2:   idUsuario
+                 */
+                try
+                    {
+                        Usuario usuario = this.modelLogin.sp_usu_getUsuarioById(id2);    
+                        if (id != -1 && id2 != -1 && usuario != null)
+                        {
+                            ViewBag.codigo = id;
+                            ViewBag.usuario = usuario;
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Login");
+                        }
+                        
+                    }
+                catch (ErroresIUS)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+                
+                
             }
             public ActionResult Index()
             {
