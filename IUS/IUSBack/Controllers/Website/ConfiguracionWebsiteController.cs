@@ -34,6 +34,7 @@ namespace IUSBack.Controllers
                 {
                     return seguridadInicial;
                 }
+                ViewBag.datosIUS = (DatosIUS)this._model.getDatosIus();
                 ViewBag.selectedMenu = 3; // menu seleccionado 
                 ViewBag.titleModulo = "Configuración Web Site";
                 ViewBag.usuario = usuarioSession;
@@ -112,6 +113,30 @@ namespace IUSBack.Controllers
         #endregion
         #region "ajax"
             #region "acciones"
+                public ActionResult sp_adminfe_updateDatosIUS(){
+                    Dictionary<object, object> frm, respuesta;
+                    frm                         = this.getAjaxFrm();
+                    Usuario usuarioSession      = this.getUsuarioSesion();
+                        
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        try{
+                            DatosIUS datosActualizar    = new DatosIUS(this.convertObjAjaxToInt(frm["txtHdIdDatosIUS"]),this.convertObjAjaxToInt("txtContinentesPresentes"),this.convertObjAjaxToInt(frm["txtPaisesPresentes"]),this.convertObjAjaxToInt(frm["txtTotalInstituciones"]),this.convertObjAjaxToInt(frm["txtTotalEstudiantes"]),this.convertObjAjaxToInt(frm["txtTotalSalesianos"]));
+                            DatosIUS datosActualizados  = this._model.sp_adminfe_updateDatosIUS(datosActualizar, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("datos", datosActualizados);
+                        }catch(ErroresIUS x){
+                            ErroresIUS error    = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                            respuesta           = this.errorTryControlador(1, error);
+                        }catch(Exception x){
+                            ErroresIUS error    = new ErroresIUS(x.Message,ErroresIUS.tipoError.generico,x.HResult);
+                            respuesta           = this.errorTryControlador(2, error);
+                        }
+                    }
+                    return Json(respuesta);
+                }
                 #region "slider"
                     [HttpPost]
                     public ActionResult UploadHomeReport(string id)

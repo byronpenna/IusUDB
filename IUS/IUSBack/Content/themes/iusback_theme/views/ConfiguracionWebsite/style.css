@@ -1,4 +1,7 @@
-﻿.rowImagenCortar,.jcrop-holder{
+﻿.control{
+    margin-top:3%;
+}
+.rowImagenCortar,.jcrop-holder{
     margin:0 auto;
 }
 .encabezadoTitulo{

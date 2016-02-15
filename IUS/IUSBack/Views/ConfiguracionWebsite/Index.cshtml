@@ -20,21 +20,22 @@
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/media.css" />
 }
 @{
-    List<RedSocial> redesSociales   = (List<RedSocial>)ViewBag.redesSociales;
-    Configuracion config            = (Configuracion)ViewBag.config;
-    List<Valor> valores             = (List<Valor>) ViewBag.valores;
-    List<SliderImage> slider        = (List<SliderImage>)ViewBag.slider;
-    Permiso permiso                 = (Permiso)ViewBag.permiso;
+    List<RedSocial>     redesSociales   = (List<RedSocial>)ViewBag.redesSociales;
+    Configuracion       config          = (Configuracion)ViewBag.config;
+    List<Valor>         valores         = (List<Valor>) ViewBag.valores;
+    List<SliderImage>   slider          = (List<SliderImage>)ViewBag.slider;
+    Permiso             permiso         = (Permiso)ViewBag.permiso;
+    DatosIUS            datosIUS        = (DatosIUS)ViewBag.datosIUS;
 }
 @section tabs{
-    @*<ul>
+    <ul>
         <li class="btnTab tabActive" target="#tab-1">
             Basicas
         </li>
         <li class="btnTab" target="#tab-2">
             Slider
         </li>
-    </ul>*@
+    </ul>
 }
 <div id="div_carga">
     <div id="contenerdorCargadorAjax">
@@ -49,95 +50,125 @@
     </div>
 </div>
 <div id="tab-1" class="row seccion tab marginNull">
+    <div class="margenes">
+        <h2 class="leyendaImagen encabezadoTitulo">Datos ius</h2>
+        <div class="row marginNull rowDatosIUS">
+            <input type="hidden" value="@datosIUS._idDatosIuss" name="txtHdIdDatosIUS" class="txtHdIdDatosIUS" />
+            <div class="col-lg-6 control">
+                <label>Continentes Presentes</label>
+                <input class="form-control txtContinentesPresentes" type="number" name="txtContinentesPresentes" value="@datosIUS._continentesPresentes"/>
+            </div>
+            <div class="col-lg-6 control">
+                <label>Paises presentes</label>
+                <input class="form-control txtPaisesPresentes" type="number" name="txtPaisesPresentes" value="@datosIUS._paisesPresentes"/>
+            </div>
+            <div class="col-lg-6 control">
+                <label>Total instituciones</label>
+                <input class="form-control txtTotalInstituciones" type="number" name="txtTotalInstituciones" value="@datosIUS._totalInstituciones" />
+            </div>
+            <div class="col-lg-6 control">
+                <label>Total estudiantes</label>
+                <input class="form-control txtTotalEstudiantes" type="number" name="txtTotalEstudiantes" value="@datosIUS._totalEstudiantes" />
+            </div>
+            <div class="col-lg-6 control">
+                <label>Total salesianos</label>
+                <input class="form-control txtTotalSalesianos" type="number" name="txtTotalSalesianos" value="@datosIUS._totalSalesianos" />
+            </div>
+            <div class="col-lg-6 control">
+                <button class="btn btn-sm btn-default btnGuardarCambios">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+    
 
     @*<div class="col-lg-12 row ">
-        <div class="col-lg-6">
-            <h3 class="text-center">Informacion institucional</h3>
-            <div class="row marginNull divInfoInstitucional">
+            <div class="col-lg-6">
+                <h3 class="text-center">Informacion institucional</h3>
+                <div class="row marginNull divInfoInstitucional">
 
+                </div>
+                <form id="frmInstitucional">
+                    @if (config != null)
+                    {
+                        <div class="row marginNull seccionForm">
+                            <label>Vision</label>
+                            <textarea class="form-control" name="txtAreaVision" id="txtAreaVision">@config._vision</textarea>
+                        </div>
+                        <div class="row marginNull seccionForm">
+                            <label>Mision</label>
+                            <textarea class="form-control" name="txtAreaMision" id="txtAreaMision">@config._mision</textarea>
+                        </div>
+                        <div class="row marginNull seccionForm">
+                            <label>Historia</label>
+                            <textarea class="form-control" name="txtAreaHistoria" id="txtAreaHistoria">@config._historia</textarea>
+                        </div>
+                        <button class="btn btnActualizarIdeario " @permiso.stringEditar>Actualizar</button>
+                    }
+                    else
+                    {
+                        <span>Ocurrio un error en la carga</span>
+                    }
+                </form>
             </div>
-            <form id="frmInstitucional">
-                @if (config != null)
-                {
-                    <div class="row marginNull seccionForm">
-                        <label>Vision</label>
-                        <textarea class="form-control" name="txtAreaVision" id="txtAreaVision">@config._vision</textarea>
+            <div class="col-lg-6">
+                <div class="row">
+                    <h3 class="text-center">Valores Institucionales</h3>
+                    <label>Valor</label>
+                    <div class="row agregarValorSection">
+                        <div class="col-lg-10">
+                            <input type="text" name="txtValores" class="form-control txtValores soloLetras" />
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btnAddValor" @permiso.stringCrear>Agregar</button>
+                        </div>
                     </div>
-                    <div class="row marginNull seccionForm">
-                        <label>Mision</label>
-                        <textarea class="form-control" name="txtAreaMision" id="txtAreaMision">@config._mision</textarea>
-                    </div>
-                    <div class="row marginNull seccionForm">
-                        <label>Historia</label>
-                        <textarea class="form-control" name="txtAreaHistoria" id="txtAreaHistoria">@config._historia</textarea>
-                    </div>
-                    <button class="btn btnActualizarIdeario " @permiso.stringEditar>Actualizar</button>
-                }
-                else
-                {
-                    <span>Ocurrio un error en la carga</span>
-                }
-            </form>
-        </div>
-        <div class="col-lg-6">
-            <div class="row">
-                <h3 class="text-center">Valores Institucionales</h3>
-                <label>Valor</label>
-                <div class="row agregarValorSection">
-                    <div class="col-lg-10">
-                        <input type="text" name="txtValores" class="form-control txtValores soloLetras" />
-                    </div>
-                    <div class="col-lg-2">
-                        <button type="button" class="btn btnAddValor" @permiso.stringCrear>Agregar</button>
-                    </div>
-                </div>
-                <div class="row marginNull divMensajesAdd">
-                    
-                </div>
-                <table class="table tableValores">
-                    <thead>
-                        <tr>
-                            <th>Valor</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (valores != null)
-                        {
-                            foreach (Valor valor in valores)
-                            {
-                                <tr>
-                                    <td class="hidden">
-                                        <input type="text" name='txtIdValor' class="txtIdValor" value="@valor._idValor" />
-                                    </td>
-                                    <td>@valor._valor</td>
-                                    <td>
-                                        @if (permiso._eliminar)
-                                        {
-                                            <i class='fa fa-times pointer iconQuitarValor'></i>
-                                        }
-                                        else
-                                        {
-                                            <span>No posee permiso para remover</span>
-                                        }
+                    <div class="row marginNull divMensajesAdd">
 
-                                    </td>
+                    </div>
+                    <table class="table tableValores">
+                        <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (valores != null)
+                            {
+                                foreach (Valor valor in valores)
+                                {
+                                    <tr>
+                                        <td class="hidden">
+                                            <input type="text" name='txtIdValor' class="txtIdValor" value="@valor._idValor" />
+                                        </td>
+                                        <td>@valor._valor</td>
+                                        <td>
+                                            @if (permiso._eliminar)
+                                            {
+                                                <i class='fa fa-times pointer iconQuitarValor'></i>
+                                            }
+                                            else
+                                            {
+                                                <span>No posee permiso para remover</span>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr class="trNoValor">
+                                    <td class="text-center" colspan="2">No posee ningun valor</td>
                                 </tr>
                             }
-                        }
-                        else
-                        {
-                            <tr class="trNoValor">
-                                <td class="text-center" colspan="2">No posee ningun valor</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
 </div>
-<div id="tab-2" class="row seccion tab marginNull">
+<div id="tab-2" class="row seccion tab marginNull hidden">
     @if (@permiso._crear)
     {
         <div class="subirDiv row marginNull">

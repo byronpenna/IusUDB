@@ -89,6 +89,7 @@
             }
 
         function getTrEmail(emailPersona,permisos) {
+            console.log("Email persona es ", emailPersona);
             var strEditar = "", strEliminar = "";
             if (permisos !== undefined) {
                 if(!permisos._editar){
@@ -98,10 +99,19 @@
                     strEliminar = "disabled";
                 }
             }
+            var clasePrincipal = ""
+            if (emailPersona._principal) {
+                clasePrincipal = "fa-star";
+            } else {
+                clasePrincipal = "fa-star-o";
+            }
             var tr = "\
             <tr>\
                 <td class='hidden'>\
                     <input type='hidden' value='"+emailPersona._idEmail+"' name='txtIdEmailPersona'/>\
+                </td>\
+                <td>\
+                    <i class='fa "+clasePrincipal+" pointer'></div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
