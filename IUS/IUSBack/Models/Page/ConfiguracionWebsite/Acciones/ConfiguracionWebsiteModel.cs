@@ -24,38 +24,74 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
         #endregion
         #region "funciones publicas"
             #region "gets"
-                public DatosIUS getDatosIus()
-                {
-                    try
+                #region "Datos IUS"
+                    public DatosIUS sp_adminfe_updateDatosIUS(DatosIUS actualizar,int idUsuarioEjecutor,int idPagina)
                     {
-                        ControlDatosIUS control = new ControlDatosIUS();
-                        return control.sp_adminfe_front_getDatosIUS("");
+                        try
+                        {
+                            ControlDatosIUS control = new ControlDatosIUS();
+                            return control.sp_adminfe_updateDatosIUS(actualizar,idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x; 
+                        }
                     }
-                    catch (ErroresIUS x)
+                    public DatosIUS getDatosIus()
                     {
-                        throw x;
-                    }
-                    catch (Exception x)
+                        try
+                        {
+                            ControlDatosIUS control = new ControlDatosIUS();
+                            return control.sp_adminfe_front_getDatosIUS("");
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }        
+                #endregion
+                #region "Slider"
+                    public SliderImage sp_adminfe_getImageSliderFromId(int idSliderImage)
                     {
-                        throw x;
+                        try
+                        {
+                            return this._controlSlider.sp_adminfe_getImageSliderFromId(idSliderImage);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+
                     }
-                }
-                public SliderImage sp_adminfe_getImageSliderFromId(int idSliderImage)
-                {
-                    try
+                    public List<SliderImage> sp_adminfe_getSliderImage(int idPaginaFe, int idUsuarioEjecutor, int idPagina)
                     {
-                        return this._controlSlider.sp_adminfe_getImageSliderFromId(idSliderImage);
+                        try
+                        {
+                            return this._controlSlider.sp_adminfe_getSliderImage(idPaginaFe, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                    
-                }
+                #endregion
+                
                 public Dictionary<object, object> sp_adminfe_getConfiguraciones(int idUsuarioEjecutor,int idPagina)
             {
                 try
@@ -71,21 +107,7 @@ namespace IUSBack.Models.Page.ConfiguracionWebsite.Acciones
                     throw x;
                 }
             }
-                public List<SliderImage> sp_adminfe_getSliderImage(int idPaginaFe,int idUsuarioEjecutor,int idPagina)
-                {
-                    try
-                    {
-                        return this._controlSlider.sp_adminfe_getSliderImage(idPaginaFe,idUsuarioEjecutor,idPagina);
-                    }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
+                
             #endregion 
             #region "acciones"
                 #region "basicas"

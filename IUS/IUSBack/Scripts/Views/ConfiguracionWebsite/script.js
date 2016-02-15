@@ -98,6 +98,11 @@
                 
             });
         // click
+            $(document).on("click", ".btnGuardarCambios", function () {
+                var frm = serializeSection($(this).parents(".rowDatosIUS"));
+                console.log("Formulario a enviar", frm);
+                btnGuardarCambios(frm);
+            })
             $(document).on("click", ".btnEliminarImage", function () {
                 var x = confirm("¿Esta seguro que desea eliminar esta imagen?")
                 if (x) {

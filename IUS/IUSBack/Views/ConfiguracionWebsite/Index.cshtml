@@ -53,6 +53,7 @@
     <div class="margenes">
         <h2 class="leyendaImagen encabezadoTitulo">Datos ius</h2>
         <div class="row marginNull rowDatosIUS">
+            <input type="hidden" value="@datosIUS._idDatosIuss" name="txtHdIdDatosIUS" class="txtHdIdDatosIUS" />
             <div class="col-lg-6 control">
                 <label>Continentes Presentes</label>
                 <input class="form-control txtContinentesPresentes" type="number" name="txtContinentesPresentes" value="@datosIUS._continentesPresentes"/>
@@ -74,7 +75,7 @@
                 <input class="form-control txtTotalSalesianos" type="number" name="txtTotalSalesianos" value="@datosIUS._totalSalesianos" />
             </div>
             <div class="col-lg-6 control">
-                <button class="btn btn-sm btn-default">Guardar cambios</button>
+                <button class="btn btn-sm btn-default btnGuardarCambios">Guardar cambios</button>
             </div>
         </div>
     </div>

@@ -74,6 +74,14 @@
         return div;
     }
 // acciones scripts
+    function btnGuardarCambios(frm) {
+        actualizarCatalogo(RAIZ + "/ConfiguracionWebsite/sp_adminfe_updateDatosIUS", frm, function (data) {
+            console.log("La data es", data);
+            if (data.estado) {
+
+            }
+        })
+    }
     function btnEliminarImage(section) {
         frm = serializeSection(section);
         actualizarCatalogo(RAIZ + "/ConfiguracionWebsite/sp_adminfe_eliminarImagenSlider", frm, function (data) {
