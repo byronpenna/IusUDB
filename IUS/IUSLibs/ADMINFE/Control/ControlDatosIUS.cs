@@ -38,14 +38,13 @@ namespace IUSLibs.ADMINFE.Control
                 sp.agregarParametro("idDatoIUS", actualizar._idDatosIuss);
 
                 sp.agregarParametro("idPagina", idPagina);
-                sp.agregarParametro("idUsuario", idUsuarioEjecutor);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 try{
                     DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                     if (this.resultadoCorrecto(tb))
                     {
-                        DataRow row = tb[0].Rows[0];
-                        retorno = new DatosIUS((int)row["idDatoIuss"], (int)row["continenetes_presentes"], (int)row["paises_presentes"], (int)row["total_instituciones"], (int)row["total_estudiantes"], (int)row["total_salesianos"]);
-
+                        DataRow row = tb[1].Rows[0];
+                        retorno = new DatosIUS((int)row["idDatoIuss"], (int)row["continentes_presentes"], (int)row["paises_presentes"], (int)row["total_instituciones"], (int)row["total_estudiantes"], (int)row["total_salesianos"]);
                     }
                     return retorno;
                 }catch(ErroresIUS x){

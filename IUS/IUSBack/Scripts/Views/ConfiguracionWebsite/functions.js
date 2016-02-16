@@ -77,9 +77,18 @@
     function btnGuardarCambios(frm) {
         actualizarCatalogo(RAIZ + "/ConfiguracionWebsite/sp_adminfe_updateDatosIUS", frm, function (data) {
             console.log("La data es", data);
-            if (data.estado) {
-
-            }
+            // vas 
+                var target = $(".txtMensajesCambios");
+                var mjs = "Ocurrio un error";
+            // do it 
+                if (data.estado) {
+                    mjs = "Datos actualizados correctamente";
+                } else {
+                    if (data.error !== undefined && data.error != null && data.error._mostrar) {
+                        mjs = data.error.Message;
+                    }
+                }
+            printMessage(target,mjs , data.estado);
         })
     }
     function btnEliminarImage(section) {

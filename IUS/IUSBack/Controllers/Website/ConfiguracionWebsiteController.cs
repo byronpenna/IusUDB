@@ -122,7 +122,7 @@ namespace IUSBack.Controllers
                     if (respuesta == null)
                     {
                         try{
-                            DatosIUS datosActualizar    = new DatosIUS(this.convertObjAjaxToInt(frm["txtHdIdDatosIUS"]),this.convertObjAjaxToInt("txtContinentesPresentes"),this.convertObjAjaxToInt(frm["txtPaisesPresentes"]),this.convertObjAjaxToInt(frm["txtTotalInstituciones"]),this.convertObjAjaxToInt(frm["txtTotalEstudiantes"]),this.convertObjAjaxToInt(frm["txtTotalSalesianos"]));
+                            DatosIUS datosActualizar    = new DatosIUS( this.convertObjAjaxToInt(frm["txtHdIdDatosIUS"]) , this.convertObjAjaxToInt(frm["txtContinentesPresentes"]) ,this.convertObjAjaxToInt(frm["txtPaisesPresentes"]),this.convertObjAjaxToInt(frm["txtTotalInstituciones"]),this.convertObjAjaxToInt(frm["txtTotalEstudiantes"]),this.convertObjAjaxToInt(frm["txtTotalSalesianos"]));
                             DatosIUS datosActualizados  = this._model.sp_adminfe_updateDatosIUS(datosActualizar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
