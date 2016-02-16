@@ -1,6 +1,13 @@
 ﻿.control{
-    margin-top:3%;
+    /*margin-top:3%;*/
+    min-height:150px;
+    /*background:red;*/
+
 }
+.divResultado{
+    min-height:30px;
+}
+
 .rowImagenCortar,.jcrop-holder{
     margin:0 auto;
 }
