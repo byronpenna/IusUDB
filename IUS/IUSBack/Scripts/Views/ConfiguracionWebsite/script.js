@@ -3,7 +3,6 @@
     // plugins 
         // tabs 
             $('#horizontalTab').responsiveTabs();
-        
     // eventos 
         // chage 
             $(document).on("change", ".flImagen", function (e) {
