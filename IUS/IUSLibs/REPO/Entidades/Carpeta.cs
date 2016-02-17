@@ -15,11 +15,15 @@ namespace IUSLibs.REPO.Entidades
             public Carpeta  _carpetaPadre;
             public string   _ruta;
             public DateTime _fechaCreacion;
+            
             public string getFechaCreacion
             {
                 get
                 {
                     return String.Format("{0:dd/MM/yyyy}", this._fechaCreacion);
+                }
+                set {
+                    this._ruta = value;
                 }
             }
             // extras

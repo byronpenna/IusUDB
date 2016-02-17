@@ -333,6 +333,7 @@
                     console.log("entro");
                     divResultado.removeClass("hidden");
                     $.each(val, function (i, val) {
+                        
                         errores += getSpanMessageError(val);
                     })
                     console.log("errores", errores);

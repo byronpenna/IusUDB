@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
+    $(".rowDatosIUS").find(".divResultado").attr("style", "display:none");
     // plugins 
         // tabs 
             $('#horizontalTab').responsiveTabs();
-        
     // eventos 
         // chage 
             $(document).on("change", ".flImagen", function (e) {
@@ -101,7 +101,21 @@
             $(document).on("click", ".btnGuardarCambios", function () {
                 var frm = serializeSection($(this).parents(".rowDatosIUS"));
                 console.log("Formulario a enviar", frm);
-                btnGuardarCambios(frm);
+                var val = validarDatosIUS(frm);
+                if (val.estado) {
+                    btnGuardarCambios(frm);
+                } else {
+                    console.log("Entro a los errores")
+                    var errores;
+                    $.each(val.campos, function (i, val) {
+                        console.log("i es: ")
+                        console.log("Val es", val);
+                        $.each(val, function (ii, value) {
+                            console.log("i " + i + " " + value);
+                            printMessage($("." + i).parents(".control").find(".divResultado"), value, false);
+                        })
+                    })
+                }
             })
             $(document).on("click", ".btnEliminarImage", function () {
                 var x = confirm("¿Esta seguro que desea eliminar esta imagen?")

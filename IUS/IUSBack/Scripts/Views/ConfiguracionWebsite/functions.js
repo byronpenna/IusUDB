@@ -1,6 +1,39 @@
 ﻿// jcrop
     var jcrop_api = null;
 // genericas
+        function validarDatosIUS(frm) {
+            // vars
+                var estado = false;
+                var val = new Object();
+                val.campos = {
+                    txtContinentesPresentes:    new Array(),
+                    txtPaisesPresentes:         new Array(),
+                    txtTotalInstituciones:      new Array(),
+                    txtTotalEstudiantes:        new Array(),
+                    txtTotalSalesianos:         new Array()
+                }
+                var patron      = /^\d*$/;
+                var mjsMalNum   = "Debe introducir un numero entero positivo";
+            // do it 
+                if (!patron.test(frm.txtContinentesPresentes)) {
+                    val.campos.txtContinentesPresentes.push(mjsMalNum);
+                }
+                if (!patron.test(frm.txtPaisesPresentes)) {
+                    val.campos.txtPaisesPresentes.push(mjsMalNum);
+                }
+                if (!patron.test(frm.txtTotalInstituciones)) {
+                    val.campos.txtTotalInstituciones.push(mjsMalNum);
+                }
+                if (!patron.test(frm.txtTotalEstudiantes)) {
+                    val.campos.txtTotalEstudiantes.push(mjsMalNum);
+                }
+                if (!patron.test(frm.txtTotalSalesianos)) {
+                    val.campos.txtTotalSalesianos.push(mjsMalNum);
+                }
+                val.estado = objArrIsEmpty(val.campos);
+                return val;
+        }
+    //######################
         function getProporcionesUsuario() {
             var proporciones = $(".imgAncho").val() / $(".imgAlto").val();
             proporciones = redondeoProporcion(proporciones);
@@ -77,9 +110,18 @@
     function btnGuardarCambios(frm) {
         actualizarCatalogo(RAIZ + "/ConfiguracionWebsite/sp_adminfe_updateDatosIUS", frm, function (data) {
             console.log("La data es", data);
-            if (data.estado) {
-
-            }
+            // vas 
+                var target = $(".txtMensajesCambios");
+                var mjs = "Ocurrio un error";
+            // do it 
+                if (data.estado) {
+                    mjs = "Datos actualizados correctamente";
+                } else {
+                    if (data.error !== undefined && data.error != null && data.error._mostrar) {
+                        mjs = data.error.Message;
+                    }
+                }
+            printMessage(target,mjs , data.estado);
         })
     }
     function btnEliminarImage(section) {
