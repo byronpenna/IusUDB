@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 // internas 
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.FrontUI.Entidades;
 namespace IUSLibs.RRHH.Entidades.Laboral
 {
     public class LaboralPersona
     {
         #region "Propiedades"
             public int              _idLaboralPersona;
-            public Empresa          _empresa;
+            //public Empresa          _empresa;
+            public Institucion      _institucion; // institucion en la que laboro la persona
             public int              _inicio;
             public int              _fin;
             public Persona          _persona;
@@ -24,15 +26,17 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                     this._idLaboralPersona = idLaboralPersona;
                 }
             // full
-                public LaboralPersona(int idLaboralPersona,int idEmpresa,int inicio,int fin,int idPersona,/*string observaciones*/ int idCargo)
+                public LaboralPersona(int idLaboralPersona,int idInstitucion,int inicio,int fin,int idPersona,/*string observaciones*/ int idCargo)
                 {
                     // do 
-                        Empresa empresa     = new Empresa(idEmpresa);
-                        Persona persona     = new Persona(idPersona);
-                        CargoEmpresa cargo  = new CargoEmpresa(idCargo);
+                        //Empresa empresa     = new Empresa(idEmpresa);
+                        Institucion institucion = new Institucion(idInstitucion);
+                        Persona persona         = new Persona(idPersona);
+                        CargoEmpresa cargo      = new CargoEmpresa(idCargo);
                     // set 
                         this._idLaboralPersona  = idLaboralPersona;
-                        this._empresa           = empresa;
+                        //this._empresa           = empresa;
+                        this._institucion       = institucion;
                         this._inicio            = inicio;
                         this._fin               = fin;
                         this._persona           = persona;
@@ -41,14 +45,16 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                 }
             
             // Pata agregar
-                public LaboralPersona(int idEmpresa, int inicio, int fin, int idPersona, /*string observaciones*/ int idCargo)
+                public LaboralPersona(int idInstitucion, int inicio, int fin, int idPersona, /*string observaciones*/ int idCargo)
                 {
                     // do 
-                    Empresa empresa = new Empresa(idEmpresa);
+                    //Empresa empresa = new Empresa(idEmpresa);
+                    Institucion institucion = new Institucion(idInstitucion);
                     Persona persona = new Persona(idPersona);
                     CargoEmpresa cargo = new CargoEmpresa(idCargo);
                     // set 
-                    this._empresa = empresa;
+                    //this._empresa = empresa;
+                    this._institucion = institucion;
                     this._inicio = inicio;
                     this._fin = fin;
                     this._persona = persona;

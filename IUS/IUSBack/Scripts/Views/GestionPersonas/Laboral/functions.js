@@ -12,11 +12,11 @@
             }
         // tr
             function getTrLaboralPersona(laboralPersona) {
+                /*<input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\*/
                 var tr = "\
                 <tr>\
                     <td class='hidden'>\
                         <input type='hidden' value='"+laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
-                        <input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\
                         <input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
                     </td>\
                     <td>\
@@ -25,7 +25,7 @@
                             </select>\
                         </div>\
                         <div class='normalMode tdNombreEmpresa'>\
-                            "+laboralPersona._empresa._nombre+"\
+                            " + laboralPersona._institucion._nombre + "\
                         </div>\
                     </td>\
                     <td>\
@@ -260,7 +260,7 @@
             var val = new Object();
             val.campos = {
                 cbCargo:            new Array(),
-                cbEmpresa:          new Array(),
+                //cbEmpresa:          new Array(),
                 txtAreaObservacion: new Array(),
                 txtFin:             new Array(),
                 txtInicio:          new Array()

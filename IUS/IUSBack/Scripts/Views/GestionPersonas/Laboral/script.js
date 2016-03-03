@@ -122,11 +122,14 @@
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
-                        var tr  = $(this).parents("tr");
+                        console.log("Click");
+                        var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         frm.idPersona = $(".txtHdIdPersona").val();
                         var val = validarInsertLaboral(frm);
+                        console.log("El valor de val",val);
                         if (val.estado) {
+                            //console.log("El formulario a enviar es: ", frm);
                             btnAgregarLaboralPersona(frm,tr);
                         } else {
                             //############

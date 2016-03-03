@@ -1,6 +1,7 @@
 ﻿@using IUSLibs.RRHH.Entidades
 @using IUSLibs.RRHH.Entidades.Laboral
 @using IUSLibs.SEC.Entidades
+@using IUSLibs.FrontUI.Entidades;
 @section estilosPersonalizados{
     <!-- plugins -->
         <!--Data table-->
@@ -45,7 +46,8 @@
 }
 
 @{
-    List<Empresa>           empresas            = null; List<CargoEmpresa>  cargos      = null;
+    /*List<Empresa>           empresas            = null; */
+    List<Institucion>       instituciones       = null; List<CargoEmpresa>  cargos      = null;
     List<LaboralPersona>    laboralesPersonas   = null; Persona             persona     = null;
     List<Persona>           personas            = null; InformacionPersona   infoPersona = null;
     string strFoto = Url.Content(@ViewBag.IMG_GENERALES + "profle.png");
@@ -54,7 +56,8 @@
         Dictionary<object,object> 
             iniciales           = (Dictionary<object,object>)ViewBag.iniciales;
             persona             = (Persona)iniciales["persona"];
-            empresas            = (List<Empresa>)iniciales["empresas"];
+            //empresas            = (List<Empresa>)iniciales["empresas"];
+            instituciones       = (List<Institucion>)iniciales["instituciones"];
             cargos              = (List<CargoEmpresa>)iniciales["cargos"];
             laboralesPersonas   = (List<LaboralPersona>)iniciales["laboralesPersonas"];
             personas            = (List<Persona>)iniciales["personas"];
@@ -169,12 +172,12 @@
                 <th class="hidden"></th>
                 <th>
                     <div class="row marginNull divControl">
-                        <select class="form-control cbEmpresa input-sm" name="cbEmpresa">
-                            @if (empresas != null && empresas.Count > 0)
+                        <select class="form-control cbInstitucion input-sm" name="cbInstitucion">
+                            @if (instituciones != null && instituciones.Count > 0)
                             {
-                                foreach (Empresa empresa in empresas)
+                                foreach (Institucion institucion in instituciones)
                                 {
-                                    <option value="@empresa._idEmpresa">@empresa._nombre</option>
+                                    <option value="@institucion._idInstitucion">@institucion._nombre</option>
                                 }
                             }
                         </select>
@@ -236,20 +239,21 @@
                     <tr>
                         <td class="hidden">
                             <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
-                            <input type="hidden" value="@laboralPersona._empresa._idEmpresa" class="txtHdIdEmpresa" name="txtHdIdEmpresa">
+                            @*<input type="hidden" value="@laboralPersona._empresa._idEmpresa" class="txtHdIdEmpresa" name="txtHdIdEmpresa">*@
+
                             <input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">
                         </td>
                         <td>
                             <div class="editMode hidden">
                                 <div class="divControl row marginNull">
-                                    <select class="form-control cbEmpresa input-sm" name="cbEmpresa"></select>
+                                    <select class="form-control cbInstitucion input-sm" name="cbInstitucion"></select>
                                     <div class="row marginNull divResultado hidden">
                                         _
                                     </div>
                                 </div>
                             </div>
-                            <div class="normalMode tdNombreEmpresa">
-                                @laboralPersona._empresa._nombre
+                            <div class="normalMode tdNombreInstitucion">
+                                @laboralPersona._institucion._nombre
                             </div>
                         </td>
                         <td>
@@ -332,11 +336,11 @@
             else
             {
                 <tr class="trNoRegistro">
-                    @for (int i = 0; i < 6; i++)
+                    @for (int i = 0; i < 5; i++)
                     {
                         <td class="hidden"></td>
                     }
-                    <td colspan="7" class="text-center ">
+                    <td colspan="5" class="text-center ">
                         No hay registro laboral para esta persona
                     </td>
                 </tr>

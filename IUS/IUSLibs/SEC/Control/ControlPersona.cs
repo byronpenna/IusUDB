@@ -223,7 +223,7 @@ namespace IUSLibs.SEC.Control
                                     {
                                         laboral = new LaboralPersona((int)row["idLaboralPersona"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], /*row["observaciones"].ToString(),*/ (int)row["id_cargo_fk"]);
                                         laboral._cargo._cargo = row["cargo"].ToString();
-                                        laboral._empresa._nombre = row["empresa"].ToString();
+                                        //laboral._empresa._nombre = row["empresa"].ToString();
                                         laborales.Add(laboral);
                                     }
                                 }

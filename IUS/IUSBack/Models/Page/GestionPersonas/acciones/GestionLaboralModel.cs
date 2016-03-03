@@ -7,6 +7,7 @@ using System.Web;
 // Externas
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Control;
+    using IUSLibs.FrontUI.Control;
     // recursos humanos
     using IUSLibs.RRHH.Entidades.Laboral;
     using IUSLibs.RRHH.Control.Laboral;
@@ -160,9 +161,11 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         try
                         {
                             Dictionary<object, object> retorno = new Dictionary<object, object>();
-                            ControlEmpresa controlEmpresa = new ControlEmpresa();
-                            ControlCargos controlCargos = new ControlCargos();
-                            retorno.Add("empresas", controlEmpresa.sp_rrhh_getEmpresas(idUsuarioEjecutor, idPagina));
+                            //ControlEmpresa controlEmpresa = new ControlEmpresa();
+                            ControlInstitucion  controlInstitucion  = new ControlInstitucion();
+                            ControlCargos       controlCargos       = new ControlCargos();
+                            //retorno.Add("empresas", controlEmpresa.sp_rrhh_getEmpresas(idUsuarioEjecutor, idPagina));
+                            retorno.Add("instituciones", controlInstitucion.sp_frontui_getInstituciones(1, idPagina));// si tiene permiso para obtener instituciones
                             retorno.Add("cargos", controlCargos.sp_rrhh_getCargos(idUsuarioEjecutor, idPagina));
                             return retorno;
                         }

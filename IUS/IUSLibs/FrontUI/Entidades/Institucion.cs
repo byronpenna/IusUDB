@@ -23,6 +23,11 @@ namespace IUSLibs.FrontUI.Entidades
                 public List<AreaCarrera>            _areas;
         #endregion
         #region "constructores"
+            public Institucion(int idInstitucion, string nombre)
+            {
+                this._idInstitucion = idInstitucion;
+                this._nombre = nombre;
+            }
             public Institucion(int idInstitucion, byte[] logo)
             {
                 this._idInstitucion = idInstitucion;
