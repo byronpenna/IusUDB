@@ -126,18 +126,6 @@
                         <td>\
                             <div class='editMode hidden'>\
                                 <div class='row marginNull divControl'>\
-                                    <textarea name='txtAreaObservaciones' class='input-sm txtAreaObservaciones form-control'></textarea>\
-                                    <div class='row marginNull divResultado hidden'>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                            <div class='normalMode tdObservaciones'>\
-                                "+ formacionPersona._observaciones + "\
-                            </div>\
-                        </td>\
-                        <td>\
-                            <div class='editMode hidden'>\
-                                <div class='row marginNull divControl'>\
                                     <select name='cbNivelCarrera' class='input-sm cbNivelCarrera form-control'></select>\
                                     <div class='row marginNull divResultado hidden'>\
                                     </div>\
@@ -305,7 +293,7 @@
                 }
             })
         }
-        function btnAgregarCarreraIndividual(frm) {
+        /*function btnAgregarCarreraIndividual(frm) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_ingresarCarrera", frm, function (data) {
                 console.log("Data servidor", data);
                 if (data.estado) {
@@ -320,7 +308,7 @@
                     //alert("Ocurrio un error")
                 }
             })
-        }      
+        }      */
     // formacion personas
         function btnActualizarTituloPersona(frm,tr) {
             actualizarCatalogo(RAIZ + "/FormacionPersonas/sp_rrhh_editarFormacionPersona", frm, function (data) {
