@@ -14,7 +14,7 @@ namespace IUSLibs.RRHH.Entidades.Laboral
             public int              _inicio;
             public int              _fin;
             public Persona          _persona;
-            public string           _observaciones;
+            /*public string           _observaciones;*/
             public CargoEmpresa     _cargo;
         #endregion
         #region "Constructores"
@@ -24,7 +24,7 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                     this._idLaboralPersona = idLaboralPersona;
                 }
             // full
-                public LaboralPersona(int idLaboralPersona,int idEmpresa,int inicio,int fin,int idPersona,string observaciones, int idCargo)
+                public LaboralPersona(int idLaboralPersona,int idEmpresa,int inicio,int fin,int idPersona,/*string observaciones*/ int idCargo)
                 {
                     // do 
                         Empresa empresa     = new Empresa(idEmpresa);
@@ -36,12 +36,12 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                         this._inicio            = inicio;
                         this._fin               = fin;
                         this._persona           = persona;
-                        this._observaciones     = observaciones;
+                        /*this._observaciones     = observaciones;*/
                         this._cargo             = cargo;
                 }
             
             // Pata agregar
-                public LaboralPersona(int idEmpresa, int inicio, int fin, int idPersona, string observaciones, int idCargo)
+                public LaboralPersona(int idEmpresa, int inicio, int fin, int idPersona, /*string observaciones*/ int idCargo)
                 {
                     // do 
                     Empresa empresa = new Empresa(idEmpresa);
@@ -52,7 +52,7 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                     this._inicio = inicio;
                     this._fin = fin;
                     this._persona = persona;
-                    this._observaciones = observaciones;
+                    /*this._observaciones = observaciones;*/
                     this._cargo = cargo;
                 }
         #endregion

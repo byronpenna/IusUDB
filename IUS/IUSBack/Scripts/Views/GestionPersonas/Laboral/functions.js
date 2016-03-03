@@ -46,14 +46,6 @@
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
-                            <textarea class='form-control txtAreaObservacion' name='txtAreaObservacion'></textarea>\
-                        </div>\
-                        <div class='normalMode tdObservaciones'>\
-                            "+laboralPersona._observaciones+"\
-                        </div>\
-                    </td>\
-                    <td>\
-                        <div class='editMode hidden'>\
                             <select class='form-control cbCargo' name='cbCargo'>\
                             </select>\
                         </div>\
