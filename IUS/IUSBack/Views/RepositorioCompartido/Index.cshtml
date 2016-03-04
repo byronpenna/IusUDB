@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/media.css" />
 }
 @section tabs{
-    <ul>
+    @*<ul>
         <a  href="@Url.Action("Index","Repositorio")">
             <li>
                 Personales
@@ -24,7 +24,8 @@
                 Publicos
             </li>
         </a>
-    </ul>
+    </ul>*@
+    @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
 }
 @section scriptsPersonalizados{
     <!-- Plugins -->

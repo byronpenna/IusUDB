@@ -60,6 +60,8 @@ namespace IUSBack.Controllers
                     ViewBag.carpetaPadre = carpetaPadre;
                     ViewBag.idCarpetaActual = id;
                     ViewBag.URL_IUS = this.URL_IUS;
+                    // Tab seleccionada
+                    ViewBag.selectedLi3 = "tabActive";
                 }
                 catch (ErroresIUS x)
                 {

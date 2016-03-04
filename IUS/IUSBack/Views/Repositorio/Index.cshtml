@@ -36,21 +36,22 @@
     }
 }
 @section tabs{
-    <ul>
+    @*<ul>
         <li class="btnTab tabActive" target="#tab-1">
-            Personales
+            Compartir publico
         </li>
         <a href="@Url.Action("Index","RepositorioCompartido")">
             <li >
-                Compartidos
+                Compartir privado
             </li>
         </a>
         <a href="@Url.Action("Index","RepositorioPublico")">
             <li  >
-                Publicos
+                Vista Publica
             </li>
         </a>
-    </ul>    
+    </ul>*@    
+    @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
 }
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">

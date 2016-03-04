@@ -12,7 +12,7 @@
     <script src="~/Scripts/Views/RepositorioPublico/functions.js"></script>
 }
 @section tabs{
-    <ul>
+    @*<ul>
         <a href="@Url.Action("Index","Repositorio")">
             <li class="btnTab" target="#tab-1">
                 Personales
@@ -26,7 +26,8 @@
         <li class="btnTab tabActive" target="#tab-3">
             Publicos
         </li>
-    </ul>
+    </ul>*@
+    @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
 }
 @{
     List<CarpetaPublica> carpetas = (List<CarpetaPublica>)ViewBag.carpetas;

@@ -76,6 +76,8 @@ namespace IUSBack.Controllers
                     ViewBag.archivos        = archivos["archivos"];
                     ViewBag.carpetaActual   = archivos["carpetaPadre"];
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    // Tab seleccionada
+                        ViewBag.selectedLi1 = "tabActive";
                     return View();
                 }
                 catch (ErroresIUS x)
