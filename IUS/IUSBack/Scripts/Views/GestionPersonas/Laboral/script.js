@@ -122,11 +122,14 @@
                     })
                 // laboral persona 
                     $(document).on("click", ".btnAgregarLaboralPersona", function () {
-                        var tr  = $(this).parents("tr");
+                        console.log("Click");
+                        var tr = $(this).parents("tr");
                         var frm = serializeSection(tr);
                         frm.idPersona = $(".txtHdIdPersona").val();
                         var val = validarInsertLaboral(frm);
+                        console.log("El valor de val",val);
                         if (val.estado) {
+                            //console.log("El formulario a enviar es: ", frm);
                             btnAgregarLaboralPersona(frm,tr);
                         } else {
                             //############
@@ -160,27 +163,28 @@
                     // set 
                         var frm = {  }
                         actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_getEditModeLaboralPersona", frm, function (data) {
-                            var cbCargos = "", cbEmpresas = "";
+                            var cbCargos = "", cbInstituciones = "";
+                            console.log("La data recibida", data);
                             if (data.estado) {
                                 if (data.cargos !== undefined && data.cargos !== null && data.cargos.length > 0) {
                                     $.each(data.cargos, function (i, cargo) {
                                         cbCargos += getCbCargos(cargo);
                                     })
                                 }
-                                if (data.empresas !== undefined && data.empresas !== null && data.empresas.length > 0) {
-                                    $.each(data.empresas, function (i, empresa) {
-                                        cbEmpresas += getCbEmpresas(empresa);
+                                if (data.instituciones !== undefined && data.instituciones !== null && data.instituciones.length > 0) {
+                                    $.each(data.instituciones, function (i, institucion) {
+                                        cbInstituciones += getCbInstituciones(institucion);
                                     })
                                 }
                             } else {
                                 
                             }
-                            var selectCargo = tr.find(".cbCargo"), selectEmpresa = tr.find(".cbEmpresa");
+                            var selectCargo = tr.find(".cbCargo"), selectInstitucion = tr.find(".cbInstitucion");
                             selectCargo.empty().append(cbCargos);
-                            selectEmpresa.empty().append(cbEmpresas);
+                            selectInstitucion.empty().append(cbInstituciones);
                             // seleccionando
                             resetChosenWithSelectedVal(selectCargo, datosSet.idCargoEmpresa)
-                            resetChosenWithSelectedVal(selectEmpresa, datosSet.idEmpresa)
+                            resetChosenWithSelectedVal(selectInstitucion, datosSet.idInstitucion)
                         })
                         tr.find(".txtInicio").val(datosSet.fechaInicio);
                         tr.find(".txtFin").val(datosSet.fechaFin);

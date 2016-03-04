@@ -7,6 +7,9 @@
                 //$("#divLoginAdmin").addClass("hidden");
                 window.location = RAIZFRONT + "Login/index";
             })
+            $(document).on("click", ".aVolverIUS", function (e) {
+                window.location = RAIZFRONT;
+            })
             $(document).on("click", ".aOlvidoContra", function (e) {
                 e.preventDefault();
                 var x = prompt("Ingrese nombre de usuario");

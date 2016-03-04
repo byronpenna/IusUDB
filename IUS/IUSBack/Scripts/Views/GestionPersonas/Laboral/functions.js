@@ -5,18 +5,19 @@
                 var cb = "<option value='"+cargo._idCargoEmpresa+"'>" + cargo._cargo + "</option>";
                 return cb;
             }
-            function getCbEmpresas(empresa)
+            //function getCbInstituciones(insti)
+            function getCbInstituciones(institucion)
             {
-                var cb = "<option value='"+empresa._idEmpresa+"'>"+empresa._nombre+"</option>";
+                var cb = "<option value='" + institucion._idInstitucion + "'>" + institucion._nombre + "</option>";
                 return cb;
             }
         // tr
             function getTrLaboralPersona(laboralPersona) {
+                /*<input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\*/
                 var tr = "\
                 <tr>\
                     <td class='hidden'>\
                         <input type='hidden' value='"+laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
-                        <input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\
                         <input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
                     </td>\
                     <td>\
@@ -25,7 +26,7 @@
                             </select>\
                         </div>\
                         <div class='normalMode tdNombreEmpresa'>\
-                            "+laboralPersona._empresa._nombre+"\
+                            " + laboralPersona._institucion._nombre + "\
                         </div>\
                     </td>\
                     <td>\
@@ -42,14 +43,6 @@
                         </div>\
                         <div class='normalMode tdFechaFin'>\
                             "+laboralPersona._fin+"\
-                        </div>\
-                    </td>\
-                    <td>\
-                        <div class='editMode hidden'>\
-                            <textarea class='form-control txtAreaObservacion' name='txtAreaObservacion'></textarea>\
-                        </div>\
-                        <div class='normalMode tdObservaciones'>\
-                            "+laboralPersona._observaciones+"\
                         </div>\
                     </td>\
                     <td>\
@@ -240,7 +233,7 @@
             // recolectando datos
                 datosSet.fechaInicio = $.trim(tr.find(".tdFechaInicio").text());
                 datosSet.fechaFin = $.trim(tr.find(".tdFechaFin").text());
-                datosSet.idEmpresa = tr.find(".txtHdIdEmpresa").val();
+                datosSet.idInstitucion = tr.find(".txtHdIdInstitucion").val();
                 datosSet.idCargoEmpresa = tr.find(".txtHdIdCargoEmpresa").val();
                 datosSet.observaciones = $.trim(tr.find(".tdObservaciones").text());
             return datosSet;
@@ -268,7 +261,7 @@
             var val = new Object();
             val.campos = {
                 cbCargo:            new Array(),
-                cbEmpresa:          new Array(),
+                //cbEmpresa:          new Array(),
                 txtAreaObservacion: new Array(),
                 txtFin:             new Array(),
                 txtInicio:          new Array()

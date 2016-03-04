@@ -173,7 +173,7 @@
                     console.log(frm);
                     btnEliminarCarrera(frm, tr);
                 })
-                $(document).on("click", ".btnAgregarCarreraIndividual", function (e) {
+                /*$(document).on("click", ".btnAgregarCarreraIndividual", function (e) {
                     var frm = serializeSection($(this).parents("tr"));
                     console.log("formulario frm", frm);
                     var val = validarIngresoCarreraIndividual(frm);
@@ -201,7 +201,7 @@
                         })
                     }
                     
-                })
+                })*/
             // formacion persona
                 // edicion
                     $(document).on("click", ".btnActualizarTituloPersona", function () {

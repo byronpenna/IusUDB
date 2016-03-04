@@ -14,7 +14,7 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                 public int              _idFormacionPersona;
                 //public int              _yearInicio;
                 public int              _yearFin;
-                public string           _observaciones;
+                //public string           _observaciones;
                 public Persona          _persona;
                 public string           _carrera;
                 //public EstadoCarrera    _estado;
@@ -31,10 +31,9 @@ namespace IUSLibs.RRHH.Entidades.Formacion
             }
             // full atributos
                 public FormacionPersona(    int     idFormacionPersona, int     yearFin,
-                                            string  observaciones,      int     idPersona,
-                                            string  carrera,            int     idNivelTitulo,
-                                            int     idAreaCarrera,      string  institucion,        
-                                            int     idPais
+                                            int     idPersona,          string  carrera,            
+                                            int     idNivelTitulo,      int     idAreaCarrera,      
+                                            string  institucion,        int     idPais
                                         )
                 {
                     // creacion de objetos
@@ -47,7 +46,7 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                         this._idFormacionPersona    = idFormacionPersona;
                         //this._yearInicio            = yearInicio;
                         this._yearFin               = yearFin;
-                        this._observaciones         = observaciones;
+                        //this._observaciones         = observaciones;
                         this._persona               = persona;
                         this._carrera               = carrera;
                         //this._estado                = estadoCarrera;
@@ -58,10 +57,10 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                         this._paisInstitucion       = paisInstitucion;
                 }
             // para agregar 
-                public FormacionPersona(    int     yearFin,            string  observaciones,      
-                                            int     idPersona,          string  carrera,
-                                            int     idNivelTitulo,      int     idAreaCarrera,
-                                            string  institucion,        int     idPais
+                public FormacionPersona(    int     yearFin,            int     idPersona,          
+                                            string  carrera,            int     idNivelTitulo,      
+                                            int     idAreaCarrera,      string  institucion,        
+                                            int     idPais
                                         )
                 {
                     // creacion de objetos
@@ -72,7 +71,7 @@ namespace IUSLibs.RRHH.Entidades.Formacion
                     Pais            paisInstitucion = new Pais(idPais);
                     // asignacion
                     this._yearFin           = yearFin;
-                    this._observaciones     = observaciones;
+                    //this._observaciones     = observaciones;
                     this._persona           = persona;
                     this._carrera           = carrera;
                     this._areaCarrera       = areaCarrera;

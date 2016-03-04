@@ -209,7 +209,7 @@ namespace IUSLibs.SEC.Control
                                     formaciones = new List<FormacionPersona>();
                                     foreach (DataRow row in tb[1].Rows)
                                     {
-                                        formacion = new FormacionPersona((int)row["idFormacionPersona"], row["observaciones"].ToString(), (int)row["id_persona_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"], row["institucion"].ToString(), (int)row["id_paisinstitucion_fk"]);
+                                        formacion = new FormacionPersona((int)row["idFormacionPersona"], (int)row["id_persona_fk"], row["carrera"].ToString(), (int)row["id_nivel_fk"], (int)row["id_area_fk"], row["institucion"].ToString(), (int)row["id_paisinstitucion_fk"]);
                                         formacion._nivelTitulo._nombreNivel = row["nombre_nivel"].ToString();
                                         formacion._paisInstitucion._pais = row["pais"].ToString();
                                         formaciones.Add(formacion);
@@ -221,9 +221,9 @@ namespace IUSLibs.SEC.Control
                                     laborales = new List<LaboralPersona>();
                                     foreach (DataRow row in tb[2].Rows)
                                     {
-                                        laboral = new LaboralPersona((int)row["idLaboralPersona"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], row["observaciones"].ToString(), (int)row["id_cargo_fk"]);
+                                        laboral = new LaboralPersona((int)row["idLaboralPersona"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], /*row["observaciones"].ToString(),*/ (int)row["id_cargo_fk"]);
                                         laboral._cargo._cargo = row["cargo"].ToString();
-                                        laboral._empresa._nombre = row["empresa"].ToString();
+                                        //laboral._empresa._nombre = row["empresa"].ToString();
                                         laborales.Add(laboral);
                                     }
                                 }

@@ -128,9 +128,9 @@
     <table class="table tbCarreras table-hover">
         <thead>
             <tr>
-                <th>Carrera</th>
+                <th>Titulo</th>
                 <th>Año Fin</th>
-                <th>Observaciones</th>
+                @*<th>Observaciones</th>*@
                 <!--<td>Estado</td>-->
                 <th>Nivel</th>
                 <th>Area</th>
@@ -155,14 +155,14 @@
                         </div>
                     </div>
                 </td>
-                <td>
+                @*<td>
                     <div class="row marginNull divControl">
                         <textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>
                         <div class="row marginNull divResultado hidden">
 
                         </div>
                     </div>
-                </td>
+                </td>*@
                 <td>
                     <div class="row marginNull divControl">
                         <select class="input-sm cbNivelCarrera form-control" name="cbNivelCarrera">
@@ -263,7 +263,7 @@
                                 @formacionPersona._yearFin
                             </div>
                         </td>
-                        <td>
+                        @*<td>
                             <div class="editMode hidden">
                                 <div class="row marginNull divControl">
                                     <textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>
@@ -271,12 +271,12 @@
 
                                     </div>
                                 </div>
-                                @*<textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>*@
+                                <textarea name="txtAreaObservaciones" class="input-sm txtAreaObservaciones form-control"></textarea>
                             </div>
                             <div class="normalMode tdObservaciones">
                                 @formacionPersona._observaciones
                             </div>
-                        </td>
+                        </td>*@
                         <td>
                             <div class="editMode hidden">
                                 <div class="row marginNull divControl">

@@ -293,9 +293,8 @@ namespace IUSLibs.REPO.Control.Publico
                 }
             #endregion
         #endregion
-                #region "set"
-
-                #region "backend"
+        #region "set"
+            #region "backend"
                 public ArchivoPublico sp_repo_renameFile(ArchivoPublico archivoEditar, int idUsuarioEjecutor, int idPagina)
                 {
                     ArchivoPublico archivo = null;CarpetaPublica carpetaPublica = null;
@@ -331,89 +330,89 @@ namespace IUSLibs.REPO.Control.Publico
                     return archivo;
                 }
                 public bool sp_repo_removeShareArchivoPublico(int idArchivoPublico, int idUsuarioEjecutor, int idPagina)
-            {
-                bool estado = false;
-
-                SPIUS sp = new SPIUS("sp_repo_removeShareArchivoPublico");
-                sp.agregarParametro("idArchivoPublico", idArchivoPublico);
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-                try
                 {
-                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrecto(tb))
+                    bool estado = false;
+
+                    SPIUS sp = new SPIUS("sp_repo_removeShareArchivoPublico");
+                    sp.agregarParametro("idArchivoPublico", idArchivoPublico);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
                     {
-                        estado = true;   
-                    }
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return estado;
-            }
-                public ArchivoPublico sp_repo_compartirArchivoPublico(ArchivoPublico archivoAgregar,int idUsuarioEjecutor, int idPagina)
-            {
-                ArchivoPublico archivoCompartido = null;
-                SPIUS sp = new SPIUS("sp_repo_compartirArchivoPublico");
-                Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
-                sp.agregarParametro("idArchivo", archivoAgregar._archivoUsuario._idArchivo);
-                if (archivoAgregar._carpetaPublica._idCarpetaPublica == -1)
-                {
-                    sp.agregarParametro("idCarpetaPublica", null);
-                }
-                else
-                {
-                    sp.agregarParametro("idCarpetaPublica", archivoAgregar._carpetaPublica._idCarpetaPublica);
-                }
-            
-                sp.agregarParametro("nombrePublico", archivoAgregar._nombre);
-
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-
-                try
-                {
-                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrecto(tb))
-                    {
-                        if (tb[1].Rows.Count > 0)
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
                         {
-                            DataRow row = tb[1].Rows[0];
-                            /*
-                            CarpetaPublica carpetaPublica = null;
-                            if(row["id_carpetapublica_fk"] != DBNull.Value){
-                                carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
-                            }
-                            archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], (int)row["id_archivousuario_fk"],carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);*/
-                            tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
-                            tipoArchivo._icono = row["icono"].ToString();
-                            extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
-                            archivoNormal = new Archivo((int)row["idArchivo"], extension);
-                            archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, (int)row["id_carpetapublica_fk"], row["nombre_publico"].ToString(), (bool)row["estado"]);
+                            estado = true;   
                         }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return estado;
+                }
+                public ArchivoPublico sp_repo_compartirArchivoPublico(ArchivoPublico archivoAgregar,int idUsuarioEjecutor, int idPagina)
+                {
+                    ArchivoPublico archivoCompartido = null;
+                    SPIUS sp = new SPIUS("sp_repo_compartirArchivoPublico");
+                    Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
+                    sp.agregarParametro("idArchivo", archivoAgregar._archivoUsuario._idArchivo);
+                    if (archivoAgregar._carpetaPublica._idCarpetaPublica == -1)
+                    {
+                        sp.agregarParametro("idCarpetaPublica", null);
                     }
                     else
                     {
-                        DataRow row = tb[0].Rows[0];
-                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        sp.agregarParametro("idCarpetaPublica", archivoAgregar._carpetaPublica._idCarpetaPublica);
+                    }
+            
+                    sp.agregarParametro("nombrePublico", archivoAgregar._nombre);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                /*
+                                CarpetaPublica carpetaPublica = null;
+                                if(row["id_carpetapublica_fk"] != DBNull.Value){
+                                    carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
+                                }
+                                archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], (int)row["id_archivousuario_fk"],carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);*/
+                                tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"]);
+                                tipoArchivo._icono = row["icono"].ToString();
+                                extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                                archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                                archivoCompartido = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, (int)row["id_carpetapublica_fk"], row["nombre_publico"].ToString(), (bool)row["estado"]);
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
                         throw x;
                     }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return archivoCompartido;
                 }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return archivoCompartido;
-            }
             #endregion
         #endregion
 
