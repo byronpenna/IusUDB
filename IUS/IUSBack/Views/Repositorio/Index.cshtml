@@ -36,21 +36,6 @@
     }
 }
 @section tabs{
-    @*<ul>
-        <li class="btnTab tabActive" target="#tab-1">
-            Compartir publico
-        </li>
-        <a href="@Url.Action("Index","RepositorioCompartido")">
-            <li >
-                Compartir privado
-            </li>
-        </a>
-        <a href="@Url.Action("Index","RepositorioPublico")">
-            <li  >
-                Vista Publica
-            </li>
-        </a>
-    </ul>*@    
     @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
 }
 <div class="modal divUpload">
@@ -131,7 +116,7 @@
     <div class="col-lg-2">
         <label>Vistas</label>
         <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
-            <a href="#" class="ico iconoVistaCuadricula  @activeVista[0] " title="Cuadricula">
+            <a href="#" class="ico iconoVistaCuadricula @activeVista[0] " title="Cuadricula">
                 <!--activeVista-->
                 <i class="fa fa-th-large"></i>
             </a>

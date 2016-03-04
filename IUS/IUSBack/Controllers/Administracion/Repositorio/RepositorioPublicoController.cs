@@ -25,8 +25,12 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "acciones url"
-            public ActionResult Index(int id=-1)
+            public ActionResult Index(int id=-1,int id2=-1)
             {
+                /*
+                 * id: representa la carpeta actual
+                 * id2: representa la vista que aparecera
+                 */
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 if (seguridadInicial != null)
                 {
@@ -60,6 +64,7 @@ namespace IUSBack.Controllers
                     ViewBag.carpetaPadre = carpetaPadre;
                     ViewBag.idCarpetaActual = id;
                     ViewBag.URL_IUS = this.URL_IUS;
+                    ViewBag.vista = id2;
                     // Tab seleccionada
                     ViewBag.selectedLi3 = "tabActive";
                 }

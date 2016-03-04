@@ -198,6 +198,7 @@
                 })
             // vista
                 $(document).on("click", ".iconoVistaCuadricula", function (e) {
+                    console.log("cambio a vista cuadricula");
                     e.preventDefault();
                     if (!isSearch()) {
                         verCuadricula($(this));
@@ -207,6 +208,7 @@
                     
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
+                    console.log("cambio a vista lista");
                     e.preventDefault();
                     if (!isSearch()) {
                         console.log("No buscando");
