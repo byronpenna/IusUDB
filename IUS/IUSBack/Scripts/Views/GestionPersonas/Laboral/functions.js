@@ -5,9 +5,10 @@
                 var cb = "<option value='"+cargo._idCargoEmpresa+"'>" + cargo._cargo + "</option>";
                 return cb;
             }
-            function getCbEmpresas(empresa)
+            //function getCbInstituciones(insti)
+            function getCbInstituciones(institucion)
             {
-                var cb = "<option value='"+empresa._idEmpresa+"'>"+empresa._nombre+"</option>";
+                var cb = "<option value='" + institucion._idInstitucion + "'>" + institucion._nombre + "</option>";
                 return cb;
             }
         // tr
@@ -232,7 +233,7 @@
             // recolectando datos
                 datosSet.fechaInicio = $.trim(tr.find(".tdFechaInicio").text());
                 datosSet.fechaFin = $.trim(tr.find(".tdFechaFin").text());
-                datosSet.idEmpresa = tr.find(".txtHdIdEmpresa").val();
+                datosSet.idInstitucion = tr.find(".txtHdIdInstitucion").val();
                 datosSet.idCargoEmpresa = tr.find(".txtHdIdCargoEmpresa").val();
                 datosSet.observaciones = $.trim(tr.find(".tdObservaciones").text());
             return datosSet;
