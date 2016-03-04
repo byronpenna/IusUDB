@@ -46,8 +46,8 @@
         }
         function getDivListaCarpeta(carpetaPublica) {
             var div = "\
-            <a class='aLista' href='" + RAIZ + '/RepositorioPublico/index/' +carpetaPublica._idCarpetaPublica+ "' >\
                 <div class='row folderDetalles carpetaDetalle'>\
+                    <input type='hidden' class='txtHdIdCarpeta' value="+carpeta._idCarpetaPublica+">\
                     <div class='col-lg-6'>\
                         " + carpetaPublica._nombre + "\
                     </div>\
@@ -61,7 +61,6 @@
                         "+carpetaPublica.getFechaCreacion+"\
                     </div>\
                 </div>\
-            </a>\
             ";
             return div;
         }
