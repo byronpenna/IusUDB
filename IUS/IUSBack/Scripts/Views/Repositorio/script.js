@@ -205,7 +205,7 @@
                     } else {
                         vistaCuadriculaBusqueda();
                     }
-                    
+                    window.history.pushState({}, "", RAIZ + $(".txtHdNombreControlador").val() + "/" + $(".txtHdMetodo").val() + "/" + $(".txtHdIdCarpetaPadre").val() + "/" + idVista);
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
                     console.log("cambio a vista lista");
@@ -217,7 +217,6 @@
                         console.log("buscando");
                         vistaListaBusqueda();
                     }
-                    
                 })
             // publico 
                 $(document).on("click", ".icoPublicoBack", function (e) {
