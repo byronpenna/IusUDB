@@ -47,7 +47,7 @@
         function getDivListaCarpeta(carpetaPublica) {
             var div = "\
                 <div class='row folderDetalles carpetaDetalle'>\
-                    <input type='hidden' class='txtHdIdCarpeta' value="+carpeta._idCarpetaPublica+">\
+                    <input type='hidden' class='txtHdIdCarpeta' value=" + carpetaPublica._idCarpetaPublica + ">\
                     <div class='col-lg-6'>\
                         " + carpetaPublica._nombre + "\
                     </div>\
@@ -163,6 +163,7 @@
                 var div = "";
                 if (data.estado) {
                     if (data.carpetas !== undefined && data.carpetas !== null) {
+                        //console.log()
                         $.each(data.carpetas, function (i, carpeta) {
                             if (op == "lista") {
                                 div += getDivListaCarpeta(carpeta);

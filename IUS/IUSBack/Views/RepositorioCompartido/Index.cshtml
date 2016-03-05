@@ -10,21 +10,6 @@
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/media.css" />
 }
 @section tabs{
-    @*<ul>
-        <a  href="@Url.Action("Index","Repositorio")">
-            <li>
-                Personales
-            </li>
-        </a>
-        <li class="tabActive">
-            Compartidos
-        </li>
-        <a href="@Url.Action("Index","RepositorioPublico")">
-            <li>
-                Publicos
-            </li>
-        </a>
-    </ul>*@
     @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
 }
 @section scriptsPersonalizados{
@@ -65,6 +50,8 @@
     int idUsuarioSession                = (int)ViewBag.idUsuarioSesion;
     Carpeta carpetaActual               = (Carpeta)ViewBag.carpetaActual;
 }
+<input type="hidden" class="txtHdNombreControlador" value="@ViewBag.nombreControlador" />
+<input type="hidden" class="txtHdMetodo" value="@ViewBag.nombreMetodo" />
 <div class="row marginNull rowHerramientas">
     <div class="col-lg-4">
 

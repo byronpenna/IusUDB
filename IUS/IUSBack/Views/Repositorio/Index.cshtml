@@ -38,6 +38,8 @@
 @section tabs{
     @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
 }
+<input type="hidden" class="txtHdNombreControlador" value="@ViewBag.nombreControlador" />
+<input type="hidden" class="txtHdMetodo" value="@ViewBag.nombreMetodo" />
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
@@ -226,17 +228,6 @@
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </div>
-                                @*<div class="btn-group">
-                                        <button class="btn btn-default">
-                                            <i class="fa fa-share"></i>
-                                        </button>
-                                        <button class="btn btn-default">
-                                            <i class="fa fa-download"></i>
-                                        </button>
-                                        <button class="btn btn-default">
-                                            <i class="fa fa-share"></i>
-                                        </button>
-                                    </div>*@
                             </div>
                         </div>
                     }
@@ -279,7 +270,6 @@
 
                             </div>
                         </div>
-                        <!--</a>-->
                     </div>
                 }
             }
