@@ -14,6 +14,7 @@ namespace IUSLibs.REPO.Entidades.Compartido
             public Archivo  _archivo;
             public Usuario  _usuario;
             public DateTime _fecha;
+            public bool     _propio = false;
         #endregion
         #region "constructores"
             public ArchivoCompartido(int idArchivo, int idUsuario)

@@ -105,7 +105,7 @@ namespace IUSLibs.RRHH.Control.Laboral
                     SPIUS sp = new SPIUS("sp_rrhh_editarLaboralPersonas");
                     
                     //sp.agregarParametro("idEmpresa", laboralEditar._empresa._idEmpresa);
-
+                    sp.agregarParametro("idInstitucion", laboralEditar._institucion._idInstitucion);
                     sp.agregarParametro("inicio", laboralEditar._inicio);
                     sp.agregarParametro("fin", laboralEditar._fin);
                     //sp.agregarParametro("observaciones", laboralEditar._observaciones);
@@ -126,6 +126,8 @@ namespace IUSLibs.RRHH.Control.Laboral
                                     laboralEditado = new LaboralPersona((int)row["idLaboralPersona"],(int)row["id_institucion_fk"],(int)row["inicio"],(int)row["fin"],(int)row["id_persona_fk"],/*row["observaciones"].ToString(),*/(int)row["id_cargo_fk"]);
                                     laboralEditado._cargo._cargo = row["cargo"].ToString();
                                     //laboralEditado._empresa._nombre = row["nombreEmpresa"].ToString();
+                                    laboralEditado._institucion._nombre = row["nombreInstitucion"].ToString();
+
                                 }
                             }
                             else

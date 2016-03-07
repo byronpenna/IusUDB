@@ -46,22 +46,21 @@
         }
         function getDivListaCarpeta(carpetaPublica) {
             var div = "\
-            <a class='aLista' href='" + RAIZ + '/RepositorioPublico/index/' +carpetaPublica._idCarpetaPublica+ "' >\
                 <div class='row folderDetalles carpetaDetalle'>\
-                    <div class='col-lg-3'>\
+                    <input type='hidden' class='txtHdIdCarpeta' value=" + carpetaPublica._idCarpetaPublica + ">\
+                    <div class='col-lg-6'>\
                         " + carpetaPublica._nombre + "\
                     </div>\
-                    <div class='col-lg-3'>\
+                    <div class='col-lg-2'>\
                         Folder\
                     </div>\
-                    <div class='col-lg-3'>\
+                    <div class='col-lg-2'>\
                         \
                     </div>\
-                    <div class='col-lg-3'>\
+                    <div class='col-lg-2'>\
                         "+carpetaPublica.getFechaCreacion+"\
                     </div>\
                 </div>\
-            </a>\
             ";
             return div;
         }
@@ -69,7 +68,7 @@
             var frm = {
                 idCarpetaPublica: $(".txtHdIdCarpetaPadre").val()
             }
-            var seccionModificar = $(".listView");
+            var seccionModificar = $(".targetListView");
             cambiarVistas("lista");
             icoVista(frm, seccionModificar,"lista");
         }
@@ -83,19 +82,16 @@
             var div = "\
             <div class='col-lg-2 folder'>\
                 <input type='hidden' class='txtHdIdCarpeta' value='"+carpeta._idCarpetaPublica+"' />\
-                <div class='row divHerramientasIndividual'>\
-                    <a href='#' class='ico icoDownload' title='Descargar'>\
-                        <i class='fa fa-download'></i>\
-                    </a>\
-                    <a href='#' class='ico icoEliminarCarpeta' title='Eliminar'>\
-                        <i class='fa fa-trash-o'></i>\
-                    </a>\
-                    <a href='"+rutaWebsite+"' target='_blank' class='ico' title='Ver website'>\
-                        xx<i class='fa fa-globe'></i>\
-                    </a>\
-                </div>\
                 <div class='cuadritoIcono cuadritoCarpeta'>\
-                    <img src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
+                    <img class='imgCuadritoIcono' src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
+                    <div class='btn-group'>\
+                        <a href='#' class='ico btn btn-default icoEliminarCarpeta' title='Eliminar'>\
+                            <i class='fa fa-trash-o'></i>\
+                        </a>\
+                        <a href='" + rutaWebsite + "' target='_blank' class='ico btn btn-default' title='Ver website'>\
+                            <i class='fa fa-globe'></i>\
+                        </a>\
+                    </div>\
                     <div class='detalleCarpeta'>\
                         <div class='normalMode sinRedirect'>\
                             <h3 class='ttlNombreCarpeta'>"+carpeta._nombre+"</h3>\
@@ -167,11 +163,12 @@
                 var div = "";
                 if (data.estado) {
                     if (data.carpetas !== undefined && data.carpetas !== null) {
+                        //console.log()
                         $.each(data.carpetas, function (i, carpeta) {
                             if (op == "lista") {
                                 div += getDivListaCarpeta(carpeta);
                             } else if (op == "cuadricula") {
-                                div += getDivCuadriculaCarpeta(carpeta,base);
+                                div += getDivCuadriculaCarpeta(carpeta,data.base);
                             }
                         })
                     }
@@ -184,6 +181,7 @@
                             }
                         })
                     }
+
                     seccion.empty().append(div);
                     if (callback !== undefined) {
                         callback();

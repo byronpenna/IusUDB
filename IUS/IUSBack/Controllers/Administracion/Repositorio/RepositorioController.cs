@@ -23,8 +23,9 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "propiedades"
-            public int _idPagina = (int)paginas.Repositorio;
+            public int              _idPagina       = (int)paginas.Repositorio;
             public RepositorioModel _model;
+            private string          _nombreClass = "RepositorioController";
         #endregion 
         #region "url"
             public ActionResult Index(int id = -1, int id2= -1)
@@ -67,15 +68,20 @@ namespace IUSBack.Controllers
                     {
                         archivos = this._model.sp_repo_getRootFolder(usuarioSession._idUsuario, this._idPagina);
                     }
-                    ViewBag.idCarpetaActual = id;
-                    ViewBag.titleModulo     = "Repositorio Digital";
-                    ViewBag.vista           = id2;
-                    ViewBag.usuario         = usuarioSession;
-                    ViewBag.permisos        = permisos;
-                    ViewBag.carpetas        = archivos["carpetas"];
-                    ViewBag.archivos        = archivos["archivos"];
-                    ViewBag.carpetaActual   = archivos["carpetaPadre"];
-                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.idCarpetaActual     = id;
+                    ViewBag.titleModulo         = "Repositorio Digital";
+                    ViewBag.vista               = id2;
+                    ViewBag.usuario             = usuarioSession;
+                    ViewBag.permisos            = permisos;
+                    ViewBag.carpetas            = archivos["carpetas"];
+                    ViewBag.archivos            = archivos["archivos"];
+                    ViewBag.carpetaActual       = archivos["carpetaPadre"];
+                    ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    // metricas para funciones generales
+                        ViewBag.nombreControlador   = this._nombreClass.Replace("Controller","");
+                        ViewBag.nombreMetodo        = "Index";
+                    // Tab seleccionada
+                        ViewBag.selectedLi1 = "tabActive";
                     return View();
                 }
                 catch (ErroresIUS x)

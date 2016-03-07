@@ -36,22 +36,10 @@
     }
 }
 @section tabs{
-    <ul>
-        <li class="btnTab tabActive" target="#tab-1">
-            Personales
-        </li>
-        <a href="@Url.Action("Index","RepositorioCompartido")">
-            <li >
-                Compartidos
-            </li>
-        </a>
-        <a href="@Url.Action("Index","RepositorioPublico")">
-            <li  >
-                Publicos
-            </li>
-        </a>
-    </ul>    
+    @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
 }
+<input type="hidden" class="txtHdNombreControlador" value="@ViewBag.nombreControlador" />
+<input type="hidden" class="txtHdMetodo" value="@ViewBag.nombreMetodo" />
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
@@ -130,7 +118,7 @@
     <div class="col-lg-2">
         <label>Vistas</label>
         <div class="herramientaVistaSection accionesDiv form-control inputBackModal">
-            <a href="#" class="ico iconoVistaCuadricula  @activeVista[0] " title="Cuadricula">
+            <a href="#" class="ico iconoVistaCuadricula @activeVista[0] " title="Cuadricula">
                 <!--activeVista-->
                 <i class="fa fa-th-large"></i>
             </a>
@@ -240,17 +228,6 @@
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </div>
-                                @*<div class="btn-group">
-                                        <button class="btn btn-default">
-                                            <i class="fa fa-share"></i>
-                                        </button>
-                                        <button class="btn btn-default">
-                                            <i class="fa fa-download"></i>
-                                        </button>
-                                        <button class="btn btn-default">
-                                            <i class="fa fa-share"></i>
-                                        </button>
-                                    </div>*@
                             </div>
                         </div>
                     }
@@ -293,7 +270,6 @@
 
                             </div>
                         </div>
-                        <!--</a>-->
                     </div>
                 }
             }

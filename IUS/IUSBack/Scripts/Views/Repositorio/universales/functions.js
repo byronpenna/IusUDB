@@ -20,11 +20,16 @@
         // vistas 
             $(document).on("click", ".iconoVista", function (e) {
                 e.preventDefault();
+                console.log("Entro a ico vista");
+                var idVista = 0;
                 if ($(this).hasClass("iconoVistaCuadricula")) {
                     verCuadricula();
+                    idVista = -1;
                 } else if ($(this).hasClass("icoVistaLista")) {
                     verLista();
+                    idVista = 1;
                 }
+                window.history.pushState({}, "", RAIZ + $(".txtHdNombreControlador").val() + "/" + $(".txtHdMetodo").val() + "/" + $(".txtHdIdCarpetaPadre").val() + "/" + idVista);
             })
         // folders  
             $(document).on("click", ".btnCancelarGuardarCarpeta", function (e) {

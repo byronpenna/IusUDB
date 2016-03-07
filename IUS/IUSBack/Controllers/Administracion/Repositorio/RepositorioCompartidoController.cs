@@ -97,6 +97,11 @@ namespace IUSBack.Controllers
                     ViewBag.usuariosCompartidos = this._model.sp_repo_getUsuariosArchivosCompartidos(usuarioSession._idUsuario, this._idPagina);
                     ViewBag.carpetaActual       = archivos["carpetaPadre"];
                     ViewBag.menus               = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    // metricas para funciones generales
+                        ViewBag.nombreControlador   = this._nombreClass.Replace("Controller", "");
+                        ViewBag.nombreMetodo        = "Index";
+                    // Tab seleccionada
+                    ViewBag.selectedLi2 = "tabActive";
                 }
                 catch (ErroresIUS x)
                 {

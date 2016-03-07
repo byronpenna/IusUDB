@@ -52,7 +52,12 @@ namespace IUSLibs.REPO.Control.Compartido
                                     idCarpeta = (int)row["id_carpeta_fk"];
                                 }
                                 archivo = new Archivo((int)row["idArchivo"], row["nombre"].ToString(), idCarpeta, row["src"].ToString(), extension);
-                                archivoCompartido = new ArchivoCompartido((int)row["idArchivoCompartido"], archivo, (int)row["id_usuario_fk"]);
+                                int idUsuarioArchivo = (int)row["id_usuario_fk"];
+                                archivoCompartido = new ArchivoCompartido((int)row["idArchivoCompartido"], archivo,idUsuarioArchivo);
+                                if (idUsuarioArchivo == idUsuarioEjecutor)
+                                {
+                                    archivoCompartido._propio = true;
+                                }
                                 //archivos.Add(archivo);
                                 archivosCompartidos.Add(archivoCompartido);
                             }

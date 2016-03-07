@@ -376,10 +376,10 @@
                         tr.find(".tdFechaFin").empty().append(laboral._fin);
                         tr.find(".tdObservaciones").empty().append(laboral._observaciones)
                         tr.find(".tdCargo").empty().append(laboral._cargo._cargo)
-                        tr.find(".tdNombreEmpresa").empty().append(laboral._empresa._nombre);
+                        tr.find(".tdNombreInstitucion").empty().append(laboral._institucion._nombre);
                     // hiddens 
                         tr.find(".txtHdIdCargoEmpresa").val(laboral._cargo._idCargoEmpresa);
-                        tr.find(".txtHdIdEmpresa").val(laboral._empresa._idEmpresa);
+                        tr.find(".txtHdIdInstitucion").val(laboral._institucion._idInstitucion);
                     controlesEdit(false, tr);
                 } else {
                     alert("Ocurrio un error tratand de actualizar");

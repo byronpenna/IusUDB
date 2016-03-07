@@ -258,7 +258,7 @@
                     }
                     
                     vistaActiva(accion);
-                    window.history.pushState({}, "", RAIZ  + $(".txtHdControlador").val() + "/" + $(".txtHdMetodo").val() + "/" + $(".txtHdIdCarpetaActual").val() + "/" + $(".txtHdTipoCategoria").val() + "/" + $(".txtHdIdVista").val())
+                    window.history.pushState({}, "", RAIZ  + $(".txtHdControlador").val() + "/" + $(".txtHdMetodo").val() + "/" + $(".txtHdIdCarpetaPadre").val() + "/" + $(".txtHdTipoCategoria").val() + "/" + $(".txtHdIdVista").val())
                     console.log($(".txtHdControlador").val());
                 } else {
                     alert("Error al recuperar vista");

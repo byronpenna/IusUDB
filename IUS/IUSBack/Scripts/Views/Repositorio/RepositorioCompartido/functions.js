@@ -269,6 +269,10 @@
         function getDivArchivosCompartidos(archivoCompartido) {
             //<div class='row marginNull'>\
             //</div>\
+            var letra = "C"; // letra P indica propio
+            if (archivoCompartido._propio) {
+                letra = "P";
+            }
             var div = "\
                 <div class='divCarpetaPublica col-lg-6'>\
                     <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
@@ -281,7 +285,7 @@
                             <i class='fa fa-download'></i>\
                         </a>\
                     </div>\
-                    <h4 class='tituloCarpetaPublica'>" + archivoCompartido._archivo._nombre + "</h4>\
+                    <h4 class='tituloCarpetaPublica'>" + archivoCompartido._archivo._nombre + "("+letra+")</h4>\
                 </div>\
             ";
             return div;

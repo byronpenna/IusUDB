@@ -111,10 +111,15 @@
                     }
                 })
             // entrar a carpeta
+                $(document).on("click", ".carpetaDetalle", function (e) {
+                    var nVista = getNumVistaActual();
+                    window.location = RAIZ + "RepositorioPublico/index/" + $(this).find(".txtHdIdCarpeta").val() + "/" + nVista;
+                })
                 $(document).on("click", ".cuadritoCarpeta", function (e) {
                     e.cancelBubble = true;
                     var estado = $(this).attr("id");
                     if (estado != '0') {
+                        console.log("n vista es",nVista);
                         window.location = RAIZ + "RepositorioPublico/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
                     }
                 });
