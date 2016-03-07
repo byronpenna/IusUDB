@@ -1,6 +1,16 @@
 ﻿$(document).ready(function () {
-    // tmp 
+    // vista compartida
+        $(document).on("click", ".icoCuadriculaUsuario", function () {
+
         
+        })
+        $(document).on("click", ".icoListaUsuario", function () {
+            console.log("Entro lista usuario");
+            if ($(".txtUsuarioSeleccionado").val() == -1) {
+                listaUsuarioArchivoCompartido();
+            }
+        })
+    // tmp 
         $(document).on("keyup", ".txtBusquedaUsuarioDiv", function (e) {
             console.log("uhui");
             // variables
@@ -27,10 +37,10 @@
             $(document).on("dblclick", ".divCarpetaUsuarioCompartido", function (e) {
                 var frm = {
                     idUserFile: $(this).find(".txtHdIdUsuario").val(),
-                    nombreCarpeta: $(this).find(".tituloCarpetaPublica").text()
+                    nombreCarpeta: $(this).find(".tituloCarpetaPublica").text(),
+                    idVista: $(this).parents(".seccionCompartida").find(".txtHdIdVista").val()
                 }
-                
-                var seccion = $(this).parents(".seccionCompartida");
+                var seccion = targetSeccionCompartida; //$(this).parents(".seccionCompartida");
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
         // click
@@ -114,19 +124,32 @@
                         icoDejarDeCompartir(frm, seccion);
                     }
                 })
+                var targetSeccionCompartida = $(".divSeccionCompartida");
                 $(document).on("click", ".icoCompartidoBack", function () {
                     var frm = {};
                     actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
-                    
                         if (data.estado) {
+                            var idVista = $(".txtHdIdVista").val();
+                            console.log("La vista al regresar es: ", idVista);
                             $(".divUsuarioCarpeta").addClass("hidden");
                             var div = "";
                             if (data.usuarios !== null) {
                                 $.each(data.usuarios, function (i, usuario) {
-                                    div += getDivUsuarios(usuario);
+                                    switch(idVista){
+                                        case "-1":
+                                            {
+                                                div += getDivUsuarios(usuario);
+                                                break;
+                                            }
+                                        case "1":
+                                            {
+                                                div += getDivUsuariosLista(usuario);
+                                                $(".txtEncabezadoLista").empty().append("Usuarios");
+                                            }
+                                    }
                                 })
                             }
-                            $(".seccionCompartida").empty().append(div);
+                            targetSeccionCompartida.empty().append(div);
                         } else {
                             alert("Ocurrio un error regresando");
                         }
