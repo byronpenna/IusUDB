@@ -4,10 +4,24 @@
 
         
         })
-        $(document).on("click", ".icoListaUsuario", function () {
-            console.log("Entro lista usuario");
-            if ($(".txtUsuarioSeleccionado").val() == -1) {
-                listaUsuarioArchivoCompartido();
+        $(document).on("click", ".icoVistaCompartida", function () {
+            //console.log("Entro lista usuario");
+            // CONVERTIR EN INT 
+            console.log("hola D: :D ");
+            var idUsuario = $(".txtUsuarioSeleccionado").val(), idVista = $(".txtHdIdVista").val();
+            console.log("idUsuario", idUsuario);
+            console.log("idVista", idVista);
+            if (idUsuario == -1 && idVista == -1) {
+                // cuadricula raiz
+                $(".icoCompartidoBack").click();
+            } else if (idUsuario != -1 && idVista == -1) {
+                // cuadricula usuario
+
+            } else if (idUsuario == -1 && idVista == 1) {
+                // lista raiz
+            } else if (idUsuario != -1 && idVista == 1) {
+                // lista usuario
+                $(".icoCompartidoBack").click();
             }
         })
     // tmp 
@@ -41,6 +55,7 @@
                     idVista: $(this).parents(".seccionCompartida").find(".txtHdIdVista").val()
                 }
                 var seccion = targetSeccionCompartida; //$(this).parents(".seccionCompartida");
+                $(".txtUsuarioSeleccionado").val(frm.idUserFile);
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
         // click
@@ -124,7 +139,6 @@
                         icoDejarDeCompartir(frm, seccion);
                     }
                 })
-                var targetSeccionCompartida = $(".divSeccionCompartida");
                 $(document).on("click", ".icoCompartidoBack", function () {
                     var frm = {};
                     actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
@@ -150,6 +164,7 @@
                                 })
                             }
                             targetSeccionCompartida.empty().append(div);
+                            $(".txtUsuarioSeleccionado").val("-1");
                         } else {
                             alert("Ocurrio un error regresando");
                         }

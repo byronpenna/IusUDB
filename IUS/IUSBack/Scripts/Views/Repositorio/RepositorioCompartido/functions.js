@@ -1,6 +1,7 @@
-﻿// generics 
-function getDivListaUsuarioArchivoCompartido(archivoCompartido) {
-    //console.log("Esta aqui");
+﻿var targetSeccionCompartida = $(".divSeccionCompartida");
+// generics 
+    function getDivListaUsuarioArchivoCompartido(archivoCompartido) {
+        //console.log("Esta aqui");
         var letra = "C"; // letra P indica propio
         if (archivoCompartido._propio) {
             letra = "P";
