@@ -5,23 +5,25 @@
         
         })
         $(document).on("click", ".icoVistaCompartida", function () {
-            //console.log("Entro lista usuario");
-            // CONVERTIR EN INT 
-            console.log("hola D: :D ");
-            var idUsuario = $(".txtUsuarioSeleccionado").val(), idVista = $(".txtHdIdVista").val();
-            console.log("idUsuario", idUsuario);
-            console.log("idVista", idVista);
-            if (idUsuario == -1 && idVista == -1) {
+            var idUsuario = parseInt($(".txtUsuarioSeleccionado").val()), idVista = parseInt($(this).attr("id"));
+            $(".icoVistaCompartida").removeClass("activeVista");
+            $(this).addClass("activeVista");
+            if ( (idUsuario == -1 && idVista == -1) || (idUsuario == -1 && idVista == 1) )  {
                 // cuadricula raiz
-                $(".icoCompartidoBack").click();
-            } else if (idUsuario != -1 && idVista == -1) {
+                var frm = {};
+                icoCompartidoBack(frm, idVista);
+            } else if ((idUsuario != -1 && idVista == -1) || (idUsuario != -1 && idVista == 1) ) {
                 // cuadricula usuario
-
-            } else if (idUsuario == -1 && idVista == 1) {
-                // lista raiz
-            } else if (idUsuario != -1 && idVista == 1) {
-                // lista usuario
-                $(".icoCompartidoBack").click();
+                var shareSection    = $(this).parents(".shareSection");
+                var seccion         = shareSection.find(".seccionCompartida");
+                var frm = {
+                    idUserFile:     seccion.find(".txtUsuarioSeleccionado").val(),
+                    nombreCarpeta:  shareSection.find(".hUsuarioCarpeta").text(),
+                    idVista:        idVista
+                }
+                console.log("Frm aqui es: ", frm);
+                var seccion = targetSeccionCompartida; 
+                divCarpetaUsuarioCompartido(frm, seccion);
             }
         })
     // tmp 
@@ -141,34 +143,10 @@
                 })
                 $(document).on("click", ".icoCompartidoBack", function () {
                     var frm = {};
-                    actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
-                        if (data.estado) {
-                            var idVista = $(".txtHdIdVista").val();
-                            console.log("La vista al regresar es: ", idVista);
-                            $(".divUsuarioCarpeta").addClass("hidden");
-                            var div = "";
-                            if (data.usuarios !== null) {
-                                $.each(data.usuarios, function (i, usuario) {
-                                    switch(idVista){
-                                        case "-1":
-                                            {
-                                                div += getDivUsuarios(usuario);
-                                                break;
-                                            }
-                                        case "1":
-                                            {
-                                                div += getDivUsuariosLista(usuario);
-                                                $(".txtEncabezadoLista").empty().append("Usuarios");
-                                            }
-                                    }
-                                })
-                            }
-                            targetSeccionCompartida.empty().append(div);
-                            $(".txtUsuarioSeleccionado").val("-1");
-                        } else {
-                            alert("Ocurrio un error regresando");
-                        }
-                    })
+                    //var idVista = $(".txtHdIdVista").val();
+                    var idVista = $(".shareSection").find(".activeVista").attr("id");
+                    console.log("VISTA AQUI ", idVista);
+                    icoCompartidoBack(frm,idVista);
                 });
                 $(document).on("click", ".btnShareArchivo", function (e) {
                     var frm = {
