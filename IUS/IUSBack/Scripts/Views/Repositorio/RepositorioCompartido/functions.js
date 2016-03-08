@@ -1,7 +1,38 @@
-﻿// generics 
+﻿var targetSeccionCompartida = $(".divSeccionCompartida");
+// generics 
+    function getDivListaUsuarioArchivoCompartido(archivoCompartido) {
+        //console.log("Esta aqui");
+        var letra = "C"; // letra P indica propio
+        if (archivoCompartido._propio) {
+            letra = "P";
+        }
+        var div = "\
+        <div class='divCarpetaUsuarioCompartido divCarpetaCompartidaLista row marginNull'>\
+            <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
+            <div class='col-lg-12 text-center pointer'>\
+                <h4>" + archivoCompartido._archivo._nombre + "("+letra+") </h4>\
+            </div>\
+            <div class='col-lg-12 text-center'>\
+                <div class='btn-group'>\
+                    <a href='#' class='btn btn-default btnAccion icoDejarDeCompartir' title='Compartir'>\
+                        <i class='fa fa-trash-o'></i>\
+                    </a>\
+                    <a class='btn btn-default btnAccion' href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
+                        <i class='fa fa-download'></i>\
+                    </a>\
+                </div>\
+            </div>\
+        </div>";
+        return div;
+    }
+    function listaUsuarioArchivoCompartido() {
+        var frm = {};
+        actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getUsuariosArchivosCompartidos", frm, function (data) {
+            console.log("La data es: ", data);
+        });
+    }
     // vistas 
         function verCuadricula() {
-            
             var seccionModificar = $(".cuadriculaView");
             cambiarVistas("cuadricula");
             var frm = {
@@ -290,6 +321,16 @@
             ";
             return div;
         }
+        function getDivUsuariosLista(usuarioCompartido) {
+            var div = "\
+            <div class='divCarpetaUsuarioCompartido divCarpetaCompartidaLista row marginNull'>\
+                <input type='hidden' class='txtHdIdUsuario' value='"+usuarioCompartido._idUsuario+"' />\
+                <div class='col-lg-12 text-center pointer tituloCarpetaPublica'>\
+                    Usuario "+usuarioCompartido._usuario+"\
+                </div>\
+            </div>";
+            return div;
+        }
         function getDivUsuarios(usuario) {
             var div = "\
                 <div class='divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6'>\
@@ -319,7 +360,6 @@
     }
     function icoDejarDeCompartir(frm,seccion) {
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_removeShareFile", frm, function (data) {
-            
             if (data.estado) {
                 seccion.remove();
             }
@@ -338,18 +378,43 @@
         })
     }
     function divCarpetaUsuarioCompartido(frm, seccion) {
-        var nombreUsuarioCarpeta = frm.nombreCarpeta;
+        console.log("Frm es D: ", frm);
+        var paramaetros = {
+            nombreCarpeta:  frm.nombreCarpeta,
+            idVista:        frm.idVista
+        }
+        
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_getFilesFromShareUserId", frm, function (data) {
             console.log("data con archivos compartidos", data);
             if (data.estado) {
-                $(".divUsuarioCarpeta").find(".hUsuarioCarpeta").empty().append(nombreUsuarioCarpeta);
+                $(".divUsuarioCarpeta").find(".hUsuarioCarpeta").empty().append(paramaetros.nombreCarpeta);
                 $(".divUsuarioCarpeta").removeClass("hidden");
+                
                 var div = "";
                 if (data.archivos !== null) {
+                    console.log("id de vista es D: ", paramaetros.idVista);
                     $.each(data.archivosCompartidos, function (i, archivoCompartido) {
-                        div += getDivArchivosCompartidos(archivoCompartido);
+                        //if (paramaetros.idVista == -1) {
+                        switch (paramaetros.idVista) {
+                            case "-1":{
+                                div += getDivArchivosCompartidos(archivoCompartido);
+                                break;
+                            }
+                            case "1": {
+                                div += getDivListaUsuarioArchivoCompartido(archivoCompartido);
+                                $(".txtEncabezadoLista").empty().append("Archivos");
+                                break;
+                            }
+                            default: {
+                                console.log("Entro al default");
+                                break;
+                            }
+                        }
+                            
+                        //}
                     });
                 }
+                //console.log("Los archivos", div);
                 seccion.empty().append(div);
                 $(".nombreFileCompartir").empty();
                 $(".txtHdIdArchivoCompartir").val(-1);
@@ -367,10 +432,7 @@
     }
     function btnShareArchivo(frm) {
         var form = frm;
-        
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_compartirArchivo", frm, function (data) {
-            
-            
             if (data.estado) {
                 var frm = {
                     idUserFile: form.idUsuario,

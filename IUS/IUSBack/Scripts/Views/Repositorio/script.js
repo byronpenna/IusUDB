@@ -199,17 +199,19 @@
             // vista
                 $(document).on("click", ".iconoVistaCuadricula", function (e) {
                     console.log("cambio a vista cuadricula");
+                    var idVista = -1;
                     e.preventDefault();
                     if (!isSearch()) {
                         verCuadricula($(this));
                     } else {
                         vistaCuadriculaBusqueda();
                     }
-                    
+                    window.history.pushState({}, "", RAIZ + $(".txtHdNombreControlador").val() + "/" + $(".txtHdMetodo").val() + "/" + $(".txtHdIdCarpetaPadre").val() + "/" + idVista);
                 })
                 $(document).on("click", ".icoVistaLista", function (e) {
                     console.log("cambio a vista lista");
                     e.preventDefault();
+                    var idVista = 1;
                     if (!isSearch()) {
                         console.log("No buscando");
                         verLista($(this));
@@ -217,7 +219,7 @@
                         console.log("buscando");
                         vistaListaBusqueda();
                     }
-                    
+                    window.history.pushState({}, "", RAIZ + $(".txtHdNombreControlador").val() + "/" + $(".txtHdMetodo").val() + "/" + $(".txtHdIdCarpetaPadre").val() + "/" + idVista);
                 })
             // publico 
                 $(document).on("click", ".icoPublicoBack", function (e) {

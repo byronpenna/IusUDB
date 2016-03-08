@@ -1,6 +1,19 @@
-﻿/* Buscar usuario */
+﻿/*******************/
+.rowTituloUsuarioCompartidoLista{
+    border-bottom:solid 1px black;
+}
+.divCarpetaCompartidaLista{
+    padding-top:2%;
+    padding-bottom:2%;
+}
+    .divCarpetaCompartidaLista:hover {
+        background:#F5F5F5;
+    }
+/*******************/
+/* Buscar usuario */
 .folders {
     border-right: solid 5px #F5F5F5;
+
 }
 /****/
 .divUsuarioCarpeta img{
