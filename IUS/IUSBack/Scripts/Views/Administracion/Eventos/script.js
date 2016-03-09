@@ -27,9 +27,10 @@
                 }
             });
     // eventos
-
+            
             $(document).on("click", ".btnTab", function () {
                 $('#calendar').fullCalendar('rerenderEvents');
+                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id"));
             })
         // keypress    
             $(document).on("keyup", ".txtBuscarEventoNombre", function (e) {
@@ -95,7 +96,11 @@
                 rbTiempo(valTiempo,$(this));
             })
         // click
-            
+            //
+            $(document).on("click", ".spanPicture", function (e) {
+                e.preventDefault();
+            })
+            //#######
             $(document).on("click", ".btnEliminarEvento", function () {
                 var seccion = $(this).parents(".detalleEvento");
                 var frm = { idEvento: seccion.find(".txtHdIdEvento").val() }

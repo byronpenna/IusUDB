@@ -1,4 +1,13 @@
-﻿.cbFiltroTipoEvento{
+﻿/**/
+.spanPicture{
+    float:right;
+
+}
+    .spanPicture:hover {
+        color:black;
+    }
+/***/
+.cbFiltroTipoEvento{
     margin-bottom:3%;
 }
 .ui-accordion .ui-accordion-content{

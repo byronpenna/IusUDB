@@ -43,8 +43,11 @@ namespace IUSBack.Controllers
                 }
                 //return null;
             }
-            public ActionResult Eventos()
+            public ActionResult Eventos(int id)
             {
+                /*
+                 id: representa la pestaña en la que se encuentra actualmente
+                 */
                 Usuario usuarioSession = this.getUsuarioSesion();
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPaginaEventos, 4);
                 if (seguridadInicial != null)
@@ -53,11 +56,14 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
-                    ViewBag.titleModulo = "Eventos";
-                    ViewBag.usuario     = usuarioSession;
-                    ViewBag.eventos     = eventos;
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    List<Evento> eventos    = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                    ViewBag.titleModulo     = "Eventos";
+                    ViewBag.usuario         = usuarioSession;
+                    ViewBag.eventos         = eventos;
+                    ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    // variables de navegación
+                        ViewBag.nombreClass     = this._nombreClass.Replace("Controller","");
+                        ViewBag.nombreFuncion   = "Eventos";
                 }
                 catch (ErroresIUS x)
                 {
