@@ -1,1 +1,41 @@
-﻿
+﻿/*header*/
+    header{
+        margin-top:0;
+    }
+    .logoHeaderSection{
+        text-align:center;
+        padding-top:2%;
+    }
+    /* Menu */
+    .divSectionIdioma{
+        height:100px;
+        display:table;
+        text-align:center;
+    }
+    .otroDiv{
+        display:table-cell;
+        vertical-align:bottom;
+        height:50px;
+    }
+    .navPrincipal ul{
+        text-transform:uppercase;
+
+    }
+        .navPrincipal ul li {
+            padding-top:9%;
+            padding-bottom:2%;
+            height:100px;
+            width:15%;
+            text-align:center;
+        }
+            .navPrincipal ul li a {
+                color:#919191;
+                font-weight:normal;
+            }
+        .activeMenu{
+            cursor:pointer;
+            background:#cd1315;
+        }
+            .activeMenu a {
+                color:#ffffff !important;
+            }

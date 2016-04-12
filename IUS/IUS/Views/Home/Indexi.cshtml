@@ -1,5 +1,76 @@
 ﻿@{
-    ViewBag.Title = "Indexi";
+    Layout = null;
 }
+@Styles.Render("~/bundles/bootstrap")
+<link rel="stylesheet" href="~/Content/ius_theme/generals/fonts.css" />
+<link rel="stylesheet" href="~/Content/ius_theme/generals/style.css" />
 
-<h2>:D </h2>
+<link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />
+<link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/media.css" />
+
+
+<header>
+    <div class="row marginNull header">
+        <div class="col-lg-3 logoHeaderSection ">
+            <img src="@Url.Content("~/Content/images/generales/logoIus_new.png")"/>
+        </div>
+        <div class="col-lg-8">
+            
+            <div class="col-lg-2 divSectionIdioma">
+                <div class="otroDiv">
+                    <select class="cbIdioma form-control">
+                        <option>Español</option>
+                    </select>
+                </div>
+             </div>
+                    
+            
+            <div class="col-lg-10">
+                <nav class="navPrincipal">
+                    <ul>
+                        <li class="activeMenu">
+                            <a href="#" class="">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#">Conocenos</a>
+                        </li>
+                        <li>
+                            <a href="#">Instituciones</a> 
+                        </li>
+                        <li>
+                            <a href="#">Red Ius</a> 
+                        </li>
+                        <li>
+                            <a href="#">Recursos</a> 
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row marginNull">
+        <div class="col-lg-offset-8 col-lg-4">
+            <div class="col-lg-6">
+                Area privada 
+            </div>
+            <div class="col-lg-6">
+                Contacto
+            </div>
+        </div>
+    </div>
+</header>
+@Scripts.Render("~/bundles/scriptsGenerales")
+<script>
+    $(document).ready(function () {
+        // hove
+            /*$(document).on("mouseenter", ".navPrincipal li", function () {
+                console.log("entro hover");
+                $(this).find("a").css("color", "white");
+            })
+            $(document).on("mouseleave", ".navPrincipal li", function () {
+                $(this).find("a").css("color", "#919191");
+            })*/
+            
+    })
+</script>
