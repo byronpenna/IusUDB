@@ -53,7 +53,7 @@ namespace IUS.Controllers
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                return View("~/Views/Home/Index.cshtml");
+                return View("~/Views/Home/Indexi.cshtml");
                 //return "todo bien";
             }
         #endregion
