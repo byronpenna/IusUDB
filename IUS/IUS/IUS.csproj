@@ -364,6 +364,8 @@
     <Content Include="Content\ius_theme\views\Conocenos\style.css" />
     <Content Include="Content\ius_theme\views\Eventos\media.css" />
     <Content Include="Content\ius_theme\views\Eventos\style.css" />
+    <Content Include="Content\ius_theme\views\home\Indexi\media.css" />
+    <Content Include="Content\ius_theme\views\home\Indexi\style.css" />
     <Content Include="Content\ius_theme\views\home\media.css" />
     <Content Include="Content\ius_theme\views\home\style.css" />
     <Content Include="Content\ius_theme\views\Informacion\general\style.css" />
@@ -649,6 +651,7 @@
     <Content Include="Views\Instituciones\FichaInstitucion.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\LostPass.cshtml" />
+    <Content Include="Views\Home\Indexi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

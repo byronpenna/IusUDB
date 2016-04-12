@@ -183,13 +183,6 @@ namespace IUSLibs.RRHH.Control.Laboral
                                     institucion = new Institucion((int)row["idInstitucion"], row["nombre"].ToString());
                                     instituciones.Add(institucion);
                                 }
-                                
-                                /*empresas = new List<Empresa>();
-                                foreach (DataRow row in tb[0].Rows)
-                                {
-                                    empresa = new Empresa((int)row["idEmpresa"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_rubro_fk"]);
-                                    empresas.Add(empresa);
-                                }*/
                             }
                             if (tb[1].Rows.Count > 0)
                             {

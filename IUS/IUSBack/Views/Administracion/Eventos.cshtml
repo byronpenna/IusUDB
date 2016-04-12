@@ -30,14 +30,18 @@
 }
 @section tabs{
     <ul>
-        <li class="btnTab tabActive" target="#tab-1">
+        <li class="btnTab tabActive" id="1" target="#tab-1">
             Eventos
         </li>
-        <li class="tbCompartir btnTab" target="#tab-2">
+        <li class="tbCompartir btnTab" id="2" target="#tab-2">
             Compartir
         </li>
     </ul>
 }
+@*inputs hidden generales*@
+    <input type="hidden" class="txtHdNombreClass"   value="@ViewBag.nombreClass" />
+    <input type="hidden" class="txtHdFuncion"       value="@ViewBag.nombreFuncion"/>
+@*#############################*@>
 <div id="tab-1" class="row seccion tab">
     <div class="col-lg-4">
         <form id="frmAgregarEvento">
@@ -173,6 +177,10 @@
                         <h3 class="tabDesplegableEvento nombreEvento @evento.txtClaseColor ">
                             <span class="spanNombreEvento">@evento._evento</span>
                             <input type="hidden" name="txtHdTipoEvento" class="txtHdTipoEvento" value="@evento._propietario" />
+                            <span class="spanPicture">
+                                <i class="fa fa-picture-o"></i>
+                            </span>
+                            
                         </h3>
                         <div class="tabDesplegableEvento detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
