@@ -50,10 +50,10 @@
         <div class="centroPagina">
             <div class="col-lg-offset-8 col-lg-4">
                 <div class="col-lg-6">
-                    Área privada
+                    <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/user.png")" /> Área privada
                 </div>
                 <div class="col-lg-6">
-                    Contacto
+                    <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> Contacto
                 </div>
             </div>
         </div>
@@ -91,15 +91,77 @@
 </div>
 <div class="row marginNull seccionNoticiaEvento">
     <div class="centroPagina">
-        <h2>Noticias / Eventos </h2>
+        <h2 class="tituloSeccionNoticiaEvento">Noticias / Eventos </h2>
         <div class="row marginNull notiEve">
-            <div class="col-lg-6">
-                <img />
+            <div class="col-lg-6 contentImgNotiEve">
+                <img src="@Url.Content("~/Content/images/views/Home/noticias/1.png")" />
+            </div>
+            <div class="col-lg-6 seccionContenidoNotiEve">
+                
+                <div class="contenido">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing
+                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam Lorem ipsum dolor sit amet.
+                    </p>
+                    <div class="divLinkNotiEve">
+                        <a class="aLeerMas" href="#">Leer mas>>></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row marginNull notiEve">
+            <div class="col-lg-6 contentImgNotiEve">
+                <img src="@Url.Content("~/Content/images/views/Home/noticias/2.png")" />
+            </div>
+            <div class="col-lg-6 seccionContenidoNotiEve">
+                <div class="contenido">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing
+                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam Lorem ipsum dolor sit amet.
+                    </p>
+                    <div class="divLinkNotiEve">
+                        <a class="aLeerMas" href="#">Leer mas>>></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row marginNull notiEve">
+            <div class="col-lg-6 contentImgNotiEve">
+                <img src="@Url.Content("~/Content/images/views/Home/noticias/3.png")" />
+            </div>
+            <div class="col-lg-6 seccionContenidoNotiEve">
+                <div class="contenido">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing
+                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam Lorem ipsum dolor sit amet.
+                    </p>
+                    <div class="divLinkNotiEve">
+                        <a class="aLeerMas" href="#">Leer mas>>></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
 </div>
+<footer class="footer">
+    <div class="row marginNull text-center centroPagina">
+        <div class="col-lg-4 divImgFooter">
+            <img src="@Url.Content("~/Content/images/generales/logoIus_new.png")" />
+        </div>
+        <div class="col-lg-6 footerText">
+            <div class="row marginNull">Instituciones salesianas de educación superior</div>
+            <div class="row marginNull">2016 derechos reservados</div>
+            <div class="row marginNull">Desarrollado por: ctic el salvador</div>
+        </div>
+    </div>
+</footer>
 @Scripts.Render("~/bundles/scriptsGenerales")
 <script>
     $(document).ready(function () {
