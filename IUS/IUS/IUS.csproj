@@ -319,6 +319,10 @@
     <Content Include="Content\images\views\Conocenos\santisimo.jpg" />
     <Content Include="Content\images\views\Conocenos\tiempo.jpg" />
     <Content Include="Content\images\views\eventos\noevento.png" />
+    <Content Include="Content\images\views\Home\Bloques\identidad.png" />
+    <Content Include="Content\images\views\Home\Bloques\instituciones.png" />
+    <Content Include="Content\images\views\Home\Bloques\recursos.png" />
+    <Content Include="Content\images\views\Home\Bloques\redIus.png" />
     <Content Include="Content\images\views\Home\Slider\1.png" />
     <Content Include="Content\images\views\Instituciones\africa.png" />
     <Content Include="Content\images\views\Instituciones\america.png" />
