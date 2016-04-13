@@ -19,6 +19,15 @@
     font-family:'junctionp';
     src:url("../../fonts/junction/junction-regular.ttf");
 }   
+/* MyriadPro */
+@font-face{
+    font-family:'MyriadRegular';
+    src:url("../../fonts/MyriadPro/MyriadPro-regular.otf");
+}   
+@font-face{
+    font-family:'MyriadBold';
+    src:url("../../fonts/MyriadPro/MyriadPro-regular.otf");
+}   
 /*
 @font-face{
     font-family:'trackp';

@@ -1,4 +1,8 @@
-﻿/*header*/
+﻿.centroPagina{
+    width:85%;
+    margin:0 auto;
+}
+/*header*/
     header{
         margin-top:0;
     }
@@ -6,6 +10,7 @@
         text-align:center;
         padding-top:2%;
     }
+        
     /* Menu */
     .divSectionIdioma{
         height:100px;
@@ -25,7 +30,7 @@
             padding-top:9%;
             padding-bottom:2%;
             height:100px;
-            width:15%;
+            width:18%;
             text-align:center;
         }
             .navPrincipal ul li a {
@@ -39,3 +44,33 @@
             .activeMenu a {
                 color:#ffffff !important;
             }
+    /**/
+    .subSeccion{
+        font-family:MyriadRegular;
+        text-transform:uppercase;
+        color:#828181;
+        margin-bottom:1%;
+    }
+    .rowSearch{
+        background:#eeecec;
+        padding-top:1%;
+        padding-bottom:1%;
+
+    }
+    .inputSearch{
+        border-radius:20px;
+    }
+    /*Slider*/
+    .rowSlider img{
+        width:100%;
+    }
+    .bloque h2{
+        background:#cd1315;
+        padding-top:3%;
+        padding-bottom:3%;
+        padding-left:3%;
+        color:#ffffff;
+        text-transform:uppercase;
+        font-family:"MyriadRegular";
+    }
+    /**/

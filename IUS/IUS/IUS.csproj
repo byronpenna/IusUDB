@@ -319,6 +319,7 @@
     <Content Include="Content\images\views\Conocenos\santisimo.jpg" />
     <Content Include="Content\images\views\Conocenos\tiempo.jpg" />
     <Content Include="Content\images\views\eventos\noevento.png" />
+    <Content Include="Content\images\views\Home\Slider\1.png" />
     <Content Include="Content\images\views\Instituciones\africa.png" />
     <Content Include="Content\images\views\Instituciones\america.png" />
     <Content Include="Content\images\views\Instituciones\asia-f.png" />
@@ -545,6 +546,16 @@
     <Content Include="Content\ius_theme\generals\ThirdParty\FontAwesome\scss\_rotated-flipped.scss" />
     <Content Include="Content\ius_theme\generals\ThirdParty\FontAwesome\scss\_stacked.scss" />
     <Content Include="Content\ius_theme\generals\ThirdParty\FontAwesome\scss\_variables.scss" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-Bold.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-BoldCond.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-BoldCondIt.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-BoldIt.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-Cond.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-CondIt.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-It.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-Regular.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-Semibold.otf" />
+    <Content Include="Content\fonts\MyriadPro\MyriadPro-SemiboldIt.otf" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <None Include="Scripts\Asp_default\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Asp_default\jquery-1.8.2.js" />

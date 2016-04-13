@@ -10,21 +10,18 @@
 
 
 <header>
-    <div class="row marginNull header">
+    <div class="row marginNull header centroPagina">
         <div class="col-lg-3 logoHeaderSection ">
-            <img src="@Url.Content("~/Content/images/generales/logoIus_new.png")"/>
+            <img src="@Url.Content("~/Content/images/generales/logoIus_new.png")" />
         </div>
-        <div class="col-lg-8">
-            
+        <div class="col-lg-9">
             <div class="col-lg-2 divSectionIdioma">
                 <div class="otroDiv">
                     <select class="cbIdioma form-control">
                         <option>Español</option>
                     </select>
                 </div>
-             </div>
-                    
-            
+            </div>
             <div class="col-lg-10">
                 <nav class="navPrincipal">
                     <ul>
@@ -35,31 +32,54 @@
                             <a href="#">Conocenos</a>
                         </li>
                         <li>
-                            <a href="#">Instituciones</a> 
+                            <a href="#">Instituciones</a>
                         </li>
                         <li>
-                            <a href="#">Red Ius</a> 
+                            <a href="#">Red Ius</a>
                         </li>
                         <li>
-                            <a href="#">Recursos</a> 
+                            <a href="#">Recursos</a>
                         </li>
                     </ul>
                 </nav>
             </div>
-            
+
         </div>
     </div>
-    <div class="row marginNull">
-        <div class="col-lg-offset-8 col-lg-4">
-            <div class="col-lg-6">
-                Area privada 
+    <div class="row marginNull subSeccion">
+        <div class="centroPagina">
+            <div class="col-lg-offset-8 col-lg-4">
+                <div class="col-lg-6">
+                    Área privada
+                </div>
+                <div class="col-lg-6">
+                    Contacto
+                </div>
             </div>
-            <div class="col-lg-6">
-                Contacto
-            </div>
+        </div>
+    </div>
+    <div class="row marginNull rowSearch">
+        <div class="col-lg-offset-8 col-lg-2">
+
+            <input type="text" class="form-control inputSearch"/>
         </div>
     </div>
 </header>
+<div class="row marginNull rowSlider">
+    <img src="@Url.Content("~/Content/images/views/Home/Slider/1.png")"/>
+</div>
+<div class="row marginNull">
+    <div class="centroPagina">
+        <div class="col-lg-6 bloque">
+            <h2>Instituciones</h2>
+            <img src="@Url.Content("")" />
+        </div>
+        <div class="col-lg-6 bloque">
+            <h2>Recursos</h2>
+        </div>
+    </div>
+    
+</div>
 @Scripts.Render("~/bundles/scriptsGenerales")
 <script>
     $(document).ready(function () {
