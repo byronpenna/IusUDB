@@ -103,6 +103,7 @@
     <Compile Include="ADMINFE\Entidades\SliderImage.cs" />
     <Compile Include="ADMINFE\Entidades\UsuarioEvento.cs" />
     <Compile Include="ADMINFE\Entidades\Valor.cs" />
+    <Compile Include="ADMINFE\Pantalla\PantallaHome.cs" />
     <Compile Include="BaseDatos\Parametro.cs" />
     <Compile Include="BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />

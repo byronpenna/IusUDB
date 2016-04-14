@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using IUS.Models.general;
+// otros modelos
+    using IUS.Models.Entidades;
+// manejo de datos
+    using System.Data.Sql;
+    using System.Data.SqlClient;
+    using System.Data;
 // capa de librerias
     using IUSLibs.TRL.Control;
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades;
     using IUSLibs.ADMINFE.Control;
+    using IUSLibs.ADMINFE.Pantalla;
     //
     using IUSLibs.FrontUI.Eventos.Control;
 namespace IUS.Models.page.home.acciones
@@ -24,6 +31,35 @@ namespace IUS.Models.page.home.acciones
             #endregion
         #endregion
         #region "funciones"
+                public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
+                {
+                    try
+                    {
+                        PantallaHome pantalla = new PantallaHome();
+                        List<NoticiaEvento> noticiasEventos = null;
+                        NoticiaEvento notiEvento;
+                        DataRowCollection rows = pantalla.sp_adminfe_front_pantallaHome(n,ip,idPagina);
+                        if (rows.Count > 0)
+                        {
+                            noticiasEventos = new List<NoticiaEvento>();
+                            foreach (DataRow row in rows)
+                            {
+                                notiEvento = new NoticiaEvento((int)row["id"], row["titulo"].ToString(), row["descripcion"].ToString(), (int)row["tipoEntrada"]);
+                                noticiasEventos.Add(notiEvento);
+                            }
+                        }
+                        return noticiasEventos;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+            
             public List<Evento> sp_adminfe_front_getMonthEvents(string ip,int idPagina)
             {
                 

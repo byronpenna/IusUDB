@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
 // librerias externas
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades.Noticias;
@@ -18,6 +19,7 @@ namespace IUS.Models.general
             private string _lang;
         #endregion
         #region "funciones"
+            
             #region "getTopNoticias"
                 public List<Post> sp_adminfe_front_getTopNoticias(int n,string userLang="")
                 {

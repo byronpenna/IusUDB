@@ -202,6 +202,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Entidades\NoticiaEvento.cs" />
     <Compile Include="Models\general\ModeloPadre.cs" />
     <Compile Include="Models\page\Conocenos\Acciones\ConocenosModel.cs" />
     <Compile Include="Models\page\Errors\Acciones\ErrorModel.cs" />

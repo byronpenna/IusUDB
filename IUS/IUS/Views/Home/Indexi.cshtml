@@ -1,5 +1,8 @@
-﻿@{
+﻿@using IUS.Models.Entidades
+@{
     Layout = null;
+    List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
+    
 }
 @Styles.Render("~/bundles/bootstrap")
 <link rel="stylesheet" href="~/Content/ius_theme/generals/fonts.css" />
@@ -60,7 +63,6 @@
     </div>
     <div class="row marginNull rowSearch">
         <div class="col-lg-offset-8 col-lg-2">
-
             <input type="text" class="form-control inputSearch"/>
         </div>
     </div>
@@ -92,7 +94,44 @@
 <div class="row marginNull seccionNoticiaEvento">
     <div class="centroPagina">
         <h2 class="tituloSeccionNoticiaEvento">Noticias / Eventos </h2>
-        <div class="row marginNull notiEve">
+        @if (noticiasEventos.Count > 0)
+        {
+            int cn = 1;string url;
+            foreach (NoticiaEvento noticiaEvento in noticiasEventos)
+            {
+                if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Evento)
+                {
+                    url = Url.Action("Index", "Evento");
+                }
+                else if(noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia )
+                {
+                    url = Url.Action("Index", "Noticias", new { id = noticiaEvento._id });
+                }
+                else
+                {
+                    url = "";
+                }
+                <div class="row marginNull notiEve">
+                    <input class="txtHdTipoEntra" type="hidden" value="@noticiaEvento._idTipoEntrada" />
+                    <div class="col-lg-6 contentImgNotiEve">
+                        <img src="@Url.Content("~/Content/images/views/Home/noticias/"+cn+".png")" />
+                    </div>
+                    <div class="col-lg-6 seccionContenidoNotiEve">
+                        <div class="contenido">
+                            <h4>@noticiaEvento._titulo</h4>
+                            <p>
+                                @noticiaEvento._descripcion
+                            </p>
+                            <div class="divLinkNotiEve">
+                                <a class="aLeerMas" href="@url">Leer mas>>></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                cn++;
+            }    
+        }
+        @*<div class="row marginNull notiEve">
             <div class="col-lg-6 contentImgNotiEve">
                 <img src="@Url.Content("~/Content/images/views/Home/noticias/1.png")" />
             </div>
@@ -147,7 +186,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 </div>
 <footer class="footer">

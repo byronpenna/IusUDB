@@ -35,6 +35,7 @@ namespace IUS.Controllers
                     }*/
                     ViewBag.usuarioSession  = this.getUsuarioSession();
                     ViewBag.slider          = this._model.sp_front_getSliderFromPage(this.idPagina);
+                    
                     string lang             = this.getUserLang();
                     ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones            = this._model.getTraduccion(lang,this.idPagina);
@@ -42,6 +43,7 @@ namespace IUS.Controllers
                     ViewBag.eventos         = this._model.sp_adminfe_front_getMonthEvents(ip, this.idPagina);
                     this.setTraduccion(traducciones);
                     ViewBag.menu11 = this.activeClass;
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
                 }catch(ErroresIUS x){
                     ErrorsController error = new ErrorsController();
                     var obj = error.redirectToError(x);
