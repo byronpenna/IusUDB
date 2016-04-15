@@ -13,6 +13,7 @@
             $(document).on("mouseleave", ".hoverEventNoti", function () {
                 $(this).find(".divHoverNotiEve").stop();
                 $(this).find(".text-tituloNotiEve").stop();
+
                 $(this).find(".divHoverNotiEve").fadeOut("slow");
                 $(this).find(".text-tituloNotiEve").fadeOut("slow");
                 //$(this).finish();
