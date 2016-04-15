@@ -44,11 +44,12 @@ namespace IUSLibs.BaseDatos
         #region "Constructores"
         public ConexionIUS()
         {
-            this.servidor = "PROGRAMADOR";
+            /*this.servidor = "PROGRAMADOR";
             this.db = "IUS";
             this.usuario = "sa";
             this.password = "123456";
             this.SSPI = false;
+             * */
             /*
             this.servidor = "168.243.3.62";
             this.db = "IUSDEV";
@@ -56,13 +57,13 @@ namespace IUSLibs.BaseDatos
             this.password = "123456";
             this.SSPI = false;
              */
-            /*
+            
             this.servidor = "168.243.3.62";
             this.db = "IUS";
-            this.usuario = "IUS";
+            this.usuario = "desarrollo";
             this.password = "123456";
             this.SSPI = false;
-            */
+            
             try
             {
                 string strConexion = this.getStrConexion();
