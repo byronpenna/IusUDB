@@ -592,6 +592,8 @@
     <Content Include="Scripts\views\Eventos\functions.js" />
     <Content Include="Scripts\views\Eventos\script.js" />
     <Content Include="Scripts\views\Home\functions.js" />
+    <Content Include="Scripts\views\Home\Indexi\functions.js" />
+    <Content Include="Scripts\views\Home\Indexi\script.js" />
     <Content Include="Scripts\views\Home\script.js" />
     <Content Include="Scripts\views\Instituciones\functions.js" />
     <Content Include="Scripts\views\Instituciones\script.js" />

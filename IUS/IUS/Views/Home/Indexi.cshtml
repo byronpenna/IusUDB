@@ -113,11 +113,11 @@
                 }
                 <div class="row marginNull notiEve">
                     <input class="txtHdTipoEntra" type="hidden" value="@noticiaEvento._idTipoEntrada" />
-                    <div class="col-lg-6 contentImgNotiEve">
-                        <div class="divHoverNotiEve">
-                            <div>Noticia</div>
+                    <div class="col-lg-6 contentImgNotiEve hoverEventNoti">
+                        <div class="text-tituloNotiEve" style="display:none;">Noticia</div>
+                        <div class="divHoverNotiEve" style="display:none;">
                         </div>
-                        <img src="@Url.Content("~/Content/images/views/Home/noticias/"+cn+".png")" />
+                        <img class="imgNotiEve" src="@Url.Content("~/Content/images/views/Home/noticias/"+cn+".png")" />
                     </div>
                     <div class="col-lg-6 seccionContenidoNotiEve">
                         <div class="contenido">
@@ -205,16 +205,5 @@
     </div>
 </footer>
 @Scripts.Render("~/bundles/scriptsGenerales")
-<script>
-    $(document).ready(function () {
-        // hove
-            /*$(document).on("mouseenter", ".navPrincipal li", function () {
-                console.log("entro hover");
-                $(this).find("a").css("color", "white");
-            })
-            $(document).on("mouseleave", ".navPrincipal li", function () {
-                $(this).find("a").css("color", "#919191");
-            })*/
-            
-    })
-</script>
+<script src="~/Scripts/views/Home/Indexi/script.js"></script>
+<script src="~/Scripts/views/Home/Indexi/functions.js"></script>
