@@ -256,6 +256,13 @@ select:focus{ outline: none;}
         font-size:1em;
         color:#929292;
     }
+    .linkAreaPrivada{
+        color:#8c8b8b;
+    }
+        .linkAreaPrivada:hover {
+            text-decoration:none;
+            color:#8c8b8b;
+        }
     .imgIcoHeader{
         margin-right:2%;
     }

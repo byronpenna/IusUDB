@@ -37,19 +37,19 @@
                 <nav class="navPrincipal">
                     <ul>
                         <li class="activeMenu">
-                            <a href="#" class="">Inicio</a>
+                            <a href="@Url.Action("Index", "Home")" class="">Inicio</a>
                         </li>
                         <li>
-                            <a href="#">Conocenos</a>
+                            <a href="@Url.Action("Index","Conocenos")">Conocenos</a>
                         </li>
                         <li>
-                            <a href="#">Instituciones</a>
+                            <a href="@Url.Action("Index","Instituciones")">Instituciones</a>
                         </li>
                         <li>
                             <a href="#">Red Ius</a>
                         </li>
                         <li>
-                            <a href="#">Recursos</a>
+                            <a href="@Url.Action("Index","Repositorio")">Recursos</a>
                         </li>
                     </ul>
                 </nav>
@@ -61,7 +61,9 @@
         <div class="centroPagina">
             <div class="col-lg-offset-8 col-lg-4">
                 <div class="col-lg-6">
-                    <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/user.png")" /> Área privada
+                    <a class="linkAreaPrivada" href="@Url.Action("Index", "Login")">
+                        <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/user.png")" /> Área privada
+                    </a>
                 </div>
                 <div class="col-lg-6">
                     <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> Contacto
