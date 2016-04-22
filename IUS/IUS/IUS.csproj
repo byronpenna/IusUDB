@@ -298,6 +298,7 @@
     <Content Include="Content\images\generales\image-color.png" />
     <Content Include="Content\images\generales\logoIus_new.png" />
     <Content Include="Content\images\generales\logo_IUS.ico" />
+    <Content Include="Content\images\generales\lupita.png" />
     <Content Include="Content\images\generales\profle.png" />
     <Content Include="Content\images\generales\tmp\don-bosco.png" />
     <Content Include="Content\images\generales\hamburguerButton.png" />

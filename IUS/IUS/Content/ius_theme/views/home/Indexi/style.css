@@ -1,4 +1,12 @@
-﻿.caja {
+﻿.cbIdioma{
+    text-transform:uppercase;
+    color:#d0cfcf;
+    font-family:'MyriadRegular'
+}
+.inputSearchDiv{
+    margin-bottom:0;
+}
+.caja {
    margin:20px auto 40px auto;	
    border:1px solid #cd1315;
    height:30px;
@@ -7,6 +15,10 @@
    position:relative;
    display:table-cell;
    vertical-align:bottom;
+}
+.icoSearch{
+    top:17%;
+    right:2%;
 }
 select {
    background: transparent;
@@ -64,13 +76,14 @@ select:focus{ outline: none;}
         display:table;
         text-align:center;
     }
-    .divSectionIdioma span{
+    .divSectionIdioma .tituloIdioma{
         text-transform:uppercase;
         color:#b6b5b5;
         margin-right:3%;
         font-weight:bold;
-        margin-bottom:5px;
-
+        position:relative;
+        bottom:10px;
+        display:inline-block;
     }
     .otroDiv{
         display:table-cell;
@@ -86,9 +99,9 @@ select:focus{ outline: none;}
 
     }
         .navPrincipal ul li {
-            padding-top:15%;
+            padding-top:12%;
             padding-bottom:2%;
-            height:100px;
+            height:90px;
             width:19%;
             text-align:center;
         }
@@ -148,6 +161,12 @@ select:focus{ outline: none;}
         width:100%;
     }
     /**/
+    .colTituloNoticia{
+        padding:0;
+        border-bottom:solid #cd1315 1px;
+        padding-bottom:1%;
+        
+    }
     .seccionNoticiaEvento{
         padding-top:10%;
         padding-bottom:10%;
@@ -157,7 +176,11 @@ select:focus{ outline: none;}
         font-family:"MyriadRegular";
     }
     .tituloSeccionNoticiaEvento{
+        margin:0;
         margin-left:3%;
+        /*border-bottom:solid;*/
+        font-family:'Myriad Pro';
+        text-transform:uppercase;
     }
     .divLinkNotiEve{
         width:100%;
@@ -187,6 +210,7 @@ select:focus{ outline: none;}
         display:table;
         /*background:pink;*/
         min-height:200px;
+        padding-left:4%;
     }
     .seccionContenidoNotiEve .contenido{
         display:table-cell;
@@ -217,7 +241,8 @@ select:focus{ outline: none;}
     .footer{
         padding-top:8%;
         background:#dddbdb;
-        padding-bottom:20%;
+        padding-bottom:12%;
+        margin-bottom:3%;
     }
         .footer img {
             -webkit-filter: grayscale(100%);

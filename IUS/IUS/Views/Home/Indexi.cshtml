@@ -20,7 +20,7 @@
         <div class="col-lg-9">
             <div class="col-lg-4 divSectionIdioma ">
                 <div class="otroDiv">
-                    <span>Idioma</span>
+                    <div class="tituloIdioma">Idioma</div>
                     <div class="padreCaja">
                         <div class="cajaArriba">
                             <div class="caja">
@@ -71,7 +71,14 @@
     </div>
     <div class="row marginNull rowSearch">
         <div class="col-lg-offset-8 col-lg-2">
-            <input type="text" class="form-control inputSearch"/>
+            @*<input type="text" class="form-control inputSearch"/>*@
+            <div class="form-group has-feedback inputSearchDiv">
+                @*<input type="text" class="form-control" placeholder="Username" />*@
+                <input type="text" class="form-control inputSearch" />
+                <i class="glyphicon form-control-feedback icoSearch">
+                    <img src="@Url.Content("~/Content/images/generales/lupita.png")" />
+                </i>
+            </div>
         </div>
     </div>
 </header>
@@ -101,7 +108,11 @@
 </div>
 <div class="row marginNull seccionNoticiaEvento">
     <div class="centroPagina">
-        <h2 class="tituloSeccionNoticiaEvento">Noticias / Eventos </h2>
+        <div class="row marginNull">
+            <div class="col-lg-6 colTituloNoticia">
+                <h2 class="tituloSeccionNoticiaEvento">Noticias / Eventos </h2>
+            </div>
+        </div>
         @if (noticiasEventos.Count > 0)
         {
             int cn = 1;string url; string tituloHover = "";
