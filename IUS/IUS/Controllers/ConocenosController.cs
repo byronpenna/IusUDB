@@ -31,6 +31,8 @@ namespace IUS.Controllers
                 {
                     ViewBag.usuarioSession = this.getUsuarioSession();
                     string lang = this.getUserLang();
+                    string ip = Request.UserHostAddress;
+                    ViewBag.notiEvento = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
                     //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
@@ -41,7 +43,7 @@ namespace IUS.Controllers
                     traducciones = this._model.getTraduccion(lang, this._idPaginaSalesianos);
                     this.setTraduccion(traducciones);
 
-                    ViewBag.menu21 = this.activeClass;
+                    ViewBag.menu12 = this.activeClass;
                     ViewBag.seleccionado = id;
                 }
                 catch (ErroresIUS x)
@@ -52,7 +54,7 @@ namespace IUS.Controllers
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                return View();
+                return View("~/Views/Conocenos/Indexi.cshtml");
             }
         #endregion
         #region "acciones ajax"
@@ -76,6 +78,7 @@ namespace IUS.Controllers
                                 respuesta   = new Dictionary<object, object>();
                         int     idPagina    = -1;
                         string  ip          = Request.UserHostAddress;
+                        ViewBag.menu12      = this.activeClass;
                         switch(this.convertObjAjaxToInt(frm["idSeleccion"])){
                             case 1:{
                                 idPagina = this._idPaginaHistoria;

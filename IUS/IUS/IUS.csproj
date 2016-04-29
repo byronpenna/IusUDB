@@ -347,7 +347,9 @@
     <Content Include="Content\images\views\Repositorio\wordico.png" />
     <Content Include="Content\ius_theme\generals\fonts.css" />
     <Content Include="Content\ius_theme\generals\media.css" />
+    <Content Include="Content\ius_theme\generals\mediai.css" />
     <Content Include="Content\ius_theme\generals\style.css" />
+    <Content Include="Content\ius_theme\generals\stylei.css" />
     <Content Include="Content\ius_theme\generals\ThirdParty\FontAwesome\css\font-awesome.css" />
     <Content Include="Content\ius_theme\generals\ThirdParty\FontAwesome\css\font-awesome.min.css" />
     <Content Include="Content\ius_theme\generals\ThirdParty\FontAwesome\fonts\fontawesome-webfont.svg" />
@@ -677,6 +679,10 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\LostPass.cshtml" />
     <Content Include="Views\Home\Indexi.cshtml" />
+    <Content Include="Views\Conocenos\Indexi.cshtml" />
+    <Content Include="Views\Shared\_Layouti.cshtml" />
+    <Content Include="Views\Shared\menui.cshtml" />
+    <Content Include="Views\Shared\footeri.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

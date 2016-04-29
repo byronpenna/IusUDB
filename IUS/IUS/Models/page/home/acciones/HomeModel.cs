@@ -60,23 +60,7 @@ namespace IUS.Models.page.home.acciones
                     }
                 }
             
-            public List<Evento> sp_adminfe_front_getMonthEvents(string ip,int idPagina)
-            {
-                
-                try
-                {
-                    ControlEventos control = new ControlEventos();
-                    return control.sp_adminfe_front_getMonthEvents(ip, idPagina);
-                }
-                catch (ErroresIUS x)
-                {
-                    throw x;
-                }
-                catch (Exception x) {
-                    throw x;
-                }
-
-            }
+            
             public Idioma sp_trl_getIdiomaFromIds(int idIdioma)
             {
                 try

@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+// internas
+    using IUS.Models.Entidades;
+// data
+    using System.Data;
 // librerias externas
     using IUSLibs.LOGS;
     using IUSLibs.ADMINFE.Entidades.Noticias;
     using IUSLibs.ADMINFE.Control.Noticias;
     using IUSLibs.TRL.Control;
     using IUSLibs.TRL.Entidades;
+    using IUSLibs.ADMINFE.Pantalla;
 namespace IUS.Models.general 
 {
     public class ModeloPadre
@@ -19,7 +23,34 @@ namespace IUS.Models.general
             private string _lang;
         #endregion
         #region "funciones"
-            
+            public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
+            {
+                try
+                {
+                    PantallaHome pantalla = new PantallaHome();
+                    List<NoticiaEvento> noticiasEventos = null;
+                    NoticiaEvento notiEvento;
+                    DataRowCollection rows = pantalla.sp_adminfe_front_pantallaHome(n, ip, idPagina);
+                    if (rows.Count > 0)
+                    {
+                        noticiasEventos = new List<NoticiaEvento>();
+                        foreach (DataRow row in rows)
+                        {
+                            notiEvento = new NoticiaEvento((int)row["id"], row["titulo"].ToString(), row["descripcion"].ToString(), (int)row["tipoEntrada"]);
+                            noticiasEventos.Add(notiEvento);
+                        }
+                    }
+                    return noticiasEventos;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             #region "getTopNoticias"
                 public List<Post> sp_adminfe_front_getTopNoticias(int n,string userLang="")
                 {
