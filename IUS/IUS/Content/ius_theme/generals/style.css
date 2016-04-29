@@ -110,6 +110,7 @@ header{
         padding-right:2%;
         vertical-align:middle;
         text-align:center;
+        font-size:1em;
     }
     .liSeach{
         width: 25%;
@@ -118,9 +119,6 @@ header{
         color:white;
         font-weight:bold;
         font-family:'trackp';
-    }
-    nav ul li {
-        font-size:1em;
     }
     .menu{
         background:#D4242F;

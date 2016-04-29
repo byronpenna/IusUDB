@@ -288,6 +288,7 @@
     <Content Include="Content\images\generales\calendarionum\8.png" />
     <Content Include="Content\images\generales\calendarionum\9.png" />
     <Content Include="Content\images\generales\chat.png" />
+    <Content Include="Content\images\generales\conocenos\img.png" />
     <Content Include="Content\images\generales\fondo_gris.png" />
     <Content Include="Content\images\generales\ico\clock.png" />
     <Content Include="Content\images\generales\ico\contacts.png" />
@@ -376,7 +377,9 @@
     <Content Include="Content\ius_theme\generals\ThirdParty\jquery-ui\smoothness\jquery-ui.theme.css" />
     <Content Include="Content\ius_theme\generals\ThirdParty\jquery-ui\smoothness\jquery-ui.theme.min.css" />
     <Content Include="Content\ius_theme\views\Conocenos\media.css" />
+    <Content Include="Content\ius_theme\views\Conocenos\mediai.css" />
     <Content Include="Content\ius_theme\views\Conocenos\style.css" />
+    <Content Include="Content\ius_theme\views\Conocenos\stylei.css" />
     <Content Include="Content\ius_theme\views\Eventos\media.css" />
     <Content Include="Content\ius_theme\views\Eventos\style.css" />
     <Content Include="Content\ius_theme\views\home\Indexi\media.css" />

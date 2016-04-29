@@ -106,8 +106,20 @@ select:focus{ outline: none;}
     }
     .navPrincipal ul{
         text-transform:uppercase;
-
+        padding:0;
+        margin:0;
     }
+         nav ul li{
+            margin:0;
+            padding-left:2%;
+            padding-right:2%;
+            vertical-align:middle;
+            text-align:center;
+            font-size:1em;
+        }
+        nav ul li a:hover, .menu2 ul li a:hover {
+            text-decoration:none;
+        }
         .navPrincipal ul li {
             padding-top:12%;
             padding-bottom:2%;
@@ -120,7 +132,8 @@ select:focus{ outline: none;}
         }
             .navPrincipal ul li a {
                 color:#919191;
-                font-weight:normal;
+                /*font-weight:normal;*/
+                font-weight:bold;
                 font-size:0.8em;
             }
         .activeMenu{
