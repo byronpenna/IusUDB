@@ -288,7 +288,8 @@
     <Content Include="Content\images\generales\calendarionum\8.png" />
     <Content Include="Content\images\generales\calendarionum\9.png" />
     <Content Include="Content\images\generales\chat.png" />
-    <Content Include="Content\images\generales\conocenos\img.png" />
+    <Content Include="Content\images\generales\conocenos\historia.png" />
+    <Content Include="Content\images\generales\conocenos\identidad.png" />
     <Content Include="Content\images\generales\fondo_gris.png" />
     <Content Include="Content\images\generales\ico\clock.png" />
     <Content Include="Content\images\generales\ico\contacts.png" />
