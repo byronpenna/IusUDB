@@ -124,7 +124,9 @@ namespace IUS.Controllers
                         
                         traducciones = this._model.getTraduccion(lang,idPagina);
                         respuesta = this.getDicTraduccion(traducciones,respuesta);
+                        respuesta.Add("urlImage", Url.Content("~/Content/images/generales/conocenos/"));
                         respuesta.Add("estado", true);
+
                         //respuesta.Add("traducciones", traducciones);
                     }
                     catch (ErroresIUS x)

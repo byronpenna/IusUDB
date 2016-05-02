@@ -21,6 +21,7 @@
             if (data.estado) {
                 $(".tituloContenidoConocenos").empty().append(data.Titulo);
                 $(".divCuerpoConocenos").empty().append(data.Cuerpo);
+                $(".imgPrincipal").attr("src", data.urlImage+frm.idSeleccion+".png");
             }
         }, function () {
             var div = "\
