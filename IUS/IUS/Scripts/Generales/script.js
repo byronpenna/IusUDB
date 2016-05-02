@@ -37,13 +37,5 @@
                     ulMenu.show();
                 }
             });
-        // change
-            
-            $(document).on("change", ".cbIdioma", function () {
-                idIdioma = $(this).val();
-                console.log("entro");
-                if (idIdioma != -1 && idIdioma > 0) {
-                    cbIdioma(idIdioma);
-                }
-            })
+        
 });

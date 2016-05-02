@@ -4,13 +4,14 @@
     List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
     
 }
-@Styles.Render("~/bundles/bootstrap")
-<link rel="stylesheet" href="~/Content/ius_theme/generals/fonts.css" />
-<link rel="stylesheet" href="~/Content/ius_theme/generals/style.css" />
-
-<link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />
-<link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/media.css" />
-
+@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/media.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Home/Indexi/script.js"></script>
+    <script src="~/Scripts/views/Home/Indexi/functions.js"></script>
+}
 
 
 <div class="row marginNull rowSlider">
@@ -37,126 +38,3 @@
     </div>
     
 </div>
-<div class="row marginNull seccionNoticiaEvento">
-    <div class="centroPagina">
-        <div class="row marginNull">
-            <div class="col-lg-6 colTituloNoticia">
-                <h2 class="tituloSeccionNoticiaEvento">Noticias / Eventos </h2>
-            </div>
-        </div>
-        @if (noticiasEventos.Count > 0)
-        {
-            int cn = 1;string url; string tituloHover = "";
-            foreach (NoticiaEvento noticiaEvento in noticiasEventos)
-            {
-                
-                if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Evento)
-                {
-                    tituloHover = "Evento";
-                    url = Url.Action("Index", "Evento");
-                }
-                else if(noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia )
-                {
-                    tituloHover = "Noticia";
-                    url = Url.Action("Index", "Noticias", new { id = noticiaEvento._id });
-                }
-                else
-                {
-                    url = "";
-                }
-                <div class="row marginNull notiEve">
-                    <input class="txtHdTipoEntra" type="hidden" value="@noticiaEvento._idTipoEntrada" />
-                    <div class="col-lg-6 contentImgNotiEve hoverEventNoti">
-                        <div class="text-tituloNotiEve" style="display:none;">@tituloHover</div>
-                        <div class="divHoverNotiEve" style="display:none;">
-                        </div>
-                        <img class="imgNotiEve" src="@Url.Content("~/Content/images/views/Home/noticias/"+cn+".png")" />
-                    </div>
-                    <div class="col-lg-6 seccionContenidoNotiEve">
-                        <div class="contenido">
-                            <h4>@noticiaEvento._titulo</h4>
-                            <p>
-                                @noticiaEvento._descripcion
-                            </p>
-                            <div class="divLinkNotiEve">
-                                <a class="aLeerMas" href="@url">Leer mas>>></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                cn++;
-            }    
-        }
-        @*<div class="row marginNull notiEve">
-            <div class="col-lg-6 contentImgNotiEve">
-                <img src="@Url.Content("~/Content/images/views/Home/noticias/1.png")" />
-            </div>
-            <div class="col-lg-6 seccionContenidoNotiEve">
-                
-                <div class="contenido">
-                    <h4>Lorem ipsum dolor sit amet</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam Lorem ipsum dolor sit amet.
-                    </p>
-                    <div class="divLinkNotiEve">
-                        <a class="aLeerMas" href="#">Leer mas>>></a>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="row marginNull notiEve">
-            <div class="col-lg-6 contentImgNotiEve">
-                <img src="@Url.Content("~/Content/images/views/Home/noticias/2.png")" />
-            </div>
-            <div class="col-lg-6 seccionContenidoNotiEve">
-                <div class="contenido">
-                    <h4>Lorem ipsum dolor sit amet</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam Lorem ipsum dolor sit amet.
-                    </p>
-                    <div class="divLinkNotiEve">
-                        <a class="aLeerMas" href="#">Leer mas>>></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row marginNull notiEve">
-            <div class="col-lg-6 contentImgNotiEve">
-                <img src="@Url.Content("~/Content/images/views/Home/noticias/3.png")" />
-            </div>
-            <div class="col-lg-6 seccionContenidoNotiEve">
-                <div class="contenido">
-                    <h4>Lorem ipsum dolor sit amet</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing
-                        elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam Lorem ipsum dolor sit amet.
-                    </p>
-                    <div class="divLinkNotiEve">
-                        <a class="aLeerMas" href="#">Leer mas>>></a>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-    </div>
-</div>
-<footer class="footer">
-    <div class="row marginNull text-center centroPagina">
-        <div class="col-lg-4 divImgFooter">
-            <img src="@Url.Content("~/Content/images/generales/logoIus_new.png")" />
-        </div>
-        <div class="col-lg-6 footerText">
-            <div class="row marginNull">Instituciones salesianas de educación superior</div>
-            <div class="row marginNull">2016 derechos reservados</div>
-            <div class="row marginNull">Desarrollado por: ctic el salvador</div>
-        </div>
-    </div>
-</footer>
-@Scripts.Render("~/bundles/scriptsGenerales")
-<script src="~/Scripts/views/Home/Indexi/script.js"></script>
-<script src="~/Scripts/views/Home/Indexi/functions.js"></script>
