@@ -595,7 +595,9 @@
     <Content Include="Scripts\Generales\jquery-ui.js" />
     <Content Include="Scripts\Generales\script.js" />
     <Content Include="Scripts\views\Conocenos\functions.js" />
+    <Content Include="Scripts\views\Conocenos\Indexi\functions.js" />
     <Content Include="Scripts\views\Conocenos\script.js" />
+    <Content Include="Scripts\views\Conocenos\Indexi\script.js" />
     <Content Include="Scripts\views\Eventos\functions.js" />
     <Content Include="Scripts\views\Eventos\script.js" />
     <Content Include="Scripts\views\Home\functions.js" />

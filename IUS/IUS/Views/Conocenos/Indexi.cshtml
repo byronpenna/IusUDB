@@ -7,27 +7,29 @@
     @*<link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />*@
 }
 @section scriptsPersonalizados{
-    
+    <script src="~/Scripts/views/Conocenos/Indexi/script.js"></script>
+    <script src="~/Scripts/views/Conocenos/Indexi/functions.js"></script>
 }
+<input type="hidden" class="txtHdSeleccionadoBuble" value="@ViewBag.seleccionado" />
 <div class="row marginNull lineaRoja">
 
 </div>
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuConocenos">
-            <li class="activeConocenos">
+            <li class="activeConocenos" id="@ViewBag.idIdentidad">
                 Identidad
             </li>
-            <li>
+            <li id="@ViewBag.idHistoria">
                 Historia
             </li>
-            <li>
+            <li id="@ViewBag.idOrganizacion">
                 Organización
             </li>
-            <li>
+            <li id="@ViewBag.idIus">
                 Ius
             </li>
-            <li>
+            <li id="@ViewBag.idSalesianos">
                 Salesianos
             </li>
         </ul>
@@ -38,7 +40,10 @@
         </div>
         <div class="contenidoConocenos">
             <h3 class="tituloContenidoConocenos">Identidad y mision</h3>
-            <p>
+            <div class="divCuerpoConocenos">
+
+            </div>
+            @*<p>
                 Las IUS son instituciones de educación superior de inspiración cristianas, 
                 orientadas por los valores del Evangelio y la pedagogía salesiana nacida del Sistema Preventivo 
                 vivido por Don Bosco. En cuanto tales, 
@@ -54,7 +59,7 @@
                 "la tutela y desarrollo de la dignidad humana y de la herencia cultural mediante la investigación,
                 la enseñanza y los diversos servicios ofrecidos a las comunidades locales, nacionales e internacionales" (Ex Corde Ecclesiae 12). En cuanto salesianas poseen la misión específica de "promover el desarrollo integral de los jóvenes a través de la asimilación y la reelaboración crítica de la cultura y la educación en la fe en vista de la transformación cristiana de la sociedad" 
                 (Reglamentos Congregación Salesiana 13).
-            </p>
+            </p>*@
         </div>
     </div>
 </div>

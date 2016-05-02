@@ -45,6 +45,20 @@ namespace IUS.Controllers
 
                     ViewBag.menu12 = this.activeClass;
                     ViewBag.seleccionado = id;
+
+                    /*
+                     1: Historia 
+                     2: Identidad 
+                     3: Organización 
+                     4: Ius
+                     5: Salesianos
+                     */
+                    ViewBag.idHistoria      = this._idPaginaHistoria;
+                    ViewBag.idIdentidad     = this._idPaginaIdentidad;
+                    ViewBag.idOrganizacion  = this._idPaginaOrganizacion;
+                    ViewBag.idIus           = this._idPaginaIus;
+                    ViewBag.idSalesianos    = this._idPaginaSalesianos;
+
                 }
                 catch (ErroresIUS x)
                 {
@@ -79,7 +93,8 @@ namespace IUS.Controllers
                         int     idPagina    = -1;
                         string  ip          = Request.UserHostAddress;
                         ViewBag.menu12      = this.activeClass;
-                        switch(this.convertObjAjaxToInt(frm["idSeleccion"])){
+                        idPagina = this.convertObjAjaxToInt(frm["idSeleccion"]);
+                        /*switch(this.convertObjAjaxToInt(frm["idSeleccion"])){
                             case 1:{
                                 idPagina = this._idPaginaHistoria;
                                 break;
@@ -105,7 +120,7 @@ namespace IUS.Controllers
                                     respuesta.Add("datosIus", this._model.sp_adminfe_front_getDatosSalesianos(ip, idPagina));
                                     break;
                                 }
-                        }
+                        }*/
                         
                         traducciones = this._model.getTraduccion(lang,idPagina);
                         respuesta = this.getDicTraduccion(traducciones,respuesta);
