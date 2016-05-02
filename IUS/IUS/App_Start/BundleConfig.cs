@@ -14,6 +14,17 @@ namespace IUS
             
             // bundles personalizados 
                 // js 
+                    bundles.Add(new ScriptBundle("~/bundles/scriptsGeneralesi").Include(
+                                "~/Scripts/Generales/jquery-{version}.js"
+                                ).Include(
+                                "~/Content/third-party/bootstrap/js/bootstrap.js"
+                                ).Include(
+                                "~/Content/third-party/cookiesjs/jquery.cookie.js"
+                                ).Include(
+                                "~/Scripts/Generales/functionsi.js"
+                                ).Include(
+                                "~/Scripts/Generales/scripti.js"
+                                ));
                     bundles.Add(new ScriptBundle("~/bundles/scriptsGenerales").Include(
                                 "~/Scripts/Generales/jquery-{version}.js"
                                 ).Include(

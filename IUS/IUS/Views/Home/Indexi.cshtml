@@ -1,6 +1,6 @@
 ﻿@using IUS.Models.Entidades
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
     
 }
@@ -12,78 +12,7 @@
 <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/media.css" />
 
 
-<header>
-    <div class="row marginNull header centroPagina">
-        <div class="col-lg-3 logoHeaderSection ">
-            <img src="@Url.Content("~/Content/images/generales/logoIus_new.png")" />
-        </div>
-        <div class="col-lg-9">
-            <div class="col-lg-4 divSectionIdioma ">
-                <div class="otroDiv">
-                    <div class="tituloIdioma">Idioma</div>
-                    <div class="padreCaja">
-                        <div class="cajaArriba">
-                            <div class="caja">
-                                <select class=" cbIdioma">
-                                    <option>Español</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <nav class="navPrincipal">
-                    <ul>
-                        <li class="activeMenu">
-                            <a href="@Url.Action("Index", "Home")" class="">Inicio</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Conocenos")">Conocenos</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Instituciones")">Instituciones</a>
-                        </li>
-                        <li>
-                            <a href="#">Red Ius</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Repositorio")">Recursos</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
 
-        </div>
-    </div>
-    <div class="row marginNull subSeccion">
-        <div class="centroPagina">
-            <div class="col-lg-offset-8 col-lg-4">
-                <div class="col-lg-6">
-                    <a class="linkAreaPrivada" href="@Url.Action("Index", "Login")">
-                        <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/user.png")" /> Área privada
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> Contacto
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row marginNull rowSearch">
-        <div class="col-lg-offset-8 col-lg-2">
-            @*<input type="text" class="form-control inputSearch"/>*@
-            <div class="form-group has-feedback inputSearchDiv">
-                @*<input type="text" class="form-control" placeholder="Username" />*@
-                <input type="text" class="form-control inputSearch" />
-                <i class="glyphicon form-control-feedback icoSearch">
-                    <img src="@Url.Content("~/Content/images/generales/lupita.png")" />
-                </i>
-            </div>
-        </div>
-    </div>
-</header>
 <div class="row marginNull rowSlider">
     <img src="@Url.Content("~/Content/images/views/Home/Slider/1.png")"/>
 </div>

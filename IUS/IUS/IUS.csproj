@@ -593,10 +593,12 @@
     <Content Include="Scripts\Asp_default\knockout-2.2.0.js" />
     <Content Include="Scripts\Asp_default\modernizr-2.6.2.js" />
     <Content Include="Scripts\Generales\functions.js" />
+    <Content Include="Scripts\Generales\functionsi.js" />
     <Content Include="Scripts\Generales\jquery-2.1.3.js" />
     <Content Include="Scripts\Generales\jquery-2.1.3.min.js" />
     <Content Include="Scripts\Generales\jquery-ui.js" />
     <Content Include="Scripts\Generales\script.js" />
+    <Content Include="Scripts\Generales\scripti.js" />
     <Content Include="Scripts\views\Conocenos\functions.js" />
     <Content Include="Scripts\views\Conocenos\Indexi\functions.js" />
     <Content Include="Scripts\views\Conocenos\script.js" />
