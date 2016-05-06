@@ -301,6 +301,7 @@
     <Content Include="Content\images\generales\ico\pie-chart.png" />
     <Content Include="Content\images\generales\ico\trophy.png" />
     <Content Include="Content\images\generales\image-color.png" />
+    <Content Include="Content\images\generales\logo.png" />
     <Content Include="Content\images\generales\logoIus_new.png" />
     <Content Include="Content\images\generales\logo_IUS.ico" />
     <Content Include="Content\images\generales\lupita.png" />
