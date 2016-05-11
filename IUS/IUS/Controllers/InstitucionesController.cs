@@ -83,13 +83,16 @@ namespace IUS.Controllers
                 List<LlaveIdioma> traducciones;
                 try
                 {
-                    ViewBag.usuarioSession = this.getUsuarioSession();
+                    string ip               = Request.UserHostAddress;
+                    ViewBag.usuarioSession  = this.getUsuarioSession();
                     string lang             = this.getUserLang();
                     //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones            = this._model.getTraduccion(lang, this.idPagina);
-                    ViewBag.menu22          = this.activeClass;
-                    ViewBag.idContinente   = id;
+                    //ViewBag.menu22          = this.activeClass;
+                    ViewBag.idContinente    = id;
                     this.setTraduccion(traducciones);
+                    ViewBag.menu13          = this.activeClass;
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
                 }
                 catch (ErroresIUS x)
                 {
@@ -98,7 +101,7 @@ namespace IUS.Controllers
                 catch (Exception x) {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                return View();
+                return View("~/Views/Instituciones/Indexi.cshtml");
 
             }
         #endregion

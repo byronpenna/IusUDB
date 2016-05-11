@@ -338,9 +338,13 @@
     <Content Include="Content\images\views\Home\noticias\3.png" />
     <Content Include="Content\images\views\Home\Slider\1.png" />
     <Content Include="Content\images\views\Instituciones\africa.png" />
+    <Content Include="Content\images\views\Instituciones\africai.png" />
     <Content Include="Content\images\views\Instituciones\america.png" />
+    <Content Include="Content\images\views\Instituciones\americai.png" />
     <Content Include="Content\images\views\Instituciones\asia-f.png" />
+    <Content Include="Content\images\views\Instituciones\asiai.png" />
     <Content Include="Content\images\views\Instituciones\europa.png" />
+    <Content Include="Content\images\views\Instituciones\europai.png" />
     <Content Include="Content\images\views\Repositorio\adobe-reader.png" />
     <Content Include="Content\images\views\Repositorio\cloud.png" />
     <Content Include="Content\images\views\Repositorio\excel-ico.png" />
@@ -403,6 +407,8 @@
     <Content Include="Content\ius_theme\views\Informacion\Salesianos\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucion\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucion\style.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\Indexi\media.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\Indexi\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\media.css" />
@@ -577,6 +583,7 @@
     <Content Include="Content\fonts\MyriadPro\MyriadPro-Regular.otf" />
     <Content Include="Content\fonts\MyriadPro\MyriadPro-Semibold.otf" />
     <Content Include="Content\fonts\MyriadPro\MyriadPro-SemiboldIt.otf" />
+    <Content Include="Content\images\views\Instituciones\mapita.psd" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <None Include="Scripts\Asp_default\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Asp_default\jquery-1.8.2.js" />
@@ -611,6 +618,8 @@
     <Content Include="Scripts\views\Home\Indexi\script.js" />
     <Content Include="Scripts\views\Home\script.js" />
     <Content Include="Scripts\views\Instituciones\functions.js" />
+    <Content Include="Scripts\views\Instituciones\Indexi\functions.js" />
+    <Content Include="Scripts\views\Instituciones\Indexi\script.js" />
     <Content Include="Scripts\views\Instituciones\script.js" />
     <Content Include="Scripts\views\Instituciones\VerInstituciones\functions.js" />
     <Content Include="Scripts\views\Instituciones\VerInstituciones\script.js" />
@@ -695,6 +704,7 @@
     <Content Include="Views\Shared\_Layouti.cshtml" />
     <Content Include="Views\Shared\menui.cshtml" />
     <Content Include="Views\Shared\footeri.cshtml" />
+    <Content Include="Views\Instituciones\Indexi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
