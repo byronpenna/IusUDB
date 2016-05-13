@@ -10,6 +10,9 @@
                     id: $(this).attr("id")
                 }
 
+                $(".divInfoInicial").addClass("hidden");
+                $(".divInfoInstituciones").removeClass("hidden");
+
                 $(".activeInstitucion").find(".imgMap").attr("src", $(".activeInstitucion").find(".txtHdNormal").val());
                 $(".activeInstitucion").removeClass("activeInstitucion");
 

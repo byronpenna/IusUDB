@@ -21,7 +21,7 @@
             }
 
             target.empty().append(tr);
-            //$(".hContinente").empty().append(hContinente);
+            $(".spanContinente").empty().append(hContinente);
         }
 
     }, function () {

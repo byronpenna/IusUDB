@@ -65,35 +65,50 @@
     </div>
     <div class="col-lg-8 detalles">
         <div class="centroInstituciones">
-            <h3 class="tituloDetalles">Instituciones en America</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </p>
+            @**@
+            <div class="divInfoInicial">
+                <div class="contenedorImgPrincipal">
+                    <img class="imgPrincipal" src="/Content/images/views/Home/bloques/instituciones.png">
+                </div>
+                <div class="row marginNull divContenedorTexto">
+                    <h3 class="tituloInstituciones">Instituciones</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+                    </p>
+                </div>
+            </div>
+            <div class="row marginNull divInfoInstituciones hidden">
+                <h3 class="tituloDetalles">Instituciones en <span class="spanContinente">America</span></h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                </p>
 
-            <table class="table tablaInstitucion">
-                <thead>
-                    <tr>
-                        <th>Pais</th>
-                        <th>Institucion</th>
-                        <th>Telefonos</th>
-                        <th>Contacto</th>
-                        <th>Correo</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < 5; i++)
-                    {
+                <table class="table tablaInstitucion">
+                    <thead>
                         <tr>
-                            <td>El salvador</td>
-                            <td>Universidad Don bosco</td>
-                            <td>(503) 2245 555</td>
-                            <td>Sr. Jose Ramirez</td>
-                            <td>Jose@udb.edu.sv</td>
-                        </tr>    
-                    }
-                </tbody>
-            </table>
+                            <th>Pais</th>
+                            <th>Institucion</th>
+                            <th>Telefonos</th>
+                            <th>Contacto</th>
+                            <th>Correo</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <tr>
+                                <td>El salvador</td>
+                                <td>Universidad Don bosco</td>
+                                <td>(503) 2245 555</td>
+                                <td>Sr. Jose Ramirez</td>
+                                <td>Jose@udb.edu.sv</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @**@
         </div>
         
     </div>
