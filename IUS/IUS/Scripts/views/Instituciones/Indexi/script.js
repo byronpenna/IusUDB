@@ -9,6 +9,13 @@
                 var frm = {
                     id: $(this).attr("id")
                 }
+
+                $(".activeInstitucion").find(".imgMap").attr("src", $(".activeInstitucion").find(".txtHdNormal").val());
+                $(".activeInstitucion").removeClass("activeInstitucion");
+
+                $(this).find(".imgMap").attr("src", $(this).find(".txtHdRoja").val());
+                $(this).addClass("activeInstitucion");
+
                 window.history.pushState({}, "Titulo", "/Instituciones/index/" + frm.id);
                 buscarContinente(frm);
             })

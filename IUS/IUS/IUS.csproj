@@ -339,13 +339,16 @@
     <Content Include="Content\images\views\Home\Slider\1.png" />
     <Content Include="Content\images\views\Instituciones\africa.png" />
     <Content Include="Content\images\views\Instituciones\africai.png" />
+    <Content Include="Content\images\views\Instituciones\africair.png" />
     <Content Include="Content\images\views\Instituciones\america.png" />
     <Content Include="Content\images\views\Instituciones\americai.png" />
     <Content Include="Content\images\views\Instituciones\americair.png" />
     <Content Include="Content\images\views\Instituciones\asia-f.png" />
     <Content Include="Content\images\views\Instituciones\asiai.png" />
+    <Content Include="Content\images\views\Instituciones\asiair.png" />
     <Content Include="Content\images\views\Instituciones\europa.png" />
     <Content Include="Content\images\views\Instituciones\europai.png" />
+    <Content Include="Content\images\views\Instituciones\europair.png" />
     <Content Include="Content\images\views\Repositorio\adobe-reader.png" />
     <Content Include="Content\images\views\Repositorio\cloud.png" />
     <Content Include="Content\images\views\Repositorio\excel-ico.png" />

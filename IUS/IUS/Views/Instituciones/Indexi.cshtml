@@ -1,7 +1,10 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     string path     = "~/Content/images/views/Instituciones/";
-    string america  = Url.Content(path+"americai.png"),americaRoja = Url.Content(path+"americair.png"); 
+    string america  = Url.Content(path+"americai.png"),     americaRoja     = Url.Content(path+"americair.png");
+    string africa   = Url.Content(path + "africai.png"),    africaRoja      = Url.Content(path + "africair.png");
+    string asia     = Url.Content(path + "asiai.png"),      asiaRoja        = Url.Content(path + "asiair.png");
+    string europa   = Url.Content(path + "europai.png"),    europaRoja      = Url.Content(path + "europair.png");
     
 }
 @section estilosPersonalizados{
@@ -18,7 +21,7 @@
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuLateral"> @*a pesar de llamarse menu conocenos es una clase general*@
-            <li class="activeInstitucion">
+            <li class="activeInstitucion" id="2">
                 <div class="row parent">
                     <div class="colImgMap">
                         <input type="hidden" class="txtHdNormal" value="@america" />
@@ -28,25 +31,31 @@
                     <div class="texto">America</div>
                 </div>
             </li>
-            <li>
+            <li id="1">
                 <div class="row">
                     <div class="colImgMap">
+                        <input type="hidden" class="txtHdNormal" value="@africa" />
+                        <input type="hidden" class="txtHdRoja" value="@africaRoja" />
                         <img class="imgMap" src="~/Content/images/views/Instituciones/africai.png" />
                     </div>
                     <div class="texto">Africa</div>
                 </div>
             </li>
-            <li>
+            <li id="3">
                 <div class="row">
                     <div class="colImgMap">
+                        <input type="hidden" class="txtHdNormal" value="@asia" />
+                        <input type="hidden" class="txtHdRoja" value="@asiaRoja" />
                         <img class="imgMap" src="~/Content/images/views/Instituciones/asiai.png" />
                     </div>
                     <div class="texto">Asia</div>
                 </div>
             </li>
-            <li>
+            <li id="4">
                 <div class="row">
                     <div class="colImgMap">
+                        <input type="hidden" class="txtHdNormal" value="@europa" />
+                        <input type="hidden" class="txtHdRoja" value="@europaRoja" />
                         <img class="imgMap" src="~/Content/images/views/Instituciones/europai.png" />
                     </div>
                     <div class="texto">Europa</div>

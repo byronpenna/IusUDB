@@ -66,10 +66,14 @@
 .tablaInstitucion tbody tr td {
     font-size:0.6em;
     border:solid 1px #828181;
+    color:#414141;
 }
 .tablaInstitucion thead tr th{
     text-align:center;
     color:#cd1315;
     font-size:0.8em;
     border-bottom:none;
+}
+.divTel a{
+    color:#414141;
 }
