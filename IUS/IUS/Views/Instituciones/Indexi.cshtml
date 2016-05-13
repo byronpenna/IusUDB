@@ -1,5 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layouti.cshtml";
+    string path     = "~/Content/images/views/Instituciones/";
+    string america  = Url.Content(path+"americai.png"),americaRoja = Url.Content(path+"americair.png"); 
+    
 }
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/Indexi/style.css" />
@@ -15,10 +18,12 @@
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuLateral"> @*a pesar de llamarse menu conocenos es una clase general*@
-            <li>
+            <li class="activeInstitucion">
                 <div class="row parent">
                     <div class="colImgMap">
-                        <img class="imgMap" src="~/Content/images/views/Instituciones/americai.png" />
+                        <input type="hidden" class="txtHdNormal" value="@america" />
+                        <input type="hidden" class="txtHdRoja"  value="@americaRoja" />
+                        <img class="imgMap" src="@americaRoja" />
                     </div>
                     <div class="texto">America</div>
                 </div>
@@ -56,9 +61,30 @@
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
             </p>
 
-            <div>
+            <table class="table tablaInstitucion">
+                <thead>
+                    <tr>
+                        <th>Pais</th>
+                        <th>Institucion</th>
+                        <th>Telefonos</th>
+                        <th>Contacto</th>
+                        <th>Correo</th>
 
-            </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <tr>
+                            <td>El salvador</td>
+                            <td>Universidad Don bosco</td>
+                            <td>(503) 2245 555</td>
+                            <td>Sr. Jose Ramirez</td>
+                            <td>Jose@udb.edu.sv</td>
+                        </tr>    
+                    }
+                </tbody>
+            </table>
         </div>
         
     </div>

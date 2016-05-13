@@ -1,5 +1,5 @@
 ﻿.menuLateral{
-    margin-top:80px;
+    margin-top:40px;
     padding:0;
 }
     .menuLateral li {
@@ -29,9 +29,10 @@
 }
 .detalles{
     background:#f3f2f2;
+    min-height:900px;
 }
 .tituloDetalles{
-    margin-top:80px;
+    margin-top:40px;
     color:#cc1315;
     text-transform:uppercase;
     font-size:1em;
@@ -40,8 +41,35 @@
     padding-left:3%;
     padding-right:3%;
 }
+.activeInstitucion{
+    border-color:#cd1315 !important;
+    color:#cd1315;
+    font-weight:bold;
+}
 /*
 .vertical-align {
     display: flex;
     align-items: center;
 }*/
+/* Cuerpo */
+.contenidoCuerpo{
+    border-bottom:solid 1px #cd1315;
+    padding-bottom: 60px;
+}
+.tablaInstitucion{
+    margin-top:3%;
+}
+.tablaInstitucion tbody tr td,.tablaInstitucion thead tr th{
+    text-transform:uppercase;
+    text-align:center;
+}
+.tablaInstitucion tbody tr td {
+    font-size:0.6em;
+    border:solid 1px #828181;
+}
+.tablaInstitucion thead tr th{
+    text-align:center;
+    color:#cd1315;
+    font-size:0.8em;
+    border-bottom:none;
+}
