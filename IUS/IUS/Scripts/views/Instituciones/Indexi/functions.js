@@ -58,7 +58,8 @@
                     </div>";
             })
         } else {
-            tel = "No hay numeros asignados";
+            tel = $(".txtHdNoNumberText").val();
+            //"No hay numeros asignados"
         }
 
         var tr = "\
@@ -86,8 +87,9 @@
     function getTrInstitucionNull() {
         var tr = "\
                 <tr >\
-                    <td colspan='6' class='text-center tdNull'>No hay instituciones para mostrar</td>\
+                    <td colspan='6' class='text-center tdNull'>" + $(".txtHdNoRegistro").val() + "</td>\
                 </tr>\
             ";
+        //No hay instituciones para mostrar
         return tr;
     }
