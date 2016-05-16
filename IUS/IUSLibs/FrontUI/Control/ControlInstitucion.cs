@@ -57,7 +57,7 @@ namespace IUSLibs.FrontUI.Control
         #endregion
         #region "get"
             #region "frontend"
-                public Dictionary<object,object> sp_frontui_getInstitucionesByContinente(int idContinente,string ip,int idPagina)
+                public Dictionary<object,object> sp_frontui_getInstitucionesByContinente(int idContinente,string idioma,string ip,int idPagina)
                 {
                     Dictionary<object, object> respuesta = new Dictionary<object, object>();
                     List<Institucion> instituciones = null; Institucion institucion; int idInstitucion;
@@ -65,6 +65,7 @@ namespace IUSLibs.FrontUI.Control
                     SPIUS sp = new SPIUS("sp_frontui_getInstitucionesByContinente");
                     
                     sp.agregarParametro("idContinente", idContinente);
+                    sp.agregarParametro("idioma", idioma);
                     sp.agregarParametro("ip", ip);
                     sp.agregarParametro("idPagina", idPagina);
                     try

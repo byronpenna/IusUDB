@@ -22,7 +22,7 @@ namespace IUS.Models.page.Instituciones.Acciones
                     try
                     {
                         Dictionary<object, object> respuesta = new Dictionary<object, object>();
-                        respuesta = this._controlInstitucion.sp_frontui_getInstitucionesByContinente(idContinente, ip, idPagina);
+                        respuesta = this._controlInstitucion.sp_frontui_getInstitucionesByContinente(idContinente,lang, ip, idPagina);
                         respuesta.Add("paises", this.sp_frontui_getPaisesFromContinente(idContinente, lang,ip, idPagina));
                         return respuesta;
                     }
