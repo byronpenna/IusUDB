@@ -1,4 +1,15 @@
-﻿function buscarContinente(frm) {
+﻿function iniciales() {
+    var idContinente = $(".txtHdIdContinente").val();
+    console.log("Id continente es: ", idContinente);
+    if(idContinente != -1)
+    {
+        console.log("Dio click");
+        var strFind = "#" + idContinente;
+        console.log("String find es: ", strFind);
+        $(".menuLateral").find(strFind).click();
+    }
+}
+function buscarContinente(frm) {
     var target = $(".tablaInstitucion").find("tbody");
     actualizarCatalogo(RAIZ + "/Instituciones/sp_frontui_getInstitucionesByContinente", frm, function (data) {
         console.log("D: :DP", data)
