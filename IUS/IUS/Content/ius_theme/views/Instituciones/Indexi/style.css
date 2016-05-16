@@ -95,3 +95,9 @@
 .divTel a{
     color:#414141;
 }
+
+.tituloInstituciones{
+    text-transform:uppercase;
+    color:#cd1315;
+    font-size:1em;
+}
