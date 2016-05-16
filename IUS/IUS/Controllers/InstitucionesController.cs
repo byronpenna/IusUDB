@@ -81,6 +81,33 @@ namespace IUS.Controllers
             public ActionResult Index(int id=-1)
             {
                 List<LlaveIdioma> traducciones;
+                /***/
+                /*int     cn = 0;
+                bool    contar = false;
+                int salario = 0;
+                do {
+                    // no recuerdo como obtener el texto del string reader asi que usaer .getString();
+                    
+                    string textoLector = reader.getString();
+                    if(textoLector.Contains("Mes:")){
+                        contar = true;
+                        cn = 0;
+                    }
+                    if(textoLector == ""){
+                        contar = false;
+                        cn = 0;
+                    }
+                    string[] arr;
+                    if(cn > 2){ // porque no cuentan las lineas antes de los salarios
+                        arr = textoLector.Split(" ");
+                        salario += arr[11];
+                    }
+                    if(contar){
+                        cn++;
+                    }else if(contar && cn >6){}
+                }
+                while(reader.read())*/
+                /***/
                 try
                 {
                     string ip               = Request.UserHostAddress;

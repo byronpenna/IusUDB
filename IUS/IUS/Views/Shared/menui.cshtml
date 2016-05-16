@@ -71,12 +71,14 @@
         <div class="centroPagina">
             <div class="col-lg-offset-8 col-lg-4">
                 <div class="col-lg-6">
-                    <a class="linkAreaPrivada" href="@Url.Action("Index", "Login")">
+                    <a class="linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
                         <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/user.png")" /> @ViewData["menu1.2"] @*Área privada*@
                     </a>
                 </div>
                 <div class="col-lg-6">
-                    <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> Contacto
+                    <a class="linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
+                        <img class="imgIcoHeader headerTextoLink" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> Contacto
+                    </a>
                 </div>
             </div>
         </div>
