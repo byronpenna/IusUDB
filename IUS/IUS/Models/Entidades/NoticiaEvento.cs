@@ -15,6 +15,7 @@ namespace IUS.Models.Entidades
             public string       _descripcion;
             public DateTime?    _fecha = null;
             public int          _idTipoEntrada;
+            public byte[]       _imagen = null;
             /*public Tipo tipoEntrada
             {
                 get
@@ -22,7 +23,8 @@ namespace IUS.Models.Entidades
                     return (Tipo)this._idTipoEntrada;
                 }
             }  */
-            public enum Tipo {
+            
+            public enum     Tipo {
                 Noticia = 1, Evento = 2
             }
         // constructores

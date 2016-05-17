@@ -21,21 +21,36 @@ namespace IUS.Models.page.Noticias.Acciones
             #endregion
             #region "acciones"
                 #region "get"
+                    public Post sp_adminfe_front_getPicNoticiaFromId(int idPost)
+                    {
+                        try
+                        {
+                            return this._controlPost.sp_adminfe_front_getPicNoticiaFromId(idPost);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public Dictionary<object, object> sp_adminfe_front_getNoticiaFromId(int idPost)
-                {
-                    try
                     {
-                        return this._controlPost.sp_adminfe_front_getNoticiaFromId(idPost);
+                        try
+                        {
+                            return this._controlPost.sp_adminfe_front_getNoticiaFromId(idPost);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
                     }
-                    catch (ErroresIUS x)
-                    {
-                        throw x;
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
                     public List<Comentario> sp_frontUi_noticias_getComentariosPost(int idPost, string ip, int idPagina)
                     {
                         try

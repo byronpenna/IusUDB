@@ -33,6 +33,9 @@ namespace IUS.Controllers
             private ModeloPadre _model;
             public string activeClass = "activeMenu";
         #endregion
+        #region "acciones url"
+            
+        #endregion
         #region "funciones"
             #region "manejo de errores"
                 public Dictionary<Object, Object> errorTryControlador(int errorType, object obj)

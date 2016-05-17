@@ -11,7 +11,7 @@
         </div>
         @if (noticiasEventos != null && noticiasEventos.Count > 0)
         {
-            int cn = 1; string url; string tituloHover = "";
+            int cn = 1; string url; string tituloHover = "";string src = "";
             foreach (NoticiaEvento noticiaEvento in noticiasEventos)
             {
 
@@ -19,11 +19,13 @@
                 {
                     tituloHover = ViewData["lb-hover-evento"].ToString();
                     url = Url.Action("Index", "Evento");
+                    src = Url.Content("~/Content/images/views/Home/noticias/" + cn + ".png");
                 }
                 else if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia)
                 {
                     tituloHover = ViewData["lb-hover-noticia"].ToString();
                     url = Url.Action("Index", "Noticias", new { id = noticiaEvento._id });
+                    src = Url.Action("getImageThumbnail", "Noticias",new {id= noticiaEvento._id});
                 }
                 else
                 {
@@ -35,7 +37,7 @@
                         <div class="text-tituloNotiEve" style="display:none;">@tituloHover</div>
                         <div class="divHoverNotiEve" style="display:none;">
                         </div>
-                        <img class="imgNotiEve" src="@Url.Content("~/Content/images/views/Home/noticias/"+cn+".png")" />
+                        <img class="imgNotiEve" src="@src" />
                     </div>
                     <div class="col-lg-6 seccionContenidoNotiEve">
                         <div class="contenido">
@@ -44,7 +46,7 @@
                                 @noticiaEvento._descripcion
                             </p>
                             <div class="divLinkNotiEve">
-                                <a class="aLeerMas" href="@url">Leer mas>>></a>
+                                <a class="aLeerMas" href="@url">@ViewData["lb-leerMas"]>>></a>
                             </div>
                         </div>
                     </div>

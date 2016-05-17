@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 // interno
     using IUS.Models.page.Noticias.Acciones;
+// stream
+    using System.IO;
 // librerias externas 
     using IUSLibs.LOGS;
     using IUSLibs.TRL.Entidades;
@@ -20,6 +22,37 @@ namespace IUS.Controllers
             private NoticiaModel _model;
         #endregion
         #region "acciones url"
+            public ActionResult getImageThumbnail(int id)
+            {
+                //string retorno = "";
+                try
+                {
+                    Post post = this._model.sp_adminfe_front_getPicNoticiaFromId(id);
+                    //retorno = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
+
+                    if (post._miniatura != null)
+                    {
+                        Stream stream = new MemoryStream(post._miniatura);
+                        return new FileStreamResult(stream, "image/jpeg");
+                    }
+                    else
+                    {
+                        string path = Server.MapPath("/Content/images/generales/noBanerMiniatura.png");
+                        return base.File(path, "image/jpeg");
+                    }
+                    //Image image = Image.FromStream(stream);
+
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+
+            }
             public ActionResult Todas(int id=1,int id2=12)
             {
                 /*
