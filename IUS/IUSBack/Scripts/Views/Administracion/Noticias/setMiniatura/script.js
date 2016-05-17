@@ -71,7 +71,7 @@
                             jcrop_api = $.Jcrop('.imgThumbnail', {
                                 onSelect: storeCoords,
                                 onChange: storeCoords,
-                                aspectRatio: 1
+                                aspectRatio: 300 / 100
                             });
                             inicialFoto();
                         }

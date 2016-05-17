@@ -264,7 +264,7 @@ namespace IUSBack.Controllers
 
                                     }*/
                                     Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(form["x"]),this.convertObjAjaxToDecimal(form["y"]),this.convertObjAjaxToDecimal(form["imgAncho"]),this.convertObjAjaxToDecimal(form["imgAlto"]));
-                                    byte[] fileBytes = this.getBytesRecortadosFromFile(file,coordenadas);
+                                    byte[] fileBytes = this.getBytesRecortadosFromFile(file,coordenadas,false);
                                     Post postAgregar = new Post(this.convertObjAjaxToInt(form["txtHdIdPost"]));
                                     postAgregar._miniatura = fileBytes;
                                     bool estado = this._model.sp_adminfe_noticias_setThumbnailPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
