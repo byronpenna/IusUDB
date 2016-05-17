@@ -2,7 +2,6 @@
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
-    
 }
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />
@@ -12,23 +11,33 @@
     <script src="~/Scripts/views/Home/Indexi/script.js"></script>
     <script src="~/Scripts/views/Home/Indexi/functions.js"></script>
 }
-
-
 <div class="row marginNull rowSlider">
     <img src="@Url.Content("~/Content/images/views/Home/Slider/1.png")"/>
 </div>
 <div class="row marginNull divBloques">
     <div class="centroPagina">
-        <div class="col-lg-6 bloque">
-            <h2>Instituciones</h2>
+        <div class="col-lg-6 bloque bloqueLink">
+            <input type="hidden" class="txtHdUrlLink" value="@Url.Action("Index","Instituciones")" />
+            <h2>
+                @*Instituciones*@
+                @ViewData["menu2.2"]
+            </h2>
             <img src="@Url.Content("~/Content/images/views/Home/bloques/instituciones.png")" />
         </div>
-        <div class="col-lg-6 bloque">
-            <h2>Recursos</h2>
+        <div class="col-lg-6 bloque bloqueLink">
+            <input type="hidden" class="txtHdUrlLink" value="@Url.Action("Index","Repositorio")" />
+            <h2>
+                @*Recursos*@
+                @ViewData["menu2.4"]
+            </h2>
             <img src="@Url.Content("~/Content/images/views/Home/bloques/recursos.png")" />
         </div>
-        <div class="col-lg-6 bloque">
-            <h2>Identidad</h2>
+        <div class="col-lg-6 bloque bloqueLink">
+            <input type="hidden" class="txtHdUrlLink" value="@Url.Action("Index", "Conocenos")" />
+            <h2>
+                @*Conocenos*@
+                @ViewData["menu2.1"]
+            </h2>
             <img src="@Url.Content("~/Content/images/views/Home/bloques/identidad.png")" />
         </div>
         <div class="col-lg-6 bloque">

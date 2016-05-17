@@ -6,7 +6,7 @@
     <div class="centroPagina">
         <div class="row marginNull">
             <div class="col-lg-6 colTituloNoticia">
-                <h2 class="tituloSeccionNoticiaEvento">Noticias / Eventos </h2>
+                <h2 class="tituloSeccionNoticiaEvento">@ViewData["lb-tituloNoticiaEvento"]</h2>
             </div>
         </div>
         @if (noticiasEventos != null && noticiasEventos.Count > 0)
@@ -17,12 +17,12 @@
 
                 if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Evento)
                 {
-                    tituloHover = "Evento";
+                    tituloHover = ViewData["lb-hover-evento"].ToString();
                     url = Url.Action("Index", "Evento");
                 }
                 else if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia)
                 {
-                    tituloHover = "Noticia";
+                    tituloHover = ViewData["lb-hover-noticia"].ToString();
                     url = Url.Action("Index", "Noticias", new { id = noticiaEvento._id });
                 }
                 else

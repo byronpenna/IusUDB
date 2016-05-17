@@ -1,4 +1,7 @@
-﻿    /*Slider*/
+﻿    .bloqueLink{
+        cursor:pointer;
+    }
+    /*Slider*/
     .rowSlider img{
         width:100%;
     }

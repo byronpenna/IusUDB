@@ -70,6 +70,9 @@ select:focus{ outline: none;}
     margin:0 auto;
 }
 /*header*/
+    .imgLupita{
+        width:60%;
+    }
     header{
         margin-top:0;
     }
@@ -161,6 +164,7 @@ select:focus{ outline: none;}
     }
     .inputSearch{
         border-radius:20px;
+        height:30px;
     }
     /*Slider*/
     
