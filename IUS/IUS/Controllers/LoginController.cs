@@ -64,7 +64,7 @@ namespace IUS.Controllers
                 {
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
-                    return View();
+                    return View("~/Views/Login/Indexi.cshtml");
                 }
                 catch (ErroresIUS x)
                 {

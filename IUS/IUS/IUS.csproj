@@ -419,6 +419,8 @@
     <Content Include="Content\ius_theme\views\Instituciones\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\VerInstituciones\style.css" />
+    <Content Include="Content\ius_theme\views\login\Indexi\media.css" />
+    <Content Include="Content\ius_theme\views\login\Indexi\style.css" />
     <Content Include="Content\ius_theme\views\login\LostPass\media.css" />
     <Content Include="Content\ius_theme\views\login\LostPass\style.css" />
     <Content Include="Content\ius_theme\views\login\media.css" />
@@ -630,6 +632,8 @@
     <Content Include="Scripts\views\Instituciones\VerInstituciones\functions.js" />
     <Content Include="Scripts\views\Instituciones\VerInstituciones\script.js" />
     <Content Include="Scripts\views\Login\functions.js" />
+    <Content Include="Scripts\views\Login\Indexi\functions.js" />
+    <Content Include="Scripts\views\Login\Indexi\script.js" />
     <Content Include="Scripts\views\Login\LostPass\functions.js" />
     <Content Include="Scripts\views\Login\LostPass\script.js" />
     <Content Include="Scripts\views\Login\script.js" />
@@ -711,6 +715,7 @@
     <Content Include="Views\Shared\menui.cshtml" />
     <Content Include="Views\Shared\footeri.cshtml" />
     <Content Include="Views\Instituciones\Indexi.cshtml" />
+    <Content Include="Views\Login\Indexi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
