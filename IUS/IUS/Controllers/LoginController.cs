@@ -64,6 +64,9 @@ namespace IUS.Controllers
                 {
                     string lang = this.getUserLang();
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
+                    this.setTraduccion(traducciones);
+                    string ip = Request.UserHostAddress;
+                    ViewBag.notiEvento = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
                     return View("~/Views/Login/Indexi.cshtml");
                 }
                 catch (ErroresIUS x)

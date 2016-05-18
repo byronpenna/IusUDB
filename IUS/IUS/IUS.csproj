@@ -320,6 +320,7 @@
     <Content Include="Content\images\generales\tmp\koala.png" />
     <Content Include="Content\images\generales\tmp\n1.png" />
     <Content Include="Content\images\generales\tmp\n2.png" />
+    <Content Include="Content\images\generales\user.png" />
     <Content Include="Content\images\test\africa.jpg" />
     <Content Include="Content\images\test\cruz.png" />
     <Content Include="Content\images\views\Conocenos\boscobg.jpg" />

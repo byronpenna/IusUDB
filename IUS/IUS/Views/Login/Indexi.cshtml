@@ -2,11 +2,35 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
 }
 @section estilosPersonalizados{
-    <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />
-    <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/media.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Login/Indexi/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Login/Indexi/media.css" />
 }
 @section scriptsPersonalizados{
     <script src="~/Scripts/views/Login/Indexi/script.js"></script>
     <script src="~/Scripts/views/Login/Indexi/functions.js"></script>
 }
-<h2>Pagina</h2>
+<div class="lineaRoja">
+
+</div>
+<div class="row marginNull">
+    <div class="seccionLogin">
+        <div class="cuadritoLogin">
+            <div class="row marginNull divImageLogoLogin">
+                <img class="imageLogoLogin" src="@Url.Content("~/Content/images/generales/logo.png")" />
+            </div>
+            <div class="divImageLogoLogin divUserImage">
+                <img class="imageLogoUser" src="@Url.Content("~/Content/images/generales/user.png")" />
+                <span class="spAreaPrivada">Area Privada</span>
+            </div>
+            <div class="row marginNull divControles">
+                <input class="txtLoginIus" placeholder="Nombre de usuario"/>
+                <input class="txtLoginIus" placeholder="Contraseña" />
+                <button class="btn btnIniciar">Iniciar</button>
+            </div>
+            <div class="divOlvidePass">
+                <a href="#">Olvide mi contraseña</a>
+            </div>
+        </div>
+    </div>
+</div>
+
