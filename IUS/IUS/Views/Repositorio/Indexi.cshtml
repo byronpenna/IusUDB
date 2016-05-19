@@ -1,6 +1,8 @@
-﻿@{
+﻿@using IUSLibs.REPO.Entidades
+@{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     //List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
+    List<TipoArchivo> tiposArchivos = (List<TipoArchivo>)ViewBag.tiposArchivos;
 }
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/Indexi/style.css" />
@@ -16,7 +18,24 @@
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuLateral">
-            <li>
+            @if (tiposArchivos != null && tiposArchivos.Count > 0)
+            {
+                foreach (TipoArchivo tipoArchivo in tiposArchivos)
+                {
+                    if (tipoArchivo._idTipoArchivo != 1)
+                    {
+                        <li>
+                            <div class="row marginNull">
+                                <div class="colImgLateral">
+                                    <img class="imgLateral" src="@Url.Content("~/Content/images/views/Repositorio/Lateral/"+tipoArchivo._idTipoArchivo+".png")" />
+                                </div>
+                                <div class="texto">@tipoArchivo._tipoArchivo</div>
+                            </div>
+                        </li>    
+                    }
+                }
+            }
+            @*<li>
                 <div class="row marginNull">
                     <div class="colImgLateral">
                         <img class="imgLateral" src="@Url.Content("~/Content/images/views/Repositorio/Lateral/documentos.png")" />
@@ -47,45 +66,52 @@
                     </div>
                     <div class="texto">Videos</div>
                 </div>
-            </li>
+            </li>*@
 
         </ul>
     </div>
     <div class="col-lg-8 detalles">
         
-        <div class="row marginNull">
+        <div class="row marginNull divTitulo">
             <h3>Documentos</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
         </div>
-        <div class="row marginNull">
-            <div class="col-lg-4">
-                <input  class="form-control" />
+        <div class="row marginNull divSearch">
+            <div class="col-lg-8 paddingNull">
+                <textarea class="txtSearch form-control" rows="2" cols="50" placeholder="Para realizar busquedas mas especificas  como por país, Institución o archivo ocupar la
+herramienta de busqueda."></textarea>
             </div>
-            <div>
-                lupita
+            <div class="col-lg-4">
+                <div class="divLupita">
+                    <i class="fa fa-search icoLupita" aria-hidden="true"></i>
+                </div>
             </div>
         </div>
         <div class="row marginNull">
-             <table class="table">
-                 <thead>
-                     <tr>
-                         <th>Pais</th>
-                         <th>Institucion</th>
-                         <th>Archivo</th>
-                         <th>Tipo</th>
-                         <th>Descarga</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     <tr>
-                         <td>El Salvador</td>
-                         <td>Universidad Don Bosco</td> @*Actualmente no se obtiene institucion*@
-                         <td>Documento 1</td>
-                         <td>Pdf</td>
-                         <td><img src="@Url.Content("Content/images/views/Repositorio/descarga.png")" /></td>
-                     </tr>
-                 </tbody>
-             </table>
+            <table class="table tablaFichero">
+                <thead>
+                    <tr>
+                        <th>Pais</th>
+                        <th>Institucion</th>
+                        <th>Archivo</th>
+                        <th>Tipo</th>
+                        <th>Descarga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>El Salvador</td>
+                        <td>Universidad Don Bosco</td> @*Actualmente no se obtiene institucion*@
+                        <td>Documento 1</td>
+                        <td>Pdf</td>
+                        <td>
+                            <a href="#">
+                                <img class="imgDownload" src="@Url.Content("~/Content/images/views/Repositorio/descarga.png")" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -359,10 +359,10 @@
     <Content Include="Content\images\views\Repositorio\excel-ico.png" />
     <Content Include="Content\images\views\Repositorio\folder.png" />
     <Content Include="Content\images\views\Repositorio\image.png" />
-    <Content Include="Content\images\views\Repositorio\Lateral\audifonos.png" />
-    <Content Include="Content\images\views\Repositorio\Lateral\documentos.png" />
-    <Content Include="Content\images\views\Repositorio\Lateral\imagen.png" />
-    <Content Include="Content\images\views\Repositorio\Lateral\video.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\4.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\2.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\3.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\5.png" />
     <Content Include="Content\images\views\Repositorio\music.png" />
     <Content Include="Content\images\views\Repositorio\powerpoint-ico.png" />
     <Content Include="Content\images\views\Repositorio\video.png" />
