@@ -20,6 +20,66 @@ namespace IUSBack.Controllers
             public LoginModel modelLogin;
         #endregion
         #region "Actions"
+            public ActionResult Loguear()
+            {
+                Dictionary<object, object> respuesta;
+                ActionResult retorno = null;
+                string self = "";
+                try
+                {
+
+                    Usuario usu     = new Usuario();
+                    usu._usuario    = Request.Form["txtUsuario"].ToString();
+                    usu._pass       = Request.Form["txtPass"].ToString();
+                    self            = Request.Form["txtHdSelf"].ToString();
+                    respuesta       = this.modelLogin.loguearAjax(usu);
+                    if ((bool)respuesta["login"])
+                    {
+                        Usuario usuario = (Usuario)respuesta["usuario"];
+                        FormsAuthentication.SetAuthCookie(usuario._idUsuario.ToString(), false);
+                        if ((bool)respuesta["changePass"])
+                        {
+                            Session["idUsuario"] = usuario._idUsuario;
+
+                            retorno = RedirectToAction("changePassword", "Home");
+                        }
+                        else
+                        {
+                            Session["usuario"] = usuario;
+                            retorno = RedirectToAction("Index", "Home");
+                        }
+                        // nav 
+                        Session["backControl"] = "";
+                        Session["fowardControl"] = "";
+                        Session["neutroControl"] = "";
+                        Session["flagNav"] = false;
+                    }
+
+                }
+                catch (ErroresIUS x)
+                {
+                    if (x._mostrar)
+                    {
+                        ViewBag.errorLogin = x.Message;
+                        if (self != "")
+                        {
+                            return Redirect(self+"/"+x.Message);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    /*ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true);*/
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                return retorno;
+            }
             [HttpPost]
             [ValidateAntiForgeryToken]
             public ActionResult Index(User usu)

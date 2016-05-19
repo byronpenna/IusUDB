@@ -1,8 +1,18 @@
 ﻿@using IUS.Models.Entidades
 @{
-    List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
+    List<NoticiaEvento> noticiasEventos = null;
+    try
+    {
+        noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
+    }
+    catch (Exception)
+    {
+        
+    }
 }
-<div class="row marginNull seccionNoticiaEvento">
+@if (ViewBag.footer == null)
+{
+ <div class="row marginNull seccionNoticiaEvento">
     <div class="centroPagina">
         <div class="row marginNull">
             <div class="col-lg-6 colTituloNoticia">
@@ -55,7 +65,8 @@
             }
         }
     </div>
-</div>
+</div>   
+}
 <footer class="footer">
     <div class="row marginNull text-center centroPagina">
         <div class="col-lg-4 divImgFooter">

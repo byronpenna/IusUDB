@@ -1,8 +1,15 @@
-﻿.seccionLogin{
-    background:#f3f2f2;
-    padding:3%;
+﻿
+.contenedorCuerpo{
+    border-bottom:solid 1px #cd1315;
     width:80%;
     margin: 0 auto;
+    padding-bottom:5%;
+    margin-bottom:5%;
+}
+.seccionLogin{
+    background:#f3f2f2;
+    padding:3%;
+    
 }
 .cuadritoLogin{
     width:40%;
@@ -11,6 +18,7 @@
     padding-top:2%;
     padding-bottom:2%;
 }
+
 .divImageLogoLogin{
     width:100%;
     text-align:center;
@@ -48,7 +56,7 @@
     margin-bottom:5%;
 }
 .txtLoginIus[placeholder]{
-    text-transform:uppercase;
+    /*text-transform:uppercase;*/
     padding-top:3%;
     padding-bottom:3%;
     padding-left:6%;
@@ -76,4 +84,7 @@
     border-bottom:solid 1px #dad9d9;
     color:#828181;
     font-size:0.8em;
+}
+.divMensajeLogin{
+    margin-top:3%;
 }

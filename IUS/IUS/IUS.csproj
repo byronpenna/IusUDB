@@ -335,6 +335,7 @@
     <Content Include="Content\images\views\Home\Bloques\redIus.png" />
     <Content Include="Content\images\views\Home\header\mail.png" />
     <Content Include="Content\images\views\Home\header\user.png" />
+    <Content Include="Content\images\views\Home\header\userRojo.png" />
     <Content Include="Content\images\views\Home\noticias\1.png" />
     <Content Include="Content\images\views\Home\noticias\2.png" />
     <Content Include="Content\images\views\Home\noticias\3.png" />

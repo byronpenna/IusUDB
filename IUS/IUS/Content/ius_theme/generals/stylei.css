@@ -70,6 +70,9 @@ select:focus{ outline: none;}
     margin:0 auto;
 }
 /*header*/
+    .activeSubmenu{
+        color:#cd1315 !important;
+    }
     .imgLupita{
         width:60%;
     }

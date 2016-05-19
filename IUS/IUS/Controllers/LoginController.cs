@@ -57,7 +57,7 @@ namespace IUS.Controllers
                 return View();
 
             }
-            public ActionResult Index()
+            public ActionResult Index(string id="")
             {
                 List<LlaveIdioma> traducciones;
                 try
@@ -67,6 +67,9 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     string ip = Request.UserHostAddress;
                     ViewBag.notiEvento = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    ViewBag.submenu11 = this.activeSub;
+                    ViewBag.footer = true;
+                    ViewBag.error = id;
                     return View("~/Views/Login/Indexi.cshtml");
                 }
                 catch (ErroresIUS x)

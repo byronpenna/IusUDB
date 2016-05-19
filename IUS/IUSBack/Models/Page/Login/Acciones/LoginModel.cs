@@ -87,7 +87,23 @@ namespace IUSBack.Models.Page.Login.Acciones
             }
         }
         #endregion
-        
+        public Dictionary<object, object> loguearAjax(Usuario usuario)
+        {
+            Dictionary<object, object> retorno = new Dictionary<object, object>();
+            //Usuario usuario = new Usuario(usu.usuario, usu.pass);
+            try
+            {
+                return this._controlUsuario.logueo(usuario);
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+        }
         public Dictionary<object, object> logueo(User usu)
         {
             Dictionary<object, object> retorno = new Dictionary<object, object>();

@@ -9,10 +9,11 @@
     <script src="~/Scripts/views/Login/Indexi/script.js"></script>
     <script src="~/Scripts/views/Login/Indexi/functions.js"></script>
 }
+
 <div class="lineaRoja">
 
 </div>
-<div class="row marginNull">
+<div class="row marginNull contenedorCuerpo">
     <div class="seccionLogin">
         <div class="cuadritoLogin">
             <div class="row marginNull divImageLogoLogin">
@@ -23,9 +24,13 @@
                 <span class="spAreaPrivada">Area Privada</span>
             </div>
             <div class="row marginNull divControles">
-                <input class="txtLoginIus" placeholder="Nombre de usuario"/>
-                <input class="txtLoginIus" placeholder="Contraseña" />
-                <button class="btn btnIniciar">Iniciar</button>
+                <form class="frmLogin" action="" method="post">
+                    <input type="hidden" name="txtHdSelf" value="@Request.Url.AbsoluteUri" />
+                    <input class="txtLoginIus" name="txtUsuario" placeholder="NOMBRE DE USUARIO" />
+                    <input type="password" class="txtLoginIus" name="txtPass" placeholder="CONTRASEÑA" />
+                    <button class="btn btnIniciar">Iniciar</button>
+                    <div class="row marginNull divMensajeLogin">@ViewBag.error</div>
+                </form>
             </div>
             <div class="divOlvidePass">
                 <a href="#">Olvide mi contraseña</a>

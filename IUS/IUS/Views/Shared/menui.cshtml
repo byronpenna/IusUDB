@@ -1,6 +1,11 @@
 ﻿@using IUSLibs.TRL.Entidades
 @{
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
+    string imgAreaPrivada = Url.Content("~/Content/images/views/Home/header/user.png");
+    if (ViewBag.submenu11 != null && ViewBag.submenu11 != "")
+    {
+        imgAreaPrivada = Url.Content("~/Content/images/views/Home/header/userRojo.png");
+    }
 }
 <header>
     <div class="row marginNull header centroPagina">
@@ -71,12 +76,12 @@
         <div class="centroPagina">
             <div class="col-lg-offset-8 col-lg-4">
                 <div class="col-lg-6">
-                    <a class="linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
-                        <img class="imgIcoHeader" src="@Url.Content("~/Content/images/views/Home/header/user.png")" /> @ViewData["menu1.2"] @*Área privada*@
+                    <a class="@ViewBag.submenu11 linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
+                        <img class="imgIcoHeader" src="@imgAreaPrivada" /> @ViewData["menu1.2"] @*Área privada*@
                     </a>
                 </div>
                 <div class="col-lg-6">
-                    <a class="linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
+                    <a class="@ViewBag.submenu12 linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
                         <img class="imgIcoHeader headerTextoLink" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> Contacto
                     </a>
                 </div>
