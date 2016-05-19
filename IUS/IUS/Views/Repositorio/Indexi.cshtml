@@ -3,14 +3,90 @@
     //List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
 }
 @section estilosPersonalizados{
-    <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />
-    <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/media.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/Indexi/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/Indexi/media.css" />
 }
 @section scriptsPersonalizados{
-    <script src="~/Scripts/views/Home/Indexi/script.js"></script>
-    <script src="~/Scripts/views/Home/Indexi/functions.js"></script>
+    <script src="~/Scripts/views/Repositorio/Indexi/script.js"></script>
+    <script src="~/Scripts/views/Repositorio/Indexi/functions.js"></script>
 }
 <div class="row marginNull lineaRoja">
 
 </div>
-<h2>Indexi</h2>
+<div class="centroPagina row marginNull contenidoCuerpo">
+    <div class="col-lg-4">
+        <ul class="menuLateral">
+            <li>
+                <div class="row marginNull">
+                    <div class="colImgLateral">
+                        <img class="imgLateral" src="@Url.Content("~/Content/images/views/Repositorio/Lateral/documentos.png")" />
+                    </div>
+                    <div class="texto">Documentos</div>
+                </div>
+            </li>
+            <li>
+                <div class="row marginNull">
+                    <div class="colImgLateral">
+                        <img class="imgLateral" src="@Url.Content("~/Content/images/views/Repositorio/Lateral/imagen.png")" />
+                    </div>
+                    <div class="texto">Imagenes</div>
+                </div>
+            </li>
+            <li>
+                <div class="row marginNull">
+                    <div class="colImgLateral">
+                        <img class="imgLateral" src="@Url.Content("~/Content/images/views/Repositorio/Lateral/audifonos.png")" />
+                    </div>
+                    <div class="texto">Audios</div>
+                </div>
+            </li>
+            <li>
+                <div class="row marginNull">
+                    <div class="colImgLateral">
+                        <img class="imgLateral" src="@Url.Content("~/Content/images/views/Repositorio/Lateral/video.png")" />
+                    </div>
+                    <div class="texto">Videos</div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-lg-8 detalles">
+        
+        <div class="row marginNull">
+            <h3>Documentos</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+        </div>
+        <div class="row marginNull">
+            <div class="col-lg-4">
+                <input  class="form-control" />
+            </div>
+            <div>
+                lupita
+            </div>
+        </div>
+        <div class="row marginNull">
+             <table class="table">
+                 <thead>
+                     <tr>
+                         <th>Pais</th>
+                         <th>Institucion</th>
+                         <th>Archivo</th>
+                         <th>Tipo</th>
+                         <th>Descarga</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <td>El Salvador</td>
+                         <td>Universidad Don Bosco</td> @*Actualmente no se obtiene institucion*@
+                         <td>Documento 1</td>
+                         <td>Pdf</td>
+                         <td><img src="@Url.Content("Content/images/views/Repositorio/descarga.png")" /></td>
+                     </tr>
+                 </tbody>
+             </table>
+        </div>
+    </div>
+</div>
+    

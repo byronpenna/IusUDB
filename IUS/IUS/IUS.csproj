@@ -355,9 +355,14 @@
     <Content Include="Content\images\views\Instituciones\institucionesMini.png" />
     <Content Include="Content\images\views\Repositorio\adobe-reader.png" />
     <Content Include="Content\images\views\Repositorio\cloud.png" />
+    <Content Include="Content\images\views\Repositorio\descarga.png" />
     <Content Include="Content\images\views\Repositorio\excel-ico.png" />
     <Content Include="Content\images\views\Repositorio\folder.png" />
     <Content Include="Content\images\views\Repositorio\image.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\audifonos.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\documentos.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\imagen.png" />
+    <Content Include="Content\images\views\Repositorio\Lateral\video.png" />
     <Content Include="Content\images\views\Repositorio\music.png" />
     <Content Include="Content\images\views\Repositorio\powerpoint-ico.png" />
     <Content Include="Content\images\views\Repositorio\video.png" />
@@ -435,6 +440,8 @@
     <Content Include="Content\ius_theme\views\Noticias\Todas\style.css" />
     <Content Include="Content\ius_theme\views\Repositorio\AllFiles\media.css" />
     <Content Include="Content\ius_theme\views\Repositorio\AllFiles\style.css" />
+    <Content Include="Content\ius_theme\views\Repositorio\Indexi\media.css" />
+    <Content Include="Content\ius_theme\views\Repositorio\Indexi\style.css" />
     <Content Include="Content\ius_theme\views\Repositorio\media.css" />
     <Content Include="Content\ius_theme\views\Repositorio\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -646,6 +653,8 @@
     <Content Include="Scripts\views\Repositorio\AllFiles\functions.js" />
     <Content Include="Scripts\views\Repositorio\AllFiles\script.js" />
     <Content Include="Scripts\views\Repositorio\functions.js" />
+    <Content Include="Scripts\views\Repositorio\Indexi\functions.js" />
+    <Content Include="Scripts\views\Repositorio\Indexi\script.js" />
     <Content Include="Scripts\views\Repositorio\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -718,6 +727,7 @@
     <Content Include="Views\Shared\footeri.cshtml" />
     <Content Include="Views\Instituciones\Indexi.cshtml" />
     <Content Include="Views\Login\Indexi.cshtml" />
+    <Content Include="Views\Repositorio\Indexi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

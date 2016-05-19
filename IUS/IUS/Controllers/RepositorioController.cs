@@ -150,6 +150,7 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     ViewBag.tiposArchivos   = this._model.sp_repo_front_getTiposArchivos(lang,ip, this.idPagina);
                     ViewBag.menu24          = this.activeClass;
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
                 }
                 catch (ErroresIUS x)
                 {
@@ -159,7 +160,7 @@ namespace IUS.Controllers
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                return View();
+                return View("~/Views/Repositorio/Indexi.cshtml");
             }
         #endregion
         #region "acciones ajax"
