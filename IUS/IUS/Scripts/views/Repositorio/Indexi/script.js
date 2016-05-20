@@ -11,7 +11,8 @@
                 $(this).find(".imgLateral").attr("src", $(this).find(".txtHdRoja").val());
                 $(this).addClass("activeRecurso");
                 var frm = serializeSection($(this));
-                window.history.pushState({}, "Titulo", "/Repositorio/index/"+frm.txtHdIdTipoArchivo);
+                window.history.pushState({}, "Titulo", "/Repositorio/index/" + frm.txtHdIdTipoArchivo);
+                $(".tituloCuerpo").empty().append($(this).find(".texto").text());
                 getArchivos(frm);
             })
         // keyup

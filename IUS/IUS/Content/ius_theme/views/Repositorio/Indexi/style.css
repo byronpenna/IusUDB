@@ -101,11 +101,20 @@
     vertical-align:middle;
     font-size:1.5em;
     padding-top:10px;
-    
+    display:inline-block;
+    vertical-align:top;
 }
-
+.divInput{
+    width:70%;
+    display:inline-block;
+}
 .activeRecurso{
     border-color:#cd1315 !important;
     color:#cd1315;
     font-weight:bold;
+}
+
+.contenidoCuerpo{
+    padding-bottom: 10%;
+    border-bottom:solid 1px #cd1315;
 }

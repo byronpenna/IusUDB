@@ -17,7 +17,7 @@
 <div class="row marginNull lineaRoja">
 
 </div>
-<input class="txtHdIdTipo" value="@ViewBag.tipoActual" />
+<input type="hidden" class="txtHdIdTipo" value="@ViewBag.tipoActual" />
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuLateral">
@@ -82,17 +82,19 @@
     <div class="col-lg-8 detalles">
         
         <div class="row marginNull divTitulo">
-            <h3>Documentos</h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+            <h3 class="tituloCuerpo">Documentos</h3>
+            <p>@ViewData["texto-inicial"]</p>
         </div>
         <div class="row marginNull divSearch">
             <div class="col-lg-8 paddingNull">
-                <textarea class="txtSearch form-control" rows="2" cols="50" placeholder="Para realizar busquedas mas especificas  como por país, Institución o archivo ocupar la
-herramienta de busqueda."></textarea>
+                <span>@ViewData["txt-placeholder-search"]</span>
             </div>
             <div class="col-lg-4">
                 <div class="divLupita">
                     <i class="fa fa-search icoLupita" aria-hidden="true"></i>
+                </div>
+                <div class="divInput">
+                    <textarea class="txtSearch form-control" rows="2" cols="50" placeholder=""></textarea>
                 </div>
             </div>
         </div>
@@ -100,11 +102,11 @@ herramienta de busqueda."></textarea>
             <table class="table tablaFichero">
                 <thead>
                     <tr>
-                        <th>Pais</th>
-                        <th>Institucion</th>
-                        <th>Archivo</th>
-                        <th>Tipo</th>
-                        <th>Descarga</th>
+                        <th>@ViewData["tb-th-pais"]</th>
+                        <th>@ViewData["tb-th-institucion"]</th>
+                        <th>@ViewData["tb-th-archivo"]</th>
+                        <th>@ViewData["tb-th-tipo"]</th>
+                        <th>@ViewData["tb-th-descarga"]</th>
                     </tr>
                 </thead>
                 <tbody>
