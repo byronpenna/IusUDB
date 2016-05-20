@@ -103,3 +103,9 @@
     padding-top:10px;
     
 }
+
+.activeRecurso{
+    border-color:#cd1315 !important;
+    color:#cd1315;
+    font-weight:bold;
+}

@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
     //List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
     List<TipoArchivo> tiposArchivos = (List<TipoArchivo>)ViewBag.tiposArchivos;
+    //
+    
 }
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Repositorio/Indexi/style.css" />
@@ -20,14 +22,20 @@
         <ul class="menuLateral">
             @if (tiposArchivos != null && tiposArchivos.Count > 0)
             {
+                string urlNormal,urlRoja;
                 foreach (TipoArchivo tipoArchivo in tiposArchivos)
                 {
                     if (tipoArchivo._idTipoArchivo != 1)
                     {
+                        urlNormal   = Url.Content("~/Content/images/views/Repositorio/Lateral/" + tipoArchivo._idTipoArchivo + ".png");
+                        urlRoja     = Url.Content("~/Content/images/views/Repositorio/Lateral/" + tipoArchivo._idTipoArchivo + "r.png");
                         <li>
                             <div class="row marginNull">
                                 <div class="colImgLateral">
-                                    <img class="imgLateral" src="@Url.Content("~/Content/images/views/Repositorio/Lateral/"+tipoArchivo._idTipoArchivo+".png")" />
+                                    <input type="hidden" class="txtHdNormal" value="@urlNormal" />
+                                    <input type="hidden" class="txtHdRoja" value="@urlRoja" />
+
+                                    <img class="imgLateral" src="@urlNormal" />
                                 </div>
                                 <div class="texto">@tipoArchivo._tipoArchivo</div>
                             </div>
