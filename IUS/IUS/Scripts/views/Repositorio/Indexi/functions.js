@@ -24,17 +24,35 @@ function getTrNull(){
 }
 function getTrRepositorio(archivo) {
     var tr = "\
-        <tr>\
+        <tr class='trFichero'>\
             <td>El Salvador</td>\
             <td>Universidad Don Bosco</td>\
-            <td>" + archivo._nombre + "." + archivo._archivoUsuario._extension._extension + "</td>\
+            <td class='tdNombreFichero'>" + archivo._nombre +  archivo._archivoUsuario._extension._extension + "</td>\
             <td>Pdf</td>\
             <td>\
-                <a href='#'>\
+                <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "'>\
                     <img class='imgDownload' src='" + RAIZ + "/Content/images/views/Repositorio/descarga.png' />\
                 </a>\
             </td>\
         </tr>\
     ";
     return tr;
+}
+
+function buscarCarpeta(valor)
+{
+    $(".trFichero").addClass("hidden");
+    var trs = $(".trFichero .tdNombreFichero:containsi(" + valor + ")");
+    trs = trs.parents(".trFichero");
+    trs.removeClass("hidden");
+}
+
+function iniciales() {
+    var idTipoFiltro = $(".txtHdIdTipo").val();
+    if (idTipoFiltro != -1) {
+        $(".menuLateral").find("#" + idTipoFiltro).click();
+    } else {
+        $(".menuLateral li")[0].click();
+    }
+    
 }

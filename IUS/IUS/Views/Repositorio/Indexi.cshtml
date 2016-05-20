@@ -17,6 +17,7 @@
 <div class="row marginNull lineaRoja">
 
 </div>
+<input class="txtHdIdTipo" value="@ViewBag.tipoActual" />
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuLateral">
@@ -29,7 +30,7 @@
                     {
                         urlNormal   = Url.Content("~/Content/images/views/Repositorio/Lateral/" + tipoArchivo._idTipoArchivo + ".png");
                         urlRoja     = Url.Content("~/Content/images/views/Repositorio/Lateral/" + tipoArchivo._idTipoArchivo + "r.png");
-                        <li>
+                        <li id="@tipoArchivo._idTipoArchivo">
                             <div class="row marginNull">
                                 <div class="colImgLateral">
                                     <input type="hidden" class="txtHdNormal" value="@urlNormal" />
@@ -107,10 +108,10 @@ herramienta de busqueda."></textarea>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="trFichero">
                         <td>El Salvador</td>
                         <td>Universidad Don Bosco</td> @*Actualmente no se obtiene institucion*@
-                        <td>Documento 1</td>
+                        <td class="tdNombreFichero">Documento 1</td>
                         <td>Pdf</td>
                         <td>
                             <a href="#">

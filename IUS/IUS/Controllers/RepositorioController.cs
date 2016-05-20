@@ -137,7 +137,7 @@ namespace IUS.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
             }
-            public ActionResult Index()
+            public ActionResult Index(int id = -1)
             {
                 List<LlaveIdioma> traducciones;
                 try
@@ -151,6 +151,7 @@ namespace IUS.Controllers
                     ViewBag.tiposArchivos   = this._model.sp_repo_front_getTiposArchivos(lang,ip, this.idPagina);
                     ViewBag.menu24          = this.activeClass;
                     ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    ViewBag.tipoActual      = id;
                 }
                 catch (ErroresIUS x)
                 {
