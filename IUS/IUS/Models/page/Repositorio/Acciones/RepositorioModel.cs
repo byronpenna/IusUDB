@@ -21,6 +21,22 @@ namespace IUS.Models.page.Repositorio.Acciones
         #endregion
         #region "funciones"
                 #region "get"
+                    public List<ArchivoPublico> sp_repo_front_getAllFilesByType(int idTipo, string ip, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlArchivoPublico.sp_repo_front_getAllFilesByType(idTipo, ip, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    // antiguos 
                     public List<ArchivoPublico> sp_repo_searchArchivoPublico(int idTipoArchivo,string nombreBuscar,string ip, int idPagina)
                     {
                         try

@@ -164,6 +164,34 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult ajax_getArchivos()
+            {
+                Dictionary<object, object> frm, respuesta=null;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        string ip = Request.UserHostAddress;
+                        List<ArchivoPublico> archivos = this._model.sp_repo_front_getAllFilesByType(this.convertObjAjaxToInt(frm["txtHdIdTipoArchivo"]), ip, idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("archivos", archivos);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                return Json(respuesta);
+            }
+            // Anteriores 
             public ActionResult navHistory()
             {
                 Dictionary<object, object> frm, respuesta=null;

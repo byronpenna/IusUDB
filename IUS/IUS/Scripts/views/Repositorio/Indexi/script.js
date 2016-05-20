@@ -10,5 +10,7 @@
         $(this).addClass("activeRecurso");
 
         window.history.pushState({}, "Titulo", "/Repositorio/index/");
+        var frm = serializeSection($(this));
+        getArchivos(frm);
     })
 })

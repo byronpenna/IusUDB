@@ -180,6 +180,59 @@ namespace IUSLibs.REPO.Control.Publico
                     }
                     return archivos;
                 }
+                
+                public List<ArchivoPublico> sp_repo_front_getAllFilesByType(int idTipo, string ip, int idPagina)
+                {
+                    List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;
+                    Archivo archivoNormal; ExtensionArchivo extension; TipoArchivo tipoArchivo;
+                    CarpetaPublica carpetaPublica;
+
+                    SPIUS sp = new SPIUS("sp_repo_front_getAllFilesByType");
+                    
+                    sp.agregarParametro("idTipo", idTipo);
+                    sp.agregarParametro("ip", ip);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                archivosPublicos = new List<ArchivoPublico>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+
+                                    tipoArchivo = new TipoArchivo((int)row["idTipoArchivo"], row["tipoArchivo"].ToString());
+                                    tipoArchivo._icono = row["icono"].ToString();
+                                    extension = new ExtensionArchivo((int)row["idExtension"], tipoArchivo);
+                                    extension._extension = row["extension"].ToString();
+                                    archivoNormal = new Archivo((int)row["idArchivo"], extension);
+                                    if (row["id_carpetapublica_fk"] == DBNull.Value)
+                                    {
+                                        carpetaPublica = new CarpetaPublica();
+                                    }
+                                    else
+                                    {
+                                        carpetaPublica = new CarpetaPublica((int)row["id_carpetapublica_fk"]);
+                                    }
+                                    archivo = new ArchivoPublico((int)row["idArchivoPublico"], archivoNormal, carpetaPublica, row["nombre_publico"].ToString(), (bool)row["estado"]);
+                                    archivo._fechaCreacion = (DateTime)row["creacion_publica"];
+                                    archivosPublicos.Add(archivo);
+                                }
+                            }
+                        }
+                        return archivosPublicos;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public List<ArchivoPublico> sp_repo_front_getAllArchivosPublicos(int idCarpeta, string ip, int idPagina)
                 {
                     List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;
