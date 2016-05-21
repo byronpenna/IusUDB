@@ -15,7 +15,7 @@
         <div class="col-lg-9">
             <div class="col-lg-4 divSectionIdioma ">
                 <div class="otroDiv">
-                    <div class="tituloIdioma">Idioma</div>
+                    <div class="tituloIdioma">@ViewData["lb-idioma"]</div>
                     <div class="padreCaja">
                         <div class="cajaArriba">
                             <div class="caja">
@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-lg-6">
                     <a class="@ViewBag.submenu12 linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
-                        <img class="imgIcoHeader headerTextoLink" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> Contacto
+                        <img class="imgIcoHeader headerTextoLink" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> @ViewData["menuContacto"]
                     </a>
                 </div>
             </div>
