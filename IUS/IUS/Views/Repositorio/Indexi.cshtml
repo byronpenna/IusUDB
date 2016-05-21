@@ -18,6 +18,7 @@
 
 </div>
 <input type="hidden" class="txtHdIdTipo" value="@ViewBag.tipoActual" />
+<input type="hidden" class="txtHdArchivoNoEncontrado" value="@ViewData["lb-mjs-archivoNoEncontrado"]" />
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuLateral">
@@ -86,16 +87,19 @@
             <p>@ViewData["texto-inicial"]</p>
         </div>
         <div class="row marginNull divSearch">
-            <div class="col-lg-8 paddingNull">
-                <span>@ViewData["txt-placeholder-search"]</span>
+            <div class="col-lg-8 paddingNull padreIndicacionesSearch">
+                <div class="spanIndicacionesSearch">@ViewData["txt-placeholder-search"]</div>
             </div>
-            <div class="col-lg-4">
-                <div class="divLupita">
-                    <i class="fa fa-search icoLupita" aria-hidden="true"></i>
+            <div class="col-lg-4 hermanoIndicacionesSearch">
+                <div class="row marginNull">
+                    <div class="divLupita">
+                        <i class="fa fa-search icoLupita" aria-hidden="true"></i>
+                    </div>
+                    <div class="divInput">
+                        <textarea class="txtSearch form-control" rows="2" cols="50" placeholder=""></textarea>
+                    </div>
                 </div>
-                <div class="divInput">
-                    <textarea class="txtSearch form-control" rows="2" cols="50" placeholder=""></textarea>
-                </div>
+                
             </div>
         </div>
         <div class="row marginNull">
@@ -110,9 +114,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="trFichero">
+                    @*<tr class="trFichero">
                         <td>El Salvador</td>
-                        <td>Universidad Don Bosco</td> @*Actualmente no se obtiene institucion*@
+                        <td>Universidad Don Bosco</td> 
                         <td class="tdNombreFichero">Documento 1</td>
                         <td>Pdf</td>
                         <td>
@@ -120,7 +124,7 @@
                                 <img class="imgDownload" src="@Url.Content("~/Content/images/views/Repositorio/descarga.png")" />
                             </a>
                         </td>
-                    </tr>
+                    </tr>*@
                 </tbody>
             </table>
         </div>

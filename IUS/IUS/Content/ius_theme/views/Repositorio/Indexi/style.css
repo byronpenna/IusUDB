@@ -32,7 +32,7 @@
 
 .detalles{
     background:#f3f2f2;
-    min-height:900px;
+    min-height:700px;
     /* Extras al usado en instituciones*/
     padding-right:3%;
     padding-left:3%;
@@ -63,6 +63,7 @@
 .divTitulo{
     margin-left:3%;
     margin-top:5%;
+    padding-right:3%;
 }
 .divTitulo h3{
     color:#cc1315;
@@ -73,11 +74,7 @@
         font-size:0.9em;
     }
 
-.divSearch{
-    border:  solid 1px #828181;
-    height:45px;
-    margin-top:2%;
-}
+
 .txtSearch{
     background:transparent;
     border:none;
@@ -88,6 +85,28 @@
 .txtSearch::-webkit-input-placeholder{ 
     color: #040404; 
 }
+
+.divSearch{
+    display:table;
+    border:  solid 1px #828181;
+    height:45px;
+    margin-top:2%;
+    /*background:red;*/
+}
+.padreIndicacionesSearch{
+    display:table;
+    height:45px;
+}
+.spanIndicacionesSearch{
+    font-size:0.8em;
+    display:table-cell;
+    vertical-align:middle;
+    padding-left:3%;
+}
+.hermanoIndicacionesSearch{
+    display:table-cell;
+    padding-right:0;
+}
 .divLupita{
     border-left: solid 1px #828181;
     
@@ -95,18 +114,18 @@
     padding-left:1%;
     padding-right:1%;
     width:20%;
-    height:100%;
+    height:45px;
     position:relative;
     text-align:center;
     vertical-align:middle;
     font-size:1.5em;
-    padding-top:10px;
-    display:inline-block;
-    vertical-align:top;
+    /*padding-top:10px;*/
+    display:table-cell;
+    vertical-align:middle;
 }
 .divInput{
     width:70%;
-    display:inline-block;
+    display:table-cell;
 }
 .activeRecurso{
     border-color:#cd1315 !important;
@@ -115,6 +134,6 @@
 }
 
 .contenidoCuerpo{
-    padding-bottom: 10%;
+    padding-bottom: 6%;
     border-bottom:solid 1px #cd1315;
 }

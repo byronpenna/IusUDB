@@ -15,9 +15,10 @@
     })
 }
 function getTrNull(){
+    
     var tr = "\
         <tr>\
-            <td colspan='5'>No hay archivo</td>\
+            <td colspan='5'>" + $(".txtHdArchivoNoEncontrado").val() + "</td>\
         </tr>\
     ";
     return tr;
