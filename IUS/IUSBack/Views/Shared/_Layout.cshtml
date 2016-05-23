@@ -1,4 +1,5 @@
 ﻿@using IUSLibs.SEC.Entidades
+
 @{
     String menu = ViewBag.subMenus;
     DateTime hoy = DateTime.Now;
@@ -33,14 +34,16 @@
         <link rel="icon" href="@Url.Content("~/Content/themes/iusback_theme/img/general/logo_IUS.ico")" />
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" />-->
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/generals/thirdParty/fontAwesome/css/font-awesome.css" />
-    @Scripts.Render("~/bundles/scriptsGenerales")
+    
     <!-- JQuery UI -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        
     @Styles.Render("~/bundles/bootstrap")
     @RenderSection("estilosPersonalizados", false)
 </head>
 <body>
+    <input type="hidden" value="@IUSLibs.GENERALS.Rutas.IUSBACK"    class="txtHdIusback" />
+    <input type="hidden" value="@IUSLibs.GENERALS.Rutas.IUS"        class="txtHdIus" />
     <header>
         <div class="row marginNull">
             <div class="col-lg-2 sectionLogoMenu">
@@ -144,6 +147,8 @@
     </div>
     @RenderBody()
     @Html.Partial("footer")
+    @Scripts.Render("~/bundles/scriptsGenerales")
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     @RenderSection("scriptsPersonalizados", false)
 </body>
 </html>

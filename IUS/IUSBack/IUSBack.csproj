@@ -907,6 +907,7 @@
     <Content Include="Views\Login\ForgetPass.cshtml" />
     <Content Include="Views\Shared\Repositorio\nav.cshtml" />
     <Content Include="Views\Login\Indexi.cshtml" />
+    <Content Include="Views\Login\LogOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

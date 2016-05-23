@@ -1,7 +1,6 @@
 ﻿<html>
     <head>
         <title>@ViewBag.headTitulo</title>
-        @Scripts.Render("~/bundles/scriptsGeneralesi")
         @Styles.Render("~/bundles/bootstrap")
         <!-- Meta -->
             <meta name="viewport" content="width=device-width" />
@@ -14,14 +13,19 @@
             <link rel="stylesheet" href="~/Content/ius_theme/generals/ThirdParty/FontAwesome/css/font-awesome.css">
         <!-- Jquery ui -->
             <link rel="stylesheet" href="~/Content/ius_theme/generals/ThirdParty/jquery-ui/smoothness/jquery-ui.css" />
-            <script src="~/Scripts/Generales/jquery-ui.js"></script>
+            
         <!-- Dinamico -->
             @RenderSection("estilosPersonalizados", false)
-            @RenderSection("scriptsPersonalizados", false)
+            
     </head>
     <body>
+        <input type="hidden" value="@IUSLibs.GENERALS.Rutas.IUSBACK" class="txtHdIusback" />
+        <input type="hidden" value="@IUSLibs.GENERALS.Rutas.IUS" class="txtHdIus" />
         @Html.Partial("menui")
         @RenderBody()
         @Html.Partial("footeri")
+        <script src="~/Scripts/Generales/jquery-ui.js"></script>
+        @Scripts.Render("~/bundles/scriptsGeneralesi")
+        @RenderSection("scriptsPersonalizados", false)
     </body>
 </html>

@@ -248,7 +248,7 @@ namespace IUSBack.Controllers
             }
             public ActionResult LogOut(){
                 Session.Contents.RemoveAll();
-                return RedirectToAction("Index", "Login");
+                return Redirect(IUSLibs.GENERALS.Rutas.IUS+"Login/Index");
             }
         #endregion
         #region "Constructores"

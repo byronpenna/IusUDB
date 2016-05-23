@@ -22,9 +22,9 @@
     // ****************** CAMBIAR CADA SUBIDA ******************
         //var RAIZ  = "http://admacad.udb.edu.sv/IUSback/";
         //var RAIZ  = "http://168.243.3.62/iusback/";
-        var RAIZ    = "http://localhost:55869/";
+        var RAIZ        = $(".txtHdIusback").val(); //"http://localhost:55869/";
         
-        var RAIZFRONT = "http://localhost:7196/";
+        var RAIZFRONT   = $(".txtHdIus").val(); //"http://localhost:7196/";
         //var RAIZFRONT = "http://168.243.3.62/ius/";
         //var RAIZFRONT = "http://admacad.udb.edu.sv/IUS/";
         

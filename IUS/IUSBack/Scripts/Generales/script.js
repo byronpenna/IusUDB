@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+
     $.extend($.expr[':'], {
         'containsi': function (elem, i, match, array) {
             return (elem.textContent || elem.innerText || '').toLowerCase()
