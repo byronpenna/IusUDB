@@ -97,7 +97,7 @@ namespace IUSBack.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("index", "login");
+                        return Redirect(IUSLibs.GENERALS.Rutas.IUS + "Login/Index");
                     }
                     return retorno;
                 }
