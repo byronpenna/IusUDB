@@ -104,10 +104,10 @@
     <Compile Include="ADMINFE\Entidades\UsuarioEvento.cs" />
     <Compile Include="ADMINFE\Entidades\Valor.cs" />
     <Compile Include="ADMINFE\Pantalla\PantallaHome.cs" />
-    <Compile Include="BaseDatos\Parametro.cs" />
-    <Compile Include="BaseDatos\SPIUS.cs" />
+    <Compile Include="ADMINFE\BaseDatos\Parametro.cs" />
+    <Compile Include="ADMINFE\BaseDatos\SPIUS.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="BaseDatos\ConexionIUS.cs" />
+    <Compile Include="ADMINFE\BaseDatos\ConexionIUS.cs" />
     <Compile Include="FrontUI\Control\ControlEnlaceInstitucion.cs" />
     <Compile Include="FrontUI\Control\ControlInstitucion.cs" />
     <Compile Include="FrontUI\Control\ControlNivelesEducaion.cs" />

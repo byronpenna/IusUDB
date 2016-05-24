@@ -19,6 +19,8 @@ namespace IUSLibs.ADMINFE.Entidades
                 public Usuario  _usuarioCreador;
                 public DateTime _fechaCreacion;
                 public string   _descripcion;
+
+                //public byte[]   _miniatura;
             // extras 
                 public int      _propietario; // 1: evento propio, 2: evento compartido, 3: evento publico
                 public bool     _publicado; // este no va en constructor porque no va con la naturalesa de la tabla
@@ -114,6 +116,16 @@ namespace IUSLibs.ADMINFE.Entidades
                 this._evento = evento;
                 this._fechaInicio = fechaInicio;
                 this._fechaFin = fechaFin;
+                this._usuarioCreador = usuarioCreador;
+                this._descripcion = descripcion;
+            }
+            public Evento(int idEvento, string evento, DateTime fechaInicio, DateTime fechaFin, int idUsuarioCreador, string descripcion)
+            {
+                this._idEvento = idEvento;
+                this._evento = evento;
+                this._fechaInicio = fechaInicio;
+                this._fechaFin = fechaFin;
+                Usuario usuarioCreador = new Usuario(idUsuarioCreador);
                 this._usuarioCreador = usuarioCreador;
                 this._descripcion = descripcion;
             }

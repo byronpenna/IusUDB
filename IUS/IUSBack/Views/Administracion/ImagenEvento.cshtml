@@ -1,0 +1,48 @@
+﻿@using IUSLibs.ADMINFE.Entidades
+@{
+    ViewBag.Title = "ImagenEvento";
+    Evento evento = null; 
+    string rutaImage = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    try
+    {
+        
+        evento = (Evento)ViewBag.evento;
+    }
+    catch (Exception)
+    {
+        
+    }
+}
+@section estilosPersonalizados{
+    <!-- Propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/ImagenEvento/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/ImagenEvento/media.css" />
+}
+@section scriptsPersonalizados{
+    <!-- Propios -->
+        <script src="~/Scripts/Views/Administracion/ImagenEvento/script.js"></script>
+        <script src="~/Scripts/Views/Administracion/ImagenEvento/functions.js"></script>
+}
+<form method="post" id="frmImagenEvento" action="@Url.Action("sp_adminfe_setMiniaturaEvento","Administracion")">
+    <input type="hidden" name="txtHdIdEvento" value="@ViewBag.idEvento" />
+    <div class="divImgThumbnail">
+        
+        <img class="imgThumbnail" src="@rutaImage" />
+        <div class="row divLoadingPhoto">
+
+        </div>
+        <div class="row marginNull divCorte hidden">
+            <input class="x" name="x" value="0" />
+            <input class="y" name="y" value="0" />
+
+            <input class="imgAlto" name="imgAlto" value="0" />
+            <input class="imgAncho" name="imgAncho" value="0" />
+        </div>
+    </div>
+    <div class="row marginNull">
+        <div class="fileUpload btn btn-default">
+            <span>Seleccionar imagen</span>
+            <input type="file" class="upload flFoto" id="flMiniatura" accept="image/*" required />
+        </div>
+    </div>
+</form>

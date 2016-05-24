@@ -30,6 +30,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #region "funciones publicas"
             #region "eventos"
                 #region "gets"
+                    public Evento sp_adminfe_getEventById(int idEvento, int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlEvento.sp_adminfe_getEventById(idEvento, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public List<Evento> sp_adminfe_buscarAllEventosPersonalesByDate(DateTime fechaInicio,DateTime fechaFin,int idUsuarioEjecutor,int idPagina)
                     {
                         try

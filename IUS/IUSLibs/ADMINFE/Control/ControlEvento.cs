@@ -21,6 +21,41 @@ namespace IUSLibs.ADMINFE.Control
         #endregion 
         #region "funciones"
             #region "gets"
+                public Evento sp_adminfe_getEventById(int idEvento, int idUsuarioEjecutor,int idPagina)
+                {
+                    Evento evento = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_getEventById");
+                    /*
+                        @			int,
+		                -- seguridad 
+		                @	int,
+		                @			int 
+                     */
+                    sp.agregarParametro("idEvento", idEvento);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                DataRow row = tb[0].Rows[0];
+                                evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], (int)row["id_usuario_creador_fk"], row["descripcion"].ToString());
+                            }
+                        }
+                        return evento;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public int sp_adminfe_countTodayEvents(int idPagina,int idUsuarioEjecutor)
                 {
                     int cnEventos = 0;

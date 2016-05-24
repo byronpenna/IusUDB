@@ -43,7 +43,7 @@ namespace IUSBack.Controllers
                 }
                 //return null;
             }
-            public ActionResult Eventos(int id)
+            public ActionResult Eventos(int id=1)
             {
                 /*
                  id: representa la pestaña en la que se encuentra actualmente
@@ -78,7 +78,35 @@ namespace IUSBack.Controllers
                 return View();
             }
             // Al parecer no funciona 
-            
+            public ActionResult ImagenEvento(int id)
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPaginaEventos);
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    ViewBag.titleModulo = "Establecer imagen evento";
+                    ViewBag.usuario     = usuarioSession;
+                    ViewBag.menus       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.evento      = this._model._controlEvento.sp_adminfe_getEventById(id,usuarioSession._idUsuario,this._idPaginaEventos);
+                    ViewBag.idEvento    = id;
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "SetLogo-" + this._nombreClass, usuarioSession._idUsuario, this._idPaginaEventos);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "SetLogo-" + this._nombreClass, usuarioSession._idUsuario, this._idPaginaEventos);
+                }
+            }
             /*public ActionResult Noticias()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
@@ -421,7 +449,7 @@ namespace IUSBack.Controllers
                             return Json(respuesta);
                         }
                     #endregion
-                        public ActionResult sp_adminfe_quitarEventoWebsite()
+                    public ActionResult sp_adminfe_quitarEventoWebsite()
                     {
                         Dictionary<object, object> frm, respuesta = null;
                         Usuario usuarioSesion = this.getUsuarioSesion();
@@ -458,6 +486,34 @@ namespace IUSBack.Controllers
                         else
                         {
                             respuesta = this.errorEnvioFrmJSON();
+                        }
+                        return Json(respuesta);
+                    }
+                    public ActionResult sp_adminfe_setMiniaturaEvento() // aun no creado procedimiento almacenado
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        try
+                        {
+                            Usuario usuarioSession = this.getUsuarioSesion();
+                            frm = this.getAjaxFrm();
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
+                            {
+                                if (Request.Files.Count > 0)
+                                {
+
+                                }
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
                         }
                         return Json(respuesta);
                     }

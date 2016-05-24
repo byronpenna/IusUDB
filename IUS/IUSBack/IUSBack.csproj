@@ -480,6 +480,8 @@
     <Content Include="Content\themes\iusback_theme\img\views\Persona\pastel.png" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\ImagenEvento\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\ImagenEvento\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />
@@ -676,6 +678,8 @@
     <Content Include="Scripts\Generales\script.js" />
     <Content Include="Scripts\Views\Administracion\Eventos\functions.js" />
     <Content Include="Scripts\Views\Administracion\Eventos\script.js" />
+    <Content Include="Scripts\Views\Administracion\ImagenEvento\functions.js" />
+    <Content Include="Scripts\Views\Administracion\ImagenEvento\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\functions.js" />
@@ -908,6 +912,7 @@
     <Content Include="Views\Shared\Repositorio\nav.cshtml" />
     <Content Include="Views\Login\Indexi.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
+    <Content Include="Views\Administracion\ImagenEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

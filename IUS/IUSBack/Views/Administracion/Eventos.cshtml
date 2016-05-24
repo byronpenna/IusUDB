@@ -180,12 +180,14 @@
                             <span class="spanPicture">
                                 <i class="fa fa-picture-o"></i>
                             </span>
-                            
                         </h3>
                         <div class="tabDesplegableEvento detalleEvento">
                             <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
                             <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
-                            
+                            <a class="vinculoGay" href="@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })">
+                                @*<i class="fa fa-picture-o"></i>*@
+                                xx
+                            </a>
                             <div class="row">
                                 <div class="normalMode">
                                     <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>

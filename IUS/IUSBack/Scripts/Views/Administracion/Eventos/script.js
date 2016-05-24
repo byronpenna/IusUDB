@@ -97,8 +97,15 @@
             })
         // click
             //
-            $(document).on("click", ".spanPicture", function (e) {
+            $(document).on("click", ".vinculoGay", function (e) {
+                window.location.href = $(this).attr("href");
+            })
+            $(document).on("click", ".tabDesplegableEvento", function (e) {
                 e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                e.cancelBubble = true;
+                console.log("Click a tab event");
             })
             //#######
             $(document).on("click", ".btnEliminarEvento", function () {
