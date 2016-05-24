@@ -11,3 +11,19 @@ function setFrmCoords(frm, imgQuery) {
     frm.y = frm.y / imgQuery.height();
     return frm;
 }
+
+function frmImagenEvento(data, url, image, jcrop_api) {
+    var targetImg = $(".imgThumbnail"), boton = $(".btnSubir");
+    accionAjaxWithImage(url, data, function (data) {
+        console.log("respuesta", data);
+        if (data.estado) {
+            jcrop_api.destroy();
+            //$(".imgThumbnail").attr("src", image.src);
+            /*targetImg.attr("src", RAIZ + "GestionInstituciones/getImageThumbLogo/" + data.id);
+            console.log("url a poner es", RAIZ + "GestionInstituciones/getImageThumbLogo/" + data.id);
+            targetImg.attr("style", "");*/
+            boton.prop("disabled", true);
+        }
+
+    })
+}

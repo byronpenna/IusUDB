@@ -133,8 +133,8 @@ namespace IUSBack.Controllers
                     rutas.Add("REPOSITORIO_DIGITAL", "~/RepositorioDigital/Usuarios/");
                     rutas.Add("LOGOS_INSTITUCIONES", "~/Content/Views/Instituciones/Logos/");
                     rutas.Add("FOTOS_PERSONAL", "~/Recursos/Personal/");
+                    rutas.Add("IMAGEN_EVENTO", "~/Recursos/Eventos/Imagen/");
                     rutas.Add("IUS_URL", URL_IUS);
-                    
                     return rutas;
                 }
             #endregion

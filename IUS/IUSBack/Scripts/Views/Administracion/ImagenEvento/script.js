@@ -23,9 +23,9 @@
                                 jcrop_api.destroy();
                             }
                             jcrop_api = $.Jcrop(".imgThumbnail", {
-                                onSelect: storeCoords,
-                                onChange: storeCoords,
-                                aspectRatio: 1
+                                onSelect:       storeCoords,
+                                onChange:       storeCoords,
+                                aspectRatio:    300 / 100,
                             });
                         }
                     })
@@ -42,6 +42,17 @@
             $(document).on("submit", "#frmImagenEvento", function (e) {
                 var files = $("#flMiniatura")[0].files;
                 frm = serializeToJson($(this).serializeArray());
-                
+                formulario = $(this);
+                frm = setFrmCoords(frm, $(".imgThumbnail"));
+                data = getObjFormData(files, frm);
+                e.preventDefault();
+                console.log("frm enviado es", frm);
+                getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
+                    if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0)) {
+                        frmMiniatura(data, formulario.attr("action"), imagen, jcrop_api);
+                    } else {
+                        printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
+                    }
+                });
             })
 })

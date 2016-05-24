@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using System.Drawing;
+using System.IO;
 // librerias internas
     using IUSBack.Models.Page.Administracion.Acciones;
 // librerias externas
@@ -492,6 +494,7 @@ namespace IUSBack.Controllers
                     public ActionResult sp_adminfe_setMiniaturaEvento() // aun no creado procedimiento almacenado
                     {
                         Dictionary<object, object> frm, respuesta = null;
+                        string fileName = ""; string path = "";
                         try
                         {
                             Usuario usuarioSession = this.getUsuarioSesion();
@@ -499,10 +502,60 @@ namespace IUSBack.Controllers
                             respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                             if (respuesta == null)
                             {
-                                if (Request.Files.Count > 0)
+                                List<HttpPostedFileBase> files = this.getBaseFileFromRequest(Request);
+                                if (files.Count > 0)
                                 {
+                                    foreach (HttpPostedFileBase file in files)
+                                    {
+                                        fileName = Path.GetFileName(file.FileName);
+                                        var strExtension = Path.GetExtension(file.FileName);
+                                        string path2 = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["IMAGEN_EVENTO"]  + "/"), "");
+                                        path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["IMAGEN_EVENTO"] + "/"), "" + strExtension);
+                                        file.SaveAs(path);
+                                        string rutaRecortada = path;
+                                        decimal xx = this.convertObjAjaxToDecimal(frm["x"]); decimal yy = this.convertObjAjaxToDecimal(frm["y"]);
+                                        decimal xancho = this.convertObjAjaxToDecimal(frm["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(frm["imgAlto"]);
+                                        using (Image image = Image.FromFile(path))
+                                        {
+                                            rutaRecortada = path2 + "_recortada" + strExtension;
+                                            if ((image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho > 0)))
+                                            {
+                                                int x = decimal.ToInt32(image.Width * xx);
+                                                int y = decimal.ToInt32(image.Height * yy);
+                                                int ancho = decimal.ToInt32(image.Height * xancho); //decimal.ToInt32(xancho);
+                                                Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                                                try
+                                                {
+                                                    using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
+                                                    {
+                                                        using (Graphics g = Graphics.FromImage(bitMap))
+                                                        {
+                                                            g.DrawImage(image, new Rectangle(0, 0, bitMap.Width, bitMap.Height), cropArea, GraphicsUnit.Pixel);
+                                                        }
+                                                        bitMap.Save(rutaRecortada);
+                                                    }
 
+                                                }
+                                                catch (Exception ex)
+                                                {
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                //rutaRecortada
+                                                file.SaveAs(rutaRecortada);
+                                            }
+                                        }
+                                        /*info._fotoRuta = rutaRecortada;
+                                        InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);*/
+                                        respuesta = new Dictionary<object, object>();
+                                        respuesta.Add("estado", true);
+                                        string ruta = Url.Content(this.getRelativePathFromAbsolute(rutaRecortada));
+                                        respuesta.Add("imagen", ruta);
+                                    }
                                 }
+                                
                             }
                         }
                         catch (ErroresIUS x)
