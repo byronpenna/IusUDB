@@ -1,8 +1,16 @@
 ﻿@using IUSLibs.ADMINFE.Entidades
 @{
     ViewBag.Title = "ImagenEvento";
-    Evento evento = null; 
-    string rutaImage = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    Evento evento = null;
+    string rutaImage = "";
+    if (ViewBag.ruta != null && ViewBag.ruta != "")
+    {
+        rutaImage = ViewBag.ruta;
+    }
+    else
+    {
+        rutaImage = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    }
     try
     {
         

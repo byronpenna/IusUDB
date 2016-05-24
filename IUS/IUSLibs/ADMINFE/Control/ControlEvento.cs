@@ -43,6 +43,10 @@ namespace IUSLibs.ADMINFE.Control
                             {
                                 DataRow row = tb[0].Rows[0];
                                 evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], (int)row["id_usuario_creador_fk"], row["descripcion"].ToString());
+                                if (DBNull.Value != row["miniatura"])
+                                {
+                                    evento._miniatura = row["miniatura"].ToString();
+                                }
                             }
                         }
                         return evento;
@@ -162,6 +166,44 @@ namespace IUSLibs.ADMINFE.Control
                 }
             #endregion
             #region "acciones"
+                public Evento sp_adminfe_setMiniaturaEvento(Evento eventoEditar, int idUsuarioEjecutor, int idPagina)
+                {
+                    SPIUS sp = new SPIUS("sp_adminfe_setMiniaturaEvento");
+                    /*@				varchar(600),
+		            @			int,
+		            -- seguridad 
+		            @	int,
+		            @			int*/
+                    Evento evento = null;
+                    sp.agregarParametro("str",eventoEditar._miniatura);
+                    sp.agregarParametro("idEvento",eventoEditar._idEvento);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], (int)row["id_usuario_creador_fk"], row["descripcion"].ToString());
+                                if(DBNull.Value != row["miniatura"]){
+                                    evento._miniatura = row["miniatura"].ToString();
+                                }
+                            }
+                        }
+                        return evento;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public bool sp_adminfe_eliminarEvento(int idEvento, int idUsuarioEjecutor, int idPagina)
                 {
                     bool eliminado = false;

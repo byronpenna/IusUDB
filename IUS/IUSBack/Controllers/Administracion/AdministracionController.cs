@@ -90,11 +90,23 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
+                    Evento evento = this._model._controlEvento.sp_adminfe_getEventById(id, usuarioSession._idUsuario, this._idPaginaEventos);
+                    string ruta = evento._miniatura;
                     ViewBag.titleModulo = "Establecer imagen evento";
                     ViewBag.usuario     = usuarioSession;
                     ViewBag.menus       = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    ViewBag.evento      = this._model._controlEvento.sp_adminfe_getEventById(id,usuarioSession._idUsuario,this._idPaginaEventos);
+                    if (!System.IO.File.Exists(evento._miniatura))
+                    {
+                        ruta = "";
+                    }
+                    else
+                    {
+                        ruta = Url.Content(this.getRelativePathFromAbsolute(ruta));
+                    }
+                    ViewBag.ruta = ruta;
                     ViewBag.idEvento    = id;
+                    
+
                     return View();
                 }
                 catch (ErroresIUS x)
@@ -499,6 +511,7 @@ namespace IUSBack.Controllers
                         {
                             Usuario usuarioSession = this.getUsuarioSesion();
                             frm = this.getAjaxFrm();
+                            int idEvento = this.convertObjAjaxToInt(frm["txtHdIdEvento"]);
                             respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                             if (respuesta == null)
                             {
@@ -509,8 +522,8 @@ namespace IUSBack.Controllers
                                     {
                                         fileName = Path.GetFileName(file.FileName);
                                         var strExtension = Path.GetExtension(file.FileName);
-                                        string path2 = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["IMAGEN_EVENTO"]  + "/"), "");
-                                        path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["IMAGEN_EVENTO"] + "/"), "" + strExtension);
+                                        string path2 = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["IMAGEN_EVENTO"]  + "/"), idEvento.ToString());
+                                        path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["IMAGEN_EVENTO"] + "/"), idEvento.ToString() + strExtension);
                                         file.SaveAs(path);
                                         string rutaRecortada = path;
                                         decimal xx = this.convertObjAjaxToDecimal(frm["x"]); decimal yy = this.convertObjAjaxToDecimal(frm["y"]);
@@ -549,6 +562,9 @@ namespace IUSBack.Controllers
                                         }
                                         /*info._fotoRuta = rutaRecortada;
                                         InformacionPersona infoAgregada = this._model.sp_rrhh_setFotoInformacionPersona(info, usuarioSession._idUsuario, this._idPagina);*/
+                                        Evento eventoEditar = new Evento(idEvento);
+                                        eventoEditar._miniatura = rutaRecortada;
+                                        Evento evento = this._model.sp_adminfe_setMiniaturaEvento(eventoEditar, usuarioSession._idUsuario, this._idPaginaEventos);
                                         respuesta = new Dictionary<object, object>();
                                         respuesta.Add("estado", true);
                                         string ruta = Url.Content(this.getRelativePathFromAbsolute(rutaRecortada));

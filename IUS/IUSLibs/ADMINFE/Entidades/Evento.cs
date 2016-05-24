@@ -20,7 +20,7 @@ namespace IUSLibs.ADMINFE.Entidades
                 public DateTime _fechaCreacion;
                 public string   _descripcion;
 
-                //public byte[]   _miniatura;
+                public string   _miniatura;
             // extras 
                 public int      _propietario; // 1: evento propio, 2: evento compartido, 3: evento publico
                 public bool     _publicado; // este no va en constructor porque no va con la naturalesa de la tabla

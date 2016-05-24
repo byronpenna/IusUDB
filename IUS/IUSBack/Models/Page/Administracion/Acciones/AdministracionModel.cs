@@ -30,6 +30,21 @@ namespace IUSBack.Models.Page.Administracion.Acciones
         #region "funciones publicas"
             #region "eventos"
                 #region "gets"
+                    public Evento sp_adminfe_setMiniaturaEvento(Evento eventoEditar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            return this._controlEvento.sp_adminfe_setMiniaturaEvento(eventoEditar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public Evento sp_adminfe_getEventById(int idEvento, int idUsuarioEjecutor,int idPagina)
                     {
                         try
