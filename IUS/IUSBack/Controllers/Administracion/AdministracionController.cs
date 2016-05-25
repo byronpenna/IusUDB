@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 // librerias internas
     using IUSBack.Models.Page.Administracion.Acciones;
+    using IUSBack.Models.General;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
@@ -526,17 +527,20 @@ namespace IUSBack.Controllers
                                         path = this.gestionArchivosServer.getPathWithCreate(Server.MapPath(this._RUTASGLOBALES["IMAGEN_EVENTO"] + "/"), idEvento.ToString() + strExtension);
                                         file.SaveAs(path);
                                         string rutaRecortada = path;
-                                        decimal xx = this.convertObjAjaxToDecimal(frm["x"]); decimal yy = this.convertObjAjaxToDecimal(frm["y"]);
+                                        //decimal xx = this.convertObjAjaxToDecimal(frm["x"]); decimal yy = this.convertObjAjaxToDecimal(frm["y"]);
                                         decimal xancho = this.convertObjAjaxToDecimal(frm["imgAncho"]); decimal yalto = this.convertObjAjaxToDecimal(frm["imgAlto"]);
+                                        Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
+                                        
                                         using (Image image = Image.FromFile(path))
                                         {
                                             rutaRecortada = path2 + "_recortada" + strExtension;
                                             if ((image.Width != image.Height || (xancho > 0 && yalto > 0 && xancho > 0)))
                                             {
-                                                int x = decimal.ToInt32(image.Width * xx);
-                                                int y = decimal.ToInt32(image.Height * yy);
-                                                int ancho = decimal.ToInt32(image.Height * xancho); //decimal.ToInt32(xancho);
-                                                Rectangle cropArea = new Rectangle(x, y, ancho, ancho);
+                                                int x       = decimal.ToInt32(image.Width * coordenadas._x);
+                                                int y       = decimal.ToInt32(image.Height * coordenadas._y);
+                                                int ancho   = decimal.ToInt32(image.Width * coordenadas._ancho); //decimal.ToInt32(xancho);
+                                                int alto    = decimal.ToInt32(image.Height * coordenadas._alto);
+                                                Rectangle cropArea = new Rectangle(x, y, ancho, alto);
                                                 try
                                                 {
                                                     using (Bitmap bitMap = new Bitmap(cropArea.Width, cropArea.Height))
