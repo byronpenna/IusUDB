@@ -80,6 +80,26 @@ namespace IUSBack.Controllers
                 }
                 return View();
             }
+            public ActionResult getImageThumbnailEvent(int id)
+            {
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    Evento evento = this._model.sp_adminfe_getEventById(id,usuarioSession._idUsuario,this._idPaginaEventos);
+                    string ruta = this.getRelativePathFromAbsolute(evento._miniatura);
+                    return base.File(ruta, "image/jpeg");
+                }
+                catch (ErroresIUS)
+                {
+                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                    return base.File(path, "image/jpeg");
+                }
+                catch (Exception)
+                {
+                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                    return base.File(path, "image/jpeg");
+                }
+            }
             // Al parecer no funciona 
             public ActionResult ImagenEvento(int id)
             {

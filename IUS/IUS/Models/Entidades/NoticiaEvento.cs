@@ -13,9 +13,9 @@ namespace IUS.Models.Entidades
             public int          _id;
             public string       _titulo;
             public string       _descripcion;
-            public DateTime?    _fecha = null;
+            public DateTime?    _fecha          = null;
             public int          _idTipoEntrada;
-            public byte[]       _imagen = null;
+            public byte[]       _imagen         = null;
             /*public Tipo tipoEntrada
             {
                 get

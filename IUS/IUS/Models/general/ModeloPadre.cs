@@ -23,6 +23,7 @@ namespace IUS.Models.general
             private string _lang;
         #endregion
         #region "funciones"
+            
             public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
             {
                 try

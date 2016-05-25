@@ -47,6 +47,7 @@ namespace IUS.Models.page.home.acciones
                                 notiEvento = new NoticiaEvento((int)row["id"], row["titulo"].ToString(), row["descripcion"].ToString(), (int)row["tipoEntrada"]);
                                 
                                 noticiasEventos.Add(notiEvento);
+                                
                             }
                         }
                         return noticiasEventos;

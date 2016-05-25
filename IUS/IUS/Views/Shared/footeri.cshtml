@@ -29,7 +29,9 @@
                 {
                     tituloHover = ViewData["lb-hover-evento"].ToString();
                     url = Url.Action("Index", "Evento");
-                    src = Url.Content("~/Content/images/views/Home/noticias/" + cn + ".png");
+                    //src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+                    src = ViewBag.urlBack + "Administracion/getImageThumbnailEvent/" + noticiaEvento._id;
+                    //Url.Content("~/Content/images/views/Home/noticias/" + cn + ".png");
                 }
                 else if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia)
                 {

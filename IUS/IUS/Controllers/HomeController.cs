@@ -41,9 +41,11 @@ namespace IUS.Controllers
                     traducciones            = this._model.getTraduccion(lang,this.idPagina);
                     string  ip              = Request.UserHostAddress;
                     //ViewBag.eventos         = this._model.sp_adminfe_front_getMonthEvents(ip, this.idPagina);
+                    
                     this.setTraduccion(traducciones);
                     ViewBag.menu11 = this.activeClass;
                     ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    ViewBag.urlBack         = IUSLibs.GENERALS.Rutas.IUSBACK;
                 }catch(ErroresIUS x){
                     ErrorsController error = new ErrorsController();
                     var obj = error.redirectToError(x);
