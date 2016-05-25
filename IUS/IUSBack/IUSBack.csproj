@@ -280,6 +280,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\menu\tools.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\typography.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\unlocked.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\noBanerMiniatura.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noimage.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\0.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\1.png" />

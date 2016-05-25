@@ -13,8 +13,8 @@
                 var files = $("#flMiniatura")[0].files;
                 console.log("files es D: ",files);
                 frm = serializeToJson($(this).serializeArray());
-                frm.imgAlto = frm.imgAlto / $(".imgThumbnail").width();
-                frm.imgAncho = frm.imgAncho / $(".imgThumbnail").height();
+                frm.imgAlto = frm.imgAlto / $(".imgThumbnail").height();
+                frm.imgAncho = frm.imgAncho / $(".imgThumbnail").width();
                 frm.x = frm.x / $(".imgThumbnail").width();
                 frm.y = frm.y / $(".imgThumbnail").height();
                 formulario = $(this);

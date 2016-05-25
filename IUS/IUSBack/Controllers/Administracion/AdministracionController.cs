@@ -91,12 +91,12 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS)
                 {
-                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
                     return base.File(path, "image/jpeg");
                 }
                 catch (Exception)
                 {
-                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
                     return base.File(path, "image/jpeg");
                 }
             }
