@@ -37,7 +37,7 @@ namespace IUS.Controllers
                     }
                     else
                     {
-                        string path = Server.MapPath("/Content/images/generales/noBanerMiniatura.png");
+                        string path = Server.MapPath("~/Content/images/generales/noBanerMiniatura.png");
                         return base.File(path, "image/jpeg");
                     }
                     //Image image = Image.FromStream(stream);

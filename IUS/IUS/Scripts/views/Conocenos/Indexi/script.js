@@ -6,7 +6,7 @@
             $(this).addClass("activeConocenos");
             var id = $(this).attr("id");
             frm = { idSeleccion: id };
-            window.history.pushState({}, "Titulo", "/Conocenos/Index/" + frm.idSeleccion);
+            window.history.pushState({}, "Titulo", RAIZ+"Conocenos/Index/" + frm.idSeleccion);
             divImgCambio(frm);
         })
     // iniciales

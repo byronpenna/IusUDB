@@ -20,7 +20,7 @@
                 $(this).find(".imgMap").attr("src", $(this).find(".txtHdRoja").val());
                 $(this).addClass("activeInstitucion");
 
-                window.history.pushState({}, "Titulo", "/Instituciones/index/" + frm.id);
+                window.history.pushState({}, "Titulo", RAIZ+"Instituciones/index/" + frm.id);
                 buscarContinente(frm);
             })
     // iniciales

@@ -1,11 +1,12 @@
 ﻿// constantes
     // configuracion 
         //var RAIZ = "http://admacad.udb.edu.sv/IUS/";
-        var RAIZ = "http://localhost:7196/";
+        //var RAIZ = "http://localhost:7196/";
         //var RAIZ = "http://168.243.3.62/ius/"
-
+        var RAIZ = $(".txtHdIus").val();
     //var RAIZ_BACK = RAIZ + "iusback/";
-        var RAIZ_BACK = "http://localhost:55869/";
+        //var RAIZ_BACK = "http://localhost:55869/";
+        var RAIZ_BACK = $(".txtHdIusback").val();
         //var RAIZ_BACK = "http://168.243.3.62/iusBack/"
         //var RAIZ_BACK = "http://admacad.udb.edu.sv/IUSBack";
     // clases 
