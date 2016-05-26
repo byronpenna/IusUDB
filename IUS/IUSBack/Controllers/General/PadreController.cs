@@ -27,7 +27,7 @@ namespace IUSBack.Controllers
                 RecursosHumanos = 18,forgetPass=20
             }
             #region "espacio de configuracion"
-                public string URL_IUS = "http://localhost:7196/";
+                public string URL_IUS = IUSLibs.GENERALS.Rutas.IUS; //"http://localhost:7196/";
                 //public string URL_IUS = "http://168.243.3.62/ius/";
                 //public string URL_IUS = "http://admacad.udb.edu.sv/IUS/";
                 public string IMG_GENERALES = "~/Content/themes/iusback_theme/img/general/";

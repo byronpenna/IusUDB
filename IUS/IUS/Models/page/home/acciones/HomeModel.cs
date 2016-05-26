@@ -31,7 +31,7 @@ namespace IUS.Models.page.home.acciones
             #endregion
         #endregion
         #region "funciones"
-                public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
+                /*public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
                 {
                     try
                     {
@@ -60,7 +60,7 @@ namespace IUS.Models.page.home.acciones
                     {
                         throw x;
                     }
-                }
+                }*/
             
             
             public Idioma sp_trl_getIdiomaFromIds(int idIdioma)

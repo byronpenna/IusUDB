@@ -209,6 +209,7 @@ namespace IUS.Controllers
                 this._jss = new JavaScriptSerializer();
                 this._model = new ModeloPadre();
                 ViewBag.idiomas = this._model.getIdiomas();
+                ViewBag.urlBack = IUSLibs.GENERALS.Rutas.IUSBACK;
             }
         #endregion
     }
