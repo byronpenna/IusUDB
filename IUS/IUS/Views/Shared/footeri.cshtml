@@ -27,7 +27,11 @@
 
                 if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Evento)
                 {
-                    tituloHover = ViewData["lb-hover-evento"].ToString();
+                    if(ViewData["lb-hover-evento"] != null){
+                        tituloHover = ViewData["lb-hover-evento"].ToString();    
+                    }else{
+                        tituloHover = "";    
+                    }
                     url = Url.Action("Index", "Evento");
                     //src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
                     src = ViewBag.urlBack + "Administracion/getImageThumbnailEvent/" + noticiaEvento._id;
@@ -35,7 +39,14 @@
                 }
                 else if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia)
                 {
-                    tituloHover = ViewData["lb-hover-noticia"].ToString();
+                    if(ViewData["lb-hover-noticia"] != null){
+                        tituloHover = ViewData["lb-hover-noticia"].ToString();
+                    }
+                    else
+                    {
+                        tituloHover = "";
+                    }
+                    
                     url = Url.Action("Index", "Noticias", new { id = noticiaEvento._id });
                     src = Url.Action("getImageThumbnail", "Noticias",new {id= noticiaEvento._id});
                 }
