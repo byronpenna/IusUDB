@@ -41,6 +41,13 @@
 .tablaFichero{
     margin-top:3%;
 }
+.divRowTable{
+    height:480px;
+    background:pink;
+    overflow-y:scroll;
+    padding-left:1%;
+    padding-right:1%;
+}
 .tablaFichero tbody tr td, .tablaFichero thead tr th {
     text-transform:uppercase;
     text-align:center;

@@ -186,6 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Administracion\AdministracionController.cs" />
     <Compile Include="Controllers\Administracion\Noticias\ComentarioNoticiaController.cs" />
+    <Compile Include="Controllers\Configuraciones\ConfigRepoController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\FormacionPersonasController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\GestionLaboralController.cs" />
     <Compile Include="Controllers\Website\ConfiguracionWebsiteController.cs" />
@@ -491,6 +492,8 @@
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\setMiniatura\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\setMiniatura\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\ConfigRepo\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\ConfigRepo\style.css" />
     <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\media.css" />
     <Content Include="Content\themes\iusback_theme\views\ConfiguracionWebsite\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionIdiomaWebsite\media.css" />
@@ -914,6 +917,7 @@
     <Content Include="Views\Login\Indexi.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Administracion\ImagenEvento.cshtml" />
+    <Content Include="Views\ConfigRepo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
