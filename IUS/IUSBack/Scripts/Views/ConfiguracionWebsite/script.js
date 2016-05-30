@@ -30,7 +30,7 @@
                                 onSelect: storeCoords,
                                 onChange: storeCoords,
                                 allowSelect: true,
-                                aspectRatio: 300 / 100,
+                                aspectRatio: 315 / 215,
                                 allowResize: false,
                                 onRelease: releaseCheck
                             });
@@ -82,7 +82,8 @@
                         proporciones = redondeoProporcion(proporciones);
                         var proporcionesUsuario = getProporcionesUsuario();
                         console.log(proporciones, proporcionesUsuario);
-                        if (proporciones == 3 || proporcionesUsuario == 3) {
+
+                        if (proporciones == 1 || proporcionesUsuario == 1) {
                             //alert("Vas a agregar :D ");
                             formularioSubir(data, section.attr("action"), section, imagen);
                         } else {

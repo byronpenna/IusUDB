@@ -1,7 +1,17 @@
 ﻿@using IUS.Models.Entidades
+@using IUSLibs.ADMINFE.Entidades
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     List<NoticiaEvento> noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
+    List<SliderImage> slider = null;
+    try
+    {
+        slider = (List<SliderImage>)ViewBag.slider;
+    }
+    catch (Exception)
+    {
+
+    }
 }
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/home/Indexi/style.css" />
@@ -12,7 +22,29 @@
     <script src="~/Scripts/views/Home/Indexi/functions.js"></script>
 }
 <div class="row marginNull rowSlider">
-    <img src="@Url.Content("~/Content/images/views/Home/Slider/1.png")"/>
+    @if (slider != null)
+    {
+        int cn = 0;
+        string clases = "";
+        if (slider.Count > 1)
+        {
+
+            foreach (SliderImage image in slider)
+            {
+                if (cn == 0)
+                {
+                    clases = "activeSliderImage";
+                }
+                else
+                {
+                    clases = "hidden";
+                }
+                <img class="@clases imgSlider" src="data:image/png;base64,@Convert.ToBase64String(image._imagen)" />
+                cn++;
+            }
+        }
+    }
+    @*<img src="@Url.Content("~/Content/images/views/Home/Slider/1.png")"/>*@
 </div>
 <div class="row marginNull divBloques">
     <div class="centroPagina">
