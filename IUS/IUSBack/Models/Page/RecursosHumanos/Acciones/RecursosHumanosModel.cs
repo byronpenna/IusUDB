@@ -6,7 +6,6 @@ using System.Web;
     using IUSBack.Models.General;
 // Externas
     using IUSLibs.LOGS;
-// Externas
     // entidades
         using IUSLibs.RRHH.Entidades.Formacion;
         using IUSLibs.RRHH.Entidades;

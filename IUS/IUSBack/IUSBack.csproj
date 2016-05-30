@@ -222,6 +222,7 @@
     <Compile Include="Models\Page\Administracion\Acciones\AdministracionModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\ComentarioModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\NoticiasModel.cs" />
+    <Compile Include="Models\Page\ConfigRepo\Acciones\ConfigRepoModel.cs" />
     <Compile Include="Models\Page\ConfiguracionWebsite\Acciones\ConfiguracionWebsiteModel.cs" />
     <Compile Include="Models\Page\Errors\ErrorsModel.cs" />
     <Compile Include="Models\Page\GestionIdiomaWebsite\Acciones\GestionIdiomaWebsiteModel.cs" />
