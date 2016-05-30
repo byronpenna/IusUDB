@@ -14,9 +14,9 @@ using System.Text;
     using IUSLibs.REPO.Entidades;
 namespace IUSLibs.REPO.Pantalla
 {
-    class PantallaControlConfig:PadreLib
+    public class PantallaControlConfig : PadreLib
     {
-        public Dictionary<object, object> sp_repo_inicialesConfigRepo(string lang,int idUsuarioEjecutor,int idPagina)
+        public Dictionary<object, object> sp_repo_inicialesConfigRepo(string lang, int idUsuarioEjecutor, int idPagina)
         {
             Dictionary<object, object> retorno = null;
             /*
@@ -38,10 +38,26 @@ namespace IUSLibs.REPO.Pantalla
                 {
                     if (tb[0].Rows.Count > 0)
                     {
-                        foreach(DataRow row in tb[0].Rows){
-                            extension = new ExtensionArchivo(row[""])
+                        extensiones = new List<ExtensionArchivo>();
+                        foreach (DataRow row in tb[0].Rows)
+                        {
+                            extension = new ExtensionArchivo((int)row["idExtension"], row["extension"].ToString(), (int)row["id_tipoarchivo_fk"]);
+                            extension._tipoArchivo._tipoArchivo = row["traduccion"].ToString();
+                            extensiones.Add(extension);
                         }
+                    }
                 }
+                retorno = new Dictionary<object, object>();
+                retorno.Add("extenciones", extensiones);
+                return retorno;
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
             }
         }
     }

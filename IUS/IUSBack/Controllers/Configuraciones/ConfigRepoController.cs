@@ -8,6 +8,8 @@ using System.Web.Mvc;
 // librerias externas 
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+
+    using IUSLibs.REPO.Entidades;
 namespace IUSBack.Controllers.Configuraciones
 {
     public class ConfigRepoController : PadreController
@@ -30,6 +32,8 @@ namespace IUSBack.Controllers.Configuraciones
                 {
                     ViewBag.selectedMenu    = 2; // menu seleccionado 
                     ViewBag.titleModulo     = "Repo admin";
+                    string lang             = "es"; // de momento fijo en español ya que no estan contemplados multiples idiomas 
+                    ViewBag.iniciales       = this._model.sp_repo_inicialesConfigRepo(lang, usuarioSession._idUsuario, this._idPagina);
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     
                 }
@@ -46,8 +50,33 @@ namespace IUSBack.Controllers.Configuraciones
             }
         #endregion 
         #region "acciones ajax"
-            public ActionResult nombre(){
-                return null;
+            public ActionResult sp_repo_getTipoArchivo()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        respuesta = new Dictionary<object, object>();
+                        List<TipoArchivo> tiposArchivos = this._model.sp_repo_getTipoArchivo("es", usuarioSession._idUsuario, this._idPagina);
+                        respuesta.Add("tiposArchivos", tiposArchivos);
+                        respuesta.Add("estado", true);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta); 
             }
         #endregion 
         #region "constructores"

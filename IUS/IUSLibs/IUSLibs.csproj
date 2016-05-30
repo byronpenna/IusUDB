@@ -139,6 +139,7 @@
     <Compile Include="REPO\Entidades\ExtensionArchivo.cs" />
     <Compile Include="REPO\Entidades\Publico\CarpetaPublica.cs" />
     <Compile Include="REPO\Entidades\TipoArchivo.cs" />
+    <Compile Include="REPO\Pantalla\PantallaControlConfig.cs" />
     <Compile Include="RRHH\Control\ControlEmailPersona.cs" />
     <Compile Include="RRHH\Control\ControlEstadoCivil.cs" />
     <Compile Include="RRHH\Control\ControlInformacionPersona.cs" />
