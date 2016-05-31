@@ -29,3 +29,22 @@
         width:100%;
     }
     
+    .slider img{
+        width:100%;
+    }
+    .navs{
+        position:absolute;
+        top:50%;
+    }
+    .slider{
+        position:relative;
+    }
+    .noSliderDiv{
+        min-height:50px;
+        text-align:center;
+        padding-top:5%; 
+        padding-bottom:5%;
+    }
+    .navBtn{
+        font-size:3em;
+    }

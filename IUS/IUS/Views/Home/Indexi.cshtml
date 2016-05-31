@@ -21,27 +21,34 @@
     <script src="~/Scripts/views/Home/Indexi/script.js"></script>
     <script src="~/Scripts/views/Home/Indexi/functions.js"></script>
 }
-<div class="row marginNull rowSlider">
+<div class="row marginNull rowSlider slider">
     @if (slider != null)
     {
         int cn = 0;
         string clases = "";
         if (slider.Count > 1)
         {
-
-            foreach (SliderImage image in slider)
+            <div class="navs col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pointer">
+                    <i class="fa fa-chevron-left navBtn navLeft" direccion="0"></i>
+                </div>
+                <div class="col-xs-offset-10 col-xs-1 col-sm-offset-10 col-sm-1 col-md-offset-10 col-md-1 col-lg-offset-10 col-lg-1 pointer">
+                    <i class="fa fa-chevron-right navBtn navRight" direccion="1"></i>
+                </div>
+            </div>
+        }
+        foreach (SliderImage image in slider)
+        {
+            if (cn == 0)
             {
-                if (cn == 0)
-                {
-                    clases = "activeSliderImage";
-                }
-                else
-                {
-                    clases = "hidden";
-                }
-                <img class="@clases imgSlider" src="data:image/png;base64,@Convert.ToBase64String(image._imagen)" />
-                cn++;
+                clases = "activeSliderImage";
             }
+            else
+            {
+                clases = "hidden";
+            }
+            <img class="@clases imgSlider" src="data:image/png;base64,@Convert.ToBase64String(image._imagen)" />
+            cn++;
         }
     }
     @*<img src="@Url.Content("~/Content/images/views/Home/Slider/1.png")"/>*@
