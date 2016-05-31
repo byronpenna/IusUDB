@@ -50,34 +50,68 @@ namespace IUSBack.Controllers.Configuraciones
             }
         #endregion 
         #region "acciones ajax"
-            public ActionResult sp_repo_getTipoArchivo()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
+            #region "get"
+                public ActionResult sp_repo_getTipoArchivo()
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
-                    if (respuesta == null)
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
                     {
-                        respuesta = new Dictionary<object, object>();
-                        List<TipoArchivo> tiposArchivos = this._model.sp_repo_getTipoArchivo("es", usuarioSession._idUsuario, this._idPagina);
-                        respuesta.Add("tiposArchivos", tiposArchivos);
-                        respuesta.Add("estado", true);
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            List<TipoArchivo> tiposArchivos = this._model.sp_repo_getTipoArchivo("es", usuarioSession._idUsuario, this._idPagina);
+                            respuesta.Add("tiposArchivos", tiposArchivos);
+                            respuesta.Add("estado", true);
+                        }
                     }
-                }
-                catch (ErroresIUS x)
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta); 
+                }   
+            #endregion
+            #region "set"
+                public ActionResult sp_repo_actualizarTipoArchivoExt()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
+                        {
+                            respuesta = new Dictionary<object, object>();
+                            ExtensionArchivo extensionEditar = new ExtensionArchivo(this.convertObjAjaxToInt(frm["txtHdIdExtension"]));
+                            extensionEditar._tipoArchivo = new TipoArchivo(this.convertObjAjaxToInt(frm["cbTipoArchivo"]));
+                            ExtensionArchivo extension = this._model.sp_repo_actualizarTipoArchivoExt(extensionEditar,usuarioSession._idUsuario,this._idPagina);
+                            respuesta.Add("estado",true);
+                            respuesta.Add("extension",extension);
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta); 
                 }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta); 
-            }
+            #endregion
         #endregion 
         #region "constructores"
             public ConfigRepoController(){

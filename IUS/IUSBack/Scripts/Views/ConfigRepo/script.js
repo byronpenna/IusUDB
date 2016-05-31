@@ -1,6 +1,12 @@
 ﻿$(document).ready(function () {
     // eventos
         // click 
+            $(document).on("click", ".btnGuardar", function () {
+                var tr = $(this).closest("tr");
+                var frm = serializeSection(tr);
+                console.log("Frm es", frm);
+                btnGuardar(frm,tr);
+            })
             $(document).on("click", ".btnCancelar", function () {
                 controlesEdit(false, $(this).closest("tr"));
             })

@@ -1,4 +1,17 @@
-﻿function fillTiposArchivos(cb,idSelected) {
+﻿// scripts 
+function btnGuardar(frm,tr) {
+    actualizarCatalogo(RAIZ + "/ConfigRepo/sp_repo_actualizarTipoArchivoExt", frm, function (data) {
+        console.log("La data es: ", data);
+        if (data.estado) {
+            tr.find(".tdTipoArchivo").empty().append(data.extension._tipoArchivo._tipoArchivo);
+            tr.find(".txtHdIdTipoArchivo").val(data.extension._tipoArchivo._idTipoArchivo);
+
+            controlesEdit(false, tr);
+
+        }
+    })
+}
+function fillTiposArchivos(cb, idSelected) {
     var frm = {};
     actualizarCatalogo(RAIZ + "/ConfigRepo/sp_repo_getTipoArchivo", frm, function (data) {
         console.log("La respuesta es: ", data);

@@ -16,7 +16,22 @@ namespace IUSBack.Models.Page.ConfigRepo.Acciones
     {
         #region "funciones"
             #region "do"
-
+                public ExtensionArchivo sp_repo_actualizarTipoArchivoExt(ExtensionArchivo extension, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        ControlExtensionArchivo control = new ControlExtensionArchivo();
+                        return control.sp_repo_actualizarTipoArchivoExt(extension, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #endregion
             #region "get"
                 public List<TipoArchivo> sp_repo_getTipoArchivo(string lang, int idUsuarioEjecutor, int idPagina)
