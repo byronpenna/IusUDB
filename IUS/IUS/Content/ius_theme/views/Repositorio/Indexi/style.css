@@ -43,7 +43,7 @@
 }
 .divRowTable{
     height:480px;
-    background:pink;
+    /*background:pink;*/
     overflow-y:scroll;
     padding-left:1%;
     padding-right:1%;
