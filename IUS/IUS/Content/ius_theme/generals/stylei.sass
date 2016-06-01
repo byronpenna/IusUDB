@@ -1,0 +1,287 @@
+$fontPrincipal: 'MyriadRegular'
+// generales
+.paddingNull
+    padding: 0
+
+.marginNull
+    margin: 0
+
+.pointer
+    cursor: pointer
+
+/***/
+.cbIdioma
+    text-transform: uppercase
+    color: #d0cfcf
+    font-family: $fontPrincipal
+    font-size: 1em
+    font-weight: bold
+
+.inputSearchDiv
+    margin-bottom: 0
+    width: 90%
+
+.icoSearch
+    top: 17%
+    right: 2%
+
+select 
+    background: transparent
+    border: none
+    font-size: 14px
+    height: 30px
+    padding: 5px
+    width: 100%
+
+/*select
+    &:focus outline: none*/
+
+.caja
+    margin: 20px auto 40px auto 
+    border: 1px solid #cd1315
+    height: 30px
+    overflow: hidden
+    width: 80%
+    position: relative
+    display: table-cell
+    vertical-align: bottom
+    &::after
+        content: "\025be"
+        display: table-cell
+        padding-top: 7px
+        text-align: center
+        width: 30px
+        height: 30px
+        background-color: #cd1315
+        position: absolute
+        top: 0
+        right: 0px	
+        pointer-events:  none
+        color: white
+
+.padreCaja
+    width: 55%
+    display: inline-block
+
+.cajaArriba
+    display: table
+    width: 75%
+
+.centroPagina
+    width: 85%
+    margin: 0 auto
+
+/*header*/
+.activeSubmenu
+    color: #cd1315 !important
+
+.imgLupita
+    width: 60%
+
+header
+    margin-top: 0
+    
+.logoHeaderSection
+    /*text-align: center*/
+    padding-top: 2%
+    img
+        width: 78%
+        margin: 0 auto
+    
+    
+/* Menu */
+.divSectionIdioma
+    height: 94px
+    display: table
+    text-align: center
+    font-size: 0.85em
+    .tituloIdioma
+        text-transform: uppercase
+        color: #b6b5b5
+        margin-right: 3%
+        font-weight: bold
+        position: relative
+        bottom: 10px
+        display: inline-block
+
+.otroDiv
+    display: table-cell
+    vertical-align: bottom
+    height: 50px
+
+
+    
+nav 
+    ul 
+        li
+            margin: 0
+            padding-left: 2%
+            padding-right: 2%
+            vertical-align: middle
+            text-align: center
+            font-size: 1em
+        
+nav ul li a:hover, .menu2 ul li a:hover 
+    text-decoration: none
+  
+.navPrincipal 
+    text-align: right
+    ul 
+        text-transform: uppercase
+        padding: 0
+        margin: 0
+        li 
+            padding-top: 10%
+            padding-bottom: 2%
+            height: 80px
+            width: 19%
+            text-align: center
+            /***/
+            display: inline-block
+            font-size: 1em
+            a 
+                color: #919191
+                /*font-weight: normal*/
+                font-weight: bold
+                font-size: 0.8em
+
+.activeMenu
+    cursor: pointer
+    background: #cd1315
+    a 
+        color: #ffffff !important
+
+/**/
+.subSeccion
+    font-family: $fontPrincipal
+    text-transform: uppercase
+    color: #828181
+    margin-bottom: 1%
+
+.rowSearch
+    background: #eeecec
+    padding-top: 8px
+    padding-bottom: 1%
+    height: 45px
+
+.inputSearch
+    border-radius: 20px
+    height: 30px
+    
+/*Slider*/
+
+/**/
+.colTituloNoticia
+    padding: 0
+    border-bottom: solid #cd1315 1px
+    padding-bottom: 1%
+
+.seccionNoticiaEvento
+    padding-top: 10%
+    padding-bottom: 10%
+    padding-left: 1%
+    h2
+        color: #cd1315
+        font-family: $fontPrincipal
+
+.tituloSeccionNoticiaEvento
+    margin: 0
+    margin-left: 3%
+    /*border-bottom: solid*/
+    font-family: 'Myriad Pro'
+    text-transform: uppercase
+
+.divLinkNotiEve
+    width: 100%
+    text-align: right
+    display: block
+
+.aLeerMas
+    color: #1f1f1f
+    text-transform: uppercase
+
+.notiEve
+    margin-top: 3%
+    h4 
+        font-family: "MyriadBold"
+        font-weight: bold
+        margin-bottom: 4%
+
+.imgNotiEve
+    width: 100%
+
+.contentImgNotiEve
+    padding: 0
+
+.seccionContenidoNotiEve
+    display: table
+    /*background: pink*/
+    min-height: 200px
+    padding-left: 4%
+
+.seccionContenidoNotiEve .contenido
+    display: table-cell
+    vertical-align: middle
+    height: 100px
+    width: 100%
+
+/* Hover de noticia evento*/
+.divHoverNotiEve
+    background: #474747
+    opacity: 0.5
+    position: absolute
+    z-index: 1
+    width: 100%
+    height: 100%
+
+
+
+.text-tituloNotiEve
+    position: absolute
+    z-index: 2
+    color: white
+    font-size: 3em
+    left: 36%
+    top: 36%
+
+/* Footer */
+.footer
+    padding-top: 8%
+    background: #dddbdb
+    padding-bottom: 12%
+    margin-bottom: 3%
+    img 
+        -webkit-filter: grayscale(100%)
+        filter: grayscale(100%)
+        opacity: 0.5
+        width: 35%
+        margin: 0 auto
+
+.footerText
+    text-transform: uppercase
+    font-size: 1em
+    color: #929292
+
+/******/
+.headerTextoLink
+    font-size: 0.8em
+
+.linkAreaPrivada
+    color: #8c8b8b
+    &:hover 
+        text-decoration: none
+        color: #8c8b8b
+
+.imgIcoHeader
+    margin-right: 2%
+    width: 15%
+        
+
+.lineaRoja
+    height: 45px
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0.73, #CD1316),color-stop(1, #AD1013))
+    background-image: -o-linear-gradient(bottom, #CD1316 73%, #AD1013 100%)
+    background-image: -moz-linear-gradient(bottom, #CD1316 73%, #AD1013 100%)
+    background-image: -webkit-linear-gradient(bottom, #CD1316 73%, #AD1013 100%)
+    background-image: -ms-linear-gradient(bottom, #CD1316 73%, #AD1013 100%)
+    background-image: linear-gradient(to bottom, #CD1316 73%, #AD1013 100%)
