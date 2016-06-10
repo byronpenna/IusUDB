@@ -229,6 +229,7 @@ namespace IUSBack.Controllers
                         if (respuesta == null)
                         {
                             Institucion institucionEditar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), frm["txtNombreInstitucionEdit"].ToString(), frm["txtAreaDireccionEdit"].ToString(), this.convertObjAjaxToInt(frm["cbPaisEdit"]), true);
+                            institucionEditar._ciudad = frm["txtCiudad"].ToString();
                             Institucion institucionEditada = this._model.sp_frontui_editInstitucion(institucionEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
@@ -288,6 +289,7 @@ namespace IUSBack.Controllers
                         {
                             Institucion institucionAgregar,institucionAgregada=null;
                             institucionAgregar = new Institucion(frm["txtNombreInstitucion"].ToString(), frm["txtAreaDireccion"].ToString(), this.convertObjAjaxToInt(frm["cbPais"]));
+                            institucionAgregar._ciudad = frm["txtCiudad"].ToString();
                             institucionAgregada = this._model.sp_frontui_insertInstitucion(institucionAgregar, usuarioSession._idUsuario, this._idPagina);
                             if (institucionAgregada != null)
                             {

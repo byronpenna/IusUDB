@@ -38,6 +38,7 @@
                         <th>Nombre</th>
                         <th>Direccion</th>
                         <th>Pais</th>
+                        <th>Ciudad</th>
                         <th>Acciones</th>
                     </tr>
                     <tr class="trFrmInstituciones">
@@ -85,6 +86,12 @@
                             </div>
                         </td>
                         <td>
+                            <input class="form-control txtCiudad" name="txtCiudad"  />
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
+                        </td>
+                        <td>
                             <button class="btn btnAddInstitucion btn-default " @permiso.stringCrear>Agregar </button>
                         </td>
                     </tr>
@@ -119,9 +126,15 @@
                                     <div class="editMode hidden">
                                         <select class="cbPaisEdit cbPaisVal " name="cbPaisEdit"></select>
                                     </div>
-                                    <div class="normalMode tdPais">
+                                    <div class="normalMode tdPaisText">
                                         @institucion._pais._pais
                                     </div>
+                                </td>
+                                <td class="tdCiudad">
+                                    <div class="editMode hidden">
+                                        <input class="form-control txtCiudad" name="txtCiudad" />
+                                    </div>
+                                    <div class="normalMode tdCiudadText">@institucion._ciudad</div>
                                 </td>
                                 <td>
                                     <div class="editMode hidden">

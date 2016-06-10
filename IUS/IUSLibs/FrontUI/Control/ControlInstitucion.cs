@@ -85,6 +85,7 @@ namespace IUSLibs.FrontUI.Control
                                     institucion = new Institucion(idInstitucion, row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
                                     institucion._telefonos = telefonos;
                                     institucion._enlaces = enlaces;
+                                    institucion._ciudad = row["ciudad"].ToString();
                                     if (row["logo"] != DBNull.Value)
                                     {
                                         institucion._logo = (byte[])row["logo"];
@@ -131,6 +132,7 @@ namespace IUSLibs.FrontUI.Control
                                 {
                                     Pais pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
                                     institucion = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
+                                    institucion._ciudad = row["ciudad"].ToString();
                                     instituciones.Add(institucion);
                                 }
                             }
@@ -369,6 +371,7 @@ namespace IUSLibs.FrontUI.Control
                     sp.agregarParametro("nombre", institucionEditar._nombre);
                     sp.agregarParametro("direccion", institucionEditar._direccion);
                     sp.agregarParametro("idPais", institucionEditar._pais._idPais);
+                    sp.agregarParametro("ciudad", institucionEditar._ciudad);
                     sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
@@ -382,7 +385,7 @@ namespace IUSLibs.FrontUI.Control
                                 DataRow row = tb[1].Rows[0];
                                 pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
                                 institucionEditada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
-
+                                institucionEditada._ciudad = row["ciudad"].ToString();
                             }
                             else
                             {
@@ -508,6 +511,7 @@ namespace IUSLibs.FrontUI.Control
                         sp.agregarParametro("direccion", institucionAgregar._direccion);
                         sp.agregarParametro("idPais", institucionAgregar._pais._idPais);
                         sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                        sp.agregarParametro("ciudad", institucionAgregar._ciudad);
                         sp.agregarParametro("idPagina", idPagina);
                     // acciones
                     try

@@ -22,6 +22,8 @@
 <input class="hidden txtHdNoRegistro" value="@ViewData["lb-tb-noRegistro"]" />
 <input class="hidden txtHdIdContinente" value="@ViewBag.idContinente" />
 
+<input type="hidden" class="txtHdUrlFicha" value="@Url.Action("FichaInstitucion", "Instituciones")" />
+
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         <ul class="menuLateral"> @*a pesar de llamarse menu conocenos es una clase general*@
@@ -40,7 +42,7 @@
                     <div class="colImgMap">
                         <input type="hidden" class="txtHdNormal" value="@africa" />
                         <input type="hidden" class="txtHdRoja" value="@africaRoja" />
-                        <img class="imgMap" src="~/Content/images/views/Instituciones/africai.png" />
+                        <img class="imgMap" src="@africa" />
                     </div>
                     <div class="texto">Africa</div>
                 </div>
@@ -50,7 +52,7 @@
                     <div class="colImgMap">
                         <input type="hidden" class="txtHdNormal" value="@asia" />
                         <input type="hidden" class="txtHdRoja" value="@asiaRoja" />
-                        <img class="imgMap" src="~/Content/images/views/Instituciones/asiai.png" />
+                        <img class="imgMap" src="@asia" />
                     </div>
                     <div class="texto">Asia</div>
                 </div>
@@ -60,9 +62,19 @@
                     <div class="colImgMap">
                         <input type="hidden" class="txtHdNormal" value="@europa" />
                         <input type="hidden" class="txtHdRoja" value="@europaRoja" />
-                        <img class="imgMap" src="~/Content/images/views/Instituciones/europai.png" />
+                        <img class="imgMap" src="@europa" />
                     </div>
                     <div class="texto">Europa</div>
+                </div>
+            </li>
+            <li id="5">
+                <div class="row">
+                    <div class="colImgMap">
+                        <input type="hidden" class="txtHdNormal" value="@america" />
+                        <input type="hidden" class="txtHdRoja" value="@americaRoja" />
+                        <img class="imgMap" src="@america" />
+                    </div>
+                    <div class="texto">Oceania</div>
                 </div>
             </li>
         </ul>
@@ -93,9 +105,11 @@
                         <tr>
                             <th>@ViewData["tb-th-pais"]</th>
                             <th>@ViewData["tb-th-institucion"]</th>
-                            <th>@ViewData["tb-th-telefonos"]</th>
+                            <th>Ciudad</th>
+                            <th>Detalle</th>
+                            @*<th>@ViewData["tb-th-telefonos"]</th>
                             <th>@ViewData["tb-th-contactos"]</th>
-                            <th>@ViewData["tb-th-correos"]</th>
+                            <th>@ViewData["tb-th-correos"]</th>*@
 
                         </tr>
                     </thead>
@@ -105,9 +119,11 @@
                             <tr>
                                 <td>El salvador</td>
                                 <td>Universidad Don bosco</td>
-                                <td>(503) 2245 555</td>
-                                <td>Sr. Jose Ramirez</td>
-                                <td>Jose@udb.edu.sv</td>
+                                <td>Paris</td>
+                                <td>
+                                    <a href="#">Ver</a>
+                                </td>
+                                <td>@*Jose@udb.edu.sv*@</td>
                             </tr>
                         }
                     </tbody>
@@ -118,3 +134,4 @@
         
     </div>
 </div>
+

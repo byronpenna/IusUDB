@@ -49,16 +49,19 @@ function buscarContinente(frm) {
     function getTrInstitucion(institucion) {
         var tel = ""; var enlaces = "";
         //console.log("los objetos de instituciones son", institucion);
-        /*if (institucion._enlaces !== undefined && institucion._enlaces != null) {
+        var url = "";
+        if (institucion._enlaces !== undefined && institucion._enlaces != null) {
             $.each(institucion._enlaces, function (i, enlace) {
-                enlaces += "\
+                /*enlaces += "\
                     <div class='row marginNull'>\
                         <a href='"+ enlace._enlace + "'>\
                             " + enlace._nombreEnlace + "\
                         </a>\
-                    </div>";
+                    </div>";*/
+                url = enlace._enlace;
+                return false;
             })
-        }*/
+        }
         if (institucion._telefonos !== undefined && institucion._telefonos != null) {
             $.each(institucion._telefonos, function (i, telelefono) {
                 tel += "\
@@ -76,10 +79,13 @@ function buscarContinente(frm) {
         var tr = "\
             <tr>\
                 <td>"+ institucion._pais._pais + " </td>\
-                <td>" + institucion._nombre + "</td>\
-                <td>" + tel + "</td>\
-                <td>SR. JOSE RAMIREZ</td>\
-                <td>JOSE@UDB.EDU.SV</td>\
+                <td>\
+                   <a href='" + url + "'> " + institucion._nombre + " </a>\
+                </td>\
+                <td>" + institucion._ciudad + "</td>\
+                <td>\
+                    <a href='" + $(".txtHdUrlFicha").val() + "/" + institucion._idInstitucion + "'>Ver</a>\
+                </td>\
             </tr>\
         ";
         /*<td>\

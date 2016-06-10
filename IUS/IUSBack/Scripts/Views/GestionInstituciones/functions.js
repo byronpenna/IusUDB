@@ -36,6 +36,14 @@
                     "+institucion._pais._pais+"\
                     </div>\
                 </td>\
+                <td class='tdCiudad'>\
+                    <div class='editMode hidden'>\
+                        <input class='form-control txtCiudad' name='txtCiudad' />\
+                    </div>\
+                    <div class='normalMode tdCiudad'>\
+                        "+institucion._ciudad+"\
+                    </div>\
+                </td>\
                 <td>\
                     <div class='editMode hidden'>\
                         <button class='btn btnActualizarInstitucion'>\
@@ -98,14 +106,16 @@
     }
     function exitEditMode(trInstitucion,institucion) {
         trInstitucion.find(".tdNombre").empty().append(institucion._nombre);
-        trInstitucion.find(".tdDireccion").empty().append(institucion._direccion);
+        trInstitucion.find(".tdDireccionText").empty().append(institucion._direccion);
         trInstitucion.find(".txtHdIdPais").val(institucion._pais._idPais);
-        trInstitucion.find(".tdPais").empty().append(institucion._pais._pais)
+        trInstitucion.find(".tdPaisText").empty().append(institucion._pais._pais)
+        trInstitucion.find(".tdCiudadText").empty().append(institucion._ciudad);
         controlesEdit(false, trInstitucion);
     }
     function fillInputsEdit(trInstitucion, institucion, callback) {
         trInstitucion.find(".txtNombreInstitucionEdit").val(institucion.nombre);
         trInstitucion.find(".txtAreaDireccionEdit").val(institucion.direccion);
+        trInstitucion.find(".txtCiudad").val(institucion.ciudad);
         // llenar cosa de paises
         frm = {};
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getPaises", frm, function (data) {
@@ -154,7 +164,7 @@
     function btnActualizarInstitucion(frm, trInstitucion) {
         console.log("actualizar", frm);
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_editInstitucion", frm, function (data) {
-            console.log(data);
+            console.log("Data ",data);
             if (data.estado) {
                 exitEditMode(trInstitucion, data.institucion);
             }
@@ -167,7 +177,7 @@
             direccion: trInstitucion.find(".tdDireccionText").text(),
             idPais: trInstitucion.find(".txtHdIdPais").val(),
             idInstitucion: trInstitucion.find(".txtHdIdInstitucion").val(),
-            
+            ciudad: trInstitucion.find(".tdCiudadText").text()
         }
         console.log("Institucion a poner al editar",institucion);
         fillInputsEdit(trInstitucion, institucion, function () {
