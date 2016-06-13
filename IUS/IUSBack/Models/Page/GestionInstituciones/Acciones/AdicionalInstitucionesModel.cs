@@ -30,7 +30,9 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                     {
                         ControlNivelesEducaion  controlNivel    = new ControlNivelesEducaion();
                         ControlAreaCarrera      controlArea     = new ControlAreaCarrera();
-                        retorno.Add("nivelesEducacion", controlNivel.sp_frontui_getNivelesEducacion(idUsuarioEjecutor, idPagina,idInstitucion));
+                        //controlNivel.getNivelesEducacionInstitucion(idUsuarioEjecutor, idPagina, idInstitucion);
+                        
+                        retorno.Add("nivelesEducacion",controlNivel.getNivelesEducacionInstitucion(idUsuarioEjecutor, idPagina, idInstitucion));
                         retorno.Add("areasConocimiento", controlArea.sp_frontui_getAreasConoInstituciones(idUsuarioEjecutor, idPagina,idInstitucion));
                         return retorno;
                     }
@@ -45,12 +47,12 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                 }
             #endregion
             #region "set"
-                public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,int idInstitucion,int idUsuarioEjecutor,int idPagina)
+                public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,string strNumAlumnos,int idInstitucion,int idUsuarioEjecutor,int idPagina)
                 {
                     try
                     {
                         ControlInstitucion controlInstitucion = new ControlInstitucion();
-                        return controlInstitucion.sp_frontui_insertNivelInstituciones(strNiveles, idInstitucion, idUsuarioEjecutor, idPagina);
+                        return controlInstitucion.sp_frontui_insertNivelInstituciones(strNiveles,strNumAlumnos, idInstitucion, idUsuarioEjecutor, idPagina);
                     }
                     catch (ErroresIUS x)
                     {

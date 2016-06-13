@@ -49,7 +49,7 @@ function buscarContinente(frm) {
     function getTrInstitucion(institucion) {
         var tel = ""; var enlaces = "";
         //console.log("los objetos de instituciones son", institucion);
-        var url = "";
+        var url = "#";
         if (institucion._enlaces !== undefined && institucion._enlaces != null) {
             $.each(institucion._enlaces, function (i, enlace) {
                 /*enlaces += "\

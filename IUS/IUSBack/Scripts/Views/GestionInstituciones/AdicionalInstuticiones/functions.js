@@ -20,15 +20,21 @@
             }
         })
     }
-    function btnGuardarNivel(frm) {
+    /*function guardarNivel(frm) {
         frm.strEstadoNivel = "";
+        
+    }*/
+    function btnGuardarNivel(frm) {
+        frm.strEstadoNivel = ""; frm.strNumAlumno = "";
         if (frm.estadoNivel !== undefined && frm.estadoNivel != null && frm.estadoNivel.length > 0) {
             console.log("entro");
             $.each(frm.estadoNivel, function (i, val) {
                 if (i == 0) {
                     frm.strEstadoNivel += val;
+                    frm.strNumAlumno += frm.alumnos[i];
                 } else {
                     frm.strEstadoNivel += "," + val;
+                    frm.strNumAlumno += ","+frm.alumnos[i];
                 }
             })
         } else {

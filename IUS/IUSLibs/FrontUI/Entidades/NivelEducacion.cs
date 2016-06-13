@@ -44,10 +44,11 @@ namespace IUSLibs.FrontUI.Entidades
                     this._codigo            = codigo;
                     this._descripcion       = descripcion;
                 }
-            /*public NivelEducacion()
-            {
-
-            }*/
+            // basico
+                public NivelEducacion(int idNivelEducacion)
+                {
+                    this._idNivelEducacion = idNivelEducacion;
+                }
         #endregion
     }
 }

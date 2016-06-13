@@ -83,7 +83,7 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                 }
                 return Json(respuesta);
             }
-            public ActionResult sp_frontui_insertNivelInstituciones()
+            /*public ActionResult sp_frontui_insertNivelInstituciones()
             {
                 Dictionary<object, object> frm, respuesta = null;
                 try
@@ -99,6 +99,35 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                         respuesta.Add("estado", true);
                         //, , , 
                     }   
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }*/
+            public ActionResult sp_frontui_insertNivelInstituciones()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("nivelesEducacion", this._model.sp_frontui_insertNivelInstituciones(frm["strEstadoNivel"].ToString(), frm["strNumAlumno"].ToString(), this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina));
+                        respuesta.Add("estado", true);
+                        //, , , 
+                    }
                 }
                 catch (ErroresIUS x)
                 {

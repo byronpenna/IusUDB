@@ -318,7 +318,7 @@ namespace IUSLibs.FrontUI.Control
                             throw x;
                         }
                     }
-                    public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,int idInstitucion,int idUsuarioEjecutor,int idPagina)
+                    public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,string strNumAlumnos,int idInstitucion,int idUsuarioEjecutor,int idPagina)
                     {
                         try
                         {
@@ -327,6 +327,8 @@ namespace IUSLibs.FrontUI.Control
                             SPIUS sp = new SPIUS("sp_frontui_insertNivelInstituciones");
                             
                             sp.agregarParametro("strNiveles", strNiveles);
+                            sp.agregarParametro("strNumAlumnos", strNumAlumnos);
+
                             sp.agregarParametro("idInstitucion", idInstitucion);
 
                             sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
