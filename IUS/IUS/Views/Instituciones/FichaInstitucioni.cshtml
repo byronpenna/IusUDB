@@ -40,7 +40,7 @@
     <div class="col-lg-6">
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>País</label>
+                <label>@ViewData["lb-pais"] </label>@*País*@
             </div>
             <div class="col-lg-6">
                 @institucion._pais._pais
@@ -48,7 +48,7 @@
         </div>
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Sede central</label>
+                <label>@ViewData["lb-sede"]</label>@*Sede central*@
             </div>
             <div class="col-lg-6">
                 @institucion._ciudad
@@ -57,7 +57,7 @@
             
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Otras ciudades</label>
+                <label>@ViewData["lb-ciudad"]</label>@*Otras ciudades*@
             </div>
             <div class="col-lg-6">
                 Antiguo cuscatlan*
@@ -65,7 +65,7 @@
         </div>
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Año de fundación</label>
+                <label>@ViewData["lb-anioFundacion"]</label>@*Año de fundación*@
             </div>
             <div class="col-lg-6">
                 1984*
@@ -73,7 +73,7 @@
         </div>
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Tipo de institucion</label>
+                <label>@ViewData["lb-tipoInstitucion"]</label>@*Tipo de institucion*@
             </div>
             <div class="col-lg-6">
                 Universidad* @*Solicitar tipos de instituciones*@
@@ -81,7 +81,7 @@
         </div>
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Dirección</label>
+                <label>@ViewData["lb-direccion"]</label>@*Dirección*@
             </div>
             <div class="col-lg-6">
                 <address>
@@ -91,7 +91,7 @@
         </div>
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Telefonos</label>
+                <label>@ViewData["lb-telefonos"]</label>@*Telefonos*@
             </div>
             <div class="col-lg-6">
                 @if (institucion._telefonos != null)
@@ -110,7 +110,7 @@
         </div>
         <div class="row marginNull">
             <div class="col-lg-6">
-                <label>Sitio web</label>
+                <label>@ViewData["lb-sitioweb"]</label>@*Sitio web*@
             </div>
             <div class="col-lg-6">
                 @if (institucion._enlaces != null)
@@ -155,12 +155,15 @@
         }
     </div>
     <div class="row marginNull filaOtherData divNumAlumnos">
-        <h4 class="text-center">Número de estudiantes inscritos en el último año académico:</h4>
+        <h4 class="text-center">
+            @*Número de estudiantes inscritos en el último año académico:*@
+            @ViewData["texto-numeroEstudiantes"]
+        </h4>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nivel de instrucción</th>
-                    <th>Estudiantes</th>
+                    <th>@ViewData["tb-th-nivelInstitucion"] </th> @*Nivel de instrucción*@
+                    <th>@ViewData["tb-th-estudiantes"]</th>  @*Estudiantes*@
                 </tr>
             </thead>
             <tbody>
@@ -180,7 +183,7 @@
                         </tr>
                     }
                     <tr class="trTotal">
-                        <td>Total</td>
+                        <td>@ViewData["tb-td-total"]</td>
                         <td>@cn</td>
                     </tr>
                 }
