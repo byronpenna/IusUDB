@@ -236,6 +236,7 @@ nav ul li a:hover, .menu2 ul li a:hover {
 
 /* Footer */
 .footer {
+  margin-top: 5%;
   padding-top: 8%;
   background: #dddbdb;
   padding-bottom: 12%;
