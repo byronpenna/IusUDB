@@ -76,7 +76,7 @@ namespace IUS.Controllers
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                return View();
+                return View("~/Views/Instituciones/FichaInstitucioni.cshtml");
             }
             public ActionResult Index(int id=-1)
             {

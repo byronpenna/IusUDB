@@ -423,6 +423,8 @@
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\media.css" />
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\style.css" />
     <Content Include="Content\ius_theme\views\Informacion\Salesianos\style.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucioni\media.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucioni\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucion\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucion\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\Indexi\media.css" />
@@ -733,6 +735,7 @@
     <Content Include="Views\Instituciones\Indexi.cshtml" />
     <Content Include="Views\Login\Indexi.cshtml" />
     <Content Include="Views\Repositorio\Indexi.cshtml" />
+    <Content Include="Views\Instituciones\FichaInstitucioni.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

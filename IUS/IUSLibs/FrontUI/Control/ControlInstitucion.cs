@@ -154,8 +154,10 @@ namespace IUSLibs.FrontUI.Control
                         Dictionary<object, object> retorno = new Dictionary<object, object>();
                         // normales
                             Institucion institucion = null;
-                            TelefonoInstitucion telefono; EnlaceInstitucion enlace;
-                            NivelEducacion nivelEducacion; AreaCarrera areaCarrera;
+                            TelefonoInstitucion telefono;       EnlaceInstitucion   enlace;
+                            NivelEducacion      nivelEducacion; AreaCarrera         areaCarrera;
+                            
+                            InstitucionNivel    institucionNivel;
                     // procedimiento
                         SPIUS sp = new SPIUS("sp_frontui_front_getInstitucionById");
                         sp.agregarParametro("idInstitucion", idInstitucion);
@@ -171,6 +173,14 @@ namespace IUSLibs.FrontUI.Control
                                 DataRow row             = tb[0].Rows[0];
                                 institucion             = new Institucion((int)row["idInstitucion"],row["nombre"].ToString(),row["direccion"].ToString(),(int)row["id_pais_fk"],(bool)row["estado"]);
                                 institucion._pais._pais = row["pais"].ToString();
+                                if (row["ciudad"] == DBNull.Value)
+                                {
+                                    institucion._ciudad = "";
+                                }
+                                else
+                                {
+                                    institucion._ciudad = row["ciudad"].ToString();
+                                }
                                 if(DBNull.Value != row["logo"]){
                                     institucion._logo = (byte[])row["logo"];
                                 }
@@ -203,11 +213,17 @@ namespace IUSLibs.FrontUI.Control
                                 }
                                 if (tb[3].Rows.Count > 0) //niveles
                                 {
-                                    institucion._niveles = new List<NivelEducacion>();
+                                    //institucion._niveles = new List<NivelEducacion>();
+                                    institucion._institucionesNiveles = new List<InstitucionNivel>();
+
                                     foreach (DataRow rowNiveles in tb[3].Rows)
                                     {
                                         nivelEducacion = new NivelEducacion((int)rowNiveles["idNivelEducacion"], rowNiveles["codigo"].ToString(), rowNiveles["descripcion"].ToString());
-                                        institucion._niveles.Add(nivelEducacion);
+                                        //institucion._niveles.Add(nivelEducacion);
+                                        institucionNivel                    = new InstitucionNivel((int)rowNiveles["idInstitucionNivel"]);
+                                        institucionNivel._nivelEducacion    = nivelEducacion;
+                                        institucionNivel._numAlumnos = (int)rowNiveles["numAlumnos"];
+                                        institucion._institucionesNiveles.Add(institucionNivel);
                                     }
                                 }
                                 if (tb[4].Rows.Count > 0) // areas de conocimiento

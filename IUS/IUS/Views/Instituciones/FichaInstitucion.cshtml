@@ -28,34 +28,94 @@
         </div>
         <div class="col-lg-8">
             <h2>@institucion._nombre</h2>
-            <address>
-                @institucion._direccion
-            </address>
+            
             <div class="row marginNull">
-                @if (institucion._telefonos != null)
-                {
-                    foreach (TelefonoInstitucion telefono in institucion._telefonos)
-                    {
-                        string tel = "";
-                        if (telefono._institucion._pais._codigoPais != "")
-                        {
-                            tel = "(" + telefono._institucion._pais._codigoPais + ")";
-                        }
-                        <span>Tel. @tel @telefono._telefono</span>
-                    }
-                }
+                <div class="col-lg-6">
+                    <label>País</label>
+                </div>
+                <div class="col-lg-6">
+                    @institucion._pais._pais 
+                </div>
+            </div>
 
+            <div class="row marginNull">
+                <div class="col-lg-6">
+                    <label>Sede central</label>
+                </div>
+                <div class="col-lg-6">
+                    @institucion._ciudad
+                </div>
             </div>
             <div class="row marginNull">
-                @if (institucion._enlaces != null)
-                {
-                    foreach (EnlaceInstitucion enlace in institucion._enlaces)
+                <div class="col-lg-6">
+                    <label>Otras ciudades</label>
+                </div>
+                <div class="col-lg-6">
+                    Antiguo cuscatlan*
+                </div>
+            </div>
+            <div class="row marginNull">
+                <div class="col-lg-6">
+                    <label>Año de fundación</label>
+                </div>
+                <div class="col-lg-6">
+                    1984*
+                </div>
+            </div>
+            <div class="row marginNull">
+                <div class="col-lg-6">
+                    <label>Tipo de institucion</label>
+                </div>
+                <div class="col-lg-6">
+                    Universidad* @*Solicitar tipos de instituciones*@
+                </div>
+            </div>
+            
+            <div class="row marginNull" >
+                <div class="col-lg-6">
+                    <label>Dirección</label>
+                </div>
+                <div class="col-lg-6">
+                    <address>
+                        @institucion._direccion
+                    </address>    
+                </div>
+            </div>
+            <div class="row marginNull">
+                <div class="col-lg-6">
+                    <label>Telefonos</label>
+                </div>
+                <div class="col-lg-6">
+                    @if (institucion._telefonos != null)
                     {
-                        <span>
-                            <a href="@enlace._enlace">@enlace._enlace</a>
-                        </span>
+                        foreach (TelefonoInstitucion telefono in institucion._telefonos)
+                        {
+                            string tel = "";
+                            if (telefono._institucion._pais._codigoPais != "")
+                            {
+                                tel = "(" + telefono._institucion._pais._codigoPais + ")";
+                            }
+                            <span>Tel. @tel @telefono._telefono</span>
+                        }
                     }
-                }
+                </div>
+            </div>
+            <div class="row marginNull">
+                <div class="col-lg-6">
+                    <label>Sitio web</label>
+                </div>
+                <div class="col-lg-6">
+                    @if (institucion._enlaces != null)
+                    {
+                        foreach (EnlaceInstitucion enlace in institucion._enlaces)
+                        {
+                            <span>
+                                <a href="@enlace._enlace">@enlace._enlace</a>
+                            </span>
+                        }
+                    }
+                </div>
+                
 
             </div>
         </div>
@@ -63,16 +123,14 @@
     <div class="row marginNull rowOtherData">
         <div class="row marginNull filaOtherData">
             <h4>@ViewData["titulo-nivelesEducacion"]</h4>
-            @if (institucion._niveles != null && institucion._niveles.Count > 0)
+            @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
             {
-                foreach (NivelEducacion nivel in institucion._niveles)
+                foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
                 {
                     <div class="row marginNull">
-                        @nivel._codigo - @nivel._descripcion
+                        @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
                     </div>
-
                 }
-
             }
         </div>
         <div class="row marginNull filaOtherData">
@@ -86,6 +144,39 @@
                     </div>
                 }
             }
+        </div>
+        <div class="row marginNull filaOtherData divNumAlumnos">
+            <h4>Número de estudiantes inscritos en el último año académico:</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nivel de instrucción</th>
+                        <th>Estudiantes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
+                    {
+                        int cn = 0;
+                        foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
+                        {
+                            cn += institucionNivel._numAlumnos;
+                            <tr>
+                                <td>
+                                    @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
+                                </td>
+                                <td>
+                                    @institucionNivel._numAlumnos
+                                </td>
+                            </tr>
+                        }
+                        <tr class="trTotal">
+                            <td>Total</td>
+                            <td>@cn</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
