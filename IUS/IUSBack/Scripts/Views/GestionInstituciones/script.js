@@ -71,11 +71,13 @@
                 
             })
             $(document).on("click", ".btnDeleteInstitucion", function () {
-                //var x = confirm("¿?")
-                seccion = $(this).parents("tr");
-                frm = { idInstitucion: seccion.find(".txtHdIdInstitucion").val() }
-                console.log(frm);
-                btnDeleteInstitucion(frm,seccion);
+                var x = confirm("¿Desea eliminar esta institucion?");
+                if (x) {
+                    seccion = $(this).parents("tr");
+                    frm = { idInstitucion: seccion.find(".txtHdIdInstitucion").val() }
+                    console.log(frm);
+                    btnDeleteInstitucion(frm, seccion);
+                }
             });
             //*************************************
             $(document).on("click", ".btnAddInstitucion", function () {

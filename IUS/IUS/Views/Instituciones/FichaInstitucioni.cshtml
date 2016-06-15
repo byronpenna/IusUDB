@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucioni/media.css" />
 }
 @section scriptsPersonalizados{
-    <script src="~/Scripts/views/Instituciones/FichaInstitucioni/script.js"></script>
-    <script src="~/Scripts/views/Instituciones/FichaInstitucioni/functions.js"></script>
+    @*<script src="~/Scripts/views/Instituciones/FichaInstitucioni/script.js"></script>
+    <script src="~/Scripts/views/Instituciones/FichaInstitucioni/functions.js"></scri*@pt>
 }
 <h2 class="tituloInstitucion">@institucion._nombre</h2>
 <div class="row marginNull fila">
@@ -96,6 +96,7 @@
             <div class="col-lg-6">
                 @if (institucion._telefonos != null)
                 {
+                    
                     foreach (TelefonoInstitucion telefono in institucion._telefonos)
                     {
                         string tel = "";
@@ -103,7 +104,9 @@
                         {
                             tel = "(" + telefono._institucion._pais._codigoPais + ")";
                         }
-                        <span>Tel. @tel @telefono._telefono</span>
+                        <div class="row marginNull">
+                            <a href="tel:@telefono._telefono"> @tel @telefono._textoTelefono </a><span> / </span>
+                        </div>
                     }
                 }
             </div>
@@ -118,7 +121,7 @@
                     foreach (EnlaceInstitucion enlace in institucion._enlaces)
                     {
                         <span>
-                            <a href="@enlace._enlace">@enlace._enlace</a>
+                            <a href="@enlace._enlace">@enlace._nombreEnlace</a>
                         </span>
                     }
                 }

@@ -1,6 +1,7 @@
 ﻿// genericas 
     function getTrInstituciones(institucion,permisos) {
-        var strEditar="", strEliminar = "";
+        console.log("Institucion en get tr", institucion);
+        var strEditar = "", strEliminar = "";
         if (permisos !== undefined) {
             if (!permisos._editar) {
                 strEditar   = "disabled";
