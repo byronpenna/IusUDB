@@ -62,7 +62,7 @@ namespace IUS.Controllers
                     string lang = this.getUserLang();
                     //Institucion institucion = this._model.sp
                     string ip = Request.UserHostAddress;
-                    Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(id, ip, this.idPaginaFichaInstitucion);
+                    Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(id, ip, this.idPaginaFichaInstitucion,lang);
                     ViewBag.data = data;
                     traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
                     this.setTraduccion(traducciones);

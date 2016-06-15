@@ -50,11 +50,11 @@ namespace IUS.Models.page.Instituciones.Acciones
                         throw x;
                     }
                 }
-                public Dictionary<object, object> sp_frontui_front_getInstitucionById(int idInstitucion, string ip, int idPagina)
+                public Dictionary<object, object> sp_frontui_front_getInstitucionById(int idInstitucion, string ip, int idPagina,string idioma="es")
                 {
                     try
                     {
-                        return this._controlInstitucion.sp_frontui_front_getInstitucionById(idInstitucion, ip, idPagina);
+                        return this._controlInstitucion.sp_frontui_front_getInstitucionById(idInstitucion, ip, idPagina,idioma);
                     }
                     catch (ErroresIUS x)
                     {

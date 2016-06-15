@@ -148,7 +148,7 @@ namespace IUSLibs.FrontUI.Control
                     }
                     return instituciones;
                 }
-                public Dictionary<object, object> sp_frontui_front_getInstitucionById(int idInstitucion, string ip, int idPagina)
+                public Dictionary<object, object> sp_frontui_front_getInstitucionById(int idInstitucion, string ip, int idPagina,string idioma = "es")
                 {
                     // variables 
                         Dictionary<object, object> retorno = new Dictionary<object, object>();
@@ -161,6 +161,7 @@ namespace IUSLibs.FrontUI.Control
                     // procedimiento
                         SPIUS sp = new SPIUS("sp_frontui_front_getInstitucionById");
                         sp.agregarParametro("idInstitucion", idInstitucion);
+                        sp.agregarParametro("idioma", idioma);
                         sp.agregarParametro("ip", ip);
                         sp.agregarParametro("idPagina", idPagina);
                     try
