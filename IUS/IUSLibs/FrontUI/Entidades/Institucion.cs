@@ -9,13 +9,15 @@ namespace IUSLibs.FrontUI.Entidades
     public class Institucion
     {
         #region "propiedades"
-            public int      _idInstitucion;
-            public string   _nombre;
-            public string   _direccion;
-            public Pais     _pais;
-            public bool     _estado;
-            public byte[]   _logo;
-            public string   _ciudad;
+            public int              _idInstitucion;
+            public string           _nombre;
+            public string           _direccion;
+            public Pais             _pais;
+            public bool             _estado;
+            public byte[]           _logo;
+            public string           _ciudad;
+            public TipoInstitucion  _tipoInstitucion;
+            public int              _anioFundacion;
             // extras a tabla
                 public List<TelefonoInstitucion>    _telefonos;
                 public List<EnlaceInstitucion>      _enlaces;

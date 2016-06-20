@@ -54,12 +54,15 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                     
                     try
                     {
-                        List<Pais> paises = this._controlPais.sp_frontui_getPaises();
-                        List<Institucion> instituciones = this._controlInstitucion.sp_frontui_getInstituciones(idUsuarioEjecutor, idPagina);
-
+                        List<Pais>              paises              = this._controlPais.sp_frontui_getPaises();
+                        List<Institucion>       instituciones       = this._controlInstitucion.sp_frontui_getInstituciones(idUsuarioEjecutor, idPagina);
+                        ControlTipoInstitucion  control             = new ControlTipoInstitucion();
+                        List<TipoInstitucion>   tiposInstituciones  = control.sp_frontui_getTiposInstituciones(idUsuarioEjecutor,idPagina);
                         Dictionary<object, object> retorno = new Dictionary<object,object>();
+                        
                         retorno.Add("instituciones", instituciones);
                         retorno.Add("paises", paises);
+                        retorno.Add("tiposInstituciones", tiposInstituciones);
                         return retorno;
                     }
                     catch (ErroresIUS x)

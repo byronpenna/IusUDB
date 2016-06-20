@@ -34,7 +34,7 @@
                         <select class='cbPaisEdit cbPaisVal' name='cbPaisEdit'></select>\
                     </div>\
                     <div class='normalMode tdPais'>\
-                    "+institucion._pais._pais+"\
+                        "+institucion._pais._pais+"\
                     </div>\
                 </td>\
                 <td class='tdCiudad'>\
@@ -43,6 +43,20 @@
                     </div>\
                     <div class='normalMode tdCiudad'>\
                         "+institucion._ciudad+"\
+                    </div>\
+                </td>\
+                <td class='tdFundacion'>\
+                    <div class='editMode hidden'>\
+                    </div>\
+                    <div class='normalMode tdPaisText'>\
+                        " + institucion._anioFundacion + "\
+                    </div>\
+                </td>\
+                <td class='tdTipo'>\
+                    <div class='editMode hidden'>\
+                    </div>\
+                    <div class='normalMode tdPaisText'>\
+                        " + institucion._tipoInstitucion._tipoInstitucion + "\
                     </div>\
                 </td>\
                 <td>\

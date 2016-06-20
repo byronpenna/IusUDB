@@ -133,6 +133,8 @@ namespace IUSLibs.FrontUI.Control
                                     Pais pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
                                     institucion = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
                                     institucion._ciudad = row["ciudad"].ToString();
+                                    institucion._anioFundacion = (int)row["anio_fundacion"];
+                                    institucion._tipoInstitucion = new TipoInstitucion((int)row["idTipoInstitucion"], row["tipoInstitucion"].ToString());
                                     instituciones.Add(institucion);
                                 }
                             }
@@ -531,6 +533,8 @@ namespace IUSLibs.FrontUI.Control
                         sp.agregarParametro("idPais", institucionAgregar._pais._idPais);
                         sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                         sp.agregarParametro("ciudad", institucionAgregar._ciudad);
+                        sp.agregarParametro("fundacion", institucionAgregar._anioFundacion);
+                        sp.agregarParametro("idTipoInstitucion", institucionAgregar._tipoInstitucion._idTipoInstitucion);
                         sp.agregarParametro("idPagina", idPagina);
                     // acciones
                     try
@@ -544,6 +548,8 @@ namespace IUSLibs.FrontUI.Control
                                 pais = new Pais( (int)row["id_pais_fk"],row["pais"].ToString());
                                 institucionAgregada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(),pais,(bool)row["estado"]);
                                 institucionAgregada._ciudad = row["ciudad"].ToString();
+                                institucionAgregada._anioFundacion = (int)row["anio_fundacion"];
+                                institucionAgregada._tipoInstitucion = new TipoInstitucion((int)row["id_tipoinstitucion_fk"], row["tipoInstitucion"].ToString());
                             }
                         }
                         else

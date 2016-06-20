@@ -1,8 +1,16 @@
 ﻿.tdPais{
     width:20%;
 }
-.tdDireccion{
-    width:40%;
+
+.tdFundacion{
+    width:10%;
+}
+.tdDireccion,.tdNombreInsitucion,.tdPais,.tdTipo{
+    width:15%;
+}
+.normalMode {
+    width:100%;
+    text-align:justify;
 }
 /*Quitar en caso de usar tabs*/
     .cuerpoModulo,.tabsHeader{

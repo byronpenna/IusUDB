@@ -21,9 +21,23 @@
         <script src="~/Scripts/Views/GestionInstituciones/functions.js"></script>
 }
 @{
-    List<Pais>          paises          = (List<Pais>) ViewBag.paises;
-    List<Institucion>   instituciones   = (List<Institucion>) ViewBag.instituciones;
-    Permiso             permiso         = (Permiso)ViewBag.permiso;
+    List<Pais>          paises              = null;
+    List<Institucion>   instituciones       = null;
+    Permiso             permiso             = null;
+    List<TipoInstitucion> tiposInsituciones = null;
+    try
+    {
+        paises              = (List<Pais>)ViewBag.paises;
+        instituciones       = (List<Institucion>) ViewBag.instituciones;
+        permiso             = (Permiso)ViewBag.permiso;
+        tiposInsituciones   = (List<TipoInstitucion>)ViewBag.tiposInsituciones;
+        
+    }
+    catch (Exception)
+    {
+        
+    }
+    
 }
 <div class="row marginNull divMensajesGenerales">
 
@@ -36,8 +50,10 @@
                     <tr>
                         <th></th>
                         <th>Nombre</th>
-                        <th>Direccion</th>
+                        <th class="thDireccion">Direccion</th>
                         <th>Pais</th>
+                        <th>Fundacion</th>
+                        <th>Tipo</th>
                         <th>Ciudad</th>
                         <th>Acciones</th>
                     </tr>
@@ -86,6 +102,26 @@
                             </div>
                         </td>
                         <td>
+                            <input type="number" class="txtAnio form-control" name="txtAnio" />
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
+                        </td>
+                        <td>
+                            <select class="cbTipoInst form-control " name="cbTipoInst">
+                                @if (tiposInsituciones != null && tiposInsituciones.Count > 0)
+                                {
+                                    foreach (TipoInstitucion tipoInstitucion in tiposInsituciones)
+                                    {
+                                        <option value="@tipoInstitucion._idTipoInstitucion">@tipoInstitucion._tipoInstitucion</option>
+                                    }
+                                }
+                            </select>
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
+                        </td>
+                        <td>
                             <input class="form-control txtCiudad" name="txtCiudad"  />
                             <div class="row marginNull divResultado hidden">
 
@@ -106,7 +142,7 @@
                                     <input class="txtHdIdInstitucion" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
                                     <input class="txtHdIdPais" name="txtHdIdPais" value="@institucion._pais._idPais" />
                                 </td>
-                                <td>
+                                <td class="tdNombreInsitucion">
                                     <div class="editMode hidden">
                                         <input type="text" name="txtNombreInstitucionEdit" class="txtNombreInstitucionEdit form-control txtNombreInstitucionVal txtEnterEdit" />
                                         <div class="divResultado">
@@ -130,12 +166,27 @@
                                         @institucion._pais._pais
                                     </div>
                                 </td>
+                                <td class="tdFundacion">
+                                    <div class="editMode hidden">
+                                    </div>
+                                    <div class="normalMode tdAnioFundacionText">
+                                        @institucion._anioFundacion
+                                    </div>
+                                </td>
+                                <td class="tdTipo">
+                                    <div class="editMode hidden">
+                                    </div>
+                                    <div class="normalMode tdPaisText">
+                                        @institucion._tipoInstitucion._tipoInstitucion
+                                    </div>
+                                </td>
                                 <td class="tdCiudad">
                                     <div class="editMode hidden">
                                         <input class="form-control txtCiudad" name="txtCiudad" />
                                     </div>
                                     <div class="normalMode tdCiudadText">@institucion._ciudad</div>
                                 </td>
+                                
                                 <td>
                                     <div class="editMode hidden">
                                         <div class="btn-group">
