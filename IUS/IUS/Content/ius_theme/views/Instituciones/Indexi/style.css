@@ -1,103 +1,88 @@
-﻿.menuLateral{
-    margin-top:40px;
-    padding:0;
-}
-    .menuLateral li {
-        width:100%;
-        display:block;
-        cursor:pointer;
-        border:solid 1px black;
-        margin-bottom:3%;
-        padding-top:3%;
-        padding-bottom:2%;
-        padding-left:3%;
-    }
-    
-.menuLateral .imgMap{
-    width:80%;
-    margin:0 auto;
-}
-.menuLateral .colImgMap{
-    text-align:center;
-    width:60%;
-    display:inline-block;
-}
-.texto{
-    width:30%;
-    display:inline-block;
-    text-transform:uppercase;
-}
-.detalles{
-    background:#f3f2f2;
-    min-height:1005px;
-}
-.tituloDetalles{
-    margin-top:40px;
-    color:#cc1315;
-    text-transform:uppercase;
-    font-size:1em;
-}
-.centroInstituciones{
-    padding-left:3%;
-    padding-right:3%;
-}
-.activeInstitucion{
-    border-color:#cd1315 !important;
-    color:#cd1315;
-    font-weight:bold;
-}
-.divContenedorTexto,.contenedorImgPrincipal{
-    width:90%;
-}
-.contenedorImgPrincipal{
-    margin-top:40px !important;
-    /*width:90%;*/
-    /*margin:0 auto;*/
+.menuLateral {
+  margin-top: 40px;
+  padding: 0; }
+  .menuLateral li {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    border: solid 1px black;
+    margin-bottom: 3%;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    padding-left: 3%; }
+  .menuLateral .imgMap {
+    width: 60%;
+    margin: 0 auto; }
+  .menuLateral .colImgMap {
+    text-align: center;
+    width: 60%;
+    display: inline-block; }
 
-    border: solid 1px #cd1315;
-    padding-top:20px;
-    padding-bottom:20px;
-    text-align:center;
-}
-.imgPrincipal{
-    margin:0 auto;
-    width:95%;
-}
+.texto {
+  width: 30%;
+  display: inline-block;
+  text-transform: uppercase; }
 
-/*
-.vertical-align {
-    display: flex;
-    align-items: center;
-}*/
-/* Cuerpo */
-.contenidoCuerpo{
-    border-bottom:solid 1px #cd1315;
-    padding-bottom: 60px;
-}
-.tablaInstitucion{
-    margin-top:3%;
-}
-.tablaInstitucion tbody tr td,.tablaInstitucion thead tr th{
-    text-transform:uppercase;
-    text-align:center;
-}
-.tablaInstitucion tbody tr td {
-    font-size:0.6em;
-    border:solid 1px #828181;
-    color:#414141;
-}
-.tablaInstitucion thead tr th{
-    text-align:center;
-    color:#cd1315;
-    font-size:0.8em;
-    border-bottom:none;
-}
-.divTel a{
-    color:#414141;
-}
+.detalles {
+  background: #f3f2f2;
+  min-height: 900px; }
 
-.tituloInstituciones{
-    text-transform:uppercase;
-    color:#cd1315;
-    font-size:1em;
-}
+.tituloDetalles {
+  margin-top: 40px;
+  color: #cc1315;
+  text-transform: uppercase;
+  font-size: 1em; }
+
+.centroInstituciones {
+  padding-left: 3%;
+  padding-right: 3%; }
+
+.activeInstitucion {
+  border-color: #cd1315 !important;
+  color: #cd1315;
+  font-weight: bold; }
+
+.divContenedorTexto, .contenedorImgPrincipal {
+  width: 90%; }
+
+.contenedorImgPrincipal {
+  margin-top: 40px !important;
+  /*width: 90% */
+  /*margin: 0 auto */
+  border: solid 1px #cd1315;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center; }
+
+.imgPrincipal {
+  margin: 0 auto;
+  width: 95%; }
+
+.contenidoCuerpo {
+  border-bottom: solid 1px #cd1315;
+  padding-bottom: 60px; }
+
+.tablaInstitucion {
+  margin-top: 3%; }
+  .tablaInstitucion tbody tr td, .tablaInstitucion thead tr th {
+    text-transform: uppercase;
+    text-align: center; }
+  .tablaInstitucion tbody tr td {
+    font-size: 0.6em;
+    border: solid 1px #828181;
+    color: #414141;
+    vertical-align: middle; }
+  .tablaInstitucion thead tr th {
+    color: #cd1315;
+    font-size: 0.8em;
+    border-bottom: none; }
+
+.divTel a {
+  color: #414141; }
+
+.tituloInstituciones {
+  text-transform: uppercase;
+  color: #cd1315;
+  font-size: 1em; }
+
+/*# sourceMappingURL=style.css.map */

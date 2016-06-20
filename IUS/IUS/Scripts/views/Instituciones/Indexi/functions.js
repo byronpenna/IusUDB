@@ -84,7 +84,9 @@ function buscarContinente(frm) {
                 </td>\
                 <td>" + institucion._ciudad + "</td>\
                 <td>\
-                    <a href='" + $(".txtHdUrlFicha").val() + "/" + institucion._idInstitucion + "'>Ver</a>\
+                    <a href='" + $(".txtHdUrlFicha").val() + "/" + institucion._idInstitucion + "'>\
+                        <img src='" + RAIZ + "/Content/images/views/Instituciones/mas.png'/>\
+                    </a>\
                 </td>\
             </tr>\
         ";

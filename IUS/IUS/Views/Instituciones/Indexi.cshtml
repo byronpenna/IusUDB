@@ -106,7 +106,9 @@
                             <th>@ViewData["tb-th-pais"]</th>
                             <th>@ViewData["tb-th-institucion"]</th>
                             <th>Ciudad</th>
-                            <th>Detalle</th>
+                            <th>
+                                @*Detalle*@
+                            </th>
                             @*<th>@ViewData["tb-th-telefonos"]</th>
                             <th>@ViewData["tb-th-contactos"]</th>
                             <th>@ViewData["tb-th-correos"]</th>*@
@@ -121,7 +123,10 @@
                                 <td>Universidad Don bosco</td>
                                 <td>Paris</td>
                                 <td>
-                                    <a href="#">Ver</a>
+                                    <a href="#">
+                                        @*Ver*@
+                                        <img src="@Url.Content("~/Content/images/views/Instituciones/mas.png")"/>
+                                    </a>
                                 </td>
                                 <td>@*Jose@udb.edu.sv*@</td>
                             </tr>
