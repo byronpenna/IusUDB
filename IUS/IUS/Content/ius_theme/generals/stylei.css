@@ -58,12 +58,12 @@ select {
     color: white; }
 
 .padreCaja {
-  width: 55%;
+  width: 65%;
   display: inline-block; }
 
 .cajaArriba {
   display: table;
-  width: 75%; }
+  width: 100%; }
 
 .centroPagina {
   width: 85%;
@@ -96,10 +96,10 @@ header {
     text-transform: uppercase;
     color: #b6b5b5;
     margin-right: 3%;
-    font-weight: bold;
     position: relative;
     bottom: 10px;
-    display: inline-block; }
+    display: inline-block;
+    font-family: "MyriadRegular"; }
 
 .otroDiv {
   display: table-cell;
@@ -127,7 +127,7 @@ nav ul li a:hover, .menu2 ul li a:hover {
       padding-top: 10%;
       padding-bottom: 2%;
       height: 80px;
-      width: 19%;
+      width: 17%;
       text-align: center;
       /** */
       display: inline-block;
@@ -135,8 +135,8 @@ nav ul li a:hover, .menu2 ul li a:hover {
       .navPrincipal ul li a {
         color: #919191;
         /*font-weight: normal */
-        font-weight: bold;
-        font-size: 0.8em; }
+        font-size: 0.8em;
+        font-family: "MyriadRegular"; }
 
 .activeMenu {
   cursor: pointer;
@@ -236,7 +236,7 @@ nav ul li a:hover, .menu2 ul li a:hover {
 
 /* Footer */
 .footer {
-  margin-top: 5%;
+  margin-top: 8%;
   padding-top: 8%;
   background: #dddbdb;
   padding-bottom: 12%;
@@ -258,6 +258,7 @@ nav ul li a:hover, .menu2 ul li a:hover {
   font-size: 0.8em; }
 
 .linkAreaPrivada {
+  font-family: "MyriadRegular";
   color: #8c8b8b; }
   .linkAreaPrivada:hover {
     text-decoration: none;
@@ -275,5 +276,17 @@ nav ul li a:hover, .menu2 ul li a:hover {
   background-image: -webkit-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
   background-image: -ms-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
   background-image: linear-gradient(to bottom, #CD1316 73%, #AD1013 100%); }
+
+.todo {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  background: white; }
+
+body {
+  background: #95a5a6; }
+
+.menuChiquito {
+  padding: 0; }
 
 /*# sourceMappingURL=stylei.css.map */

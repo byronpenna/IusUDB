@@ -21,9 +21,11 @@
     <body>
         <input type="hidden" value="@IUSLibs.GENERALS.Rutas.IUSBACK" class="txtHdIusback" />
         <input type="hidden" value="@IUSLibs.GENERALS.Rutas.IUS" class="txtHdIus" />
-        @Html.Partial("menui")
-        @RenderBody()
-        @Html.Partial("footeri")
+        <div class="todo">
+            @Html.Partial("menui")
+            @RenderBody()
+            @Html.Partial("footeri")
+        </div>
         @Scripts.Render("~/bundles/scriptsGeneralesi")
         <script src="~/Scripts/Generales/jquery-ui.js"></script>
         @RenderSection("scriptsPersonalizados", false)
