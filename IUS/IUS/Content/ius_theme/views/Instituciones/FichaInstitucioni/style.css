@@ -58,6 +58,17 @@
     display: block;
     margin-bottom: 3%; }
   .contenidoFicha .seccion {
-    width: 60%; }
+    width: 80%; }
+
+.contenidoConocimiento {
+  margin-top: 3%;
+  width: 80%; }
+  .contenidoConocimiento .rowNivelArea {
+    text-transform: uppercase;
+    font-size: 1em; }
+  .contenidoConocimiento .etiquetaTitulo {
+    text-align: center;
+    margin-bottom: 3%;
+    text-transform: uppercase; }
 
 /*# sourceMappingURL=style.css.map */
