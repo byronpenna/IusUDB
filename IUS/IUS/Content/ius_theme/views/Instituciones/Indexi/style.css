@@ -18,6 +18,11 @@
     width: 60%;
     display: inline-block; }
 
+.activeInstitucion {
+  border-color: #cd1315 !important;
+  color: #cd1315;
+  font-weight: bold; }
+
 .texto {
   width: 30%;
   display: inline-block;

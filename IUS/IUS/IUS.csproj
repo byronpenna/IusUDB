@@ -611,6 +611,9 @@
     <Content Include="Content\fonts\MyriadPro\MyriadPro-Semibold.otf" />
     <Content Include="Content\fonts\MyriadPro\MyriadPro-SemiboldIt.otf" />
     <Content Include="Content\images\views\Instituciones\mapita.psd" />
+    <Content Include="Content\ius_theme\views\Instituciones\Indexi\media.sass" />
+    <Content Include="Content\ius_theme\views\Instituciones\Indexi\style.css.map" />
+    <Content Include="Content\ius_theme\views\Instituciones\Indexi\style.sass" />
     <None Include="Properties\PublishProfiles\uis.pubxml" />
     <None Include="Scripts\Asp_default\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\Asp_default\jquery-1.8.2.js" />
@@ -739,6 +742,7 @@
     <Content Include="Views\Login\Indexi.cshtml" />
     <Content Include="Views\Repositorio\Indexi.cshtml" />
     <Content Include="Views\Instituciones\FichaInstitucioni.cshtml" />
+    <Content Include="Views\Shared\menuInstitucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

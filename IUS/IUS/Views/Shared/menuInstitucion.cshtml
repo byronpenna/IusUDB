@@ -1,0 +1,61 @@
+﻿@{
+    string path     = "~/Content/images/views/Instituciones/";
+    string america  = Url.Content(path + "americai.png"),   americaRoja    = Url.Content(path + "americair.png");
+    string africa   = Url.Content(path + "africai.png"),    africaRoja     = Url.Content(path + "africair.png");
+    string asia     = Url.Content(path + "asiai.png"),      asiaRoja       = Url.Content(path + "asiair.png");
+    string europa   = Url.Content(path + "europai.png"),    europaRoja     = Url.Content(path + "europair.png");
+    string oceania  = Url.Content(path + "oceania.png"),    oceaniaRoja    = Url.Content(path + "oceaniar.png");
+}
+<ul class="menuLateral">
+    @*a pesar de llamarse menu conocenos es una clase general*@
+    <li id="2">
+        <div class="row parent">
+            <div class="colImgMap">
+                <input type="hidden" class="txtHdNormal" value="@america" />
+                <input type="hidden" class="txtHdRoja" value="@americaRoja" />
+                <img class="imgMap" src="@america" />
+            </div>
+            <div class="texto">America</div>
+        </div>
+    </li>
+    <li id="1">
+        <div class="row">
+            <div class="colImgMap">
+                <input type="hidden" class="txtHdNormal" value="@africa" />
+                <input type="hidden" class="txtHdRoja" value="@africaRoja" />
+                <img class="imgMap" src="@africa" />
+            </div>
+            <div class="texto">Africa</div>
+        </div>
+    </li>
+    <li id="3">
+        <div class="row">
+            <div class="colImgMap">
+                <input type="hidden" class="txtHdNormal" value="@asia" />
+                <input type="hidden" class="txtHdRoja" value="@asiaRoja" />
+                <img class="imgMap" src="@asia" />
+            </div>
+            <div class="texto">Asia</div>
+        </div>
+    </li>
+    <li id="4">
+        <div class="row">
+            <div class="colImgMap">
+                <input type="hidden" class="txtHdNormal" value="@europa" />
+                <input type="hidden" class="txtHdRoja" value="@europaRoja" />
+                <img class="imgMap" src="@europa" />
+            </div>
+            <div class="texto">Europa</div>
+        </div>
+    </li>
+    <li id="5">
+        <div class="row">
+            <div class="colImgMap">
+                <input type="hidden" class="txtHdNormal" value="@oceania" />
+                <input type="hidden" class="txtHdRoja" value="@oceaniaRoja" />
+                <img class="imgMap" src="@oceania" />
+            </div>
+            <div class="texto">Oceania</div>
+        </div>
+    </li>
+</ul>

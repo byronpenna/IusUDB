@@ -32,166 +32,236 @@
     @*<script src="~/Scripts/views/Instituciones/FichaInstitucioni/script.js"></script>
     <script src="~/Scripts/views/Instituciones/FichaInstitucioni/functions.js"></scri*@pt>
 }
-<h2 class="tituloInstitucion">@institucion._nombre</h2>
-<div class="row marginNull fila">
-    <div class="col-lg-6 text-center">
-        <img class="imgFotoInstitucion" src="@src" />
+<div class="centroPagina row marginNull contenidoCuerpo">
+    <div class="col-lg-4">
+        @Html.Partial("menuInstitucion")
     </div>
-    <div class="col-lg-6">
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-pais"] </label>@*País*@
-            </div>
-            <div class="col-lg-6">
-                @institucion._pais._pais
-            </div>
+    <div class="col-lg-8 detalles">
+        <div class="row marginNull rowTituloInst">
+            <div class="tituloFichaInst">INSTITUCIONES EN AMERICA >>> </div>
+            <span class="nombrenIst">@institucion._nombre</span>
         </div>
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-sede"]</label>@*Sede central*@
-            </div>
-            <div class="col-lg-6">
-                @institucion._ciudad
-            </div>
-        </div>
-            
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-ciudad"]</label>@*Otras ciudades*@
-            </div>
-            <div class="col-lg-6">
-                Antiguo cuscatlan*
-            </div>
-        </div>
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-anioFundacion"]</label>@*Año de fundación*@
-            </div>
-            <div class="col-lg-6">
-                1984*
-            </div>
-        </div>
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-tipoInstitucion"]</label>@*Tipo de institucion*@
-            </div>
-            <div class="col-lg-6">
-                Universidad* @*Solicitar tipos de instituciones*@
-            </div>
-        </div>
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-direccion"]</label>@*Dirección*@
-            </div>
-            <div class="col-lg-6">
-                <address>
-                    @institucion._direccion
-                </address>
-            </div>
-        </div>
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-telefonos"]</label>@*Telefonos*@
-            </div>
-            <div class="col-lg-6">
-                @if (institucion._telefonos != null)
-                {
-                    
-                    foreach (TelefonoInstitucion telefono in institucion._telefonos)
+        <div class="contenidoFicha">
+            <div class="seccion row marginNull">
+                <div class="etiqueta etiquetaTitulo">@institucion._nombre</div>    
+                
+                <div class="col-lg-6 etiqueta">@ViewData["lb-pais"]</div>
+                <div class="col-lg-6">
+                    @institucion._pais._pais
+                </div>
+
+                <div class="col-lg-6 etiqueta">
+                    @ViewData["lb-sede"]
+                </div>
+                <div class="col-lg-6 ">
+                    @institucion._ciudad
+                </div>
+
+                <div class="col-lg-6 etiqueta" >
+                    @ViewData["lb-ciudad"]
+                </div>
+                <div class="col-lg-6 ">
+                    Antiguo cuscatlan*
+                </div>
+
+                <div class="col-lg-6 etiqueta">
+                    @ViewData["lb-anioFundacion"]
+                </div>
+                <div class="col-lg-6">
+                    1984*
+                </div>
+                
+                <div class="col-lg-6 etiqueta">
+                    @ViewData["lb-tipoInstitucion"]
+                </div>
+                <div class="col-lg-6">
+                    Universidad*
+                </div>
+
+                <div class="col-lg-6 etiqueta">
+                    @ViewData["lb-direccion"]
+                </div>
+                <div class="col-lg-6">
+                    <address>
+                        @institucion._direccion
+                    </address>
+                </div>
+
+                <div class="col-lg-6 etiqueta">
+                    @ViewData["lb-telefonos"]
+                </div>
+                <div class="col-lg-6">
+                    @if (institucion._telefonos != null)
                     {
-                        string tel = "";
-                        if (telefono._institucion._pais._codigoPais != "")
+
+                        foreach (TelefonoInstitucion telefono in institucion._telefonos)
                         {
-                            tel = "(" + telefono._institucion._pais._codigoPais + ")";
+                            string tel = "";
+                            if (telefono._institucion._pais._codigoPais != "")
+                            {
+                                tel = "(" + telefono._institucion._pais._codigoPais + ")";
+                            }
+                            <div class="row marginNull">
+                                <a href="tel:@telefono._telefono"> @tel @telefono._textoTelefono </a><span> / </span>
+                            </div>
                         }
+                    }
+                </div>
+
+                <div class="col-lg-6 etiqueta">
+                    @ViewData["lb-sitioweb"]
+                </div>
+                <div class="col-lg-6">
+                    @if (institucion._enlaces != null)
+                    {
+                        foreach (EnlaceInstitucion enlace in institucion._enlaces)
+                        {
+                            <span>
+                                <a href="@enlace._enlace">@enlace._nombreEnlace</a>
+                            </span>
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div class="row marginNull fila">
+            <div class="col-lg-6 text-center">
+                <img class="imgFotoInstitucion" src="@src" />
+            </div>
+            <div class="col-lg-6">
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label> </label>@*País*@
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+                </div>
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label></label>@*Sede central*@
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+                </div>
+
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label></label>@*Otras ciudades*@
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+                </div>
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label></label>@*Año de fundación*@
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+                </div>
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label></label>@*Tipo de institucion*@
+                    </div>
+                    <div class="col-lg-6">
+                         @*Solicitar tipos de instituciones*@
+                    </div>
+                </div>
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label></label>@*Dirección*@
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+                </div>
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label></label>@*Telefonos*@
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+                </div>
+                <div class="row marginNull">
+                    <div class="col-lg-6">
+                        <label></label>@*Sitio web*@
+                    </div>
+                    <div class="col-lg-6">
+                        
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row marginNull fila">
+            <div class="row marginNull filaOtherData">
+                <h4 class="text-center">@ViewData["titulo-nivelesEducacion"]</h4>
+                @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
+                {
+                    foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
+                    {
                         <div class="row marginNull">
-                            <a href="tel:@telefono._telefono"> @tel @telefono._textoTelefono </a><span> / </span>
+                            @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
                         </div>
                     }
                 }
             </div>
-        </div>
-        <div class="row marginNull">
-            <div class="col-lg-6">
-                <label>@ViewData["lb-sitioweb"]</label>@*Sitio web*@
-            </div>
-            <div class="col-lg-6">
-                @if (institucion._enlaces != null)
+            <div class="row marginNull filaOtherData">
+                <h4 class="text-center">@ViewData["titulo-areasConocimiento"]</h4>
+                @if (institucion._areas != null && institucion._areas.Count > 0)
                 {
-                    foreach (EnlaceInstitucion enlace in institucion._enlaces)
+                    foreach (AreaCarrera area in institucion._areas)
                     {
-                        <span>
-                            <a href="@enlace._enlace">@enlace._nombreEnlace</a>
-                        </span>
+                        <div class="row marginNull">
+                            @area._codigo - @area._area
+                        </div>
                     }
                 }
             </div>
-
-
-        </div>
-
-    </div>
-</div>
-<div class="row marginNull fila">
-    <div class="row marginNull filaOtherData">
-        <h4 class="text-center">@ViewData["titulo-nivelesEducacion"]</h4>
-        @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
-        {
-            foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
-            {
-                <div class="row marginNull">
-                    @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
-                </div>
-            }
-        }
-    </div>
-    <div class="row marginNull filaOtherData">
-        <h4 class="text-center">@ViewData["titulo-areasConocimiento"]</h4>
-        @if (institucion._areas != null && institucion._areas.Count > 0)
-        {
-            foreach (AreaCarrera area in institucion._areas)
-            {
-                <div class="row marginNull">
-                    @area._codigo - @area._area
-                </div>
-            }
-        }
-    </div>
-    <div class="row marginNull filaOtherData divNumAlumnos">
-        <h4 class="text-center">
-            @*Número de estudiantes inscritos en el último año académico:*@
-            @ViewData["texto-numeroEstudiantes"]
-        </h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>@ViewData["tb-th-nivelInstitucion"] </th> @*Nivel de instrucción*@
-                    <th>@ViewData["tb-th-estudiantes"]</th>  @*Estudiantes*@
-                </tr>
-            </thead>
-            <tbody>
-                @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
-                {
-                    int cn = 0;
-                    foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
-                    {
-                        cn += institucionNivel._numAlumnos;
+            <div class="row marginNull filaOtherData divNumAlumnos">
+                <h4 class="text-center">
+                    @*Número de estudiantes inscritos en el último año académico:*@
+                    @ViewData["texto-numeroEstudiantes"]
+                </h4>
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>
-                                @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
-                            </td>
-                            <td>
-                                @institucionNivel._numAlumnos
-                            </td>
+                            <th>@ViewData["tb-th-nivelInstitucion"] </th> @*Nivel de instrucción*@
+                            <th>@ViewData["tb-th-estudiantes"]</th>  @*Estudiantes*@
                         </tr>
-                    }
-                    <tr class="trTotal">
-                        <td>@ViewData["tb-td-total"]</td>
-                        <td>@cn</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                    </thead>
+                    <tbody>
+                        @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
+                        {
+                            int cn = 0;
+                            foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
+                            {
+                                cn += institucionNivel._numAlumnos;
+                                <tr>
+                                    <td>
+                                        @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
+                                    </td>
+                                    <td>
+                                        @institucionNivel._numAlumnos
+                                    </td>
+                                </tr>
+                            }
+                            <tr class="trTotal">
+                                <td>@ViewData["tb-td-total"]</td>
+                                <td>@cn</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
+        </div>
+    </div>
 </div>
