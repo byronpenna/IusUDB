@@ -176,7 +176,7 @@ namespace IUSLibs.FrontUI.Control
                                 DataRow row                     = tb[0].Rows[0];
                                 institucion                     = new Institucion((int)row["idInstitucion"],row["nombre"].ToString(),row["direccion"].ToString(),(int)row["id_pais_fk"],(bool)row["estado"]);
                                 institucion._pais._pais         = row["pais"].ToString();
-                                institucion._pais._continente   = new Continente((int)row["id_continente_fk"]);
+                                institucion._pais._continente = new Continente((int)row["id_continente_fk"], row["continente"].ToString());
                                 if (row["ciudad"] == DBNull.Value)
                                 {
                                     institucion._ciudad = "";

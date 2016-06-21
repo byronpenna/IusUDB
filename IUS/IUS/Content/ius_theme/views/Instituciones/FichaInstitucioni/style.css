@@ -74,10 +74,13 @@
   .contenidoFicha .seccion {
     width: 80%; }
 
-.tablaNumeroEstudiante tr th, .tablaNumeroEstudiante tr td {
-  font-size: 0.8em; }
-.tablaNumeroEstudiante tr td {
-  font-size: 0.7em; }
+.tablaNumeroEstudiante {
+  margin-top: 5%;
+  margin-bottom: 5%; }
+  .tablaNumeroEstudiante tr th, .tablaNumeroEstudiante tr td {
+    font-size: 0.8em; }
+  .tablaNumeroEstudiante tr td {
+    font-size: 0.7em; }
 
 .aRegresar {
   color: black;
