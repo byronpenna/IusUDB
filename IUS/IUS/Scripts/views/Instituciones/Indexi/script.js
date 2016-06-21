@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     
     // eventos
+        
         // click
             /*$(document).on("click", ".menuLateral li", function () {
                 $(this).addClass(".activeInstitucion");

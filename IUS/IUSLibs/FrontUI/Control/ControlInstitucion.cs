@@ -173,9 +173,10 @@ namespace IUSLibs.FrontUI.Control
                         {
                             if (tb[0].Rows.Count > 0)
                             {
-                                DataRow row             = tb[0].Rows[0];
-                                institucion             = new Institucion((int)row["idInstitucion"],row["nombre"].ToString(),row["direccion"].ToString(),(int)row["id_pais_fk"],(bool)row["estado"]);
-                                institucion._pais._pais = row["pais"].ToString();
+                                DataRow row                     = tb[0].Rows[0];
+                                institucion                     = new Institucion((int)row["idInstitucion"],row["nombre"].ToString(),row["direccion"].ToString(),(int)row["id_pais_fk"],(bool)row["estado"]);
+                                institucion._pais._pais         = row["pais"].ToString();
+                                institucion._pais._continente   = new Continente((int)row["id_continente_fk"]);
                                 if (row["ciudad"] == DBNull.Value)
                                 {
                                     institucion._ciudad = "";

@@ -28,6 +28,11 @@
   display: inline-block;
   text-transform: uppercase; }
 
+.detalles {
+  background: #f3f2f2;
+  height: 800px;
+  overflow-y: scroll; }
+
 * {
   font-family: "MyriadRegular"; }
 
@@ -38,10 +43,14 @@
 .fila {
   margin-bottom: 5%; }
 
+.colFotoInst {
+  text-align: left;
+  padding: 0; }
+
 .rowTituloInst {
   margin-top: 40px;
   margin-bottom: 8%; }
-  .rowTituloInst .tituloFichaInst {
+  .rowTituloInst .tituloFichaInst a {
     color: #cc1315; }
   .rowTituloInst .nombrenIst {
     text-decoration: underline; }
@@ -50,7 +59,10 @@
     text-transform: uppercase; }
 
 .contenidoFicha {
-  padding-left: 2%; }
+  padding-left: 2%;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  font-weight: normal; }
   .contenidoFicha .etiqueta {
     padding: 0;
     color: #cc1315; }
@@ -61,7 +73,7 @@
     width: 80%; }
 
 .contenidoConocimiento {
-  margin-top: 3%;
+  margin-top: 5%;
   width: 80%; }
   .contenidoConocimiento .rowNivelArea {
     text-transform: uppercase;

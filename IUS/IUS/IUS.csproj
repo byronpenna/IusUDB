@@ -647,6 +647,8 @@
     <Content Include="Scripts\views\Home\Indexi\functions.js" />
     <Content Include="Scripts\views\Home\Indexi\script.js" />
     <Content Include="Scripts\views\Home\script.js" />
+    <Content Include="Scripts\views\Instituciones\FichaInstitucioni\functions.js" />
+    <Content Include="Scripts\views\Instituciones\FichaInstitucioni\script.js" />
     <Content Include="Scripts\views\Instituciones\functions.js" />
     <Content Include="Scripts\views\Instituciones\Indexi\functions.js" />
     <Content Include="Scripts\views\Instituciones\Indexi\script.js" />
