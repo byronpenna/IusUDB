@@ -64,6 +64,7 @@ namespace IUS.Controllers
                     string ip = Request.UserHostAddress;
                     Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(id, ip, this.idPaginaFichaInstitucion,lang);
                     ViewBag.data = data;
+                    ViewBag.menu13 = this.activeClass;
                     traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
                     this.setTraduccion(traducciones);
                     ViewBag.menu22 = this.activeClass;

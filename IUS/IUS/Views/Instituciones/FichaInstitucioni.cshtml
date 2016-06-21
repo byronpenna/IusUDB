@@ -34,7 +34,9 @@
 }
 
 <input type="hidden" class="txtHdIdContinente" value="@institucion._pais._continente._idContinente" />
+<div class="row marginNull lineaRoja">
 
+</div>
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="col-lg-4">
         @Html.Partial("menuInstitucion")
@@ -42,7 +44,7 @@
     <div class="col-lg-8 detalles">
         <div class="row marginNull rowTituloInst">
             <div class="tituloFichaInst">
-                <a href="@Url.Action("FichaInstitucion", new { id=institucion._pais._continente._idContinente})"> 
+                <a href="@Url.Action("Index","Instituciones" ,new { id=institucion._pais._continente._idContinente})"> 
                 INSTITUCIONES EN AMERICA 
                 </a> >>> 
             </div>
@@ -167,99 +169,12 @@
 
                     }
                 }
-            </div> 
-        </div>
-        
-        <div class="row marginNull fila">
-            <div class="col-lg-6 text-center">
-                
             </div>
-            <div class="col-lg-6">
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label> </label>@*País*@
-                    </div>
-                    <div class="col-lg-6">
-                        
-                    </div>
-                </div>
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label></label>@*Sede central*@
-                    </div>
-                    <div class="col-lg-6">
-                        
-                    </div>
-                </div>
-
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label></label>@*Otras ciudades*@
-                    </div>
-                    <div class="col-lg-6">
-                        
-                    </div>
-                </div>
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label></label>@*Año de fundación*@
-                    </div>
-                    <div class="col-lg-6">
-                        
-                    </div>
-                </div>
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label></label>@*Tipo de institucion*@
-                    </div>
-                    <div class="col-lg-6">
-                         @*Solicitar tipos de instituciones*@
-                    </div>
-                </div>
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label></label>@*Dirección*@
-                    </div>
-                    <div class="col-lg-6">
-                        
-                    </div>
-                </div>
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label></label>@*Telefonos*@
-                    </div>
-                    <div class="col-lg-6">
-                        
-                    </div>
-                </div>
-                <div class="row marginNull">
-                    <div class="col-lg-6">
-                        <label></label>@*Sitio web*@
-                    </div>
-                    <div class="col-lg-6">
-                        
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-        <div class="row marginNull fila">
-            <div class="row marginNull filaOtherData">
-                <h4 class="text-center"></h4>
-                
-            </div>
-            <div class="row marginNull filaOtherData">
-                <h4 class="text-center"></h4>
-                
-            </div>
-            <div class="row marginNull filaOtherData divNumAlumnos">
-                <h4 class="text-center">
-                    @*Número de estudiantes inscritos en el último año académico:*@
+            <div class="contenidoConocimiento row marginNull">
+                <div class="etiqueta etiquetaTitulo">
                     @ViewData["texto-numeroEstudiantes"]
-                </h4>
-                <table class="table">
+                </div>
+                <table class="table tablaNumeroEstudiante">
                     <thead>
                         <tr>
                             <th>@ViewData["tb-th-nivelInstitucion"] </th> @*Nivel de instrucción*@
@@ -289,8 +204,14 @@
                         }
                     </tbody>
                 </table>
+            </div> 
+            <div class="row marginNull">
+                <div class="col-lg-offset-9 col-lg-3">
+                    <a class="aRegresar" href="@Url.Action("Index","Instituciones" ,new { id=institucion._pais._continente._idContinente})">
+                        <span><<<</span> Regresar
+                    </a>
+                </div>
             </div>
-
         </div>
     </div>
 </div>

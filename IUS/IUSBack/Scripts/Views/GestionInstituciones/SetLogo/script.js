@@ -36,7 +36,7 @@
                                 jcrop_api = $.Jcrop(".imgThumbnail", {
                                     onSelect: storeCoords,
                                     onChange: storeCoords,
-                                    aspectRatio: 1
+                                    aspectRatio: 7 / 9
                                 });
                             }
                         })

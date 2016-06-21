@@ -63,6 +63,8 @@
   font-size: 0.8em;
   text-transform: uppercase;
   font-weight: normal; }
+  .contenidoFicha .imgFotoInstitucion {
+    width: 95%; }
   .contenidoFicha .etiqueta {
     padding: 0;
     color: #cc1315; }
@@ -71,6 +73,16 @@
     margin-bottom: 3%; }
   .contenidoFicha .seccion {
     width: 80%; }
+
+.tablaNumeroEstudiante tr th, .tablaNumeroEstudiante tr td {
+  font-size: 0.8em; }
+.tablaNumeroEstudiante tr td {
+  font-size: 0.7em; }
+
+.aRegresar {
+  color: black;
+  text-decoration: none;
+  font-weight: normal; }
 
 .contenidoConocimiento {
   margin-top: 5%;

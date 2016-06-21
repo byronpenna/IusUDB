@@ -183,7 +183,7 @@ namespace IUSBack.Controllers
                                     foreach (HttpPostedFileBase file in files)
                                     {
                                         Coordenadas coordenadas = new Coordenadas(this.convertObjAjaxToDecimal(frm["x"]), this.convertObjAjaxToDecimal(frm["y"]), this.convertObjAjaxToDecimal(frm["imgAncho"]), this.convertObjAjaxToDecimal(frm["imgAlto"]));
-                                        byte[] fileBytes = this.getBytesRecortadosFromFile(file, coordenadas); 
+                                        byte[] fileBytes = this.getBytesRecortadosFromFile(file, coordenadas,false); 
                                         Institucion institucionActualizar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), fileBytes);
                                         bool estado = this._model.sp_frontui_setLogoInstitucion(institucionActualizar, usuarioSession._idUsuario, this._idPagina);
                                         respuesta = new Dictionary<object, object>();
