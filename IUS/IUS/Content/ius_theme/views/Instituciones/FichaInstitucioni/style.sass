@@ -1,47 +1,50 @@
-@import "../recursoSass/_menuLateral.sass"
-$rojito: #cc1315
-*
-	font-family: 'MyriadRegular'
+// imports 
+	@import "../recursoSass/_menuLateral.sass"
+	@import "../recursoSass/_variables.sass"
+	@import "../recursoSass/_contenidoDerecha.sass"
+// estilos
+	*
+		font-family: 'MyriadRegular'
 
-.tituloInstitucion
-	text-align: center
-	margin-bottom: 5%
-
-.fila
-	margin-bottom: 5%
-
-.rowTituloInst
-	margin-top: 40px 
-	margin-bottom: 8%
-	.tituloFichaInst
-		color: $rojito
-		
-	.nombrenIst
-		text-decoration: underline
-
-	.tituloFichaInst,.nombrenIst
-		display: inline-block
-		text-transform: uppercase
-
-.contenidoFicha
-	padding-left: 2%
-
-	.etiqueta
-		padding: 0
-		color: $rojito
-	.etiquetaTitulo
-		display: block
-		margin-bottom: 3%
-	.seccion
-		width: 80%
-
-.contenidoConocimiento
-	margin-top: 3%
-	width: 80%
-	.rowNivelArea
-		text-transform: uppercase
-		font-size: 1em
-	.etiquetaTitulo
+	.tituloInstitucion
 		text-align: center
-		margin-bottom: 3%
-		text-transform: uppercase
+		margin-bottom: 5%
+
+	.fila
+		margin-bottom: 5%
+
+	.rowTituloInst
+		margin-top: 40px 
+		margin-bottom: 8%
+		.tituloFichaInst
+			color: $rojito
+			
+		.nombrenIst
+			text-decoration: underline
+
+		.tituloFichaInst,.nombrenIst
+			display: inline-block
+			text-transform: uppercase
+
+	.contenidoFicha
+		padding-left: 2%
+
+		.etiqueta
+			padding: 0
+			color: $rojito
+		.etiquetaTitulo
+			display: block
+			margin-bottom: 3%
+		.seccion
+			width: 80%
+
+	.contenidoConocimiento
+		margin-top: 3%
+		width: 80%
+		.rowNivelArea
+			text-transform: uppercase
+			font-size: 1em
+		.etiquetaTitulo
+			text-align: center
+			margin-bottom: 3%
+			text-transform: uppercase
