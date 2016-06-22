@@ -394,6 +394,11 @@ namespace IUSLibs.FrontUI.Control
                     sp.agregarParametro("direccion", institucionEditar._direccion);
                     sp.agregarParametro("idPais", institucionEditar._pais._idPais);
                     sp.agregarParametro("ciudad", institucionEditar._ciudad);
+                    /*@			int,
+		            @	int,*/
+                    sp.agregarParametro("fundacion", institucionEditar._anioFundacion);
+                    sp.agregarParametro("idTipoInstitucion", institucionEditar._tipoInstitucion._idTipoInstitucion);
+
                     sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);

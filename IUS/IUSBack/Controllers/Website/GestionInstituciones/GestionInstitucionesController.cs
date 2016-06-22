@@ -292,10 +292,12 @@ namespace IUSBack.Controllers
                         if (respuesta == null)
                         {
                             Institucion institucionEditar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), frm["txtNombreInstitucionEdit"].ToString(), frm["txtAreaDireccionEdit"].ToString(), this.convertObjAjaxToInt(frm["cbPaisEdit"]), true);
+                            
                             institucionEditar._ciudad = frm["txtCiudad"].ToString();
-                            institucionEditar._anioFundacion = this.convertObjAjaxToInt(frm["txtAnio"]);
-                            institucionEditar._tipoInstitucion = new TipoInstitucion(this.convertObjAjaxToInt(frm["cbTipoInst"]));
-
+                            institucionEditar._anioFundacion = this.convertObjAjaxToInt(frm["txtAnioFundacion"]);
+                            institucionEditar._tipoInstitucion = new TipoInstitucion(this.convertObjAjaxToInt(frm["cbTipoInstitucion"]));//Key = 
+                            //institucionEditar._anioFundacion = this.convertObjAjaxToInt(frm["txtAnioFundacion"]);
+                            
                             Institucion institucionEditada = this._model.sp_frontui_editInstitucion(institucionEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
