@@ -114,10 +114,17 @@
         */
         return tr;
     }
-    function comboPaisAddOpcions(Paises,combo,selected) {
+    function comboTipoInstAddOpcions(TiposInstituciones,combo,selected) {
+        combo.empty();
+        $.each(TiposInstituciones, function (i, tipoInstitucion) {
+            opcion = { text: tipoInstitucion._tipoInstitucion, value: tipoInstitucion._idTipoInstitucion }
+            comboAddOpcion(combo, opcion, selected);
+        })
+    }
+    function comboPaisAddOpcions(Paises, combo, selected) {
         combo.empty();
         $.each(Paises, function (i, pais) {
-            opcion = { text: pais._pais ,value:pais._idPais}
+            opcion = { text: pais._pais ,value:pais._idPais }
             comboAddOpcion(combo,opcion,selected);
         });
     }
@@ -135,14 +142,28 @@
         trInstitucion.find(".txtCiudad").val(institucion.ciudad);
         // llenar cosa de paises
         frm = {};
-        actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getPaises", frm, function (data) {
+        actualizarCatalogo(RAIZ + "/GestionInstituciones/getFillEdit", frm, function (data) {
+            console.log("La respuesta del servidor es: ", data);
+            if (data.estado) {
+                var combo = trInstitucion.find(".cbPaisEdit");
+                comboPaisAddOpcions(data.paises, combo, institucion.idPais);
+                combo.chosen({ no_results_text: "Ese pais no existe", width: '100%' });
+
+                combo = trInstitucion.find(".cbTipoInstitucionEdit");
+                var idTipoInstitucion = trInstitucion.find(".txtHdIdTipoInstitucion").val();
+                comboTipoInstAddOpcions(data.tiposInstituciones, combo, idTipoInstitucion);
+
+            }
+            callback();
+        })
+        /*actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getPaises", frm, function (data) {
             if (data.estado) {
                 combo = trInstitucion.find(".cbPaisEdit");
                 comboPaisAddOpcions(data.paises, combo, institucion.idPais);
                 combo.chosen({ no_results_text: "Ese pais no existe", width: '100%' });
             }
             callback();
-        });
+        });*/
     }
     // validaciones 
     function validacionEdit(frm) {
@@ -178,14 +199,14 @@
         return val;
     }
 // acciones script
-    function btnEditar(tr) {
+    /*function btnEditar(tr) {
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getTiposInstituciones", frm, function (data) {
             console.log("La respuesta es: ", data);
             if (data.estado) {
 
             }
         })
-    }
+    }*/
     function btnActualizarInstitucion(frm, trInstitucion) {
         console.log("actualizar", frm);
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_editInstitucion", frm, function (data) {
