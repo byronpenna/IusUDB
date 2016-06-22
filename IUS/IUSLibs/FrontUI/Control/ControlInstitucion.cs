@@ -413,6 +413,8 @@ namespace IUSLibs.FrontUI.Control
                                 pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
                                 institucionEditada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
                                 institucionEditada._ciudad = row["ciudad"].ToString();
+                                institucionEditada._tipoInstitucion = new TipoInstitucion((int)row["id_tipoinstitucion_fk"]);
+                                institucionEditada._anioFundacion = (int)row["anio_fundacion"];
                             }
                             else
                             {

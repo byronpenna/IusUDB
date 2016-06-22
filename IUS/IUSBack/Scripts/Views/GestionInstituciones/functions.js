@@ -49,17 +49,16 @@
                 </td>\
                 <td class='tdFundacion'>\
                     <div class='editMode hidden'>\
+                        <input type='text' class='txtAnioFundacion form-control' name='txtAnioFundacion' />\
                     </div>\
-                    <div class='normalMode tdPaisText'>\
-                        " + institucion._anioFundacion + "\
-                    </div>\
+                    <div class='normalMode tdAnioFundacionText'>" + institucion._anioFundacion + "</div>\
                 </td>\
                 <td class='tdTipo'>\
                     <div class='editMode hidden'>\
+                        <select class='form-control cbTipoInstitucionEdit' name='cbTipoInstitucion'>\
+                        </select>\
                     </div>\
-                    <div class='normalMode tdPaisText'>\
-                        " + institucion._tipoInstitucion._tipoInstitucion + "\
-                    </div>\
+                    <div class='normalMode tdTipoInstitucionText'>" + institucion._tipoInstitucion._tipoInstitucion + "</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
@@ -134,12 +133,16 @@
         trInstitucion.find(".txtHdIdPais").val(institucion._pais._idPais);
         trInstitucion.find(".tdPaisText").empty().append(institucion._pais._pais)
         trInstitucion.find(".tdCiudadText").empty().append(institucion._ciudad);
+
+        trInstitucion.find(".tdAnioFundacionText").empty().append(institucion._anioFundacion);
+
         controlesEdit(false, trInstitucion);
     }
     function fillInputsEdit(trInstitucion, institucion, callback) {
         trInstitucion.find(".txtNombreInstitucionEdit").val(institucion.nombre);
         trInstitucion.find(".txtAreaDireccionEdit").val(institucion.direccion);
         trInstitucion.find(".txtCiudad").val(institucion.ciudad);
+        trInstitucion.find(".txtAnioFundacion").val(institucion.anioFundacion);
         // llenar cosa de paises
         frm = {};
         actualizarCatalogo(RAIZ + "/GestionInstituciones/getFillEdit", frm, function (data) {
@@ -219,11 +222,12 @@
     function btnEditar(trInstitucion) {
         console.log("El valor del td direccion es", trInstitucion.find(".tdDireccionText").text());
         institucion = {
-            nombre: trInstitucion.find(".tdNombre").text(),
-            direccion: trInstitucion.find(".tdDireccionText").text(),
-            idPais: trInstitucion.find(".txtHdIdPais").val(),
-            idInstitucion: trInstitucion.find(".txtHdIdInstitucion").val(),
-            ciudad: trInstitucion.find(".tdCiudadText").text()
+            nombre:         trInstitucion.find(".tdNombre").text(),
+            direccion:      trInstitucion.find(".tdDireccionText").text(),
+            idPais:         trInstitucion.find(".txtHdIdPais").val(),
+            idInstitucion:  trInstitucion.find(".txtHdIdInstitucion").val(),
+            ciudad:         trInstitucion.find(".tdCiudadText").text(),
+            anioFundacion:  trInstitucion.find(".tdAnioFundacionText").text()
         }
         console.log("Institucion a poner al editar",institucion);
         fillInputsEdit(trInstitucion, institucion, function () {
