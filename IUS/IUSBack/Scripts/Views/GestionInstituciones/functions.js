@@ -1,5 +1,7 @@
 ﻿// genericas 
-    function getTrInstituciones(institucion,permisos) {
+
+
+    function getTrInstituciones(institucion, permisos) {
         console.log("Institucion en get tr", institucion);
         var strEditar = "", strEliminar = "";
         if (permisos !== undefined) {
@@ -176,6 +178,14 @@
         return val;
     }
 // acciones script
+    function btnEditar(tr) {
+        actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_getTiposInstituciones", frm, function (data) {
+            console.log("La respuesta es: ", data);
+            if (data.estado) {
+
+            }
+        })
+    }
     function btnActualizarInstitucion(frm, trInstitucion) {
         console.log("actualizar", frm);
         actualizarCatalogo(RAIZ + "/GestionInstituciones/sp_frontui_editInstitucion", frm, function (data) {

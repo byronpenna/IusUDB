@@ -49,6 +49,25 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                         throw x;
                     }
                 }
+                public List<TipoInstitucion> sp_frontui_getTiposInstituciones(int idUsuarioEjecutor, int idPagina)
+                {
+                    
+                    try
+                    {
+                        ControlTipoInstitucion control = new ControlTipoInstitucion();
+                        List<TipoInstitucion> tiposInstituciones = control.sp_frontui_getTiposInstituciones(idUsuarioEjecutor, idPagina);
+                        return tiposInstituciones;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    
+                }
                 public Dictionary<object, object> cargaInicialIndex(int idUsuarioEjecutor,int idPagina)
                 {
                     

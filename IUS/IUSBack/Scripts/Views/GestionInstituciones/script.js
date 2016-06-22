@@ -67,6 +67,7 @@
                 //table = $(".tbInstituciones").DataTable();
                 trInstitucion.find(".divResultado").empty();
                 trInstitucion.find(".divResultado").addClass("hidden");
+
                 btnEditar(trInstitucion);
                 
             })
