@@ -127,7 +127,8 @@
             comboAddOpcion(combo,opcion,selected);
         });
     }
-    function exitEditMode(trInstitucion,institucion) {
+    function exitEditMode(trInstitucion, institucion) {
+        console.log("Institucion a poner edicion", institucion);
         trInstitucion.find(".tdNombre").empty().append(institucion._nombre);
         trInstitucion.find(".tdDireccionText").empty().append(institucion._direccion);
         trInstitucion.find(".txtHdIdPais").val(institucion._pais._idPais);
@@ -136,6 +137,9 @@
 
         trInstitucion.find(".tdAnioFundacionText").empty().append(institucion._anioFundacion);
 
+        
+        trInstitucion.find(".txtHdIdTipoInstitucion").val(institucion._tipoInstitucion._idTipoInstitucion);
+        trInstitucion.find(".tdTipoInstitucionText").empty().append(institucion._tipoInstitucion._tipoInstitucion);
         controlesEdit(false, trInstitucion);
     }
     function fillInputsEdit(trInstitucion, institucion, callback) {

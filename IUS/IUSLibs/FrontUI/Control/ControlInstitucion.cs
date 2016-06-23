@@ -177,6 +177,11 @@ namespace IUSLibs.FrontUI.Control
                                 institucion                     = new Institucion((int)row["idInstitucion"],row["nombre"].ToString(),row["direccion"].ToString(),(int)row["id_pais_fk"],(bool)row["estado"]);
                                 institucion._pais._pais         = row["pais"].ToString();
                                 institucion._pais._continente = new Continente((int)row["id_continente_fk"], row["continente"].ToString());
+                                institucion._tipoInstitucion = new TipoInstitucion((int)row["id_tipoinstitucion_fk"], row["tipoInstitucion"].ToString());
+                                if (row["anio_fundacion"] != DBNull.Value)
+                                {
+                                    institucion._anioFundacion = (int)row["anio_fundacion"];
+                                }
                                 if (row["ciudad"] == DBNull.Value)
                                 {
                                     institucion._ciudad = "";
@@ -413,7 +418,7 @@ namespace IUSLibs.FrontUI.Control
                                 pais = new Pais((int)row["id_pais_fk"], row["pais"].ToString());
                                 institucionEditada = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), pais, (bool)row["estado"]);
                                 institucionEditada._ciudad = row["ciudad"].ToString();
-                                institucionEditada._tipoInstitucion = new TipoInstitucion((int)row["id_tipoinstitucion_fk"]);
+                                institucionEditada._tipoInstitucion = new TipoInstitucion((int)row["id_tipoinstitucion_fk"], row["tipoInstitucion"].ToString());
                                 institucionEditada._anioFundacion = (int)row["anio_fundacion"];
                             }
                             else
