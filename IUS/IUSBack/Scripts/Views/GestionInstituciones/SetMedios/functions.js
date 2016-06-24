@@ -1,18 +1,39 @@
 ﻿// generics 
     // emails institucion
+        function getTrEmailInstitucion(emailInstitucion) {
+            var tr = "\
+            <tr>\
+                <td class='hidden'>\
+                    <input name='txtHdIdEmailInstitucion' class='txtHdIdEmailInstitucion' value='"+ emailInstitucion._idEmailInstitucion + "' />\
+                </td>\
+                <td>"+ emailInstitucion._email + "</td>\
+                <td>\
+                    <button class='btn btn-default'>Editar</button>\
+                    <button class='btn btn-default btnEliminarEmailsInstitucion'>Eliminar</button>\
+                </td>\
+            </tr>\
+            ";
+            console.log("Llego aqui");
+            return tr;
+        }
         function btnAddEmailInstitucion(frm) {
-        actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_agregarEmailInstitucion", frm, function (data) {
-            console.log("La respuesta es: ", data);
-            if (data.estado) {
-                
-            }
-        })
+            actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_agregarEmailInstitucion", frm, function (data) {
+                console.log("La respuesta es: ", data);
+                if (data.estado) {
+                    console.log("Llego aqui");
+                    var tr = getTrEmailInstitucion(data.emailInstitucion);
+                    $(".tbEmailInstitucion tbody").empty().append(tr);
+                    $(".btnAddEmailInstitucion").prop("disabled", "true");
+                }
+            })
         }
         function btnEliminarEmailsInstitucion(frm,tr) {
             actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_eliminarEmailInstitucion", frm, function (data) {
                 console.log("La respuesta es: ", data);
                 if (data.estado) {
                     tr.remove();
+                    $(".btnAddEmailInstitucion").prop("disabled", "");
+                    console.log("D: ");
                 }
             })
         }

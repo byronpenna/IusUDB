@@ -102,7 +102,7 @@ namespace IUSBack.Controllers
                             EmailInstitucion emailAgregar = new EmailInstitucion(frm["txtEmailInstitucion"].ToString(), this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]));
                             EmailInstitucion EmailAgregado = this._model.sp_frontui_agregarEmailInstitucion(emailAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object,object>();
-                            respuesta.Add("estdo",true);
+                            respuesta.Add("estado", true);
                             respuesta.Add("emailInstitucion",EmailAgregado);
                         }
                         
