@@ -1,5 +1,23 @@
 ﻿// generics 
-    function fillInputsEdit(trMedio,medio,callback) {
+    // emails institucion
+        function btnAddEmailInstitucion(frm) {
+        actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_agregarEmailInstitucion", frm, function (data) {
+            console.log("La respuesta es: ", data);
+            if (data.estado) {
+                
+            }
+        })
+        }
+        function btnEliminarEmailsInstitucion(frm,tr) {
+            actualizarCatalogo(RAIZ + "/GestionMediosInstituciones/sp_frontui_eliminarEmailInstitucion", frm, function (data) {
+                console.log("La respuesta es: ", data);
+                if (data.estado) {
+                    tr.remove();
+                }
+            })
+        }
+    //
+    function fillInputsEdit(trMedio, medio, callback) {
         trMedio.find(".txtEnlace").val(medio.enlace);
         trMedio.find(".txtTextoEnlaceEdit").val(medio.nombreEnlace);
         callback();

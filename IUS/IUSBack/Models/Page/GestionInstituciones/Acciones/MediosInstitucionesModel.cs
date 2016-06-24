@@ -31,9 +31,59 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                     {
                         throw x;
                     }
-                } 
+                }
+                // email institucion
+                    public List<EmailInstitucion> sp_frontui_getEmailInstitucion(int idInstitucion,int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        ControlEmailInstitucion control = new ControlEmailInstitucion();
+                        return control.sp_frontui_getEmailInstitucion(idInstitucion, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                    public bool sp_frontui_eliminarEmailInstitucion(int idInstitucion, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            ControlEmailInstitucion control = new ControlEmailInstitucion();
+                            return control.sp_frontui_eliminarEmailInstitucion(idInstitucion, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
             #endregion
             #region "set"
+                public EmailInstitucion sp_frontui_agregarEmailInstitucion(EmailInstitucion emailInstitucionAgregar, int idUsuarioEjecutor, int idPagina)
+                {
+                    try
+                    {
+                        ControlEmailInstitucion control = new ControlEmailInstitucion();
+                        return control.sp_frontui_agregarEmailInstitucion(emailInstitucionAgregar, idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+
                 public EnlaceInstitucion sp_frontui_editEnlaceInstitucion(EnlaceInstitucion enlaceEditar, int idUsuarioEjecutor, int idPagina)
                 {
                     try

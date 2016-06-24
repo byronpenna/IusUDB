@@ -11,10 +11,22 @@
     <script src="~/Scripts/Views/GestionInstituciones/SetMedios/functions.js"></script>
 }
 @{
-    Institucion institucion         = (Institucion)ViewBag.institucion;
-    List<EnlaceInstitucion> enlaces = (List<EnlaceInstitucion>)ViewBag.enlaces;
+    Institucion             institucion = null;
+    List<EnlaceInstitucion> enlaces     = null;
     string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
     Permiso permiso = (Permiso)ViewBag.permiso;
+    
+    List<EmailInstitucion> emailsInstitucion = null;
+    try
+    {
+        institucion         = (Institucion)ViewBag.institucion;
+        enlaces             = (List<EnlaceInstitucion>)ViewBag.enlaces;
+        emailsInstitucion   = (List<EmailInstitucion>)ViewBag.emails;
+    }
+    catch (Exception)
+    {
+
+    }
 }
 @section arbol{
     <div class="col-lg-3 text-center cuadritoArbol">
@@ -51,6 +63,7 @@
 </div>
 <div class="row marginNull">
     <div class="divTable">
+        <h3>Website</h3>
         <table class="table tbEnlaces">
             <thead>
                 <tr>
@@ -133,6 +146,64 @@
                         </tr>
                     }
 
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="divTable">
+        <h3>Correos electronicos</h3>
+        @{
+            bool put = emailsInstitucion != null && emailsInstitucion.Count > 0;
+            string able = "";
+            if (put)
+            {
+                able = "disabled"; 
+            }
+        }
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="hidden">
+
+                    </td>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+                <tr>
+                    <th class="hidden">
+                        <input class="txtHdIdInstitucion" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
+                    </th>
+                    <th>
+                        <input name="txtEmailInstitucion" class="txtEmailInstitucion form-control" />
+                    </th>
+                    <th>
+                        <button @able class="btn btn-default btnAddEmailInstitucion">Agregar</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (put)
+                {
+                    foreach (EmailInstitucion emailInstitucion in emailsInstitucion)
+                    {
+                        <tr>
+                            <td class="hidden">
+                                <input name="txtHdIdEmailInstitucion" class="txtHdIdEmailInstitucion" value="@emailInstitucion._idEmailInstitucion" />
+                            </td>
+                            <td>@emailInstitucion._email</td>
+                            <td>
+                                <button class="btn btn-default">Editar</button>
+                                <button class="btn btn-default btnEliminarEmailsInstitucion">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td class="hidden"></td>
+                        <td colspan="2" class="text-center">No hay instituciones</td>
+                    </tr>
                 }
             </tbody>
         </table>

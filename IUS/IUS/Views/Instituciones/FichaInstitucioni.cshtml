@@ -4,12 +4,14 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
     Dictionary<object, object> data = null;
     Institucion institucion = null;
+    
     string src = "";
     try
     {
         
         data        = (Dictionary<object, object>)ViewBag.data;
         institucion = (Institucion)data["institucion"];
+        
         if (institucion._logo != null)
         {
             src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
@@ -120,6 +122,13 @@
                             
                         }
                         
+                        <div class="col-lg-6 etiqueta">
+                            Email: 
+                        </div>
+                        <div class="col-lg-6 ">
+                            __
+                        </div>
+
                         @if (institucion._enlaces != null)
                         {
                             <div class="col-lg-6 etiqueta">

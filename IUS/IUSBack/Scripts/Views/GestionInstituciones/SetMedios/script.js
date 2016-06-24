@@ -63,6 +63,23 @@
                     btnEditar(trMedio);
                 })
                 //*************************************
+            // email institucion
+                $(document).on("click", ".btnAddEmailInstitucion", function () {
+                    var tr  = $(this).parents("tr");
+                    var frm = serializeSection(tr);
+                    console.log("Frm es: ", frm);
+                    btnAddEmailInstitucion(frm);
+                })
+                $(document).on("click", ".btnEliminarEmailsInstitucion", function () {
+                    var tr = $(this).parents("tr");
+                    var frm = serializeSection(tr);
+                    console.log("Frm eliminar institucion ", frm)
+                    var x = confirm("¿Desea eliminar institucion?");
+                    if (x) {
+                        btnEliminarEmailsInstitucion(frm,tr);
+                    }
+                })
+            // medios  
                 $(document).on("click", ".btnAgregar", function () {
                     var seccion = $(this).parents("tr");
                     frm = serializeSection(seccion);
