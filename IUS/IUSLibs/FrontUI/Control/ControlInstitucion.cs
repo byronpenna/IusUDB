@@ -160,6 +160,7 @@ namespace IUSLibs.FrontUI.Control
                             NivelEducacion      nivelEducacion; AreaCarrera         areaCarrera;
                             
                             InstitucionNivel    institucionNivel;
+                            EmailInstitucion emailInstitucion; List<EmailInstitucion> emails = null;
                     // procedimiento
                         SPIUS sp = new SPIUS("sp_frontui_front_getInstitucionById");
                         sp.agregarParametro("idInstitucion", idInstitucion);
@@ -244,8 +245,17 @@ namespace IUSLibs.FrontUI.Control
                                         institucion._areas.Add(areaCarrera);
                                     }
                                 }
+                                if (tb[5].Rows.Count > 0)
+                                {
+                                    row = tb[5].Rows[0];
+                                    emailInstitucion = new EmailInstitucion((int)row["idEmailInstituciones"], (int)row["id_institucion_fk"], row["email"].ToString());
+                                    emails = new List<EmailInstitucion>();
+                                    emails.Add(emailInstitucion);
+                                    institucion._emails = emails;
+                                }
                                 retorno = new Dictionary<object, object>();
                                 retorno.Add("institucion", institucion);
+                                
                             }
                         }
                     }

@@ -121,13 +121,21 @@
                             </div>
                             
                         }
+                        @if (institucion._emails != null && institucion._emails.Count > 0)
+                        {
+                            <div class="col-lg-6 etiqueta">
+                                Email: 
+                            </div>
+                            <div class="col-lg-6 ">
+                                @foreach (EmailInstitucion emailInstitucion in institucion._emails)
+                                {
+                                    <span>
+                                        <a href="mailto:@emailInstitucion._email">@emailInstitucion._email</a>
+                                    </span>
+                                }
+                            </div>
+                        }
                         
-                        <div class="col-lg-6 etiqueta">
-                            Email: 
-                        </div>
-                        <div class="col-lg-6 ">
-                            __
-                        </div>
 
                         @if (institucion._enlaces != null)
                         {
