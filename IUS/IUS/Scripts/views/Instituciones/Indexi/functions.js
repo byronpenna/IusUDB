@@ -75,14 +75,30 @@ function buscarContinente(frm) {
             tel = $(".txtHdNoNumberText").val();
             //"No hay numeros asignados"
         }
-
+        var ciudad="",ciudades=""; 
+        if (institucion._ciudad != "") {
+            var arr = institucion._ciudad.split(",");
+            if (arr !== undefined && arr != null && arr.length > 0) {
+                $.each(arr, function (i, val) {
+                    if (i == 0) {
+                        ciudad = val;
+                    }
+                    if (i == 1) {
+                        ciudades += val;
+                    }
+                    if (i > 1) {
+                        ciudades += "," + val;
+                    }
+                })
+            }
+        }
         var tr = "\
             <tr>\
                 <td>"+ institucion._pais._pais + " </td>\
                 <td>\
                    <a href='" + url + "'> " + institucion._nombre + " </a>\
                 </td>\
-                <td>" + institucion._ciudad + "</td>\
+                <td>" + ciudad + "</td>\
                 <td>\
                     <a href='" + $(".txtHdUrlFicha").val() + "/" + institucion._idInstitucion + "'>\
                         <img src='" + RAIZ + "/Content/images/views/Instituciones/mas.png'/>\

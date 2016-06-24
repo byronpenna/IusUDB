@@ -4,14 +4,37 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
     Dictionary<object, object> data = null;
     Institucion institucion = null;
-    
+    string ciudad = "", otrasCiudades = "";
     string src = "";
     try
     {
         
         data        = (Dictionary<object, object>)ViewBag.data;
         institucion = (Institucion)data["institucion"];
-        
+        string[] separators = { "," };
+        string[] arrCiudad = institucion._ciudad.Split(separators,StringSplitOptions.RemoveEmptyEntries);
+        if (arrCiudad != null && arrCiudad.Length > 0)
+        {
+            int c = 0;
+            foreach (string s in arrCiudad)
+            {
+                if (c == 0)
+                {
+                    ciudad = s;
+                }
+                else
+                {
+                    otrasCiudades += s + ",";
+                }
+                c++;
+            }
+            if (otrasCiudades != "")
+            {
+                otrasCiudades = otrasCiudades.Substring(0, otrasCiudades.Length - 1);    
+            }
+            
+            
+        }
         if (institucion._logo != null)
         {
             src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
@@ -63,19 +86,26 @@
                             @institucion._pais._pais
                         </div>
 
-                        <div class="col-lg-6 etiqueta">
-                            @ViewData["lb-sede"]
-                        </div>
-                        <div class="col-lg-6 ">
-                            @institucion._ciudad
-                        </div>
-
-                        <div class="col-lg-6 etiqueta">
-                            @ViewData["lb-ciudad"]
-                        </div>
-                        <div class="col-lg-6 ">
-                            @institucion._ciudad
-                        </div>
+                        @if (ciudad != "")
+                        {
+                            <div class="col-lg-6 etiqueta">
+                                @ViewData["lb-sede"]
+                            </div>
+                            <div class="col-lg-6 ">
+                                @ciudad
+                            </div>    
+                        }
+                        
+                        @if (otrasCiudades != "")
+                        {
+                            <div class="col-lg-6 etiqueta">
+                                @ViewData["lb-ciudad"]
+                            </div>
+                            <div class="col-lg-6 ">
+                                @otrasCiudades
+                            </div>    
+                        }
+                        
 
                         <div class="col-lg-6 etiqueta">
                             @ViewData["lb-anioFundacion"]

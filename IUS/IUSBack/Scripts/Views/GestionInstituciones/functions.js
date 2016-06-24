@@ -39,14 +39,6 @@
                         "+institucion._pais._pais+"\
                     </div>\
                 </td>\
-                <td class='tdCiudad'>\
-                    <div class='editMode hidden'>\
-                        <input class='form-control txtCiudad' name='txtCiudad' />\
-                    </div>\
-                    <div class='normalMode tdCiudad'>\
-                        "+institucion._ciudad+"\
-                    </div>\
-                </td>\
                 <td class='tdFundacion'>\
                     <div class='editMode hidden'>\
                         <input type='text' class='txtAnioFundacion form-control' name='txtAnioFundacion' />\
@@ -59,6 +51,14 @@
                         </select>\
                     </div>\
                     <div class='normalMode tdTipoInstitucionText'>" + institucion._tipoInstitucion._tipoInstitucion + "</div>\
+                </td>\
+                <td class='tdCiudad'>\
+                    <div class='editMode hidden'>\
+                        <input class='form-control txtCiudad' name='txtCiudad' />\
+                    </div>\
+                    <div class='normalMode tdCiudad'>\
+                        "+institucion._ciudad+"\
+                    </div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
