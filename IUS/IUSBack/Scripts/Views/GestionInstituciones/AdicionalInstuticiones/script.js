@@ -4,7 +4,6 @@
         e.stopPropagation();
     })
     $(document).on("click", ".divAreaCarrera,.cuadritoNivelEducacion", function () {
-        
         //var padre = $(this).parents(".divAreaCarrera");
         if ($(this).find(".txtHdEstado").val() == 1) {
             $(this).removeClass("cuadritoSelected");
@@ -16,6 +15,10 @@
             //$(".txtNumAlumnos").prop("disabled", true);
         }
     })
+    $(document).on("click", ".cuadritoNivelEducacion", function () {
+        $(this).find(".txtNumAlumnos").focus();
+    })
+    
     $(document).on("click", ".btnGuardarAreaConocimiento", function () {
         var frm = serializeSection($(".divAreaCarrera"));
         frm.areaCarrera = new Array();
