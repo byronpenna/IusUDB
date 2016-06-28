@@ -91,13 +91,10 @@
   display: inline-block;
   border: solid 1px #828181;
   width: 30px;
-  text-align: center;
-  padding-top: 1%;
-  padding-bottom: 1%; }
+  text-align: center; }
 
 .tdPaginador {
-  text-align: center;
-  font-size: 0.8em; }
+  text-align: center; }
 
 .tdNombre {
   text-align: left !important; }
@@ -105,13 +102,9 @@
 .activeNumber {
   border-color: #cc1315; }
 
-.activePaginador {
-  color: #cc1315;
-  font-weight: bold; }
-
 .tituloInstituciones {
   text-transform: uppercase;
   color: #cd1315;
   font-size: 1em; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css%EF.map */

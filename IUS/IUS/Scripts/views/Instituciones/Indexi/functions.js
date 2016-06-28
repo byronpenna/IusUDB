@@ -1,4 +1,8 @@
-﻿function iniciales() {
+﻿// variables 
+    var instArr   = new Array();
+    var nTabla    = 10;
+// funciones 
+function iniciales() {
     var idContinente = $(".txtHdIdContinente").val();
     console.log("Id continente es: ", idContinente);
     if(idContinente != -1)
@@ -11,6 +15,8 @@
 }
 function buscarContinente(frm) {
     var target = $(".tablaInstitucion").find("tbody");
+    var targetFoot = $(".tablaInstitucion").find("tfoot");
+    instArr = new Array();
     actualizarCatalogo(RAIZ + "/Instituciones/sp_frontui_getInstitucionesByContinente", frm, function (data) {
         console.log("D: :DP", data)
         if (data.estado) {
@@ -23,14 +29,53 @@ function buscarContinente(frm) {
                 hContinente = data.instituciones.continente._continente;
             }
             if (instituciones !== undefined && instituciones != null && instituciones.length > 0) {
-                console.log("entro aqui");
+                //console.log("entro aqui");
+                var ins = new Array();
                 $.each(instituciones, function (i, institucion) {
-                    tr += getTrInstitucion(institucion);
+                    ins.push(institucion);
+                    if ((i + 1) % nTabla == 0) {
+                        instArr.push(ins);
+                        ins = new Array();
+                    }
+                    if (i < nTabla) {
+                        tr += getTrInstitucion(institucion);
+                    }
+                    
                 });
+                instArr.push(ins);
+                console.log("InstArr es", instArr);
+                //cons
             } else {
                 tr = getTrInstitucionNull();
             }
+            //########################
+            var n = instArr.length;
+            var tFoot = "<tr>\
+                <td colspan='4' class='tdPaginador'>\
+            "
+            console.log("n es", n);
+            var claseActive = "";
+            
+            for (var i = 0; i < n; i++) {
+                if (i == 0)
+                {
+                    claseActive = "activePaginador";
+                } else {
+                    claseActive = "";
+                }
+                tFoot += "<div class='paginador "+claseActive+"' id='"+(i+1)+"'>"+(i+1)+"</div>";
+            }
+            tFoot += "</td>\
+                </tr>\
+            ";
+            targetFoot.empty();
+            if (n > 1) {
+                targetFoot.append(tFoot);
+            } else {
+                
+            }
 
+            //##############################
             target.empty().append(tr);
             $(".spanContinente").empty().append(hContinente);
         }
@@ -95,10 +140,10 @@ function buscarContinente(frm) {
         var tr = "\
             <tr>\
                 <td>"+ institucion._pais._pais + " </td>\
-                <td>\
+                <td class='tdNombre'>\
                    <a href='" + url + "'> " + institucion._nombre + " </a>\
                 </td>\
-                <td>" + ciudad + "</td>\
+                <td class='tdNombre'>" + ciudad + "</td>\
                 <td>\
                     <a href='" + $(".txtHdUrlFicha").val() + "/" + institucion._idInstitucion + "'>\
                         <img src='" + RAIZ + "/Content/images/views/Instituciones/mas.png'/>\
