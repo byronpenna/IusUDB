@@ -71,9 +71,7 @@ function buscarContinente(frm) {
             targetFoot.empty();
             if (n > 1) {
                 targetFoot.append(tFoot);
-            } else {
-                
-            }
+            } 
 
             //##############################
             target.empty().append(tr);
