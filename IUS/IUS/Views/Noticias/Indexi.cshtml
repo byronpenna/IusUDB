@@ -1,0 +1,75 @@
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@using IUSLibs.FrontUI.Noticias.Entidades
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    Post post = null;
+    try
+    {
+        post = (Post)ViewBag.post;
+    }
+    catch (Exception)
+    {
+        
+    }
+}
+@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/Indexi/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Noticias/Indexi/media.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Noticias/Indexi/script.js"></script>
+    <script src="~/Scripts/views/Noticias/Indexi/functions.js"></script>
+}
+<div class="contenedorCuerpo row marginNull">
+    <div class="seccionGris">
+        <div class="centroNoticia">
+            <div class="row marginNull titulo">
+                <h2>Noticias</h2>
+            </div>
+            <div class="centroContenido">
+                <div class="row marginNull cabeceraNoticia">
+                    <div class="col-lg-5 vbottom divDetalles">
+                        <div class="row marginNull">
+                            <div class="row marginNull">
+                                <span class="spanTitulo">Titulo:</span> @post._titulo
+                            </div>
+                            <div class="row marginNull">
+                                <span class="spanTitulo">Fecha:</span> 14 de junio 2015*
+                            </div>
+                            <div class="row marginNull">
+                                <span class="spanTitulo">fuente:</span> Lorem ipsum dolor sit a met*
+                            </div>
+                        </div>
+                    </div><!--
+                    --><div class="col-lg-7 vbottom">
+                        @*<img class="imgMin" src="@Url.Content("~/Content/images/generales/noBanerMiniatura.png")" />*@
+                        <img class="imgMin" src="@Url.Action("getImageThumbnail", "Noticias", new { id = post._idPost })" />
+                    </div>
+                </div>
+                <div class="row marginNull contenidoNoticia">
+                    @(new HtmlString(post._contenido))
+                    @*<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . 
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, 
+                    consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . Lorem ipsum dolor sit amet, consectetuer adipiscing 
+                    elit, sed diam Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . 
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . 
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim . 
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam Lorem ipsum dolor sit amet.
+                    </p>*@
+                </div>
+                <div class="row marginNull divControlesNav">
+                    <div class="col-lg-offset-9 col-lg-3">
+                        <div class="col-lg-6">
+                            <span><<<</span>Regresar
+                        </div>
+                        <div class="col-lg-6">
+                            Siguiente<span>>>></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>

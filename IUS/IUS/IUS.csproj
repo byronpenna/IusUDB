@@ -444,6 +444,8 @@
     <Content Include="Content\ius_theme\views\login\style.css" />
     <Content Include="Content\ius_theme\views\NotFound\media.css" />
     <Content Include="Content\ius_theme\views\NotFound\style.css" />
+    <Content Include="Content\ius_theme\views\Noticias\Indexi\media.css" />
+    <Content Include="Content\ius_theme\views\Noticias\Indexi\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\media.css" />
     <Content Include="Content\ius_theme\views\Noticias\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\Todas\media.css" />
@@ -662,6 +664,8 @@
     <Content Include="Scripts\views\Login\LostPass\script.js" />
     <Content Include="Scripts\views\Login\script.js" />
     <Content Include="Scripts\views\Noticias\functions.js" />
+    <Content Include="Scripts\views\Noticias\Indexi\functions.js" />
+    <Content Include="Scripts\views\Noticias\Indexi\script.js" />
     <Content Include="Scripts\views\Noticias\script.js" />
     <Content Include="Scripts\views\Noticias\Todas\functions.js" />
     <Content Include="Scripts\views\Noticias\Todas\script.js" />
@@ -745,6 +749,7 @@
     <Content Include="Views\Repositorio\Indexi.cshtml" />
     <Content Include="Views\Instituciones\FichaInstitucioni.cshtml" />
     <Content Include="Views\Shared\menuInstitucion.cshtml" />
+    <Content Include="Views\Noticias\Indexi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -105,7 +105,7 @@ namespace IUS.Controllers
                     if (post._estado) {
                         ViewBag.post = post;
                         ViewBag.tags = cuerpoPagina["tags"];
-                        return View();   
+                        return View("~/Views/Noticias/Indexi.cshtml");   
                     }
                     else
                     {
