@@ -88,7 +88,7 @@ namespace IUSLibs.FrontUI.Control
                                     institucion._ciudad = row["ciudad"].ToString();
                                     if (row["logo"] != DBNull.Value)
                                     {
-                                        institucion._logo = (byte[])row["logo"];
+                                        //institucion._logo = (byte[])row["logo"];
                                     }
                                     instituciones.Add(institucion);
                                 }
