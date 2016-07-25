@@ -331,9 +331,13 @@
     <Content Include="Content\images\views\Conocenos\tiempo.jpg" />
     <Content Include="Content\images\views\eventos\noevento.png" />
     <Content Include="Content\images\views\Home\Bloques\identidad.png" />
+    <Content Include="Content\images\views\Home\Bloques\identidadi.png" />
     <Content Include="Content\images\views\Home\Bloques\instituciones.png" />
+    <Content Include="Content\images\views\Home\Bloques\institucionesi.png" />
     <Content Include="Content\images\views\Home\Bloques\recursos.png" />
+    <Content Include="Content\images\views\Home\Bloques\recursosi.png" />
     <Content Include="Content\images\views\Home\Bloques\redIus.png" />
+    <Content Include="Content\images\views\Home\Bloques\redIusi.png" />
     <Content Include="Content\images\views\Home\header\mail.png" />
     <Content Include="Content\images\views\Home\header\user.png" />
     <Content Include="Content\images\views\Home\header\userRojo.png" />

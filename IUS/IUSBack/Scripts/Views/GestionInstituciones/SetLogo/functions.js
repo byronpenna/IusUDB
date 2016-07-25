@@ -9,8 +9,8 @@
         $(".imgAncho").val(0);*/
     };
     function setFrmCoords(frm,imgQuery) {
-        frm.imgAlto     = frm.imgAlto / imgQuery.width();
-        frm.imgAncho    = frm.imgAncho / imgQuery.height();
+        frm.imgAlto     = frm.imgAlto / imgQuery.height();
+        frm.imgAncho    = frm.imgAncho / imgQuery.width();
         frm.x           = frm.x / imgQuery.width();
         frm.y           = frm.y / imgQuery.height();
         return frm;
