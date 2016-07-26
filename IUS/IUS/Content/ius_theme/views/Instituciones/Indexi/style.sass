@@ -1,15 +1,16 @@
 // imports 
 @import "../recursoSass/_menuLateral.sass"
+@import "../../../generals/sass_sources/_variables.sass"
 @import "../recursoSass/_variables.sass"
 @import "../recursoSass/_contenidoDerecha.sass"
 
 // estilos
 .tituloDetalles
     margin-top: 40px
-    color: #cc1315
-    text-transform: uppercase
+    color: $negrito //#cc1315
+    //text-transform: uppercase
     font-size: 1em
-
+    font-weight: bold
 .centroInstituciones
     padding-left: 3%
     padding-right: 3%
@@ -43,25 +44,25 @@
 .tablaInstitucion
     margin-top: 3%
     tbody tr td,thead tr th
-        text-transform: uppercase
+        //text-transform: uppercase
         text-align: center
     tbody 
         tr 
             td
                 font-size: 0.6em
                 border: solid 1px #828181
-                color: #414141
+                color: $negrito
                 vertical-align: middle
     thead 
         tr 
             th
-                color: #cd1315
+                color: $negrito //#cd1315
                 font-size: 0.8em
                 border-bottom: none
 
 .divTel
     a
-        color: #414141
+        color: $negrito
 
 .paginador
     cursor: pointer
@@ -76,6 +77,9 @@
 .tdPaginador
     text-align: center
     font-size: 0.8em
+.tdLink
+    a
+        color: $negrito
 .tdNombre
     text-align: left !important
 .activeNumber
@@ -84,6 +88,6 @@
     color: $rojito
     font-weight: bold
 .tituloInstituciones
-    text-transform: uppercase
+    //text-transform: uppercase
     color: #cd1315
     font-size: 1em
