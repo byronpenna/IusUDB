@@ -284,7 +284,8 @@ nav ul li a:hover, .menu2 ul li a:hover {
   background: white; }
 
 body {
-  background: #95a5a6; }
+  background: #95a5a6;
+  font-family: "MyriadRegular"; }
 
 .menuChiquito {
   padding: 0; }

@@ -1,5 +1,6 @@
 // imports 
 @import "../recursoSass/_menuLateral.sass"
+@import "../../../generals/sass_sources/_variables.sass"
 @import "../recursoSass/_variables.sass"
 @import "../recursoSass/_contenidoDerecha.sass"
 // estilos
@@ -24,23 +25,25 @@
 		
 	.nombrenIst
 		text-decoration: underline
-
+		text-transform: lowercase
 	.tituloFichaInst,.nombrenIst
 		display: inline-block
-		text-transform: uppercase
-
+		//text-transform: uppercase
+.colMedia
+	a
+		color: $negrito
 .contenidoFicha
-	
-
 	padding-left: 2%
 	font-size: 0.8em
-	text-transform: uppercase
+	//text-transform: uppercase
 	font-weight: normal
 	.imgFotoInstitucion
 		width: 95%
 	.etiqueta
 		padding: 0
-		color: $rojito
+		color: $negrito
+		font-weight: bold
+		text-transform: uppercase
 	.etiquetaTitulo
 		display: block
 		margin-bottom: 3%
@@ -48,10 +51,13 @@
 		width: 80%
 
 .tablaNumeroEstudiante
+	font-family: $fontPrincipal
 	margin-top: 5%
 	margin-bottom: 5%
 	tr th,tr td
 		font-size: 0.8em
+	tr th:first-child,tr td:first-child
+		padding-left: 0
 	tr td
 		font-size: 0.7em
 .aRegresar
@@ -62,10 +68,11 @@
 	margin-top: 5%
 	width: 80%
 	.rowNivelArea
-		text-transform: uppercase
+		//text-transform: uppercase
 		font-size: 1em
 
 	.etiquetaTitulo
 		text-align: center
 		margin-bottom: 3%
-		text-transform: uppercase
+		font-weight: bold
+		//text-transform: uppercase
