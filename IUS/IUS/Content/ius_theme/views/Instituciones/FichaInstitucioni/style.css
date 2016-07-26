@@ -70,12 +70,13 @@
     padding: 0;
     color: #414141;
     font-weight: bold;
-    text-transform: uppercase; }
+    text-transform: capitalize; }
   .contenidoFicha .etiquetaTitulo {
     display: block;
     margin-bottom: 3%; }
   .contenidoFicha .seccion {
-    width: 80%; }
+    width: 80%;
+    text-transform: lowercase; }
 
 .tablaNumeroEstudiante {
   font-family: "MyriadRegular";
