@@ -187,36 +187,39 @@
                     <img class="imgFotoInstitucion" src="@src" />
                 </div>
             </div>
-            <div class="contenidoConocimiento row marginNull">                
-                @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
-                {
-                    <div class="etiquetaTitulo">@ViewData["titulo-nivelesEducacion"]</div>
-                    foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
-                    {
-                        <div class="col-lg-12 rowNivelArea">
+            @if (institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0)
+            {
+                <div class="contenidoConocimiento row marginNull">
+                    <div class="col-lg-12 rowNivelArea">
+                        <div class="etiquetaTitulo">@ViewData["titulo-nivelesEducacion"]</div>
+                        @foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
+                        {
                             <div class="row marginNull ">
                                 @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
                             </div>
-                        </div>
-                    }
-                }
-            </div>   
-            <div class="contenidoConocimiento row marginNull">
-                @if (institucion._areas != null && institucion._areas.Count > 0)
-                {
-                    <div class="etiqueta etiquetaTitulo">@ViewData["titulo-areasConocimiento"]</div>
-                    foreach (AreaCarrera area in institucion._areas)
-                    {
-                        <div class="col-lg-12 rowNivelArea">
-                            <div class="row marginNull ">
+                        }
+                    </div>
+                </div>
+            }
+            
+            @if (institucion._areas != null && institucion._areas.Count > 0)
+            {
+                <div class="contenidoConocimiento row marginNull">
+                    <div class="col-lg-12 rowNivelArea">
+                        <div class="etiqueta etiquetaTitulo">@ViewData["titulo-areasConocimiento"]</div>
+                        @foreach (AreaCarrera area in institucion._areas)
+                        {
 
+                            <div class="row marginNull ">
                                 @area._codigo - @area._area
                             </div>
-                        </div>
 
-                    }
-                }
-            </div>
+
+                        }
+                    </div>
+                </div>
+            }
+            
             <div class="contenidoConocimiento row marginNull">
                 @{
                     bool put = institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0;
