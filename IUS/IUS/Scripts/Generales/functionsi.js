@@ -60,10 +60,14 @@
 // idiomas 
     function setIdiomaPreferido() {
         var idIdioma = $.cookie('IUSidIdioma');
+        console.log("El idioma preferido es: ", idIdioma);
         console.log("id idioma global", idIdioma)
         if (idIdioma !== undefined) {
-            $(".cbIdioma option[value='" + idIdioma + "']").attr("selected", true);
+            //idIdioma
+        } else {
+            idIdioma = 1;
         }
+        $(".cbIdioma option[value='" + idIdioma + "']").attr("selected", true);
     }
 // ajax
     function actualizarCatalogo(urlAjax, frm, callback, before) {
