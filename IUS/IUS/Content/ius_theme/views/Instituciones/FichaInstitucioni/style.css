@@ -73,7 +73,8 @@
     text-transform: capitalize; }
   .contenidoFicha .etiquetaTitulo {
     display: block;
-    margin-bottom: 3%; }
+    margin-bottom: 3%;
+    color: #414141; }
   .contenidoFicha .seccion {
     width: 80%;
     text-transform: lowercase; }
