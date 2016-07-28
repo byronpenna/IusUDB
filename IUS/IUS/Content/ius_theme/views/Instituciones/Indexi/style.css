@@ -32,10 +32,13 @@
   height: 800px;
   overflow-y: scroll; }
 
+.divInfoInstituciones p {
+  font-size: 14px; }
+
 .tituloDetalles {
   margin-top: 40px;
   color: #414141;
-  font-size: 1em;
+  font-size: 16px;
   font-weight: bold; }
 
 .centroInstituciones {

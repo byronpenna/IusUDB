@@ -28,9 +28,7 @@
   display: inline-block; }
 
 .detalles {
-  background: #f3f2f2;
-  height: 800px;
-  overflow-y: scroll; }
+  background: #f3f2f2; }
 
 * {
   font-family: "MyriadRegular"; }
@@ -53,7 +51,7 @@
     color: #cc1315; }
   .rowTituloInst .nombrenIst {
     text-decoration: underline;
-    text-transform: lowercase; }
+    text-transform: uppercase; }
   .rowTituloInst .tituloFichaInst, .rowTituloInst .nombrenIst {
     display: inline-block; }
 
@@ -62,7 +60,7 @@
 
 .contenidoFicha {
   padding-left: 2%;
-  font-size: 0.8em;
+  font-size: 12px;
   font-weight: normal; }
   .contenidoFicha .imgFotoInstitucion {
     width: 95%; }
@@ -102,6 +100,7 @@
     font-size: 1em; }
   .contenidoConocimiento .etiquetaTitulo {
     margin-bottom: 3%;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 14px; }
 
 /*# sourceMappingURL=style.css.map */

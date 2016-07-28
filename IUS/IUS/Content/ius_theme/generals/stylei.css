@@ -1,4 +1,10 @@
 @charset "UTF-8";
+a:hover {
+  color: #414141; }
+
+.navBtn {
+  display: none; }
+
 .vcenter {
   display: inline-block;
   vertical-align: middle;

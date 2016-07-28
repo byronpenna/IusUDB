@@ -42,7 +42,13 @@
   padding-bottom: 5%; }
 
 .navBtn {
-  font-size: 3em; }
+  background: rgba(238, 236, 236, 0.5);
+  border-radius: 100px;
+  padding: 16%;
+  display: inline-block;
+  font-size: 2em;
+  width: 50px;
+  text-align: center; }
 
 .footer {
   margin-top: 0; }
