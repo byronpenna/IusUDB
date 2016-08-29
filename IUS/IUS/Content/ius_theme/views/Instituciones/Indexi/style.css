@@ -9,7 +9,8 @@
     margin-bottom: 3%;
     padding-top: 3%;
     padding-bottom: 2%;
-    padding-left: 3%; }
+    padding-left: 3%;
+    height: 140px; }
   .menuLateral .imgMap {
     width: 60%;
     margin: 0 auto; }
@@ -28,9 +29,10 @@
   display: inline-block; }
 
 .detalles {
-  background: #f3f2f2;
-  height: 800px;
-  overflow-y: scroll; }
+  background: #f3f2f2; }
+
+.detalles {
+  height: 780px; }
 
 .divInfoInstituciones p {
   font-size: 14px; }
