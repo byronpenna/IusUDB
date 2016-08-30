@@ -32,7 +32,8 @@ namespace IUS.Controllers
                     ViewBag.usuarioSession = this.getUsuarioSession();
                     string lang = this.getUserLang();
                     string ip = Request.UserHostAddress;
-                    ViewBag.notiEvento = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    //################################ prestar atencion aqui y en login #
+                    ViewBag.notiEvento = this._model.sp_adminfe_front_pantallaHome(3,1, ip, this.idPagina);
                     //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);

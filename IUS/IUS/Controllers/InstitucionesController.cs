@@ -120,7 +120,7 @@ namespace IUS.Controllers
                     ViewBag.idContinente    = id;
                     this.setTraduccion(traducciones);
                     ViewBag.menu13          = this.activeClass;
-                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3,1, ip, this.idPagina);
                 }
                 catch (ErroresIUS x)
                 {

@@ -69,10 +69,11 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     // por el momento no habra noticias
                     //ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
-                    ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(id2, id, ip, this.idPagina);
+                    /*ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
                     ViewBag.menu25          = this.activeClass;
                     ViewBag.numPage         = id;
-                    ViewBag.rango           = id2;
+                    ViewBag.rango           = id2;*/
                 }
                 catch (ErroresIUS x) {
                     ErrorsController error = new ErrorsController();
@@ -83,7 +84,7 @@ namespace IUS.Controllers
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                return View();
+                return View("~/Views/Noticias/Todasi.cshtml");
             }
             public ActionResult Index(int id)
             {

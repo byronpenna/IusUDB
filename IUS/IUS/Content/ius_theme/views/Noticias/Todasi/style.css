@@ -1,0 +1,30 @@
+.grisNoticiaEvento {
+  background: #f3f2f2;
+  width: 90%;
+  margin: 0 auto; }
+
+.centroPagina {
+  width: 95%; }
+
+.seccionNoticiaEvento {
+  padding-top: 5%;
+  padding-bottom: 0%; }
+
+.controlNavegacion {
+  border-top: solid 1px #cd1315;
+  padding-top: 2%;
+  padding-bottom: 2%; }
+
+.numeros {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  color: #908f8f; }
+  .numeros a {
+    color: #908f8f; }
+
+.numActive {
+  font-weight: bold;
+  color: black !important; }
+
+/*# sourceMappingURL=style.css.map */

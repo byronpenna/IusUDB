@@ -24,7 +24,7 @@ namespace IUS.Models.general
         #endregion
         #region "funciones"
             
-            public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
+            public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, int pagina,string ip, int idPagina)
             {
                 try
                 {
