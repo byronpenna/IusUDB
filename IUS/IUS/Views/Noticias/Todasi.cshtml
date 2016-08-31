@@ -2,9 +2,20 @@
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     List<NoticiaEvento> noticiasEventos = null;
+    Dictionary<object, object> noticiasEventosDic = null;
+    int page    =1,n=5;
+    int iniPag  =1;
+    int total   =1; 
+    int cnn      =0;
     try
     {
-        noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
+        noticiasEventosDic  = (Dictionary<object, object>)ViewBag.notiEvento;
+        noticiasEventos     = (List<NoticiaEvento>)noticiasEventosDic["noticiasEventos"];
+        total               = (int)noticiasEventosDic["total"];
+        page                = (int)ViewBag.numPage;
+        n                   = (int)ViewBag.rango;
+        decimal x           = (decimal)page/3m;
+        iniPag              = (int)Math.Ceiling(x);
     }
     catch (Exception)
     {
@@ -92,9 +103,31 @@
             
             <div class="controlNavegacion">
                 <div class="numeros">
-                    <a class="numActive" href="#">1</a> -
-                    <a href="#">2</a> -
-                    <a href="#">3</a> 
+                    @for (int i = iniPag; i < iniPag+3; i++)
+                    {
+                        
+                        string claseActive;
+                        if(i == page){
+                            claseActive = "numActive";
+                        }
+                        else
+                        {
+                            claseActive = "";
+                        }
+                        
+                        if(i != iniPag){
+                            <span>-</span>
+                        }
+                        <a class="@claseActive" href="@Url.Action("Todas", "Noticias", new { id=i,id2=n})">@i</a>     
+                        
+                        cnn += i * n;
+                        if (total <= cnn)
+                        {
+                            break;
+                        }
+                    }
+                    @*<a href="#">2</a> -
+                    <a href="#">3</a>*@ 
                     <a href="#">
                         >>>
                     </a>

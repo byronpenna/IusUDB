@@ -53,7 +53,7 @@ namespace IUS.Controllers
                 }
 
             }
-            public ActionResult Todas(int id=1,int id2=12)
+            public ActionResult Todas(int id=1,int id2=5)
             {
                 /*
                  id:    pagina que se desea visualizar
@@ -70,10 +70,12 @@ namespace IUS.Controllers
                     // por el momento no habra noticias
                     //ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
                     ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(id2, id, ip, this.idPagina);
+                    ViewBag.numPage         = id;
+                    ViewBag.rango           = id2;
                     /*ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
                     ViewBag.menu25          = this.activeClass;
-                    ViewBag.numPage         = id;
-                    ViewBag.rango           = id2;*/
+                    
+                    */
                 }
                 catch (ErroresIUS x) {
                     ErrorsController error = new ErrorsController();
