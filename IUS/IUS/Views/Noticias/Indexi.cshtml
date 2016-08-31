@@ -3,9 +3,11 @@
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     Post post = null;
+    int nextId = -1;
     try
     {
         post = (Post)ViewBag.post;
+        nextId = (int)ViewBag.nextId;
     }
     catch (Exception)
     {
@@ -65,9 +67,12 @@
                             </a>
                         </div>
                         <div class="col-lg-6">
-                            <a href="#">
-                                Siguiente<span>>>></span>
-                            </a>
+                            @if (nextId != -1)
+                            {
+                                <a href="@Url.Action("Index", "Noticias", new { id = ViewBag.nextId })">
+                                    Siguiente<span>>>></span>
+                                </a>    
+                            }                            
                         </div>
                     </div>
                 </div>

@@ -100,14 +100,15 @@ namespace IUS.Controllers
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
                     cuerpoPagina = this._model.sp_adminfe_front_getNoticiaFromId(id);
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
+                    //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     ViewBag.idPost = id;
                     ViewBag.comentarios = this._model.sp_frontUi_noticias_getComentariosPost(id, ip, this.idPagina);
                     
                     Post post = (Post)cuerpoPagina["post"];
                     if (post._estado) {
-                        ViewBag.post = post;
-                        ViewBag.tags = cuerpoPagina["tags"];
+                        ViewBag.post    = post;
+                        ViewBag.tags    = cuerpoPagina["tags"];
+                        ViewBag.nextId  = cuerpoPagina["nextPost"];
                         return View("~/Views/Noticias/Indexi.cshtml");   
                     }
                     else

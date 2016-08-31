@@ -382,6 +382,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             DataRow row = tb[1].Rows[0];
                             post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(),(bool)row["estado"],(int)row["id_usuario_fk"]);
                             // para las tags
+                            int idNextPost = -1;
                             if (tb[2].Rows.Count > 0)
                             {
                                 tags = new List<Tag>();
@@ -390,9 +391,16 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                     tags.Add(tag);
                                 }
                             }
+                            if (tb[4].Rows.Count > 0)
+                            {
+                                row = tb[4].Rows[0];
+                                idNextPost = (int)row["idPost"];
+
+                            }
                             retorno = new Dictionary<object, object>();
                             retorno.Add("post", post);
                             retorno.Add("tags", tags);
+                            retorno.Add("nextPost", idNextPost);
                         }
                         else
                         {
