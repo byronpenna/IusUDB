@@ -118,7 +118,7 @@
                         if(i != iniPag){
                             <span>-</span>
                         }
-                        <a class="@claseActive" href="@Url.Action("Todas", "Noticias", new { id=i,id2=n})">@i</a>     
+                        <a class="aNum @claseActive" href="@Url.Action("Todas", "Noticias", new { id=i,id2=n})">@i</a>     
                         
                         cnn += i * n;
                         if (total <= cnn)
@@ -128,7 +128,7 @@
                     }
                     @*<a href="#">2</a> -
                     <a href="#">3</a>*@ 
-                    <a href="#">
+                    <a class="aSiguiente" href="#">
                         >>>
                     </a>
                 </div>
