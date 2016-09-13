@@ -8,6 +8,7 @@
                 $(this).find(".imgMap").attr("src", $(this).find(".txtHdRoja").val());
             })*/
             $(document).on("click", ".paginador", function () {
+                console.log("click a paginador");
                 var nPagina = $(this).attr("id");
                 $(".activePaginador").removeClass("activePaginador");
                 $(this).addClass("activePaginador");

@@ -3,7 +3,8 @@
     var nTabla    = 10;
 // funciones 
 function iniciales() {
-    var idContinente = $(".txtHdIdContinente").val();
+    var idContinente    = $(".txtHdIdContinente").val();
+    var idPage          = $(".txtHdIdPage").val();
     console.log("Id continente es: ", idContinente);
     if(idContinente != -1)
     {
@@ -11,6 +12,11 @@ function iniciales() {
         var strFind = "#" + idContinente;
         console.log("String find es: ", strFind);
         $(".menuLateral").find(strFind).click();
+    }
+    console.log("Id page es: ", idPage);
+    if (idPage != 1) {
+        console.log("aqui a dar click")
+        $(".tdPaginador").find("#" + idPage).click();
     }
 }
 function buscarContinente(frm) {

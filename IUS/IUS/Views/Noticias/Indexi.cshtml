@@ -36,7 +36,7 @@
                                 <span class="spanTitulo">Titulo:</span> @post._titulo
                             </div>
                             <div class="row marginNull">
-                                <span class="spanTitulo">Fecha:</span> 14 de junio 2015*
+                                <span class="spanTitulo">Fecha:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @post._fechaCreacion)   @*14 de junio 2015**@
                             </div>
                             <div class="row marginNull">
                                 <span class="spanTitulo">fuente:</span> Lorem ipsum dolor sit a met*
