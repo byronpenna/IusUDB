@@ -1,0 +1,41 @@
+﻿@using IUSLibs.SEC.Entidades
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<Submenu> submenus  = (List<Submenu>)ViewBag.subMenus;
+    List<Menu> menus        = (List<Menu>)ViewBag.menus;
+    int idMenu = -1;
+}
+@section estilosPersonalizados {
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/home/Indexi/style.css" />
+}
+<div class="row marginNull centroPagina cuerpoIndex">
+    Antes
+    @if (submenus != null && submenus.Count > 0)
+    {
+        @Html.Raw("hola<br>")
+        foreach (Submenu submenu in submenus)
+        {
+            if (idMenu != submenu._idSubMenu)
+            {
+
+            }
+        }
+
+    }
+    <div class="row marginNull rowMenu">
+        
+        <h3>Configuraciones</h3>
+        <div class="row marginNull">
+            <div class="col-lg-3 menuItemPadre">
+                <div class="row marginNull menuItem">
+                    <div class="col-lg-4 vcenter seccionIconoMenu">
+                        <img src="@Url.Content("~/Content/themes/iusback_theme/views/menu/rosca.png")"/>
+                    </div><!--
+                    --><div class="col-lg-8 txtMenu vcenter">
+                        Gestion usuarios
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

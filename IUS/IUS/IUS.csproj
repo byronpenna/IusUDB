@@ -361,6 +361,7 @@
     <Content Include="Content\images\views\Instituciones\mas.png" />
     <Content Include="Content\images\views\Instituciones\oceania.png" />
     <Content Include="Content\images\views\Instituciones\oceaniar.png" />
+    <Content Include="Content\images\views\menu\rosca.png" />
     <Content Include="Content\images\views\Repositorio\adobe-reader.png" />
     <Content Include="Content\images\views\Repositorio\cloud.png" />
     <Content Include="Content\images\views\Repositorio\descarga.png" />

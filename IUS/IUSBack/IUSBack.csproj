@@ -269,7 +269,9 @@
     <Content Include="Content\themes\iusback_theme\img\general\circle\tablet.png" />
     <Content Include="Content\themes\iusback_theme\img\general\fondo_gris.png" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\logo2.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.ico" />
+    <Content Include="Content\themes\iusback_theme\img\general\lupita.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\bookshelf.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\calendar.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\cloud.png" />
@@ -523,6 +525,7 @@
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\media.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\home\Indexi\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />
     <Content Include="Content\themes\iusback_theme\views\home\Registro\media.css" />
     <Content Include="Content\themes\iusback_theme\views\home\Registro\style.css" />
@@ -531,6 +534,16 @@
     <Content Include="Content\themes\iusback_theme\views\Login\ForgetPass\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Login\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Login\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\menu\calendario.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\candado.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\chat.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\drive.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\libro.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\llave.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\noticias.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\rosca.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\search.png" />
+    <Content Include="Content\themes\iusback_theme\views\menu\usuario.png" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\media.css" />
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\style.css" />
     <Content Include="Content\themes\iusback_theme\views\RecursosHumanos\media.css" />
@@ -921,6 +934,9 @@
     <Content Include="Views\Login\LogOut.cshtml" />
     <Content Include="Views\Administracion\ImagenEvento.cshtml" />
     <Content Include="Views\ConfigRepo\Index.cshtml" />
+    <Content Include="Views\Shared\_Layouti.cshtml" />
+    <Content Include="Views\Home\Indexi.cshtml" />
+    <Content Include="Views\Shared\footeri.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

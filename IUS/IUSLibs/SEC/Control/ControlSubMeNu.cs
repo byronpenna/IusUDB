@@ -27,7 +27,7 @@ namespace IUSLibs.SEC.Control
 
                     return toReturn;
                 }
-                public Dictionary<object,object> sp_sec_getSubmenu(int idMenu, int idUsuario)
+                public Dictionary<object,object> sp_sec_getSubmenu(int idMenu, int idUsuario,int all=0)
                 {
                     List<Submenu> submenus= null; Submenu submenu;
                     Dictionary<object, object> retorno = new Dictionary<object,object>();
@@ -35,6 +35,7 @@ namespace IUSLibs.SEC.Control
                     SPIUS sp = new SPIUS("sp_sec_getSubmenu");
                     sp.agregarParametro("idMenu", idMenu);
                     sp.agregarParametro("idUsuario", idUsuario);
+                    sp.agregarParametro("all", all);
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());

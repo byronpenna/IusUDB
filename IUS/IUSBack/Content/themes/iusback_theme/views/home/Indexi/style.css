@@ -1,0 +1,162 @@
+@charset "UTF-8";
+.lineaRoja {
+  height: 45px;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.73, #CD1316), color-stop(1, #AD1013));
+  background-image: -o-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -moz-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -webkit-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -ms-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: linear-gradient(to bottom, #CD1316 73%, #AD1013 100%); }
+
+.centroPagina {
+  width: 85%;
+  margin: 0 auto; }
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none; }
+
+.contenidoHead {
+  padding-top: 1%;
+  padding-bottom: 1%; }
+
+.logoHeader {
+  text-align: center; }
+  .logoHeader img {
+    width: 78%; }
+
+.areaAyuda {
+  text-align: right; }
+  .areaAyuda .divAyuda {
+    display: inline-block; }
+
+.divFoto {
+  text-align: center; }
+  .divFoto img {
+    width: 80%;
+    border-radius: 100%;
+    border: solid 1px #c93132;
+    padding: 8%; }
+
+/* border: solid 1px #c93132 */
+.tituloIdioma {
+  float: left;
+  padding-top: 4px;
+  margin-right: 3%; }
+
+.todoIdioma {
+  width: 35%;
+  margin: 0 auto; }
+
+.cbIdioma {
+  text-transform: uppercase;
+  color: #d0cfcf;
+  font-family: "MyriadRegular";
+  font-size: 1em;
+  font-weight: bold; }
+
+.padreCaja {
+  width: 60%;
+  display: inline-block; }
+  .padreCaja .cajaArriba {
+    display: table;
+    width: 100%; }
+    .padreCaja .cajaArriba .caja {
+      margin: 20px auto 40px auto;
+      border: 1px solid #cd1315;
+      height: 30px;
+      overflow: hidden;
+      width: 80%;
+      position: relative;
+      display: table-cell;
+      vertical-align: bottom; }
+      .padreCaja .cajaArriba .caja::after {
+        content: "▾";
+        display: table-cell;
+        padding-top: 7px;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        background-color: #cd1315;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        pointer-events: none;
+        color: white; }
+      .padreCaja .cajaArriba .caja select {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        height: 30px;
+        padding: 5px;
+        width: 100%; }
+
+.rowSearch {
+  background: #eeecec;
+  padding-top: 8px;
+  padding-bottom: 1%;
+  height: 45px; }
+  .rowSearch .inputSearchDiv {
+    margin-bottom: 0;
+    width: 90%; }
+    .rowSearch .inputSearchDiv .icoSearch {
+      top: 17%;
+      right: 2%; }
+      .rowSearch .inputSearchDiv .icoSearch .imgLupita {
+        width: 60%; }
+    .rowSearch .inputSearchDiv .inputSearch {
+      border-radius: 20px;
+      height: 30px; }
+
+footer {
+  background: #dddbdb;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%; }
+  footer img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.5;
+    width: 50%;
+    margin: 0 auto; }
+  footer .copyRight span {
+    display: block;
+    color: white; }
+
+footer {
+  margin-top: 5%; }
+
+.cuerpoIndex {
+  background: #f3f2f2;
+  padding-top: 3%;
+  padding-bottom: 3%; }
+
+.rowMenu {
+  background: #ffffff;
+  padding-top: 1%;
+  padding-bottom: 3%;
+  width: 80%;
+  margin: 0 auto;
+  padding-right: 1%;
+  padding-left: 2%;
+  padding-top: 1%; }
+  .rowMenu .menuItemPadre {
+    padding: 0; }
+    .rowMenu .menuItemPadre .menuItem {
+      border: solid 1px #828181;
+      width: 95%;
+      margin: 0 auto;
+      padding-top: 5%;
+      padding-bottom: 5%; }
+      .rowMenu .menuItemPadre .menuItem .seccionIconoMenu img {
+        width: 95%; }
+      .rowMenu .menuItemPadre .menuItem .txtMenu {
+        padding-left: 3%; }
+  .rowMenu h3 {
+    margin-top: 0;
+    margin-bottom: 5%;
+    color: #cd1315;
+    text-transform: uppercase; }
+
+/*# sourceMappingURL=style.css.map */

@@ -18,6 +18,9 @@ namespace IUSBack
                     "~/Scripts/Generales/functions.js"
                     ));
             // css
+                bundles.Add(new StyleBundle("~/bundles/bootstrapi").Include(
+                    "~/Content/third-party/bootstrap/css/bootstrap.css"
+                ));
                 bundles.Add(new StyleBundle("~/bundles/bootstrap").Include(
                         "~/Content/third-party/bootstrap/css/bootstrap.css"
                     ).Include(
