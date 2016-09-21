@@ -4,38 +4,50 @@
     List<Submenu> submenus  = (List<Submenu>)ViewBag.subMenus;
     List<Menu> menus        = (List<Menu>)ViewBag.menus;
     int idMenu = -1;
+    bool abierto = false;
 }
 @section estilosPersonalizados {
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/home/Indexi/style.css" />
 }
 <div class="row marginNull centroPagina cuerpoIndex">
-    Antes
     @if (submenus != null && submenus.Count > 0)
     {
-        @Html.Raw("hola<br>")
+        int cn = 0;int j = 0;
         foreach (Submenu submenu in submenus)
-        {
-            if (idMenu != submenu._idSubMenu)
+        {   
+            if (idMenu != submenu._menu._idMenu)
             {
-
+                if (abierto)
+                {
+                @Html.Raw("</div>");
+                    @Html.Raw("</div>");
+                                       cn++;
+                }
+                @Html.Raw("<div class=\"row marginNull rowMenu\">");
+                    <h3>@menus[cn]._menu</h3>            
+                    @Html.Raw("<div class=\"row marginNull\">");
+                abierto = true;
+                idMenu = submenu._menu._idMenu;
+                
             }
-        }
-
-    }
-    <div class="row marginNull rowMenu">
-        
-        <h3>Configuraciones</h3>
-        <div class="row marginNull">
             <div class="col-lg-3 menuItemPadre">
-                <div class="row marginNull menuItem">
-                    <div class="col-lg-4 vcenter seccionIconoMenu">
-                        <img src="@Url.Content("~/Content/themes/iusback_theme/views/menu/rosca.png")"/>
-                    </div><!--
-                    --><div class="col-lg-8 txtMenu vcenter">
-                        Gestion usuarios
+                <a href="@Url.Content("~"+submenu._enlace)">
+                    <div class="row marginNull menuItem">
+                        <div class="col-lg-4 vcenter seccionIconoMenu">
+                            <img src="~/Content/themes/iusback_theme/img/general/menui/@submenu._icono" />
+                        </div><!--
+                        --><div class="col-lg-8 txtMenu vcenter">
+                            @submenu._textoSubMenu
+                        </div>
                     </div>
-                </div>
+                </a>
+                
             </div>
-        </div>
-    </div>
+        }
+    }
+    @if (abierto)
+    {
+        @Html.Raw("</div>");
+        @Html.Raw("</div>");
+    }
 </div>

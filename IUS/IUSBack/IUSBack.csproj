@@ -272,6 +272,16 @@
     <Content Include="Content\themes\iusback_theme\img\general\logo2.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.ico" />
     <Content Include="Content\themes\iusback_theme\img\general\lupita.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\calendario.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\candado.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\chat.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\drive.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\libro.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\llave.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\noticias.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\rosca.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\search.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\menui\usuario.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\bookshelf.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\calendar.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\cloud.png" />
