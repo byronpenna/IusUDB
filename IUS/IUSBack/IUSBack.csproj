@@ -899,6 +899,16 @@
     <Content Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\Myriad\MyriadPro-Bold.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-BoldCond.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-BoldCondIt.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-BoldIt.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-Cond.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-CondIt.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-It.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-Regular.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-Semibold.otf" />
+    <Content Include="Content\fonts\Myriad\MyriadPro-SemiboldIt.otf" />
     <None Include="DataSet1.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

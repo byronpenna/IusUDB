@@ -17,6 +17,12 @@
   vertical-align: middle;
   float: none; }
 
+@font-face {
+  font-family: "MyriadRegular";
+  src: url("../../../../../fonts/Myriad/MyriadPro-regular.otf"); }
+@font-face {
+  font-family: "MyriadBold";
+  src: url("../../../../../fonts/Myriad/MyriadPro-regular.otf"); }
 .contenidoHead {
   padding-top: 1%;
   padding-bottom: 1%; }
@@ -113,7 +119,9 @@ footer {
   background: #dddbdb;
   text-align: center;
   padding-top: 1%;
-  padding-bottom: 1%; }
+  padding-bottom: 1%;
+  color: #929292;
+  text-transform: uppercase; }
   footer img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
@@ -122,10 +130,13 @@ footer {
     margin: 0 auto; }
   footer .copyRight span {
     display: block;
-    color: white; }
+    font-weight: bold; }
 
 footer {
   margin-top: 5%; }
+
+body {
+  font-family: "MyriadRegular"; }
 
 .cuerpoIndex {
   background: #f3f2f2;
