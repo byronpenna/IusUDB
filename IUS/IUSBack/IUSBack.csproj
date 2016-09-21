@@ -267,6 +267,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\ajax-loader.gif" />
     <Content Include="Content\themes\iusback_theme\img\general\circle\mail.png" />
     <Content Include="Content\themes\iusback_theme\img\general\circle\tablet.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\exclamacion.png" />
     <Content Include="Content\themes\iusback_theme\img\general\fondo_gris.png" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo2.png" />
@@ -296,6 +297,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\menu\unlocked.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noBanerMiniatura.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noimage.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\noPickProfile.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\0.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\1.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\10.png" />

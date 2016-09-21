@@ -94,7 +94,12 @@ namespace IUSBack.Controllers
                         }
                         //ViewBag.menus = this._model.sp_sec_getMenu(usuarioSesion._idUsuario);
                         IUSLibs.RRHH.Entidades.InformacionPersona informacionPersona =this._model.detalleLogin(usuarioSesion._idUsuario);
-                        informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
+                        if (informacionPersona._fotoRuta != null && informacionPersona._fotoRuta != "")
+                        {
+                            informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
+                            informacionPersona._tieneFoto = true;
+                        }
+                        
                         ViewBag.informacionPersona = informacionPersona;
                         ViewBag.selectedMenu = selectedMenu;
                         ViewBag.currentUrl = Request.Url.AbsoluteUri;

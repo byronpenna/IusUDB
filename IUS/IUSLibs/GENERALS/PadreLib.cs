@@ -22,7 +22,7 @@ namespace IUSLibs.GENERALS
         #region "funciones heredadas"
             public RRHH.Entidades.InformacionPersona detallePersona(int idUsuarioEjecutor)
             {
-                RRHH.Entidades.InformacionPersona informacionPersona = null;
+                RRHH.Entidades.InformacionPersona informacionPersona = new RRHH.Entidades.InformacionPersona(-1);
                 SPIUS sp = new SPIUS("sp_rrhh_detalleLogin");
                 sp.agregarParametro("idUsuario", idUsuarioEjecutor);
                 try

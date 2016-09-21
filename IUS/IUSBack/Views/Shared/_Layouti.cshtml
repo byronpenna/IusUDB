@@ -1,6 +1,11 @@
 ﻿@using IUSLibs.RRHH.Entidades
 @{
     InformacionPersona informacion = (InformacionPersona)ViewBag.informacionPersona;
+    string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");
+    if (informacion._tieneFoto)
+    {
+        fotoRuta = Url.Content(informacion._fotoRuta);
+    }
     
 }
 <html>    
@@ -42,29 +47,33 @@
                     </div>
                 </div><!--
               --><div class="col-lg-3 vcenter">
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 vcenter">
                             <div class="row marginNull divFoto">
-                                <img  src="@Url.Content(informacion._fotoRuta)" />
+                                <img  src="@fotoRuta" />
                                 @* /Recursos/Personal/1/1_recortada.jpg *@
                             </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="row marginNull">
-                                Bienvenido
-                            </div>
-                            <div class="row marginNull">
-                                Byron Peña
-                            </div>
+                        </div><!-- 
+                        --><div class="col-lg-8 vCenter divBienvenida">
+                               <div class="row marginNull">
+                                   <div class="row marginNull titulo">
+                                       Bienvenido
+                                   </div>
+                                   <div class="row marginNull nombre">
+                                       Byron Peña
+                                   </div>
+                               </div>
+                            
                         </div>
                 </div>
             </div>
-            <div class="row marginNull centroPagina">
+            <div class="row marginNull centroPagina miniControles">
                 <div class="col-lg-offset-9 col-lg-3">
                     <div class="areaAyuda row marginNull">
                         <a id="menuLogOut" href="#">
                             Cerrar sesion
                         </a>
                         <div class="divAyuda">
+                            <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/exclamacion.png")"/>
                             Ayuda
                         </div>
                     </div>
@@ -73,15 +82,13 @@
             <div class="row marginNull rowSearch">
                 <div class="col-lg-1">
                 </div>
-                <div class="col-lg-offset-7 col-lg-2">
+                <div class="col-lg-offset-8 col-lg-2">
                     <div class="form-group has-feedback inputSearchDiv">
                         <input type="text" class="form-control inputSearch" />
                         <i class="glyphicon form-control-feedback icoSearch">
                             <img class="imgLupita" src="@Url.Content("~/Content/themes/iusback_theme/img/general/lupita.png")" />
                         </i>
                     </div>
-                </div>
-                <div class="col-lg-offset-1 col-lg-1">
                 </div>
             </div>
             <div class="row marginNull lineaRoja">
@@ -90,5 +97,8 @@
         </header>
         @RenderBody()
         @Html.Partial("footeri")
+        @Scripts.Render("~/bundles/scriptsGenerales")
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        @RenderSection("scriptsPersonalizados", false)
     </body>
 </html>
