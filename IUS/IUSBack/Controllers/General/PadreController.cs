@@ -65,6 +65,7 @@ namespace IUSBack.Controllers
                         if (idPagina != -1)
                         {
                             Permiso permisos = this._model.sp_trl_getAllPermisoPagina(usuarioSesion._idUsuario, idPagina);
+                            
                             if (permisos != null && permisos._ver)
                             {
                                 
@@ -92,6 +93,9 @@ namespace IUSBack.Controllers
                             Session["flagNav"] = false;
                         }
                         //ViewBag.menus = this._model.sp_sec_getMenu(usuarioSesion._idUsuario);
+                        IUSLibs.RRHH.Entidades.InformacionPersona informacionPersona =this._model.detalleLogin(usuarioSesion._idUsuario);
+                        informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
+                        ViewBag.informacionPersona = informacionPersona;
                         ViewBag.selectedMenu = selectedMenu;
                         ViewBag.currentUrl = Request.Url.AbsoluteUri;
                         ViewBag.cnEventos = this._model.sp_adminfe_countTodayEvents(idPagina, usuarioSesion._idUsuario);

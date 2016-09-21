@@ -193,7 +193,8 @@ namespace IUSBack.Controllers
                     
                     ViewBag.usuario = usu;
                     //ViewBag.eventosHoy      = this.homeModel.sp_adminfe_front_getTodayEvents("127.0.0.1",1);
-                    ViewBag.menus           = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                    ViewBag.menus                       = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                    
                     Dictionary<object, object> respuesta = this.homeModel.sp_sec_getSubmenu(-1, usu._idUsuario, 1);
                     ViewBag.subMenus        = respuesta["submenus"];
                     //ViewBag.cnEventos       = this.homeModel.sp_adminfe_countTodayEvents(this._idPagina, usu._idUsuario);

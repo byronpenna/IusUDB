@@ -1,4 +1,9 @@
-﻿<html>    
+﻿@using IUSLibs.RRHH.Entidades
+@{
+    InformacionPersona informacion = (InformacionPersona)ViewBag.informacionPersona;
+    
+}
+<html>    
     <head>
         <title>Este es ius back end</title>
         <!-- META -->
@@ -18,6 +23,7 @@
             <div class="row marginNull centroPagina contenidoHead">
                 <div class="col-lg-3 logoHeader vcenter">
                     <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/logo2.png")" />
+                    @**@
                 </div><!--
                 --><div class="col-lg-6 vCenter">
                     <div class="todoIdioma">
@@ -38,7 +44,8 @@
               --><div class="col-lg-3 vcenter">
                         <div class="col-lg-4">
                             <div class="row marginNull divFoto">
-                                <img  src="/Recursos/Personal/1/1_recortada.jpg" />
+                                <img  src="@Url.Content(informacion._fotoRuta)" />
+                                @* /Recursos/Personal/1/1_recortada.jpg *@
                             </div>
                         </div>
                         <div class="col-lg-8">

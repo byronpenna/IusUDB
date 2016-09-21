@@ -1,10 +1,12 @@
 ﻿@using IUSLibs.SEC.Entidades
+
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     List<Submenu> submenus  = (List<Submenu>)ViewBag.subMenus;
     List<Menu> menus        = (List<Menu>)ViewBag.menus;
     int idMenu = -1;
     bool abierto = false;
+    
 }
 @section estilosPersonalizados {
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/home/Indexi/style.css" />

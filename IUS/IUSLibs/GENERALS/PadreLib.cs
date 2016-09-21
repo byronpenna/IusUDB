@@ -20,6 +20,36 @@ namespace IUSLibs.GENERALS
             
         #endregion
         #region "funciones heredadas"
+            public RRHH.Entidades.InformacionPersona detallePersona(int idUsuarioEjecutor)
+            {
+                RRHH.Entidades.InformacionPersona informacionPersona = null;
+                SPIUS sp = new SPIUS("sp_rrhh_detalleLogin");
+                sp.agregarParametro("idUsuario", idUsuarioEjecutor);
+                try
+                {    
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            informacionPersona = new RRHH.Entidades.InformacionPersona((int)row["idInformacionPersona"]);
+                            if(row["foto"] != DBNull.Value){
+                                informacionPersona._fotoRuta = row["foto"].ToString();
+                            }
+                            
+                        }
+                    }
+                    return informacionPersona;
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x) {
+                    throw x;
+                }
+            }
         // contendra todas los metodos y atributos de uso general
             public bool sp_sec_registrarError(string mensaje,string detalle,int idUsuarioEjecutor,int idPagina)
             {
