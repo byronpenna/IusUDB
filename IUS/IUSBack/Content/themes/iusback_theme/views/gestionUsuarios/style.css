@@ -1,4 +1,14 @@
 @charset "UTF-8";
+.todo {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  background: white; }
+
+body {
+  background: #c6c5c5;
+  font-family: "MyriadRegular"; }
+
 .marginNull {
   margin: 0; }
 
@@ -74,7 +84,7 @@
 .divFoto {
   text-align: center; }
   .divFoto img {
-    width: 80%;
+    width: 100%;
     border-radius: 100%;
     border: solid 1px #c93132;
     padding: 8%; }
