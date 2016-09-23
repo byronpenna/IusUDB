@@ -66,7 +66,7 @@ namespace IUS.Controllers
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
                     string ip = Request.UserHostAddress;
-                    ViewBag.notiEvento = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    ViewBag.notiEvento = this._model.sp_adminfe_front_pantallaHome(3, 1,ip, this.idPagina);
                     ViewBag.submenu11 = this.activeSub;
                     ViewBag.footer = true;
                     ViewBag.error = id;

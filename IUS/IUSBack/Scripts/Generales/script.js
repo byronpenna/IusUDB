@@ -8,8 +8,8 @@
     });
     // iniciales
         setInterval(function () {
-            txtTiempo = $(".txtHeaderHoraActual").text();
-            $(".txtHeaderHoraActual").empty().append(clockHora(txtTiempo));
+            //txtTiempo = $(".txtHeaderHoraActual").text();
+            //$(".txtHeaderHoraActual").empty().append(clockHora(txtTiempo));
         }, 1000);
     // eventos
         // moveover

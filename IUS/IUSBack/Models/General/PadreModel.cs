@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 // librerias externas
+    //using IUSLibs.GENERALS;
     using IUSLibs.ADMINFE.Control;
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
@@ -35,6 +36,22 @@ namespace IUSBack.Models.General
             #endregion
         #endregion
         #region "funciones publicas"
+                public IUSLibs.RRHH.Entidades.InformacionPersona detalleLogin(int idUsuario)
+                {
+                    try
+                    {
+                        ControlMenu control = new ControlMenu();
+                        return control.detallePersona(idUsuario);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
             #region "menu"
                 #region "privadas"
                     private List<Submenu> getMenuCompleto(int idUsuario)
@@ -80,12 +97,12 @@ namespace IUSBack.Models.General
                         throw x;
                     }
                 }
-                public Dictionary<object,object> sp_sec_getSubmenu(int idMenu, int idUsuario)
+                public Dictionary<object,object> sp_sec_getSubmenu(int idMenu, int idUsuario,int all=0)
                 {
                     try
                     {
                         ControlSubMenu control = new ControlSubMenu();
-                        return control.sp_sec_getSubmenu(idMenu, idUsuario);
+                        return control.sp_sec_getSubmenu(idMenu, idUsuario,all);
                     }
                     catch (ErroresIUS x)
                     {

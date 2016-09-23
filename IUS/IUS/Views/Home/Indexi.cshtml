@@ -13,13 +13,14 @@
     
     Layout = "~/Views/Shared/_Layouti.cshtml";
     
-    List<SliderImage> slider = null;
-    List<NoticiaEvento> noticiasEventos = null;
+    List<SliderImage>           slider              = null;
+    List<NoticiaEvento>         noticiasEventos     = null;
+    Dictionary<object, object>  noticiasEventosDic  = null;
     try
     {
-        
-        noticiasEventos = (List<NoticiaEvento>)ViewBag.notiEvento;
-        slider = (List<SliderImage>)ViewBag.slider;
+        noticiasEventosDic  = (Dictionary<object, object>)ViewBag.notiEvento;
+        noticiasEventos     = (List<NoticiaEvento>)noticiasEventosDic["noticiasEventos"];
+        slider              = (List<SliderImage>)ViewBag.slider;
     }
     catch (Exception)
     {

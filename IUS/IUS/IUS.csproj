@@ -361,6 +361,7 @@
     <Content Include="Content\images\views\Instituciones\mas.png" />
     <Content Include="Content\images\views\Instituciones\oceania.png" />
     <Content Include="Content\images\views\Instituciones\oceaniar.png" />
+    <Content Include="Content\images\views\menu\rosca.png" />
     <Content Include="Content\images\views\Repositorio\adobe-reader.png" />
     <Content Include="Content\images\views\Repositorio\cloud.png" />
     <Content Include="Content\images\views\Repositorio\descarga.png" />
@@ -452,6 +453,7 @@
     <Content Include="Content\ius_theme\views\Noticias\Indexi\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\media.css" />
     <Content Include="Content\ius_theme\views\Noticias\style.css" />
+    <Content Include="Content\ius_theme\views\Noticias\Todasi\style.css" />
     <Content Include="Content\ius_theme\views\Noticias\Todas\media.css" />
     <Content Include="Content\ius_theme\views\Noticias\Todas\style.css" />
     <Content Include="Content\ius_theme\views\Repositorio\AllFiles\media.css" />
@@ -671,6 +673,8 @@
     <Content Include="Scripts\views\Noticias\Indexi\functions.js" />
     <Content Include="Scripts\views\Noticias\Indexi\script.js" />
     <Content Include="Scripts\views\Noticias\script.js" />
+    <Content Include="Scripts\views\Noticias\Todasi\functions.js" />
+    <Content Include="Scripts\views\Noticias\Todasi\script.js" />
     <Content Include="Scripts\views\Noticias\Todas\functions.js" />
     <Content Include="Scripts\views\Noticias\Todas\script.js" />
     <Content Include="Scripts\views\Repositorio\AllFiles\functions.js" />
@@ -754,6 +758,7 @@
     <Content Include="Views\Instituciones\FichaInstitucioni.cshtml" />
     <Content Include="Views\Shared\menuInstitucion.cshtml" />
     <Content Include="Views\Noticias\Indexi.cshtml" />
+    <Content Include="Views\Noticias\Todasi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

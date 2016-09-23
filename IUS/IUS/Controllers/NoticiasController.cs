@@ -53,7 +53,7 @@ namespace IUS.Controllers
                 }
 
             }
-            public ActionResult Todas(int id=1,int id2=12)
+            public ActionResult Todas(int id=1,int id2=5)
             {
                 /*
                  id:    pagina que se desea visualizar
@@ -69,10 +69,13 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     // por el momento no habra noticias
                     //ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
-                    ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
-                    ViewBag.menu25          = this.activeClass;
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(id2, id, ip, this.idPagina);
                     ViewBag.numPage         = id;
                     ViewBag.rango           = id2;
+                    /*ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
+                    ViewBag.menu25          = this.activeClass;
+                    
+                    */
                 }
                 catch (ErroresIUS x) {
                     ErrorsController error = new ErrorsController();
@@ -83,7 +86,7 @@ namespace IUS.Controllers
                 {
                     return RedirectToAction("Unhandled", "Errors");
                 }
-                return View();
+                return View("~/Views/Noticias/Todasi.cshtml");
             }
             public ActionResult Index(int id)
             {
@@ -97,14 +100,15 @@ namespace IUS.Controllers
                     traducciones = this._model.getTraduccion(lang, this.idPagina);
                     this.setTraduccion(traducciones);
                     cuerpoPagina = this._model.sp_adminfe_front_getNoticiaFromId(id);
-                    ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
+                    //ViewBag.noticias = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias,lang);
                     ViewBag.idPost = id;
                     ViewBag.comentarios = this._model.sp_frontUi_noticias_getComentariosPost(id, ip, this.idPagina);
                     
                     Post post = (Post)cuerpoPagina["post"];
                     if (post._estado) {
-                        ViewBag.post = post;
-                        ViewBag.tags = cuerpoPagina["tags"];
+                        ViewBag.post    = post;
+                        ViewBag.tags    = cuerpoPagina["tags"];
+                        ViewBag.nextId  = cuerpoPagina["nextPost"];
                         return View("~/Views/Noticias/Indexi.cshtml");   
                     }
                     else

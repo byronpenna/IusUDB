@@ -14,21 +14,34 @@ namespace IUSLibs.ADMINFE.Pantalla
 {
     public class PantallaHome:PadreLib
     {
-        public DataRowCollection sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
+        public Dictionary<object,object> sp_adminfe_front_pantallaHome(int n,int pagina,string ip, int idPagina)
         {
+            Dictionary<object, object> retorno = new Dictionary<object, object>();
             SPIUS sp = new SPIUS("sp_adminfe_front_pantallaHome");
             DataRowCollection rows = null;
             sp.agregarParametro("n", n);
+            sp.agregarParametro("pagina", pagina);
             sp.agregarParametro("ip", ip);
             sp.agregarParametro("idPagina", idPagina);
+            int cn = 0;
             try
             {
                 DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
                 if (this.resultadoCorrectoGet(tb))
                 {
-                    return tb[0].Rows;
+                    if (tb[0].Rows.Count > 0)
+                    {
+                        rows = tb[0].Rows;
+                    }
+                    if (tb[1].Rows.Count > 0)
+                    {
+                        DataRow row = tb[1].Rows[0];
+                        cn = (int)row["cnNotiEvento"];
+                    }
+                    retorno.Add("notiEvento",rows);
+                    retorno.Add("total", cn);
                 }
-                return rows;
+                return retorno;
             }
             catch (ErroresIUS x)
             {

@@ -79,7 +79,7 @@ namespace IUS.Controllers
                 }
                 return View("~/Views/Instituciones/FichaInstitucioni.cshtml");
             }
-            public ActionResult Index(int id=-1)
+            public ActionResult Index(int id=-1,int id2=1)
             {
                 List<LlaveIdioma> traducciones;
                 /***/
@@ -120,7 +120,8 @@ namespace IUS.Controllers
                     ViewBag.idContinente    = id;
                     this.setTraduccion(traducciones);
                     ViewBag.menu13          = this.activeClass;
-                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    ViewBag.idPage          = id2;
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3,1, ip, this.idPagina);
                 }
                 catch (ErroresIUS x)
                 {

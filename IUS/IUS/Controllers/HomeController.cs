@@ -44,7 +44,7 @@ namespace IUS.Controllers
                     
                     this.setTraduccion(traducciones);
                     ViewBag.menu11 = this.activeClass;
-                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, 1,ip, this.idPagina);
                     ViewBag.urlBack         = IUSLibs.GENERALS.Rutas.IUSBACK;
                 }catch(ErroresIUS x){
                     ErrorsController error = new ErrorsController();

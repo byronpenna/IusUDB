@@ -24,15 +24,17 @@ namespace IUS.Models.general
         #endregion
         #region "funciones"
             
-            public List<NoticiaEvento> sp_adminfe_front_pantallaHome(int n, string ip, int idPagina)
+            public Dictionary<object,object> sp_adminfe_front_pantallaHome(int n, int pagina,string ip, int idPagina)
             {
                 try
                 {
                     PantallaHome pantalla = new PantallaHome();
                     List<NoticiaEvento> noticiasEventos = null;
                     NoticiaEvento notiEvento;
-                    DataRowCollection rows = pantalla.sp_adminfe_front_pantallaHome(n, ip, idPagina);
-                    if (rows.Count > 0)
+                    Dictionary<object,object> respuesta = pantalla.sp_adminfe_front_pantallaHome(n, pagina,ip, idPagina);
+                    DataRowCollection rows = (DataRowCollection)respuesta["notiEvento"];
+
+                    if (rows != null && rows.Count > 0)
                     {
                         noticiasEventos = new List<NoticiaEvento>();
                         foreach (DataRow row in rows)
@@ -41,7 +43,9 @@ namespace IUS.Models.general
                             noticiasEventos.Add(notiEvento);
                         }
                     }
-                    return noticiasEventos;
+                    respuesta.Add("noticiasEventos", noticiasEventos);
+                    respuesta.Remove("notiEvento");
+                    return respuesta;
                 }
                 catch (ErroresIUS x)
                 {

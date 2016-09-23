@@ -150,7 +150,8 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     ViewBag.tiposArchivos   = this._model.sp_repo_front_getTiposArchivos(lang,ip, this.idPagina);
                     ViewBag.menu24          = this.activeClass;
-                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3, ip, this.idPagina);
+                    // prestar atencion aqui 
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3,1, ip, this.idPagina);
                     ViewBag.tipoActual      = id;
                 }
                 catch (ErroresIUS x)
