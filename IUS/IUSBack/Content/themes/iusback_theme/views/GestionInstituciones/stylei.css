@@ -204,68 +204,33 @@ table.datatable {
 body {
   font-family: "MyriadRegular"; }
 
-.tabs {
+.tdPais {
+  width: 20%; }
+
+.tdFundacion {
+  width: 10%; }
+
+.tdDireccion, .tdNombreInsitucion, .tdPais, .tdTipo {
+  width: 15%; }
+
+.normalMode {
+  width: 100%;
+  text-align: justify; }
+
+/*Quitar en caso de usar tabs */
+.cuerpoModulo, .tabsHeader {
+  margin-top: 0%; }
+
+.tabsHeader {
+  display: none; }
+
+.tbInstituciones tr td:first-child, .tbInstituciones tr th:first-child {
+  display: none; }
+
+.txtAreaDireccion {
+  resize: none; }
+
+.divMensajesGenerales {
   margin-top: 5%; }
-  .tabs li {
-    padding-top: 10%;
-    padding-bottom: 10%;
-    border: solid 1px black;
-    list-style: none;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 3%; }
-    .tabs li:hover {
-      cursor: pointer; }
 
-.tabActive {
-  border-color: #cd1315 !important;
-  color: #cd1315 !important; }
-
-.divResultado {
-  margin-top: 3%; }
-
-.divRoles {
-  margin: 0;
-  margin-top: 3%; }
-
-.tableRolesTab1 tr td {
-  width: 33%; }
-
-.contenidoCuerpo {
-  border-bottom: solid 1px #cd1315;
-  padding-bottom: 60px; }
-
-.divSeleccioneRolTab2 {
-  margin-bottom: 2%; }
-  .divSeleccioneRolTab2 div {
-    display: block;
-    width: 30%;
-    margin: 0 auto; }
-
-.divSeleccioneRolTab2 div.divLbSelectRolTab2, #tab-2 h4 {
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold; }
-
-#tab-2 {
-  margin-top: 2%; }
-  #tab-2 h4 {
-    margin-bottom: 4%; }
-
-.divBusquedaOpcionesTab2 {
-  margin-bottom: 2%; }
-
-.tbMenus tbody tr {
-  cursor: pointer; }
-
-#tab-3 {
-  margin-top: 3%; }
-
-.centroRoles {
-  width: 95%;
-  margin: 0 auto; }
-
-.rowNavegacion {
-  margin-top: 3%; }
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=stylei.css.map */

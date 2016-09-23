@@ -34,7 +34,7 @@
 <input type="hidden" class="txtHdIdUsuario" value="@ViewBag.idUsuario"/>
 <input type="hidden" class="txtHdFuncion" value="@ViewBag.funcion" />
 
-<div class="centroRoles">
+<div class="centroRoles contenidoCuerpo">
     <div class="row marginNull">
         <div class="row marginNull rowNavegacion">
             <span>
@@ -51,9 +51,15 @@
 
     <div class="row marginNull">
         <div class="col-lg-3">
-            <ul class="menuLateral">
-                <li>
+            <ul class="tabs">
+                <li class="btnTab tabActive" target="#tab-1" id="1">
                     <span>Asignar roles</span>
+                </li>
+                <li class="btnTab" target="#tab-2" id="2">
+                    Permisos roles
+                </li>
+                <li class="btnTab " target="#tab-3" id="3">
+                    Administrar roles
                 </li>
             </ul>
         </div>
