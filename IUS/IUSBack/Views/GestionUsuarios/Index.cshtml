@@ -73,7 +73,7 @@
                             </select>
                         </td>
                         <td>
-                            <input name="txtEditUsuario" type="text" class="input-sm form-control enterNormal txtUsuarioEdit " /> <!-- txtEditUsuario -->
+                            <input name="txtEditUsuario" type="text" class="input-sm inputBack form-control enterNormal txtUsuarioEdit " /> <!-- txtEditUsuario -->
                             <div class="row marginNull divResultado hidden">
 
                             </div>
@@ -86,7 +86,7 @@
                             Activo
                         </td>
                         <td>
-                            <button class="btn btn-xs btn-default btnAgregarUsuario" @permiso.stringCrear>Crear</button>
+                            <button class="btn btn-xs btn-default btnBack inputBack btnAgregarUsuario" @permiso.stringCrear>Crear</button>
                         </td>
                     </tr>
                 </thead>
@@ -137,13 +137,13 @@
                                     </div>
                                     <div class="normalMode ">
                                         <div class="btn-group">
-                                            <button class="btn btn-xs btn-default btnEditar" @permiso.stringEditar>
+                                            <button class="btn btn-xs btn-default btnBack btnEditar" @permiso.stringEditar>
                                                 Editar
                                             </button>
-                                            <button class="btn btn-xs btn-default btnDeshabilitar" @permiso.stringEditar>
+                                            <button class="btn btn-xs btn-default btnBack btnDeshabilitar" @permiso.stringEditar>
                                                 @usu.txtBtnHabilitar
                                             </button>
-                                            <input type="button" class="btn-default btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
+                                            <input type="button" class="btn-default btnBack btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
 
                                         </div>
                                         @if (usu._persona._idPersona != -1)

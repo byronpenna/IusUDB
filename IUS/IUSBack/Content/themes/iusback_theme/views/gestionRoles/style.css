@@ -1,4 +1,20 @@
 @charset "UTF-8";
+.inputBack {
+  background: transparent;
+  border: solid 1px #828181;
+  border-radius: 0; }
+
+.btnBack {
+  border-radius: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: transparent; }
+
+.selectBack {
+  background: transparent;
+  height: 30px;
+  border-radius: 0; }
+
 .todo {
   width: 100%;
   max-width: 1250px;
@@ -49,6 +65,22 @@ body {
   display: inline-block;
   vertical-align: middle;
   float: none; }
+
+table {
+  border-collapse: collapse;
+  background: transparent; }
+  table thead tr td {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table thead tr th {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
 
 #menuLogout {
   color: #cc1315; }
@@ -185,22 +217,6 @@ footer {
 footer {
   margin-top: 5%; }
 
-table.dataTable.no-footer {
-  border: none; }
-
-table.datatable {
-  border-collapse: collapse; }
-  table.datatable thead tr td {
-    font-size: 14px; }
-  table.datatable thead tr th {
-    font-size: 14px; }
-  table.datatable tbody tr {
-    background: none; }
-  table.datatable tbody td {
-    border: solid 1px #828181;
-    color: #414141;
-    font-size: 14px; }
-
 body {
   font-family: "MyriadRegular"; }
 
@@ -221,6 +237,34 @@ body {
   border-color: #cd1315 !important;
   color: #cd1315 !important; }
 
+.chosen-container-active.chosen-with-drop .chosen-single, .chosen-container-single .chosen-single {
+  height: 30px;
+  border-radius: 0;
+  background: none;
+  padding-top: 3px; }
+
+.chosen-container-single .chosen-drop {
+  background: white; }
+
+.chosen-container-multi .chosen-choices {
+  background: none; }
+
+table.dataTable.no-footer {
+  border: none; }
+
+table.datatable {
+  border-collapse: collapse; }
+  table.datatable thead tr td {
+    font-size: 14px; }
+  table.datatable thead tr th {
+    font-size: 14px; }
+  table.datatable tbody tr {
+    background: none; }
+  table.datatable tbody td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
+
 .divResultado {
   margin-top: 3%; }
 
@@ -236,7 +280,7 @@ body {
   padding-bottom: 60px; }
 
 .divSeleccioneRolTab2 {
-  margin-bottom: 2%; }
+  margin-bottom: 4%; }
   .divSeleccioneRolTab2 div {
     display: block;
     width: 30%;
@@ -244,8 +288,7 @@ body {
 
 .divSeleccioneRolTab2 div.divLbSelectRolTab2, #tab-2 h4 {
   text-align: center;
-  font-size: 1.5em;
-  font-weight: bold; }
+  font-size: 1.3em; }
 
 #tab-2 {
   margin-top: 2%; }
@@ -266,6 +309,15 @@ body {
   margin: 0 auto; }
 
 .rowNavegacion {
+  margin-top: 3%; }
+
+.divAgregarRol {
+  margin-top: 3%; }
+
+.btnAsignarSubmenu, .btnAsignarPermiso {
+  cursor: pointer; }
+
+.cbRolTab2 {
   margin-top: 3%; }
 
 /*# sourceMappingURL=style.css.map */

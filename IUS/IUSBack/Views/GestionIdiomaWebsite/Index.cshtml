@@ -9,7 +9,7 @@
         <!-- datatable -->
             <!--<link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.css" />-->
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/stylei.css" />
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionIdiomaWebsite/media.css" />
 }
 @section scriptsPersonalizados{
@@ -23,139 +23,156 @@
         <script src="~/Scripts/Views/GestionIdiomaWebsite/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
     List<Pagina> paginas = (List<Pagina>)ViewBag.paginas;
     List<LlaveIdioma> llavesIdiomas = (List<LlaveIdioma>)ViewBag.tbTraducciones;
     Permiso permisos = (Permiso)ViewBag.permiso;
 }
 
-<div class="row marginNull cuerpoModulo">
-    <div class="row marginNull divAgregarLlaves">
-        <div class="col-lg-4 grupoInput">
-            <label>Seleccione pagina</label>
-            <select class="cbPagina">
-                <option disabled selected></option>
-                @foreach (Pagina pagina in paginas)
-                {
-                    <option value="@pagina._idPagina">@pagina._pagina</option>
-                }
-            </select>
-            <div class="row marginNull divResultado hidden">
-
-            </div>
+<div class="row marginNull centroPagina cuerpoIndex">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Gestion de website
+            </span>
         </div>
-        <div class="col-lg-4 grupoInput">
-            <label>Seleccione llave</label>
-            <select class="cbLlave">
-                <option disabled selected>Seleccione pagina primero</option>
-            </select>
-            <div class="row marginNull divResultado hidden">
-
-            </div>
-        </div>
-        <div class="col-lg-4 grupoInput">
-            <label>Seleccione idioma</label>
-            <select class="cbIdioma">
-                @foreach (Idioma idioma in idiomas)
-                {
-                    <option value="@idioma._idIdioma">@idioma._idioma</option>
-                }
-            </select>
-            <div class="row marginNull divResultado hidden">
-
-            </div>
-        </div>
-        <div class="col-lg-12 divTraduccion grupoInput">
-            <div class="col-lg-offset-4 col-lg-4">
-                <textarea placeholder="Ingrese traduccion de llave" class="form-control txtAreaTraduccion" name="txtAreaTraduccion"></textarea>
+        <div class="row marginNull divAgregarLlaves">
+            <div class="col-lg-4 grupoInput">
+                <label>Seleccione pagina</label>
+                <select class="cbPagina">
+                    <option disabled selected></option>
+                    @foreach (Pagina pagina in paginas)
+                    {
+                        <option value="@pagina._idPagina">@pagina._pagina</option>
+                    }
+                </select>
                 <div class="row marginNull divResultado hidden">
 
                 </div>
-                <div class="col-lg-12 text-center">
-                    <button class="btn btn-default btnAgregarLlave" @permisos.stringCrear>
-                        Agregar llave
-                    </button>
+            </div>
+            <div class="col-lg-4 grupoInput">
+                <label>Seleccione llave</label>
+                <select class="cbLlave">
+                    <option disabled selected>Seleccione pagina primero</option>
+                </select>
+                <div class="row marginNull divResultado hidden">
+
                 </div>
+            </div>
+            <div class="col-lg-4 grupoInput">
+                <label>Seleccione idioma</label>
+                <select class="cbIdioma">
+                    @foreach (Idioma idioma in idiomas)
+                    {
+                        <option value="@idioma._idIdioma">@idioma._idioma</option>
+                    }
+                </select>
+                <div class="row marginNull divResultado hidden">
+
+                </div>
+            </div>
+            <div class="col-lg-12 divTraduccion grupoInput">
+                <div class="col-lg-offset-4 col-lg-4">
+                    <textarea placeholder="Ingrese traduccion de llave" class="form-control txtAreaTraduccion" name="txtAreaTraduccion"></textarea>
+                    <div class="row marginNull divResultado hidden">
+
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <button class="btn btn-default btnAgregarLlave" @permisos.stringCrear>
+                            Agregar llave
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row marginNull divMensajesAgregar">
 
             </div>
         </div>
-        <div class="row marginNull divMensajesAgregar">
+        <div class="row marginNull">
+            <div class="col-lg-12">
+                <table class="tableLlaveIdioma table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="hidden"></th>
+                            <th>Pagina</th>
+                            <th>Llave</th>
+                            <th>Idioma</th>
+                            <th>Traduccion</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyTablaTraducciones">
+                        @if (llavesIdiomas != null)
+                        {
+                            foreach (LlaveIdioma llaveIdioma in llavesIdiomas)
+                            {
+                                <tr>
+                                    <td class="hidden">
+                                        <input value="@llaveIdioma._idLlaveIdioma" class="txtHdIdLlaveIdioma" name="txtHdIdLlaveIdioma" />
+                                        <input value="@llaveIdioma._llave._pagina._idPagina" class="txtHdIdPagina" name="txtHdIdPagina" />
+                                        <input value="@llaveIdioma._llave._idLlave" class="txtHdIdLlave" name="txtHdIdLlave" />
+                                        <input value="@llaveIdioma._idioma._idIdioma" class="txtHdIdIdioma" name="txtHdIdIdioma" />
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <select disabled class="cbEdit  cbEditPagina form-control" name="cbEditPagina"></select>
+                                        </div>
+                                        <div class="normalMode tdTxtPagina">
+                                            @llaveIdioma._llave._pagina._pagina
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <select disabled class="cbEdit  cbEditLlave form-control" name="cbEditLlave"></select>
+                                        </div>
+                                        <div class="normalMode tdTxtLlave">
+                                            @llaveIdioma._llave._llave
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <select class="cbEdit cbEditIdioma" name="cbEditIdioma"></select>
+                                        </div>
+                                        <div class="normalMode tdTxtPagina">
+                                            @llaveIdioma._idioma._idioma
+                                        </div>
 
-        </div>
-    </div>
-    <div class="row marginNull">
-        <div class="col-lg-12">
-            <table class="tableLlaveIdioma table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th class="hidden"></th>
-                        <th>Pagina</th>
-                        <th>Llave</th>
-                        <th>Idioma</th>
-                        <th>Traduccion</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="tbodyTablaTraducciones">
-                    @if (llavesIdiomas != null)
-                    {
-                        foreach(LlaveIdioma llaveIdioma in llavesIdiomas){
-                            <tr>
-                                <td class="hidden">
-                                    <input value="@llaveIdioma._idLlaveIdioma" class="txtHdIdLlaveIdioma" name="txtHdIdLlaveIdioma" />
-                                    <input value="@llaveIdioma._llave._pagina._idPagina" class="txtHdIdPagina" name="txtHdIdPagina" />
-                                    <input value="@llaveIdioma._llave._idLlave" class="txtHdIdLlave" name="txtHdIdLlave" />
-                                    <input value="@llaveIdioma._idioma._idIdioma" class="txtHdIdIdioma" name="txtHdIdIdioma" />
-                                </td>
-                                <td>
-                                    <div class="editMode hidden" >
-                                        <select disabled class="cbEdit  cbEditPagina form-control" name="cbEditPagina"></select>
-                                    </div>
-                                    <div class="normalMode tdTxtPagina">
-                                        @llaveIdioma._llave._pagina._pagina
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="editMode hidden">
-                                        <select disabled class="cbEdit  cbEditLlave form-control" name="cbEditLlave"></select>
-                                    </div>
-                                    <div class="normalMode tdTxtLlave">
-                                        @llaveIdioma._llave._llave
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="editMode hidden">
-                                        <select class="cbEdit cbEditIdioma" name="cbEditIdioma"></select>
-                                    </div>
-                                    <div class="normalMode tdTxtPagina">
-                                        @llaveIdioma._idioma._idioma
-                                    </div>
-                                
-                                </td>
-                                <td>
-                                    <div class="editMode hidden">
-                                        <textarea class="form-control txtAreaEditTraduccion" name="txtAreaEditTraduccion"></textarea>
-                                    </div>
-                                    <div class="normalMode tdTxtTraduccion">
-                                       @(new HtmlString(llaveIdioma._traduccion)) 
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="editMode hidden" >
-                                        <button class="btn btn-default btn-sm btnEditMode btnActualizar">Actualizar</button>
-                                        <button class="btn btn-default btn-sm btnEditMode btnCancelarEdit" >Cancelar</button>
-                                    </div>
-                                    <div class="normalMode">
-                                        <button class="btn btn-default btn-sm btnEditarTraduccion" @permisos.stringEditar >Editar</button>
-                                        <button class="btn btn-default btn-sm btEliminarTraduccion" @permisos.stringEliminar >Eliminar</button>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <textarea class="form-control txtAreaEditTraduccion" name="txtAreaEditTraduccion"></textarea>
+                                        </div>
+                                        <div class="normalMode tdTxtTraduccion">
+                                            @(new HtmlString(llaveIdioma._traduccion))
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <button class="btn btn-default btn-sm btnEditMode btnActualizar">Actualizar</button>
+                                            <button class="btn btn-default btn-sm btnEditMode btnCancelarEdit">Cancelar</button>
+                                        </div>
+                                        <div class="normalMode">
+                                            <button class="btn btn-default btn-sm btnEditarTraduccion" @permisos.stringEditar>Editar</button>
+                                            <button class="btn btn-default btn-sm btEliminarTraduccion" @permisos.stringEliminar>Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                    
-                </tbody>
-            </table>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    
 </div>

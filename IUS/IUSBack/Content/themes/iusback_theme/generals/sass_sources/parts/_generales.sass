@@ -1,9 +1,12 @@
+@import "controles/_controles.sass"
+// plugins 
+	//@import "plugins/_chosen.sass"
+	//@import "plugins/_dataTable.sass"
 .todo 
 	width: 100%
 	max-width: 1250px
 	margin: 0 auto
 	background: white
-
 body 
 	background: #c6c5c5
 	font-family: "MyriadRegular"
@@ -47,3 +50,29 @@ body
 	display: inline-block
 	vertical-align: middle
 	float: none 
+
+.visibilitiHidden
+	visibility: hidden
+
+.input-group-addon
+	border-radius: 0
+	border: solid 1px #828181
+// tabla 
+table 
+	border-collapse: collapse
+	background: transparent
+	thead
+		tr
+			
+			td 
+				font-size: 14px
+				border-bottom: solid 1px #828181 !important
+				text-align: center
+			th
+				font-size: 14px
+				border-bottom: solid 1px #828181 !important
+				text-align: center
+	td
+		border: solid 1px #828181
+		color: #414141
+		font-size: 14px

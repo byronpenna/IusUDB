@@ -7,28 +7,7 @@
 
 .inputBack {
   background: transparent;
-  border: solid 1px #828181;
-  border-radius: 0; }
-
-.btnBack {
-  border-radius: 0;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background: transparent; }
-
-.selectBack {
-  background: transparent;
-  height: 30px;
-  border-radius: 0; }
-
-.chosen-container-active.chosen-with-drop .chosen-single, .chosen-container-single .chosen-single {
-  height: 30px;
-  border-radius: 0;
-  background: none;
-  padding-top: 3px; }
-
-.chosen-container-single .chosen-drop {
-  background: #f3f2f2; }
+  border: solid 1px black; }
 
 body {
   background: #c6c5c5;
@@ -229,16 +208,19 @@ table.datatable {
 body {
   font-family: "MyriadRegular"; }
 
-.cuerpoModulo, .tabsHeader {
-  margin-top: 0%; }
+.divMensajesAgregar {
+  text-align: center;
+  margin-bottom: 3%;
+  font-size: 1.2em; }
 
-.tabsHeader {
-  display: none; }
+.btnAgregarLlave {
+  margin-top: 3%; }
 
-.tablaUniversal thead tr:nth-child(3) th {
-  border-bottom: none; }
+.divTraduccion {
+  margin-bottom: 3%;
+  margin-top: 3%; }
 
-.tablaUniversal thead tr th {
-  vertical-align: top; }
+.tableLlaveIdioma tbody tr td {
+  width: 20%; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=stylei.css.map */

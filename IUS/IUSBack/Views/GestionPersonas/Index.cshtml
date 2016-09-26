@@ -54,25 +54,25 @@
                     <tr>
                         <th class="hidden"></th>
                         <th>
-                            <input type="text" name="txtNombrePersona" tabindex="1" class="inputFormulario input-sm txtNombrePersona form-control soloLetras" />
+                            <input type="text" name="txtNombrePersona" tabindex="1" class="inputBack inputFormulario input-sm txtNombrePersona form-control soloLetras" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
                         </th>
                         <th>
-                            <input type="text" name="txtApellidoPersona" tabindex="2" class="inputFormulario input-sm txtApellidoPersona form-control soloLetras" />
+                            <input type="text" name="txtApellidoPersona" tabindex="2" class="inputBack inputFormulario input-sm txtApellidoPersona form-control soloLetras" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
                         </th>
                         <th>
-                            <input type="text" name="dtFechaNacimiento" tabindex="3" class="inputFormulario input-sm dtFechaNacimiento form-control" />
+                            <input type="text" name="dtFechaNacimiento" tabindex="3" class="inputBack inputFormulario input-sm dtFechaNacimiento form-control" />
                             <div class="row marginNull divResultado hidden">
 
                             </div>
                         </th>
                         <th>
-                            <select class="cbSexo form-control input-sm" name="cbSexo">
+                            <select class="cbSexo selectBack form-control input-sm" name="cbSexo">
                                 <option value="1">Masculino</option>
                                 <option value="2">Femenino</option>
                             </select>
@@ -81,7 +81,7 @@
                             </div>
                         </th>
                         <th>
-                            <button class="btn btn-xs btnAgregarPersona btn-default" @permisos.stringCrear>Crear</button>
+                            <button class="btn btn-xs btnBack btnAgregarPersona btn-default" @permisos.stringCrear>Crear</button>
                         </th>
                     </tr>
 
@@ -99,7 +99,7 @@
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <input type="text" name="txtNombrePersona" class="input-sm form-control txtNombrePersona txtEdit soloLetras" />
+                                        <input type="text" name="txtNombrePersona" class="inputBack input-sm form-control txtNombrePersona txtEdit soloLetras" />
                                         <div class="row marginNull divResultado hidden">
 
                                         </div>
@@ -108,7 +108,7 @@
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <input type="text" name="txtApellidoPersona" class="input-sm form-control txtApellidoPersona txtEdit soloLetras" />
+                                        <input type="text" name="txtApellidoPersona" class="inputBack input-sm form-control txtApellidoPersona txtEdit soloLetras" />
                                         <div class="row marginNull divResultado hidden">
 
                                         </div>
@@ -118,7 +118,7 @@
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <input type="text" name="dtFechaNacimiento" class="input-sm dtFechaNacimiento form-control txtEdit" />
+                                        <input type="text" name="dtFechaNacimiento" class="inputBack input-sm dtFechaNacimiento form-control txtEdit" />
                                         <div class="row marginNull divResultado hidden">
 
                                         </div>
@@ -127,7 +127,7 @@
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <select class="input-sm form-control cbSexo" name="cbSexo">
+                                        <select class="input-sm form-control selectBack cbSexo" name="cbSexo">
                                             <option value="1">Masculino</option>
                                             <option value="2">Femenino</option>
                                         </select>
@@ -146,8 +146,8 @@
                                     </div>
                                     <div class="normalMode">
                                         <div class="btn-group">
-                                            <button class="btn-default btn btn-xs btnEditar" @permisos.stringEditar>Editar</button>
-                                            <button class="btn-default btn btn-xs btnEliminar" @permisos.stringEliminar>Eliminar</button>
+                                            <button class="btn-default btnBack btn btn-xs btnEditar" @permisos.stringEditar>Editar</button>
+                                            <button class="btn-default btnBack btn btn-xs btnEliminar" @permisos.stringEliminar>Eliminar</button>
                                         </div>
                                         <a class="btn btn-xs " href="@Url.Action("Extras", "GestionPersonas", new { id=persona._idPersona})">
                                             Info adicional
