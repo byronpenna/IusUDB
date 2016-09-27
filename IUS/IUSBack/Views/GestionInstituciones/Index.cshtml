@@ -74,19 +74,19 @@
                             <tr class="trFrmInstituciones">
                                 <td></td>
                                 <td>
-                                    <input class="txtNombreInstitucion form-control txtNombreInstitucionVal" name="txtNombreInstitucion" />
+                                    <input class="inputBack txtNombreInstitucion form-control txtNombreInstitucionVal" name="txtNombreInstitucion" />
                                     <div class="row marginNull divResultado hidden">
 
                                     </div>
                                 </td>
                                 <td>
-                                    <textarea class="txtAreaDireccion form-control txtAreaDireccionVal" name="txtAreaDireccion"></textarea>
+                                    <textarea class="inputBack txtAreaDireccion form-control txtAreaDireccionVal" name="txtAreaDireccion"></textarea>
                                     <div class="row marginNull divResultado hidden">
 
                                     </div>
                                 </td>
                                 <td>
-                                    <select class="cbPais cbPaisVal" name="cbPais">
+                                    <select class="inputBack cbPais cbPaisVal" name="cbPais">
                                         @if (paises != null && paises.Count > 0)
                                         {
                                             int idContinente = -1; string optionGroup = ""; bool abierto = false;
@@ -116,13 +116,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="number" class="txtAnio form-control" name="txtAnio" />
+                                    <input type="number" class="inputBack txtAnio form-control" name="txtAnio" />
                                     <div class="row marginNull divResultado hidden">
 
                                     </div>
                                 </td>
                                 <td>
-                                    <select class="cbTipoInst form-control " name="cbTipoInst">
+                                    <select class="inputBack cbTipoInst form-control " name="cbTipoInst">
                                         @if (tiposInsituciones != null && tiposInsituciones.Count > 0)
                                         {
                                             foreach (TipoInstitucion tipoInstitucion in tiposInsituciones)
@@ -136,13 +136,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <input class="form-control txtCiudad" name="txtCiudad" />
+                                    <input class="inputBack form-control txtCiudad" name="txtCiudad" />
                                     <div class="row marginNull divResultado hidden">
 
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="btn btnAddInstitucion btn-default " @permiso.stringCrear>Agregar </button>
+                                    <button class="inputBack btn btnAddInstitucion btn-default " @permiso.stringCrear>Agregar </button>
                                 </td>
                             </tr>
                         </thead>

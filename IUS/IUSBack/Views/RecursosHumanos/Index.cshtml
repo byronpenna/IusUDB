@@ -7,8 +7,8 @@
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RecursosHumanos/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -19,6 +19,8 @@
             <script src="~/Scripts/Views/RecursosHumanos/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    
     List<NivelTitulo> nivelesTitulos = null; Dictionary<object, object> objInicial = null;
     List<Pais> paises = null; List<EstadoCivil> estadosCiviles = null; List<RubroEmpresa> rubrosEmpresa = null;
     List<EstadoCarrera> estadosCarreras = null; List<CargoEmpresa> cargos = null;
@@ -44,266 +46,270 @@
         
     }
 }
-<!-- Para ficha -->
-<div>
 
-</div>
-<!-- Normal -->
-<div class="row marginNull">
-    <div class="divTituloSec">
-        <h2 class="tituloSecciones">Busqueda</h2>
+<div class="row marginNull centroPagina ">
+    <!-- Para ficha -->
+    <div>
 
     </div>
-    <div class="row marginNull divTodoForm">
-        <div class="row marginNull controlCurriculum">
+    <!-- Normal -->
+    <div class="row marginNull">
+        <div class="divTituloSec">
+            <h2 class="tituloSecciones">Busqueda</h2>
+
+        </div>
+        <div class="row marginNull divTodoForm">
+            <div class="row marginNull controlCurriculum">
+                <div class="divTituloSec">
+                    <h2 class="subtituloSecciones">Formación</h2>
+                    <div class="col-lg-6">
+                        <h3 class="text-center ">Formación</h3>
+                        <div class="row marginNull controlesBusqueda controlesCurriculum">
+                            <div class="row marginNull">
+                                <div class="col-lg-4">
+                                    <label>Nivel</label>
+                                    <select name="cbNiveles" class=" form-control cbNiveles" multiple>
+                                        <!--<option value="-1">Todos</option>-->
+                                        @if (nivelesTitulos != null)
+                                        {
+                                            foreach (NivelTitulo nivelTitulo in nivelesTitulos)
+                                            {
+                                                <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Area carrera</label>
+                                    <select name="cbAreas" class="inputBack form-control cbAreas" multiple>
+                                        <!--<option value="-1">Cualquier area</option>-->
+                                        @if (areasCarreras != null && areasCarreras.Count > 0)
+                                        {
+                                            foreach (AreaCarrera areaCarrera in areasCarreras)
+                                            {
+                                                <option value="@areaCarrera._idArea">@areaCarrera._area</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Carrera</label>
+                                    <input type="text" class="inputBack form-control txtCarrera" name="txtCarrera" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center col-lg-6">
+                        <h3>Laboral</h3>
+                        <div class="row marginNull controlesBusqueda controlesCurriculum">
+                            <div class="col-lg-4">
+                                <label>Rubro empresa</label>
+                                <select name="cbRubros" class="inputBack cbRubros form-control" multiple>
+                                    <!--<option value="-1">Todos los rubros</option>-->
+                                    @if (rubrosEmpresa != null)
+                                    {
+                                        foreach (RubroEmpresa rubroEmpresa in rubrosEmpresa)
+                                        {
+                                            <option value="@rubroEmpresa._idRubro">@rubroEmpresa._rubro</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Cargos</label>
+                                <select multiple class="inputBack form-control cbCargo" name="cbCargo">
+                                    <option value="-1">Cualquier cargo</option>
+                                    @if (cargos != null)
+                                    {
+                                        foreach (CargoEmpresa cargo in cargos)
+                                        {
+                                            <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Actividades</label>
+                                <select class="inputBack form-control cbActividad" name="cbActividad">
+                                    <option value="-1">No importan las actividades</option>
+                                    @if (actividades != null && actividades.Count > 0)
+                                    {
+                                        foreach (ActividadEmpresa actividad in actividades)
+                                        {
+                                            <option>@actividad._actividad</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row marginNull detallesFinales">
+                <div class="divTituloSec">
+                    <h2 class="subtituloSecciones">Extras</h2>
+                    @*<h3 class="text-center ">Información adicional</h3>*@
+                    <div class="row controlesBusqueda marginNull">
+                        <div class="col-lg-offset-2 col-lg-3">
+                            <!---->
+                            <label>Modo de busqueda</label>
+                            <select name="cbAcademicoLaboral" class="inputBack form-control">
+                                <option value="1">Academico y laboral</option>
+                                <option value="2">Academico o laboral</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>Estado civil</label>
+                            <select multiple class="inputBack cbEstadoCivil form-control" name="cbEstadoCivil">
+                                <!--<option value="-1">Cualquiera</option>-->
+                                @if (estadosCiviles != null)
+                                {
+                                    foreach (EstadoCivil estadoCivil in estadosCiviles)
+                                    {
+                                        <option value="@estadoCivil._idEstadoCivil">@estadoCivil._estadoCivil</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>País de origen</label>
+                            <select multiple class="inputBack form-control cbPais" name="cbPais">
+                                <!--<option value="-1">Cualquiera</option>-->
+                                @if (paises != null)
+                                {
+                                    foreach (Pais pais in paises)
+                                    {
+                                        <option value="@pais._idPais">@pais._pais</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row marginNull rowDispararAccion">
+                <div class="col-lg-offset-4 col-lg-4 text-center">
+                    <button class="btn btn-default btnBack btnBusquedaPerfil">Realizar busqueda de perfil</button>
+                </div>
+            </div>
             <div class="divTituloSec">
-                <h2 class="subtituloSecciones">Formación</h2>
+                <div class="row marginNull divMensajesBusqueda">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="divTituloSec">
+            <h2 class="tituloSecciones hResultado">Resultados</h2>
+        </div>
+        <div class="row marginNull divResultado">
+            <div class="divTituloSec">
+                <div class="col-lg-4">
+                    <div class="row marginNull divContenedorPersonas">
+                        <table class="table tablaPersona">
+                            <thead>
+                                <tr>
+                                    <th>Nombre completo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbodyPersonas"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="divEncabezadoFicha">
+                        <div class="col-lg-3 text-right fotoEncabezadoFicha">
+                            <img class="fotoPrincipalFicha" src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")" />
+                        </div>
+                        <div class="col-lg-9">
+                            <h3 class="text-center hNombreCompleto"></h3>
+                            <div class="row marginNull informacionBasica">
+                                <div class="col-lg-6">
+                                    <div class="row marginNull">
+                                        <label>Sexo: </label>
+                                        <span class="spanSexo spanEncabezadoFicha"></span>
+                                    </div>
+                                    <div class="row marginNull">
+                                        <label>Edad: </label>
+                                        <span class="spanEdad spanEncabezadoFicha"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row marginNull">
+                                        <label>Pais de origen: </label>
+                                        <span class="spanNombrePais spanEncabezadoFicha"></span>
+                                    </div>
+                                    <div class="row marginNull">
+                                        <label>Estado civil: </label>
+                                        <span class="spanEstadoCivil spanEncabezadoFicha"></span>
+                                    </div>
+                                    <!--<h4 style="margin-top:0">Reseña</h4>
+                                    <p class="text-justify">
+                                        Soy un super mega trabajador genial me gusta bla bla y quisiera algun dia ser un maestro pokemon
+                                        por que deseo capturarlos a todos sin importar que cada generacion traiga consigo unos 100 pokemones mas
+                                    </p>-->
+                                </div>
+                            </div>
+                            <div class="row marginNull divBotonDetalle hidden">
+                                <a href="#" class="btn btn-default aDetalleCompleto">
+                                    Ver detalle completo
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="divTituloSec">
+            <h2 class="subtituloSecciones hResultado tituloFormacion">Formación</h2>
+        </div>
+        <div class="divCuerpoFormacion">
+            <div class="divTituloSec">
                 <div class="col-lg-6">
-                    <h3 class="text-center ">Formación</h3>
-                    <div class="row marginNull controlesBusqueda controlesCurriculum">
-                        <div class="row marginNull">
-                            <div class="col-lg-4">
-                                <label>Nivel</label>
-                                <select name="cbNiveles" class="form-control cbNiveles" multiple>
-                                    <!--<option value="-1">Todos</option>-->
-                                    @if (nivelesTitulos != null)
-                                    {
-                                        foreach (NivelTitulo nivelTitulo in nivelesTitulos)
-                                        {
-                                            <option value="@nivelTitulo._idNivel">@nivelTitulo._nombreNivel</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-lg-4">
-                                <label>Area carrera</label>
-                                <select name="cbAreas" class="form-control cbAreas" multiple>
-                                    <!--<option value="-1">Cualquier area</option>-->
-                                    @if (areasCarreras != null && areasCarreras.Count > 0)
-                                    {
-                                        foreach (AreaCarrera areaCarrera in areasCarreras)
-                                        {
-                                            <option value="@areaCarrera._idArea">@areaCarrera._area</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-lg-4">
-                                <label>Carrera</label>
-                                <input type="text" class="form-control txtCarrera" name="txtCarrera" />
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center col-lg-6">
-                    <h3>Laboral</h3>
-                    <div class="row marginNull controlesBusqueda controlesCurriculum">
-                        <div class="col-lg-4">
-                            <label>Rubro empresa</label>
-                            <select name="cbRubros" class="cbRubros form-control" multiple>
-                                <!--<option value="-1">Todos los rubros</option>-->
-                                @if (rubrosEmpresa != null)
-                                {
-                                    foreach (RubroEmpresa rubroEmpresa in rubrosEmpresa)
-                                    {
-                                        <option value="@rubroEmpresa._idRubro">@rubroEmpresa._rubro</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                        <div class="col-lg-4">
-                            <label>Cargos</label>
-                            <select multiple class="form-control cbCargo" name="cbCargo">
-                                <option value="-1">Cualquier cargo</option>
-                                @if (cargos != null)
-                                {
-                                    foreach (CargoEmpresa cargo in cargos)
-                                    {
-                                        <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                        <div class="col-lg-4">
-                            <label>Actividades</label>
-                            <select class="form-control cbActividad" name="cbActividad">
-                                <option value="-1">No importan las actividades</option>
-                                @if (actividades != null && actividades.Count > 0)
-                                {
-                                    foreach (ActividadEmpresa actividad in actividades)
-                                    {
-                                        <option>@actividad._actividad</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row marginNull detallesFinales">
-            <div class="divTituloSec">
-                <h2 class="subtituloSecciones">Extras</h2>
-                @*<h3 class="text-center ">Información adicional</h3>*@
-                <div class="row controlesBusqueda marginNull">
-                    <div class="col-lg-offset-2 col-lg-3">
-                        <!---->
-                        <label>Modo de busqueda</label>
-                        <select name="cbAcademicoLaboral" class="form-control">
-                            <option value="1">Academico y laboral</option>
-                            <option value="2">Academico o laboral</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2">
-                        <label>Estado civil</label>
-                        <select multiple class="cbEstadoCivil form-control" name="cbEstadoCivil">
-                            <!--<option value="-1">Cualquiera</option>-->
-                            @if (estadosCiviles != null)
-                            {
-                                foreach (EstadoCivil estadoCivil in estadosCiviles)
-                                {
-                                    <option value="@estadoCivil._idEstadoCivil">@estadoCivil._estadoCivil</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    <div class="col-lg-3">
-                        <label>País de origen</label>
-                        <select multiple class="form-control cbPais" name="cbPais">
-                            <!--<option value="-1">Cualquiera</option>-->
-                            @if (paises != null)
-                            {
-                                foreach (Pais pais in paises)
-                                {
-                                    <option value="@pais._idPais">@pais._pais</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="row marginNull rowDispararAccion">
-            <div class="col-lg-offset-4 col-lg-4 text-center">
-                <button class="btn btn-default btn-primary btnBusquedaPerfil">Realizar busqueda de perfil</button>
-            </div>
-        </div>
-        <div class="divTituloSec">
-            <div class="row marginNull divMensajesBusqueda">
-
-            </div>
-        </div>
-        
-    </div>
-    <div class="divTituloSec">
-        <h2 class="tituloSecciones hResultado">Resultados</h2>
-    </div>
-    <div class="row marginNull divResultado">
-        <div class="divTituloSec">
-            <div class="col-lg-4">
-                <div class="row marginNull divContenedorPersonas">
-                    <table class="table tablaPersona">
+                    <h3 class="text-center tituloCuerpoInformacion ">Laboral</h3>
+                    <table class="table tablaFormacion">
                         <thead>
                             <tr>
-                                <th>Nombre completo</th>
-                                <th>Acciones</th>
+                                <th>Empresa</th>
+                                <th>Cargo</th>
+                                <th>Actividades</th>
+                                <!--<th>Observaciones</th>-->
                             </tr>
                         </thead>
-                        <tbody class="tbodyPersonas"></tbody>
+                        <tbody class="tbodyEmpresa"></tbody>
+                    </table>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="text-center tituloCuerpoInformacion">Educativo</h3>
+                    <table class="table tablaFormacion">
+                        <thead>
+                            <tr>
+                                <th>Carrera</th>
+                                <th>Institucion</th>
+                                <th>Nivel</th>
+                                <th>Observaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbodyEducacion">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
-            <div class="col-lg-8">
-                <div class="divEncabezadoFicha">
-                    <div class="col-lg-3 text-right fotoEncabezadoFicha">
-                        <img class="fotoPrincipalFicha" src="@Url.Content("~/Content/themes/iusback_theme/img/general/profle.png")" />
-                    </div>
-                    <div class="col-lg-9">
-                        <h3 class="text-center hNombreCompleto"></h3>
-                        <div class="row marginNull informacionBasica">
-                            <div class="col-lg-6">
-                                <div class="row marginNull">
-                                    <label>Sexo: </label>
-                                    <span class="spanSexo spanEncabezadoFicha"></span>
-                                </div>
-                                <div class="row marginNull">
-                                    <label>Edad: </label>
-                                    <span class="spanEdad spanEncabezadoFicha"></span>
-                                </div>
 
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row marginNull">
-                                    <label>Pais de origen: </label>
-                                    <span class="spanNombrePais spanEncabezadoFicha"></span>
-                                </div>
-                                <div class="row marginNull">
-                                    <label>Estado civil: </label>
-                                    <span class="spanEstadoCivil spanEncabezadoFicha"></span>
-                                </div>
-                                <!--<h4 style="margin-top:0">Reseña</h4>
-                        <p class="text-justify">
-                            Soy un super mega trabajador genial me gusta bla bla y quisiera algun dia ser un maestro pokemon
-                            por que deseo capturarlos a todos sin importar que cada generacion traiga consigo unos 100 pokemones mas
-                        </p>-->
-                            </div>
-                        </div>
-                        <div class="row marginNull divBotonDetalle hidden">
-                            <a href="#" class="btn btn-default aDetalleCompleto">
-                                Ver detalle completo
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
         </div>
     </div>
-    <div class="divTituloSec">
-        <h2 class="subtituloSecciones hResultado tituloFormacion">Formación</h2>
-    </div>
-    <div class="divCuerpoFormacion">
-        <div class="divTituloSec">
-            <div class="col-lg-6">
-                <h3 class="text-center tituloCuerpoInformacion ">Laboral</h3>
-                <table class="table tablaFormacion">
-                    <thead>
-                        <tr>
-                            <th>Empresa</th>
-                            <th>Cargo</th>
-                            <th>Actividades</th>
-                            <!--<th>Observaciones</th>-->
-                        </tr>
-                    </thead>
-                    <tbody class="tbodyEmpresa"></tbody>
-                </table>
-            </div>
-            <div class="col-lg-6">
-                <h3 class="text-center tituloCuerpoInformacion">Educativo</h3>
-                <table class="table tablaFormacion">
-                    <thead>
-                        <tr>
-                            <th>Carrera</th>
-                            <th>Institucion</th>
-                            <th>Nivel</th>
-                            <th>Observaciones</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbodyEducacion">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-    </div>
+
 </div>
 

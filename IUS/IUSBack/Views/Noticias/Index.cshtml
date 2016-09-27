@@ -5,8 +5,8 @@
         <!--Data table-->
             <link rel="stylesheet" href="~/Content/third-party/datatable/css/jquery.dataTables.min.css" />
     <!-- propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -16,94 +16,113 @@
         <script src="~/Scripts/Views/Administracion/Noticias/principal/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/principal/functions.js"></script>
 }
-@section tabs{
-    <!--
-    <ul>
-        <li class="btnTab tabActive" target="#tab-1">
-            Noticias
-        </li>
-        <li class="tbCompartir btnTab" target="#tab-2">
-            Miniaturas
-        </li>
-    </ul>
-        -->
-}
+
+<!--
+   <ul>
+       <li class="btnTab tabActive" target="#tab-1">
+           Noticias
+       </li>
+       <li class="tbCompartir btnTab" target="#tab-2">
+           Miniaturas
+       </li>
+   </ul>
+       -->
+
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    
     List<Post> posts = (List<Post>)ViewBag.posts;
     Permiso permiso = (Permiso)ViewBag.permiso;
 }
-<div id="tab-1" class="row marginNull seccion tab">
-    <div class="cuerpoModulo divTable">
-        @if (permiso._crear)
-        {
-            <a class="btn botonAgregarNoticia" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
-                Agregar entrada
-            </a>
-        }
+<div class="row marginNull centroPagina cuerpoIndex">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Noticias
+            </span>
+        </div>
+        <div id="tab-1" class="row marginNull seccion tab">
+            <div class="cuerpoModulo divTable">
+                @if (permiso._crear)
+                {
+                    <a class="btn botonAgregarNoticia" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
+                        Agregar entrada
+                    </a>
+                }
 
-        <!--<button class="btn" type="button" @permiso.stringEditar>
-            Agregar entrada
-        </button>-->
-        <table class="table tbPosts">
-            <thead>
-                <tr>
-                    <th class="hidden"></th>
-                    <th>Titulo</th>
-                    <th>Creacion</th>
-                    <th>Ultima modificacion</th>
-                    <th>Descripcion</th>
-                    <th>Usuario creador</th>
-                    <th>Idioma</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (posts != null && posts.Count > 0)
-                {
-                    foreach (Post post in posts)
-                    {
+                <!--<button class="btn" type="button" @permiso.stringEditar>
+                Agregar entrada
+            </button>-->
+                <table class="table tbPosts">
+                    <thead>
                         <tr>
-                            <td class="hidden">
-                                <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
-                            </td>
-                            <td>@post._titulo</td>
-                            <td>@post.getFechaCreacion</td>
-                            <td>@post.getFechaModificacion</td>
-                            <td class="tdContenido">@post._descripcion</td>
-                            <td>@post._usuario._usuario</td>
-                            <td>@post._idioma._idioma</td>
-                            <td>
-                                
-                                <button class="btn btnPublicacion btn-default" @permiso.stringEditar>
-                                    @post.getTxtEstado
-                                </button>
-                                <a href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
-                                    Editar
-                                </a>
-                                <a href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
-                                    Imagen
-                                </a>
-                                <a href="@Url.Action("index", "ComentarioNoticia", new {id=post._idPost })">
-                                    Comentarios
-                                </a>
-                            </td>
+                            <th class="hidden"></th>
+                            <th>Titulo</th>
+                            <th>Creacion</th>
+                            <th>Ultima modificacion</th>
+                            <th>Descripcion</th>
+                            <th>Usuario creador</th>
+                            <th>Idioma</th>
+                            <th>Acciones</th>
                         </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        @for (int i = 0; i < 7; i++)
+                    </thead>
+                    <tbody>
+                        @if (posts != null && posts.Count > 0)
                         {
-                            <td class="text-center hidden"></td>    
+                            foreach (Post post in posts)
+                            {
+                                <tr>
+                                    <td class="hidden">
+                                        <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
+                                    </td>
+                                    <td>@post._titulo</td>
+                                    <td>@post.getFechaCreacion</td>
+                                    <td>@post.getFechaModificacion</td>
+                                    <td class="tdContenido">@post._descripcion</td>
+                                    <td>@post._usuario._usuario</td>
+                                    <td>@post._idioma._idioma</td>
+                                    <td>
+
+                                        <button class="btnBack btn btnPublicacion btn-default" @permiso.stringEditar>
+                                            @post.getTxtEstado
+                                        </button>
+                                        <a href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
+                                            Editar
+                                        </a>
+                                        <a href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
+                                            Imagen
+                                        </a>
+                                        <a href="@Url.Action("index", "ComentarioNoticia", new {id=post._idPost })">
+                                            Comentarios
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                        <td class="text-center" colspan="8">No hay posts para mostrar</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                        else
+                        {
+                            <tr>
+                                @for (int i = 0; i < 7; i++)
+                                {
+                                    <td class="text-center hidden"></td>
+                                }
+                                <td class="text-center" colspan="8">No hay posts para mostrar</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
+
 <div id="tab-2" class="row seccion tab hidden">
     <div class="thumbnailDiv row marginNull">
         <div class="col-lg-4 divPostThumbnail">

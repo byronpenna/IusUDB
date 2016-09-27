@@ -227,19 +227,6 @@ footer {
 body {
   font-family: "MyriadRegular"; }
 
-.chosen-container-active.chosen-with-drop .chosen-single, .chosen-container-single .chosen-single {
-  height: 30px;
-  border-radius: 0;
-  background: none;
-  padding-top: 3px;
-  border: solid 1px #828181; }
-
-.chosen-container-single .chosen-drop {
-  background: white; }
-
-.chosen-container-multi .chosen-choices {
-  background: none; }
-
 table.dataTable.no-footer {
   border: none; }
 
@@ -256,19 +243,44 @@ table.datatable {
     color: #414141;
     font-size: 14px; }
 
-.divMensajesAgregar {
+.tdContenido {
+  width: 30%; }
+
+/*Tab 2 */
+.divPostThumbnail {
   text-align: center;
-  margin-bottom: 3%;
-  font-size: 1.2em; }
-
-.btnAgregarLlave {
   margin-top: 3%; }
+  .divPostThumbnail img {
+    margin-top: 3%;
+    margin-bottom: 3%; }
 
-.divTraduccion {
-  margin-bottom: 3%;
-  margin-top: 3%; }
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+  .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0); }
 
-.tableLlaveIdioma tbody tr td {
-  width: 20%; }
+.botonAgregarNoticia {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  opacity: 0.5;
+  background: #F5F5F5;
+  font-weight: bold;
+  color: black;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-bottom: 2%;
+  border-color: black; }
+  .botonAgregarNoticia:hover {
+    opacity: 1; }
 
 /*# sourceMappingURL=stylei.css.map */
