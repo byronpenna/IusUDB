@@ -16,10 +16,12 @@
         <!-- Jcrop -->
             <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css" />
     <!-- propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfiguracionWebsite/media.css" />*@
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    
     List<RedSocial>     redesSociales   = (List<RedSocial>)ViewBag.redesSociales;
     Configuracion       config          = (Configuracion)ViewBag.config;
     List<Valor>         valores         = (List<Valor>) ViewBag.valores;
@@ -27,16 +29,16 @@
     Permiso             permiso         = (Permiso)ViewBag.permiso;
     DatosIUS            datosIUS        = (DatosIUS)ViewBag.datosIUS;
 }
-@section tabs{
-    <ul>
-        <li class="btnTab tabActive" target="#tab-1">
-            Basicas
-        </li>
-        <li class="btnTab" target="#tab-2">
-            Slider
-        </li>
-    </ul>
-}
+
+@*<ul>
+    <li class="btnTab tabActive" target="#tab-1">
+        Basicas
+    </li>
+    <li class="btnTab" target="#tab-2">
+        Slider
+    </li>
+</ul>*@
+
 <div id="div_carga">
     <div id="contenerdorCargadorAjax">
         <div id="cargadorAjaxUniversal">
@@ -49,207 +51,242 @@
         </div>
     </div>
 </div>
-<div id="tab-1" class="row seccion tab marginNull">
-    <div class="margenes">
-        <h2 class="leyendaImagen encabezadoTitulo">Datos ius</h2>
-        <div class="row marginNull rowDatosIUS">
-            <input type="hidden" value="@datosIUS._idDatosIuss" name="txtHdIdDatosIUS" class="txtHdIdDatosIUS" />
-            <div class="col-lg-6 control">
-                <label>Continentes Presentes</label>
-                <input class="form-control txtContinentesPresentes" type="number" name="txtContinentesPresentes" value="@datosIUS._continentesPresentes"/>
-                <div class="divResultado">
-                </div>
-            </div>
-            <div class="col-lg-6 control">
-                <label>Paises presentes</label>
-                <input class="form-control txtPaisesPresentes" type="number" name="txtPaisesPresentes" value="@datosIUS._paisesPresentes"/>
-                <div class="divResultado">
-                </div>
-            </div>
-            <div class="col-lg-6 control">
-                <label>Total instituciones</label>
-                <input class="form-control txtTotalInstituciones" type="number" name="txtTotalInstituciones" value="@datosIUS._totalInstituciones" />
-                <div class="divResultado">
-                </div>
-            </div>
-            <div class="col-lg-6 control">
-                <label>Total estudiantes</label>
-                <input class="form-control txtTotalEstudiantes" type="number" name="txtTotalEstudiantes" value="@datosIUS._totalEstudiantes" />
-                <div class="divResultado ">
-                </div>
-            </div>
-            <div class="col-lg-6 control">
-                <label>Total salesianos</label>
-                <input class="form-control txtTotalSalesianos" type="number" name="txtTotalSalesianos" value="@datosIUS._totalSalesianos" />
-                <div class="divResultado ">
-                </div>
-            </div>
-            <div class="col-lg-6 control">
-                <button class="btn btn-sm btn-default btnGuardarCambios">Guardar cambios</button>
-                <div class="row marginNull txtMensajesCambios">
-                    
-                </div>
+
+<div class="row marginNull centroPagina">
+    <div class="centro">
+        
+        <div class="row marginNull">
+            <div class="row marginNull rowNavegacion">
+                <span>
+                    <a href="@Url.Action("Index","Home")">
+                        Menu principal
+                    </a>
+                </span>
+                >>>
+                <span class="titulo">
+                    Configuración website
+                </span>
             </div>
         </div>
-    </div>
-    
 
-    @*<div class="col-lg-12 row ">
-            <div class="col-lg-6">
-                <h3 class="text-center">Informacion institucional</h3>
-                <div class="row marginNull divInfoInstitucional">
-
-                </div>
-                <form id="frmInstitucional">
-                    @if (config != null)
-                    {
-                        <div class="row marginNull seccionForm">
-                            <label>Vision</label>
-                            <textarea class="form-control" name="txtAreaVision" id="txtAreaVision">@config._vision</textarea>
-                        </div>
-                        <div class="row marginNull seccionForm">
-                            <label>Mision</label>
-                            <textarea class="form-control" name="txtAreaMision" id="txtAreaMision">@config._mision</textarea>
-                        </div>
-                        <div class="row marginNull seccionForm">
-                            <label>Historia</label>
-                            <textarea class="form-control" name="txtAreaHistoria" id="txtAreaHistoria">@config._historia</textarea>
-                        </div>
-                        <button class="btn btnActualizarIdeario " @permiso.stringEditar>Actualizar</button>
-                    }
-                    else
-                    {
-                        <span>Ocurrio un error en la carga</span>
-                    }
-                </form>
+        <div class="row marginNull">
+            <div class="col-lg-3">
+                <ul class="tabs">
+                    <li class="btnTab tabActive" target="#tab-1">
+                        Basicas
+                    </li>
+                    <li class="btnTab" target="#tab-2">
+                        Slider
+                    </li>
+                </ul>
             </div>
-            <div class="col-lg-6">
-                <div class="row">
-                    <h3 class="text-center">Valores Institucionales</h3>
-                    <label>Valor</label>
-                    <div class="row agregarValorSection">
-                        <div class="col-lg-10">
-                            <input type="text" name="txtValores" class="form-control txtValores soloLetras" />
-                        </div>
-                        <div class="col-lg-2">
-                            <button type="button" class="btn btnAddValor" @permiso.stringCrear>Agregar</button>
+            <div class="col-lg-9">
+                <div id="tab-1" class="row seccion tab marginNull">
+                    <div class="margenes">
+                        <h2 class="leyendaImagen encabezadoTitulo">Datos ius</h2>
+                        <div class="row marginNull rowDatosIUS">
+                            <input type="hidden" value="@datosIUS._idDatosIuss" name="txtHdIdDatosIUS" class="txtHdIdDatosIUS" />
+                            <div class="col-lg-6 control">
+                                <label>Continentes Presentes</label>
+                                <input class="inputBack form-control txtContinentesPresentes" type="number" name="txtContinentesPresentes" value="@datosIUS._continentesPresentes" />
+                                <div class="divResultado">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 control">
+                                <label>Paises presentes</label>
+                                <input class="inputBack form-control txtPaisesPresentes" type="number" name="txtPaisesPresentes" value="@datosIUS._paisesPresentes" />
+                                <div class="divResultado">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 control">
+                                <label>Total instituciones</label>
+                                <input class="inputBack form-control txtTotalInstituciones" type="number" name="txtTotalInstituciones" value="@datosIUS._totalInstituciones" />
+                                <div class="divResultado">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 control">
+                                <label>Total estudiantes</label>
+                                <input class="inputBack form-control txtTotalEstudiantes" type="number" name="txtTotalEstudiantes" value="@datosIUS._totalEstudiantes" />
+                                <div class="divResultado ">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 control">
+                                <label>Total salesianos</label>
+                                <input class="inputBack form-control txtTotalSalesianos" type="number" name="txtTotalSalesianos" value="@datosIUS._totalSalesianos" />
+                                <div class="divResultado ">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 control">
+                                <button class="btn btn-sm btnBack btn-default btnGuardarCambios">Guardar cambios</button>
+                                <div class="row marginNull txtMensajesCambios">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row marginNull divMensajesAdd">
+
+
+                    @*<div class="col-lg-12 row ">
+                <div class="col-lg-6">
+                    <h3 class="text-center">Informacion institucional</h3>
+                    <div class="row marginNull divInfoInstitucional">
 
                     </div>
-                    <table class="table tableValores">
-                        <thead>
-                            <tr>
-                                <th>Valor</th>
-                                <th>Accion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (valores != null)
-                            {
-                                foreach (Valor valor in valores)
+                    <form id="frmInstitucional">
+                        @if (config != null)
+                        {
+                            <div class="row marginNull seccionForm">
+                                <label>Vision</label>
+                                <textarea class="form-control" name="txtAreaVision" id="txtAreaVision">@config._vision</textarea>
+                            </div>
+                            <div class="row marginNull seccionForm">
+                                <label>Mision</label>
+                                <textarea class="form-control" name="txtAreaMision" id="txtAreaMision">@config._mision</textarea>
+                            </div>
+                            <div class="row marginNull seccionForm">
+                                <label>Historia</label>
+                                <textarea class="form-control" name="txtAreaHistoria" id="txtAreaHistoria">@config._historia</textarea>
+                            </div>
+                            <button class="btn btnActualizarIdeario " @permiso.stringEditar>Actualizar</button>
+                        }
+                        else
+                        {
+                            <span>Ocurrio un error en la carga</span>
+                        }
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <h3 class="text-center">Valores Institucionales</h3>
+                        <label>Valor</label>
+                        <div class="row agregarValorSection">
+                            <div class="col-lg-10">
+                                <input type="text" name="txtValores" class="form-control txtValores soloLetras" />
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="button" class="btn btnAddValor" @permiso.stringCrear>Agregar</button>
+                            </div>
+                        </div>
+                        <div class="row marginNull divMensajesAdd">
+
+                        </div>
+                        <table class="table tableValores">
+                            <thead>
+                                <tr>
+                                    <th>Valor</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (valores != null)
                                 {
-                                    <tr>
-                                        <td class="hidden">
-                                            <input type="text" name='txtIdValor' class="txtIdValor" value="@valor._idValor" />
-                                        </td>
-                                        <td>@valor._valor</td>
-                                        <td>
-                                            @if (permiso._eliminar)
-                                            {
-                                                <i class='fa fa-times pointer iconQuitarValor'></i>
-                                            }
-                                            else
-                                            {
-                                                <span>No posee permiso para remover</span>
-                                            }
+                                    foreach (Valor valor in valores)
+                                    {
+                                        <tr>
+                                            <td class="hidden">
+                                                <input type="text" name='txtIdValor' class="txtIdValor" value="@valor._idValor" />
+                                            </td>
+                                            <td>@valor._valor</td>
+                                            <td>
+                                                @if (permiso._eliminar)
+                                                {
+                                                    <i class='fa fa-times pointer iconQuitarValor'></i>
+                                                }
+                                                else
+                                                {
+                                                    <span>No posee permiso para remover</span>
+                                                }
 
-                                        </td>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="trNoValor">
+                                        <td class="text-center" colspan="2">No posee ningun valor</td>
                                     </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>*@
+                </div>
+                <div id="tab-2" class="row seccion tab marginNull hidden">
+                    @if (@permiso._crear)
+                    {
+                        <div class="subirDiv row marginNull">
+                            <div class="formularioSubir margenes text-center">
+                                <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data">
+                                    <h2 class="encabezadoTitulo">Subir una imagen</h2>
+                                    @* ****Para imagen de slider **** *@
+                                    <div class="row marginNull rowImagenCortar">
+                                        <img class="imgSlide" src="@Url.Content("~/Content/themes/iusback_theme/img/general/noimage.png")" />
+                                    </div>
+                                    <div class="divImgSlideLoading">
+
+                                    </div>
+                                    <div class="row marginNull divCorte hidden">
+                                        @**@
+                                        <input class="x" name="x" value="0" />
+                                        <input class="y" name="y" value="0" />
+
+                                        <input class="imgAncho" name="imgAncho" value="0" />
+                                        <input class="imgAlto" name="imgAlto" value="0" />
+                                    </div>
+                                    @* ****  **** *@
+                                    <div class="row marginNull ">
+                                        <div class="fileUpload btn btn-default rowImagen">
+                                            <span>Seleccionar imagen</span>
+                                            <input class="btnBack flImagen upload" required type="file" id="file1" name="file1" accept="image/*" /><!--multiple="multiple" -->
+                                        </div>
+                                    </div>
+                                    <div class="row marginNull">
+                                        <button type="submit" class="btnBack btn btn-default btnSubir">Subir</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    }
+                    <div class="margenes">
+                        <h2 class="leyendaImagen encabezadoTitulo">Imagenes de Slider</h2>
+                        <div class="divImgSlider marginNull">
+                            @if (slider != null && slider.Count > 0)
+                            {
+                                foreach (SliderImage image in slider)
+                                {
+                                    <div class="col-lg-6 divImgIndividual">
+                                        <input type="hidden" name="txtHdIdSliderImage" class="txtHdIdSliderImage" value="@image._idSliderImage" />
+                                        <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
+                                        <div class="row marginNull botonesControlImage">
+                                            <div class="btn-group">
+                                                <button class="btnBack btn btn-default btnEliminarImage" @permiso.stringEliminar>
+                                                    Eliminar
+                                                </button>
+                                                <button class="btnBack btn btn-default btnDeshabilitarSliderImage" estado="@Convert.ToInt32(image._estado)" @permiso.stringEditar>
+                                                    @image.textoEstado
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
                             }
                             else
                             {
-                                <tr class="trNoValor">
-                                    <td class="text-center" colspan="2">No posee ningun valor</td>
-                                </tr>
+                                <div class="noImageSection">
+                                    <img src="~/Content/themes/iusback_theme/img/views/ConfiguracionWebsite/noimage.png" />
+                                    <h4>No hay ninguna imagen para mostrar</h4>
+                                </div>
                             }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>*@
-</div>
-<div id="tab-2" class="row seccion tab marginNull hidden">
-    @if (@permiso._crear)
-    {
-        <div class="subirDiv row marginNull">
-            <div class="formularioSubir margenes text-center">
-                <form id="frm" action="@Url.Action("UploadHomeReport")" method="post" enctype="multipart/form-data">
-                    <h2 class="encabezadoTitulo">Subir una imagen</h2>
-                    @* ****Para imagen de slider **** *@
-                    <div class="row marginNull rowImagenCortar">
-                        <img class="imgSlide" src="@Url.Content("~/Content/themes/iusback_theme/img/general/noimage.png")" />
-                    </div>
-                    <div class="divImgSlideLoading">
-
-                    </div>
-                    <div class="row marginNull divCorte hidden">
-                        @**@
-                    <input class="x" name="x" value="0" />
-                    <input class="y" name="y" value="0" />
-
-                    <input class="imgAncho" name="imgAncho" value="0" />
-                    <input class="imgAlto" name="imgAlto" value="0" />
-                </div>
-                    @* ****  **** *@
-                    <div class="row marginNull ">
-                        <div class="fileUpload btn btn-default rowImagen">
-                            <span>Seleccionar imagen</span>
-                            <input class="flImagen upload" required type="file" id="file1" name="file1" accept="image/*" /><!--multiple="multiple" -->
                         </div>
                     </div>
-                    <div class="row marginNull">
-                        <button type="submit" class="btn btn-default btnSubir">Subir</button>
-                    </div>
-                </form>
-            </div>
-         </div>
-            
-    }
-    <div class="margenes">
-        <h2 class="leyendaImagen encabezadoTitulo">Imagenes de Slider</h2>
-        <div class="divImgSlider marginNull">
-            @if (slider != null && slider.Count > 0)
-            {
-                foreach (SliderImage image in slider)
-                {
-                    <div class="col-lg-6 divImgIndividual">
-                        <input type="hidden" name="txtHdIdSliderImage" class="txtHdIdSliderImage" value="@image._idSliderImage" />
-                        <img src="data:image/png;base64,@Convert.ToBase64String(image._imagen,0,image._imagen.Length)" class="fullSize" />
-                        <div class="row marginNull botonesControlImage">
-                            <div class="btn-group">
-                                <button class="btn btn-default btnEliminarImage" @permiso.stringEliminar>
-                                    Eliminar
-                                </button>
-                                <button class="btn btn-default btnDeshabilitarSliderImage" estado="@Convert.ToInt32(image._estado)" @permiso.stringEditar>
-                                    @image.textoEstado
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-            else
-            {
-                <div class="noImageSection">
-                    <img src="~/Content/themes/iusback_theme/img/views/ConfiguracionWebsite/noimage.png" />
-                    <h4>No hay ninguna imagen para mostrar</h4>
+
                 </div>
-            }
+            </div>
         </div>
+
     </div>
-    
 </div>
 
