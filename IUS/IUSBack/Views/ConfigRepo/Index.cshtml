@@ -1,5 +1,6 @@
 ﻿@using IUSLibs.REPO.Entidades
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     Dictionary<object, object> iniciales = null;
     List<ExtensionArchivo> extensiones = null;
     try
@@ -16,58 +17,76 @@
 
 @section estilosPersonalizados{
     <!-- Propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfigRepo/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfigRepo/media.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfigRepo/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/ConfigRepo/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- Propios -->
         <script src="~/Scripts/Views/ConfigRepo/script.js"></script>
         <script src="~/Scripts/Views/ConfigRepo/functions.js"></script>
 }
-<h2>Asociacion de extensiones</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Extensión</th>
-            <th>Tipo de archivo</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (extensiones != null && extensiones.Count > 0)
-        {
-            foreach (ExtensionArchivo extension in extensiones)
-            {
+<div class="row marginNull centroPagina cuerpoIndex">
+    <div class="centro">
+        @*<h2>Asociacion de extensiones</h2>*@
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Asociación de extensiones
+            </span>
+        </div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td class="hidden">
-                        <input type="hidden" value="@extension._tipoArchivo._idTipoArchivo" class="txtHdIdTipoArchivo"/>
-                        <input type="hidden" value="@extension._idExtension" class="txtHdIdExtension" name="txtHdIdExtension" />
-                    </td>
-                    <td>
-                        @extension._extension
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <select class="cbTipoArchivo form-control" name="cbTipoArchivo"></select>
-                        </div>
-                        <div class="normalMode tdTipoArchivo">
-                            @extension._tipoArchivo._tipoArchivo
-                        </div>
-                    </td>
-                    <td>
-                        <div class="editMode hidden">
-                            <button class="btn  btnBack btn-default btnGuardar">Guardar</button>
-                            <button class="btn btnBack btn-default btnCancelar">Cancelar</button>
-                        </div>
-                        <div class="normalMode">
-                            <button class="btn btnBack btn-default btnCambiar">Cambiar</button>
-                        </div>
-                    </td>
+                    <th>Extensión</th>
+                    <th>Tipo de archivo</th>
+                    <th>Acciones</th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @if (extensiones != null && extensiones.Count > 0)
+                {
+                    foreach (ExtensionArchivo extension in extensiones)
+                    {
+                        <tr>
+                            <td class="hidden">
+                                <input type="hidden" value="@extension._tipoArchivo._idTipoArchivo" class="txtHdIdTipoArchivo" />
+                                <input type="hidden" value="@extension._idExtension" class="txtHdIdExtension" name="txtHdIdExtension" />
+                            </td>
+                            <td>
+                                @extension._extension
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <select class="inputBack cbTipoArchivo form-control" name="cbTipoArchivo"></select>
+                                </div>
+                                <div class="normalMode tdTipoArchivo">
+                                    @extension._tipoArchivo._tipoArchivo
+                                </div>
+                            </td>
+                            <td>
+                                <div class="editMode hidden">
+                                    <div class="btn-group">
+                                        <button class="btn  btnBack btn-default btnGuardar">Guardar</button>
+                                        <button class="btn btnBack btn-default btnCancelar">Cancelar</button>
+                                    </div>
+                                </div>
+                                <div class="normalMode">
+                                    <button class="btn btnBack btn-default btnCambiar">Cambiar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
 
-        }
+                }
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 

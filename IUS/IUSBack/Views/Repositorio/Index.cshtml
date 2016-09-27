@@ -169,7 +169,7 @@
         </div>
     </div>
     <div class="row marginNull">
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
             @*<ul class="tabs">
                 <li class="btnTab tabActive" target="#tab-1" id="1">
@@ -183,15 +183,15 @@
                 </li>
             </ul>*@
         </div>
-        <div class="col-lg-9">
-            <div class="row marginNull centroPagina">
+        <div class="col-lg-10">
+            <div class="row marginNull centroArchivos">
                 
                 <div id="tab-1" class="row tab marginNull">
                     <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
                     <div class="divMensajesGenerales">
 
                     </div>
-                    <div class="folders col-lg-8" id="folders">
+                    <div class="folders col-lg-7" id="folders">
                         <!--
 
             -->
@@ -200,14 +200,14 @@
                         </div>
                         <div class="listView @clases[0]">
                             <div class="row divCabeceraList">
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
                                     Nombre
                                 </div>
                                 <div class="col-lg-2">
                                     Tipo
                                 </div>
                                 <div class="col-lg-2">
-                                    Fecha de creación
+                                    Fecha
                                 </div>
                                 <div class="col-lg-2">
                                     Acciones
@@ -220,8 +220,7 @@
                                     {
                                         <div class='row folderDetalles carpetaDetalle '>
                                             <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpeta">
-                                            <div class='col-lg-6'>
-                                                <i class='fa fa-folder'></i>
+                                            <div class='col-lg-5'>
                                                 <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
                                                 <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
                                             </div>
@@ -241,7 +240,7 @@
                                     {
                                         <div class='row folderDetalles folderUni'>
                                             <input type='hidden' class='txtHdIdArchivo' value="@archivo._idArchivo">
-                                            <div class='col-lg-6'>
+                                            <div class='col-lg-5'>
                                                 <div class='normalMode inline'>
                                                     <span class='spanNombreCarpeta sinRedirect nombreAcompartir ttlNombreCarpeta'>@archivo._nombre</span>
                                                 </div>
@@ -350,7 +349,7 @@
                             }
                         </div>
                     </div>
-                    <div class="shareSection col-lg-4 ">
+                    <div class="shareSection col-lg-5 ">
                         <input type="hidden" name="txtHdIdArchivoCompartir" class="txtHdIdArchivoCompartir" value="-1" />
                         <h3 class="text-center">Publico</h3>
                         <h4 class="nombreFileCompartir"></h4>
