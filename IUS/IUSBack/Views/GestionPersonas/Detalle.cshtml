@@ -45,27 +45,25 @@
         <script src="~/Scripts/Views/GestionPersonas/Detalle/functions.js"></script>
 }
 @section arbol{
-    <a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.urlFrom">
-        @*<a href="@Url.Action("Index")">*@
-        <div class="col-lg-8">
-            @ViewBag.textoFrom
-        </div>
-        <div class="col-lg-4 divChevron">
-            <i class="fa fa-chevron-right navChevron"></i>
-        </div>
-        @*</a>*@
-    </a>
-    <a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.currentUrl">
-        @*<a href="@ViewBag.currentUrl">*@
-        <div class="col-lg-8">
-            Info adicional
-        </div>
-        <div class="col-lg-4 divChevron">
-            <i class="fa fa-chevron-right navChevron"></i>
-        </div>
-        @*</a>*@
-    </a>
+    
 }
+@*<a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.urlFrom">
+    <div class="col-lg-8">
+        @ViewBag.textoFrom
+    </div>
+    <div class="col-lg-4 divChevron">
+        <i class="fa fa-chevron-right navChevron"></i>
+    </div>
+</a>
+<a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.currentUrl">
+    <div class="col-lg-8">
+        Info adicional
+    </div>
+    <div class="col-lg-4 divChevron">
+        <i class="fa fa-chevron-right navChevron"></i>
+    </div>
+</a>*@
+
 <h2 class="text-center">@persona.nombreCompleto</h2>
 <div class="row marginNull">
     <div class="row marginNull imgPic">
