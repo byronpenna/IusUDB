@@ -3,6 +3,7 @@
 @using IUSLibs.RRHH.Entidades
 @using IUSLibs.SEC.Entidades
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     Dictionary<object, object>  detalle     = (Dictionary<object, object>)ViewBag.detalle;
     Dictionary<object, object>  medios      = (Dictionary<object, object>)ViewBag.medios;
     // info
@@ -34,8 +35,8 @@
     <!-- plugins -->
 
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Detalle/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -44,9 +45,7 @@
         <script src="~/Scripts/Views/GestionPersonas/Detalle/script.js"></script>
         <script src="~/Scripts/Views/GestionPersonas/Detalle/functions.js"></script>
 }
-@section arbol{
-    
-}
+
 @*<a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.urlFrom">
     <div class="col-lg-8">
         @ViewBag.textoFrom
@@ -64,194 +63,215 @@
     </div>
 </a>*@
 
-<h2 class="text-center">@persona.nombreCompleto</h2>
-<div class="row marginNull">
-    <div class="row marginNull imgPic">
-        <img src="@fotoRuta"/>
-    </div>
-    <div class="row marginNull divInfo">
-        <div class="col-lg-offset-3 col-lg-2 tarjetaInfo t1">
-            <h3>Sexo</h3>
-            <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/"+persona._sexo._idSexo+".png")" />
-            <h4>@persona._sexo._sexo</h4>
+
+<div class="row marginNull centroPagina">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span>
+                <a href="@Url.Action("Index","GestionPersonas")">
+                    Gestion persona
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Gestion de usuarios
+            </span>
         </div>
-        <div class="col-lg-2 tarjetaInfo t2" >
-            <h3>Pais de origen</h3>
-            <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/"+infoPersona._pais._idPais+".png")" />
-            <h4>@pais</h4>
+        <h2 class="text-center">@persona.nombreCompleto</h2>
+        <div class="row marginNull imgPic">
+            <img src="@fotoRuta" />
         </div>
-        <div class="col-lg-2 tarjetaInfo t1">
-            <h3>Nacio</h3>
-            <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/views/Persona/pastel.png")" />
-            <h4>@persona.getFechaNac</h4>
+        <div class="row marginNull divInfo">
+            <div class="col-lg-offset-3 col-lg-2 tarjetaInfo t1">
+                <h3>Sexo</h3>
+                <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/"+persona._sexo._idSexo+".png")" />
+                <h4>@persona._sexo._sexo</h4>
+            </div>
+            <div class="col-lg-2 tarjetaInfo t2">
+                <h3>Pais de origen</h3>
+                <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/"+infoPersona._pais._idPais+".png")" />
+                <h4>@pais</h4>
+            </div>
+            <div class="col-lg-2 tarjetaInfo t1">
+                <h3>Nacio</h3>
+                <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/views/Persona/pastel.png")" />
+                <h4>@persona.getFechaNac</h4>
+            </div>
         </div>
-    </div>
-    <div class="row marginNull divInfoI">
-        <h2 class="tituloSecciones">Informacion de contacto <small><a href="@Url.Action("Extras", "GestionPersonas", new { id=@persona._idPersona})">Editar</a></small> </h2>
-        <div class="col-lg-6">
-            <h3 class="text-center">Correos</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Email</th>
-                        <th>Etiqueta</th>
-                        <th>Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (emails != null && emails.Count > 0)
-                    {
-                        foreach (EmailPersona email in emails)
+        <div class="row marginNull divInfoI">
+            <h2 class="tituloSecciones">Informacion de contacto <small><a href="@Url.Action("Extras", "GestionPersonas", new { id=@persona._idPersona})">Editar</a></small> </h2>
+            <div class="col-lg-6">
+                <h3 class="text-center">Correos</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Etiqueta</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (emails != null && emails.Count > 0)
+                        {
+                            foreach (EmailPersona email in emails)
+                            {
+                                <tr>
+                                    <td>@email._email</td>
+                                    <td>@email._descripcion</td>
+                                    <td>
+                                        <a href="mailto:@email._email" title="Escribir">
+                                            <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>@email._email</td>
-                                <td>@email._descripcion</td>
-                                <td>
-                                    <a href="mailto:@email._email" title="Escribir">
-                                        <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
-                                    </a>
+                                <td colspan="3" class="text-center">No hay correos asignados</td>
+                            </tr>
+                        }
+                        @*<tr>
+                            <td>byronpenna@gmail.com</td>
+                            <td>Personal</td>
+                            <td>
+                                <a href="#" title="Escribir">
+                                    <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
+                                </a>
+
+                            </td>
+                        </tr>*@
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="text-center">Numeros telefonicos</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Telefono</th>
+                            <th>Etiqueta</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (telefonos != null)
+                        {
+                            foreach (TelefonoPersona telefono in telefonos)
+                            {
+                                <tr>
+                                    <td>@telefono._telefono</td>
+                                    <td>@telefono._descripcion</td>
+                                    <td>
+                                        <a href="tel:@telefono._telefono" title="Llamar">
+                                            <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    No hay telefonos asignados
                                 </td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="3" class="text-center">No hay correos asignados</td>
-                        </tr>
-                    }
-                    @*<tr>
-                        <td>byronpenna@gmail.com</td>
-                        <td>Personal</td>
-                        <td>
-                            <a href="#" title="Escribir">
-                                <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
-                            </a>
-                            
-                        </td>
-                    </tr>*@
-                </tbody>
-            </table>
+                        @*<tr>
+                            <td>7871-9006</td>
+                            <td>Personal</td>
+                            <td>
+                                <a href="#" title="Llamar">
+                                    <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
+                                </a>
+                            </td>
+                        </tr>*@
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <h3 class="text-center">Numeros telefonicos</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Telefono</th>
-                        <th>Etiqueta</th>
-                        <th>Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (telefonos != null)
-                    {
-                        foreach (TelefonoPersona telefono in telefonos)
+        <div class="row marginNull divInfoI">
+            <h2 class="tituloSecciones">Formación</h2>
+            <div class="col-lg-6">
+                <h3 class="text-center">Profesional <small><a href="@Url.Action("Index", "FormacionPersonas", new { id=persona._idPersona })">Editar</a></small></h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Carrera</th>
+                            <th>Institución</th>
+                            <th>País</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (formaciones != null && formaciones.Count > 0)
+                        {
+                            foreach (FormacionPersona formacion in formaciones)
+                            {
+                                <tr>
+                                    <td>@formacion._carrera</td>
+                                    <td>@formacion._institucion</td>
+                                    <td>@formacion._paisInstitucion._pais</td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>@telefono._telefono</td>
-                                <td>@telefono._descripcion</td>
-                                <td>
-                                    <a href="tel:@telefono._telefono" title="Llamar">
-                                        <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
-                                    </a>
+                                <td colspan="3" class="text-center">No hay formación profesional asignada</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="text-center">Academica <small><a href="@Url.Action("Index", "GestionLaboral", new {id=persona._idPersona })">Editar</a></small></h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Cargo</th>
+                            <th>Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (laborales != null && laborales.Count > 0)
+                        {
+                            foreach (LaboralPersona laboral in laborales)
+                            {
+                                <tr>
+                                    <td>Nombre institucion</td>
+                                    <td>@laboral._cargo._cargo</td>
+                                    <td>Realizar suma</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-center" colspan="3">
+                                    No hay información laboral
                                 </td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="3" class="text-center">
-                                No hay telefonos asignados
-                            </td>
-                        </tr>
-                    }
-                    @*<tr>
-                        <td>7871-9006</td>
-                        <td>Personal</td>
-                        <td>
-                            <a href="#" title="Llamar">
-                                <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
-                            </a>
-                        </td>
-                    </tr>*@
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row marginNull text-center divInfoI">
+            <h2 class="tituloSecciones text-center">Exportar</h2>
+            <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=1})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")" /></a>
+            <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=2})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/wordico.png")" /></a>
+            <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=3})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/excel-ico.png")" /></a>
         </div>
     </div>
-    <div class="row marginNull divInfoI">
-        <h2 class="tituloSecciones">Formación</h2>
-        <div class="col-lg-6">
-            <h3 class="text-center">Profesional <small><a href="@Url.Action("Index", "FormacionPersonas", new { id=persona._idPersona })">Editar</a></small></h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Carrera</th>
-                        <th>Institución</th>
-                        <th>País</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (formaciones != null && formaciones.Count > 0)
-                    {
-                        foreach (FormacionPersona formacion in formaciones)
-                        {
-                            <tr>
-                                <td>@formacion._carrera</td>
-                                <td>@formacion._institucion</td>
-                                <td>@formacion._paisInstitucion._pais</td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="3" class="text-center">No hay formación profesional asignada</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="col-lg-6">
-            <h3 class="text-center">Academica <small><a href="@Url.Action("Index", "GestionLaboral", new {id=persona._idPersona })">Editar</a></small></h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Empresa</th>
-                        <th>Cargo</th>
-                        <th>Tiempo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (laborales != null && laborales.Count > 0)
-                    {
-                        foreach (LaboralPersona laboral in laborales)
-                        {
-                            <tr>
-                                <td>Nombre institucion</td>
-                                <td>@laboral._cargo._cargo</td>
-                                <td>Realizar suma</td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td class="text-center" colspan="3">
-                                No hay información laboral
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        
-    </div>
-    <div class="row marginNull text-center divInfoI">
-        <h2 class="tituloSecciones text-center">Exportar</h2>
-        <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=1})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")"/></a>
-        <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=2})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/wordico.png")" /></a>
-        <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=3})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/excel-ico.png")" /></a>
-    </div>
+    
 </div>
