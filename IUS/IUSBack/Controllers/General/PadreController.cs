@@ -100,7 +100,7 @@ namespace IUSBack.Controllers
                             informacionPersona._tieneFoto = true;
                         }
                         
-                        ViewBag.informacionPersona = informacionPersona;
+                        ViewBag.informacionPersonaGlobal = informacionPersona;
                         ViewBag.selectedMenu = selectedMenu;
                         ViewBag.currentUrl = Request.Url.AbsoluteUri;
                         ViewBag.cnEventos = this._model.sp_adminfe_countTodayEvents(idPagina, usuarioSesion._idUsuario);

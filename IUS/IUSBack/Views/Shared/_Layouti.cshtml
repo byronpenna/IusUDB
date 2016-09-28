@@ -1,8 +1,8 @@
 ﻿@using IUSLibs.RRHH.Entidades
 @{
-    InformacionPersona informacion = (InformacionPersona)ViewBag.informacionPersona;
+    InformacionPersona informacion = (InformacionPersona)ViewBag.informacionPersonaGlobal;
     string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");
-    if (informacion._tieneFoto)
+    if (informacion != null && informacion._tieneFoto)
     {
         fotoRuta = Url.Content(informacion._fotoRuta);
     }
