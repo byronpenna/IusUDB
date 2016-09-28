@@ -8,8 +8,8 @@
         <!-- Jcrop -->
             <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css"/>
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/Extras/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -21,29 +21,26 @@
         <script src="~/Scripts/Views/GestionPersonas/Extras/script.js"></script>
         <script src="~/Scripts/Views/GestionPersonas/Extras/functions.js"></script>
 }
-@section arbol{
-    <a class="col-lg-3 text-center cuadritoArbol" href="@Url.Action("Index")">
-        @*<a href="@Url.Action("Index")">*@
-        <div class="col-lg-8">
-            Personas
-        </div>
-        <div class="col-lg-4 divChevron">
-            <i class="fa fa-chevron-right navChevron"></i>
-        </div>
-        @*</a>*@
-    </a>
-    <a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.currentUrl">
-        @*<a href="@ViewBag.currentUrl">*@
-        <div class="col-lg-8">
-            Info adicional
-        </div>
-        <div class="col-lg-4 divChevron">
-            <i class="fa fa-chevron-right navChevron"></i>
-        </div>
-        @*</a>*@
-    </a>
-}
+
+@*<a class="col-lg-3 text-center cuadritoArbol" href="@Url.Action("Index")">
+    <div class="col-lg-8">
+        Personas
+    </div>
+    <div class="col-lg-4 divChevron">
+        <i class="fa fa-chevron-right navChevron"></i>
+    </div>
+</a>
+<a class="col-lg-3 text-center cuadritoArbol" href="@ViewBag.currentUrl">
+
+    <div class="col-lg-8">
+        Info adicional
+    </div>
+    <div class="col-lg-4 divChevron">
+        <i class="fa fa-chevron-right navChevron"></i>
+    </div>
+</a>*@
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     // variables 
     List<TelefonoPersona>   telefonosPersonas   = null;  List<EmailPersona> emailsPersonas  = null;
     InformacionPersona      informacionPersona  = null;  List<EstadoCivil>  estadosCiviles  = null; 
@@ -82,380 +79,414 @@
         
     }
 }
-@section tabs{
-    <ul>
-        <li class="btnTab tabActive" target="#tab-1">
-            Informacion
+
+@*<ul>
+    <li class="btnTab tabActive" target="#tab-1">
+        Informacion
+    </li>
+    <a href="@Url.Action("Index", "FormacionPersonas", new { id = @ViewBag.idPersona })">
+        <li>
+            Formacion
         </li>
-        <a href="@Url.Action("Index", "FormacionPersonas", new { id = @ViewBag.idPersona })">
-            <li>
-                Formacion
-            </li>
-        </a>
-        <a href="@Url.Action("Index", "GestionLaboral", new { id = @ViewBag.idPersona })">
-            <li>
-                Laboral
-            </li>
-        </a>
-    </ul>
-}
-<div class="row marginNull " id="tab1">
-    <input  class="txtHdIdPersona" type="hidden" name="txtHdIdPersona" value="@ViewBag.idPersona"/>
-    <div class="row marginNull divInformacionPersonal divInformacion">
-        <div class="row marginNull divTituloNombre">
-            <div class="normalMode">
-                <h2>Información basica</h2>
-                <h3 class="hNombrePersona">@persona.nombreCompleto</h3>
-            </div>
-            <div class="editMode hidden">
-                <div class="col-lg-offset-4 col-lg-3 ">
-                    <select class="cbPersonas form-control">
-                        @if (personas != null && personas.Count > 0)
-                        {
-                            selected = "";
-                            foreach (Persona personaI in personas)
-                            {
-                                if (persona._idPersona == personaI._idPersona)
-                                {
-                                    selected = "selected";
-                                }
-                                else
-                                {
-                                    selected = "";
-                                }
-                                <option @selected value="@personaI._idPersona">@personaI.nombreCompleto</option>
-                            }
-                        }
-                    </select>
-                </div>
-                <div class="col-lg-1">
-                    <i class="fa fa-times icoVolverAnombre"></i>
-                </div>
-            </div>
+    </a>
+    <a href="@Url.Action("Index", "GestionLaboral", new { id = @ViewBag.idPersona })">
+        <li>
+            Laboral
+        </li>
+    </a>
+</ul>*@
+<div class="centroRoles contenidoCuerpo">
+    <div class="row marginNull" id="tab1">
+        <input class="txtHdIdPersona" type="hidden" name="txtHdIdPersona" value="@ViewBag.idPersona" />
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Extras personas
+            </span>
         </div>
-        <div class="col-lg-6 divImagePersona text-center">
-            <img class="imgPersona" src="@strFoto"/>
-            <div class="row divLoadingPhoto">
-
-            </div>
-            <div class="row marginNull divCorte hidden">
-                <input class="x" name="x" value="0" />
-                <input class="y" name="y" value="0" />
-
-                <input class="imgAlto" name="imgAlto" value="0" />
-                <input class="imgAncho" name="imgAncho" value="0" />
-            </div>
-            
-            <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">
-                <div class="row marginNull">
-                    <div class="fileUpload btn btn-default @claseInputFile">
-                        <span>Seleccionar imagen</span>
-                        <input type="file" @permisos.stringEditar class="@claseInputFile upload flFotoPersona" id="flMiniatura" accept="image/*" required />
-                    </div>
-                </div>
-                <button class="btn btnEstablecer btn-default" disabled>Establecer</button>
-                <div class="divResultado"></div>
-            </form>
-        </div>
-        <div class="col-lg-6 divFrmInformacionExtra">
-            <div class="row marginNull rowControles">
-                <div class="divControl row marginNull">
-                    <label>Seleccione pais</label>
-                    <select class="cbPais form-control" name="cbPais">
-                        <option value="-1">Seleccione pais</option>
-                        @if (paises != null && paises != null && paises.Count > 0)
-                        {
-                            selected = "";
-                            foreach (Pais pais in paises)
-                            {
-                                selected = "";
-                                if (informacionPersona != null)
-                                {
-                                    if (pais._idPais == informacionPersona._pais._idPais)
-                                    {
-                                        selected = "selected";
-                                    }
-                                }
-                                <option value="@pais._idPais" @selected>@pais._pais</option>
-                            }
-                        }
-                    </select>
-                    <div class="row marginNull divResultado hidden">
-
-                    </div>
-                </div>
-                <div class="divControl row marginNull">
-                    <label>Numero de identificacion</label>
-                    <input class="txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@numeroIdentificacion" />
-                    <div class="row marginNull divResultado hidden">
-
-                    </div>
-                </div>
-                <div class="divControl row marginNull">
-                    <label>Seleccione estado civil</label>
-                    <select class="cbEstadoCivil form-control" name="cbEstadoCivil">
-                        <option value="-1">Seleccione estado civil</option>
-                        @if (estadosCiviles != null && paises.Count > 0)
-                        {
-                            selected = "";
-                            foreach (EstadoCivil estadoCivil in estadosCiviles)
-                            {
-                                selected = "";
-                                if (informacionPersona != null)
-                                {
-                                    if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
-                                    {
-                                        selected = "selected";
-                                    }
-                                }
-
-                                <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
-                            }
-                        }
-                    </select>
-                    <div class="row marginNull divResultado hidden">
-
-                    </div>
-                </div>
-            </div>
-            
-            <button class="btn btnGuardarInformacionBasica btn-default" @permisos.stringCrear>
-                Guardar
-            </button>
-            <div class="row marginNull divResultado divResultadoOperacion">
-
-            </div>
-        </div>
-    </div>
-    <div class="marginNull row divInformacionContacto divInformacion">
-        <h2>Informacion de contacto</h2>
         <div class="row marginNull">
-            <div class="col-lg-6">
-                <h3>Correos electronicos</h3>
-                <table class="table tabla tablaCorreos">
-                    <thead>
-                        <tr>
-                            <th class="hidden"></th>
-                            <th></th>
-                            <th>Email</th>
-                            <th>Etiqueta</th>
-                            <th>Acciones</th>
-                        </tr>
-                        <tr>
-                            <th class="hidden"></th>
-                            <th>
-                                
-                            </th>
-                            <th>
-                                <input name="txtEmail" class=" form-control txtEmail input-sm" type="email" />
-                                <div class="row marginNull divResultado hidden ">
-                                    _
-                                </div>
-                            </th>
-                            <th>
-                                <input class="txtEtiquetaEmail form-control input-sm" name="txtEtiquetaEmail" />
-                                <div class="row marginNull divResultado hidden">
-                                    _
-                                </div>
-                            </th>
-                            <th>
-                                <button class="btnGuardarEmail btn btn-sm btn-default" @permisos.stringCrear>Guardar</button>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbodyEmail">
-                        @if (emailsPersonas != null && emailsPersonas.Count > 0)
-                        {
-                            string principal = "fa-star-o";
-                            foreach (EmailPersona emailPersona in emailsPersonas)
-                            {
-                                if (emailPersona._principal)
-                                {
-                                    principal = "fa-star ";
-                                }
-                                else
-                                {
-                                    principal = "fa-star-o";
-                                }
-                                <tr>
-                                    <td class="hidden">
-                                        <input type="hidden" value="@emailPersona._idEmail" class="txtIdEmailPersona" name="txtIdEmailPersona" />
-                                    </td>
-                                    <td>
-                                        <i class="fa @principal icoStarPrincipal pointer"></i>
-                                    </td>
-                                    <td>
-                                        <div class="editMode hidden">
-                                            <input name="txtEmail" class=" form-control txtEmail input-sm" type="email" />
-                                            <div class="row marginNull divResultado hidden ">
-                                                _
-                                            </div>
-                                        </div>
-                                        <div class="normalMode tdEmail">
-                                            @emailPersona._email
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="editMode hidden">
-                                            <input class="txtEtiquetaEmail form-control input-sm" name="txtEtiquetaEmail" />
-                                            <div class="row marginNull divResultado hidden">
-                                                _
-                                            </div>
-                                        </div>
-                                        <div class="normalMode tdEtiqueta">
-                                            @emailPersona._descripcion
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="editMode hidden">
-                                            <div class='btn-group'>
-                                                <button class="btn btn-xs btn-default btnActualizarEmail">Actualizar</button>
-                                                <button class="btn btn-xs btn-default btnCancelarUpdateEmail">Cancelar</button>
-                                            </div>
-                                        </div>
-                                        <div class="normalMode tdTelefono">
-                                            <div class='btn-group'>
-                                                <button class="btnEditarEmail btn btn-xs btn-default" @permisos.stringEditar>Editar</button>
-                                                <button class="btnEliminarEmail btn btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
-                                            </div>
-                                        </div>
-                                        
-                                    </td>
-                                </tr>
-                            }
-                        }
-                        else
-                        {
-                            <tr class="trNoReg">
-                                <td colspan="4" class="text-center">Persona no tiene registrado ningun correo electronico</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+            <div class="col-lg-3">
+                <ul class="tabs">
+                    <li class="btnTab tabActive" target="#tab-1">
+                        Informacion
+                    </li>
+                    <a href="@Url.Action("Index", "FormacionPersonas", new { id = @ViewBag.idPersona })">
+                        <li>
+                            Formacion
+                        </li>
+                    </a>
+                    <a href="@Url.Action("Index", "GestionLaboral", new { id = @ViewBag.idPersona })">
+                        <li>
+                            Laboral
+                        </li>
+                    </a>
+                </ul>
             </div>
-            <div class="col-lg-6">
-                <h3>Numeros telefonicos</h3>
-                <table class="table tabla tablaNumerosTelefonicos">
-                    <thead>
-                        <tr>
-                            <th class="hidden"></th>
-                            <th>Telefono</th>
-                            <th>Pais</th>
-                            <th>Etiqueta</th>
-                            <th>Acciones</th>
-                        </tr>
-                        <tr>
-                            <th class="hidden"></th>
-                            <th>
-                                <input class="txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
-                                <div class="row marginNull divResultado hidden">
-                                    _
-                                </div>
-                            </th>
-                            <th>
-                                <select class="cbPais input-sm" name="cbPais">
-                                    @if (paises != null && paises.Count > 0)
+            <div class="col-lg-9">
+                <div class="row marginNull divInformacionPersonal divInformacion">
+                    <div class="row marginNull divTituloNombre">
+                        <div class="normalMode">
+                            <h2>Información basica</h2>
+                            <h3 class="hNombrePersona">@persona.nombreCompleto</h3>
+                        </div>
+                        <div class="editMode hidden">
+                            <div class="col-lg-offset-4 col-lg-3 ">
+                                <select class="selectBack cbPersonas form-control">
+                                    @if (personas != null && personas.Count > 0)
                                     {
+                                        selected = "";
+                                        foreach (Persona personaI in personas)
+                                        {
+                                            if (persona._idPersona == personaI._idPersona)
+                                            {
+                                                selected = "selected";
+                                            }
+                                            else
+                                            {
+                                                selected = "";
+                                            }
+                                            <option @selected value="@personaI._idPersona">@personaI.nombreCompleto</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-lg-1">
+                                <i class="fa fa-times icoVolverAnombre"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 divImagePersona text-center">
+                        <img class="imgPersona" src="@strFoto" />
+                        <div class="row divLoadingPhoto">
+
+                        </div>
+                        <div class="row marginNull divCorte hidden">
+                            <input class="x" name="x" value="0" />
+                            <input class="y" name="y" value="0" />
+
+                            <input class="imgAlto" name="imgAlto" value="0" />
+                            <input class="imgAncho" name="imgAncho" value="0" />
+                        </div>
+
+                        <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">
+                            <div class="row marginNull">
+                                <div class="fileUpload btn btn-default @claseInputFile">
+                                    <span>Seleccionar imagen</span>
+                                    <input type="file" @permisos.stringEditar class="@claseInputFile upload flFotoPersona btnBack" id="flMiniatura" accept="image/*" required />
+                                </div>
+                            </div>
+                            <button class="btnBack btn btnEstablecer btn-default" disabled>Establecer</button>
+                            <div class="divResultado"></div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 divFrmInformacionExtra">
+                        <div class="row marginNull rowControles">
+                            <div class="divControl row marginNull">
+                                <label>Seleccione pais</label>
+                                <select class="selectBack cbPais form-control" name="cbPais">
+                                    <option value="-1">Seleccione pais</option>
+                                    @if (paises != null && paises != null && paises.Count > 0)
+                                    {
+                                        selected = "";
                                         foreach (Pais pais in paises)
                                         {
+                                            selected = "";
+                                            if (informacionPersona != null)
+                                            {
+                                                if (pais._idPais == informacionPersona._pais._idPais)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                            }
                                             <option value="@pais._idPais" @selected>@pais._pais</option>
                                         }
                                     }
                                 </select>
                                 <div class="row marginNull divResultado hidden">
-                                    _
+
                                 </div>
-                            </th>
-                            <th>
-                                <input class="txtEtiquetaTel form-control input-sm" name="txtEtiquetaTel" />
+                            </div>
+                            <div class="divControl row marginNull">
+                                <label>Numero de identificacion</label>
+                                <input class="inputBack txtNumeroIdentificacion form-control" name="txtNumeroIdentificacion" placeholder="0000" value="@numeroIdentificacion" />
                                 <div class="row marginNull divResultado hidden">
-                                    _
+
                                 </div>
-                            </th>
-                            <th>
-                                <button class="btnAgregarTel btn btn-default btn-sm" @permisos.stringCrear>Agregar</button>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbodyTelefonos">
-                        @if (telefonosPersonas != null && telefonosPersonas.Count > 0)
-                        {
-                            foreach (TelefonoPersona telefono in telefonosPersonas)
-                            {
+                            </div>
+                            <div class="divControl row marginNull">
+                                <label>Seleccione estado civil</label>
+                                <select class="selectBack inputBack cbEstadoCivil form-control" name="cbEstadoCivil">
+                                    <option value="-1">Seleccione estado civil</option>
+                                    @if (estadosCiviles != null && paises.Count > 0)
+                                    {
+                                        selected = "";
+                                        foreach (EstadoCivil estadoCivil in estadosCiviles)
+                                        {
+                                            selected = "";
+                                            if (informacionPersona != null)
+                                            {
+                                                if (estadoCivil._idEstadoCivil == informacionPersona._estadoCivil._idEstadoCivil)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                            }
+
+                                            <option value="@estadoCivil._idEstadoCivil" @selected>@estadoCivil._estadoCivil</option>
+                                        }
+                                    }
+                                </select>
+                                <div class="row marginNull divResultado hidden">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btnBack btn btnGuardarInformacionBasica btn-default" @permisos.stringCrear>
+                            Guardar
+                        </button>
+                        <div class="row marginNull divResultado divResultadoOperacion">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="marginNull row divInformacionContacto divInformacion">
+                    <h2>Informacion de contacto</h2>
+                    <div class="row marginNull">
+                        <h3>Correos electronicos</h3>
+                        <table class="table tabla tablaCorreos">
+                            <thead>
                                 <tr>
-                                    <td class="hidden">
-                                        <input name="txtHdIdTelefono" class="txtHdIdTelefono"  value="@telefono._idTelefonoPersona"/>
-                                        <input name="txtHdIdPais" class="txtHdIdPais" value="@telefono._pais._idPais" />
-                                    </td>
-                                    <td>
-                                        <div class="editMode hidden">
-                                            <input class="txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
-                                            <div class="row marginNull divResultado hidden">
-                                                _
-                                            </div>
-                                        </div>
-                                        <div class="normalMode tdTelefono">
-                                            @telefono._telefono
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="editMode hidden">
-                                            <select class="cbPais" name="cbPais"></select>
-                                            <div class="row marginNull divResultado hidden">
-                                                _
-                                            </div>
-                                        </div>
-                                        <div class="normalMode tdPais">
-                                            @telefono._pais._pais
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="editMode hidden">
-                                            <input class="txtEtiquetaTel input-sm form-control" name="txtEtiquetaTel" />
-                                            <div class="row marginNull divResultado hidden">
-                                                _
-                                            </div>
-                                        </div>
-                                        <div class="normalMode tdEtiqueta">
-                                            @telefono._descripcion
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="editMode hidden">
-                                            <div class='btn-group'>
-                                                <button class="btn btn-xs btn-default btnActualizarTel" title="Aceptar">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-xs btn-default btnCancelarUpdateTel" title="Cancelar">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="normalMode">
-                                            <div class='btn-group'>
-                                                <button class="btn btn-xs btn-default btnEditarTel" @permisos.stringEditar title="Editar">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-xs btn-default btnEliminarTel" @permisos.stringEliminar title="Eliminar">
-                                                    <i class="fa fa-trash-o"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        
-                                    </td>
+                                    <th class="hidden"></th>
+                                    <th></th>
+                                    <th>Email</th>
+                                    <th>Etiqueta</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            }
-                        }
-                        else
-                        {
-                            <tr class="trNoReg">
-                                <td colspan="4" class="text-center">Persona no tiene registrado ningun numero telefonico</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                <tr>
+                                    <th class="hidden"></th>
+                                    <th>
+
+                                    </th>
+                                    <th>
+                                        <input name="txtEmail" class="inputBack form-control txtEmail input-sm" type="email" />
+                                        <div class="row marginNull divResultado hidden ">
+                                            _
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <input class="inputBack txtEtiquetaEmail form-control input-sm" name="txtEtiquetaEmail" />
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <button class="btnBack btnGuardarEmail btn btn-sm btn-default" @permisos.stringCrear>Guardar</button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbodyEmail">
+                                @if (emailsPersonas != null && emailsPersonas.Count > 0)
+                                {
+                                    string principal = "fa-star-o";
+                                    foreach (EmailPersona emailPersona in emailsPersonas)
+                                    {
+                                        if (emailPersona._principal)
+                                        {
+                                            principal = "fa-star ";
+                                        }
+                                        else
+                                        {
+                                            principal = "fa-star-o";
+                                        }
+                                        <tr>
+                                            <td class="hidden">
+                                                <input type="hidden" value="@emailPersona._idEmail" class="txtIdEmailPersona" name="txtIdEmailPersona" />
+                                            </td>
+                                            <td>
+                                                <i class="fa @principal icoStarPrincipal pointer"></i>
+                                            </td>
+                                            <td>
+                                                <div class="editMode hidden">
+                                                    <input name="txtEmail" class="inputBack form-control txtEmail input-sm" type="email" />
+                                                    <div class="row marginNull divResultado hidden ">
+                                                        _
+                                                    </div>
+                                                </div>
+                                                <div class="normalMode tdEmail">
+                                                    @emailPersona._email
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="editMode hidden">
+                                                    <input class="inputBack txtEtiquetaEmail form-control input-sm" name="txtEtiquetaEmail" />
+                                                    <div class="row marginNull divResultado hidden">
+                                                        _
+                                                    </div>
+                                                </div>
+                                                <div class="normalMode tdEtiqueta">
+                                                    @emailPersona._descripcion
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="editMode hidden">
+                                                    <div class='btn-group'>
+                                                        <button class="btnBack btn btn-xs btn-default btnActualizarEmail">Actualizar</button>
+                                                        <button class="btnBack btn btn-xs btn-default btnCancelarUpdateEmail">Cancelar</button>
+                                                    </div>
+                                                </div>
+                                                <div class="normalMode tdTelefono">
+                                                    <div class='btn-group'>
+                                                        <button class="btnBack btnEditarEmail btn btn-xs btn-default" @permisos.stringEditar>Editar</button>
+                                                        <button class="btnBack btnEliminarEmail btn btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="trNoReg">
+                                        <td colspan="4" class="text-center">Persona no tiene registrado ningun correo electronico</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row marginNull">
+                        <h3>Numeros telefonicos</h3>
+                        <table class="table tabla tablaNumerosTelefonicos">
+                            <thead>
+                                <tr>
+                                    <th class="hidden"></th>
+                                    <th>Telefono</th>
+                                    <th>Pais</th>
+                                    <th>Etiqueta</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                <tr>
+                                    <th class="hidden"></th>
+                                    <th>
+                                        <input class="inputBack txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <select class="inputBack selectBack selectBack cbPais input-sm" name="cbPais">
+                                            @if (paises != null && paises.Count > 0)
+                                            {
+                                                foreach (Pais pais in paises)
+                                                {
+                                                    <option value="@pais._idPais" @selected>@pais._pais</option>
+                                                }
+                                            }
+                                        </select>
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <input class="inputBack txtEtiquetaTel form-control input-sm" name="txtEtiquetaTel" />
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <button class="btnBack btnAgregarTel btn btn-default btn-sm" @permisos.stringCrear>Agregar</button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbodyTelefonos">
+                                @if (telefonosPersonas != null && telefonosPersonas.Count > 0)
+                                {
+                                    foreach (TelefonoPersona telefono in telefonosPersonas)
+                                    {
+                                        <tr>
+                                            <td class="hidden">
+                                                <input name="txtHdIdTelefono" class="txtHdIdTelefono" value="@telefono._idTelefonoPersona" />
+                                                <input name="txtHdIdPais" class="txtHdIdPais" value="@telefono._pais._idPais" />
+                                            </td>
+                                            <td>
+                                                <div class="editMode hidden">
+                                                    <input class="txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
+                                                    <div class="row marginNull divResultado hidden">
+                                                        _
+                                                    </div>
+                                                </div>
+                                                <div class="normalMode tdTelefono">
+                                                    @telefono._telefono
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="editMode hidden">
+                                                    <select class="selectBack cbPais" name="cbPais"></select>
+                                                    <div class="row marginNull divResultado hidden">
+                                                        _
+                                                    </div>
+                                                </div>
+                                                <div class="normalMode tdPais">
+                                                    @telefono._pais._pais
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="editMode hidden">
+                                                    <input class="inputBack txtEtiquetaTel input-sm form-control" name="txtEtiquetaTel" />
+                                                    <div class="row marginNull divResultado hidden">
+                                                        _
+                                                    </div>
+                                                </div>
+                                                <div class="normalMode tdEtiqueta">
+                                                    @telefono._descripcion
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="editMode hidden">
+                                                    <div class='btn-group'>
+                                                        <button class="btn btn-xs btn-default btnActualizarTel" title="Aceptar">
+                                                            <i class="fa fa-check"></i>
+                                                        </button>
+                                                        <button class="btn btn-xs btn-default btnCancelarUpdateTel" title="Cancelar">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="normalMode">
+                                                    <div class='btn-group'>
+                                                        <button class="btn btn-xs btn-default btnEditarTel" @permisos.stringEditar title="Editar">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-xs btn-default btnEliminarTel" @permisos.stringEliminar title="Eliminar">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="trNoReg">
+                                        <td colspan="4" class="text-center">Persona no tiene registrado ningun numero telefonico</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
             </div>
         </div>
-        
+
+
     </div>
 </div>

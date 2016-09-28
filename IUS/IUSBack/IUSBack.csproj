@@ -525,8 +525,10 @@
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Detalle\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Detalle\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Detalle\stylei.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\stylei.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\laboral\media.css" />
