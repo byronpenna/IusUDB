@@ -10,8 +10,8 @@
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- Plugins -->
@@ -25,23 +25,24 @@
         <script src="~/Scripts/Views/Administracion/Eventos/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     List<Evento> eventos = (List<Evento>)ViewBag.eventos;
     Permiso permiso = (Permiso)ViewBag.permiso;
 }
-@section tabs{
-    <ul>
-        <li class="btnTab tabActive" id="1" target="#tab-1">
-            Eventos
-        </li>
-        <li class="tbCompartir btnTab" id="2" target="#tab-2">
-            Compartir
-        </li>
-    </ul>
-}
-@*inputs hidden generales*@
-    <input type="hidden" class="txtHdNombreClass"   value="@ViewBag.nombreClass" />
-    <input type="hidden" class="txtHdFuncion"       value="@ViewBag.nombreFuncion"/>
-@*#############################*@>
+
+
+@*<ul>
+    <li class="btnTab tabActive" id="1" target="#tab-1">
+        Eventos
+    </li>
+    <li class="tbCompartir btnTab" id="2" target="#tab-2">
+        Compartir
+    </li>
+</ul>*@
+
+<input type="hidden" class="txtHdNombreClass"   value="@ViewBag.nombreClass" />
+<input type="hidden" class="txtHdFuncion"       value="@ViewBag.nombreFuncion"/>
+
 <div id="tab-1" class="row seccion tab">
     <div class="col-lg-4">
         <form id="frmAgregarEvento">
