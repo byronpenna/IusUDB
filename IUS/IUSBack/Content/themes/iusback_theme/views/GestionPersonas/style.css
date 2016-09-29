@@ -271,6 +271,22 @@ footer {
 body {
   font-family: "MyriadRegular"; }
 
+table.dataTable.no-footer {
+  border: none; }
+
+table.datatable {
+  border-collapse: collapse; }
+  table.datatable thead tr td {
+    font-size: 14px; }
+  table.datatable thead tr th {
+    font-size: 14px; }
+  table.datatable tbody tr {
+    background: none; }
+  table.datatable tbody td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
+
 .cuerpoModulo, .tabsHeader {
   margin-top: 0%; }
 

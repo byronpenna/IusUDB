@@ -271,6 +271,35 @@ footer {
 body {
   font-family: "MyriadRegular"; }
 
+.chosen-container-active.chosen-with-drop .chosen-single, .chosen-container-single .chosen-single {
+  height: 30px;
+  border-radius: 0;
+  background: none;
+  padding-top: 3px;
+  border: solid 1px #828181; }
+
+.chosen-container-single .chosen-drop {
+  background: white; }
+
+.chosen-container-multi .chosen-choices {
+  background: none; }
+
+table.dataTable.no-footer {
+  border: none; }
+
+table.datatable {
+  border-collapse: collapse; }
+  table.datatable thead tr td {
+    font-size: 14px; }
+  table.datatable thead tr th {
+    font-size: 14px; }
+  table.datatable tbody tr {
+    background: none; }
+  table.datatable tbody td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
+
 .divTableUsuarios thead tr th {
   text-align: center; }
 .divTableUsuarios tbody tr {
