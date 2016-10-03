@@ -88,19 +88,24 @@
                                     <td>@post._usuario._usuario</td>
                                     <td>@post._idioma._idioma</td>
                                     <td>
-
-                                        <button class="btnBack btn btnPublicacion btn-default" @permiso.stringEditar>
-                                            @post.getTxtEstado
-                                        </button>
-                                        <a href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
-                                            Editar
-                                        </a>
-                                        <a href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
-                                            Imagen
-                                        </a>
-                                        <a href="@Url.Action("index", "ComentarioNoticia", new {id=post._idPost })">
+                                        <div class="row marginNull">
+                                            <button class="btnBack btn btnPublicacion btn-block btn-default" @permiso.stringEditar>
+                                                @post.getTxtEstado
+                                            </button>
+                                        </div>
+                                        <div class="row marginNull">
+                                            <a class="btnBack btn btn-default btn-block "  href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
+                                                Editar
+                                            </a>
+                                        </div>
+                                        <div class="row marginNull">
+                                            <a class="btnBack btn btn-default btn-block " href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
+                                                Imagen
+                                            </a>
+                                        </div>
+                                        @*<a href="@Url.Action("index", "ComentarioNoticia", new {id=post._idPost })">
                                             Comentarios
-                                        </a>
+                                        </a>*@
                                     </td>
                                 </tr>
                             }

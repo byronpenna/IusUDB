@@ -4,8 +4,8 @@
     <!-- Jcrop -->
         <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css" />
     <!-- propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetLogo/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetLogo/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetLogo/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetLogo/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- jcrop -->
@@ -15,6 +15,7 @@
         <script src="~/Scripts/Views/GestionInstituciones/SetLogo/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     string      rutaImage   = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
     Institucion institucion = (Institucion)ViewBag.institucion;
     Permiso     permisos    = (Permiso)ViewBag.permiso;
@@ -24,61 +25,79 @@
         claseInputFile = "btnDisabled";
     }
 }
-@section arbol{
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@Url.Action("Index", "GestionInstituciones")">
-            <div class="col-lg-8">
-                Instituciones
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@ViewBag.currentUrl">
-            <div class="col-lg-8">
-                Logo
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-}
-<div class="contenidoModulo">
-    <form method="post" id="frmMiniatura" action="@Url.Action("setMiniaturaLogo")">
-        <div class="todoForm">
-            <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
-            <div class="divImgThumbnail">
-                @if (institucion._logo != null)
-                {
-                    rutaImage = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
-                }
-                <img class="imgThumbnail" src="@rutaImage" />
-                <div class="row divLoadingPhoto">
 
-                </div>
-                <div class="row marginNull divCorte hidden">
-                    <input class="x" name="x" value="0" />
-                    <input class="y" name="y" value="0" />
-
-                    <input class="imgAlto" name="imgAlto" value="0" />
-                    <input class="imgAncho" name="imgAncho" value="0" />
-                </div>
-            </div>
-            <!--<input type="file" id="flMiniatura" />-->
-            <div class="row marginNull">
-                <div class="fileUpload btn btn-default @claseInputFile">
-                    <span>Seleccionar imagen</span>
-                    <input type="file" class="upload flFoto" @claseInputFile @permisos.stringEditar id="flMiniatura" accept="image/*" required />
-                </div>
-            </div>
-            <input id="btnSubmit" class="btn btnSubir btn-default" type="submit" value="Subir" disabled />
-            <div class="divResultado">
-
-            </div>
+@*<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@Url.Action("Index", "GestionInstituciones")">
+        <div class="col-lg-8">
+            Instituciones
         </div>
-    </form>
-    
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>
+<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@ViewBag.currentUrl">
+        <div class="col-lg-8">
+            Logo
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>*@
+
+<div class="row marginNull centroPagina cuerpoIndex">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span>
+                <a href="@Url.Action("Index","GestionInstituciones")">
+                    Instituciones
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Logo instituciones
+            </span>
+        </div>
+        <form method="post" id="frmMiniatura" action="@Url.Action("setMiniaturaLogo")">
+            <div class="todoForm">
+                <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
+                <div class="divImgThumbnail">
+                    @if (institucion._logo != null)
+                    {
+                        rutaImage = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+                    }
+                    <img class="imgThumbnail" src="@rutaImage" />
+                    <div class="row divLoadingPhoto">
+
+                    </div>
+                    <div class="row marginNull divCorte hidden">
+                        <input class="x" name="x" value="0" />
+                        <input class="y" name="y" value="0" />
+
+                        <input class="imgAlto" name="imgAlto" value="0" />
+                        <input class="imgAncho" name="imgAncho" value="0" />
+                    </div>
+                </div>
+                <!--<input type="file" id="flMiniatura" />-->
+                <div class="row marginNull">
+                    <div class="fileUpload btn btn-default @claseInputFile">
+                        <span>Seleccionar imagen</span>
+                        <input type="file" class="inputBack btnBack upload flFoto" @claseInputFile @permisos.stringEditar id="flMiniatura" accept="image/*" required />
+                    </div>
+                </div>
+                <input id="btnSubmit" class="btnBack btn btnSubir btn-default" type="submit" value="Subir" disabled />
+                <div class="divResultado">
+
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

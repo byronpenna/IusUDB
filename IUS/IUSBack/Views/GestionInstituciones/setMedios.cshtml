@@ -2,8 +2,8 @@
 @using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/media.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- propios -->
@@ -11,6 +11,7 @@
     <script src="~/Scripts/Views/GestionInstituciones/SetMedios/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     Institucion             institucion = null;
     List<EnlaceInstitucion> enlaces     = null;
     string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
@@ -28,28 +29,28 @@
 
     }
 }
-@section arbol{
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@Url.Action("Index", "GestionInstituciones")">
-            <div class="col-lg-8">
-                Instituciones
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@ViewBag.currentUrl">
-            <div class="col-lg-8">
-                Medios
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-}
+
+@*<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@Url.Action("Index", "GestionInstituciones")">
+        <div class="col-lg-8">
+            Instituciones
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>
+<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@ViewBag.currentUrl">
+        <div class="col-lg-8">
+            Medios
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>*@
+
 <div class="row marginNull divInstitucionPrev">
     @if (institucion._logo != null)
     {

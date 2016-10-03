@@ -15,22 +15,6 @@
   height: 30px;
   border-radius: 0; }
 
-.fileUpload {
-  position: relative;
-  overflow: hidden;
-  margin: 10px; }
-
-.fileUpload input.upload {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0;
-  filter: alpha(opacity=0); }
-
 .todo {
   width: 100%;
   max-width: 1250px;
@@ -74,10 +58,6 @@ body {
   .rowNavegacion .titulo {
     text-transform: uppercase;
     text-decoration: underline; }
-  .rowNavegacion .tituloPrev {
-    text-decoration: underline; }
-    .rowNavegacion .tituloPrev a {
-      color: #333 !important; }
   .rowNavegacion span a:first-child {
     color: #cd1315; }
 
@@ -291,148 +271,7 @@ footer {
 body {
   font-family: "MyriadRegular"; }
 
-.tabs {
-  margin-top: 5%; }
-  .tabs a {
-    color: #333; }
-  .tabs li {
-    padding-top: 10%;
-    padding-bottom: 10%;
-    border: solid 1px black;
-    list-style: none;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 3%; }
-    .tabs li:hover {
-      cursor: pointer; }
-
-.tabActive {
-  border-color: #cd1315 !important;
-  color: #cd1315 !important; }
-
-/* */
-.spanPicture {
-  float: right; }
-  .spanPicture:hover {
-    color: black; }
-
-/** */
-.cbFiltroTipoEvento {
-  margin-bottom: 3%; }
-
-.ui-accordion .ui-accordion-content {
-  margin-bottom: 3%; }
-
-/*Arreglos bootstrap */
-.row.seccion {
-  margin: 0; }
-
-.divMensajesEvento {
-  margin-top: 3%; }
-
-/*Tabs */
-/*Tab eventos */
-.divTiempo {
-  margin-top: 2%;
-  margin-bottom: 2%; }
-
-/*Fin tab eventos */
-/* Tab compartir */
-/* ******************** Nuevo  ******************** */
-.eventosCompartirSection > h3 {
-  text-align: center;
-  margin-bottom: 5%; }
-
-.cambioControl {
-  margin-top: 3%;
-  margin-bottom: 3%; }
-
-.divMensajesCompartirGenerales {
-  text-align: center;
-  margin-bottom: 3%; }
-
-/* ******************** /Nuevo/  ******************** */
-.noEventoDiv {
-  margin-top: 10%;
-  text-align: center; }
-  .noEventoDiv img {
-    width: 16%; }
-  .noEventoDiv h4 {
-    font-family: "latop";
-    font-weight: bold;
-    color: #95A5A6; }
-
-/*Fin tab compartir */
-.ulTabGeneral {
-  background: #95a5a6; }
-  .ulTabGeneral li {
-    background: #bdc3c7;
-    padding: 1%; }
-
-.tbRoles thead {
-  text-align: center; }
-
-/*Fin arreglos tabs */
-.sectionBotonesEvento {
-  margin-top: 5%; }
-
-.hEventoUsuario {
-  margin-bottom: 5%; }
-
-#tabUsuario {
-  display: block; }
-  #tabUsuario table {
-    margin-top: 5%; }
-
-/*Eventos */
-.colorEventoPropio {
-  background: #3A87AD; }
-
-.colorEventoCompartido {
-  background: #f1c40f; }
-
-.colorEventoPublico {
-  background: #2ecc71; }
-
-.nombreEvento {
-  color: white;
-  font-weight: bold; }
-
-/*************************** */
-.btnAgregarEvento {
-  margin-top: 3%; }
-
-.divMensajes {
-  text-align: center;
-  margin-top: 4%;
-  margin-bottom: 4%; }
-
-.contenidoCuerpo {
-  border-bottom: solid 1px #cd1315;
-  padding-bottom: 60px; }
-
-.centroEventos {
-  width: 95%;
-  margin: 0 auto; }
-
-.rowNavegacion {
-  margin-top: 5%; }
-
-.rowFrm {
-  margin-top: 2%; }
-
-#frmAgregarEvento {
-  margin-bottom: 5%; }
-
-.eventos {
-  overflow-x: scroll;
-  white-space: nowrap;
-  height: 400px; }
-  .eventos .divEvento {
-    width: 40%;
-    height: 350px;
-    background: pink;
-    display: inline-block;
-    margin-right: 5%; }
+.tbEnlaces thead tr th:first-child, .tbEnlaces tbody tr td:first-child {
+  display: none; }
 
 /*# sourceMappingURL=stylei.css.map */
