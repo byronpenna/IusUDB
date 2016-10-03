@@ -1,13 +1,15 @@
 ﻿@using IUSLibs.ADMINFE.Entidades;
 @section estilosPersonalizados{
-    <link rel="stylesheet" href="~/Content/ius_theme/views/Eventos/style.css" />
-    <link rel="stylesheet" href="~/Content/ius_theme/views/Eventos/media.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Eventos/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/ius_theme/views/Eventos/media.css" />*@
 }
 @section scriptsPersonalizados{
     <script src="~/Scripts/views/Eventos/script.js"></script>
     <script src="~/Scripts/views/Eventos/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    
     List<Evento> eventosHoy = (List<Evento>)ViewBag.eventosHoy;
     List<Evento> eventosMes = (List<Evento>)ViewBag.eventosMes;
 }
