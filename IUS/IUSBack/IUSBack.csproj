@@ -296,6 +296,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\menu\typography.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\unlocked.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noBanerMiniatura.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\noBanerMiniaturai.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noimage.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noPickProfile.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\0.png" />
