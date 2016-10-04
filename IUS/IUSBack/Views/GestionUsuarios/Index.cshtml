@@ -52,8 +52,8 @@
                 <thead>
                     <tr>
                         <th class="hidden"></th>
-                        <th>Empleado</th>
-                        <th>Usuario</th>
+                        <th class="th1">Empleado</th>
+                        <th class="th2">Usuario</th>
                         <th>Fecha creacion</th>
                         <th>Estado</th>
                         <th>Acciones</th>
@@ -86,7 +86,7 @@
                             Activo
                         </td>
                         <td>
-                            <button class="btn btn-xs btn-default btnBack inputBack btnAgregarUsuario" @permiso.stringCrear>Crear</button>
+                            <button class="btn btn-xs btn-default btnBack inputBack btnAgregarUsuario btn-block " @permiso.stringCrear>Crear</button>
                         </td>
                     </tr>
                 </thead>
@@ -113,7 +113,7 @@
                                 </td>
                                 <td class="tdUsuario">
                                     <div class="editMode hidden">
-                                        <input name="txtEditUsuario" type="text" class="form-control enterEdit txtUsuarioEdit txtEditUsuario input-sm" /><!-- txtUsuarioEdit txtEditUsuario-->
+                                        <input name="txtEditUsuario" type="text" class="inputBack form-control enterEdit txtUsuarioEdit txtEditUsuario input-sm" /><!-- txtUsuarioEdit txtEditUsuario-->
                                         <div class="row marginNull divResultado hidden">
 
                                         </div>
@@ -130,25 +130,24 @@
                                 </td>
                                 <td>
                                     <div class="editMode hidden">
-                                        <div class='btn-group'>
-                                            <button class="btn btn-xs btn-default btnEditMode btnActualizar">Actualizar</button>
-                                            <button class="btn btn-xs btn-default btnEditMode btnCancelarEdit">Cancelar</button>
+                                        <div class='btn-group btn-block'>
+                                            <button class="btn btn-xs btn-default btnBack col-lg-6 btnEditMode btnActualizar">Actualizar</button>
+                                            <button class="btn btn-xs btn-default btnBack col-lg-6 btnEditMode btnCancelarEdit">Cancelar</button>
                                         </div>
                                     </div>
                                     <div class="normalMode ">
-                                        <div class="btn-group">
-                                            <button class="btn btn-xs btn-default btnBack btnEditar" @permiso.stringEditar>
+                                        <div class="btn-group btn-block">
+                                            <button class="btn btn-xs col-lg-4 btn-default btnBack btnEditar" @permiso.stringEditar>
                                                 Editar
                                             </button>
-                                            <button class="btn btn-xs btn-default btnBack btnDeshabilitar" @permiso.stringEditar>
+                                            <button class="btn btn-xs col-lg-4 btn-default btnBack btnDeshabilitar" @permiso.stringEditar>
                                                 @usu.txtBtnHabilitar
                                             </button>
-                                            <input type="button" class="btn-default btnBack btn btn-xs btnVerRoles" @permiso.stringEditar value="Ver Roles">
-
+                                            <input type="button" class="btn-default btnBack btn btn-xs  col-lg-4 btnVerRoles" @permiso.stringEditar value="Ver Roles">
                                         </div>
                                         @if (usu._persona._idPersona != -1)
                                         {
-                                            <a class="btn btn-xs" href="@Url.Action("Detalle", "GestionPersonas", new { id=usu._persona._idPersona,id2=1})">
+                                            <a class="btnBack btn btn-default btn-xs btn-block" href="@Url.Action("Detalle", "GestionPersonas", new { id=usu._persona._idPersona,id2=1})">
                                                 Ver persona
                                             </a>
                                         }

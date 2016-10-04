@@ -8,12 +8,29 @@
   border-radius: 0;
   padding-top: 1%;
   padding-bottom: 1%;
-  background: transparent; }
+  background: transparent;
+  border: solid 1px #828181; }
 
 .selectBack {
   background: transparent;
   height: 30px;
   border-radius: 0; }
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); }
 
 .todo {
   width: 100%;
@@ -58,6 +75,10 @@ body {
   .rowNavegacion .titulo {
     text-transform: uppercase;
     text-decoration: underline; }
+  .rowNavegacion .tituloPrev {
+    text-decoration: underline; }
+    .rowNavegacion .tituloPrev a {
+      color: #333 !important; }
   .rowNavegacion span a:first-child {
     color: #cd1315; }
 
@@ -321,5 +342,10 @@ table.datatable {
 
 .trTableRol {
   background: gainsboro !important; }
+
+.tableUsuarios .th1 {
+  width: 25%; }
+.tableUsuarios .th2 {
+  width: 15%; }
 
 /*# sourceMappingURL=style.css.map */
