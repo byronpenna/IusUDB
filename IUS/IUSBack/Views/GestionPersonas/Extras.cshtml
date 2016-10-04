@@ -45,8 +45,8 @@
     List<TelefonoPersona>   telefonosPersonas   = null;  List<EmailPersona> emailsPersonas  = null;
     InformacionPersona      informacionPersona  = null;  List<EstadoCivil>  estadosCiviles  = null; 
     List<Pais>              paises              = null;  List<Persona>      personas        = null;
-    Persona persona     = null; 
-    string  strFoto     = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
+    Persona persona = null;
+    string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png"); //~/Content/themes/iusback_theme/img/general/profle.png
     Permiso permisos    = (Permiso)ViewBag.permiso;
     
     string selected         = ""; string numeroIdentificacion = "";
@@ -175,7 +175,7 @@
 
                         <form action="@Url.Action("sp_rrhh_setFotoInformacionPersona", "ExtrasGestionPersonas")" method="post" class="frmImagenPersona">
                             <div class="row marginNull">
-                                <div class="fileUpload btn btn-default @claseInputFile">
+                                <div class="fileUpload btnBack btn btn-default @claseInputFile">
                                     <span>Seleccionar imagen</span>
                                     <input type="file" @permisos.stringEditar class="@claseInputFile upload flFotoPersona btnBack" id="flMiniatura" accept="image/*" required />
                                 </div>
@@ -246,7 +246,7 @@
                             </div>
                         </div>
 
-                        <button class="btnBack btn btnGuardarInformacionBasica btn-default" @permisos.stringCrear>
+                        <button class="btnBack btn btnGuardarInformacionBasica btnBack btn-default" @permisos.stringCrear>
                             Guardar
                         </button>
                         <div class="row marginNull divResultado divResultadoOperacion">
@@ -334,15 +334,15 @@
                                             </td>
                                             <td>
                                                 <div class="editMode hidden">
-                                                    <div class='btn-group'>
-                                                        <button class="btnBack btn btn-xs btn-default btnActualizarEmail">Actualizar</button>
-                                                        <button class="btnBack btn btn-xs btn-default btnCancelarUpdateEmail">Cancelar</button>
+                                                    <div class='btn-group btn-block'>
+                                                        <button class="btnBack btn col-lg-6 btn-xs btn-default btnActualizarEmail">Actualizar</button>
+                                                        <button class="btnBack btn col-lg-6 btn-xs btn-default btnCancelarUpdateEmail">Cancelar</button>
                                                     </div>
                                                 </div>
                                                 <div class="normalMode tdTelefono">
-                                                    <div class='btn-group'>
-                                                        <button class="btnBack btnEditarEmail btn btn-xs btn-default" @permisos.stringEditar>Editar</button>
-                                                        <button class="btnBack btnEliminarEmail btn btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
+                                                    <div class='btn-group btn-block'>
+                                                        <button class="btnBack btnEditarEmail btn col-lg-6 btn-xs btn-default" @permisos.stringEditar>Editar</button>
+                                                        <button class="btnBack btnEliminarEmail btn col-lg-6 btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
                                                     </div>
                                                 </div>
 
@@ -449,20 +449,20 @@
                                             <td>
                                                 <div class="editMode hidden">
                                                     <div class='btn-group'>
-                                                        <button class="btn btn-xs btn-default btnActualizarTel" title="Aceptar">
+                                                        <button class="btn borde btn-sm btn-default btnActualizarTel" title="Aceptar">
                                                             <i class="fa fa-check"></i>
                                                         </button>
-                                                        <button class="btn btn-xs btn-default btnCancelarUpdateTel" title="Cancelar">
+                                                        <button class="btn borde btn-sm btn-default btnCancelarUpdateTel" title="Cancelar">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <div class="normalMode">
                                                     <div class='btn-group'>
-                                                        <button class="btn btn-xs btn-default btnEditarTel" @permisos.stringEditar title="Editar">
+                                                        <button class="btn borde btn-sm btn-default btnEditarTel" @permisos.stringEditar title="Editar">
                                                             <i class="fa fa-pencil"></i>
                                                         </button>
-                                                        <button class="btn btn-xs btn-default btnEliminarTel" @permisos.stringEliminar title="Eliminar">
+                                                        <button class="btn borde btn-sm btn-default btnEliminarTel" @permisos.stringEliminar title="Eliminar">
                                                             <i class="fa fa-trash-o"></i>
                                                         </button>
                                                     </div>

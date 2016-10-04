@@ -51,7 +51,7 @@
     List<Institucion>       instituciones       = null; List<CargoEmpresa>  cargos      = null;
     List<LaboralPersona>    laboralesPersonas   = null; Persona             persona     = null;
     List<Persona>           personas            = null; InformacionPersona   infoPersona = null;
-    string strFoto = Url.Content(@ViewBag.IMG_GENERALES + "profle.png");
+    string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png"); //@ViewBag.IMG_GENERALES + "profle.png"
     Permiso                 permisos            = (Permiso)ViewBag.permiso;
     try{
         Dictionary<object,object> 
@@ -175,12 +175,12 @@
                     <form class="frmCurriculumn" action="@Url.Action("subirCurriculumn", "GestionLaboral")">
                         <input type="hidden" name="txtHdIdPersona" value="@persona._idPersona" />
                         <div class="row marginNull">
-                            <div class="fileUpload btn btn-default">
+                            <div class="fileUpload btn btn-default btnBack">
                                 <span>Subir hoja de vida</span>
                                 <input type="file" name="flCurriculum" class="btnBack upload flCurriculum" />
                             </div>
                         </div>
-                        <button class="btn btn-default btnSubir" disabled>Subir</button>
+                        <button class="btn btn-default btnBack btnSubir" disabled>Subir</button>
                     </form>
                 </div>
                 <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
@@ -192,10 +192,10 @@
                         <thead>
                             <tr>
                                 <th class="hidden"></th>
-                                <th>Institución</th>
-                                <th class="txtDate">Inicio</th>
-                                <th class="txtDate">Fin</th>
-                                <th>Cargo desempeñado</th>
+                                <th class="th1">Institución</th>
+                                <th class="th2">Inicio</th>
+                                <th class="th3">Fin</th>
+                                <th class="th4">Cargo desempeñado</th>
                                 <th>Acciones</th>
                             </tr>
                             <tr>
@@ -276,7 +276,7 @@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="divControl row marginNull">
-                                                    <select class="form-control cbInstitucion input-sm" name="cbInstitucion"></select>
+                                                    <select class="form-control selectBack cbInstitucion input-sm" name="cbInstitucion"></select>
                                                     <div class="row marginNull divResultado hidden">
                                                         _
                                                     </div>
@@ -303,7 +303,7 @@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="divControl row marginNull">
-                                                    <input type="number" class="form-control txtFin input-sm" name="txtFin" min="1970" max="2100" />
+                                                    <input type="number" class="inputBack form-control txtFin input-sm" name="txtFin" min="1970" max="2100" />
                                                     <div class="row marginNull divResultado hidden">
 
                                                     </div>
@@ -345,15 +345,15 @@
                                         <td class="tdBotones">
                                             <div class="editMode hidden">
                                                 <div class="btn-group">
-                                                    <button class="btnBack btnActualizarLaboralPersona btn btn-default btn-xs">Actualizar</button>
-                                                    <button class="btnBack btnCancelarUni btn btn-default btn-xs">Cancelar</button>
+                                                    <button class="btnBack btnActualizarLaboralPersona btn btn-default btn-xs btn-block">Actualizar</button>
+                                                    <button class="btnBack btnCancelarUni btn btn-default btn-xs btn-block">Cancelar</button>
                                                 </div>
                                             </div>
                                             <div class="normalMode tdBotones">
                                                 <div class="btn-group">
-                                                    <button class="btnBack btnEditarLaboralPersona btn btn-xs btn-default" @permisos.stringEditar>Editar</button>
-                                                    <button class="btnBack btnActividad btn btn-xs btn-default">Actividades realizadas</button>
-                                                    <button class="btnBack btnEliminarLaboralPersona btn btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
+                                                    <button class="btnBack btnEditarLaboralPersona btn btn-xs btn-default btnBack btn-block" @permisos.stringEditar>Editar</button>
+                                                    <button class="btnBack btnActividad btn btn-xs btn-default btnBack btn-block">Actividades</button>
+                                                    <button class="btnBack btnEliminarLaboralPersona btn btn-xs btn-default btnBack btn-block" @permisos.stringEliminar>Eliminar</button>
                                                 </div>
 
                                             </div>

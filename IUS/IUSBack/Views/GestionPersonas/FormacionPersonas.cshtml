@@ -25,7 +25,7 @@
     List<NivelTitulo>       nivelesTitulo       = null; List<Persona>               personas                = null;
     List<FormacionPersona>  formacionesPersonas = null;
     List<AreaCarrera>       areasCarreras       = null;
-    string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
+    string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");//"~/Content/themes/iusback_theme/img/general/profle.png"
     InformacionPersona      informacion         = null;
     Permiso                 permisos            = (Permiso)ViewBag.permiso;
     try{
@@ -162,20 +162,20 @@
                     <table class="table tbCarreras table-hover">
                         <thead>
                             <tr>
-                                <th>Titulo</th>
-                                <th>Año Fin</th>
+                                <th class="th1">Titulo</th>
+                                <th class="th2">Año Fin</th>
                                 @*<th>Observaciones</th>*@
                                 <!--<td>Estado</td>-->
-                                <th>Nivel</th>
-                                <th>Area</th>
-                                <th>Institución</th>
-                                <th>País</th>
-                                <th>Acciones</th>
+                                <th class="th3">Nivel</th>
+                                <th class="th4">Area</th>
+                                <th class="th5">Institución</th>
+                                <th class="th6">País</th>
+                                <th class="th7">Acciones</th>
                             </tr>
                             <tr class="trAgregar">
                                 <td>
                                     <div class="row marginNull divControl">
-                                        <input class="txtCarrera form-control input-sm" name="txtCarrera" placeholder="Carrera" />
+                                        <input class="inputBack txtCarrera form-control input-sm" name="txtCarrera" placeholder="Carrera" />
                                         <div class="row marginNull divResultado hidden">
 
                                         </div>
@@ -183,7 +183,7 @@
                                 </td>
                                 <td class="tdFechaIniFinTitulo">
                                     <div class="row marginNull divControl">
-                                        <input name="txtYearFin" type="number" class="txtYearFin form-control soloNumerosInt input-sm" maxlength="4" min="1970" max="2100" />
+                                        <input name="txtYearFin" type="number" class="inputBack txtYearFin form-control soloNumerosInt input-sm" maxlength="4" min="1970" max="2100" />
                                         <div class="row marginNull divResultado hidden">
 
                                         </div>
@@ -199,7 +199,7 @@
                         </td>*@
                                 <td>
                                     <div class="row marginNull divControl">
-                                        <select class="input-sm cbNivelCarrera form-control" name="cbNivelCarrera">
+                                        <select class="input-sm selectBack cbNivelCarrera form-control" name="cbNivelCarrera">
                                             @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
                                             {
                                                 foreach (NivelTitulo nivelTitulo in nivelesTitulo)
@@ -215,7 +215,7 @@
                                 </td>
                                 <td>
                                     <div class="row marginNull divControl">
-                                        <select class="input-sm cbAreaCarrera form-control" name="cbAreaCarrera">
+                                        <select class="input-sm selectBack cbAreaCarrera form-control" name="cbAreaCarrera">
                                             @if (areasCarreras != null && areasCarreras.Count > 0)
                                             {
                                                 foreach (AreaCarrera areaCarrera in areasCarreras)
@@ -231,7 +231,7 @@
                                 </td>
                                 <td>
                                     <div class="row marginNull divControl">
-                                        <input class="input-sm form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                                        <input class="input-sm form-control inputBack txtInstitucionEducativa" name="txtInstitucionEducativa" />
                                         <div class="row marginNull divResultado hidden">
 
                                         </div>
@@ -255,7 +255,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="btn btnAgregarCarrera btn-default btn-xs" @permisos.stringCrear>Agregar</button>
+                                    <button class="btnBack btn btnAgregarCarrera btn-default btn-xs" @permisos.stringCrear>Agregar</button>
                                 </td>
                             </tr>
                         </thead>
@@ -274,7 +274,7 @@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="row marginNull divControl">
-                                                    <input class="form-control input-sm txtCarrera" name="txtCarrera" placeholder="Carrera" />
+                                                    <input class="form-control inputBack input-sm txtCarrera" name="txtCarrera" placeholder="Carrera" />
                                                     <div class="row marginNull divResultado hidden">
 
                                                     </div>
@@ -287,7 +287,7 @@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="row marginNull divControl">
-                                                    <input name="txtYearFin" type="number" class="txtYearFin form-control soloNumerosInt input-sm" maxlength="4" min="1970" max="2100" />
+                                                    <input name="txtYearFin" type="number" class="inputBack txtYearFin form-control soloNumerosInt input-sm" maxlength="4" min="1970" max="2100" />
                                                     <div class="row marginNull divResultado hidden">
                                                     </div>
                                                 </div>
@@ -314,7 +314,7 @@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="row marginNull divControl">
-                                                    <select class="input-sm cbNivelCarrera form-control" name="cbNivelCarrera">
+                                                    <select class="selectBack input-sm cbNivelCarrera form-control" name="cbNivelCarrera">
                                                         @if (nivelesTitulo != null && nivelesTitulo.Count > 0)
                                                         {
                                                             foreach (NivelTitulo nivelTitulo in nivelesTitulo)
@@ -336,7 +336,7 @@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="row marginNull divControl">
-                                                    <select class="input-sm cbAreaCarrera form-control" name="cbAreaCarrera">
+                                                    <select class="selectBack input-sm cbAreaCarrera form-control" name="cbAreaCarrera">
                                                         @if (areasCarreras != null && areasCarreras.Count > 0)
                                                         {
                                                             foreach (AreaCarrera areaCarrera in areasCarreras)
@@ -358,7 +358,7 @@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="row marginNull divControl">
-                                                    <input class="input-sm form-control txtInstitucionEducativa" name="txtInstitucionEducativa" />
+                                                    <input class="input-sm form-control inputBack txtInstitucionEducativa" name="txtInstitucionEducativa" />
                                                     <div class="row marginNull divResultado hidden">
 
                                                     </div>
@@ -395,14 +395,14 @@
                                         <td>
                                             <div class="editMode hidden tdControl">
                                                 <div class="btn-group">
-                                                    <button class="btn btnActualizarTituloPersona btn-default btn-xs">Actualizar</button>
-                                                    <button class="btn btnCancelarUni btn-default btn-xs">Cancelar</button>
+                                                    <button class="btn btnActualizarTituloPersona btn-default btn-xs btnBack btn-block">Actualizar</button>
+                                                    <button class="btn btnCancelarUni btn-default btn-xs btnBack btn-block">Cancelar</button>
                                                 </div>
                                             </div>
                                             <div class="normalMode tdEmail tdControl">
                                                 <div class="btn-group">
-                                                    <button class="btn btnEditarTitulos btn-default btn-xs" @permisos.stringEditar>Editar</button>
-                                                    <button class="btn btnEliminarTitulo btn-default btn-xs" @permisos.stringEliminar>Eliminar</button>
+                                                    <button class="btn btnBack btnEditarTitulos btn-default btn-xs btn-block " @permisos.stringEditar>Editar</button>
+                                                    <button class="btn btnBack btnEliminarTitulo btn-default btn-xs btn-block" @permisos.stringEliminar>Eliminar</button>
                                                 </div>
                                             </div>
                                         </td>
