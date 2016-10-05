@@ -49,14 +49,21 @@
 
 <div class="row marginNull centroPagina ">
     <!-- Para ficha -->
-    <div>
-
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Recursos humanos
+        </span>
     </div>
     <!-- Normal -->
     <div class="row marginNull">
         <div class="divTituloSec">
             <h2 class="tituloSecciones">Busqueda</h2>
-
         </div>
         <div class="row marginNull divTodoForm">
             <div class="row marginNull controlCurriculum">
@@ -68,7 +75,7 @@
                             <div class="row marginNull">
                                 <div class="col-lg-4">
                                     <label>Nivel</label>
-                                    <select name="cbNiveles" class=" form-control cbNiveles" multiple>
+                                    <select name="cbNiveles" class="selectBack inputBack form-control cbNiveles" multiple>
                                         <!--<option value="-1">Todos</option>-->
                                         @if (nivelesTitulos != null)
                                         {
@@ -81,7 +88,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <label>Area carrera</label>
-                                    <select name="cbAreas" class="inputBack form-control cbAreas" multiple>
+                                    <select name="cbAreas" class="selectBack form-control cbAreas" multiple>
                                         <!--<option value="-1">Cualquier area</option>-->
                                         @if (areasCarreras != null && areasCarreras.Count > 0)
                                         {
