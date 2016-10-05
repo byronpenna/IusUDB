@@ -296,66 +296,25 @@ footer {
 body {
   font-family: "MyriadRegular"; }
 
-.chosen-container-active.chosen-with-drop .chosen-single, .chosen-container-single .chosen-single {
-  height: 30px;
-  border-radius: 0;
-  background: none;
-  padding-top: 3px;
-  border: solid 1px #828181; }
-
-.chosen-container-single .chosen-drop {
-  background: white; }
-
-.chosen-container-multi .chosen-choices {
-  background: none; }
-
-table.dataTable.no-footer {
-  border: none; }
-
-table.datatable {
-  border-collapse: collapse; }
-  table.datatable thead tr td {
-    font-size: 14px; }
-  table.datatable thead tr th {
-    font-size: 14px; }
-  table.datatable tbody tr {
-    background: none; }
-  table.datatable tbody td {
-    border: solid 1px #828181;
-    color: #414141;
-    font-size: 14px; }
-
-.tdPais {
-  width: 20%; }
-
-.tdFundacion {
-  width: 10%; }
-
-.tdDireccion, .tdNombreInsitucion, .tdPais, .tdTipo {
-  width: 15%; }
-
-.normalMode {
-  width: 100%;
-  text-align: justify; }
-
-/*Quitar en caso de usar tabs */
-.cuerpoModulo, .tabsHeader {
-  margin-top: 0%; }
-
-.tabsHeader {
-  display: none; }
-
-.td4 {
-  padding-left: 1% !important;
-  padding-right: 1% !important; }
-
-.tbInstituciones tr td:first-child, .tbInstituciones tr th:first-child {
-  display: none; }
-
-.txtAreaDireccion {
-  resize: none; }
-
 .divMensajesGenerales {
+  margin-bottom: 3%; }
+
+.tbTelefonos thead tr th:first-child, .tbTelefonos tbody tr td:first-child {
+  display: none; }
+
+.divInstitucionPrev {
+  text-align: center;
+  margin-top: 2%;
+  margin-bottom: 2%; }
+  .divInstitucionPrev img {
+    /*width: 20% */
+    width: 200px;
+    height: 200px; }
+
+.thBtnGuardar {
+  vertical-align: top !important; }
+
+.rowNavegacion {
   margin-top: 5%; }
 
 /*# sourceMappingURL=stylei.css.map */

@@ -115,8 +115,8 @@
 
                                     </div>
                                 </td>
-                                <td>
-                                    <input type="number" class="inputBack txtAnio form-control" name="txtAnio" />
+                                <td class="td4">
+                                    <input type="number" min="1800" max="2500" class="inputBack txtAnio form-control" name="txtAnio" />
                                     <div class="row marginNull divResultado hidden">
 
                                     </div>
@@ -159,7 +159,7 @@
                                         </td>
                                         <td class="tdNombreInsitucion">
                                             <div class="editMode hidden">
-                                                <input type="text" name="txtNombreInstitucionEdit" class="txtNombreInstitucionEdit form-control txtNombreInstitucionVal txtEnterEdit" />
+                                                <input type="text" name="txtNombreInstitucionEdit" class="txtNombreInstitucionEdit inputBack form-control txtNombreInstitucionVal txtEnterEdit" />
                                                 <div class="divResultado">
 
                                                 </div>
@@ -168,14 +168,14 @@
                                         </td>
                                         <td class="tdDireccion">
                                             <div class="editMode hidden">
-                                                <textarea class="txtAreaDireccionEdit form-control txtAreaDireccionVal" name="txtAreaDireccionEdit"></textarea>
+                                                <textarea class="inputBack txtAreaDireccionEdit form-control txtAreaDireccionVal" name="txtAreaDireccionEdit"></textarea>
                                             </div>
                                             <div class="normalMode tdDireccion tdDireccionText ">@institucion._direccion</div>
 
                                         </td>
                                         <td class="tdPais">
                                             <div class="editMode hidden">
-                                                <select class="cbPaisEdit cbPaisVal " name="cbPaisEdit"></select>
+                                                <select class="cbPaisEdit cbPaisVal selectBack" name="cbPaisEdit"></select>
                                             </div>
                                             <div class="normalMode tdPaisText">
                                                 @institucion._pais._pais
@@ -183,13 +183,13 @@
                                         </td>
                                         <td class="tdFundacion">
                                             <div class="editMode hidden">
-                                                <input type="text" class="txtAnioFundacion form-control" name="txtAnioFundacion" />
+                                                <input type="number" class="txtAnioFundacion form-control inputBack" name="txtAnioFundacion" />
                                             </div>
                                             <div class="normalMode tdAnioFundacionText">@institucion._anioFundacion</div>
                                         </td>
                                         <td class="tdTipo">
                                             <div class="editMode hidden">
-                                                <select class="form-control cbTipoInstitucionEdit" name="cbTipoInstitucion"></select>
+                                                <select class="form-control cbTipoInstitucionEdit selectBack" name="cbTipoInstitucion"></select>
                                             </div>
                                             <div class="normalMode tdTipoInstitucionText">
                                                 @institucion._tipoInstitucion._tipoInstitucion
@@ -197,21 +197,24 @@
                                         </td>
                                         <td class="tdCiudad">
                                             <div class="editMode hidden">
-                                                <input class="form-control txtCiudad" name="txtCiudad" />
+                                                <input class="form-control txtCiudad inputBack" name="txtCiudad" />
                                             </div>
                                             <div class="normalMode tdCiudadText">@institucion._ciudad</div>
                                         </td>
 
                                         <td>
                                             <div class="editMode hidden">
-                                                <div class="btn-group">
-                                                    <button class="btn btn-default btn-xs btnActualizarInstitucion">
-                                                        Actualizar
-                                                    </button>
-                                                    <button class="btn btn-default btn-xs btnCancelar">
-                                                        Cancelar
-                                                    </button>
-                                                </div>
+                                                
+                                                <button class="btn btn-default btn-block btnBack btn-xs btnActualizarInstitucion">
+                                                    Actualizar
+                                                </button>
+                                                <button class="btn btn-default btn-block btnBack btn-xs btnCancelar">
+                                                    Cancelar
+                                                </button>
+                                                @*<div class="btn-group btn-block">
+                                                    
+                                                    
+                                                </div>*@
                                             </div>
                                             <div class="normalMode">
                                                 <div class="btn-group-vertical">
