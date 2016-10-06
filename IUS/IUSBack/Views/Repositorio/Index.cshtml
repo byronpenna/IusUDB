@@ -94,7 +94,7 @@
             </span>
             >>>
             <span class="titulo">
-                Gestion de roles
+                Gestion de repositorio
             </span>
         </div>
     </div>
@@ -250,13 +250,13 @@
                                             <div class='col-lg-2'>@archivo.getFechaCreacion</div>
                                             <div class="col-lg-2 divAccionesLista">
                                                 <div class="btn-group">
-                                                    <a href="#" class="btnAccion btn btn-default icoCompartirFile" title="Compartir">
+                                                    <a href="#" class="btnAccion btn btn-default btn-block icoCompartirFile btnArchivo btnBack" title="Compartir">
                                                         <i class="fa fa-share"></i>
                                                     </a>
-                                                    <a class="btnAccion btn btn-default ico" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
+                                                    <a class="btnAccion btn btn-default btn-block ico btnBack btnArchivo" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
                                                         <i class="fa fa-download"></i>
                                                     </a>
-                                                    <a href="#" class="btnAccion btn btn-default ico icoEliminarArchivo" title="Eliminar">
+                                                    <a href="#" class="btnAccion btn btn-default btn-block btnBack ico icoEliminarArchivo btnArchivo" title="Eliminar">
                                                         <i class="fa fa-trash-o"></i>
                                                     </a>
                                                 </div>
@@ -356,7 +356,7 @@
                         <div class="row divCompartirOpciones marginNull">
 
                             <div class="input-group">
-                                <input placeholder="Nombre publico" name="txtNombreFileCompartir" class="txtNombreFileCompartir form-control inputBackModal" />
+                                <input placeholder="Nombre publico" name="txtNombreFileCompartir" class="borde txtNombreFileCompartir form-control inputBackModal" />
                                 <span class=" input-group-addon btn btnCompartir">Compartir aqui</span>
                             </div>
                         </div>
@@ -371,7 +371,7 @@
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <i class="fa fa-chevron-left icoPublicoBack pointer input-group-addon btnAccion "></i>
-                                        <input class="form-control txtRutaPublica inputBackModal" value="/" />
+                                        <input class="form-control txtRutaPublica inputBackModal borde" value="/" />
                                         <span class="input-group-addon pointer spIrPublico">Ir</span>
                                     </div>
 
@@ -386,7 +386,7 @@
                             </div>
                             <div class="row marginNull text-center">
                                 <h4 class="tituloBusquedaFolderPublico">Buscar carpeta publica</h4>
-                                <input class="txtBusquedaCarpetaPublica form-control" />
+                                <input class="txtBusquedaCarpetaPublica form-control inputBack" />
                             </div>
                         </div>
                     </div>

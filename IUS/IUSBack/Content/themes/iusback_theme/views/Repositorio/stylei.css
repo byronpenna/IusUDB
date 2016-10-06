@@ -8,12 +8,33 @@
   border-radius: 0;
   padding-top: 1%;
   padding-bottom: 1%;
-  background: transparent; }
+  background: transparent;
+  border: solid 1px #828181; }
+
+.borde {
+  border: solid 1px #828181; }
 
 .selectBack {
   background: transparent;
   height: 30px;
-  border-radius: 0; }
+  border-radius: 0;
+  border: solid 1px #828181; }
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); }
 
 .todo {
   width: 100%;
@@ -58,6 +79,10 @@ body {
   .rowNavegacion .titulo {
     text-transform: uppercase;
     text-decoration: underline; }
+  .rowNavegacion .tituloPrev {
+    text-decoration: underline; }
+    .rowNavegacion .tituloPrev a {
+      color: #333 !important; }
   .rowNavegacion span a:first-child {
     color: #cd1315; }
 
@@ -68,6 +93,9 @@ body {
 
 .visibilitiHidden {
   visibility: hidden; }
+
+.fullSize {
+  width: 100%; }
 
 .input-group-addon {
   border-radius: 0;
@@ -88,6 +116,47 @@ table {
     border: solid 1px #828181;
     color: #414141;
     font-size: 14px; }
+
+#contenerdorCargadorAjax {
+  position: absolute;
+  left: 50%;
+  top: 50%; }
+
+#textoEsperaAjax {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 3%; }
+
+#cargadorAjaxUniversal {
+  position: relative;
+  top: 50%;
+  left: -50%;
+  text-align: center; }
+
+#div_carga, .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(128, 128, 128, 0.5);
+  display: none;
+  z-index: 1; }
+
+.inputBackModal {
+  background: rgba(255, 255, 255, 0.5);
+  position: static !important; }
+
+.divResultado {
+  text-align: center;
+  margin-bottom: 3%;
+  font-weight: bold; }
+
+.successMessage {
+  color: #2ecc71 !important; }
+
+.failMessage {
+  color: #e74c3c !important; }
 
 #menuLogout {
   color: #cc1315; }
@@ -229,6 +298,8 @@ body {
 
 .tabs {
   margin-top: 5%; }
+  .tabs a {
+    color: #333; }
   .tabs li {
     padding-top: 10%;
     padding-bottom: 10%;
@@ -248,13 +319,18 @@ body {
   height: 30px;
   border-radius: 0;
   background: none;
-  padding-top: 3px; }
+  padding-top: 3px;
+  border: solid 1px #828181; }
 
 .chosen-container-single .chosen-drop {
   background: white; }
 
+.chosen-container-multi {
+  border: solid 1px #828181; }
+
 .chosen-container-multi .chosen-choices {
-  background: none; }
+  background: none;
+  border: none; }
 
 table.dataTable.no-footer {
   border: none; }
@@ -325,5 +401,9 @@ table.datatable {
 
 .centroArchivos {
   width: 95%; }
+
+.btnArchivo {
+  padding-top: 8%;
+  padding-bottom: 5%; }
 
 /*# sourceMappingURL=stylei.css.map */

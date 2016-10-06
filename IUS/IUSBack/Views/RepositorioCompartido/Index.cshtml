@@ -5,13 +5,12 @@
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/media.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />*@
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/media.css" />*@
 }
-@section tabs{
-    @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
-}
+
+@*@Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")*@
 @section scriptsPersonalizados{
     <!-- Plugins -->
         <!-- chosen -->
@@ -22,6 +21,8 @@
         <script src="~/Scripts/Views/Repositorio/RepositorioCompartido/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    
     List<Carpeta> carpetas              = (List<Carpeta>)ViewBag.carpetas;
     List<Archivo> archivos              = (List<Archivo>)ViewBag.archivos;
     List<Usuario> usuarios              = (List<Usuario>)ViewBag.usuarios;
@@ -52,6 +53,9 @@
 }
 <input type="hidden" class="txtHdNombreControlador" value="@ViewBag.nombreControlador" />
 <input type="hidden" class="txtHdMetodo" value="@ViewBag.nombreMetodo" />
+<div class="centro">
+
+</div>
 <div class="row marginNull rowHerramientas">
     <div class="col-lg-4">
 

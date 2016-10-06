@@ -377,7 +377,7 @@
                         </td>\
                         <td>"+ usuarioEvento._usuario._usuario + "</td>\
                         <td>\
-                            <button class='btn btn-default icoQuitarUsuario btn-xs'>\
+                            <button class='btn btnBack btn-default icoQuitarUsuario'>\
                                 <i class='fa fa-trash'></i>\
                             </button>\
                         </td>\
@@ -419,7 +419,7 @@
                             </td>\
                             <td>" + PermisoUsuarioEvento._permiso._permiso + "</td>\
                             <td>\
-                                <button class='btn btn-default icoEliminarPermisoEvento'>\
+                                <button class='btn btn-default icoEliminarPermisoEvento btnBack'>\
                                     <i class='fa fa-trash pointer'/>\
                                 </button>\
                             </td>\
@@ -940,6 +940,8 @@
         function trUsuarioCompartido(tr) {
             tbody = tr.parents("tbody");
             tbody.find(".clickTr").removeClass("clickTr");
+            //$(".activeTr").removeClass(".activeTr");
+            //cambioBackgroundColorTrGeneral(".trSubMenu", "#bdc3c7", ".activeTr", { antes: "black", despues: "white" }, tr);
             tr.addClass("clickTr");
             frm = {
                 idUsuarioEvento: tr.find(".txtHdIdUsuarioEvento").val(),
