@@ -16,7 +16,7 @@
         List<TelefonoPersona>       telefonos   = (List<TelefonoPersona>)medios["telefonos"];
     // strings 
         string pais     = "No esta definido";
-        string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/profle.png");
+        string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");// /Content/themes/iusback_theme/img/general/profle.png
         if (infoPersona._pais != null)
         {
              pais = infoPersona._pais._pais;
@@ -73,14 +73,14 @@
                 </a>
             </span>
             >>>
-            <span>
+            <span class="tituloPrev">
                 <a href="@Url.Action("Index","GestionPersonas")">
                     Gestion persona
                 </a>
             </span>
             >>>
             <span class="titulo">
-                Gestion de usuarios
+                Detalles
             </span>
         </div>
         <h2 class="text-center">@persona.nombreCompleto</h2>
@@ -89,17 +89,17 @@
         </div>
         <div class="row marginNull divInfo">
             <div class="col-lg-offset-3 col-lg-2 tarjetaInfo t1">
-                <h3>Sexo</h3>
+                <h4>Sexo</h4>
                 <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/"+persona._sexo._idSexo+".png")" />
                 <h4>@persona._sexo._sexo</h4>
             </div>
             <div class="col-lg-2 tarjetaInfo t2">
-                <h3>Pais de origen</h3>
+                <h4>Pais de origen</h4>
                 <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/"+infoPersona._pais._idPais+".png")" />
                 <h4>@pais</h4>
             </div>
             <div class="col-lg-2 tarjetaInfo t1">
-                <h3>Nacio</h3>
+                <h4>Nacio</h4>
                 <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/views/Persona/pastel.png")" />
                 <h4>@persona.getFechaNac</h4>
             </div>

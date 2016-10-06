@@ -8,12 +8,33 @@
   border-radius: 0;
   padding-top: 1%;
   padding-bottom: 1%;
-  background: transparent; }
+  background: transparent;
+  border: solid 1px #828181; }
+
+.borde {
+  border: solid 1px #828181; }
 
 .selectBack {
   background: transparent;
   height: 30px;
-  border-radius: 0; }
+  border-radius: 0;
+  border: solid 1px #828181; }
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); }
 
 .todo {
   width: 100%;
@@ -58,6 +79,10 @@ body {
   .rowNavegacion .titulo {
     text-transform: uppercase;
     text-decoration: underline; }
+  .rowNavegacion .tituloPrev {
+    text-decoration: underline; }
+    .rowNavegacion .tituloPrev a {
+      color: #333 !important; }
   .rowNavegacion span a:first-child {
     color: #cd1315; }
 
@@ -121,6 +146,17 @@ table {
 .inputBackModal {
   background: rgba(255, 255, 255, 0.5);
   position: static !important; }
+
+.divResultado {
+  text-align: center;
+  margin-bottom: 3%;
+  font-weight: bold; }
+
+.successMessage {
+  color: #2ecc71 !important; }
+
+.failMessage {
+  color: #e74c3c !important; }
 
 #menuLogout {
   color: #cc1315; }
@@ -270,8 +306,12 @@ body {
 .chosen-container-single .chosen-drop {
   background: white; }
 
+.chosen-container-multi {
+  border: solid 1px #828181; }
+
 .chosen-container-multi .chosen-choices {
-  background: none; }
+  background: none;
+  border: none; }
 
 .bootstrap-tagsinput {
   width: 80%; }
