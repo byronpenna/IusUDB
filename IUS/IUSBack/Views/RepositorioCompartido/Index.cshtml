@@ -5,9 +5,9 @@
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />*@
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/stylei.css" />
-    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/media.css" />*@
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />*@
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/media.css" />*@
 }
 
 @*@Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")*@
@@ -27,7 +27,7 @@
     List<Archivo> archivos              = (List<Archivo>)ViewBag.archivos;
     List<Usuario> usuarios              = (List<Usuario>)ViewBag.usuarios;
     List<Usuario> usuariosCompartidos   = (List<Usuario>)ViewBag.usuariosCompartidos;
-    /*Manejo de vista cuadricula lista*/
+    /*Manejo de vista cuadricula lista  */
     int vista                           = (int)ViewBag.vista; // -1 cuadricula, 1 lista
     string oculto = "hidden", vistaActiva = "activeVista";
     string[] clases = new string[2];
@@ -53,306 +53,323 @@
 }
 <input type="hidden" class="txtHdNombreControlador" value="@ViewBag.nombreControlador" />
 <input type="hidden" class="txtHdMetodo" value="@ViewBag.nombreMetodo" />
-<div class="centro">
 
-</div>
-<div class="row marginNull rowHerramientas">
-    <div class="col-lg-4">
-
-        <label for="txtDireccion">Ruta</label>
-        <div class="input-group">
-            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="@carpetaActual._ruta" />
-            <span class="input-group-addon spIrBuscar">Ir</span>
-        </div>
-
-    </div>
-    <div class="col-lg-2 seccionHerramientas herramientaUserSection">
-        
-    </div>
-    <div class="col-lg-2 herramientaVistaSection">
-        <label>Vistas</label>
-        <div class="accionesDiv form-control inputBackModal">
-            <a href="#" class="ico iconoVista iconoVistaCuadricula @activeVista[0]" title="Cuadricula">
-                <!--activeVista-->
-                <i class="fa fa-th-large"></i>
+<div class="centroRepo">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
             </a>
-            <a href="#" class="ico iconoVista icoVistaLista  @activeVista[1]" title="Lista">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
+        </span>
+        >>>
+        <span class="titulo">
+            Repositorio compartido
+        </span>
     </div>
-    <div class="col-lg-4">
-        <div class="col-lg-6">
-            <label>Busqueda</label>
-        </div>
-        <div class="row marginNull">
-            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
-            Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
-        </div>
-        <div class="input-group divBusquedaArchivos">
-            <input class="form-control txtBusqueda inputBackModal" name="txtBusqueda" placeholder="Buscar en carpeta" />
-            <span class="input-group-addon btnBusqueda visibilitiHidden">
-                <i class="fa fa-search"></i>
-            </span>
-        </div>
-    </div>
-</div>
-<div class="row marginNull">
-    <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
-    <div class="divMensajesGenerales">
-
-    </div>
-    <div class="folders col-lg-8">
-        <div class="listView @clases[0]">
-            <!--hidden-->
-            <div class="row divCabeceraList">
-                <div class="col-lg-6">
-                    Nombre
-                </div>
-                <div class="col-lg-2">
-                    Tipo
-                </div>
-                <div class="col-lg-2">
-                    Fecha de creación
-                </div>
-                <div class="col-lg-2">
-                    Acciones
-                </div>
-            </div>
-            <div class="targetListView">
-                @if (carpetas != null && carpetas.Count > 0 && vista == 1)
-                {
-                    foreach (Carpeta carpeta in carpetas)
-                    {
-                        <div class='row folderDetalles carpetaDetalle '>
-                            <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpeta">
-                            <div class='col-lg-6'>
-                                <i class='fa fa-folder'></i>
-                                <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
-                                <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
-                            </div>
-                            <div class='col-lg-2'>Folder</div>
-                            <div class='col-lg-2'>@carpeta.getFechaCreacion</div>
-                        </div>
-                    }
-                }
-                @if (archivos != null && archivos.Count > 0 && vista == 1)
-                {
-                    foreach (Archivo archivo in archivos)
-                    {
-                        <div class='row folderDetalles folderUni'>
-                            <input type='hidden' class='txtHdIdArchivo' value="@archivo._idArchivo">
-                            <div class='col-lg-6'>
-                                <div class='normalMode inline'>
-                                    <span class='spanNombreCarpeta sinRedirect nombreAcompartir ttlNombreCarpeta'>@archivo._nombre</span>
-                                </div>
-                                <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect'></div>
-                            </div>
-                            <div class='col-lg-2'>@archivo._extension._tipoArchivo._tipoArchivo </div>
-                            <div class='col-lg-2'>@archivo.getFechaCreacion</div>
-                            <div class="col-lg-2 divAccionesLista">
-                                <div class="btn-group">
-                                    <a href="#" class="btnAccion btn btn-default icoCompartirFile" title="Compartir">
-                                        <i class="fa fa-share"></i>
-                                    </a>
-                                    <a class="btnAccion btn btn-default ico" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
-                                        <i class="fa fa-download"></i>
-                                    </a>
-                                </div>
-                                <!--
-                                <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>-->
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-
-        <div class="cuadriculaView @clases[1]">
-            @if (carpetas != null && carpetas.Count > 0 && vista == -1)
-            {
-                foreach (Carpeta carpeta in carpetas)
-                {
-                    <div class="col-lg-2 folder">
-                        <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta" />
-                        @*<div class="row divHerramientasIndividual visibilitiHidden">
-                            <a href="#" title="Compartir">
-                                <i class="fa fa-share"></i>
-                            </a>
-
-                        </div>*@
-                        <div class="cuadritoIcono cuadritoCarpeta">
-                            <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
-                            
-                            <div class="detalleCarpeta">
-                                <div class="normalMode sinRedirect">
-                                    <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row marginNull divMensajeCarpeta">
-
-                        </div>
-                    </div>
-                }
-            }
-            @if (archivos != null && archivos.Count > 0)
-            {
-                foreach (Archivo archivo in archivos)
-                {
-                    <div class="col-lg-2 folder folderUni">
-                        <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo" />
-                        <div class="cuadritoIcono ">
-                            <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
-                            <div class="btn-group">
-                                <a href="#" class="btnAccion btn btn-default icoCompartirFile" title="Compartir">
-                                    <i class="fa fa-share"></i>
-                                </a>
-                                <a class="btnAccion btn btn-default ico" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
-                                    <i class="fa fa-download"></i>
-                                </a>
-                            </div>
-                            <div class="detalleCarpeta">
-                                <div class="normalMode">
-                                    <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>
-                                </div>
-                                <div class="row marginNull hidden editMode">
-                                    <div class='row marginNull inputNombreCarpeta'>
-                                        <input type='text' class='form-control txtNombreCarpeta'>
-                                    </div>
-                                    <div class='row marginNull'>
-                                        <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
-                                        <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row marginNull divMensajeCarpeta">
-
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
-    <div class="shareSection col-lg-4 ">
-        <input type="hidden" name="txtHdIdArchivoCompartir" class="txtHdIdArchivoCompartir" value="-1" />
-        <h3 class="text-center">Compartidos</h3>
-        <h4 class="nombreFileCompartir"></h4>
-        <div class="row marginNull">
+    <div class="row marginNull rowHerramientas">
+        <div class="col-lg-4">
+            <label for="txtDireccion">Ruta</label>
             <div class="input-group">
-                <select class="form-control cbUsuarios">
-                    <option value="-1">Seleccione usuario a compartir</option>
-                    @if (usuarios != null && usuarios.Count > 0)
-                    {
-                        foreach (Usuario usuario in usuarios)
-                        {
-                            if (usuario._idUsuario != idUsuarioSession)
-                            {
-                                <option value="@usuario._idUsuario">@usuario._usuario</option>    
-                            }
-                        }
-                    }
-                </select>
-                <span class="input-group-addon btnShareArchivo pointer">
-                    <i class="fa fa-share"></i>
+                <input class="form-control txtDireccion inputBackModal inputBack" name="txtDireccion" value="@carpetaActual._ruta" />
+                <span class="input-group-addon spIrBuscar">Ir</span>
+            </div>
+        </div>
+        <div class="col-lg-2 seccionHerramientas herramientaUserSection">
+
+        </div>
+        <div class="col-lg-2 herramientaVistaSection">
+            <label>Vistas</label>>
+            <div class="accionesDiv form-control inputBackModal inputBack">
+                <a href="#" class="ico iconoVista iconoVistaCuadricula @activeVista[0]" title="Cuadricula">
+                    <!--activeVista-->
+                    <i class="fa fa-th-large"></i>
+                </a>
+                <a href="#" class="ico iconoVista icoVistaLista  @activeVista[1]" title="Lista">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="col-lg-6">
+                <label>Busqueda</label>
+            </div>
+            <div class="row marginNull">
+                En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
+                Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+            </div>
+            <div class="input-group divBusquedaArchivos">
+                <input class="form-control txtBusqueda inputBackModal inputBack" name="txtBusqueda" placeholder="Buscar en carpeta" />
+                <span class="input-group-addon btnBusqueda visibilitiHidden">
+                    <i class="fa fa-search"></i>
                 </span>
             </div>
-            
         </div>
-        
-        <div class="row marginNull divControlesPublicos">
-            <div class="col-lg-1">
-                
-                
-            </div>
-            <div class="col-lg-10">
-                <div class="row marginNull" >
-                    <div class="input-group">
-                        <i class="fa fa-chevron-left icoCompartidoBack pointer input-group-addon"></i>
-                        <input class="form-control txtBusquedaUsuario" placeholder="Buscar usuario" />
-                    </div>
-                        
-                        
-                    
-                </div>
-                
-                <div class="row marginNull divMessageCompartir">
+    </div>
+    <div class="row marginNull">
+        <div class="col-lg-2">
+            @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
+        </div>
+        <div class="col-lg-10">
+            <div class="row marginNull">
+                <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+                <div class="divMensajesGenerales">
 
                 </div>
-            </div>
-            <div class="col-lg-1">
-
-            </div>
-        </div>
-        <div class="divUsuarioCarpeta text-center hidden">
-            
-            <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
-            <h4 class="hUsuarioCarpeta">Demo2</h4>
-        </div>
-        <div class="row marginNull">
-            <div class="col-lg-2">
-                <i class="fa fa-th-large pointer icoVistaCompartida icoCuadriculaUsuario @activeVista[0]" id="-1"></i>
-            </div>
-            <div class="col-lg-2">
-                <i class="fa fa-bars pointer icoVistaCompartida icoListaUsuario @activeVista[1]" id="1"></i>
-            </div>
-        </div>
-        <div class="row marginNull seccionCompartida" >
-            <input class="txtUsuarioSeleccionado" type="hidden" value="-1" />
-            <input type="hidden" class="txtHdIdVista" value="@vista" />
-            @if (vista == 1)
-            {
-                <div class="row marginNull rowTituloUsuarioCompartidoLista">
-                    <h4 class="text-center txtEncabezadoLista">Usuarios</h4>
-                </div>
-            }
-            <div class="divSeccionCompartida">
-                @if (usuariosCompartidos != null && usuariosCompartidos.Count > 0)
-                {
-                    foreach (Usuario usuarioCompartido in usuariosCompartidos)
-                    {
-                        switch (vista)
-                        {
-                            case -1:
+                <div class="folders col-lg-8">
+                    <div class="listView @clases[0]">
+                        <!--hidden-->
+                        <div class="row divCabeceraList">
+                            <div class="col-lg-6">
+                                Nombre
+                            </div>
+                            <div class="col-lg-2">
+                                Tipo
+                            </div>
+                            <div class="col-lg-2">
+                                Fecha de creación
+                            </div>
+                            <div class="col-lg-2">
+                                Acciones
+                            </div>
+                        </div>
+                        <div class="targetListView">
+                            @if (carpetas != null && carpetas.Count > 0 && vista == 1)
+                            {
+                                foreach (Carpeta carpeta in carpetas)
                                 {
-                                    <div class="divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6">
-                                        <input type="hidden" class="txtHdIdUsuario" value="@usuarioCompartido._idUsuario" />
-                                        <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
-                                        <div class="row">
-                                            <a href="#" class="btn btn-default btnAccion btnDejarDeCompartirTodo" title="No compartir nada">
-                                                <i class="fa fa-trash-o"></i>
+                                    <div class='row folderDetalles carpetaDetalle '>
+                                        <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpeta">
+                                        <div class='col-lg-6'>
+                                            <i class='fa fa-folder'></i>
+                                            <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
+                                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect inputBack'></div>
+                                        </div>
+                                        <div class='col-lg-2'>Folder</div>
+                                        <div class='col-lg-2'>@carpeta.getFechaCreacion</div>
+                                    </div>
+                                }
+                            }
+                            @if (archivos != null && archivos.Count > 0 && vista == 1)
+                            {
+                                foreach (Archivo archivo in archivos)
+                                {
+                                    <div class='row folderDetalles folderUni'>
+                                        <input type='hidden' class='txtHdIdArchivo' value="@archivo._idArchivo">
+                                        <div class='col-lg-6'>
+                                            <div class='normalMode inline'>
+                                                <span class='spanNombreCarpeta sinRedirect nombreAcompartir ttlNombreCarpeta'>@archivo._nombre</span>
+                                            </div>
+                                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle txtNombreArchivoDetalle sinRedirect inputBack'></div>
+                                        </div>
+                                        <div class='col-lg-2'>@archivo._extension._tipoArchivo._tipoArchivo </div>
+                                        <div class='col-lg-2'>@archivo.getFechaCreacion</div>
+                                        <div class="col-lg-2 divAccionesLista">
+                                            <div class="btn-group">
+                                                <a href="#" class="btnAccion btn btn-default btnBack icoCompartirFile" title="Compartir">
+                                                    <i class="fa fa-share"></i>
+                                                </a>
+                                                @*ico*@
+                                                <a class="btnAccion btn btn-default btnBack" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
+                                                    <i class="fa fa-download"></i>
+                                                </a>
+                                            </div>
+                                            <!--
+                                    <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>-->
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+
+                    <div class="cuadriculaView @clases[1]">
+                        @if (carpetas != null && carpetas.Count > 0 && vista == -1)
+                        {
+                            foreach (Carpeta carpeta in carpetas)
+                            {
+                                <div class="col-lg-3 folder">
+                                    <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta" />
+                                    @*<div class="row divHerramientasIndividual visibilitiHidden">
+                                    <a href="#" title="Compartir">
+                                        <i class="fa fa-share"></i>
+                                    </a>
+
+                                </div>*@
+                                    <div class="cuadritoIcono cuadritoCarpeta">
+                                        <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+
+                                        <div class="detalleCarpeta">
+                                            <div class="normalMode sinRedirect">
+                                                <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row marginNull divMensajeCarpeta">
+
+                                    </div>
+                                </div>
+                            }
+                        }
+                        @if (archivos != null && archivos.Count > 0)
+                        {
+                            foreach (Archivo archivo in archivos)
+                            {
+                                <div class="col-lg-3 folder folderUni">
+                                    <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo" />
+                                    <div class="cuadritoIcono ">
+                                        <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
+                                        <div class="btn-group">
+                                            <a href="#" class="btnAccion btn btn-default btnBack icoCompartirFile" title="Compartir">
+                                                <i class="fa fa-share"></i>
+                                            </a>
+                                            <a class="btnAccion btn btn-default ico btnBack" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
+                                                <i class="fa fa-download"></i>
                                             </a>
                                         </div>
-                                        <h4 class="tituloCarpetaPublica">@usuarioCompartido._usuario</h4>
-                                    </div>
-                                    break;
-                                }
-                            case 1:
-                                {
-                                    <div class="divCarpetaUsuarioCompartido divCarpetaCompartidaLista row marginNull">
-                                        <input type="hidden" class="txtHdIdUsuario" value="@usuarioCompartido._idUsuario" />
-                                        <div class="col-lg-12 text-center pointer tituloCarpetaPublica">
-                                            @usuarioCompartido._usuario
+                                        <div class="detalleCarpeta">
+                                            <div class="normalMode">
+                                                <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>
+                                            </div>
+                                            <div class="row marginNull hidden editMode">
+                                                <div class='row marginNull inputNombreCarpeta'>
+                                                    <input type='text' class='form-control txtNombreCarpeta inputBack'>
+                                                </div>
+                                                <div class='row marginNull'>
+                                                    <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
+                                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    break;
-                                }
+                                    <div class="row marginNull divMensajeCarpeta">
+
+                                    </div>
+                                </div>
+                            }
                         }
+                    </div>
+                </div>
+                <div class="shareSection col-lg-4 ">
+                    <input type="hidden" name="txtHdIdArchivoCompartir" class="txtHdIdArchivoCompartir" value="-1" />
+                    <h3 class="text-center">Compartidos</h3>
+                    <h4 class="nombreFileCompartir"></h4>
+                    <div class="row marginNull">
+                        <div class="input-group">
+                            <select class="form-control cbUsuarios">
+                                <option value="-1">Seleccione usuario a compartir</option>
+                                @if (usuarios != null && usuarios.Count > 0)
+                                {
+                                    foreach (Usuario usuario in usuarios)
+                                    {
+                                        if (usuario._idUsuario != idUsuarioSession)
+                                        {
+                                            <option value="@usuario._idUsuario">@usuario._usuario</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                            <span class="input-group-addon btnShareArchivo pointer">
+                                <i class="fa fa-share"></i>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row marginNull divControlesPublicos">
+                        <div class="col-lg-1">
 
 
-                    }
-                }
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="row marginNull">
+                                <div class="input-group">
+                                    <i class="fa fa-chevron-left icoCompartidoBack pointer input-group-addon"></i>
+                                    <input class="form-control txtBusquedaUsuario inputBack" placeholder="Buscar usuario" />
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="row marginNull divMessageCompartir">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+
+                        </div>
+                    </div>
+                    <div class="divUsuarioCarpeta text-center hidden">
+
+                        <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
+                        <h4 class="hUsuarioCarpeta">Demo2</h4>
+                    </div>
+                    <div class="row marginNull">
+                        <div class="col-lg-2">
+                            <i class="fa fa-th-large pointer icoVistaCompartida icoCuadriculaUsuario @activeVista[0]" id="-1"></i>
+                        </div>
+                        <div class="col-lg-2">
+                            <i class="fa fa-bars pointer icoVistaCompartida icoListaUsuario @activeVista[1]" id="1"></i>
+                        </div>
+                    </div>
+                    <div class="row marginNull seccionCompartida">
+                        <input class="txtUsuarioSeleccionado inputBack" type="hidden" value="-1" />
+                        <input type="hidden" class="txtHdIdVista" value="@vista" />
+                        @if (vista == 1)
+                        {
+                            <div class="row marginNull rowTituloUsuarioCompartidoLista">
+                                <h4 class="text-center txtEncabezadoLista">Usuarios</h4>
+                            </div>
+                        }
+                        <div class="divSeccionCompartida">
+                            @if (usuariosCompartidos != null && usuariosCompartidos.Count > 0)
+                            {
+                                foreach (Usuario usuarioCompartido in usuariosCompartidos)
+                                {
+                                    switch (vista)
+                                    {
+                                        case -1:
+                                            {
+                                                <div class="divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6">
+                                                    <input type="hidden" class="txtHdIdUsuario" value="@usuarioCompartido._idUsuario" />
+                                                    <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
+                                                    <div class="row">
+                                                        <a href="#" class="btn btn-default btnBack btnAccion btnDejarDeCompartirTodo" title="No compartir nada">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </a>
+                                                    </div>
+                                                    <h4 class="tituloCarpetaPublica">@usuarioCompartido._usuario</h4>
+                                                </div>
+                                                break;
+                                            }
+                                        case 1:
+                                            {
+                                                <div class="divCarpetaUsuarioCompartido divCarpetaCompartidaLista row marginNull">
+                                                    <input type="hidden" class="txtHdIdUsuario" value="@usuarioCompartido._idUsuario" />
+                                                    <div class="col-lg-12 text-center pointer tituloCarpetaPublica">
+                                                        @usuarioCompartido._usuario
+                                                    </div>
+                                                </div>
+                                                break;
+                                            }
+                                    }
+
+
+                                }
+                            }
+                        </div>
+
+
+                    </div>
+                    @*<div class="row marginNull text-center">
+                    <h4>Busqueda de usuarios</h4>
+                    <input class="form-control txtBusquedaUsuarioDiv"/>
+                </div>*@
+                </div>
             </div>
-           
-            
         </div>
-        @*<div class="row marginNull text-center">
-            <h4>Busqueda de usuarios</h4>
-            <input class="form-control txtBusquedaUsuarioDiv"/>
-        </div>*@
     </div>
 </div>

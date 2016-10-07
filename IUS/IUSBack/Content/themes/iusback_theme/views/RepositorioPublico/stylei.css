@@ -454,78 +454,20 @@ body {
   background: none;
   border: none; }
 
-table.dataTable.no-footer {
-  border: none; }
-
-table.datatable {
-  border-collapse: collapse; }
-  table.datatable thead tr td {
-    font-size: 14px; }
-  table.datatable thead tr th {
-    font-size: 14px; }
-  table.datatable tbody tr {
-    background: none; }
-  table.datatable tbody td {
-    border: solid 1px #828181;
-    color: #414141;
-    font-size: 14px; }
-
 .folders {
-  border-right: solid 5px #F5F5F5; }
-
-.tituloBusquedaFolderPublico {
   margin-top: 5%; }
 
-.icoWebsiteFolder {
-  display: none; }
-
-.navPublicoBack {
-  height: 35px;
-  display: table; }
-
-.icoPublicoBack {
-  vertical-align: middle;
-  display: table-cell; }
-
-.divControlesPublicos {
-  margin-top: 4%; }
-
-.divInfoI {
-  width: 90%;
-  margin: 0 auto; }
-
-.tituloSecciones {
-  text-align: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background: #ECF0F1;
-  margin-top: 3%;
-  color: #2C3E50; }
-
-.divMensajes {
-  padding-top: 2%; }
+.aLista, .aLista:hover {
+  color: black; }
 
 .centroRepo {
   width: 95%;
   margin: 0 auto; }
 
 .rowNavegacion {
-  margin-top: 3%; }
+  margin-top: 5%; }
 
-.spIrBuscar {
-  border-left: none; }
-
-.btnNavHistory {
-  border-radius: 0; }
-
-.tabs {
-  padding: 0; }
-
-.centroArchivos {
-  width: 95%; }
-
-.btnArchivo {
-  padding-top: 8%;
-  padding-bottom: 5%; }
+.rowHerramientas {
+  margin-bottom: 3%; }
 
 /*# sourceMappingURL=stylei.css.map */

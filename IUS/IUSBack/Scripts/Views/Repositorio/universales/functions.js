@@ -3,10 +3,10 @@
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 0) {
                     $(".btnBusqueda").addClass("visibilitiHidden");
-                    $(".divBusquedaArchivos").removeClass("input-group");
+                    //$(".divBusquedaArchivos").removeClass("input-group");
                     buscarEnCarpeta($(".txtBusqueda").val());
                 } else {
-                    $(".divBusquedaArchivos").addClass("input-group");
+                    //$(".divBusquedaArchivos").addClass("input-group");
                     $(".btnBusqueda").removeClass("visibilitiHidden");
                     $(".folders .folder").removeClass("hidden");
                 }
