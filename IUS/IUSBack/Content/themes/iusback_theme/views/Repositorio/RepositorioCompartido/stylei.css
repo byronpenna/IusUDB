@@ -419,6 +419,12 @@ body {
     margin-bottom: 3%; }
 
 .tabs {
+  padding: 0; }
+
+.rowHerramientas {
+  margin-bottom: 3%; }
+
+.tabs {
   margin-top: 5%; }
   .tabs a {
     color: #333; }
@@ -510,9 +516,6 @@ body {
 
 .rowNavegacion {
   margin-top: 5%; }
-
-.rowHerramientas {
-  margin-bottom: 3%; }
 
 .btnAccion {
   padding-top: 8%;

@@ -419,6 +419,12 @@ body {
     margin-bottom: 3%; }
 
 .tabs {
+  padding: 0; }
+
+.rowHerramientas {
+  margin-bottom: 3%; }
+
+.tabs {
   margin-top: 5%; }
   .tabs a {
     color: #333; }
@@ -454,9 +460,6 @@ body {
   background: none;
   border: none; }
 
-.folders {
-  margin-top: 5%; }
-
 .aLista, .aLista:hover {
   color: black; }
 
@@ -466,8 +469,5 @@ body {
 
 .rowNavegacion {
   margin-top: 5%; }
-
-.rowHerramientas {
-  margin-bottom: 3%; }
 
 /*# sourceMappingURL=stylei.css.map */

@@ -1,18 +1,21 @@
 ﻿@section estilosPersonalizados{
-    <link rel="stylesheet" href="~/Content/ius_theme/views/NotFound/style.css" />
-    <link rel="stylesheet" href="~/Content/ius_theme/views/NotFound/media.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/NotFound/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/ius_theme/views/NotFound/media.css" />*@
+}
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
 }
 <div class="divErrorPage">
-    <img src="~/Content/images/generales/sadcloud.png" />
-    <!--<h2>Pagina no encontrada</h2>
+    @*<img src="~/Content/images/generales/sadcloud.png" />*@
+    <h2>Pagina no encontrada</h2>
     <p>
         Al parecer la pagina que buscas no existe o se encuentra en mantenimiento,
         si consideras que ingresaste la direccion correcta pero aun así no encuentras lo que 
         buscas puedes escribirnos a <a href="mailto:info@correo.com">info@correo.com</a> 
-    </p>-->
-    <h2>@ViewData["title"]</h2>
+    </p>
+    @*<h2>@ViewData["title"]</h2>
     <p>
         @ViewData["text"] <a href="mailto:info@correo.com">@ViewData["correo"]</a>
-    </p>
+    </p>*@
 </div>
 

@@ -419,6 +419,12 @@ body {
     margin-bottom: 3%; }
 
 .tabs {
+  padding: 0; }
+
+.rowHerramientas {
+  margin-bottom: 3%; }
+
+.tabs {
   margin-top: 5%; }
   .tabs a {
     color: #333; }
@@ -518,9 +524,8 @@ table.datatable {
 .btnNavHistory {
   border-radius: 0; }
 
-.tabs {
-  padding: 0; }
-
+/*.tabs
+ * padding: 0 */
 .centroArchivos {
   width: 95%; }
 

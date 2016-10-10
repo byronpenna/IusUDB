@@ -1,4 +1,7 @@
 ﻿// eventos 
+    /*$(document).on("click", ".btnTab", function () {
+        $(this).unbind('click');
+    })*/
     // change 
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 0) {
