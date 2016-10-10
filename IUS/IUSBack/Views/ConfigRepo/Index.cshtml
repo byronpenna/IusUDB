@@ -1,13 +1,16 @@
 ﻿@using IUSLibs.REPO.Entidades
+@using IUSLibs.SEC.Entidades
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     Dictionary<object, object> iniciales = null;
     List<ExtensionArchivo> extensiones = null;
+    Permiso permiso = null;
     try
     {
+        
         iniciales   = (Dictionary<object, object>)ViewBag.iniciales;
         extensiones = (List<ExtensionArchivo>)iniciales["extenciones"];
-        
+        permiso     = (Permiso)ViewBag.permiso;
     }
     catch (Exception x)
     {
@@ -76,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="normalMode">
-                                    <button class="btn btnBack btn-default btnCambiar">Cambiar</button>
+                                    <button class="btn btnBack btn-default btnCambiar" @permiso.stringEditar>Cambiar</button>
                                 </div>
                             </td>
                         </tr>

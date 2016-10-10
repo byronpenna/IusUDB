@@ -1,5 +1,6 @@
 ﻿@using IUSLibs.FrontUI.Entidades
 @using IUSLibs.RRHH.Entidades.Formacion
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/AdicionalesInstituciones/stylei.css" />
@@ -10,8 +11,10 @@
     Dictionary<object, object>  iniciales               = (Dictionary<object, object>)ViewBag.iniciales;
     List<InstitucionNivel>      InstitucionesNiveles    = null;  
     List<AreaCarrera>           areasCarrera            = null;
+    Permiso                     permiso                 = null;
     try
     {
+        permiso                 = (Permiso)ViewBag.permiso;
         InstitucionesNiveles    = (List<InstitucionNivel>)iniciales["nivelesEducacion"];
         areasCarrera            = (List<AreaCarrera>)iniciales["areasConocimiento"];
     }
@@ -67,7 +70,7 @@
                     <div class="col-lg-12">
                         <h3 class="text-center">Seleccione nivel</h3>
                         <div class="row marginNull text-center rowBotones">
-                            <button class="btn btn-sm btn-default btnGuardarNivel btnBack">Guardar</button>
+                            <button class="btn btn-sm btn-default btnGuardarNivel btnBack @permiso.stringEditar">Guardar</button>
                             <div class="row marginNull divGeneralesNivelEducativo">
 
                             </div>
@@ -120,7 +123,7 @@
                     <div class="col-lg-12">
                         <h3 class="text-center">Seleccione areas de conocimiento</h3>
                         <div class="row marginNull text-center rowBotones">
-                            <button class="btn btn-default btnGuardarAreaConocimiento btnBack">Guardar</button>
+                            <button class="btn btn-default btnGuardarAreaConocimiento btnBack @permiso.stringEditar">Guardar</button>
                             <div class="row marginNull divGeneralesAreasConocimiento">
 
                             </div>

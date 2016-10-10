@@ -99,7 +99,7 @@ namespace IUSBack.Controllers
                             informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
                             informacionPersona._tieneFoto = true;
                         }
-                        
+                        informacionPersona._persona = usuarioSesion._persona;
                         ViewBag.informacionPersonaGlobal = informacionPersona;
                         ViewBag.selectedMenu = selectedMenu;
                         ViewBag.currentUrl = Request.Url.AbsoluteUri;

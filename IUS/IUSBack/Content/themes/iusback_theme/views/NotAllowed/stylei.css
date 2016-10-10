@@ -300,10 +300,11 @@ body {
   text-align: center; }
 
 .cuerpoModulo h2 {
-  text-align: center; }
+  text-align: center;
+  font-size: 1.5em; }
 
 .cuerpoModulo p {
-  font-size: 1.5em; }
+  font-size: 1em; }
 
 .rowNavegacion {
   margin-top: 5%; }

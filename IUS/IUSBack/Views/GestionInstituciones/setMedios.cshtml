@@ -50,8 +50,26 @@
         </div>
     </a>
 </div>*@
+
 <div class="row marginNull centroPagina ">
     <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="tituloPrev">
+                <a href="@Url.Action("Index","GestionInstituciones")">
+                    Instituciones
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Medios instituciones
+            </span>
+        </div>
         <div class="row marginNull divInstitucionPrev">
             @if (institucion._logo != null)
             {
@@ -64,7 +82,7 @@
 
         </div>
         <div class="row marginNull">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <h3 class="text-center">Website</h3>
                 <table class="table tbEnlaces">
                     <thead>
@@ -152,7 +170,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <h3 class="text-center">Correos electronicos</h3>
                 @{
                     bool put = emailsInstitucion != null && emailsInstitucion.Count > 0;
@@ -177,7 +195,7 @@
                                 <input name="txtEmailInstitucion" class="inputBack txtEmailInstitucion form-control" />
                             </th>
                             <th>
-                                <button @able class="btn btn-default btnBack btn-block btnAddEmailInstitucion">Agregar</button>
+                                <button @able class="btn btn-default btnBack btn-block btnAddEmailInstitucion " @permiso.stringCrear>Agregar</button>
                             </th>
                         </tr>
                     </thead>
@@ -186,26 +204,26 @@
                         {
                             foreach (EmailInstitucion emailInstitucion in emailsInstitucion)
                             {
-                        <tr>
-                            <td class="hidden">
-                                <input name="txtHdIdEmailInstitucion" class="txtHdIdEmailInstitucion" value="@emailInstitucion._idEmailInstitucion" />
-                            </td>
-                            <td>@emailInstitucion._email</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-default btnBack">Editar</button>
-                                    <button class="btn btn-default btnBack btnEliminarEmailsInstitucion">Eliminar</button>
-                                </div>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td class="hidden">
+                                        <input name="txtHdIdEmailInstitucion" class="txtHdIdEmailInstitucion" value="@emailInstitucion._idEmailInstitucion" />
+                                    </td>
+                                    <td>@emailInstitucion._email</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-default btnBack @permiso.stringEditar">Editar</button>
+                                            <button class="btn btn-default btnBack btnEliminarEmailsInstitucion @permiso.stringEliminar">Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
                             }
                         }
                         else
                         {
-                        <tr>
-                            <td class="hidden"></td>
-                            <td colspan="2" class="text-center">No hay instituciones</td>
-                        </tr>
+                                <tr>
+                                    <td class="hidden"></td>
+                                    <td colspan="2" class="text-center">No hay instituciones</td>
+                                </tr>
                         }
                     </tbody>
                 </table>
