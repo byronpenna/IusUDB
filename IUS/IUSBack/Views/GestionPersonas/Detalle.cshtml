@@ -17,9 +17,11 @@
     // strings 
         string pais     = "No esta definido";
         string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");// /Content/themes/iusback_theme/img/general/profle.png
+        bool putPais = false;
         if (infoPersona._pais != null)
         {
-             pais = infoPersona._pais._pais;
+            pais = infoPersona._pais._pais;
+            putPais = true;
         }
         else
         {
@@ -90,17 +92,29 @@
         <div class="row marginNull divInfo">
             <div class="col-lg-offset-3 col-lg-2 tarjetaInfo t1">
                 <h4>Sexo</h4>
-                <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/"+persona._sexo._idSexo+".png")" />
+                @*<img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/general/sexos/"+persona._sexo._idSexo+".png")" />*@
+                <i class="fa fa-mars icoInfo" aria-hidden="true"></i>
                 <h4>@persona._sexo._sexo</h4>
             </div>
             <div class="col-lg-2 tarjetaInfo t2">
                 <h4>Pais de origen</h4>
-                <img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/"+infoPersona._pais._idPais+".png")" />
+                @if (putPais)
+                {
+                    @*<img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/"+infoPersona._pais._idPais+".png")" />*@
+                    <i class="fa fa-flag icoInfo" aria-hidden="true"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times icoInfo" aria-hidden="true" ></i>
+                }
+                @*<img class="img" src="@Url.Content("~/Content/themes/iusback_theme/img/general/paises/"+infoPersona._pais._idPais+".png")" />*@
+                
                 <h4>@pais</h4>
             </div>
             <div class="col-lg-2 tarjetaInfo t1">
                 <h4>Nacio</h4>
-                <img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/views/Persona/pastel.png")" />
+                @*<img class="img sex" src="@Url.Content("~/Content/themes/iusback_theme/img/views/Persona/pastel.png")" />*@
+                <i class="fa fa-birthday-cake icoInfo" aria-hidden="true"></i>
                 <h4>@persona.getFechaNac</h4>
             </div>
         </div>
@@ -124,9 +138,10 @@
                                 <tr>
                                     <td>@email._email</td>
                                     <td>@email._descripcion</td>
-                                    <td>
-                                        <a href="mailto:@email._email" title="Escribir">
-                                            <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />
+                                    <td class="tdCotel">
+                                        <a href="mailto:@email._email" title="Escribir" class="linkCoTel">
+                                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                            @*<img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/mail.png")" />*@
                                         </a>
                                     </td>
                                 </tr>
@@ -169,9 +184,11 @@
                                 <tr>
                                     <td>@telefono._telefono</td>
                                     <td>@telefono._descripcion</td>
-                                    <td>
-                                        <a href="tel:@telefono._telefono" title="Llamar">
-                                            <img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />
+                                    <td class="tdCoTel">
+                                        <a href="tel:@telefono._telefono" title="Llamar" class="linkCoTel">
+                                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                                            @*<img class="minIco" src="@Url.Content("~/Content/themes/iusback_theme/img/general/circle/tablet.png")" />*@
+
                                         </a>
                                     </td>
                                 </tr>
@@ -268,9 +285,21 @@
         </div>
         <div class="row marginNull text-center divInfoI">
             <h2 class="tituloSecciones text-center">Exportar</h2>
-            <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=1})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")" /></a>
-            <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=2})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/wordico.png")" /></a>
-            <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=3})"><img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/excel-ico.png")" /></a>
+            <div class="row rowExportar">
+                <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=1})">
+                    @*<img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")" />*@
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                </a>
+                <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=2})">
+                    @*<img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/wordico.png")" />*@
+                    <i class="fa fa-file-word-o" aria-hidden="true"></i>
+                </a>
+                <a class="aImgExport" href="@Url.Action("FichaPdf", "GestionPersonas", new {id=persona._idPersona,id2=3})">
+                    @*<img class="imgExport" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/excel-ico.png")" />*@
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                </a>
+            </div>
+            
         </div>
     </div>
     

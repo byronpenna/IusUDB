@@ -286,7 +286,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="editMode hidden">
-                                                        <input type="text" name="txtRol" class="input-sm txtRol txtRolEdit form-control" />
+                                                        <input type="text" name="txtRol" class="input-sm txtRol inputBack txtRolEdit form-control" />
                                                         <div class="divResultado">
 
                                                         </div>
@@ -298,18 +298,21 @@
                                                 </td>
                                                 <td>
                                                     <div class="editMode hidden">
-                                                        <button class="btnBack btn btn-xs btn-default btnActualizar">Actualizar</button>
-                                                        <button class="btnBack btn btn-xs btn-default btnCancelarEdit">Cancelar</button>
+                                                        <div class="btn-group btn-block">
+                                                            <button class="btnBack btn btn-xs col-lg-6 btn-default btnActualizar">Actualizar</button>
+                                                            <button class="btnBack btn btn-xs col-lg-6 btn-default btnCancelarEdit">Cancelar</button>
+                                                        </div>
+                                                        
                                                     </div>
                                                     <div class="normalMode">
-                                                        <div class='btn-group'>
-                                                            <button class="btnBack btn btn-xs btn-default btnEditar" @permisos.stringEditar>
+                                                        <div class='btn-group btn-block'>
+                                                            <button class="btnBack btn btn-xs col-lg-4 btn-default btnEditar" @permisos.stringEditar>
                                                                 Editar
                                                             </button>
-                                                            <button class="btnBack btn btn-xs btn-default btnEliminar" @permisos.stringEliminar>
+                                                            <button class="btnBack btn btn-xs col-lg-4 btn-default btnEliminar" @permisos.stringEliminar>
                                                                 Eliminar
                                                             </button>
-                                                            <button class="btnBack btn btn-xs btn-default btnDeshabilitar" @permisos.stringEditar>
+                                                            <button class="btnBack btn btn-xs col-lg-4 btn-default btnDeshabilitar" @permisos.stringEditar>
                                                                 @rol.txtBtnHabilitar
                                                             </button>
                                                         </div>
