@@ -157,23 +157,23 @@
                             </div>
                         </div>
                         <div class="row marginNull controlBusqueda divBusquedaRangoFecha hidden" id="2">
-                            <div class="divControl col-lg-5 ">
+                            <div class="divControl col-lg-6 text-center">
                                 <label>De</label>
-                                <input name="txtDeFechaBusqueda" class="form-control dpFecha txtDeFechaBusqueda" />
+                                <input name="txtDeFechaBusqueda" class="form-control dpFecha txtDeFechaBusqueda inputBack" />
                                 <div class="row marginNull divResultado hidden">
 
                                 </div>
                             </div>
-                            <div class="divControl col-lg-5 ">
+                            <div class="divControl col-lg-6 text-center ">
                                 <label>Hasta</label>
-                                <input name="txtHastaFecha" class="form-control dpFecha txtHastaFecha" />
+                                <input name="txtHastaFecha" class="form-control dpFecha txtHastaFecha inputBack" />
                                 <div class="row marginNull divResultado hidden">
 
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-offset-5 col-lg-2 rowBtnInputBuscar">
                                 <label class="visibilitiHidden">_</label>
-                                <button class="btn btn-default btnBuscarRangoFecha">
+                                <button class="btn btn-default btnBuscarRangoFecha btnBack">
                                     Buscar
                                 </button>
                             </div>
@@ -209,17 +209,19 @@
                             <div class="tabDesplegableEvento detalleEvento">
                                 <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
                                 <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
-                                <a class="vinculoGay" href="@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })">
-                                    @*<i class="fa fa-picture-o"></i>*@
-                                    Imagen evento
-                                </a>
+                                <div class="row marginNull">
+                                    <a class="vinculoGay text-right" style="float:right" href="@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })">
+                                        @*<i class="fa fa-picture-o"></i>*@
+                                        Imagen evento
+                                    </a>
+                                </div>
                                 <div class="row">
                                     <div class="normalMode">
                                         <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
                                     </div>
                                     <div class="editMode hidden" style="margin-bottom:5%;">
                                         <label>Nombre de evento</label>
-                                        <input type="text" name="txtEvento2" class="inputBack txtEvento2" />
+                                        <input type="text" name="txtEvento2" class="inputBack txtEvento2 form-control" />
                                     </div>
                                     <div class="editMode hidden">
                                         <div class="editMode hidden">
@@ -320,8 +322,8 @@
                                         </div>
                                         <div class="editMode hidden">
                                             <div class='btn-group'>
-                                                <button class="btn btn-default btnActualizar">Actualizar</button>
-                                                <button class="btn btn-default btnCancelar">Cancelar</button>
+                                                <button class="btn btn-default btnActualizar btnBack">Actualizar</button>
+                                                <button class="btn btn-default btnCancelar btnBack">Cancelar</button>
                                             </div>
                                         </div>
                                         <div class="quitarPublicacionMode hidden">

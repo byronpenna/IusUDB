@@ -424,6 +424,21 @@ body {
 .rowHerramientas {
   margin-bottom: 3%; }
 
+.folderRepo {
+  display: block;
+  font-size: 3em;
+  margin-bottom: 7%;
+  color: #828181; }
+
+.icoTrashEliminar {
+  margin-top: 2px;
+  margin-bottom: 2px; }
+
+.icoCuadricula {
+  font-size: 3em;
+  margin-bottom: 10%;
+  color: #828181; }
+
 .tabs {
   margin-top: 5%; }
   .tabs a {
