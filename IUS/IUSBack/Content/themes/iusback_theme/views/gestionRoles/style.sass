@@ -1,63 +1,403 @@
-@import "../../generals/sass_sources/_universal.sass"
-// plugins 
-@import "../../generals/sass_sources/parts/tabs/_tabs.sass"
-@import "../../generals/sass_sources/parts/plugins/_chosen.sass"
-@import "../../generals/sass_sources/parts/plugins/_dataTable.sass"
+@charset "UTF-8";
+.inputBack {
+  background: transparent;
+  border: solid 1px #828181;
+  border-radius: 0; }
 
-.divResultado
-    margin-top: 3%
+.btnBack {
+  border-radius: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: transparent;
+  border: solid 1px #828181; }
 
-.divRoles
-    margin: 0
-    margin-top: 3%
+.borde {
+  border: solid 1px #828181; }
 
-.tableRolesTab1 
-    tr 
-        td 
-            width: 33%
+.selectBack {
+  background: transparent;
+  height: 30px;
+  border-radius: 0;
+  border: solid 1px #828181; }
 
-.contenidoCuerpo 
-    border-bottom: solid 1px #cd1315
-    padding-bottom: 60px
-.divSeleccioneRolTab2
-    margin-bottom: 4%
-    div 
-        display: block
-        width: 30%
-        margin: 0 auto
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
 
-.divSeleccioneRolTab2 div.divLbSelectRolTab2,#tab-2 h4
-    text-align: center
-    font-size: 1.3em
-    
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); }
 
-#tab-2
-    margin-top: 2%
-    h4
-        margin-bottom: 4%
+.todo {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  background: white; }
 
-.divBusquedaOpcionesTab2
-    margin-bottom: 2%
+body {
+  background: #c6c5c5;
+  font-family: "MyriadRegular"; }
 
-.tbMenus 
-    tbody 
-        tr
-            cursor: pointer
+.marginNull {
+  margin: 0; }
 
-#tab-3 
-    margin-top: 3%
+.paddingNull {
+  padding: 0; }
 
-.centroRoles
-    width: 95%
-    margin: 0 auto
+.cuerpoIndex {
+  background: #f3f2f2;
+  padding-top: 3%;
+  padding-bottom: 3%; }
 
+.lineaRoja {
+  height: 45px;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.73, #CD1316), color-stop(1, #AD1013));
+  background-image: -o-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -moz-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -webkit-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -ms-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: linear-gradient(to bottom, #CD1316 73%, #AD1013 100%); }
 
+.centroPagina {
+  width: 85%;
+  margin: 0 auto; }
+  .centroPagina .centro {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto; }
 
-.divAgregarRol
-    margin-top: 3%
+.rowNavegacion {
+  margin-bottom: 5%; }
+  .rowNavegacion .titulo {
+    text-transform: uppercase;
+    text-decoration: underline; }
+  .rowNavegacion .tituloPrev {
+    text-decoration: underline; }
+    .rowNavegacion .tituloPrev a {
+      color: #333 !important; }
+  .rowNavegacion span a:first-child {
+    color: #cd1315; }
 
-.btnAsignarSubmenu,.btnAsignarPermiso
-    cursor: pointer
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none; }
 
-.cbRolTab2
-    margin-top: 3%
+.visibilitiHidden {
+  visibility: hidden; }
+
+.fullSize {
+  width: 100%; }
+
+.input-group-addon {
+  border-radius: 0;
+  border: solid 1px #828181; }
+
+table {
+  border-collapse: collapse;
+  background: transparent; }
+  table thead tr td {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table thead tr th {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
+
+#contenerdorCargadorAjax {
+  position: absolute;
+  left: 50%;
+  top: 50%; }
+
+#textoEsperaAjax {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 3%; }
+
+#cargadorAjaxUniversal {
+  position: relative;
+  top: 50%;
+  left: -50%;
+  text-align: center; }
+
+#div_carga, .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(128, 128, 128, 0.5);
+  display: none;
+  z-index: 1; }
+
+.inputBackModal {
+  background: rgba(255, 255, 255, 0.5);
+  position: static !important; }
+
+.divResultado {
+  text-align: center;
+  margin-bottom: 3%;
+  font-weight: bold; }
+
+.successMessage {
+  color: #2ecc71 !important; }
+
+.failMessage {
+  color: #e74c3c !important; }
+
+#menuLogout {
+  color: #cc1315; }
+
+.miniControles {
+  text-transform: uppercase;
+  padding-right: 3%;
+  color: #828181;
+  font-size: 10px; }
+
+.divBienvenida div {
+  text-transform: uppercase;
+  font-size: 12px; }
+  .divBienvenida div .titulo {
+    color: #cd1315; }
+  .divBienvenida div .nombre {
+    color: #828181; }
+
+.contenidoHead {
+  padding-top: 1%;
+  padding-bottom: 1%; }
+
+.logoHeader {
+  text-align: center; }
+  .logoHeader img {
+    width: 78%; }
+
+.areaAyuda {
+  text-align: right; }
+  .areaAyuda .divAyuda {
+    display: inline-block; }
+
+.divFoto {
+  text-align: center; }
+  .divFoto img {
+    width: 100%;
+    border-radius: 100%;
+    border: solid 1px #c93132;
+    padding: 8%; }
+
+/* border: solid 1px #c93132 */
+.tituloIdioma {
+  float: left;
+  padding-top: 4px;
+  margin-right: 3%;
+  color: #b6b5b5;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding-top: 7px;
+  padding-right: 7px; }
+
+.todoIdioma {
+  width: 35%;
+  margin: 0 auto; }
+
+.cbIdioma {
+  text-transform: uppercase;
+  color: #d0cfcf;
+  font-family: "MyriadRegular";
+  font-size: 1em;
+  font-weight: bold; }
+
+.padreCaja {
+  width: 60%;
+  display: inline-block; }
+  .padreCaja .cajaArriba {
+    display: table;
+    width: 100%; }
+    .padreCaja .cajaArriba .caja {
+      margin: 20px auto 40px auto;
+      border: 1px solid #cd1315;
+      height: 30px;
+      overflow: hidden;
+      width: 80%;
+      position: relative;
+      display: table-cell;
+      vertical-align: bottom; }
+      .padreCaja .cajaArriba .caja::after {
+        content: "▾";
+        display: table-cell;
+        padding-top: 7px;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        background-color: #cd1315;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        pointer-events: none;
+        color: white; }
+      .padreCaja .cajaArriba .caja select {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        height: 30px;
+        padding: 5px;
+        width: 100%; }
+
+.rowSearch {
+  background: #eeecec;
+  padding-top: 8px;
+  padding-bottom: 1%;
+  height: 45px; }
+  .rowSearch .inputSearchDiv {
+    margin-bottom: 0;
+    width: 90%;
+    float: left; }
+    .rowSearch .inputSearchDiv .icoSearch {
+      top: 17%;
+      right: 2%; }
+      .rowSearch .inputSearchDiv .icoSearch .imgLupita {
+        width: 60%; }
+    .rowSearch .inputSearchDiv .inputSearch {
+      border-radius: 20px;
+      height: 30px; }
+
+footer {
+  background: #dddbdb;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: #929292;
+  text-transform: uppercase; }
+  footer img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.5;
+    width: 50%;
+    margin: 0 auto; }
+  footer .copyRight span {
+    display: block;
+    font-weight: bold; }
+
+footer {
+  margin-top: 5%; }
+
+body {
+  font-family: "MyriadRegular"; }
+
+.tabs {
+  margin-top: 5%; }
+  .tabs a {
+    color: #333; }
+  .tabs li {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    border: solid 1px black;
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3%; }
+    .tabs li:hover {
+      cursor: pointer; }
+
+.tabActive {
+  border-color: #cd1315 !important;
+  color: #cd1315 !important; }
+
+.chosen-container-active.chosen-with-drop .chosen-single, .chosen-container-single .chosen-single {
+  height: 30px;
+  border-radius: 0;
+  background: none;
+  padding-top: 3px;
+  border: solid 1px #828181; }
+
+.chosen-container-single .chosen-drop {
+  background: white; }
+
+.chosen-container-multi {
+  border: solid 1px #828181; }
+
+.chosen-container-multi .chosen-choices {
+  background: none;
+  border: none; }
+
+table.dataTable.no-footer {
+  border: none; }
+
+table.datatable {
+  border-collapse: collapse; }
+  table.datatable thead tr td {
+    font-size: 14px; }
+  table.datatable thead tr th {
+    font-size: 14px; }
+  table.datatable tbody tr {
+    background: none; }
+  table.datatable tbody td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
+
+.divResultado {
+  margin-top: 3%; }
+
+.divRoles {
+  margin: 0;
+  margin-top: 3%; }
+
+.tableRolesTab1 tr td {
+  width: 33%; }
+
+.contenidoCuerpo {
+  border-bottom: solid 1px #cd1315;
+  padding-bottom: 60px; }
+
+.divSeleccioneRolTab2 {
+  margin-bottom: 4%; }
+  .divSeleccioneRolTab2 div {
+    display: block;
+    width: 30%;
+    margin: 0 auto; }
+
+.divSeleccioneRolTab2 div.divLbSelectRolTab2, #tab-2 h4 {
+  text-align: center;
+  font-size: 1.3em; }
+
+#tab-2 {
+  margin-top: 2%; }
+  #tab-2 h4 {
+    margin-bottom: 4%; }
+
+.divBusquedaOpcionesTab2 {
+  margin-bottom: 2%; }
+
+.tbMenus tbody tr {
+  cursor: pointer; }
+
+#tab-3 {
+  margin-top: 3%; }
+
+.centroRoles {
+  width: 95%;
+  margin: 0 auto; }
+
+.divAgregarRol {
+  margin-top: 3%; }
+
+.btnAsignarSubmenu, .btnAsignarPermiso {
+  cursor: pointer; }
+
+.cbRolTab2 {
+  margin-top: 3%; }
+
+/*# sourceMappingURL=style.sass.map */

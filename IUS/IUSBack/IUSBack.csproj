@@ -270,6 +270,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\exclamacion.png" />
     <Content Include="Content\themes\iusback_theme\img\general\fondo_gris.png" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\imgAlargada.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo2.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.ico" />
     <Content Include="Content\themes\iusback_theme\img\general\lupita.png" />

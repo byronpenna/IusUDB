@@ -14,7 +14,7 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
     Institucion             institucion = null;
     List<EnlaceInstitucion> enlaces     = null;
-    string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    string src = Url.Content("~/Content/themes/iusback_theme/img/general/imgAlargada.png");
     Permiso permiso = (Permiso)ViewBag.permiso;
     
     List<EmailInstitucion> emailsInstitucion = null;
@@ -210,9 +210,9 @@
                                     </td>
                                     <td>@emailInstitucion._email</td>
                                     <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btnBack @permiso.stringEditar">Editar</button>
-                                            <button class="btn btn-default btnBack btnEliminarEmailsInstitucion @permiso.stringEliminar">Eliminar</button>
+                                        <div class="btn-group btn-block">
+                                            <button class="btn btn-default col-lg-6 btnBack @permiso.stringEditar">Editar</button>
+                                            <button class="btn btn-default col-lg-6 btnBack btnEliminarEmailsInstitucion @permiso.stringEliminar">Eliminar</button>
                                         </div>
                                     </td>
                                 </tr>
