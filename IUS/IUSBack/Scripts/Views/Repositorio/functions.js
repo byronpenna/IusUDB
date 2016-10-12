@@ -181,7 +181,9 @@
                         <div class='col-lg-2'>Folder</div>\
                         <div class='col-lg-2'>" + folder.getFechaCreacion + "</div>\
                         <div class='col-lg-2 btnEliminarLista'>\
-                            <i class='fa fa-trash'></i>\
+                            <div class='btn-block btn-default btnBack'>\
+                                <i class='fa fa-trash'></i>\
+                            </div>\
                         </div>\
                     </div>\
                 ";
@@ -222,22 +224,52 @@
             });
         }
         function getDivCarpetasPublicas(carpeta) {
+            //<img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono+ "' />\
             div = "\
             <div class='divCarpetaPublica col-lg-6 pointer'>\
                 <input type='hidden' class='txtHdIdCarpetaPublica' value='" + carpeta._idCarpetaPublica + "'>\
-                <img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono+ "' />\
+                <i class='fa fa-folder-o icoCuadricula' aria-hidden='true'></i>\
                 <h4 class='tituloCarpetaPublica'>"+carpeta._nombre+"</h4>\
             </div>\
             ";
             return div;
         }
+        function getImageArchivo(tipo) {
+            /*
+            if (archivo._extension._tipoArchivo._tipoArchivo == "Imagenes") {
+
+            } else {
+
+            }*/
+            var ico = "<i class='fa fa-file-text-o icoCuadricula' aria-hidden='true'></i>";
+            switch (tipo) {
+
+                case "Imagenes": {
+                    ico = "<i class='fa fa-picture-o icoCuadricula' aria-hidden='true'></i>";
+                    break;
+                }
+                case "Video": {
+                    ico = "<i class='fa fa-video-camera icoCuadricula' aria-hidden='true'></i>";
+                    break;
+                }
+                case "Audio": {
+                    ico: "<i class='fa fa-music icoCuadricula' aria-hidden='true'></i>";
+                }
+                case "Documentos": {
+                    ico: "<i class='fa fa-file-text-o icoCuadricula' aria-hidden='true'></i>";
+                }
+            }
+            return ico;
+        }
         function getDivArchivosPublicos(archivo) {
             var div = "";
+            console.log("extension es: ", archivo._extension);
+            var ico = getImageArchivo(archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo);
             div = "\
             <div class='divArchivoPublico col-lg-6'>\
-                <img src='" + RAIZ + "Content/themes/iusback_theme/img/general/repositorio/" + archivo._archivoUsuario._extension._tipoArchivo._icono + "' />\
+                "+ico+"\
                 <h4>" + archivo._nombre + "</h4>\
-                <a href='" + RAIZFRONT + "Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='btn btn-default'>\
+                <a href='" + RAIZFRONT + "Repositorio/downloadFile/" + archivo._idArchivoPublico + "' class='btn btn-default btnBack'>\
                     <i class='fa fa-download'></i>\
                 </a>\
             </div>\

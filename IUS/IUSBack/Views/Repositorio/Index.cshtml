@@ -55,7 +55,7 @@
                     <div class="row marginNull divInputFile">
                         <input type="file" id="flArchivos" multiple />
                     </div>
-                    <button class="btn btn-default" type="submit">Subir</button>
+                    <button class="btn btn-default btnBack" type="submit">Subir</button>
                     <div class="row marginNull divMensajes">
                         
                     </div>
@@ -227,7 +227,9 @@
                                             <div class='col-lg-2'>Folder</div>
                                             <div class='col-lg-2'>@carpeta.getFechaCreacion</div>
                                             <div class='col-lg-2 btnEliminarLista'>
-                                                <i class='fa fa-trash'></i>
+                                                <div class="btn btn-block btn-default btnBack">
+                                                    <i class='fa fa-trash'></i>
+                                                </div>
                                             </div>
                                         </div>
                                     }
@@ -312,6 +314,10 @@
                             {
                                 foreach (Archivo archivo in archivos)
                                 {
+//                                    
+//
+//
+//
                                     <div class="col-lg-4 folder folderUni">
                                         <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo" />
                                         <div class="cuadritoIcono">
@@ -319,8 +325,22 @@
                                             @if (archivo._extension._tipoArchivo._tipoArchivo == "Imagenes") {
                                                 <i class="fa fa-picture-o icoCuadricula" aria-hidden="true"></i>
                                             }
-                                            else { 
-                                                <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
+                                            else if (archivo._extension._tipoArchivo._tipoArchivo == "Video")
+                                            {
+                                                <i class="fa fa-video-camera icoCuadricula" aria-hidden="true"></i>
+                                            }
+                                            else if (archivo._extension._tipoArchivo._tipoArchivo == "Audio")
+                                            {
+                                                <i class="fa fa-music icoCuadricula" aria-hidden="true"></i>
+                                            }
+                                            else if (archivo._extension._tipoArchivo._tipoArchivo == "Documentos")
+                                            {
+                                                <i class="fa fa-file-text-o icoCuadricula" aria-hidden="true"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-exclamation-triangle icoCuadricula" aria-hidden="true"></i>
+                                                @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />*@
                                             }
                                             <div class="row marginNull">
                                                 <a class="urlDescargar" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })">
