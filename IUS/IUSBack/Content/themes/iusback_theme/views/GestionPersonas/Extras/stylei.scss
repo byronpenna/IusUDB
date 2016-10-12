@@ -1,0 +1,113 @@
+@import "../../../generals/sass_sources/_universal.sass";
+
+@import "../../../generals/sass_sources/parts/tabs/_tabs.sass";
+@import "../../../generals/sass_sources/parts/plugins/_chosen.sass";
+
+.divInformacionPersonal {
+  margin-top: 1%;
+
+  h2 {
+    margin-bottom: 5%;
+  }
+}
+
+.divImagePersona {
+  text-align: center;
+}
+
+.divControl {
+  margin-bottom: 3%;
+}
+
+.tabla {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+
+  thead {
+    tr {
+      th {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.divInformacion h2, .divInformacion h3 {
+  text-align: center;
+  font-family: "latop";
+}
+
+.divInformacion {
+  h2 {
+    margin: 0;
+    padding: 0;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 3%;
+    background: #eeecec;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: #2C3E50;
+  }
+}
+
+/* Para la foto */
+.imgPersona {
+  max-width: 50%;
+  margin-bottom: 3%;
+  height: auto;
+}
+
+.jcrop-holder, .imgPersona {
+  margin: 0 auto;
+}
+
+.divLoadingPhoto {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.btnEstablecer {
+  margin-bottom: 3%;
+}
+
+.divTituloNombre {
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+
+  input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+  }
+}
+
+.tablaNumerosTelefonicos thead tr th, .tablaCorreos thead tr th {
+  vertical-align: top;
+}
+
+.rowControles {
+  width: 95%;
+}
+
+.centroRoles {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.rowNavegacion {
+  margin-top: 5%;
+}

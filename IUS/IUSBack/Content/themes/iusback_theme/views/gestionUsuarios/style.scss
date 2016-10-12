@@ -1,0 +1,52 @@
+@import "../../generals/sass_sources/_universal.sass";
+
+@import "../../generals/sass_sources/parts/plugins/_chosen.sass";
+@import "../../generals/sass_sources/parts/plugins/_dataTable.sass";
+
+.divTableUsuarios {
+  thead {
+    tr {
+      th {
+        text-align: center;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      background: none;
+    }
+  }
+}
+
+.cuerpoModulo, .tabsHeader {
+  margin-top: 0%;
+}
+
+.tabsHeader {
+  display: none;
+}
+
+.botonControl {
+  background: #F5F5F5;
+  border-color: black;
+}
+
+.tablaRolesUsuario {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.trTableRol {
+  background: gainsboro !important;
+}
+
+.tableUsuarios {
+  .th1 {
+    width: 25%;
+  }
+
+  .th2 {
+    width: 15%;
+  }
+}

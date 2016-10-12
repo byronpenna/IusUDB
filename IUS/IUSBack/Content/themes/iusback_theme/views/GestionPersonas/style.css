@@ -11,6 +11,9 @@
   background: transparent;
   border: solid 1px #828181; }
 
+.borde {
+  border: solid 1px #828181; }
+
 .selectBack {
   background: transparent;
   height: 30px;
@@ -164,12 +167,12 @@ table {
   color: #828181;
   font-size: 10px; }
 
-.divBienvenida div {
+.divBienvenida {
   text-transform: uppercase;
   font-size: 12px; }
-  .divBienvenida div .titulo {
+  .divBienvenida .titulo {
     color: #cd1315; }
-  .divBienvenida div .nombre {
+  .divBienvenida .nombre {
     color: #828181; }
 
 .contenidoHead {

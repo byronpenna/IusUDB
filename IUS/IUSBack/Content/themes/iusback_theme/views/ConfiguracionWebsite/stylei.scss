@@ -1,0 +1,131 @@
+@import "../../generals/sass_sources/_universal.sass";
+
+// plugins
+
+@import "../../generals/sass_sources/parts/tabs/_tabs.sass";
+@import "../../generals/sass_sources/parts/plugins/_chosen.sass";
+@import "../../generals/sass_sources/parts/plugins/_dataTable.sass";
+
+.control {
+  min-height: 150px;
+}
+
+.divResultado {
+  min-height: 30px;
+}
+
+.rowImagenCortar, .jcrop-holder {
+  margin: 0 auto;
+}
+
+.encabezadoTitulo {
+  background: #eeecec;
+  padding: 0;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.margenes {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.imgSlide {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+
+/*background: #DDDDDD */
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity = 0);
+}
+
+.divInfoInstitucional {
+  text-align: center;
+  font-size: 1.3em;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.rowImagen {
+  margin-bottom: 0;
+}
+
+/*********** */
+.ulTabGeneral {
+  background: #95a5a6;
+}
+
+.ulTabGeneral li {
+  background: #bdc3c7;
+  padding: 1%;
+}
+
+.leyendaImagen {
+  text-align: center;
+  margin-bottom: 4%;
+}
+
+/* Tab basicas */
+#frmInstitucional .seccionForm {
+  margin-bottom: 3%;
+}
+
+.tableValores {
+  margin-top: 3%;
+}
+
+/* Tab slider */
+#frm h2 {
+  margin-bottom: 2%;
+}
+
+#frm button {
+  margin-top: 1%;
+}
+
+.subirDiv {
+  margin-bottom: 3%;
+}
+
+.divImgSlider h2 {
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+.botonesControlImage {
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
+.noImageSection {
+  text-align: center;
+}
+
+.noImageSection h4 {
+  font-family: "latop";
+  color: #95A5A6;
+  font-weight: bold;
+}
+
+.rowNavegacion {
+  margin-top: 5%;
+}

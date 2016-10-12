@@ -1,0 +1,72 @@
+@import "../../../generals/sass_sources/_universal.sass";
+@import "../../../generals/sass_sources/parts/plugins/_chosen.sass";
+
+// plugins
+.bootstrap-tagsinput {
+  width: 80%;
+}
+
+.sectionTodoImagesPost {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+#editor {
+  max-height: 250px;
+  height: 250px;
+  background-color: white;
+  border-collapse: separate;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 4px;
+  box-sizing: content-box;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.07451) 0px 1px 1px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.07451) 0px 1px 1px 0px inset;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  overflow: scroll;
+  outline: none;
+}
+
+#voiceBtn {
+  width: 20px;
+  color: transparent;
+  background-color: transparent;
+  transform: scale(2, 2);
+  -webkit-transform: scale(2, 2);
+  -moz-transform: scale(2, 2);
+  border: transparent;
+  cursor: pointer;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+div[data-role="editor-toolbar"] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.dropdown-menu a {
+  cursor: pointer;
+}
+
+.seccionForm {
+  margin-top: 2%;
+}
+
+.cbIdiomaNoticia {
+  width: 80%;
+}
+
+.noLeftPad {
+  padding-left: 0;
+}
+
+.bootstrap-tagsinput {
+  background: transparent;
+  border-radius: 0;
+  border: solid 1px #828181;
+}

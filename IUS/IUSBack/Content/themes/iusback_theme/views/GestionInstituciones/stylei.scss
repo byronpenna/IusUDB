@@ -1,0 +1,46 @@
+@import "../../generals/sass_sources/_universal.sass";
+@import "../../generals/sass_sources/parts/plugins/_chosen.sass";
+@import "../../generals/sass_sources/parts/plugins/_dataTable.sass";
+
+.tdPais {
+  width: 20%;
+}
+
+.tdFundacion {
+  width: 10%;
+}
+
+.tdDireccion, .tdNombreInsitucion, .tdPais, .tdTipo {
+  width: 15%;
+}
+
+.normalMode {
+  width: 100%;
+  text-align: justify;
+}
+
+/*Quitar en caso de usar tabs */
+.cuerpoModulo, .tabsHeader {
+  margin-top: 0%;
+}
+
+.tabsHeader {
+  display: none;
+}
+
+.td4 {
+  padding-left: 1% !important;
+  padding-right: 1% !important;
+}
+
+.tbInstituciones tr td:first-child, .tbInstituciones tr th:first-child {
+  display: none;
+}
+
+.txtAreaDireccion {
+  resize: none;
+}
+
+.divMensajesGenerales {
+  margin-top: 5%;
+}

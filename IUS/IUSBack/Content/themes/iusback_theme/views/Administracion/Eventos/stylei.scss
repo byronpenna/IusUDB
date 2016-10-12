@@ -1,0 +1,178 @@
+@import "../../../generals/sass_sources/_universal.sass";
+@import "../../../generals/sass_sources/parts/tabs/_tabs.sass";
+@import "../../../generals/sass_sources/parts/plugins/_chosen.sass";
+
+/* */
+.spanPicture {
+  float: right;
+
+  &:hover {
+    color: black;
+  }
+}
+
+/** */
+.cbFiltroTipoEvento {
+  margin-bottom: 3%;
+}
+
+.ui-accordion .ui-accordion-content {
+  margin-bottom: 3%;
+}
+
+/*Arreglos bootstrap */
+.row.seccion {
+  margin: 0;
+}
+
+.divMensajesEvento {
+  margin-top: 3%;
+}
+
+/*Tabs */
+/*Tab eventos */
+.divTiempo {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+/*Fin tab eventos */
+/* Tab compartir */
+
+/* ******************** Nuevo  ******************** */
+
+.eventosCompartirSection > h3 {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.cambioControl {
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.divMensajesCompartirGenerales {
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+/* ******************** /Nuevo/  ******************** */
+
+.noEventoDiv {
+  margin-top: 10%;
+  text-align: center;
+
+  img {
+    width: 16%;
+  }
+
+  h4 {
+    font-family: "latop";
+    font-weight: bold;
+    color: #95A5A6;
+  }
+}
+
+/*Fin tab compartir */
+.ulTabGeneral {
+  background: #95a5a6;
+
+  li {
+    background: #bdc3c7;
+    padding: 1%;
+  }
+}
+
+.tbRoles thead {
+  text-align: center;
+}
+
+/*Fin arreglos tabs */
+.sectionBotonesEvento {
+  margin-top: 5%;
+}
+
+.hEventoUsuario {
+  margin-bottom: 5%;
+}
+
+#tabUsuario {
+  display: block;
+
+  table {
+    margin-top: 5%;
+  }
+}
+
+/*Eventos */
+.colorEventoPropio {
+  background: #3A87AD;
+}
+
+.colorEventoCompartido {
+  background: #f1c40f;
+}
+
+.colorEventoPublico {
+  background: #2ecc71;
+}
+
+.nombreEvento {
+  color: white;
+  font-weight: bold;
+}
+
+/*************************** */
+.btnAgregarEvento {
+  margin-top: 3%;
+}
+
+.divMensajes {
+  text-align: center;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.contenidoCuerpo {
+  border-bottom: solid 1px #cd1315;
+  padding-bottom: 60px;
+}
+
+.centroEventos {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.rowNavegacion {
+  margin-top: 5%;
+}
+
+.rowFrm {
+  margin-top: 2%;
+}
+
+#frmAgregarEvento {
+  margin-bottom: 5%;
+}
+
+.eventos {
+  overflow-x: scroll;
+  white-space: nowrap;
+  height: 400px;
+
+  .divEvento {
+    width: 40%;
+    height: 350px;
+    background: pink;
+    display: inline-block;
+    margin-right: 5%;
+  }
+}
+
+.clickTr {
+  background: rgb(189, 195, 199) !important;
+}
+
+.rowBtnInputBuscar {
+  margin-top: 3%;
+}
