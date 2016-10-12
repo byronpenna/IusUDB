@@ -110,7 +110,13 @@
         <div class="centroPagina">
             <div class="row marginNull">
                 <div class="col-lg-6 colTituloNoticia">
-                    <h2 class="tituloSeccionNoticiaEvento">@ViewData["lb-tituloNoticiaEvento"]</h2>
+                    @*http://localhost:7196/Noticias/todas/*@
+                    
+                    <h2 class="tituloSeccionNoticiaEvento">
+                        <a href="@Url.Action("todas","Noticias")">
+                            @ViewData["lb-tituloNoticiaEvento"]
+                        </a>
+                    </h2>
                 </div>
             </div>
             @if (noticiasEventos != null && noticiasEventos.Count > 0)
