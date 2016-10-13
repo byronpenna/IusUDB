@@ -320,26 +320,35 @@
                                         <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo" />
                                         <div class="cuadritoIcono">
                                             @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />*@
-                                            @if (archivo._extension._tipoArchivo._tipoArchivo == "Imagenes") {
-                                                <i class="fa fa-picture-o icoCuadricula" aria-hidden="true"></i>
-                                            }
-                                            else if (archivo._extension._tipoArchivo._tipoArchivo == "Video")
+                                            @switch (archivo._extension._tipoArchivo._tipoArchivo)
                                             {
-                                                <i class="fa fa-video-camera icoCuadricula" aria-hidden="true"></i>
+                                                case "Imagenes":
+                                                    {
+                                                        <i class="fa fa-picture-o icoCuadricula" aria-hidden="true"></i>
+                                                        break;
+                                                    }
+                                                case "Video":
+                                                    {
+                                                        <i class="fa fa-video-camera icoCuadricula" aria-hidden="true"></i>
+                                                        break;
+                                                    }
+                                                case "Audio":
+                                                    {
+                                                        <i class="fa fa-music icoCuadricula" aria-hidden="true"></i>
+                                                        break;
+                                                    }
+                                                case "Documentos":
+                                                    {
+                                                        <i class="fa fa-file-text-o icoCuadricula" aria-hidden="true"></i>
+                                                        break;
+                                                    }
+                                                default:
+                                                    {
+                                                        <i class="fa fa-exclamation-triangle icoCuadricula" aria-hidden="true"></i>
+                                                        break;
+                                                    }
                                             }
-                                            else if (archivo._extension._tipoArchivo._tipoArchivo == "Audio")
-                                            {
-                                                <i class="fa fa-music icoCuadricula" aria-hidden="true"></i>
-                                            }
-                                            else if (archivo._extension._tipoArchivo._tipoArchivo == "Documentos")
-                                            {
-                                                <i class="fa fa-file-text-o icoCuadricula" aria-hidden="true"></i>
-                                            }
-                                            else
-                                            {
-                                                <i class="fa fa-exclamation-triangle icoCuadricula" aria-hidden="true"></i>
-                                                @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />*@
-                                            }
+                                            
                                             <div class="row marginNull">
                                                 <a class="urlDescargar" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })">
                                                 </a>

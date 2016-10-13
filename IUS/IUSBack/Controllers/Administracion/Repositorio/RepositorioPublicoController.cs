@@ -65,6 +65,9 @@ namespace IUSBack.Controllers
                     ViewBag.idCarpetaActual = id;
                     ViewBag.URL_IUS = this.URL_IUS;
                     ViewBag.vista = id2;
+                    // metricas para funciones generales
+                    ViewBag.nombreControlador = this._nombreClass.Replace("Controller", "");
+                    ViewBag.nombreMetodo = "Index";
                     // Tab seleccionada
                     ViewBag.selectedLi3 = "tabActive";
                 }

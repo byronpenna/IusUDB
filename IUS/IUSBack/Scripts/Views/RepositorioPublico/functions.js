@@ -79,16 +79,17 @@
             if(base !== undefined){
                 rutaWebsite = base + "Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1";
             }
+            //<img class='imgCuadritoIcono' src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
             var div = "\
             <div class='col-lg-2 folder'>\
                 <input type='hidden' class='txtHdIdCarpeta' value='"+carpeta._idCarpetaPublica+"' />\
                 <div class='cuadritoIcono cuadritoCarpeta'>\
-                    <img class='imgCuadritoIcono' src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
+                    <i class='fa fa-folder-o folderRepo' aria-hidden='true'></i>\
                     <div class='btn-group'>\
-                        <a href='#' class='ico btn btn-default icoEliminarCarpeta' title='Eliminar'>\
+                        <a href='#' class='ico btn btn-default icoEliminarCarpeta btnBack btnBack' title='Eliminar'>\
                             <i class='fa fa-trash-o'></i>\
                         </a>\
-                        <a href='" + rutaWebsite + "' target='_blank' class='ico btn btn-default' title='Ver website'>\
+                        <a href='" + rutaWebsite + "' target='_blank' class='ico btn btn-default btnBack btnBack' title='Ver website'>\
                             <i class='fa fa-globe'></i>\
                         </a>\
                     </div>\
@@ -98,11 +99,13 @@
                         </div>\
                         <div class='row marginNull hidden editMode sinRedirect'>\
                             <div class='row marginNull inputNombreCarpeta'>\
-                                <input type='text' class='form-control txtNombreCarpeta'>\
+                                <input type='text' class='form-control txtNombreCarpeta inputBack'>\
                             </div>\
                             <div class='row marginNull'>\
-                                <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>\
-                                <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                <div class='btn-group'>\
+                                    <button class='btn btn-xs btnEditarCarpeta btnBack'>Actualizar</button>\
+                                    <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>\
+                                </div>\
                             </div>\
                         </div>\
                     </div>\
@@ -135,11 +138,13 @@
                             </div>\
                             <div class='row marginNull hidden editMode'>\
                                 <div class='row marginNull inputNombreCarpeta'>\
-                                    <input type='text' class='form-control txtNombreCarpeta'>\
+                                    <input type='text' class='form-control txtNombreCarpeta inputBack'>\
                                 </div>\
                                 <div class='row marginNull'>\
-                                    <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>\
-                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                    <div class='btn-group'>\
+                                        <button class='btn btn-xs btnEditarArchivo btnBack'>Actualizar</button>\
+                                        <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>\
+                                    </div>\
                                 </div>\
                             </div>\
                         </div>\

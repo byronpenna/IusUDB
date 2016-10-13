@@ -198,8 +198,8 @@
 
                                 </div>*@
                                     <div class="cuadritoIcono cuadritoCarpeta">
-                                        <img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
-
+                                        @*<img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />*@
+                                        <i class="fa fa-folder icoCuadricula"></i>
                                         <div class="detalleCarpeta">
                                             <div class="normalMode sinRedirect">
                                                 <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
@@ -219,14 +219,43 @@
                                 <div class="col-lg-3 folder folderUni">
                                     <input type="hidden" class="txtHdIdArchivo" value="@archivo._idArchivo" />
                                     <div class="cuadritoIcono ">
-                                        <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />
-                                        <div class="btn-group">
-                                            <a href="#" class="btnAccion btn btn-default btnBack icoCompartirFile" title="Compartir">
-                                                <i class="fa fa-share"></i>
-                                            </a>
-                                            <a class="btnAccion btn btn-default ico btnBack" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
-                                                <i class="fa fa-download"></i>
-                                            </a>
+                                        @switch(archivo._extension._tipoArchivo._tipoArchivo){
+                                            case "Imagenes":{
+                                                <i class="fa fa-picture-o icoCuadricula" aria-hidden="true"></i>        
+                                                break;
+                                            }
+                                            case "Video":
+                                                {
+                                                    <i class="fa fa-video-camera icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                    
+                                                }
+                                            case "Audio":
+                                                {
+                                                    <i class="fa fa-music icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            case "Documentos":
+                                                {
+                                                    <i class="fa fa-file-text-o icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            default:
+                                                {
+                                                    <i class="fa fa-exclamation-triangle icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                        }
+                                        @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._extension._tipoArchivo._icono" />*@
+                                        <div class="row marginNull">
+                                            <div class="btn-group">
+                                                <a href="#" class="btnAccion btn btn-default btnBack icoCompartirFile" title="Compartir">
+                                                    <i class="fa fa-share"></i>
+                                                </a>
+                                                <a class="btnAccion btn btn-default ico btnBack" href="@Url.Action("DescargarFichero", "Repositorio", new { id= archivo._idArchivo })" title="Descargar">
+                                                    <i class="fa fa-download"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="detalleCarpeta">
                                             <div class="normalMode">
@@ -237,8 +266,10 @@
                                                     <input type='text' class='form-control txtNombreCarpeta inputBack'>
                                                 </div>
                                                 <div class='row marginNull'>
-                                                    <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
-                                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                                    <div class="btn-group">
+                                                        <button class='btn btn-xs btnEditarArchivo btnBack'>Actualizar</button>
+                                                        <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>
+                                                    </div>
                                                 </div>
                                             </div>
 

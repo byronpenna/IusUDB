@@ -44,6 +44,8 @@
         nombreCarpetaActual = carpetaPadre._nombre;
     }
 }
+<input type="hidden" class="txtHdNombreControlador" value="@ViewBag.nombreControlador" />
+<input type="hidden" class="txtHdMetodo" value="@ViewBag.nombreMetodo" />
 <div class="centroRepo">
     <div class="row marginNull rowNavegacion">
         <span>
@@ -79,12 +81,8 @@
         <div class="col-lg-2">
             <label>Vistas</label>
             <div class="accionesDiv form-control inputBack inputBackModal herramientaVistaSection">
-                <a href="#" class="ico iconoVista iconoVistaCuadricula @activeVista[0] " title="Cuadricula">
-                    <i class="fa fa-th-large"></i>
-                </a>
-                <a href="#" class="ico iconoVista icoVistaLista  @activeVista[1] " title="Lista">
-                    <i class="fa fa-bars"></i>
-                </a>
+                <a href="#" class="ico iconoVista iconoVistaCuadricula @activeVista[0] " title="Cuadricula"><i class="fa fa-th-large"></i></a>
+                <a href="#" class="ico iconoVista icoVistaLista  @activeVista[1] " title="Lista"><i class="fa fa-bars"></i></a>
             </div>
         </div>
         <div class="col-lg-4">
@@ -176,12 +174,14 @@
                                     </a>
                                 </div>*@
                                     <div class="cuadritoIcono cuadritoCarpeta">
-                                        <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
+                                        
+                                        @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />*@
+                                        <i class="fa fa-folder-o folderRepo" aria-hidden="true"></i>
                                         <div class="btn-group">
-                                            <a href="#" class="ico btn btn-default icoEliminarCarpeta" title="Eliminar">
+                                            <a href="#" class="ico btn btn-default icoEliminarCarpeta btnBack" title="Eliminar">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
-                                            <a href="@rutaWebsite" target="_blank" class="ico btn btn-default" title="Ver website">
+                                            <a href="@rutaWebsite" target="_blank" class="ico btn btn-default btnBack" title="Ver website">
                                                 <i class="fa fa-globe"></i>
                                             </a>
                                         </div>
@@ -191,11 +191,13 @@
                                             </div>
                                             <div class="row marginNull hidden editMode sinRedirect">
                                                 <div class='row marginNull inputNombreCarpeta'>
-                                                    <input type='text' class='form-control txtNombreCarpeta'>
+                                                    <input type='text' class='form-control txtNombreCarpeta inputBack'>
                                                 </div>
                                                 <div class='row marginNull'>
-                                                    <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>
-                                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                                    <div class="btn-group">
+                                                        <button class='btn btn-xs btnEditarCarpeta btnBack'>Actualizar</button>
+                                                        <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -223,10 +225,10 @@
                                     <div class="cuadritoIcono ">
                                         <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
                                         <div class="btn-group">
-                                            <a href="#" class="ico btn btn-default icoEliminarArchivo" title="Eliminar">
+                                            <a href="#" class="ico btn btn-default icoEliminarArchivo btnBack" title="Eliminar">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
-                                            <a href="@rutaWebsite" class="ico btn btn-default" target="_blank" title="Ver website">
+                                            <a href="@rutaWebsite" class="ico btn btn-default btnBack" target="_blank" title="Ver website">
                                                 <i class="fa fa-globe"></i>
                                             </a>
                                         </div>
@@ -236,11 +238,13 @@
                                             </div>
                                             <div class="row marginNull hidden editMode">
                                                 <div class='row marginNull inputNombreCarpeta'>
-                                                    <input type='text' class='form-control txtNombreCarpeta'>
+                                                    <input type='text' class='form-control txtNombreCarpeta inputBack'>
                                                 </div>
                                                 <div class='row marginNull'>
-                                                    <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
-                                                    <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                                    <div class="btn-group">
+                                                        <button class='btn btn-xs btnEditarArchivo btnBack'>Actualizar</button>
+                                                        <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>
+                                                    </div>
                                                 </div>
                                             </div>
 
