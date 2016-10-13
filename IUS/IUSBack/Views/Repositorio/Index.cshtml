@@ -192,14 +192,15 @@
 
                     </div>
                     <div class="folders col-lg-7" id="folders">
-                        <!--
+                        <!-- -->
+                        <div class="row marginNull">
 
-            -->
+                        </div>
                         <div class="row marginNull">
                             <h3 class="encabezadoFicheros">@carpetaActual._nombre</h3>
                         </div>
-                        <div class="listView @clases[0]">
-                            <div class="row divCabeceraList">
+                        <div class="marginNull listView @clases[0]">
+                            <div class="row marginNull divCabeceraList">
                                 <div class="col-lg-5">
                                     Nombre
                                 </div>
@@ -213,12 +214,12 @@
                                     Acciones
                                 </div>
                             </div>
-                            <div class="targetListView">
+                            <div class="row marginNull targetListView">
                                 @if (carpetas != null && carpetas.Count > 0 && vista == 1)
                                 {
                                     foreach (Carpeta carpeta in carpetas)
                                     {
-                                        <div class='row folderDetalles carpetaDetalle '>
+                                        <div class='row folderDetalles carpetaDetalle marginNull'>
                                             <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpeta">
                                             <div class='col-lg-5'>
                                                 <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
@@ -240,7 +241,7 @@
                                 {
                                     foreach (Archivo archivo in archivos)
                                     {
-                                        <div class='row folderDetalles folderUni'>
+                                        <div class='row marginNull folderDetalles folderUni'>
                                             <input type='hidden' class='txtHdIdArchivo' value="@archivo._idArchivo">
                                             <div class='col-lg-5'>
                                                 <div class='normalMode inline'>
@@ -268,7 +269,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="cuadriculaView @clases[1]">
+                        <div class="marginNull cuadriculaView @clases[1]">
                             @if (carpetas != null && carpetas.Count > 0 && vista == -1)
                             {
                                 foreach (Carpeta carpeta in carpetas)
@@ -292,12 +293,12 @@
                                                 </div>
                                                 <div class="row marginNull hidden editMode sinRedirect">
                                                     <div class='row marginNull inputNombreCarpeta'>
-                                                        <input type='text' class='form-control txtNombreCarpeta'>
+                                                        <input type='text' class='form-control txtNombreCarpeta inputBack'>
                                                     </div>
                                                     <div class='row marginNull'>
                                                         <div class="btn-group">
-                                                            <button class='btn btn-default btn-xs btnEditarCarpeta'>Hecho</button>
-                                                            <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                                            <button class='btn btn-default btn-xs btnEditarCarpeta btnBack'>Hecho</button>
+                                                            <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>
                                                         </div>
                                                     </div>
                                                     <div class="row marginNull mensajeFolder">
@@ -361,12 +362,12 @@
                                                 </div>
                                                 <div class="row marginNull hidden editMode">
                                                     <div class='row marginNull inputNombreCarpeta'>
-                                                        <input type='text' class='form-control txtNombreCarpeta txtNombreArchivo'>
+                                                        <input type='text' class='form-control txtNombreCarpeta txtNombreArchivo inputBack'>
                                                     </div>
                                                     <div class='row marginNull'>
                                                         <div class="btn-group">
-                                                            <button class='btn btn-default btn-xs btnEditarArchivo'>Hecho</button>
-                                                            <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
+                                                            <button class='btn btn-default btn-xs btnEditarArchivo btnBack'>Hecho</button>
+                                                            <button class='btn btn-default btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>
                                                         </div>
                                                     </div>
                                                 </div>
