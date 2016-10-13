@@ -158,6 +158,9 @@ table {
 .failMessage {
   color: #e74c3c !important; }
 
+.bordeStandar {
+  border: solid 1px #828181; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -324,7 +327,8 @@ body {
 .divCarpetaPublica {
   width: 48%; }
   .divCarpetaPublica:hover {
-    background: #F5F5F5; }
+    background: #F5F5F5;
+    cursor: pointer; }
 
 .icoDownload {
   display: none; }
@@ -519,7 +523,7 @@ table.datatable {
   text-align: center;
   padding-top: 1%;
   padding-bottom: 1%;
-  background: #ECF0F1;
+  background: #eeecec;
   margin-top: 3%;
   color: #2C3E50; }
 
