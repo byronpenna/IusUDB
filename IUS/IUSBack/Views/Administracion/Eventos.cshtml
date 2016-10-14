@@ -215,7 +215,18 @@
                                     <div class="divEventoi borde">
                                         <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
                                         <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
-                                        <h4>@evento._evento</h4>
+                                        <div class="divNombreEvento">
+                                            <div class="normalMode">
+                                                <h4 class="spanNombreEvento">@evento._evento</h4>
+                                            </div>
+                                            <div class="editMode hidden" style="margin-bottom:5%;">
+                                                <label>Nombre de evento</label>
+                                                <input type="text" name="txtEvento2" class="inputBack txtEvento2 form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="row marginNull divImage normalMode">
+                                            <img src="http://localhost:55869/Administracion/getImageThumbnailEvent/106" />
+                                        </div>
                                         <div class="row marginNull divTituloDescripcion">
                                             Descripción
                                         </div>
@@ -223,14 +234,7 @@
                                             <div class="normalMode">
                                                 <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
                                             </div>
-                                            <div class="editMode hidden" style="margin-bottom:5%;">
-                                                <label>Nombre de evento</label>
-                                                <input type="text" name="txtEvento2" class="inputBack txtEvento2 form-control" />
-                                            </div>
                                             <div class="editMode hidden">
-                                                <div class="editMode hidden">
-                                                    <label>Descripcion evento</label>
-                                                </div>
                                                 <textarea class="inputBack txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
                                             </div>
                                             <!-- Motivo para quitar publicacion -->
@@ -239,8 +243,8 @@
                                                 <textarea class="inputBack txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
                                             </div>
                                             <!-- ------------------------------ -->
-                                            <hr />
-                                            <div class="row text-center">
+                                            @*<hr />*@
+                                            <div class="row text-center divHorai">
                                                 <div class="col-lg-6">
                                                     <div class="normalMode">
                                                         <label>Inicio: </label>
@@ -248,11 +252,11 @@
                                                     </div>
                                                     <div class="editMode hidden">
                                                         <label>Inicio: </label>
-                                                        <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
+                                                        <input class="dpFecha txtFechaInicio form-control inputBack" name="txtFechaInicio" />
                                                         <div class="row marginNull divHora timeEdit">
-                                                            <input type="text" class="txtHoraInicio txtHora form-control" name="txtHoraInicio" readonly />
-                                                            <div class="horas"></div>
-                                                            <div class="minutos"></div>
+                                                            <input type="text" class="txtHoraInicio txtHora form-control inputBack" name="txtHoraInicio" readonly />
+                                                            <div class="horas btnBack"></div>
+                                                            <div class="minutos btnBack"></div>
                                                             <div class="divTiempo">
                                                                 a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
                                                                 p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
@@ -267,12 +271,12 @@
                                                     </div>
                                                     <div class="editMode hidden">
                                                         <label>Fin: </label>
-                                                        <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
+                                                        <input class="dpFecha txtFechaFin form-control inputBack" name="txtFechaFin" />
                                                         @*<input type="time" class="txtHoraFin txtHora form-control " name="txtHoraFin" />*@
                                                         <div class="row marginNull divHora timeEdit">
-                                                            <input type="text" class="txtHoraFin txtHora form-control" name="txtHoraFin" readonly />
-                                                            <div class="horas"></div>
-                                                            <div class="minutos"></div>
+                                                            <input type="text" class="txtHoraFin txtHora form-control inputBack" name="txtHoraFin" readonly />
+                                                            <div class="horas btnBack"></div>
+                                                            <div class="minutos btnBack"></div>
 
                                                             <div class="divTiempo">
                                                                 a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
@@ -298,7 +302,6 @@
 
                                             <div class="row text-center sectionBotonesEvento">
                                                 <div class="row marginNull divMensajes">
-                                                    bla bla bla
                                                 </div>
                                                 <div class="normalMode">
                                                     <div class='@group'>
@@ -375,7 +378,7 @@
                                             <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
                                         </div>
                                         <div class="editMode hidden" style="margin-bottom:5%;">
-                                            <label>Nombre de evento</label>
+                                            @*<label>Nombre de evento</label>*@
                                             <input type="text" name="txtEvento2" class="inputBack txtEvento2 form-control" />
                                         </div>
                                         <div class="editMode hidden">
@@ -399,7 +402,7 @@
                                                 </div>
                                                 <div class="editMode hidden">
                                                     <label>Inicio: </label>
-                                                    <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
+                                                    <input class="dpFecha txtFechaInicio form-control inputBack" name="txtFechaInicio" />
                                                     <div class="row marginNull divHora timeEdit">
                                                         <input type="text" class="txtHoraInicio txtHora form-control" name="txtHoraInicio" readonly />
                                                         <div class="horas"></div>
@@ -529,7 +532,11 @@
                     }
                 </div>
                 <div class="row marginNull">
-                    <div></div>
+                    <div class="padrePaginador">
+                        <div class="paginador" id="1">1</div>
+                        <div class="paginador" id="2">2</div>
+                        <div class="paginador" id="3">3</div>
+                    </div>
                 </div>
                 <div class="col-lg-12 areaCompartir">
                     <input type="hidden" class="txtHdIdEvento" value="-1" />

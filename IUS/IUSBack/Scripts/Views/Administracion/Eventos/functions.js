@@ -853,8 +853,8 @@
                 _horaInicio: fechaIni.substring( separadorIni,fechaIni.length),
                 _horaFin:  fechaFin.substring(separadorFin,fechaFin.length)
             }
-            h3 = div.prev();
-            div.find(".txtEvento2").val(h3.find(".spanNombreEvento").text());
+            //h3 = div.prev();
+            div.find(".txtEvento2").val(div.find(".spanNombreEvento").text());
             llenarInputsEdicion(evento, div);
             controlesEdit(true, div);
         

@@ -176,15 +176,15 @@
                 });
             // edicion 
                 $(document).on("click", ".btnActualizar", function () {
-                    div = $(this).parents(".detalleEvento");
+                    div = $(this).parents(".divEventoi");
                     btnActualizar(div);
                 });
                 $(document).on("click", ".btnEditar", function () {
-                    div = $(this).parents(".detalleEvento");
+                    div = $(this).parents(".divEventoi");
                     btnEditar(div);
                 });
                 $(document).on("click", ".btnCancelar", function () {
-                    div = $(this).parents(".detalleEvento");
+                    div = $(this).parents(".divEventoi");
                     controlesEdit(false, div);
                 });
             // compartir 
