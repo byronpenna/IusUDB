@@ -158,6 +158,9 @@ table {
 .failMessage {
   color: #e74c3c !important; }
 
+.bordeStandar {
+  border: solid 1px #828181; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -462,5 +465,28 @@ body {
 
 .rowBtnInputBuscar {
   margin-top: 3%; }
+
+.divEventoi {
+  height: 350px;
+  margin-bottom: 3%;
+  padding: 2%; }
+  .divEventoi .divTituloDescripcion {
+    font-weight: bold; }
+  .divEventoi h4 {
+    text-align: center;
+    text-transform: uppercase; }
+  .divEventoi .pDescripcionEvento {
+    padding-left: 3%;
+    padding-top: 3%;
+    text-align: justify; }
+
+.divBusquedaEvento {
+  padding-left: 40px; }
+
+.tituloBusquedaEvento {
+  text-align: center; }
+
+.txtDeFechaBusqueda {
+  margin-bottom: 3%; }
 
 /*# sourceMappingURL=stylei.css.map */

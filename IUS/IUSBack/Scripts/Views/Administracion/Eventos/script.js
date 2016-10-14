@@ -27,11 +27,18 @@
                 }
             });
     // eventos
-            
+            $(document).on("click", ".tabEventos", function () {
+                $(".divBusqueda").fadeOut("slow");
+            })
+            $
             $(document).on("click", ".btnTab", function () {
                 $('#calendar').fullCalendar('rerenderEvents');
                 window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id"));
             })
+            $(document).on("click", ".tbCompartir", function () {
+                //$("#accordion").accordion("refresh");
+                $(".divBusqueda").fadeIn("slow");
+            });
         // keypress    
             $(document).on("keyup", ".txtBuscarEventoNombre", function (e) {
                 var charCode = e.which;
@@ -137,9 +144,7 @@
                 $(".controlBusqueda").addClass("hidden");
                 $(".controlesBusqueda").find("#" + id).removeClass("hidden");
             })
-            $(document).on("click", ".tbCompartir", function () {
-                    $("#accordion").accordion("refresh");
-                });
+            
             // publicar o no website
                 $(document).on("click", ".btnAccionQuitarPublicacion", function () {
                     detalle = $(this).parents(".detalleEvento");
