@@ -1,4 +1,12 @@
 ﻿// load
+    function iniciales() {
+        var i = $(".txtHdIdTab").val();
+        if (i == -1) {
+            i = 1;
+        }
+        i--;
+        $(".tabs li")[i].click();
+    }
     function eventosIniciales() {
         var frm = new Object();
         actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
@@ -928,14 +936,16 @@
         
         }
         function btnCompartir(detalle) {
-            h3  = detalle.prev();
+            //h3  = detalle.prev();
             tab = $("#tabUsuario");
-            $(".hEventoUsuario").empty().append(h3.find(".spanNombreEvento").text());
+            $(".hEventoUsuario").empty().append(detalle.find(".spanNombreEvento").text());
             tab.css("background", 'rgba(229,229, 229, 0.5)');
+            irA($("#tabCompartir"));
             tab.animate({
                 backgroundColor: "white"
             }, 500);
-            cargarCompartir(detalle,tab);
+            cargarCompartir(detalle, tab);
+
         }
         function trUsuarioCompartido(tr) {
             tbody = tr.parents("tbody");

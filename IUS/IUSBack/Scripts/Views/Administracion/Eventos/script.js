@@ -116,7 +116,7 @@
             })
             //#######
             $(document).on("click", ".btnEliminarEvento", function () {
-                var seccion = $(this).parents(".detalleEvento");
+                var seccion = $(this).parents(".divEventoi");
                 var frm = { idEvento: seccion.find(".txtHdIdEvento").val() }
                 console.log("Formulario a enviar aqui", frm);
                 var x = confirm("¿Esta seguro que desea eliminar evento?");
@@ -147,18 +147,18 @@
             
             // publicar o no website
                 $(document).on("click", ".btnAccionQuitarPublicacion", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
                     var x = confirm("¿Esta totalmente seguro de hacer esto?");
                     if (x) {
                         btnAccionQuitarPublicacion(detalle);
                     }
                 })
                 $(document).on("click", ".btnCancelaQuitarPublicacion", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
                     btnCancelaQuitarPublicacion(detalle)
                 })
                 $(document).on("click", ".btnPublicar", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
                     var estado = parseInt(detalle.find(".txtHdEstadoEstado").val());
                     if (estado == 1) {
                         mjs = "quitar publicacion de";
@@ -168,6 +168,7 @@
                     var x = confirm("¿Esta seguro que desea "+mjs+" website?");
                     if (x == true && estado == 0) {
                         console.log("quiso publicar");
+
                         btnPublicar(detalle);
                     } else if (x == true && estado == 1) {
                         console.log("quiso quitar publicacion");
@@ -189,7 +190,8 @@
                 });
             // compartir 
                 $(document).on("click", ".btnCompartir", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
+                    
                     btnCompartir(detalle);
                     
                 });
@@ -263,5 +265,6 @@
                     trUsuarioCompartido(tr);
                 });
     // funciones iniciales 
+        iniciales();
         eventosIniciales();
 });

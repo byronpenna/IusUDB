@@ -512,4 +512,12 @@ body {
     width: 90%;
     margin: 0 auto; }
 
+.divBotones {
+  width: 30%;
+  margin: 0 auto; }
+
+.activePaginador {
+  font-weight: bold;
+  color: #cc1315; }
+
 /*# sourceMappingURL=stylei.css.map */

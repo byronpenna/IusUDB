@@ -131,27 +131,50 @@ namespace IUSLibs.ADMINFE.Control
                     }
                     return eventos;
                 }
-                public List<Evento> sp_adminfe_eventosCalendario(int idUsuario, int idPagina)
+                public Dictionary<object,object> sp_adminfe_eventosCalendario(int idUsuario, int idPagina,int n,int pagina)
                 {
                     List<Evento> eventos = null;
                     Evento evento; Usuario usu;
+                    Dictionary<object, object> retorno = new Dictionary<object, object>();
                     SPIUS sp = new SPIUS("sp_adminfe_eventosCalendario");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuario);
                     sp.agregarParametro("idPagina", idPagina);
+                    int cnEvento = 0;
+                    /*
+                        @				int = -1,
+                        @			int = -1
+                     */
+                    sp.agregarParametro("n", n);
+                    sp.agregarParametro("pagina", pagina);
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                        if (this.resultadoCorrecto(tb))
+                        if (this.resultadoCorrectoGet(tb))
                         {
                             eventos = new List<Evento>();
-                            foreach (DataRow row in tb[1].Rows)
-                            {
-                                usu = new Usuario((int)row["id_usuario_creador_fk"]);
-                                evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usu, (DateTime)row["fecha_creacion"], row["descripcion"].ToString());
-                                evento._publicado = (bool)row["publicado"];
-                                evento._propietario = (int)row["propietario"];
-                                eventos.Add(evento);
+                            if (tb[0].Rows.Count > 0) {
+                                foreach (DataRow row in tb[1].Rows)
+                                {
+                                    usu = new Usuario((int)row["id_usuario_creador_fk"]);
+                                    evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usu, (DateTime)row["fecha_creacion"], row["descripcion"].ToString());
+                                    evento._publicado = (bool)row["publicado"];
+                                    evento._propietario = (int)row["propietario"];
+                                    evento._miniatura = row["miniatura"].ToString();
+                                    /*if (evento._miniatura != "")
+                                    {
+                                        evento._miniatura = this.relativePathFromAbsolute(appPath, evento._miniatura);
+                                    }
+                                    */
+                                    eventos.Add(evento);
+                                }
                             }
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                cnEvento    = (int)row["cnEvento"];
+                            }
+                            retorno.Add("eventos", eventos);
+                            retorno.Add("cnEvento", cnEvento);
                         }
                     }
                     catch (ErroresIUS x)
@@ -162,7 +185,7 @@ namespace IUSLibs.ADMINFE.Control
                     {
                         throw x;
                     }
-                    return eventos;
+                    return retorno;
                 }
             #endregion
             #region "acciones"

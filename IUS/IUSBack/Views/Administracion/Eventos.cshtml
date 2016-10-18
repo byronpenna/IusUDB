@@ -25,11 +25,23 @@
         <script src="~/Scripts/Views/Administracion/Eventos/functions.js"></script>
 }
 @{
-    Layout = "~/Views/Shared/_Layouti.cshtml";
-    List<Evento> eventos = (List<Evento>)ViewBag.eventos;
-    Permiso permiso = (Permiso)ViewBag.permiso;
+    Layout                  = "~/Views/Shared/_Layouti.cshtml";
+    List<Evento> eventos    = null;
+    Permiso permiso         = null;
+    string strImagen        = Url.Content("~/Content/themes/iusback_theme/img/general/img/general/noBanerMiniatura.png");
+    int numPagina           = (int)ViewBag.id2;
+    int num                 = (int)ViewBag.num;
+    int cnEvento            = (int)ViewBag.cnEvento;
+    try {
+        eventos = (List<Evento>)ViewBag.eventos;
+        permiso = (Permiso)ViewBag.permiso;
+        
+    }
+    catch (Exception)
+    {
+        
+    }
 }
-
 
 @*<ul>
     <li class="btnTab tabActive" id="1" target="#tab-1">
@@ -42,6 +54,7 @@
 
 <input type="hidden" class="txtHdNombreClass"   value="@ViewBag.nombreClass" />
 <input type="hidden" class="txtHdFuncion"       value="@ViewBag.nombreFuncion"/>
+<input type="hidden" class="txtHdIdTab" value="@ViewBag.idTab" />
 <div class="row marginNull contenidoCuerpo centroEventos">
     <div class="row marginNull rowNavegacion">
         <span>
@@ -209,8 +222,14 @@
                     <div class="row marginNull">
                         @if (eventos != null && eventos.Count > 0)
                         {
+                            
                             foreach (Evento evento in eventos)
                             {
+                                if (evento._miniatura != "")
+                                {
+                                    strImagen = evento._miniatura;
+                                }
+                                
                                 <div class="col-lg-6">
                                     <div class="divEventoi borde">
                                         <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
@@ -225,7 +244,7 @@
                                             </div>
                                         </div>
                                         <div class="row marginNull divImage normalMode">
-                                            <img src="http://localhost:55869/Administracion/getImageThumbnailEvent/106" />
+                                            <img src="@Url.Action("getImageThumbnailEvent", "Administracion", new {id=evento._idEvento })" /> @*http://localhost:55869/Administracion/getImageThumbnailEvent/106*@
                                         </div>
                                         <div class="row marginNull divTituloDescripcion">
                                             Descripción
@@ -304,27 +323,29 @@
                                                 <div class="row marginNull divMensajes">
                                                 </div>
                                                 <div class="normalMode">
-                                                    <div class='@group'>
-                                                        @if (evt1 || evento._propietario == 2)
-                                                        {
-                                                            <button class="btn btn-default btnEditar" title="Editar" @permiso.stringEditar>
-                                                                <i class="fa fa-pencil"></i>
-                                                            </button>
-                                                            <button class="btn btn-default btnPublicar" title="@evento.txtBtnPublicar">
-                                                                <i class="@icoPublicar"></i>
-                                                            </button>
-                                                        }
-                                                    </div>
-                                                    <div class="@group">
-                                                        @if (evt1)
-                                                        {
-                                                            <button class="btn btn-default btnCompartir" title="Compartir">
-                                                                <i class="fa fa-share"></i>
-                                                            </button>
-                                                            <button class="btn btn-default btnEliminarEvento" title="Eliminar" @permiso.stringEliminar>
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        }
+                                                    <div class="row marginNull divBotones">
+                                                        <div class='btn-block '>
+                                                            @if (evt1 || evento._propietario == 2)
+                                                            {
+                                                                <button class="btn btn-default btnEditar btnBack col-lg-6" title="Editar" @permiso.stringEditar>
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </button>
+                                                                <button class="btn btn-default btnPublicar btnBack col-lg-6" title="@evento.txtBtnPublicar">
+                                                                    <i class="@icoPublicar"></i>
+                                                                </button>
+                                                            }
+                                                        </div>
+                                                        <div class="btn-block">
+                                                            @if (evt1)
+                                                            {
+                                                                <button class="btn btn-default btnCompartir btnBack col-lg-6" title="Compartir">
+                                                                    <i class="fa fa-share"></i>
+                                                                </button>
+                                                                <button class="btn btn-default btnEliminarEvento btnBack col-lg-6" title="Eliminar" @permiso.stringEliminar>
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            }
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="editMode hidden">
@@ -335,8 +356,8 @@
                                                 </div>
                                                 <div class="quitarPublicacionMode hidden">
                                                     <div class='btn-group'>
-                                                        <button class="btn btn-default btnAccionQuitarPublicacion">Quitar publicacion</button>
-                                                        <button class="btn btn-default btnCancelaQuitarPublicacion">Cancelar</button>
+                                                        <button class="btn btn-default btnAccionQuitarPublicacion btnBack">Quitar publicacion</button>
+                                                        <button class="btn btn-default btnCancelaQuitarPublicacion btnBack">Cancelar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -533,6 +554,8 @@
                 </div>
                 <div class="row marginNull">
                     <div class="padrePaginador">
+                        @*@for(int i= 0; i< (nu) )*@
+
                         <div class="paginador" id="1">1</div>
                         <div class="paginador" id="2">2</div>
                         <div class="paginador" id="3">3</div>
@@ -548,46 +571,51 @@
 
                                 </div>
                             </div>
-                            <div class="row seccionCompartir">
-                                <div class="col-lg-6">
-                                    <div class="row marginNull frmCompartirUsuario">
-                                        <select class="selectBack cbUsuarioCompartir" name="cbUsuarioCompartir">
-                                            <option value="-1" disabled selected>Seleccione usuario</option>
-                                        </select>
-                                        <button class="btn btnBack btn-default btnAgregarUsuarioCompartir">Agregar</button>
-                                        <div class="divResultadoAgregarUsuario text-center"></div>
-                                    </div>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Usuario</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="tbUsuarios"></tbody>
-                                    </table>
+                            <div class="row marginNull seccionCompartir">
+                                <div class="row marginNull">
+                                    @*<h3>Seleccione evento a compartir</h3>*@
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="row">
-                                        <select class="cbPermisosCompartir" multiple></select>
-
-                                        <button class="btn btnBack btnPermisos btn-default">Agregar</button>
-                                        <div class="divResultado hidden">
-
+                                <div class="row marginNull">
+                                    <div class="col-lg-6">
+                                        <div class="row marginNull frmCompartirUsuario">
+                                            <select class="selectBack cbUsuarioCompartir" name="cbUsuarioCompartir">
+                                                <option value="-1" disabled selected>Seleccione usuario</option>
+                                            </select>
+                                            <button class="btn btnBack btn-default btnAgregarUsuarioCompartir">Agregar</button>
+                                            <div class="divResultadoAgregarUsuario text-center"></div>
                                         </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Usuario</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tbUsuarios"></tbody>
+                                        </table>
                                     </div>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Permisos</th>
-                                                <th>Acciones</th>
-                                            </tr>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <select class="cbPermisosCompartir" multiple></select>
 
-                                        </thead>
-                                        <tbody class="tbPermisos"></tbody>
-                                    </table>
+                                            <button class="btn btnBack btnPermisos btn-default">Agregar</button>
+                                            <div class="divResultado hidden">
+
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Permisos</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="tbPermisos"></tbody>
+                                        </table>
 
 
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -46,7 +46,7 @@ namespace IUSBack.Controllers
                 }
                 //return null;
             }
-            public ActionResult Eventos(int id=1)
+            public ActionResult Eventos(int id=1,int id2=1,int id3=5)
             {
                 /*
                  id: representa la pestaña en la que se encuentra actualmente
@@ -59,11 +59,17 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    List<Evento> eventos    = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                    string appPath          = System.Web.Hosting.HostingEnvironment.MapPath("~/");
+                    Dictionary<object, object> respuestaEventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos, id3, id2);
+                    List<Evento> eventos    = (List<Evento>)respuestaEventos["eventos"];
                     ViewBag.titleModulo     = "Eventos";
                     ViewBag.usuario         = usuarioSession;
                     ViewBag.eventos         = eventos;
+                    ViewBag.cnEvento        = respuestaEventos["cnEvento"];
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.idTab           = id;
+                    ViewBag.numPagina       = id2;
+                    ViewBag.num             = id3;
                     // variables de navegación
                         ViewBag.nombreClass     = this._nombreClass.Replace("Controller","");
                         ViewBag.nombreFuncion   = "Eventos";
@@ -704,6 +710,7 @@ namespace IUSBack.Controllers
                         Usuario usuarioSession = this.getUsuarioSesion();
                         try
                         {
+                            string appPath = System.Web.Hosting.HostingEnvironment.MapPath("~/");
                             List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
                             respuesta.Add("estado", true);
                             respuesta.Add("eventos", eventos);
