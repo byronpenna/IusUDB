@@ -29,9 +29,13 @@
     List<Evento> eventos    = null;
     Permiso permiso         = null;
     string strImagen        = Url.Content("~/Content/themes/iusback_theme/img/general/img/general/noBanerMiniatura.png");
-    int numPagina           = (int)ViewBag.id2;
+    // paginador 
+    bool mostrarPaginador   = false;
+    int iteradorPaginador   = 1;
+    int numPagina           = (int)ViewBag.numPagina;
     int num                 = (int)ViewBag.num;
     int cnEvento            = (int)ViewBag.cnEvento;
+    int cnPaginador         = 1;
     try {
         eventos = (List<Evento>)ViewBag.eventos;
         permiso = (Permiso)ViewBag.permiso;
@@ -42,7 +46,6 @@
         
     }
 }
-
 @*<ul>
     <li class="btnTab tabActive" id="1" target="#tab-1">
         Eventos
@@ -554,11 +557,52 @@
                 </div>
                 <div class="row marginNull">
                     <div class="padrePaginador">
-                        @*@for(int i= 0; i< (nu) )*@
-
-                        <div class="paginador" id="1">1</div>
+                        
+                        @do
+                        {
+                            
+                            string display = "";
+                            if (numPagina >= (iteradorPaginador * 3 - 3) && numPagina <= iteradorPaginador * 3)
+                            {
+                                display = "";
+                            }
+                            else
+                            {
+                                display = "display:none";
+                            }
+                            string activeNum;
+                            bool saltar = false;
+                            <div class="containerPaginador" @display>
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    if (numPagina == cnPaginador) {
+                                        activeNum = "activePaginador";
+                                    }
+                                    else
+                                    {
+                                        activeNum = "";
+                                    }
+                                    if (cnEvento > (cnPaginador * 3 - 3) && cnEvento < (cnPaginador * 3))
+                                    {
+                                        saltar = true;
+                                        
+                                    }
+                                    <div class="@activeNum paginador" id="@(cnPaginador)">@(cnPaginador)</div>
+                                    if (saltar)
+                                    {
+                                        break;
+                                    }
+                                    cnPaginador++; // cuenta numero de registros
+                                }
+                            </div>
+                            
+                            iteradorPaginador++;
+                            //cnPaginador += 3;
+                        } while ( (cnPaginador * 3) < cnEvento);
+                        
+                        @*<div class="paginador" id="1">1</div>
                         <div class="paginador" id="2">2</div>
-                        <div class="paginador" id="3">3</div>
+                        <div class="paginador" id="3">3</div>*@
                     </div>
                 </div>
                 <div class="col-lg-12 areaCompartir">

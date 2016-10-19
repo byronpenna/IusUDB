@@ -711,7 +711,8 @@ namespace IUSBack.Controllers
                         try
                         {
                             string appPath = System.Web.Hosting.HostingEnvironment.MapPath("~/");
-                            List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                            Dictionary<object, object> respuestaEvento = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                            List<Evento> eventos = (List<Evento>)respuestaEvento["eventos"];
                             respuesta.Add("estado", true);
                             respuesta.Add("eventos", eventos);
                         }

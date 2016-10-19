@@ -153,7 +153,7 @@ namespace IUSLibs.ADMINFE.Control
                         {
                             eventos = new List<Evento>();
                             if (tb[0].Rows.Count > 0) {
-                                foreach (DataRow row in tb[1].Rows)
+                                foreach (DataRow row in tb[0].Rows)
                                 {
                                     usu = new Usuario((int)row["id_usuario_creador_fk"]);
                                     evento = new Evento((int)row["idEvento"], row["evento"].ToString(), (DateTime)row["fecha_inicio"], (DateTime)row["fecha_fin"], usu, (DateTime)row["fecha_creacion"], row["descripcion"].ToString());

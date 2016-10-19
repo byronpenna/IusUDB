@@ -517,7 +517,7 @@ body {
   margin: 0 auto; }
 
 .activePaginador {
-  font-weight: bold;
-  color: #cc1315; }
+  font-weight: bold !important;
+  color: #cc1315 !important; }
 
 /*# sourceMappingURL=stylei.css.map */
