@@ -27,6 +27,16 @@
                 }
             });
     // eventos
+            $(document).on("click", ".paginador", function () {
+                // next page evento
+                var frm = {
+                    n: $(".txtHdNum").val(),
+                    pagina: $(this).attr("id")
+                }
+                paginador(frm,$(this));
+
+            });
+
             $(document).on("click", ".tabEventos", function () {
                 $(".divBusqueda").fadeOut("slow");
             })

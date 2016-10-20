@@ -1,4 +1,145 @@
-﻿// load
+﻿function paginador(frm,btn) {
+    actualizarCatalogo(RAIZ + "/Administracion/ajax_getEventosCalendario", frm, function (data) {
+        if (data.estado) {
+            console.log("La respuesta es: ", data);
+            var resp = data.respEventos;
+            //resp.eventos;
+            //var divEventos = 
+            var divEventos = "";
+            console.log("bla bla bla " + resp.eventos.length + " ", resp.eventos);
+            if (resp.eventos !== undefined && resp.eventos != null && resp.eventos.length > 0) {
+                console.log("Eventos xxxx entro aqui ")
+                $.each(resp.eventos, function (i, evento) {
+                    divEventos += getDivEventoi(evento);
+                })
+            }
+            $(".contenedorEvento").empty().append(divEventos);
+
+            $(".activePaginador").removeClass("activePaginador");
+
+            btn.addClass("activePaginador");
+        }
+    });
+}
+function getDivEventoi(evento) {
+    var divEvento = "\
+    <div class='col-lg-6'>\
+        <div class='divEventoi borde'>\
+            <input type='hidden' name='txtHdIdEvento' class='txtHdIdEvento' value='1106'>\
+            <input type='hidden' name='txtHdEstadoEvento' class='txtHdEstadoEstado' value='0'>\
+            <div class='divNombreEvento'>\
+                <div class='normalMode'>\
+                    <h4 class='spanNombreEvento'>"+evento._evento+"</h4>\
+                </div>\
+                <div class='editMode hidden' style='margin-bottom:5%;'>\
+                    <label>Nombre de evento</label>\
+                    <input type='text' name='txtEvento2' class='inputBack txtEvento2 form-control'>\
+                </div>\
+            </div>\
+            <div class='row marginNull divImage normalMode'>\
+                <img src='" + RAIZ + "/Administracion/getImageThumbnailEvent/" + evento._idEvento + "" + "'>\
+            </div>\
+            <div class='row marginNull divTituloDescripcion'>\
+                Descripción\
+            </div>\
+            <div class='row marginNull'>\
+                <div class='normalMode'>\
+                    <p class='text-justify pDescripcionEvento'>" + evento._descripcion + "</p>\
+                </div>\
+                <div class='editMode hidden'>\
+                    <textarea class='inputBack txtAreaDescripcion form-control' name='txtAreaDescripcion'></textarea>\
+                </div>\
+                <div class='quitarPublicacionMode hidden'>\
+                    <label class='text-center'>Motivos para quitar del website</label>\
+                    <textarea class='inputBack txtAreaMotivoQuitar form-control' name='txtAreaMotivoQuitar'></textarea>\
+                </div>\
+                <div class='row text-center divHorai'>\
+                    <div class='col-lg-6'>\
+                        <div class='normalMode'>\
+                            <label>Inicio: </label>\
+                            <span class='spanFechaInicio'>19/10/2016 01:00:00 </span>\
+                        </div>\
+                        <div class='editMode hidden'>\
+                            <label>Inicio: </label>\
+                            <input class='dpFecha txtFechaInicio form-control inputBack hasDatepicker' name='txtFechaInicio'>\
+                            <div class='row marginNull divHora timeEdit'>\
+                                <input type='text' class='txtHoraInicio txtHora form-control inputBack' name='txtHoraInicio' readonly>\
+                                <div class='horas btnBack'></div>\
+                                <div class='minutos btnBack'></div>\
+                                <div class='divTiempo'>\
+                                    a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0'>\
+                                    p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1'>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <div class='col-lg-6'>\
+                        <div class='normalMode'>\
+                            <label>Fin: </label>\
+                            <span class='spanFechaFin'>19/10/2016 02:00:00 </span>\
+                        </div>\
+                        <div class='editMode hidden'>\
+                            <label>Fin: </label>\
+                            <input class='dpFecha txtFechaFin form-control inputBack hasDatepicker' name='txtFechaFin'>\
+                            <div class='row marginNull divHora timeEdit'>\
+                                <input type='text' class='txtHoraFin txtHora form-control inputBack' name='txtHoraFin' readonly>\
+                                    <div class=' horas btnback'>\
+                            </div>\
+                            <div class='minutos btnBack'>\
+                            </div>\
+                            <div class='divTiempo'>\
+                                a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0'>\
+                                p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1' checked>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+            <div class='row text-center sectionBotonesEvento'>\
+                <div class='row marginNull divMensajes'>\
+                </div>\
+                <div class='normalMode'>\
+                    <div class='row marginNull divBotones'>\
+                        <div class='btn-block '>\
+                            <button class='btn btn-default btnEditar btnBack col-lg-6' title='Editar' enabled>\
+                                <i class='fa fa-pencil'></i>\
+                            </button>\
+                            <button class='btn btn-default btnPublicar btnBack col-lg-6' title='Publicar'>\
+                                <i class='fa fa-globe'></i>\
+                            </button>\
+                        </div>\
+                        <div class='btn-block'>\
+                            <button class='btn btn-default btnCompartir btnBack col-lg-6' title='Compartir'>\
+                                <i class='fa fa-share'></i>\
+                            </button>\
+                            <button class='btn btn-default btnEliminarEvento btnBack col-lg-6' title='Eliminar' enabled>\
+                                <i class='fa fa-trash'></i>\
+                            </button>\
+                        </div>\
+                    </div>\
+                </div>\
+                <div class='editMode hidden'>\
+                    <div class='btn-group'>\
+                        <button class='btn btn-default btnActualizar btnBack'>Actualizar</button>\
+                        <button class='btn btn-default btnCancelar btnBack'>Cancelar</button>\
+                    </div>\
+                </div>\
+                <div class='quitarPublicacionMode hidden'>\
+                    <div class='btn-group'>\
+                        <button class='btn btn-default btnAccionQuitarPublicacion btnBack'>Quitar publicacion</button>\
+                        <button class='btn btn-default btnCancelaQuitarPublicacion btnBack'>Cancelar</button>\
+                    </div>\
+                </div>\
+            </div>\
+            <div class='row marginNull divMensajesEvento text-center'>\
+            </div>\
+        </div>\
+    </div>\
+</div>\
+    ";
+    return divEvento;
+}
+// load
     function iniciales() {
         var i = $(".txtHdIdTab").val();
         if (i == -1) {

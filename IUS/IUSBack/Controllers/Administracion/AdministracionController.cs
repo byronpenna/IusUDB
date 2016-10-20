@@ -618,6 +618,36 @@ namespace IUSBack.Controllers
                     }
                 #endregion
                 #region "gets"
+                    public ActionResult ajax_getEventosCalendario()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        try
+                        {
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
+                            {
+                                respuesta = new Dictionary<object,object>();
+                                Dictionary<object, object> respuestaEventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos,this.convertObjAjaxToInt(frm["n"]),this.convertObjAjaxToInt(frm["pagina"]));
+                                respuesta.Add("estado", true);
+                                respuesta.Add("respEventos", respuestaEventos);
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+
+                        return Json(respuesta);
+                    }
                     public ActionResult sp_adminfe_buscarAllEventosPersonalesByDate()
                     {
                         Dictionary<object, object> frm, respuesta = null;
