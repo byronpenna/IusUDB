@@ -598,6 +598,8 @@ function getDivEventoi(evento) {
             div.find(".txtFechaFin").val(evento._fechaFin);
             div.find(".txtHoraFin").val(evento._horaFin);
             div.find(".txtHoraInicio").val(evento._horaInicio);
+            // po
+            inputsTime($(".minutos"), $(".horas"));
         }
         function llenarInputsVista(evento,div){
             h3 = div.prev();
@@ -948,6 +950,9 @@ function getDivEventoi(evento) {
                 h3 = detalle.prev();
                 frm.txtEvento = h3.find(".txtEvento2").val();
                 console.log("La fecha de inicio es", frm.txtHoraInicio);
+                
+                frm.txtHoraInicio   = horaConvert(frm.txtHoraInicio);
+                frm.txtHoraFin      = horaConvert(frm.txtHoraFin);
                 if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
                     var exp = /^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}$/;
                     if (exp.test(frm.txtFechaInicio) && exp.test(frm.txtFechaFin)) {
