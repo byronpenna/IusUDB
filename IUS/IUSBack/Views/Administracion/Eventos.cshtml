@@ -60,6 +60,7 @@
 <input type="hidden" class="txtHdFuncion"       value="@ViewBag.nombreFuncion"/>
 <input type="hidden" class="txtHdIdTab"         value="@ViewBag.idTab" />
 <input type="hidden" class="txtHdNum"           value="@num" />
+<input type="hidden" class="txtHdNumPage"       value="@numPagina" />
 <div class="row marginNull contenidoCuerpo centroEventos">
     <div class="row marginNull rowNavegacion">
         <span>
@@ -562,6 +563,7 @@
                         <div class="paginador atras">
                             <
                         </div>
+
                         @do
                         {
                             string active = "activeGrupoPaginador";

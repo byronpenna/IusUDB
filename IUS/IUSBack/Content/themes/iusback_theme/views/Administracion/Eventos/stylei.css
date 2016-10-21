@@ -489,17 +489,6 @@ body {
 .txtDeFechaBusqueda {
   margin-bottom: 3%; }
 
-.padrePaginador {
-  text-align: center;
-  font-size: 0.8em; }
-  .padrePaginador .paginador {
-    cursor: pointer;
-    display: inline-block;
-    border: solid 1px #828181;
-    width: 30px;
-    padding-top: 1%;
-    padding-bottom: 1%; }
-
 .divHorai {
   margin-top: 4%; }
 
@@ -525,9 +514,32 @@ body {
   background-size: 90%;
   min-height: 110px; }
 
-.padrePaginador .atras {
+.containerPaginador {
   display: inline-block; }
-.padrePaginador .adelante {
-  display: inline-block; }
+
+.padrePaginador {
+  text-align: center;
+  font-size: 0.8em; }
+  .padrePaginador .containerPaginador .paginador {
+    cursor: pointer;
+    display: inline-block;
+    border: solid 1px #828181;
+    width: 30px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    height: 25px; }
+  .padrePaginador .paginador {
+    cursor: pointer;
+    display: inline-block;
+    border: solid 1px #828181;
+    width: 30px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    vertical-align: bottom;
+    height: 25px; }
+  .padrePaginador .atras {
+    display: inline-block; }
+  .padrePaginador .adelante {
+    display: inline-block; }
 
 /*# sourceMappingURL=stylei.css.map */

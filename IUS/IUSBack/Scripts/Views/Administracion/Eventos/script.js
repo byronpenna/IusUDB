@@ -44,16 +44,17 @@
                     } else if (elemento.hasClass("atras")) {
                         grupo = grupoPaginador.prev();
                     }
-                    $(".activeGrupoPaginador").removeClass("activeGrupoPaginador");
+                    
                     if (grupo.hasClass("containerPaginador")) {
-
+                        $(".activeGrupoPaginador").removeClass("activeGrupoPaginador");
+                        grupo.addClass("activeGrupoPaginador");
+                        //if (grupo.hasClass("containerPaginador")) {
+                            grupoPaginador.fadeOut("slow", function () {
+                                grupo.fadeIn("slow");
+                            })
+                        //}
                     }
-                    grupo.addClass("activeGrupoPaginador");
-                    if (grupo.hasClass("containerPaginador")) {
-                        grupoPaginador.fadeOut("slow", function () {
-                            grupo.fadeIn("slow");
-                        })
-                    }
+                    
                     console.log("grupo", grupo);
                     /*var grupoMostrar = grupo.next();
                     grupo.fadeOut("slow", function () {
@@ -69,7 +70,7 @@
             $
             $(document).on("click", ".btnTab", function () {
                 $('#calendar').fullCalendar('rerenderEvents');
-                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id"));
+                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id") + "/" + $(".txtHdNumPage").val() + "/" + $(".txtHdNum").val());
             })
             $(document).on("click", ".tbCompartir", function () {
                 //$("#accordion").accordion("refresh");
