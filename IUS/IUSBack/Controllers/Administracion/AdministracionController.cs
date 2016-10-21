@@ -46,7 +46,7 @@ namespace IUSBack.Controllers
                 }
                 //return null;
             }
-            public ActionResult Eventos(int id=1,int id2=1,int id3=5)
+            public ActionResult Eventos(int id=1,int id2=1,int id3=4)
             {
                 /*
                  id: representa la pestaña en la que se encuentra actualmente

@@ -36,7 +36,7 @@ function getDivEventoi(evento) {
                     <input type='text' name='txtEvento2' class='inputBack txtEvento2 form-control'>\
                 </div>\
             </div>\
-            <div class='row marginNull divImage normalMode'>\
+            <div class='row marginNull divImage normalMode precarga'>\
                 <img src='" + RAIZ + "/Administracion/getImageThumbnailEvent/" + evento._idEvento + "" + "'>\
             </div>\
             <div class='row marginNull divTituloDescripcion'>\

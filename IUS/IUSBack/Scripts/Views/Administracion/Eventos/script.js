@@ -29,12 +29,38 @@
     // eventos
             $(document).on("click", ".paginador", function () {
                 // next page evento
-                var frm = {
-                    n: $(".txtHdNum").val(),
-                    pagina: $(this).attr("id")
-                }
-                paginador(frm,$(this));
+                var elemento = $(this);
+                if (!elemento.hasClass("adelante") && !elemento.hasClass("atras")) {
+                    var frm = {
+                        n: $(".txtHdNum").val(),
+                        pagina: elemento.attr("id")
+                    }
+                    paginador(frm, elemento);
+                } else {
+                    var grupo;
+                    var grupoPaginador = $(".activeGrupoPaginador");
+                    if (elemento.hasClass("adelante")) {
+                        grupo = grupoPaginador.next();
+                    } else if (elemento.hasClass("atras")) {
+                        grupo = grupoPaginador.prev();
+                    }
+                    $(".activeGrupoPaginador").removeClass("activeGrupoPaginador");
+                    if (grupo.hasClass("containerPaginador")) {
 
+                    }
+                    grupo.addClass("activeGrupoPaginador");
+                    if (grupo.hasClass("containerPaginador")) {
+                        grupoPaginador.fadeOut("slow", function () {
+                            grupo.fadeIn("slow");
+                        })
+                    }
+                    console.log("grupo", grupo);
+                    /*var grupoMostrar = grupo.next();
+                    grupo.fadeOut("slow", function () {
+                        grupoMostrar.fadeIn("slow");
+                    })
+                    console.log("grupo", grupo);*/
+                }
             });
 
             $(document).on("click", ".tabEventos", function () {
