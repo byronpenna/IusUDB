@@ -88,8 +88,8 @@ function getDivEventoi(evento) {
                             <div class='minutos btnBack'>\
                             </div>\
                             <div class='divTiempo'>\
-                                a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0'>\
-                                p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1' checked>\
+                                a.m. <input type='radio' name='tiempoFin' class='rbTiempo rbAm' value='0'>\
+                                p.m. <input type='radio' name='tiempoFin' class='rbTiempo rbPm' value='1' checked>\
                             </div>\
                         </div>\
                     </div>\
@@ -602,11 +602,11 @@ function getDivEventoi(evento) {
             inputsTime($(".minutos"), $(".horas"));
         }
         function llenarInputsVista(evento,div){
-            h3 = div.prev();
+            //h3 = div.prev();
             div.find(".pDescripcionEvento").empty().append(evento._descripcion);
             div.find(".spanFechaInicio").empty().append(evento.getFechaInicio);
             div.find(".spanFechaFin").empty().append(evento.getFechaFin);
-            h3.find(".spanNombreEvento").empty().append(evento._evento);
+            div.find(".spanNombreEvento").empty().append(evento._evento);
         }
         function getEventosAcordion(evento,permisos) {
             if(evento._publicado){
@@ -683,8 +683,8 @@ function getDivEventoi(evento) {
                                                 <div class='horas " + evento._idEvento + "h '></div>\
                                                 <div class='minutos " + evento._idEvento + "m '></div>\
                                                 <div class='divTiempo'>\
-                                                    a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0' />\
-                                                    p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1' checked />\
+                                                    a.m. <input type='radio' name='tiempoFin' class='rbTiempo rbAm' value='0' />\
+                                                    p.m. <input type='radio' name='tiempoFin' class='rbTiempo rbPm' value='1' checked />\
                                                 </div>\
                                             </div>\
                                         </div>\
@@ -950,7 +950,6 @@ function getDivEventoi(evento) {
                 h3 = detalle.prev();
                 frm.txtEvento = h3.find(".txtEvento2").val();
                 console.log("La fecha de inicio es", frm.txtHoraInicio);
-                
                 frm.txtHoraInicio   = horaConvert(frm.txtHoraInicio);
                 frm.txtHoraFin      = horaConvert(frm.txtHoraFin);
                 if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
