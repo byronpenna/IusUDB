@@ -1,4 +1,7 @@
-﻿function paginador(frm,btn) {
+﻿function changeUrl(nombreClass, funcion, id1, id2, id3) {
+    window.history.pushState({}, "", "/" + nombreClass + "/" + funcion + "/" + id1 + "/" + id2 + "/" + id3);
+}
+function paginador(frm,btn) {
     actualizarCatalogo(RAIZ + "/Administracion/ajax_getEventosCalendario", frm, function (data) {
         if (data.estado) {
             console.log("La respuesta es: ", data);

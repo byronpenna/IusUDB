@@ -568,7 +568,7 @@
                         {
                             string active = "activeGrupoPaginador";
                             string display = "";
-                            if (numPagina >= (iteradorPaginador * num - num) && numPagina <= iteradorPaginador * num)
+                            if (numPagina >= (iteradorPaginador * num - num) && numPagina <= iteradorPaginador * num || cnEvento / 3 == 1)
                             {
                                 display = "";
                                 active = "activeGrupoPaginador";

@@ -30,7 +30,11 @@
             $(document).on("click", ".paginador", function () {
                 // next page evento
                 var elemento = $(this);
+
+                $(".txtHdNumPage").val(elemento.attr("id"));
+                
                 if (!elemento.hasClass("adelante") && !elemento.hasClass("atras")) {
+                    changeUrl($(".txtHdNombreClass").val(), $(".txtHdFuncion").val(), $(".txtHdIdTab").val(), elemento.attr("id"), $(".txtHdNum").val());
                     var frm = {
                         n: $(".txtHdNum").val(),
                         pagina: elemento.attr("id")
@@ -70,7 +74,8 @@
             $
             $(document).on("click", ".btnTab", function () {
                 $('#calendar').fullCalendar('rerenderEvents');
-                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id") + "/" + $(".txtHdNumPage").val() + "/" + $(".txtHdNum").val());
+                //window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id") + "/" + $(".txtHdNumPage").val() + "/" + $(".txtHdNum").val());
+                changeUrl($(".txtHdNombreClass").val(), $(".txtHdFuncion").val(), $(this).attr("id"), $(".txtHdNumPage").val(), $(".txtHdNum").val());
             })
             $(document).on("click", ".tbCompartir", function () {
                 //$("#accordion").accordion("refresh");
