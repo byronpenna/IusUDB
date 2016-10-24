@@ -515,19 +515,22 @@ body {
   min-height: 110px; }
 
 .containerPaginador {
-  display: inline-block; }
+  display: table-cell; }
 
 .padrePaginador {
   text-align: center;
-  font-size: 0.8em; }
+  font-size: 0.8em;
+  width: 150px;
+  margin: 0 auto; }
   .padrePaginador .containerPaginador .paginador {
     cursor: pointer;
-    display: inline-block;
+    display: table-cell;
     border: solid 1px #828181;
     width: 30px;
     padding-top: 1%;
     padding-bottom: 1%;
-    height: 25px; }
+    height: 25px;
+    vertical-align: middle; }
   .padrePaginador .paginador {
     cursor: pointer;
     display: inline-block;
@@ -536,10 +539,13 @@ body {
     padding-top: 1%;
     padding-bottom: 1%;
     vertical-align: bottom;
-    height: 25px; }
+    height: 25px;
+    vertical-align: middle; }
   .padrePaginador .atras {
-    display: inline-block; }
+    display: table-cell;
+    vertical-align: middle; }
   .padrePaginador .adelante {
-    display: inline-block; }
+    display: table-cell;
+    vertical-align: middle; }
 
 /*# sourceMappingURL=stylei.css.map */

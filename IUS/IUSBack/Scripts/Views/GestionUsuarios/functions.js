@@ -46,12 +46,12 @@
                                     </tr>\
                                     <tr  class='trTableRol'>\
                                         <td colspan='2' class='text-center titleTrTable'>Roles</td>\
-                                        <td class='titleTrTable'><a class='btn btn-sm btn-default' href='" + RAIZ + "GestionRoles/Index/1/" + frm.idUsuario + "'>Agregar Roles</a></td>\
+                                        <td class='titleTrTable'><a class='btn btn-sm btn-default btnBack' href='" + RAIZ + "GestionRoles/Index/1/" + frm.idUsuario + "'>Agregar Roles</a></td>\
                                     </tr>\
                                     <tr>\
-                                        <th class='text-center'>Rol</th>\
-                                        <th class='text-center'>Estado Rol</th>\
-                                        <th class='text-center'>Acciones</th>\
+                                        <td class='text-center tdHeader'>Rol</td>\
+                                        <td class='text-center tdHeader'>Estado Rol</td>\
+                                        <td class='text-center tdHeader'>Acciones</td>\
                                     </tr>\
                                 </thead>\
                                 <tbody class='tbodyRoles'>\
@@ -64,7 +64,7 @@
                         <td>"+ val._rol + "</td>\
                         <td>" + val.stringEstado + "</td>\
                         <td class='tdAccionDesasociar'>\
-                            <a href='#' title='Desasociar Rol' class='btnDesasociar'><i class='fa fa-times'></i></a>\
+                            <a href='#' title='Desasociar Rol' class='btnDesasociar btn btn-default btnBack'><i class='fa fa-times'></i></a>\
                         </td>\
                     </tr>";
             });

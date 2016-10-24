@@ -189,20 +189,23 @@
     background-size: 90%
     min-height: 110px
 .containerPaginador  
-    display: inline-block
+    display: table-cell
 .padrePaginador
     text-align: center
     font-size: 0.8em
+    width: 150px
+    margin: 0 auto
     //padding-top: 3%
     .containerPaginador 
         .paginador
             cursor: pointer
-            display: inline-block
+            display: table-cell
             border: solid 1px #828181
             width: 30px
             padding-top: 1%
             padding-bottom: 1%
             height: 25px
+            vertical-align: middle
     .paginador
         cursor: pointer
         display: inline-block
@@ -212,9 +215,13 @@
         padding-bottom: 1%
         vertical-align: bottom
         height: 25px
+        vertical-align: middle
     .atras
-        display: inline-block
+        display: table-cell
+        vertical-align: middle
     .adelante
-        display: inline-block
+        display: table-cell
+        vertical-align: middle
+
 //.ui-slider .ui-slider-handle
     //width: 0.5em !important

@@ -24,6 +24,7 @@ function paginador(frm,btn) {
         }
     });
 }
+//@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })
 function getDivEventoi(evento) {
     var divEvento = "\
     <div class='col-lg-6'>\
@@ -40,7 +41,9 @@ function getDivEventoi(evento) {
                 </div>\
             </div>\
             <div class='row marginNull divImage normalMode precarga'>\
+                <a href='" + RAIZ + "/Administracion/ImagenEvento/" + evento._idEvento + "'>\
                 <img src='" + RAIZ + "/Administracion/getImageThumbnailEvent/" + evento._idEvento + "" + "'>\
+                </a>\
             </div>\
             <div class='row marginNull divTituloDescripcion'>\
                 Descripción\

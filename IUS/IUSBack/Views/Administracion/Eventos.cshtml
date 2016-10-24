@@ -250,7 +250,9 @@
                                             </div>
                                         </div>
                                         <div class="row marginNull divImage normalMode precarga">
-                                            <img src="@Url.Action("getImageThumbnailEvent", "Administracion", new {id=evento._idEvento })" /> @*http://localhost:55869/Administracion/getImageThumbnailEvent/106*@
+                                            <a href="@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })">
+                                                <img src="@Url.Action("getImageThumbnailEvent", "Administracion", new {id=evento._idEvento })" /> @*http://localhost:55869/Administracion/getImageThumbnailEvent/106*@
+                                            </a>
                                         </div>
                                         <div class="row marginNull divTituloDescripcion">
                                             Descripción
@@ -560,15 +562,18 @@
                 </div>
                 <div class="row marginNull">
                     <div class="padrePaginador">
-                        <div class="paginador atras">
+                        <div class="paginador navPaginador atras">
                             <
                         </div>
 
                         @do
                         {
+                            
                             string active = "activeGrupoPaginador";
                             string display = "";
-                            if (numPagina >= (iteradorPaginador * num - num) && numPagina <= iteradorPaginador * num || cnEvento / 3 == 1)
+                            //numPagina > (iteradorPaginador * num - num) && numPagina <= iteradorPaginador * num || (cnEvento >= numPagina*num-num &&  cnEvento <= numPagina * num) 
+                            int l1 = cnPaginador * num - num,l2=cnPaginador * num;
+                            if (numPagina >= cnPaginador && numPagina <= (cnPaginador +2))
                             {
                                 display = "";
                                 active = "activeGrupoPaginador";
@@ -592,14 +597,14 @@
                                     {
                                         activeNum = "";
                                     }
-                                    int l1 = cnPaginador * num - num,l2=cnPaginador * num;
+                                    
                                     if ( cnEvento <=l1  )
                                     {
                                         saltar = true;
                                         
                                     }
                                     
-                                    if (saltar && cnPaginador != 1)
+                                    if (saltar && cnPaginador != 1 )
                                     {
                                         break;
                                     }
@@ -611,8 +616,8 @@
                             
                             iteradorPaginador++;
                             //cnPaginador += 3;
-                        } while ( (cnPaginador * num) < cnEvento);
-                        <div class="paginador adelante">
+                        } while ( (cnEvento > cnPaginador * num - num) && cnEvento <= cnPaginador*num );
+                        <div class="paginador navPaginador adelante">
                             >
                         </div>
                         @*<div class="paginador" id="1">1</div>
