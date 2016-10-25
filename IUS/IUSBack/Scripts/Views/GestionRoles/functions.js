@@ -318,7 +318,7 @@ function validacionIngreso(frm) {
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtRol' class='txtRol form-control txtRolEdit'  />\
+                        <input type='text' name='txtRol' class='inputBack input-sm form-control txtRolAgregar txtRol'  />\
                         <div class='divResultado'></div>\
                     </div>\
                     <div class='normalMode tdRol' >"+ rol._rol + "</div>\
@@ -328,18 +328,18 @@ function validacionIngreso(frm) {
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnActualizar'>Actualizar</button>\
-                            <button class='btn btn-xs btn-default btnCancelarEdit'>Cancelar</button>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btnBack btn btn-xs col-lg-6 btn-default btnActualizar'>Actualizar</button>\
+                            <button class='btnBack btn btn-xs col-lg-6 btn-default btnCancelarEdit'>Cancelar</button>\
                         </div>\
                     </div>\
                     <div class='normalMode'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditar' " + permisos.stringEditar + ">\
+                        <div class='btn-group btn-block'>\
+                            <button class='btnBack btn btn-xs col-lg-4 btn-default btnEditar' " + permisos.stringEditar + ">\
                                 Editar\
                             </button>\
-                            <button class='btn btn-xs btn-default btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
-                            <button class='btn btn-xs btn-default btnDeshabilitar' " + permisos.stringEditar + " >\
+                            <button class='btnBack btn btn-xs col-lg-4 btn-default btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                            <button class='btnBack btn btn-xs col-lg-4 btn-default btnDeshabilitar' " + permisos.stringEditar + " >\
                                 "+rol.txtBtnHabilitar+"\
                             </button>\
                         </div>\
