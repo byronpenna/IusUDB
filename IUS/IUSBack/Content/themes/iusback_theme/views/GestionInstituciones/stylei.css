@@ -158,6 +158,9 @@ table {
 .failMessage {
   color: #e74c3c !important; }
 
+.bordeStandar {
+  border: solid 1px #828181; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -361,5 +364,8 @@ table.datatable {
 
 .divMensajesGenerales {
   margin-top: 5%; }
+
+.tdAcciones {
+  vertical-align: middle !important; }
 
 /*# sourceMappingURL=stylei.css.map */
