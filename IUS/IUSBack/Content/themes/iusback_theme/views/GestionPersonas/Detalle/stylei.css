@@ -158,6 +158,9 @@ table {
 .failMessage {
   color: #e74c3c !important; }
 
+.bordeStandar {
+  border: solid 1px #828181; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -293,8 +296,8 @@ footer {
 footer {
   margin-top: 5%; }
 
-body {
-  font-family: "MyriadRegular"; }
+body, h2, h1, label, h4 {
+  font-family: "MyriadRegular" !important; }
 
 .imgPic {
   margin-top: 3%;

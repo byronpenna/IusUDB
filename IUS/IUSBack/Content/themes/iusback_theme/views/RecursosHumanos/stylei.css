@@ -158,6 +158,9 @@ table {
 .failMessage {
   color: #e74c3c !important; }
 
+.bordeStandar {
+  border: solid 1px #828181; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -385,16 +388,14 @@ table.datatable {
   /*margin:  0 auto */
   margin-top: 3%; }
 
-.tituloSecciones {
-  background: #95a5a6;
-  color: white; }
-
-.subtituloSecciones {
-  background: #ecf0f1;
-  color: #2C3E50;
-  width: 95%;
-  margin: 0 auto; }
-
+/*.tituloSecciones
+ * background: #c6c5c5
+ * color: white */
+/*.subtituloSecciones
+ * background: #eeecec
+ * color: #2C3E50
+ * width: 95%
+ * margin:  0 auto */
 .hResultado {
   margin-bottom: 3%; }
 
@@ -476,11 +477,11 @@ table.datatable {
   margin-top: 3%; }
 
 .tituloSecciones {
-  background: #95a5a6;
+  background: #c6c5c5;
   color: white; }
 
 .subtituloSecciones {
-  background: #ecf0f1;
+  background: #eeecec;
   color: #2C3E50;
   width: 95%;
   margin: 0 auto; }
