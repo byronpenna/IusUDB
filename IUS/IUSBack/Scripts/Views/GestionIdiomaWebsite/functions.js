@@ -227,7 +227,12 @@
         });
     }
     function cbIdioma(frm) {
-        cbPagina(frm);
+        if (frm.idPaginaFront != null && frm.idIdioma != null && frm.idPaginaFront != -1 && frm.idIdioma != -1) {
+            cbPagina(frm);
+        } else {
+            console.log("No paso la validacion");
+        }
+        
     }
     function cbPagina(frm) {
         actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_getLlaveFromPageAndIdioma", frm, function (data) {

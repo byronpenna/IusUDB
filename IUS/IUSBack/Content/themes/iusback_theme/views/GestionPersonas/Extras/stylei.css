@@ -158,6 +158,12 @@ table {
 .failMessage {
   color: #e74c3c !important; }
 
+.bordeStandar {
+  border: solid 1px #828181; }
+
+.trTableRol {
+  background: white !important; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -293,8 +299,8 @@ footer {
 footer {
   margin-top: 5%; }
 
-body {
-  font-family: "MyriadRegular"; }
+body, h2, h1, label, h4 {
+  font-family: "MyriadRegular" !important; }
 
 .tabs {
   margin-top: 5%; }
@@ -412,5 +418,14 @@ body {
 
 .rowNavegacion {
   margin-top: 5%; }
+
+.tablaNumerosTelefonicos tbody tr .th1 {
+  width: 20%; }
+.tablaNumerosTelefonicos tbody tr .th2 {
+  width: 25%; }
+.tablaNumerosTelefonicos tbody tr .th3 {
+  width: 20%; }
+.tablaNumerosTelefonicos tbody tr .th4 {
+  width: 15%; }
 
 /*# sourceMappingURL=stylei.css.map */

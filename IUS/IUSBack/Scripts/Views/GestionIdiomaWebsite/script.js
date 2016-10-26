@@ -74,12 +74,14 @@
                 var frm = new Object();
                 frm.idPaginaFront   = $(".cbPagina").val();
                 frm.idIdioma        = $(this).val();
+                console.log("Formulario a enviar de cb idioma ", frm);
                 cbIdioma(frm);
             });
             $(document).on("change", ".cbPagina", function () {
                 var frm = new Object();
                 frm.idPaginaFront   = $(this).val();
                 frm.idIdioma        = $(".cbIdioma").val();
+                console.log("Formulario a enviar de cbPagina ", frm);
                 cbPagina(frm);
             });
             

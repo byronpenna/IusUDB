@@ -371,10 +371,10 @@
                             <thead>
                                 <tr>
                                     <th class="hidden"></th>
-                                    <th>Telefono</th>
-                                    <th>Pais</th>
-                                    <th>Etiqueta</th>
-                                    <th>Acciones</th>
+                                    <th class="">Telefono</th>
+                                    <th class="">Pais</th>
+                                    <th class="">Etiqueta</th>
+                                    <th class="">Acciones</th>
                                 </tr>
                                 <tr>
                                     <th class="hidden"></th>
@@ -419,9 +419,9 @@
                                                 <input name="txtHdIdTelefono" class="txtHdIdTelefono" value="@telefono._idTelefonoPersona" />
                                                 <input name="txtHdIdPais" class="txtHdIdPais" value="@telefono._pais._idPais" />
                                             </td>
-                                            <td>
+                                            <td class="th1">
                                                 <div class="editMode hidden">
-                                                    <input class="txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
+                                                    <input class="inputBack txtTelefono form-control input-sm soloNumerosInt" name="txtTelefono" />
                                                     <div class="row marginNull divResultado hidden">
                                                         _
                                                     </div>
@@ -430,7 +430,7 @@
                                                     @telefono._telefono
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td class="th2">
                                                 <div class="editMode hidden">
                                                     <select class="selectBack cbPais" name="cbPais"></select>
                                                     <div class="row marginNull divResultado hidden">
@@ -441,7 +441,7 @@
                                                     @telefono._pais._pais
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td class="th3">
                                                 <div class="editMode hidden">
                                                     <input class="inputBack txtEtiquetaTel input-sm form-control" name="txtEtiquetaTel" />
                                                     <div class="row marginNull divResultado hidden">
@@ -452,7 +452,7 @@
                                                     @telefono._descripcion
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td class="th4">
                                                 <div class="editMode hidden">
                                                     <div class='btn-group'>
                                                         <button class="btn borde btn-sm btn-default btnActualizarTel" title="Aceptar">
