@@ -158,6 +158,12 @@ table {
 .failMessage {
   color: #e74c3c !important; }
 
+.bordeStandar {
+  border: solid 1px #828181; }
+
+.trTableRol {
+  background: white !important; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -212,7 +218,7 @@ table {
   width: 35%;
   margin: 0 auto; }
 
-.cbIdioma {
+.cbIdiomaInterna {
   text-transform: uppercase;
   color: #d0cfcf;
   font-family: "MyriadRegular";
@@ -293,8 +299,8 @@ footer {
 footer {
   margin-top: 5%; }
 
-body {
-  font-family: "MyriadRegular"; }
+body, h2, h1, label, h4 {
+  font-family: "MyriadRegular" !important; }
 
 .chosen-container-active.chosen-with-drop .chosen-single, .chosen-container-single .chosen-single {
   height: 30px;

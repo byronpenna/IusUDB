@@ -40,6 +40,9 @@
 /* Tab compartir */
 
 /* ******************** Nuevo  ******************** */
+.eventosCompartirSection {
+  margin-bottom: 3%;
+}
 
 .eventosCompartirSection > h3 {
   text-align: center;
@@ -89,7 +92,7 @@
 
 /*Fin arreglos tabs */
 .sectionBotonesEvento {
-  margin-top: 5%;
+  //margin-top: 3%
 }
 
 .hEventoUsuario {
@@ -176,3 +179,118 @@
 .rowBtnInputBuscar {
   margin-top: 3%;
 }
+
+.divEventoi {
+  height: 400px;
+  margin-bottom: 3%;
+  padding: 2%;
+
+  .divTituloDescripcion {
+    font-weight: bold;
+  }
+
+  h4 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .pDescripcionEvento {
+    padding-left: 3%;
+    padding-top: 3%;
+    text-align: justify;
+  }
+}
+
+.divBusquedaEvento {
+  padding-left: 40px;
+}
+
+.tituloBusquedaEvento {
+  text-align: center;
+}
+
+.txtDeFechaBusqueda {
+  margin-bottom: 3%;
+}
+
+.divHorai {
+  margin-top: 4%;
+}
+
+.divImage {
+  text-align: center;
+  opacity: 0.7;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+  img {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.divBotones {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.activePaginador {
+  font-weight: bold !important;
+  color: #cc1315 !important;
+}
+
+.precarga {
+  background: transparent url("../../../../../../Administracion/getImageThumbnailEvent/1110") center no-repeat;
+  background-size: 90%;
+  min-height: 110px;
+}
+
+.containerPaginador {
+  display: table-cell;
+}
+
+.padrePaginador {
+  text-align: center;
+  font-size: 0.8em;
+  width: 150px;
+  margin: 0 auto;
+
+  //padding-top: 3%
+  .containerPaginador {
+    .paginador {
+      cursor: pointer;
+      display: table-cell;
+      border: solid 1px #828181;
+      width: 30px;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      height: 25px;
+      vertical-align: middle;
+    }
+  }
+
+  .paginador {
+    cursor: pointer;
+    display: inline-block;
+    border: solid 1px #828181;
+    width: 30px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    vertical-align: bottom;
+    height: 25px;
+    vertical-align: middle;
+  }
+
+  .atras {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .adelante {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+//.ui-slider .ui-slider-handle
+// //width: 0.5em !important

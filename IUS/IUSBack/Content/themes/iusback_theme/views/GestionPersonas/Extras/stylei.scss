@@ -111,3 +111,25 @@
 .rowNavegacion {
   margin-top: 5%;
 }
+
+.tablaNumerosTelefonicos {
+  tbody {
+    tr {
+      .th1 {
+        width: 20%;
+      }
+
+      .th2 {
+        width: 25%;
+      }
+
+      .th3 {
+        width: 20%;
+      }
+
+      .th4 {
+        width: 15%;
+      }
+    }
+  }
+}

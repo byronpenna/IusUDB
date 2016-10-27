@@ -161,6 +161,9 @@ table {
 .bordeStandar {
   border: solid 1px #828181; }
 
+.trTableRol {
+  background: white !important; }
+
 #menuLogout {
   color: #cc1315; }
 
@@ -215,7 +218,7 @@ table {
   width: 35%;
   margin: 0 auto; }
 
-.cbIdioma {
+.cbIdiomaInterna {
   text-transform: uppercase;
   color: #d0cfcf;
   font-family: "MyriadRegular";
