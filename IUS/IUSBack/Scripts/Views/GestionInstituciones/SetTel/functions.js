@@ -16,7 +16,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='tel' name='txtTelefonoEdit' class='form-control txtTelefonoEdit txtFrmEditar soloNumerosDecimal' />\
+                        <input type='tel' name='txtTelefonoEdit' class='inputBack form-control txtTelefonoEdit soloNumerosDecimal txtFrmEditar' />\
                         <div class='divResultado marginNull row hidden'>\
                             _\
                         </div>\
@@ -25,7 +25,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='tel' name='txtEtiquetaEdit' class='form-control txtEtiquetaEdit txtFrmEditar' />\
+                        <input type='tel' name='txtEtiquetaEdit' class='inputBack form-control txtEtiquetaEdit txtFrmEditar' />\
                         <div class='divResultado marginNull row hidden'>\
                             _\
                         </div>\
@@ -34,21 +34,21 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-default btn-xs  btnActualizar'>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btn btn-default col-lg-6 btn-xs btnActualizar'>\
                                 Actualizar\
                             </button>\
-                            <button class='btn btn-default btn-xs btnCancelar'>\
+                            <button class='btn btn-default col-lg-6 btn-xs btnCancelar'>\
                                 Cancelar\
                             </button>\
                         </div>\
                     </div>\
                     <div class='normalMode'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-default btn-xs btnEditarTel' "+strEditar+" >\
+                        <div class='btn-group btn-block'>\
+                            <button class='btn btn-default btnBack col-lg-6 btnEditarTel' " + strEditar + " >\
                                 Editar\
                             </button>\
-                            <button class='btn btn-default btn-xs  btnEliminarTel' "+strEliminar+" >\
+                            <button class='btn btn-default btnBack col-lg-6 btnEliminarTel' " + strEliminar + " >\
                                 Eliminar\
                             </button>\
                         </div>\

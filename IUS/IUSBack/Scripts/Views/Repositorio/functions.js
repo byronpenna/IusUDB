@@ -88,7 +88,7 @@
                 //</div>\
                 var groupClass = "btn-group";
                 if (openLocation !== undefined && openLocation == true) {
-                    groupClass = "btn-group-vertical";
+                    //groupClass = "btn-group-vertical";
                 }
                 //<img  class='imgCuadritoIcono'  src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._extension._tipoArchivo._icono+"' />\
                 //###############################################################################
@@ -109,9 +109,12 @@
                 if (openLocation !== undefined && openLocation == true) {
                     //<a href='" + RAIZ + 'Repositorio/ndex/' + archivo._carpeta._idCarpeta + "' class='ico icoOpenLocation' title='Abrir ubicacion'>\
                     //</a>
-                    div += "</div>\
-                            <div class='"+groupClass+"'>\
-                                <div class='btnAccion btn btn-default ico'>\
+
+                    //</div>
+                    //<div class='"+groupClass+"'>\
+                    //</div>\
+                    div += "\
+                                <div class='btnAccion btn btn-default ico btn-block btnBack'>\
                                     <i class='fa fa-folder-open'></i>\
                                 </div>\
                                 ";
