@@ -21,7 +21,7 @@
                 </td>\
                 <td class='tdNombreInsitucion'>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtNombreInstitucionEdit' class='txtNombreInstitucionEdit form-control txtNombreInstitucionVal txtEnterEdit' />\
+                        <input type='text' name='txtNombreInstitucionEdit' class='txtNombreInstitucionEdit inputBack form-control txtNombreInstitucionVal txtEnterEdit' />\
                         <div class='divResultado'>\
                         </div>\
                     </div>\
@@ -29,13 +29,13 @@
                 </td>\
                 <td class='tdDireccion'>\
                     <div class='editMode hidden'>\
-                        <textarea class='txtAreaDireccionEdit form-control txtAreaDireccionVal' name='txtAreaDireccionEdit'></textarea>\
+                        <textarea class='inputBack txtAreaDireccionEdit form-control txtAreaDireccionVal' name='txtAreaDireccionEdit'></textarea>\
                     </div>\
                     <div class='normalMode tdDireccion tdDireccionText '>"+institucion._direccion+"</div>\
                 </td>\
                 <td class='tdPais'>\
                     <div class='editMode hidden'>\
-                        <select class='cbPaisEdit cbPaisVal ' name='cbPaisEdit'></select>\
+                        <select class='cbPaisEdit cbPaisVal selectBack' name='cbPaisEdit'></select>\
                     </div>\
                     <div class='normalMode tdPaisText'>\
                         "+institucion._pais._pais+"\
@@ -43,13 +43,13 @@
                 </td>\
                 <td class='tdFundacion'>\
                     <div class='editMode hidden'>\
-                        <input type='text' class='txtAnioFundacion form-control' name='txtAnioFundacion' />\
+                        <input type='text' class='txtAnioFundacion form-control inputBack' name='txtAnioFundacion' />\
                     </div>\
                     <div class='normalMode tdAnioFundacionText'>"+institucion._anioFundacion+"</div>\
                 </td>\
                 <td class='tdTipo'>\
                     <div class='editMode hidden'>\
-                        <select class='form-control cbTipoInstitucionEdit' name='cbTipoInstitucion'>\
+                        <select class='form-control cbTipoInstitucionEdit selectBack' name='cbTipoInstitucion'>\
                         </select>\
                     </div>\
                     <div class='normalMode tdTipoInstitucionText'>\
@@ -58,43 +58,41 @@
                 </td>\
                 <td class='tdCiudad'>\
                     <div class='editMode hidden'>\
-                        <input class='form-control txtCiudad' name='txtCiudad' />\
+                        <input class='form-control txtCiudad inputBack' name='txtCiudad' />\
                     </div>\
                     <div class='normalMode tdCiudadText'>"+institucion._ciudad+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-default btn-xs btnActualizarInstitucion'>\
-                                Actualizar\
-                            </button>\
-                            <button class='btn btn-default btn-xs btnCancelar'>\
-                                Cancelar\
-                            </button>\
-                        </div>\
+                        <button class='btn btn-default btn-block btnBack btn-xs btnActualizarInstitucion'>\
+                            Actualizar\
+                        </button>\
+                        <button class='btn btn-default btn-block btnBack btn-xs btnCancelar'>\
+                            Cancelar\
+                        </button>\
                     </div>\
                     <div class='normalMode'>\
-                        <div class='btn-group-vertical'>\
-                            <button class='btnEditar btn btn-default btn-xs' " + strEditar + " title='Editar'>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btnEditar btn btn-default btnBack col-lg-6 ' " + strEditar + " title='Editar'>\
                                 <i class='fa fa-pencil'></i>\
                             </button>\
-                            <button class='btnDeleteInstitucion btn btn-default btn-xs' " + strEliminar + " title='Eliminar'>\
+                            <button class='btnDeleteInstitucion btn btn-default btnBack col-lg-6' " + strEliminar + " title='Eliminar'>\
                                 <i class='fa fa-times'></i>\
                             </button>\
                         </div>\
-                        <div class='btn-group-vertical'>\
-                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionTelefonos/Index/' + institucion._idInstitucion + "' title='Telefonos'>\
+                        <div class='btn-group btn-block'>\
+                            <a class='btn btnFromlink btn-default btnBack col-lg-6' href='" + RAIZ + 'GestionTelefonos/Index/' + institucion._idInstitucion + "' title='Telefonos'>\
                                 <i class='fa fa-phone-square'></i>\
                             </a>\
-                            <a class='btn btnFromlink btn-default btn-xs' href='" + RAIZ + 'GestionMediosInstituciones/Index/' + institucion._idInstitucion + "' title='Medios Electronicos'>\
+                            <a class='btn btnFromlink btn-default btnBack col-lg-6' href='" + RAIZ + 'GestionMediosInstituciones/Index/' + institucion._idInstitucion + "' title='Medios Electronicos'>\
                                 <i class='fa fa-globe'></i>\
                             </a>\
                         </div>\
-                        <div class='btn-group-vertical' >\
-                            <a class='btn btnFromlink btn-default btn-xs' href='"+RAIZ+"GestionMediosInstituciones/Index/"+institucion._idInstitucion+" ' title='Establecer logo'>\
+                        <div class='btn-group btn-block' >\
+                            <a class='btn btnFromlink btn-default btnBack col-lg-6' href='" + RAIZ + "GestionMediosInstituciones/Index/" + institucion._idInstitucion + " ' title='Establecer logo'>\
                                 <i class='fa fa-picture-o'></i>\
                             </a>\
-                            <a href='"+RAIZ+"AdicionalesInstituciones/Index/"+institucion._idInstitucion+" ' class='btn btn-default btn-xs btnNiveArea' title='Mas detalles'>\
+                            <a class='btn btn-default btnBack col-lg-6 btnNiveArea' href='" + RAIZ + "AdicionalesInstituciones/Index/" + institucion._idInstitucion + " '  title='Mas detalles'>\
                                 <i class='fa fa-plus'></i>\
                             </a>\
                         </div>\
