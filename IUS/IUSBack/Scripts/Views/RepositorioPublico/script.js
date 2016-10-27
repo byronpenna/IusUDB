@@ -119,7 +119,7 @@
                     e.cancelBubble = true;
                     var estado = $(this).attr("id");
                     if (estado != '0') {
-                        console.log("n vista es",nVista);
+                        //console.log("n vista es",nVista);
                         window.location = RAIZ + "RepositorioPublico/index/" + $(this).parents(".folder").find(".txtHdIdCarpeta").val();
                     }
                 });
