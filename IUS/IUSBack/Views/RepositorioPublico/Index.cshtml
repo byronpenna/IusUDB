@@ -138,7 +138,7 @@
                                     <div class='row folderDetalles carpetaDetalle '>
                                         <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpetaPublica">
                                         <div class='col-lg-6'>
-                                            <i class='fa fa-folder'></i>
+                                            @*<i class='fa fa-folder'></i>*@
                                             <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
                                             <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
                                         </div>
@@ -149,6 +149,30 @@
                                                 <i class='fa fa-trash'></i>
                                             </button>
                                             
+                                        </div>
+                                    </div>
+                                }
+                                
+                            }
+                            @if (archivos != null && archivos.Count > 0)
+                            {
+                                string rutaWebsite = "";
+                                foreach (ArchivoPublico archivo in archivos)
+                                {
+                                    <div class='row folderDetalles carpetaDetalle '>
+                                        <input type='hidden' class='txtHdIdArchivoCarpeta' value="@archivo._idArchivoPublico">
+                                        <div class='col-lg-6'>
+                                            @*<i class='fa fa-folder'></i>*@
+                                            <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@archivo._nombre</span></div>
+                                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
+                                        </div>
+                                        <div class='col-lg-2'>@archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo</div>
+                                        <div class='col-lg-2'>@archivo.getFechaCreacion</div>
+                                        <div class='col-lg-2'>
+                                            @*<button class="btn-default btnBack btnEliminarLista">
+                                                @*<i class='fa fa-trash'></i>
+                                            </button>*@
+
                                         </div>
                                     </div>
                                 }
@@ -177,13 +201,13 @@
                                         
                                         @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />*@
                                         <i class="fa fa-folder-o folderRepo" aria-hidden="true"></i>
-                                        <div class="btn-group">
-                                            <a href="#" class="ico btn btn-default icoEliminarCarpeta btnBack" title="Eliminar">
+                                        <div class="row marginNull">
+                                            <a href="#" class="ico btn btn-default icoEliminarCarpeta btnBack btn-block" title="Eliminar">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
-                                            <a href="@rutaWebsite" target="_blank" class="ico btn btn-default btnBack" title="Ver website">
+                                            @*<a href="@rutaWebsite" target="_blank" class="ico btn btn-default btnBack btn-block" title="Ver website">
                                                 <i class="fa fa-globe"></i>
-                                            </a>
+                                            </a>*@
                                         </div>
                                         <div class="detalleCarpeta">
                                             <div class="normalMode sinRedirect">
@@ -223,14 +247,42 @@
                                     </a>
                                 </div>*@
                                     <div class="cuadritoIcono ">
-                                        <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
-                                        <div class="btn-group">
-                                            <a href="#" class="ico btn btn-default icoEliminarArchivo btnBack" title="Eliminar">
+                                        @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />*@
+                                        @switch (archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo)
+                                        {
+                                            case "Imagenes":
+                                                {
+                                                    <i class="fa fa-picture-o icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            case "Video":
+                                                {
+                                                    <i class="fa fa-video-camera icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            case "Audio":
+                                                {
+                                                    <i class="fa fa-music icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            case "Documentos":
+                                                {
+                                                    <i class="fa fa-file-text-o icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            default:
+                                                {
+                                                    <i class="fa fa-exclamation-triangle icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                        }
+                                        <div class="row marginNull">
+                                            <a href="#" class="ico btn btn-default icoEliminarArchivo btnBack btn-block" title="Eliminar">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
-                                            <a href="@rutaWebsite" class="ico btn btn-default btnBack" target="_blank" title="Ver website">
+                                            @*<a href="@rutaWebsite" class="ico btn btn-default btnBack btn-block" target="_blank" title="Ver website">
                                                 <i class="fa fa-globe"></i>
-                                            </a>
+                                            </a>*@
                                         </div>
                                         <div class="detalleCarpeta">
                                             <div class="normalMode">

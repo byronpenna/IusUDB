@@ -80,17 +80,19 @@
                 rutaWebsite = base + "Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1";
             }
             //<img class='imgCuadritoIcono' src='"+RAIZ+"Content/themes/iusback_theme/img/general/repositorio/"+carpeta.getIcono+"' />\
+            /*
+                <a href='" + rutaWebsite + "' target='_blank' class='ico btn btn-default btnBack btnBack' title='Ver website'>\
+                    <i class='fa fa-globe'></i>\
+                </a>\
+            */
             var div = "\
             <div class='col-lg-2 folder'>\
                 <input type='hidden' class='txtHdIdCarpeta' value='"+carpeta._idCarpetaPublica+"' />\
                 <div class='cuadritoIcono cuadritoCarpeta'>\
                     <i class='fa fa-folder-o folderRepo' aria-hidden='true'></i>\
-                    <div class='btn-group'>\
+                    <div class='row marginNull'>\
                         <a href='#' class='ico btn btn-default icoEliminarCarpeta btnBack btnBack' title='Eliminar'>\
                             <i class='fa fa-trash-o'></i>\
-                        </a>\
-                        <a href='" + rutaWebsite + "' target='_blank' class='ico btn btn-default btnBack btnBack' title='Ver website'>\
-                            <i class='fa fa-globe'></i>\
                         </a>\
                     </div>\
                     <div class='detalleCarpeta'>\
@@ -119,19 +121,46 @@
             if (base !== undefined) {
                 rutaWebsite = base + "Repositorio/AllFiles/" + archivo._carpetaPublica._idCarpetaPublica + "/-1";
             }
+            var img = '';
+            //console.log("El archivo es: JJJJJJJJJJJ", archivo);
+            switch (archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo) {
+                case "Imagenes":
+                    {
+                        img = "fa-picture-o";
+                        break;
+                    }
+                case "Video":
+                    {
+                        img = "fa-video-camera";
+                        break;
+                    }
+                case "Audio":
+                    {
+                        img = "fa-music";
+                        break;
+                    }
+                case "Documentos":
+                    {
+                        img = "fa-file-text-o";
+                        break;
+                    }
+                default:
+                    {
+                        img = "fa-exclamation-triangle";
+                        break;
+                    }
+            }
+            //<img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
             var div = "\
                 <div class='col-lg-2 folder'>\
                     <input type='hidden' class='txtHdIdArchivoPublico' value='"+archivo._idArchivoPublico+"' />\
-                    <div class='row divHerramientasIndividual'>\
-                        <a href='#' class='ico icoEliminarArchivo' title='Eliminar'>\
-                            <i class='fa fa-trash-o'></i>\
-                        </a>\
-                        <a href='"+rutaWebsite+"' target='_blank' class='ico' title='Ver website'>\
-                            <i class='fa fa-globe'></i>\
-                        </a>\
-                    </div>\
                     <div class='cuadritoIcono '>\
-                        <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/repositorio/"+archivo._archivoUsuario._extension._tipoArchivo._icono+"' />\
+                        <i class='fa " + img + " icoCuadricula' aria-hidden='true'/>\
+                        <div class='row marginNull'>\
+                            <a href='#' class='ico btn btn-default icoEliminarArchivo btnBack btn-block' title='Eliminar'>\
+                                <i class='fa fa-trash-o'></i>\
+                            </a>\
+                        </div>\
                         <div class='detalleCarpeta'>\
                             <div class='normalMode'>\
                                 <h3 class='ttlNombreCarpeta'>"+archivo._nombre+"</h3>\

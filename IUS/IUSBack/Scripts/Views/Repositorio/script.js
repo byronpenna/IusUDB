@@ -1,4 +1,4 @@
-﻿nVista $(document).ready(function () {
+﻿$(document).ready(function () {
     // eventos 
     /*
     $(window).bind("popstate", function (e) {

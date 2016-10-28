@@ -58,6 +58,7 @@
                 }
                 var seccion = targetSeccionCompartida; //$(this).parents(".seccionCompartida");
                 $(".txtUsuarioSeleccionado").val(frm.idUserFile);
+
                 divCarpetaUsuarioCompartido(frm,seccion);
             });
         // click

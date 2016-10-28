@@ -78,7 +78,7 @@
 
         </div>
         <div class="col-lg-2 herramientaVistaSection">
-            <label>Vistas</label>>
+            <label>Vistas</label>
             <div class="accionesDiv form-control inputBackModal inputBack">
                 <a href="#" class="ico iconoVista iconoVistaCuadricula @activeVista[0]" title="Cuadricula">
                     <!--activeVista-->
@@ -140,7 +140,6 @@
                                     <div class='row folderDetalles carpetaDetalle '>
                                         <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpeta">
                                         <div class='col-lg-6'>
-                                            <i class='fa fa-folder'></i>
                                             <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
                                             <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect inputBack'></div>
                                         </div>
@@ -192,11 +191,11 @@
                                 <div class="col-lg-3 folder">
                                     <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpeta" />
                                     @*<div class="row divHerramientasIndividual visibilitiHidden">
-                                    <a href="#" title="Compartir">
-                                        <i class="fa fa-share"></i>
-                                    </a>
+                                        <a href="#" title="Compartir">
+                                            <i class="fa fa-share"></i>
+                                        </a>
 
-                                </div>*@
+                                    </div>*@
                                     <div class="cuadritoIcono cuadritoCarpeta">
                                         @*<img src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />*@
                                         <i class="fa fa-folder icoCuadricula"></i>
@@ -334,8 +333,7 @@
                         </div>
                     </div>
                     <div class="divUsuarioCarpeta text-center hidden">
-
-                        <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
+                        <img src="~/Content/themes/iusback_theme/img/general/noPickProfile.png" />
                         <h4 class="hUsuarioCarpeta">Demo2</h4>
                     </div>
                     <div class="row marginNull">
@@ -366,7 +364,7 @@
                                             {
                                                 <div class="divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6">
                                                     <input type="hidden" class="txtHdIdUsuario" value="@usuarioCompartido._idUsuario" />
-                                                    <img src="~/Content/themes/iusback_theme/img/general/profle.png" />
+                                                    <img src="~/Content/themes/iusback_theme/img/general/noPickProfile.png" />
                                                     <div class="row">
                                                         <a href="#" class="btn btn-default btnBack btnAccion btnDejarDeCompartirTodo" title="No compartir nada">
                                                             <i class="fa fa-trash-o"></i>

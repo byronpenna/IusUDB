@@ -50,10 +50,10 @@
             </div>\
             <div class='col-lg-12 text-center'>\
                 <div class='btn-group'>\
-                    <a href='#' class='btn btn-default btnAccion icoDejarDeCompartir' title='Compartir'>\
+                    <a href='#' class='btn btn-default btnAccion btnBack icoDejarDeCompartir' title='Compartir'>\
                         <i class='fa fa-trash-o'></i>\
                     </a>\
-                    <a class='btn btn-default btnAccion' href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
+                    <a class='btn btn-default btnAccion btnBack' href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
                         <i class='fa fa-download'></i>\
                     </a>\
                 </div>\
@@ -117,8 +117,9 @@
     }
     // cuadricula 
     function loadCuadriculaCarpeta(carpeta) {
+        //<img src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono + "' />\
         var div = "\
-                        <div class='col-lg-2 folder'>\
+                        <div class='col-lg-3 folder'>\
                             <input type='hidden' class='txtHdIdCarpeta' value='"+ carpeta._idCarpeta + "'/>\
                             <div class='row divHerramientasIndividual'>\
                                 <a href='#' class='ico icoDownload' title='Descargar'>\
@@ -129,7 +130,7 @@
                                 </a>\
                             </div>\
                             <div class='cuadritoIcono cuadritoCarpeta'>\
-                                <img src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + carpeta.getIcono + "' />\
+                                <i class='fa fa-folder icoCuadricula'></i>\
                                 <div class='detalleCarpeta'>\
                                     <div class='normalMode sinRedirect'>\
                                         <h3 class='ttlNombreCarpeta'>"+ carpeta._nombre + "</h3>\
@@ -151,26 +152,59 @@
     function loadCuadriculaFiles(archivo, openLocation) {
 
         var div = "\
-                        <div class='col-lg-2 folder'>\
+                        <div class='col-lg-3 folder folderUni'>\
                             <input type='hidden' class='txtHdIdArchivo' value='"+ archivo._idArchivo + "'/>\
                             <input type='hidden' class='txtHdIdCarpetaContenedora' value='" + archivo._carpeta._idCarpeta + "'/>\
                             ";
+        var classImg = "";
+        console.log("ARCHIVOOOOOOOOOOOOOO ", archivo);
+        switch (archivo._extension._tipoArchivo._tipoArchivo) {
+            case "Imagenes": {
+                classImg = "fa-picture-o";
+                break;
+            }
+            case "Video":
+                {
+                    classImg = "fa-video-camera";
+                    break;
+
+                }
+            case "Audio":
+                {
+                    classImg = "fa-music";
+                    break;
+                }
+            case "Documentos":
+                {
+                    classImg = "fa-file-text-o";
+                    break;
+                }
+            default:
+                {
+                    classImg = "fa-exclamation-triangle";
+                    break;
+                }
+        }
+        //<img class='imgCuadritoIcono' src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivo._extension._tipoArchivo._icono + "' />\
         div += "\
                             <div class='cuadritoIcono '>\
-                                <img class='imgCuadritoIcono' src='"+ RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivo._extension._tipoArchivo._icono + "' />\
-                                <div class='btn-group'>\
-                                        <a href='#' class='btn btnAccion btn-default icoCompartirFile' title='Compartir'>\
-                                            <i class='fa fa-share'></i>\
-                                        </a>";
-        if (openLocation !== undefined && openLocation == true) {
-            div += "<a href='#' class='btn btnAccion btn-default ico icoOpenLocation' title='Abrir ubicacion'>\
-                                                        <i class='fa fa-folder-open'></i>\
-                                                    </a>";
-        }
+                                <i class='fa " + classImg + " icoCuadricula' aria-hidden='true' />\
+                                <div class='row marginNull'>\
+                                    <div class='btn-group'>\
+                                            <a href='#' class='btnAccion btn btn-default btnBack icoCompartirFile' title='Compartir'>\
+                                                <i class='fa fa-share'></i>\
+                                            </a>";
+                                            if (openLocation !== undefined && openLocation == true) {
+                                                div += "\
+                                            <a href='#' class='btn btnAccion btn-default ico icoOpenLocation btnBack' title='Abrir ubicacion'>\
+                                                <i class='fa fa-folder-open'></i>\
+                                            </a>";
+                                        }
         div += "\
-                                    <a class='btn btnAccion btn-default ico' href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' title='Descargar'>\
-                                        <i class='fa fa-download'></i>\
-                                    </a>\
+                                        <a class='btnAccion btn btn-default ico btnBack' href='" + RAIZ + "Repositorio/DescargarFichero/" + archivo._idArchivo + "' title='Descargar'>\
+                                            <i class='fa fa-download'></i>\
+                                        </a>\
+                                    </div>\
                                 </div>\
                                 <div class='detalleCarpeta'>\
                                     <div class='normalMode'>\
@@ -181,8 +215,10 @@
                                             <input type='text' class='form-control txtNombreCarpeta'>\
                                         </div>\
                                         <div class='row marginNull'>\
-                                            <button class='btn btn-xs btn-default btnEditarArchivo'>Actualizar</button>\
-                                            <button class='btn btn-xs btn-default btnCancelarEdicionCarpeta'>Cancelar</button>\
+                                            <div class='btn-group'>\
+                                                <button class='btn btn-xs btnEditarArchivo btnBack'>Actualizar</button>\
+                                                <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>\
+                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -206,10 +242,10 @@
                             <div class='col-lg-2'>" + file.getFechaCreacion + "</div>\
                             <div class='col-lg-2 divAccionesLista'>\
                                 <div class='btn-group'>\
-                                    <a href='#' class='btnAccion btn btn-default icoCompartirFile' title='Compartir'>\
+                                    <a href='#' class='btnAccion btn btn-default btnBack icoCompartirFile' title='Compartir'>\
                                         <i class='fa fa-share'></i>\
                                     </a>\
-                                    <a class='btnAccion btn btn-default ico' href='" + RAIZ + "Repositorio/DescargarFichero/" + file._idArchivo + "' title='Descargar'>\
+                                    <a class='btnAccion btn btn-default btnBack' href='" + RAIZ + "Repositorio/DescargarFichero/" + file._idArchivo + "' title='Descargar'>\
                                         <i class='fa fa-download'></i>\
                                     </a>\
                                 </div>\
@@ -222,9 +258,11 @@
         var div = "\
                         <div class='row folderDetalles carpetaDetalle '>\
                             <input type='hidden' class='txtHdIdCarpeta' value='"+ folder._idCarpeta + "'>\
-                            <div class='col-lg-6'><i class='fa fa-folder'></i>\
-                            <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect'>" + folder._nombre + "</span></div>\
-                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>\
+                            <div class='col-lg-6'>\
+                                <i class='fa fa-folder'></i>\
+                                <div class='normalMode inline'>\
+                                <span class='spanNombreCarpeta sinRedirect'>" + folder._nombre + "</span></div>\
+                                <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>\
                             </div>\
                             <div class='col-lg-2'>Folder</div>\
                             <div class='col-lg-2'>" + folder.getFechaCreacion + "</div>\
@@ -311,7 +349,7 @@
         var div = "\
                     <div class='col-lg-2 folder divUsuario pointer'>\
                         <input type='hidden' class='txtHdIdUsuario' value='" + usuario._idUsuario + "'/>\
-                        <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/profle.png' />\
+                        <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/noPickProfile.png' />\
                         <h4 class='tituloCarpetaPublica'>" + usuario._usuario + "</h4>\
                     </div>\
                 ";
@@ -340,15 +378,44 @@
         if (archivoCompartido._propio) {
             letra = "P";
         }
+        console.log("Archivo compartidoooooooooo ", archivoCompartido);
+        switch (archivoCompartido._archivo._extension._tipoArchivo._tipoArchivo) {
+            case "Imagenes": {
+                classImg = "fa-picture-o";
+                break;
+            }
+            case "Video":
+                {
+                    classImg = "fa-video-camera";
+                    break;
+
+                }
+            case "Audio":
+                {
+                    classImg = "fa-music";
+                    break;
+                }
+            case "Documentos":
+                {
+                    classImg = "fa-file-text-o";
+                    break;
+                }
+            default:
+                {
+                    classImg = "fa-exclamation-triangle";
+                    break;
+                }
+        }
+        //<img class='imgCuadritoIcono' src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
         var div = "\
                 <div class='divCarpetaPublica col-lg-6'>\
                     <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
-                    <img class='imgCuadritoIcono' src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/" + archivoCompartido._archivo._extension._tipoArchivo._icono + "' />\
+                    <i class='fa "+classImg+" imgCuadritoIcono imgCuadritoCompartido'></i>\
                     <div class='btn-group'>\
-                        <a href='#' class='btn btn-default btnAccion icoDejarDeCompartir' title='Compartir'>\
+                        <a href='#' class='btn btn-default btnAccion btnBack icoDejarDeCompartir' title='Compartir'>\
                             <i class='fa fa-trash-o'></i>\
                         </a>\
-                        <a class='btn btn-default btnAccion' href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
+                        <a class='btn btn-default btnAccion btnBack' href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivoCompartido._archivo._idArchivo + "'>\
                             <i class='fa fa-download'></i>\
                         </a>\
                     </div>\
@@ -371,9 +438,9 @@
         var div = "\
                 <div class='divCarpetaPublica divCarpetaUsuarioCompartido col-lg-6'>\
                     <input type='hidden' class='txtHdIdUsuario' value='"+usuario._idUsuario+"'/>\
-                    <img src='"+RAIZ+"/Content/themes/iusback_theme/img/general/profle.png' />\
+                    <img src='" + RAIZ + "/Content/themes/iusback_theme/img/general/noPickProfile.png' />\
                     <div class='row'>\
-                        <a href='#' class='btn btn-default btnAccion btnDejarDeCompartirTodo' title='No compartir nada'>\
+                        <a href='#' class='btn btn-default btnAccion btnBack btnDejarDeCompartirTodo' title='No compartir nada'>\
                             <i class='fa fa-trash-o'></i>\
                         </a>\
                     </div>\
