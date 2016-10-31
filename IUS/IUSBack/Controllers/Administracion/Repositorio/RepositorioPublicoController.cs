@@ -148,7 +148,10 @@ namespace IUSBack.Controllers
                             Dictionary<object,object> archivos = this.getArchivosNavegacion(carpeta._idCarpetaPublica, usuarioSession);
                             archivos.Add("estado", true);
                             archivos.Add("idCarpetaPadre", carpeta._idCarpetaPublica);
-                            archivos.Add("carpetaPadre", archivos["carpetaPadreSend"]);
+                            if (!archivos.ContainsKey("carpetaPadre"))
+                            {
+                                archivos.Add("carpetaPadre", archivos["carpetaPadreSend"]);
+                            }
                             archivos.Add("base", this.URL_IUS);
                             respuesta = archivos;
                             /*

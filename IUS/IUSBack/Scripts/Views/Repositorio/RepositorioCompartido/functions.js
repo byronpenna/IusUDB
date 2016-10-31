@@ -43,7 +43,7 @@
             letra = "P";
         }
         var div = "\
-        <div class='divCarpetaUsuarioCompartido divCarpetaCompartidaLista row marginNull'>\
+        <div class='divCarpetaPublica divCarpetaUsuarioCompartido divCarpetaCompartidaLista row marginNull'>\
             <input type='hidden' class='txtHdIdArchivoCompartido' value='" + archivoCompartido._idArchivoCompartido + "'/>\
             <div class='col-lg-12 text-center pointer'>\
                 <h4>" + archivoCompartido._archivo._nombre + "("+letra+") </h4>\
@@ -538,10 +538,12 @@
     function btnShareArchivo(frm) {
         var form = frm;
         actualizarCatalogo(RAIZ + "/RepositorioCompartido/sp_repo_compartirArchivo", frm, function (data) {
+            console.log("Compartir archivo xxxxxxx", data);
             if (data.estado) {
                 var frm = {
                     idUserFile: form.idUsuario,
                     nombreCarpeta: form.nombreCarpeta
+
                 }
                 var seccion = $(".seccionCompartida");
                 divCarpetaUsuarioCompartido(frm, seccion);

@@ -488,7 +488,8 @@ body, h2, h1, label, h4 {
 
 .divCarpetaCompartidaLista {
   padding-top: 2%;
-  padding-bottom: 2%; }
+  padding-bottom: 2%;
+  width: 100%; }
 
 .divCarpetaCompartidaLista:hover {
   background: #F5F5F5; }
