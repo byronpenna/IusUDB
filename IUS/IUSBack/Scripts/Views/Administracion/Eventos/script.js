@@ -27,11 +27,60 @@
                 }
             });
     // eventos
-            
+            $(document).on("click", ".paginador", function () {
+                // next page evento
+                var elemento = $(this);
+
+                $(".txtHdNumPage").val(elemento.attr("id"));
+                
+                if (!elemento.hasClass("adelante") && !elemento.hasClass("atras")) {
+                    changeUrl($(".txtHdNombreClass").val(), $(".txtHdFuncion").val(), $(".txtHdIdTab").val(), elemento.attr("id"), $(".txtHdNum").val());
+                    var frm = {
+                        n: $(".txtHdNum").val(),
+                        pagina: elemento.attr("id")
+                    }
+                    paginador(frm, elemento);
+                } else {
+                    var grupo;
+                    var grupoPaginador = $(".activeGrupoPaginador");
+                    if (elemento.hasClass("adelante")) {
+                        grupo = grupoPaginador.next();
+                    } else if (elemento.hasClass("atras")) {
+                        grupo = grupoPaginador.prev();
+                    }
+                    
+                    if (grupo.hasClass("containerPaginador")) {
+                        $(".activeGrupoPaginador").removeClass("activeGrupoPaginador");
+                        grupo.addClass("activeGrupoPaginador");
+                        //if (grupo.hasClass("containerPaginador")) {
+                            grupoPaginador.fadeOut("slow", function () {
+                                grupo.fadeIn("slow");
+                            })
+                        //}
+                    }
+                    
+                    console.log("grupo", grupo);
+                    /*var grupoMostrar = grupo.next();
+                    grupo.fadeOut("slow", function () {
+                        grupoMostrar.fadeIn("slow");
+                    })
+                    console.log("grupo", grupo);*/
+                }
+            });
+
+            $(document).on("click", ".tabEventos", function () {
+                $(".divBusqueda").fadeOut("slow");
+            })
+            $
             $(document).on("click", ".btnTab", function () {
                 $('#calendar').fullCalendar('rerenderEvents');
-                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id"));
+                //window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id") + "/" + $(".txtHdNumPage").val() + "/" + $(".txtHdNum").val());
+                changeUrl($(".txtHdNombreClass").val(), $(".txtHdFuncion").val(), $(this).attr("id"), $(".txtHdNumPage").val(), $(".txtHdNum").val());
             })
+            $(document).on("click", ".tbCompartir", function () {
+                //$("#accordion").accordion("refresh");
+                $(".divBusqueda").fadeIn("slow");
+            });
         // keypress    
             $(document).on("keyup", ".txtBuscarEventoNombre", function (e) {
                 var charCode = e.which;
@@ -109,7 +158,7 @@
             })
             //#######
             $(document).on("click", ".btnEliminarEvento", function () {
-                var seccion = $(this).parents(".detalleEvento");
+                var seccion = $(this).parents(".divEventoi");
                 var frm = { idEvento: seccion.find(".txtHdIdEvento").val() }
                 console.log("Formulario a enviar aqui", frm);
                 var x = confirm("¿Esta seguro que desea eliminar evento?");
@@ -137,23 +186,21 @@
                 $(".controlBusqueda").addClass("hidden");
                 $(".controlesBusqueda").find("#" + id).removeClass("hidden");
             })
-            $(document).on("click", ".tbCompartir", function () {
-                    $("#accordion").accordion("refresh");
-                });
+            
             // publicar o no website
                 $(document).on("click", ".btnAccionQuitarPublicacion", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
                     var x = confirm("¿Esta totalmente seguro de hacer esto?");
                     if (x) {
                         btnAccionQuitarPublicacion(detalle);
                     }
                 })
                 $(document).on("click", ".btnCancelaQuitarPublicacion", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
                     btnCancelaQuitarPublicacion(detalle)
                 })
                 $(document).on("click", ".btnPublicar", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
                     var estado = parseInt(detalle.find(".txtHdEstadoEstado").val());
                     if (estado == 1) {
                         mjs = "quitar publicacion de";
@@ -163,6 +210,7 @@
                     var x = confirm("¿Esta seguro que desea "+mjs+" website?");
                     if (x == true && estado == 0) {
                         console.log("quiso publicar");
+
                         btnPublicar(detalle);
                     } else if (x == true && estado == 1) {
                         console.log("quiso quitar publicacion");
@@ -171,20 +219,21 @@
                 });
             // edicion 
                 $(document).on("click", ".btnActualizar", function () {
-                    div = $(this).parents(".detalleEvento");
+                    div = $(this).parents(".divEventoi");
                     btnActualizar(div);
                 });
                 $(document).on("click", ".btnEditar", function () {
-                    div = $(this).parents(".detalleEvento");
+                    div = $(this).parents(".divEventoi");
                     btnEditar(div);
                 });
                 $(document).on("click", ".btnCancelar", function () {
-                    div = $(this).parents(".detalleEvento");
+                    div = $(this).parents(".divEventoi");
                     controlesEdit(false, div);
                 });
             // compartir 
                 $(document).on("click", ".btnCompartir", function () {
-                    detalle = $(this).parents(".detalleEvento");
+                    detalle = $(this).parents(".divEventoi");
+                    
                     btnCompartir(detalle);
                     
                 });
@@ -258,5 +307,6 @@
                     trUsuarioCompartido(tr);
                 });
     // funciones iniciales 
+        iniciales();
         eventosIniciales();
 });

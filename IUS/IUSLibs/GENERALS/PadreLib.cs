@@ -20,6 +20,9 @@ namespace IUSLibs.GENERALS
             
         #endregion
         #region "funciones heredadas"
+            public string relativePathFromAbsolute(string appPath,string absoultePath) {
+                return absoultePath.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+            }
             public RRHH.Entidades.InformacionPersona detallePersona(int idUsuarioEjecutor)
             {
                 RRHH.Entidades.InformacionPersona informacionPersona = new RRHH.Entidades.InformacionPersona(-1);

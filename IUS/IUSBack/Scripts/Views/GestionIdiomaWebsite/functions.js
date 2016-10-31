@@ -81,7 +81,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <textarea class='form-control txtAreaEditTraduccion' name='txtAreaEditTraduccion'></textarea>\
+                        <textarea class='inputBack form-control txtAreaEditTraduccion' name='txtAreaEditTraduccion'></textarea>\
                     </div>\
                     <div class='normalMode tdTxtTraduccion'>\
                         "+llaveIdioma._traduccion+"\
@@ -89,12 +89,16 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden' >\
-                        <button class='btn btn-default btn-sm btnEditMode btnActualizar' >Actualizar</button>\
-                        <button class='btn btn-default btn-sm btnEditMode btnCancelarEdit' >Cancelar</button>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btn btn-default btn-sm btnBack col-lg-6 btnEditMode btnActualizar' >Actualizar</button>\
+                            <button class='btn btn-default btn-sm btnBack col-lg-6 btnEditMode btnCancelarEdit' >Cancelar</button>\
+                        </div>\
                     </div>\
                     <div class='normalMode'>\
-                        <button class='btn btn-default btn-sm btnEditarTraduccion'>Editar</button>\
-                        <button class='btn btn-default btn-sm btEliminarTraduccion'>Eliminar</button>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btn btn-default btnBack col-lg-6 btn-sm btnEditarTraduccion'>Editar</button>\
+                            <button class='btn btn-default btnBack col-lg-6 btn-sm btEliminarTraduccion'>Eliminar</button>\
+                        </div>\
                     </div>\
                 </td>\
             </tr>\
@@ -227,7 +231,12 @@
         });
     }
     function cbIdioma(frm) {
-        cbPagina(frm);
+        if (frm.idPaginaFront != null && frm.idIdioma != null && frm.idPaginaFront != -1 && frm.idIdioma != -1) {
+            cbPagina(frm);
+        } else {
+            console.log("No paso la validacion");
+        }
+        
     }
     function cbPagina(frm) {
         actualizarCatalogo(RAIZ+"/GestionIdiomaWebsite/sp_trl_getLlaveFromPageAndIdioma", frm, function (data) {

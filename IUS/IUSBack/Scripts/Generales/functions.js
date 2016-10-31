@@ -91,6 +91,19 @@
         }
         trSubMenu.addClass(classNombre); // importantisimo esto debe ser dinamico de active clas pero quitandole primer caracter
     }
+    function cambioBackgroundColorTrGeneral(selector, color, activeClass, colorFont,tr) {
+        $("" + selector).css("background", "none");
+        if (colorFont !== undefined) {
+            $("" + selector).css("color", colorFont.antes);
+        }
+        var classNombre = activeClass.substr(1, activeClass.length);
+        $(activeClass).removeClass(classNombre);
+        tr.css("background", color);
+        if (colorFont !== undefined) {
+            tr.css("color", colorFont.despues);
+        }
+        tr.addClass(classNombre); // importantisimo esto debe ser dinamico de active clas pero quitandole primer caracter
+    }
     function cancelarGlobal() {
         var x = confirm("¿Esta seguro que desea cancelar todo?");
         if (x) {

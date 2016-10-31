@@ -103,6 +103,15 @@ namespace IUSBack.Controllers
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (usuarioSession != null)
                 {
+                    IUSLibs.RRHH.Entidades.InformacionPersona informacionPersona = this._model.detalleLogin(usuarioSession._idUsuario);
+                    if (informacionPersona._fotoRuta != null && informacionPersona._fotoRuta != "")
+                    {
+                        informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
+                        informacionPersona._tieneFoto = true;
+                    }
+                    informacionPersona._persona = usuarioSession._persona;
+                    ViewBag.informacionPersonaGlobal = informacionPersona;
+
                     ViewBag.titleModulo = "Acceso prohibido";
                     ViewBag.usuario     = usuarioSession;
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);

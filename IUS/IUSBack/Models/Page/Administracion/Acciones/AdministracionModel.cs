@@ -120,23 +120,23 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                             throw x;
                         }
                     }
-                    public List<Evento> sp_adminfe_eventosCalendario(int idUsuario, int idPagina)
+                    public Dictionary<object,object> sp_adminfe_eventosCalendario(int idUsuario, int idPagina,int n=4,int pagina=1)
                     {
-                        List<Evento> eventos = null;
+                        //List<Evento> retorno = null;
                         ControlEvento control = new ControlEvento();
                         try
                         {
-                            eventos = control.sp_adminfe_eventosCalendario(idUsuario, idPagina);
+                            return control.sp_adminfe_eventosCalendario(idUsuario, idPagina,n,pagina);
                         }
-                        catch (ErroresIUS)
+                        catch (ErroresIUS x)
                         {
-
+                            throw x;
                         }
-                        catch (Exception)
+                        catch (Exception x)
                         {
-
+                            throw x;
                         }
-                        return eventos;
+                        //return eventos;
                     }
                     public Dictionary<string,object> sp_adminfe_loadCompartirEventos(int idEvento, int idUsuarioEjecutor, int idPagina)
                     {

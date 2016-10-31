@@ -4,8 +4,8 @@
         <!-- Jcrop -->
             <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css" />
     <!-- propios -->
-        <link rel=" stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/media.css" />
+        <link rel=" stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/setMiniatura/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -15,68 +15,91 @@
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/script.js"></script>
         <script src="~/Scripts/Views/Administracion/Noticias/setMiniatura/functions.js"></script>
 }
-@section arbol{
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@Url.Action("Index")">
-            <div class="col-lg-8">
-                Noticias
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@ViewBag.currentUrl">
-            <div class="col-lg-8">
-                Imagen noticia
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-}
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     Post post = (Post)ViewBag.post;
     string src = "";
 }
-<div class="contenidoModulo">
-    <form method="post" id="frmMiniatura" action="@Url.Action("sp_adminfe_noticias_setThumbnailPost")">
-        <input type="hidden" name="txtHdIdPost" class="txtHdIdPost" value="@post._idPost" />
-        @*<div class="divImgThumbnail" >*@
-            @if(post._miniatura != null){
-                src = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
-            }else{
-                src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
-            }
-            <img class="imgThumbnail imagenMiniatura" src="@src" />    
-            <div class="row divLoadingPhoto">
-
-            </div>
-            <div class="row marginNull divCorte hidden">
-                <input class="x" name="x" value="0" />
-                <input class="y" name="y" value="0" />
-
-                <input class="imgAlto" name="imgAlto" value="0" />
-                <input class="imgAncho" name="imgAncho" value="0" />
-            </div>
-            
-        @*</div>*@
-        
-        <div class="row marginNull">
-            <div class="fileUpload btn btn-default">
-                <span>Seleccionar imagen</span>
-                <input type="file" class="upload" id="flMiniatura" accept="image/*" required="">
-            </div>
+@*<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@Url.Action("Index")">
+        <div class="col-lg-8">
+            Noticias
         </div>
-        
-        <!-- <input type="file" id="flMiniatura" /> -->
-
-
-        <input id="btnSubmit" class="btn btn-default botonSubir" type="submit" value="Subir" disabled />
-        <div class="row marginNull divResultado">
-
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
         </div>
-    </form>
+    </a>
+</div>
+<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@ViewBag.currentUrl">
+        <div class="col-lg-8">
+            Imagen noticia
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>*@
+<div class="row marginNull centroPagina cuerpoIndex">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="tituloPrev">
+                <a href="@Url.Action("Index","Noticias")">
+                    Noticias
+                </a>    
+            </span>
+            >>>
+            <span class="titulo">
+                Asignar miniatura
+            </span>
+        </div>
+        <div class="contenidoModulo">
+            <form method="post" id="frmMiniatura" action="@Url.Action("sp_adminfe_noticias_setThumbnailPost")">
+                <input type="hidden" name="txtHdIdPost" class="txtHdIdPost" value="@post._idPost" />
+                @*<div class="divImgThumbnail" >*@
+                @if (post._miniatura != null)
+                {
+                    src = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
+                }
+                else
+                {
+                    src = Url.Content("~/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
+                }
+                <img class="imgThumbnail imagenMiniatura" src="@src" />
+                <div class="row divLoadingPhoto">
+
+                </div>
+                <div class="row marginNull divCorte hidden">
+                    <input class="x" name="x" value="0" />
+                    <input class="y" name="y" value="0" />
+
+                    <input class="imgAlto" name="imgAlto" value="0" />
+                    <input class="imgAncho" name="imgAncho" value="0" />
+                </div>
+
+                @*</div>*@
+
+                <div class="row marginNull">
+                    <div class="fileUpload btn btn-default btnBack">
+                        <span>Seleccionar imagen</span>
+                        <input type="file" class="upload" id="flMiniatura" accept="image/*" required="">
+                    </div>
+                </div>
+
+                <!-- <input type="file" id="flMiniatura" /> -->
+
+
+                <input id="btnSubmit" class="btn btn-default botonSubir btnBack" type="submit" value="Subir" disabled />
+                <div class="row marginNull divResultado">
+
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

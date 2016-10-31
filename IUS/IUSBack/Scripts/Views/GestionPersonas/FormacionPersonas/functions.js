@@ -102,7 +102,7 @@
                         <td>\
                             <div class='editMode hidden'>\
                                 <div class='row marginNull divControl'>\
-                                    <input type='text' name='txtCarrera' class='input-sm form-control txtCarrera' />\
+                                    <input type='text' name='txtCarrera' class='form-control inputBack input-sm txtCarrera' />\
                                     <div class='row marginNull divResultado hidden'>\
                                     </div>\
                                 </div>\
@@ -114,7 +114,7 @@
                         <td>\
                             <div class='editMode hidden'>\
                                 <div class='row marginNull divControl'>\
-                                    <input name='txtYearFin' type='number' class='txtYearFin form-control soloNumerosInt input-sm' />\
+                                    <input name='txtYearFin' type='number' class='inputBack txtYearFin form-control soloNumerosInt input-sm' />\
                                     <div class='row marginNull divResultado hidden'>\
                                     </div>\
                                 </div>\
@@ -126,7 +126,7 @@
                         <td>\
                             <div class='editMode hidden'>\
                                 <div class='row marginNull divControl'>\
-                                    <select name='cbNivelCarrera' class='input-sm cbNivelCarrera form-control'></select>\
+                                    <select name='cbNivelCarrera' class='selectBack input-sm cbNivelCarrera form-control'></select>\
                                     <div class='row marginNull divResultado hidden'>\
                                     </div>\
                                 </div>\
@@ -138,7 +138,7 @@
                         <td>\
                             <div class='editMode hidden'>\
                                 <div class='row marginNull divControl'>\
-                                    <select name='cbAreaCarrera' class='input-sm cbAreaCarrera form-control'></select>\
+                                    <select name='cbAreaCarrera' class='selectBack input-sm cbAreaCarrera form-control'></select>\
                                     <div class='row marginNull divResultado hidden'>\
                                     </div>\
                                 </div>\
@@ -150,7 +150,7 @@
                         <td>\
                             <div class='editMode hidden'>\
                                 <div class='row marginNull divControl'>\
-                                    <input class='form-control txtInstitucionEducativa' name='txtInstitucionEducativa' />\
+                                    <input class='input-sm form-control inputBack txtInstitucionEducativa' name='txtInstitucionEducativa' />\
                                     <div class='row marginNull divResultado hidden'>\
                                     </div>\
                                 </div>\
@@ -175,14 +175,14 @@
                         <td>\
                             <div class='editMode hidden'>\
                                 <div class='btn-group'>\
-                                    <button class='btn btnActualizarTituloPersona btn-default btn-xs'>Actualizar</button>\
-                                    <button class='btn btnCancelarUni btn-default btn-xs'>Cancelar</button>\
+                                    <button class='btn btnActualizarTituloPersona btn-default btn-xs btnBack btn-block'>Actualizar</button>\
+                                    <button class='btn btnCancelarUni btn-default btn-xs btnBack btn-block'>Cancelar</button>\
                                 </div>\
                             </div>\
                             <div class='normalMode tdEmail'>\
                                 <div class='btn-group'>\
-                                    <button class='btn btnEditarTitulos btn-default btn-xs' " + strEditar + ">Editar</button>\
-                                    <button class='btn btnEliminarTitulo btn-default btn-xs' "+strEliminar+">Eliminar</button>\
+                                    <button class='btn btnBack btnEditarTitulos btn-default btn-xs btn-block ' " + strEditar + ">Editar</button>\
+                                    <button class='btn btnBack btnEliminarTitulo btn-default btn-xs btn-block' " + strEliminar + ">Eliminar</button>\
                                 </div>\
                             </div>\
                         </td>\

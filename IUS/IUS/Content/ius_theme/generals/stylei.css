@@ -183,9 +183,10 @@ nav ul li a:hover, .menu2 ul li a:hover {
   padding-top: 10%;
   padding-bottom: 10%;
   padding-left: 1%; }
-  .seccionNoticiaEvento h2 {
+  .seccionNoticiaEvento h2 a {
     color: #cd1315;
-    font-family: "MyriadRegular"; }
+    font-family: "MyriadRegular";
+    text-decoration: none; }
 
 .tituloSeccionNoticiaEvento {
   margin: 0;

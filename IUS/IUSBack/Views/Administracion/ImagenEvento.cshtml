@@ -1,5 +1,7 @@
 ﻿@using IUSLibs.ADMINFE.Entidades
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    
     ViewBag.Title = "ImagenEvento";
     Evento evento = null;
     string rutaImage = "";
@@ -9,7 +11,7 @@
     }
     else
     {
-        rutaImage = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+        rutaImage = Url.Content("~/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");//~/Content/themes/iusback_theme/img/general/image.png
     }
     try
     {
@@ -25,8 +27,8 @@
     <!-- Jcrop -->
         <link rel="stylesheet" href="~/Content/third-party/jcrop/css/jquery.Jcrop.min.css" />
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/ImagenEvento/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/ImagenEvento/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/ImagenEvento/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/ImagenEvento/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- jcrop -->
@@ -35,33 +37,58 @@
         <script src="~/Scripts/Views/Administracion/ImagenEvento/script.js"></script>
         <script src="~/Scripts/Views/Administracion/ImagenEvento/functions.js"></script>
 }
-<form method="post" id="frmImagenEvento" action="@Url.Action("sp_adminfe_setMiniaturaEvento","Administracion")">
-    <div class="todoForm">
-        <input type="hidden" name="txtHdIdEvento" value="@ViewBag.idEvento" />
-        <div class="divImgThumbnail">
-
-            <img class="imgThumbnail" src="@rutaImage" />
-            <div class="row divLoadingPhoto">
-
-            </div>
-            <div class="row marginNull divCorte hidden">
-                <input class="x" name="x" value="0" />
-                <input class="y" name="y" value="0" />
-
-                <input class="imgAlto" name="imgAlto" value="0" />
-                <input class="imgAncho" name="imgAncho" value="0" />
-            </div>
+<div class="row marginNull centroPagina" >
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="titulo tituloPrev">
+                <a href="@Url.Action("Eventos", "Administracion", new { id=2 })">
+                    Eventos
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Imagen eventos
+            </span>
         </div>
         <div class="row marginNull">
-            <div class="fileUpload btn btn-default">
-                <span>Seleccionar imagen</span>
-                <input type="file" class="upload flFoto" id="flMiniatura" accept="image/*" required />
-            </div>
-        </div>
-        <input id="btnSubmit" class="btn btnSubir btn-default" type="submit" value="Subir" disabled />
-        <div class="divResultado">
+            <form method="post" id="frmImagenEvento" action="@Url.Action("sp_adminfe_setMiniaturaEvento","Administracion")">
+                <div class="todoForm">
+                    <input type="hidden" name="txtHdIdEvento" value="@ViewBag.idEvento" />
+                    <div class="divImgThumbnail">
 
+                        <img class="imgThumbnail" src="@rutaImage" />
+                        <div class="row divLoadingPhoto">
+
+                        </div>
+                        <div class="row marginNull divCorte hidden">
+                            <input class="x" name="x" value="0" />
+                            <input class="y" name="y" value="0" />
+
+                            <input class="imgAlto" name="imgAlto" value="0" />
+                            <input class="imgAncho" name="imgAncho" value="0" />
+                        </div>
+                    </div>
+                    <div class="row marginNull">
+                        <div class="fileUpload btn btn-default btnBack">
+                            <span>Seleccionar imagen</span>
+                            <input type="file" class="upload flFoto" id="flMiniatura" accept="image/*" required />
+                        </div>
+                    </div>
+                    <input id="btnSubmit" class="btn btnSubir btn-default btnBack" type="submit" value="Subir" disabled />
+                    <div class="divResultado">
+
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
-    
-</form>
+</div>
+
+

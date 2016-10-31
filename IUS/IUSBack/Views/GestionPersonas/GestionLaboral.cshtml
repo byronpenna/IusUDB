@@ -9,8 +9,8 @@
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/laboral/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/laboral/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/laboral/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionPersonas/laboral/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- plugins -->
@@ -22,35 +22,36 @@
         <script src="~/Scripts/Views/GestionPersonas/Laboral/script.js"></script>
         <script src="~/Scripts/Views/GestionPersonas/Laboral/functions.js"></script>
 }
-@section arbol{
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@Url.Action("Index", "GestionPersonas")">
-            <div class="col-lg-8">
-                Personas
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@ViewBag.currentUrl">
-            <div class="col-lg-8">
-                Laboral
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-}
+
+
+@*<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@Url.Action("Index", "GestionPersonas")">
+        <div class="col-lg-8">
+            Personas
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>
+<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@ViewBag.currentUrl">
+        <div class="col-lg-8">
+            Laboral
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>*@
 
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     /*List<Empresa>           empresas            = null; */
     List<Institucion>       instituciones       = null; List<CargoEmpresa>  cargos      = null;
     List<LaboralPersona>    laboralesPersonas   = null; Persona             persona     = null;
     List<Persona>           personas            = null; InformacionPersona   infoPersona = null;
-    string strFoto = Url.Content(@ViewBag.IMG_GENERALES + "profle.png");
+    string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png"); //@ViewBag.IMG_GENERALES + "profle.png"
     Permiso                 permisos            = (Permiso)ViewBag.permiso;
     try{
         Dictionary<object,object> 
@@ -71,280 +72,320 @@
         
     }
 }
-@section tabs{
-    <ul>
-        <a href="@Url.Action("Extras", "GestionPersonas", new { id = ViewBag.idPersona })">
-            <li>
-                Informacion
-            </li>
-        </a>
-        <a href="@Url.Action("Index", "FormacionPersonas", new {id=ViewBag.idPersona })">
-            <li>
-                Formacion
-            </li>
-        </a>
-        <li class="btnTab tabActive">
-            Laboral
-        </li>
-    </ul>
 
-}
-<div class="row marginNull rowDataPersona">
-    <div class="row marginNull divTituloNombre">
-        <div class="normalMode">
-            <h2 class="titlePersona">@persona.nombreCompleto </h2>
+@*<ul>
+    <a href="@Url.Action("Extras", "GestionPersonas", new { id = ViewBag.idPersona })">
+        <li>
+            Informacion
+        </li>
+    </a>
+    <a href="@Url.Action("Index", "FormacionPersonas", new {id=ViewBag.idPersona })">
+        <li>
+            Formacion
+        </li>
+    </a>
+    <li class="btnTab tabActive">
+        Laboral
+    </li>
+</ul>*@
+<div class="centroRoles contenidoCuerpo">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="tituloPrev">
+            <a href="@Url.Action("Index", "GestionPersonas")">
+                Gestión personas
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Gestion laboral
+        </span>
+    </div>
+    <div class="row marginNull">
+        <div class="col-lg-3">
+            <ul class="tabs">
+                <a href="@Url.Action("Extras", "GestionPersonas", new { id = ViewBag.idPersona })">
+                    <li>
+                        Informacion
+                    </li>
+                </a>
+                <a href="@Url.Action("Index", "FormacionPersonas", new {id=ViewBag.idPersona })">
+                    <li>
+                        Formacion
+                    </li>
+                </a>
+                <li class="btnTab tabActive">
+                    Laboral
+                </li>
+            </ul>
         </div>
-        <div class='editMode hidden'>
-            <div class="col-lg-offset-4 col-lg-3 ">
-                <select class="cbPersonas form-control">
-                    @if (personas != null && personas.Count > 0)
-                    {
-                        string selected = "";
-                        foreach (Persona personaI in personas)
+        <div class="col-lg-9">
+            <div class="row marginNull cuerpoIndex">
+                <div class="row marginNull rowDataPersona">
+                    <div class="row marginNull divTituloNombre">
+                        <div class="normalMode">
+                            <h2 class="titlePersona">@persona.nombreCompleto </h2>
+                        </div>
+                        <div class='editMode hidden'>
+                            <div class="col-lg-offset-4 col-lg-3 ">
+                                <select class="cbPersonas form-control">
+                                    @if (personas != null && personas.Count > 0)
+                                    {
+                                        string selected = "";
+                                        foreach (Persona personaI in personas)
+                                        {
+                                            if (personaI._idPersona == persona._idPersona)
+                                            {
+                                                selected = "selected";
+                                            }
+                                            else
+                                            {
+                                                selected = "";
+                                            }
+                                            <option value="@personaI._idPersona" @selected>@personaI._nombres</option>
+                                        }
+
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-lg-1">
+                                <i class="fa fa-times icoVolverAnombre"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="imgPersona" src="@strFoto" />
+                </div>
+                <div class="row marginNull divUploadVitae text-center">
+                    <h3 class="tituloVitae">Curriculum PDF </h3>
+                    <div class="row marginNull ">
+                        @if (infoPersona != null && infoPersona._tieneCurriculumn)
                         {
-                            if (personaI._idPersona == persona._idPersona)
+                            <a href="@Url.Content(infoPersona._curriculumn)">
+                                <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")" />
+                                <input type="hidden" class="txtHdTieneVitae" value="1" />
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" class="noHref">
+                                <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-readerBn.png")" />
+                                <input type="hidden" class="txtHdTieneVitae" value="0" />
+                            </a>
+                        }
+                    </div>
+                    <form class="frmCurriculumn" action="@Url.Action("subirCurriculumn", "GestionLaboral")">
+                        <input type="hidden" name="txtHdIdPersona" value="@persona._idPersona" />
+                        <div class="row marginNull">
+                            <div class="fileUpload btn btn-default btnBack">
+                                <span>Subir hoja de vida</span>
+                                <input type="file" name="flCurriculum" class="btnBack upload flCurriculum" />
+                            </div>
+                        </div>
+                        <button class="btn btn-default btnBack btnSubir" disabled>Subir</button>
+                    </form>
+                </div>
+                <input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
+                <div class="marginNull row divMensajesGenerales">
+
+                </div>
+                <div class="row marginNull divTablita">
+                    <table class="table tablaLaboral">
+                        <thead>
+                            <tr>
+                                <th class="hidden"></th>
+                                <th class="th1">Institución</th>
+                                <th class="th2">Inicio</th>
+                                <th class="th3">Fin</th>
+                                <th class="th4">Cargo desempeñado</th>
+                                <th>Acciones</th>
+                            </tr>
+                            <tr>
+                                <th class="hidden"></th>
+                                <th>
+                                    <div class="row marginNull divControl">
+                                        <select class="selectBack form-control cbInstitucion input-sm" name="cbInstitucion">
+                                            @if (instituciones != null && instituciones.Count > 0)
+                                            {
+                                                foreach (Institucion institucion in instituciones)
+                                                {
+                                                    <option value="@institucion._idInstitucion">@institucion._nombre</option>
+                                                }
+                                            }
+                                        </select>
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="row marginNull divControl">
+                                        <input type="number" class="inputBack form-control txtInicio soloNumerosInt input-sm" name="txtInicio" min="1970" max="2100" />
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="row marginNull divControl">
+                                        <input type="number" class="inputBack form-control txtFin soloNumerosInt input-sm" name="txtFin" min="1970" max="2100" />
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </div>
+                                </th>
+                                @*<th>
+                            <div class="divControl row marginNull">
+                                <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
+                                <div class="row marginNull divResultado hidden">
+
+                                </div>
+                            </div>
+                        </th>*@
+                                <th>
+                                    <div class="divControl row marginNull">
+                                        <select class="selectBack form-control cbCargo input-sm" name="cbCargo">
+                                            @if (cargos != null && cargos.Count > 0)
+                                            {
+                                                foreach (CargoEmpresa cargo in cargos)
+                                                {
+                                                    <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
+                                                }
+                                            }
+                                        </select>
+                                        <div class="row marginNull divResultado hidden">
+                                            _
+                                        </div>
+                                    </div>
+                                </th>
+                                <th class="tdBotones">
+                                    <button class="btn btnBack btnAgregarLaboralPersona btn-default btn-md" @permisos.stringCrear>Agregar</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbodyLaboralPersona">
+                            @if (laboralesPersonas != null && laboralesPersonas.Count > 0)
                             {
-                                selected = "selected";
+                                foreach (LaboralPersona laboralPersona in laboralesPersonas)
+                                {
+                                    <tr>
+                                        <td class="hidden">
+                                            <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
+                                            <input type="hidden" value="@laboralPersona._institucion._idInstitucion" class="txtHdIdInstitucion" name="txtHdIdInstitucion">
+
+                                            <input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">
+                                        </td>
+                                        <td>
+                                            <div class="editMode hidden">
+                                                <div class="divControl row marginNull">
+                                                    <select class="form-control selectBack cbInstitucion input-sm" name="cbInstitucion"></select>
+                                                    <div class="row marginNull divResultado hidden">
+                                                        _
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="normalMode tdNombreInstitucion">
+                                                @laboralPersona._institucion._nombre
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="editMode hidden">
+                                                <div class="divControl row marginNull">
+                                                    <input type="number" class="inputBack form-control txtInicio input-sm soloNumerosInt" name="txtInicio" min="1970" max="2100" />
+                                                    <div class="row marginNull divResultado hidden">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="normalMode tdFechaInicio">
+                                                @laboralPersona._inicio
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="editMode hidden">
+                                                <div class="divControl row marginNull">
+                                                    <input type="number" class="inputBack form-control txtFin input-sm" name="txtFin" min="1970" max="2100" />
+                                                    <div class="row marginNull divResultado hidden">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="normalMode tdFechaFin">
+                                                @laboralPersona._fin
+                                            </div>
+                                        </td>
+                                        @*<td>
+                                    <div class="editMode hidden">
+                                        <div class="divControl row marginNull">
+                                            <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
+                                            <div class="row marginNull divResultado hidden">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="normalMode tdObservaciones">
+                                        @laboralPersona._observaciones
+                                    </div>
+                                </td>*@
+                                        <td>
+                                            <div class="editMode hidden">
+                                                <div class="divControl row marginNull">
+                                                    <select class="selectBack form-control cbCargo input-sm" name="cbCargo"></select>
+                                                    <div class="row marginNull divResultado hidden">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="normalMode tdCargo">
+                                                @laboralPersona._cargo._cargo
+                                            </div>
+                                        </td>
+                                        <td class="tdEditActividades tdBotones">
+                                            <div class="editMode hidden">
+                                                <div class="btn-group">
+                                                    <button class="btnBack btnActualizarLaboralPersona btn btn-default btn-xs btn-block">Actualizar</button>
+                                                    <button class="btnBack btnCancelarUni btn btn-default btn-xs btn-block">Cancelar</button>
+                                                </div>
+                                            </div>
+                                            <div class="normalMode tdBotones">
+                                                <div class="btn-group">
+                                                    <button class="btnBack btnEditarLaboralPersona btn btn-xs btn-default btnBack btn-block" @permisos.stringEditar>Editar</button>
+                                                    <button class="btnBack btnActividad btn btn-xs btn-default btnBack btn-block">Actividades</button>
+                                                    <button class="btnBack btnEliminarLaboralPersona btn btn-xs btn-default btnBack btn-block" @permisos.stringEliminar>Eliminar</button>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                }
+
                             }
                             else
                             {
-                                selected = "";
+                                <tr class="trNoRegistro">
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        <td class="hidden"></td>
+                                    }
+                                    <td colspan="5" class="text-center ">
+                                        No hay registro laboral para esta persona
+                                    </td>
+                                </tr>
                             }
-                            <option value="@personaI._idPersona" @selected>@personaI._nombres</option>
-                        }
-
-                    }
-                </select>
-            </div>
-            <div class="col-lg-1">
-                <i class="fa fa-times icoVolverAnombre"></i>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    <img class="imgPersona" src="@strFoto" />
 </div>
-<div class="row marginNull divUploadVitae text-center">
-    <h3 class="tituloVitae">Curriculum PDF </h3>
-    <div class="row marginNull ">
-        @if (infoPersona != null && infoPersona._tieneCurriculumn)
-        {
-            <a href="@Url.Content(infoPersona._curriculumn)">
-                <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-reader.png")"/>
-                <input type="hidden" class="txtHdTieneVitae" value="1"/>
-            </a>
-        }
-        else
-        {
-            <a href="#" class="noHref">
-                <img class="icoCurriculumn" src="@Url.Content("~/Content/themes/iusback_theme/img/general/repositorio/adobe-readerBn.png")"/>
-                <input type="hidden" class="txtHdTieneVitae" value="0" />
-            </a>
-        }
-    </div>
-    <form class="frmCurriculumn" action="@Url.Action("subirCurriculumn", "GestionLaboral")">
-        <input type="hidden" name="txtHdIdPersona" value="@persona._idPersona" />
-        <div class="row marginNull">
-            <div class="fileUpload btn btn-default">
-                <span>Subir hoja de vida</span>
-                <input type="file" name="flCurriculum" class="upload flCurriculum" />
-            </div>
-        </div>
-        <button class="btn btn-default btnSubir" disabled>Subir</button>
-    </form>
-</div>
-<input type="hidden" class="txtHdIdPersona" value="@ViewBag.idPersona" />
-<div class="marginNull row divMensajesGenerales">
-    
-</div>
-<div class="row marginNull divTablita">
-    <table class="table tablaLaboral">
-        <thead>
-            <tr>
-                <th class="hidden"></th>
-                <th>Institución</th>
-                <th class="txtDate">Inicio</th>
-                <th class="txtDate">Fin</th>
-                @*<th>Observaciones</th>*@
-                <th>Cargo desempeñado</th>
-                <th>Acciones</th>
-            </tr>
-            <tr>
-                <th class="hidden"></th>
-                <th>
-                    <div class="row marginNull divControl">
-                        <select class="form-control cbInstitucion input-sm" name="cbInstitucion">
-                            @if (instituciones != null && instituciones.Count > 0)
-                            {
-                                foreach (Institucion institucion in instituciones)
-                                {
-                                    <option value="@institucion._idInstitucion">@institucion._nombre</option>
-                                }
-                            }
-                        </select>
-                        <div class="row marginNull divResultado hidden">
-                            _
-                        </div>
-                    </div>
-                </th>
-                <th>
-                    <div class="row marginNull divControl">
-                        <input type="number" class="form-control txtInicio soloNumerosInt input-sm" name="txtInicio" min="1970" max="2100" />
-                        <div class="row marginNull divResultado hidden">
-                            _
-                        </div>
-                    </div>
-                </th>
-                <th>
-                    <div class="row marginNull divControl">
-                        <input type="number" class="form-control txtFin soloNumerosInt input-sm" name="txtFin" min="1970" max="2100" />
-                        <div class="row marginNull divResultado hidden">
-                            _
-                        </div>
-                    </div>
-                </th>
-                @*<th>
-                    <div class="divControl row marginNull">
-                        <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
-                        <div class="row marginNull divResultado hidden">
 
-                        </div>
-                    </div>
-                </th>*@
-                <th>
-                    <div class="divControl row marginNull">
-                        <select class="form-control cbCargo input-sm" name="cbCargo">
-                            @if (cargos != null && cargos.Count > 0)
-                            {
-                                foreach (CargoEmpresa cargo in cargos)
-                                {
-                                    <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
-                                }
-                            }
-                        </select>
-                        <div class="row marginNull divResultado hidden">
-                            _
-                        </div>
-                    </div>
-                </th>
-                <th class="tdBotones">
-                    <button class="btn btnAgregarLaboralPersona btn-default btn-md">Agregar</button>
-                </th>
-            </tr>
-        </thead>
-        <tbody class="tbodyLaboralPersona">
-            @if (laboralesPersonas != null && laboralesPersonas.Count > 0)
-            {
-                foreach (LaboralPersona laboralPersona in laboralesPersonas)
-                {
-                    <tr>
-                        <td class="hidden">
-                            <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
-                            <input type="hidden" value="@laboralPersona._institucion._idInstitucion" class="txtHdIdInstitucion" name="txtHdIdInstitucion">
-
-                            <input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <div class="divControl row marginNull">
-                                    <select class="form-control cbInstitucion input-sm" name="cbInstitucion"></select>
-                                    <div class="row marginNull divResultado hidden">
-                                        _
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="normalMode tdNombreInstitucion">
-                                @laboralPersona._institucion._nombre
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <div class="divControl row marginNull">
-                                    <input type="number" class="form-control txtInicio input-sm soloNumerosInt" name="txtInicio"  min="1970" max="2100"/>
-                                    <div class="row marginNull divResultado hidden">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="normalMode tdFechaInicio">
-                                @laboralPersona._inicio
-                            </div>
-
-                        </td>
-                        <td>
-                            <div class="editMode hidden">
-                                <div class="divControl row marginNull">
-                                    <input type="number" class="form-control txtFin input-sm" name="txtFin" min="1970" max="2100" />
-                                    <div class="row marginNull divResultado hidden">
-
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="normalMode tdFechaFin">
-                                @laboralPersona._fin
-                            </div>
-                        </td>
-                        @*<td>
-                            <div class="editMode hidden">
-                                <div class="divControl row marginNull">
-                                    <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
-                                    <div class="row marginNull divResultado hidden">
-
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="normalMode tdObservaciones">
-                                @laboralPersona._observaciones
-                            </div>
-                        </td>*@
-                        <td>
-                            <div class="editMode hidden">
-                                <div class="divControl row marginNull">
-                                    <select class="form-control cbCargo input-sm" name="cbCargo" ></select>
-                                    <div class="row marginNull divResultado hidden">
-
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="normalMode tdCargo">
-                                @laboralPersona._cargo._cargo
-                            </div>
-                        </td>
-                        <td class="tdBotones">
-                            <div class="editMode hidden">
-                                <div class="btn-group">
-                                    <button class="btnActualizarLaboralPersona btn btn-default btn-xs">Actualizar</button>
-                                    <button class="btnCancelarUni btn btn-default btn-xs">Cancelar</button>
-                                </div>
-                            </div>
-                            <div class="normalMode tdBotones">
-                                <div class="btn-group">
-                                    <button class="btnEditarLaboralPersona btn btn-xs btn-default" @permisos.stringEditar>Editar</button>
-                                    <button class="btnActividad btn btn-xs btn-default">Actividades realizadas</button>
-                                    <button class="btnEliminarLaboralPersona btn btn-xs btn-default" @permisos.stringEliminar>Eliminar</button>
-                                </div>
-
-                            </div>
-                        </td>
-                    </tr>
-
-                }
-
-            }
-            else
-            {
-                <tr class="trNoRegistro">
-                    @for (int i = 0; i < 5; i++)
-                    {
-                        <td class="hidden"></td>
-                    }
-                    <td colspan="5" class="text-center ">
-                        No hay registro laboral para esta persona
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>

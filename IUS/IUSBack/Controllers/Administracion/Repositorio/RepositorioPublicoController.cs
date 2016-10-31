@@ -65,6 +65,9 @@ namespace IUSBack.Controllers
                     ViewBag.idCarpetaActual = id;
                     ViewBag.URL_IUS = this.URL_IUS;
                     ViewBag.vista = id2;
+                    // metricas para funciones generales
+                    ViewBag.nombreControlador = this._nombreClass.Replace("Controller", "");
+                    ViewBag.nombreMetodo = "Index";
                     // Tab seleccionada
                     ViewBag.selectedLi3 = "tabActive";
                 }
@@ -145,7 +148,10 @@ namespace IUSBack.Controllers
                             Dictionary<object,object> archivos = this.getArchivosNavegacion(carpeta._idCarpetaPublica, usuarioSession);
                             archivos.Add("estado", true);
                             archivos.Add("idCarpetaPadre", carpeta._idCarpetaPublica);
-                            archivos.Add("carpetaPadre", archivos["carpetaPadreSend"]);
+                            if (!archivos.ContainsKey("carpetaPadre"))
+                            {
+                                archivos.Add("carpetaPadre", archivos["carpetaPadreSend"]);
+                            }
                             archivos.Add("base", this.URL_IUS);
                             respuesta = archivos;
                             /*

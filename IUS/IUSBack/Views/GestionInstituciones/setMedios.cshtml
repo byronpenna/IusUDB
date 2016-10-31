@@ -2,8 +2,8 @@
 @using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/media.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetMedios/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- propios -->
@@ -11,9 +11,10 @@
     <script src="~/Scripts/Views/GestionInstituciones/SetMedios/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     Institucion             institucion = null;
     List<EnlaceInstitucion> enlaces     = null;
-    string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    string src = Url.Content("~/Content/themes/iusback_theme/img/general/imgAlargada.png");
     Permiso permiso = (Permiso)ViewBag.permiso;
     
     List<EmailInstitucion> emailsInstitucion = null;
@@ -28,184 +29,206 @@
 
     }
 }
-@section arbol{
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@Url.Action("Index", "GestionInstituciones")">
-            <div class="col-lg-8">
-                Instituciones
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@ViewBag.currentUrl">
-            <div class="col-lg-8">
-                Medios
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-}
-<div class="row marginNull divInstitucionPrev">
-    @if (institucion._logo != null)
-    {
-        src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
-    }
-    <img src="@src" />
-    <h2 class="titleInstitucion">@institucion._nombre</h2>
+
+@*<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@Url.Action("Index", "GestionInstituciones")">
+        <div class="col-lg-8">
+            Instituciones
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
 </div>
-<div class="row marginNull divMensajesGenerales" >
+<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@ViewBag.currentUrl">
+        <div class="col-lg-8">
+            Medios
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>*@
 
-</div>
-<div class="row marginNull">
-    <div class="divTable">
-        <h3>Website</h3>
-        <table class="table tbEnlaces">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Enlace</th>
-                    <th>Texto enlace</th>
-                    <th>Acciones</th>
-                </tr>
-                <tr class="trFormAgregar">
-                    <th>
-                        <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
-                    </th>
-                    <th>
-                        <input class="form-control txtEnlace txtEnterAgregar" name="txtEnlace" />
-                        <div class="divResultado hidden">
-                            _
-                        </div>
-                    </th>
-                    <th>
-                        <input class="form-control txtTextoEnlace txtEnterAgregar" name="txtTextoEnlace" />
-                        <div class="divResultado hidden">
-                            _
-                        </div>
-                    </th>
-                    <th class="thBtnGuardar">
-                        <button class="btn btnAgregar btn-default" @permiso.stringCrear>Agregar</button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="tbodyMedios">
-                @if (enlaces != null && enlaces.Count > 0)
-                {
-                    foreach (EnlaceInstitucion enlace in enlaces)
-                    {
-                        <tr>
-                            <td>
-                                <input type="hidden" class="txtHdIdEnlace" name="txtHdIdEnlace" value="@enlace._idEnlace" />
-                            </td>
-                            <td>
-                                <div class="editMode hidden">
-                                    <input class="form-control txtEnlace input-sm" name="txtEnlace" />
-                                    <div class="divResultado hidden">
-                                        _
-                                    </div>
-                                </div>
-                                <div class="normalMode tdEnlace">
-                                    <a href="@enlace._enlace">
-                                        @enlace._enlace
-                                    </a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="editMode hidden">
-                                    <input class="form-control input-sm txtTextoEnlaceEdit" name="txtTextoEnlaceEdit" />
-                                    <div class="divResultado hidden">
-                                        _
-                                    </div>
-                                </div>
-                                <div class="normalMode tdNombreEnlace">@enlace._nombreEnlace</div>
-                            </td>
-                            <td>
-                                <div class="editMode hidden">
-                                    <div class="btn-group">
-                                        <button class="btn btn-default btn-xs btnActualizar">Actualizar</button>
-                                        <button class="btn btn-default btn-xs btnCancelar">Cancelar</button>
-                                    </div>
-                                </div>
-                                <div class="normalMode">
-                                    <div class="btn-group">
-                                        <button class="btn btn-default btn-xs btnEditar" @permiso.stringEditar>
-                                            Editar
-                                        </button>
-                                        <button class="btn btn-default btn-xs btnEliminar" @permiso.stringEliminar>
-                                            Eliminar
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </td>
-                        </tr>
-                    }
-
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="divTable">
-        <h3>Correos electronicos</h3>
-        @{
-            bool put = emailsInstitucion != null && emailsInstitucion.Count > 0;
-            string able = "";
-            if (put)
+<div class="row marginNull centroPagina ">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="tituloPrev">
+                <a href="@Url.Action("Index","GestionInstituciones")">
+                    Instituciones
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Medios instituciones
+            </span>
+        </div>
+        <div class="row marginNull divInstitucionPrev">
+            @if (institucion._logo != null)
             {
-                able = "disabled"; 
+                src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
             }
-        }
-        <table class="table tbEmailInstitucion">
-            <thead>
-                <tr>
-                    <td class="hidden">
+            <img src="@src" />
+            <h2 class="titleInstitucion">@institucion._nombre</h2>
+        </div>
+        <div class="row marginNull divMensajesGenerales">
 
-                    </td>
-                    <th>Email</th>
-                    <th>Acciones</th>
-                </tr>
-                <tr>
-                    <th class="hidden">
-                        <input class="txtHdIdInstitucion" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
-                    </th>
-                    <th>
-                        <input name="txtEmailInstitucion" class="txtEmailInstitucion form-control" />
-                    </th>
-                    <th>
-                        <button @able class="btn btn-default btnAddEmailInstitucion">Agregar</button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (put)
-                {
-                    foreach (EmailInstitucion emailInstitucion in emailsInstitucion)
-                    {
+        </div>
+        <div class="row marginNull">
+            <div class="col-lg-12">
+                <h3 class="text-center">Website</h3>
+                <table class="table tbEnlaces">
+                    <thead>
                         <tr>
-                            <td class="hidden">
-                                <input name="txtHdIdEmailInstitucion" class="txtHdIdEmailInstitucion" value="@emailInstitucion._idEmailInstitucion" />
-                            </td>
-                            <td>@emailInstitucion._email</td>
-                            <td>
-                                <button class="btn btn-default">Editar</button>
-                                <button class="btn btn-default btnEliminarEmailsInstitucion">Eliminar</button>
-                            </td>
+                            <th></th>
+                            <th>Enlace</th>
+                            <th>Texto enlace</th>
+                            <th>Acciones</th>
                         </tr>
+                        <tr class="trFormAgregar">
+                            <th>
+                                <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
+                            </th>
+                            <th>
+                                <input class="form-control inputBack txtEnlace txtEnterAgregar" name="txtEnlace" />
+                                <div class="divResultado hidden">
+                                    _
+                                </div>
+                            </th>
+                            <th>
+                                <input class="form-control inputBack  txtTextoEnlace txtEnterAgregar" name="txtTextoEnlace" />
+                                <div class="divResultado hidden">
+                                    _
+                                </div>
+                            </th>
+                            <th class="thBtnGuardar">
+                                <button class="btn btnBack btnAgregar btn-default btn-block" @permiso.stringCrear>Agregar</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyMedios">
+                        @if (enlaces != null && enlaces.Count > 0)
+                        {
+                            foreach (EnlaceInstitucion enlace in enlaces)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="hidden" class="txtHdIdEnlace" name="txtHdIdEnlace" value="@enlace._idEnlace" />
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <input class="form-control inputBack txtEnlace input-sm" name="txtEnlace" />
+                                            <div class="divResultado hidden">
+                                                _
+                                            </div>
+                                        </div>
+                                        <div class="normalMode tdEnlace">
+                                            <a href="@enlace._enlace">
+                                                @enlace._enlace
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <input class="form-control inputBack input-sm txtTextoEnlaceEdit" name="txtTextoEnlaceEdit" />
+                                            <div class="divResultado hidden">
+                                                _
+                                            </div>
+                                        </div>
+                                        <div class="normalMode tdNombreEnlace">@enlace._nombreEnlace</div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <div class="btn-group btn-block">
+                                                <button class="btn btnBack btn-default col-lg-6 btn-xs btnActualizar">Actualizar</button>
+                                                <button class="btn btnBack btn-default col-lg-6 btn-xs btnCancelar">Cancelar</button>
+                                            </div>
+                                        </div>
+                                        <div class="normalMode">
+                                            <div class="btn-group btn-block">
+                                                <button class="btn btnBack btn-default col-lg-6 btn-xs btnEditar" @permiso.stringEditar>
+                                                    Editar
+                                                </button>
+                                                <button class="btn btnBack btn-default col-lg-6 btn-xs btnEliminar" @permiso.stringEliminar>
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-12">
+                <h3 class="text-center">Correos electronicos</h3>
+                @{
+                    bool put = emailsInstitucion != null && emailsInstitucion.Count > 0;
+                    string able = "";
+                    if (put)
+                    {
+                        able = "disabled";
                     }
                 }
-                else
-                {
-                    <tr>
-                        <td class="hidden"></td>
-                        <td colspan="2" class="text-center">No hay instituciones</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                <table class="table tbEmailInstitucion">
+                    <thead>
+                        <tr>
+                            <td class="hidden"></td>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                        <tr>
+                            <th class="hidden">
+                                <input class="txtHdIdInstitucion inputBack" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
+                            </th>
+                            <th>
+                                <input name="txtEmailInstitucion" class="inputBack txtEmailInstitucion form-control" />
+                            </th>
+                            <th>
+                                <button @able class="btn btn-default btnBack btn-block btnAddEmailInstitucion " @permiso.stringCrear>Agregar</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (put)
+                        {
+                            foreach (EmailInstitucion emailInstitucion in emailsInstitucion)
+                            {
+                                <tr>
+                                    <td class="hidden">
+                                        <input name="txtHdIdEmailInstitucion" class="txtHdIdEmailInstitucion" value="@emailInstitucion._idEmailInstitucion" />
+                                    </td>
+                                    <td>@emailInstitucion._email</td>
+                                    <td>
+                                        <div class="btn-group btn-block">
+                                            <button class="btn btn-default col-lg-6 btnBack @permiso.stringEditar">Editar</button>
+                                            <button class="btn btn-default col-lg-6 btnBack btnEliminarEmailsInstitucion @permiso.stringEliminar">Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                                <tr>
+                                    <td class="hidden"></td>
+                                    <td colspan="2" class="text-center">No hay instituciones</td>
+                                </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>

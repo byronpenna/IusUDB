@@ -1,12 +1,15 @@
 ﻿// eventos 
+    /*$(document).on("click", ".btnTab", function () {
+        $(this).unbind('click');
+    })*/
     // change 
             $(document).on("change", ".rdBusqueda", function () {
                 if ($(this).val() == 0) {
                     $(".btnBusqueda").addClass("visibilitiHidden");
-                    $(".divBusquedaArchivos").removeClass("input-group");
+                    //$(".divBusquedaArchivos").removeClass("input-group");
                     buscarEnCarpeta($(".txtBusqueda").val());
                 } else {
-                    $(".divBusquedaArchivos").addClass("input-group");
+                    //$(".divBusquedaArchivos").addClass("input-group");
                     $(".btnBusqueda").removeClass("visibilitiHidden");
                     $(".folders .folder").removeClass("hidden");
                 }
@@ -158,11 +161,12 @@
         </a>\
     </div>\    */
     function getDivNewFolder() {
-            /**/
-        div = "<div class='col-lg-2 folder '>\
+        /**/
+        //<img class='imgCuadritoIcono' src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder-opacity.png' class='imgFolder' />\
+        div = "<div class='col-lg-4 folder '>\
                     <input type='hidden' class='txtHdIdCarpeta' value=''/>\
                     <div class='cuadritoIconoAdd cuadritoCarpeta' id='0'>\
-                        <img class='imgCuadritoIcono' src='" + RAIZ + "/Content/themes/iusback_theme/img/general/repositorio/folder-opacity.png' class='imgFolder' />\
+                        <i class='fa fa-folder-o folderRepo' aria-hidden='true'></i>\
                         <div class='btn-group divHerramientasIndividual' style='display:none'>\
                             <div class='ico btnAccion btn btn-default icoEliminarCarpeta ' title='Eliminar'>\
                                 <i class='fa fa-trash-o'></i>\
@@ -183,12 +187,12 @@
                             </div>\
                             <div class='saveMode'>\
                                 <div class='row marginNull inputNombreCarpeta'>\
-                                    <input type='text' class='form-control txtNombreCarpetaSave'>\
+                                    <input type='text' class='form-control txtNombreCarpetaSave inputBack'>\
                                 </div>\
                                 <div class='row marginNull'>\
                                     <div class='btn-group'>\
-                                        <button class='btn btn-xs btn-default btnGuardarCarpeta'>Hecho</button>\
-                                        <button class='btn btn-xs btn-default btnCancelarGuardarCarpeta'>Cancelar</button>\
+                                        <button class='btn btn-xs btn-default btnGuardarCarpeta btnBack'>Hecho</button>\
+                                        <button class='btn btn-xs btn-default btnCancelarGuardarCarpeta btnBack'>Cancelar</button>\
                                     </div>\
                                 </div>\
                                 <div class='row marginNull mensajeNewFolder'></div>\

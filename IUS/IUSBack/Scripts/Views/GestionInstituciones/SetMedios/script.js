@@ -125,6 +125,9 @@
                 $(document).on("click", ".btnEliminar", function () {
                     seccion = $(this).parents("tr");
                     frm = serializeSection(seccion);
-                    btnEliminar(frm,seccion);
+                    var x = confirm("¿Esta seguro que desea eliminar registro?");
+                    if (x) {
+                        btnEliminar(frm, seccion);
+                    }
                 });
 })

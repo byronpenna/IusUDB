@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,aAAa;EACZ,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,MAAM;EACd,UAAU,EAAE,GAAG;EACf,aAAa,EAAE,EAAE;EACjB,iBAAG;IACF,KAAK,EAAE,GAAG",
+"sources": ["stylei.sass"],
+"names": [],
+"file": "stylei.css"
+}

@@ -1,9 +1,12 @@
+@import "controles/_controles.sass"
+// plugins 
+	//@import "plugins/_chosen.sass"
+	//@import "plugins/_dataTable.sass"
 .todo 
 	width: 100%
 	max-width: 1250px
 	margin: 0 auto
 	background: white
-
 body 
 	background: #c6c5c5
 	font-family: "MyriadRegular"
@@ -40,6 +43,10 @@ body
 	.titulo
 		text-transform: uppercase
 		text-decoration: underline
+	.tituloPrev
+		text-decoration: underline
+		a
+			color: #333 !important
 	span
 		a:first-child
 			color: #cd1315	
@@ -47,3 +54,80 @@ body
 	display: inline-block
 	vertical-align: middle
 	float: none 
+
+.visibilitiHidden
+	visibility: hidden
+
+.fullSize
+	width: 100%
+
+.input-group-addon
+	border-radius: 0
+	border: solid 1px #828181
+// tabla 
+table 
+	border-collapse: collapse
+	background: transparent
+	thead
+		tr
+			
+			td 
+				font-size: 14px
+				border-bottom: solid 1px #828181 !important
+				text-align: center
+			th
+				font-size: 14px
+				border-bottom: solid 1px #828181 !important
+				text-align: center
+	td
+		border: solid 1px #828181
+		color: #414141
+		font-size: 14px
+
+
+#contenerdorCargadorAjax
+	position: absolute
+	left: 50%
+	top: 50%
+
+#textoEsperaAjax
+	font-size: 1.5em
+	font-weight: bold
+	margin-top: 3%
+
+#cargadorAjaxUniversal
+	position: relative
+	top: 50%
+	left: -50%
+	text-align: center
+
+#div_carga,.modal
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	background: rgba(128, 128, 128,0.5)
+	display: none
+	z-index: 1
+
+.inputBackModal
+	background: rgba(255,255,255,0.5)
+	position: static !important
+
+.divResultado
+	text-align: center
+	margin-bottom: 3%
+	font-weight: bold
+
+.successMessage
+	color: #2ecc71 !important
+
+.failMessage
+	color: #e74c3c !important
+
+.bordeStandar
+	border: solid 1px #828181
+
+.trTableRol
+	background: white !important

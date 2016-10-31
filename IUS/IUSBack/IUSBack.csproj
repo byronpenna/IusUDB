@@ -270,6 +270,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\exclamacion.png" />
     <Content Include="Content\themes\iusback_theme\img\general\fondo_gris.png" />
     <Content Include="Content\themes\iusback_theme\img\general\image.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\imgAlargada.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo2.png" />
     <Content Include="Content\themes\iusback_theme\img\general\logo_IUS.ico" />
     <Content Include="Content\themes\iusback_theme\img\general\lupita.png" />
@@ -296,6 +297,7 @@
     <Content Include="Content\themes\iusback_theme\img\general\menu\typography.png" />
     <Content Include="Content\themes\iusback_theme\img\general\menu\unlocked.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noBanerMiniatura.png" />
+    <Content Include="Content\themes\iusback_theme\img\general\noBanerMiniaturai.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noimage.png" />
     <Content Include="Content\themes\iusback_theme\img\general\noPickProfile.png" />
     <Content Include="Content\themes\iusback_theme\img\general\paises\0.png" />
@@ -525,8 +527,10 @@
     <Content Include="Content\themes\iusback_theme\views\GestionInstituciones\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Detalle\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Detalle\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Detalle\stylei.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\GestionPersonas\Extras\stylei.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\media.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\FormacionPersonas\style.css" />
     <Content Include="Content\themes\iusback_theme\views\GestionPersonas\laboral\media.css" />

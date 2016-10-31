@@ -61,10 +61,12 @@
                     verRoles(true, trUsuario);
                     $(this).val("Ocultar Roles");
                     
+                    $(this).addClass("activeRoles");
                     //tablaRoles(trUsuario);
                 } else {
                     console.log("no :D");
                     verRoles(false,trUsuario);
+                    $(this).removeClass("activeRoles");
                     $(this).val("Ver Roles");
                     //$(".tableUsuarios").find(".trTableRol").remove();
                 }

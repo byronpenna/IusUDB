@@ -225,7 +225,10 @@
                     var tr  = $(this).parents("tr");
                     var frm = serializeSection(tr);
                     console.log(frm);
-                    btnEliminarTel(frm,tr);
+                    var x = confirm("¿Esta seguro que desea eliminar el telefono? ");
+                    if (x) {
+                        btnEliminarTel(frm, tr);
+                    }
                 })
                 $(document).on("click", ".btnAgregarTel", function () {
                     var frm         = serializeSection($(this).parents("tr"));

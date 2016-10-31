@@ -1,4 +1,41 @@
 @charset "UTF-8";
+.inputBack {
+  background: transparent;
+  border: solid 1px #828181;
+  border-radius: 0; }
+
+.btnBack {
+  border-radius: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: transparent;
+  border: solid 1px #828181; }
+
+.borde {
+  border: solid 1px #828181; }
+
+.selectBack {
+  background: transparent;
+  height: 30px;
+  border-radius: 0;
+  border: solid 1px #828181; }
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+
 .todo {
   width: 100%;
   max-width: 1250px;
@@ -42,6 +79,10 @@ body {
   .rowNavegacion .titulo {
     text-transform: uppercase;
     text-decoration: underline; }
+  .rowNavegacion .tituloPrev {
+    text-decoration: underline; }
+    .rowNavegacion .tituloPrev a {
+      color: #333 !important; }
   .rowNavegacion span a:first-child {
     color: #cd1315; }
 
@@ -49,6 +90,79 @@ body {
   display: inline-block;
   vertical-align: middle;
   float: none; }
+
+.visibilitiHidden {
+  visibility: hidden; }
+
+.fullSize {
+  width: 100%; }
+
+.input-group-addon {
+  border-radius: 0;
+  border: solid 1px #828181; }
+
+table {
+  border-collapse: collapse;
+  background: transparent; }
+  table thead tr td {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table thead tr th {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
+
+#contenerdorCargadorAjax {
+  position: absolute;
+  left: 50%;
+  top: 50%; }
+
+#textoEsperaAjax {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 3%; }
+
+#cargadorAjaxUniversal {
+  position: relative;
+  top: 50%;
+  left: -50%;
+  text-align: center; }
+
+#div_carga, .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(128, 128, 128, 0.5);
+  display: none;
+  z-index: 1; }
+
+.inputBackModal {
+  background: rgba(255, 255, 255, 0.5);
+  position: static !important; }
+
+.divResultado {
+  text-align: center;
+  margin-bottom: 3%;
+  font-weight: bold; }
+
+.successMessage {
+  color: #2ecc71 !important; }
+
+.failMessage {
+  color: #e74c3c !important; }
+
+.bordeStandar {
+  border: solid 1px #828181; }
+
+.trTableRol {
+  background: white !important; }
 
 #menuLogout {
   color: #cc1315; }
@@ -59,12 +173,12 @@ body {
   color: #828181;
   font-size: 10px; }
 
-.divBienvenida div {
+.divBienvenida {
   text-transform: uppercase;
   font-size: 12px; }
-  .divBienvenida div .titulo {
+  .divBienvenida .titulo {
     color: #cd1315; }
-  .divBienvenida div .nombre {
+  .divBienvenida .nombre {
     color: #828181; }
 
 .contenidoHead {
@@ -104,7 +218,7 @@ body {
   width: 35%;
   margin: 0 auto; }
 
-.cbIdioma {
+.cbIdiomaInterna {
   text-transform: uppercase;
   color: #d0cfcf;
   font-family: "MyriadRegular";
@@ -185,24 +299,8 @@ footer {
 footer {
   margin-top: 5%; }
 
-table.dataTable.no-footer {
-  border: none; }
-
-table.datatable {
-  border-collapse: collapse; }
-  table.datatable thead tr td {
-    font-size: 14px; }
-  table.datatable thead tr th {
-    font-size: 14px; }
-  table.datatable tbody tr {
-    background: none; }
-  table.datatable tbody td {
-    border: solid 1px #828181;
-    color: #414141;
-    font-size: 14px; }
-
-body {
-  font-family: "MyriadRegular"; }
+body, h2, h1, label, h4 {
+  font-family: "MyriadRegular" !important; }
 
 .rowMenu {
   background: #ffffff;

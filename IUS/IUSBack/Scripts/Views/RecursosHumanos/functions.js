@@ -1,21 +1,23 @@
 ﻿// genericas 
         function getTrEducativo(formacion) {
+            //"+ formacion._observaciones + "
             var tr = "\
                 <tr>\
                     <td>"+ formacion._carrera + "</td>\
                     <td>"+ formacion._institucion + "</td>\
                     <td>" + formacion._nivelTitulo._nombreNivel + "</td>\
-                    <td>"+ formacion._observaciones + "</td>\
+                    <td>--------</td>\
                 </tr>\
             ";
             return tr;
         }
         function getTrLaboral(laboral) {
+            //" + laboral._empresa._nombre + "
             var tr = "\
             <tr>\
-                <td>" + laboral._empresa._nombre + "</td>\
+                <td>Nombre</td>\
                 <td>" + laboral._cargo._cargo + "</td>\
-                <td> ^^' nose como rayos llenar aqui xD </td>\
+                <td> ------- </td>\
             </tr>\
             ";
             return tr;
@@ -29,7 +31,7 @@
                     </td>\
                     <td>" + persona.nombreCompleto + "</td>\
                     <td>\
-                        <button class='btn btn-default btnVerFicha'>Ver ficha</button>\
+                        <button class='btn btn-default btnVerFicha btn-block btnBack'>Ver ficha</button>\
                     </td>\
                 </tr>";
             return tr;
@@ -88,7 +90,7 @@
                     if (data.infoPersona._tieneFoto && data.infoPersona._fotoRuta !== undefined && data.infoPersona._fotoRuta != null && data.infoPersona._fotoRuta != "") {
                         strFoto = data.infoPersona._fotoRuta;
                     } else {
-                        strFoto = IMG_GENERALES + "profle.png";
+                        strFoto = IMG_GENERALES + "noPickProfile.png";
                     }
                     $(".fotoPrincipalFicha").attr("src", strFoto);
                     if (data.infoPersona._estadoCivil !== undefined && data.infoPersona._estadoCivil !== null) {

@@ -34,7 +34,7 @@
 <input type="hidden" class="txtHdIdUsuario" value="@ViewBag.idUsuario"/>
 <input type="hidden" class="txtHdFuncion" value="@ViewBag.funcion" />
 
-<div class="centroRoles">
+<div class="centroRoles contenidoCuerpo">
     <div class="row marginNull">
         <div class="row marginNull rowNavegacion">
             <span>
@@ -51,9 +51,15 @@
 
     <div class="row marginNull">
         <div class="col-lg-3">
-            <ul class="menuLateral">
-                <li>
+            <ul class="tabs">
+                <li class="btnTab tabActive" target="#tab-1" id="1">
                     <span>Asignar roles</span>
+                </li>
+                <li class="btnTab" target="#tab-2" id="2">
+                    Permisos roles
+                </li>
+                <li class="btnTab " target="#tab-3" id="3">
+                    Administrar roles
                 </li>
             </ul>
         </div>
@@ -66,38 +72,41 @@
 
                         </div>
                         <div class="row divControlRolUsuario marginNull">
-                            <div class="col-lg-6 seleccioneUsuarioDiv">
-                                <div class="col-lg-4 text-right divLbCbUsuairo">
-                                    <label for="cbUsuarios" class="lbCbUsuario">Seleccione usuario: </label>
-                                </div>
-                                <div class="col-lg-4 ">
-                                    <select class="form-control cbUsuarios">
-                                        <option value="-1"></option>
-                                        @{
-                                            if (@usuarios != null)
-                                            {
-                                                foreach (Usuario usuario in usuarios)
+                            <div class="row marginNull">
+                                <div class="col-lg-6 seleccioneUsuarioDiv">
+                                    <div class="col-lg-12 text-center divLbCbUsuairo">
+                                        <label for="cbUsuarios" class="lbCbUsuario">Seleccione usuario: </label>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <select class="form-control cbUsuarios">
+                                            <option value="-1"></option>
+                                            @{
+                                                if (@usuarios != null)
                                                 {
-                                                    <option value="@usuario._idUsuario">@usuario._usuario</option>
+                                                    foreach (Usuario usuario in usuarios)
+                                                    {
+                                                        <option value="@usuario._idUsuario">@usuario._usuario</option>
+                                                    }
                                                 }
                                             }
-                                        }
-                                    </select>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="col-lg-12 text-center">
+                                        <label for="cbRoles">Roles a agregar</label>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <select multiple class="form-control cbRoles ">
+                                            <option></option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="col-lg-4 text-right">
-                                    <label for="cbRoles">Roles a agregar</label>
-                                </div>
-                                <div class="col-lg-4">
-                                    <select multiple class="form-control cbRoles ">
-                                        <option></option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-3">
-                                    <button class="btn btn-default" type="button" id="btnAddRoles">Agregar roles</button>
-                                </div>
+                            <div class="row marginNull text-center divAgregarRol">
+                                <button class="btn btnBack btn-default" type="button" id="btnAddRoles">Agregar roles</button>
                             </div>
+
                         </div>
                         <div class="row divRoles">
                             <div class="divTable">
@@ -121,7 +130,7 @@
                     <div id="tab-2" class="tab hidden marginNull divTable">
                         <div class="row divSeleccioneRolTab2">
                             <div class="divLbSelectRolTab2">
-                                <label>Seleccione Rol</label>
+                                Seleccione Rol
                             </div>
                             <div>
                                 <select class="cbRolTab2 form-control">
@@ -152,31 +161,39 @@
                                 </div>
                                 <div class="row divBusquedaOpcionesTab2">
                                     <div class="col-lg-8 divAgregarSubMenu">
+                                        @*<div class="row marginNull">
+                                            
+                                            <div class="col-lg-6">
+                                                <button class="btnBack btnAsignarSubmenu btn btn-default">Asignar submenus</button>
+                                            </div>
+                                        </div>*@
                                         <div class="row marginNull">
-                                            <div class="col-lg-4">
-                                                <label>Seleccione un submenu</label>
-                                            </div>
-                                            <div class="col-lg-4">
+                                            <div class="input-group">
                                                 <select class="cbSubMenu" multiple></select>
+                                                <span class="input-group-addon btnAsignarSubmenu" id="basic-addon1">+</span>
                                             </div>
-                                            <div class="col-lg-4">
-                                                <button class="btnAsignarSubmenu btn btn-default">Asignar submenus</button>
-                                            </div>
+                                            
                                         </div>
                                         <div class="row marginNull divResultado">
 
                                         </div>
                                     </div>
                                     <div class="col-lg-4 divAgregarPermiso">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <select multiple class="cbAsignarPermisos">
-                                                    <option disabled>Asignar Permiso</option>
-                                                </select>
+                                        <div class="row marginNull">
+                                            <div class="row marginNull">
+                                                <div class="input-group">
+                                                    
+                                                    @*<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">*@
+                                                    <select multiple class="form-control cbAsignarPermisos">
+                                                        <option disabled>Asignar Permiso</option>
+                                                    </select>
+                                                    <span class="input-group-addon btnAsignarPermiso" id="basic-addon1">+</span>
+                                                </div>
+                                                
                                             </div>
-                                            <div class="col-lg-6">
-                                                <button class="btn btn-default btnAsignarPermiso">Asignar permiso</button>
-                                            </div>
+                                            @*<div class="row marginNull">
+                                                <button class="btnBack btn btn-default btnAsignarPermiso">Asignar permiso</button>
+                                            </div>*@
                                         </div>
                                         <div class="row divResultado">
 
@@ -243,16 +260,16 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="text" name="txtRol" class="input-sm form-control txtRolAgregar txtRol" />
+                                            <input type="text" name="txtRol" class="inputBack input-sm form-control txtRolAgregar txtRol" />
                                             <div class="row marginNull divResultado hidden">
 
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="text" name="txtEstado" class="input-sm form-control txtEstado" value="Activo" disabled />
+                                            <input type="text" name="txtEstado" class="inputBack input-sm form-control txtEstado" value="Activo" disabled />
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-default btnAgregarRol">
+                                            <button class="btnBack btn btn-sm btn-default btnAgregarRol">
                                                 Crear
                                             </button>
                                         </td>
@@ -269,7 +286,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="editMode hidden">
-                                                        <input type="text" name="txtRol" class="input-sm txtRol txtRolEdit form-control" />
+                                                        <input type="text" name="txtRol" class="input-sm txtRol inputBack txtRolEdit form-control" />
                                                         <div class="divResultado">
 
                                                         </div>
@@ -281,18 +298,21 @@
                                                 </td>
                                                 <td>
                                                     <div class="editMode hidden">
-                                                        <button class="btn btn-xs btn-default btnActualizar">Actualizar</button>
-                                                        <button class="btn btn-xs btn-default btnCancelarEdit">Cancelar</button>
+                                                        <div class="btn-group btn-block">
+                                                            <button class="btnBack btn btn-xs col-lg-6 btn-default btnActualizar">Actualizar</button>
+                                                            <button class="btnBack btn btn-xs col-lg-6 btn-default btnCancelarEdit">Cancelar</button>
+                                                        </div>
+                                                        
                                                     </div>
                                                     <div class="normalMode">
-                                                        <div class='btn-group'>
-                                                            <button class="btn btn-xs btn-default btnEditar" @permisos.stringEditar>
+                                                        <div class='btn-group btn-block'>
+                                                            <button class="btnBack btn btn-xs col-lg-4 btn-default btnEditar" @permisos.stringEditar>
                                                                 Editar
                                                             </button>
-                                                            <button class="btn btn-xs btn-default btnEliminar" @permisos.stringEliminar>
+                                                            <button class="btnBack btn btn-xs col-lg-4 btn-default btnEliminar" @permisos.stringEliminar>
                                                                 Eliminar
                                                             </button>
-                                                            <button class="btn btn-xs btn-default btnDeshabilitar" @permisos.stringEditar>
+                                                            <button class="btnBack btn btn-xs col-lg-4 btn-default btnDeshabilitar" @permisos.stringEditar>
                                                                 @rol.txtBtnHabilitar
                                                             </button>
                                                         </div>

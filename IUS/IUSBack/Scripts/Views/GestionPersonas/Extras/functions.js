@@ -111,11 +111,11 @@
                     <input type='hidden' value='"+emailPersona._idEmail+"' name='txtIdEmailPersona'/>\
                 </td>\
                 <td>\
-                    <i class='fa "+clasePrincipal+" pointer'></div>\
+                    <i class='fa " + clasePrincipal + " icoStarPrincipal pointer'></div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input name='txtEmail' class='input-sm form-control txtEmail' type='email' />\
+                        <input name='txtEmail' class='inputBack form-control txtEmail input-sm' type='email' />\
                         <div class='row marginNull divResultado hidden'>\
                             _\
                         </div>\
@@ -126,7 +126,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input class='txtEtiquetaEmail form-control input-sm' name='txtEtiquetaEmail' />\
+                        <input class='inputBack txtEtiquetaEmail form-control input-sm' name='txtEtiquetaEmail' />\
                         <div class='row marginNull divResultado hidden'>\
                             _\
                         </div>\
@@ -137,15 +137,15 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnActualizarEmail'>Actualizar</button>\
-                            <button class='btn btn-xs btn-default btnCancelarUpdateEmail'>Cancelar</button>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btnBack btn col-lg-6 btn-xs btn-default btnActualizarEmail'>Actualizar</button>\
+                            <button class='btnBack btn col-lg-6 btn-xs btn-default btnCancelarUpdateEmail'>Cancelar</button>\
                         </div>\
                     </div>\
                     <div class='normalMode tdTelefono'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditarEmail' "+strEditar+">Editar</button>\
-                            <button class='btn btn-xs btn-default btnEliminarEmail' "+strEliminar+">Eliminar</button>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btnBack btnEditarEmail btn col-lg-6 btn-xs btn-default' " + strEditar + ">Editar</button>\
+                            <button class='btnBack btnEliminarEmail btn col-lg-6 btn-xs btn-default' " + strEliminar + ">Eliminar</button>\
                         </div>\
                     </div>\
                 </td>\
@@ -182,7 +182,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input class='input-sm txtTelefono form-control soloNumerosInt' name='txtTelefono' />\
+                        <input class='inputBack txtTelefono form-control input-sm soloNumerosInt' name='txtTelefono' />\
                         <div class='row marginNull divResultado hidden'>\
                             _ \
                         </div>\
@@ -193,7 +193,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <select class='input-sm cbPais' name='cbPais'></select>\
+                        <select class='selectBack cbPais' name='cbPais'></select>\
                         <div class='row marginNull divResultado hidden'>\
                             _\
                         </div>\
@@ -204,7 +204,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input class='input-sm txtEtiquetaTel form-control' name='txtEtiquetaTel' />\
+                        <input class='inputBack txtEtiquetaTel input-sm form-control' name='txtEtiquetaTel' />\
                         <div class='row marginNull divResultado hidden'>\
                             _\
                         </div>\
@@ -216,20 +216,20 @@
                 <td>\
                     <div class='editMode hidden'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnActualizarTel' title='Aceptar'>\
+                            <button class='btn borde btn-sm btn-default btnActualizarTel' title='Aceptar'>\
                                 <i class='fa fa-check'></i>\
                             </button>\
-                            <button class='btn btn-xs btn-default btnCancelarUpdateTel' title='Eliminar'>\
+                            <button class='btn borde btn-sm btn-default btnCancelarUpdateTel' title='Eliminar'>\
                                 <i class='fa fa-times'></i>\
                             </button>\
                         </div>\
                     </div>\
                     <div class='normalMode'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditarTel' " + strEditar + " title='Editar'>\
+                            <button class='btn borde btn-sm btn-default btnEditarTel' " + strEditar + " title='Editar'>\
                                 <i class='fa fa-pencil'></i>\
                             </button>\
-                            <button class='btn btn-xs btn-default btnEliminarTel' " + strEliminar + " title='Eliminar'>\
+                            <button class='btn borde btn-sm btn-default btnEliminarTel' " + strEliminar + " title='Eliminar'>\
                                 <i class='fa fa-trash-o'></i>\
                             </button>\
                         </div>\

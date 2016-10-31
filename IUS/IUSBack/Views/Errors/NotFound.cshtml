@@ -1,15 +1,32 @@
 ﻿@section estilosPersonalizados{
 
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/NotAllowed/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/NotAllowed/media.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/NotAllowed/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/NotAllowed/media.css" />*@
 
 }
-<div class="cuerpoModulo">
-    <img src="~/Content/themes/iusback_theme/img/general/sadcloud.png" />
-    <h2>Parece llegaste al lugar equivocado</h2>
-    <p>
-        Archivo no encontrado, verifique la direccion solicitada, si considera que esto es un problema 
-        y la pagina que solicita es valida por favor contacte a soporte tecnico y se le solventara el problema lo mas
-        pronto posible.
-    </p>
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+}
+<div class="row marginNull centroPagina">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+        </div>
+        <div class="row marginNull">
+            <div class="cuerpoModulo">
+                @*<img src="~/Content/themes/iusback_theme/img/general/sadcloud.png" />*@
+                <h2>Parece llegaste al lugar equivocado</h2>
+                <p>
+                    Archivo no encontrado, verifique la direccion solicitada, si considera que esto es un problema
+                    y la pagina que solicita es valida por favor contacte a soporte tecnico y se le solventara el problema lo mas
+                    pronto posible.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+

@@ -1,9 +1,14 @@
 ﻿@using IUSLibs.RRHH.Entidades
 @{
-    InformacionPersona informacion = (InformacionPersona)ViewBag.informacionPersona;
+    InformacionPersona informacion = (InformacionPersona)ViewBag.informacionPersonaGlobal;
     string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");
-    if (informacion._tieneFoto)
+    string nombrePersona = "";
+    if (informacion != null && informacion._tieneFoto)
     {
+        if (informacion._persona != null)
+        {
+            nombrePersona = informacion._persona.nombreCompleto;
+        }
         fotoRuta = Url.Content(informacion._fotoRuta);
     }
     string myriadRegular    = IUSLibs.GENERALS.Rutas.IUSBACK + "Content/fonts/Myriad/MyriadPro-regular.otf";
@@ -47,7 +52,7 @@
                                 <div class="padreCaja">
                                     <div class="cajaArriba">
                                         <div class="caja">
-                                            <select class=" cbIdioma">
+                                            <select class=" cbIdiomaInterna">
                                                 <option value="-1">Idioma</option>
                                             </select>
                                         </div>
@@ -69,7 +74,7 @@
                                     Bienvenido
                                 </span>
                                 <span class="row marginNull nombre">
-                                    Byron Peña
+                                    @nombrePersona<!-- Hacerlo dinamico -->
                                 </span>
                             
 

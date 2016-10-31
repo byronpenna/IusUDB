@@ -14,24 +14,35 @@
         // tr
             function getTrLaboralPersona(laboralPersona) {
                 /*<input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\*/
+                console.log("Laboral es ....... ",laboralPersona);
                 var tr = "\
                 <tr>\
                     <td class='hidden'>\
                         <input type='hidden' value='"+laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
+                        <input type='hidden' value='"+laboralPersona._institucion._idInstitucion+"' class='txtHdIdInstitucion' name='txtHdIdInstitucion'>\
                         <input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
-                            <select class='form-control cbEmpresa' name='cbEmpresa'>\
-                            </select>\
+                            <div class='divControl row marginNull'>\
+                                <select class='form-control selectBack cbInstitucion input-sm' name='cbInstitucion'>\
+                                </select>\
+                                <div class='row marginNull divResultado hidden'>\
+                                    _\
+                                </div>\
+                            </div>\
                         </div>\
-                        <div class='normalMode tdNombreEmpresa'>\
+                        <div class='normalMode tdNombreInstitucion'>\
                             " + laboralPersona._institucion._nombre + "\
                         </div>\
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
-                            <input type='number' class='form-control txtInicio' name='txtInicio' />\
+                            <div class='divControl row marginNull'>\
+                                <input type='number' class='inputBack form-control txtInicio input-sm soloNumerosInt' name='txtInicio' min='1970' max='2100' />\
+                                <div class='row marginNull divResultado hidden'>\
+                                </div>\
+                            </div>\
                         </div>\
                         <div class='normalMode tdFechaInicio'>\
                             "+laboralPersona._inicio+"\
@@ -39,7 +50,9 @@
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
-                            <input type='number' class='form-control txtFin' name='txtFin' />\
+                            <input type='number' class='inputBack form-control txtFin input-sm' name='txtFin' />\
+                            <div class='row marginNull divResultado hidden'>\
+                            </div>\
                         </div>\
                         <div class='normalMode tdFechaFin'>\
                             "+laboralPersona._fin+"\
@@ -47,25 +60,27 @@
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
-                            <select class='form-control cbCargo' name='cbCargo'>\
+                            <select class='selectBack form-control cbCargo input-sm' name='cbCargo'>\
                             </select>\
+                            <div class='row marginNull divResultado hidden'>\
+                            </div>\
                         </div>\
                         <div class='normalMode tdCargo'>\
                             "+laboralPersona._cargo._cargo+"\
                         </div>\
                     </td>\
-                    <td class='tdEditActividades'>\
+                    <td class='tdBotones tdEditActividades'>\
                         <div class='editMode hidden'>\
                             <div class='btn-group'>\
-                                <button class='btn btnActualizarLaboralPersona btn-default btn-xs'>Actualizar</button>\
-                                <button class='btn btnCancelarUni btn-default btn-xs'>Cancelar</button>\
+                                <button class='btnBack btnActualizarLaboralPersona btn btn-default btn-xs btn-block'>Actualizar</button>\
+                                <button class='btnBack btnCancelarUni btn btn-default btn-xs btn-block'>Cancelar</button>\
                             </div>\
                         </div>\
                         <div class='normalMode tdBotones'>\
                             <div class='btn-group'>\
-                                <button class='btn btnEditarLaboralPersona btn-xs btn-default'>Editar</button>\
-                                <button class='btn btnActividad btn-xs btn-default'>Actividades realizadas</button>\
-                                <button class='btn btnEliminarLaboralPersona btn-xs btn-default'>Eliminar</button>\
+                                <button class='btnBack btnEditarLaboralPersona btn btn-xs btn-default btnBack btn-block'>Editar</button>\
+                                <button class='btnBack btnActividad btn btn-xs btn-default btnBack btn-block'>Actividades realizadas</button>\
+                                <button class='btnBack btnEliminarLaboralPersona btn btn-xs btn-default btnBack btn-block'>Eliminar</button>\
                             </div>\
                         </div>\
                     </td>\
@@ -124,21 +139,21 @@
                                     <td class='text-center titleTrTable' colspan='2'>Actividades realizadas</td>\
                                 </tr>\
                                 <tr>\
-                                    <th>Actividad realizada</th>\
-                                    <th>Acciones</th>\
+                                    <td class='tHead1'>Actividad realizada</td>\
+                                    <td class='tHead2'>Acciones</td>\
                                 </tr>\
                                 <tr class='trAgregar'>\
-                                    <th>\
+                                    <td>\
                                         <div class='row marginNull divControl'>\
-                                            <input name='txtActividad' class='form-control txtActividad input-sm' />\
+                                            <input name='txtActividad' class='inputBack form-control txtActividad input-sm' />\
                                             <div class='row marginNull divResultado hidden'>\
                                                 _\
                                             </div>\
                                         </div>\
-                                    </th>\
-                                    <th>\
-                                        <button class='btnAgregarActividad btn btn-xs btn-default'>Agregar</button>\
-                                    </th>\
+                                    </td>\
+                                    <td>\
+                                        <button class='btnBack btnAgregarActividad btn btn-xs btn-default'>Agregar</button>\
+                                    </td>\
                                 </tr>\
                             <thead>\
                             <tbody class='tbodyActividades'>";
@@ -152,7 +167,7 @@
                             <td>\
                                 <div class='editMode hidden'>\
                                     <div class='row marginNull divControl'>\
-                                        <input class='form-control txtActividad input-sm' name='txtActividad'>\
+                                        <input class='form-control txtActividad input-sm inputBack' name='txtActividad'>\
                                         <div class='row marginNull divResultado hidden'>\
                                             _\
                                         </div>\
@@ -164,15 +179,15 @@
                             </td>\
                             <td class='tdEditActividades'>\
                                 <div class='editMode hidden'>\
-                                    <div class='btn-group'>\
-                                        <button class='btnActualizarActividadEmpresa btn btn-xs btn-default'>Actualizar</button>\
-                                        <button class='btn btnCancelarAct btn-xs btn-default' >Cancelar</button>\
+                                    <div class='btn-group btn-block'>\
+                                        <button class='btnActualizarActividadEmpresa btn btn-xs btn-default btnBack col-lg-6'>Actualizar</button>\
+                                        <button class='btn btnCancelarAct btn-xs btn-default btnBack col-lg-6' >Cancelar</button>\
                                     </div>\
                                 </div>\
                                 <div class='normalMode'>\
-                                    <div class='btn-group'>\
-                                        <button class='btnEditarActividad btn btn-xs btn-default' >Editar</button>\
-                                        <button class='btnEliminarActividad btn btn-xs btn-default'>Eliminar</button>\
+                                    <div class='btn-group btn-block'>\
+                                        <button class='btnEditarActividad btn btn-xs btn-default col-lg-6 btnBack' >Editar</button>\
+                                        <button class='btnEliminarActividad btn btn-xs btn-default col-lg-6 btnBack'>Eliminar</button>\
                                     </div>\
                                 </div>\
                             </td>\

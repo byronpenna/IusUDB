@@ -1,16 +1,20 @@
 ﻿@using IUSLibs.FrontUI.Entidades
 @using IUSLibs.RRHH.Entidades.Formacion
+@using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/AdicionalesInstituciones/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/AdicionalesInstituciones/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/AdicionalesInstituciones/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/AdicionalesInstituciones/media.css" />*@
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";    
     Dictionary<object, object>  iniciales               = (Dictionary<object, object>)ViewBag.iniciales;
     List<InstitucionNivel>      InstitucionesNiveles    = null;  
     List<AreaCarrera>           areasCarrera            = null;
+    Permiso                     permiso                 = null;
     try
     {
+        permiso                 = (Permiso)ViewBag.permiso;
         InstitucionesNiveles    = (List<InstitucionNivel>)iniciales["nivelesEducacion"];
         areasCarrera            = (List<AreaCarrera>)iniciales["areasConocimiento"];
     }
@@ -25,106 +29,148 @@
         <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstuticiones/script.js"></script>
         <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstuticiones/functions.js"></script>    
 }
-<div class="row marginNull divMensajesGenerales">
-
-</div>
-<div class="row marginNull">
+<div class="row marginNull contenidoCuerpo centroAdicionales">
     <input type="hidden" class="txtHdIdInstitucion" value="@ViewBag.idInstitucion" />
-    <div class="col-lg-6">
-        <h3 class="text-center">Seleccione nivel</h3>
-        <div class="row marginNull text-center rowBotones">
-            <button class="btn btn-sm btn-default btnGuardarNivel">Guardar</button>
-            <div class="row marginNull divGeneralesNivelEducativo">
-
-            </div>
-        </div>
-        <div class="row marginNull rowOpcionesNiveles">
-            @if (InstitucionesNiveles != null && InstitucionesNiveles.Count > 0)
-            {
-                foreach (InstitucionNivel institucionNivel in InstitucionesNiveles)
-                {
-                    NivelEducacion nivelEducacion = institucionNivel._nivelEducacion;
-                    if (nivelEducacion._selected)
-                    {
-                        claseExtra = "cuadritoSelected";
-                    }
-                    else
-                    {
-                        claseExtra = "";
-                    }
-                    <div class="col-lg-6">
-                        <div class="cuadritoNivelEducacion @claseExtra">
-                            <input type="hidden" class="txtHdIdNivelEducacion" name="txtHdIdNivelEducacion" value="@institucionNivel._nivelEducacion._idNivelEducacion"/>
-                            <input type="hidden" class="txtHdEstado" name="txtHdEstadoNivel" value="@institucionNivel._nivelEducacion.getNumEstado" />
-                            <div class="row marginNull">
-                                <p class="text-center">
-                                    @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
-                                </p>
-                            </div>
-                            <div class="row marginNull">
-                                <input type="text" placeholder="Numero estudiantes" class="form-control txtNumAlumnos" name="txtNumAlumnos" value="@institucionNivel._numAlumnos" />
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-
-            @*<div class="col-lg-4">
-                ISCED 5 - Terciaria de corto ciclo
-            </div>
-            <div class="col-lg-4">
-                ISCED 6 - Grado en educación terciaria o nivel equivalente
-            </div>
-            <div class="col-lg-4">
-                ISCED 7 - Grado en educación terciaria o nivel equivalente
-            </div>*@
-            
+    <div class="row marginNull">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>> 
+            <span class="tituloPrev">
+                <a href="@Url.Action("Index","GestionInstituciones")">
+                    Instituciones
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Adicionales instituciones
+            </span>
         </div>
     </div>
-    <div class="col-lg-6">
-        <h3 class="text-center">Seleccione areas de conocimiento</h3>
-        <div class="row marginNull text-center rowBotones">
-            <button class="btn btn-default btnGuardarAreaConocimiento">Guardar</button>
-            <div class="row marginNull divGeneralesAreasConocimiento">
+    <div class="row marginNull">
+        <div class="col-lg-3">
+            <ul class="tabs">
+                <li class="btnTab tabActive" target="#tab-1" id="1">
+                    Nivel
+                </li>
+                <li class="btnTab" target="#tab-2" id="2">
+                    Areas de conocimiento
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <div class="row marginNull divMensajesGenerales">
 
             </div>
-        </div>
-        <div class="row marginNull divOpcionesAreaCono">
-            @if (areasCarrera != null && areasCarrera.Count > 0)
-            {
-                
-                foreach (AreaCarrera area in areasCarrera)
-                {
-                    if (area._selected)
-                    {
-                        claseExtra = "cuadritoSelected";
-                        
-                    }
-                    else
-                    {
-                        claseExtra = "";
-                        
-                    }
-                    <div class="col-lg-4 text-center">
-                        <div class="divAreaCarrera @claseExtra">
-                            <input type="hidden" name="txtHdIdArea" class="txtHdIdArea" value="@area._idArea"/>
-                            <input type="hidden" name="txtHdIdEstadoArea" class="txtHdEstado txtHdIdEstadoArea"  value="@area.getNumEstadoSelected"/>
-                            <p>@area._area</p>
-                            
-                            
+            <div class="row marginNull cuerpoIndex">
+                <div id="tab-1" class="tab marginNull">
+                    <div class="col-lg-12">
+                        <h3 class="text-center">Seleccione nivel</h3>
+                        <div class="row marginNull text-center rowBotones">
+                            <button class="btn btn-sm btn-default btnGuardarNivel btnBack @permiso.stringEditar">Guardar</button>
+                            <div class="row marginNull divGeneralesNivelEducativo">
+
+                            </div>
+                        </div>
+                        <div class="row marginNull rowOpcionesNiveles">
+                            @if (InstitucionesNiveles != null && InstitucionesNiveles.Count > 0)
+                            {
+                                foreach (InstitucionNivel institucionNivel in InstitucionesNiveles)
+                                {
+                                    NivelEducacion nivelEducacion = institucionNivel._nivelEducacion;
+                                    if (nivelEducacion._selected)
+                                    {
+                                        claseExtra = "cuadritoSelected";
+                                    }
+                                    else
+                                    {
+                                        claseExtra = "";
+                                    }
+                                    <div class="col-lg-6">
+                                        <div class="cuadritoNivelEducacion @claseExtra">
+                                            <input type="hidden" class="txtHdIdNivelEducacion" name="txtHdIdNivelEducacion" value="@institucionNivel._nivelEducacion._idNivelEducacion" />
+                                            <input type="hidden" class="txtHdEstado" name="txtHdEstadoNivel" value="@institucionNivel._nivelEducacion.getNumEstado" />
+                                            <div class="row marginNull">
+                                                <p class="text-center">
+                                                    @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
+                                                </p>
+                                            </div>
+                                            <div class="row marginNull">
+                                                <input type="text" placeholder="Numero estudiantes" class="inputBack form-control txtNumAlumnos" name="txtNumAlumnos" value="@institucionNivel._numAlumnos" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            @*<div class="col-lg-4">
+                    ISCED 5 - Terciaria de corto ciclo
+                </div>
+                <div class="col-lg-4">
+                    ISCED 6 - Grado en educación terciaria o nivel equivalente
+                </div>
+                <div class="col-lg-4">
+                    ISCED 7 - Grado en educación terciaria o nivel equivalente
+                </div>*@
+
                         </div>
                     </div>
-                }
-            }
-            @*<div class="col-lg-12 text-center">
-                Educación
+                </div>
+                <div id="tab-2" class="tab hidden marginNull">
+                    <div class="col-lg-12">
+                        <h3 class="text-center">Seleccione areas de conocimiento</h3>
+                        <div class="row marginNull text-center rowBotones">
+                            <button class="btn btn-default btnGuardarAreaConocimiento btnBack @permiso.stringEditar">Guardar</button>
+                            <div class="row marginNull divGeneralesAreasConocimiento">
+
+                            </div>
+                        </div>
+                        <div class="row marginNull divOpcionesAreaCono">
+                            @if (areasCarrera != null && areasCarrera.Count > 0)
+                            {
+
+                                foreach (AreaCarrera area in areasCarrera)
+                                {
+                                    if (area._selected)
+                                    {
+                                        claseExtra = "cuadritoSelected";
+
+                                    }
+                                    else
+                                    {
+                                        claseExtra = "";
+
+                                    }
+                                    <div class="col-lg-4 text-center">
+                                        <div class="divAreaCarrera @claseExtra">
+                                            <input type="hidden" name="txtHdIdArea" class="txtHdIdArea" value="@area._idArea" />
+                                            <input type="hidden" name="txtHdIdEstadoArea" class="txtHdEstado txtHdIdEstadoArea" value="@area.getNumEstadoSelected" />
+                                            <p>@area._area</p>
+
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            @*<div class="col-lg-12 text-center">
+                    Educación
+                </div>
+                <div class="col-lg-12">
+                    Tecnologías de la información y la comunicación (TIC)
+                </div>
+                <div class="col-lg-12">
+                    Ingenierías, industria y construcción
+                </div>*@
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            <div class="col-lg-12">
-                Tecnologías de la información y la comunicación (TIC)
-            </div>
-            <div class="col-lg-12">
-                Ingenierías, industria y construcción
-            </div>*@
         </div>
     </div>
 </div>
+
+

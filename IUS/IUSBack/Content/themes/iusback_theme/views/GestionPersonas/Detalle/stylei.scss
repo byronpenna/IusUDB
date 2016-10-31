@@ -1,0 +1,102 @@
+@import "../../../generals/sass_sources/_universal.sass";
+
+.imgPic {
+  margin-top: 3%;
+  text-align: center;
+
+  img {
+    max-width: 20%;
+    border-radius: 25px;
+  }
+}
+
+.divInfo {
+  margin-top: 3%;
+}
+
+.t1 {
+  background: url("../../../img/general/fondo_gris.png");
+}
+
+.tarjetaInfo {
+  border: solid 1px;
+  text-align: center;
+
+  .img {
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: block;
+  }
+
+  .sex {
+    width: 47px;
+    height: 47px;
+  }
+
+  .icoInfo {
+    font-size: 2em;
+  }
+}
+
+.t2 {
+  border-top: 0.5px solid black;
+  border-bottom: 0.5px solid black;
+  border-left: none;
+  border-right: none;
+}
+
+.divInfoI {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.minIco {
+  width: 30px;
+  height: 30px;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.tituloSecciones {
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: #eeecec;
+  margin-top: 3%;
+  color: #2C3E50;
+}
+
+.imgExport {
+  width: 3%;
+  margin-top: 2%;
+}
+
+.aImgExport {
+  font-size: 2em;
+  margin-right: 2%;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.rowNavegacion {
+  margin-top: 5%;
+}
+
+.tdCotel {
+  text-align: center;
+
+  .linkCoTel {
+    font-size: 1.5em;
+    color: black;
+  }
+}
+
+.rowExportar {
+  margin-top: 3%;
+}

@@ -1,16 +1,16 @@
-﻿<ul>
+﻿<ul class="tabs">
     <a href="@Url.Action("Index", "Repositorio", new { id = -1, id2 = 1 })">
-        <li class="@ViewBag.selectedLi1">
+        <li class="@ViewBag.selectedLi1"> @* btnTab *@
             Compartir publico
         </li>
     </a>
     <a href="@Url.Action("Index", "RepositorioCompartido", new {id=-1,id2=1 })">
-        <li class="@ViewBag.selectedLi2">
+        <li class="@ViewBag.selectedLi2"> @*btnTab*@
             Compartir privado
         </li>
     </a>
     <a href="@Url.Action("Index", "RepositorioPublico", new {id=-1,id2=1 })">
-        <li class="@ViewBag.selectedLi3">
+        <li class="@ViewBag.selectedLi3"> @*btnTab*@
             Vista Publica
         </li>
     </a>

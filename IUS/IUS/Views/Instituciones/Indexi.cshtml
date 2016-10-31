@@ -19,73 +19,79 @@
 <input type="hidden" class="txtHdUrlFicha" value="@Url.Action("FichaInstitucion", "Instituciones")" />
 
 <div class="centroPagina row marginNull contenidoCuerpo">
-    <div class="col-lg-4">
-        @Html.Partial("menuInstitucion")    
-    </div>
-    <div class="col-lg-8 detalles">
-        <div class="centroInstituciones">
-            <div class="divInfoInicial">
-                <div class="contenedorImgPrincipal">
-                    <img class="imgPrincipal" src="~/Content/images/views/Instituciones/institucionesMini.png">
+    <div class="row marginNull">
+        <div class="col-lg-4">
+            @Html.Partial("menuInstitucion")
+        </div>
+        <div class="col-lg-8 detalles">
+            <div class="centroInstituciones">
+                <div class="divInfoInicial">
+                    <div class="contenedorImgPrincipal">
+                        <img class="imgPrincipal" src="~/Content/images/views/Instituciones/institucionesMini.png">
+                    </div>
+                    <div class="row marginNull divContenedorTexto">
+                        <h3 class="tituloInstituciones">@ViewData["lb-tituloPrincipal"]</h3>
+                        <p>
+                            @*Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.*@
+                            @ViewData["lb-inicial"]
+                        </p>
+                    </div>
                 </div>
-                <div class="row marginNull divContenedorTexto">
-                    <h3 class="tituloInstituciones">@ViewData["lb-tituloPrincipal"]</h3>
+                <div class="row marginNull divInfoInstituciones hidden">
+                    <h3 class="tituloDetalles">@ViewData["lb-tituloIndividual"] <span class="spanContinente">America</span></h3>
                     <p>
-                        @*Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.*@
-                        @ViewData["lb-inicial"]
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
                     </p>
+
+                    <table class="table tablaInstitucion">
+                        <thead>
+                            <tr>
+                                <th class="td1">@ViewData["tb-th-pais"]</th>
+                                <th class="td2">@ViewData["tb-th-institucion"]</th>
+                                <th class="td3">Ciudad</th>
+                                <th class="td4">
+                                    @*Detalle*@
+                                </th>
+                                @*<th>@ViewData["tb-th-telefonos"]</th>
+                                <th>@ViewData["tb-th-contactos"]</th>
+                                <th>@ViewData["tb-th-correos"]</th>*@
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                <tr>
+                                    <td>El salvador</td>
+                                    <td>Universidad Don bosco</td>
+                                    <td>Paris</td>
+                                    <td>
+                                        <a href="#">
+                                            @* Ver *@
+                                            <img src="@Url.Content("~/Content/images/views/Instituciones/mas.png")" />
+                                        </a>
+                                    </td>
+                                    <td>@*Jose@udb.edu.sv*@</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            @*<tr>
+                                <td colspan="4">
+                                    <div class="paginador" id="1">1</div>
+                                    <div class="paginador" id="2">2</div>
+                                </td>
+                            </tr>*@
+                        </tfoot>
+                    </table>
                 </div>
             </div>
-            <div class="row marginNull divInfoInstituciones hidden">
-                <h3 class="tituloDetalles">@ViewData["lb-tituloIndividual"] <span class="spanContinente">America</span></h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                </p>
+        </div>
+    </div>
+    <div class="row marginNull">
+        <div class="col-lg-offset-4 col-lg-8 colPaginacion">
 
-                <table class="table tablaInstitucion">
-                    <thead>
-                        <tr>
-                            <th class="td1">@ViewData["tb-th-pais"]</th>
-                            <th class="td2">@ViewData["tb-th-institucion"]</th>
-                            <th class="td3">Ciudad</th>
-                            <th class="td4">
-                                @*Detalle*@
-                            </th>
-                            @*<th>@ViewData["tb-th-telefonos"]</th>
-                            <th>@ViewData["tb-th-contactos"]</th>
-                            <th>@ViewData["tb-th-correos"]</th>*@
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < 5; i++)
-                        {
-                            <tr>
-                                <td>El salvador</td>
-                                <td>Universidad Don bosco</td>
-                                <td>Paris</td>
-                                <td>
-                                    <a href="#">
-                                        @* Ver *@
-                                        <img src="@Url.Content("~/Content/images/views/Instituciones/mas.png")"/>
-                                    </a>
-                                </td>
-                                <td>@*Jose@udb.edu.sv*@</td>
-                            </tr>
-                        }
-                    </tbody>
-                    <tfoot>
-                        @*<tr>
-                            <td colspan="4">
-                                <div class="paginador" id="1">1</div>
-                                <div class="paginador" id="2">2</div>
-                            </td>
-                        </tr>*@
-                    </tfoot>
-                </table>
-            </div>
-            @**@
-        </div>  
+        </div>
     </div>
 </div>
 

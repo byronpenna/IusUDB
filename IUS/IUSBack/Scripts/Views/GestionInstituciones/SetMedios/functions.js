@@ -8,8 +8,8 @@
                 </td>\
                 <td>"+ emailInstitucion._email + "</td>\
                 <td>\
-                    <button class='btn btn-default'>Editar</button>\
-                    <button class='btn btn-default btnEliminarEmailsInstitucion'>Eliminar</button>\
+                    <button class='btn btn-default col-lg-6 btnBack'>Editar</button>\
+                    <button class='btn btn-default col-lg-6 btnBack btnEliminarEmailsInstitucion'>Eliminar</button>\
                 </td>\
             </tr>\
             ";
@@ -96,7 +96,7 @@
             </td>\
             <td>\
                 <div class='editMode hidden'>\
-                    <input class='form-control input-sm txtEnlace' name='txtEnlace' />\
+                    <input class='form-control inputBack txtEnlace input-sm' name='txtEnlace' />\
                     <div class='divResultado hidden'>\
                         _\
                     </div>\
@@ -109,7 +109,7 @@
             </td>\
             <td>\
                 <div class='editMode hidden'>\
-                    <input class='form-control input-sm txtTextoEnlaceEdit' name='txtTextoEnlaceEdit' />\
+                    <input class='form-control inputBack input-sm txtTextoEnlaceEdit' name='txtTextoEnlaceEdit' />\
                     <div class='divResultado hidden'>\
                         _\
                     </div>\
@@ -118,17 +118,17 @@
             </td>\
             <td>\
                 <div class='editMode hidden'>\
-                    <div class='btn-group'>\
-                        <button class='btn btn-default btn-xs btnActualizar'>Actualizar</button>\
-                        <button class='btn btn-default btn-xs btnCancelar'>Cancelar</button>\
+                    <div class='btn-group btn-block'>\
+                        <button class='btn btnBack btn-default col-lg-6 btn-xs btnActualizar'>Actualizar</button>\
+                        <button class='btn btnBack btn-default col-lg-6 btn-xs btnCancelar'>Cancelar</button>\
                     </div>\
                 </div>\
                 <div class='normalMode'>\
-                    <div class='btn-group'>\
-                        <button class='btn btn-default btn-xs btnEditar' "+strEditar+">\
+                    <div class='btn-group btn-block'>\
+                        <button class='btn btnBack btn-default col-lg-6 btn-xs btnEditar' " + strEditar + ">\
                             Editar\
                         </button>\
-                        <button class='btn btn-default btn-xs btnEliminar' "+strEliminar+">\
+                        <button class='btn btnBack btn-default col-lg-6 btn-xs btnEliminar' " + strEliminar + ">\
                             Eliminar\
                         </button>\
                     </div>\

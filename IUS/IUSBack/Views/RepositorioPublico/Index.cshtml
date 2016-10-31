@@ -1,9 +1,9 @@
 ﻿@using IUSLibs.REPO.Entidades.Publico
 @section estilosPersonalizados{
     <!-- Propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/style.css" />
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/media.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/universales/style.css" />*@
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/stylei.css" />
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/RepositorioPublico/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- Propios -->
@@ -11,10 +11,10 @@
     <script src="~/Scripts/Views/Repositorio/universales/functions.js"></script>
     <script src="~/Scripts/Views/RepositorioPublico/functions.js"></script>
 }
-@section tabs{
-    @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
-}
+
+@*@Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")*@
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     List<CarpetaPublica> carpetas   = (List<CarpetaPublica>)ViewBag.carpetas;
     List<ArchivoPublico> archivos   = (List<ArchivoPublico>)ViewBag.archivos;
     CarpetaPublica carpetaPadre     = (CarpetaPublica)ViewBag.carpetaPadre;
@@ -44,190 +44,272 @@
         nombreCarpetaActual = carpetaPadre._nombre;
     }
 }
-<div class="row marginNull rowHerramientas">
-    <div class="col-lg-4">
-
-        <label for="txtDireccion">Ruta</label>
-        <div class="input-group">
-            <input class="form-control txtDireccion inputBackModal" name="txtDireccion" value="@carpetaPadre._strRuta" />
-            <span class="input-group-addon spIrBuscar pointer">Ir</span>
-        </div>
-
-    </div>
-    <div class="col-lg-2 seccionHerramientas">
-        <label>Herramientas</label>
-        <div class="accionesDiv form-control inputBackModal">
-            
-            <a href="#" class="ico icoNuevaCarpeta" title="Nueva carpeta">
-                <i class="fa fa-folder"></i>
+<input type="hidden" class="txtHdNombreControlador" value="@ViewBag.nombreControlador" />
+<input type="hidden" class="txtHdMetodo" value="@ViewBag.nombreMetodo" />
+<div class="centroRepo">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
             </a>
-        </div>
+        </span>
+        >>>
+        <span class="titulo">
+            Gestion de repositorio
+        </span>
     </div>
-    <div class="col-lg-2">
-        <label>Vistas</label>
-        <div class="accionesDiv form-control inputBackModal herramientaVistaSection">
-            <a href="#" class="ico iconoVista iconoVistaCuadricula @activeVista[0] " title="Cuadricula">
-                <i class="fa fa-th-large"></i>
-            </a>
-            <a href="#" class="ico iconoVista icoVistaLista  @activeVista[1] " title="Lista">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="col-lg-6">
-            <label>Busqueda</label>
-        </div>
-        <div class="row marginNull">
-            En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda" value="0" checked />
-            Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
-        </div>
-        <div class="input-group">
-            <input class="form-control txtBusqueda inputBackModal" name="txtBusqueda" placeholder="Buscar en carpeta" />
-            <span class="input-group-addon pointer btnBusqueda visibilitiHidden">
-                <i class="fa fa-search"></i>
-            </span>
-        </div>
-    </div>
-</div>
-<div class="row marginNull">
-    <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
-    <div class="divMensajesGenerales">
 
-    </div>
-    <div class="folders col-lg-8">
-        <div class="row marginNull">
-            <h3 class="encabezadoFicheros">@nombreCarpetaActual</h3>
-        </div>
-        <div class="listView @clases[0]">
-            <div class="row divCabeceraList">
-                <div class="col-lg-6">
-                    Nombre
-                </div>
-                <div class="col-lg-2">
-                    Tipo
-                </div>
-                <div class="col-lg-2">
-                    Fecha de creación
-                </div>
-                <div class="col-lg-2">
-                    Acciones
-                </div>
+    <div class="row marginNull rowHerramientas">
+        <div class="col-lg-4">
+
+            <label for="txtDireccion">Ruta</label>
+            <div class="input-group">
+                <input class="form-control txtDireccion inputBackModal inputBack" name="txtDireccion" value="@carpetaPadre._strRuta" />
+                <span class="input-group-addon spIrBuscar pointer">Ir</span>
             </div>
-            <div class="targetListView">
-                @if (carpetas != null && carpetas.Count > 0 && vista == 1)
-                {
-                    foreach (CarpetaPublica carpeta in carpetas)
-                    {
-                        <div class='row folderDetalles carpetaDetalle '>
-                            <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpetaPublica">
-                            <div class='col-lg-6'>
-                                <i class='fa fa-folder'></i>
-                                <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
-                                <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
-                            </div>
-                            <div class='col-lg-2'>Folder</div>
-                            <div class='col-lg-2'>@carpeta.getFechaCreacion</div>
-                            <div class='col-lg-2 btnEliminarLista'>
-                                <i class='fa fa-trash'></i>
-                            </div>
-                        </div>
-                    }
-                }
+
+        </div>
+        <div class="col-lg-2 seccionHerramientas">
+            <label>Herramientas</label>
+            <div class="accionesDiv form-control inputBack inputBackModal">
+
+                <a href="#" class="ico icoNuevaCarpeta" title="Nueva carpeta">
+                    <i class="fa fa-folder"></i>
+                </a>
             </div>
         </div>
-        <div class="cuadriculaView @clases[1]">
-            @if (carpetas != null && carpetas.Count > 0 && vista == -1)
-            {
-                string rutaWebsite = "";
-                foreach (CarpetaPublica carpeta in carpetas)
-                {
-                    rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1";
-                    <div class="col-lg-2 folder">
-                        <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpetaPublica" />
-                        @*<div class="row divHerramientasIndividual">
-
-                            <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
-                                <i class="fa fa-trash-o"></i>
-                            </a>
-                            <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                        </div>*@
-                        <div class="cuadritoIcono cuadritoCarpeta">
-                            <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />
-                            <div class="btn-group">
-                                <a href="#" class="ico btn btn-default icoEliminarCarpeta" title="Eliminar">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
-                                <a href="@rutaWebsite" target="_blank" class="ico btn btn-default" title="Ver website">
-                                    <i class="fa fa-globe"></i>
-                                </a>
-                            </div>
-                            <div class="detalleCarpeta">
-                                <div class="normalMode sinRedirect">
-                                    <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
-                                </div>
-                                <div class="row marginNull hidden editMode sinRedirect">
-                                    <div class='row marginNull inputNombreCarpeta'>
-                                        <input type='text' class='form-control txtNombreCarpeta'>
-                                    </div>
-                                    <div class='row marginNull'>
-                                        <button class='btn btn-xs btnEditarCarpeta'>Actualizar</button>
-                                        <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-            @if (archivos != null && archivos.Count > 0)
-            {
-                string rutaWebsite = "";
-                foreach (ArchivoPublico archivo in archivos)
-                {
-                    rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + archivo._carpetaPublica._idCarpetaPublica + "/-1";
-                    <div class="col-lg-2 folder">
-                        <input type="hidden" class="txtHdIdArchivoPublico" value="@archivo._idArchivoPublico" />
-                        @*<div class="row divHerramientasIndividual">
-                            <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
-                                <i class="fa fa-trash-o"></i>
-                            </a>
-                            <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                        </div>*@
-                        <div class="cuadritoIcono ">
-                            <img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />
-                            <div class="btn-group">
-                                <a href="#" class="ico btn btn-default icoEliminarArchivo" title="Eliminar">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
-                                <a href="@rutaWebsite" class="ico btn btn-default" target="_blank" title="Ver website">
-                                    <i class="fa fa-globe"></i>
-                                </a>
-                            </div>
-                            <div class="detalleCarpeta">
-                                <div class="normalMode">
-                                    <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>
-                                </div>
-                                <div class="row marginNull hidden editMode">
-                                    <div class='row marginNull inputNombreCarpeta'>
-                                        <input type='text' class='form-control txtNombreCarpeta'>
-                                    </div>
-                                    <div class='row marginNull'>
-                                        <button class='btn btn-xs btnEditarArchivo'>Actualizar</button>
-                                        <button class='btn btn-xs btnCancelarEdicionCarpeta'>Cancelar</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
+        <div class="col-lg-2">
+            <label>Vistas</label>
+            <div class="accionesDiv form-control inputBack inputBackModal herramientaVistaSection">
+                <a href="#" class="ico iconoVista iconoVistaCuadricula @activeVista[0] " title="Cuadricula"><i class="fa fa-th-large"></i></a>
+                <a href="#" class="ico iconoVista icoVistaLista  @activeVista[1] " title="Lista"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="col-lg-6">
+                <label>Busqueda</label>
+            </div>
+            <div class="row marginNull">
+                En carpeta <input type="radio" name="rdBusqueda" class="rdBusqueda inputBack" value="0" checked />
+                Todo <input type="radio" name="rdBusqueda" class="rdBusqueda" value="1" />
+            </div>
+            <div class="input-group">
+                <input class="form-control txtBusqueda inputBackModal inputBack" name="txtBusqueda" placeholder="Buscar en carpeta" />
+                <span class="input-group-addon pointer btnBusqueda visibilitiHidden">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
         </div>
     </div>
+    <div class="row marginNull">
+        <div class="col-lg-2">
+            @Html.Partial("~/Views/Shared/Repositorio/nav.cshtml")
+        </div>
+        <div class="col-lg-10">
+            <div class="row marginNull">
+                <input type="hidden" class="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+                <div class="divMensajesGenerales">
+
+                </div>
+                <div class="folders col-lg-12">
+                    <div class="row marginNull">
+                        <h3 class="encabezadoFicheros">@nombreCarpetaActual</h3>
+                    </div>
+                    <div class="listView @clases[0]">
+                        <div class="row divCabeceraList">
+                            <div class="col-lg-6">
+                                Nombre
+                            </div>
+                            <div class="col-lg-2">
+                                Tipo
+                            </div>
+                            <div class="col-lg-2">
+                                Fecha de creación
+                            </div>
+                            <div class="col-lg-2">
+                                Acciones
+                            </div>
+                        </div>
+                        <div class="targetListView">
+                            @if (carpetas != null && carpetas.Count > 0 && vista == 1)
+                            {
+                                foreach (CarpetaPublica carpeta in carpetas)
+                                {
+                                    <div class='row folderDetalles carpetaDetalle '>
+                                        <input type='hidden' class='txtHdIdCarpeta' value="@carpeta._idCarpetaPublica">
+                                        <div class='col-lg-6'>
+                                            @*<i class='fa fa-folder'></i>*@
+                                            <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@carpeta._nombre</span></div>
+                                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
+                                        </div>
+                                        <div class='col-lg-2'>Folder</div>
+                                        <div class='col-lg-2'>@carpeta.getFechaCreacion</div>
+                                        <div class='col-lg-2'>
+                                            <button class="btn-default btnBack btnEliminarLista">
+                                                <i class='fa fa-trash'></i>
+                                            </button>
+                                            
+                                        </div>
+                                    </div>
+                                }
+                                
+                            }
+                            @if (archivos != null && archivos.Count > 0)
+                            {
+                                string rutaWebsite = "";
+                                foreach (ArchivoPublico archivo in archivos)
+                                {
+                                    <div class='row folderDetalles carpetaDetalle '>
+                                        <input type='hidden' class='txtHdIdArchivoCarpeta' value="@archivo._idArchivoPublico">
+                                        <div class='col-lg-6'>
+                                            @*<i class='fa fa-folder'></i>*@
+                                            <div class='normalMode inline'><span class='spanNombreCarpeta sinRedirect ttlNombreCarpeta'>@archivo._nombre</span></div>
+                                            <div class='editMode inline hidden'><input class='txtNombreCarpetaDetalle sinRedirect'></div>
+                                        </div>
+                                        <div class='col-lg-2'>@archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo</div>
+                                        <div class='col-lg-2'>@archivo.getFechaCreacion</div>
+                                        <div class='col-lg-2'>
+                                            @*<button class="btn-default btnBack btnEliminarLista">
+                                                @*<i class='fa fa-trash'></i>
+                                            </button>*@
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="cuadriculaView @clases[1]">
+                        @if (carpetas != null && carpetas.Count > 0 && vista == -1)
+                        {
+                            string rutaWebsite = "";
+                            foreach (CarpetaPublica carpeta in carpetas)
+                            {
+                                rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + carpeta._idCarpetaPublica + "/-1";
+                                <div class="col-lg-2 folder">
+                                    <input type="hidden" class="txtHdIdCarpeta" value="@carpeta._idCarpetaPublica" />
+                                    @*<div class="row divHerramientasIndividual">
+
+                                    <a href="#" class="ico icoEliminarCarpeta" title="Eliminar">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                    <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
+                                        <i class="fa fa-globe"></i>
+                                    </a>
+                                </div>*@
+                                    <div class="cuadritoIcono cuadritoCarpeta">
+                                        
+                                        @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@carpeta.getIcono" />*@
+                                        <i class="fa fa-folder-o folderRepo" aria-hidden="true"></i>
+                                        <div class="row marginNull">
+                                            <a href="#" class="ico btn btn-default icoEliminarCarpeta btnBack btn-block" title="Eliminar">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                            @*<a href="@rutaWebsite" target="_blank" class="ico btn btn-default btnBack btn-block" title="Ver website">
+                                                <i class="fa fa-globe"></i>
+                                            </a>*@
+                                        </div>
+                                        <div class="detalleCarpeta">
+                                            <div class="normalMode sinRedirect">
+                                                <h3 class="ttlNombreCarpeta">@carpeta._nombre</h3>
+                                            </div>
+                                            <div class="row marginNull hidden editMode sinRedirect">
+                                                <div class='row marginNull inputNombreCarpeta'>
+                                                    <input type='text' class='form-control txtNombreCarpeta inputBack'>
+                                                </div>
+                                                <div class='row marginNull'>
+                                                    <div class="btn-group">
+                                                        <button class='btn btn-xs btnEditarCarpeta btnBack'>Actualizar</button>
+                                                        <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        @if (archivos != null && archivos.Count > 0)
+                        {
+                            string rutaWebsite = "";
+                            foreach (ArchivoPublico archivo in archivos)
+                            {
+                                rutaWebsite = ViewBag.URL_IUS + "Repositorio/AllFiles/" + archivo._carpetaPublica._idCarpetaPublica + "/-1";
+                                <div class="col-lg-2 folder">
+                                    <input type="hidden" class="txtHdIdArchivoPublico" value="@archivo._idArchivoPublico" />
+                                    @*<div class="row divHerramientasIndividual">
+                                    <a href="#" class="ico icoEliminarArchivo" title="Eliminar">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                    <a href="@rutaWebsite" target="_blank" class="ico" title="Ver website">
+                                        <i class="fa fa-globe"></i>
+                                    </a>
+                                </div>*@
+                                    <div class="cuadritoIcono ">
+                                        @*<img class="imgCuadritoIcono" src="~/Content/themes/iusback_theme/img/general/repositorio/@archivo._archivoUsuario._extension._tipoArchivo._icono" />*@
+                                        @switch (archivo._archivoUsuario._extension._tipoArchivo._tipoArchivo)
+                                        {
+                                            case "Imagenes":
+                                                {
+                                                    <i class="fa fa-picture-o icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            case "Video":
+                                                {
+                                                    <i class="fa fa-video-camera icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            case "Audio":
+                                                {
+                                                    <i class="fa fa-music icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            case "Documentos":
+                                                {
+                                                    <i class="fa fa-file-text-o icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                            default:
+                                                {
+                                                    <i class="fa fa-exclamation-triangle icoCuadricula" aria-hidden="true"></i>
+                                                    break;
+                                                }
+                                        }
+                                        <div class="row marginNull">
+                                            <a href="#" class="ico btn btn-default icoEliminarArchivo btnBack btn-block" title="Eliminar">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                            @*<a href="@rutaWebsite" class="ico btn btn-default btnBack btn-block" target="_blank" title="Ver website">
+                                                <i class="fa fa-globe"></i>
+                                            </a>*@
+                                        </div>
+                                        <div class="detalleCarpeta">
+                                            <div class="normalMode">
+                                                <h3 class="ttlNombreCarpeta">@archivo._nombre</h3>
+                                            </div>
+                                            <div class="row marginNull hidden editMode">
+                                                <div class='row marginNull inputNombreCarpeta'>
+                                                    <input type='text' class='form-control txtNombreCarpeta inputBack'>
+                                                </div>
+                                                <div class='row marginNull'>
+                                                    <div class="btn-group">
+                                                        <button class='btn btn-xs btnEditarArchivo btnBack'>Actualizar</button>
+                                                        <button class='btn btn-xs btnCancelarEdicionCarpeta btnBack'>Cancelar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
+

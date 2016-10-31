@@ -46,12 +46,12 @@
                                     </tr>\
                                     <tr  class='trTableRol'>\
                                         <td colspan='2' class='text-center titleTrTable'>Roles</td>\
-                                        <td class='titleTrTable'><a class='btn btn-sm btn-default' href='" + RAIZ + "GestionRoles/Index/1/" + frm.idUsuario + "'>Agregar Roles</a></td>\
+                                        <td class='titleTrTable'><a class='btn btn-sm btn-default btnBack' href='" + RAIZ + "GestionRoles/Index/1/" + frm.idUsuario + "'>Agregar Roles</a></td>\
                                     </tr>\
                                     <tr>\
-                                        <th class='text-center'>Rol</th>\
-                                        <th class='text-center'>Estado Rol</th>\
-                                        <th class='text-center'>Acciones</th>\
+                                        <td class='text-center tdHeader'>Rol</td>\
+                                        <td class='text-center tdHeader'>Estado Rol</td>\
+                                        <td class='text-center tdHeader'>Acciones</td>\
                                     </tr>\
                                 </thead>\
                                 <tbody class='tbodyRoles'>\
@@ -64,7 +64,7 @@
                         <td>"+ val._rol + "</td>\
                         <td>" + val.stringEstado + "</td>\
                         <td class='tdAccionDesasociar'>\
-                            <a href='#' title='Desasociar Rol' class='btnDesasociar'><i class='fa fa-times'></i></a>\
+                            <a href='#' title='Desasociar Rol' class='btnDesasociar btn btn-default btnBack'><i class='fa fa-times'></i></a>\
                         </td>\
                     </tr>";
             });
@@ -226,7 +226,7 @@
                 </td>\
                 <td class='tdUsuario'>\
                     <div class='editMode hidden'>\
-                        <input name='txtEditUsuario' type='text' class='form-control enterEdit txtUsuarioEdit txtEditUsuario input-sm'/>\
+                        <input name='txtEditUsuario' type='text' class='inputBack form-control enterEdit txtUsuarioEdit txtEditUsuario input-sm'/>\
                         <div class='row marginNull divResultado hidden'>\
                         </div>\
                     </div>\
@@ -242,24 +242,24 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditMode btnActualizar'>Actualizar</button>\
-                            <button class='btn btn-xs btn-default btnEditMode btnCancelarEdit'>Cancelar</button>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btn btn-xs btn-default btnBack col-lg-6 btnEditMode btnActualizar'>Actualizar</button>\
+                            <button class='btn btn-xs btn-default btnBack col-lg-6 btnEditMode btnCancelarEdit'>Cancelar</button>\
                         </div>\
                     </div>\
                     <div class='normalMode '>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditar' " + permiso.stringEditar + ">\
+                        <div class='btn-group btn-block'>\
+                            <button class='btn btn-xs col-lg-4 btn-default btnBack btnEditar' " + permiso.stringEditar + ">\
                                 Editar\
                             </button>\
-                            <button class='btn btn-xs btn-default btnDeshabilitar' " + permiso.stringEditar + " >\
+                            <button class='btn btn-xs col-lg-4 btn-default btnBack btnDeshabilitar' " + permiso.stringEditar + " >\
                                 "+ usu.txtBtnHabilitar + "\
                             </button>\
-                            <input type='button' class='btn btn-xs btn-default btnVerRoles' "+permiso.stringEditar+" value='Ver Roles'>\
+                            <input type='button' class='btn-default btnBack btn btn-xs  col-lg-4 btnVerRoles' " + permiso.stringEditar + " value='Ver Roles'>\
                         </div>";
         if (usu._persona._idPersona != -1) {
             j += "\
-                   <a href='" + RAIZ + "GestionPersonas/Detalle/" + usu._persona._idPersona + "" + "' class='btn btn-xs'>\
+                   <a href='" + RAIZ + "GestionPersonas/Detalle/" + usu._persona._idPersona + "" + "' class='btnBack btn btn-default btn-xs btn-block'>\
                         Ver persona\
                    </a>";
         }

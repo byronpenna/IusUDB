@@ -16,7 +16,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtNombrePersona' class='txtNombrePersona form-control txtEdit soloLetras'  />\
+                        <input type='text' name='txtNombrePersona' class='inputBack input-sm form-control txtNombrePersona txtEdit soloLetras'  />\
                         <div class='row marginNull divResultado hidden'>\
                         </div>\
                     </div>\
@@ -24,7 +24,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='txtApellidoPersona' class='txtApellidoPersona form-control txtEdit soloLetras' />\
+                        <input type='text' name='txtApellidoPersona' class='inputBack input-sm form-control txtApellidoPersona txtEdit soloLetras' />\
                         <div class='row marginNull divResultado hidden'>\
                         </div>\
                     </div>\
@@ -32,7 +32,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <input type='text' name='dtFechaNacimiento' class='dtFechaNacimiento form-control txtEdit' />\
+                        <input type='text' name='dtFechaNacimiento' class='inputBack input-sm dtFechaNacimiento form-control txtEdit' />\
                         <div class='row marginNull divResultado hidden'>\
                         </div>\
                     </div>\
@@ -40,7 +40,7 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <select class='form-control cbSexo' name='cbSexo'>\
+                        <select class='input-sm form-control selectBack cbSexo' name='cbSexo'>\
                             <option value='1'>Masculino</option>\
                             <option value='2'>Femenino</option>\
                         </select>\
@@ -51,15 +51,15 @@
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
-                        <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditMode btnActualizar '  " + permisos.stringEditar + ">Actualizar</button>\
-                            <button class='btn btn-xs btn-default btnEditMode btnCancelarEdit'>Cancelar</button>\
+                        <div class='btn-group btn-block'>\
+                            <button class='btnBack col-lg-6 btn btn-xs btn-default btnEditMode btnActualizar'  " + permisos.stringEditar + ">Actualizar</button>\
+                            <button class='btnBack col-lg-6 btn btn-xs btn-default btnEditMode btnCancelarEdit'>Cancelar</button>\
                         </div>\
                     </div>\
                     <div class='normalMode'>\
                         <div class='btn-group'>\
-                            <button class='btn btn-xs btn-default btnEditar' " + permisos.stringEditar + ">Editar</button>\
-                            <button class='btn btn-xs btn-default btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
+                            <button class='btn-default btnBack btn btn-xs btnEditar' " + permisos.stringEditar + ">Editar</button>\
+                            <button class='btn-default btnBack btn btn-xs btnEliminar' " + permisos.stringEliminar + ">Eliminar</button>\
                         </div>\
                         <a class='btn btn-xs ' href='"+RAIZ+"GestionPersonas/Extras/"+persona._idPersona+"'>Info adicional</a>\
                         <a class='btn btn-xs' href='"+RAIZ+"GestionPersonas/Detalle/"+persona._idPersona+"'>\

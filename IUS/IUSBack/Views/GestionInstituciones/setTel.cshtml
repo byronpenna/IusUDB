@@ -2,7 +2,7 @@
 @using IUSLibs.SEC.Entidades
 @section estilosPersonalizados{
     <!-- propios -->
-    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/style.css" />
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/stylei.css" />
     <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/GestionInstituciones/SetTel/media.css" />
 }
 @section scriptsPersonalizados{
@@ -11,137 +11,159 @@
     <script src="~/Scripts/Views/GestionInstituciones/SetTel/functions.js"></script>
 }
 @{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
     Institucion                 institucion = (Institucion)ViewBag.institucion;
     List<TelefonoInstitucion>   telefonos   = (List<TelefonoInstitucion>)ViewBag.telefonos;
     Permiso                     permiso     = (Permiso)ViewBag.permiso;
-    string src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+    string                      src         = Url.Content("~/Content/themes/iusback_theme/img/general/imgAlargada.png");
 }
-@section arbol{
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@Url.Action("Index", "GestionInstituciones")">
-            <div class="col-lg-8">
-                Instituciones
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 text-center cuadritoArbol">
-        <a href="@ViewBag.currentUrl">
-            <div class="col-lg-8">
-                Telefonos
-            </div>
-            <div class="col-lg-4 divChevron">
-                <i class="fa fa-chevron-right navChevron"></i>
-            </div>
-        </a>
-    </div>
-}
-<div class="row marginNull divInstitucionPrev">
-    @if (institucion._logo != null)
-    {
-        src = "data:image/png;base64,"+Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
-    }
-    
-    <img src="@src" />
-    <h2 class="titleInstitucion">@institucion._nombre</h2>
+
+@*<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@Url.Action("Index", "GestionInstituciones")">
+        <div class="col-lg-8">
+            Instituciones
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
 </div>
+<div class="col-lg-3 text-center cuadritoArbol">
+    <a href="@ViewBag.currentUrl">
+        <div class="col-lg-8">
+            Telefonos
+        </div>
+        <div class="col-lg-4 divChevron">
+            <i class="fa fa-chevron-right navChevron"></i>
+        </div>
+    </a>
+</div>*@
+<div class="row marginNull centroPagina">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="tituloPrev">
+                <a href="@Url.Action("Index", "GestionInstituciones")">
+                    Instituciones
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Telefonos instituciones
+            </span>
+        </div>
 
-<div class="row marginNull">
-    <div class="divMensajesGenerales">
+        <div class="row marginNull divInstitucionPrev">
+            @if (institucion._logo != null)
+            {
+                src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
+            }
 
-    </div>
-    <div class="divTable">
-        <table class="table tbTelefonos">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Telefono</th>
-                    <th>Etiqueta</th>
-                    <th>Acciones</th>
-                </tr>
-                <tr>
-                    <th>
-                        <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
-                        <div class="divResultado marginNull row hidden">
+            <img src="@src" />
+            <h2 class="titleInstitucion">@institucion._nombre</h2>
+        </div>
 
-                        </div>
-                    </th>
-                    <th>
-                        <input type="tel" name="txtTelefono" class="form-control input-sm txtTelefono soloNumerosDecimal txtFrmAgregar" />
-                        <div class="divResultado marginNull row hidden">
-                            _
-                        </div>
-                    </th>
-                    <th>
-                        <input type="tel" name="txtEtiqueta" class="form-control input-sm txtEtiqueta txtFrmAgregar" />
-                        <div class="divResultado marginNull row hidden">
-                            _
-                        </div>
-                    </th>
-                    <th class="thBtnGuardar">
-                        <button class="btn btn-default btn-sm btnAgregarTel" @permiso.stringCrear>Agregar</button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="tbodyTelefonos">
-                @if (telefonos != null && telefonos.Count > 0)
-                {
-                    foreach (TelefonoInstitucion telefono in telefonos)
-                    {
+        <div class="row marginNull">
+            <div class="divMensajesGenerales">
+
+            </div>
+            <div class="divTable">
+                <table class="table tbTelefonos">
+                    <thead>
                         <tr>
-                            <td>
-                                <input type="hidden" class="txtHdIdTel" name="txtHdIdTel" value="@telefono._idTelefono" />
-                            </td>
-                            <td>
-                                <div class="editMode hidden">
-                                    <input type="tel" name="txtTelefonoEdit" class="form-control txtTelefonoEdit soloNumerosDecimal txtFrmEditar" />
-                                    <div class="divResultado marginNull row hidden">
-                                        _
-                                    </div>
-                                </div>
-                                <div class="normalMode tdTelefono">@telefono._telefono</div>
-                            </td>
-
-                            <td>
-                                <div class="editMode hidden">
-                                    <input type="tel" name="txtEtiquetaEdit" class="form-control txtEtiquetaEdit txtFrmEditar" />
-                                    <div class="divResultado marginNull row hidden">
-                                        _
-                                    </div>
-                                </div>
-                                <div class="normalMode tdTextoTelefono">@telefono._textoTelefono</div>
-                            </td>
-                            <td>
-                                <div class="editMode hidden">
-                                    <div class="btn-group">
-                                        <button class="btn btn-default btn-xs btnActualizar">
-                                            Actualizar
-                                        </button>
-                                        <button class="btn btn-default btn-xs btnCancelar">
-                                            Cancelar
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="normalMode">
-                                    <div class="btn-group">
-                                        <button class="btn btn-default btn-xs btnEditarTel" @permiso.stringEditar>
-                                            Editar
-                                        </button>
-                                        <button class="btn btn-default btn-xs btnEliminarTel" @permiso.stringEliminar>
-                                            Eliminar
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </td>
+                            <th></th>
+                            <th>Telefono</th>
+                            <th>Etiqueta</th>
+                            <th>Acciones</th>
                         </tr>
-                    }
+                        <tr>
+                            <th>
+                                <input type="hidden" name="txtHdIdInstitucion" value="@institucion._idInstitucion" />
+                                <div class="divResultado marginNull row hidden">
 
-                }
-            </tbody>
-        </table>
+                                </div>
+                            </th>
+                            <th>
+                                <input type="tel" name="txtTelefono" class="inputBack form-control input-sm txtTelefono soloNumerosDecimal txtFrmAgregar" />
+                                <div class="divResultado marginNull row hidden">
+                                    _
+                                </div>
+                            </th>
+                            <th>
+                                <input type="tel" name="txtEtiqueta" class="inputBack form-control input-sm txtEtiqueta txtFrmAgregar" />
+                                <div class="divResultado marginNull row hidden">
+                                    _
+                                </div>
+                            </th>
+                            <th class="thBtnGuardar">
+                                <button class="btn btnBack btn-default btn-sm btnAgregarTel" @permiso.stringCrear>Agregar</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyTelefonos">
+                        @if (telefonos != null && telefonos.Count > 0)
+                        {
+                            foreach (TelefonoInstitucion telefono in telefonos)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="hidden" class="txtHdIdTel" name="txtHdIdTel" value="@telefono._idTelefono" />
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <input type="tel" name="txtTelefonoEdit" class="inputBack form-control txtTelefonoEdit soloNumerosDecimal txtFrmEditar" />
+                                            <div class="divResultado marginNull row hidden">
+                                                _
+                                            </div>
+                                        </div>
+                                        <div class="normalMode tdTelefono">@telefono._telefono</div>
+                                    </td>
+
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <input type="tel" name="txtEtiquetaEdit" class="inputBack form-control txtEtiquetaEdit txtFrmEditar" />
+                                            <div class="divResultado marginNull row hidden">
+                                                _
+                                            </div>
+                                        </div>
+                                        <div class="normalMode tdTextoTelefono">@telefono._textoTelefono</div>
+                                    </td>
+                                    <td>
+                                        <div class="editMode hidden">
+                                            <div class="btn-group btn-block">
+                                                <button class="btn btn-default col-lg-6 btn-xs btnActualizar">
+                                                    Actualizar
+                                                </button>
+                                                <button class="btn btn-default col-lg-6 btn-xs btnCancelar">
+                                                    Cancelar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="normalMode">
+                                            <div class="btn-group btn-block">
+                                                <button class="btn btn-default btnBack col-lg-6 btnEditarTel" @permiso.stringEditar>
+                                                    Editar
+                                                </button>
+                                                <button class="btn btn-default btnBack col-lg-6 btnEliminarTel" @permiso.stringEliminar>
+                                                    Eliminar
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
-    
 </div>

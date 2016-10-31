@@ -1,6 +1,6 @@
 ﻿// variables 
     var instArr   = new Array();
-    var nTabla    = 10;
+    var nTabla    = 12;
 // funciones 
 function iniciales() {
     var idContinente    = $(".txtHdIdContinente").val();
@@ -56,8 +56,9 @@ function buscarContinente(frm) {
             }
             //########################
             var n = instArr.length;
-            var tFoot = "<tr>\
-                <td colspan='4' class='tdPaginador'>\
+            //<tr>
+            var tFoot = "\
+                <div class='tdPaginador'>\
             "
             console.log("n es", n);
             var claseActive = "";
@@ -71,17 +72,17 @@ function buscarContinente(frm) {
                 }
                 tFoot += "<div class='paginador "+claseActive+"' id='"+(i+1)+"'>"+(i+1)+"</div>";
             }
-            tFoot += "</td>\
-                </tr>\
-            ";
+            tFoot += "</div>";
             targetFoot.empty();
             if (n > 1) {
-                targetFoot.append(tFoot);
+                //targetFoot.append(tFoot);
             } 
 
             //##############################
             target.empty().append(tr);
             $(".spanContinente").empty().append(hContinente);
+
+            $(".colPaginacion").empty().append(tFoot);
         }
 
     }, function () {

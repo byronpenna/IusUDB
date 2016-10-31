@@ -99,8 +99,8 @@ namespace IUSBack.Controllers
                             informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
                             informacionPersona._tieneFoto = true;
                         }
-                        
-                        ViewBag.informacionPersona = informacionPersona;
+                        informacionPersona._persona = usuarioSesion._persona;
+                        ViewBag.informacionPersonaGlobal = informacionPersona;
                         ViewBag.selectedMenu = selectedMenu;
                         ViewBag.currentUrl = Request.Url.AbsoluteUri;
                         ViewBag.cnEventos = this._model.sp_adminfe_countTodayEvents(idPagina, usuarioSesion._idUsuario);
@@ -402,7 +402,8 @@ namespace IUSBack.Controllers
                         DateTime toReturn;
                         try
                         {
-                            toReturn = Convert.ToDateTime(Convert.ToDateTime(fechaCompleto).ToString("yyyy-MM-dd HH:mm:ss"));
+                            String x = Convert.ToDateTime(fechaCompleto).ToString("yyyy-MM-dd HH:mm:ss");
+                            toReturn = Convert.ToDateTime(x);
                         }
                         catch (Exception x)
                         {

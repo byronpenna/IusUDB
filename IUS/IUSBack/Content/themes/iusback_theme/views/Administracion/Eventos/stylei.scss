@@ -1,0 +1,296 @@
+@import "../../../generals/sass_sources/_universal.sass";
+@import "../../../generals/sass_sources/parts/tabs/_tabs.sass";
+@import "../../../generals/sass_sources/parts/plugins/_chosen.sass";
+
+/* */
+.spanPicture {
+  float: right;
+
+  &:hover {
+    color: black;
+  }
+}
+
+/** */
+.cbFiltroTipoEvento {
+  margin-bottom: 3%;
+}
+
+.ui-accordion .ui-accordion-content {
+  margin-bottom: 3%;
+}
+
+/*Arreglos bootstrap */
+.row.seccion {
+  margin: 0;
+}
+
+.divMensajesEvento {
+  margin-top: 3%;
+}
+
+/*Tabs */
+/*Tab eventos */
+.divTiempo {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+/*Fin tab eventos */
+/* Tab compartir */
+
+/* ******************** Nuevo  ******************** */
+.eventosCompartirSection {
+  margin-bottom: 3%;
+}
+
+.eventosCompartirSection > h3 {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.cambioControl {
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.divMensajesCompartirGenerales {
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+/* ******************** /Nuevo/  ******************** */
+
+.noEventoDiv {
+  margin-top: 10%;
+  text-align: center;
+
+  img {
+    width: 16%;
+  }
+
+  h4 {
+    font-family: "latop";
+    font-weight: bold;
+    color: #95A5A6;
+  }
+}
+
+/*Fin tab compartir */
+.ulTabGeneral {
+  background: #95a5a6;
+
+  li {
+    background: #bdc3c7;
+    padding: 1%;
+  }
+}
+
+.tbRoles thead {
+  text-align: center;
+}
+
+/*Fin arreglos tabs */
+.sectionBotonesEvento {
+  //margin-top: 3%
+}
+
+.hEventoUsuario {
+  margin-bottom: 5%;
+}
+
+#tabUsuario {
+  display: block;
+
+  table {
+    margin-top: 5%;
+  }
+}
+
+/*Eventos */
+.colorEventoPropio {
+  background: #3A87AD;
+}
+
+.colorEventoCompartido {
+  background: #f1c40f;
+}
+
+.colorEventoPublico {
+  background: #2ecc71;
+}
+
+.nombreEvento {
+  color: white;
+  font-weight: bold;
+}
+
+/*************************** */
+.btnAgregarEvento {
+  margin-top: 3%;
+}
+
+.divMensajes {
+  text-align: center;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.contenidoCuerpo {
+  border-bottom: solid 1px #cd1315;
+  padding-bottom: 60px;
+}
+
+.centroEventos {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.rowNavegacion {
+  margin-top: 5%;
+}
+
+.rowFrm {
+  margin-top: 2%;
+}
+
+#frmAgregarEvento {
+  margin-bottom: 5%;
+}
+
+.eventos {
+  overflow-x: scroll;
+  white-space: nowrap;
+  height: 400px;
+
+  .divEvento {
+    width: 40%;
+    height: 350px;
+    background: pink;
+    display: inline-block;
+    margin-right: 5%;
+  }
+}
+
+.clickTr {
+  background: rgb(189, 195, 199) !important;
+}
+
+.rowBtnInputBuscar {
+  margin-top: 3%;
+}
+
+.divEventoi {
+  height: 400px;
+  margin-bottom: 3%;
+  padding: 2%;
+
+  .divTituloDescripcion {
+    font-weight: bold;
+  }
+
+  h4 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .pDescripcionEvento {
+    padding-left: 3%;
+    padding-top: 3%;
+    text-align: justify;
+  }
+}
+
+.divBusquedaEvento {
+  padding-left: 40px;
+}
+
+.tituloBusquedaEvento {
+  text-align: center;
+}
+
+.txtDeFechaBusqueda {
+  margin-bottom: 3%;
+}
+
+.divHorai {
+  margin-top: 4%;
+}
+
+.divImage {
+  text-align: center;
+  opacity: 0.7;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+  img {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.divBotones {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.activePaginador {
+  font-weight: bold !important;
+  color: #cc1315 !important;
+}
+
+.precarga {
+  background: transparent url("../../../../../../Administracion/getImageThumbnailEvent/1110") center no-repeat;
+  background-size: 90%;
+  min-height: 110px;
+}
+
+.containerPaginador {
+  display: table-cell;
+}
+
+.padrePaginador {
+  text-align: center;
+  font-size: 0.8em;
+  width: 150px;
+  margin: 0 auto;
+
+  //padding-top: 3%
+  .containerPaginador {
+    .paginador {
+      cursor: pointer;
+      display: table-cell;
+      border: solid 1px #828181;
+      width: 30px;
+      padding-top: 1%;
+      padding-bottom: 1%;
+      height: 25px;
+      vertical-align: middle;
+    }
+  }
+
+  .paginador {
+    cursor: pointer;
+    display: inline-block;
+    border: solid 1px #828181;
+    width: 30px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    vertical-align: bottom;
+    height: 25px;
+    vertical-align: middle;
+  }
+
+  .atras {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .adelante {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+//.ui-slider .ui-slider-handle
+// //width: 0.5em !important

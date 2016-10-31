@@ -10,8 +10,8 @@
         <!-- chosen -->
             <link rel="stylesheet" href="~/Content/third-party/chosen/css/chosen.min.css" />
     <!-- Propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/style.css" />
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/media.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/stylei.css" />
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/media.css" />*@
 }
 @section scriptsPersonalizados{
     <!-- Plugins -->
@@ -25,359 +25,670 @@
         <script src="~/Scripts/Views/Administracion/Eventos/functions.js"></script>
 }
 @{
-    List<Evento> eventos = (List<Evento>)ViewBag.eventos;
-    Permiso permiso = (Permiso)ViewBag.permiso;
+    Layout                  = "~/Views/Shared/_Layouti.cshtml";
+    List<Evento> eventos    = null;
+    Permiso permiso         = null;
+    string strImagen        = Url.Content("~/Content/themes/iusback_theme/img/general/img/general/noBanerMiniatura.png");
+    // paginador 
+    bool mostrarPaginador   = false;
+    int iteradorPaginador   = 1;
+    int numPagina           = (int)ViewBag.numPagina;
+    int num                 = (int)ViewBag.num;
+    int cnEvento            = (int)ViewBag.cnEvento;
+    int cnPaginador         = 1;
+    try {
+        eventos = (List<Evento>)ViewBag.eventos;
+        permiso = (Permiso)ViewBag.permiso;
+        
+    }
+    catch (Exception)
+    {
+        
+    }
 }
-@section tabs{
-    <ul>
-        <li class="btnTab tabActive" id="1" target="#tab-1">
+@*<ul>
+    <li class="btnTab tabActive" id="1" target="#tab-1">
+        Eventos
+    </li>
+    <li class="tbCompartir btnTab" id="2" target="#tab-2">
+        Compartir
+    </li>
+</ul>*@
+
+
+<input type="hidden" class="txtHdNombreClass"   value="@ViewBag.nombreClass" />
+<input type="hidden" class="txtHdFuncion"       value="@ViewBag.nombreFuncion"/>
+<input type="hidden" class="txtHdIdTab"         value="@ViewBag.idTab" />
+<input type="hidden" class="txtHdNum"           value="@num" />
+<input type="hidden" class="txtHdNumPage"       value="@numPagina" />
+<div class="row marginNull contenidoCuerpo centroEventos">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
             Eventos
-        </li>
-        <li class="tbCompartir btnTab" id="2" target="#tab-2">
-            Compartir
-        </li>
-    </ul>
-}
-@*inputs hidden generales*@
-    <input type="hidden" class="txtHdNombreClass"   value="@ViewBag.nombreClass" />
-    <input type="hidden" class="txtHdFuncion"       value="@ViewBag.nombreFuncion"/>
-@*#############################*@>
-<div id="tab-1" class="row seccion tab">
-    <div class="col-lg-4">
-        <form id="frmAgregarEvento">
-            <div class="form-group">
-                <label for="txtEvento">Nombre evento</label>
-                <input type="text" class="form-control txtEvento" name="txtEvento" id="txtEvento" required placeholder="Evento">
-                <div class="row marginNull divResultado divResultadoMessage hidden">
-
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="txtAreaDescripcion">Descripcion:</label>
-                <textarea class="form-control txtAreaDescripcion" id="txtAreaDescripcion" name="txtAreaDescripcion" placeholder="Breve explicacion sobre que consiste eventos"></textarea>
-                <div class="row marginNull divResultado divResultadoMessage hidden">
-
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="txtFechaInicio">Fecha inicio</label>
-                <input type="text" class="form-control dpFecha txtFechaInicio" required name="txtFechaInicio" id="txtFechaInicio" />
-                <div class="row marginNull divResultado hidden">
-
-                </div>
-            </div>
-            <div class="form-group divHora">
-                <label for="txtHoraInicio">Hora inicio</label>
-                <input type="text" class="form-control  txtHoraInicio txtHora" required name="txtHoraInicio" id="txtHoraInicio" value="01:00:00 p.m." readonly />
-                <div class="row col-lg-12">
-                    <label>Horas</label>
-                    <div class="horas"></div>
-                    <label>Minutos</label>
-                    <div class="minutos"></div>
-
-                    <div class="divTiempo">
-                        a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
-                        p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="txtFechaFin">Fecha fin</label>
-                <input type="text" class="form-control dpFecha txtFechaFin" required name="txtFechaFin" id="txtFechaFin" />
-                <div class="row marginNull divResultado divResultadoMessage hidden">
-
-                </div>
-            </div>
-            <div class="form-group divHora row marginNull">
-                <label for="txtHoraFin">Hora fin</label>
-                <input type="text" class="form-control txtHoraFin txtHora" required name="txtHoraFin" id="txtHoraFin" value="02:00:00 p.m." readonly />
-                <div class="row col-lg-12">
-                    <label>Horas</label>
-                    <div class="horas"></div>
-                    <label>Minutos</label>
-                    <div class="minutos"></div>
-                    <div class="divTiempo">
-                        a.m. <input type="radio" name="tiempoFin" class="rbTiempo rbAm" value="0" />
-                        p.m. <input type="radio" name="tiempoFin" class="rbTiempo rbPm" value="1" checked />
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="row marginNull divResultadoGlobal divResultadoMessage hidden">
-
-            </div>
-            <div class="form-group text-center">
-                <button class="btnAgregarEvento btn btn-default" @permiso.stringCrear type="submit">
-                    Agregar evento
-                </button>
-            </div>
-            <div class="form-group divMensajeForm text-center">
-                
-            </div>
-        </form>
+        </span>
     </div>
-    <div class="col-lg-8">
-        <div id='calendar'></div>
-    </div>
-</div>
-<div id="tab-2" class="tab hidden row marginNull">
-    <div class="col-lg-4 eventosCompartirSection">
-        <h3>Eventos</h3>
-            <div class="row marginNull controlesBusqueda">
-                <input type="hidden" class="txtHdBuscando" value="0"/>
-                <div class="row marginNull controlBusqueda" id="1">
-                    <div class="input-group">
-                        <input class="form-control txtBuscarEventoNombre" placeholder="Buscar por nombre" />
-                        <span class="input-group-addon">Buscar</span>
-                    </div>
-                </div>
-                <div class="row marginNull controlBusqueda divBusquedaRangoFecha hidden" id="2">
-                    <div class="divControl col-lg-5 ">
-                        <label>De</label>
-                        <input name="txtDeFechaBusqueda" class="form-control dpFecha txtDeFechaBusqueda" />
-                        <div class="row marginNull divResultado hidden">
-
-                        </div>
-                    </div>
-                    <div class="divControl col-lg-5 ">
-                        <label>Hasta</label>
-                        <input name="txtHastaFecha" class="form-control dpFecha txtHastaFecha" />
-                        <div class="row marginNull divResultado hidden">
-
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <label class="visibilitiHidden">_</label>
-                        <button class="btn btn-default btnBuscarRangoFecha">
-                            Buscar
-                        </button>
-                    </div>
-                </div>
-                <div class="divResultadoGeneralBusqueda divResultado">
-
-                </div>
-                <div class="row marginNull text-center cambioControl">
-                    Nombre <input type="radio" class="rbNombre" name="rbNombre" value="1" checked /> Fechas <input type="radio" class="rbNombre" name="rbNombre" value="2" />
-                </div>
+    <div class="row marginNull ">
+        <div class="col-lg-3">
+            <div class="row marginNull">
+                <ul class="tabs">
+                    <li class="btnTab tabEventos tabActive" id="1" target="#tab-1">
+                        Eventos
+                    </li>
+                    <li class="tbCompartir btnTab" id="2" target="#tab-2">
+                        Compartir
+                    </li>
+                </ul>
             </div>
-            <div class="row marginNull divFiltroTipoEvento">
-                <select name="cbFiltroTipoEvento" class="form-control cbFiltroTipoEvento">
-                    <option value="-1" selected>Todos</option>
-                    <option value="1">Privados</option>
-                    <option value="2">Compartidos</option>
-                    <option value="3">Publicos</option>
-                </select>
-            </div>
-            <!-- Hermoso acordeon de eventos -->
-            @if (eventos != null && eventos.Count > 0)
-            {
-                <div id="accordion">
-                    @foreach (Evento evento in eventos)
-                    {
-                        <h3 class="tabDesplegableEvento nombreEvento @evento.txtClaseColor ">
-                            <span class="spanNombreEvento">@evento._evento</span>
-                            <input type="hidden" name="txtHdTipoEvento" class="txtHdTipoEvento" value="@evento._propietario" />
-                            <span class="spanPicture">
-                                <i class="fa fa-picture-o"></i>
-                            </span>
-                        </h3>
-                        <div class="tabDesplegableEvento detalleEvento">
-                            <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
-                            <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
-                            <a class="vinculoGay" href="@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })">
-                                @*<i class="fa fa-picture-o"></i>*@
-                                xx
-                            </a>
-                            <div class="row">
-                                <div class="normalMode">
-                                    <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
-                                </div>
-                                <div class="editMode hidden" style="margin-bottom:5%;">
-                                    <label>Nombre de evento</label>
-                                    <input type="text" name="txtEvento2" class="txtEvento2" />
-                                </div>
-                                <div class="editMode hidden">
-                                    <div class="editMode hidden">
-                                        <label>Descripcion evento</label>
-                                    </div>
-                                    <textarea class="txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
-                                </div>
-                                <!-- Motivo para quitar publicacion -->
-                                <div class="quitarPublicacionMode hidden">
-                                    <label class="text-center">Motivos para quitar del website</label>
-                                    <textarea class="txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
-                                </div>
-                                <!-- ------------------------------ -->
-                                <hr />
-                                <div class="row text-center">
-                                    <div class="col-lg-6">
-                                        <div class="normalMode">
-                                            <label>Inicio: </label>
-                                            <span class="spanFechaInicio">@evento.getFechaInicio</span>
-                                        </div>
-                                        <div class="editMode hidden">
-                                            <label>Inicio: </label>
-                                            <input class="dpFecha txtFechaInicio form-control" name="txtFechaInicio" />
-                                            <div class="row marginNull divHora timeEdit">
-                                                <input type="text" class="txtHoraInicio txtHora form-control" name="txtHoraInicio" readonly />
-                                                <div class="horas"></div>
-                                                <div class="minutos"></div>
-                                                <div class="divTiempo">
-                                                    a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
-                                                    p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="normalMode">
-                                            <label>Fin: </label>
-                                            <span class="spanFechaFin">@evento.getFechaFin</span>
-                                        </div>
-                                        <div class="editMode hidden">
-                                            <label>Fin: </label>
-                                            <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
-                                            @*<input type="time" class="txtHoraFin txtHora form-control " name="txtHoraFin" />*@
-                                            <div class="row marginNull divHora timeEdit">
-                                                <input type="text" class="txtHoraFin txtHora form-control" name="txtHoraFin" readonly />
-                                                <div class="horas"></div>
-                                                <div class="minutos"></div>
+            <div class="row marginNull divBusqueda" style="display:none">
+                <div class="row marginNull tituloBusquedaEvento divBusquedaEvento">
+                    <h4>Busqueda de eventos</h4>
 
-                                                <div class="divTiempo">
-                                                    a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
-                                                    p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                </div>
+                <div class="row marginNull divFiltroTipoEvento divBusquedaEvento">
+                    <select name="cbFiltroTipoEvento" class="selectBack inputBack form-control cbFiltroTipoEvento">
+                        <option value="-1" selected>Todos</option>
+                        <option value="1">Privados</option>
+                        <option value="2">Compartidos</option>
+                        <option value="3">Publicos</option>
+                    </select>
+                </div>
+                <div class="row marginNull divBusquedaEvento">
+                    <div class="row marginNull text-center cambioControl">
+                        Nombre <input type="radio" class="rbNombre" name="rbNombre" value="1" checked /> Fechas <input type="radio" class="rbNombre" name="rbNombre" value="2" />
+                    </div>
+                    <div class="row marginNull controlesBusqueda">
+                        <input type="hidden" class="txtHdBuscando" value="0" />
+                        <div class="row marginNull controlBusqueda" id="1">
+                            <div class="input-group">
+                                <input class="form-control inputBack txtBuscarEventoNombre" placeholder="Buscar por nombre" />
+                                <span class="input-group-addon">Buscar</span>
+                            </div>
+                        </div>
+                        <div class="row marginNull controlBusqueda divBusquedaRangoFecha hidden" id="2">
+                            <div class="divControl row marginNull text-center">
+                                @*<label>De</label>*@
+                                <input name="txtDeFechaBusqueda" class="form-control dpFecha txtDeFechaBusqueda inputBack" placeholder="Fecha inicio" />
+                                <div class="row marginNull divResultado hidden">
+
                                 </div>
                             </div>
-                            @if (evento._propietario != 3)
+                            <div class="divControl row marginNull text-center ">
+                                @*<label>Hasta</label>*@
+                                <input name="txtHastaFecha" class="form-control dpFecha txtHastaFecha inputBack" placeholder="Fecha fin" />
+                                <div class="row marginNull divResultado hidden">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-offset-5 col-lg-2 rowBtnInputBuscar">
+                                <label class="visibilitiHidden">_</label>
+                                <button class="btn btn-default btnBuscarRangoFecha btnBack">
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="divResultadoGeneralBusqueda divResultado">
+
+                        </div>
+
+                    </div>
+
+                </div>    
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div id="tab-1" class="row seccion tab cuerpoIndex">
+                <div class="col-lg-12">
+                    <form id="frmAgregarEvento">
+                        <div class="col-lg-6">
+                            <label for="txtEvento">Nombre evento</label>
+                            <input type="text" class="inputBack form-control txtEvento" name="txtEvento" id="txtEvento" required placeholder="Evento">
+                            <div class="row marginNull divResultado divResultadoMessage hidden">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="txtAreaDescripcion">Descripcion:</label>
+                            <textarea class="inputBack form-control txtAreaDescripcion" id="txtAreaDescripcion" name="txtAreaDescripcion" placeholder="Breve explicacion sobre que consiste eventos"></textarea>
+                            <div class="row marginNull divResultado divResultadoMessage hidden">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 rowFrm">
+                            <label for="txtFechaInicio">Fecha inicio</label>
+                            <input type="text" class="inputBack form-control dpFecha txtFechaInicio" required name="txtFechaInicio" id="txtFechaInicio" />
+                            <div class="row marginNull divResultado hidden">
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 rowFrm">
+                            <label for="txtFechaFin">Fecha fin</label>
+                            <input type="text" class="inputBack form-control dpFecha txtFechaFin" required name="txtFechaFin" id="txtFechaFin" />
+                            <div class="row marginNull divResultado divResultadoMessage hidden">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 rowFrm divHora">
+                            <label for="txtHoraInicio">Hora inicio</label>
+                            <input type="text" class="inputBack form-control  txtHoraInicio txtHora" required name="txtHoraInicio" id="txtHoraInicio" value="01:00:00 p.m." readonly />
+                            <div class="row col-lg-12">
+                                <label>Horas</label>
+                                <div class="horas"></div>
+                                <label>Minutos</label>
+                                <div class="minutos"></div>
+
+                                <div class="divTiempo">
+                                    a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                                    p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 rowFrm divHora row marginNull">
+                            <label for="txtHoraFin">Hora fin</label>
+                            <input type="text" class="inputBack form-control txtHoraFin txtHora" required name="txtHoraFin" id="txtHoraFin" value="02:00:00 p.m." readonly />
+                            <div class="row col-lg-12">
+                                <label>Horas</label>
+                                <div class="horas"></div>
+                                <label>Minutos</label>
+                                <div class="minutos"></div>
+                                <div class="divTiempo">
+                                    a.m. <input type="radio" name="tiempoFin" class="rbTiempo rbAm" value="0" />
+                                    p.m. <input type="radio" name="tiempoFin" class="rbTiempo rbPm" value="1" checked />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row marginNull divResultadoGlobal divResultadoMessage hidden">
+
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btnBack btnAgregarEvento btn btn-default" @permiso.stringCrear type="submit">
+                                Agregar evento
+                            </button>
+                        </div>
+                        <div class="form-group divMensajeForm text-center">
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-12">
+                    <div id='calendar'></div>
+                </div>
+            </div>
+            <div id="tab-2" class="tab hidden row marginNull">
+                <div class="col-lg-12 eventosCompartirSection cuerpoIndex">
+                    <h3>Eventos</h3>
+
+                    <div class="row marginNull contenedorEvento">
+                        @if (eventos != null && eventos.Count > 0)
+                        {
+                            
+                            foreach (Evento evento in eventos)
                             {
-                                bool evt1 = false; string group = "btn-group"; string icoPublicar = "fa fa-globe";
-                                if (evento._propietario == 1) {
-                                    evt1 = true;
-                                    group = "btn-group-vertical";
-                                }
-                                if (evento._publicado)
+                                if (evento._miniatura != "")
                                 {
-                                    icoPublicar = "fa fa-ban";
+                                    strImagen = evento._miniatura;
                                 }
                                 
-                                <div class="row text-center sectionBotonesEvento">
-                                    <div class="row marginNull divMensajes">
-                                        bla bla bla
-                                    </div>
-                                    <div class="normalMode">
-                                        <div class='@group'>
-                                            @if (evt1 || evento._propietario == 2)
+                                <div class="col-lg-6">
+                                    <div class="divEventoi borde">
+                                        <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
+                                        <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
+                                        <div class="divNombreEvento">
+                                            <div class="normalMode">
+                                                <h4 class="spanNombreEvento">@evento._evento</h4>
+                                            </div>
+                                            <div class="editMode hidden" style="margin-bottom:5%;">
+                                                <label>Nombre de evento</label>
+                                                <input type="text" name="txtEvento2" class="inputBack txtEvento2 form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="row marginNull divImage normalMode precarga">
+                                            <a href="@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })">
+                                                <img src="@Url.Action("getImageThumbnailEvent", "Administracion", new {id=evento._idEvento })" /> @*http://localhost:55869/Administracion/getImageThumbnailEvent/106*@
+                                            </a>
+                                        </div>
+                                        <div class="row marginNull divTituloDescripcion">
+                                            Descripción
+                                        </div>
+                                        <div class="row marginNull">
+                                            <div class="normalMode">
+                                                <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
+                                            </div>
+                                            <div class="editMode hidden">
+                                                <textarea class="inputBack txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
+                                            </div>
+                                            <!-- Motivo para quitar publicacion -->
+                                            <div class="quitarPublicacionMode hidden">
+                                                <label class="text-center">Motivos para quitar del website</label>
+                                                <textarea class="inputBack txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
+                                            </div>
+                                            <!-- ------------------------------ -->
+                                            @*<hr />*@
+                                            <div class="row text-center divHorai">
+                                                <div class="col-lg-6">
+                                                    <div class="normalMode">
+                                                        <label>Inicio: </label>
+                                                        <span class="spanFechaInicio">@evento.getFechaInicio</span>
+                                                    </div>
+                                                    <div class="editMode hidden">
+                                                        <label>Inicio: </label>
+                                                        <input class="dpFecha txtFechaInicio form-control inputBack" name="txtFechaInicio" />
+                                                        <div class="row marginNull divHora timeEdit">
+                                                            <input type="text" class="txtHoraInicio txtHora form-control inputBack" name="txtHoraInicio" readonly />
+                                                            <div class="horas btnBack"></div>
+                                                            <div class="minutos btnBack"></div>
+                                                            <div class="divTiempo">
+                                                                a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                                                                p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="normalMode">
+                                                        <label>Fin: </label>
+                                                        <span class="spanFechaFin">@evento.getFechaFin</span>
+                                                    </div>
+                                                    <div class="editMode hidden">
+                                                        <label>Fin: </label>
+                                                        <input class="dpFecha txtFechaFin form-control inputBack" name="txtFechaFin" />
+                                                        @*<input type="time" class="txtHoraFin txtHora form-control " name="txtHoraFin" />*@
+                                                        <div class="row marginNull divHora timeEdit">
+                                                            <input type="text" class="txtHoraFin txtHora form-control inputBack" name="txtHoraFin" readonly />
+                                                            <div class="horas btnBack"></div>
+                                                            <div class="minutos btnBack"></div>
+
+                                                            <div class="divTiempo">
+                                                                a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                                                                p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if (evento._propietario != 3)
+                                        {
+                                            bool evt1 = false; string group = "btn-group"; string icoPublicar = "fa fa-globe";
+                                            if (evento._propietario == 1)
                                             {
-                                                <button class="btn btn-default btnEditar" title="Editar" @permiso.stringEditar>
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-default btnPublicar" title="@evento.txtBtnPublicar">
-                                                    <i class="@icoPublicar"></i>
-                                                </button>
+                                                evt1 = true;
+                                                group = "btn-group-vertical";
                                             }
-                                        </div>
-                                        <div class="@group">
-                                            @if (evt1)
+                                            if (evento._publicado)
                                             {
-                                                <button class="btn btn-default btnCompartir" title="Compartir">
-                                                    <i class="fa fa-share"></i>
-                                                </button>
-                                                <button class="btn btn-default btnEliminarEvento" title="Eliminar" @permiso.stringEliminar>
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
+                                                icoPublicar = "fa fa-ban";
                                             }
-                                        </div>
-                                    </div>
-                                    <div class="editMode hidden">
-                                        <div class='btn-group'>
-                                            <button class="btn btn-default btnActualizar">Actualizar</button>
-                                            <button class="btn btn-default btnCancelar">Cancelar</button>
-                                        </div>
-                                    </div>
-                                    <div class="quitarPublicacionMode hidden">
-                                        <div class='btn-group'>
-                                            <button class="btn btn-default btnAccionQuitarPublicacion">Quitar publicacion</button>
-                                            <button class="btn btn-default btnCancelaQuitarPublicacion">Cancelar</button>
-                                        </div>
+
+                                            <div class="row text-center sectionBotonesEvento">
+                                                <div class="row marginNull divMensajes">
+                                                </div>
+                                                <div class="normalMode">
+                                                    <div class="row marginNull divBotones">
+                                                        <div class='btn-block '>
+                                                            @if (evt1 || evento._propietario == 2)
+                                                            {
+                                                                <button class="btn btn-default btnEditar btnBack col-lg-6" title="Editar" @permiso.stringEditar>
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </button>
+                                                                <button class="btn btn-default btnPublicar btnBack col-lg-6" title="@evento.txtBtnPublicar">
+                                                                    <i class="@icoPublicar"></i>
+                                                                </button>
+                                                            }
+                                                        </div>
+                                                        <div class="btn-block">
+                                                            @if (evt1)
+                                                            {
+                                                                <button class="btn btn-default btnCompartir btnBack col-lg-6" title="Compartir">
+                                                                    <i class="fa fa-share"></i>
+                                                                </button>
+                                                                <button class="btn btn-default btnEliminarEvento btnBack col-lg-6" title="Eliminar" @permiso.stringEliminar>
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="editMode hidden">
+                                                    <div class='btn-group'>
+                                                        <button class="btn btn-default btnActualizar btnBack">Actualizar</button>
+                                                        <button class="btn btn-default btnCancelar btnBack">Cancelar</button>
+                                                    </div>
+                                                </div>
+                                                <div class="quitarPublicacionMode hidden">
+                                                    <div class='btn-group'>
+                                                        <button class="btn btn-default btnAccionQuitarPublicacion btnBack">Quitar publicacion</button>
+                                                        <button class="btn btn-default btnCancelaQuitarPublicacion btnBack">Cancelar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row marginNull divMensajesEvento text-center">
+
+                                            </div>
+                                        }
                                     </div>
                                 </div>
-                                <div class="row marginNull divMensajesEvento text-center" >
+                            }
 
+                        }
+                    </div>
+
+                    <!-- Hermoso acordeon de eventos -->
+                    @if (eventos != null && eventos.Count > 0 && false)
+                    {
+                        <div id="accordion">
+                            @foreach (Evento evento in eventos)
+                            {
+                                <h3 class="tabDesplegableEvento nombreEvento @evento.txtClaseColor ">
+                                    <span class="spanNombreEvento">@evento._evento</span>
+                                    <input type="hidden" name="txtHdTipoEvento" class="txtHdTipoEvento" value="@evento._propietario" />
+                                    <span class="spanPicture">
+                                        <i class="fa fa-picture-o"></i>
+                                    </span>
+                                </h3>
+                                <div class="tabDesplegableEvento detalleEvento">
+                                    <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
+                                    <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
+                                    <div class="row marginNull">
+                                        <a class="vinculoGay text-right" style="float:right" href="@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })">
+                                            @*<i class="fa fa-picture-o"></i>*@
+                                            Imagen evento
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="normalMode">
+                                            <p class="text-justify pDescripcionEvento">@( new HtmlString(evento._descripcion))</p>
+                                        </div>
+                                        <div class="editMode hidden" style="margin-bottom:5%;">
+                                            @*<label>Nombre de evento</label>*@
+                                            <input type="text" name="txtEvento2" class="inputBack txtEvento2 form-control" />
+                                        </div>
+                                        <div class="editMode hidden">
+                                            <div class="editMode hidden">
+                                                <label>Descripcion evento</label>
+                                            </div>
+                                            <textarea class="inputBack txtAreaDescripcion form-control" name="txtAreaDescripcion"></textarea>
+                                        </div>
+                                        <!-- Motivo para quitar publicacion -->
+                                        <div class="quitarPublicacionMode hidden">
+                                            <label class="text-center">Motivos para quitar del website</label>
+                                            <textarea class="inputBack txtAreaMotivoQuitar form-control" name="txtAreaMotivoQuitar"></textarea>
+                                        </div>
+                                        <!-- ------------------------------ -->
+                                        <hr />
+                                        <div class="row text-center">
+                                            <div class="col-lg-6">
+                                                <div class="normalMode">
+                                                    <label>Inicio: </label>
+                                                    <span class="spanFechaInicio">@evento.getFechaInicio</span>
+                                                </div>
+                                                <div class="editMode hidden">
+                                                    <label>Inicio: </label>
+                                                    <input class="dpFecha txtFechaInicio form-control inputBack" name="txtFechaInicio" />
+                                                    <div class="row marginNull divHora timeEdit">
+                                                        <input type="text" class="txtHoraInicio txtHora form-control" name="txtHoraInicio" readonly />
+                                                        <div class="horas"></div>
+                                                        <div class="minutos"></div>
+                                                        <div class="divTiempo">
+                                                            a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                                                            p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="normalMode">
+                                                    <label>Fin: </label>
+                                                    <span class="spanFechaFin">@evento.getFechaFin</span>
+                                                </div>
+                                                <div class="editMode hidden">
+                                                    <label>Fin: </label>
+                                                    <input class="dpFecha txtFechaFin form-control" name="txtFechaFin" />
+                                                    @*<input type="time" class="txtHoraFin txtHora form-control " name="txtHoraFin" />*@
+                                                    <div class="row marginNull divHora timeEdit">
+                                                        <input type="text" class="txtHoraFin txtHora form-control" name="txtHoraFin" readonly />
+                                                        <div class="horas"></div>
+                                                        <div class="minutos"></div>
+
+                                                        <div class="divTiempo">
+                                                            a.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbAm" value="0" />
+                                                            p.m. <input type="radio" name="tiempoInicio" class="rbTiempo rbPm" value="1" checked />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if (evento._propietario != 3)
+                                    {
+                                        bool evt1 = false; string group = "btn-group"; string icoPublicar = "fa fa-globe";
+                                        if (evento._propietario == 1)
+                                        {
+                                            evt1 = true;
+                                            group = "btn-group-vertical";
+                                        }
+                                        if (evento._publicado)
+                                        {
+                                            icoPublicar = "fa fa-ban";
+                                        }
+
+                                        <div class="row text-center sectionBotonesEvento">
+                                            <div class="row marginNull divMensajes">
+                                                bla bla bla
+                                            </div>
+                                            <div class="normalMode">
+                                                <div class='@group'>
+                                                    @if (evt1 || evento._propietario == 2)
+                                                    {
+                                                        <button class="btn btn-default btnEditar" title="Editar" @permiso.stringEditar>
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-default btnPublicar" title="@evento.txtBtnPublicar">
+                                                            <i class="@icoPublicar"></i>
+                                                        </button>
+                                                    }
+                                                </div>
+                                                <div class="@group">
+                                                    @if (evt1)
+                                                    {
+                                                        <button class="btn btn-default btnCompartir" title="Compartir">
+                                                            <i class="fa fa-share"></i>
+                                                        </button>
+                                                        <button class="btn btn-default btnEliminarEvento" title="Eliminar" @permiso.stringEliminar>
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="editMode hidden">
+                                                <div class='btn-group'>
+                                                    <button class="btn btn-default btnActualizar btnBack">Actualizar</button>
+                                                    <button class="btn btn-default btnCancelar btnBack">Cancelar</button>
+                                                </div>
+                                            </div>
+                                            <div class="quitarPublicacionMode hidden">
+                                                <div class='btn-group'>
+                                                    <button class="btn btn-default btnAccionQuitarPublicacion">Quitar publicacion</button>
+                                                    <button class="btn btn-default btnCancelaQuitarPublicacion">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row marginNull divMensajesEvento text-center">
+
+                                        </div>
+                                    }
                                 </div>
                             }
                         </div>
                     }
-                </div>
-            }
-            else
-            {
-                <div id="accordion">
+                    else
+                    {
+                        @*<div id="accordion">
 
                 </div>
                 <div class="row marginNull noEventoDiv">
                     <img src="~/Content/themes/iusback_theme/img/views/eventos/noevento.png" />
                     <h4>Usted no posee ningun evento</h4>
-                </div>
-            }
-            
-    </div>
-    <div class="col-lg-8 areaCompartir">
-        <input type="hidden" class="txtHdIdEvento" value="-1" />
-        <div id="tabCompartir">
-            <div id="tabUsuario">
-                <div class="row">
-                    <h3 class="hEventoUsuario text-center">Seleccione evento a compartir</h3>
-                    <div class="divMensajesCompartirGenerales">
+                </div>*@
+                    }
+                    @if (eventos != null && eventos.Count > 0 && false)
+                    {
+                        <div class="eventos">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                foreach (Evento evento in eventos)
+                                {
+                                    <div class="divEvento">
+                                        <h3>
+                                            <input type="hidden" name="txtHdTipoEvento" class="txtHdTipoEvento" value="@evento._propietario" />
 
-                    </div>
-                </div>
-                <div class="row seccionCompartir">
-                    <div class="col-lg-6">
-                        <div class="row marginNull frmCompartirUsuario">
-                            <select class="cbUsuarioCompartir" name="cbUsuarioCompartir">
-                                <option value="-1" disabled selected>Seleccione usuario</option>
-                            </select>
-                            <button class="btn btn-default btnAgregarUsuarioCompartir">Agregar</button>
-                            <div class="divResultadoAgregarUsuario text-center"></div>
+                                            @evento._evento
+                                        </h3>
+                                        <input type="hidden" name="txtHdIdEvento" class="txtHdIdEvento" value="@evento._idEvento" />
+                                        <input type="hidden" name="txtHdEstadoEvento" class="txtHdEstadoEstado" value="@Convert.ToInt32(evento._publicado)" />
+
+                                    </div>
+                                }
+                            }
                         </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Usuario</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody class="tbUsuarios"></tbody>
-                        </table>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <select class="cbPermisosCompartir" multiple></select>
-                            
-                            <button class="btn btnPermisos btn-default">Agregar</button>
-                            <div class="divResultado hidden">
+                    }
+                </div>
+                <div class="row marginNull">
+                    <div class="padrePaginador">
+                        <div class="paginador navPaginador atras">
+                            <
+                        </div>
 
+                        @do
+                        {
+                            
+                            string active = "activeGrupoPaginador";
+                            string display = "";
+                            //numPagina > (iteradorPaginador * num - num) && numPagina <= iteradorPaginador * num || (cnEvento >= numPagina*num-num &&  cnEvento <= numPagina * num) 
+                            int l1 = cnPaginador * num - num,l2=cnPaginador * num;
+                            if (numPagina >= cnPaginador && numPagina <= (cnPaginador +2))
+                            {
+                                display = "";
+                                active = "activeGrupoPaginador";
+                            }
+                            else
+                            {
+                                display = "display:none";
+                                active = "";
+                            }
+                            string activeNum;
+                            bool saltar = false;
+                            
+                            <div class="containerPaginador @active" style="@display" >
+                                
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    if (numPagina == cnPaginador) {
+                                        activeNum = "activePaginador";
+                                    }
+                                    else
+                                    {
+                                        activeNum = "";
+                                    }
+                                    
+                                    if ( cnEvento <=l1  )
+                                    {
+                                        saltar = true;
+                                        
+                                    }
+                                    
+                                    if (saltar && cnPaginador != 1 )
+                                    {
+                                        break;
+                                    }
+                                    <div class="@activeNum paginador" id="@(cnPaginador)">@(cnPaginador)</div>
+                                    cnPaginador++; // cuenta numero de registros
+                                }
+                                
+                            </div>
+                            
+                            iteradorPaginador++;
+                            //cnPaginador += 3;
+                        } while ( (cnEvento > cnPaginador * num - num) && cnEvento <= cnPaginador*num );
+                        <div class="paginador navPaginador adelante">
+                            >
+                        </div>
+                        @*<div class="paginador" id="1">1</div>
+                        <div class="paginador" id="2">2</div>
+                        <div class="paginador" id="3">3</div>*@
+                    </div>
+                </div>
+                <div class="col-lg-12 areaCompartir">
+                    <input type="hidden" class="txtHdIdEvento" value="-1" />
+                    <div id="tabCompartir">
+                        <div id="tabUsuario">
+                            <div class="row">
+                                <h3 class="hEventoUsuario text-center">Seleccione evento a compartir</h3>
+                                <div class="divMensajesCompartirGenerales">
+
+                                </div>
+                            </div>
+                            <div class="row marginNull seccionCompartir">
+                                <div class="row marginNull">
+                                    @*<h3>Seleccione evento a compartir</h3>*@
+                                </div>
+                                <div class="row marginNull">
+                                    <div class="col-lg-6">
+                                        <div class="row marginNull frmCompartirUsuario">
+                                            <select class="selectBack cbUsuarioCompartir" name="cbUsuarioCompartir">
+                                                <option value="-1" disabled selected>Seleccione usuario</option>
+                                            </select>
+                                            <button class="btn btnBack btn-default btnAgregarUsuarioCompartir">Agregar</button>
+                                            <div class="divResultadoAgregarUsuario text-center"></div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Usuario</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tbUsuarios"></tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <select class="cbPermisosCompartir" multiple></select>
+
+                                            <button class="btn btnBack btnPermisos btn-default">Agregar</button>
+                                            <div class="divResultado hidden">
+
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Permisos</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="tbPermisos"></tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Permisos</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                
-                            </thead>
-                            <tbody class="tbPermisos"></tbody>
-                        </table>
-                        
-                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
+

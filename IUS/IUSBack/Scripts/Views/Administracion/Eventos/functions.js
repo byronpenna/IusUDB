@@ -1,4 +1,159 @@
-﻿// load
+﻿function changeUrl(nombreClass, funcion, id1, id2, id3) {
+    window.history.pushState({}, "", "/" + nombreClass + "/" + funcion + "/" + id1 + "/" + id2 + "/" + id3);
+}
+function paginador(frm,btn) {
+    actualizarCatalogo(RAIZ + "/Administracion/ajax_getEventosCalendario", frm, function (data) {
+        if (data.estado) {
+            console.log("La respuesta es: ", data);
+            var resp = data.respEventos;
+            //resp.eventos;
+            //var divEventos = 
+            var divEventos = "";
+            console.log("bla bla bla " + resp.eventos.length + " ", resp.eventos);
+            if (resp.eventos !== undefined && resp.eventos != null && resp.eventos.length > 0) {
+                console.log("Eventos xxxx entro aqui ")
+                $.each(resp.eventos, function (i, evento) {
+                    divEventos += getDivEventoi(evento);
+                })
+            }
+            $(".contenedorEvento").empty().append(divEventos);
+
+            $(".activePaginador").removeClass("activePaginador");
+
+            btn.addClass("activePaginador");
+        }
+    });
+}
+//@Url.Action("ImagenEvento", "Administracion", new {id=evento._idEvento })
+function getDivEventoi(evento) {
+    var divEvento = "\
+    <div class='col-lg-6'>\
+        <div class='divEventoi borde'>\
+            <input type='hidden' name='txtHdIdEvento' class='txtHdIdEvento' value='1106'>\
+            <input type='hidden' name='txtHdEstadoEvento' class='txtHdEstadoEstado' value='0'>\
+            <div class='divNombreEvento'>\
+                <div class='normalMode'>\
+                    <h4 class='spanNombreEvento'>"+evento._evento+"</h4>\
+                </div>\
+                <div class='editMode hidden' style='margin-bottom:5%;'>\
+                    <label>Nombre de evento</label>\
+                    <input type='text' name='txtEvento2' class='inputBack txtEvento2 form-control'>\
+                </div>\
+            </div>\
+            <div class='row marginNull divImage normalMode precarga'>\
+                <a href='" + RAIZ + "/Administracion/ImagenEvento/" + evento._idEvento + "'>\
+                <img src='" + RAIZ + "/Administracion/getImageThumbnailEvent/" + evento._idEvento + "" + "'>\
+                </a>\
+            </div>\
+            <div class='row marginNull divTituloDescripcion'>\
+                Descripción\
+            </div>\
+            <div class='row marginNull'>\
+                <div class='normalMode'>\
+                    <p class='text-justify pDescripcionEvento'>" + evento._descripcion + "</p>\
+                </div>\
+                <div class='editMode hidden'>\
+                    <textarea class='inputBack txtAreaDescripcion form-control' name='txtAreaDescripcion'></textarea>\
+                </div>\
+                <div class='quitarPublicacionMode hidden'>\
+                    <label class='text-center'>Motivos para quitar del website</label>\
+                    <textarea class='inputBack txtAreaMotivoQuitar form-control' name='txtAreaMotivoQuitar'></textarea>\
+                </div>\
+                <div class='row text-center divHorai'>\
+                    <div class='col-lg-6'>\
+                        <div class='normalMode'>\
+                            <label>Inicio: </label>\
+                            <span class='spanFechaInicio'>19/10/2016 01:00:00 </span>\
+                        </div>\
+                        <div class='editMode hidden'>\
+                            <label>Inicio: </label>\
+                            <input class='dpFecha txtFechaInicio form-control inputBack hasDatepicker' name='txtFechaInicio'>\
+                            <div class='row marginNull divHora timeEdit'>\
+                                <input type='text' class='txtHoraInicio txtHora form-control inputBack' name='txtHoraInicio' readonly>\
+                                <div class='horas btnBack'></div>\
+                                <div class='minutos btnBack'></div>\
+                                <div class='divTiempo'>\
+                                    a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0'>\
+                                    p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1'>\
+                                </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <div class='col-lg-6'>\
+                        <div class='normalMode'>\
+                            <label>Fin: </label>\
+                            <span class='spanFechaFin'>19/10/2016 02:00:00 </span>\
+                        </div>\
+                        <div class='editMode hidden'>\
+                            <label>Fin: </label>\
+                            <input class='dpFecha txtFechaFin form-control inputBack hasDatepicker' name='txtFechaFin'>\
+                            <div class='row marginNull divHora timeEdit'>\
+                                <input type='text' class='txtHoraFin txtHora form-control inputBack' name='txtHoraFin' readonly>\
+                                    <div class=' horas btnback'>\
+                            </div>\
+                            <div class='minutos btnBack'>\
+                            </div>\
+                            <div class='divTiempo'>\
+                                a.m. <input type='radio' name='tiempoFin' class='rbTiempo rbAm' value='0'>\
+                                p.m. <input type='radio' name='tiempoFin' class='rbTiempo rbPm' value='1' checked>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+            <div class='row text-center sectionBotonesEvento'>\
+                <div class='row marginNull divMensajes'>\
+                </div>\
+                <div class='normalMode'>\
+                    <div class='row marginNull divBotones'>\
+                        <div class='btn-block '>\
+                            <button class='btn btn-default btnEditar btnBack col-lg-6' title='Editar' enabled>\
+                                <i class='fa fa-pencil'></i>\
+                            </button>\
+                            <button class='btn btn-default btnPublicar btnBack col-lg-6' title='Publicar'>\
+                                <i class='fa fa-globe'></i>\
+                            </button>\
+                        </div>\
+                        <div class='btn-block'>\
+                            <button class='btn btn-default btnCompartir btnBack col-lg-6' title='Compartir'>\
+                                <i class='fa fa-share'></i>\
+                            </button>\
+                            <button class='btn btn-default btnEliminarEvento btnBack col-lg-6' title='Eliminar' enabled>\
+                                <i class='fa fa-trash'></i>\
+                            </button>\
+                        </div>\
+                    </div>\
+                </div>\
+                <div class='editMode hidden'>\
+                    <div class='btn-group'>\
+                        <button class='btn btn-default btnActualizar btnBack'>Actualizar</button>\
+                        <button class='btn btn-default btnCancelar btnBack'>Cancelar</button>\
+                    </div>\
+                </div>\
+                <div class='quitarPublicacionMode hidden'>\
+                    <div class='btn-group'>\
+                        <button class='btn btn-default btnAccionQuitarPublicacion btnBack'>Quitar publicacion</button>\
+                        <button class='btn btn-default btnCancelaQuitarPublicacion btnBack'>Cancelar</button>\
+                    </div>\
+                </div>\
+            </div>\
+            <div class='row marginNull divMensajesEvento text-center'>\
+            </div>\
+        </div>\
+    </div>\
+</div>\
+    ";
+    return divEvento;
+}
+// load
+    function iniciales() {
+        var i = $(".txtHdIdTab").val();
+        if (i == -1) {
+            i = 1;
+        }
+        i--;
+        $(".tabs li")[i].click();
+    }
     function eventosIniciales() {
         var frm = new Object();
         actualizarCatalogo(RAIZ+"/Administracion/sp_adminfe_getEventosPrincipales", frm, function (data) {
@@ -377,7 +532,7 @@
                         </td>\
                         <td>"+ usuarioEvento._usuario._usuario + "</td>\
                         <td>\
-                            <button class='btn btn-default icoQuitarUsuario btn-xs'>\
+                            <button class='btn btnBack btn-default icoQuitarUsuario'>\
                                 <i class='fa fa-trash'></i>\
                             </button>\
                         </td>\
@@ -419,7 +574,7 @@
                             </td>\
                             <td>" + PermisoUsuarioEvento._permiso._permiso + "</td>\
                             <td>\
-                                <button class='btn btn-default icoEliminarPermisoEvento'>\
+                                <button class='btn btn-default icoEliminarPermisoEvento btnBack'>\
                                     <i class='fa fa-trash pointer'/>\
                                 </button>\
                             </td>\
@@ -449,13 +604,15 @@
             div.find(".txtFechaFin").val(evento._fechaFin);
             div.find(".txtHoraFin").val(evento._horaFin);
             div.find(".txtHoraInicio").val(evento._horaInicio);
+            // po
+            inputsTime($(".minutos"), $(".horas"));
         }
         function llenarInputsVista(evento,div){
-            h3 = div.prev();
+            //h3 = div.prev();
             div.find(".pDescripcionEvento").empty().append(evento._descripcion);
             div.find(".spanFechaInicio").empty().append(evento.getFechaInicio);
             div.find(".spanFechaFin").empty().append(evento.getFechaFin);
-            h3.find(".spanNombreEvento").empty().append(evento._evento);
+            div.find(".spanNombreEvento").empty().append(evento._evento);
         }
         function getEventosAcordion(evento,permisos) {
             if(evento._publicado){
@@ -532,8 +689,8 @@
                                                 <div class='horas " + evento._idEvento + "h '></div>\
                                                 <div class='minutos " + evento._idEvento + "m '></div>\
                                                 <div class='divTiempo'>\
-                                                    a.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbAm' value='0' />\
-                                                    p.m. <input type='radio' name='tiempoInicio' class='rbTiempo rbPm' value='1' checked />\
+                                                    a.m. <input type='radio' name='tiempoFin' class='rbTiempo rbAm' value='0' />\
+                                                    p.m. <input type='radio' name='tiempoFin' class='rbTiempo rbPm' value='1' checked />\
                                                 </div>\
                                             </div>\
                                         </div>\
@@ -799,6 +956,8 @@
                 h3 = detalle.prev();
                 frm.txtEvento = h3.find(".txtEvento2").val();
                 console.log("La fecha de inicio es", frm.txtHoraInicio);
+                frm.txtHoraInicio   = horaConvert(frm.txtHoraInicio);
+                frm.txtHoraFin      = horaConvert(frm.txtHoraFin);
                 if (frm.txtHoraInicio != "" && frm.txtHoraFin != "") {
                     var exp = /^\d{4}[-/.]\d{1,2}[-/.]\d{1,2}$/;
                     if (exp.test(frm.txtFechaInicio) && exp.test(frm.txtFechaFin)) {
@@ -853,8 +1012,8 @@
                 _horaInicio: fechaIni.substring( separadorIni,fechaIni.length),
                 _horaFin:  fechaFin.substring(separadorFin,fechaFin.length)
             }
-            h3 = div.prev();
-            div.find(".txtEvento2").val(h3.find(".spanNombreEvento").text());
+            //h3 = div.prev();
+            div.find(".txtEvento2").val(div.find(".spanNombreEvento").text());
             llenarInputsEdicion(evento, div);
             controlesEdit(true, div);
         
@@ -928,18 +1087,22 @@
         
         }
         function btnCompartir(detalle) {
-            h3  = detalle.prev();
+            //h3  = detalle.prev();
             tab = $("#tabUsuario");
-            $(".hEventoUsuario").empty().append(h3.find(".spanNombreEvento").text());
+            $(".hEventoUsuario").empty().append(detalle.find(".spanNombreEvento").text());
             tab.css("background", 'rgba(229,229, 229, 0.5)');
+            irA($("#tabCompartir"));
             tab.animate({
                 backgroundColor: "white"
             }, 500);
-            cargarCompartir(detalle,tab);
+            cargarCompartir(detalle, tab);
+
         }
         function trUsuarioCompartido(tr) {
             tbody = tr.parents("tbody");
             tbody.find(".clickTr").removeClass("clickTr");
+            //$(".activeTr").removeClass(".activeTr");
+            //cambioBackgroundColorTrGeneral(".trSubMenu", "#bdc3c7", ".activeTr", { antes: "black", despues: "white" }, tr);
             tr.addClass("clickTr");
             frm = {
                 idUsuarioEvento: tr.find(".txtHdIdUsuarioEvento").val(),

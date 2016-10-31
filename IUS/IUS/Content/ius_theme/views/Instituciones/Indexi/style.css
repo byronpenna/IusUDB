@@ -98,18 +98,17 @@
 .divTel a {
   color: #414141; }
 
-.paginador {
-  cursor: pointer;
-  display: inline-block;
-  border: solid 1px #828181;
-  width: 30px;
-  text-align: center;
-  padding-top: 1%;
-  padding-bottom: 1%; }
-
 .tdPaginador {
   text-align: center;
   font-size: 0.8em; }
+  .tdPaginador .paginador {
+    cursor: pointer;
+    display: inline-block;
+    border: solid 1px #828181;
+    width: 30px;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%; }
 
 .tdLink a {
   color: #414141; }

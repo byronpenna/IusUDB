@@ -46,7 +46,7 @@ namespace IUSBack.Controllers
                 }
                 //return null;
             }
-            public ActionResult Eventos(int id=1)
+            public ActionResult Eventos(int id=1,int id2=1,int id3=4)
             {
                 /*
                  id: representa la pestaña en la que se encuentra actualmente
@@ -59,11 +59,17 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    List<Evento> eventos    = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                    string appPath          = System.Web.Hosting.HostingEnvironment.MapPath("~/");
+                    Dictionary<object, object> respuestaEventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos, id3, id2);
+                    List<Evento> eventos    = (List<Evento>)respuestaEventos["eventos"];
                     ViewBag.titleModulo     = "Eventos";
                     ViewBag.usuario         = usuarioSession;
                     ViewBag.eventos         = eventos;
+                    ViewBag.cnEvento        = respuestaEventos["cnEvento"];
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.idTab           = id;
+                    ViewBag.numPagina       = id2;
+                    ViewBag.num             = id3;
                     // variables de navegación
                         ViewBag.nombreClass     = this._nombreClass.Replace("Controller","");
                         ViewBag.nombreFuncion   = "Eventos";
@@ -612,6 +618,36 @@ namespace IUSBack.Controllers
                     }
                 #endregion
                 #region "gets"
+                    public ActionResult ajax_getEventosCalendario()
+                    {
+                        Dictionary<object, object> frm, respuesta = null;
+                        try
+                        {
+                            frm = this.getAjaxFrm();
+                            Usuario usuarioSession = this.getUsuarioSesion();
+
+                            respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                            if (respuesta == null)
+                            {
+                                respuesta = new Dictionary<object,object>();
+                                Dictionary<object, object> respuestaEventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos,this.convertObjAjaxToInt(frm["n"]),this.convertObjAjaxToInt(frm["pagina"]));
+                                respuesta.Add("estado", true);
+                                respuesta.Add("respEventos", respuestaEventos);
+                            }
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                            respuesta = this.errorTryControlador(1, error);
+                        }
+                        catch (Exception x)
+                        {
+                            ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                            respuesta = this.errorTryControlador(2, error);
+                        }
+
+                        return Json(respuesta);
+                    }
                     public ActionResult sp_adminfe_buscarAllEventosPersonalesByDate()
                     {
                         Dictionary<object, object> frm, respuesta = null;
@@ -704,7 +740,9 @@ namespace IUSBack.Controllers
                         Usuario usuarioSession = this.getUsuarioSesion();
                         try
                         {
-                            List<Evento> eventos = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                            string appPath = System.Web.Hosting.HostingEnvironment.MapPath("~/");
+                            Dictionary<object, object> respuestaEvento = this._model.sp_adminfe_eventosCalendario(usuarioSession._idUsuario, this._idPaginaEventos);
+                            List<Evento> eventos = (List<Evento>)respuestaEvento["eventos"];
                             respuesta.Add("estado", true);
                             respuesta.Add("eventos", eventos);
                         }

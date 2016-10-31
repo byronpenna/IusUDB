@@ -1,8 +1,13 @@
-﻿@{
-    ViewBag.Title = "DBNotAccess";
+﻿@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/NotFound/stylei.css" />
 }
-
-<h2>DBNotAccess</h2>
-<p>
-    Es imposible para el sistema acceder a la base de datos, por favor comuniquese con soporte tecnico
+@{
+    ViewBag.Title = "DBNotAccess";
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+}
+<div class="divErrorPage">
+    <h2>DBNotAccess</h2>
+    <p>
+        Es imposible para el sistema acceder a la base de datos, por favor comuniquese con soporte tecnico
     </p>
+</div>
