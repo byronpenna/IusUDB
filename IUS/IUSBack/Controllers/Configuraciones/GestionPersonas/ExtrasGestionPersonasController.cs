@@ -337,7 +337,9 @@ namespace IUSBack.Controllers.GestionPersonas
                     if (respuesta == null)
                     {
                         InformacionPersona informacion = new InformacionPersona(this.convertObjAjaxToInt(frm["cbPais"]), frm["txtNumeroIdentificacion"].ToString(), this.convertObjAjaxToInt(frm["cbEstadoCivil"]), this.convertObjAjaxToInt(frm["txtHdIdPersona"]));
+                        informacion._institucion= new IUSLibs.FrontUI.Entidades.Institucion(this.convertObjAjaxToInt(frm["cbInstitucionMiembro"]));
                         InformacionPersona informacionAgregada = this._model.sp_rrhh_guardarInformacionPersona(informacion, usuarioSession._idUsuario, this._idPagina);
+                        
                         if(informacion != null){
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);

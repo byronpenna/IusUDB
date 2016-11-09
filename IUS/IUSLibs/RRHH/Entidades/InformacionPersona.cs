@@ -20,6 +20,7 @@ namespace IUSLibs.RRHH.Entidades
             // adicionales
             public bool         _tieneFoto          = false;
             public bool         _tieneCurriculumn   = false;
+            public Institucion  _institucion;
         #endregion
             public void instanciaPais()
             {

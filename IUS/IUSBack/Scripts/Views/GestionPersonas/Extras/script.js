@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     // plugins
         $(".cbPais").chosen({ no_results_text: "Pais no encontrado", width: '100%' });
+        $(".cbInstitucionMiembro").chosen({ no_results_text: "Institucion no encontrada", width: '100%' });
         $(".cbPersonas").chosen({ no_results_text: "No se a encontrado personas", width: '100%' });
         // jcrop
             var jcrop_api = null;

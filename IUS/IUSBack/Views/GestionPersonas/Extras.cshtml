@@ -45,6 +45,7 @@
     List<TelefonoPersona>   telefonosPersonas   = null;  List<EmailPersona> emailsPersonas  = null;
     InformacionPersona      informacionPersona  = null;  List<EstadoCivil>  estadosCiviles  = null; 
     List<Pais>              paises              = null;  List<Persona>      personas        = null;
+    List<Institucion>       instituciones       = null;
     Persona persona = null;
     string strFoto = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png"); //~/Content/themes/iusback_theme/img/general/profle.png
     Permiso permisos    = (Permiso)ViewBag.permiso;
@@ -63,7 +64,8 @@
         estadosCiviles      = (List<EstadoCivil>)       ViewBag.estadosCiviles;
         paises              = (List<Pais>)              ViewBag.paises;
         persona             = (Persona)                 ViewBag.persona;
-        personas            = (List<Persona>)ViewBag.personas;
+        personas            = (List<Persona>)           ViewBag.personas;
+        instituciones       = (List<Institucion>)       ViewBag.instituciones;
         if (informacionPersona != null)
         {
             if (informacionPersona._tieneFoto)
@@ -225,6 +227,27 @@
                                 </div>
                             </div>
                             <div class="divControl row marginNull">
+                                <label>Institución miembro</label>
+                                <select class="selectBack inputBack cbInstitucionMiembro form-control" name="cbInstitucionMiembro">
+                                    <option value="-1">No aplica</option>
+                                    @if (instituciones != null && instituciones.Count > 0)
+                                    {
+                                        
+                                        foreach (Institucion institucion in instituciones)
+                                        {
+                                            if (institucion._idInstitucion == informacionPersona._institucion._idInstitucion) {
+                                                selected = "selected";
+                                            }
+                                            else
+                                            {
+                                                selected = "";
+                                            }
+                                            <option @selected value="@institucion._idInstitucion">@institucion._nombre</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="divControl row marginNull">
                                 <label>Seleccione estado civil</label>
                                 <select class="selectBack inputBack cbEstadoCivil form-control" name="cbEstadoCivil">
                                     <option value="-1">Seleccione estado civil</option>
@@ -250,6 +273,7 @@
 
                                 </div>
                             </div>
+                            
                         </div>
 
                         <button class="btnBack btn btnGuardarInformacionBasica btnBack btn-default" @permisos.stringCrear>

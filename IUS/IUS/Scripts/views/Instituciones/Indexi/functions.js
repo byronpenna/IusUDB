@@ -146,7 +146,7 @@ function buscarContinente(frm) {
             <tr>\
                 <td class='tdNombre'>"+ institucion._pais._pais + " </td>\
                 <td class='tdNombre tdLink'>\
-                   <a href='" + url + "'> " + institucion._nombre + " </a>\
+                   <a href='" + url + "'  target='_blank'> " + institucion._nombre + " </a>\
                 </td>\
                 <td class='tdNombre'>" + ciudad + "</td>\
                 <td>\
