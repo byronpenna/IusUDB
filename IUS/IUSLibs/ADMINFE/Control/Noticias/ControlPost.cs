@@ -19,6 +19,41 @@ namespace IUSLibs.ADMINFE.Control.Noticias
     {
         #region "backend"
             #region "Get"
+                public List<NotiEvento> sp_adminfe_aprobarnoticia_getNoticiasAprobar(int idUsuarioEjecutor,int idPagina)
+                {
+                    NotiEvento noticiaEvento;
+                    List<NotiEvento> noticiasEventos = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_aprobarnoticia_getNoticiasAprobar");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            //[0]
+                                if (tb[0].Rows.Count > 0)
+                                {
+                                    noticiasEventos = new List<NotiEvento>();
+                                    foreach(DataRow row in tb[0].Rows){
+                                        noticiaEvento = new NotiEvento((int)row["id"],row["titulo"].ToString(),row["descripcion"].ToString(),(int)row["tipoEntrada"]);
+                                        noticiaEvento._fecha = (DateTime)row["fecha"];
+                                        noticiasEventos.Add(noticiaEvento);
+                                    }
+                                }
+                        }
+                        return noticiasEventos;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                
                 public List<Post> sp_adminfe_noticias_getPosts(int idUsuarioEjecutor, int idPagina) {
                     List<Post> posts = null; Idioma idioma;
                     Post post;
@@ -117,8 +152,51 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return retorno;
                 }
+
+                
             #endregion
             #region "Acciones"
+                public NotiEvento sp_adminfe_aprobarNoticia_cambiarEstado(NotiEvento notiEventoCambio,int idUsuarioEjecutor, int idPagina)
+                {
+
+                    SPIUS sp = new SPIUS("sp_adminfe_aprobarNoticia_cambiarEstado");
+                    NotiEvento noticiaEvento = null;
+                    /*
+                        @				date,
+		                @					int,
+		                @	int,
+		                -- seguridad 
+		                @idUsuarioEjecutor	int,
+		                @idPagina			int
+                     */
+                    sp.agregarParametro("caducidad", notiEventoCambio._fechaCaducidad);
+                    sp.agregarParametro("idPost", notiEventoCambio._id);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                noticiaEvento = new NotiEvento((int)row["id_post_fk"]);
+                            }
+                        }
+                        return noticiaEvento;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                
                 public bool sp_adminfe_noticias_modificarPost(Post postActualizar, int idUsuarioEjecutor,int idPagina)
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_modificarPost");

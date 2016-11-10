@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Administracion\AdministracionController.cs" />
+    <Compile Include="Controllers\Administracion\Noticias\AprobarNoticiaAccionController.cs" />
     <Compile Include="Controllers\Administracion\Noticias\ComentarioNoticiaController.cs" />
     <Compile Include="Controllers\Configuraciones\ConfigRepoController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\FormacionPersonasController.cs" />
@@ -219,7 +220,9 @@
     </Compile>
     <Compile Include="Models\General\Coordenadas.cs" />
     <Compile Include="Models\General\GestionFileServerModel.cs" />
+    <Compile Include="Models\General\NoticiaEvento.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\AdministracionModel.cs" />
+    <Compile Include="Models\Page\Administracion\Acciones\AprobarNoticiasModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\ComentarioModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\NoticiasModel.cs" />
     <Compile Include="Models\Page\ConfigRepo\Acciones\ConfigRepoModel.cs" />
@@ -501,6 +504,7 @@
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\ImagenEvento\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\ImagenEvento\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\aprobar\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />
@@ -692,6 +696,8 @@
     <Content Include="Models\Scripts\Generales\script.js" />
     <Content Include="Models\Scripts\Views\Administracion\Eventos\functions.js" />
     <Content Include="Models\Scripts\Views\Administracion\Eventos\script.js" />
+    <Content Include="Models\Scripts\Views\Administracion\Noticias\Aprobar\functions.js" />
+    <Content Include="Models\Scripts\Views\Administracion\Noticias\Aprobar\script.js" />
     <Content Include="Models\Scripts\Views\Administracion\Noticias\functions.js" />
     <Content Include="Models\Scripts\Views\Administracion\Noticias\script.js" />
     <Content Include="Models\Scripts\Views\ConfiguracionWebsite\functions.js" />
@@ -714,6 +720,8 @@
     <Content Include="Scripts\Views\Administracion\Eventos\script.js" />
     <Content Include="Scripts\Views\Administracion\ImagenEvento\functions.js" />
     <Content Include="Scripts\Views\Administracion\ImagenEvento\script.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\aprobar\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\aprobar\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\functions.js" />
@@ -963,6 +971,7 @@
     <Content Include="Views\Shared\_Layouti.cshtml" />
     <Content Include="Views\Home\Indexi.cshtml" />
     <Content Include="Views\Shared\footeri.cshtml" />
+    <Content Include="Views\Noticias\AprobarNoticia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

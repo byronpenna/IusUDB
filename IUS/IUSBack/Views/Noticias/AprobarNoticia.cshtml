@@ -1,0 +1,70 @@
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias;
+@section estilosPersonalizados{
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/stylei.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+        <script src="~/Scripts/Views/Administracion/Noticias/aprobar/functions.js"></script>
+        <script src="~/Scripts/Views/Administracion/Noticias/aprobar/script.js"></script>
+}
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<NotiEvento> noticiasEventos = null;
+    try
+    {
+        noticiasEventos = (List<NotiEvento>)ViewBag.notiEvento;
+    }
+    catch (Exception)
+    {
+    }
+}
+<div class="marginNull centroPagina cuerpoIndex">
+    <div class="centro">
+        <div class="row marginNull rowNavegacion">
+            <span>
+                <a href="@Url.Action("Index","Home")">
+                    Menu principal
+                </a>
+            </span>
+            >>>
+            <span class="titulo">
+                Gestion de personas
+            </span>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Descripción</th>
+                    <th>Tipo</th>
+                    <th>Caducidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (noticiasEventos != null && noticiasEventos.Count > 0)
+                {
+                    foreach (NotiEvento noticiaEvento in noticiasEventos)
+                    {
+                        <tr>
+                            <td class="hidden">
+                                <input class="txtHdIdNotiEvento" name="txtHdIdNotiEvento" value="@noticiaEvento._id" />
+                            </td>
+                            <td>@noticiaEvento._titulo</td>
+                            <td>@noticiaEvento._descripcion</td>
+                            <td>@noticiaEvento.getStrTipoEntrada</td>
+                            <td>
+                                <input type="text" class="txtFechaCaducidad" name="txtFechaCaducidad" />
+                            </td>
+                            <td>
+                                <button class="btn btnBack btnCambiarEstado">Aprobar</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

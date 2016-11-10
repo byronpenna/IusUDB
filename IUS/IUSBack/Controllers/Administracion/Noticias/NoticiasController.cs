@@ -128,6 +128,31 @@ namespace IUSBack.Controllers
                     return error.redirectToError(x, "ModificarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
+            public ActionResult AprobarNoticia()
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    AprobarNoticiasModel modelo = new AprobarNoticiasModel();
+                    ViewBag.notiEvento = modelo.sp_adminfe_aprobarnoticia_getNoticiasAprobar(usuarioSession._idUsuario, this._idPagina);
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+            }
             public ActionResult IngresarNoticia()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
@@ -176,6 +201,7 @@ namespace IUSBack.Controllers
                 return RedirectToAction("index", "login");
             }*/
             }
+            
         #endregion
         #region "generics"
             
