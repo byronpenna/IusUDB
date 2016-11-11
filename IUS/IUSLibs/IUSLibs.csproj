@@ -82,6 +82,7 @@
     <Compile Include="ADMINFE\Control\ControlPermisoUsuarioEvento.cs" />
     <Compile Include="ADMINFE\Control\ControlSliderImage.cs" />
     <Compile Include="ADMINFE\Control\ControlUsuarioEvento.cs" />
+    <Compile Include="ADMINFE\Control\Noticias\ControlAprobacion.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlCategoriaPost.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlPost.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlPostCategoria.cs" />
