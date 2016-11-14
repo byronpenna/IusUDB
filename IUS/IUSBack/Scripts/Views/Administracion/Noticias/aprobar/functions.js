@@ -8,7 +8,9 @@
                 <td>" + notiEvento.getStrTipoEntrada + "</td>\
                 <td>fecha caducidad</td>\
                 <td>\
-                    <button>Dar de baja</button>\
+                    <button class='btn btn-default btnBack'>\
+                        Quitar\
+                    </button>\
                 </td>\
             </tr>\
         ";

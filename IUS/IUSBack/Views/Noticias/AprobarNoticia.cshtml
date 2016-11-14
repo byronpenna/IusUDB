@@ -20,90 +20,90 @@
     {
     }
 }
-<div class="marginNull centroPagina ">
-    <div class="centro">
-        <div class="row marginNull rowNavegacion">
-            <span>
-                <a href="@Url.Action("Index","Home")">
-                    Menu principal
-                </a>
-            </span>
-            >>>
-            <span class="titulo">
-                Aprobar noticia
-            </span>
+<div class="row marginNull centroPagina centroAprobar">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Aprobar noticia
+        </span>
+    </div>
+    <div class="row marginNull ">
+        <div class="col-lg-3">
+            <ul class="tabs">
+                <li class="btnTab tabActive" target="#tab-1" id="1">
+                    <span>Aprobar</span>
+                </li>
+                <li class="btnTab tabRevision" target="#tab-2" id="2">
+                    Revisión
+                </li>
+            </ul>
         </div>
-        <div class="row marginNull ">
-            <div class="col-lg-3">
-                <ul class="tabs">
-                    <li class="btnTab tabActive" target="#tab-1" id="1">
-                        <span>Aprobar</span>
-                    </li>
-                    <li class="btnTab tabRevision" target="#tab-2" id="2">
-                        Revisión
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-9">
-                <div class="row marginNull cuerpoIndex">
-                    <div class="centro">
-                        <div id="tab-1" class="tab marginNull">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="th1">Titulo</th>
-                                        <th class="th2">Descripción</th>
-                                        <th class="th3">Tipo</th>
-                                        <th class="th4">Caducidad</th>
-                                        <th class="th5">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (noticiasEventos != null && noticiasEventos.Count > 0)
+        <div class="col-lg-9">
+            <div class="row marginNull cuerpoIndex">
+                <div class="centro">
+                    <div id="tab-1" class="tab marginNull">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="th1">Titulo</th>
+                                    <th class="th2">Descripción</th>
+                                    <th class="th3">Tipo</th>
+                                    <th class="th4">Caducidad</th>
+                                    <th class="th5">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (noticiasEventos != null && noticiasEventos.Count > 0)
+                                {
+                                    foreach (NotiEvento noticiaEvento in noticiasEventos)
                                     {
-                                        foreach (NotiEvento noticiaEvento in noticiasEventos)
-                                        {
-                                            <tr>
-                                                <td class="hidden">
-                                                    <input class="txtHdIdNotiEvento" name="txtHdIdNotiEvento" value="@noticiaEvento._id" />
-                                                    <input class="txtHdTipoEvento" name="txtHdTipoEvento" value="@noticiaEvento._idTipoEntrada" />
-                                                </td>
-                                                <td>@noticiaEvento._titulo</td>
-                                                <td>@noticiaEvento._descripcion</td>
-                                                <td>@noticiaEvento.getStrTipoEntrada</td>
-                                                <td>
-                                                    <input type="text" class="form-control inputBack txtFechaCaducidad" name="txtFechaCaducidad" />
-                                                </td>
-                                                <td>
-                                                    <button class="btn btnBack btnCambiarEstado">Aprobar</button>
-                                                </td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="hidden">
+                                                <input class="txtHdIdNotiEvento" name="txtHdIdNotiEvento" value="@noticiaEvento._id" />
+                                                <input class="txtHdTipoEvento" name="txtHdTipoEvento" value="@noticiaEvento._idTipoEntrada" />
+                                            </td>
+                                            <td>@noticiaEvento._titulo</td>
+                                            <td>@noticiaEvento._descripcion</td>
+                                            <td>@noticiaEvento.getStrTipoEntrada</td>
+                                            <td>
+                                                <input type="text" class="form-control inputBack txtFechaCaducidad" name="txtFechaCaducidad" />
+                                            </td>
+                                            <td>
+                                                <button class="btn btnBack btnCambiarEstado">Aprobar</button>
+                                            </td>
+                                        </tr>
                                     }
-                                </tbody>
-                            </table>
-                        </div>
-                        <div id="tab-2" class="tab hidden marginNull">
-                            <table class="table tbRevision">
-                                <thead>
-                                    <tr>
-                                        <th class="th1">Titulo</th>
-                                        <th class="th2">Descripción</th>
-                                        <th class="th3">Tipo</th>
-                                        <th class="th4">Caducidad</th>
-                                        <th class="th5">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                             </table>
-                        </div>
+                                }
+                            </tbody>
+                        </table>
                     </div>
-                    
+                    <div id="tab-2" class="tab hidden marginNull">
+                        <table class="table tbRevision">
+                            <thead>
+                                <tr>
+                                    <th class="th1">Titulo</th>
+                                    <th class="th2">Descripción</th>
+                                    <th class="th3">Tipo</th>
+                                    <th class="th4">Caducidad</th>
+                                    <th class="th5">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
         </div>
+    </div>
 
+
+    <div class="centro">
+        
     </div>
 </div>

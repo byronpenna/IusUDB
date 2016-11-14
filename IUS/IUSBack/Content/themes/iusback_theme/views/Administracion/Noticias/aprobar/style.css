@@ -337,6 +337,13 @@ table.datatable {
   border-color: #cd1315 !important;
   color: #cd1315 !important; }
 
+.centroAprobar {
+  width: 95%;
+  margin: 0 auto; }
+
+.rowNavegacion {
+  margin-top: 5%; }
+
 .th1 {
   width: 30%; }
 
