@@ -18,6 +18,44 @@ namespace IUSLibs.ADMINFE.Control.Noticias
     {
         //sp_adminfe_cambiarEstadoPublicacion
         #region "backend"
+            public List<NotiEvento> sp_adminfe_aprobarNoticia_getNoticiasRevision(int idUsuarioEjecutor,int idPagina)
+            {
+                List<NotiEvento> noticiasEventos = null;
+                NotiEvento noticiaEvento;
+                SPIUS sp = new SPIUS("sp_adminfe_aprobarNoticia_getNoticiasRevision");
+
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrectoGet(tb))
+                    {
+                        if (tb[0].Rows.Count > 0)
+                        {
+                            noticiasEventos = new List<NotiEvento>();
+                            foreach(DataRow row in tb[0].Rows){
+                                //,,,,estado,caducidad
+                                noticiaEvento = new NotiEvento((int)row["id"],row["titulo"].ToString(),row["descripcion"].ToString(),(int)row["tipoEntrada"]);
+                                noticiaEvento._fechaCaducidad = (DateTime)row["fecha"];
+                                noticiaEvento._estado = (bool)row["estado"];
+                                noticiasEventos.Add(noticiaEvento);
+                            }
+                            
+                        }
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+                return noticiasEventos;
+            }
             public NotiEvento sp_adminfe_cambiarEstadoPublicacion(NotiEvento notiEventoToChange,int idUsuarioEjecutor, int idPagina)
             {
                 NotiEvento noticiaEvento = null;

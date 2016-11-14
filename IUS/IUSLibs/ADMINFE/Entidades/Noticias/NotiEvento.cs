@@ -15,6 +15,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             public DateTime     _fechaCaducidad;
             public int          _idTipoEntrada;
             public byte[]       _imagen         = null;
+            public bool         _estado;
             public Tipo tipoEntrada
             {
                 get

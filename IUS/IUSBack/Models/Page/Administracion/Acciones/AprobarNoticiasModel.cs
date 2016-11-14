@@ -49,6 +49,22 @@ namespace IUSBack.Models.Page.Administracion.Acciones
             }
         #endregion
         #region "gets"
+            public List<NotiEvento> sp_adminfe_aprobarNoticia_getNoticiasRevision(int idUsuarioEjecutor,int idPagina)
+            {
+                try
+                {
+                    ControlAprobacion control = new ControlAprobacion();
+                    return control.sp_adminfe_aprobarNoticia_getNoticiasRevision(idUsuarioEjecutor, idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public List<NotiEvento> sp_adminfe_aprobarnoticia_getNoticiasAprobar(int idUsuarioEjecutor, int idPagina)
             {
                 try
