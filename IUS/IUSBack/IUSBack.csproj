@@ -508,6 +508,7 @@
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\preview\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\setMiniatura\media.css" />
@@ -725,6 +726,8 @@
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\preview\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\preview\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\principal\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\principal\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\script.js" />
@@ -972,6 +975,7 @@
     <Content Include="Views\Home\Indexi.cshtml" />
     <Content Include="Views\Shared\footeri.cshtml" />
     <Content Include="Views\Noticias\AprobarNoticia.cshtml" />
+    <Content Include="Views\Noticias\preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

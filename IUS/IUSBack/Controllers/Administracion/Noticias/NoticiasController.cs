@@ -31,35 +31,31 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "url"
-            public ActionResult setMiniatura(int id)
+            public ActionResult preview(int id)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
-                if (seguridadInicial != null)
-                {
-                    return seguridadInicial;
-                }
                 try
                 {
-                    //ViewBag.selectedMenu = 4; // menu seleccionado 
-                    ViewBag.titleModulo = "Escoger miniatura foto";
-                    ViewBag.usuario = usuarioSession;
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    //ViewBag.permiso = permisos;
-                    ViewBag.post = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina)["post"];
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                    if (seguridadInicial != null)
+                    {
+                        return seguridadInicial;
+                    }
+                    Dictionary<object, object> cuerpoPagina = this._model.sp_adminfe_noticias_getPostsFromId(id,usuarioSession._idUsuario,this._idPagina);
+                    Post post = (Post)cuerpoPagina["post"];
+                    ViewBag.post = post;
                     return View();
                 }
                 catch (ErroresIUS x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "setMiniatura-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
                 catch (Exception x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "setMiniatura-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
-                
             }
             public ActionResult Index()
             {
@@ -85,49 +81,7 @@ namespace IUSBack.Controllers
                     return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
-            public ActionResult ModificarNoticia(int id)
-            {
-                Usuario usuarioSession = this.getUsuarioSesion();
-                
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
-                if (seguridadInicial != null)
-                {
-                    return seguridadInicial;
-                }
-                try
-                {
-
-                    ViewBag.selectedMenu = 4; // menu seleccionado 
-                    //List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
-                    Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
-                    Post post = (Post)datosPost["post"];
-                    //ViewBag.permiso = permisos;
-                    ViewBag.categorias = this._model.sp_adminfe_noticias_getCategoriasPostById(post._idPost, usuarioSession._idUsuario, this._idPagina);//categorias;
-                    //ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
-                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
-                    ViewBag.editMode = true;
-                    ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
-
-                    #region "Labels"
-                        ViewBag.titleModulo = "Modificar noticia";
-                        ViewBag.botonAccion = "Modificar";
-                        ViewBag.usuario     = usuarioSession;
-                        ViewBag.accion      = 0;
-                    #endregion
-                    #region "Valores"
-                        ViewBag.post        = post;
-                        ViewBag.tags        = this._model.getComaTags((List<Tag>)datosPost["tags"]);
-                    #endregion
-                    return View("~/Views/Administracion/Noticias.cshtml");
-                }catch(ErroresIUS x){
-                    ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, true, "ModificarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
-                }
-                catch (Exception x) {
-                    ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "ModificarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
-                }
-            }
+            
             public ActionResult AprobarNoticia()
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
@@ -201,7 +155,82 @@ namespace IUSBack.Controllers
                 return RedirectToAction("index", "login");
             }*/
             }
-            
+            public ActionResult ModificarNoticia(int id)
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+
+                    ViewBag.selectedMenu = 4; // menu seleccionado 
+                    //List<PostCategoria> categorias = this._model.sp_adminfe_noticias_getCategorias(usuarioSession._idUsuario, this._idPagina);
+                    Dictionary<object, object> datosPost = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
+                    Post post = (Post)datosPost["post"];
+                    //ViewBag.permiso = permisos;
+                    ViewBag.categorias = this._model.sp_adminfe_noticias_getCategoriasPostById(post._idPost, usuarioSession._idUsuario, this._idPagina);//categorias;
+                    //ViewBag.subMenus = this._model.getMenuUsuario(usuarioSession._idUsuario);
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    ViewBag.editMode = true;
+                    ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
+
+                    #region "Labels"
+                    ViewBag.titleModulo = "Modificar noticia";
+                    ViewBag.botonAccion = "Modificar";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.accion = 0;
+                    #endregion
+                    #region "Valores"
+                    ViewBag.post = post;
+                    ViewBag.tags = this._model.getComaTags((List<Tag>)datosPost["tags"]);
+                    #endregion
+                    return View("~/Views/Administracion/Noticias.cshtml");
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "ModificarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "ModificarNoticia-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+            }
+            public ActionResult setMiniatura(int id)
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    //ViewBag.selectedMenu = 4; // menu seleccionado 
+                    ViewBag.titleModulo = "Escoger miniatura foto";
+                    ViewBag.usuario = usuarioSession;
+                    ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
+                    //ViewBag.permiso = permisos;
+                    ViewBag.post = this._model.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina)["post"];
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "setMiniatura-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "setMiniatura-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+
+            }
         #endregion
         #region "generics"
             
@@ -221,7 +250,8 @@ namespace IUSBack.Controllers
                     }
                     else
                     {
-                        string path = Server.MapPath("/Content/themes/iusback_theme/img/general/image.png");
+                        // /Content/themes/iusback_theme/img/general/noBanerMiniatura.png
+                        string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
                         return base.File(path, "image/jpeg");
                     }
                     //Image image = Image.FromStream(stream);

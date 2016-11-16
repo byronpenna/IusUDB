@@ -35,7 +35,7 @@
     <div class="row marginNull ">
         <div class="col-lg-3">
             <ul class="tabs">
-                <li class="btnTab tabActive" target="#tab-1" id="1">
+                <li class="btnTab tabActive tabAprobar" target="#tab-1" id="1">
                     <span>Aprobar</span>
                 </li>
                 <li class="btnTab tabRevision" target="#tab-2" id="2">
@@ -47,14 +47,15 @@
             <div class="row marginNull cuerpoIndex">
                 <div class="centro">
                     <div id="tab-1" class="tab marginNull">
-                        <table class="table">
+                        <table class="table tbAprobar">
                             <thead>
                                 <tr>
                                     <th class="th1">Titulo</th>
-                                    <th class="th2">Descripción</th>
-                                    <th class="th3">Tipo</th>
-                                    <th class="th4">Caducidad</th>
-                                    <th class="th5">Acciones</th>
+                                    @*<th class="th2">Descripción</th>*@
+                                    <th class="th3">Institución</th>
+                                    <th class="th4">Tipo</th>
+                                    <th class="th5">Caducidad</th>
+                                    <th class="th6">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,7 +69,8 @@
                                                 <input class="txtHdTipoEvento" name="txtHdTipoEvento" value="@noticiaEvento._idTipoEntrada" />
                                             </td>
                                             <td>@noticiaEvento._titulo</td>
-                                            <td>@noticiaEvento._descripcion</td>
+                                            @*<td>@noticiaEvento._descripcion</td>*@
+                                            <td>@noticiaEvento._institucion</td>
                                             <td>@noticiaEvento.getStrTipoEntrada</td>
                                             <td>
                                                 <input type="text" class="form-control inputBack txtFechaCaducidad" name="txtFechaCaducidad" />
@@ -76,6 +78,7 @@
                                             <td>
                                                 <button class="btn btnBack btn-block btnCambiarEstado">Aprobar</button>
                                                 <button class="btn btnBack btn-block btnRechazarNoticia">Rechazar</button>
+                                                <a class="btn btnBack btn-block" href="@Url.Action( "preview","Noticias", new {id=noticiaEvento._id })">Ver</a>
                                             </td>
                                         </tr>
                                     }
@@ -88,10 +91,11 @@
                             <thead>
                                 <tr>
                                     <th class="th1">Titulo</th>
-                                    <th class="th2">Descripción</th>
-                                    <th class="th3">Tipo</th>
-                                    <th class="th4">Caducidad</th>
-                                    <th class="th5">Acciones</th>
+                                    @*<th class="th2">Descripción</th>*@
+                                    <th class="th3">Institución</th>
+                                    <th class="th4">Tipo</th>
+                                    <th class="th5">Caducidad</th>
+                                    <th class="th6">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

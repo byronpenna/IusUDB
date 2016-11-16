@@ -38,6 +38,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                     foreach(DataRow row in tb[0].Rows){
                                         noticiaEvento = new NotiEvento((int)row["id"],row["titulo"].ToString(),row["descripcion"].ToString(),(int)row["tipoEntrada"]);
                                         noticiaEvento._fecha = (DateTime)row["fecha"];
+                                        noticiaEvento._institucion = row["institucion"].ToString();
                                         noticiasEventos.Add(noticiaEvento);
                                     }
                                 }

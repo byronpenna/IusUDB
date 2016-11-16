@@ -16,6 +16,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
             public int          _idTipoEntrada;
             public byte[]       _imagen         = null;
             public bool         _estado;
+            public string       _institucion;
             public Tipo tipoEntrada
             {
                 get

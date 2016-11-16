@@ -1,0 +1,78 @@
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@using IUSLibs.FrontUI.Noticias.Entidades
+@section estilosPersonalizados{
+    <!-- propios -->
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/stylei.css" />*@
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/preview/style.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+    <script src="~/Scripts/Views/Administracion/Noticias/preview/functions.js"></script>
+    <script src="~/Scripts/Views/Administracion/Noticias/preview/script.js"></script>
+}
+@{
+    Post post = null;
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    try
+    {
+        post = (Post)ViewBag.post;
+    }
+    catch (Exception x)
+    {
+        
+    }
+}
+<div class="row marginNull centroPagina">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="tituloPrev">
+            <a class="tituloPrev" href="@Url.Action("AprobarNoticia","Noticias")">
+                Aprobar noticias 
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Vista previa
+        </span>
+    </div>
+    <div class="row marginNull">
+        <div class="seccionGris">
+            <div class="centroNoticia">
+                <div class="row marginNull tituloPreview ">
+                    <h2>Noticias</h2>
+                </div>
+                <div class="centroContenido">
+                    <div class="row marginNull cabeceraNoticia">
+                        <div class="col-lg-5 vbottom divDetalles">
+                            <div class="row marginNull">
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Titulo:</span> @post._titulo
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Fecha:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @post._fechaCreacion)   @*14 de junio 2015**@
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">fuente:</span> Lorem ipsum dolor sit a met*
+                                </div>
+                            </div>
+                        </div><!--
+                        --><div class="col-lg-7 vbottom">
+                            @*<img class="imgMin" src="@Url.Content("~/Content/images/generales/noBanerMiniatura.png")" />*@
+                            <img class="imgMin" src="@Url.Action("getImageThumbnail", "Noticias", new { id = post._idPost })" />
+                        </div>
+                    </div>
+                    <div class="row marginNull contenidoNoticia">
+                        @(new HtmlString(post._contenido))
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

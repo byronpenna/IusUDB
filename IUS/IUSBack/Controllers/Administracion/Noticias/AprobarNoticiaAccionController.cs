@@ -71,7 +71,8 @@ namespace IUSBack.Controllers.Administracion.Noticias
                         if (respuesta == null)
                         {
                             List<NotiEvento> noticiasEventos = this._model.sp_adminfe_aprobarnoticia_getNoticiasAprobar(usuarioSession._idUsuario, this._idPagina);
-                            //respuesta = new Dictionary<object, object>();
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
                             respuesta.Add("noticiasEventos",noticiasEventos);
 
                         }
