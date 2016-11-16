@@ -261,13 +261,14 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return postRegresar;
                 }
-                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost,int idUsuarioEjecutor,int idPagina)
+                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost,int idUsuarioEjecutor,int idPagina,int estado=-1)
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_cambiarEstadoPost");
                     Post post = null;
                     sp.agregarParametro("idPost", idPost);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
+                    sp.agregarParametro("estado", estado);
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
