@@ -36,6 +36,20 @@
             $(document).on("click", ".btnCambiarEstado", function () {
                 var tr = $(this).parents("tr");
                 var frm = serializeSection(tr);
-                btnCambiarEstado(frm,tr);
+                if (frm.txtFechaCaducidad != "") {
+                    var x = confirm("¿Esta seguro que desea publicar noticia?");
+                    if (x) {
+                        btnCambiarEstado(frm, tr);
+                    }
+                } else {
+                    alert("Por favor introducir una fecha de caducidad");
+                }
             })
+            $(document).on("click", ".btnEliminarInvolucrado", function () {
+                var x = confirm("Proceso quitara publicación y tendra que ser aprobado de nuevo si se desea publicar nuevamente");
+                if (x) {
+                    
+                }
+            })
+            
 });

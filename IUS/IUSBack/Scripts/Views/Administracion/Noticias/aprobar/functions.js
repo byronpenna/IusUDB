@@ -18,6 +18,7 @@ var tbAprobar   = $(".tbAprobar");
             <td>\
                 <button class='btn btnBack btn-block btnCambiarEstado'>Aprobar</button>\
                 <button class='btn btnBack btn-block btnRechazarNoticia'>Rechazar</button>\
+                <a class='btn btnBack btn-block' href='" + RAIZ + "/Noticias/preview/" + notiEvento._id + "'>Ver</a>\
             </td>\
         </tr>\
         ";
@@ -47,6 +48,14 @@ var tbAprobar   = $(".tbAprobar");
                     <button class='btn btn-default btnBack btn-block btnCaducidad'>\
                         Cambiar caducidad\
                     </button>\
+                    <div class='btn-group btn-block'>\
+                        <a class='btn btn-default btnBack col-lg-6' href='" + RAIZ + "/Noticias/preview/" + notiEvento._id + "'>\
+                            Ver\
+                        </a>\
+                        <button class='btn btn-default btnBack col-lg-6 btnEliminarInvolucrado'>\
+                            Eliminar\
+                        </button>\
+                    </div>\
                 </td>\
             </tr>\
         ";
@@ -95,6 +104,7 @@ var tbAprobar   = $(".tbAprobar");
             actualizarCatalogo(RAIZ + "/AprobarNoticiaAccion/ajax_rechazar", frm, function (data) {
                 console.log("La respuesta del servidor", data);
                 if (data.estado) {
+                    alert("Notica fue rechazada correctamente");
                     tr.remove();
                 }
             });
@@ -108,6 +118,12 @@ var tbAprobar   = $(".tbAprobar");
         function btnCambiarEstado(frm, tr) {
             actualizarCatalogo(RAIZ + "/AprobarNoticiaAccion/sp_adminfe_aprobarNoticia_cambiarEstado", frm, function (data) {
                 console.log("La respuesta del servidor", data);
+                if (data.estado) {
+                    alert("Publicada correctamente");
+                    tr.remove();
+                } else {
+                    alert("Ocurrio un error");
+                }
                 //sp_adminfe_cambiarEstadoPublicacion
             })
         }

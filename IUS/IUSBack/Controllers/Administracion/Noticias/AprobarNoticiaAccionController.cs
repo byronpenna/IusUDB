@@ -201,6 +201,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
                             noti._fechaCaducidad = this.convertObjAjaxToDateTime(frm["txtFechaCaducidad"].ToString(), "");
                             noti._idTipoEntrada = this.convertObjAjaxToInt(frm["txtHdTipoEvento"]);
                             NotiEvento notiEventoActualizado = this._model.sp_adminfe_cambiarEstadoPublicacion(noti, usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
                             respuesta.Add("notiEvento", notiEventoActualizado);
                         }

@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
     Post post = null;
     int nextId = -1;
+    string enlaceInstitucion = "#";
     try
     {
         post = (Post)ViewBag.post;
@@ -39,7 +40,12 @@
                                 <span class="spanTitulo">Fecha:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @post._fechaCreacion)   @*14 de junio 2015**@
                             </div>
                             <div class="row marginNull">
-                                <span class="spanTitulo">fuente:</span> Lorem ipsum dolor sit a met*
+                                <span class="spanTitulo">Fuente:</span>
+                                @if (post._usuario._persona._adicionales._institucion._enlaces != null && post._usuario._persona._adicionales._institucion._enlaces.Count > 0) {
+                                    enlaceInstitucion = post._usuario._persona._adicionales._institucion._enlaces[0]._enlace;
+                                }
+                                <a href="@enlaceInstitucion">@post._usuario._persona._adicionales._institucion._nombre</a>
+                                 
                             </div>
                         </div>
                     </div><!--
