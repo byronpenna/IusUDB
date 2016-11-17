@@ -99,7 +99,16 @@ var tbAprobar   = $(".tbAprobar");
                 }
             });
         }
-    //---------------
+//---------------
+        function btnEliminarInvolucrado(frm,tr) {
+            actualizarCatalogo(RAIZ + "/AprobarNoticiaAccion/sp_adminfe_eliminarSolicitudPublicacion", frm, function (data) {
+                console.log("La respuesta del servidor", data);
+                if (data.estado) {
+                    alert("Notica eliminada");
+                    tr.remove();
+                }
+            })
+        }
         function btnRechazarNoticia(frm, tr) {
             actualizarCatalogo(RAIZ + "/AprobarNoticiaAccion/ajax_rechazar", frm, function (data) {
                 console.log("La respuesta del servidor", data);

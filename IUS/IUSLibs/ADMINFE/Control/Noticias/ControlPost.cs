@@ -72,12 +72,13 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 posts = new List<Post>();
                                 foreach (DataRow row in tb[1].Rows)
                                 {
-                                    usuarioCreador = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
-                                    post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", (bool)row["estado"], usuarioCreador);
-                                    //post._contenido = post._contenido.Replace("&nbsp;", " ");
-                                    post._descripcion = row["breve_descripcion"].ToString();
-                                    idioma = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
-                                    post._idioma = idioma;
+                                    usuarioCreador      = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
+                                    post                = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", (bool)row["estado"], usuarioCreador);
+                                    //post._contenido   = post._contenido.Replace("&nbsp;", " ");
+                                    post._descripcion   = row["breve_descripcion"].ToString();
+                                    idioma              = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
+                                    post._idioma        = idioma;
+                                    post._publicado     = (int)row["publicado"];
                                     posts.Add(post);
                                 }
                             }

@@ -56,51 +56,85 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                 }
                 return noticiasEventos;
             }
-            public NotiEvento sp_adminfe_cambiarEstadoPublicacion(NotiEvento notiEventoToChange,int idUsuarioEjecutor, int idPagina)
-            {
-                NotiEvento noticiaEvento = null;
-                SPIUS sp = new SPIUS("sp_adminfe_cambiarEstadoPublicacion");
-                /*
-                    @					int,
-		            @				date,
-		            @			int,
-                 */
-                sp.agregarParametro("tipo", notiEventoToChange._idTipoEntrada);
-                sp.agregarParametro("caducidad", notiEventoToChange._fechaCaducidad);
-                sp.agregarParametro("idPublicacion", notiEventoToChange._id);    
-
-                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
-                sp.agregarParametro("idPagina", idPagina);
-                try
+            #region "set"
+                public bool sp_adminfe_eliminarSolicitudPublicacion(NotiEvento notiEventoEliminar, int idUsuarioEjecutor, int idPagina)
                 {
-                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrecto(tb))
-                    {
-                        if (tb[1].Rows.Count > 0)
-                        {
-                            DataRow row = tb[1].Rows[0];
-                            noticiaEvento = new NotiEvento((int)row["id"]);
+                    SPIUS sp = new SPIUS("sp_adminfe_eliminarSolicitudPublicacion");
+                    bool estado = false;
+                    /*
+                        @					int,
+	                    @			int,
+                     */
+                    sp.agregarParametro("tipo", notiEventoEliminar._idTipoEntrada);
+                    sp.agregarParametro("idPublicacion", notiEventoEliminar._id);
 
-                            noticiaEvento._fecha = (DateTime)row["fecha"];
-                        }
-                    }
-                    else
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
                     {
-                        DataRow row = tb[0].Rows[0];
-                        ErroresIUS x = this.getErrorFromExecProcedure(row);
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        return estado;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
                         throw x;
                     }
                 }
-                catch (ErroresIUS x)
+                public NotiEvento sp_adminfe_cambiarEstadoPublicacion(NotiEvento notiEventoToChange, int idUsuarioEjecutor, int idPagina)
                 {
-                    throw x;
+                    NotiEvento noticiaEvento = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_cambiarEstadoPublicacion");
+                    /*
+                        @					int,
+		                @				date,
+		                @			int,
+                     */
+                    sp.agregarParametro("tipo", notiEventoToChange._idTipoEntrada);
+                    sp.agregarParametro("caducidad", notiEventoToChange._fechaCaducidad);
+                    sp.agregarParametro("idPublicacion", notiEventoToChange._id);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                noticiaEvento = new NotiEvento((int)row["id"]);
+
+                                noticiaEvento._fecha = (DateTime)row["fecha"];
+                            }
+                        }
+                        else
+                        {
+                            DataRow row = tb[0].Rows[0];
+                            ErroresIUS x = this.getErrorFromExecProcedure(row);
+                            throw x;
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return noticiaEvento;
                 }
-                catch (Exception x)
-                {
-                    throw x;
-                }
-                return noticiaEvento;
-            }
+            #endregion
+            
         #endregion
     }
 }

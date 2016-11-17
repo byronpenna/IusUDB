@@ -10,29 +10,66 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
     public class Post
     {
         #region "propiedades"
-            public int      _idPost;
-            public DateTime _fechaCreacion;
-            public DateTime _fechaModificacion;
-            public string   _titulo;
-            public string   _contenido;
-            public bool     _estado;
-            public Usuario  _usuario;
-            public byte[]   _miniatura;
-            public Idioma   _idioma;
-            public string   _descripcion;
+            // propiedades 
+                public int      _idPost;
+                public DateTime _fechaCreacion;
+                public DateTime _fechaModificacion;
+                public string   _titulo;
+                public string   _contenido;
+                public bool     _estado;
+                public Usuario  _usuario;
+                public byte[]   _miniatura;
+                public Idioma   _idioma;
+                public string   _descripcion;
+            // externas a tabla 
+                public int     _publicado=-1; 
             #region "operacionales"
                 public string getTxtEstado
                 {
                     get
                     {
-                        if (this._estado)
+                        switch (this._publicado)
                         {
-                            return "Quitar web";
+                            case -1:
+                                {
+                                    if (this._estado)
+                                    {
+                                        return "Quitar solicitud";
+                                    }
+                                    else
+                                    {
+                                        return "Enviar solicitud";
+                                    }
+                                }
+                            case 0:
+                                {
+                                    if (this._estado)
+                                    {
+                                        return "Cancelar revisión";
+                                    }
+                                    else
+                                    {
+                                        return "Enviar revisión";
+                                    }
+                                }
+                            case 1:
+                                {
+                                    return "Publicado website";
+                                }
+                            default:
+                                {
+                                    return "__";
+                                }
+                        }
+                        /*if (this._publicado)
+                        {
+                            
                         }
                         else
-                        {
-                            return "Publicar web";
-                        }
+                        {*/
+                            
+                        //}
+                        
                     }
                 }
                 public string getFechaCreacion

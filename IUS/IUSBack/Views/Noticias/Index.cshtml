@@ -30,9 +30,20 @@
 
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<Post>  posts   = null;
+    Permiso     permiso = null;
+    try
+    {
+        posts   = (List<Post>)ViewBag.posts;
+        permiso = (Permiso)ViewBag.permiso;
+        
+    }
+    catch (Exception x)
+    {
+        
+    }
     
-    List<Post> posts = (List<Post>)ViewBag.posts;
-    Permiso permiso = (Permiso)ViewBag.permiso;
+    
 }
 <div class="row marginNull centroPagina cuerpoIndex">
     <div class="centro">
@@ -57,8 +68,8 @@
                 }
 
                 <!--<button class="btn" type="button" @permiso.stringEditar>
-                Agregar entrada
-            </button>-->
+                    Agregar entrada
+                </button>-->
                 <table class="table tbPosts">
                     <thead>
                         <tr>
@@ -75,8 +86,34 @@
                     <tbody>
                         @if (posts != null && posts.Count > 0)
                         {
+                            string enabled;
                             foreach (Post post in posts)
                             {
+                                switch (post._publicado)
+                                {
+                                    case 1:
+                                        {
+                                            enabled = "disabled";
+                                            break;
+                                        }
+                                    case 0:
+                                        {
+                                            if (permiso._editar)
+                                            {
+                                                enabled = "";
+                                            }
+                                            else
+                                            {
+                                                enabled = "disabled";
+                                            }
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            enabled = "";
+                                            break;
+                                        }
+                                }
                                 <tr>
                                     <td class="hidden">
                                         <input class="txtHdIdPost" name="txtHdIdPost" value="@post._idPost" />
@@ -89,12 +126,12 @@
                                     <td>@post._idioma._idioma</td>
                                     <td>
                                         <div class="row marginNull">
-                                            <button class="btnBack btn btnPublicacion btn-block btn-default" @permiso.stringEditar>
+                                            <button class="btnBack btn btnPublicacion btn-block btn-default" @enabled>
                                                 @post.getTxtEstado
                                             </button>
                                         </div>
                                         <div class="row marginNull">
-                                            <a class="btnBack btn btn-default btn-block "  href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @permiso.stringEditar>
+                                            <a class="btnBack btn btn-default btn-block "  href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @enabled>
                                                 Editar
                                             </a>
                                         </div>

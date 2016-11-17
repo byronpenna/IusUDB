@@ -47,6 +47,22 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                     throw x; 
                 }
             }
+            public bool sp_adminfe_eliminarSolicitudPublicacion(NotiEvento notiEventoEliminar, int idUsuarioEjecutor, int idPagina)
+            {
+                try
+                {
+                    ControlAprobacion aprobacion = new ControlAprobacion();
+                    return aprobacion.sp_adminfe_eliminarSolicitudPublicacion(notiEventoEliminar,idUsuarioEjecutor,idPagina);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x; 
+                }
+                catch (Exception x)
+                {
+                    throw x; 
+                }
+            }
         #endregion
         #region "gets"
             public List<NotiEvento> sp_adminfe_aprobarNoticia_getNoticiasRevision(int idUsuarioEjecutor,int idPagina)
