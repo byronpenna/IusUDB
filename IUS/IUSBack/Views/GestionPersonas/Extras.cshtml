@@ -235,12 +235,16 @@
                                         
                                         foreach (Institucion institucion in instituciones)
                                         {
-                                            if (institucion._idInstitucion == informacionPersona._institucion._idInstitucion) {
-                                                selected = "selected";
-                                            }
-                                            else
+                                            if (informacionPersona != null)
                                             {
-                                                selected = "";
+                                                if (institucion._idInstitucion == informacionPersona._institucion._idInstitucion)
+                                                {
+                                                    selected = "selected";
+                                                }
+                                                else
+                                                {
+                                                    selected = "";
+                                                }
                                             }
                                             <option @selected value="@institucion._idInstitucion">@institucion._nombre</option>
                                         }
