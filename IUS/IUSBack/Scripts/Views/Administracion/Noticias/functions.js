@@ -1,4 +1,13 @@
 ﻿// generics 
+    function cleanActive() {
+        $(".activeRichImage").each(function () {
+            $(this).removeClass("activeRichImage");
+            $(this).parent().removeAttr("contenteditable");
+            $(this).css("display", "");
+        })
+        $(".areaImgRich").remove();
+    }
+
     function editarTamanioPersonalizado(valor) {
         div = $(".divTamanioPersonalizado");
         txt = div.find(".txtTamañoImagen");

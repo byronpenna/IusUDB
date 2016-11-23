@@ -5,11 +5,97 @@
         // chosen 
             $(".cbCategorias").chosen();
         // rich text 
-            bkLib.onDomLoaded(function() {
-                txtAreaEditor = new nicEditor({ maxHeight: 400 }).panelInstance('editor');
+            bkLib.onDomLoaded(function () {
+                //nicEditors.allTextAreas()
+                txtAreaEditor = new nicEditor({ fullPanel: true }).panelInstance('editor');
+                //txtAreaEditor = new nicEditor({ maxHeight: 400 }).panelInstance('editor');
                 //html = "<img src='http://www.matrallune.com/images/imagen_corporativa.jpg' alt=' align='none' class='activeRichImage'>"
                 //nicEditors.findEditor('editor').setContent(html);
             })
+            $(document).on("click", ".nicEdit-main", function () {
+                cleanActive();
+                //console.log("Vamos a remover");
+            })
+            //*********************************************************
+            $(".prd").draggable({
+                start: function () {
+                    console.log("start");
+                },
+                drag: function () {
+                    console.log("drag");
+                },
+                stop: function () {
+                    console.log("stop");
+                }
+            });
+            //*********************************************************
+            $(document).on("click", ".nicEdit-main img", function (e) {
+                cleanActive();
+                var img = $(this);//.find("img");
+                e.stopPropagation();
+                $(".activeRichImage").removeClass("activeRichImage");
+                //if (img.length) {
+                    var padre = img.parent();
+                    padre.attr("contenteditable", "false");
+                    //padre.css("display", "block");
+                    //var x = img.wrap("<div></div>");
+                    img.css("display", "block");
+                    img.before("<div class='areaImgRich' style='width:" + img.width() + "px;height:" + img.height() + "px;'>\
+                        <div class='pointRichImage plu'></div>\
+                        <div class='pointRichImage prd'></div>\
+                        <div class='pointRichImage prdi'></div>\
+                    </div>");
+                    img.addClass("activeRichImage");
+                //}
+                    $(".prdi").draggable({
+                        start: function (e) {
+                            //e.preventDefault();
+                            console.log("start");
+                            console.log("la posicion inicial es: ", $(this).position());
+                        },
+                        drag: function () {
+                            e.preventDefault();
+                            console.log("drag");
+                        },
+                        stop: function () {
+                            e.preventDefault();
+                            console.log("stop");
+                            var moveX = $(this).position().left;
+                            var zona = $(".nicEdit-main").width() - $(".nicEdit-main").position().left;
+                            var imagenActiva = $(".activeRichImage");
+                            console.log("move x es ", moveX);
+                            console.log("zona ", zona);
+                            
+                            //if(moveX - $(".nicEdit-main").position().left > 0 && moveX - $(".nicEdit-main").position().left < zona){
+                            if (moveX - $(".nicEdit-main").position().left > 0 && moveX < zona) {
+                                console.log("Rango");
+                                var porcentaje = moveX / zona * 100;
+                                console.log("El porcentaje es: ", porcentaje);
+                                $(".activeRichImage").css("width", porcentaje + "%");
+                                imagenActiva.click();
+                            }else{
+                                console.log("fuera de Rango");
+                            }
+                            console.log("la posicion final es: ", $(".nicEdit-main").position());
+                        }
+                    });
+            })
+            /*var nicExampleOptions = {
+                buttons: {
+                    'example': { name: __('Example'), type: 'nicEditorExampleButton' }
+                }
+            };
+
+            var nicEditorExampleButton = nicEditorButton.extend({
+                init: function () {
+                    // your init code
+                },
+                mouseClick: function () {
+                    alert('hallo!'); // Your code here
+                }
+            });*/
+
+            //nicEditors.registerPlugin(nicPlugin, nicExampleOptions);
     // eventos
         // change
             $(document).on("change", ".flSubirImagenes", function (e) {
@@ -82,7 +168,7 @@
                 
             })
         // click
-            $(document).on("click", ".ckTamanio", function () {
+            /*$(document).on("click", ".ckTamanio", function () {
                 if ($(this).is(':checked')) {
                     div = $(this).parents(".divTamanioPersonalizado");
                     txt = div.find(".txtTamañoImagen");
@@ -95,8 +181,8 @@
             })
             $(document).on("click", ".nicEdit-main", function () {
                 $(".divTamanioPersonalizado").addClass("hidden");
-            })
-            $(document).on("click", ".nicEdit-main img", function (e) {
+            })*/
+            /*$(document).on("click", ".nicEdit-main img", function (e) {
                 //ancho = $(this).css("width");
                 $(".activeRichImage").removeClass("activeRichImage");
                 $(this).addClass("activeRichImage");
@@ -110,5 +196,5 @@
                     editarTamanioPersonalizado(width);
                 }
                 e.stopPropagation();
-            })
+            })*/
 })
