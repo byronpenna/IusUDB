@@ -130,10 +130,16 @@
                                                 @post.getTxtEstado
                                             </button>
                                         </div>
-                                        <div class="row marginNull">
-                                            <a class="btnBack btn btn-default btn-block "  href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @enabled>
-                                                Editar
-                                            </a>
+                                        <div class="btn-group btn-block">
+                                            
+                                                <a class="btnBack btn btn-default col-lg-6" href="@Url.Action("ModificarNoticia/" + post._idPost, "Noticias") " @enabled>
+                                                    Editar
+                                                </a>
+                                            @*http://localhost:55869//Noticias/preview/2031*@
+                                                <a class="btnBack btn btn-default col-lg-6" href="@Url.Action("preview", "Noticias", new {id=post._idPost })">
+                                                    Ver
+                                                </a>
+                                            
                                         </div>
                                         <div class="row marginNull">
                                             <a class="btnBack btn btn-default btn-block " href="@Url.Action("setMiniatura", "Noticias", new { id= post._idPost})">
