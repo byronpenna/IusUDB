@@ -242,12 +242,15 @@
 
             }, time);
         }
-        function printMessage(div, txt, success) {
+        function printMessage(div, txt, success,time) {
             var clase = "";
             if (success) {
                 clase = SUCCESS_CLASS;
             } else {
                 clase = FAIL_CLASS;
+            }
+            if(time === undefined){
+                time = 2000;
             }
             div.empty().append(getSpanMessage(clase, txt));//"<span class='" + clase + "'>" + txt + "</span>"
             div.fadeIn("slow");
@@ -255,7 +258,7 @@
                 //alert("Hello");
                 div.fadeOut("slow");
 
-            }, 2000);
+            }, time);
         }
     //Valudaciones ingresos 
         function getEstadoVal(val) {
