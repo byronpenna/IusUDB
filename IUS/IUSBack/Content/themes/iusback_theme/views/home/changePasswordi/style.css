@@ -302,4 +302,90 @@ footer {
 body, h2, h1, label, h4 {
   font-family: "MyriadRegular" !important; }
 
+.contenedorCuerpo {
+  border-bottom: solid 1px #cd1315;
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 5%;
+  margin-bottom: 5%; }
+
+.seccionLogin {
+  background: #f3f2f2;
+  padding: 3%; }
+
+.cuadritoLogin {
+  width: 40%;
+  border: solid 1px #cd1315;
+  margin: 0 auto;
+  padding-top: 2%;
+  padding-bottom: 2%; }
+
+.divImageLogoLogin {
+  width: 100%;
+  text-align: center; }
+
+.imageLogoLogin {
+  width: 20%; }
+
+.imageLogoUser {
+  margin-top: 2%;
+  margin-bottom: 1%; }
+
+.spAreaPrivada {
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #828181;
+  font-family: "MyriadRegular"; }
+
+.divControles {
+  text-align: center;
+  margin-top: 2%; }
+
+.txtLogin, .btnIniciar {
+  width: 80%;
+  margin: 0 auto; }
+
+.txtLogin {
+  margin-bottom: 3%;
+  opacity: 1;
+  background: transparent;
+  border: solid 1px black; }
+
+.divUserImage {
+  margin-bottom: 5%; }
+
+.txtLogin[placeholder] {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 6%; }
+
+.divPass {
+  margin-top: 6%; }
+
+.btnIniciar, .btnIniciar:hover {
+  color: white; }
+
+.btnIniciar {
+  background: #cd1315;
+  text-transform: uppercase;
+  padding-top: 3%;
+  padding-bottom: 3%; }
+
+.divOlvidePass {
+  margin: 0 auto;
+  margin-top: 10%;
+  text-transform: uppercase;
+  width: 80%;
+  text-align: right;
+  font-family: "MyriadRegular"; }
+
+.divOlvidePass a, .divOlvidePass a:hover {
+  border-bottom: solid 1px #dad9d9;
+  color: #828181;
+  font-size: 0.8em; }
+
+.divMensajeLogin {
+  margin-top: 3%; }
+
 /*# sourceMappingURL=style.css.map */

@@ -488,7 +488,42 @@ namespace IUSLibs.SEC.Control
 
                 return retorno;
             }
-            
+            public bool sp_usu_changePassHome(string oldPass, string pass, string ip, int idUsuarioEjecutor, int idPagina)
+            {
+                /*
+                    @	varchar(300),
+	                @		varchar(300),
+	                @			varchar(30),
+	                -- seguridad
+	                @idUsuarioEjecutor	int,
+	                @idPagina			int
+                 */
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_usu_changePassHome");
+                sp.agregarParametro("oldPass", oldPass);
+                sp.agregarParametro("pass", pass);
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+
+                return estado;
+            }
             public Usuario sp_usu_changePass(string pass,string ip,int idUsuarioEjecutor,int idPagina)
             {   // cambia contraseña pero solo 1 vez 
 

@@ -341,6 +341,37 @@ body, h2, h1, label, h4 {
   vertical-align: bottom;
   float: none; }
 
+.frmCambios {
+  width: 50%;
+  margin: 0 auto; }
+
+.txtAreaMotivos {
+  margin-top: 3%; }
+
+.btnEnviarSolicitud {
+  margin-top: 3%; }
+
+.padreContenedorUpload {
+  width: 50%;
+  left: 0;
+  width: 100%;
+  top: 15% !important; }
+
+.contenedorUpload {
+  background: white;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 2%;
+  padding-bottom: 2%; }
+
+.tituloSecciones {
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: #eeecec;
+  margin-top: 3%;
+  color: #2C3E50; }
+
 .cabeceraNoticia .divDetalles .spanTitulo {
   color: #c71214;
   text-transform: uppercase; }

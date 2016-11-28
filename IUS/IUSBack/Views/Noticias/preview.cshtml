@@ -22,6 +22,26 @@
         
     }
 }
+<div class="modal divUpload">
+    <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            <div class="row marginNull">
+                <h2 class="tituloSecciones">Cambios</h2>
+                <input type="text" class="txtHdIdAccion" />
+                1. 
+                <form class="frmCambios">
+                    <div class="row marginNull">
+                        <label>Motivos</label>
+                        <textarea class="form-control inputBack txtAreaMotivos"></textarea>
+                        <button class="btn btnBack btn-default btnEnviarSolicitud">Enviar</button>
+                        @*<input class="form-control "/>*@
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row marginNull centroPagina">
     <div class="row marginNull rowNavegacion">
         <span>
@@ -44,7 +64,24 @@
         <div class="seccionGris">
             <div class="centroNoticia">
                 <div class="row marginNull tituloPreview ">
-                    <h2>Noticias</h2>
+                    <div class="col-lg-7">
+                        <h2>Noticias</h2>
+                    </div>
+                    
+                    <div class="col-lg-5">
+                        <div class="btn-group">
+                            <a href="@Url.Action("ModificarNoticia","Noticia")" class="btn btn-group btnBack btn-default">
+                                Editar
+                            </a>
+                            <button class="btn btn-group btnBack btn-default btnSolicitarCambio">
+                                Solicitar cambio
+                            </button>
+                            <button class="btn btn-group btnBack btn-default btnAprobar">
+                                Aprobar
+                            </button>
+                            <button class="btn btn-group btnBack btn-default">Eliminar</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="centroContenido">
                     <div class="row marginNull cabeceraNoticia">

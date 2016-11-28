@@ -766,6 +766,8 @@
     <Content Include="Scripts\Views\GestionRoles\script.js" />
     <Content Include="Scripts\Views\GestionUsuarios\functions.js" />
     <Content Include="Scripts\Views\GestionUsuarios\script.js" />
+    <Content Include="Scripts\Views\Home\ChangePasswordi\functions.js" />
+    <Content Include="Scripts\Views\Home\ChangePasswordi\script.js" />
     <Content Include="Scripts\Views\Home\ChangePassword\functions.js" />
     <Content Include="Scripts\Views\Home\ChangePassword\script.js" />
     <Content Include="Scripts\Views\Home\functions.js" />
