@@ -13,6 +13,7 @@ using System.Text;
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.TRL.Entidades;
+    using IUSLibs.RRHH.Entidades;
 namespace IUSLibs.ADMINFE.Control.Noticias
 {
     public class ControlPost:PadreLib
@@ -281,6 +282,14 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 DataRow row = tb[1].Rows[0];
                                 post = new Post((int)row["idPost"]);
                                 post._estado = (bool)row["estado"];
+                                //,,email
+                                post._usuario = new Usuario((int)row["idUsuario"]);
+                                post._usuario._persona = new Persona((int)row["id_persona_fk"]);
+                                post._usuario._persona.emailsContacto = new List<RRHH.Entidades.EmailPersona>();
+                                EmailPersona email = new EmailPersona(row["email"].ToString());
+                                post._usuario._persona.emailsContacto.Add(email);
+
+
                             }
                         }
                     }

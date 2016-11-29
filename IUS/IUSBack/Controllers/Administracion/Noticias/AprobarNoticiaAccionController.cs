@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+    using System.Net.Mail;
 // librerias internas 
     using IUSBack.Models.General;
     using IUSBack.Models.Page.Administracion.Acciones;
@@ -121,6 +123,42 @@ namespace IUSBack.Controllers.Administracion.Noticias
                     }
                     return Json(respuesta);
                 }
+                #region "genericas"
+                    public void enviarCorreo(string email,int op,string mensaje)
+                    {
+                        //usuarioAgregado._email,codigo._numero
+                        string ruta = Request.Url.AbsoluteUri;
+                        ruta = ruta.Substring(0, this.CustomIndexOf(ruta, '/', 3));
+                        MailMessage m = new MailMessage();
+                        m.To.Add(email);
+                        m.Subject = this.getSubject(op); //"Por favor confirmar cuenta IUS";
+                        m.Body = "Su noticia no fue publicada debido a que presenta algunos inconvenientes por favor prestar atencion y corregir: <br>" +
+                            mensaje;
+                        m.IsBodyHtml = true;
+                        m.Priority = MailPriority.Normal;
+                        SmtpClient cliente = new SmtpClient();
+                        cliente.Send(m);
+                    }
+                    public string getSubject(int op)
+                    {
+                        switch (op)
+                        {
+                            case 1:
+                                {
+                                    return "Solicitud de cambio noticias - IUS ";
+                                }
+                            case 2:
+                                {
+                                    return "No aceptada noticia - IUS";
+                                }
+                            default:
+                                {
+                                    return "";
+                                }
+                        }
+                    }
+                #endregion
+
                 public ActionResult ajax_rechazar() { 
                     Dictionary<object, object> frm, respuesta = null;
                     try
@@ -137,7 +175,15 @@ namespace IUSBack.Controllers.Administracion.Noticias
                                 case 1:
                                     {
                                         NoticiasModel modeloNoticia = new NoticiasModel();
+                                        string motivo = frm["txtAreaMotivos"].ToString();
+                                        
                                         Post post = modeloNoticia.sp_adminfe_noticias_cambiarEstadoPost(id, usuarioSession._idUsuario, this._idPagina, 0);
+                                        string email = post._usuario._persona.emailsContacto[0]._email;
+                                        if (email != "")
+                                        {
+                                            this.enviarCorreo(email, this.convertObjAjaxToInt(frm["txtHdIdAccion"]), motivo);
+                                        }
+                                        
                                         if (post != null)
                                         {
                                             respuesta = new Dictionary<object, object>();
@@ -184,6 +230,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
                     }
                     return Json(respuesta);
                 }
+                
                 public ActionResult ajax_revision()
                 {
                     Dictionary<object, object> frm, respuesta = null;

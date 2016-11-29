@@ -12,6 +12,7 @@ using System.Text;
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.RRHH.Entidades;
 namespace IUSLibs.SEC.Control
 {
     public class ControlUsuarios:PadreLib
@@ -575,6 +576,11 @@ namespace IUSLibs.SEC.Control
 
                             DataRow row = tb[1].Rows[0];
                             Persona persona = new Persona((int)row["id_persona_fk"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                            //persona._adicionales = new RRHH.Entidades.InformacionPersona();
+                            persona.emailsContacto = new List<RRHH.Entidades.EmailPersona>();
+                            EmailPersona email = new EmailPersona(row["email"].ToString());
+                            persona.emailsContacto.Add(email);
+                            //persona
                             usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"], true, persona, row["pass"].ToString());
 
                             if ((int)tb[tb.Count - 1].Rows[0]["changePass"] == 1)

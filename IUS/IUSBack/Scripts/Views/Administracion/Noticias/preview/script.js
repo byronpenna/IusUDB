@@ -15,4 +15,10 @@
 
                     });
                 })
+                $(document).on("submit", ".frmCambios", function (e) {
+                    e.preventDefault();
+                    var frm = serializeToJson($(this).serializeArray());
+                    console.log("Formulario es: ", frm);
+                    btnEnviarSolicitud(frm);
+                })
 });

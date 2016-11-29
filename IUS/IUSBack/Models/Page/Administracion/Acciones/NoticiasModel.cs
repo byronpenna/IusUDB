@@ -211,7 +211,8 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                 {
                     try
                     {
-                        return this._controlPost.sp_adminfe_noticias_cambiarEstadoPost(idPost, idUsuarioEjecutor, idPagina,estado);
+                        Post post = this._controlPost.sp_adminfe_noticias_cambiarEstadoPost(idPost, idUsuarioEjecutor, idPagina,estado);
+                        return post;
                     }
                     catch (ErroresIUS x)
                     {

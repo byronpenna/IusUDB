@@ -27,12 +27,16 @@
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
             <div class="row marginNull">
                 <h2 class="tituloSecciones">Cambios</h2>
-                <input type="text" class="txtHdIdAccion" />
-                1. 
                 <form class="frmCambios">
+                    <input type="hidden" name="txtHdIdNotiEvento" class="txtHdIdNotiEvento" value="@post._idPost" />
+                    
+                    <input type="hidden" name="txtHdTipoEvento" value="1" />
+                    <input type="hidden" name="txtHdIdAccion" class="txtHdIdAccion" value="1" />
+                    @*  1. Revisión
+                        2. Eliminada*@
                     <div class="row marginNull">
-                        <label>Motivos</label>
-                        <textarea class="form-control inputBack txtAreaMotivos"></textarea>
+                        <label>Motivos revisión</label>
+                        <textarea name="txtAreaMotivos" class="form-control inputBack txtAreaMotivos"></textarea>
                         <button class="btn btnBack btn-default btnEnviarSolicitud">Enviar</button>
                         @*<input class="form-control "/>*@
                     </div>
@@ -70,7 +74,7 @@
                     
                     <div class="col-lg-5">
                         <div class="btn-group">
-                            <a href="@Url.Action("ModificarNoticia","Noticia")" class="btn btn-group btnBack btn-default">
+                            <a href="@Url.Action("ModificarNoticia", "Noticias", new { id = @post._idPost })" class="btn btn-group btnBack btn-default">
                                 Editar
                             </a>
                             <button class="btn btn-group btnBack btn-default btnSolicitarCambio">

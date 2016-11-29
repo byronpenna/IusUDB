@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+    using System.Net.Mail;
 // Librerias net
     using System.IO;
     using System.Drawing;
@@ -234,6 +236,39 @@ namespace IUSBack.Controllers
         #endregion
         #region "generics"
             
+            public void enviarCorreo(string email)
+            {
+                //usuarioAgregado._email,codigo._numero
+                string ruta = Request.Url.AbsoluteUri;
+                ruta = ruta.Substring(0, this.CustomIndexOf(ruta, '/', 3));
+                MailMessage m = new MailMessage();
+                m.To.Add(email);
+                m.Subject = "Por favor confirmar cuenta IUS";
+                m.Body = "para confirmar su cuenta por favor ingrese al siguiente enlace <br>" +
+                    ruta + Url.Action("Verificar", "Home");
+                m.IsBodyHtml = true;
+                m.Priority = MailPriority.Normal;
+                SmtpClient cliente = new SmtpClient();
+                cliente.Send(m);
+            }
+            public string getSubject(int op)
+            {
+                switch (op)
+                {
+                    case 1:
+                        {
+                            return "Solicitud de cambio noticias - IUS ";
+                        }
+                    case 2:
+                        {
+                            return "No aceptada noticia - IUS";
+                        }
+                    default:
+                        {
+                            return "";
+                        }
+                }
+            }
         #endregion
         #region "acciones ajax"
             public ActionResult getImageThumbnail(int id)

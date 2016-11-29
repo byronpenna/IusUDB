@@ -20,6 +20,10 @@ namespace IUSLibs.RRHH.Entidades
             {
                 this._idEmail = idEmail;
             }
+            public EmailPersona(string email)
+            {
+                this._email = email;
+            }
             public EmailPersona(int idEmail,string email,string descripcion,int idPersona)
             {
                 this._idEmail       = idEmail;

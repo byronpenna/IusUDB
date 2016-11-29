@@ -39,7 +39,7 @@ namespace IUSLibs.SEC.Entidades
             #endregion
             // fuera de tabla 
                 public InformacionPersona _adicionales;
-
+                public List<EmailPersona> emailsContacto;
         #endregion
         #region "constructores"
             public Persona(int idPersona, String nombres, String apellidos)
