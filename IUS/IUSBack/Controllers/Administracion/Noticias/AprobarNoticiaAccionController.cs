@@ -23,6 +23,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
         #region "propiedades"
             public AprobarNoticiasModel _model;
             private int _idPagina = (int)paginas.Noticias;
+            private string _nombreClass = "AprobarNoticiaController";
         #endregion
         #region "constructores"
             public AprobarNoticiaAccionController()
@@ -30,6 +31,36 @@ namespace IUSBack.Controllers.Administracion.Noticias
                 this._model = new AprobarNoticiasModel();
             }
         #endregion 
+        #region "url"
+            public ActionResult preview(int id)
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+                try
+                {
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                    if (seguridadInicial != null)
+                    {
+                        return seguridadInicial;
+                    }
+                    NoticiasModel modelo = new NoticiasModel();
+                    Dictionary<object, object> cuerpoPagina = modelo.sp_adminfe_noticias_getPostsFromId(id, usuarioSession._idUsuario, this._idPagina);
+                    Post post = (Post)cuerpoPagina["post"];
+                    ViewBag.post = post;
+                    ViewBag.origen = 2; //origen aprobar
+                    return View("~/Views/Noticias/preview.cshtml");
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+            }
+        #endregion
         #region "metodos"
             #region "get"
                 public ActionResult sp_adminfe_aprobarNoticia_getNoticiasRevision()
@@ -176,12 +207,17 @@ namespace IUSBack.Controllers.Administracion.Noticias
                                     {
                                         NoticiasModel modeloNoticia = new NoticiasModel();
                                         string motivo = frm["txtAreaMotivos"].ToString();
-                                        
-                                        Post post = modeloNoticia.sp_adminfe_noticias_cambiarEstadoPost(id, usuarioSession._idUsuario, this._idPagina, 0);
+                                        int Accion = this.convertObjAjaxToInt(frm["txtHdIdAccion"]);
+                                        bool eliminado = false;
+                                        if (Accion == 2)
+                                        {
+                                            eliminado = true;
+                                        }
+                                        Post post = modeloNoticia.sp_adminfe_noticias_cambiarEstadoPost(id, usuarioSession._idUsuario, this._idPagina, 0,eliminado);
                                         string email = post._usuario._persona.emailsContacto[0]._email;
                                         if (email != "")
                                         {
-                                            this.enviarCorreo(email, this.convertObjAjaxToInt(frm["txtHdIdAccion"]), motivo);
+                                            //this.enviarCorreo(email, this.convertObjAjaxToInt(frm["txtHdIdAccion"]), motivo);
                                         }
                                         
                                         if (post != null)

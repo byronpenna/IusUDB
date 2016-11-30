@@ -120,7 +120,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 {
                                     post._miniatura = (byte[])rowResult["miniatura"];
                                 }
-                                
+                                post._publicado = (int)rowResult["publicado"];
                             }
                             if (tb[2].Rows.Count > 0)
                             {
@@ -264,7 +264,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return postRegresar;
                 }
-                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost,int idUsuarioEjecutor,int idPagina,int estado=-1)
+                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost,int idUsuarioEjecutor,int idPagina,int estado=-1,bool eliminado = false)
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_cambiarEstadoPost");
                     Post post = null;
@@ -272,6 +272,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     sp.agregarParametro("estado", estado);
+                    sp.agregarParametro("eliminado", eliminado);
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());

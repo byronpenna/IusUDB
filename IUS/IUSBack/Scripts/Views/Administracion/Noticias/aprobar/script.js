@@ -5,7 +5,10 @@
                 dateFormat: "dd/mm/yy"
             });
     // eventos 
+            
         // click
+            
+            
             $(document).on("click", ".tabRevision", function () {
                 tabRevision();
             })

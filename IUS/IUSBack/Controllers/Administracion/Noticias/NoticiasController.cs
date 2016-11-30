@@ -44,8 +44,9 @@ namespace IUSBack.Controllers
                         return seguridadInicial;
                     }
                     Dictionary<object, object> cuerpoPagina = this._model.sp_adminfe_noticias_getPostsFromId(id,usuarioSession._idUsuario,this._idPagina);
-                    Post post = (Post)cuerpoPagina["post"];
-                    ViewBag.post = post;
+                    Post post       = (Post)cuerpoPagina["post"];
+                    ViewBag.post    = post;
+                    ViewBag.origen  = 1; //origen solo preview 
                     return View();
                 }
                 catch (ErroresIUS x)

@@ -207,11 +207,11 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                         throw x;
                     }
                 }
-                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost, int idUsuarioEjecutor, int idPagina,int estado=-1)
+                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost, int idUsuarioEjecutor, int idPagina,int estado=-1,bool eliminado = false)
                 {
                     try
                     {
-                        Post post = this._controlPost.sp_adminfe_noticias_cambiarEstadoPost(idPost, idUsuarioEjecutor, idPagina,estado);
+                        Post post = this._controlPost.sp_adminfe_noticias_cambiarEstadoPost(idPost, idUsuarioEjecutor, idPagina,estado,eliminado);
                         return post;
                     }
                     catch (ErroresIUS x)

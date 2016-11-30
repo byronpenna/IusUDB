@@ -49,7 +49,7 @@ var tbAprobar   = $(".tbAprobar");
                         Cambiar caducidad\
                     </button>\
                     <div class='btn-group btn-block'>\
-                        <a class='btn btn-default btnBack col-lg-6' href='" + RAIZ + "/Noticias/preview/" + notiEvento._id + "'>\
+                        <a class='btn btn-default btnBack col-lg-6' href='" + RAIZ + "/AprobarNoticiaAccion/preview/" + notiEvento._id + "'>\
                             Ver\
                         </a>\
                         <button class='btn btn-default btnBack col-lg-6 btnEliminarInvolucrado'>\
