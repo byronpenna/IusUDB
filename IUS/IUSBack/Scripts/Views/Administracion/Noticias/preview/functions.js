@@ -25,7 +25,7 @@
             console.log("La respuesta del servidor", data);
             if (data.estado) {
                 alert("Accion ejecutada correctamente");
-
+                location.reload();
             }
         })
     }

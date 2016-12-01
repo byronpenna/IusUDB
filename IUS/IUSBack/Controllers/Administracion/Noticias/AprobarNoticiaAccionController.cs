@@ -180,7 +180,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
                                 }
                             case 2:
                                 {
-                                    return "No aceptada noticia - IUS";
+                                    return "Noticia no fue aceptada - IUS";
                                 }
                             default:
                                 {
@@ -217,7 +217,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
                                         string email = post._usuario._persona.emailsContacto[0]._email;
                                         if (email != "")
                                         {
-                                            //this.enviarCorreo(email, this.convertObjAjaxToInt(frm["txtHdIdAccion"]), motivo);
+                                            this.enviarCorreo(email, this.convertObjAjaxToInt(frm["txtHdIdAccion"]), motivo);
                                         }
                                         
                                         if (post != null)
