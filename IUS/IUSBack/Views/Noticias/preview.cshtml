@@ -14,7 +14,8 @@
     Post post = null;
     Layout = "~/Views/Shared/_Layouti.cshtml";
     int origen = 1;
-    string textoPublicado = "Publicar"; string classPublicado = "";
+    string textoPublicado   = "Publicar";           string classPublicado = "";
+    string textoCambio      = "Solicitar cambio";   string classCambio = "";
     try
     {
         post    = (Post)ViewBag.post;
@@ -24,10 +25,16 @@
             case 1:
                 {
                     textoPublicado = "Publicado";
+                    //textoCambio = "Solicitar cambio";
                     classPublicado = "disabled";
                     break;
                 }
-            
+            case 0:
+                {
+                    textoCambio = "Esperando revisión";
+                    classCambio = "disabled";
+                    break;
+                }
         }
     }
     catch (Exception x)
@@ -100,14 +107,14 @@
                     <div class="col-lg-5">
                         @if (origen == 2)
                         {
-                            if (post._estado)
+                            if (post._estado || post._publicado == 0 || post._publicado == 1)
                             {
                                 <div class="btn-group">
                                     <a href="@Url.Action("ModificarNoticia", "Noticias", new { id = @post._idPost })" class="btn btn-group btnBack btn-default">
                                         Editar
                                     </a>
-                                    <button class="btn btn-group btnBack btn-default btnSolicitarCambio inputBackModal">
-                                        Solicitar cambio
+                                    <button class="btn btn-group btnBack btn-default btnSolicitarCambio inputBackModal" @classCambio>
+                                        @textoCambio
                                     </button>
                                     <button class="btn btn-group btnBack btn-default btnAprobar inputBackModal @classPublicado">
                                         @textoPublicado

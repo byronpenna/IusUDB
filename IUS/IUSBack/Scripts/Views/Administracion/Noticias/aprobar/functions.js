@@ -45,22 +45,24 @@ var tbAprobar   = $(".tbAprobar");
                     <button class='btn btn-default btnBack btn-block btnCambiarEstadoRevision'>\
                         "+strEstado+"\
                     </button>\
-                    <button class='btn btn-default btnBack btn-block btnCaducidad'>\
-                        Cambiar caducidad\
-                    </button>\
-                    <div class='btn-group btn-block'>\
-                        <a class='btn btn-default btnBack col-lg-6' href='" + RAIZ + "/AprobarNoticiaAccion/preview/" + notiEvento._id + "'>\
-                            Ver\
-                        </a>\
-                        <button class='btn btn-default btnBack col-lg-6 btnEliminarInvolucrado'>\
-                            Eliminar\
-                        </button>\
-                    </div>\
+                    <a class='btn btn-default btnBack btn-block' href='" + RAIZ + "/AprobarNoticiaAccion/preview/" + notiEvento._id + "'>\
+                        Ver\
+                    </a>\
                 </td>\
             </tr>\
         ";
         return tr;
     }
+/*
+    <button class='btn btn-default btnBack btn-block btnCaducidad'>\
+        Cambiar caducidad\
+    </button>\
+    <div class='btn-group btn-block'>\
+        <button class='btn btn-default btnBack col-lg-6 btnEliminarInvolucrado'>\
+            Eliminar\
+        </button>\
+    </div>\
+*/
 // acciones 
     // tab clicks
         function tabAprobar() {
