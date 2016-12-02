@@ -44,6 +44,10 @@ namespace IUSBack.Controllers
                     }
                     else
                     {
+                        if (x.numeroError == 25)
+                        {
+                            return null;
+                        }
                         return RedirectToAction("Unhandled", "Errors");
                     }
                 }

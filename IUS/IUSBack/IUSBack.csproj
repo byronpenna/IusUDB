@@ -982,6 +982,7 @@
     <Content Include="Views\Noticias\AprobarNoticia.cshtml" />
     <Content Include="Views\Noticias\preview.cshtml" />
     <Content Include="Views\Home\changePasswordi.cshtml" />
+    <Content Include="Views\Noticias\NoPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

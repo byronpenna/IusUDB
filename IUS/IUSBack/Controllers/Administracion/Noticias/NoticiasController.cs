@@ -33,6 +33,29 @@ namespace IUSBack.Controllers
             }
         #endregion
         #region "url"
+            public ActionResult NoPost()
+            {
+                Usuario usuarioSession = this.getUsuarioSesion();
+                try
+                {
+                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+                    if (seguridadInicial != null)
+                    {
+                        return seguridadInicial;
+                    }
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "NoPost-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "NoPost-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                }
+            }
             public ActionResult preview(int id)
             {
                 Usuario usuarioSession = this.getUsuarioSesion();
@@ -44,10 +67,20 @@ namespace IUSBack.Controllers
                         return seguridadInicial;
                     }
                     Dictionary<object, object> cuerpoPagina = this._model.sp_adminfe_noticias_getPostsFromId(id,usuarioSession._idUsuario,this._idPagina);
-                    Post post       = (Post)cuerpoPagina["post"];
-                    ViewBag.post    = post;
-                    ViewBag.origen  = 1; //origen solo preview 
-                    return View();
+                    bool postNull       = (bool)cuerpoPagina["postNull"];
+                    Post post           = (Post)cuerpoPagina["post"];
+                    if (postNull)
+                    {
+                        ViewBag.post = post;
+                        //ViewBag.postNull    = postNull;
+                        ViewBag.origen = 1; //origen solo preview 
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("NotFound", "Errors");
+                    }
+                    
                 }
                 catch (ErroresIUS x)
                 {
@@ -57,7 +90,7 @@ namespace IUSBack.Controllers
                 catch (Exception x)
                 {
                     ErrorsController error = new ErrorsController();
-                    return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
+                    return error.redirectToError(x, "NoPost-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
             }
             public ActionResult Index()
@@ -280,7 +313,7 @@ namespace IUSBack.Controllers
                     Post post = this._model._controlPost.sp_adminfe_front_getPicNoticiaFromId(id);
                     //retorno = "data:image/png;base64," + Convert.ToBase64String(post._miniatura, 0, post._miniatura.Length);
                     
-                    if(post._miniatura != null){
+                    if(post != null && post._miniatura != null){
                         Stream stream = new MemoryStream(post._miniatura);
                         return new FileStreamResult(stream, "image/jpeg");
                     }
@@ -295,11 +328,15 @@ namespace IUSBack.Controllers
                 }
                 catch (ErroresIUS x)
                 {
-                    throw x;
+                    //throw x;
+                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
+                    return base.File(path, "image/jpeg");
                 }
                 catch (Exception x)
                 {
-                    throw x;
+                    //throw x;
+                    string path = Server.MapPath("/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
+                    return base.File(path, "image/jpeg");
                 }
                 
             }

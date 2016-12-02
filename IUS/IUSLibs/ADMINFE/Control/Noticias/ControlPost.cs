@@ -100,6 +100,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     Dictionary<object, object> retorno = null;
                     Post post = new Post(); List<Tag> tags = null; List<PostCategoria> categorias = null;
                     Usuario usu; DataRow rowResult; Tag tag; PostCategoria categoria;
+                    bool postNull = false;
                     // do it 
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_getPostsFromId");
                     sp.agregarParametro("idPost", idPost);
@@ -111,6 +112,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                         if (this.resultadoCorrecto(tb))
                         {
                             if(tb[1].Rows.Count > 0){
+                                postNull = true;
                                 rowResult = tb[1].Rows[0];
                                 usu = new Usuario((int)rowResult["id_usuario_fk"]);
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
@@ -143,6 +145,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             retorno.Add("post", post);
                             retorno.Add("tags", tags);
                             retorno.Add("categorias", categorias);
+                            retorno.Add("postNull", postNull);
                         }
                     }
                     catch (ErroresIUS x)

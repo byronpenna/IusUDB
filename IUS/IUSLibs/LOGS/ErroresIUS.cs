@@ -46,6 +46,7 @@ namespace IUSLibs.LOGS
             private int _codigoError;
             private tipoError _tipoError;
             public bool _mostrar=false;
+            public int numeroError; //@NumeroError
         #endregion
         #region "metodos"
             public void setTipoError(tipoError t)
