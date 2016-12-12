@@ -1,6 +1,17 @@
 ﻿$(document).ready(function () {
     //nicEditors.findEditor('editor').getContent();
-    
+    $(document).on('keydown', '.nicEdit-main', function (e) {
+        console.log("Evento keyup");
+        var x = $(this).html().replace(/(<([^>]+)>)/ig, "");
+        var y = x.split("&nbsp;").join(" ");
+        console.log("Numero de conteo es: ", y.length);
+        console.log("e es: ", e);
+        //e.key = "key";
+        if (y.length > 10881 && !botonesPermitidosLength(e)) {
+            e.preventDefault();
+        }
+    });
+
     //plugins 
         // chosen 
             $(".cbCategorias").chosen();
@@ -8,6 +19,10 @@
             bkLib.onDomLoaded(function () {
                 //nicEditors.allTextAreas()
                 txtAreaEditor = new nicEditor({ fullPanel: true }).panelInstance('editor');
+                /*txtAreaEditor.getElm().onkeyup = function () {
+                    console.log("weee count");
+                    nicCount(editor, 'mycounter1', 1000);
+                }*/
                 //txtAreaEditor = new nicEditor({ maxHeight: 400 }).panelInstance('editor');
                 //html = "<img src='http://www.matrallune.com/images/imagen_corporativa.jpg' alt=' align='none' class='activeRichImage'>"
                 //nicEditors.findEditor('editor').setContent(html);
