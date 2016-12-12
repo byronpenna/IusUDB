@@ -6,6 +6,8 @@
         //console.log("El formulario es:", frm);
         frmChangePass(frm);
     } else {
-        alert("El campo contraseña y confirmar contraseña no coinciden");
+        //alert("El campo contraseña y confirmar contraseña no coinciden");
+        printMessage($(".divMensaje"), "El campo contraseña y confirmar contraseña no coinciden", false);
+        
     }
 })
