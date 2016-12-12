@@ -90,7 +90,7 @@
                     if (jcrop_api != null) {
                         jcrop_api.destroy();
                     }
-                    targetImg.attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/noimage.png");
+                    targetImg.attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
                     targetImg.attr("style", "");
                     $(".divLoadingPhoto").empty();
                 }
