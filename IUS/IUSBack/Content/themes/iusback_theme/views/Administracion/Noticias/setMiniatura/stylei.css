@@ -302,6 +302,9 @@ footer {
 body, h2, h1, label, h4 {
   font-family: "MyriadRegular" !important; }
 
+.divResultado {
+  margin-top: 3%; }
+
 .jcrop-holder, .imgThumbnail {
   margin: 0 auto;
   margin-top: 5%; }
