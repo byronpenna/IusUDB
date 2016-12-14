@@ -114,7 +114,11 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             if(tb[1].Rows.Count > 0){
                                 postNull = true;
                                 rowResult = tb[1].Rows[0];
-                                usu = new Usuario((int)rowResult["id_usuario_fk"]);
+                                //usuario,idPersona,nombres,apellidos
+                                usu = new Usuario((int)rowResult["id_usuario_fk"], rowResult["usuario"].ToString());
+                                usu._persona = new Persona((int)rowResult["idPersona"]);
+                                usu._persona._nombres = rowResult["nombres"].ToString();
+                                usu._persona._apellidos = rowResult["apellidos"].ToString();
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
                                 post._idioma = new Idioma((int)rowResult["id_idioma_fk"]);
                                 post._descripcion = rowResult["breve_descripcion"].ToString();

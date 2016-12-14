@@ -3,6 +3,11 @@ var tbAprobar   = $(".tbAprobar");
 // metodos
     function getTrAprobar(noticiaEvento) {
         //<td>"+noticiaEvento._descripcion+"</td>\
+        /*
+            <td>\
+                <input type='text' class='form-control inputBack txtFechaCaducidad' name='txtFechaCaducidad' />\
+            </td>\
+        */
         var tr = "\
         <tr>\
             <td class='hidden'>\
@@ -12,9 +17,6 @@ var tbAprobar   = $(".tbAprobar");
             <td>"+noticiaEvento._titulo+"</td>\
             <td></td>\
             <td>"+noticiaEvento.getStrTipoEntrada+"</td>\
-            <td>\
-                <input type='text' class='form-control inputBack txtFechaCaducidad' name='txtFechaCaducidad' />\
-            </td>\
             <td>\
                 <button class='btn btnBack btn-block btnCambiarEstado'>Aprobar</button>\
                 <button class='btn btnBack btn-block btnRechazarNoticia'>Rechazar</button>\
