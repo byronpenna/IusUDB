@@ -13,6 +13,9 @@
 
                     if (frm.txtFechaCaducidad != "") {
                         console.log("El formulario es: ", frm);
+                        var arrDate = frm.txtFechaCaducidad.split("/");
+                        frm.txtFechaCaducidad = $.datepicker.formatDate("yy-mm-dd", new Date(arrDate[2], arrDate[1], arrDate[0]));
+                        console.log("La fecha de caducidad es: ", frm.txtFechaCaducidad);
                         frmAprobar(frm);
                     } else {
                         alert("Por favor introducir fecha de caducidad");
