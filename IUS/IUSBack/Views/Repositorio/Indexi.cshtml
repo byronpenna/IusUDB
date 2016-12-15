@@ -1,5 +1,81 @@
-﻿@{
-    ViewBag.Title = "Indexi";
+﻿@section estilosPersonalizados{
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/Indexi/style.css" />
 }
+@section scriptsPersonalizados{
+    <!-- propios -->
+        <script src="~/Scripts/Views/GestionRoles/script.js"></script>
+        <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
+}
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+}
+<div class="centroRepo contenidoCuerpo">
+    
+    <div class="row marginNull">
+        <div class="col-lg-3 fonditoGris colContenedor">
+            <div class="menu">
+                <div class="row marginNull">
+                    <ul class="botonesNewAction">
+                        <li class="rojito btnPrincipal">
+                            Nuevo
+                        </li>
+                    </ul>
+                </div>
+                <div class="row marginNull">
+                    <ul>
+                        <li>
+                            Mis archivos
+                        </li>
+                        <li>
+                            Descargar
+                        </li>
+                        <li>
+                            Eliminar
+                        </li>
+                        <li>
+                            Compartir
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 paddingNull">
+            <div class="LineaHeadBody">
+                <div class="row marginNull rowNavegacion">
+                    <span>
+                        <a href="@Url.Action("Index","Home")">
+                            Menu principal
+                        </a>
+                    </span>
+                    >>>
+                    <span class="titulo">
+                        Repositorio
+                    </span>
+                </div>
+                <div class="searchDivBarRepo">
 
-<h2>Indexi</h2>
+                </div>
+            </div>
+            <div class="row marginNull">
+                <table class="table tablaRepo">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Tamaño</th>
+                            <th>Archivo</th>
+                            <th>Archivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
