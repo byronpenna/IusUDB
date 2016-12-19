@@ -49,6 +49,9 @@ body {
 .rojito {
   background: #cd1315; }
 
+.grisito {
+  background: #eeecec; }
+
 .marginNull {
   margin: 0; }
 
@@ -265,7 +268,6 @@ table {
         width: 100%; }
 
 .rowSearch {
-  background: #eeecec;
   padding-top: 8px;
   padding-bottom: 1%;
   height: 45px; }
@@ -304,6 +306,46 @@ footer {
 
 body, h2, h1, label, h4 {
   font-family: "MyriadRegular" !important; }
+
+#contenerdorCargadorAjax {
+  top: 40% !important; }
+
+.divInfoI {
+  text-align: left;
+  width: 85%;
+  margin: 0 auto; }
+
+.txtNombreCarpeta {
+  border: none;
+  border-radius: 0;
+  background: white;
+  height: 60px; }
+
+.rowNombreCarpeta {
+  margin-bottom: 5%; }
+
+.rowBotonesModal {
+  text-align: right; }
+
+.btnCancelarModal, .btnPrimaryModal {
+  padding-top: 3%;
+  padding-bottom: 2%; }
+
+.btnCancelarModal {
+  background: #e5e3e3;
+  border: none;
+  margin-right: 7%; }
+
+.rowTituloModalCarpeta {
+  padding-left: 6%;
+  margin-bottom: 1%; }
+
+.btnPrimaryModal {
+  background: #cb1315;
+  color: white; }
+  .btnPrimaryModal:hover {
+    background: #cb1315;
+    color: white; }
 
 .divAccionesLista a {
   color: black;
@@ -449,6 +491,31 @@ body, h2, h1, label, h4 {
   margin-bottom: 10%;
   color: #828181; }
 
+.padreContenedorUpload {
+  width: 50%;
+  left: 0;
+  width: 100%;
+  top: 15% !important; }
+
+.divInputFile {
+  text-align: center; }
+  .divInputFile input[type="file"] {
+    margin: 0 auto;
+    margin-bottom: 2%; }
+
+.contenedorUpload {
+  background: #f3f2f2 !important;
+  width: 35%;
+  margin: 0 auto;
+  padding: 2%; }
+  .contenedorUpload h3 {
+    margin-top: 3%;
+    margin-bottom: 3%; }
+
+.tituloModal {
+  text-transform: uppercase;
+  margin-bottom: 8%; }
+
 .fonditoGris {
   background: #f3f2f2; }
 
@@ -459,20 +526,27 @@ body, h2, h1, label, h4 {
   width: 95%;
   margin: 0 auto; }
 
+.rowNavegacion {
+  padding-left: 5%;
+  margin-bottom: 1%; }
+
 .LineaHeadBody {
   background: #f3f2f2;
   padding-top: 5%;
-  padding-bottom: 3%; }
-
-.botonesNewAction {
-  margin-top: 5%; }
+  padding-bottom: 3%;
+  /* margin-bottom: 10%;margin-top: 5%;	 */ }
 
 .btnPrincipal {
   text-transform: uppercase;
-  color: white; }
+  color: white;
+  width: 100%;
+  padding-bottom: 10% !important;
+  padding-top: 10% !important; }
 
 .colContenedor {
-  padding: 0; }
+  padding: 0;
+  min-height: 500px;
+  padding-bottom: 5%; }
 
 .tablaRepo {
   width: 95%;
@@ -491,6 +565,43 @@ body, h2, h1, label, h4 {
       border: solid 1px #828181;
       text-align: center;
       width: 60%;
-      margin: 0 auto; }
+      margin: 0 auto;
+      cursor: pointer; }
+
+.botonesNewAction {
+  margin-top: 5%;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 10%;
+  margin-top: 5%;
+  width: 60%; }
+
+.NewActionLi {
+  width: 100% !important; }
+
+.noBordeBottom {
+  border-bottom: none; }
+
+.ulSub {
+  position: absolute;
+  width: 100%;
+  margin-top: 10%;
+  margin-left: -1%; }
+
+.subLiButton {
+  width: 120% !important;
+  background: white;
+  border: none !important;
+  padding-bottom: 10% !important;
+  padding-top: 10% !important;
+  text-transform: uppercase; }
+  .subLiButton div {
+    color: black;
+    border-bottom: solid 1px black;
+    padding-left: 5%;
+    padding-bottom: 5%;
+    padding-right: 5%;
+    width: 90%;
+    margin: 0 auto; }
 
 /*# sourceMappingURL=style.css.map */

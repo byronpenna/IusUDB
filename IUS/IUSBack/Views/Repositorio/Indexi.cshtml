@@ -1,81 +1,187 @@
-﻿@section estilosPersonalizados{
+﻿@using IUSLibs.REPO.Entidades
+@section estilosPersonalizados{
     <!-- propios -->
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/Indexi/style.css" />
 }
 @section scriptsPersonalizados{
     <!-- propios -->
-        <script src="~/Scripts/Views/GestionRoles/script.js"></script>
-        <script src="~/Scripts/Views/GestionRoles/functions.js"></script>
+        <script src="~/Scripts/Views/Repositorio/indexi/script.js"></script>
+        <script src="~/Scripts/Views/Repositorio/indexi/functions.js"></script>
 }
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
-}
-<div class="centroRepo contenidoCuerpo">
+    List<Carpeta> carpetas = null;//(List<Carpeta>)ViewBag.carpetas;
+    List<Archivo> archivos = null;//(List<Archivo>)ViewBag.archivos;
+    try
+    {
+        carpetas = (List<Carpeta>)ViewBag.carpetas;
+        archivos = (List<Archivo>)ViewBag.archivos;
+        
+    }
+    catch (Exception x)
+    {
+        
+    }
     
-    <div class="row marginNull">
-        <div class="col-lg-3 fonditoGris colContenedor">
-            <div class="menu">
-                <div class="row marginNull">
-                    <ul class="botonesNewAction">
-                        <li class="rojito btnPrincipal">
-                            Nuevo
-                        </li>
-                    </ul>
-                </div>
-                <div class="row marginNull">
-                    <ul>
-                        <li>
-                            Mis archivos
-                        </li>
-                        <li>
-                            Descargar
-                        </li>
-                        <li>
-                            Eliminar
-                        </li>
-                        <li>
-                            Compartir
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-9 paddingNull">
-            <div class="LineaHeadBody">
-                <div class="row marginNull rowNavegacion">
-                    <span>
-                        <a href="@Url.Action("Index","Home")">
-                            Menu principal
-                        </a>
-                    </span>
-                    >>>
-                    <span class="titulo">
-                        Repositorio
-                    </span>
-                </div>
-                <div class="searchDivBarRepo">
-
-                </div>
-            </div>
+}
+<div class="modal divUpload">
+    <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
             <div class="row marginNull">
-                <table class="table tablaRepo">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Tamaño</th>
-                            <th>Archivo</th>
-                            <th>Archivo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-lg-4 tituloModal">
+                    Nueva carpeta
+                </div>
+            </div>
+
+            <div class="divInfoI">
+                <!-- Contenido -->
+                <div class="row marginNull rowTituloModalCarpeta">
+                    Nombre de carpeta
+                </div>
+                <div class="row marginNull rowNombreCarpeta">
+                    <input class="form-control txtNombreCarpeta" name="txtNombreCarpeta" />
+                </div>
+                <div class="row marginNull rowBotonesModal">
+                    <div class="col-lg-offset-4">
+                        @*/*  | */*@
+                        <button class="btn btn-default btnBack closeModal btnCancelarModal">Cancelar</button>
+                        <button class="btn btn-default btnBack btnPrimaryModal">Crear</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
 </div>
+<div class="centroRepo contenidoCuerpo">
+
+        <div class="row marginNull">
+            <div class="col-lg-3 fonditoGris colContenedor">
+                <div class="menu">
+                    <div class="row marginNull">
+                        <ul class="botonesNewAction">
+                            <li class="rojito btnPrincipal NewActionLi">
+                                Nuevo
+                                <ul class="ulSub" style="display:none">
+                                    <li class="subLiButton ">
+                                        <div>
+                                            Nueva carpeta
+                                        </div>
+
+                                    </li>
+                                    <li class="subLiButton ">
+                                        <div>
+                                            Subir carpeta
+                                        </div>
+
+                                    </li>
+                                    <li class="subLiButton icoSubirFichero ">
+                                        <div>
+                                            Subir Archivo
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </li>
+                            @*<li class="subLiButton ">
+                                    <div class="noBordeBottom">
+                                        Subir archivo
+                                    </div>
+                                </li>*@
+                        </ul>
+                    </div>
+                    <div class="row marginNull">
+                        <ul>
+                            <li>
+                                Mis archivos
+                            </li>
+                            <li>
+                                Descargar
+                            </li>
+                            <li>
+                                Eliminar
+                            </li>
+                            <li>
+                                Compartir
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 paddingNull">
+                <div class="LineaHeadBody">
+                    <div class="row marginNull rowNavegacion">
+                        <span>
+                            <a href="@Url.Action("Index","Home")">
+                                Menu principal
+                            </a>
+                        </span>
+                        >>>
+                        <span class="titulo">
+                            Repositorio
+                        </span>
+                    </div>
+                    <div class="row marginNull searchDivBarRepo">
+                        <div class="col-lg-offset-9 col-lg-3">
+                            @*<input type="text" class="form-control" />*@
+                            <div class="rowSearch inputBackModal">
+                                <div class="form-group has-feedback inputSearchDiv">
+                                    <input type="text" class="form-control inputSearch ">
+                                    <i class="glyphicon form-control-feedback icoSearch">
+                                        <img class="imgLupita" src="/Content/themes/iusback_theme/img/general/lupita.png">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row marginNull">
+                    <table class="table tablaRepo">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Tamaño</th>
+                                <th>Archivo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (carpetas != null && carpetas.Count > 0)
+                            {
+                                foreach (Carpeta carpeta in carpetas)
+                                {
+                                    <tr>
+                                        <td>@carpeta._nombre</td>
+                                        <td>@carpeta._fechaCreacion</td>
+                                        <td>0.0 MB</td>
+                                        <td>Carpeta</td>
+                                        <td>
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </td>
+                                    </tr>
+                                }
+
+                            }
+                            @if (archivos != null && archivos.Count > 0)
+                            {
+                                foreach (Archivo archivo in archivos)
+                                {
+                                    <tr>
+                                        <td>@archivo._nombre</td>
+                                        <td>@archivo._fechaCreacion</td>
+                                        <td>0.0 MB</td>
+                                        <td>Archivo</td>
+                                        <td>
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
