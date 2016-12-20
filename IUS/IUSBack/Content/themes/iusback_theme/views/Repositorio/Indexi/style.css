@@ -103,6 +103,9 @@ body {
 .fullSize {
   width: 100%; }
 
+.pointer {
+  cursor: pointer; }
+
 .input-group-addon {
   border-radius: 0;
   border: solid 1px #828181; }

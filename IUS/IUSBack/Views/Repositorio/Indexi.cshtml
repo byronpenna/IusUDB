@@ -24,36 +24,41 @@
     }
     
 }
+<input class="txtHdIdCarpetaPadre" type="hidden" name="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
-            <div class="row marginNull">
-                <div class="col-lg-4 tituloModal">
-                    Nueva carpeta
-                </div>
-            </div>
-
-            <div class="divInfoI">
-                <!-- Contenido -->
-                <div class="row marginNull rowTituloModalCarpeta">
-                    Nombre de carpeta
-                </div>
-                <div class="row marginNull rowNombreCarpeta">
-                    <input class="form-control txtNombreCarpeta" name="txtNombreCarpeta" />
-                </div>
-                <div class="row marginNull rowBotonesModal">
-                    <div class="col-lg-offset-4">
-                        @*/*  | */*@
-                        <button class="btn btn-default btnBack closeModal btnCancelarModal">Cancelar</button>
-                        <button class="btn btn-default btnBack btnPrimaryModal">Crear</button>
+            <div class="divNuevaCarpetaModal modalContenido" style="display:none">
+                <div class="row marginNull">
+                    <div class="col-lg-4 tituloModal">
+                        Nueva carpeta
                     </div>
                 </div>
+
+                <div class="divInfoI">
+                    <!-- Contenido -->
+                    <div class="row marginNull rowTituloModalCarpeta">
+                        Nombre de carpeta
+                    </div>
+                    <div class="row marginNull rowNombreCarpeta">
+                        <input class="form-control txtNombreCarpeta" name="txtNombreCarpeta" />
+                    </div>
+                    <div class="row marginNull rowBotonesModal">
+                        <div class="col-lg-offset-4">
+                            @*/*  | */*@
+                            <button class="btn btn-default btnBack closeModal btnCancelarModal">Cancelar</button>
+                            <button class="btn btn-default btnBack btnPrimaryModal btnNuevaCarpeta">Crear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divSubirArchivoModal modalContenido" style="display:none">
+                Esta es el area para subir los archivos
             </div>
         </div>
     </div>
 </div>
 <div class="centroRepo contenidoCuerpo">
-
         <div class="row marginNull">
             <div class="col-lg-3 fonditoGris colContenedor">
                 <div class="menu">
@@ -62,7 +67,7 @@
                             <li class="rojito btnPrincipal NewActionLi">
                                 Nuevo
                                 <ul class="ulSub" style="display:none">
-                                    <li class="subLiButton ">
+                                    <li class="subLiButton icoNuevaCarpeta">
                                         <div>
                                             Nueva carpeta
                                         </div>
@@ -139,6 +144,9 @@
                     <table class="table tablaRepo">
                         <thead>
                             <tr>
+                                <th class="hidden">
+                                    
+                                </th>
                                 <th>Nombre</th>
                                 <th>Fecha</th>
                                 <th>Tamaño</th>
@@ -152,12 +160,15 @@
                                 foreach (Carpeta carpeta in carpetas)
                                 {
                                     <tr>
+                                        <td class="hidden">
+                                            <input name="txtHdIdCarpeta" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
+                                        </td>
                                         <td>@carpeta._nombre</td>
                                         <td>@carpeta._fechaCreacion</td>
                                         <td>0.0 MB</td>
                                         <td>Carpeta</td>
                                         <td>
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            <i class="fa fa-trash btnEliminarCarpeta pointer" aria-hidden="true"></i>
                                         </td>
                                     </tr>
                                 }
