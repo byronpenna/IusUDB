@@ -12,6 +12,7 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
     List<Carpeta> carpetas = null;//(List<Carpeta>)ViewBag.carpetas;
     List<Archivo> archivos = null;//(List<Archivo>)ViewBag.archivos;
+    Carpeta carpetaActual = (Carpeta)ViewBag.carpetaActual;
     try
     {
         carpetas = (List<Carpeta>)ViewBag.carpetas;
@@ -126,9 +127,17 @@
                         </span>
                     </div>
                     <div class="row marginNull searchDivBarRepo">
-                        <div class="col-lg-offset-9 col-lg-3">
+                        <div class="col-lg-3">
+                            <div class="input-group">
+                                <input class=" inputBack form-control txtDireccion" value="@carpetaActual._ruta" />
+                                <span class="input-group-addon spIrBuscar pointer">Ir</span>
+                            </div>
+                            
+                        </div>
+                        <div class="col-lg-offset-6 col-lg-3">
                             @*<input type="text" class="form-control" />*@
                             <div class="rowSearch inputBackModal">
+                                
                                 <div class="form-group has-feedback inputSearchDiv">
                                     <input type="text" class="form-control inputSearch ">
                                     <i class="glyphicon form-control-feedback icoSearch">
@@ -163,7 +172,11 @@
                                         <td class="hidden">
                                             <input name="txtHdIdCarpeta" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
                                         </td>
-                                        <td>@carpeta._nombre</td>
+                                        <td>
+                                            <a href="@Url.Action("Index", "Repositorio", new { id=carpeta._idCarpeta })">
+                                                @carpeta._nombre
+                                            </a>
+                                        </td>
                                         <td>@carpeta._fechaCreacion</td>
                                         <td>0.0 MB</td>
                                         <td>Carpeta</td>
@@ -179,7 +192,11 @@
                                 foreach (Archivo archivo in archivos)
                                 {
                                     <tr>
-                                        <td>@archivo._nombre</td>
+                                        <td>
+                                            
+                                                @archivo._nombre
+                                            
+                                        </td>
                                         <td>@archivo._fechaCreacion</td>
                                         <td>0.0 MB</td>
                                         <td>Archivo</td>

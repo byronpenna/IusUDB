@@ -41,6 +41,13 @@
                         tr.remove();
                     }
                 })
+                $(document).on("click", ".spIrBuscar", function () {
+                    frm = { txtRuta: $(".txtDireccion").val() }
+                    if (frm.txtRuta.slice(-1) != "/") {
+                        frm.txtRuta += "/";
+                    }
+                    spIrBuscar(frm);
+                });
                 $(document).on("click", ".btnNuevaCarpeta", function (e) {
                     var frm = {
                         idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
