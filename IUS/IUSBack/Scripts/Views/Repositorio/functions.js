@@ -551,7 +551,6 @@
                 });
             }
         // cambiar nombre archivo
-            
             function btnEditarArchivo(frm,folder) {
                 actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {
                     if (data.estado) {

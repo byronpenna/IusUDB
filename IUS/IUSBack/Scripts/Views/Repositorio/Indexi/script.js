@@ -48,6 +48,28 @@
                     }
                     spIrBuscar(frm);
                 });
+                $(document).on("click", ".btnCambiarNombre", function () {
+                    var seccion = $(this).parents("tr");
+                    seccion.find(".txtArchivoNombre").val(seccion.find(".spNombre").text());
+                    controlesEdit(true, seccion);
+                    console.log("Estas por cambiar el nombre");
+                })
+                $(document).on("click", ".btnCancelarEdicionCarpeta", function () {
+                    var seccion = $(this).parents("tr");
+                    controlesEdit(false, seccion);
+                })
+                $(document).on("click", ".btnEditarNombre", function () {
+                    var seccion = $(this).parents("tr");
+                    var frm = {
+                        idArchivo:      seccion.find(".txtHdIdArchivo").val(),
+                        nombreArchivo: seccion.find(".txtArchivoNombre").val()
+                        /*
+                        txtHdIdCarpeta: folder.find(".txtHdIdCarpeta").val(),
+                        nombre: folder.find(".txtArchivoNombre").val()*/
+                    }
+                    btnEditarNombre(frm,seccion);
+                    console.log("frm es: ", frm);
+                })
                 $(document).on("click", ".btnNuevaCarpeta", function (e) {
                     var frm = {
                         idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),

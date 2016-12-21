@@ -182,6 +182,7 @@
                                         <td>Carpeta</td>
                                         <td>
                                             <i class="fa fa-trash btnEliminarCarpeta pointer" aria-hidden="true"></i>
+                                            
                                         </td>
                                     </tr>
                                 }
@@ -192,16 +193,32 @@
                                 foreach (Archivo archivo in archivos)
                                 {
                                     <tr>
+                                        <td class="hidden">
+                                            <input class="txtHdIdArchivo" name="txtHdIdArchivo" value="@archivo._idArchivo" />
+                                        </td>
                                         <td>
-                                            
-                                                @archivo._nombre
-                                            
+                                            <div class="normalMode">
+                                                <span class="spNombre">@archivo._nombre</span>
+                                            </div>
+                                            <div class="editMode hidden">
+                                                <input type="text" class="form-control txtArchivoNombre inputBack" />
+                                            </div>
                                         </td>
                                         <td>@archivo._fechaCreacion</td>
                                         <td>0.0 MB</td>
                                         <td>Archivo</td>
                                         <td>
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            <div class="normalMode">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id=archivo._idArchivo })"><i class="fa fa-download btn" aria-hidden="true"></i></a>
+                                                <i class="pointer fa fa-pencil-square-o btnCambiarNombre" aria-hidden="true" title="Cambiar nombre"></i>
+                                            </div>
+                                            <div class="editMode hidden">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-default btnBack btnEditarNombre">Aceptar</button>
+                                                    <button class="btn btn-sm btn-default btnBack btnCancelarEdicionCarpeta pointer">Cancelar</button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 }
