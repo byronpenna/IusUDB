@@ -54,7 +54,13 @@
                 </div>
             </div>
             <div class="divSubirArchivoModal modalContenido" style="display:none">
-                Esta es el area para subir los archivos
+                <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile", "Repositorio")">
+                    <div class="row marginNull divInputFile">
+                        <input type="file" id="flArchivos" multiple />
+                    </div>
+                    <button class="btn btn-default btnBack" type="submit">Subir</button>
+                </form>
+                @*Esta es el area para subir los archivos*@
             </div>
         </div>
     </div>
@@ -212,6 +218,8 @@
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                 <a href="@Url.Action("DescargarFichero", "Repositorio", new { id=archivo._idArchivo })"><i class="fa fa-download btn" aria-hidden="true"></i></a>
                                                 <i class="pointer fa fa-pencil-square-o btnCambiarNombre" aria-hidden="true" title="Cambiar nombre"></i>
+                                                <i class="pointer fa fa-share btnCambiarNombre icoCompartirFile" aria-hidden="true" title="Compartir"></i>
+                                                
                                             </div>
                                             <div class="editMode hidden">
                                                 <div class="btn-group">

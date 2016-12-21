@@ -21,6 +21,26 @@ function btnEditarNombre(frm,seccion) {
         }
     })
 }
+function frmSubir(data, url, totalFiles) {
+    var estadoIndividual = false;
+    accionAjaxWithImage(url, data, function (data) {
+        console.log("La data devuelta es: ", data);
+        /*
+        if (data.estado && !estadoIndividual) {
+            estadoIndividual = true;
+            $(".txtHdEstadoUpload").val("1");
+        }
+        var archivo = data.archivo;
+        tr = getTrArchivo(archivo, data.estado);
+        $(".tbArchivos").append(tr);
+        porcentaje = $(".tbArchivos").find("tr").length / totalFiles * 100;
+        $(".porcentajeCarga").empty().append(porcentaje + "%");
+        if (porcentaje >= 100) {
+            $(".imgCargando").find("img").addClass("hidden");
+            $(".porcentajeCarga").empty().append("100%");
+        }*/
+    });
+}
 function spIrBuscar() {
     actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
         console.log(data);

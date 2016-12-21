@@ -70,6 +70,32 @@
                     btnEditarNombre(frm,seccion);
                     console.log("frm es: ", frm);
                 })
+                $(document).on("submit", "#frmSubir", function (e) {
+                    var inputFile = $("#flArchivos"); var divMensajes = $(".divMensajes");
+                    var files = inputFile[0].files;
+                    var formulariohtml = $(this);
+
+                    var frm = { txtHdIdCarpetaPadre: $(".txtHdIdCarpetaPadre").val() };
+
+                    e.preventDefault();
+
+                    if (inputFile.val() != "") {
+                        if (frm.txtHdIdCarpetaPadre != -1 || frm.txtHdIdCarpetaPadre != '-1') {
+                            cn = 0;
+                            totalFiles = files.length;
+                            $.each(files, function (file) {
+                                frm.cn = cn;
+                                var data = getIndividualFormData(files[cn], frm);
+                                frmSubir(data, formulariohtml.attr("action"), totalFiles);
+                                cn++;
+                            })
+                        } else {
+                            alert("No se pueden subir sobre la carpeta raiz");
+                        }
+                    } else {
+                        alert("Por favor seleccione un archivo")
+                    }
+                })
                 $(document).on("click", ".btnNuevaCarpeta", function (e) {
                     var frm = {
                         idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
