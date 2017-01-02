@@ -1,0 +1,75 @@
+﻿@{
+    
+}
+@section estilosPersonalizados{
+    <!-- propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/Indexi/style.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+    <script src="~/Scripts/Views/Repositorio/RepositorioCompartido/indexi/script.js"></script>
+    <script src="~/Scripts/Views/Repositorio/RepositorioCompartido/indexi/functions.js"></script>
+}
+<div class="modal divUpload">
+    <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            
+        </div>
+    </div>
+</div>
+<div class="centroRepo contenidoCuerpo">
+    <div class="row marginNull">
+        <div class="col-lg-3 fonditoGris colContenedor">
+            <div class="menu">
+                <div class="row marginNull">
+                    <ul class="botonesNewAction">
+                        <li class="rojito btnPrincipal NewActionLi">
+                            Nuevo
+                            <ul class="ulSub" style="display:none">
+                                <li class="subLiButton icoNuevaCarpeta">
+                                    <div>
+                                        Nueva carpeta
+                                    </div>
+
+                                </li>
+                                <li class="subLiButton ">
+                                    <div>
+                                        Subir carpeta
+                                    </div>
+
+                                </li>
+                                <li class="subLiButton icoSubirFichero ">
+                                    <div>
+                                        Subir Archivo
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </li>
+                        @*<li class="subLiButton ">
+                            <div class="noBordeBottom">
+                                Subir archivo
+                            </div>
+                        </li>*@
+                    </ul>
+                </div>
+                <div class="row marginNull">
+                    <ul>
+                        <li class="lkbSubMenu" href="@Url.Action("Index","Repositorio")">
+                            Mis archivos
+                        </li>
+                        <li class="lkbSubMenu" href="@Url.Action("Index", "RepositorioCompartido")">
+                            Compartido
+                        </li>
+                        <li class="lkbSubMenu">
+                            Publico
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 paddingNull">
+
+        </div>
+    </div>
+</div>

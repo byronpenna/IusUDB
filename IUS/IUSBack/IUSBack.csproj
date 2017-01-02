@@ -794,6 +794,8 @@
     <Content Include="Scripts\Views\Repositorio\Indexi\functions.js" />
     <Content Include="Scripts\Views\Repositorio\Indexi\script.js" />
     <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\indexi\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\indexi\script.js" />
     <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\script.js" />
     <Content Include="Scripts\Views\Repositorio\script.js" />
     <Content Include="Scripts\Views\Repositorio\universales\functions.js" />
@@ -988,6 +990,7 @@
     <Content Include="Views\Home\changePasswordi.cshtml" />
     <Content Include="Views\Noticias\NoPost.cshtml" />
     <Content Include="Views\Repositorio\Indexi.cshtml" />
+    <Content Include="Views\RepositorioPublico\Indexi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

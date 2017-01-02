@@ -29,18 +29,37 @@
                 $(document).on("click", ".closeModal", function (e) {
                     $(".divUpload").click();
                 })
-                $(document).on("click", ".btnEliminarCarpeta", function () {
-                    var tr = $(this).parents("tr");
-                    var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
-                    if (x) {
-                        frm = {
-                            idCarpeta: tr.find(".txtHdIdCarpeta").val()
-                        }
-                        btnEliminarCarpeta(frm);
-                        console.log("Frm es : ", frm);
-                        tr.remove();
-                    }
+
+                $(document).on("click", ".lkbSubMenu", function (e) {
+                    window.location = $(this).attr("href");
+
                 })
+                
+                // eliminar
+                    $(document).on("click", ".btnEliminarArchivo", function (e) {
+                        e.preventDefault();
+                        var x = confirm("Esta seguro que desea eliminar este archivo");
+                        var tr = $(this).parents("tr");
+                        if (x) {
+                            var frm = {
+                                idArchivo: tr.find(".txtHdIdArchivo").val()
+                            }
+                            console.log("frm es: ", frm);
+                            btnEliminarArchivo(frm,tr);
+                        }
+                    })
+                    $(document).on("click", ".btnEliminarCarpeta", function () {
+                        var tr = $(this).parents("tr");
+                        var x = confirm("¿Esta seguro que desea eliminar esta carpeta?");
+                        if (x) {
+                            frm = {
+                                idCarpeta: tr.find(".txtHdIdCarpeta").val()
+                            }
+                            btnEliminarCarpeta(frm,tr);
+                            console.log("Frm es : ", frm);
+                            
+                        }
+                    })
                 $(document).on("click", ".spIrBuscar", function () {
                     frm = { txtRuta: $(".txtDireccion").val() }
                     if (frm.txtRuta.slice(-1) != "/") {

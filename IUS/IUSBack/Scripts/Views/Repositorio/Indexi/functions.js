@@ -4,14 +4,24 @@
     $(".divUpload").fadeIn(400, callback);
 
 }
-function btnEliminarCarpeta(frm) {
-    console.log("Vamo a eliminar");
-    actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFolder", frm, function (data) {
-        if (data.estado) {
-
-        }
-    })
-}
+// eliminar 
+    function btnEliminarArchivo(frm,tr) {
+        actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {
+            console.log("Respuesta elimianr", data);
+            if (data.estado) {
+                tr.remove();
+            }
+        });
+    }
+    function btnEliminarCarpeta(frm,tr) {
+        console.log("Vamo a eliminar");
+        actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFolder", frm, function (data) {
+            if (data.estado) {
+                tr.remove();
+            }
+        })
+    }
+    
 function btnEditarNombre(frm,seccion) {
     actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_changeFileName", frm, function (data) {
         console.log("La respuesta del servidor es: ", data);
@@ -39,6 +49,7 @@ function frmSubir(data, url, totalFiles) {
             $(".imgCargando").find("img").addClass("hidden");
             $(".porcentajeCarga").empty().append("100%");
         }*/
+
     });
 }
 function spIrBuscar() {

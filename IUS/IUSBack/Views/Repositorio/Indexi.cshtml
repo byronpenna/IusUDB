@@ -103,17 +103,14 @@
                     </div>
                     <div class="row marginNull">
                         <ul>
-                            <li>
+                            <li class="lkbSubMenu" href="@Url.Action("Index","Repositorio")">
                                 Mis archivos
                             </li>
-                            <li>
-                                Descargar
+                            <li class="lkbSubMenu" href="@Url.Action("Index", "RepositorioCompartido")">
+                                Compartido
                             </li>
-                            <li>
-                                Eliminar
-                            </li>
-                            <li>
-                                Compartir
+                            <li class="lkbSubMenu">
+                                Publico
                             </li>
                         </ul>
                     </div>
@@ -215,7 +212,7 @@
                                         <td>Archivo</td>
                                         <td>
                                             <div class="normalMode">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                <i class="fa fa-trash btnEliminarArchivo pointer" aria-hidden="true"></i>
                                                 <a href="@Url.Action("DescargarFichero", "Repositorio", new { id=archivo._idArchivo })"><i class="fa fa-download btn" aria-hidden="true"></i></a>
                                                 <i class="pointer fa fa-pencil-square-o btnCambiarNombre" aria-hidden="true" title="Cambiar nombre"></i>
                                                 <i class="pointer fa fa-share btnCambiarNombre icoCompartirFile" aria-hidden="true" title="Compartir"></i>
