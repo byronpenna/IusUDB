@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+}
+@section estilosPersonalizados{
+    <!-- propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioCompartido/Indexi/style.css" />
+}
+@section scriptsPersonalizados{
+        <script src="~/Scripts/Views/Repositorio/universales/functionsi.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/Views/Repositorio/RepositorioCompartido/indexi/script.js"></script>
+        <script src="~/Scripts/Views/Repositorio/RepositorioCompartido/indexi/functions.js"></script>
+}
+<div class="modal divUpload">
+    <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
+
+        </div>
+    </div>
+</div>
+<div class="centroRepo contenidoCuerpo">
+    <div class="row marginNull">
+        <div class="col-lg-3 fonditoGris colContenedor">
+            @Html.Partial("~/Views/Shared/Repositorio/Navi.cshtml")
+        </div>
+        <div class="col-lg-9 paddingNull">
+            
+        </div>
+    </div>
+</div>

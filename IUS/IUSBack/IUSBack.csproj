@@ -789,6 +789,8 @@
     <Content Include="Scripts\Views\RecursosHumanos\functions.js" />
     <Content Include="Scripts\Views\RecursosHumanos\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\functions.js" />
+    <Content Include="Scripts\Views\RepositorioPublico\Indexi\functions.js" />
+    <Content Include="Scripts\Views\RepositorioPublico\Indexi\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\script.js" />
     <Content Include="Scripts\Views\Repositorio\functions.js" />
     <Content Include="Scripts\Views\Repositorio\Indexi\functions.js" />
@@ -799,6 +801,7 @@
     <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\script.js" />
     <Content Include="Scripts\Views\Repositorio\script.js" />
     <Content Include="Scripts\Views\Repositorio\universales\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\universales\functionsi.js" />
     <Content Include="Scripts\Views\Repositorio\universales\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -991,6 +994,8 @@
     <Content Include="Views\Noticias\NoPost.cshtml" />
     <Content Include="Views\Repositorio\Indexi.cshtml" />
     <Content Include="Views\RepositorioPublico\Indexi.cshtml" />
+    <Content Include="Views\RepositorioCompartido\Indexi.cshtml" />
+    <Content Include="Views\Shared\Repositorio\Navi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

@@ -63,6 +63,7 @@ namespace IUSBack.Controllers
                  * id: representa la carpeta actual
                  * id2: representa la vista que aparecera
                  */
+
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
                 Usuario usuarioSession = this.getUsuarioSesion();
                 if (seguridadInicial != null)
@@ -114,7 +115,7 @@ namespace IUSBack.Controllers
                     ErrorsController error = new ErrorsController();
                     return error.redirectToError(x, "Index-"+this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
-                return View();
+                return View("~/Views/RepositorioCompartido/Indexi.cshtml");
             }
         #endregion
         #region "acciones ajax"

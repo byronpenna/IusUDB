@@ -81,7 +81,7 @@ namespace IUSBack.Controllers
                     ErrorsController error = new ErrorsController();
                     return error.redirectToError(x, "Index-" + this._nombreClass, usuarioSession._idUsuario, this._idPagina);
                 }
-                return View();
+                return View("~/Views/RepositorioPublico/Indexi.cshtml");
             }
         #endregion
         #region "genericas"
