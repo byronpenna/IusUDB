@@ -7,12 +7,22 @@
     }
 // eventos
     // click
+        $(document).on("click", ".contenedorUpload", function (e) {
+            e.stopPropagation();
+        });
+        $(document).on("click", ".divUpload", function (e) {
+            $(this).fadeOut();
+        })
+        $(document).on("click", ".closeModal", function (e) {
+            $(".divUpload").click();
+        })
         $(document).on("click", ".icoNuevaCarpeta", function (e) {
             console.log("Hay que abrir ");
             abrirModal(e, function () {
                 $(".divNuevaCarpetaModal").show();
             });
         })
+        
         $(document).on("click", ".NewActionLi", function () {
             var elemento = $(this).find(".ulSub");
             if (elemento.is(":visible")) {

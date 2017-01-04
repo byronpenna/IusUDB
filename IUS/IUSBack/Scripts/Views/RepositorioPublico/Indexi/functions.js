@@ -1,4 +1,9 @@
-﻿function spIrBuscar(frm) {
+﻿function btnGuardarCarpeta(frm, seccion) {
+    actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_insertCarpetaPublica", frm, function (data) {
+        console.log("data de carpeta INGRESADA", data);
+    })
+}
+function spIrBuscar(frm) {
     //console.log(frm);
     actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getPublicoByRuta", frm, function (data) {
         console.log(data);

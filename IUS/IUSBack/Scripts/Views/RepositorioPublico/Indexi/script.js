@@ -1,6 +1,20 @@
 ﻿$(document).ready(function () {
     
-    
+    $(document).on("click", ".btnNuevaCarpeta", function () {
+        
+        var seccion = $(this).parents(".modalContenido");
+        var frm = {
+            idCarpetaPadre: $(".txtHdIdCarpetaPadre").val(),
+            nombre: seccion.find(".txtNombreCarpeta").val()
+        }
+        console.log("Formulario a enviar", frm);
+        if (frm.nombre != "") {
+            btnGuardarCarpeta(frm, seccion);
+        } else {
+            alert("El nombre de la carpeta no puede ser vacio");
+            //printMessage($(".mensajeNewFolder"), "El nombre de la carpeta no puede ser vacio", false);
+        }
+    })
     // eliminar 
         $(document).on("click", ".btnEliminarArchivo", function () {
             var x = confirm("¿Esta seguro que desea dejar de compartir este archivo?");

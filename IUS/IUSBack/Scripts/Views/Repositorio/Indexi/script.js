@@ -19,12 +19,8 @@
                 $(document).on("click", ".contenedorUpload", function (e) {
                     e.stopPropagation();
                 });
-                $(document).on("click", ".divUpload", function (e) {
-                    $(this).fadeOut();
-                })
-                $(document).on("click", ".closeModal", function (e) {
-                    $(".divUpload").click();
-                })
+                
+                
 
                 $(document).on("click", ".lkbSubMenu", function (e) {
                     window.location = $(this).attr("href");
