@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
-    // eliminar 
     
+    
+    // eliminar 
         $(document).on("click", ".btnEliminarArchivo", function () {
             var x = confirm("¿Esta seguro que desea dejar de compartir este archivo?");
             if (x) {

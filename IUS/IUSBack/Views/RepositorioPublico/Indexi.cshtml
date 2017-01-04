@@ -2,11 +2,13 @@
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     List<CarpetaPublica> carpetas = null;
-    List<ArchivoPublico> archivos = (List<ArchivoPublico>)ViewBag.archivos;
+    List<ArchivoPublico> archivos = null;
+    CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
     try
     {
         carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
         archivos = (List<ArchivoPublico>)ViewBag.archivos;
+        carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
     }
     catch (Exception x)
     {
@@ -51,7 +53,7 @@
                 <div class="row marginNull searchDivBarRepo">
                     <div class="col-lg-3">
                         <div class="input-group">
-                            <input class=" inputBack form-control txtDireccion" value="" />
+                            <input class=" inputBack form-control txtDireccion" value="@carpetaPadre._strRuta" />
                             <span class="input-group-addon spIrBuscar pointer">Ir</span>
                         </div>
 

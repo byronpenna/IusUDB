@@ -60,13 +60,13 @@
                             
                         }
                     })
-                $(document).on("click", ".spIrBuscar", function () {
+                /*$(document).on("click", ".spIrBuscar", function () {
                     frm = { txtRuta: $(".txtDireccion").val() }
                     if (frm.txtRuta.slice(-1) != "/") {
                         frm.txtRuta += "/";
                     }
                     spIrBuscar(frm);
-                });
+                });*/
                 $(document).on("click", ".btnCambiarNombre", function () {
                     var seccion = $(this).parents("tr");
                     seccion.find(".txtArchivoNombre").val(seccion.find(".spNombre").text());
