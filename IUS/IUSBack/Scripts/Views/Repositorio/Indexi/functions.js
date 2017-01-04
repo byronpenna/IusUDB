@@ -1,9 +1,9 @@
-﻿function abrirModal(e,callback) {
+﻿/*function abrirModal(e,callback) {
     e.preventDefault();
     $(".modalContenido").hide();
     $(".divUpload").fadeIn(400, callback);
 
-}
+}*/
 // eliminar 
     function btnEliminarArchivo(frm,tr) {
         actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {

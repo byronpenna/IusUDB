@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/Indexi/style.css" />
 }
 @section scriptsPersonalizados{
+    <script src="~/Scripts/Views/Repositorio/universales/functionsi.js"></script>
     <!-- propios -->
         <script src="~/Scripts/Views/Repositorio/indexi/script.js"></script>
         <script src="~/Scripts/Views/Repositorio/indexi/functions.js"></script>
@@ -29,6 +30,8 @@
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            @Html.Partial("~/Views/Shared/Repositorio/Modal/NuevaCarpeta.cshtml")
+            @*
             <div class="divNuevaCarpetaModal modalContenido" style="display:none">
                 <div class="row marginNull">
                     <div class="col-lg-4 tituloModal">
@@ -46,13 +49,14 @@
                     </div>
                     <div class="row marginNull rowBotonesModal">
                         <div class="col-lg-offset-4">
-                            @*/*  | */*@
+                            
                             <button class="btn btn-default btnBack closeModal btnCancelarModal">Cancelar</button>
                             <button class="btn btn-default btnBack btnPrimaryModal btnNuevaCarpeta">Crear</button>
                         </div>
                     </div>
                 </div>
             </div>
+            *@
             <div class="divSubirArchivoModal modalContenido" style="display:none">
                 <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile", "Repositorio")">
                     <div class="row marginNull divInputFile">
@@ -128,7 +132,7 @@
                     <div class="row marginNull searchDivBarRepo">
                         <div class="col-lg-3">
                             <div class="input-group">
-                                <input class=" inputBack form-control txtDireccion" value="@carpetaActual._ruta" />
+                                <input class=" inputBack form-control inputBackModal txtDireccion" value="@carpetaActual._ruta" />
                                 <span class="input-group-addon spIrBuscar pointer">Ir</span>
                             </div>
                             

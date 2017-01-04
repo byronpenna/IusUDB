@@ -8,18 +8,14 @@
                         $(".divSubirArchivoModal").show();
                     });
                 })
-
+                /*
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
-                    /*e.preventDefault();
-                    $(".modalContenido").hide();
-                    $(".divUpload").fadeIn(400, function () {
-
-                    });*/
+                    
                     abrirModal(e,function () {
                         $(".divNuevaCarpetaModal").show();
                     });
                 })
-
+                */
                 $(document).on("click", ".contenedorUpload", function (e) {
                     e.stopPropagation();
                 });
@@ -129,6 +125,7 @@
                     
                 })
             // para menu 
+                /*
                 $(document).on("click", ".NewActionLi", function () {
                     var elemento = $(this).find(".ulSub");
                     if (elemento.is(":visible")) {
@@ -139,5 +136,5 @@
                         elemento.show();
                         console.log("Ocultar");
                     }
-                });
+                });*/
 })

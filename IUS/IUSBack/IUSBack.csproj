@@ -996,6 +996,7 @@
     <Content Include="Views\RepositorioPublico\Indexi.cshtml" />
     <Content Include="Views\RepositorioCompartido\Indexi.cshtml" />
     <Content Include="Views\Shared\Repositorio\Navi.cshtml" />
+    <Content Include="Views\Shared\Repositorio\Modal\NuevaCarpeta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

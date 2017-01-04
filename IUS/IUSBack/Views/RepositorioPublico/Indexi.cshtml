@@ -17,7 +17,8 @@
 }
 @section estilosPersonalizados{
     <!-- propios -->
-        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/Indexi/style.css" />
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioPublico/Indexi/style.css" />
+
 }
 @section scriptsPersonalizados{
     <script src="~/Scripts/Views/Repositorio/universales/functionsi.js"></script>
@@ -28,7 +29,7 @@
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
-            
+            @Html.Partial("~/Views/Shared/Repositorio/Modal/NuevaCarpeta.cshtml")
         </div>
     </div>
 </div>
@@ -53,8 +54,8 @@
                 <div class="row marginNull searchDivBarRepo">
                     <div class="col-lg-3">
                         <div class="input-group">
-                            <input class=" inputBack form-control txtDireccion" value="@carpetaPadre._strRuta" />
-                            <span class="input-group-addon spIrBuscar pointer">Ir</span>
+                            <input class=" inputBack form-control inputBackModal txtDireccion" value="@carpetaPadre._strRuta" />
+                            <span class="input-group-addon spIrBuscar  pointer">Ir</span>
                         </div>
 
                     </div>
