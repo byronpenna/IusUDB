@@ -1,6 +1,9 @@
 ﻿function btnGuardarCarpeta(frm, seccion) {
     actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_insertCarpetaPublica", frm, function (data) {
         console.log("data de carpeta INGRESADA", data);
+        if (data.estado) {
+
+        }
     })
 }
 function spIrBuscar(frm) {

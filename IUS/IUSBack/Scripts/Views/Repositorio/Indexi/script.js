@@ -2,7 +2,7 @@
     // eventos 
         // click 
             // Modal
-
+                
                 $(document).on("click", ".icoSubirFichero", function (e) {
                     abrirModal(e,function () {
                         $(".divSubirArchivoModal").show();

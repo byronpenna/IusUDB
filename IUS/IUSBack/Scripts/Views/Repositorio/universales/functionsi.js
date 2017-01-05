@@ -5,7 +5,31 @@
         $(".divUpload").fadeIn(400, callback);
 
     }
+    function buscarEnCarpeta(txt) {
+        var folder = $(".trRepo");
+        var parents = ".trRepo";
+        if (txt == "") {
+            //$(".folders .folder").removeClass("hidden");
+            folder.removeClass("hidden");
+        } else {
+            folder.addClass("hidden");
+            var folders = folder.find(".spNombre:containsi(" + txt + ")");
+            folders = folders.parents(parents);
+            folders.removeClass("hidden");
+        }
+    }
 // eventos
+    // keyup
+        $(document).on("keyup", ".inputSearch", function (e) {
+            var charCode = e.which;
+            if (charCode == 27) { // tecla esc cancela todo
+                $(this).val("");
+                
+            }
+            console.log("Key up es ", $(this).val());
+            buscarEnCarpeta($(this).val());
+            
+        })
     // click
         $(document).on("click", ".contenedorUpload", function (e) {
             e.stopPropagation();
