@@ -1,9 +1,78 @@
-﻿/*function abrirModal(e,callback) {
-    e.preventDefault();
-    $(".modalContenido").hide();
-    $(".divUpload").fadeIn(400, callback);
-
-}*/
+﻿function getTrCarpeta(carpeta) {
+    //@Url.Action("Index", "Repositorio", new { id=carpeta._idCarpeta })
+    var tr = "\
+    <tr class=trRepo>\
+        <td class=hidden>\
+            <input name=txtHdIdCarpeta class=txtHdIdCarpeta value="+carpeta._idCarpeta+"/>\
+        </td>\
+        <td>\
+            <a href='" + RAIZ + "/Repositorio/Index/"+ carpeta._idCarpeta +"'>\
+                <span class='spNombre'>"+carpeta._nombre+"</span>\
+            </a>\
+        </td>\
+        <td>"+carpeta._fechaCreacion+"</td>\
+        <td>0.0 MB</td>\
+        <td>Carpeta</td>\
+        <td>\
+            <i class='fa fa-trash btnEliminarCarpeta pointer' aria-hidden='true'></i>\
+        </td>\
+    </tr>\
+    ";
+    return tr;
+}
+//@Url.Action('DescargarFichero', 'Repositorio', new { id=archivo._idArchivo })
+function getTrArchivo(archivo) {
+    var tr = "\
+    <tr class='trRepo'>\
+        <td class='hidden'>\
+            <input class='txtHdIdArchivo' name='txtHdIdArchivo' value='"+archivo._idArchivo+"' />\
+        </td>\
+        <td>\
+            <div class='normalMode'>\
+                <span class='spNombre'>"+archivo._nombre+"</span>\
+            </div>\
+            <div class='editMode hidden'>\
+                <input type='text' class='form-control txtArchivoNombre inputBack' />\
+            </div>\
+        </td>\
+        <td>"+archivo._fechaCreacion+"</td>\
+        <td>0.0 MB</td>\
+        <td>Archivo</td>\
+        <td>\
+            <div class='normalMode'>\
+                <i class='fa fa-trash btnEliminarArchivo pointer' aria-hidden='true'></i>\
+                <a href='" + RAIZ + "/Repositorio/DescargarFichero/" + archivo._idArchivo + "'>\
+                    <i class='fa fa-download btn' aria-hidden='true'></i>\
+                </a>\
+                <i class='pointer fa fa-pencil-square-o btnCambiarNombre' aria-hidden='true' title='Cambiar nombre'></i>\
+                <i class='pointer fa fa-share btnCambiarNombre icoCompartirFile' aria-hidden='true' title='Compartir'></i>\
+            </div>\
+            <div class='editMode hidden'>\
+                <div class='btn-group'>\
+                    <button class='btn btn-sm btn-default btnBack btnEditarNombre'>Aceptar</button>\
+                    <button class='btn btn-sm btn-default btnBack btnCancelarEdicionCarpeta pointer'>Cancelar</button>\
+                </div>\
+            </div>\
+        </td>\
+    </tr>\
+    ";
+    return tr;
+}
+function btnBusqueda(frm, seccion) {
+    actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
+        console.log("respuesta es: ",data)
+        if (data.estado) {
+            if (data.archivos !== undefined && data.archivos !== null) {
+                var trs = "";
+                $.each(data.archivos, function (i, archivo) {
+                    trs += getTrArchivo(archivo);
+                })
+                $(".tbTablaRepo").empty().append(trs);
+                console.log("justo a limpiar :) ");
+            }
+        }
+    })
+}
 // eliminar 
     function btnEliminarArchivo(frm,tr) {
         actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_deleteFile", frm, function (data) {

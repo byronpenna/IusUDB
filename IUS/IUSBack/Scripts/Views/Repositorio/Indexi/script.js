@@ -3,6 +3,26 @@
         // click 
             // Modal
                 
+                $(document).on("click", ".imgSearchRepo", function () {
+                    console.log("Busqueda es: ");
+                    var buscando = $(".txtHdBuscando").val();
+
+                    if (buscando == 0) {
+                        buscando = 1;
+                        //$(".imgSearchRepo").attr(".")
+                    } else {
+                        buscando = 0;
+                    }
+
+                    var frm = {
+                        txtBusqueda: $(".inputSearchRepo").val()
+                    }
+                    //console.log("Frm es: ", frm);
+                    var seccion = null;
+                    //console.log("Busqueda es: ");
+                    btnBusqueda(frm, seccion);
+
+                })
                 $(document).on("click", ".icoSubirFichero", function (e) {
                     abrirModal(e,function () {
                         $(".divSubirArchivoModal").show();

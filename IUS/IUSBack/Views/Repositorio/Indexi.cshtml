@@ -27,6 +27,7 @@
     
 }
 <input class="txtHdIdCarpetaPadre" type="hidden" name="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+<input class="txtHdBuscando" type="hidden" name="txtHdBuscando" value="0"/>
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
@@ -142,12 +143,17 @@
                             <div class="rowSearch inputBackModal">
                                 
                                 <div class="form-group has-feedback inputSearchDiv">
-                                    <input type="text" class="form-control inputSearch ">
-                                    <i class="glyphicon form-control-feedback icoSearch">
-                                        <img class="imgLupita" src="/Content/themes/iusback_theme/img/general/lupita.png">
-                                    </i>
+                                    <input type="text" class="form-control inputSearch inputSearchRepo ">
+                                    <div class="imgLupita icoSearch icoSearchRepo pointer">
+                                        <img class="  imgSearchRepo" src="/Content/themes/iusback_theme/img/general/lupita.png">
+                                    </div>
                                 </div>
                             </div>
+                            
+                            
+                            @*<div class="glyphicon form-control-feedback icoSearch icoSearchRepo pointer">
+                                <img class=" imgLupita" src="/Content/themes/iusback_theme/img/general/lupita.png">
+                            </div>*@
                         </div>
 
                     </div>
@@ -166,7 +172,7 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="tbTablaRepo">
                             @if (carpetas != null && carpetas.Count > 0)
                             {
                                 foreach (Carpeta carpeta in carpetas)
@@ -228,7 +234,7 @@
                                         </tr>
                                 }
                             }
-</tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>

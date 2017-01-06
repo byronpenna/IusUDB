@@ -310,46 +310,6 @@ footer {
 body, h2, h1, label, h4 {
   font-family: "MyriadRegular" !important; }
 
-#contenerdorCargadorAjax {
-  top: 40% !important; }
-
-.divInfoI {
-  text-align: left;
-  width: 85%;
-  margin: 0 auto; }
-
-.txtNombreCarpeta {
-  border: none;
-  border-radius: 0;
-  background: white;
-  height: 60px; }
-
-.rowNombreCarpeta {
-  margin-bottom: 5%; }
-
-.rowBotonesModal {
-  text-align: right; }
-
-.btnCancelarModal, .btnPrimaryModal {
-  padding-top: 3%;
-  padding-bottom: 2%; }
-
-.btnCancelarModal {
-  background: #e5e3e3;
-  border: none;
-  margin-right: 7%; }
-
-.rowTituloModalCarpeta {
-  padding-left: 6%;
-  margin-bottom: 1%; }
-
-.btnPrimaryModal {
-  background: #cb1315;
-  color: white; }
-  .btnPrimaryModal:hover {
-    background: #cb1315;
-    color: white; }
-
 .divAccionesLista a {
   color: black;
   font-weight: normal; }
@@ -493,6 +453,76 @@ body, h2, h1, label, h4 {
   font-size: 3em;
   margin-bottom: 10%;
   color: #828181; }
+
+.icoSearchRepo {
+  position: absolute;
+  top: 12% !important;
+  right: 4% !important; }
+
+#contenerdorCargadorAjax {
+  top: 40% !important; }
+
+.divInfoI {
+  text-align: left;
+  width: 85%;
+  margin: 0 auto; }
+
+.txtNombreCarpeta {
+  border: none;
+  border-radius: 0;
+  background: white;
+  height: 60px; }
+
+.rowNombreCarpeta {
+  margin-bottom: 5%; }
+
+.rowBotonesModal {
+  text-align: right; }
+
+.btnCancelarModal, .btnPrimaryModal {
+  padding-top: 3%;
+  padding-bottom: 2%; }
+
+.btnCancelarModal {
+  background: #e5e3e3;
+  border: none;
+  margin-right: 7%; }
+
+.rowTituloModalCarpeta {
+  padding-left: 6%;
+  margin-bottom: 1%; }
+
+.btnPrimaryModal {
+  background: #cb1315;
+  color: white; }
+  .btnPrimaryModal:hover {
+    background: #cb1315;
+    color: white; }
+
+.padreContenedorUpload {
+  width: 50%;
+  left: 0;
+  width: 100%;
+  top: 15% !important; }
+
+.divInputFile {
+  text-align: center; }
+  .divInputFile input[type="file"] {
+    margin: 0 auto;
+    margin-bottom: 2%; }
+
+.contenedorUpload {
+  background: #f3f2f2 !important;
+  width: 35%;
+  margin: 0 auto;
+  padding: 2%; }
+  .contenedorUpload h3 {
+    margin-top: 3%;
+    margin-bottom: 3%; }
+
+.tituloModal {
+  text-transform: uppercase;
+  margin-bottom: 8%; }
 
 .fonditoGris {
   background: #f3f2f2; }
