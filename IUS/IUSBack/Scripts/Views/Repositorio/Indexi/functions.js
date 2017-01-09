@@ -58,10 +58,33 @@ function getTrArchivo(archivo) {
     ";
     return tr;
 }
-function btnBusqueda(frm, seccion) {
+function entrarCarpeta(frm) {
+    actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_entrarCarpeta", frm, function (data) {
+        console.log("la data entrar carpeta es: ", data);
+        if (data.estado) {
+            $(".txtHdBuscando").val(frm.buscando);
+            var trs = "";
+            if (data.carpetas !== undefined && data.carpetas !== null) {
+                $.each(data.carpetas, function (i, carpeta) {
+                    trs += getTrCarpeta(carpeta);
+                })
+            }
+            if (data.archivos !== undefined && data.archivos !== null) {
+                $.each(data.archivos, function (i, archivo) {
+                    trs += getTrArchivo(archivo);
+                })
+            }
+            $(".tbTablaRepo").empty().append(trs);
+        }
+
+    })
+}
+function btnBusqueda(frm) {
     actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_searchArchivo", frm, function (data) {
         console.log("respuesta es: ",data)
         if (data.estado) {
+            console.log(":) ", frm);
+            $(".txtHdBuscando").val(frm.buscando);
             if (data.archivos !== undefined && data.archivos !== null) {
                 var trs = "";
                 $.each(data.archivos, function (i, archivo) {

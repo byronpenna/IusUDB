@@ -6,21 +6,32 @@
                 $(document).on("click", ".imgSearchRepo", function () {
                     console.log("Busqueda es: ");
                     var buscando = $(".txtHdBuscando").val();
-
+                    var img = "";
                     if (buscando == 0) {
                         buscando = 1;
-                        //$(".imgSearchRepo").attr(".")
+                        img = $(".txtHdImgBuscando").val();
                     } else {
                         buscando = 0;
+                        img = $(".txtHdImgBuscar").val();
+                        
                     }
-
-                    var frm = {
-                        txtBusqueda: $(".inputSearchRepo").val()
+                    console.log("img es: ", img);
+                    $(".imgSearchRepo").attr("src", img);
+                    if (buscando == 1) {
+                        var frm = {
+                            txtBusqueda: $(".inputSearchRepo").val(),
+                            buscando: buscando
+                        }
+                        btnBusqueda(frm);
+                    } else {
+                        var frm = {
+                            idCarpeta: $(".txtHdIdCarpetaPadre").val(),
+                            buscando: buscando
+                        }
+                        entrarCarpeta(frm);
                     }
-                    //console.log("Frm es: ", frm);
-                    var seccion = null;
-                    //console.log("Busqueda es: ");
-                    btnBusqueda(frm, seccion);
+                    
+                    
 
                 })
                 $(document).on("click", ".icoSubirFichero", function (e) {

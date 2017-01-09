@@ -14,6 +14,9 @@
     List<Carpeta> carpetas = null;//(List<Carpeta>)ViewBag.carpetas;
     List<Archivo> archivos = null;//(List<Archivo>)ViewBag.archivos;
     Carpeta carpetaActual = (Carpeta)ViewBag.carpetaActual;
+    // busqueda
+        string imgBuscar = Url.Content("~/Content/themes/iusback_theme/img/general/lupita.png");
+        string imgBuscando = Url.Content("~/Content/themes/iusback_theme/img/general/lupitaClose.png");
     try
     {
         carpetas = (List<Carpeta>)ViewBag.carpetas;
@@ -27,6 +30,10 @@
     
 }
 <input class="txtHdIdCarpetaPadre" type="hidden" name="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+
+<input class="txtHdImgBuscar" type="hidden" value="@imgBuscar" />
+<input class="txtHdImgBuscando" type="hidden" value="@imgBuscando" />
+
 <input class="txtHdBuscando" type="hidden" name="txtHdBuscando" value="0"/>
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
@@ -145,7 +152,7 @@
                                 <div class="form-group has-feedback inputSearchDiv">
                                     <input type="text" class="form-control inputSearch inputSearchRepo ">
                                     <div class="imgLupita icoSearch icoSearchRepo pointer">
-                                        <img class="  imgSearchRepo" src="/Content/themes/iusback_theme/img/general/lupita.png">
+                                        <img class="  imgSearchRepo" src="@imgBuscar">
                                     </div>
                                 </div>
                             </div>
