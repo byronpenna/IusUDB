@@ -1,4 +1,17 @@
-﻿function btnGuardarCarpeta(frm, seccion) {
+﻿function btnBusqueda(frm) {
+    actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_searchArchivoPublicoBack", frm, function (data) {
+        console.log("la data devuelta es ", data);
+        if (data.estado) {
+            if (data.archivos !== undefined && data.archivos !== null) {
+                $.each(data.archivos, function (i, archivo) {
+
+                })
+            }
+                
+        }
+    })
+}
+function btnGuardarCarpeta(frm, seccion) {
     actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_insertCarpetaPublica", frm, function (data) {
         console.log("data de carpeta INGRESADA", data);
         if (data.estado) {

@@ -454,6 +454,11 @@ body, h2, h1, label, h4 {
   margin-bottom: 10%;
   color: #828181; }
 
+.icoSearchRepo {
+  position: absolute;
+  top: 12% !important;
+  right: 4% !important; }
+
 #contenerdorCargadorAjax {
   top: 40% !important; }
 

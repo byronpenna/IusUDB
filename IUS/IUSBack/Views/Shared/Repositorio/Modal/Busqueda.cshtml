@@ -1,0 +1,23 @@
+﻿<input class="txtHdBuscando" type="hidden" name="txtHdBuscando" value="0" />
+<input class="txtHdImgBuscar" type="hidden" value="@ViewBag.imgBuscar" />
+<input class="txtHdImgBuscando" type="hidden" value="@ViewBag.imgBuscando" />
+
+
+<div class="row marginNull searchDivBarRepo">
+    <div class="col-lg-3">
+        <div class="input-group">
+            <input class=" inputBack form-control inputBackModal txtDireccion" value="@ViewBag._ruta" />
+            <span class="input-group-addon spIrBuscar pointer">Ir</span>
+        </div>
+    </div>
+    <div class="col-lg-offset-6 col-lg-3">
+        <div class="rowSearch inputBackModal">
+            <div class="form-group has-feedback inputSearchDiv">
+                <input type="text" class="form-control inputSearch inputSearchRepo ">
+                <div class="imgLupita icoSearch icoSearchRepo pointer">
+                    <img class="  imgSearchRepo" src="@ViewBag.imgBuscar">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

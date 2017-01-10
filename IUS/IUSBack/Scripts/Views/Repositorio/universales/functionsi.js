@@ -5,6 +5,24 @@
         $(".divUpload").fadeIn(400, callback);
 
     }
+    function inicialSearch() {
+        var buscando = $(".txtHdBuscando").val();
+        var img = "";
+        if (buscando == 0) {
+            buscando = 1;
+            img = $(".txtHdImgBuscando").val();
+        } else {
+            buscando = 0;
+            img = $(".txtHdImgBuscar").val();
+
+        }
+        console.log("img es: ", img);
+        $(".imgSearchRepo").attr("src", img);
+        var frm = {
+            buscando: buscando
+        }
+        return frm;
+    }
     function buscarEnCarpeta(txt) {
         var folder = $(".trRepo");
         var parents = ".trRepo";

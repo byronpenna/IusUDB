@@ -14,9 +14,11 @@
     List<Carpeta> carpetas = null;//(List<Carpeta>)ViewBag.carpetas;
     List<Archivo> archivos = null;//(List<Archivo>)ViewBag.archivos;
     Carpeta carpetaActual = (Carpeta)ViewBag.carpetaActual;
+    
     // busqueda
-        string imgBuscar = Url.Content("~/Content/themes/iusback_theme/img/general/lupita.png");
-        string imgBuscando = Url.Content("~/Content/themes/iusback_theme/img/general/lupitaClose.png");
+        ViewBag.imgBuscar = Url.Content("~/Content/themes/iusback_theme/img/general/lupita.png");
+        ViewBag.imgBuscando = Url.Content("~/Content/themes/iusback_theme/img/general/lupitaClose.png");
+        ViewBag.ruta = carpetaActual._ruta;
     try
     {
         carpetas = (List<Carpeta>)ViewBag.carpetas;
@@ -31,10 +33,6 @@
 }
 <input class="txtHdIdCarpetaPadre" type="hidden" name="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
 
-<input class="txtHdImgBuscar" type="hidden" value="@imgBuscar" />
-<input class="txtHdImgBuscando" type="hidden" value="@imgBuscando" />
-
-<input class="txtHdBuscando" type="hidden" name="txtHdBuscando" value="0"/>
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
@@ -81,48 +79,7 @@
         <div class="row marginNull">
             <div class="col-lg-3 fonditoGris colContenedor">
                 @Html.Partial("~/Views/Shared/Repositorio/Navi.cshtml")
-                @*<div class="menu">
-                    <div class="row marginNull">
-                        <ul class="botonesNewAction">
-                            <li class="rojito btnPrincipal NewActionLi">
-                                Nuevo
-                                <ul class="ulSub" style="display:none">
-                                    <li class="subLiButton icoNuevaCarpeta">
-                                        <div>
-                                            Nueva carpeta
-                                        </div>
-
-                                    </li>
-                                    <li class="subLiButton ">
-                                        <div>
-                                            Subir carpeta
-                                        </div>
-
-                                    </li>
-                                    <li class="subLiButton icoSubirFichero ">
-                                        <div>
-                                            Subir Archivo
-                                        </div>
-
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="row marginNull">
-                        <ul>
-                            <li class="lkbSubMenu" href="@Url.Action("Index","Repositorio")">
-                                Mis archivos
-                            </li>
-                            <li class="lkbSubMenu" href="@Url.Action("Index", "RepositorioCompartido")">
-                                Compartido
-                            </li>
-                            <li class="lkbSubMenu">
-                                Publico
-                            </li>
-                        </ul>
-                    </div>
-                </div>*@
+                
             </div>
             <div class="col-lg-9 paddingNull">
                 <div class="LineaHeadBody">
@@ -137,33 +94,7 @@
                             Repositorio
                         </span>
                     </div>
-                    <div class="row marginNull searchDivBarRepo">
-                        <div class="col-lg-3">
-                            <div class="input-group">
-                                <input class=" inputBack form-control inputBackModal txtDireccion" value="@carpetaActual._ruta" />
-                                <span class="input-group-addon spIrBuscar pointer">Ir</span>
-                            </div>
-                            
-                        </div>
-                        <div class="col-lg-offset-6 col-lg-3">
-                            @*<input type="text" class="form-control" />*@
-                            <div class="rowSearch inputBackModal">
-                                
-                                <div class="form-group has-feedback inputSearchDiv">
-                                    <input type="text" class="form-control inputSearch inputSearchRepo ">
-                                    <div class="imgLupita icoSearch icoSearchRepo pointer">
-                                        <img class="  imgSearchRepo" src="@imgBuscar">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            @*<div class="glyphicon form-control-feedback icoSearch icoSearchRepo pointer">
-                                <img class=" imgLupita" src="/Content/themes/iusback_theme/img/general/lupita.png">
-                            </div>*@
-                        </div>
-
-                    </div>
+                    @Html.Partial("~/Views/Shared/Repositorio/Modal/Busqueda.cshtml")
                 </div>
                 <div class="row marginNull">
                     <table class="table tablaRepo">

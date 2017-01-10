@@ -4,11 +4,16 @@
     List<CarpetaPublica> carpetas = null;
     List<ArchivoPublico> archivos = null;
     CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
+    // busqueda
+        ViewBag.imgBuscar = Url.Content("~/Content/themes/iusback_theme/img/general/lupita.png");
+        ViewBag.imgBuscando = Url.Content("~/Content/themes/iusback_theme/img/general/lupitaClose.png");
+        ViewBag.ruta = carpetaPadre._strRuta;
     try
     {
         carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
         archivos = (List<ArchivoPublico>)ViewBag.archivos;
         carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
+        
     }
     catch (Exception x)
     {
@@ -52,7 +57,8 @@
                         Repositorio
                     </span>
                 </div>
-                <div class="row marginNull searchDivBarRepo">
+                @Html.Partial("~/Views/Shared/Repositorio/Modal/Busqueda.cshtml")
+                @*<div class="row marginNull searchDivBarRepo">
                     <div class="col-lg-3">
                         <div class="input-group">
                             <input class=" inputBack form-control inputBackModal txtDireccion" value="@carpetaPadre._strRuta" />
@@ -61,9 +67,7 @@
 
                     </div>
                     <div class="col-lg-offset-6 col-lg-3">
-                        @*<input type="text" class="form-control" />*@
                         <div class="rowSearch inputBackModal">
-
                             <div class="form-group has-feedback inputSearchDiv">
                                 <input type="text" class="form-control inputSearch ">
                                 <i class="glyphicon form-control-feedback icoSearch">
@@ -72,8 +76,7 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
+                </div>*@
             </div>
             <div class="row marginNull">
                 <table class="table tablaRepo">

@@ -2,8 +2,8 @@
     // eventos 
         // click 
             // Modal
-                
                 $(document).on("click", ".imgSearchRepo", function () {
+                    /*
                     console.log("Busqueda es: ");
                     var buscando = $(".txtHdBuscando").val();
                     var img = "";
@@ -16,23 +16,23 @@
                         
                     }
                     console.log("img es: ", img);
-                    $(".imgSearchRepo").attr("src", img);
-                    if (buscando == 1) {
-                        var frm = {
+                    $(".imgSearchRepo").attr("src", img);*/
+                    var frm = inicialSearch();
+                    if (frm.buscando == 1) {
+                        /*var frm = {
                             txtBusqueda: $(".inputSearchRepo").val(),
                             buscando: buscando
-                        }
+                        }*/
+                        frm.txtBusqueda = $(".inputSearchRepo").val();
                         btnBusqueda(frm);
                     } else {
-                        var frm = {
+                        /*var frm = {
                             idCarpeta: $(".txtHdIdCarpetaPadre").val(),
                             buscando: buscando
-                        }
+                        }*/
+                        frm.idCarpeta = $(".txtHdIdCarpetaPadre").val();
                         entrarCarpeta(frm);
                     }
-                    
-                    
-
                 })
                 $(document).on("click", ".icoSubirFichero", function (e) {
                     abrirModal(e,function () {
