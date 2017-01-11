@@ -38,7 +38,7 @@
     }
 // eventos
     // keyup
-        $(document).on("keyup", ".inputSearch", function (e) {
+    $(document).on("keyup", ".inputSearchRepo", function (e) {
             var charCode = e.which;
             if (charCode == 27) { // tecla esc cancela todo
                 $(this).val("");

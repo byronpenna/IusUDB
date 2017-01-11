@@ -92,12 +92,12 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbTablaRepo">
                         @if (carpetas != null && carpetas.Count > 0)
                         {
                             foreach (CarpetaPublica carpeta in carpetas)
                             {
-                                <tr>
+                                <tr class="trRepo">
                                     <td class="hidden">
                                         <input name="txtHdIdCarpeta" class="txtHdIdCarpeta" value="@carpeta._idCarpetaPublica" />
                                     </td>
@@ -121,7 +121,7 @@
                         {
                             foreach (ArchivoPublico archivo in archivos)
                             {
-                                <tr>
+                                <tr class="trRepo">
                                     <td class="hidden">
                                         <input class="txtHdIdArchivoPublico" name="txtHdIdArchivoPublico" value="@archivo._idArchivoPublico" />
                                     </td>
