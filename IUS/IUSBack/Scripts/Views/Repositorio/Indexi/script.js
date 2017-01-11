@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     // eventos 
+        // 
         // click 
             // Modal
                 $(document).on("click", ".imgSearchRepo", function () {
@@ -90,6 +91,7 @@
                     }
                     spIrBuscar(frm);
                 });*/
+
                 $(document).on("click", ".btnCambiarNombre", function () {
                     var seccion = $(this).parents("tr");
                     seccion.find(".txtArchivoNombre").val(seccion.find(".spNombre").text());

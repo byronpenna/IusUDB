@@ -144,7 +144,7 @@ function frmSubir(data, url, totalFiles) {
 
     });
 }
-function spIrBuscar() {
+function spIrBuscar(frm) {
     actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_byRuta", frm, function (data) {
         console.log(data);
         if (data.estado) {

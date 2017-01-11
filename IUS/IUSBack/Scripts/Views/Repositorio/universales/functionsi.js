@@ -36,9 +36,16 @@
             folders.removeClass("hidden");
         }
     }
+    function getFrmBuscar() {
+        var frm = { txtRuta: $(".txtDireccion").val() }
+        if (frm.txtRuta.slice(-1) != "/") {
+            frm.txtRuta += "/";
+        }
+        return frm;
+    }
 // eventos
     // keyup
-    $(document).on("keyup", ".inputSearchRepo", function (e) {
+        $(document).on("keyup", ".inputSearchRepo", function (e) {
             var charCode = e.which;
             if (charCode == 27) { // tecla esc cancela todo
                 $(this).val("");
@@ -47,6 +54,14 @@
             console.log("Key up es ", $(this).val());
             buscarEnCarpeta($(this).val());
             
+        })
+        $(document).on("keyup", ".txtDireccion", function (e) {
+            var charCode = e.which;
+            console.log("Char code ", charCode);
+            if (charCode == 13) { // enter
+                var frm = getFrmBuscar();
+                spIrBuscar(frm);
+            }
         })
     // click
         $(document).on("click", ".contenedorUpload", function (e) {
@@ -64,7 +79,6 @@
                 $(".divNuevaCarpetaModal").show();
             });
         })
-        
         $(document).on("click", ".NewActionLi", function () {
             var elemento = $(this).find(".ulSub");
             if (elemento.is(":visible")) {
@@ -77,10 +91,11 @@
             }
         })
         $(document).on("click", ".spIrBuscar", function () {
-            frm = { txtRuta: $(".txtDireccion").val() }
+            /*var frm = { txtRuta: $(".txtDireccion").val() }
             if (frm.txtRuta.slice(-1) != "/") {
                 frm.txtRuta += "/";
-            }
+            }*/
+            var frm = getFrmBuscar(frm);
             spIrBuscar(frm);
         })
         $(document).on("click", ".lkbSubMenu", function (e) {
