@@ -34,7 +34,7 @@
         // click 
             $(document).on("click", ".btnTab", function () {
                 var idUsuario = $(".txtHdIdUsuario").val();
-                window.history.pushState({}, "", "/" + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id")+"/"+idUsuario);
+                window.history.pushState({}, "",RAIZ + $(".txtHdNombreClass").val() + "/" + $(".txtHdFuncion").val() + "/" + $(this).attr("id")+"/"+idUsuario);
             })
             $(document).on("click", "#btnAddRoles", function () {
                 var x = confirm("¿Esta seguro que desea agregar los siguientes roles?");

@@ -3,13 +3,16 @@
     InformacionPersona informacion = (InformacionPersona)ViewBag.informacionPersonaGlobal;
     string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");
     string nombrePersona = "";
-    if (informacion != null && informacion._tieneFoto)
+    if (informacion != null )
     {
         if (informacion._persona != null)
         {
             nombrePersona = informacion._persona.nombreCompleto;
         }
-        fotoRuta = Url.Content(informacion._fotoRuta);
+        if (informacion._tieneFoto)
+        {
+            fotoRuta = Url.Content(informacion._fotoRuta);    
+        }        
     }
     string myriadRegular    = IUSLibs.GENERALS.Rutas.IUSBACK + "Content/fonts/Myriad/MyriadPro-regular.otf";
     string myriadBold       = IUSLibs.GENERALS.Rutas.IUSBACK + "Content/fonts/Myriad/MyriadPro-regular.otf";
@@ -76,7 +79,11 @@
                                 <span class="row marginNull nombre">
                                     @nombrePersona<!-- Hacerlo dinamico -->
                                 </span>
-                            
+                                <span class="row marginNull">
+                                    <a href="@Url.Action("changePassword","Home")">
+                                        Cambiar contraseña
+                                    </a>
+                                </span>
 
                         </div>
                     </div>
@@ -94,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row marginNull rowSearch">
+                <div class="row marginNull rowSearch grisito">
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-offset-8 col-lg-2">

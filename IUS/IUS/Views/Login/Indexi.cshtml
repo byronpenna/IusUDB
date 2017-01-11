@@ -1,5 +1,13 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layouti.cshtml";
+    string  url     = Request.Url.AbsoluteUri;
+    int     indice  = url.IndexOf("Index");
+    string urlSelf  = url;
+    int cn = url.Length;
+    if (indice > 0)
+    {
+        urlSelf = url.Substring(0, indice+5);   
+    }
 }
 @section estilosPersonalizados{
     <link rel="stylesheet" href="~/Content/ius_theme/views/Login/Indexi/style.css" />
@@ -25,7 +33,7 @@
             </div>
             <div class="row marginNull divControles">
                 <form class="frmLogin" action="" method="post">
-                    <input type="hidden" name="txtHdSelf" value="@Request.Url.AbsoluteUri" />
+                    <input type="hidden" name="txtHdSelf" value="@urlSelf" />
                     <input class="txtLoginIus" name="txtUsuario" placeholder="NOMBRE DE USUARIO" />
                     <input type="password" class="txtLoginIus" name="txtPass" placeholder="CONTRASEÑA" />
                     <button class="btn btnIniciar">Iniciar</button>

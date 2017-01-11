@@ -12,6 +12,7 @@ using System.Text;
     using IUSLibs.SEC.Control;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.RRHH.Entidades;
 namespace IUSLibs.SEC.Control
 {
     public class ControlUsuarios:PadreLib
@@ -488,7 +489,42 @@ namespace IUSLibs.SEC.Control
 
                 return retorno;
             }
-            
+            public bool sp_usu_changePassHome(string oldPass, string pass, string ip, int idUsuarioEjecutor, int idPagina)
+            {
+                /*
+                    @	varchar(300),
+	                @		varchar(300),
+	                @			varchar(30),
+	                -- seguridad
+	                @idUsuarioEjecutor	int,
+	                @idPagina			int
+                 */
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_usu_changePassHome");
+                sp.agregarParametro("oldPass", oldPass);
+                sp.agregarParametro("pass", pass);
+                sp.agregarParametro("ip", ip);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+
+                return estado;
+            }
             public Usuario sp_usu_changePass(string pass,string ip,int idUsuarioEjecutor,int idPagina)
             {   // cambia contraseña pero solo 1 vez 
 
@@ -540,6 +576,11 @@ namespace IUSLibs.SEC.Control
 
                             DataRow row = tb[1].Rows[0];
                             Persona persona = new Persona((int)row["id_persona_fk"], row["nombres"].ToString(), row["apellidos"].ToString(), (DateTime)row["fecha_nacimiento"]);
+                            //persona._adicionales = new RRHH.Entidades.InformacionPersona();
+                            persona.emailsContacto = new List<RRHH.Entidades.EmailPersona>();
+                            EmailPersona email = new EmailPersona(row["email"].ToString());
+                            persona.emailsContacto.Add(email);
+                            //persona
                             usuario = new Usuario((int)row["idUsuario"], row["usuario"].ToString(), (DateTime)row["fecha_creacion"], true, persona, row["pass"].ToString());
 
                             if ((int)tb[tb.Count - 1].Rows[0]["changePass"] == 1)

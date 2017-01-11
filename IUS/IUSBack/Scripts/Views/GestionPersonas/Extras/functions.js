@@ -365,7 +365,6 @@
         // informacion basica
             function btnGuardarInformacionBasica(frm) {
                 actualizarCatalogo(RAIZ + "/ExtrasGestionPersonas/sp_rrhh_guardarInformacionPersona", frm, function (data) {
-                    
                     if (data.estado) {
                         printMessage($(".divResultadoOperacion"), "Informacion actualizada exitosamente", true);
                         $(".rowControles").find(".divResultado").removeClass("visibilitiHidden");

@@ -44,6 +44,8 @@
 .cabeceraNoticia .divDetalles .spanTitulo {
   color: #c71214;
   text-transform: uppercase; }
+.cabeceraNoticia .divDetalles a {
+  color: #333; }
 .cabeceraNoticia .imgMin {
   border: solid #c71214 1px;
   width: 100%; }

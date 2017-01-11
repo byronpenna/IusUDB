@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+// librerias 
+    using IUSLibs.RRHH.Entidades;
 namespace IUSLibs.SEC.Entidades
 {
     public class Persona
@@ -36,6 +37,9 @@ namespace IUSLibs.SEC.Entidades
                     }
                 }
             #endregion
+            // fuera de tabla 
+                public InformacionPersona _adicionales;
+                public List<EmailPersona> emailsContacto;
         #endregion
         #region "constructores"
             public Persona(int idPersona, String nombres, String apellidos)

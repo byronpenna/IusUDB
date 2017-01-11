@@ -1,4 +1,26 @@
 ﻿// generics 
+    function botonesPermitidosLength(e) {
+        console.log("El e es: ", e);
+        if (
+            e.keyCode == 8      || e.keyCode == 37
+            || e.keyCode == 35  || e.keyCode == 36
+            || e.keyCode == 38  || e.keyCode == 39
+            || e.keyCode == 40  || e.keyCode == 46) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    function cleanActive() {
+        $(".activeRichImage").each(function () {
+            $(this).removeClass("activeRichImage");
+            $(this).parent().removeAttr("contenteditable");
+            $(this).css("display", "");
+        })
+        $(".areaImgRich").remove();
+    }
+
     function editarTamanioPersonalizado(valor) {
         div = $(".divTamanioPersonalizado");
         txt = div.find(".txtTamañoImagen");

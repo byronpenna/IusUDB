@@ -1,0 +1,161 @@
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias
+@using IUSLibs.FrontUI.Noticias.Entidades
+@section estilosPersonalizados{
+    <!-- propios -->
+    @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/stylei.css" />*@
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/preview/style.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+    <script src="~/Scripts/Views/Administracion/Noticias/preview/functions.js"></script>
+    <script src="~/Scripts/Views/Administracion/Noticias/preview/script.js"></script>
+}
+@{
+    Post post = null;
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    int origen = 1;
+    string textoPublicado   = "Publicar";           string classPublicado = "";
+    string textoCambio      = "Solicitar cambio";   string classCambio = "";
+    try
+    {
+        post    = (Post)ViewBag.post;
+        origen  = (int)ViewBag.origen;
+        switch (post._publicado)
+        {
+            case 1:
+                {
+                    textoPublicado = "Publicado";
+                    //textoCambio = "Solicitar cambio";
+                    classPublicado = "disabled";
+                    break;
+                }
+            case 0:
+                {
+                    textoCambio = "Esperando revisión";
+                    classCambio = "disabled";
+                    break;
+                }
+        }
+    }
+    catch (Exception x)
+    {
+        
+    }
+}
+<div class="modal divUpload">
+    <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            <div class="row marginNull divRechazar">
+                <h2 class="tituloSecciones">Cambios</h2>
+                <form class="frmCambios">
+                    <input type="hidden" name="txtHdIdNotiEvento" class="txtHdIdNotiEvento" value="@post._idPost" />
+                    
+                    <input type="hidden" name="txtHdTipoEvento" value="1" />
+                    <input type="hidden" name="txtHdIdAccion" class="txtHdIdAccion" value="1" />
+                    @*  1. Revisión
+                        2. Eliminada
+                    *@
+                    <div class="row marginNull">
+                        <label class="lbTitulo">Motivos revisión</label>
+                        <textarea name="txtAreaMotivos" class="form-control inputBack txtAreaMotivos"></textarea>
+                        <button class="btn btnBack btn-default btnEnviarSolicitud">Enviar</button>
+                        @*<input class="form-control "/>*@
+                    </div>
+                </form>
+            </div>
+            <div class="row marginNull divAprobar">
+                <h2 class="tituloSecciones">Aprobar </h2>
+                <form class="frmAprobar">
+                    <input type="hidden" name="txtHdIdNotiEvento" class="txtHdIdNotiEvento" value="@post._idPost" />
+                    <input type="hidden" name="txtHdTipoEvento" class="txtHdTipoEvento" value="1" />
+                    @*<div class="row marginNull"></div>*@
+                    <label>Fecha de caducidad: </label>
+                    <input type="text" name="txtFechaCaducidad" class="form-control inputBack txtFechaCaducidad" />
+                    @*<label></label>*@
+                    <button class="btn btn-default btnBack btnAprobarFinal">Aprobar Noticia</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row marginNull centroPagina">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="tituloPrev">
+            <a class="tituloPrev" href="@Url.Action("AprobarNoticia","Noticias")">
+                Aprobar noticias 
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Vista previa
+        </span>
+    </div>
+    <div class="row marginNull">
+        <div class="seccionGris">
+            <div class="centroNoticia">
+                <div class="row marginNull tituloPreview ">
+                    <div class="col-lg-7">
+                        <h2>Noticias</h2>
+                    </div>
+                    
+                    <div class="col-lg-5">
+                        @if (origen == 2)
+                        {
+                            if (post._estado || post._publicado == 0 || post._publicado == 1)
+                            {
+                                <div class="btn-group">
+                                    <a href="@Url.Action("ModificarNoticia", "Noticias", new { id = @post._idPost })" class="btn btn-group btnBack btn-default">
+                                        Editar
+                                    </a>
+                                    <button class="btn btn-group btnBack btn-default btnSolicitarCambio inputBackModal" @classCambio>
+                                        @textoCambio
+                                    </button>
+                                    <button class="btn btn-group btnBack btn-default btnAprobar inputBackModal @classPublicado">
+                                        @textoPublicado
+                                    </button>
+                                    <button class="btn btn-group btnBack btn-default inputBackModal btnEliminarSolicitud">Eliminar</button>
+                                </div>   
+                            }
+                             
+                        }
+                    </div>
+                </div>
+                <div class="centroContenido">
+                    <div class="row marginNull cabeceraNoticia">
+                        <div class="col-lg-5 vbottom divDetalles">
+                            <div class="row marginNull">
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Titulo:</span> @post._titulo
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Fecha:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @post._fechaCreacion)   @*14 de junio 2015**@
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">fuente:</span> Lorem ipsum dolor sit a met*
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Solicitante:</span> @post._usuario._persona.nombreCompleto 
+                                </div>
+                            </div>
+                        </div><!--
+                        --><div class="col-lg-7 vbottom">
+                            @*<img class="imgMin" src="@Url.Content("~/Content/images/generales/noBanerMiniatura.png")" />*@
+                            <img class="imgMin" src="@Url.Action("getImageThumbnail", "Noticias", new { id = post._idPost })" />
+                        </div>
+                    </div>
+                    <div class="row marginNull contenidoNoticia">
+                        @(new HtmlString(post._contenido))
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

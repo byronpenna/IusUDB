@@ -17,18 +17,18 @@
                 var shareSection    = $(this).parents(".shareSection");
                 var seccion         = shareSection.find(".seccionCompartida");
                 var frm = {
-                    idUserFile:     seccion.find(".txtUsuarioSeleccionado").val(),
+                    idUserFile:     $(".txtUsuarioSeleccionado").val(),
                     nombreCarpeta:  shareSection.find(".hUsuarioCarpeta").text(),
                     idVista:        idVista
                 }
-                console.log("Frm aqui es: ", frm);
+                
                 var seccion = targetSeccionCompartida; 
                 divCarpetaUsuarioCompartido(frm, seccion);
             }
         })
     // tmp 
         $(document).on("keyup", ".txtBusquedaUsuarioDiv", function (e) {
-            console.log("uhui");
+            
             // variables
                 var folders = $(".seccionCompartida .divCarpetaPublica");
             // do it 
@@ -51,11 +51,13 @@
     //eventos
         // doble click
             $(document).on("dblclick", ".divCarpetaUsuarioCompartido", function (e) {
+                
                 var frm = {
                     idUserFile: $(this).find(".txtHdIdUsuario").val(),
                     nombreCarpeta: $(this).find(".tituloCarpetaPublica").text(),
                     idVista: $(this).parents(".seccionCompartida").find(".txtHdIdVista").val()
                 }
+                
                 var seccion = targetSeccionCompartida; //$(this).parents(".seccionCompartida");
                 $(".txtUsuarioSeleccionado").val(frm.idUserFile);
 
@@ -64,7 +66,7 @@
         // click
                 $(document).on("click", ".carpetaDetalle", function (e) {
                     var nVista = getNumVistaActual();
-                    console.log(nVista);
+                    
                     window.location = RAIZ + "RepositorioCompartido/index/" + $(this).find(".txtHdIdCarpeta").val() + "/" + nVista;
                 })
                 $(document).on("click", ".btnDejarDeCompartirTodo", function (e) {
@@ -75,7 +77,7 @@
                         frm = {
                             idUsuarioCompartido: divUsuario.find(".txtHdIdUsuario").val()
                         }
-                        console.log("formulario a enviar",frm);
+                        
                         btnDejarDeCompartirTodo(frm);
                     }
                 })
@@ -146,7 +148,7 @@
                     var frm = {};
                     //var idVista = $(".txtHdIdVista").val();
                     var idVista = $(".shareSection").find(".activeVista").attr("id");
-                    console.log("VISTA AQUI ", idVista);
+                    
                     icoCompartidoBack(frm,idVista);
                 });
                 $(document).on("click", ".btnShareArchivo", function (e) {

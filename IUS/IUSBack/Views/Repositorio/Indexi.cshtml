@@ -1,0 +1,181 @@
+﻿@using IUSLibs.REPO.Entidades
+@section estilosPersonalizados{
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/Indexi/style.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/Views/Repositorio/universales/functionsi.js"></script>
+    <!-- propios -->
+        <script src="~/Scripts/Views/Repositorio/indexi/script.js"></script>
+        <script src="~/Scripts/Views/Repositorio/indexi/functions.js"></script>
+}
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<Carpeta> carpetas = null;//(List<Carpeta>)ViewBag.carpetas;
+    List<Archivo> archivos = null;//(List<Archivo>)ViewBag.archivos;
+    Carpeta carpetaActual = (Carpeta)ViewBag.carpetaActual;
+    
+    // busqueda
+        ViewBag.imgBuscar = Url.Content("~/Content/themes/iusback_theme/img/general/lupita.png");
+        ViewBag.imgBuscando = Url.Content("~/Content/themes/iusback_theme/img/general/lupitaClose.png");
+        ViewBag.ruta = carpetaActual._ruta;
+    try
+    {
+        carpetas = (List<Carpeta>)ViewBag.carpetas;
+        archivos = (List<Archivo>)ViewBag.archivos;
+        
+    }
+    catch (Exception x)
+    {
+        
+    }
+    
+}
+<input class="txtHdIdCarpetaPadre" type="hidden" name="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+
+<div class="modal divUpload">
+    <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            @Html.Partial("~/Views/Shared/Repositorio/Modal/NuevaCarpeta.cshtml")
+            @*
+            <div class="divNuevaCarpetaModal modalContenido" style="display:none">
+                <div class="row marginNull">
+                    <div class="col-lg-4 tituloModal">
+                        Nueva carpeta
+                    </div>
+                </div>
+
+                <div class="divInfoI">
+                    <!-- Contenido -->
+                    <div class="row marginNull rowTituloModalCarpeta">
+                        Nombre de carpeta
+                    </div>
+                    <div class="row marginNull rowNombreCarpeta">
+                        <input class="form-control txtNombreCarpeta" name="txtNombreCarpeta" />
+                    </div>
+                    <div class="row marginNull rowBotonesModal">
+                        <div class="col-lg-offset-4">
+                            
+                            <button class="btn btn-default btnBack closeModal btnCancelarModal">Cancelar</button>
+                            <button class="btn btn-default btnBack btnPrimaryModal btnNuevaCarpeta">Crear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            *@
+            <div class="divSubirArchivoModal modalContenido" style="display:none">
+                <form id="frmSubir" action="@Url.Action("sp_repo_uploadFile", "Repositorio")">
+                    <div class="row marginNull divInputFile">
+                        <input type="file" id="flArchivos" multiple />
+                    </div>
+                    <button class="btn btn-default btnBack" type="submit">Subir</button>
+                </form>
+                @*Esta es el area para subir los archivos*@
+            </div>
+        </div>
+    </div>
+</div>
+<div class="centroRepo contenidoCuerpo">
+        <div class="row marginNull">
+            <div class="col-lg-3 fonditoGris colContenedor">
+                @Html.Partial("~/Views/Shared/Repositorio/Navi.cshtml")
+                
+            </div>
+            <div class="col-lg-9 paddingNull">
+                <div class="LineaHeadBody">
+                    <div class="row marginNull rowNavegacion">
+                        <span>
+                            <a href="@Url.Action("Index","Home")">
+                                Menu principal
+                            </a>
+                        </span>
+                        >>>
+                        <span class="titulo">
+                            Repositorio
+                        </span>
+                    </div>
+                    @Html.Partial("~/Views/Shared/Repositorio/Modal/Busqueda.cshtml")
+                </div>
+                <div class="row marginNull">
+                    <table class="table tablaRepo">
+                        <thead>
+                            <tr>
+                                <th class="hidden">
+                                    
+                                </th>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Tamaño</th>
+                                <th>Archivo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbTablaRepo">
+                            @if (carpetas != null && carpetas.Count > 0)
+                            {
+                                foreach (Carpeta carpeta in carpetas)
+                                {
+                                    <tr class="trRepo">
+                                        <td class="hidden">
+                                            <input name="txtHdIdCarpeta" class="txtHdIdCarpeta" value="@carpeta._idCarpeta"/>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Index", "Repositorio", new { id=carpeta._idCarpeta })">
+                                                <span class="spNombre">@carpeta._nombre</span>
+                                            </a>
+                                        </td>
+                                        <td>@carpeta._fechaCreacion</td>
+                                        <td>0.0 MB</td>
+                                        <td>Carpeta</td>
+                                        <td>
+                                            <i class="fa fa-trash btnEliminarCarpeta pointer" aria-hidden="true"></i>
+                                            
+                                        </td>
+                                    </tr>
+                                }
+
+                            }
+                            @if (archivos != null && archivos.Count > 0)
+                            {
+                                foreach (Archivo archivo in archivos)
+                                {
+                                    <tr class="trRepo">
+                                        <td class="hidden">
+                                            <input class="txtHdIdArchivo" name="txtHdIdArchivo" value="@archivo._idArchivo" />
+                                        </td>
+                                        <td>
+                                            <div class="normalMode">
+                                                <span class="spNombre">@archivo._nombre</span>
+                                            </div>
+                                            <div class="editMode hidden">
+                                                <input type="text" class="form-control txtArchivoNombre inputBack" />
+                                            </div>
+                                        </td>
+                                        <td>@archivo._fechaCreacion</td>
+                                        <td>0.0 MB</td>
+                                        <td>Archivo</td>
+                                        <td>
+                                            <div class="normalMode">
+                                                <i class="fa fa-trash btnEliminarArchivo pointer" aria-hidden="true"></i>
+                                                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id=archivo._idArchivo })"><i class="fa fa-download btn" aria-hidden="true"></i></a>
+                                                <i class="pointer fa fa-pencil-square-o btnCambiarNombre" aria-hidden="true" title="Cambiar nombre"></i>
+                                                <i class="pointer fa fa-share btnCambiarNombre icoCompartirFile" aria-hidden="true" title="Compartir"></i>
+
+                                            </div>
+                                            <div class="editMode hidden">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-default btnBack btnEditarNombre">Aceptar</button>
+                                                    <button class="btn btn-sm btn-default btnBack btnCancelarEdicionCarpeta pointer">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>

@@ -13,12 +13,49 @@ using System.Text;
     using IUSLibs.LOGS;
     using IUSLibs.SEC.Entidades;
     using IUSLibs.TRL.Entidades;
+    using IUSLibs.RRHH.Entidades;
 namespace IUSLibs.ADMINFE.Control.Noticias
 {
     public class ControlPost:PadreLib
     {
         #region "backend"
             #region "Get"
+                public List<NotiEvento> sp_adminfe_aprobarnoticia_getNoticiasAprobar(int idUsuarioEjecutor,int idPagina)
+                {
+                    NotiEvento noticiaEvento;
+                    List<NotiEvento> noticiasEventos = null;
+                    SPIUS sp = new SPIUS("sp_adminfe_aprobarnoticia_getNoticiasAprobar");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            //[0]
+                                if (tb[0].Rows.Count > 0)
+                                {
+                                    noticiasEventos = new List<NotiEvento>();
+                                    foreach(DataRow row in tb[0].Rows){
+                                        noticiaEvento = new NotiEvento((int)row["id"],row["titulo"].ToString(),row["descripcion"].ToString(),(int)row["tipoEntrada"]);
+                                        noticiaEvento._fecha = (DateTime)row["fecha"];
+                                        noticiaEvento._institucion = row["institucion"].ToString();
+                                        noticiasEventos.Add(noticiaEvento);
+                                    }
+                                }
+                        }
+                        return noticiasEventos;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                
                 public List<Post> sp_adminfe_noticias_getPosts(int idUsuarioEjecutor, int idPagina) {
                     List<Post> posts = null; Idioma idioma;
                     Post post;
@@ -36,12 +73,13 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 posts = new List<Post>();
                                 foreach (DataRow row in tb[1].Rows)
                                 {
-                                    usuarioCreador = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
-                                    post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", (bool)row["estado"], usuarioCreador);
-                                    //post._contenido = post._contenido.Replace("&nbsp;", " ");
-                                    post._descripcion = row["breve_descripcion"].ToString();
-                                    idioma = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
-                                    post._idioma = idioma;
+                                    usuarioCreador      = new Usuario((int)row["id_usuario_fk"],row["usuario"].ToString());
+                                    post                = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), "", (bool)row["estado"], usuarioCreador);
+                                    //post._contenido   = post._contenido.Replace("&nbsp;", " ");
+                                    post._descripcion   = row["breve_descripcion"].ToString();
+                                    idioma              = new Idioma((int)row["idIdioma"], row["idioma"].ToString());
+                                    post._idioma        = idioma;
+                                    post._publicado     = (int)row["publicado"];
                                     posts.Add(post);
                                 }
                             }
@@ -62,6 +100,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     Dictionary<object, object> retorno = null;
                     Post post = new Post(); List<Tag> tags = null; List<PostCategoria> categorias = null;
                     Usuario usu; DataRow rowResult; Tag tag; PostCategoria categoria;
+                    bool postNull = false;
                     // do it 
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_getPostsFromId");
                     sp.agregarParametro("idPost", idPost);
@@ -73,8 +112,13 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                         if (this.resultadoCorrecto(tb))
                         {
                             if(tb[1].Rows.Count > 0){
+                                postNull = true;
                                 rowResult = tb[1].Rows[0];
-                                usu = new Usuario((int)rowResult["id_usuario_fk"]);
+                                //usuario,idPersona,nombres,apellidos
+                                usu = new Usuario((int)rowResult["id_usuario_fk"], rowResult["usuario"].ToString());
+                                usu._persona = new Persona((int)rowResult["idPersona"]);
+                                usu._persona._nombres = rowResult["nombres"].ToString();
+                                usu._persona._apellidos = rowResult["apellidos"].ToString();
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
                                 post._idioma = new Idioma((int)rowResult["id_idioma_fk"]);
                                 post._descripcion = rowResult["breve_descripcion"].ToString();
@@ -82,7 +126,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 {
                                     post._miniatura = (byte[])rowResult["miniatura"];
                                 }
-                                
+                                post._publicado = (int)rowResult["publicado"];
                             }
                             if (tb[2].Rows.Count > 0)
                             {
@@ -105,6 +149,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             retorno.Add("post", post);
                             retorno.Add("tags", tags);
                             retorno.Add("categorias", categorias);
+                            retorno.Add("postNull", postNull);
                         }
                     }
                     catch (ErroresIUS x)
@@ -117,8 +162,51 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return retorno;
                 }
+
+                
             #endregion
             #region "Acciones"
+                public NotiEvento sp_adminfe_aprobarNoticia_cambiarEstado(NotiEvento notiEventoCambio,int idUsuarioEjecutor, int idPagina)
+                {
+
+                    SPIUS sp = new SPIUS("sp_adminfe_aprobarNoticia_cambiarEstado");
+                    NotiEvento noticiaEvento = null;
+                    /*
+                        @				date,
+		                @					int,
+		                @	int,
+		                -- seguridad 
+		                @idUsuarioEjecutor	int,
+		                @idPagina			int
+                     */
+                    sp.agregarParametro("caducidad", notiEventoCambio._fechaCaducidad);
+                    sp.agregarParametro("idPost", notiEventoCambio._id);
+
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                noticiaEvento = new NotiEvento((int)row["id_post_fk"]);
+                            }
+                        }
+                        return noticiaEvento;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
+                
                 public bool sp_adminfe_noticias_modificarPost(Post postActualizar, int idUsuarioEjecutor,int idPagina)
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_modificarPost");
@@ -183,13 +271,15 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     }
                     return postRegresar;
                 }
-                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost,int idUsuarioEjecutor,int idPagina)
+                public Post sp_adminfe_noticias_cambiarEstadoPost(int idPost,int idUsuarioEjecutor,int idPagina,int estado=-1,bool eliminado = false)
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_noticias_cambiarEstadoPost");
                     Post post = null;
                     sp.agregarParametro("idPost", idPost);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
+                    sp.agregarParametro("estado", estado);
+                    sp.agregarParametro("eliminado", eliminado);
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
@@ -200,6 +290,14 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 DataRow row = tb[1].Rows[0];
                                 post = new Post((int)row["idPost"]);
                                 post._estado = (bool)row["estado"];
+                                //,,email
+                                post._usuario = new Usuario((int)row["idUsuario"]);
+                                post._usuario._persona = new Persona((int)row["id_persona_fk"]);
+                                post._usuario._persona.emailsContacto = new List<RRHH.Entidades.EmailPersona>();
+                                EmailPersona email = new EmailPersona(row["email"].ToString());
+                                post._usuario._persona.emailsContacto.Add(email);
+
+
                             }
                         }
                     }
@@ -381,6 +479,9 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                         {
                             DataRow row = tb[1].Rows[0];
                             post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(),(bool)row["estado"],(int)row["id_usuario_fk"]);
+                            post._usuario._persona = new Persona((int)row["id_persona_fk"]);
+                            post._usuario._persona._adicionales = new RRHH.Entidades.InformacionPersona((int)row["idInformacionPersona"]);
+                            post._usuario._persona._adicionales._institucion = new FrontUI.Entidades.Institucion((int)row["idInstitucion"], row["nombre"].ToString());
                             // para las tags
                             int idNextPost = -1;
                             if (tb[2].Rows.Count > 0)

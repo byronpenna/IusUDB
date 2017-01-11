@@ -121,9 +121,17 @@ namespace IUSLibs.GENERALS
                     message = "Error no controlado";
                 }
                 ErroresIUS x = new ErroresIUS(message,ErroresIUS.tipoError.sql, (int)row["errorCode"], row["errorSql"].ToString());
+                x.numeroError = (int)row["NumeroError"];
                 if (!x._mostrar)
                 {
-                    x._mostrar = (bool)row["mostrar"];
+                    if (row["mostrar"] == DBNull.Value)
+                    {
+                        x._mostrar = false;
+                    }
+                    else
+                    {
+                        x._mostrar = (bool)row["mostrar"];
+                    }
                 }
                 else
                 {

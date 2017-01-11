@@ -82,7 +82,7 @@ namespace IUSBack.Controllers
                         ViewBag.nombreMetodo        = "Index";
                     // Tab seleccionada
                         ViewBag.selectedLi1 = "tabActive";
-                    return View();
+                    return View("~/Views/Repositorio/Indexi.cshtml");
                 }
                 catch (ErroresIUS x)
                 {

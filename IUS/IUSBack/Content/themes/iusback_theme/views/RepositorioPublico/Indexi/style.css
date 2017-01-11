@@ -1,0 +1,613 @@
+@charset "UTF-8";
+.inputBack {
+  background: transparent;
+  border: solid 1px #828181;
+  border-radius: 0; }
+
+.btnBack {
+  border-radius: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: transparent;
+  border: solid 1px #828181; }
+
+.borde {
+  border: solid 1px #828181; }
+
+.selectBack {
+  background: transparent;
+  height: 30px;
+  border-radius: 0;
+  border: solid 1px #828181; }
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+
+.todo {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  background: white; }
+
+body {
+  background: #c6c5c5;
+  font-family: "MyriadRegular"; }
+
+.rojito {
+  background: #cd1315; }
+
+.grisito {
+  background: #eeecec; }
+
+.marginNull {
+  margin: 0; }
+
+.paddingNull {
+  padding: 0; }
+
+.cuerpoIndex {
+  background: #f3f2f2;
+  padding-top: 3%;
+  padding-bottom: 3%; }
+
+.lineaRoja {
+  height: 45px;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.73, #CD1316), color-stop(1, #AD1013));
+  background-image: -o-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -moz-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -webkit-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: -ms-linear-gradient(bottom, #CD1316 73%, #AD1013 100%);
+  background-image: linear-gradient(to bottom, #CD1316 73%, #AD1013 100%); }
+
+.centroPagina {
+  width: 85%;
+  margin: 0 auto; }
+  .centroPagina .centro {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto; }
+
+.rowNavegacion {
+  margin-bottom: 5%; }
+  .rowNavegacion .titulo {
+    text-transform: uppercase;
+    text-decoration: underline; }
+  .rowNavegacion .tituloPrev {
+    text-decoration: underline; }
+    .rowNavegacion .tituloPrev a {
+      color: #333 !important; }
+  .rowNavegacion span a:first-child {
+    color: #cd1315; }
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none; }
+
+.visibilitiHidden {
+  visibility: hidden; }
+
+.fullSize {
+  width: 100%; }
+
+.pointer {
+  cursor: pointer; }
+
+.input-group-addon {
+  border-radius: 0;
+  border: solid 1px #828181; }
+
+table {
+  border-collapse: collapse;
+  background: transparent; }
+  table thead tr td {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table thead tr th {
+    font-size: 14px;
+    border-bottom: solid 1px #828181 !important;
+    text-align: center; }
+  table td {
+    border: solid 1px #828181;
+    color: #414141;
+    font-size: 14px; }
+
+#contenerdorCargadorAjax {
+  position: absolute;
+  left: 50%;
+  top: 50%; }
+
+#textoEsperaAjax {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 3%; }
+
+#cargadorAjaxUniversal {
+  position: relative;
+  top: 50%;
+  left: -50%;
+  text-align: center; }
+
+#div_carga, .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(128, 128, 128, 0.5);
+  display: none;
+  z-index: 1; }
+
+.inputBackModal {
+  background: rgba(255, 255, 255, 0.5);
+  position: static !important; }
+
+.divResultado {
+  text-align: center;
+  margin-bottom: 3%;
+  font-weight: bold; }
+
+.successMessage {
+  color: #2ecc71 !important; }
+
+.failMessage {
+  color: #e74c3c !important; }
+
+.bordeStandar {
+  border: solid 1px #828181; }
+
+.trTableRol {
+  background: white !important; }
+
+#menuLogout {
+  color: #cc1315; }
+
+.miniControles {
+  text-transform: uppercase;
+  padding-right: 3%;
+  color: #828181;
+  font-size: 10px; }
+
+.divBienvenida {
+  text-transform: uppercase;
+  font-size: 12px; }
+  .divBienvenida .titulo {
+    color: #cd1315; }
+  .divBienvenida .nombre {
+    color: #828181; }
+
+.contenidoHead {
+  padding-top: 1%;
+  padding-bottom: 1%; }
+
+.logoHeader {
+  text-align: center; }
+  .logoHeader img {
+    width: 78%; }
+
+.areaAyuda {
+  text-align: right; }
+  .areaAyuda .divAyuda {
+    display: inline-block; }
+
+.divFoto {
+  text-align: center; }
+  .divFoto img {
+    width: 100%;
+    border-radius: 100%;
+    border: solid 1px #c93132;
+    padding: 8%; }
+
+/* border: solid 1px #c93132 */
+.tituloIdioma {
+  float: left;
+  padding-top: 4px;
+  margin-right: 3%;
+  color: #b6b5b5;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding-top: 7px;
+  padding-right: 7px; }
+
+.todoIdioma {
+  width: 35%;
+  margin: 0 auto; }
+
+.cbIdiomaInterna {
+  text-transform: uppercase;
+  color: #d0cfcf;
+  font-family: "MyriadRegular";
+  font-size: 1em;
+  font-weight: bold; }
+
+.padreCaja {
+  width: 60%;
+  display: inline-block; }
+  .padreCaja .cajaArriba {
+    display: table;
+    width: 100%; }
+    .padreCaja .cajaArriba .caja {
+      margin: 20px auto 40px auto;
+      border: 1px solid #cd1315;
+      height: 30px;
+      overflow: hidden;
+      width: 80%;
+      position: relative;
+      display: table-cell;
+      vertical-align: bottom; }
+      .padreCaja .cajaArriba .caja::after {
+        content: "▾";
+        display: table-cell;
+        padding-top: 7px;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        background-color: #cd1315;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        pointer-events: none;
+        color: white; }
+      .padreCaja .cajaArriba .caja select {
+        background: transparent;
+        border: none;
+        font-size: 14px;
+        height: 30px;
+        padding: 5px;
+        width: 100%; }
+
+.rowSearch {
+  padding-top: 8px;
+  padding-bottom: 1%;
+  height: 45px; }
+  .rowSearch .inputSearchDiv {
+    margin-bottom: 0;
+    width: 90%;
+    float: left; }
+    .rowSearch .inputSearchDiv .icoSearch {
+      top: 17%;
+      right: 2%; }
+      .rowSearch .inputSearchDiv .icoSearch .imgLupita {
+        width: 60%; }
+    .rowSearch .inputSearchDiv .inputSearch {
+      border-radius: 20px;
+      height: 30px; }
+
+footer {
+  background: #dddbdb;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: #929292;
+  text-transform: uppercase; }
+  footer img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.5;
+    width: 50%;
+    margin: 0 auto; }
+  footer .copyRight span {
+    display: block;
+    font-weight: bold; }
+
+footer {
+  margin-top: 5%; }
+
+body, h2, h1, label, h4 {
+  font-family: "MyriadRegular" !important; }
+
+#contenerdorCargadorAjax {
+  top: 40% !important; }
+
+.divInfoI {
+  text-align: left;
+  width: 85%;
+  margin: 0 auto; }
+
+.txtNombreCarpeta {
+  border: none;
+  border-radius: 0;
+  background: white;
+  height: 60px; }
+
+.rowNombreCarpeta {
+  margin-bottom: 5%; }
+
+.rowBotonesModal {
+  text-align: right; }
+
+.btnCancelarModal, .btnPrimaryModal {
+  padding-top: 3%;
+  padding-bottom: 2%; }
+
+.btnCancelarModal {
+  background: #e5e3e3;
+  border: none;
+  margin-right: 7%; }
+
+.rowTituloModalCarpeta {
+  padding-left: 6%;
+  margin-bottom: 1%; }
+
+.btnPrimaryModal {
+  background: #cb1315;
+  color: white; }
+  .btnPrimaryModal:hover {
+    background: #cb1315;
+    color: white; }
+
+.divAccionesLista a {
+  color: black;
+  font-weight: normal; }
+
+/*********** */
+/*Nuevo encabezado */
+.divCabeceraList {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: solid 1px black;
+  padding-bottom: 3%; }
+
+.divCarpetasPublicasCompartir {
+  overflow-y: scroll;
+  height: 250px;
+  margin-top: 5%; }
+
+.divCarpetaPublica, .divArchivoPublico {
+  margin-top: 5%;
+  padding-top: 3%;
+  text-align: center; }
+
+.divCarpetaPublica img, .divArchivoPublico img {
+  width: 30%; }
+
+.divCarpetaPublica {
+  width: 48%; }
+  .divCarpetaPublica:hover {
+    background: #F5F5F5;
+    cursor: pointer; }
+
+.icoDownload {
+  display: none; }
+
+/********* */
+.rowHerramientas {
+  margin-top: 2%; }
+
+.encabezadoFicheros {
+  text-align: center;
+  margin-bottom: 5%; }
+
+.folder {
+  text-align: center;
+  min-height: 280px; }
+  .folder img {
+    width: 50%; }
+
+.cuadritoIcono:hover {
+  background: #F5F5F5;
+  color: black;
+  cursor: pointer; }
+
+.inputNombreCarpeta {
+  margin-top: 10%;
+  margin-bottom: 5%; }
+
+.cuadritoIcono, .cuadritoIconoAdd {
+  width: 100%;
+  padding-top: 10%;
+  padding-bottom: 3%; }
+
+.btnAccion {
+  font-size: 0.85em; }
+
+.imgCuadritoIcono {
+  margin-bottom: 10%;
+  display: block !important;
+  margin-left: auto;
+  margin-right: auto; }
+
+.fileSelected {
+  background: blue;
+  color: white; }
+
+.accionesDiv .ico {
+  margin-left: 3%;
+  color: #95A5A6; }
+
+.activeVista {
+  color: #3498db !important; }
+
+/*Subir */
+.padreContenedorUpload {
+  width: 50%;
+  left: 0;
+  width: 100%;
+  top: 15% !important; }
+
+.divInputFile {
+  text-align: center; }
+  .divInputFile input[type="file"] {
+    margin: 0 auto;
+    margin-bottom: 2%; }
+
+.contenedorUpload {
+  background: white;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 2%;
+  padding-bottom: 2%; }
+  .contenedorUpload h3 {
+    margin-top: 3%;
+    margin-bottom: 3%; }
+
+/*Nuevo */
+.folderDetalles {
+  padding-top: 2%;
+  padding-bottom: 2%; }
+  .folderDetalles:hover {
+    background: #F5F5F5;
+    font-weight: bold;
+    cursor: pointer; }
+
+.divNofoundResults {
+  text-align: center;
+  font-size: 1.5em; }
+  .divNofoundResults img {
+    display: block;
+    width: 25%;
+    margin: 0 auto;
+    margin-bottom: 3%; }
+
+.tabs {
+  padding: 0; }
+
+.rowHerramientas {
+  margin-bottom: 3%; }
+
+.folderRepo {
+  display: block;
+  font-size: 3em;
+  margin-bottom: 7%;
+  color: #828181; }
+
+.icoTrashEliminar {
+  margin-top: 2px;
+  margin-bottom: 2px; }
+
+.icoCuadricula {
+  font-size: 3em;
+  margin-bottom: 10%;
+  color: #828181; }
+
+.fonditoGris {
+  background: #f3f2f2; }
+
+.menu {
+  width: 80%; }
+
+.centroRepo {
+  width: 95%;
+  margin: 0 auto; }
+
+.rowNavegacion {
+  padding-left: 5%;
+  margin-bottom: 1%; }
+
+.LineaHeadBody {
+  background: #f3f2f2;
+  padding-top: 5%;
+  padding-bottom: 3%;
+  /* margin-bottom: 10%;margin-top: 5%;	 */ }
+
+.btnPrincipal {
+  text-transform: uppercase;
+  color: white;
+  width: 100%;
+  padding-bottom: 10% !important;
+  padding-top: 10% !important; }
+
+.colContenedor {
+  padding: 0;
+  min-height: 500px;
+  padding-bottom: 5%; }
+
+.tablaRepo {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 3%; }
+
+.menu {
+  width: 95%;
+  margin: 0 auto; }
+  .menu ul {
+    padding: 0; }
+    .menu ul li {
+      list-style: none;
+      padding-top: 3%;
+      padding-bottom: 3%;
+      border: solid 1px #828181;
+      text-align: center;
+      width: 60%;
+      margin: 0 auto;
+      cursor: pointer; }
+
+.botonesNewAction {
+  margin-top: 5%;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 10%;
+  margin-top: 5%;
+  width: 60%; }
+
+.NewActionLi {
+  width: 100% !important; }
+
+.noBordeBottom {
+  border-bottom: none; }
+
+.ulSub {
+  position: absolute;
+  width: 100%;
+  margin-top: 10%;
+  margin-left: -1%; }
+
+.subLiButton {
+  width: 120% !important;
+  background: white;
+  border: none !important;
+  padding-bottom: 10% !important;
+  padding-top: 10% !important;
+  text-transform: uppercase; }
+  .subLiButton div {
+    color: black;
+    border-bottom: solid 1px black;
+    padding-left: 5%;
+    padding-bottom: 5%;
+    padding-right: 5%;
+    width: 90%;
+    margin: 0 auto; }
+
+.txtDireccion {
+  background: transparent; }
+
+.padreContenedorUpload {
+  width: 50%;
+  left: 0;
+  width: 100%;
+  top: 15% !important; }
+
+.divInputFile {
+  text-align: center; }
+  .divInputFile input[type="file"] {
+    margin: 0 auto;
+    margin-bottom: 2%; }
+
+.contenedorUpload {
+  background: #f3f2f2 !important;
+  width: 35%;
+  margin: 0 auto;
+  padding: 2%; }
+  .contenedorUpload h3 {
+    margin-top: 3%;
+    margin-bottom: 3%; }
+
+.tituloModal {
+  text-transform: uppercase;
+  margin-bottom: 8%; }
+
+/*# sourceMappingURL=style.css.map */

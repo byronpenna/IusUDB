@@ -105,6 +105,31 @@ namespace IUSBack.Controllers
                 }
                 return Json(respuesta);
             }
+            public ActionResult ajax_changePassHome()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    string ip = Request.UserHostAddress;
+                    this.homeModel = new HomeModel();
+                    bool estado = this.homeModel.sp_usu_changePassHome(frm["txtPassActual"].ToString(), frm["txtPass"].ToString(), ip, usuarioSession._idUsuario, (int)paginas.Home);
+                    respuesta = new Dictionary<object, object>();
+                    respuesta.Add("estado", estado);
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_usu_changePass()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -150,8 +175,42 @@ namespace IUSBack.Controllers
             #region "parte del login"
                 public ActionResult changePassword()
                 {
-                    return View();
+                    ActionResult seguridadInicial = this.seguridadInicial(-1, -1);
+                    Usuario usu = this.getUsuarioSesion();
+                    if (seguridadInicial != null)
+                    {
+                        return seguridadInicial;
+                    }
+                    try
+                    {
+                        //Session["neutroControl"] 
+                        ViewBag.titleModulo = "Sistema administrativo IUS";
+                        ViewBag.selectedMenu = 1;
+                        ViewBag.menus = this.homeModel.sp_sec_getMenu(usu._idUsuario);
+                    
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        /*ErrorsController error = new ErrorsController();
+                        var obj = error.redirectToError(x);
+                        return RedirectToAction(obj["controlador"], obj["accion"]);*/
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, true, "Index-" + this._nombreClass, usu._idUsuario, this._idPagina);
+                    }
+                    catch (Exception x)
+                    {
+                        ErrorsController error = new ErrorsController();
+                        return error.redirectToError(x, "Index-" + this._nombreClass, usu._idUsuario, this._idPagina);
+                    }
+                    return View("~/Views/Home/changePasswordi.cshtml");
                 }
+
+                /*
+                    public ActionResult changePassword()
+                    {
+                        return View();
+                    }
+                 */
                 public ActionResult Verificar(int id=-1,int id2=-1)
                 {
                     /*

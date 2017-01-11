@@ -1,0 +1,117 @@
+﻿@using IUSLibs.ADMINFE.Entidades.Noticias;
+@section estilosPersonalizados{
+    <!-- propios -->
+        @*<link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/principal/stylei.css" />*@
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Noticias/aprobar/style.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+        <script src="~/Scripts/Views/Administracion/Noticias/aprobar/functions.js"></script>
+        <script src="~/Scripts/Views/Administracion/Noticias/aprobar/script.js"></script>
+}
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<NotiEvento> noticiasEventos = null;
+    try
+    {
+        noticiasEventos = (List<NotiEvento>)ViewBag.notiEvento;
+    }
+    catch (Exception)
+    {
+        
+    }
+}
+<div class="row marginNull centroPagina centroAprobar">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Aprobar noticia
+        </span>
+    </div>
+    <div class="row marginNull ">
+        <div class="col-lg-3">
+            <ul class="tabs">
+                <li class="btnTab tabActive tabAprobar" target="#tab-1" id="1">
+                    <span>Aprobar</span>
+                </li>
+                <li class="btnTab tabRevision" target="#tab-2" id="2">
+                    Revisión
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <div class="row marginNull cuerpoIndex">
+                <div class="centro">
+                    <div id="tab-1" class="tab marginNull">
+                        <table class="table tbAprobar">
+                            <thead>
+                                <tr>
+                                    <th class="th1">Titulo</th>
+                                    @*<th class="th2">Descripción</th>*@
+                                    <th class="th3">Institución</th>
+                                    <th class="th4">Tipo</th>
+                                    @*<th class="th5">Caducidad</th>*@
+                                    <th class="th6">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (noticiasEventos != null && noticiasEventos.Count > 0)
+                                {
+                                    foreach (NotiEvento noticiaEvento in noticiasEventos)
+                                    {
+                                        <tr>
+                                            <td class="hidden">
+                                                <input class="txtHdIdNotiEvento" name="txtHdIdNotiEvento" value="@noticiaEvento._id" />
+                                                <input class="txtHdTipoEvento" name="txtHdTipoEvento" value="@noticiaEvento._idTipoEntrada" />
+                                            </td>
+                                            <td>@noticiaEvento._titulo</td>
+                                            @*<td>@noticiaEvento._descripcion</td>*@
+                                            <td>@noticiaEvento._institucion</td>
+                                            <td>@noticiaEvento.getStrTipoEntrada</td>
+                                            @*<td>
+                                                <input type="text" class="form-control inputBack txtFechaCaducidad" name="txtFechaCaducidad" />
+                                            </td>*@
+                                            <td>
+                                                @*<button class="btn btnBack btn-block btnCambiarEstado">Aprobar</button>
+                                                <button class="btn btnBack btn-block btnRechazarNoticia">Rechazar</button>*@
+                                                <a class="btn btnBack btn-block" href="@Url.Action( "preview","AprobarNoticiaAccion", new {id=noticiaEvento._id })">Ver</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="tab-2" class="tab hidden marginNull">
+                        <table class="table tbRevision">
+                            <thead>
+                                <tr>
+                                    <th class="th1">Titulo</th>
+                                    @*<th class="th2">Descripción</th>*@
+                                    <th class="th3">Institución</th>
+                                    <th class="th4">Tipo</th>
+                                    <th class="th5">Caducidad</th>
+                                    <th class="th6">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="centro">
+        
+    </div>
+</div>

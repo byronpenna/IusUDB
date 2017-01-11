@@ -28,6 +28,7 @@ namespace IUSLibs.RRHH.Control
                 InformacionPersona informacionPersona = null; Persona persona = null;
                 List<EmailPersona> emails=null; EmailPersona email;
                 List<TelefonoPersona> telefonos= null; TelefonoPersona telefono;
+                List<Institucion> instituciones = null; Institucion institucion;
                 // trayendo
                 SPIUS sp = new SPIUS("sp_rrhh_getInformacionPersonas");
                 sp.agregarParametro("idPersona", idPersona);
@@ -61,6 +62,7 @@ namespace IUSLibs.RRHH.Control
                             // Informacion personas 
                             DataRow row = tb[2].Rows[0];
                             informacionPersona = new InformacionPersona((int)row["idInformacionPersona"], (int)row["id_pais_fk"], row["numero_identificacion"].ToString(), (int)row["id_estadocivil_fk"], (int)row["id_persona_fk"], row["foto"].ToString());
+                            informacionPersona._institucion = new Institucion((int)row["id_institucion_fk"]);
                         }
                         if (tb[3].Rows.Count > 0)
                         {
@@ -89,6 +91,16 @@ namespace IUSLibs.RRHH.Control
                             DataRow row = tb[5].Rows[0];
                             persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString());
                         }
+                        if (tb[6].Rows.Count > 0)
+                        {
+                            instituciones = new List<Institucion>();
+                            foreach(DataRow row in tb[6].Rows){
+                                institucion = new Institucion((int)row["idInstitucion"]);
+                                institucion._nombre = row["nombre"].ToString();
+                                instituciones.Add(institucion);
+                            }
+                            
+                        }
                         retorno = new Dictionary<object, object>();
                         retorno.Add("paises", paises);
                         retorno.Add("estadosCiviles", estadosCiviles);
@@ -96,6 +108,7 @@ namespace IUSLibs.RRHH.Control
                         retorno.Add("emails", emails);
                         retorno.Add("telefonos", telefonos);
                         retorno.Add("persona", persona);
+                        retorno.Add("instituciones", instituciones);
                     }
                     else
                     {
@@ -271,6 +284,9 @@ namespace IUSLibs.RRHH.Control
                 sp.agregarParametro("idPais", infoAgregar._pais._idPais);
                 sp.agregarParametro("idEstadoCivil", infoAgregar._estadoCivil._idEstadoCivil);
                 sp.agregarParametro("idPersona", infoAgregar._persona._idPersona);
+                //@			int = -1,
+                sp.agregarParametro("idInstitucion", infoAgregar._institucion._idInstitucion);
+
                 sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                 sp.agregarParametro("idPagina", idPagina);
                 try

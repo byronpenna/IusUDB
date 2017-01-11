@@ -1,0 +1,162 @@
+﻿@using IUSLibs.REPO.Entidades.Publico
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<CarpetaPublica> carpetas = null;
+    List<ArchivoPublico> archivos = null;
+    CarpetaPublica carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
+    // busqueda
+        ViewBag.imgBuscar = Url.Content("~/Content/themes/iusback_theme/img/general/lupita.png");
+        ViewBag.imgBuscando = Url.Content("~/Content/themes/iusback_theme/img/general/lupitaClose.png");
+        ViewBag.ruta = carpetaPadre._strRuta;
+    try
+    {
+        carpetas = (List<CarpetaPublica>)ViewBag.carpetas;
+        archivos = (List<ArchivoPublico>)ViewBag.archivos;
+        carpetaPadre = (CarpetaPublica)ViewBag.carpetaPadre;
+        
+    }
+    catch (Exception x)
+    {
+        
+    }
+}
+@section estilosPersonalizados{
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/RepositorioPublico/Indexi/style.css" />
+
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/Views/Repositorio/universales/functionsi.js"></script>
+    <!-- propios -->
+    <script src="~/Scripts/Views/RepositorioPublico/Indexi/script.js"></script>
+    <script src="~/Scripts/Views/RepositorioPublico/Indexi/functions.js"></script>
+}
+<input class="txtHdIdCarpetaPadre" type="hidden" name="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+<div class="modal divUpload">
+    <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            @Html.Partial("~/Views/Shared/Repositorio/Modal/NuevaCarpeta.cshtml")
+        </div>
+    </div>
+</div>
+<div class="centroRepo contenidoCuerpo">
+    <div class="row marginNull">
+        <div class="col-lg-3 fonditoGris colContenedor">
+            @Html.Partial("~/Views/Shared/Repositorio/Navi.cshtml")
+        </div>
+        <div class="col-lg-9 paddingNull">
+            <div class="LineaHeadBody">
+                <div class="row marginNull rowNavegacion">
+                    <span>
+                        <a href="@Url.Action("Index","Home")">
+                            Menu principal
+                        </a>
+                    </span>
+                    >>>
+                    <span class="titulo">
+                        Repositorio
+                    </span>
+                </div>
+                @Html.Partial("~/Views/Shared/Repositorio/Modal/Busqueda.cshtml")
+                @*<div class="row marginNull searchDivBarRepo">
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <input class=" inputBack form-control inputBackModal txtDireccion" value="@carpetaPadre._strRuta" />
+                            <span class="input-group-addon spIrBuscar  pointer">Ir</span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-offset-6 col-lg-3">
+                        <div class="rowSearch inputBackModal">
+                            <div class="form-group has-feedback inputSearchDiv">
+                                <input type="text" class="form-control inputSearch ">
+                                <i class="glyphicon form-control-feedback icoSearch">
+                                    <img class="imgLupita" src="/Content/themes/iusback_theme/img/general/lupita.png">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            <div class="row marginNull">
+                <table class="table tablaRepo">
+                    <thead>
+                        <tr>
+                            <th class="hidden">
+
+                            </th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Tamaño</th>
+                            <th>Archivo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbTablaRepo">
+                        @if (carpetas != null && carpetas.Count > 0)
+                        {
+                            foreach (CarpetaPublica carpeta in carpetas)
+                            {
+                                <tr class="trRepo">
+                                    <td class="hidden">
+                                        <input name="txtHdIdCarpeta" class="txtHdIdCarpeta" value="@carpeta._idCarpetaPublica" />
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Index", "RepositorioPublico", new { id=carpeta._idCarpetaPublica })">
+                                            @carpeta._nombre
+                                        </a>
+                                    </td>
+                                    <td>@carpeta._fechaCreacion</td>
+                                    <td>0.0 MB</td>
+                                    <td>Carpeta</td>
+                                    <td>
+                                        <i class="fa fa-trash btnEliminarCarpeta pointer" aria-hidden="true"></i>
+
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                        @if (archivos != null && archivos.Count > 0)
+                        {
+                            foreach (ArchivoPublico archivo in archivos)
+                            {
+                                <tr class="trRepo">
+                                    <td class="hidden">
+                                        <input class="txtHdIdArchivoPublico" name="txtHdIdArchivoPublico" value="@archivo._idArchivoPublico" />
+                                    </td>
+                                    <td>
+                                        <div class="normalMode">
+                                            <span class="spNombre">@archivo._nombre</span>
+                                        </div>
+                                        <div class="editMode hidden">
+                                            <input type="text" class="form-control txtArchivoNombre inputBack" />
+                                        </div>
+                                    </td>
+                                    <td>@archivo._fechaCreacion</td>
+                                    <td>0.0 MB</td>
+                                    <td>Archivo</td>
+                                    <td>
+                                        <div class="normalMode">
+                                            <i class="fa fa-trash btnEliminarArchivo pointer" aria-hidden="true"></i>
+                                            <a href="@Url.Action("DescargarFichero", "Repositorio", new { id=archivo._archivoUsuario._idArchivo })"><i class="fa fa-download btn" aria-hidden="true"></i></a>
+                                            <i class="pointer fa fa-pencil-square-o btnCambiarNombre" aria-hidden="true" title="Cambiar nombre"></i>
+                                            <i class="pointer fa fa-share btnCambiarNombre icoCompartirFile" aria-hidden="true" title="Compartir"></i>
+                                        </div>
+                                        <div class="editMode hidden">
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-default btnBack btnEditarNombre">Aceptar</button>
+                                                <button class="btn btn-sm btn-default btnBack btnCancelarEdicionCarpeta pointer">Cancelar</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

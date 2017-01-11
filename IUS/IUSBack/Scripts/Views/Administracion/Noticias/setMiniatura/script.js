@@ -23,10 +23,11 @@
                 //jcrop_api.destroy();
                 getImageFromInputFile($("#flMiniatura")[0].files[0], function (imagen) {
                     console.log(imagen.width, imagen.height);
-                    if (imagen.width == imagen.height || (frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0)) {
+                    //imagen.width == imagen.height ||
+                    if ((frm.imgAlto > 0 && frm.imgAncho > 0 && frm.imgAncho > 0)) {
                         frmMiniatura(data, formulario.attr("action"),imagen);
                     } else {
-                        printMessage($(".divResultado"), "La imagen debe ser cuadrada", false);
+                        printMessage($(".divResultado"), "Por favor seleccione un area de recorte", false);
                     }
                 })
                 /*
@@ -48,13 +49,18 @@
         // change 
             $(document).on("change", "#flMiniatura", function (e) {
                 var boton = $(".botonSubir");
+                $(".divAyudaRecorte").hide();
                 console.log("asdqw");
                 var cambiar = false;
-                if ($(this).val() == "") {
+                if ($(this).val() == "") { // no selecciono imagen
                     boton.prop("disabled", true);
+                    $(this).prev().empty().append("Seleccionar imagen");
                     e.preventDefault();
                 } else {
                     cambiar = true;
+                    //****************************************
+                    
+                    $(this).prev().empty().append("Cambiar imagen");
                     $(".divLoadingPhoto").empty().append("<img class='imgLoading' src='" + IMG_GENERALES + "ajax-loader.gif" + "'>");
                     boton.prop("disabled", false);
                 }
@@ -64,6 +70,11 @@
                         $(".divLoadingPhoto").empty();
                         if (images !== undefined && images != null) {
                             targetImg.attr("src", images.src);
+
+                            printMessage($(".divAyudaRecorte"), "Seleccione un area de recorte",true,7000);
+                            console.log("MIRA QUE SON 7 segundos");
+
+
                             targetImg.attr("style", "");
                             if (jcrop_api != null) {
                                 jcrop_api.destroy();
@@ -80,7 +91,7 @@
                     if (jcrop_api != null) {
                         jcrop_api.destroy();
                     }
-                    targetImg.attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/noimage.png");
+                    targetImg.attr("src", RAIZ + "/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
                     targetImg.attr("style", "");
                     $(".divLoadingPhoto").empty();
                 }

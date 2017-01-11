@@ -62,6 +62,8 @@ namespace IUSBack.Controllers
                         ViewBag.persona = data["persona"];
                         ViewBag.personas = data["personas"];
                         ViewBag.idPersona = id;
+                        ViewBag.instituciones = data["instituciones"];
+
                         // viewbag
                         ViewBag.titleModulo = "Información adicional personas";
                         ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);

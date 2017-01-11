@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Administracion\AdministracionController.cs" />
+    <Compile Include="Controllers\Administracion\Noticias\AprobarNoticiaAccionController.cs" />
     <Compile Include="Controllers\Administracion\Noticias\ComentarioNoticiaController.cs" />
     <Compile Include="Controllers\Configuraciones\ConfigRepoController.cs" />
     <Compile Include="Controllers\Configuraciones\GestionPersonas\FormacionPersonasController.cs" />
@@ -219,7 +220,9 @@
     </Compile>
     <Compile Include="Models\General\Coordenadas.cs" />
     <Compile Include="Models\General\GestionFileServerModel.cs" />
+    <Compile Include="Models\General\NoticiaEvento.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\AdministracionModel.cs" />
+    <Compile Include="Models\Page\Administracion\Acciones\AprobarNoticiasModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\ComentarioModel.cs" />
     <Compile Include="Models\Page\Administracion\Acciones\NoticiasModel.cs" />
     <Compile Include="Models\Page\ConfigRepo\Acciones\ConfigRepoModel.cs" />
@@ -501,9 +504,11 @@
     <Content Include="Content\themes\iusback_theme\views\Administracion\Eventos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\ImagenEvento\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\ImagenEvento\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\aprobar\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\comentarios\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\preview\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\principal\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Administracion\Noticias\setMiniatura\media.css" />
@@ -541,6 +546,7 @@
     <Content Include="Content\themes\iusback_theme\views\gestionRoles\style.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\media.css" />
     <Content Include="Content\themes\iusback_theme\views\gestionUsuarios\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\home\changePasswordi\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\Indexi\style.css" />
     <Content Include="Content\themes\iusback_theme\views\home\media.css" />
     <Content Include="Content\themes\iusback_theme\views\home\Registro\media.css" />
@@ -564,6 +570,8 @@
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\style.css" />
     <Content Include="Content\themes\iusback_theme\views\RecursosHumanos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\RecursosHumanos\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Repositorio\Indexi\media.css" />
+    <Content Include="Content\themes\iusback_theme\views\Repositorio\Indexi\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\RepositorioCompartido\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\RepositorioCompartido\style.css" />
     <Content Include="Content\themes\iusback_theme\views\RepositorioPublico\media.css" />
@@ -677,7 +685,9 @@
     <Content Include="Content\third-party\jcrop\js\jquery.Jcrop.min.js" />
     <Content Include="Content\third-party\jcrop\js\jquery.min.js" />
     <Content Include="Content\third-party\richtext\nicEdit.js" />
+    <Content Include="Content\third-party\richtext\nicEdit2.js" />
     <Content Include="Content\third-party\richtext\nicEditorIcons.gif" />
+    <Content Include="Content\third-party\richtext\nicEditorIcons2.gif" />
     <Content Include="Content\third-party\tabs-master\css\responsive-tabs.css" />
     <Content Include="Content\third-party\tabs-master\js\jquery.responsiveTabs.js" />
     <Content Include="Content\third-party\tabs-master\js\jquery.responsiveTabs.min.js" />
@@ -692,6 +702,8 @@
     <Content Include="Models\Scripts\Generales\script.js" />
     <Content Include="Models\Scripts\Views\Administracion\Eventos\functions.js" />
     <Content Include="Models\Scripts\Views\Administracion\Eventos\script.js" />
+    <Content Include="Models\Scripts\Views\Administracion\Noticias\Aprobar\functions.js" />
+    <Content Include="Models\Scripts\Views\Administracion\Noticias\Aprobar\script.js" />
     <Content Include="Models\Scripts\Views\Administracion\Noticias\functions.js" />
     <Content Include="Models\Scripts\Views\Administracion\Noticias\script.js" />
     <Content Include="Models\Scripts\Views\ConfiguracionWebsite\functions.js" />
@@ -714,9 +726,13 @@
     <Content Include="Scripts\Views\Administracion\Eventos\script.js" />
     <Content Include="Scripts\Views\Administracion\ImagenEvento\functions.js" />
     <Content Include="Scripts\Views\Administracion\ImagenEvento\script.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\aprobar\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\aprobar\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\comentarios\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\preview\functions.js" />
+    <Content Include="Scripts\Views\Administracion\Noticias\preview\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\principal\functions.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\principal\script.js" />
     <Content Include="Scripts\Views\Administracion\Noticias\script.js" />
@@ -752,6 +768,8 @@
     <Content Include="Scripts\Views\GestionRoles\script.js" />
     <Content Include="Scripts\Views\GestionUsuarios\functions.js" />
     <Content Include="Scripts\Views\GestionUsuarios\script.js" />
+    <Content Include="Scripts\Views\Home\ChangePasswordi\functions.js" />
+    <Content Include="Scripts\Views\Home\ChangePasswordi\script.js" />
     <Content Include="Scripts\Views\Home\ChangePassword\functions.js" />
     <Content Include="Scripts\Views\Home\ChangePassword\script.js" />
     <Content Include="Scripts\Views\Home\functions.js" />
@@ -771,12 +789,19 @@
     <Content Include="Scripts\Views\RecursosHumanos\functions.js" />
     <Content Include="Scripts\Views\RecursosHumanos\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\functions.js" />
+    <Content Include="Scripts\Views\RepositorioPublico\Indexi\functions.js" />
+    <Content Include="Scripts\Views\RepositorioPublico\Indexi\script.js" />
     <Content Include="Scripts\Views\RepositorioPublico\script.js" />
     <Content Include="Scripts\Views\Repositorio\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\Indexi\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\Indexi\script.js" />
     <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\indexi\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\indexi\script.js" />
     <Content Include="Scripts\Views\Repositorio\RepositorioCompartido\script.js" />
     <Content Include="Scripts\Views\Repositorio\script.js" />
     <Content Include="Scripts\Views\Repositorio\universales\functions.js" />
+    <Content Include="Scripts\Views\Repositorio\universales\functionsi.js" />
     <Content Include="Scripts\Views\Repositorio\universales\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -963,6 +988,16 @@
     <Content Include="Views\Shared\_Layouti.cshtml" />
     <Content Include="Views\Home\Indexi.cshtml" />
     <Content Include="Views\Shared\footeri.cshtml" />
+    <Content Include="Views\Noticias\AprobarNoticia.cshtml" />
+    <Content Include="Views\Noticias\preview.cshtml" />
+    <Content Include="Views\Home\changePasswordi.cshtml" />
+    <Content Include="Views\Noticias\NoPost.cshtml" />
+    <Content Include="Views\Repositorio\Indexi.cshtml" />
+    <Content Include="Views\RepositorioPublico\Indexi.cshtml" />
+    <Content Include="Views\RepositorioCompartido\Indexi.cshtml" />
+    <Content Include="Views\Shared\Repositorio\Navi.cshtml" />
+    <Content Include="Views\Shared\Repositorio\Modal\NuevaCarpeta.cshtml" />
+    <Content Include="Views\Shared\Repositorio\Modal\Busqueda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

@@ -274,58 +274,61 @@ namespace IUSBack.Controllers
                     }
                     return toReturn;
                 }
+
+                [ValidateInput(false)]
+                public Dictionary<Object, Object> getAjaxFrmWithOutValidate()
+                {
+                    Dictionary<Object, Object> toReturn = null;
+                    String frmText = "";
+                    try
+                    {
+                        frmText = Request.Unvalidated.Form["form"];
+                    }
+                    catch (HttpException)
+                    {
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    if (frmText != null || frmText != "")
+                    {
+                        try
+                        {
+                            toReturn = this._jssmax.Deserialize<Dictionary<Object, Object>>(frmText);
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    return toReturn;
+                }
+                public List<Dictionary<Object, Object>> getListAjaxFrm()
+                {
+                    return this.getListAjaxFrm("form");
+                }
+                public List<Dictionary<Object, Object>> getListAjaxFrm(String txtObj)
+                {
+                    List<Dictionary<Object, Object>> toReturn = null;
+                    String frmText = Request.Form[txtObj];
+                    if (frmText != null || frmText != "")
+                    {
+                        try
+                        {
+                            toReturn = this._jss.Deserialize<List<Dictionary<Object, Object>>>(frmText);
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    return toReturn;
+                }
+
             #endregion
-            [ValidateInput(false)]
-            public Dictionary<Object, Object> getAjaxFrmWithOutValidate()
-            {
-                Dictionary<Object, Object> toReturn = null;
-                String frmText = "";
-                try
-                {
-                    frmText = Request.Unvalidated.Form["form"];
-                }
-                catch (HttpException)
-                {
-
-                }
-                catch (Exception)
-                {
-
-                }
-                if (frmText != null || frmText != "")
-                {
-                    try
-                    {
-                        toReturn = this._jssmax.Deserialize<Dictionary<Object, Object>>(frmText);
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
-                return toReturn;
-            }
-            public List<Dictionary<Object, Object>> getListAjaxFrm()
-            {
-                return this.getListAjaxFrm("form");
-            }
-            public List<Dictionary<Object, Object>> getListAjaxFrm(String txtObj)
-            {
-                List<Dictionary<Object, Object>> toReturn = null;
-                String frmText = Request.Form[txtObj];
-                if (frmText != null || frmText != "")
-                {
-                    try
-                    {
-                        toReturn = this._jss.Deserialize<List<Dictionary<Object, Object>>>(frmText);
-                    }
-                    catch (Exception x)
-                    {
-                        throw x;
-                    }
-                }
-                return toReturn;
-            }
+            
             #region "conversiones"
                 #region "arrays"
                     public int[] convertArrAjaxToInt(Object frm)
