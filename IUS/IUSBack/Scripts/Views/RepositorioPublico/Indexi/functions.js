@@ -60,7 +60,28 @@ function btnBusqueda(frm) {
     actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_searchArchivoPublicoBack", frm, function (data) {
         console.log("la data devuelta es ", data);
         if (data.estado) {
+            $(".txtHdBuscando").val(frm.buscando);
             var trs = "";
+            if (data.archivos !== undefined && data.archivos !== null) {
+                $.each(data.archivos, function (i, archivo) {
+                    trs += getTrArchivo(archivo);
+                })
+            }
+            $(".tbTablaRepo").empty().append(trs);
+        }
+    })
+}
+function entrarCarpeta(frm) {
+    actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
+        console.log("data en carpeta entrada: ", data)
+        if (data.estado) {
+            $(".txtHdBuscando").val(frm.buscando);
+            var trs = "";
+            if (data.carpetas !== undefined && data.carpetas !== null) {
+                $.each(data.carpetas, function (i, carpeta) {
+                    trs += getTrCarpeta(carpeta);
+                })
+            }
             if (data.archivos !== undefined && data.archivos !== null) {
                 $.each(data.archivos, function (i, archivo) {
                     trs += getTrArchivo(archivo);

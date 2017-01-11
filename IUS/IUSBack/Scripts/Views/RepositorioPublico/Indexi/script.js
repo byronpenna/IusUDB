@@ -9,7 +9,8 @@
                     console.log("formulario es: ", frm);
                     btnBusqueda(frm);
                 } else {
-
+                    frm.idCarpetaPublica = $(".txtHdIdCarpetaPadre").val();
+                    entrarCarpeta(frm);
                 }
 
             })
