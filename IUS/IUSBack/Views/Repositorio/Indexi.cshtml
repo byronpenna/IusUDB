@@ -32,7 +32,41 @@
     
 }
 <input class="txtHdIdCarpetaPadre" type="hidden" name="txtHdIdCarpetaPadre" value="@ViewBag.idCarpetaActual" />
+<div class="modal divCompartir divUpload">
+    <div class="padreContenedorUpload contenedorAjaxModalNew">
+        <div id="cargadorAjaxUniversal" class="contenedorUpload">
+            <div class="row marginNull" >
+                <h3></h3>
+            </div>
+            <div class="row marginNull">
+                <label>Ruta</label>
+                <input  class="form-control inputBack txtRutaPublica" value="/"/>
+            </div>
+            <input class="hidden txtHdIdCarpetaPublicaActual" value="-1"/>
+            <table class="table tbRepoPublico">
+                <thead>
+                    <tr>
+                        <th class="hidden">Hidden</th>
+                        <th>
+                            <span class="spAtras">
+                                <
+                            </span>
+                            Nombre carpeta
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tbodyCuerpoPublico">
 
+                </tbody>
+            </table>
+            <div class="row marginNull">
+                <button class="btn btn-default btnBack" >
+                    Compartir aquí
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal divUpload">
     <div id="contenerdorCargadorAjax" class="padreContenedorUpload">
         <div id="cargadorAjaxUniversal" class="contenedorUpload">
@@ -157,9 +191,11 @@
                                         <td>
                                             <div class="normalMode">
                                                 <i class="fa fa-trash btnEliminarArchivo pointer" aria-hidden="true"></i>
-                                                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id=archivo._idArchivo })"><i class="fa fa-download btn" aria-hidden="true"></i></a>
+                                                <a href="@Url.Action("DescargarFichero", "Repositorio", new { id=archivo._idArchivo })">
+                                                    <i class="fa fa-download btn" aria-hidden="true"></i>
+                                                </a>
                                                 <i class="pointer fa fa-pencil-square-o btnCambiarNombre" aria-hidden="true" title="Cambiar nombre"></i>
-                                                <i class="pointer fa fa-share btnCambiarNombre icoCompartirFile" aria-hidden="true" title="Compartir"></i>
+                                                <i class="pointer fa fa-share icoCompartirFile" aria-hidden="true" title="Compartir"></i>
 
                                             </div>
                                             <div class="editMode hidden">

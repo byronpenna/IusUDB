@@ -1,9 +1,11 @@
 ﻿// funciones 
-    function abrirModal(e, callback) {
+    function abrirModal(e, callback,elemento) {
         e.preventDefault();
         $(".modalContenido").hide();
-        $(".divUpload").fadeIn(400, callback);
-
+        if (elemento === undefined) {
+            elemento = $(".divUpload");
+        }
+        elemento.fadeIn(400, callback);
     }
     function inicialSearch() {
         var buscando = $(".txtHdBuscando").val();

@@ -459,6 +459,11 @@ body, h2, h1, label, h4 {
   top: 12% !important;
   right: 4% !important; }
 
+.contenedorAjaxModalNew {
+  position: absolute;
+  left: 50% !important;
+  top: 20% !important; }
+
 #contenerdorCargadorAjax {
   top: 40% !important; }
 
@@ -614,6 +619,13 @@ body, h2, h1, label, h4 {
 
 .txtDireccion {
   background: transparent; }
+
+.spNombreCarpetaPublica, .spAtras {
+  cursor: pointer; }
+
+.tbRepoPublico {
+  margin-top: 2%;
+  margin-bottom: 5%; }
 
 .padreContenedorUpload {
   width: 50%;

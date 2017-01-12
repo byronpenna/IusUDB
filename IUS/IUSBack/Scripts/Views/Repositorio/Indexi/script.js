@@ -2,6 +2,23 @@
     // eventos 
         // 
         // click 
+                $(document).on("click", ".spAtras", function () {
+                    var frm = {
+                        idCarpetaPublica: $(".txtHdIdCarpetaPublicaActual").val()
+                    }
+                    spAtras(frm);
+                })
+                $(document).on("click",".spNombreCarpetaPublica",function(){
+                    var frm = { 
+                        idCarpetaPublica: $(this).parents("tr").find(".txtHdIdCarpetaPublica").val()
+                    };
+                    entrarCarpetaPublica(frm);
+                })
+                $(document).on("click", ".icoCompartirFile", function (e) {
+                    abrirModal(e, function () {
+                        loadPublicFiles();
+                    }, $(".divCompartir"));
+                })
             // Modal
                 $(document).on("click", ".imgSearchRepo", function () {
                     /*
@@ -51,9 +68,7 @@
                 $(document).on("click", ".contenedorUpload", function (e) {
                     e.stopPropagation();
                 });
-                
-                
-
+    
                 $(document).on("click", ".lkbSubMenu", function (e) {
                     window.location = $(this).attr("href");
 

@@ -1,4 +1,67 @@
-﻿function getTrCarpeta(carpeta) {
+﻿function loadPublicFiles() {
+    var frm = {};
+    actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_getRootFolderPublico", frm, function (data) {
+        console.log("Repo publico: ", data);
+        if (data.estado) {
+            var trs = "";
+            if (data.carpetas !== undefined && data.carpetas !== null) {
+                $.each(data.carpetas, function (i, carpeta) {
+                    trs += getTrCarpetaPublica(carpeta);
+                });
+                $(".tbodyCuerpoPublico").empty().append(trs);
+            }
+        }
+    });
+}
+function spAtras(frm) {
+    actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_atrasCarpetaPublica", frm, function (data) {
+        console.log("Sp atras es: ", data);
+        var trs = "";
+        if (data.carpetas !== undefined && data.carpetas !== null) {
+            $.each(data.carpetas, function (i, carpeta) {
+                trs += getTrCarpetaPublica(carpeta);
+            });
+            $(".tbodyCuerpoPublico").empty().append(trs);
+            $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
+        }
+        
+    })
+}
+function entrarCarpetaPublica(frm) {
+    actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
+        console.log("La data es: ", data);
+        if (data.estado) {
+            var trs = "";
+            if (data.carpetas !== undefined && data.carpetas !== null) {
+                $.each(data.carpetas, function (i, carpeta) {
+                    trs += getTrCarpetaPublica(carpeta);
+                });
+            } else {
+                trs = "\
+                <tr>\
+                    <td>Carpeta vacia</td>\
+                </tr>\
+                ";
+            }
+            $(".tbodyCuerpoPublico").empty().append(trs);
+            $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
+        }
+    })
+}
+function getTrCarpetaPublica(carpetaPublica){
+    var tr = "\
+    <tr>\
+        <td class='hidden'>\
+            <input class='txtHdIdCarpetaPublica' value='" + carpetaPublica._idCarpetaPublica + "'>\
+        </td>\
+        <td>\
+            <span class='spNombreCarpetaPublica'>" + carpetaPublica._nombre + "</span>\
+        </td>\
+    </tr>\
+    ";
+    return tr;
+}
+function getTrCarpeta(carpeta) {
     //@Url.Action("Index", "Repositorio", new { id=carpeta._idCarpeta })
     var tr = "\
     <tr class=trRepo>\
