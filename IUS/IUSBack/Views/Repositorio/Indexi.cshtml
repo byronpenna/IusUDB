@@ -43,6 +43,7 @@
                 <input  class="form-control inputBack txtRutaPublica" value="/"/>
             </div>
             <input class="hidden txtHdIdCarpetaPublicaActual" value="-1"/>
+            <input class="hidden txtHdIdArchivoCompartir" value="-1"/>
             <table class="table tbRepoPublico">
                 <thead>
                     <tr>
@@ -60,7 +61,11 @@
                 </tbody>
             </table>
             <div class="row marginNull">
-                <button class="btn btn-default btnBack" >
+                <label>Nombre publico</label>
+                <input class="txtNombreCompartido form-control inputBack" name="txtNombreCompartido" />
+            </div>
+            <div class="row marginNull">
+                <button class="btn btn-default btnBack btnCompartirPublica" >
                     Compartir aquí
                 </button>
             </div>

@@ -9,9 +9,17 @@
                     trs += getTrCarpetaPublica(carpeta);
                 });
                 $(".tbodyCuerpoPublico").empty().append(trs);
+                
             }
         }
     });
+}
+function btnCompartirPublica(frm) {
+    actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_compartirArchivoPublico", frm, function (data) {
+        console.log("Data publica compartida", data);
+
+    })
+
 }
 function spAtras(frm) {
     actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_atrasCarpetaPublica", frm, function (data) {
@@ -23,13 +31,15 @@ function spAtras(frm) {
             });
             $(".tbodyCuerpoPublico").empty().append(trs);
             $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
+            $(".txtHdIdCarpetaPublicaActual").val(data.idCarpetaPadre);
         }
         
     })
 }
+
 function entrarCarpetaPublica(frm) {
     actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_entrarCarpetaPublica", frm, function (data) {
-        console.log("La data es: ", data);
+        console.log("La data entrar carpetaPublica es: ", data);
         if (data.estado) {
             var trs = "";
             if (data.carpetas !== undefined && data.carpetas !== null) {
@@ -45,6 +55,7 @@ function entrarCarpetaPublica(frm) {
             }
             $(".tbodyCuerpoPublico").empty().append(trs);
             $(".txtRutaPublica").val(data.carpetaPadre._strRuta);
+            $(".txtHdIdCarpetaPublicaActual").val(data.carpetaPadre._idCarpetaPublica);
         }
     })
 }

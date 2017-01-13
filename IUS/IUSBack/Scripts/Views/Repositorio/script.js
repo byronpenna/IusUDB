@@ -241,7 +241,7 @@
                     $(document).on("click", ".btnCompartir", function () {
                         seccion = $(this).parents(".shareSection");
                         frm = serializeSection(seccion);
-                        console.log(frm);
+                        console.log("Para compatir es: ",frm);
                         if (frm.txtHdCarpetaPadrePublica != "-1") {
                             if ($(".txtHdIdArchivoCompartir").val() == -1) {
                                 printMessage($(".divMensajeRepoPublico"), "Seleccione un archivo a compartir", false);

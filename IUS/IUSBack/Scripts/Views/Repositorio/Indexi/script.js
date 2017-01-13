@@ -2,23 +2,36 @@
     // eventos 
         // 
         // click 
-                $(document).on("click", ".spAtras", function () {
-                    var frm = {
-                        idCarpetaPublica: $(".txtHdIdCarpetaPublicaActual").val()
-                    }
-                    spAtras(frm);
-                })
-                $(document).on("click",".spNombreCarpetaPublica",function(){
-                    var frm = { 
-                        idCarpetaPublica: $(this).parents("tr").find(".txtHdIdCarpetaPublica").val()
-                    };
-                    entrarCarpetaPublica(frm);
-                })
-                $(document).on("click", ".icoCompartirFile", function (e) {
-                    abrirModal(e, function () {
-                        loadPublicFiles();
-                    }, $(".divCompartir"));
-                })
+            $(document).on("click", ".btnCompartirPublica", function () {
+                var frm = {
+                    txtHdCarpetaPadrePublica:   $(".txtHdIdCarpetaPublicaActual").val(),
+                    txtHdIdArchivoCompartir:    $(".txtHdIdArchivoCompartir").val(),
+                    txtNombreFileCompartir:     $(".txtNombreCompartido").val()
+                }
+                console.log("Frm es: ", frm);
+                btnCompartirPublica(frm);
+            })
+            $(document).on("click", ".spAtras", function () {
+                var frm = {
+                    idCarpetaPublica: $(".txtHdIdCarpetaPublicaActual").val()
+                }
+                spAtras(frm);
+            })
+            $(document).on("click",".spNombreCarpetaPublica",function(){
+                var frm = { 
+                    idCarpetaPublica: $(this).parents("tr").find(".txtHdIdCarpetaPublica").val()
+                };
+                entrarCarpetaPublica(frm);
+            })
+            $(document).on("click", ".icoCompartirFile", function (e) {
+                console.log("Vamos a compartir ");
+                var idCompartir = $(this).parents("tr").find(".txtHdIdArchivo").val();
+                console.log("idCompartir es: ", idCompartir);
+                abrirModal(e, function () {
+                    $(".txtHdIdArchivoCompartir").val(idCompartir);
+                    loadPublicFiles();
+                }, $(".divCompartir"));
+            })
             // Modal
                 $(document).on("click", ".imgSearchRepo", function () {
                     /*
