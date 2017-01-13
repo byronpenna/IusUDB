@@ -17,7 +17,9 @@
 function btnCompartirPublica(frm) {
     actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_compartirArchivoPublico", frm, function (data) {
         console.log("Data publica compartida", data);
-
+        if (data.estado) {
+            $(".divUpload").click();
+        }
     })
 
 }
