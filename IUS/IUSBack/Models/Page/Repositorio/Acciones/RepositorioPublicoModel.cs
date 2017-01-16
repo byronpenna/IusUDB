@@ -26,6 +26,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
         #endregion
         #region "funciones"
             #region "get"
+                public List<ArchivoPublico> sp_repo_getPendienteAprobacion(int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoPublico.sp_repo_getPendienteAprobacion(idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public CarpetaPublica sp_repo_getPublicoByRuta( string strRuta,int idUsuarioEjecutor, int idPagina)
                 {
                     try

@@ -570,6 +570,7 @@
     <Content Include="Content\themes\iusback_theme\views\NotAllowed\style.css" />
     <Content Include="Content\themes\iusback_theme\views\RecursosHumanos\media.css" />
     <Content Include="Content\themes\iusback_theme\views\RecursosHumanos\style.css" />
+    <Content Include="Content\themes\iusback_theme\views\Repositorio\AprobarArchivos\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\Indexi\media.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\Indexi\style.css" />
     <Content Include="Content\themes\iusback_theme\views\Repositorio\RepositorioCompartido\media.css" />
@@ -998,6 +999,7 @@
     <Content Include="Views\Shared\Repositorio\Navi.cshtml" />
     <Content Include="Views\Shared\Repositorio\Modal\NuevaCarpeta.cshtml" />
     <Content Include="Views\Shared\Repositorio\Modal\Busqueda.cshtml" />
+    <Content Include="Views\Repositorio\AprobarArchivos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

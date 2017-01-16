@@ -7,11 +7,12 @@ using System.IO;
 // liberias internas
     using IUSBack.Models.Page.Repositorio.Acciones;
     using IUSBack.Models.Page.Repositorio.Entidades;
+
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
     using IUSLibs.REPO.Entidades;
-
+    using IUSLibs.REPO.Entidades.Publico;
 namespace IUSBack.Controllers
 {
     public class RepositorioController : PadreController
@@ -28,6 +29,35 @@ namespace IUSBack.Controllers
             private string          _nombreClass = "RepositorioController";
         #endregion 
         #region "url"
+            public ActionResult AprobarArchivos()
+            {
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina);
+                //var xx = Session["HistoryRepo"];
+                Usuario usuarioSession = this.getUsuarioSesion();
+                if (seguridadInicial != null)
+                {
+                    return seguridadInicial;
+                }
+                try
+                {
+                    RepositorioPublicoModel model = new RepositorioPublicoModel();
+                    List<ArchivoPublico> archivosPublicos = new List<ArchivoPublico>();
+                    ViewBag.archivos = model.sp_repo_getPendienteAprobacion(usuarioSession._idUsuario, this._idPagina);
+
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, true, "Index-RepositorioController", usuarioSession._idUsuario, this._idPagina);
+                    //return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    ErrorsController error = new ErrorsController();
+                    return error.redirectToError(x, "Index-RepositorioController", usuarioSession._idUsuario, this._idPagina);
+                }
+            }
             public ActionResult Index(int id = -1, int id2= -1)
             {
                 /*
@@ -130,7 +160,7 @@ namespace IUSBack.Controllers
                     //return new EmptyResult();
                 }
             }
-            public string NotFolderFound()
+            public string       NotFolderFound()
             {
                 return "folder no encontrado";
             }

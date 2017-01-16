@@ -295,6 +295,41 @@ namespace IUSLibs.REPO.Control.Publico
                 
             #endregion
             #region "Backend"
+                public List<ArchivoPublico> sp_repo_getPendienteAprobacion(int idUsuarioEjecutor,int idPagina)
+                {
+                    List<ArchivoPublico> archivosPublicos=null;
+                    ArchivoPublico archivoPublico;
+                    SPIUS sp = new SPIUS("sp_repo_searchArchivoPublicoBack");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                archivosPublicos = new List<ArchivoPublico>();
+                                foreach(DataRow row in tb[0].Rows){
+                                    archivoPublico = new ArchivoPublico((int)row["idArchivoPublico"], row["nombre_publico"].ToString());
+                                    archivosPublicos.Add(archivoPublico);
+
+                                }
+                                
+                            }
+
+                        }
+                        return archivosPublicos;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public List<ArchivoPublico> sp_repo_searchArchivoPublicoBack(string nombre,int idUsuarioEjecutor, int idPagina)
                 {
                     List<ArchivoPublico> archivosPublicos = null; ArchivoPublico archivo;

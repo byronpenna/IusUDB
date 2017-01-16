@@ -1,0 +1,79 @@
+﻿@using IUSLibs.REPO.Entidades.Publico
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<ArchivoPublico> archivos = null;
+    try
+    {
+        archivos = (List<ArchivoPublico>)ViewBag.archivos;
+    }
+    catch (Exception x)
+    {
+
+    }
+}
+@section estilosPersonalizados{
+    <!-- propios -->
+        <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/AprobarArchivos/style.css" />
+}
+@section scriptsPersonalizados{
+    
+}
+
+<div class="row marginNull centroPagina centroAprobar">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Aprobar archivo
+        </span>
+    </div>
+    <div class="row marginNull">
+        <div class="col-lg-3">
+            <ul class="tabs">
+                <li class="btnTab tabActive tabAprobar" target="#tab-1" id="1">
+                    <span>Aprobar</span>
+                </li>
+                <li class="btnTab tabRevision" target="#tab-2" id="2">
+                    Revisión
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <div class="row marginNull cuerpoIndex">
+                <div class="centro">
+                    <div id="tab-1" class="tab marginNull">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Fecha</th>
+                                    <th>Tamaño</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (archivos != null && archivos.Count > 0)
+                                {
+                                    foreach(ArchivoPublico archivoPublico in archivos){
+                                        <tr>
+                                            <td>@archivoPublico._nombre</td>
+                                            <td>01/01/2010</td>
+                                            <td>0.0 MB</td>
+                                            <td></td>
+                                        </tr>        
+                                    }
+                                    
+                                }
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
