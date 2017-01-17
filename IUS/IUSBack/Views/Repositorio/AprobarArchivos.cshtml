@@ -16,7 +16,9 @@
         <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Repositorio/AprobarArchivos/style.css" />
 }
 @section scriptsPersonalizados{
-    
+    <!-- propios -->
+        <script src="~/Scripts/Views/Repositorio/AprobarArchivos/script.js"></script>
+        <script src="~/Scripts/Views/Repositorio/AprobarArchivos/functions.js"></script>
 }
 
 <div class="row marginNull centroPagina centroAprobar">
@@ -60,10 +62,15 @@
                                 {
                                     foreach(ArchivoPublico archivoPublico in archivos){
                                         <tr>
+                                            <td class="hidden">
+                                                <input type="hidden" name="txtHdIdArchivo" class="txtHdIdArchivo" value="@archivoPublico._idArchivoPublico" />
+                                            </td>
                                             <td>@archivoPublico._nombre</td>
                                             <td>01/01/2010</td>
                                             <td>0.0 MB</td>
-                                            <td></td>
+                                            <td>
+                                                <button class="btn btnBack btnAprobarArchivo">Aprobar</button>
+                                            </td>
                                         </tr>        
                                     }
                                     

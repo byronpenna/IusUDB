@@ -299,7 +299,7 @@ namespace IUSLibs.REPO.Control.Publico
                 {
                     List<ArchivoPublico> archivosPublicos=null;
                     ArchivoPublico archivoPublico;
-                    SPIUS sp = new SPIUS("sp_repo_searchArchivoPublicoBack");
+                    SPIUS sp = new SPIUS("sp_repo_getPendienteAprobacion");
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -383,6 +383,38 @@ namespace IUSLibs.REPO.Control.Publico
         #endregion
         #region "set"
             #region "backend"
+                public ArchivoPublico sp_repo_aprobarArchivo(int idArchivoPublico,int idUsuarioEjecutor,int idPagina)
+                {
+                    SPIUS sp = new SPIUS("sp_repo_aprobarArchivo");
+                    //@	int,
+                    sp.agregarParametro("idArchivoPublico", idArchivoPublico);
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                    sp.agregarParametro("idPagina", idPagina);
+                    ArchivoPublico archivoPublico = null;
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            //,,estado
+                            if(tb[1].Rows.Count > 0){
+                                DataRow row = tb[1].Rows[0];
+                                archivoPublico = new ArchivoPublico((int)row["idArchivoPublico"], row["nombre_publico"].ToString());
+                            }
+                            
+                        }
+                        return archivoPublico;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+
+                }
                 public ArchivoPublico sp_repo_renameFile(ArchivoPublico archivoEditar, int idUsuarioEjecutor, int idPagina)
                 {
                     ArchivoPublico archivo = null;CarpetaPublica carpetaPublica = null;

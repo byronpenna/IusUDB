@@ -128,6 +128,21 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
                 }
             #endregion
             #region "set"
+                public ArchivoPublico sp_repo_aprobarArchivo(int idArchivoPublico,int idUsuarioEjecutor,int idPagina)
+                {
+                    try
+                    {
+                        return this._controlArchivoPublico.sp_repo_aprobarArchivo(idArchivoPublico,idUsuarioEjecutor, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public ArchivoPublico sp_repo_renameFile(ArchivoPublico archivoEditar, int idUsuarioEjecutor, int idPagina)
                 {
                     try

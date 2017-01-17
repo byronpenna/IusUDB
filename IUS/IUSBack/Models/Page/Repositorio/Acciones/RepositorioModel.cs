@@ -77,7 +77,7 @@ namespace IUSBack.Models.Page.Repositorio.Acciones
             #endregion
         #endregion
         #region "acciones"
-
+            
             #region "controlArchivo"
                 public List<Archivo> sp_repo_searchArchivo(string nombre, int idUsuarioEjecutor, int idPagina)
                 {
