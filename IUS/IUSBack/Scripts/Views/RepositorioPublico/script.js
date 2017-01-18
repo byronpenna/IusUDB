@@ -98,7 +98,7 @@
                     }
                     
                 })
-            // eliminar carpeta 
+            // eliminar archivo 
                 $(document).on("click", ".icoEliminarArchivo", function (e) {
                     e.preventDefault();
                     var x = confirm("¿Esta seguro que desea dejar de compartir este archivo?");

@@ -312,6 +312,8 @@ namespace IUSLibs.REPO.Control.Publico
                                 archivosPublicos = new List<ArchivoPublico>();
                                 foreach(DataRow row in tb[0].Rows){
                                     archivoPublico = new ArchivoPublico((int)row["idArchivoPublico"], row["nombre_publico"].ToString());
+                                    archivoPublico._estado = (bool)row["estado"];
+
                                     archivosPublicos.Add(archivoPublico);
 
                                 }

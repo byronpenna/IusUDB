@@ -16,6 +16,16 @@ namespace IUSLibs.REPO.Entidades.Publico
             public DateTime         _fechaCreacion;
         #endregion
         #region "get y set"
+            public string getStrEstado
+            {
+                get{
+                    if(this._estado){
+                        return "Publicado";
+                    }else{
+                        return "No publicado";
+                    }
+                }
+            }
             public string getFechaCreacion
             {
                 get
