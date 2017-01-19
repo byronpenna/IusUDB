@@ -402,6 +402,7 @@ namespace IUSLibs.REPO.Control.Publico
                             if(tb[1].Rows.Count > 0){
                                 DataRow row = tb[1].Rows[0];
                                 archivoPublico = new ArchivoPublico((int)row["idArchivoPublico"], row["nombre_publico"].ToString());
+                                archivoPublico._estado = (bool)row["estado"];
                             }
                             
                         }

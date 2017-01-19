@@ -12,11 +12,12 @@
             }
         })
     }
-    function btnAprobarArchivo(frm) {
+    function btnAprobarArchivo(frm,tr) {
         actualizarCatalogo(RAIZ + "/RepositorioPublico/sp_repo_aprobarArchivo", frm, function (data) {
             console.log("Data es ", data);
-            if (data) {
-
+            if (data.estado) {
+                console.log("Entro aqui ");
+                tr.find(".td4").empty().append(data.archivoPublico.getStrEstado);
             }
         })
     }

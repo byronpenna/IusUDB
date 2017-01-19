@@ -391,6 +391,7 @@ namespace IUSBack.Controllers
                             ArchivoPublico archivoPublico = this._model.sp_repo_aprobarArchivo(this.convertObjAjaxToInt(frm["idArchivo"]), usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
+                            respuesta.Add("archivoPublico", archivoPublico);
                         }
                     }
                     catch (ErroresIUS x)

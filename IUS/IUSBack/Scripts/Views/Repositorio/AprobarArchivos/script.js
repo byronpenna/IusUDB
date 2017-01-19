@@ -25,12 +25,12 @@
             });
             $(document).on("click", ".btnAprobarArchivo", function () {
                 var x = confirm("¿Esta seguro que desea aprobar archivo?");
+                var tr = $(this).parents("tr");
                 if (x) {
                     var frm = {
-                        idArchivo: $(this).parents("tr").find(".txtHdIdArchivo").val()
+                        idArchivo: tr.find(".txtHdIdArchivo").val()
                     }
-                    btnAprobarArchivo(frm);
-
+                    btnAprobarArchivo(frm,tr);
                 }
             })
 });
