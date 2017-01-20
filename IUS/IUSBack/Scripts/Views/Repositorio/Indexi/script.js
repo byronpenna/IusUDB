@@ -68,7 +68,7 @@
                 $(document).on("click", ".icoSubirFichero", function (e) {
                     abrirModal(e,function () {
                         $(".divSubirArchivoModal").show();
-                    });
+                    }, $(".divNewModal"));
                 })
                 /*
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {

@@ -2,6 +2,7 @@
     function abrirModal(e, callback,elemento) {
         e.preventDefault();
         $(".modalContenido").hide();
+        $(".contenedorAjaxModalNew").hide();
         if (elemento === undefined) {
             elemento = $(".divUpload");
         }
@@ -77,9 +78,10 @@
         })
         $(document).on("click", ".icoNuevaCarpeta", function (e) {
             console.log("Hay que abrir ");
+            
             abrirModal(e, function () {
                 $(".divNuevaCarpetaModal").show();
-            });
+            }, $(".divNewModal"));
         })
         $(document).on("click", ".NewActionLi", function () {
             var elemento = $(this).find(".ulSub");

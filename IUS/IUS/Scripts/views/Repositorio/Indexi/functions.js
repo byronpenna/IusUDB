@@ -29,7 +29,6 @@ function getTrRepositorio(archivo) {
             <td>El Salvador</td>\
             <td>Universidad Don Bosco</td>\
             <td class='tdNombreFichero'>" + archivo._nombre +  archivo._archivoUsuario._extension._extension + "</td>\
-            <td>Pdf</td>\
             <td>\
                 <a href='" + RAIZ + "/Repositorio/downloadFile/" + archivo._idArchivoPublico + "'>\
                     <img class='imgDownload' src='" + RAIZ + "/Content/images/views/Repositorio/descarga.png' />\
