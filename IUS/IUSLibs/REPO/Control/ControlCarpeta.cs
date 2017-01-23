@@ -281,6 +281,7 @@ namespace IUSLibs.REPO.Control
                                 carpetaPadre = new Carpeta();
                             }
                             carpetaEditada = new Carpeta((int)row["idCarpeta"], row["nombre"].ToString(), (int)row["id_usuario_fk"], carpetaPadre, row["ruta"].ToString());
+                            carpetaEditada._fechaCreacion = (DateTime)row["fecha_creacion"];
                         }
                     }
                 }

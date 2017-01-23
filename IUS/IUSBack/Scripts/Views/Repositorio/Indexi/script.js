@@ -72,7 +72,6 @@
                 })
                 /*
                 $(document).on("click", ".icoNuevaCarpeta", function (e) {
-                    
                     abrirModal(e,function () {
                         $(".divNuevaCarpetaModal").show();
                     });

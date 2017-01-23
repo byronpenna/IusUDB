@@ -86,7 +86,7 @@ function getTrCarpeta(carpeta) {
                 <span class='spNombre'>"+carpeta._nombre+"</span>\
             </a>\
         </td>\
-        <td>"+carpeta._fechaCreacion+"</td>\
+        <td>" + carpeta.getFechaCreacion + "</td>\
         <td>0.0 MB</td>\
         <td>Carpeta</td>\
         <td>\
@@ -231,5 +231,13 @@ function spIrBuscar(frm) {
 function btnNuevaCarpeta(frm) {
     actualizarCatalogo(RAIZ + "/Repositorio/sp_repo_insertCarpeta", frm, function (data) {
         console.log("La respuesta del servidor es: ", data);
+        if (data.estado) {
+            //var tr = 
+            //
+            // 
+            var tr = getTrCarpeta(data.carpeta);
+            $(".tbTablaRepo").append(tr);
+            $(".closeModal").click();
+        }
     })
 }
