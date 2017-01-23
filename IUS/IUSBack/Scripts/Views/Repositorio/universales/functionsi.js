@@ -71,7 +71,12 @@
             e.stopPropagation();
         });
         $(document).on("click", ".divUpload", function (e) {
+            console.log("Click en divUpload");
+            if ($(".txtHdRecargar").val() == 1) {
+                location.reload();
+            }
             $(this).fadeOut();
+
         })
         $(document).on("click", ".closeModal", function (e) {
             $(".divUpload").click();

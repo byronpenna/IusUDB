@@ -203,6 +203,9 @@ function frmSubir(data, url, totalFiles) {
     var estadoIndividual = false;
     accionAjaxWithImage(url, data, function (data) {
         console.log("La data devuelta es: ", data);
+        if (data.estado) {
+            $(".txtHdRecargar").val("1");
+        }
         /*
         if (data.estado && !estadoIndividual) {
             estadoIndividual = true;
