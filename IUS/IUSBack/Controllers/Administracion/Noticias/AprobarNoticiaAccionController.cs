@@ -23,7 +23,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
         #region "propiedades"
             public AprobarNoticiasModel _model;
             private int _idPagina = (int)paginas.Noticias;
-            private string _nombreClass = "AprobarNoticiaController";
+            private string _nombreClass = "AprobarNoticiaAccionController";
         #endregion
         #region "constructores"
             public AprobarNoticiaAccionController()

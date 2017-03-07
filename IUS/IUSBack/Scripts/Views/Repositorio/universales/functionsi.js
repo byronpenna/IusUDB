@@ -2,7 +2,7 @@
     function abrirModal(e, callback,elemento) {
         e.preventDefault();
         $(".modalContenido").hide();
-        $(".contenedorAjaxModalNew").hide();
+        //$(".contenedorAjaxModalNew").hide();
         if (elemento === undefined) {
             elemento = $(".divUpload");
         }

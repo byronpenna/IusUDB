@@ -14,7 +14,7 @@ namespace IUSLibs.ADMINFE.Pantalla
 {
     public class PantallaHome:PadreLib
     {
-        public Dictionary<object,object> sp_adminfe_front_pantallaHome(int n,int pagina,string ip, int idPagina)
+        public Dictionary<object,object> sp_adminfe_front_pantallaHome(int n,int pagina,string ip, int idPagina,int op = 1)
         {
             Dictionary<object, object> retorno = new Dictionary<object, object>();
             SPIUS sp = new SPIUS("sp_adminfe_front_pantallaHome");
@@ -23,6 +23,7 @@ namespace IUSLibs.ADMINFE.Pantalla
             sp.agregarParametro("pagina", pagina);
             sp.agregarParametro("ip", ip);
             sp.agregarParametro("idPagina", idPagina);
+            sp.agregarParametro("op", op);
             int cn = 0;
             try
             {

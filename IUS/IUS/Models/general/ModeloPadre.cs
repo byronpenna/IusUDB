@@ -24,14 +24,14 @@ namespace IUS.Models.general
         #endregion
         #region "funciones"
             
-            public Dictionary<object,object> sp_adminfe_front_pantallaHome(int n, int pagina,string ip, int idPagina)
+            public Dictionary<object,object> sp_adminfe_front_pantallaHome(int n, int pagina,string ip, int idPagina,int op=1)
             {
                 try
                 {
                     PantallaHome pantalla = new PantallaHome();
                     List<NoticiaEvento> noticiasEventos = null;
                     NoticiaEvento notiEvento;
-                    Dictionary<object,object> respuesta = pantalla.sp_adminfe_front_pantallaHome(n, pagina,ip, idPagina);
+                    Dictionary<object,object> respuesta = pantalla.sp_adminfe_front_pantallaHome(n, pagina,ip, idPagina,op);
                     DataRowCollection rows = (DataRowCollection)respuesta["notiEvento"];
 
                     if (rows != null && rows.Count > 0)

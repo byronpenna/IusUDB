@@ -204,7 +204,10 @@ function frmSubir(data, url, totalFiles) {
     accionAjaxWithImage(url, data, function (data) {
         console.log("La data devuelta es: ", data);
         if (data.estado) {
+            printMessage($(".spMensajeArchivo"), "Se subieron los archivos correctamente", true);
             $(".txtHdRecargar").val("1");
+        } else {
+            printMessage($(".spMensajeArchivo"), "Ocurrio un error", false);
         }
         /*
         if (data.estado && !estadoIndividual) {

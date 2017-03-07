@@ -53,7 +53,7 @@ namespace IUS.Controllers
                 }
 
             }
-            public ActionResult Todas(int id=1,int id2=5)
+            public ActionResult Todas(int id=1,int id2=5,int id3=2)
             {
                 /*
                  id:    pagina que se desea visualizar
@@ -69,9 +69,10 @@ namespace IUS.Controllers
                     this.setTraduccion(traducciones);
                     // por el momento no habra noticias
                     //ViewBag.noticias        = this._model.sp_adminfe_front_getTopNoticias(this._numeroNoticias, lang);
-                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(id2, id, ip, this.idPagina);
+                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(id2, id, ip, this.idPagina,id3);
                     ViewBag.numPage         = id;
                     ViewBag.rango           = id2;
+                    ViewBag.op              = id3;
                     /*ViewBag.noticiasPagina  = this._model.sp_adminfe_front_getNoticiasPagina(id, id2, lang, ip, this.idPagina);
                     ViewBag.menu25          = this.activeClass;
                     
@@ -130,6 +131,23 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult getRecursosTodas()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    string lang = this.getUserLang();
+                    string ip   = Request.UserHostAddress;
+                    respuesta = this._model.sp_adminfe_front_pantallaHome(this.convertObjAjaxToInt(frm["numero"]), this.convertObjAjaxToInt(frm["pagina"]), ip, this.idPagina, this.convertObjAjaxToInt(frm["op"]));
+                    respuesta.Add("estado", true);
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_adminfe_front_getNoticiasPagina()
             {
                 Dictionary<object, object> frm, respuesta;

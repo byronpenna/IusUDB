@@ -1,0 +1,93 @@
+﻿@using IUSLibs.ADMINFE.Entidades
+@section estilosPersonalizados{
+    <!-- propios -->
+    <link rel="stylesheet" href="~/Content/themes/iusback_theme/views/Administracion/Eventos/preview/style.css" />
+}
+@section scriptsPersonalizados{
+    <!-- propios -->
+    <script src="~/Scripts/Views/Administracion/Eventos/preview/functions.js"></script>
+    <script src="~/Scripts/Views/Administracion/Eventos/preview/script.js"></script>
+}
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    string classPublicado=""; string classCambio = "";
+    Evento evento = null;
+    try
+    {
+        evento = (Evento)ViewBag.evento;
+    }
+    catch (Exception x)
+    {
+
+    }
+}
+
+<div class="row marginNull centroPagina">
+    <div class="row marginNull rowNavegacion">
+        <span>
+            <a href="@Url.Action("Index","Home")">
+                Menu principal
+            </a>
+        </span>
+        >>>
+        <span class="tituloPrev">
+            <a class="tituloPrev" href="@Url.Action("AprobarNoticia","Noticias")">
+                Aprobar noticias
+            </a>
+        </span>
+        >>>
+        <span class="titulo">
+            Vista previa
+        </span>
+    </div>
+    <div class="row marginNull">
+        <div class="seccionGris">
+            <div class="centroNoticia">
+                <div class="row marginNull tituloPreview">
+                    <div class="col-lg-7">
+                        <h2>Evento</h2>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="btn-group">
+                            <a href="@Url.Action("ModificarNoticia", "Noticias", new { id = 1 })" class="btn btn-group btnBack btn-default">
+                                Editar
+                            </a>
+                            <button class="btn btn-group btnBack btn-default btnSolicitarCambio inputBackModal" @classCambio>
+                                x
+                            </button>
+                            <button class="btn btn-group btnBack btn-default btnAprobar inputBackModal @classPublicado">
+                                y
+                            </button>
+                            <button class="btn btn-group btnBack btn-default inputBackModal btnEliminarSolicitud">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="centroContenido">
+                    <div class="row marginNull cabeceraNoticia" >
+                        <div class="col-lg-5 vbottom divDetalles">
+                            <div class="row marginNull">
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Titulo:</span> @evento._evento
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Fecha inicio:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @evento._fechaInicio)   @*14 de junio 2015**@
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Fecha fin:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @evento._fechaFin)   @*14 de junio 2015**@
+                                </div>
+                                <div class="row marginNull">
+                                    <span class="spanTitulo">Solicitante:</span> @*@post._usuario._persona.nombreCompleto*@
+                                </div>
+                            </div>
+                        </div><!--
+                        -->
+                        <div class="col-lg-7 vbottom">
+                            @*<img class="imgMin" src="@Url.Content("~/Content/images/generales/noBanerMiniatura.png")" />*@
+                            <img class="imgMin" src="@Url.Action("getImageThumbnailEvent", "Administracion", new { id = evento._idEvento })" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -66,6 +66,7 @@ namespace IUS.Models.page.Noticias.Acciones
                             throw x;
                         }
                     }
+                    
                     public Dictionary<object,object> sp_adminfe_front_getNoticiasPagina(int pagina, int cn,string idioma, string ip, int idPagina)
                     {
                         try

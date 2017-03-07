@@ -17,6 +17,8 @@
             console.log("Data es ", data);
             if (data.estado) {
                 console.log("Entro aqui ");
+                
+                tr.find(".btnAprobarArchivo").empty().append(data.archivoPublico.getStrAccion);
                 tr.find(".td4").empty().append(data.archivoPublico.getStrEstado);
             }
         })

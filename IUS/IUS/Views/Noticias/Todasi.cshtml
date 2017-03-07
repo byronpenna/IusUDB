@@ -6,7 +6,8 @@
     int page    =1,n=5;
     int iniPag  =1;
     int total   =1; 
-    int cnn      =0;
+    int cnn     =0;
+    int op      =2;
     try
     {
         noticiasEventosDic  = (Dictionary<object, object>)ViewBag.notiEvento;
@@ -16,6 +17,7 @@
         n                   = (int)ViewBag.rango;
         decimal x           = (decimal)page/3m;
         iniPag              = (int)Math.Ceiling(x);
+        op = (int)ViewBag.op;
     }
     catch (Exception)
     {
@@ -29,77 +31,89 @@
     <script src="~/Scripts/views/Noticias/Todasi/script.js"></script>
     <script src="~/Scripts/views/Noticias/Todasi/functions.js"></script>
 }
+<input type="hidden" class="txtN" value="@n"/>
+<input type="hidden" class="txtPage" value="@page" />
+<input type="hidden" class="txtUrlBack" value="@ViewBag.urlBack"/>
+<input type="hidden" class="txtOp" value="" />
+<div class="row marginNull lineaRoja">
+
+</div>
 <div class="grisNoticiaEvento">
     <div class="row marginNull seccionNoticiaEvento">
         <div class="centroPagina">
             <div class="row marginNull">
                 <div class="col-lg-6 colTituloNoticia">
-                    <h2 class="tituloSeccionNoticiaEvento">@ViewData["lb-tituloNoticiaEvento"]</h2>
+                    <h2 class="tituloSeccionNoticiaEvento">
+                    @*@ViewData["lb-tituloNoticiaEvento"]*@
+                        <span class="spFiltro pointer activeIUS" id="spNoti">Noticias</span> / <span class="spFiltro pointer" id="spEvento">Eventos</span>
+                    </h2>
                 </div>
             </div>
-
-            @if (noticiasEventos != null && noticiasEventos.Count > 0)
-            {
-                int cn = 1; string url; string tituloHover = ""; string src = "";
-                foreach (NoticiaEvento noticiaEvento in noticiasEventos)
+            <div class="row marginNull divNotiEvento">
+                @if (noticiasEventos != null && noticiasEventos.Count > 0)
                 {
-
-                    if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Evento)
+                    int cn = 1; string url; string tituloHover = ""; string src = "";
+                    foreach (NoticiaEvento noticiaEvento in noticiasEventos)
                     {
-                        if (ViewData["lb-hover-evento"] != null)
+
+                        if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Evento)
                         {
-                            tituloHover = ViewData["lb-hover-evento"].ToString();
+                            if (ViewData["lb-hover-evento"] != null)
+                            {
+                                tituloHover = ViewData["lb-hover-evento"].ToString();
+                            }
+                            else
+                            {
+                                tituloHover = "";
+                            }
+                            url = Url.Action("Index", "Evento");
+                            //src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
+                            src = ViewBag.urlBack + "Administracion/getImageThumbnailEvent/" + noticiaEvento._id;
+                            //Url.Content("~/Content/images/views/Home/noticias/" + cn + ".png");
+                        }
+                        else if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia)
+                        {
+                            if (ViewData["lb-hover-noticia"] != null)
+                            {
+                                tituloHover = ViewData["lb-hover-noticia"].ToString();
+                            }
+                            else
+                            {
+                                tituloHover = "";
+                            }
+
+                            url = Url.Action("Index", "Noticias", new { id = noticiaEvento._id });
+                            src = Url.Action("getImageThumbnail", "Noticias", new { id = noticiaEvento._id });
                         }
                         else
                         {
-                            tituloHover = "";
+                            url = "";
                         }
-                        url = Url.Action("Index", "Evento");
-                        //src = Url.Content("~/Content/themes/iusback_theme/img/general/image.png");
-                        src = ViewBag.urlBack + "Administracion/getImageThumbnailEvent/" + noticiaEvento._id;
-                        //Url.Content("~/Content/images/views/Home/noticias/" + cn + ".png");
-                    }
-                    else if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia)
-                    {
-                        if (ViewData["lb-hover-noticia"] != null)
-                        {
-                            tituloHover = ViewData["lb-hover-noticia"].ToString();
-                        }
-                        else
-                        {
-                            tituloHover = "";
-                        }
-
-                        url = Url.Action("Index", "Noticias", new { id = noticiaEvento._id });
-                        src = Url.Action("getImageThumbnail", "Noticias", new { id = noticiaEvento._id });
-                    }
-                    else
-                    {
-                        url = "";
-                    }
-                    <div class="row marginNull notiEve">
-                        <input class="txtHdTipoEntra" type="hidden" value="@noticiaEvento._idTipoEntrada" />
-                        <div class="col-lg-6 contentImgNotiEve hoverEventNoti">
-                            <div class="text-tituloNotiEve" style="display:none;">@tituloHover</div>
-                            <div class="divHoverNotiEve" style="display:none;">
+                        <div class="row marginNull notiEve">
+                            <input class="txtHdTipoEntra" type="hidden" value="@noticiaEvento._idTipoEntrada" />
+                            <div class="col-lg-6 contentImgNotiEve hoverEventNoti">
+                                <div class="text-tituloNotiEve" style="display:none;">@tituloHover</div>
+                                <div class="divHoverNotiEve" style="display:none;">
+                                </div>
+                                <img class="imgNotiEve" src="@src" />
                             </div>
-                            <img class="imgNotiEve" src="@src" />
-                        </div>
-                        <div class="col-lg-6 seccionContenidoNotiEve">
-                            <div class="contenido">
-                                <h4>@noticiaEvento._titulo</h4>
-                                <p>
-                                    @noticiaEvento._descripcion
-                                </p>
-                                <div class="divLinkNotiEve">
-                                    <a class="aLeerMas" href="@url">@ViewData["lb-leerMas"]>>></a>
+                            <div class="col-lg-6 seccionContenidoNotiEve">
+                                <div class="contenido">
+                                    <h4>@noticiaEvento._titulo</h4>
+                                    <p>
+                                        @noticiaEvento._descripcion
+                                    </p>
+                                    <div class="divLinkNotiEve">
+                                        <a class="aLeerMas" href="@url">@ViewData["lb-leerMas"]>>></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    cn++;
+                        cn++;
+                    }
                 }
-            }
+            </div>
+            
             
             <div class="controlNavegacion">
                 <div class="numeros">
@@ -118,7 +132,7 @@
                         if(i != iniPag){
                             <span>-</span>
                         }
-                        <a class="aNum @claseActive" href="@Url.Action("Todas", "Noticias", new { id=i,id2=n})">@i</a>     
+                        <a class="aNum @claseActive" href="@Url.Action("Todas", "Noticias", new { id=i,id2=n,id3=op})">@i</a>     
                         
                         cnn += i * n;
                         if (total <= cnn)

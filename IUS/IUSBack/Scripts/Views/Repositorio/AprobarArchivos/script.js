@@ -24,7 +24,7 @@
                 }
             });
             $(document).on("click", ".btnAprobarArchivo", function () {
-                var x = confirm("¿Esta seguro que desea aprobar archivo?");
+                var x = confirm("¿Esta seguro que desea cambiar estado de archivo?");
                 var tr = $(this).parents("tr");
                 if (x) {
                     var frm = {
