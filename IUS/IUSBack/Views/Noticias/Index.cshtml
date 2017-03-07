@@ -62,7 +62,8 @@
             <div class="cuerpoModulo divTable">
                 @if (permiso._crear)
                 {
-                    <a class="btn botonAgregarNoticia" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
+                    
+                    <a class="btn botonAgregarNoticia btnPrincipal rojito" href="@Url.Action("IngresarNoticia","Noticias")" @permiso.stringEditar>
                         Agregar noticia
                     </a>
                 }

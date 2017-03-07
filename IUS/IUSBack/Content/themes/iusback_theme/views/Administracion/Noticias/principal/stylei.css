@@ -46,6 +46,12 @@ body {
   background: #c6c5c5;
   font-family: "MyriadRegular"; }
 
+.rojito {
+  background: #cd1315; }
+
+.grisito {
+  background: #eeecec; }
+
 .marginNull {
   margin: 0; }
 
@@ -96,6 +102,9 @@ body {
 
 .fullSize {
   width: 100%; }
+
+.pointer {
+  cursor: pointer; }
 
 .input-group-addon {
   border-radius: 0;
@@ -262,7 +271,6 @@ table {
         width: 100%; }
 
 .rowSearch {
-  background: #eeecec;
   padding-top: 8px;
   padding-bottom: 1%;
   height: 45px; }
@@ -344,18 +352,12 @@ table.datatable {
     opacity: 0;
     filter: alpha(opacity=0); }
 
-.botonAgregarNoticia {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  opacity: 0.5;
-  background: #F5F5F5;
-  font-weight: bold;
-  color: black;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  margin-bottom: 2%;
-  border-color: black; }
-  .botonAgregarNoticia:hover {
-    opacity: 1; }
+.btnPrincipal {
+  text-transform: uppercase;
+  color: white;
+  width: 15%;
+  padding-bottom: 1% !important;
+  padding-top: 1% !important;
+  margin-bottom: 2%; }
 
 /*# sourceMappingURL=stylei.css.map */
