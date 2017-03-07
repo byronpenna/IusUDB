@@ -16,6 +16,18 @@
     }
     string myriadRegular    = IUSLibs.GENERALS.Rutas.IUSBACK + "Content/fonts/Myriad/MyriadPro-regular.otf";
     string myriadBold       = IUSLibs.GENERALS.Rutas.IUSBACK + "Content/fonts/Myriad/MyriadPro-regular.otf";
+    int numeroEventos=0,permiso = 0;
+    Dictionary<object, object> cnEventos;
+    try
+    {
+        cnEventos = (Dictionary<object,object>)ViewBag.cnEventos;
+        numeroEventos = (int)cnEventos["cnAprobar"];
+        permiso = (int)cnEventos["permiso"];
+    }
+    catch (Exception x)
+    {
+        
+    }
 }
 <html>    
     <head>
@@ -37,6 +49,12 @@
             </style>
             @Styles.Render("~/bundles/bootstrapi")
             @RenderSection("estilosPersonalizados", false)
+        <style>
+            .pendientes{
+                margin-top: 2%;
+                color: white;
+            }
+        </style>
     </head>
     
     <body>
@@ -114,7 +132,13 @@
                     </div>
                 </div>
                 <div class="row marginNull lineaRoja">
-
+                    <div class="centroPagina pendientes">
+                        @if (permiso != 0)
+                        {
+                            <span>Pendientes publicación: </span><span>@numeroEventos</span>    
+                        }
+                        
+                    </div>
                 </div>
             </header>
             @RenderBody()

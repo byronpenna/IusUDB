@@ -60,11 +60,15 @@ namespace IUSLibs.ADMINFE.Control
                         throw x;
                     }
                 }
-                public int sp_adminfe_countTodayEvents(int idPagina,int idUsuarioEjecutor)
+                public Dictionary<object,object> sp_adminfe_countTodayEvents(int idPagina,int idUsuarioEjecutor)
                 {
+                    Dictionary<object, object> retorno = new Dictionary<object, object>();
                     int cnEventos = 0;
                     try
                     {
+                        
+                        retorno.Add("cnAprobar", 0);
+                        retorno.Add("permiso", 0);
                         SPIUS sp = new SPIUS("sp_adminfe_countTodayEvents");
                         sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                         sp.agregarParametro("idPagina", idPagina);
@@ -74,7 +78,14 @@ namespace IUSLibs.ADMINFE.Control
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow row = tb[0].Rows[0];
-                                cnEventos   = (int)row["eventosHoy"];
+                                cnEventos = (int)row["cnAprobar"];
+                                retorno["cnAprobar"] = cnEventos;
+                            }
+                            if (tb[1].Rows.Count > 0)
+                            {
+                                DataRow row = tb[1].Rows[0];
+                                cnEventos = (int)row["permiso"];
+                                retorno["permiso"] = cnEventos;
                             }
                         }
                     }
@@ -86,7 +97,7 @@ namespace IUSLibs.ADMINFE.Control
                     {
                         throw x;
                     }
-                    return cnEventos;
+                    return retorno;
                 }
                 public List<Evento> sp_adminfe_buscarAllEventosPersonalesByDate(DateTime fechaInicio,DateTime fechaFin,int idUsuarioEjecutor,int idPagina)
                 {

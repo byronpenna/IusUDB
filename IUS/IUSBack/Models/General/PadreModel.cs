@@ -168,7 +168,7 @@ namespace IUSBack.Models.General
                 }
             #endregion
             #region "para menu"
-                public int sp_adminfe_countTodayEvents(int idPagina,int idUsuarioEjecutor)
+                public Dictionary<object,object> sp_adminfe_countTodayEvents(int idPagina,int idUsuarioEjecutor)
                 {
                     try
                     {
