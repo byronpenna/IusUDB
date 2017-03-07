@@ -143,7 +143,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                         {
                             Dictionary<object,object> iniciales = this._controlLaboral.sp_rrhh_getInfoInicialLaboralPersona(idPersona, idUsuarioEjecutor, idPagina);
                             ControlPersona personas = new ControlPersona();
-                            iniciales.Add("personas", personas.getPersonas());
+                            iniciales.Add("personas", personas.getPersonas(idUsuarioEjecutor));
 
                             return iniciales;
                         }

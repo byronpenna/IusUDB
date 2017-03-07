@@ -48,7 +48,7 @@ namespace IUSBack.Controllers
                         ViewBag.titleModulo = "Gestion de usuarios";
                         ViewBag.usuario = usuarioSession;
                         usuarios = this._model.getUsuarios(usuarioSession._idUsuario);
-                        personas = modelPersona.getPersonas();
+                        personas = modelPersona.getPersonas(usuarioSession._idUsuario);
                     }
                     catch (ErroresIUS)
                     {

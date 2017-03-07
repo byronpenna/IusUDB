@@ -41,7 +41,7 @@ namespace IUSBack.Controllers
                         {
                             Session["idUsuario"] = usuario._idUsuario;
 
-                            retorno = RedirectToAction("changePassword", "Home");
+                            retorno = RedirectToAction("changePasswordA", "Home");
                         }
                         else
                         {

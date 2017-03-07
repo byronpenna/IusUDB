@@ -96,7 +96,7 @@ namespace IUSBack.Controllers
                 }
                 try
                 {
-                    List<Persona> personas = this._model.getPersonas();
+                    List<Persona> personas = this._model.getPersonas(usuarioSession._idUsuario);
                     // ----------------
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.personas = personas;
@@ -221,8 +221,8 @@ namespace IUSBack.Controllers
                 [HttpPost]
                 public ActionResult getJSONPersonas()
                 {
-
-                    List<Persona> personas = this._model.getPersonas();
+                    Usuario usuarioSession = this.getUsuarioSesion();//*
+                    List<Persona> personas = this._model.getPersonas(usuarioSession._idUsuario);
                     return Json(personas);
                 }
             #endregion

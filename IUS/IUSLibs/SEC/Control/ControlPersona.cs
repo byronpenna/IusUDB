@@ -130,11 +130,12 @@ namespace IUSLibs.SEC.Control
                 }
             #endregion
             #region "get"
-                public List<Persona> getPersonas()
+                public List<Persona> getPersonas(int idUsuarioEjecutor)
                 {
                     List<Persona> personas = null;
                     Persona persona; Sexo sexo;
                     SPIUS sp = new SPIUS("sp_sec_getPersonas");
+                    sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     try
                     {
                         DataSet ds = sp.EjecutarProcedimiento();

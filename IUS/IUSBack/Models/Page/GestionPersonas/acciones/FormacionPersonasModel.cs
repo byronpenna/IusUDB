@@ -220,7 +220,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     {
                         ControlPersona controlPersona = new ControlPersona();
                         Dictionary<object,object> informacionIni = this._controlFormacion.sp_rrhh_getInfoInicialFormacion(idPersona, idUsuarioEjecutor, idPagina);
-                        informacionIni.Add("personas", controlPersona.getPersonas());
+                        informacionIni.Add("personas", controlPersona.getPersonas(idUsuarioEjecutor));
                         return informacionIni;
                     }
                     catch (ErroresIUS x)

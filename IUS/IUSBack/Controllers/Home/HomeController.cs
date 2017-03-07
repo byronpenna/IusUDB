@@ -205,12 +205,12 @@ namespace IUSBack.Controllers
                     return View("~/Views/Home/changePasswordi.cshtml");
                 }
 
-                /*
-                    public ActionResult changePassword()
-                    {
-                        return View();
-                    }
-                 */
+                
+                public ActionResult changePasswordA()
+                {
+                    return View("~/Views/Home/changePassword.cshtml");
+                }
+                 
                 public ActionResult Verificar(int id=-1,int id2=-1)
                 {
                     /*

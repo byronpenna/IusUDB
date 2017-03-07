@@ -23,10 +23,10 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
             private ControlPersona _control;
         #endregion 
         #region "gets"
-            public List<Persona> getPersonas()
+            public List<Persona> getPersonas(int idUsuarioEjecutor)
             {
-                List<Persona> personas = this._control.getPersonas();
-                if (personas.Count != 0)
+                List<Persona> personas = this._control.getPersonas(idUsuarioEjecutor);
+                if (personas != null && personas.Count != 0)
                 {
                     return personas;
                 }
@@ -41,7 +41,7 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                 {
                     IUSLibs.RRHH.Control.ControlInformacionPersona informacionPersona = new IUSLibs.RRHH.Control.ControlInformacionPersona();
                     Dictionary<object,object> varInformacionPersona = informacionPersona.sp_rrhh_getInformacionPersonas(idPersona,idUsuarioEjecutor,idPagina);
-                    varInformacionPersona.Add("personas", this._control.getPersonas());
+                    varInformacionPersona.Add("personas", this._control.getPersonas(idUsuarioEjecutor));
                     return varInformacionPersona;
                 }
                 catch (ErroresIUS x)
