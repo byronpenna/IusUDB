@@ -16,10 +16,13 @@
     int origen = 1;
     string textoPublicado   = "Publicar";           string classPublicado = "";
     string textoCambio      = "Solicitar cambio";   string classCambio = "";
+    string enlaceInstitucion = "#";
+    int vieneDe = 1;
     try
     {
         post    = (Post)ViewBag.post;
         origen  = (int)ViewBag.origen;
+        vieneDe = (int)ViewBag.vieneDe;
         switch (post._publicado)
         {
             case 1:
@@ -87,9 +90,19 @@
         </span>
         >>>
         <span class="tituloPrev">
-            <a class="tituloPrev" href="@Url.Action("AprobarNoticia","Noticias")">
-                Aprobar noticias 
-            </a>
+            @if (vieneDe == 1)
+            {
+                <a class="tituloPrev" href="@Url.Action("Index","Noticias")">
+                    Noticias
+                </a>    
+            }
+            else
+            {
+                <a class="tituloPrev" href="@Url.Action("AprobarNoticia","Noticias")">
+                    Aprobar noticia
+                </a>    
+            }
+            
         </span>
         >>>
         <span class="titulo">
@@ -103,7 +116,6 @@
                     <div class="col-lg-7">
                         <h2>Noticias</h2>
                     </div>
-                    
                     <div class="col-lg-5">
                         @if (origen == 2)
                         {
@@ -137,10 +149,17 @@
                                     <span class="spanTitulo">Fecha:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @post._fechaCreacion)   @*14 de junio 2015**@
                                 </div>
                                 <div class="row marginNull">
-                                    <span class="spanTitulo">fuente:</span> Lorem ipsum dolor sit a met*
+                                    <span class="spanTitulo">fuente:</span>
+                                    @if (post._usuario._persona._adicionales._institucion._enlaces != null && post._usuario._persona._adicionales._institucion._enlaces.Count > 0)
+                                    {
+                                        enlaceInstitucion = post._usuario._persona._adicionales._institucion._enlaces[0]._enlace;
+                                    }
+                                    @*Lorem ipsum dolor sit a met**@
+                                    
                                 </div>
                                 <div class="row marginNull">
-                                    <span class="spanTitulo">Solicitante:</span> @*@post._usuario._persona.nombreCompleto*@ 
+                                    <span class="spanTitulo">Solicitante:</span><a href="@enlaceInstitucion">@post._usuario._persona._adicionales._institucion._nombre</a>
+                                    @*@post._usuario._persona.nombreCompleto*@ 
                                 </div>
                             </div>
                         </div><!--

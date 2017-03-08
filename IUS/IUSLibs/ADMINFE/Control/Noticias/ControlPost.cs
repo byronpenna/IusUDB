@@ -119,6 +119,10 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                 usu._persona = new Persona((int)rowResult["idPersona"]);
                                 usu._persona._nombres = rowResult["nombres"].ToString();
                                 usu._persona._apellidos = rowResult["apellidos"].ToString();
+                                
+                                usu._persona._adicionales = new InformacionPersona((int)rowResult["idInformacionPersona"]);
+                                usu._persona._adicionales._institucion = new FrontUI.Entidades.Institucion((int)rowResult["idInstitucion"], rowResult["nombre"].ToString());
+                                
                                 post = new Post((int)rowResult["idPost"], (DateTime)rowResult["fecha_creacion"], (DateTime)rowResult["ultima_modificacion"], rowResult["titulo"].ToString(), rowResult["contenido"].ToString(), (bool)rowResult["estado"], usu);
                                 post._idioma = new Idioma((int)rowResult["id_idioma_fk"]);
                                 post._descripcion = rowResult["breve_descripcion"].ToString();

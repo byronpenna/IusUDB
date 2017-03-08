@@ -74,6 +74,7 @@ namespace IUSBack.Controllers
                         ViewBag.post = post;
                         //ViewBag.postNull    = postNull;
                         ViewBag.origen = 1; //origen solo preview 
+                        ViewBag.vieneDe = 1; // 1. Noticias 2. Aprobar Noticia
                         return View();
                     }
                     else

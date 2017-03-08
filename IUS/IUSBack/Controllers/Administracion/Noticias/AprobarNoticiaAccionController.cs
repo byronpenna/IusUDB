@@ -24,6 +24,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
             public AprobarNoticiasModel _model;
             private int _idPagina = (int)paginas.Noticias;
             private string _nombreClass = "AprobarNoticiaAccionController";
+            
         #endregion
         #region "constructores"
             public AprobarNoticiaAccionController()
@@ -47,6 +48,7 @@ namespace IUSBack.Controllers.Administracion.Noticias
                     Post post = (Post)cuerpoPagina["post"];
                     ViewBag.post = post;
                     ViewBag.origen = 2; //origen aprobar
+                    ViewBag.vieneDe = 2; // 1. Noticias 2. Aprobar Noticia
                     return View("~/Views/Noticias/preview.cshtml");
                 }
                 catch (ErroresIUS x)
