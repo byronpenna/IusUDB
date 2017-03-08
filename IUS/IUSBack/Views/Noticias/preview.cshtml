@@ -96,10 +96,10 @@
                     Noticias
                 </a>    
             }
-            else
+            else if (vieneDe == 2)
             {
                 <a class="tituloPrev" href="@Url.Action("AprobarNoticia","Noticias")">
-                    Aprobar noticia
+                    Aprobar publicacion
                 </a>    
             }
             
@@ -122,7 +122,7 @@
                             if (post._estado || post._publicado == 0 || post._publicado == 1)
                             {
                                 <div class="btn-group">
-                                    <a href="@Url.Action("ModificarNoticia", "Noticias", new { id = @post._idPost })" class="btn btn-group btnBack btn-default">
+                                    <a href="@Url.Action("ModificarNoticia", "Noticias", new { id = @post._idPost,id2=2 })" class="btn btn-group btnBack btn-default">
                                         Editar
                                     </a>
                                     <button class="btn btn-group btnBack btn-default btnSolicitarCambio inputBackModal" @classCambio>

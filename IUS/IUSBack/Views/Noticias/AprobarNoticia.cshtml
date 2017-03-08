@@ -80,7 +80,15 @@
                                                 @*<button class="btn btnBack btn-block btnCambiarEstado">Aprobar temp</button>*@
                                                 @*<button class="btn btnBack btn-block btnCambiarEstado">Aprobar</button>
                                                 <button class="btn btnBack btn-block btnRechazarNoticia">Rechazar</button>*@
-                                                <a class="btn btnBack btn-block" href="@Url.Action( "preview","AprobarNoticiaAccion", new {id=noticiaEvento._id })">Ver</a>
+                                                @if (noticiaEvento.tipoEntrada == NotiEvento.Tipo.Noticia)
+                                                {
+                                                    <a class="btn btnBack btn-block" href="@Url.Action( "preview","AprobarNoticiaAccion", new {id=noticiaEvento._id })">Ver</a>    
+                                                }
+                                                else if(noticiaEvento.tipoEntrada == NotiEvento.Tipo.Evento)
+                                                {
+                                                    <a class="btn btnBack btn-block" href="@Url.Action( "preview","AprobarEventoAccion", new {id=noticiaEvento._id })">Ver</a>       
+                                                }
+                                                
                                             </td>
                                         </tr>
                                     }

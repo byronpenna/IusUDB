@@ -131,6 +131,10 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                                     post._miniatura = (byte[])rowResult["miniatura"];
                                 }
                                 post._publicado = (int)rowResult["publicado"];
+                                if (!(rowResult["fuente"] == DBNull.Value))
+                                {
+                                    post._fuente = rowResult["fuente"].ToString();
+                                }
                             }
                             if (tb[2].Rows.Count > 0)
                             {
@@ -219,6 +223,7 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("idPost", postActualizar._idPost);
                     sp.agregarParametro("idIdioma", postActualizar._idioma._idIdioma);
                     sp.agregarParametro("descripcion", postActualizar._descripcion);
+                    sp.agregarParametro("fuente", postActualizar._fuente);
                     sp.agregarParametro("idUsuarioEjecutor",idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     bool retorno = false;
@@ -248,7 +253,8 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                     sp.agregarParametro("contenido", postAgregar._contenido);
                     sp.agregarParametro("idIdioma", postAgregar._idioma._idIdioma);
                     sp.agregarParametro("breveDescripcion", postAgregar._descripcion);
-                    
+                    sp.agregarParametro("fuente", postAgregar._fuente);
+
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
@@ -486,6 +492,9 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                             post._usuario._persona = new Persona((int)row["id_persona_fk"]);
                             post._usuario._persona._adicionales = new RRHH.Entidades.InformacionPersona((int)row["idInformacionPersona"]);
                             post._usuario._persona._adicionales._institucion = new FrontUI.Entidades.Institucion((int)row["idInstitucion"], row["nombre"].ToString());
+                            if(!(row["fuente"] == DBNull.Value) ){
+                                post._fuente = row["fuente"].ToString();
+                            }
                             // para las tags
                             int idNextPost = -1;
                             if (tb[2].Rows.Count > 0)

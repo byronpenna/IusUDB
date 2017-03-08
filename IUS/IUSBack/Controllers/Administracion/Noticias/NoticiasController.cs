@@ -81,7 +81,6 @@ namespace IUSBack.Controllers
                     {
                         return RedirectToAction("NotFound", "Errors");
                     }
-                    
                 }
                 catch (ErroresIUS x)
                 {
@@ -192,8 +191,12 @@ namespace IUSBack.Controllers
                 return RedirectToAction("index", "login");
             }*/
             }
-            public ActionResult ModificarNoticia(int id)
+            public ActionResult ModificarNoticia(int id,int id2=1)
             {
+                /*
+                 id2: variable vieneDe 1. Noticias 2. Aprobar
+                 
+                 */
                 Usuario usuarioSession = this.getUsuarioSesion();
 
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
@@ -214,7 +217,7 @@ namespace IUSBack.Controllers
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.editMode = true;
                     ViewBag.idiomas = this._model.sp_trl_getAllIdiomas(usuarioSession._idUsuario, this._idPagina);
-
+                    ViewBag.vieneDe = id2;
                     #region "Labels"
                     ViewBag.titleModulo = "Modificar noticia";
                     ViewBag.botonAccion = "Modificar";
@@ -482,6 +485,7 @@ namespace IUSBack.Controllers
                             Idioma idioma = new Idioma(this.convertObjAjaxToInt(frm["cbIdioma"]));
                             Post postAgregar = new Post(frm["txtTitulo"].ToString(), frm["contenido"].ToString(), usuarioSession,idioma);
                             postAgregar._descripcion = frm["txtDescripcion"].ToString();
+                            postAgregar._fuente = frm["txtFuente"].ToString();
                             Post postAgregado = this._model.sp_adminfe_noticias_publicarPost(postAgregar, usuarioSession._idUsuario, this._idPagina);
                             //Post postAgregado = null;
                             if (postAgregado != null)
@@ -591,6 +595,7 @@ namespace IUSBack.Controllers
                             Post postActualizar = new Post(idPost, frm["txtTitulo"].ToString(), frm["contenido"].ToString());
                             postActualizar._idioma      = idioma;
                             postActualizar._descripcion = frm["txtDescripcion"].ToString();
+                            postActualizar._fuente = frm["txtFuente"].ToString();
                             string tags         = frm["tags"].ToString();
                             bool actualizo      = this._model.sp_adminfe_noticias_modificarPost(postActualizar, usuarioSession._idUsuario, this._idPagina);
                             List<Tag> tagList   = this._model.sp_adminfe_noticias_updateTag(tags, idPost, usuarioSession._idUsuario, this._idPagina);

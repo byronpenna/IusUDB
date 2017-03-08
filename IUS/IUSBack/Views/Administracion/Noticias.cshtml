@@ -50,6 +50,15 @@
     List<PostCategoria> categorias  = (List<PostCategoria>)ViewBag.categorias;
     Post                post        = (Post)ViewBag.post;
     List<Idioma>        idiomas     = (List<Idioma>)ViewBag.idiomas;
+    int vieneDe = 1;
+    try
+    {
+        vieneDe = (int)ViewBag.vieneDe;
+    }
+    catch (Exception x)
+    {
+        
+    }
 }
 <div id="div_carga">
     <div id="contenerdorCargadorAjax">
@@ -74,9 +83,18 @@
             </span>
             >>>
             <span class="tituloPrev">
-                <a href="@Url.Action("Index", "Noticias")">
-                    Noticias
-                </a>
+                @if (vieneDe == 1)
+                {
+                    <a href="@Url.Action("Index", "Noticias")">
+                        Noticias
+                    </a>    
+                }
+                else if(vieneDe == 2)
+                {
+                    <a href="@Url.Action("AprobarNoticia", "Noticias")">
+                        Aprobar publicacion
+                    </a>    
+                }
             </span>
             >>>
             <span class="titulo">
@@ -115,9 +133,10 @@
                     </div>
                 </div>
                 <div class="col-lg-3 sectionTodoImagesPost ">
-                    <div class="row marginNull">
+                    @*<div class="row marginNull">
                         <label>Titulo</label>
-                    </div>
+                    </div>*@
+
                     @*<div class="row col-lg-12">
                         <div class="text-center">
                             <label>Imagenes post</label>
@@ -129,11 +148,17 @@
                     </div>*@
                 </div>
             </div>
-            
+            <div class="row col-lg-offset-1 col-lg-10 seccionForm">
+                <div class="col-lg-5 noLeftPad">
+                    <label>Fuente</label>
+                    <input name="txtFuente" class="inputBack form-control txtFuente" />
+                </div>
+            </div>
             <div class="row col-lg-offset-1 col-lg-10 seccionForm">
                 <div class="col-lg-5 noLeftPad">
                     <div class="contenedorControl">
                         <label>Categoria</label>
+                        
                         <select class="inputBack form-control cbCategorias" name="cbCategorias" multiple>
                             @if (categorias != null)
                             {

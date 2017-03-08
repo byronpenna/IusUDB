@@ -41,6 +41,7 @@
                             </div>
                             <div class="row marginNull">
                                 <span class="spanTitulo">Fuente:</span>
+                                @post._fuente -
                                 @if (post._usuario._persona._adicionales._institucion._enlaces != null && post._usuario._persona._adicionales._institucion._enlaces.Count > 0) {
                                     enlaceInstitucion = post._usuario._persona._adicionales._institucion._enlaces[0]._enlace;
                                 }

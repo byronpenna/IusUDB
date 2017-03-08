@@ -21,6 +21,7 @@ namespace IUSLibs.ADMINFE.Entidades.Noticias
                 public byte[]   _miniatura;
                 public Idioma   _idioma;
                 public string   _descripcion;
+                public string   _fuente;
             // externas a tabla 
                 public int     _publicado=-1; 
             #region "operacionales"
