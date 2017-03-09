@@ -17,21 +17,39 @@ namespace IUSBack.Controllers.Administracion.eventos
         private string _nombreClass = "AprobarEventoAccionController";
         #endregion
         #region "url"
-        public ActionResult preview(int id=-1)
+        public ActionResult preview(int id=-1,int id2=1)
         {
+            /*
+             id2 = 1 viene solo evento normal sin publicar
+             id2 = 2 viene publicado se desea revisar
+             */
             ControlEvento control = new ControlEvento();
             Usuario usuarioSession = this.getUsuarioSesion();
+            ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
+            if (seguridadInicial != null)
+            {
+                return seguridadInicial;
+            }
             try
             {
                 if (id != -1)
                 {
-                    ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 4);
-                    Evento evento = control.sp_adminfe_getEventById(id, usuarioSession._idUsuario, this._idPagina);
-                    ViewBag.evento = evento;
-                    if (seguridadInicial != null)
+                    
+                    ControlPublicacionEvento controlPublicacion = new ControlPublicacionEvento();
+                    PublicacionEvento publicacionEvento = null;
+                    if (id2 == 1)
                     {
-                        return seguridadInicial;
+                        EventoWebsite eventoWeb = new EventoWebsite(-1);
+                        Evento evento = control.sp_adminfe_getEventById(id, usuarioSession._idUsuario, this._idPagina);
+                        eventoWeb._evento = evento;
+                        publicacionEvento = new PublicacionEvento(-1);
+                        publicacionEvento._eventoWeb = eventoWeb;
                     }
+                    else
+                    {
+                        publicacionEvento = controlPublicacion.sp_adminfe_getPublicacionEventoById(id, usuarioSession._idUsuario, this._idPagina);
+                    }
+                    ViewBag.eventoPublicado = publicacionEvento;
                     return View();
                 }
                 else

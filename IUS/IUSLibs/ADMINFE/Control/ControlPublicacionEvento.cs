@@ -41,6 +41,7 @@ namespace IUSLibs.ADMINFE.Control
                         eventoWebsite._usuarioPublicacion._idUsuario = (int)row["usuario_publicacion_fk"];
                         eventoWebsite._evento = evento;
                         retorno = new PublicacionEvento((int)row["idPublicacionEvento"]);
+                        retorno._eventoWeb = eventoWebsite;
                         retorno._estado = (bool)row["estadoPublicacionEvento"];
                         retorno._caducidad = (DateTime)row["caducidad"];
                         retorno._usuarioAutorizador = new Usuario((int)row["id_usuarioautorizador_fk"]);

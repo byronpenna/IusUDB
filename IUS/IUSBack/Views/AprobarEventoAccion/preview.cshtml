@@ -12,17 +12,21 @@
     Layout = "~/Views/Shared/_Layouti.cshtml";
     string classPublicado=""; string classCambio = "";
     string textoPublicado = "Publicar";
-    Evento evento = null;
+    PublicacionEvento eventoPublicado = null;
     try
     {
-        evento = (Evento)ViewBag.evento;
+        eventoPublicado = (PublicacionEvento)ViewBag.eventoPublicado;
+        if (eventoPublicado._idPublicacionEvento != -1 && eventoPublicado._estado)
+        {
+            textoPublicado = "Mandar a revisión";
+        }
     }
     catch (Exception x)
     {
 
     }
 }
-<input type="hidden" class="txtHdIdEvento" value="@evento._idEvento"/>
+<input type="hidden" class="txtHdIdEvento" value="@eventoPublicado._eventoWeb._evento._idEvento"/>
 <div class="row marginNull centroPagina">
     <div class="row marginNull rowNavegacion">
         <span>
@@ -68,13 +72,13 @@
                         <div class="col-lg-5 vbottom divDetalles">
                             <div class="row marginNull">
                                 <div class="row marginNull">
-                                    <span class="spanTitulo">Titulo:</span> @evento._evento
+                                    <span class="spanTitulo">Titulo:</span> @eventoPublicado._eventoWeb._evento._evento
                                 </div>
                                 <div class="row marginNull">
-                                    <span class="spanTitulo">Fecha inicio:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @evento._fechaInicio)   @*14 de junio 2015**@
+                                    <span class="spanTitulo">Fecha inicio:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", eventoPublicado._eventoWeb._evento._fechaInicio)   @*14 de junio 2015**@
                                 </div>
                                 <div class="row marginNull">
-                                    <span class="spanTitulo">Fecha fin:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", @evento._fechaFin)   @*14 de junio 2015**@
+                                    <span class="spanTitulo">Fecha fin:</span> @String.Format("{0:dddd d \\de MMMM, yyyy}", eventoPublicado._eventoWeb._evento._fechaFin)   @*14 de junio 2015**@
                                 </div>
                                 <div class="row marginNull">
                                     <span class="spanTitulo">Solicitante:</span> @*@post._usuario._persona.nombreCompleto*@
@@ -83,7 +87,7 @@
                         </div><!--
                         --><div class="col-lg-7 vbottom">
                             @*<img class="imgMin" src="@Url.Content("~/Content/images/generales/noBanerMiniatura.png")" />*@
-                            <img class="imgMin" src="@Url.Action("getImageThumbnailEvent", "Administracion", new { id = evento._idEvento })" />
+                            <img class="imgMin" src="@Url.Action("getImageThumbnailEvent", "Administracion", new { id = eventoPublicado._eventoWeb._evento._idEvento })" />
                         </div>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ var tbAprobar   = $(".tbAprobar");
         } else if (notiEvento._idTipoEntrada == 2) {
             // Evento
         tr += "\
-                    <a class='btn btn-default btnBack btn-block' href='" + RAIZ + "/AprobarEventoAccion/preview/" + notiEvento._id + "'>\
+                    <a class='btn btn-default btnBack btn-block' href='" + RAIZ + "/AprobarEventoAccion/preview/" + notiEvento._id + "/2'>\
                         Ver\
                     </a>";
         }
