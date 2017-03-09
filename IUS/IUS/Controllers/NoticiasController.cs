@@ -106,6 +106,8 @@ namespace IUS.Controllers
                     ViewBag.comentarios = this._model.sp_frontUi_noticias_getComentariosPost(id, ip, this.idPagina);
                     
                     Post post = (Post)cuerpoPagina["post"];
+                    post._contenido = post._contenido.Replace("background:white", "");
+                    post._contenido = post._contenido.Replace("background-color: rgb(255, 255, 255)","");
                     if (post._estado) {
                         ViewBag.post    = post;
                         ViewBag.tags    = cuerpoPagina["tags"];

@@ -106,6 +106,7 @@ namespace IUSBack.Controllers
                     ViewBag.usuario     = usuarioSession;
                     ViewBag.menus = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     List<Post> posts    = this._model.sp_adminfe_noticias_getPosts(usuarioSession._idUsuario, this._idPagina);
+                    
                     ViewBag.posts = posts;
                     return View();
                 }catch(ErroresIUS x){
