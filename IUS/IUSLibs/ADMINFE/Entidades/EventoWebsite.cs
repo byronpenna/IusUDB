@@ -16,6 +16,10 @@ namespace IUSLibs.ADMINFE.Entidades
             public bool     _estado;
         #endregion
         #region "constructores"
+            public EventoWebsite(int idEventoWeb)
+            {
+                this._idEventoWeb = idEventoWeb;
+            }
             public EventoWebsite(int idEventoWeb, DateTime fechaPublicacion, Usuario usuarioPublicacion, Evento evento, bool estado)
             {
                 this._idEventoWeb = idEventoWeb;

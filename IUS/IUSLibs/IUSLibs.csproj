@@ -80,6 +80,7 @@
     <Compile Include="ADMINFE\Control\ControlEvento.cs" />
     <Compile Include="ADMINFE\Control\ControlEventoWebsite.cs" />
     <Compile Include="ADMINFE\Control\ControlPermisoUsuarioEvento.cs" />
+    <Compile Include="ADMINFE\Control\ControlPublicacionEvento.cs" />
     <Compile Include="ADMINFE\Control\ControlSliderImage.cs" />
     <Compile Include="ADMINFE\Control\ControlUsuarioEvento.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlAprobacion.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="ADMINFE\Entidades\Pagina.cs" />
     <Compile Include="ADMINFE\Entidades\PermisoEvento.cs" />
     <Compile Include="ADMINFE\Entidades\PermisoUsuarioEvento.cs" />
+    <Compile Include="ADMINFE\Entidades\PublicacionEvento.cs" />
     <Compile Include="ADMINFE\Entidades\RedSocial.cs" />
     <Compile Include="ADMINFE\Entidades\SliderImage.cs" />
     <Compile Include="ADMINFE\Entidades\UsuarioEvento.cs" />

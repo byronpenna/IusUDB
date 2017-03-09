@@ -32,6 +32,7 @@ var tbAprobar   = $(".tbAprobar");
             strEstado = "Mandar revisión";
         }
         //<td>"+notiEvento._descripcion+"</td>\
+        //_idTipoEntrada
         var tr = "\
             <tr>\
                 <td class='hidden'>\
@@ -46,10 +47,22 @@ var tbAprobar   = $(".tbAprobar");
                 <td>\
                     <button class='btn btn-default btnBack btn-block btnCambiarEstadoRevision'>\
                         "+strEstado+"\
-                    </button>\
+                    </button>";
+        if (notiEvento._idTipoEntrada == 1) {
+            // Noticia
+        tr += "\
                     <a class='btn btn-default btnBack btn-block' href='" + RAIZ + "/AprobarNoticiaAccion/preview/" + notiEvento._id + "'>\
                         Ver\
-                    </a>\
+                    </a>";
+        } else if (notiEvento._idTipoEntrada == 2) {
+            // Evento
+        tr += "\
+                    <a class='btn btn-default btnBack btn-block' href='" + RAIZ + "/AprobarEventoAccion/preview/" + notiEvento._id + "'>\
+                        Ver\
+                    </a>";
+        }
+        
+        tr += "\
                 </td>\
             </tr>\
         ";
@@ -90,7 +103,7 @@ var tbAprobar   = $(".tbAprobar");
         function tabRevision() {
             var frm = {};
             actualizarCatalogo(RAIZ + "/AprobarNoticiaAccion/sp_adminfe_aprobarNoticia_getNoticiasRevision", frm, function (data) {
-                console.log("La respuesta del servidor", data);
+                console.log("La respuesta del servidor revision", data);
                 if (data.estado) {
                     console.log("Ahh ", data.noticiasEventos.length);
                     if (data.noticiasEventos !== undefined && data.noticiasEventos.length > 0) {

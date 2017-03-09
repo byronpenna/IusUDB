@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="row marginNull">
                                     <span class="spanTitulo">fuente:</span>
-                                    @if (post._usuario._persona._adicionales._institucion._enlaces != null && post._usuario._persona._adicionales._institucion._enlaces.Count > 0)
+                                    @if (post._usuario != null && post._usuario._persona._adicionales._institucion._enlaces != null && post._usuario._persona._adicionales._institucion._enlaces.Count > 0)
                                     {
                                         enlaceInstitucion = post._usuario._persona._adicionales._institucion._enlaces[0]._enlace;
                                     }
@@ -158,7 +158,12 @@
                                     
                                 </div>
                                 <div class="row marginNull">
-                                    <span class="spanTitulo">Solicitante:</span><a href="@enlaceInstitucion">@post._usuario._persona._adicionales._institucion._nombre</a>
+                                    <span class="spanTitulo">Solicitante:</span><a href="@enlaceInstitucion">
+                                        @if (post._usuario != null)
+                                        {
+                                            @post._usuario._persona._adicionales._institucion._nombre
+                                        }
+                                    </a>
                                     @*@post._usuario._persona.nombreCompleto*@ 
                                 </div>
                             </div>

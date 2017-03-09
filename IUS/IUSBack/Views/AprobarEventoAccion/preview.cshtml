@@ -11,6 +11,7 @@
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     string classPublicado=""; string classCambio = "";
+    string textoPublicado = "Publicar";
     Evento evento = null;
     try
     {
@@ -56,7 +57,7 @@
                                 x
                             </button>
                             <button class="btn btn-group btnBack btn-default btnAprobar inputBackModal @classPublicado">
-                                Publicar
+                                @textoPublicado
                             </button>
                             <button class="btn btn-group btnBack btn-default inputBackModal btnEliminarSolicitud">Eliminar</button>
                         </div>
