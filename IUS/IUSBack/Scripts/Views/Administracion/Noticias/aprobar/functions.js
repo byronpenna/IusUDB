@@ -45,9 +45,10 @@ var tbAprobar   = $(".tbAprobar");
                 <td>" + notiEvento.getStrTipoEntrada + "</td>\
                 <td>fecha caducidad</td>\
                 <td>\
-                    <button class='btn btn-default btnBack btn-block btnCambiarEstadoRevision'>\
-                        "+strEstado+"\
-                    </button>";
+                ";
+        //<button class='btn btn-default btnBack btn-block btnCambiarEstadoRevision'>\
+        //                "+strEstado+"\
+        //            </button>
         if (notiEvento._idTipoEntrada == 1) {
             // Noticia
         tr += "\

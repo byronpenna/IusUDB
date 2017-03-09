@@ -150,20 +150,22 @@
                                 </div>
                                 <div class="row marginNull">
                                     <span class="spanTitulo">fuente:</span>
-                                    @if (post._usuario != null && post._usuario._persona._adicionales._institucion._enlaces != null && post._usuario._persona._adicionales._institucion._enlaces.Count > 0)
-                                    {
-                                        enlaceInstitucion = post._usuario._persona._adicionales._institucion._enlaces[0]._enlace;
-                                    }
+                                    @post._fuente
                                     @*Lorem ipsum dolor sit a met**@
                                     
                                 </div>
                                 <div class="row marginNull">
-                                    <span class="spanTitulo">Solicitante:</span><a href="@enlaceInstitucion">
-                                        @if (post._usuario != null)
-                                        {
-                                            @post._usuario._persona._adicionales._institucion._nombre
-                                        }
-                                    </a>
+                                    @if (post._usuario != null && post._usuario._persona._adicionales._institucion._enlaces != null && post._usuario._persona._adicionales._institucion._enlaces.Count > 0)
+                                    {
+                                        enlaceInstitucion = post._usuario._persona._adicionales._institucion._enlaces[0]._enlace;
+                                    }
+                                    <span class="spanTitulo">Solicitante:</span>
+                                        <a href="@enlaceInstitucion">
+                                            @if (post._usuario != null)
+                                            {
+                                                @post._usuario._persona._adicionales._institucion._nombre
+                                            }
+                                        </a>
                                     @*@post._usuario._persona.nombreCompleto*@ 
                                 </div>
                             </div>
