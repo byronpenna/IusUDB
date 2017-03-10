@@ -488,7 +488,10 @@ namespace IUSLibs.ADMINFE.Control.Noticias
                         if (this.resultadoCorrecto(tb) && tb[1].Rows.Count > 0)
                         {
                             DataRow row = tb[1].Rows[0];
-                            post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], (DateTime)row["ultima_modificacion"], row["titulo"].ToString(), row["contenido"].ToString(),(bool)row["estado"],(int)row["id_usuario_fk"]);
+                            post = new Post((int)row["idPost"], (DateTime)row["fecha_creacion"], 
+                                            (DateTime)row["ultima_modificacion"], row["titulo"].ToString(),
+                                            row["contenido"].ToString(), (bool)row["estadoPublicacion"],
+                                            (int)row["id_usuario_fk"]);
                             post._usuario._persona = new Persona((int)row["id_persona_fk"]);
                             post._usuario._persona._adicionales = new RRHH.Entidades.InformacionPersona((int)row["idInformacionPersona"]);
                             post._usuario._persona._adicionales._institucion = new FrontUI.Entidades.Institucion((int)row["idInstitucion"], row["nombre"].ToString());

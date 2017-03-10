@@ -17,6 +17,21 @@
 <input class="hidden txtHdIdContinente" value="@ViewBag.idContinente" />
 <input  class="hidden txtHdIdPage"  value="@ViewBag.idPage"/>
 <input type="hidden" class="txtHdUrlFicha" value="@Url.Action("FichaInstitucion", "Instituciones")" />
+<div class="divHiddenInicialAmerica hidden">
+    @ViewData["lb-inicial-americai"]
+</div>
+<div class="divHiddenInicialAfrica hidden">
+    @ViewData["lb-inicial-africa"]
+</div>
+<div class="divHiddenInicialAsia hidden">
+    @ViewData["lb-inicial-asia"]
+</div>
+<div class="divHiddenInicialEuropa hidden">
+    @ViewData["lb-inicial-europa"]
+</div>
+<div class="divHiddenInicialOceania hidden">
+    @ViewData["lb-inicial-oceania"]
+</div>
 
 <div class="centroPagina row marginNull contenidoCuerpo">
     <div class="row marginNull">
@@ -31,18 +46,17 @@
                     </div>
                     <div class="row marginNull divContenedorTexto">
                         <h3 class="tituloInstituciones">@ViewData["lb-tituloPrincipal"]</h3>
-                        <p>
+                        <p >
                             @*Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.*@
-                            @ViewData["lb-inicial"]
+                            @Html.Raw(ViewData["lb-inicial"])
                         </p>
                     </div>
                 </div>
                 <div class="row marginNull divInfoInstituciones hidden">
                     <h3 class="tituloDetalles">@ViewData["lb-tituloIndividual"] <span class="spanContinente">America</span></h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                    <p class="pInicial">
+                        @Html.Raw(ViewData["lb-inicial"])
                     </p>
-
                     <table class="table tablaInstitucion">
                         <thead>
                             <tr>

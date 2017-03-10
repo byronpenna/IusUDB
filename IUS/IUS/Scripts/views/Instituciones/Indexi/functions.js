@@ -19,20 +19,54 @@ function iniciales() {
         $(".tdPaginador").find("#" + idPage).click();
     }
 }
+function getStringInicial(idContinente) {
+    var retorno = ""
+    switch (idContinente) {
+        case 1: {
+            // africa
+            retorno = $(".divHiddenInicialAfrica").html();
+            break;
+        }
+        case 2: {
+            // america
+            retorno = $(".divHiddenInicialAmerica").html();
+            break;
+        }
+        case 3: {
+            // asia
+            retorno = $(".divHiddenInicialAsia").html();
+            break;
+        }
+        case 4: {
+            // europa 
+            retorno = $(".divHiddenInicialEuropa").html();
+            break;
+        }
+        case 5: {
+            // oceania
+            retorno = $(".divHiddenInicialOceania").html();
+            break;
+        }
+    }
+    return retorno;
+}
 function buscarContinente(frm) {
     var target = $(".tablaInstitucion").find("tbody");
     var targetFoot = $(".tablaInstitucion").find("tfoot");
     instArr = new Array();
     actualizarCatalogo(RAIZ + "/Instituciones/sp_frontui_getInstitucionesByContinente", frm, function (data) {
-        console.log("D: :DP", data)
+        console.log("D: :DP !!!!!!!!!!!!!!!", data)
         if (data.estado) {
             var instituciones = data.instituciones.instituciones;
-
+            var textInicial = "";
             var tr = "";
             console.log("instituciones", instituciones);
             var hContinente = "";
             if (data.instituciones.continente !== undefined && data.instituciones.continente != null) {
                 hContinente = data.instituciones.continente._continente;
+                textInicial = getStringInicial(data.instituciones.continente._idContinente);
+                
+                $(".pInicial").empty().append(textInicial);
             }
             if (instituciones !== undefined && instituciones != null && instituciones.length > 0) {
                 //console.log("entro aqui");
