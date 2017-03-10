@@ -1,16 +1,18 @@
 ﻿function getDivNoticia(noticiaEvento,tituloHover)
 {
-    var src = "",url="";
+    console.log("Noticia evento es: ", noticiaEvento);
+    var src = "", url = "";
     if (noticiaEvento._idTipoEntrada == 1)
     {
         src = RAIZ + "/Noticias/getImageThumbnail/" + noticiaEvento._id;
         url = RAIZ + "/Noticias/Index/" + noticiaEvento._id;
+        tituloHover = "Noticia";
     } else {
         src = $(".txtUrlBack").val() + "/Administracion/getImageThumbnailEvent/" + noticiaEvento._id;
         url = RAIZ + "/Evento/Index/" + noticiaEvento._id;
-        
+        tituloHover = "Evento";
     }
-	var div = "\
+    var div = "\
 	<div class='row marginNull notiEve'>\
         <input class='txtHdTipoEntra' type='hidden' value='"+noticiaEvento._idTipoEntrada+"' />\
         <div class='col-lg-6 contentImgNotiEve hoverEventNoti'>\
@@ -24,10 +26,14 @@
                 <h4>"+noticiaEvento._titulo+"</h4>\
                 <p>\
                     "+noticiaEvento._descripcion+"\
-                </p>\
-                <div class='divLinkNotiEve'>\
-                    <a class='aLeerMas' href='"+url+"'>Leer más>>></a>\
-                </div>\
+                </p>";
+    if (noticiaEvento._idTipoEntrada == 1) {
+        div += "\
+        <div class='divLinkNotiEve'>\
+                    <a class='aLeerMas' href='"+ url + "'>Leer más>>></a>\
+                </div>";
+    }
+    div += "\
             </div>\
         </div>\
     </div>";

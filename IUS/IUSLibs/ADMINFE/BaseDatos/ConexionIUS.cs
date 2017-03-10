@@ -61,7 +61,7 @@ namespace IUSLibs.BaseDatos
             /*
             this.servidor = "168.243.3.62";
             this.db = "IUS";
-            this.usuario = "desarrollo";
+            this.usuario = "IUS";
             this.password = "123456";
             this.SSPI = false;
             */

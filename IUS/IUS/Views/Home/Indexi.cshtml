@@ -172,9 +172,12 @@
                                 <p>
                                     @noticiaEvento._descripcion
                                 </p>
-                                <div class="divLinkNotiEve">
-                                    <a class="aLeerMas" href="@url">@ViewData["lb-leerMas"]>>></a>
-                                </div>
+                                @if (noticiaEvento._idTipoEntrada == 1)
+                                {
+                                    <div class="divLinkNotiEve">
+                                        <a class="aLeerMas" href="@url">@ViewData["lb-leerMas"]>>></a>
+                                    </div>    
+                                }
                             </div>
                         </div>
                     </div>

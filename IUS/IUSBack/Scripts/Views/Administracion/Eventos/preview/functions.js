@@ -4,6 +4,7 @@
         console.log("La respuesta del servidor", data);
         if (data.estado) {
             alert("Publicada correctamente");
+            location.reload();
         } else {
             alert("Ocurrio un error");
         }
