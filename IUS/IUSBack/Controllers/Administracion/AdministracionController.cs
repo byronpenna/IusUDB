@@ -91,7 +91,13 @@ namespace IUSBack.Controllers
                 try
                 {
                     Usuario usuarioSession = this.getUsuarioSesion();
-                    Evento evento = this._model.sp_adminfe_getEventById(id,usuarioSession._idUsuario,this._idPaginaEventos);
+                    int idUsuario = 1;
+                    if (usuarioSession != null)
+                    {
+                        idUsuario = usuarioSession._idUsuario;
+                    }
+
+                    Evento evento = this._model.sp_adminfe_getEventById(id,idUsuario,this._idPaginaEventos);
                     string ruta = this.getRelativePathFromAbsolute(evento._miniatura);
                     return base.File(ruta, "image/jpeg");
                 }
