@@ -1072,7 +1072,9 @@ function getDivEventoi(evento) {
                         //clearTr(frmSection); se comenta porq mata las horas
                         limpiarFormulario();
                         resetRbTiempo();
-                        printMessage($(".divMensajeForm"), "Evento agregado correctamente", true);
+                        printMessage($(".divMensajeForm"), "Evento agregado correctamente", true, 2000,function () {
+                            location.reload();
+                        });
                     } else {
                         if (data.error._mostrar && data.error.Message != "") {
                             printMessage($(".divMensajeForm"), data.error.Message, false);

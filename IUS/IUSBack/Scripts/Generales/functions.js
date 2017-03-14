@@ -239,10 +239,11 @@
             setTimeout(function () {
                 //alert("Hello");
                 div.fadeOut("slow");
-
+                
             }, time);
+
         }
-        function printMessage(div, txt, success,time) {
+        function printMessage(div, txt, success,time,accion) {
             var clase = "";
             if (success) {
                 clase = SUCCESS_CLASS;
@@ -257,7 +258,9 @@
             setTimeout(function () {
                 //alert("Hello");
                 div.fadeOut("slow");
-
+                if (accion !== undefined) {
+                    accion();
+                }
             }, time);
         }
     //Valudaciones ingresos 

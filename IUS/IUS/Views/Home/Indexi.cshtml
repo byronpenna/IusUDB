@@ -172,7 +172,7 @@
                             <div class="contenido">
                                 <h4>@noticiaEvento._titulo</h4>
                                 <p>
-                                    @noticiaEvento._descripcion
+                                    @(new HtmlString(noticiaEvento._descripcion))
                                 </p>
                                 @if (noticiaEvento._fecha != null)
                                 {
