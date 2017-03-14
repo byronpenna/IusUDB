@@ -124,9 +124,10 @@
                 int cn = 1; string url; string tituloHover = ""; string src = "";
                 foreach (NoticiaEvento noticiaEvento in noticiasEventos)
                 {
-
+                    string claseFecha = "hidden";
                     if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Evento)
                     {
+                        claseFecha = "";
                         if (ViewData["lb-hover-evento"] != null)
                         {
                             tituloHover = ViewData["lb-hover-evento"].ToString();
@@ -142,6 +143,7 @@
                     }
                     else if (noticiaEvento._idTipoEntrada == (int)NoticiaEvento.Tipo.Noticia)
                     {
+                        claseFecha = "hidden";
                         if (ViewData["lb-hover-noticia"] != null)
                         {
                             tituloHover = ViewData["lb-hover-noticia"].ToString();
@@ -172,6 +174,16 @@
                                 <p>
                                     @noticiaEvento._descripcion
                                 </p>
+                                @if (noticiaEvento._fecha != null)
+                                {
+                                    <div class="fechaHoraEvento row @claseFecha">
+                                        <div class="col-lg-2 colorResaltado">Inicio: </div>
+                                        <div class="col-lg-4">@noticiaEvento._fecha.ToString()</div>
+                                        @*<div class="col-lg-3 colorResaltado">Fin: </div>
+                                        <div class="col-lg-3">14/03/2017</div>*@
+                                    </div>    
+                                }
+                                
                                 @if (noticiaEvento._idTipoEntrada == 1)
                                 {
                                     <div class="divLinkNotiEve">

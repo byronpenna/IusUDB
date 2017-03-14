@@ -40,6 +40,10 @@ namespace IUS.Models.general
                         foreach (DataRow row in rows)
                         {
                             notiEvento = new NoticiaEvento((int)row["id"], row["titulo"].ToString(), row["descripcion"].ToString(), (int)row["tipoEntrada"]);
+                            if (row["fecha"] != DBNull.Value)
+                            {
+                                notiEvento._fecha = (DateTime)row["fecha"];
+                            }
                             noticiasEventos.Add(notiEvento);
                         }
                     }

@@ -4,6 +4,11 @@
 .rowSlider img {
   width: 100%; }
 
+.fechaHoraEvento {
+  margin-bottom: 2%; }
+  .fechaHoraEvento .colorResaltado {
+    color: #cd1315; }
+
 .bloque {
   margin-top: 3%; }
   .bloque h2 {
