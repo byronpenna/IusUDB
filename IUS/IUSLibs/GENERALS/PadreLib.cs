@@ -37,6 +37,11 @@ namespace IUSLibs.GENERALS
                         {
                             DataRow row = tb[0].Rows[0];
                             informacionPersona = new RRHH.Entidades.InformacionPersona((int)row["idInformacionPersona"]);
+                            if (row["id_persona_fk"] != DBNull.Value)
+                            {
+                                informacionPersona._persona = new SEC.Entidades.Persona((int)row["id_persona_fk"]);
+
+                            }
                             if(row["foto"] != DBNull.Value){
                                 informacionPersona._fotoRuta = row["foto"].ToString();
                             }

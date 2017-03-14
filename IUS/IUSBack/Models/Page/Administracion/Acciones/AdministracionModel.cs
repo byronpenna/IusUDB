@@ -45,6 +45,22 @@ namespace IUSBack.Models.Page.Administracion.Acciones
                             throw x;
                         }
                     }
+                    public bool sp_adminfe_setNullMiniaturaPerdida(int idEvento)
+                    {
+                        try
+                        {
+                            ControlEvento control = new ControlEvento();
+                            return control.sp_adminfe_setNullMiniaturaPerdida(idEvento);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public Evento sp_adminfe_getEventById(int idEvento, int idUsuarioEjecutor,int idPagina)
                     {
                         try

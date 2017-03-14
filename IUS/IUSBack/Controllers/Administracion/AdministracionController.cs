@@ -96,10 +96,19 @@ namespace IUSBack.Controllers
                     {
                         idUsuario = usuarioSession._idUsuario;
                     }
-
+                    // colocar validacion para evento null
                     Evento evento = this._model.sp_adminfe_getEventById(id,idUsuario,this._idPaginaEventos);
                     string ruta = this.getRelativePathFromAbsolute(evento._miniatura);
-                    return base.File(ruta, "image/jpeg");
+                    if (System.IO.File.Exists(evento._miniatura))
+                    {
+                        return base.File(ruta, "image/jpeg");
+                    }
+                    else
+                    {
+                        this._model.sp_adminfe_setNullMiniaturaPerdida(id);
+                        ruta = Server.MapPath("~/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
+                        return base.File(ruta, "image/jpeg");
+                    }
                 }
                 catch (ErroresIUS)
                 {

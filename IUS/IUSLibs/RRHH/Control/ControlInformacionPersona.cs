@@ -20,6 +20,7 @@ namespace IUSLibs.RRHH.Control
     public class ControlInformacionPersona:PadreLib
     {
         #region "get"
+
             public Dictionary<object, object> sp_rrhh_getInformacionPersonas(int idPersona, int idUsuarioEjecutor, int idPagina)
             {
                 Dictionary<object, object> retorno = null;
@@ -209,6 +210,29 @@ namespace IUSLibs.RRHH.Control
             }
         #endregion
         #region "do"
+            public bool sp_hm_setNullMiniaturaPerdidaPersona(int idPersona)
+            {
+                bool estado = false;
+                SPIUS sp = new SPIUS("sp_hm_setNullMiniaturaPerdidaPersona");
+                sp.agregarParametro("idPersona", idPersona);
+                try
+                {
+                    DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                    if (this.resultadoCorrecto(tb))
+                    {
+                        estado = true;
+                    }
+                    return estado;
+                }
+                catch (ErroresIUS x)
+                {
+                    return false;
+                }
+                catch (Exception x)
+                {
+                    return false;
+                }
+            }
             public InformacionPersona sp_rrhh_setCurriculumnPersona(string rutaCurriculumn, int idPersona,int idUsuarioEjecutor,int idPagina)
             {
                 InformacionPersona infoPersona = null;

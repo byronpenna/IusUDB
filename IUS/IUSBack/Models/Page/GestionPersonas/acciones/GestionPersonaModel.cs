@@ -35,12 +35,27 @@ namespace IUSBack.Models.Page.GestionPersonas.acciones
                     return null;
                 }
             }
+            public bool sp_hm_setNullMiniaturaPerdidaPersona(int idPersona)
+            {
+                try
+                {
+                    IUSLibs.RRHH.Control.ControlInformacionPersona control = new IUSLibs.RRHH.Control.ControlInformacionPersona();
+                    return control.sp_hm_setNullMiniaturaPerdidaPersona(idPersona);
+                }
+                catch (ErroresIUS x)
+                {
+                    throw x;
+                }
+                catch (Exception x)
+                {
+                    throw x;
+                }
+            }
             public Dictionary<object, object> sp_rrhh_getInformacionPersonas(int idPersona, int idUsuarioEjecutor, int idPagina)
             {
                 try
                 {
-                    IUSLibs.RRHH.Control.ControlInformacionPersona informacionPersona = new IUSLibs.RRHH.Control.ControlInformacionPersona();
-                    Dictionary<object,object> varInformacionPersona = informacionPersona.sp_rrhh_getInformacionPersonas(idPersona,idUsuarioEjecutor,idPagina);
+                    IUSLibs.RRHH.Control.ControlInformacionPersona informacionPersona = new IUSLibs.RRHH.Control.ControlInformacionPersona();                    Dictionary<object,object> varInformacionPersona = informacionPersona.sp_rrhh_getInformacionPersonas(idPersona,idUsuarioEjecutor,idPagina);
                     varInformacionPersona.Add("personas", this._control.getPersonas(idUsuarioEjecutor));
                     return varInformacionPersona;
                 }

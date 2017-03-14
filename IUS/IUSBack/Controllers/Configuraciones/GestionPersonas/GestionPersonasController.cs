@@ -47,11 +47,18 @@ namespace IUSBack.Controllers
                         Dictionary<object, object> data = this._model.sp_rrhh_getInformacionPersonas(id, usuarioSession._idUsuario, this._idPagina);
                         InformacionPersona informarcionPersona = (InformacionPersona)data["informacionPersona"];
 
-                        if (informarcionPersona != null && System.IO.File.Exists(informarcionPersona._fotoRuta))
+                        if (informarcionPersona != null)
                         {
-                            informarcionPersona._tieneFoto = true;
-                            //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
-                            informarcionPersona._fotoRuta = this.getRelativePathFromAbsolute(informarcionPersona._fotoRuta);
+                            if (System.IO.File.Exists(informarcionPersona._fotoRuta))
+                            {
+                                informarcionPersona._tieneFoto = true;
+                                //informarcionPersona._fotoRuta = informarcionPersona._fotoRuta.Substring(appPath.Length).Replace('\\', '/').Insert(0, "~/");
+                                informarcionPersona._fotoRuta = this.getRelativePathFromAbsolute(informarcionPersona._fotoRuta);
+                            }
+                            else
+                            {
+                                this._model.sp_hm_setNullMiniaturaPerdidaPersona(id);
+                            }
                         }
                         ViewBag.paises = data["paises"];
                         ViewBag.estadosCiviles = data["estadosCiviles"];

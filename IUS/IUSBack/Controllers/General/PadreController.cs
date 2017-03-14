@@ -96,8 +96,19 @@ namespace IUSBack.Controllers
                         IUSLibs.RRHH.Entidades.InformacionPersona informacionPersona =this._model.detalleLogin(usuarioSesion._idUsuario);
                         if (informacionPersona._fotoRuta != null && informacionPersona._fotoRuta != "")
                         {
-                            informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
-                            informacionPersona._tieneFoto = true;
+                            if (System.IO.File.Exists(informacionPersona._fotoRuta))
+                            {
+                                informacionPersona._fotoRuta = this.getRelativePathFromAbsolute(informacionPersona._fotoRuta);
+                                informacionPersona._tieneFoto = true;
+                            }
+                            else
+                            {
+                                IUSLibs.RRHH.Control.ControlInformacionPersona control = new IUSLibs.RRHH.Control.ControlInformacionPersona();
+                                if (informacionPersona._persona != null)
+                                {
+                                    control.sp_hm_setNullMiniaturaPerdidaPersona(informacionPersona._persona._idPersona);
+                                }
+                            }
                         }
                         informacionPersona._persona = usuarioSesion._persona;
                         ViewBag.informacionPersonaGlobal = informacionPersona;

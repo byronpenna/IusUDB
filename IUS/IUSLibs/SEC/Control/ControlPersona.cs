@@ -22,6 +22,7 @@ namespace IUSLibs.SEC.Control
     {
         #region "funciones"
             #region "acciones"
+                
                 public bool sp_hm_eliminarPersona(int idPersona,int idUsuarioEjecutor,int idPagina)
                 {
                     SPIUS sp = new SPIUS("sp_hm_eliminarPersona");

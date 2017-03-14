@@ -200,6 +200,29 @@ namespace IUSLibs.ADMINFE.Control
                 }
             #endregion
             #region "acciones"
+                public bool sp_adminfe_setNullMiniaturaPerdida(int idEvento)
+                {
+                    bool estado = false;
+                    try
+                    {
+                        SPIUS sp = new SPIUS("sp_adminfe_setNullMiniaturaPerdida");
+                        sp.agregarParametro("idEvento", idEvento);
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrecto(tb))
+                        {
+                            estado = true;
+                        }
+                        return estado;
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Evento sp_adminfe_setMiniaturaEvento(Evento eventoEditar, int idUsuarioEjecutor, int idPagina)
                 {
                     SPIUS sp = new SPIUS("sp_adminfe_setMiniaturaEvento");
