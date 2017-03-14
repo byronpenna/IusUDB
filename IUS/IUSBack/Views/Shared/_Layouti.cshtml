@@ -31,7 +31,7 @@
 }
 <html>    
     <head>
-        <title>Este es ius back end</title>
+        <title>Area privada IUS - @ViewBag.tituloHead</title>
         <!-- META -->
             <link rel="icon" href="@Url.Content("~/Content/themes/iusback_theme/img/general/logo_IUS.ico")" />
             <link rel="stylesheet" href="~/Content/themes/iusback_theme/generals/thirdParty/fontAwesome/css/font-awesome.css" />
@@ -64,7 +64,9 @@
             <header>
                 <div class="row marginNull centroPagina contenidoHead">
                     <div class="col-lg-3 logoHeader vcenter">
-                        <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/logo2.png")" />
+                        <a href="@IUSLibs.GENERALS.Rutas.IUS">
+                            <img src="@Url.Content("~/Content/themes/iusback_theme/img/general/logo2.png")" />
+                        </a>
                     </div><!--
                     --><div class="col-lg-6 vCenter">
                         <div class="todoIdioma">

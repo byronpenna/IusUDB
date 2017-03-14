@@ -2,6 +2,7 @@
 @{
     List<Idioma> idiomas = (List<Idioma>)ViewBag.idiomas;
     string imgAreaPrivada = Url.Content("~/Content/images/views/Home/header/user.png");
+    string rutaLogin = IUSLibs.GENERALS.Rutas.IUSBACK + "Home/Index";
     if (ViewBag.submenu11 != null && ViewBag.submenu11 != "")
     {
         imgAreaPrivada = Url.Content("~/Content/images/views/Home/header/userRojo.png");
@@ -76,12 +77,12 @@
         <div class="centroPagina">
             <div class="col-lg-offset-9 col-lg-3">
                 <div class="col-lg-6 menuChiquito">
-                    <a class="@ViewBag.submenu11 linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
+                    <a class="@ViewBag.submenu11 linkAreaPrivada headerTextoLink" href="@rutaLogin">
                         <img class="imgIcoHeader" src="@imgAreaPrivada" /> @ViewData["menu1.2"] @*Área privada*@
                     </a>
                 </div>
                 <div class="col-lg-6 menuChiquito">
-                    <a class="@ViewBag.submenu12 linkAreaPrivada headerTextoLink" href="@Url.Action("Index", "Login")">
+                    <a class="@ViewBag.submenu12 linkAreaPrivada headerTextoLink" href="#">
                         <img class="imgIcoHeader headerTextoLink" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> @ViewData["menuContacto"]
                     </a>
                 </div>
