@@ -4,7 +4,9 @@
         console.log("La respuesta del servidor", data);
         if (data.estado) {
             alert("Publicada correctamente");
-            location.reload();
+            var url = location.href + "/2";
+            //location.href = url;
+            //location.reload();
         } else {
             alert("Ocurrio un error");
         }

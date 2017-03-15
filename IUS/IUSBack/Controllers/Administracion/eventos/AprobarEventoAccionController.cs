@@ -39,6 +39,7 @@ namespace IUSBack.Controllers.Administracion.eventos
                     PublicacionEvento publicacionEvento = null;
                     if (id2 == 1)
                     {
+                        // aqui id se ocupa como idEvento
                         EventoWebsite eventoWeb = new EventoWebsite(-1);
                         Evento evento = control.sp_adminfe_getEventById(id, usuarioSession._idUsuario, this._idPagina);
                         eventoWeb._evento = evento;
@@ -47,6 +48,7 @@ namespace IUSBack.Controllers.Administracion.eventos
                     }
                     else
                     {
+                        // aqui id se ocupa como idPublicacionEvento
                         publicacionEvento = controlPublicacion.sp_adminfe_getPublicacionEventoById(id, usuarioSession._idUsuario, this._idPagina);
                     }
                     ViewBag.eventoPublicado = publicacionEvento;

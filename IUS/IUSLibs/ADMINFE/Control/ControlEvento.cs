@@ -171,6 +171,7 @@ namespace IUSLibs.ADMINFE.Control
                                     evento._publicado = (bool)row["publicado"];
                                     evento._propietario = (int)row["propietario"];
                                     evento._miniatura = row["miniatura"].ToString();
+                                    evento._publicadoWeb = (bool)row["publicadoWeb"];
                                     /*if (evento._miniatura != "")
                                     {
                                         evento._miniatura = this.relativePathFromAbsolute(appPath, evento._miniatura);

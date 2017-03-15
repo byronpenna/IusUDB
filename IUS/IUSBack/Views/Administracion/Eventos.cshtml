@@ -335,23 +335,31 @@
                                                         <div class='btn-block '>
                                                             @if (evt1 || evento._propietario == 2)
                                                             {
-                                                                <button class="btn btn-default btnEditar btnBack col-lg-6" title="Editar" @permiso.stringEditar>
-                                                                    <i class="fa fa-pencil"></i>
-                                                                </button>
-                                                                <button class="btn btn-default btnPublicar btnBack col-lg-6" title="@evento.txtBtnPublicar">
-                                                                    <i class="@icoPublicar"></i>
-                                                                </button>
+                                                                if (!evento._publicadoWeb)
+                                                                {
+                                                                    <button class="btn btn-default btnEditar btnBack col-lg-6" title="Editar" @permiso.stringEditar>
+                                                                        <i class="fa fa-pencil"></i>
+                                                                    </button>
+                                                                    <button class="btn btn-default btnPublicar btnBack col-lg-6" title="@evento.txtBtnPublicar">
+                                                                        <i class="@icoPublicar"></i>
+                                                                    </button>
+                                                                }
+                                                                
                                                             }
                                                         </div>
                                                         <div class="btn-block">
                                                             @if (evt1)
                                                             {
-                                                                <button class="btn btn-default btnCompartir btnBack col-lg-6" title="Compartir">
-                                                                    <i class="fa fa-share"></i>
-                                                                </button>
-                                                                <button class="btn btn-default btnEliminarEvento btnBack col-lg-6" title="Eliminar" @permiso.stringEliminar>
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
+                                                                if(!evento._publicadoWeb)
+                                                                {
+                                                                    <button class="btn btn-default btnCompartir btnBack col-lg-6" title="Compartir">
+                                                                        <i class="fa fa-share"></i>
+                                                                    </button>
+                                                                    <button class="btn btn-default btnEliminarEvento btnBack col-lg-6" title="Eliminar" @permiso.stringEliminar>
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </button>    
+                                                                }
+                                                                
                                                             }
                                                         </div>
                                                     </div>

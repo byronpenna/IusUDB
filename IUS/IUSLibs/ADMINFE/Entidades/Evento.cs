@@ -24,6 +24,7 @@ namespace IUSLibs.ADMINFE.Entidades
             // extras 
                 public int      _propietario; // 1: evento propio, 2: evento compartido, 3: evento publico
                 public bool     _publicado; // este no va en constructor porque no va con la naturalesa de la tabla
+                public bool     _publicadoWeb; // a diferencia del anterior este indica publicacion real, la otra solo la solicitud
             #region "Con get y set"
                 public string getFechaInicioUSA
                 {
