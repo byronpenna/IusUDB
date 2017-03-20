@@ -16,7 +16,7 @@ namespace IUSLibs.FrontUI.Control
     public class ControlRevistaInstitucion : PadreLib
     {
         #region "gets"
-        public List<RevistaInstitucion> sp_frontui_getRevistasInstitucion(int idInstitucion,int idUsuarioEjecutor,int idPagina)
+            public List<RevistaInstitucion> sp_frontui_getRevistasInstitucion(int idInstitucion,int idUsuarioEjecutor,int idPagina)
         {
             try
             {
@@ -115,6 +115,7 @@ namespace IUSLibs.FrontUI.Control
                     throw x;
                 }
             }
+            
             public RevistaInstitucion sp_frontui_addRevistaInstitucion(RevistaInstitucion revistaAgregar,int idUsuarioEjecutor,int idPagina)
             {
                 try

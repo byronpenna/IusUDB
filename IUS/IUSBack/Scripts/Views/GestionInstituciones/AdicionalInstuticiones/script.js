@@ -1,4 +1,15 @@
 ﻿$(document).ready(function () {
+    $(document).on("click", ".btnEliminarRevista", function () {
+        var tr = $(this).parents("tr");
+        var frm = {
+            idRevista: tr.find(".txtHdIdRevista").val()
+        }
+        console.log("Frm eliminar es: ", frm);
+        var x = confirm("¿Esta seguro que desea eliminar revista?");
+        if (x) {
+            btnEliminarRevista(frm,tr);
+        }
+    });
     $(document).on("click", ".tabRevistas", function () {
         var frm = {
             idInstitucion: $(".txtHdIdInstitucion").val()

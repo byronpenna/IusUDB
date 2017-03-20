@@ -1,26 +1,36 @@
 ﻿// scripts
+    function btnEliminarRevista(frm,tr) {
+        actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_deleteRevistaInstitucion", frm, function (data) {
+            console.log("La respuesta eliminar es: ", data);
+            if (data.estado) {
+                tr.remove();
+            }
+        })
+    }
     function getTrRevista(revista) {
         var tr = "\
-        <td class='hidden'>\
-            \
-        </td>\
-        <td>\
-            " + revista._revista + "\
-        </td>\
-        <td>\
-            " + revista._categoria + "\
-        </td>\
-        <td>\
-            " + revista._anioPublicacion + "\
-        </td>\
-        <td>\
-            <button class='btn btnEliminarRevista'>\
-                Eliminar\
-            </button>\
-            <button class='btn btnModificarRevista'>\
-                Modificar\
-            </button>\
-        </td>\
+        <tr>\
+            <td class='hidden'>\
+                <input class='hidden txtHdIdRevista' name='txtHdIdRevista' value='" + revista._idRevistaInstitucion + "'>\
+            </td>\
+            <td>\
+                " + revista._revista + "\
+            </td>\
+            <td>\
+                " + revista._categoria + "\
+            </td>\
+            <td>\
+                " + revista._anioPublicacion + "\
+            </td>\
+            <td>\
+                <button class='btn btnEliminarRevista'>\
+                    Eliminar\
+                </button>\
+                <button class='btn btnModificarRevista'>\
+                    Modificar\
+                </button>\
+            </td>\
+        </tr>\
         ";
         return tr;
     }

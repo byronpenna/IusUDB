@@ -48,7 +48,23 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
             #endregion
             #region "set"
                 #region "Revista institucion"
-                public List<RevistaInstitucion> sp_frontui_getRevistasInstitucion(int idInstitucion, int idUsuarioEjecutor, int idPagina)
+                    public bool sp_frontui_deleteRevistaInstitucion(int idRevistaInstitucion, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            ControlRevistaInstitucion controlRevista = new ControlRevistaInstitucion();
+                            return controlRevista.sp_frontui_deleteRevistaInstitucion(idRevistaInstitucion, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                    public List<RevistaInstitucion> sp_frontui_getRevistasInstitucion(int idInstitucion, int idUsuarioEjecutor, int idPagina)
                     {
                         try
                         {
@@ -80,6 +96,7 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                             throw x;
                         }
                     }
+                    
                 #endregion
                 
                 public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,string strNumAlumnos,int idInstitucion,int idUsuarioEjecutor,int idPagina)
