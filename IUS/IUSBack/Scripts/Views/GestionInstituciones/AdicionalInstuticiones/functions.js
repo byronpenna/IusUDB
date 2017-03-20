@@ -1,4 +1,43 @@
 ﻿// scripts
+    function getTrRevista(revista) {
+        var tr = "\
+        <td class='hidden'>\
+            \
+        </td>\
+        <td>\
+            " + revista._revista + "\
+        </td>\
+        <td>\
+            " + revista._categoria + "\
+        </td>\
+        <td>\
+            " + revista._anioPublicacion + "\
+        </td>\
+        <td>\
+            <button class='btn btnEliminarRevista'>\
+                Eliminar\
+            </button>\
+            <button class='btn btnModificarRevista'>\
+                Modificar\
+            </button>\
+        </td>\
+        ";
+        return tr;
+    }
+    function tabRevistas(frm) {
+        actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_getRevistasInstitucion", frm, function (data) {
+            console.log("La respuesta TAB REVISTAS es", data);
+            if (data.estado) {
+                if (data.revistasInstitucion !== undefined && data.revistasInstitucion != null) {
+                    var tr = "";
+                    $.each(data.revistasInstitucion, function (i, revista) {
+                         tr += getTrRevista(revista);
+                    })
+                    $(".tbBodyRevista").empty().append(tr);
+                }
+            }
+        })
+    }
     function btnAddRevista(frm) {
         actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_addRevistaInstitucion", frm, function (data) {
             console.log("la respuesta es: ", data);

@@ -48,7 +48,22 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
             #endregion
             #region "set"
                 #region "Revista institucion"
-                    
+                public List<RevistaInstitucion> sp_frontui_getRevistasInstitucion(int idInstitucion, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            ControlRevistaInstitucion controlRevista = new ControlRevistaInstitucion();
+                            return controlRevista.sp_frontui_getRevistasInstitucion(idInstitucion,idUsuarioEjecutor,idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public RevistaInstitucion sp_frontui_addRevistaInstitucion(RevistaInstitucion revistaAgregar,int idUsuarioEjecutor,int idPagina)
                     {
                         try

@@ -16,7 +16,44 @@ namespace IUSLibs.FrontUI.Control
     public class ControlRevistaInstitucion : PadreLib
     {
         #region "gets"
-
+        public List<RevistaInstitucion> sp_frontui_getRevistasInstitucion(int idInstitucion,int idUsuarioEjecutor,int idPagina)
+        {
+            try
+            {
+                List<RevistaInstitucion> revistasInstituion = null;
+                RevistaInstitucion revista;
+                SPIUS sp = new SPIUS("sp_frontui_getRevistasInstitucion");
+                sp.agregarParametro("idInstitucion", idInstitucion);
+                sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
+                sp.agregarParametro("idPagina", idPagina);
+                DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                if (this.resultadoCorrectoGet(tb))
+                {
+                    if (tb[0].Rows.Count > 0)
+                    {
+                        revistasInstituion = new List<RevistaInstitucion>();
+                        foreach (DataRow row in tb[0].Rows)
+                        {
+                            revista = new RevistaInstitucion((int)row["idRevistaInstitucion"]);
+                            revista._anioPublicacion = (int)row["anioPublicacion"];
+                            revista._categoria = row["categoria"].ToString();
+                            revista._revista = row["revista"].ToString();
+                            revista._institucion = new Institucion((int)row["id_institucion_fk"]);
+                            revistasInstituion.Add(revista);
+                        }
+                    }
+                }
+                return revistasInstituion;
+            }
+            catch (ErroresIUS x)
+            {
+                throw x;
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+        }
         #endregion
         #region "sets"
             public bool sp_frontui_deleteRevistaInstitucion(int idRevistaInstitucion,int idUsuarioEjecutor,int idPagina){

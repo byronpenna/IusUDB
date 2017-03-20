@@ -1,6 +1,10 @@
 ﻿$(document).ready(function () {
     $(document).on("click", ".tabRevistas", function () {
-
+        var frm = {
+            idInstitucion: $(".txtHdIdInstitucion").val()
+        };
+        console.log("Frm es: ", frm);
+        tabRevistas(frm);
     })
     $(document).on("click", ".btnAddRevista", function (e) {
         var frm = serializeSection($(this).parents("tr"));
