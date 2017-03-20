@@ -48,6 +48,22 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
             #endregion
             #region "set"
                 #region "Revista institucion"
+                public RevistaInstitucion sp_frontui_updateRevistaInstitucion(RevistaInstitucion revistaActualizar, int idUsuarioEjecutor, int idPagina)
+                    {
+                        try
+                        {
+                            ControlRevistaInstitucion controlRevista = new ControlRevistaInstitucion();
+                            return controlRevista.sp_frontui_updateRevistaInstitucion(revistaActualizar, idUsuarioEjecutor, idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
                     public bool sp_frontui_deleteRevistaInstitucion(int idRevistaInstitucion, int idUsuarioEjecutor, int idPagina)
                     {
                         try

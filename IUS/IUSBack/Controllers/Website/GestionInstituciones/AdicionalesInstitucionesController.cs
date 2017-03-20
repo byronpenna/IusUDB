@@ -59,37 +59,69 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
         #endregion
         #region "acciones ajax"
             #region "revista"
-                
-                public ActionResult sp_frontui_getRevistasInstitucion()
-            {
-
-                Dictionary<object, object> frm, respuesta = null;
-                try
+                public ActionResult sp_frontui_updateRevistaInstitucion()
                 {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
-                    if (respuesta == null)
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
                     {
-                        List<RevistaInstitucion> revistasInstituciones = this._model.sp_frontui_getRevistasInstitucion(this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina);
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("estado", true);
-                        respuesta.Add("revistasInstitucion",revistasInstituciones);
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
+                        {
+                            RevistaInstitucion revistaActualizar = new RevistaInstitucion(this.convertObjAjaxToInt(frm["txtHdIdRevista"]));
+                            revistaActualizar._revista = frm["txtNombreRevista"].ToString();
+                            revistaActualizar._categoria = frm["txtCategoria"].ToString();
+                            revistaActualizar._anioPublicacion = this.convertObjAjaxToInt(frm["txtAnioPublicacion"]);
 
+                            RevistaInstitucion revistaActualizada = this._model.sp_frontui_updateRevistaInstitucion(revistaActualizar,usuarioSession._idUsuario,this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("revistaActualizada", revistaActualizar);
+                        }
                     }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                catch (ErroresIUS x)
+                public ActionResult sp_frontui_getRevistasInstitucion()
                 {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
+
+                    Dictionary<object, object> frm, respuesta = null;
+                    try
+                    {
+                        Usuario usuarioSession = this.getUsuarioSesion();
+                        frm = this.getAjaxFrm();
+                        respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                        if (respuesta == null)
+                        {
+                            List<RevistaInstitucion> revistasInstituciones = this._model.sp_frontui_getRevistasInstitucion(this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina);
+                            respuesta = new Dictionary<object, object>();
+                            respuesta.Add("estado", true);
+                            respuesta.Add("revistasInstitucion",revistasInstituciones);
+
+                        }
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                    return Json(respuesta);
                 }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }
                 public ActionResult sp_frontui_deleteRevistaInstitucion()
                 {
                     Dictionary<object, object> frm, respuesta = null;

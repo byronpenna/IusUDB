@@ -84,7 +84,7 @@ namespace IUSLibs.FrontUI.Control
                 try
                 {
                     RevistaInstitucion revistaActualizada = null;
-                    SPIUS sp = new SPIUS("sp_frontui_addRevistaInstitucion");
+                    SPIUS sp = new SPIUS("sp_frontui_updateRevistaInstitucion");
                     sp.agregarParametro("revista", revistaActualizar._revista);
                     sp.agregarParametro("categoria", revistaActualizar._categoria);
                     sp.agregarParametro("anioPublicacion", revistaActualizar._anioPublicacion);

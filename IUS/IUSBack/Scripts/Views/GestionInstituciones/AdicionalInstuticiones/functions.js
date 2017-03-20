@@ -1,4 +1,29 @@
 ﻿// scripts
+    function getObjRevista(trRevista) {
+        var revista = {
+            _revista: $.trim(trRevista.find(".tdRevista").text()),
+            _categoria: $.trim(trRevista.find(".tdCategoria").text()),
+            _anioPublicacion: $.trim(trRevista.find(".tdAnioPublicacion").text())
+        }
+        return revista;
+    }
+    function editMode(trRevista) {
+        var revista = getObjRevista(trRevista);
+        console.log("Revista es: ", revista);
+        trRevista.find(".txtNombreRevista").val(revista._revista);
+        trRevista.find(".txtCategoria").val(revista._categoria);
+        trRevista.find(".txtAnioPublicacion").val(revista._anioPublicacion);
+
+        controlesEdit(true, trRevista);
+    }
+    function btnAceptarEdicionRevista(frm) {
+        actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_updateRevistaInstitucion", frm, function (data) {
+            console.log("Update es: ", data);
+            if (data.estado) {
+
+            }
+        })
+    }
     function btnEliminarRevista(frm,tr) {
         actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_deleteRevistaInstitucion", frm, function (data) {
             console.log("La respuesta eliminar es: ", data);
@@ -14,21 +39,52 @@
                 <input class='hidden txtHdIdRevista' name='txtHdIdRevista' value='" + revista._idRevistaInstitucion + "'>\
             </td>\
             <td>\
-                " + revista._revista + "\
+                <div class='editMode hidden'>\
+                    <input type='text' name='txtNombreRevista' class='inputBack input-sm form-control txtNombreRevista txtEdit' />\
+                    <div class='row marginNull divResultado hidden'>\
+                    </div>\
+                </div>\
+                <div class='normalMode tdRevista'>\
+                    " + revista._revista + "\
+                </div>\
             </td>\
             <td>\
+                <div class='editMode hidden'>\
+                    <input type='text' name='txtCategoria' class='inputBack input-sm form-control txtCategoria txtEdit' />\
+                    <div class='row marginNull divResultado hidden'>\
+                    </div>\
+                </div>\
+                <div class='normalMode tdCategoria'>\
                 " + revista._categoria + "\
+                </div>\
             </td>\
             <td>\
+                <div class='editMode hidden'>\
+                    <input type='text' name='txtAnioPublicacion' class='inputBack input-sm form-control txtAnioPublicacion txtEdit' />\
+                    <div class='row marginNull divResultado hidden'>\
+                    </div>\
+                </div>\
+                <div class='normalMode tdAnioPublicacion'>\
                 " + revista._anioPublicacion + "\
+                </div>\
             </td>\
             <td>\
-                <button class='btn btnEliminarRevista'>\
-                    Eliminar\
-                </button>\
-                <button class='btn btnModificarRevista'>\
-                    Modificar\
-                </button>\
+                <div class='editMode hidden'>\
+                    <button class='btn btnAceptarEdicionRevista'>\
+                        Aceptar\
+                    </button>\
+                    <button class='btn btnCancelarEdicionRevista'>\
+                        Cancelar\
+                    </button>\
+                </div>\
+                <div class='normalMode tdBotonesRevista'>\
+                    <button class='btn btnEliminarRevista'>\
+                        Eliminar\
+                    </button>\
+                    <button class='btn btnModificarRevista'>\
+                        Modificar\
+                    </button>\
+                </div>\
             </td>\
         </tr>\
         ";
@@ -41,7 +97,7 @@
                 if (data.revistasInstitucion !== undefined && data.revistasInstitucion != null) {
                     var tr = "";
                     $.each(data.revistasInstitucion, function (i, revista) {
-                         tr += getTrRevista(revista);
+                        tr += getTrRevista(revista);
                     })
                     $(".tbBodyRevista").empty().append(tr);
                 }

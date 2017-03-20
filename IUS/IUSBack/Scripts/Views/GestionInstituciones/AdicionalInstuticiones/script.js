@@ -1,4 +1,17 @@
 ﻿$(document).ready(function () {
+    $(document).on("click", ".btnAceptarEdicionRevista", function () {
+        var frm = serializeSection($(this).parents("tr"));
+        console.log("Frm a enviar es: ", frm);
+        btnAceptarEdicionRevista(frm);
+    })
+    $(document).on("click", ".btnCancelarEdicionRevista", function () {
+        var tr = $(this).parents("tr");
+        controlesEdit(false, tr);
+    })
+    $(document).on("click", ".btnModificarRevista", function () {
+        var tr = $(this).parents("tr");
+        editMode(tr)
+    })
     $(document).on("click", ".btnEliminarRevista", function () {
         var tr = $(this).parents("tr");
         var frm = {
