@@ -1,4 +1,13 @@
 ﻿$(document).ready(function () {
+    $(document).on("click", ".tabRevistas", function () {
+
+    })
+    $(document).on("click", ".btnAddRevista", function (e) {
+        var frm = serializeSection($(this).parents("tr"));
+        frm.idInstitucion = $(".txtHdIdInstitucion").val();
+        console.log("Frm es: ", frm);
+        btnAddRevista(frm);
+    })
     $(document).on("click", ".txtNumAlumnos", function (e) {
         e.preventDefault();
         e.stopPropagation();

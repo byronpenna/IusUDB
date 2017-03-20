@@ -8,6 +8,8 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.SEC.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.FrontUI.Entidades;
+
 namespace IUSBack.Controllers.Website.GestionInstituciones
 {
     public class AdicionalesInstitucionesController : PadreController
@@ -56,6 +58,37 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult sp_frontui_addRevistaInstitucion()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        RevistaInstitucion revistaAgregar = new RevistaInstitucion(-1);
+                        RevistaInstitucion revistaAgregada;
+                        revistaAgregar._revista = frm["txtNombreRevista"].ToString(); revistaAgregar._categoria = frm["txtCategoria"].ToString();
+                        revistaAgregar._anioPublicacion = this.convertObjAjaxToInt(frm["txtAnioPublicacion"]); revistaAgregar._institucion = new Institucion(this.convertObjAjaxToInt(frm["idInstitucion"]));
+                        revistaAgregada = this._model.sp_frontui_addRevistaInstitucion(revistaAgregar,usuarioSession._idUsuario,this._idPagina);
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             public ActionResult sp_frontui_insertAreaConocimientoInstitucion()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -83,35 +116,7 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                 }
                 return Json(respuesta);
             }
-            /*public ActionResult sp_frontui_insertNivelInstituciones()
-            {
-                Dictionary<object, object> frm, respuesta = null;
-                try
-                {
-                    Usuario usuarioSession = this.getUsuarioSesion();
-                    frm = this.getAjaxFrm();
-
-                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
-                    if (respuesta == null)
-                    {
-                        respuesta = new Dictionary<object, object>();
-                        respuesta.Add("nivelesEducacion", this._model.sp_frontui_insertNivelInstituciones(frm["strEstadoNivel"].ToString(), this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina));
-                        respuesta.Add("estado", true);
-                        //, , , 
-                    }   
-                }
-                catch (ErroresIUS x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
-                    respuesta = this.errorTryControlador(1, error);
-                }
-                catch (Exception x)
-                {
-                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
-                    respuesta = this.errorTryControlador(2, error);
-                }
-                return Json(respuesta);
-            }*/
+            
             public ActionResult sp_frontui_insertNivelInstituciones()
             {
                 Dictionary<object, object> frm, respuesta = null;
@@ -141,6 +146,35 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                 }
                 return Json(respuesta);
             }
+        /*public ActionResult sp_frontui_insertNivelInstituciones()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("nivelesEducacion", this._model.sp_frontui_insertNivelInstituciones(frm["strEstadoNivel"].ToString(), this.convertObjAjaxToInt(frm["idInstitucion"]), usuarioSession._idUsuario, this._idPagina));
+                        respuesta.Add("estado", true);
+                        //, , , 
+                    }   
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }*/
         #endregion
     }
 }

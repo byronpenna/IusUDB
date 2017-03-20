@@ -1,4 +1,9 @@
 ﻿// scripts
+    function btnAddRevista(frm) {
+        actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_addRevistaInstitucion", frm, function (data) {
+            console.log("la respuesta es: ", data);
+        })
+    }
     function btnGuardarAreaConocimiento(frm) {
         console.log("El formulario es", frm);
         frm.strAreaCarrera = "";

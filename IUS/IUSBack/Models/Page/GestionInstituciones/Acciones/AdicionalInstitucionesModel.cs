@@ -47,6 +47,26 @@ namespace IUSBack.Models.Page.GestionInstituciones.Acciones
                 }
             #endregion
             #region "set"
+                #region "Revista institucion"
+                    
+                    public RevistaInstitucion sp_frontui_addRevistaInstitucion(RevistaInstitucion revistaAgregar,int idUsuarioEjecutor,int idPagina)
+                    {
+                        try
+                        {
+                            ControlRevistaInstitucion controlRevista = new ControlRevistaInstitucion();
+                            return controlRevista.sp_frontui_addRevistaInstitucion(revistaAgregar,idUsuarioEjecutor,idPagina);
+                        }
+                        catch (ErroresIUS x)
+                        {
+                            throw x;
+                        }
+                        catch (Exception x)
+                        {
+                            throw x;
+                        }
+                    }
+                #endregion
+                
                 public List<NivelEducacion> sp_frontui_insertNivelInstituciones(string strNiveles,string strNumAlumnos,int idInstitucion,int idUsuarioEjecutor,int idPagina)
                 {
                     try

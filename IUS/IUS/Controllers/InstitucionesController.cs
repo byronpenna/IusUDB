@@ -109,6 +109,7 @@ namespace IUS.Controllers
                 }
                 while(reader.read())*/
                 /***/
+                ControlInstitucion controlInstitucion = new ControlInstitucion();
                 try
                 {
                     string ip               = Request.UserHostAddress;
@@ -119,9 +120,10 @@ namespace IUS.Controllers
                     //ViewBag.menu22          = this.activeClass;
                     ViewBag.idContinente    = id;
                     this.setTraduccion(traducciones);
-                    ViewBag.menu13          = this.activeClass;
-                    ViewBag.idPage          = id2;
-                    ViewBag.notiEvento      = this._model.sp_adminfe_front_pantallaHome(3,1, ip, this.idPagina);
+                    ViewBag.menu13                      = this.activeClass;
+                    ViewBag.idPage                      = id2;
+                    ViewBag.nombresContinentes          = controlInstitucion.getLabelsContinentes(lang);
+                    ViewBag.notiEvento                  = this._model.sp_adminfe_front_pantallaHome(3,1, ip, this.idPagina);
                 }
                 catch (ErroresIUS x)
                 {

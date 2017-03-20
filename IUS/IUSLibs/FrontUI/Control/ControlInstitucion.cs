@@ -57,6 +57,41 @@ namespace IUSLibs.FrontUI.Control
         #endregion
         #region "get"
             #region "frontend"
+                public List<Continente> getLabelsContinentes(string idioma)
+                {
+                    List<Continente> continentes = null;
+                    Continente continente;
+                    try
+                    {
+
+                        SPIUS sp = new SPIUS("sp_frontui_getNombreContinentesByIdioma");
+                        sp.agregarParametro("idioma", idioma);
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                continentes = new List<Continente>();
+                                foreach (DataRow row in tb[0].Rows)
+                                {
+                                    continente = new Continente((int)row["idContinente"],row["traduccion"].ToString());
+                                    continentes.Add(continente);
+                                }
+                                
+                            }
+                        }
+
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                    return continentes;
+                }
                 public Dictionary<object,object> sp_frontui_getInstitucionesByContinente(int idContinente,string idioma,string ip,int idPagina)
                 {
                     Dictionary<object, object> respuesta = new Dictionary<object, object>();
@@ -409,8 +444,6 @@ namespace IUSLibs.FrontUI.Control
                     sp.agregarParametro("direccion", institucionEditar._direccion);
                     sp.agregarParametro("idPais", institucionEditar._pais._idPais);
                     sp.agregarParametro("ciudad", institucionEditar._ciudad);
-                    /*@			int,
-		            @	int,*/
                     sp.agregarParametro("fundacion", institucionEditar._anioFundacion);
                     sp.agregarParametro("idTipoInstitucion", institucionEditar._tipoInstitucion._idTipoInstitucion);
 

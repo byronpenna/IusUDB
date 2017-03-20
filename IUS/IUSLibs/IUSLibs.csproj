@@ -117,6 +117,7 @@
     <Compile Include="FrontUI\Control\ControlInstitucion.cs" />
     <Compile Include="FrontUI\Control\ControlNivelesEducaion.cs" />
     <Compile Include="FrontUI\Control\ControlPais.cs" />
+    <Compile Include="FrontUI\Control\ControlRevistaInstitucion.cs" />
     <Compile Include="FrontUI\Control\ControlTelefonoInstitucion.cs" />
     <Compile Include="FrontUI\Control\ControlTipoInstitucion.cs" />
     <Compile Include="FrontUI\Entidades\Continente.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="FrontUI\Entidades\InstitucionNivel.cs" />
     <Compile Include="FrontUI\Entidades\NivelEducacion.cs" />
     <Compile Include="FrontUI\Entidades\Pais.cs" />
+    <Compile Include="FrontUI\Entidades\RevistaInstitucion.cs" />
     <Compile Include="FrontUI\Entidades\TelefonoInstitucion.cs" />
     <Compile Include="FrontUI\Entidades\TipoInstitucion.cs" />
     <Compile Include="FrontUI\Eventos\Control\ControlEventos.cs" />
