@@ -196,6 +196,7 @@ namespace IUSLibs.FrontUI.Control
                             
                             InstitucionNivel    institucionNivel;
                             EmailInstitucion emailInstitucion; List<EmailInstitucion> emails = null;
+                            List<RevistaInstitucion> revistas = null;
                     // procedimiento
                         SPIUS sp = new SPIUS("sp_frontui_front_getInstitucionById");
                         sp.agregarParametro("idInstitucion", idInstitucion);
@@ -287,6 +288,19 @@ namespace IUSLibs.FrontUI.Control
                                     emails = new List<EmailInstitucion>();
                                     emails.Add(emailInstitucion);
                                     institucion._emails = emails;
+                                }
+                                if (tb[6].Rows.Count > 0)
+                                {
+                                    
+                                    RevistaInstitucion revista;
+                                    revistas = new List<RevistaInstitucion>();
+                                    foreach(DataRow rowRevista in tb[6].Rows)
+                                    {
+                                        revista = new RevistaInstitucion((int)rowRevista["idRevistaInstitucion"], rowRevista["revista"].ToString(), rowRevista["categoria"].ToString(), (int)rowRevista["anioPublicacion"]);
+                                        revista._institucion = new Institucion((int)rowRevista["id_institucion_fk"]);
+                                        revistas.Add(revista);
+                                    }
+                                    institucion._revistas = revistas;
                                 }
                                 retorno = new Dictionary<object, object>();
                                 retorno.Add("institucion", institucion);

@@ -26,6 +26,7 @@ namespace IUSLibs.FrontUI.Entidades
                 public List<AreaCarrera>            _areas;
                 public List<InstitucionNivel>       _institucionesNiveles;
                 public List<EmailInstitucion>       _emails;
+                public List<RevistaInstitucion>     _revistas;
         #endregion
         #region "constructores"
             public Institucion(int idInstitucion, string nombre)

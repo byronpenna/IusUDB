@@ -12,6 +12,7 @@
     string src = "";
     Dictionary<object, object> data             = (Dictionary<object, object>)ViewBag.data;
     Institucion institucion                     = (Institucion)data["institucion"];
+    
     if (institucion._logo != null)
     {
         src = "data:image/png;base64," + Convert.ToBase64String(institucion._logo, 0, institucion._logo.Length);
@@ -179,6 +180,32 @@
                 </tbody>
             </table>
         </div>
+        @if (institucion._revistas != null && institucion._revistas.Count > 0)
+        {
+        <div class="row marginNull filaOtherData" >
+            <h4>Revistas por institución:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Revista</th>
+                        <th>Categoria</th>
+                        <th>Inicio de publicaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (RevistaInstitucion revista in institucion._revistas)
+                    {
+                        <tr>
+                            <td>@revista._revista</td>
+                            <td>@revista._categoria</td>
+                            <td>@revista._anioPublicacion.ToString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>    
+        }
+        
     </div>
 </div>
     @*</div>
