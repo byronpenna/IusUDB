@@ -9,7 +9,7 @@
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";    
     Dictionary<object, object>  iniciales               = (Dictionary<object, object>)ViewBag.iniciales;
-    List<InstitucionNivel>      InstitucionesNiveles    = null;  
+    List<IUSLibs.FrontUI.Entidades.InstitucionNivel> InstitucionesNiveles = null;  
     List<AreaCarrera>           areasCarrera            = null;
     Permiso                     permiso                 = null;
     try
@@ -244,6 +244,11 @@
                             <label>Ciudades</label>
                             <input class="form-control" />
                         </div>
+                    </div>
+                    <div class="row marginNull" >
+                        <button class="btnGuardarCambiosOtros">
+                            Guardar cambios
+                        </button>
                     </div>
                 </div>
             </div>

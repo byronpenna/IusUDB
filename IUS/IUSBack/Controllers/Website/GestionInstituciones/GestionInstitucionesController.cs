@@ -291,9 +291,9 @@ namespace IUSBack.Controllers
                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                         if (respuesta == null)
                         {
-                            Institucion institucionEditar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), frm["txtNombreInstitucionEdit"].ToString(), frm["txtAreaDireccionEdit"].ToString(), this.convertObjAjaxToInt(frm["cbPaisEdit"]), true);
-                            
-                            institucionEditar._ciudad = frm["txtCiudad"].ToString();
+                            Institucion institucionEditar = new Institucion(this.convertObjAjaxToInt(frm["txtHdIdInstitucion"]), frm["txtNombreInstitucionEdit"].ToString(), null, this.convertObjAjaxToInt(frm["cbPaisEdit"]), true);
+                            //frm["txtAreaDireccionEdit"].ToString()
+                            institucionEditar._ciudad = null; //frm["txtCiudad"].ToString();
                             institucionEditar._anioFundacion = this.convertObjAjaxToInt(frm["txtAnioFundacion"]);
                             institucionEditar._tipoInstitucion = new TipoInstitucion(this.convertObjAjaxToInt(frm["cbTipoInstitucion"]));//Key = 
                             //institucionEditar._anioFundacion = this.convertObjAjaxToInt(frm["txtAnioFundacion"]);

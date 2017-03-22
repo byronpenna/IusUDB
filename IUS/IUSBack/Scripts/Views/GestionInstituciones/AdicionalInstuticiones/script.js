@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    $(document).on("click", ".btnGuardarCambiosOtros", function () {
+
+    })
     $(document).on("click", ".btnAceptarEdicionRevista", function () {
         var frm = serializeSection($(this).parents("tr"));
         console.log("Frm a enviar es: ", frm);

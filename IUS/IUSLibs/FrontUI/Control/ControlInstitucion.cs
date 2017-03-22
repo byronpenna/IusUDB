@@ -455,9 +455,19 @@ namespace IUSLibs.FrontUI.Control
                     SPIUS sp = new SPIUS("sp_frontui_editInstitucion");
                     
                     sp.agregarParametro("nombre", institucionEditar._nombre);
-                    sp.agregarParametro("direccion", institucionEditar._direccion);
+                    
                     sp.agregarParametro("idPais", institucionEditar._pais._idPais);
-                    sp.agregarParametro("ciudad", institucionEditar._ciudad);
+                    
+                    if (institucionEditar._direccion != null)
+                    {
+                        sp.agregarParametro("direccion", institucionEditar._direccion);
+                    }
+                    
+                    if (institucionEditar._ciudad != null)
+                    {
+                        sp.agregarParametro("ciudad", institucionEditar._ciudad);
+                    }
+                    
                     sp.agregarParametro("fundacion", institucionEditar._anioFundacion);
                     sp.agregarParametro("idTipoInstitucion", institucionEditar._tipoInstitucion._idTipoInstitucion);
 
