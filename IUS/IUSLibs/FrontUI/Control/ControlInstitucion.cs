@@ -601,10 +601,11 @@ namespace IUSLibs.FrontUI.Control
                         sp.agregarParametro("nombre", institucionAgregar._nombre);
                         sp.agregarParametro("direccion", institucionAgregar._direccion);
                         sp.agregarParametro("idPais", institucionAgregar._pais._idPais);
-                        sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                         sp.agregarParametro("ciudad", institucionAgregar._ciudad);
                         sp.agregarParametro("fundacion", institucionAgregar._anioFundacion);
                         sp.agregarParametro("idTipoInstitucion", institucionAgregar._tipoInstitucion._idTipoInstitucion);
+                        sp.agregarParametro("rector", institucionAgregar._rector);
+                        sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                         sp.agregarParametro("idPagina", idPagina);
                     // acciones
                     try

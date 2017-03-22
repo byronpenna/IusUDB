@@ -356,9 +356,11 @@ namespace IUSBack.Controllers
                         if (respuesta == null)
                         {
                             Institucion institucionAgregar,institucionAgregada=null;
-                            institucionAgregar = new Institucion(frm["txtNombreInstitucion"].ToString(), frm["txtAreaDireccion"].ToString(), this.convertObjAjaxToInt(frm["cbPais"]));
+                            //frm["txtAreaDireccion"].ToString()
+                            institucionAgregar = new Institucion(frm["txtNombreInstitucion"].ToString(),"" , this.convertObjAjaxToInt(frm["cbPais"]));
                             institucionAgregar._anioFundacion = this.convertObjAjaxToInt(frm["txtAnio"]);
-                            institucionAgregar._ciudad = frm["txtCiudad"].ToString();
+                            institucionAgregar._ciudad = "";//frm["txtCiudad"].ToString();
+                            institucionAgregar._rector = "";
                             institucionAgregar._tipoInstitucion = new TipoInstitucion(this.convertObjAjaxToInt(frm["cbTipoInst"]));
                             institucionAgregada = this._model.sp_frontui_insertInstitucion(institucionAgregar, usuarioSession._idUsuario, this._idPagina);
                             if (institucionAgregada != null)

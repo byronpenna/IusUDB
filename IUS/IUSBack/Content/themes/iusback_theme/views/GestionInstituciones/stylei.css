@@ -46,6 +46,12 @@ body {
   background: #c6c5c5;
   font-family: "MyriadRegular"; }
 
+.rojito {
+  background: #cd1315; }
+
+.grisito {
+  background: #eeecec; }
+
 .marginNull {
   margin: 0; }
 
@@ -96,6 +102,9 @@ body {
 
 .fullSize {
   width: 100%; }
+
+.pointer {
+  cursor: pointer; }
 
 .input-group-addon {
   border-radius: 0;
@@ -262,7 +271,6 @@ table {
         width: 100%; }
 
 .rowSearch {
-  background: #eeecec;
   padding-top: 8px;
   padding-bottom: 1%;
   height: 45px; }
@@ -341,7 +349,10 @@ table.datatable {
 .tdFundacion {
   width: 10%; }
 
-.tdDireccion, .tdNombreInsitucion, .tdPais, .tdTipo {
+.tdNombreInsitucion {
+  width: 30%; }
+
+.tdPais, .tdTipo {
   width: 15%; }
 
 .normalMode {

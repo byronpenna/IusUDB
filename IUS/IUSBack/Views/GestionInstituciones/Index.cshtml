@@ -64,11 +64,11 @@
                             <tr>
                                 <th></th>
                                 <th>Nombre</th>
-                                <th class="thDireccion">Direccion</th>
+                                @*<th class="thDireccion">Direccion</th>*@
                                 <th>Pais</th>
                                 <th>Fundacion</th>
                                 <th>Tipo</th>
-                                <th>Ciudad</th>
+                                @*<th>Ciudad</th>*@
                                 <th>Acciones</th>
                             </tr>
                             <tr class="trFrmInstituciones">
@@ -79,12 +79,12 @@
 
                                     </div>
                                 </td>
-                                <td>
+                                @*<td>
                                     <textarea class="inputBack txtAreaDireccion form-control txtAreaDireccionVal" name="txtAreaDireccion"></textarea>
                                     <div class="row marginNull divResultado hidden">
 
                                     </div>
-                                </td>
+                                </td>*@
                                 <td>
                                     <select class="inputBack cbPais cbPaisVal" name="cbPais">
                                         @if (paises != null && paises.Count > 0)
@@ -135,12 +135,12 @@
 
                                     </div>
                                 </td>
-                                <td>
+                                @*<td>
                                     <input class="inputBack form-control txtCiudad" name="txtCiudad" />
                                     <div class="row marginNull divResultado hidden">
 
                                     </div>
-                                </td>
+                                </td>*@
                                 <td>
                                     <button class="inputBack btn btnAddInstitucion btn-default " @permiso.stringCrear>Agregar </button>
                                 </td>
@@ -166,13 +166,12 @@
                                             </div>
                                             <div class="normalMode tdNombre">@institucion._nombre</div>
                                         </td>
-                                        <td class="tdDireccion">
+                                        @*<td class="tdDireccion">
                                             <div class="editMode hidden">
                                                 <textarea class="inputBack txtAreaDireccionEdit form-control txtAreaDireccionVal" name="txtAreaDireccionEdit"></textarea>
                                             </div>
                                             <div class="normalMode tdDireccion tdDireccionText ">@institucion._direccion</div>
-
-                                        </td>
+                                        </td>*@
                                         <td class="tdPais">
                                             <div class="editMode hidden">
                                                 <select class="cbPaisEdit cbPaisVal selectBack" name="cbPaisEdit"></select>
@@ -195,12 +194,12 @@
                                                 @institucion._tipoInstitucion._tipoInstitucion
                                             </div>
                                         </td>
-                                        <td class="tdCiudad">
+                                        @*<td class="tdCiudad">
                                             <div class="editMode hidden">
                                                 <input class="form-control txtCiudad inputBack" name="txtCiudad" />
                                             </div>
                                             <div class="normalMode tdCiudadText">@institucion._ciudad</div>
-                                        </td>
+                                        </td>*@
 
                                         <td class="tdAcciones">
                                             <div class="editMode hidden">

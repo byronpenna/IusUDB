@@ -18,6 +18,7 @@ namespace IUSLibs.FrontUI.Entidades
             public string           _ciudad;
             public TipoInstitucion  _tipoInstitucion;
             public int              _anioFundacion;
+            public string           _rector;
             // extras a tabla
                 public List<TelefonoInstitucion>    _telefonos;
                 public List<EnlaceInstitucion>      _enlaces;
