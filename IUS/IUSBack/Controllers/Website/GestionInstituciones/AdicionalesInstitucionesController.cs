@@ -28,7 +28,7 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
             }
         #endregion
         #region "url"
-            public ActionResult Index(int id)
+            public ActionResult Index(int id=-1,int id2=-1)
             {
                 ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 3);
                 Usuario usuarioSession = this.getUsuarioSesion();
@@ -38,13 +38,20 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                 }
                 try
                 {
+                    /*
+                     id: idInstitucion
+                     id2: id tab
+                     */
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.titleModulo     = "Manejo de instituciones";
                     ViewBag.iniciales       = this._model.getInfoInicialAdicionalInstituciones(usuarioSession._idUsuario, this._idPagina,id);
                     GestionInstitucionesModel modeloInstitucion = new GestionInstitucionesModel();
                     ViewBag.institucionActual = modeloInstitucion.sp_frontui_getInstitucionById(id,usuarioSession._idUsuario,this._idPagina);
                     ViewBag.idInstitucion   = id;
-
+                    // variables de navegación
+                        ViewBag.idTab = id2;
+                        ViewBag.nombreClass = this._nombreClass.Replace("Controller", "");
+                        ViewBag.nombreFuncion = "Index";
                     return View();
                 }
                 catch (ErroresIUS x)
@@ -200,6 +207,7 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                             revistaAgregada = this._model.sp_frontui_addRevistaInstitucion(revistaAgregar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);
+                            respuesta.Add("revistaAgregada", revistaAgregada);
                         }
                     }
                     catch (ErroresIUS x)

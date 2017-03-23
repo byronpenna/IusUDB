@@ -1,4 +1,16 @@
 ﻿// scripts
+    function iniciales() {
+        var i = $(".txtHdIdTab").val();
+        if (i == -1) {
+            i = 1;
+        }
+        i--;
+        console.log("iniciales es ", i);
+        $(".tabs li")[i].click();
+    }
+    function changeUrl(nombreClass, funcion, id1, id2, id3) {
+        window.history.pushState({}, "", RAIZ + nombreClass + "/" + funcion + "/" + id1 + "/" + id2 );
+    }
     function btnGuardarCambiosOtros(frm) {
         actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/guardarOtrosInstituciones", frm, function (data) {
             console.log("El estado es: ", data);
@@ -40,6 +52,12 @@
             if (data.estado) {
                 tr.remove();
             }
+        })
+    }
+    function btnAddRevista(frm) {
+        actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_addRevistaInstitucion", frm, function (data) {
+            console.log("la respuesta es: ", data);
+
         })
     }
     function getTrRevista(revista) {
@@ -114,11 +132,7 @@
             }
         })
     }
-    function btnAddRevista(frm) {
-        actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_addRevistaInstitucion", frm, function (data) {
-            console.log("la respuesta es: ", data);
-        })
-    }
+    
     function btnGuardarAreaConocimiento(frm) {
         console.log("El formulario es", frm);
         frm.strAreaCarrera = "";

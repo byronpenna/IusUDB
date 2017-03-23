@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    iniciales();
+    $(document).on("click", ".btnTab", function () {
+        changeUrl($(".txtHdNombreClass").val(), $(".txtHdFuncion").val(), $(".txtHdIdInstitucion").val(), $(this).attr("id"));
+    })
     $(document).on("click", ".btnGuardarCambiosOtros", function () {
         var frm = serializeSection($(".tab4"));
         frm.idInstitucion = $(".txtHdIdInstitucion").val()

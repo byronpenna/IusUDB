@@ -33,6 +33,10 @@
         <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstuticiones/script.js"></script>
         <script src="~/Scripts/Views/GestionInstituciones/AdicionalInstuticiones/functions.js"></script>    
 }
+<input type="hidden" class="txtHdNombreClass" value="@ViewBag.nombreClass" />
+<input type="hidden" class="txtHdFuncion" value="@ViewBag.nombreFuncion" />
+<input type="hidden" class="txtHdIdTab" value="@ViewBag.idTab" />
+
 <div class="row marginNull contenidoCuerpo centroAdicionales">
     <input type="hidden" class="txtHdIdInstitucion" value="@ViewBag.idInstitucion" />
     <div class="row marginNull">
@@ -57,16 +61,16 @@
     <div class="row marginNull">
         <div class="col-lg-3">
             <ul class="tabs">
-                <li class="btnTab tabActive" target="#tab-4" id="4">
+                <li class="btnTab tabActive" target="#tab-1" id="1">
                     Otros Datos
                 </li>
-                <li class="btnTab" target="#tab-1" id="1">
+                <li class="btnTab" target="#tab-2" id="2">
                     Nivel
                 </li>
-                <li class="btnTab" target="#tab-2" id="2">
+                <li class="btnTab" target="#tab-3" id="3">
                     Areas de conocimiento
                 </li>
-                <li class="btnTab tabRevistas" target="#tab-3" id="3">
+                <li class="btnTab tabRevistas" target="#tab-4" id="4">
                     Revistas
                 </li>
             </ul>
@@ -76,7 +80,7 @@
 
             </div>
             <div class="row marginNull cuerpoIndex">
-                <div id="tab-1" class="tab marginNull hidden">
+                <div id="tab-2" class="tab marginNull hidden">
                     <div class="col-lg-12">
                         <h3 class="text-center">Seleccione nivel</h3>
                         <div class="row marginNull text-center rowBotones">
@@ -129,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tab-2" class="tab hidden marginNull">
+                <div id="tab-3" class="tab hidden marginNull">
                     <div class="col-lg-12">
                         <h3 class="text-center">Seleccione areas de conocimiento</h3>
                         <div class="row marginNull text-center rowBotones">
@@ -177,7 +181,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tab-3" class="tab hidden marginNull" >
+                <div id="tab-4" class="tab hidden marginNull" >
                     <h3 class="text-center">Revistas realizadas por institución</h3>
                     <div class="row marginNull">
                         <table class="table tbRevista">
@@ -232,7 +236,7 @@
                         </table>
                     </div>
                 </div>
-                <div id="tab-4" class="tab marginNull tab4">
+                <div id="tab-1" class="tab marginNull tab4">
                     <div class="row marginNull">
                         <div class="col-lg-6">
                             <label>Rector:</label>

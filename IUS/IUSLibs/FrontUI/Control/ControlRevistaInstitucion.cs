@@ -131,11 +131,11 @@ namespace IUSLibs.FrontUI.Control
                     sp.agregarParametro("idPagina", idPagina);
                     
                     DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
-                    if (this.resultadoCorrectoGet(tb))
+                    if (this.resultadoCorrecto(tb))
                     {
-                        if (tb[0].Rows.Count > 0)
+                        if (tb[1].Rows.Count > 0)
                         {
-                            DataRow row = tb[0].Rows[0];
+                            DataRow row = tb[1].Rows[0];
                             revistaAgregada = new RevistaInstitucion((int)row["idRevistaInstitucion"], row["revista"].ToString(), row["categoria"].ToString(), (int)row["anioPublicacion"]);
                             revistaAgregada._institucion = new Institucion((int)row["id_institucion_fk"]);
                         }
