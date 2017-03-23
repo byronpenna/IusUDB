@@ -181,12 +181,16 @@
                                 }
                             </div>
                         }
-                        <div class="col-lg-6">
-                            Rector: 
-                        </div>
-                        <div class="col-lg-6">
-
-                        </div>
+                        @if (institucion._rector != "")
+                        {
+                            <div class="col-lg-6 etiqueta">
+                                Rector:
+                            </div>
+                            <div class="col-lg-6 colMedia">
+                                @institucion._rector
+                            </div>    
+                        }
+                        
                     </div>
                 </div>
                 <div class="col-lg-3 colFotoInst">

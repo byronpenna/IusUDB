@@ -227,6 +227,10 @@ namespace IUSLibs.FrontUI.Control
                                 {
                                     institucion._ciudad = row["ciudad"].ToString();
                                 }
+                                if (row["rector"] != DBNull.Value)
+                                {
+                                    institucion._rector = row["rector"].ToString();
+                                }
                                 if(DBNull.Value != row["logo"]){
                                     institucion._logo = (byte[])row["logo"];
                                 }
