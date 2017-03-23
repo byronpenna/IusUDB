@@ -1,4 +1,11 @@
 ﻿// scripts
+    function btnGuardarCambiosOtros(frm) {
+        actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/guardarOtrosInstituciones", frm, function (data) {
+            if (data.estado) {
+
+            }
+        })
+    }
     function getObjRevista(trRevista) {
         var revista = {
             _revista: $.trim(trRevista.find(".tdRevista").text()),

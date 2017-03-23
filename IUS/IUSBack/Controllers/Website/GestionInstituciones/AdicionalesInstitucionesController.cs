@@ -58,6 +58,37 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult guardarOtrosInstituciones()
+            {
+                Dictionary<object, object> frm, respuesta = null;
+                try
+                {
+                    Usuario usuarioSession = this.getUsuarioSesion();
+                    frm = this.getAjaxFrm();
+                    respuesta = this.seguridadInicialAjax(usuarioSession, frm);
+                    if (respuesta == null)
+                    {
+                        Institucion institucionEditar = new Institucion(this.convertObjAjaxToInt(frm["idInstitucion"]));
+                        institucionEditar._rector = frm["txtRector"].ToString();
+                        institucionEditar._direccion = frm["txtDireccionInstitucion"].ToString();
+                        institucionEditar._ciudad = frm["txtCiudad"].ToString();
+                        respuesta = new Dictionary<object, object>();
+                        respuesta.Add("estado", true);
+                        respuesta.Add("institucionActualizada",this._model.actualizarOtrosInstitucion(institucionEditar, usuarioSession._idUsuario, this._idPagina));
+                    }
+                }
+                catch (ErroresIUS x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                    respuesta = this.errorTryControlador(1, error);
+                }
+                catch (Exception x)
+                {
+                    ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, x.HResult);
+                    respuesta = this.errorTryControlador(2, error);
+                }
+                return Json(respuesta);
+            }
             #region "revista"
                 public ActionResult sp_frontui_updateRevistaInstitucion()
                 {

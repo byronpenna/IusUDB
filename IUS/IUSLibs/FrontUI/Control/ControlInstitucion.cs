@@ -449,29 +449,70 @@ namespace IUSLibs.FrontUI.Control
                     }
                 #endregion
 
-                public Institucion sp_frontui_editInstitucion(Institucion institucionEditar,int idUsuarioEjecutor,int idPagina)
+                public Institucion sp_frontui_editInstitucion(Institucion institucionEditar,int idUsuarioEjecutor,int idPagina,int modo=1)
                 {
                     Institucion institucionEditada = null; Pais pais;
                     SPIUS sp = new SPIUS("sp_frontui_editInstitucion");
-                    
-                    sp.agregarParametro("nombre", institucionEditar._nombre);
-                    
-                    sp.agregarParametro("idPais", institucionEditar._pais._idPais);
-                    
-                    if (institucionEditar._direccion != null)
+                    switch (modo)
                     {
-                        sp.agregarParametro("direccion", institucionEditar._direccion);
-                    }
-                    
-                    if (institucionEditar._ciudad != null)
-                    {
-                        sp.agregarParametro("ciudad", institucionEditar._ciudad);
-                    }
-                    
-                    sp.agregarParametro("fundacion", institucionEditar._anioFundacion);
-                    sp.agregarParametro("idTipoInstitucion", institucionEditar._tipoInstitucion._idTipoInstitucion);
+                        case 1:
+                            {
+                                // basicos
+                                sp.agregarParametro("nombre", institucionEditar._nombre);
+                                sp.agregarParametro("idPais", institucionEditar._pais._idPais);
 
-                    sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
+                                sp.agregarParametro("fundacion", institucionEditar._anioFundacion);
+                                sp.agregarParametro("idTipoInstitucion", institucionEditar._tipoInstitucion._idTipoInstitucion);
+
+                                sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
+                                break;
+                            }
+                        case 2:
+                            {
+                                // adicionales 
+                                if (institucionEditar._rector != null)
+                                {
+                                    sp.agregarParametro("rector", institucionEditar._rector);
+                                }
+                                if (institucionEditar._direccion != null)
+                                {
+                                    sp.agregarParametro("direccion", institucionEditar._direccion);
+                                }
+
+                                if (institucionEditar._ciudad != null)
+                                {
+                                    sp.agregarParametro("ciudad", institucionEditar._ciudad);
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                // full
+                                sp.agregarParametro("nombre", institucionEditar._nombre);
+                                sp.agregarParametro("idPais", institucionEditar._pais._idPais);
+
+                                sp.agregarParametro("fundacion", institucionEditar._anioFundacion);
+                                sp.agregarParametro("idTipoInstitucion", institucionEditar._tipoInstitucion._idTipoInstitucion);
+
+                                sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
+
+                                if (institucionEditar._rector != null)
+                                {
+                                    sp.agregarParametro("rector", institucionEditar._rector);
+                                }
+                                if (institucionEditar._direccion != null)
+                                {
+                                    sp.agregarParametro("direccion", institucionEditar._direccion);
+                                }
+
+                                if (institucionEditar._ciudad != null)
+                                {
+                                    sp.agregarParametro("ciudad", institucionEditar._ciudad);
+                                }
+                                break;
+                            }
+                    }
+                    
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try

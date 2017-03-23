@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
     $(document).on("click", ".btnGuardarCambiosOtros", function () {
-
+        var frm = serializeSection($(".tab4"));
+        frm.idInstitucion = $(".txtHdIdInstitucion").val()
+        console.log("Frm es ", frm);
+        btnGuardarCambiosOtros(frm)
     })
     $(document).on("click", ".btnAceptarEdicionRevista", function () {
         var frm = serializeSection($(this).parents("tr"));
