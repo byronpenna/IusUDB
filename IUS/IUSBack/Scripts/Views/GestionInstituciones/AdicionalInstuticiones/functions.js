@@ -4,8 +4,14 @@
         if (i == -1) {
             i = 1;
         }
-        i--;
+        if (i == 4) {
+            console.log("entro");
+            $(".tabRevistas").click();
+        }
         console.log("iniciales es ", i);
+
+        i--;
+        
         $(".tabs li")[i].click();
     }
     function changeUrl(nombreClass, funcion, id1, id2, id3) {
@@ -57,7 +63,12 @@
     function btnAddRevista(frm) {
         actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_addRevistaInstitucion", frm, function (data) {
             console.log("la respuesta es: ", data);
+            var tr = getTrRevista(data.revistaAgregada);
+            $(".txtNombreRevista").val("");
+            $(".txtCategoria").val("");
+            $(".txtAnioPublicacion").val("");
 
+            $(".tbBodyRevista").prepend(tr);
         })
     }
     function getTrRevista(revista) {
@@ -128,6 +139,7 @@
                         tr += getTrRevista(revista);
                     })
                     $(".tbBodyRevista").empty().append(tr);
+                    
                 }
             }
         })

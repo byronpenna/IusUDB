@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    iniciales();
     $(document).on("click", ".btnTab", function () {
         changeUrl($(".txtHdNombreClass").val(), $(".txtHdFuncion").val(), $(".txtHdIdInstitucion").val(), $(this).attr("id"));
     })
@@ -113,4 +112,5 @@
         //console.log("Frm es: ", frm);
         //console.log("cuadritos", cuadritos);
     })
+    iniciales();
 })
