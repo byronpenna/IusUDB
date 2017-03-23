@@ -239,11 +239,21 @@
                         <div class="etiquetaTitulo">
                             @ViewData["texto-numeroEstudiantes"]
                         </div>
-                        <table class="table tablaNumeroEstudiante">
+                        @if (put)
+                        {
+                            int cn = 0;
+                            foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
+                            {
+                                cn += institucionNivel._numAlumnos;
+                            }
+                                <div class="col-lg-6">@ViewData["tb-td-total"]</div>
+                                <div class="col-lg-6">@cn</div>
+                        }
+                        @*<table class="table tablaNumeroEstudiante">
                             <thead>
                                 <tr>
-                                    <th>@ViewData["tb-th-nivelInstitucion"] </th> @*Nivel de instrucción*@
-                                    <th>@ViewData["tb-th-estudiantes"]</th>  @*Estudiantes*@
+                                    <th>@ViewData["tb-th-nivelInstitucion"] </th> Nivel de instrucción
+                                    <th>@ViewData["tb-th-estudiantes"]</th>  Estudiantes
                                 </tr>
                             </thead>
                             <tbody>
@@ -274,7 +284,7 @@
                                     </tr>
                                 }
                             </tbody>
-                        </table>
+                        </table>*@
                     </div>
                 }
             </div> 
