@@ -1,8 +1,11 @@
 ﻿// scripts
     function btnGuardarCambiosOtros(frm) {
         actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/guardarOtrosInstituciones", frm, function (data) {
+            console.log("El estado es: ", data);
             if (data.estado) {
-
+                printMessage($(".divGeneralesOtros"), "datos actualizados correctamente", true);
+            } else {
+                printMessage($(".divGeneralesOtros"), "Ocurrio un error actualizando", false);
             }
         })
     }

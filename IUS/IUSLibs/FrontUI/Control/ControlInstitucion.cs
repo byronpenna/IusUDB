@@ -480,7 +480,7 @@ namespace IUSLibs.FrontUI.Control
                                 sp.agregarParametro("fundacion", institucionEditar._anioFundacion);
                                 sp.agregarParametro("idTipoInstitucion", institucionEditar._tipoInstitucion._idTipoInstitucion);
 
-                                sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
+                                
                                 break;
                             }
                         case 2:
@@ -528,7 +528,8 @@ namespace IUSLibs.FrontUI.Control
                                 break;
                             }
                     }
-                    
+                    sp.agregarParametro("idInstitucion", institucionEditar._idInstitucion);
+                    sp.agregarParametro("modo", modo);
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
                     try
