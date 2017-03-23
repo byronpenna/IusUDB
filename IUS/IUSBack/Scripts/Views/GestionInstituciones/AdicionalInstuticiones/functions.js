@@ -44,11 +44,16 @@
 
         controlesEdit(true, trRevista);
     }
-    function btnAceptarEdicionRevista(frm) {
+    function btnAceptarEdicionRevista(frm,tr) {
         actualizarCatalogo(RAIZ + "/AdicionalesInstituciones/sp_frontui_updateRevistaInstitucion", frm, function (data) {
             console.log("Update es: ", data);
             if (data.estado) {
-
+                if (data.revistaActualizada !== undefined && data.revistaActualizada != null) {
+                    tr.find(".tdRevista").empty().append(data.revistaActualizada._revista);
+                    tr.find(".tdCategoria").empty().append(data.revistaActualizada._categoria);
+                    tr.find(".tdAnioPublicacion").empty().append(data.revistaActualizada._anioPublicacion);
+                }
+                controlesEdit(false, tr);
             }
         })
     }

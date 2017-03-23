@@ -9,9 +9,10 @@
         btnGuardarCambiosOtros(frm)
     })
     $(document).on("click", ".btnAceptarEdicionRevista", function () {
-        var frm = serializeSection($(this).parents("tr"));
+        var tr = $(this).parents("tr");
+        var frm = serializeSection(tr);
         console.log("Frm a enviar es: ", frm);
-        btnAceptarEdicionRevista(frm);
+        btnAceptarEdicionRevista(frm, tr);
     })
     $(document).on("click", ".btnCancelarEdicionRevista", function () {
         var tr = $(this).parents("tr");
