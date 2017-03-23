@@ -12,8 +12,12 @@
     List<IUSLibs.FrontUI.Entidades.InstitucionNivel> InstitucionesNiveles = null;  
     List<AreaCarrera>           areasCarrera            = null;
     Permiso                     permiso                 = null;
+    Institucion                 institucionActual       = null;
+    string direccion = "", rector = "", ciudades = "";
     try
     {
+        institucionActual       = (Institucion)ViewBag.institucionActual;
+        direccion = institucionActual._direccion; rector = institucionActual._rector; ciudades = institucionActual._ciudad;
         permiso                 = (Permiso)ViewBag.permiso;
         InstitucionesNiveles    = (List<InstitucionNivel>)iniciales["nivelesEducacion"];
         areasCarrera            = (List<AreaCarrera>)iniciales["areasConocimiento"];
@@ -232,17 +236,17 @@
                     <div class="row marginNull">
                         <div class="col-lg-6">
                             <label>Rector:</label>
-                            <input class="form-control txtRector" name="txtRector" />
+                            <input class="form-control txtRector" name="txtRector" value="@rector" />
                         </div>
                         <div class="col-lg-6">
                             <label>Dirección:</label>
-                            <textarea class="form-control txtDireccionInstitucion" name="txtDireccionInstitucion"></textarea>
+                            <textarea class="form-control txtDireccionInstitucion" name="txtDireccionInstitucion">@direccion</textarea>
                         </div>
                     </div>
                     <div class="row marginNull">
                         <div class="col-lg-6">
                             <label>Ciudades</label>
-                            <input class="form-control txtCiudad" name="txtCiudad" />
+                            <input class="form-control txtCiudad" name="txtCiudad" value="@ciudades" />
                         </div>
                     </div>
                     <div class="row marginNull" >

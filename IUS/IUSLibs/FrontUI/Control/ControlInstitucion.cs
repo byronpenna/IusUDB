@@ -339,7 +339,19 @@ namespace IUSLibs.FrontUI.Control
                             if (tb[0].Rows.Count > 0)
                             {
                                 DataRow row = tb[0].Rows[0];
-                                institucion = new Institucion((int)row["idInstitucion"], row["nombre"].ToString(), row["direccion"].ToString(), (int)row["id_pais_fk"], (bool)row["estado"]);
+                                institucion = new Institucion(
+                                    (int)row["idInstitucion"], 
+                                    row["nombre"].ToString(), row["direccion"].ToString(), 
+                                    (int)row["id_pais_fk"], (bool)row["estado"]);
+                                
+                                if (row["rector"] != DBNull.Value)
+                                {
+                                    institucion._rector = row["rector"].ToString();
+                                }
+                                if (row["ciudad"] != DBNull.Value)
+                                {
+                                    institucion._ciudad = row["ciudad"].ToString();
+                                }
                                 if (row["logo"] != DBNull.Value)
                                 {
                                     institucion._logo = (byte[])row["logo"];

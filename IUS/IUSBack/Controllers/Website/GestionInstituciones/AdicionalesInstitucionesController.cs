@@ -41,7 +41,10 @@ namespace IUSBack.Controllers.Website.GestionInstituciones
                     ViewBag.menus           = this._model.sp_sec_getMenu(usuarioSession._idUsuario);
                     ViewBag.titleModulo     = "Manejo de instituciones";
                     ViewBag.iniciales       = this._model.getInfoInicialAdicionalInstituciones(usuarioSession._idUsuario, this._idPagina,id);
+                    GestionInstitucionesModel modeloInstitucion = new GestionInstitucionesModel();
+                    ViewBag.institucionActual = modeloInstitucion.sp_frontui_getInstitucionById(id,usuarioSession._idUsuario,this._idPagina);
                     ViewBag.idInstitucion   = id;
+
                     return View();
                 }
                 catch (ErroresIUS x)
