@@ -27,12 +27,12 @@ namespace IUSLibs.RRHH.Control.Laboral
                     LaboralPersona laboralAgregado = null;
                     SPIUS sp = new SPIUS("sp_rrhh_insertLaboralPersonas");
                     //sp.agregarParametro("idEmpresa", laboralAgregar._empresa._idEmpresa);
-                    sp.agregarParametro("idInstitucion", laboralAgregar._institucion._idInstitucion);
+                    sp.agregarParametro("institucion", laboralAgregar._institucion);
                     sp.agregarParametro("inicio", laboralAgregar._inicio);
                     sp.agregarParametro("fin", laboralAgregar._fin);
                     sp.agregarParametro("idPersona", laboralAgregar._persona._idPersona);
                     //sp.agregarParametro("observaciones", laboralAgregar._observaciones);
-                    sp.agregarParametro("idCargo", laboralAgregar._cargo._idCargoEmpresa);
+                    sp.agregarParametro("cargo", laboralAgregar._cargo);
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
@@ -44,10 +44,10 @@ namespace IUSLibs.RRHH.Control.Laboral
                             if (tb[1].Rows.Count > 0)
                             {
                                 DataRow row = tb[1].Rows[0];
-                                laboralAgregado                         = new LaboralPersona((int)row["idLaboralPersona"], (int)row["id_institucion_fk"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], /*row["observaciones"].ToString(),*/ (int)row["id_cargo_fk"]);
-                                laboralAgregado._cargo._cargo           = row["cargo"].ToString();
+                                laboralAgregado                 = new LaboralPersona((int)row["idLaboralPersona"], row["institucion"].ToString(), (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"], /*row["observaciones"].ToString(),*/ row["cargo"].ToString());
+                                //laboralAgregado._cargo          = row["cargo"].ToString();
                                 //laboralAgregado._empresa._nombre    = row["nombreEmpresa"].ToString();
-                                laboralAgregado._institucion._nombre    = row["nombreInstitucion"].ToString();
+                                //laboralAgregado._institucion    = row["institucion"].ToString();
                             }
                         }
                         else
@@ -105,11 +105,11 @@ namespace IUSLibs.RRHH.Control.Laboral
                     SPIUS sp = new SPIUS("sp_rrhh_editarLaboralPersonas");
                     
                     //sp.agregarParametro("idEmpresa", laboralEditar._empresa._idEmpresa);
-                    sp.agregarParametro("idInstitucion", laboralEditar._institucion._idInstitucion);
+                    sp.agregarParametro("idInstitucion", laboralEditar._institucion);
                     sp.agregarParametro("inicio", laboralEditar._inicio);
                     sp.agregarParametro("fin", laboralEditar._fin);
                     //sp.agregarParametro("observaciones", laboralEditar._observaciones);
-                    sp.agregarParametro("idCargo", laboralEditar._cargo._idCargoEmpresa);
+                    sp.agregarParametro("idCargo", laboralEditar._cargo);
                     sp.agregarParametro("idLaboralPersona", laboralEditar._idLaboralPersona);
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
@@ -123,11 +123,10 @@ namespace IUSLibs.RRHH.Control.Laboral
                             {
                                 foreach (DataRow row in tb[1].Rows)
                                 {
-                                    laboralEditado = new LaboralPersona((int)row["idLaboralPersona"],(int)row["id_institucion_fk"],(int)row["inicio"],(int)row["fin"],(int)row["id_persona_fk"],/*row["observaciones"].ToString(),*/(int)row["id_cargo_fk"]);
-                                    laboralEditado._cargo._cargo = row["cargo"].ToString();
+                                    laboralEditado = new LaboralPersona((int)row["idLaboralPersona"],row["institucion"].ToString(),(int)row["inicio"],(int)row["fin"],(int)row["id_persona_fk"],/*row["observaciones"].ToString(),*/row["cargo"].ToString());
+                                    laboralEditado._cargo = row["cargo"].ToString();
                                     //laboralEditado._empresa._nombre = row["nombreEmpresa"].ToString();
-                                    laboralEditado._institucion._nombre = row["nombreInstitucion"].ToString();
-
+                                    laboralEditado._institucion = row["nombreInstitucion"].ToString();
                                 }
                             }
                             else
@@ -198,10 +197,10 @@ namespace IUSLibs.RRHH.Control.Laboral
                                 laboralesPersona = new List<LaboralPersona>();
                                 foreach (DataRow row in tb[2].Rows)
                                 {
-                                    laboralPersona                      = new LaboralPersona((int)row["idLaboralPersona"], (int)row["id_institucion_fk"], (int)row["inicio"], (int)row["fin"],(int)row["id_persona_fk"] ,/*row["observaciones"].ToString(),*/ (int)row["id_cargo_fk"]);
+                                    laboralPersona = new LaboralPersona((int)row["idLaboralPersona"], row["institucion"].ToString(), (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"],/*row["observaciones"].ToString(),*/ row["cargo"].ToString());
                                     //laboralPersona._empresa._nombre = row["nombreEmpresa"].ToString();
-                                    laboralPersona._cargo._cargo        = row["cargo"].ToString();
-                                    laboralPersona._institucion._nombre = row["nombreInstitucion"].ToString();
+                                    //laboralPersona._cargo._cargo        = row["cargo"].ToString();
+                                    //laboralPersona._institucion._nombre = row["nombreInstitucion"].ToString();
                                     laboralesPersona.Add(laboralPersona);
                                 }
                             }

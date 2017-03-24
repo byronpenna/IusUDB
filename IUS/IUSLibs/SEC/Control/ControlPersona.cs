@@ -223,8 +223,12 @@ namespace IUSLibs.SEC.Control
                                     laborales = new List<LaboralPersona>();
                                     foreach (DataRow row in tb[2].Rows)
                                     {
-                                        laboral = new LaboralPersona((int)row["idLaboralPersona"], (int)row["inicio"], (int)row["fin"], (int)row["id_persona_fk"],  (int)row["id_cargo_fk"]);
-                                        laboral._cargo._cargo = row["cargo"].ToString();
+                                        laboral = new LaboralPersona((int)row["idLaboralPersona"]);
+                                        //, , (int)row["id_persona_fk"],  row["cargo"].ToString()
+                                        laboral._inicio = (int)row["inicio"];
+                                        laboral._fin = (int)row["fin"];
+
+                                        laboral._cargo = row["cargo"].ToString();
                                         //laboral._empresa._nombre = row["empresa"].ToString();
                                         laborales.Add(laboral);
                                     }

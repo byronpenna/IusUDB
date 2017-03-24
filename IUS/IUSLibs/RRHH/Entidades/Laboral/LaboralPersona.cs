@@ -12,12 +12,12 @@ namespace IUSLibs.RRHH.Entidades.Laboral
         #region "Propiedades"
             public int              _idLaboralPersona;
             //public Empresa          _empresa;
-            public Institucion      _institucion; // institucion en la que laboro la persona
+            public string           _institucion; // institucion en la que laboro la persona
             public int              _inicio;
             public int              _fin;
             public Persona          _persona;
             /*public string           _observaciones;*/
-            public CargoEmpresa     _cargo;
+            public string           _cargo;
         #endregion
         #region "Constructores"
             // basico
@@ -26,13 +26,13 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                     this._idLaboralPersona = idLaboralPersona;
                 }
             // full
-                public LaboralPersona(int idLaboralPersona,int idInstitucion,int inicio,int fin,int idPersona,/*string observaciones*/ int idCargo)
+                public LaboralPersona(int idLaboralPersona,string institucion,int inicio,int fin,int idPersona,/*string observaciones*/ string cargo)
                 {
                     // do 
                         //Empresa empresa     = new Empresa(idEmpresa);
-                        Institucion institucion = new Institucion(idInstitucion);
+                        //Institucion institucion = new Institucion(idInstitucion);
                         Persona persona         = new Persona(idPersona);
-                        CargoEmpresa cargo      = new CargoEmpresa(idCargo);
+                        //CargoEmpresa cargo      = new CargoEmpresa(idCargo);
                     // set 
                         this._idLaboralPersona  = idLaboralPersona;
                         //this._empresa           = empresa;
@@ -45,13 +45,13 @@ namespace IUSLibs.RRHH.Entidades.Laboral
                 }
             
             // Pata agregar
-                public LaboralPersona(int idInstitucion, int inicio, int fin, int idPersona, /*string observaciones*/ int idCargo)
+                public LaboralPersona(string institucion, int inicio, int fin, int idPersona, /*string observaciones*/ string cargo)
                 {
                     // do 
                     //Empresa empresa = new Empresa(idEmpresa);
-                    Institucion institucion = new Institucion(idInstitucion);
+                    //Institucion institucion = new Institucion(idInstitucion);
                     Persona persona = new Persona(idPersona);
-                    CargoEmpresa cargo = new CargoEmpresa(idCargo);
+                    //CargoEmpresa cargo = new CargoEmpresa(idCargo);
                     // set 
                     //this._empresa = empresa;
                     this._institucion = institucion;

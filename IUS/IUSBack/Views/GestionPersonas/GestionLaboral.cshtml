@@ -208,7 +208,8 @@
                                 <th class="hidden"></th>
                                 <th>
                                     <div class="row marginNull divControl">
-                                        <select class="selectBack form-control cbInstitucion input-sm" name="cbInstitucion">
+                                        <input class="txtInstitucion form-control" name="txtInstitucion" />
+                                        @*<select class="selectBack form-control cbInstitucion input-sm" name="cbInstitucion">
                                             @if (instituciones != null && instituciones.Count > 0)
                                             {
                                                 foreach (Institucion institucion in instituciones)
@@ -216,7 +217,7 @@
                                                     <option value="@institucion._idInstitucion">@institucion._nombre</option>
                                                 }
                                             }
-                                        </select>
+                                        </select>*@
                                         <div class="row marginNull divResultado hidden">
                                             _
                                         </div>
@@ -248,7 +249,8 @@
                         </th>*@
                                 <th>
                                     <div class="divControl row marginNull">
-                                        <select class="selectBack form-control cbCargo input-sm" name="cbCargo">
+                                        <input class="txtCargo form-control" name="txtCargo" />
+                                        @*<select class="selectBack form-control cbCargo input-sm" name="cbCargo">
                                             @if (cargos != null && cargos.Count > 0)
                                             {
                                                 foreach (CargoEmpresa cargo in cargos)
@@ -256,7 +258,7 @@
                                                     <option value="@cargo._idCargoEmpresa">@cargo._cargo</option>
                                                 }
                                             }
-                                        </select>
+                                        </select>*@
                                         <div class="row marginNull divResultado hidden">
                                             _
                                         </div>
@@ -275,9 +277,9 @@
                                     <tr>
                                         <td class="hidden">
                                             <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
-                                            <input type="hidden" value="@laboralPersona._institucion._idInstitucion" class="txtHdIdInstitucion" name="txtHdIdInstitucion">
+                                            @*<input type="hidden" value="@laboralPersona._institucion._idInstitucion" class="txtHdIdInstitucion" name="txtHdIdInstitucion">*@
 
-                                            <input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">
+                                            @*<input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">*@
                                         </td>
                                         <td>
                                             <div class="editMode hidden">
@@ -289,7 +291,7 @@
                                                 </div>
                                             </div>
                                             <div class="normalMode tdNombreInstitucion">
-                                                @laboralPersona._institucion._nombre
+                                                @laboralPersona._institucion
                                             </div>
                                         </td>
                                         <td>
@@ -345,7 +347,7 @@
 
                                             </div>
                                             <div class="normalMode tdCargo">
-                                                @laboralPersona._cargo._cargo
+                                                @laboralPersona._cargo
                                             </div>
                                         </td>
                                         <td class="tdEditActividades tdBotones">
