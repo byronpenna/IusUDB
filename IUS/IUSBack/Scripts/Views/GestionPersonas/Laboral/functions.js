@@ -15,12 +15,12 @@
             function getTrLaboralPersona(laboralPersona) {
                 /*<input type='hidden' value='"+laboralPersona._empresa._idEmpresa+"' class='txtHdIdEmpresa' name='txtHdIdEmpresa'>\*/
                 console.log("Laboral es ....... ",laboralPersona);
+                //<input type='hidden' value='"+laboralPersona._institucion._idInstitucion+"' class='txtHdIdInstitucion' name='txtHdIdInstitucion'>\
+                //<input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
                 var tr = "\
                 <tr>\
                     <td class='hidden'>\
                         <input type='hidden' value='"+laboralPersona._idLaboralPersona+"' class='txtHdIdLaboralPersona' name='txtHdIdLaboralPersona' />\
-                        <input type='hidden' value='"+laboralPersona._institucion._idInstitucion+"' class='txtHdIdInstitucion' name='txtHdIdInstitucion'>\
-                        <input type='hidden' value='"+laboralPersona._cargo._idCargoEmpresa+"' class='txtHdIdCargoEmpresa' name='txtHdIdCargoEmpresa'>\
                     </td>\
                     <td>\
                         <div class='editMode hidden'>\
@@ -33,7 +33,7 @@
                             </div>\
                         </div>\
                         <div class='normalMode tdNombreInstitucion'>\
-                            " + laboralPersona._institucion._nombre + "\
+                            " + laboralPersona._institucion + "\
                         </div>\
                     </td>\
                     <td>\
@@ -66,7 +66,7 @@
                             </div>\
                         </div>\
                         <div class='normalMode tdCargo'>\
-                            "+laboralPersona._cargo._cargo+"\
+                            "+laboralPersona._cargo+"\
                         </div>\
                     </td>\
                     <td class='tdBotones tdEditActividades'>\
