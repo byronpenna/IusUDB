@@ -105,15 +105,16 @@ namespace IUSLibs.RRHH.Control.Laboral
                     SPIUS sp = new SPIUS("sp_rrhh_editarLaboralPersonas");
                     
                     //sp.agregarParametro("idEmpresa", laboralEditar._empresa._idEmpresa);
-                    sp.agregarParametro("idInstitucion", laboralEditar._institucion);
+                    sp.agregarParametro("institucion", laboralEditar._institucion);
                     sp.agregarParametro("inicio", laboralEditar._inicio);
                     sp.agregarParametro("fin", laboralEditar._fin);
                     //sp.agregarParametro("observaciones", laboralEditar._observaciones);
-                    sp.agregarParametro("idCargo", laboralEditar._cargo);
+                    sp.agregarParametro("cargo", laboralEditar._cargo);
                     sp.agregarParametro("idLaboralPersona", laboralEditar._idLaboralPersona);
 
                     sp.agregarParametro("idUsuarioEjecutor", idUsuarioEjecutor);
                     sp.agregarParametro("idPagina", idPagina);
+
                     try
                     {
                         DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());

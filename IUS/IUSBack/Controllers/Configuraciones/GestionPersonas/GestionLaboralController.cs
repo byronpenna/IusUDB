@@ -237,7 +237,12 @@ namespace IUSBack.Controllers.Configuraciones.GestionPersonas
                         respuesta = this.seguridadInicialAjax(usuarioSession, frm);
                         if (respuesta == null)
                         {
-                            LaboralPersona laboralEditar = new LaboralPersona(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]), /*this.convertObjAjaxToInt(frm["cbInstitucion"])*/frm["txtInstitucion"].ToString(), this.convertObjAjaxToInt(frm["txtInicio"]), this.convertObjAjaxToInt(frm["txtFin"]), -1,/*frm["txtAreaObservacion"].ToString(),*/ /*this.convertObjAjaxToInt(frm["cbCargo"])*/frm["cargo"].ToString());
+                            LaboralPersona laboralEditar = new LaboralPersona(this.convertObjAjaxToInt(frm["txtHdIdLaboralPersona"]),
+                                /*this.convertObjAjaxToInt(frm["cbInstitucion"])*/frm["txtInstitucion"].ToString(), 
+                                this.convertObjAjaxToInt(frm["txtInicio"]),
+                                this.convertObjAjaxToInt(frm["txtFin"]), 
+                                -1,/*frm["txtAreaObservacion"].ToString(),*/ /*this.convertObjAjaxToInt(frm["cbCargo"])*/
+                                frm["txtCargo"].ToString());
                             LaboralPersona laboralEditado = this._model.sp_rrhh_editarLaboralPersonas(laboralEditar, usuarioSession._idUsuario, this._idPagina);
                             respuesta = new Dictionary<object, object>();
                             respuesta.Add("estado", true);

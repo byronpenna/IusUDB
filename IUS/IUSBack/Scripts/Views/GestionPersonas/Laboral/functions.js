@@ -246,11 +246,14 @@
         function getObjetoSetEditLaboral(tr) {
             var datosSet = new Object();
             // recolectando datos
-                datosSet.fechaInicio = $.trim(tr.find(".tdFechaInicio").text());
-                datosSet.fechaFin = $.trim(tr.find(".tdFechaFin").text());
-                datosSet.idInstitucion = tr.find(".txtHdIdInstitucion").val();
-                datosSet.idCargoEmpresa = tr.find(".txtHdIdCargoEmpresa").val();
-                datosSet.observaciones = $.trim(tr.find(".tdObservaciones").text());
+                datosSet.fechaInicio    = $.trim(tr.find(".tdFechaInicio").text());
+                datosSet.fechaFin       = $.trim(tr.find(".tdFechaFin").text());
+                
+                datosSet.observaciones  = $.trim(tr.find(".tdObservaciones").text());
+                datosSet.instituciones  = $.trim(tr.find(".tdNombreInstitucion").text());
+                datosSet.cargo          = $.trim(tr.find(".tdCargo").text());
+                //datosSet.idInstitucion = tr.find(".txtHdIdInstitucion").val();
+                //datosSet.idCargoEmpresa = tr.find(".txtHdIdCargoEmpresa").val();
             return datosSet;
         }
         function verCargos(estado, tr) {
@@ -390,11 +393,11 @@
                         tr.find(".tdFechaInicio").empty().append(laboral._inicio);
                         tr.find(".tdFechaFin").empty().append(laboral._fin);
                         tr.find(".tdObservaciones").empty().append(laboral._observaciones)
-                        tr.find(".tdCargo").empty().append(laboral._cargo._cargo)
-                        tr.find(".tdNombreInstitucion").empty().append(laboral._institucion._nombre);
+                        tr.find(".tdCargo").empty().append(laboral._cargo)
+                        tr.find(".tdNombreInstitucion").empty().append(laboral._institucion);
                     // hiddens 
                         tr.find(".txtHdIdCargoEmpresa").val(laboral._cargo._idCargoEmpresa);
-                        tr.find(".txtHdIdInstitucion").val(laboral._institucion._idInstitucion);
+                        //tr.find(".txtHdIdInstitucion").val(laboral._institucion._idInstitucion);
                     controlesEdit(false, tr);
                 } else {
                     alert("Ocurrio un error tratand de actualizar");

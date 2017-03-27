@@ -162,7 +162,7 @@
                         var datosSet = getObjetoSetEditLaboral(tr);
                     // set 
                         var frm = {  }
-                        actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_getEditModeLaboralPersona", frm, function (data) {
+                        /*actualizarCatalogo(RAIZ + "/GestionLaboral/sp_rrhh_getEditModeLaboralPersona", frm, function (data) {
                             var cbCargos = "", cbInstituciones = "";
                             console.log("La data recibida", data);
                             if (data.estado) {
@@ -185,10 +185,12 @@
                             // seleccionando
                             resetChosenWithSelectedVal(selectCargo, datosSet.idCargoEmpresa)
                             resetChosenWithSelectedVal(selectInstitucion, datosSet.idInstitucion)
-                        })
+                        })*/
                         tr.find(".txtInicio").val(datosSet.fechaInicio);
                         tr.find(".txtFin").val(datosSet.fechaFin);
                         tr.find(".txtAreaObservacion").val(datosSet.observaciones);
+                        tr.find(".txtInstitucion").val(datosSet.instituciones);
+                        tr.find(".txtCargo").val(datosSet.cargo);
                     controlesEdit(true, tr);
                 })
                 $(document).on("click", ".btnCancelarUni", function (e) {

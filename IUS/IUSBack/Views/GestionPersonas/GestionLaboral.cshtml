@@ -208,7 +208,7 @@
                                 <th class="hidden"></th>
                                 <th>
                                     <div class="row marginNull divControl">
-                                        <input class="txtInstitucion form-control" name="txtInstitucion" />
+                                        <input class="txtInstitucion form-control inputBack " name="txtInstitucion" />
                                         @*<select class="selectBack form-control cbInstitucion input-sm" name="cbInstitucion">
                                             @if (instituciones != null && instituciones.Count > 0)
                                             {
@@ -249,7 +249,7 @@
                         </th>*@
                                 <th>
                                     <div class="divControl row marginNull">
-                                        <input class="txtCargo form-control" name="txtCargo" />
+                                        <input class="txtCargo form-control inputBack " name="txtCargo" />
                                         @*<select class="selectBack form-control cbCargo input-sm" name="cbCargo">
                                             @if (cargos != null && cargos.Count > 0)
                                             {
@@ -277,14 +277,12 @@
                                     <tr>
                                         <td class="hidden">
                                             <input type="hidden" value="@laboralPersona._idLaboralPersona" class="txtHdIdLaboralPersona" name="txtHdIdLaboralPersona" />
-                                            @*<input type="hidden" value="@laboralPersona._institucion._idInstitucion" class="txtHdIdInstitucion" name="txtHdIdInstitucion">*@
-
-                                            @*<input type="hidden" value="@laboralPersona._cargo._idCargoEmpresa" class="txtHdIdCargoEmpresa" name="txtHdIdCargoEmpresa">*@
                                         </td>
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="divControl row marginNull">
-                                                    <select class="form-control selectBack cbInstitucion input-sm" name="cbInstitucion"></select>
+                                                    <input class="form-control txtInstitucion inputBack " name="txtInstitucion" />
+                                                    @*<select class="form-control selectBack cbInstitucion input-sm" name="cbInstitucion"></select>*@
                                                     <div class="row marginNull divResultado hidden">
                                                         _
                                                     </div>
@@ -322,24 +320,11 @@
                                                 @laboralPersona._fin
                                             </div>
                                         </td>
-                                        @*<td>
-                                    <div class="editMode hidden">
-                                        <div class="divControl row marginNull">
-                                            <textarea class="form-control txtAreaObservacion input-sm" name="txtAreaObservacion"></textarea>
-                                            <div class="row marginNull divResultado hidden">
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="normalMode tdObservaciones">
-                                        @laboralPersona._observaciones
-                                    </div>
-                                </td>*@
                                         <td>
                                             <div class="editMode hidden">
                                                 <div class="divControl row marginNull">
-                                                    <select class="selectBack form-control cbCargo input-sm" name="cbCargo"></select>
+                                                    <input class="form-control inputBack txtCargo " name="txtCargo" />
+                                                    @*<select class="selectBack form-control cbCargo input-sm" name="cbCargo"></select>*@
                                                     <div class="row marginNull divResultado hidden">
 
                                                     </div>
