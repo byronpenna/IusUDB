@@ -117,8 +117,8 @@
                         </div>\
                         <div class='normalMode'>\
                             <div class='btn-group'>\
-                                <button class='btnEditarActividad btn btn-xs btn-default' >Editar</button>\
-                                <button class='btnEliminarActividad btn btn-xs btn-default'>Eliminar</button>\
+                                <button class='btnEditarActividad btn btn-xs btn-default btnBack ' >Editar</button>\
+                                <button class='btnEliminarActividad btn btn-xs btn-default btnBack '>Eliminar</button>\
                             </div>\
                         </div>\
                     </td>\
@@ -145,7 +145,7 @@
                                 <tr class='trAgregar'>\
                                     <td>\
                                         <div class='row marginNull divControl'>\
-                                            <input name='txtActividad' class='inputBack form-control txtActividad input-sm' />\
+                                            <input name='txtActividad' class='inputBack form-control inputBack  txtActividad input-sm' />\
                                             <div class='row marginNull divResultado hidden'>\
                                                 _\
                                             </div>\
