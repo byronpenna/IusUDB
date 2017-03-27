@@ -126,8 +126,6 @@ namespace IUSLibs.RRHH.Control.Laboral
                                 {
                                     laboralEditado = new LaboralPersona((int)row["idLaboralPersona"],row["institucion"].ToString(),(int)row["inicio"],(int)row["fin"],(int)row["id_persona_fk"],/*row["observaciones"].ToString(),*/row["cargo"].ToString());
                                     laboralEditado._cargo = row["cargo"].ToString();
-                                    //laboralEditado._empresa._nombre = row["nombreEmpresa"].ToString();
-                                    laboralEditado._institucion = row["nombreInstitucion"].ToString();
                                 }
                             }
                             else

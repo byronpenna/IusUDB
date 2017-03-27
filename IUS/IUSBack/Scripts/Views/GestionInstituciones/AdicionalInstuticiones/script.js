@@ -44,7 +44,26 @@
         var frm = serializeSection($(this).parents("tr"));
         frm.idInstitucion = $(".txtHdIdInstitucion").val();
         console.log("Frm es: ", frm);
-        btnAddRevista(frm);
+        var divResultadoGeneral = $(".tbRevista thead").find(".divResultado");
+        divResultadoGeneral.addClass("hidden");
+        var val = validacionRevista(frm);
+        if (val.estado) {
+            btnAddRevista(frm);
+        } else {
+            console.log("entro al else");
+            $.each(val.campos, function (i, val) {
+                errores = "";
+                var divResultado = $(".tbRevista thead").find("." + i).parents("td").find(".divResultado");
+                if (val.length > 0) {
+                    divResultado.removeClass("hidden");
+                    $.each(val, function (i, val) {
+                        errores += "<span class='spanMessage1 failMessage'>" + val + "</span>";
+                    })
+                    divResultado.empty().append(errores);
+                }
+            })
+        }
+        
     })
     $(document).on("click", ".txtNumAlumnos", function (e) {
         e.preventDefault();

@@ -1,4 +1,27 @@
 ﻿// scripts
+    function validacionRevista(frm){
+        var estado = false;
+        var val = new Object();
+        val.campos = {
+            txtNombreRevista: new Array(),
+            txtCategoria: new Array(),
+            txtAnioPublicacion: new Array()
+        }
+        if (frm.txtNombreRevista == "") {
+            val.campos.txtNombreRevista.push("Campo no puede quedar vacio");
+        }
+        if (frm.txtCategoria == "") {
+            val.campos.txtCategoria.push("Campo no puede quedar vacio");
+        }
+        if (frm.txtAnioPublicacion == "") {
+            val.campos.txtAnioPublicacion.push("Campo no puede quedar vacio");
+        }
+        if (val.campos.txtNombreRevista.length == 0 && val.campos.txtCategoria == 0 && val.campos.txtAnioPublicacion == 0) {
+            estado = true;
+        }
+        val.estado = estado;
+        return val;
+    }
     function iniciales() {
         var i = $(".txtHdIdTab").val();
         if (i == -1) {
@@ -122,12 +145,14 @@
                     </button>\
                 </div>\
                 <div class='normalMode tdBotonesRevista'>\
-                    <button class='btn btnEliminarRevista'>\
-                        Eliminar\
-                    </button>\
-                    <button class='btn btnModificarRevista'>\
-                        Modificar\
-                    </button>\
+                    <div class='btn-group btn-block'>\
+                        <button class='btn btnBack btnEliminarRevista'>\
+                            Eliminar\
+                        </button>\
+                        <button class='btn btnBack btnModificarRevista'>\
+                            Modificar\
+                        </button>\
+                    </div>\
                 </div>\
             </td>\
         </tr>\
