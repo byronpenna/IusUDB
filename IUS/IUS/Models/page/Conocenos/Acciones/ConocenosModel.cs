@@ -50,6 +50,22 @@ namespace IUS.Models.page.Conocenos.Acciones
                         throw x; 
                     }
                 }
+                public VersionDocumentoOficial sp_adminfe_front_getDocumentosOficialesById(int idVersion ,string idioma, string ip, int idPagina)
+                {
+                    try
+                    {
+                        ControlVersionDocumentoOficial control = new ControlVersionDocumentoOficial();
+                        return control.sp_adminfe_front_getDocumentosOficialesById(idVersion,idioma, ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                } 
                 public DatosIUS sp_adminfe_front_getDatosIUS(string ip,int idPagina)
                 {
                     try

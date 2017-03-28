@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using System.IO;
 // librerias internas
     using IUS.Models.page.Conocenos.Acciones;
 // librerias externas
@@ -74,12 +76,37 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones ajax"
-            public ActionResult descargarDocumento(int id)
+            public ActionResult documento(int id,int id2=1)
             {
-                ViewBag.usuarioSession = this.getUsuarioSession();
-                string ip = Request.UserHostAddress;
-                //VersionDocumentoOficial documentoOficial = this._model.
+                /*
+                 id: idDocumentoDescargar
+                 id2: ver
+                 */
+                Dictionary<object, object> frm, respuesta;
+                respuesta = new Dictionary<object, object>();
+                ViewBag.usuarioSession  = this.getUsuarioSession();
+                string  lang            = this.getUserLang();
+                string ip               = Request.UserHostAddress;
+                VersionDocumentoOficial documentoOficial = this._model.sp_adminfe_front_getDocumentosOficialesById(id,lang, ip, idPagina);
+                if (documentoOficial != null)
+                {
+                    if (documentoOficial._ruta != "" && System.IO.File.Exists(documentoOficial._ruta) )
+                    {
+                        byte[] fileBytes = System.IO.File.ReadAllBytes(documentoOficial._ruta);
+                        if (id2 == 1)
+                        {
+                            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, documentoOficial._traduccion);
+                        }
+                        else
+                        {
+                            MemoryStream stream = new MemoryStream(fileBytes);
+                            return new FileStreamResult(stream, "application/pdf");
+                        }
+                    }
+                }
                 return null;
+                
+
             }
             public ActionResult getDocumentosByIdioma()
             {
@@ -93,6 +120,7 @@ namespace IUS.Controllers
                                 respuesta   = new Dictionary<object, object>();
                         int     idPagina    = this.idPagina;
                         string  ip          = Request.UserHostAddress;
+
                         List<VersionDocumentoOficial> documentosOficiales = this._model.sp_adminfe_front_getDocumentosOficiales(lang, ip, idPagina);
                         respuesta.Add("estado", true);
                         respuesta.Add("documentosOficiales",documentosOficiales);
