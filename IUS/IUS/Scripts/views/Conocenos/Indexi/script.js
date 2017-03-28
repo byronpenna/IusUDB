@@ -6,8 +6,13 @@
             $(this).addClass("activeConocenos");
             var id = $(this).attr("id");
             frm = { idSeleccion: id };
-            window.history.pushState({}, "Titulo", RAIZ+"Conocenos/Index/" + frm.idSeleccion);
-            divImgCambio(frm);
+            window.history.pushState({}, "Titulo", RAIZ + "Conocenos/Index/" + frm.idSeleccion);
+            if (frm.idSeleccion != -1) {
+                divImgCambio(frm);
+            } else {
+                divDocumentos();
+            }
+            
         })
     // iniciales
         inicial();

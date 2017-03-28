@@ -9,6 +9,55 @@
         }
     }
 // #############
+    function getHTMLTablaDocumentos(){
+        var tabla = "\
+        <table class='table'>\
+            <thead>\
+                <tr>\
+                    <td>Nombre</td>\
+                    <td>Acciones</td>\
+                </tr>\
+            </thead>\
+            <tbody>\
+                @tbody\
+            </tbody>\
+        </table>";
+        return tabla;
+    }
+    function getTrDocumento(documentoOficial) {
+        var tr = "\
+        <tr>\
+            <td>"+ documentoOficial._traduccion + "</td>\
+            <td>\
+                <button class='btn'>Descargar<button>\
+            </td>\
+        </tr>\
+        ";
+        return tr;
+    }
+    function divDocumentos() {
+        console.log("Div documentos");
+        var tabla = getHTMLTablaDocumentos();
+        
+        $(".imgPrincipal").attr("src", "/Content/images/generales/conocenos/12.png");
+        actualizarCatalogo(RAIZ + "Conocenos/getDocumentosByIdioma", frm, function (data) {
+            console.log("Data es: ", data);
+            var tr = "";
+            if (data.estado) {
+                if (data.documentosOficiales !== undefined && data.documentosOficiales != null && data.documentosOficiales.length > 0) {
+                    $.each(data.documentosOficiales, function (i, documentoOficial) {
+                        tr += getTrDocumento(documentoOficial);
+                    })
+                    console.log("tr es: ", tr);
+                    tabla = tabla.replace("@tbody", tr);
+                    console.log("aqui");
+                    console.log("tabla es:", tabla);
+                    $(".divCuerpoConocenos").empty().append(tabla);
+                }
+            }
+        })
+        
+    }
     function divImgCambio(frm) {
         var target = $(".divContenedorInfoL");
         if (frm.idSeleccion == 1) {

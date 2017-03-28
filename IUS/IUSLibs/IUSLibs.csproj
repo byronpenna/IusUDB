@@ -83,6 +83,7 @@
     <Compile Include="ADMINFE\Control\ControlPublicacionEvento.cs" />
     <Compile Include="ADMINFE\Control\ControlSliderImage.cs" />
     <Compile Include="ADMINFE\Control\ControlUsuarioEvento.cs" />
+    <Compile Include="ADMINFE\Control\ControlVersionDocumentoOficial.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlAprobacion.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlCategoriaPost.cs" />
     <Compile Include="ADMINFE\Control\Noticias\ControlPost.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="ADMINFE\Entidades\Configuracion.cs" />
     <Compile Include="ADMINFE\Entidades\DatosIUS.cs" />
     <Compile Include="ADMINFE\Entidades\DatosSalesianos.cs" />
+    <Compile Include="ADMINFE\Entidades\DocumentoOficial.cs" />
     <Compile Include="ADMINFE\Entidades\Evento.cs" />
     <Compile Include="ADMINFE\Entidades\EventoWebsite.cs" />
     <Compile Include="ADMINFE\Entidades\Noticias\CategoriaPost.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="ADMINFE\Entidades\SliderImage.cs" />
     <Compile Include="ADMINFE\Entidades\UsuarioEvento.cs" />
     <Compile Include="ADMINFE\Entidades\Valor.cs" />
+    <Compile Include="ADMINFE\Entidades\VersionDocumentoOficial.cs" />
     <Compile Include="ADMINFE\Pantalla\PantallaHome.cs" />
     <Compile Include="ADMINFE\BaseDatos\Parametro.cs" />
     <Compile Include="ADMINFE\BaseDatos\SPIUS.cs" />

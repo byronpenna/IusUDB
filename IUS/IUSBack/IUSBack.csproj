@@ -851,6 +851,7 @@
     <Folder Include="Content\Views\Instituciones\Logos\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\Page\Home\Forms\" />
+    <Folder Include="Recursos\Documentos\" />
     <Folder Include="Recursos\Personal\" />
     <Folder Include="RepositorioDigital\Publico\" />
     <Folder Include="RepositorioDigital\Usuarios\" />

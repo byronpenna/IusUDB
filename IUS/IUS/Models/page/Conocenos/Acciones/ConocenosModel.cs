@@ -17,6 +17,23 @@ namespace IUS.Models.page.Conocenos.Acciones
         #endregion
         #region "funciones"
             #region "Get"
+                public List<VersionDocumentoOficial> sp_adminfe_front_getDocumentosOficiales(string idioma, string ip, int idPagina)
+                {
+                    try
+                    { 
+                        ControlVersionDocumentoOficial control = new ControlVersionDocumentoOficial();
+                        return control.sp_adminfe_front_getDocumentosOficiales(idioma, ip, idPagina);
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+
+                }
                 public DatosSalesianos sp_adminfe_front_getDatosSalesianos(string ip, int idPagina)
                 {
                     try

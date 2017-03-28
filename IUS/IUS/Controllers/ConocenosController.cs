@@ -8,6 +8,7 @@ using System.Web.Mvc;
 // librerias externas
     using IUSLibs.TRL.Entidades;
     using IUSLibs.LOGS;
+    using IUSLibs.ADMINFE.Entidades;
 namespace IUS.Controllers
 {
     public class ConocenosController : PadreController
@@ -73,6 +74,48 @@ namespace IUS.Controllers
             }
         #endregion
         #region "acciones ajax"
+            public ActionResult descargarDocumento(int id)
+            {
+                ViewBag.usuarioSession = this.getUsuarioSession();
+                string ip = Request.UserHostAddress;
+                //VersionDocumentoOficial documentoOficial = this._model.
+                return null;
+            }
+            public ActionResult getDocumentosByIdioma()
+            {
+                Dictionary<object, object> frm, respuesta;
+                frm = this.getAjaxFrm();
+                if (frm != null)
+                {
+                    try
+                    {
+                        string  lang        = this.getUserLang();
+                                respuesta   = new Dictionary<object, object>();
+                        int     idPagina    = this.idPagina;
+                        string  ip          = Request.UserHostAddress;
+                        List<VersionDocumentoOficial> documentosOficiales = this._model.sp_adminfe_front_getDocumentosOficiales(lang, ip, idPagina);
+                        respuesta.Add("estado", true);
+                        respuesta.Add("documentosOficiales",documentosOficiales);
+
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, x.errorType, x.errorNumber, x._errorSql, x._mostrar);
+                        respuesta = this.errorTryControlador(1, error);
+                    }
+                    catch (Exception x)
+                    {
+                        ErroresIUS error = new ErroresIUS(x.Message, ErroresIUS.tipoError.generico, 0);
+                        respuesta = this.errorTryControlador(2, error);
+                    }
+                }
+                else
+                {
+                    respuesta = this.errorEnvioFrmJSON();
+                }
+                return Json(respuesta);
+
+            }
             public ActionResult getInfo()
             {
                 /*
