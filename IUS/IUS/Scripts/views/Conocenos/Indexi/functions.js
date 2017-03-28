@@ -28,7 +28,7 @@
         var tr = "\
         <tr>\
             <td>"+ documentoOficial._traduccion + "</td>\
-            <td>\
+            <td class='tdAccion'>\
                 <div class='btn-group'>\
                     <a href='" + RAIZ + "Conocenos/documento/" + documentoOficial._idVersion + "' target='_blank' class='btn btnIUS'>Descargar</a>\
                     <a href='" + RAIZ + "Conocenos/documento/" + documentoOficial._idVersion + "/2' target='_blank' class='btn btnIUS'>Ver</a>\

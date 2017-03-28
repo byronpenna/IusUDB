@@ -4,10 +4,20 @@
   padding-top: 1%;
   padding-bottom: 1%;
   background: transparent;
-  border: solid 1px #828181; }
+  border: solid 1px #828181;
+  color: #828181; }
 
+.tbDocumentos .tdAccion {
+  text-align: center; }
+.tbDocumentos thead tr th {
+  border-bottom: none; }
 .tbDocumentos thead tr .thHead {
-  width: 50%; }
+  width: 50%;
+  text-align: center; }
+.tbDocumentos tbody tr td {
+  border: solid 1px #828181; }
+  .tbDocumentos tbody tr td a {
+    color: black; }
 
 .menuConocenos {
   margin-top: 80px;
@@ -58,8 +68,10 @@
   color: #c71214 !important; }
 
 .tituloContenidoConocenos {
+  text-align: center;
   text-transform: uppercase;
   color: #cd1315;
-  font-size: 1em; }
+  font-size: 1em;
+  margin-bottom: 5%; }
 
 /*# sourceMappingURL=stylei.css.map */

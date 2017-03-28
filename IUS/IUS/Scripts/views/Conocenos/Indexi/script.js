@@ -9,7 +9,10 @@
             window.history.pushState({}, "Titulo", RAIZ + "Conocenos/Index/" + frm.idSeleccion);
             if (frm.idSeleccion != -1) {
                 divImgCambio(frm);
+                $(".contenedorImgPrincipal").fadeIn();
             } else {
+                $(".tituloContenidoConocenos").empty().append("Documentos oficiales");
+                $(".contenedorImgPrincipal").fadeOut();
                 divDocumentos();
             }
             
