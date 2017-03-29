@@ -14,6 +14,7 @@ namespace IUSLibs.SEC.Entidades
             public String _apellidos;
             public DateTime _fechaNacimiento; // por alguna extraña razon no hay solo date
             public Sexo _sexo;
+
             #region "calculados"
                 public String nombreCompleto
                 {

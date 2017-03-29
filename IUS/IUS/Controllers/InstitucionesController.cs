@@ -10,6 +10,7 @@ using System.Web.Mvc;
     using IUSLibs.LOGS;
     using IUSLibs.FrontUI.Control;
     using IUSLibs.FrontUI.Entidades;
+    using IUSLibs.SEC.Entidades;
 namespace IUS.Controllers
 {
     public class InstitucionesController : PadreController
@@ -47,6 +48,36 @@ namespace IUS.Controllers
                     return RedirectToAction("Unhandled", "Errors");
                 }
                 return View();
+            }
+            
+            public ActionResult EquipoTrabajo(int id)
+            {
+                List<LlaveIdioma> traducciones;
+                try
+                {
+                    /*
+                     id: IdInstitucion
+                     */
+                    ViewBag.usuarioSession = this.getUsuarioSession();
+                    string lang = this.getUserLang();
+                    //Institucion institucion = this._model.sp
+                    string ip = Request.UserHostAddress;
+                    List<Persona> personas = this._model.sp_rrhh_controlPersona_getPersonasByInstitucion(id, lang, ip, idPagina);
+                    ViewBag.personas = personas;
+                    
+                    traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
+                    this.setTraduccion(traducciones);
+                    ViewBag.menu22 = this.activeClass;
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
             }
             public ActionResult FichaInstitucion(int id=-1)
             {

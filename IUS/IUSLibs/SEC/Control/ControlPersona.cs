@@ -180,6 +180,46 @@ namespace IUSLibs.SEC.Control
                     return personas;
                 }
                 // recursos humanos 
+                public List<Persona> sp_rrhh_controlPersona_getPersonasByInstitucion(int idInstitucion,string idioma,string ip,int idPagina)
+                {
+                    List<Persona> personas = new List<Persona>();
+                    Persona persona = null;
+                    SPIUS sp = new SPIUS("sp_rrhh_controlPersona_getPersonasByInstitucion");
+                    
+                    sp.agregarParametro("idInstitucion", idInstitucion);
+                    sp.agregarParametro("idioma", idioma);
+                    sp.agregarParametro("ip", ip);
+                    sp.agregarParametro("idPagina", idPagina);
+
+                    try
+                    {
+                        DataTableCollection tb = this.getTables(sp.EjecutarProcedimiento());
+                        if (this.resultadoCorrectoGet(tb))
+                        {
+                            if (tb[0].Rows.Count > 0)
+                            {
+                                personas = new List<Persona>();
+                                foreach(DataRow row in tb[0].Rows){
+                                    persona = new Persona((int)row["idPersona"], row["nombres"].ToString(), row["apellidos"].ToString());
+                                    persona._fechaNacimiento = (DateTime)row["fecha_nacimiento"];
+                                    persona._sexo = new Sexo((int)row["id_sexo_fk"]);
+                                    personas.Add(persona);
+                                }
+                                
+                            }
+                        }
+                        return personas;
+
+                    }
+                    catch (ErroresIUS x)
+                    {
+                        throw x;
+                    }
+                    catch (Exception x)
+                    {
+                        throw x;
+                    }
+                }
                 public Dictionary<object, object> sp_rrhh_detallePesona(int idPersona,int idUsuarioEjecutor,int idPagina)
                 {
                     // variables 

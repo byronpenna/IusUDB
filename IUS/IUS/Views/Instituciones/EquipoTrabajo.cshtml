@@ -1,0 +1,71 @@
+﻿@using IUSLibs.SEC.Entidades
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    List<Persona> personas = null;
+    try
+    {
+        personas = (List<Persona>)ViewBag.personas;
+        
+    }
+    catch (Exception)
+    {
+
+    }
+}
+@section estilosPersonalizados{
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucioni/style.css" />
+}
+@section scriptsPersonalizados{
+    <script src="~/Scripts/views/Instituciones/FichaInstitucioni/script.js"></script>
+    <script src="~/Scripts/views/Instituciones/FichaInstitucioni/functions.js"></script>
+}
+<div class="row marginNull lineaRoja">
+
+</div>
+<div class="centroPagina row marginNull contenidoCuerpo">
+    <div class="col-lg-4">
+        @Html.Partial("menuInstitucion")
+    </div>
+    <div class="col-lg-8 detalles">
+        <div class="row marginNull rowTituloInst">
+            <div class="tituloFichaInst">
+                <a href="#">
+                    Instituciones en America
+                </a> >>>
+            </div>
+            <span class="nombrenIst">Universidad Don Bosco</span>
+
+        </div>
+        <div class="contenidoFicha">
+            <h2>Equipo de trabajo institución</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombres completo</th>
+                        <th>Edad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (personas != null) {
+                        foreach (Persona persona in personas)
+                        {
+                            <tr>
+                                <td>
+                                    @persona._nombres
+                                </td>
+                                <td>@persona.getEdad</td>
+                                <td>
+                                    <a href="#">
+                                        Ver
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

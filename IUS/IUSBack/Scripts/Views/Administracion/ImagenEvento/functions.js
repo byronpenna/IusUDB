@@ -18,7 +18,7 @@ function frmImagenEvento(data, url, image, jcrop_api) {
         console.log("respuesta despues de setear", data);
         if (data.estado) {
             jcrop_api.destroy();
-            $(".imgThumbnail").attr("src", RAIZ + data.imagen);
+            $(".imgThumbnail").attr("src",  data.imagen);
             targetImg.attr("style", "");
             //
             /*targetImg.attr("src", RAIZ + "GestionInstituciones/getImageThumbLogo/" + data.id);

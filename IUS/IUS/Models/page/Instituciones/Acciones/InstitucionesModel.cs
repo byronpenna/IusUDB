@@ -8,6 +8,9 @@ using System.Web;
     using IUSLibs.LOGS;
     using IUSLibs.FrontUI.Control;
     using IUSLibs.FrontUI.Entidades;
+    
+    using IUSLibs.SEC.Entidades;
+    using IUSLibs.SEC.Control;
 namespace IUS.Models.page.Instituciones.Acciones
 {
     public class InstitucionesModel:ModeloPadre
@@ -47,6 +50,18 @@ namespace IUS.Models.page.Instituciones.Acciones
                     }
                     catch (Exception x)
                     {
+                        throw x;
+                    }
+                }
+                public List<Persona> sp_rrhh_controlPersona_getPersonasByInstitucion(int idInstitucion,string idioma,string ip,int idPagina)
+                {
+                    try{
+                        ControlPersona control = new ControlPersona();
+                        return control.sp_rrhh_controlPersona_getPersonasByInstitucion(idInstitucion, idioma, ip, idPagina);
+                    }catch(ErroresIUS x){
+                        throw x;
+                    }
+                    catch(Exception x){
                         throw x;
                     }
                 }
