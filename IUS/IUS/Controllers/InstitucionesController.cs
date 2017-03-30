@@ -20,9 +20,11 @@ namespace IUS.Controllers
         //
         // GET: /Instituciones/
         #region "propiedades"
-            public int idPagina                 = (int)paginas.Instituciones;
-            public int idPaginaFichaInstitucion = (int)paginasInternas.FichaInstitucion;
-            private InstitucionesModel _model;
+            public int idPagina                     = (int)paginas.Instituciones;
+            public int idPaginaFichaInstitucion     = (int)paginasInternas.FichaInstitucion;
+            public int idPaginaDetalleTrabajador    = (int)paginasInternas.DetalleTrabajador;
+            public int idPaginaEquipoTrabajo        = (int)paginasInternas.EquipoTrabajo;
+        private InstitucionesModel _model;
         #endregion
         #region "acciones url"
             public ActionResult VerInstituciones(int id)
@@ -81,7 +83,7 @@ namespace IUS.Controllers
                         detalle["infoPersona"] = informacion;
                     }
                     ViewBag.nombresContinentes = controlInstitucion.getLabelsContinentes(lang);
-                    traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
+                    traducciones = this._model.getTraduccion(lang, this.idPaginaDetalleTrabajador);
                     this.setTraduccion(traducciones);
                     ViewBag.detalle = detalle;
                     ViewBag.menu22 = this.activeClass;
@@ -115,7 +117,7 @@ namespace IUS.Controllers
                     ViewBag.nombresContinentes = controlInstitucion.getLabelsContinentes(lang);
                     Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(id, ip, this.idPaginaFichaInstitucion, lang);
                     ViewBag.data = data;
-                    traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
+                    traducciones = this._model.getTraduccion(lang, this.idPaginaEquipoTrabajo);
                     this.setTraduccion(traducciones);
                     ViewBag.menu22 = this.activeClass;
                     return View();
