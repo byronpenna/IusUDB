@@ -28,6 +28,35 @@ namespace IUSBack.Controllers
         #endregion
             
         #region "url"
+            public ActionResult GetPhoto(int id)
+            {
+                try
+                {
+                    IUSLibs.RRHH.Control.ControlInformacionPersona controlInformacion = new IUSLibs.RRHH.Control.ControlInformacionPersona();
+                    Dictionary<object,object> registroInformacion = controlInformacion.sp_rrhh_getInformacionPersonas(id, 1, this._idPagina);
+                    InformacionPersona informacion = (InformacionPersona)registroInformacion["informacionPersona"];
+                    string ruta = this.getRelativePathFromAbsolute(informacion._fotoRuta);
+                    if (System.IO.File.Exists(informacion._fotoRuta))
+                    {
+                        return base.File(ruta, "image/jpeg");
+                    }
+                    else
+                    {
+                        return base.File(ruta, "image/jpeg");
+                    }
+                }
+                catch (ErroresIUS)
+                {
+                    string path = Server.MapPath("~/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
+                    return base.File(path, "image/jpeg");
+                }
+                catch (Exception x)
+                {
+                    string path = Server.MapPath("~/Content/themes/iusback_theme/img/general/noBanerMiniatura.png");
+                    return base.File(path, "image/jpeg");
+                }
+
+            }
             public ActionResult Extras(int id=-1)
             {
                 

@@ -31,4 +31,46 @@
 .detalles {
   background: #f3f2f2; }
 
+.imgFicha {
+  width: 20%;
+  margin: 0 auto; }
+
+.rowTituloInst {
+  margin-top: 40px;
+  margin-bottom: 8%; }
+  .rowTituloInst .tituloFichaInst a {
+    color: #cc1315; }
+  .rowTituloInst .nombrenIst {
+    text-transform: uppercase; }
+  .rowTituloInst .nombreActual {
+    text-transform: uppercase; }
+  .rowTituloInst .tituloFichaInst, .rowTituloInst .nombrenIst {
+    display: inline-block; }
+
+table {
+  font-size: 0.9em;
+  font-family: "MyriadRegular"; }
+
+.contenidoFicha {
+  font-family: "MyriadRegular";
+  margin-top: 3%;
+  padding-left: 2%;
+  font-size: 12px;
+  font-weight: normal; }
+  .contenidoFicha .imgFotoInstitucion {
+    width: 95%; }
+  .contenidoFicha .etiqueta {
+    padding: 0;
+    color: #414141;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: right; }
+  .contenidoFicha .etiquetaTitulo {
+    display: block;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    color: #414141;
+    font-weight: bold;
+    font-size: 14px; }
+
 /*# sourceMappingURL=style.css.map */

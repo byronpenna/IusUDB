@@ -8,13 +8,16 @@
     List<FormacionPersona> formaciones = null;
     List<LaboralPersona> laborales =null;
     Persona persona = null;
+    string img = "";
     try
     {
         detalle = (Dictionary<object, object>)ViewBag.detalle;
         InformacionPersona infoPersona = (InformacionPersona)detalle["infoPersona"];
         persona = (Persona)detalle["persona"];
+        img = ViewBag.urlBack + "GestionPersonas/getphoto/" + persona._idPersona;
         formaciones = (List<FormacionPersona>)detalle["formaciones"];
         laborales = (List<LaboralPersona>)detalle["laborales"];
+        
     }
     catch (Exception x)
     {
@@ -23,7 +26,7 @@
 }
 @section estilosPersonalizados{
 
-<link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucioni/style.css" />
+    <link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/DetalleTrabajador/style.css" />
 
 }
 @section scriptsPersonalizados{
@@ -46,20 +49,25 @@
                     Instituciones en America
                 </a> >>>
             </div>
-            <span class="nombrenIst">Universidad Don Bosco</span>
+            <span class="nombrenIst">Universidad Don Bosco</span> >>> 
+            <span class="nombreActual">Ficha</span>
         </div>
         <div class="contenidoFicha">
             <h3>Ficha laboral</h3>
-            <div class="row marginNull">
-                <div class="col-lg-6">Nombre completo</div>
+            <div class="row marginNull text-center">
+                <img src="@img" class="imgFicha" />
+            </div>
+            <div class="contenidoFicha row marginNull">
+                <div class="col-lg-6 etiqueta">Nombre completo: </div>
                 <div class="col-lg-6">@persona.nombreCompleto</div>
-            </div>
-            <div class="row marginNull">
-                <div class="col-lg-6">Fecha de nacimiento</div>
+                
+                <div class="col-lg-6 etiqueta">Fecha de nacimiento: </div>
                 <div class="col-lg-6">@persona.getFechaNac</div>
+                
+
             </div>
             <div class="row marginNull">
-                <h4>Formación</h4>
+                <div class="etiquetaTitulo">Formación</div>
                 <div class="row marginNull">
                     <table class="table">
                         <thead>
@@ -92,7 +100,7 @@
                 </div>
             </div>
             <div class="row marginNull">
-                <h4>Laboral</h4>
+                <div class="etiquetaTitulo">Laboral</div>
                 <div class="row marginNull">
                     <table class="table">
                         <thead>
@@ -118,6 +126,7 @@
                     </table>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
