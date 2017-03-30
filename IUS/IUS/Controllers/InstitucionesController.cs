@@ -11,6 +11,8 @@ using System.Web.Mvc;
     using IUSLibs.FrontUI.Control;
     using IUSLibs.FrontUI.Entidades;
     using IUSLibs.SEC.Entidades;
+    using IUSLibs.SEC.Control;
+    using IUSLibs.RRHH.Entidades;
 namespace IUS.Controllers
 {
     public class InstitucionesController : PadreController
@@ -49,7 +51,52 @@ namespace IUS.Controllers
                 }
                 return View();
             }
-            
+            public ActionResult DetalleTrabajador(int id)
+            {
+                List<LlaveIdioma> traducciones;
+                try
+                {
+                    /*
+                     id: id de la persona 
+                     */
+
+                    ViewBag.usuarioSession = this.getUsuarioSession();
+                    string lang = this.getUserLang();
+                    string ip = Request.UserHostAddress;
+                    ControlPersona control = new ControlPersona();
+                    Dictionary<object, object> detalle = control.sp_rrhh_detallePesona(id, 1, this.idPagina);
+
+                    InformacionPersona informacion = (InformacionPersona)detalle["infoPersona"];
+                    
+                    if (informacion != null)
+                    {
+                        if (informacion._fotoRuta != null && informacion._fotoRuta != "")
+                        {
+                            //informacion._fotoRuta = this.getRelativePathFromAbsolute(informacion._fotoRuta);
+                            //informacion._tieneFoto = true;
+                        }
+                        else
+                        {
+                            informacion = new InformacionPersona();
+                        }
+                        detalle["infoPersona"] = informacion;
+                    }
+
+                    traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
+                    this.setTraduccion(traducciones);
+                    ViewBag.detalle = detalle;
+                    ViewBag.menu22 = this.activeClass;
+                    return View();
+                }
+                catch (ErroresIUS x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+                catch (Exception x)
+                {
+                    return RedirectToAction("Unhandled", "Errors");
+                }
+            }
             public ActionResult EquipoTrabajo(int id)
             {
                 List<LlaveIdioma> traducciones;

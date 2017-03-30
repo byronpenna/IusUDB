@@ -37,7 +37,7 @@
 
         </div>
         <div class="contenidoFicha">
-            <h2>Equipo de trabajo institución</h2>
+            <h3>Equipo de trabajo institución</h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -52,11 +52,11 @@
                         {
                             <tr>
                                 <td>
-                                    @persona._nombres
+                                    @persona.nombreCompleto
                                 </td>
                                 <td>@persona.getEdad</td>
                                 <td>
-                                    <a href="#">
+                                    <a href="@Url.Action("DetalleTrabajador", "Instituciones", new { id = persona._idPersona })">
                                         Ver
                                     </a>
                                 </td>

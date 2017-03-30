@@ -1,0 +1,123 @@
+﻿@using IUSLibs.RRHH.Entidades
+@using IUSLibs.SEC.Entidades
+@using IUSLibs.RRHH.Entidades.Formacion
+@using IUSLibs.RRHH.Entidades.Laboral
+@{
+    Layout = "~/Views/Shared/_Layouti.cshtml";
+    Dictionary<object, object> detalle = null;
+    List<FormacionPersona> formaciones = null;
+    List<LaboralPersona> laborales =null;
+    Persona persona = null;
+    try
+    {
+        detalle = (Dictionary<object, object>)ViewBag.detalle;
+        InformacionPersona infoPersona = (InformacionPersona)detalle["infoPersona"];
+        persona = (Persona)detalle["persona"];
+        formaciones = (List<FormacionPersona>)detalle["formaciones"];
+        laborales = (List<LaboralPersona>)detalle["laborales"];
+    }
+    catch (Exception x)
+    {
+        
+    }
+}
+@section estilosPersonalizados{
+
+<link rel="stylesheet" href="~/Content/ius_theme/views/Instituciones/FichaInstitucioni/style.css" />
+
+}
+@section scriptsPersonalizados{
+    
+    <script src="~/Scripts/views/Instituciones/DetalleTrabajador/script.js"></script>
+    <script src="~/Scripts/views/Instituciones/DetalleTrabajador/functions.js"></script>
+
+}
+<div class="row marginNull lineaRoja">
+
+</div>
+<div class="centroPagina row marginNull contenidoCuerpo">
+    <div class="col-lg-4">
+        @Html.Partial("menuInstitucion")
+    </div>
+    <div class="col-lg-8 detalles">
+        <div class="row marginNull rowTituloInst">
+            <div class="tituloFichaInst">
+                <a href="#">
+                    Instituciones en America
+                </a> >>>
+            </div>
+            <span class="nombrenIst">Universidad Don Bosco</span>
+        </div>
+        <div class="contenidoFicha">
+            <h3>Ficha laboral</h3>
+            <div class="row marginNull">
+                <div class="col-lg-6">Nombre completo</div>
+                <div class="col-lg-6">@persona.nombreCompleto</div>
+            </div>
+            <div class="row marginNull">
+                <div class="col-lg-6">Fecha de nacimiento</div>
+                <div class="col-lg-6">@persona.getFechaNac</div>
+            </div>
+            <div class="row marginNull">
+                <h4>Formación</h4>
+                <div class="row marginNull">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Carrera</th>
+                                <th>Institución</th>
+                                <th>País</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (formaciones != null && formaciones.Count > 0)
+                            {
+                                foreach (FormacionPersona formacion in formaciones)
+                                {
+                                    <tr>
+                                        <td>@formacion._carrera</td>
+                                        <td>@formacion._institucion</td>
+                                        <td>@formacion._paisInstitucion._pais</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center">No hay formación profesional asignada</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row marginNull">
+                <h4>Laboral</h4>
+                <div class="row marginNull">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Cargo</th>
+                                <th>Tiempo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (laborales != null && laborales.Count > 0)
+                            {
+                                foreach (LaboralPersona laboral in laborales)
+                                {
+                                    <tr>
+                                        <td>Nombre institucion</td>
+                                        <td>@laboral._cargo</td>
+                                        <td>Realizar suma</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

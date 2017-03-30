@@ -130,7 +130,8 @@ namespace IUSBack.Controllers
                  * 2: Personas
                  */
                 Usuario usuarioSesion = this.getUsuarioSesion();
-                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);                if (seguridadInicial != null)
+                ActionResult seguridadInicial = this.seguridadInicial(this._idPagina, 2);                
+                if (seguridadInicial != null)
                 {
                     return seguridadInicial;
                 }

@@ -431,6 +431,7 @@
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\media.css" />
     <Content Include="Content\ius_theme\views\Informacion\Organizacion\style.css" />
     <Content Include="Content\ius_theme\views\Informacion\Salesianos\style.css" />
+    <Content Include="Content\ius_theme\views\Instituciones\DetalleTrabajador\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\EquipoTrabajo\style.css" />
     <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucioni\media.css" />
     <Content Include="Content\ius_theme\views\Instituciones\FichaInstitucioni\style.css" />
@@ -656,6 +657,8 @@
     <Content Include="Scripts\views\Home\Indexi\functions.js" />
     <Content Include="Scripts\views\Home\Indexi\script.js" />
     <Content Include="Scripts\views\Home\script.js" />
+    <Content Include="Scripts\views\Instituciones\DetalleTrabajador\functions.js" />
+    <Content Include="Scripts\views\Instituciones\DetalleTrabajador\script.js" />
     <Content Include="Scripts\views\Instituciones\EquipoTrabajo\functions.js" />
     <Content Include="Scripts\views\Instituciones\EquipoTrabajo\script.js" />
     <Content Include="Scripts\views\Instituciones\FichaInstitucioni\functions.js" />
@@ -763,6 +766,7 @@
     <Content Include="Views\Noticias\Indexi.cshtml" />
     <Content Include="Views\Noticias\Todasi.cshtml" />
     <Content Include="Views\Instituciones\EquipoTrabajo.cshtml" />
+    <Content Include="Views\Instituciones\DetalleTrabajador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

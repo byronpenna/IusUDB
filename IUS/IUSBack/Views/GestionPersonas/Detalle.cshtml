@@ -12,12 +12,13 @@
         List<LaboralPersona>        laborales   = (List<LaboralPersona>)detalle["laborales"];
         InformacionPersona          infoPersona = (InformacionPersona)detalle["infoPersona"];
     // medios 
+    
         List<EmailPersona>          emails      = (List<EmailPersona>)medios["emails"];
         List<TelefonoPersona>       telefonos   = (List<TelefonoPersona>)medios["telefonos"];
     // strings 
-        string pais     = "No esta definido";
-        string fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");// /Content/themes/iusback_theme/img/general/profle.png
-        bool putPais = false;
+        string  pais     = "No esta definido";
+        string  fotoRuta = Url.Content("~/Content/themes/iusback_theme/img/general/noPickProfile.png");// /Content/themes/iusback_theme/img/general/profle.png
+        bool    putPais = false;
         if (infoPersona._pais != null)
         {
             pais = infoPersona._pais._pais;
@@ -265,7 +266,7 @@
                             {
                                 <tr>
                                     <td>Nombre institucion</td>
-                                    <td>@laboral._cargo._cargo</td>
+                                    <td>@laboral._cargo</td>
                                     <td>Realizar suma</td>
                                 </tr>
                             }
