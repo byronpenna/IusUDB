@@ -294,6 +294,10 @@ namespace IUSLibs.SEC.Control
                                     {
                                         infoPersona._fotoRuta = row["foto"].ToString();
                                     }
+                                    if (row["id_institucion_fk"] != DBNull.Value)
+                                    {
+                                        infoPersona._institucion = new Institucion((int)row["id_institucion_fk"]);
+                                    }
                                     //, (int), (int), (int)row["id_persona_fk"], row["foto"].ToString()
                                 }
                                 retorno.Add("persona", persona);

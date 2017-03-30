@@ -2,12 +2,15 @@
 @using IUSLibs.SEC.Entidades
 @using IUSLibs.RRHH.Entidades.Formacion
 @using IUSLibs.RRHH.Entidades.Laboral
+@using IUSLibs.FrontUI.Entidades;
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     Dictionary<object, object> detalle = null;
     List<FormacionPersona> formaciones = null;
     List<LaboralPersona> laborales =null;
+    Institucion institucion = null;
     Persona persona = null;
+    Dictionary<object, object> data = null;
     string img = "";
     try
     {
@@ -17,7 +20,8 @@
         img = ViewBag.urlBack + "GestionPersonas/getphoto/" + persona._idPersona;
         formaciones = (List<FormacionPersona>)detalle["formaciones"];
         laborales = (List<LaboralPersona>)detalle["laborales"];
-        
+        data = (Dictionary<object, object>)ViewBag.data;
+        institucion = (Institucion)data["institucion"];
     }
     catch (Exception x)
     {
@@ -45,11 +49,15 @@
     <div class="col-lg-8 detalles">
         <div class="row marginNull rowTituloInst">
             <div class="tituloFichaInst">
-                <a href="#">
-                    Instituciones en America
+                <a href="@Url.Action("Index", "Instituciones", new { id=institucion._idInstitucion})">
+                    Instituciones en @institucion._pais._continente._continente
                 </a> >>>
             </div>
-            <span class="nombrenIst">Universidad Don Bosco</span> >>> 
+            <span class="nombrenIst">
+                <a href="@Url.Action("FichaInstitucion", "Instituciones", new { id = institucion._idInstitucion })">
+                    Universidad Don Bosco
+                </a>
+            </span> >>> 
             <span class="nombreActual">Ficha</span>
         </div>
         <div class="contenidoFicha">

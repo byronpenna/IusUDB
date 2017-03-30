@@ -59,15 +59,14 @@ namespace IUS.Controllers
                     /*
                      id: id de la persona 
                      */
-
+                    ControlInstitucion controlInstitucion = new ControlInstitucion();
                     ViewBag.usuarioSession = this.getUsuarioSession();
                     string lang = this.getUserLang();
                     string ip = Request.UserHostAddress;
                     ControlPersona control = new ControlPersona();
                     Dictionary<object, object> detalle = control.sp_rrhh_detallePesona(id, 1, this.idPagina);
-
                     InformacionPersona informacion = (InformacionPersona)detalle["infoPersona"];
-                    
+                    Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(informacion._institucion._idInstitucion, ip, this.idPaginaFichaInstitucion, lang);
                     if (informacion != null)
                     {
                         if (informacion._fotoRuta != null && informacion._fotoRuta != "")
@@ -81,11 +80,12 @@ namespace IUS.Controllers
                         }
                         detalle["infoPersona"] = informacion;
                     }
-
+                    ViewBag.nombresContinentes = controlInstitucion.getLabelsContinentes(lang);
                     traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
                     this.setTraduccion(traducciones);
                     ViewBag.detalle = detalle;
                     ViewBag.menu22 = this.activeClass;
+                    ViewBag.data = data; 
                     return View();
                 }
                 catch (ErroresIUS x)
@@ -100,6 +100,7 @@ namespace IUS.Controllers
             public ActionResult EquipoTrabajo(int id)
             {
                 List<LlaveIdioma> traducciones;
+                ControlInstitucion controlInstitucion = new ControlInstitucion();
                 try
                 {
                     /*
@@ -111,7 +112,9 @@ namespace IUS.Controllers
                     string ip = Request.UserHostAddress;
                     List<Persona> personas = this._model.sp_rrhh_controlPersona_getPersonasByInstitucion(id, lang, ip, idPagina);
                     ViewBag.personas = personas;
-                    
+                    ViewBag.nombresContinentes = controlInstitucion.getLabelsContinentes(lang);
+                    Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(id, ip, this.idPaginaFichaInstitucion, lang);
+                    ViewBag.data = data;
                     traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
                     this.setTraduccion(traducciones);
                     ViewBag.menu22 = this.activeClass;
@@ -134,6 +137,7 @@ namespace IUS.Controllers
                     return RedirectToAction("Index", "Instituciones");
                 }
                 List<LlaveIdioma> traducciones;
+                ControlInstitucion controlInstitucion = new ControlInstitucion();
                 try
                 {
                     ViewBag.usuarioSession = this.getUsuarioSession();
@@ -145,6 +149,7 @@ namespace IUS.Controllers
                     ViewBag.menu13 = this.activeClass;
                     traducciones = this._model.getTraduccion(lang, this.idPaginaFichaInstitucion);
                     this.setTraduccion(traducciones);
+                    ViewBag.nombresContinentes = controlInstitucion.getLabelsContinentes(lang);
                     ViewBag.menu22 = this.activeClass;
                 }
                 catch (ErroresIUS x)

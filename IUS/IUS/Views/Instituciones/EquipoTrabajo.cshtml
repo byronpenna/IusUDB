@@ -1,11 +1,15 @@
-﻿@using IUSLibs.SEC.Entidades
+﻿@using IUSLibs.FrontUI.Entidades;
+@using IUSLibs.SEC.Entidades
 @{
     Layout = "~/Views/Shared/_Layouti.cshtml";
     List<Persona> personas = null;
+    Institucion institucion = null;
+    Dictionary<object, object> data = null;
     try
     {
+        data = (Dictionary<object, object>)ViewBag.data;
         personas = (List<Persona>)ViewBag.personas;
-        
+        institucion = (Institucion)data["institucion"];
     }
     catch (Exception)
     {
@@ -29,12 +33,16 @@
     <div class="col-lg-8 detalles">
         <div class="row marginNull rowTituloInst">
             <div class="tituloFichaInst">
-                <a href="#">
-                    Instituciones en America
+                <a href="@Url.Action("Index","Instituciones" ,new { id=institucion._pais._continente._idContinente})">
+                    Instituciones en @institucion._pais._continente._continente
                 </a> >>>
             </div>
-            <span class="nombrenIst">Universidad Don Bosco</span>
-
+            <span class="nombrenIst">
+                <a href="@Url.Action("FichaInstitucion", "Instituciones", new { id=institucion._idInstitucion})">
+                    @institucion._nombre
+                </a>
+            </span> >>> 
+            <span class="nombreActual">Equipo trabajo</span>
         </div>
         <div class="contenidoFicha">
             <h3>Equipo de trabajo institución</h3>
