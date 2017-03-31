@@ -51,7 +51,8 @@
   margin: 0 auto; }
 
 .divCuerpoConocenos {
-  font-size: 0.9em; }
+  font-size: 0.9em;
+  text-align: justify; }
 
 .contenedorImgPrincipal {
   border: solid 1px #cd1315;

@@ -43,6 +43,9 @@
 .detalles {
   height: 780px; }
 
+.pInicial, .pInicial1 {
+  text-align: justify; }
+
 .divInfoInstituciones p {
   font-size: 14px; }
 
