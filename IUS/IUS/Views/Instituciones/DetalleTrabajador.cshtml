@@ -50,7 +50,7 @@
         <div class="row marginNull rowTituloInst">
             <div class="tituloFichaInst">
                 <a href="@Url.Action("Index", "Instituciones", new { id=institucion._idInstitucion})">
-                    Instituciones en @institucion._pais._continente._continente
+                     @ViewData["texto-cabeceraIns"] @institucion._pais._continente._continente @*Instituciones en*@
                 </a> >>>
             </div>
             <span class="nombrenIst">
@@ -58,31 +58,31 @@
                     Universidad Don Bosco
                 </a>
             </span> >>> 
-            <span class="nombreActual">Ficha</span>
+            <span class="nombreActual">@ViewData["titulo-cabeceraPagina"]</span>
         </div>
         <div class="contenidoFicha">
-            <h3>Ficha laboral</h3>
+            <h3>@ViewData["titulo-cabeceraPagina"]</h3>
             <div class="row marginNull text-center">
                 <img src="@img" class="imgFicha" />
             </div>
             <div class="contenidoFicha row marginNull">
-                <div class="col-lg-6 etiqueta">Nombre completo: </div>
+                <div class="col-lg-6 etiqueta">@ViewData["lb-nombre"] @*Nombre completo:*@ </div>
                 <div class="col-lg-6">@persona.nombreCompleto</div>
                 
-                <div class="col-lg-6 etiqueta">Fecha de nacimiento: </div>
+                <div class="col-lg-6 etiqueta">@ViewData["lb-fecha"] @*Fecha de nacimiento:*@ </div>
                 <div class="col-lg-6">@persona.getFechaNac</div>
                 
 
             </div>
             <div class="row marginNull">
-                <div class="etiquetaTitulo">Formación</div>
+                <div class="etiquetaTitulo">@ViewData["titulo-formacion"] @*Formación*@</div>
                 <div class="row marginNull">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Carrera</th>
-                                <th>Institución</th>
-                                <th>País</th>
+                                <th>@ViewData["tbFormacion-th-carrera"] @*Carrera*@</th>
+                                <th>@ViewData["tbFormacion-th-institucion"] @*Institución*@</th>
+                                <th>@ViewData["tbFormacion-th-pais"] @*País*@ </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -108,14 +108,14 @@
                 </div>
             </div>
             <div class="row marginNull">
-                <div class="etiquetaTitulo">Laboral</div>
+                <div class="etiquetaTitulo">@ViewData["titulo-laboral"] @*Laboral*@</div>
                 <div class="row marginNull">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Empresa</th>
-                                <th>Cargo</th>
-                                <th>Tiempo</th>
+                                <th>@ViewData["tbLaboral-th-empresa"]@*Empresa*@</th>
+                                <th>@ViewData["tbLaboral-th-cargo"] @*Cargo*@</th>
+                                <th>@ViewData["tbLaboral-th-Tiempo"] @*Tiempo*@</th>
                             </tr>
                         </thead>
                         <tbody>

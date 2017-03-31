@@ -68,7 +68,7 @@ namespace IUS.Controllers
                     ControlPersona control = new ControlPersona();
                     Dictionary<object, object> detalle = control.sp_rrhh_detallePesona(id, 1, this.idPagina);
                     InformacionPersona informacion = (InformacionPersona)detalle["infoPersona"];
-                    Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(informacion._institucion._idInstitucion, ip, this.idPaginaFichaInstitucion, lang);
+                    Dictionary<object, object> data = this._model.sp_frontui_front_getInstitucionById(informacion._institucion._idInstitucion, ip, this.idPaginaDetalleTrabajador, lang);
                     if (informacion != null)
                     {
                         if (informacion._fotoRuta != null && informacion._fotoRuta != "")
