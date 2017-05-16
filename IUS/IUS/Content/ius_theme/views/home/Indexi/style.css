@@ -63,7 +63,15 @@
     font-size: 1.5em; }
 
   .seccionContenidoNotiEve .contenido {
-    display: block; } }
+    display: block; }
+
+  .menuConocenos {
+    text-align: center; }
+    .menuConocenos li {
+      display: inline-block;
+      width: 25%;
+      padding-top: 2%;
+      padding-bottom: 2%; } }
 @media (max-width: 768px) {
   .bloque {
     text-align: center; }

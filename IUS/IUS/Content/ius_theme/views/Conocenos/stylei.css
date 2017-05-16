@@ -75,4 +75,22 @@
   font-size: 1em;
   margin-bottom: 5%; }
 
+@media (max-width: 992px) {
+  .DetalleMenuConocenos {
+    padding-top: 30px; }
+
+  .menuConocenos {
+    text-align: center;
+    margin-top: 30px; }
+    .menuConocenos li {
+      display: inline-block;
+      width: 30%;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      font-size: 0.8em; } }
+@media (max-width: 600px) {
+  .menuConocenos li {
+    width: 35%;
+    margin-right: 5%; } }
+
 /*# sourceMappingURL=stylei.css.map */
