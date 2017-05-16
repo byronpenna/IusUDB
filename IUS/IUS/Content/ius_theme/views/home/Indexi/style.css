@@ -58,4 +58,20 @@
 .footer {
   margin-top: 0; }
 
+@media (max-width: 992px) {
+  .bloque h2 {
+    font-size: 1.5em; } }
+@media (max-width: 768px) {
+  .bloque {
+    text-align: center; }
+    .bloque h2, .bloque img {
+      width: 70%;
+      margin: 0 auto; } }
+@media (max-width: 600px) {
+  .bloque h2, .bloque img {
+    width: 85%; } }
+@media (max-width: 540px) {
+  .bloque h2, .bloque img {
+    width: 90%; } }
+
 /*# sourceMappingURL=style.css.map */

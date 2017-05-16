@@ -340,6 +340,9 @@ body {
   .rowSearch {
     padding-top: 10px;
     height: 50px; } }
+@media (max-width: 992px) {
+  .bloque h2 {
+    font-size: 1.5em; } }
 @media (max-width: 768px) {
   .imgIcoHeader {
     width: 8%;
@@ -349,7 +352,10 @@ body {
     width: 90%; }
 
   .inputSearchDiv {
-    width: 40%; } }
+    width: 40%; }
+
+  .bloque h2, .bloque img {
+    width: 60%; } }
 @media (max-width: 600px) {
   .centroPagina {
     width: 95%; }
