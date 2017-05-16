@@ -328,15 +328,32 @@ body {
   .logoHeaderSection {
     text-align: center; }
     .logoHeaderSection img {
-      width: 40%; } }
+      width: 40%; }
+
+  .inputSearchDiv {
+    width: 25%;
+    margin: 0 auto; }
+
+  .contenedorInputSearch {
+    text-align: center; }
+
+  .rowSearch {
+    padding-top: 10px;
+    height: 50px; } }
 @media (max-width: 768px) {
   .imgIcoHeader {
     width: 8%;
     margin-right: 8%; }
 
   .centroPagina {
-    width: 90%; } }
+    width: 90%; }
+
+  .inputSearchDiv {
+    width: 40%; } }
 @media (max-width: 600px) {
+  .centroPagina {
+    width: 95%; }
+
   .divSectionIdioma {
     height: auto;
     font-size: 0.7em;
@@ -346,6 +363,9 @@ body {
     width: 50%; }
 
   .cbIdioma {
-    font-size: 1.2em; } }
+    font-size: 1.2em; }
+
+  .inputSearchDiv {
+    width: 50%; } }
 
 /*# sourceMappingURL=stylei.css.map */
