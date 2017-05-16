@@ -162,16 +162,16 @@
                     }
                     <div class="row marginNull notiEve">
                         <input class="txtHdTipoEntra" type="hidden" value="@noticiaEvento._idTipoEntrada" />
-                        <div class="col-lg-6 contentImgNotiEve hoverEventNoti">
+                        <div class="col-sm-6 col-md-6 col-lg-6 contentImgNotiEve hoverEventNoti">
                             <div class="text-tituloNotiEve" style="display:none;">@tituloHover</div>
                             <div class="divHoverNotiEve" style="display:none;">
                             </div>
                             <img class="imgNotiEve" src="@src" />
                         </div>
-                        <div class="col-lg-6 seccionContenidoNotiEve">
+                        <div class="col-sm-6 col-md-6 col-lg-6 seccionContenidoNotiEve">
                             <div class="contenido">
                                 <h4>@noticiaEvento._titulo</h4>
-                                <p>
+                                <p class="pDescripcionNotiEve">
                                     @(new HtmlString(noticiaEvento._descripcion))
                                 </p>
                                 @if (noticiaEvento._fecha != null)

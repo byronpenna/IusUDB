@@ -60,13 +60,25 @@
 
 @media (max-width: 992px) {
   .bloque h2 {
-    font-size: 1.5em; } }
+    font-size: 1.5em; }
+
+  .seccionContenidoNotiEve .contenido {
+    display: block; } }
 @media (max-width: 768px) {
   .bloque {
     text-align: center; }
     .bloque h2, .bloque img {
       width: 70%;
-      margin: 0 auto; } }
+      margin: 0 auto; }
+
+  .seccionContenidoNotiEve {
+    width: 100%; }
+
+  .notiEve h4 {
+    text-align: center;
+    margin-top: 4%; }
+  .notiEve .pDescripcionNotiEve {
+    margin-bottom: 5%; } }
 @media (max-width: 600px) {
   .bloque h2, .bloque img {
     width: 85%; } }
