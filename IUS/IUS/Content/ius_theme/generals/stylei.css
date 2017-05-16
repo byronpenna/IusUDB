@@ -336,5 +336,16 @@ body {
 
   .centroPagina {
     width: 90%; } }
+@media (max-width: 600px) {
+  .divSectionIdioma {
+    height: auto;
+    font-size: 0.7em;
+    margin-top: 4%; }
+
+  .padreCaja {
+    width: 50%; }
+
+  .cbIdioma {
+    font-size: 1.2em; } }
 
 /*# sourceMappingURL=stylei.css.map */
