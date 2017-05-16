@@ -10,11 +10,11 @@
 }
 <header>
     <div class="row marginNull header centroPagina">
-        <div class="col-lg-3 logoHeaderSection ">
+        <div class="col-md-12 col-lg-3 logoHeaderSection ">
             <img src="@Url.Content("~/Content/images/generales/logo2.png")" />
         </div>
         <div class="col-lg-9">
-            <div class="col-lg-3 divSectionIdioma ">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 divSectionIdioma ">
                 <div class="otroDiv">
                     <div class="tituloIdioma">@ViewData["lb-idioma"]</div>
                     <div class="padreCaja">
@@ -75,13 +75,13 @@
     </div>
     <div class="row marginNull subSeccion">
         <div class="centroPagina">
-            <div class="col-lg-offset-9 col-lg-3">
-                <div class="col-lg-6 menuChiquito">
+            <div class="col-lg-offset-9 col-lg-3 col-md-12 icoContactos">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 menuChiquito">
                     <a class="@ViewBag.submenu11 linkAreaPrivada headerTextoLink" href="@rutaLogin">
                         <img class="imgIcoHeader" src="@imgAreaPrivada" /> @ViewData["menu1.2"] @*Área privada*@
                     </a>
                 </div>
-                <div class="col-lg-6 menuChiquito">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 menuChiquito">
                     <a class="@ViewBag.submenu12 linkAreaPrivada headerTextoLink" href="#">
                         <img class="imgIcoHeader headerTextoLink" src="@Url.Content("~/Content/images/views/Home/header/mail.png")" /> @ViewData["menuContacto"]
                     </a>

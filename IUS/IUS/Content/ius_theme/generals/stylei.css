@@ -302,4 +302,39 @@ body {
 .menuChiquito {
   padding: 0; }
 
+@media (max-width: 1200px) {
+  .navPrincipal {
+    text-align: center; }
+
+  .padreCaja {
+    width: 20%; }
+
+  .icoContactos {
+    text-align: center;
+    margin-top: 4%; }
+
+  .imgIcoHeader {
+    width: 5%; }
+
+  .divSectionIdioma .tituloIdioma {
+    font-size: 1.5em; }
+
+  .navPrincipal ul li {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    height: auto;
+    margin-top: 3%; }
+
+  .logoHeaderSection {
+    text-align: center; }
+    .logoHeaderSection img {
+      width: 40%; } }
+@media (max-width: 768px) {
+  .imgIcoHeader {
+    width: 8%;
+    margin-right: 8%; }
+
+  .centroPagina {
+    width: 90%; } }
+
 /*# sourceMappingURL=stylei.css.map */
