@@ -6,7 +6,16 @@
             .indexOf((match[3] || "").toLowerCase()) >= 0;
         }
     });
-    // eventos 
+    // eventos         
+            $(document).on("click", ".hamburguerButton", function () {
+                var padre = $(this).parent();
+                var ul = padre.find("ul");
+                if (ul.is(":visible")) {
+                    ul.hide("slow");
+                } else {
+                    ul.show("slow");
+                }
+            })
         // change
             $(document).on("change", ".cbIdioma", function () {
                 idIdioma = $(this).val();

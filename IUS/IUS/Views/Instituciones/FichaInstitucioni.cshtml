@@ -64,100 +64,99 @@
 
 </div>
 <div class="centroPagina row marginNull contenidoCuerpo">
-    <div class="col-lg-4">
+    <div class="col-sm-3 col-md-4 col-lg-4">
         @Html.Partial("menuInstitucion")
     </div>
-    <div class="col-lg-8 detalles">
+    <div class="col-sm-9  col-lg-8 col-md-8 detalles">
         <div class="row marginNull rowTituloInst">
             <div class="tituloFichaInst">
-                <a href="@Url.Action("Index","Instituciones" ,new { id=institucion._pais._continente._idContinente})"> 
-                @ViewData["texto-cabeceraIns"] @institucion._pais._continente._continente
-                </a> >>> 
+                <a href="@Url.Action("Index","Instituciones" ,new { id=institucion._pais._continente._idContinente})">
+                    @ViewData["texto-cabeceraIns"] @institucion._pais._continente._continente
+                </a> >>>
             </div>
             <span class="nombrenIst">@institucion._nombre</span>
         </div>
         <div class="contenidoFicha">
             <div class="row marginNull">
-                <div class="col-lg-9">
+                <div class="col-sm-9 col-md-9 col-lg-9">
                     <div class="seccion row marginNull">
                         @*<div class="etiqueta etiquetaTitulo">@institucion._nombre</div>*@
 
-                        <div class="col-lg-6 etiqueta">@ViewData["lb-pais"]</div>
-                        <div class="col-lg-6">
+                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">@ViewData["lb-pais"]</div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             @institucion._pais._pais
                         </div>
 
                         @if (ciudad != "")
                         {
-                            <div class="col-lg-6 etiqueta">
+                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-sede"]
                             </div>
-                            <div class="col-lg-6 ">
+                            <div class="col-sm-6 col-md-6 col-lg-6 ">
                                 @ciudad
-                            </div>    
+                            </div>
                         }
-                        
+
                         @if (otrasCiudades != "")
                         {
-                            <div class="col-lg-6 etiqueta">
+                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-ciudad"]
                             </div>
-                            <div class="col-lg-6 ">
+                            <div class="col-sm-6 col-md-6 col-lg-6 ">
                                 @otrasCiudades
-                            </div>    
+                            </div>
                         }
-                        
 
-                        <div class="col-lg-6 etiqueta">
+
+                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                             @ViewData["lb-anioFundacion"]
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             @institucion._anioFundacion
                         </div>
 
-                        <div class="col-lg-6 etiqueta">
+                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                             @ViewData["lb-tipoInstitucion"]
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             @institucion._tipoInstitucion._tipoInstitucion
                         </div>
 
-                        <div class="col-lg-6 etiqueta">
+                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                             @ViewData["lb-direccion"]
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
                             <address>
                                 @institucion._direccion
                             </address>
                         </div>
 
-                        
+
                         @if (institucion._telefonos != null)
                         {
-                            <div class="col-lg-6 etiqueta">
+                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-telefonos"]
                             </div>
-                            <div class="col-lg-6 colMedia">
+                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
                                 @foreach (TelefonoInstitucion telefono in institucion._telefonos)
                                 {
                                     string tel = "";
                                     if (telefono._institucion._pais._codigoPais != "")
                                     {
-                                    tel = "(" + telefono._institucion._pais._codigoPais + ")";
+                                        tel = "(" + telefono._institucion._pais._codigoPais + ")";
                                     }
                                     <div class="row marginNull">
                                         <a href="tel:@telefono._telefono"> @tel @telefono._textoTelefono </a><span> / </span>
                                     </div>
                                 }
                             </div>
-                            
                         }
                         @if (institucion._emails != null && institucion._emails.Count > 0)
                         {
-                            <div class="col-lg-6 etiqueta">
-                                Email: 
+                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                                Email:
                             </div>
-                            <div class="col-lg-6 colMedia">
+                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
                                 @foreach (EmailInstitucion emailInstitucion in institucion._emails)
                                 {
                                     <span>
@@ -166,14 +165,14 @@
                                 }
                             </div>
                         }
-                        
+
 
                         @if (institucion._enlaces != null)
                         {
-                            <div class="col-lg-6 etiqueta">
+                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-sitioweb"]
                             </div>
-                            <div class="col-lg-6 colMedia">
+                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
                                 @foreach (EnlaceInstitucion enlace in institucion._enlaces)
                                 {
                                     <span>
@@ -182,19 +181,19 @@
                                 }
                             </div>
                         }
+                        
                         @if (institucion._rector != "")
                         {
-                            <div class="col-lg-6 etiqueta">
+                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 Rector:
                             </div>
-                            <div class="col-lg-6 colMedia">
+                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
                                 @institucion._rector
-                            </div>    
+                            </div>
                         }
-                        
                     </div>
                 </div>
-                <div class="col-lg-3 colFotoInst">
+                <div class="col-sm-3 col-md-3 col-lg-3 colFotoInst">
                     <img class="imgFotoInstitucion" src="@src" />
                 </div>
             </div>
@@ -212,7 +211,7 @@
                     </div>
                 </div>
             }
-            
+
             @if (institucion._areas != null && institucion._areas.Count > 0)
             {
                 <div class="contenidoConocimiento row marginNull">
@@ -230,12 +229,13 @@
                     </div>
                 </div>
             }
-            
+
             <div class="contenidoConocimiento row marginNull">
                 @{
                     bool put = institucion._institucionesNiveles != null && institucion._institucionesNiveles.Count > 0;
                 }
-                @if(put){
+                @if (put)
+                {
                     <div class="col-lg-12 rowNivelArea">
                         <div class="etiquetaTitulo">
                             @ViewData["texto-numeroEstudiantes"]
@@ -247,48 +247,48 @@
                             {
                                 cn += institucionNivel._numAlumnos;
                             }
-                                <div class="col-lg-6">@ViewData["tb-td-total"]</div>
-                                <div class="col-lg-6">@cn</div>
+                            <div class="col-lg-6">@ViewData["tb-td-total"]</div>
+                            <div class="col-lg-6">@cn</div>
                         }
                         @*<table class="table tablaNumeroEstudiante">
-                            <thead>
-                                <tr>
-                                    <th>@ViewData["tb-th-nivelInstitucion"] </th> Nivel de instrucción
-                                    <th>@ViewData["tb-th-estudiantes"]</th>  Estudiantes
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (put)
-                                {
-                                    int cn = 0;
-                                    foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
+                                <thead>
+                                    <tr>
+                                        <th>@ViewData["tb-th-nivelInstitucion"] </th> Nivel de instrucción
+                                        <th>@ViewData["tb-th-estudiantes"]</th>  Estudiantes
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (put)
                                     {
-                                        cn += institucionNivel._numAlumnos;
-                                        <tr>
-                                            <td>
-                                                @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
-                                            </td>
-                                            <td>
-                                                @institucionNivel._numAlumnos
-                                            </td>
+                                        int cn = 0;
+                                        foreach (InstitucionNivel institucionNivel in institucion._institucionesNiveles)
+                                        {
+                                            cn += institucionNivel._numAlumnos;
+                                            <tr>
+                                                <td>
+                                                    @institucionNivel._nivelEducacion._codigo - @institucionNivel._nivelEducacion._descripcion
+                                                </td>
+                                                <td>
+                                                    @institucionNivel._numAlumnos
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr class="trTotal">
+                                            <td>@ViewData["tb-td-total"]</td>
+                                            <td>@cn</td>
                                         </tr>
                                     }
-                                    <tr class="trTotal">
-                                        <td>@ViewData["tb-td-total"]</td>
-                                        <td>@cn</td>
-                                    </tr>
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td colspan="2" class="text-center">No hay datos que mostrar</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>*@
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="2" class="text-center">No hay datos que mostrar</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>*@
                     </div>
                 }
-            </div> 
+            </div>
             @if (institucion._revistas != null && institucion._revistas.Count > 0)
             {
                 <div class="col-lg-12 rowNivelArea">
@@ -315,7 +315,7 @@
                         </table>
                     </div>
                 </div>
-                
+
             }
             <div class="row marginNull">
                 <a class="aEquipo" href="@Url.Action("EquipoTrabajo","Instituciones", new { id=institucion._idInstitucion})">

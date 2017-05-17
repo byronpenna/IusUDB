@@ -302,6 +302,9 @@ body {
 .menuChiquito {
   padding: 0; }
 
+.hamburguerButton {
+  display: none; }
+
 @media (max-width: 1200px) {
   .navPrincipal {
     text-align: center; }
@@ -352,10 +355,7 @@ body {
     width: 90%; }
 
   .inputSearchDiv {
-    width: 40%; }
-
-  .bloque h2, .bloque img {
-    width: 60%; } }
+    width: 40%; } }
 @media (max-width: 600px) {
   .centroPagina {
     width: 95%; }
@@ -373,5 +373,37 @@ body {
 
   .inputSearchDiv {
     width: 50%; } }
+@media (max-width: 520px) {
+  .navPrincipal ul {
+    display: none; }
+    .navPrincipal ul li {
+      display: block;
+      width: 100%; }
+
+  .hamburguerButton {
+    display: block;
+    text-align: left;
+    padding-top: 18%;
+    font-size: 2em; } }
+@media (max-width: 450px) {
+  .navPrincipal ul {
+    background: #eeecec; }
+
+  .menuChiquito {
+    display: block;
+    width: 100%;
+    font-size: 1.3em;
+    border-bottom: solid 1px;
+    padding-bottom: 3%;
+    margin-bottom: 3%; }
+
+  .menuChiquito:last-child {
+    border-bottom: none; }
+
+  .imgIcoHeader {
+    display: none; }
+
+  .centroPagina {
+    width: 98%; } }
 
 /*# sourceMappingURL=stylei.css.map */
