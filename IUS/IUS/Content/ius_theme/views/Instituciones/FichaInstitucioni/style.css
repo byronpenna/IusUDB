@@ -139,33 +139,12 @@
     font-weight: bold;
     font-size: 14px; }
 
-/* */
-@media (max-width: 992px) {
-  .detalles {
-    height: 850px;
-    margin-bottom: 2%; } }
-@media (max-width: 768px) {
-  .menuLateral {
-    text-align: center; }
+@media (max-width: 600px) {
+  .textoFichaInstitucion {
+    width: 70%; }
 
-  li {
-    width: 30%;
-    display: inline-block; }
-
-  .detalles {
-    height: 800px; } }
-@media (max-width: 450px) {
-  .detalles {
-    height: auto; }
-
-  .menuLateral li {
+  .detalleEtiqueta {
     width: 100%;
-    display: block; }
-
-  .colImgMap {
-    display: none; }
-
-  .texto {
-    width: 100%; } }
+    display: block; } }
 
 /*# sourceMappingURL=style.css.map */

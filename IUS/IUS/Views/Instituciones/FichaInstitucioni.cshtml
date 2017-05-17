@@ -78,54 +78,51 @@
         </div>
         <div class="contenidoFicha">
             <div class="row marginNull">
-                <div class="col-sm-9 col-md-9 col-lg-9">
+                <div class="textoFichaInstitucion col-xs-9 col-sm-9 col-md-9 col-lg-9">
                     <div class="seccion row marginNull">
                         @*<div class="etiqueta etiquetaTitulo">@institucion._nombre</div>*@
 
-                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">@ViewData["lb-pais"]</div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">@ViewData["lb-pais"]</div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta">
                             @institucion._pais._pais
                         </div>
 
                         @if (ciudad != "")
                         {
-                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-sede"]
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta">
                                 @ciudad
                             </div>
                         }
 
                         @if (otrasCiudades != "")
                         {
-                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-ciudad"]
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6 ">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta">
                                 @otrasCiudades
                             </div>
                         }
-
-
-                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                             @ViewData["lb-anioFundacion"]
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta">
                             @institucion._anioFundacion
                         </div>
-
-                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                             @ViewData["lb-tipoInstitucion"]
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta">
                             @institucion._tipoInstitucion._tipoInstitucion
                         </div>
 
-                        <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                             @ViewData["lb-direccion"]
                         </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta">
                             <address>
                                 @institucion._direccion
                             </address>
@@ -134,10 +131,10 @@
 
                         @if (institucion._telefonos != null)
                         {
-                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-telefonos"]
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta colMedia">
                                 @foreach (TelefonoInstitucion telefono in institucion._telefonos)
                                 {
                                     string tel = "";
@@ -153,10 +150,10 @@
                         }
                         @if (institucion._emails != null && institucion._emails.Count > 0)
                         {
-                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 Email:
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta colMedia">
                                 @foreach (EmailInstitucion emailInstitucion in institucion._emails)
                                 {
                                     <span>
@@ -169,10 +166,10 @@
 
                         @if (institucion._enlaces != null)
                         {
-                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 @ViewData["lb-sitioweb"]
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta colMedia">
                                 @foreach (EnlaceInstitucion enlace in institucion._enlaces)
                                 {
                                     <span>
@@ -184,16 +181,16 @@
                         
                         @if (institucion._rector != "")
                         {
-                            <div class="col-sm-6 col-md-6 col-lg-6 etiqueta">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 etiqueta">
                                 Rector:
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6 colMedia">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 detalleEtiqueta colMedia">
                                 @institucion._rector
                             </div>
                         }
                     </div>
                 </div>
-                <div class="col-sm-3 col-md-3 col-lg-3 colFotoInst">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 colFotoInst">
                     <img class="imgFotoInstitucion" src="@src" />
                 </div>
             </div>
