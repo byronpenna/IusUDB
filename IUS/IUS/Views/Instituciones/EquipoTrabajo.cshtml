@@ -28,10 +28,10 @@
 
 </div>
 <div class="centroPagina row marginNull contenidoCuerpo">
-    <div class="col-lg-4">
+    <div class="col-sm-3 col-md-4 col-lg-4">
         @Html.Partial("menuInstitucion")
     </div>
-    <div class="col-lg-8 detalles">
+    <div class="col-sm-9 col-lg-8 col-md-8 detalles">
         <div class="row marginNull rowTituloInst">
             <div class="tituloFichaInst">
                 <a href="@Url.Action("Index","Instituciones" ,new { id=institucion._pais._continente._idContinente})">
@@ -42,7 +42,7 @@
                 <a href="@Url.Action("FichaInstitucion", "Instituciones", new { id=institucion._idInstitucion})">
                     @institucion._nombre
                 </a>
-            </span> >>> 
+            </span> >>>
             <span class="nombreActual">@ViewData["titulo-cabeceraPagina"]</span>@*Equipo trabajo*@
         </div>
         <div class="contenidoFicha">
@@ -55,7 +55,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (personas != null) {
+                    @if (personas != null)
+                    {
                         foreach (Persona persona in personas)
                         {
                             <tr>
