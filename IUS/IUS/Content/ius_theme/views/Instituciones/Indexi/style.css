@@ -47,7 +47,7 @@
     margin-top: 3%; } }
 @media (max-width: 768px) {
   .detalles {
-    height: 800px; }
+    height: 850px; }
 
   .menuLateral {
     text-align: center; }
@@ -167,17 +167,8 @@
 
 @media (max-width: 768px) {
   .detalles {
-    height: 800px; } }
+    height: 850px; } }
 @media (max-width: 450px) {
-  .detalles {
-    height: auto; }
-
-  .menuLateral li {
-    width: 100%;
-    display: block; }
-  .menuLateral .colImgMap {
-    display: none; }
-
   .texto {
     width: 100%; } }
 
