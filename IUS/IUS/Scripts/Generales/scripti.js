@@ -7,6 +7,18 @@
         }
     });
     // eventos         
+            //$(".navPrincipal ul li").css("background", "pink");
+            $(document).on("click", ".liPrincipal", function () {
+                console.log("Entro a li", $(window).width());
+                if ($(window).width() < 520) {
+                    var a = $(this).find(".aMenuPrincipal");
+                    var url = a.attr("href");
+                    console.log("La url es", url);
+
+                    location.replace(url);
+                    //a.css("background", "yellow")
+                }
+            })
             $(document).on("click", ".hamburguerButton", function () {
                 var padre = $(this).parent();
                 var ul = padre.find("ul");
