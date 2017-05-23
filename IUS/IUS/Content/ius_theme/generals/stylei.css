@@ -331,7 +331,7 @@ body {
   .logoHeaderSection {
     text-align: center; }
     .logoHeaderSection img {
-      width: 40%; }
+      width: 90%; }
 
   .inputSearchDiv {
     width: 25%;
@@ -345,7 +345,17 @@ body {
     height: 50px; } }
 @media (max-width: 992px) {
   .bloque h2 {
-    font-size: 1.5em; } }
+    font-size: 1.5em; }
+
+  .logoHeaderSection img {
+    width: 90%; }
+
+  .padreCaja {
+    width: 30%; }
+
+  .logoHeaderSection img {
+    width: 90%;
+    padding-top: 20%; } }
 @media (max-width: 768px) {
   .imgIcoHeader {
     width: 8%;
@@ -355,7 +365,14 @@ body {
     width: 90%; }
 
   .inputSearchDiv {
-    width: 40%; } }
+    width: 40%; }
+
+  .logoHeaderSection img {
+    width: 30%;
+    padding-top: 0%; }
+
+  .divSectionIdioma {
+    height: 65px; } }
 @media (max-width: 600px) {
   .centroPagina {
     width: 95%; }
