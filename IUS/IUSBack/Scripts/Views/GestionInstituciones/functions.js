@@ -12,9 +12,22 @@
                 strEliminar = "disabled";
             }
         }
+        /*<td class='tdDireccion'>\
+            <div class='editMode hidden'>\
+                <textarea class='inputBack txtAreaDireccionEdit form-control txtAreaDireccionVal' name='txtAreaDireccionEdit'></textarea>\
+            </div>\
+            <div class='normalMode tdDireccion tdDireccionText '>"+institucion._direccion+"</div>\
+        </td>\
+        <td class='tdCiudad'>\
+            <div class='editMode hidden'>\
+                <input class='form-control txtCiudad inputBack' name='txtCiudad' />\
+            </div>\
+            <div class='normalMode tdCiudadText'>"+institucion._ciudad+"</div>\
+        </td>\
+        */
         var tr = "\
             <tr class='trPadre'>\
-                <td>\
+                <td class='hidden'>\
                     <input class='txtHdIdInstitucion' name='txtHdIdInstitucion' value='"+institucion._idInstitucion+"' />\
                     <input class='txtHdIdPais' name='txtHdIdPais' value='"+institucion._pais._idPais+"' />\
                     <input class='txtHdIdTipoInstitucion' name='txtHdIdTipoInstitucion' value='"+institucion._tipoInstitucion._idTipoInstitucion+"' />\
@@ -26,12 +39,6 @@
                         </div>\
                     </div>\
                     <div class='normalMode tdNombre'>"+institucion._nombre+"</div>\
-                </td>\
-                <td class='tdDireccion'>\
-                    <div class='editMode hidden'>\
-                        <textarea class='inputBack txtAreaDireccionEdit form-control txtAreaDireccionVal' name='txtAreaDireccionEdit'></textarea>\
-                    </div>\
-                    <div class='normalMode tdDireccion tdDireccionText '>"+institucion._direccion+"</div>\
                 </td>\
                 <td class='tdPais'>\
                     <div class='editMode hidden'>\
@@ -55,12 +62,6 @@
                     <div class='normalMode tdTipoInstitucionText'>\
                         "+institucion._tipoInstitucion._tipoInstitucion+"\
                     </div>\
-                </td>\
-                <td class='tdCiudad'>\
-                    <div class='editMode hidden'>\
-                        <input class='form-control txtCiudad inputBack' name='txtCiudad' />\
-                    </div>\
-                    <div class='normalMode tdCiudadText'>"+institucion._ciudad+"</div>\
                 </td>\
                 <td>\
                     <div class='editMode hidden'>\
